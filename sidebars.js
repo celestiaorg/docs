@@ -1,9 +1,8 @@
 const sidebars = {
   nodes: [
     { type: "doc", label: "Overview", id: "nodes/overview" },
-    { type: "doc", label: "Validator Node", id: "nodes/validator-node" },
+    { type: "doc", label: "Bridge & Validator Node", id: "nodes/bridge-validator-node" },
     { type: "doc", label: "Light Client", id: "nodes/light-client" },
-    { type: "doc", label: "Bridge Client", id: "nodes/bridge-client" },
   ],
   learn: [
     { type: "doc", label: "Overview", id: "learn/overview" },
