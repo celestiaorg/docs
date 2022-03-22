@@ -4,11 +4,11 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Modular',
+    title: 'Build Modular',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Celestia is the first Modular Blockchain which allows developers to deploy 
+        Celestia is the First Modular Blockchain network which enables developers to deploy 
         their own blockchain as easy as deploying a new smart contract.
       </>
     ),
@@ -24,12 +24,12 @@ const FeatureList = [
     ),
   },
   {
-    title: 'Powered by Data Availability Layer',
+    title: 'Power-up with Data Availability Layer',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
         Celestia introduces what is called the Data Availability Layer for enabling 
-        much better scaling and allowing L2 Rollups to do data sampling for transactions they need.
+        efficient scaling and allowing L2 Rollups to do data sampling for transactions they need.
       </>
     ),
   },
