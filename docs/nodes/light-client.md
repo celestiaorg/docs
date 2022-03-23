@@ -71,7 +71,7 @@ go version go1.17.2 linux/amd64
 > Note: Make sure that you have at least 5+ Gb of free space for Celestia Light Node  
 
 Install the Celestia Node binary. Make sure that you have `git` and `golang` installed.
-```sh
+```shell
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.2.0 -b v0.2.0
@@ -84,14 +84,14 @@ make install
 More information on `config.toml` is found [here](https://github.com/celestiaorg/networks/blob/master/config-toml.md).
 
 1. Initialize the Light Node
-```sh
+```shell
 celestia light init
 ```
 
 2. Start the Light Node
 
 Start the Light Node as daemon process in the background
-```sh
+```shell
 sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-lightd.service
 [Unit]
 Description=celestia-lightd Light Node
@@ -123,12 +123,12 @@ sudo systemctl start celestia-lightd
 ```
 
 4. Check if daemon has been started correctly:
-```sh
+```shell
 sudo systemctl status celestia-lightd
 ```
 
 5. Check daemon logs in real time:
-```sh
+```shell
 sudo journalctl -u celestia-lightd.service -f
 ```
 
@@ -152,42 +152,42 @@ Option 1: Use the Keplr wallet which has beta support for Celestia. https://stak
 
 Option 2: Download the Celestia App binary which has a CLI for creating wallets
 1. Download the celestia-appd binary inside `$HOME/go/bin` folder which will be used to create wallets.
-```sh
+```shell
 git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app/
 git checkout tags/v0.2.0 -b v0.2.0
 make install
 ```
 2. To check if the binary was succesfully compiled you can run the binary using the `--help` flag:
-```sh
+```shell
 cd $HOME/go/bin
 ./celestia-appd —help
 ```
 
 3. Create the wallet with any wallet name you want e.g.
-```sh
+```shell
 celestia-appd keys add mywallet
 ```
 Save the mnemonic output as this is the only way to recover your validator wallet in case you lose it! 
 
 ### Fund the Wallet
 You can fund an existing wallet via Discord by sending this message to #faucet channel:
-```
+```shell
 !faucet celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 Wait to see if you get a confirmation that the tokens have been successfully sent. To check if tokens have arrived succesfully to the destination wallet run the command below replacing the public address with your own:
-```sh
+```shell
 celestia-appd q bank balances celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ### Send a transaction
 In the second terminal, submit a `payForMessage` transaction with `celestia-appd` (or do so in the wallet):
-```sh
+```shell
 celestia-appd tx payment payForMessage <hex_namespace> <hex_message> —from <wallet_name> —keyring-backend <keyring-name> —chain-id <chain_name>
 ```
 Example:
-```sh 
+```shell 
 celestia-appd tx payment payForMessage 0102030405060708 68656c6c6f43656c6573746961444153 —from myWallet —keyring-backend test —chain-id devnet-2
 ```
 
@@ -195,6 +195,6 @@ celestia-appd tx payment payForMessage 0102030405060708 68656c6c6f43656c65737469
 In the Light Node logs you should see how data availability sampling works:
 
 Example:
-```sh
+```shell
 INFO	das	das/daser.go:96	sampling successful	{“height”: 81547, “hash”: “DE0B0EB63193FC34225BD55CCD3841C701BE841F29523C428CE3685F72246D94”, “square width”: 2, “finished (s)”: 0.000117466}
 ```
