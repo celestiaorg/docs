@@ -51,12 +51,7 @@ const config = {
             label: 'Run A Node',
           },
           {
-            to: '/learn/overview', 
-            label: 'Learn', 
-            position: 'left'
-          },
-          {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/celestiaorg/docs',
             label: 'GitHub',
             position: 'right',
           },
@@ -71,10 +66,6 @@ const config = {
               {
                 label: 'Run A Node',
                 to: '/nodes/overview',
-              },
-              {
-                label: 'Learn',
-                to: '/learn/overview',
               },
             ],
           },
