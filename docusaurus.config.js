@@ -10,7 +10,7 @@ const config = {
   title: 'Celestia Docs',
   tagline: '',
   url: 'https://docs.celestia.org',
-  baseUrl: '/',
+  baseUrl: '/docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
