@@ -13,7 +13,7 @@ Light Nodes have the following properties:
 
 
 ## Hardware Requirements
-The following hardware minimum requirements are recommended for running the bridge node:
+The following hardware minimum requirements are recommended for running the light node:
 * Memory: 8 GB RAM
 * CPU: Quad-Core
 * Disk: 5 GB SDD Storage
@@ -24,7 +24,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup The Dependencies
 
-Once you have setup your instance, ssh into the instance to begin setting up the box with all the needed dependencies in order to run your bridge node.
+Once you have setup your instance, ssh into the instance to begin setting up the box with all the needed dependencies in order to run your light node.
 
 First, make sure to update and upgrade the OS:
 ```shell
@@ -38,7 +38,7 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential gi
 ```
 
 ### Install Golang
-Golang will be installed on this machine in order for us to be able to build the necessary binaries for running the bridge node. For Golang specifically, it’s needed to be able to compile Celestia Light Node.
+Golang will be installed on this machine in order for us to be able to build the necessary binaries for running the light node. For Golang specifically, it’s needed to be able to compile Celestia Light Node.
 
 ```shell
 ver="1.17.2"
