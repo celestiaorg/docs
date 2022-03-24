@@ -9,13 +9,14 @@ const docs = require('./sidebars');
 const config = {
   title: 'Celestia Docs',
   tagline: '',
-  url: 'https://docs.celestia.org',
+  url: 'https://celestiaorg.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'celestiaorg', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
 
   presets: [
     [
