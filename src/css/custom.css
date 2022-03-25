@@ -5,8 +5,8 @@
  */
 
 @font-face {
-  font-family: "RuberoidLight";
-  src: url('/fonts/Ruberoid/Ruberoid-Light.otf') format('opentype');
+  font-family: "RuberoidBold";
+  src: url('/fonts/Ruberoid/Ruberoid-Bold.otf') format('opentype');
 }
 
 @font-face {
@@ -17,7 +17,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-font-family-base: "RuberoidLight";
+  --ifm-font-family-base: "RuberoidBold";
   --ifm-color-primary: #7B2BF9;
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
