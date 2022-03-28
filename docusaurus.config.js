@@ -81,6 +81,10 @@ const config = {
                 label: 'Twitter',
                 href: 'https://twitter.com/CelestiaOrg',
               },
+              {
+                label: 'Forum',
+                href: 'https://forum.celestia.org/',
+              },
             ],
           },
           {
@@ -89,6 +93,10 @@ const config = {
               {
                 label: 'GitHub',
                 href: 'https://github.com/celestiaorg/docs',
+              },
+              {
+                label: 'Website',
+                href: 'https://celestia.org/',
               },
             ],
           },
