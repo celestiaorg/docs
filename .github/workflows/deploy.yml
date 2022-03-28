@@ -12,7 +12,7 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
@@ -37,4 +37,4 @@ jobs:
           # The GH actions bot is used by default if you didn't specify the two fields.
           # You can swap them out with your own user credentials.
           user_name: YazzyYaz
-          user_email: yaz@celestia.org
+          user_email: yaz.khoury@gmail.com
