@@ -39,6 +39,8 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      image: 'img/celestia-logo.png',
+      metadata: [{name: 'twitter:card', content: 'summary'}],
       navbar: {
         title: 'Celestia Docs',
         logo: {
