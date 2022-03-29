@@ -37,4 +37,4 @@ jobs:
           # The GH actions bot is used by default if you didn't specify the two fields.
           # You can swap them out with your own user credentials.
           user_name: YazzyYaz
-          user_email: yaz.khoury@gmail.com
+          user_email: yaz@celestia.org
