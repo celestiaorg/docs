@@ -9,7 +9,7 @@ const docs = require('./sidebars');
 const config = {
   title: 'Celestia Docs',
   tagline: '',
-  url: 'https://celestiaorg.github.io',
+  url: 'https://docs.celestia.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
