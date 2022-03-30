@@ -17,7 +17,7 @@ const config = {
   organizationName: 'celestiaorg', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
   deploymentBranch: 'gh-pages',
-  scripts: [{src: 'js/plausible.js', defer: true, 'data-domain': 'docs.celestia.org'}],
+  scripts: [{src: 'https://plausible.celestia.org/js/plausible.js', defer: true, 'data-domain': 'docs.celestia.org'}],
   presets: [
     [
       'classic',
