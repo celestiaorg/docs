@@ -92,7 +92,7 @@ make install
 To check if the binary was successfully compiled you can run the binary using the `--help` flag:
 ```shell
 cd $HOME/go/bin
-./celestia-appd —help
+./celestia-appd --help
 ```
 You should see a similar output:
 ```shell
@@ -138,7 +138,7 @@ cd $HOME
 rm -rf networks
 git clone https://github.com/celestiaorg/networks.git
 ```
-To initialize the network pick a “node-name” that describes your node. The —chain-id parameter we are using here is “devnet-2”. Keep in mind that this might change if a new testnet is deployed.
+To initialize the network pick a “node-name” that describes your node. The --chain-id parameter we are using here is “devnet-2”. Keep in mind that this might change if a new testnet is deployed.
 ```
 celestia-appd init "node-name" --chain-id devnet-2
 ```
