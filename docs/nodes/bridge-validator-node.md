@@ -14,7 +14,7 @@ A Celestia bridge node has the following properties:
 From an implementation perspective, Bridge Nodes run two separate processes:
 1. Celestia App with Celestia Core ( [see repo](https://github.com/celestiaorg/celestia-app) )
 	* **Celestia App** is the state machine where the application and the proof-of-stake logic is run. Celestia App is built on  [Cosmos SDK](https://docs.cosmos.network/)  and also encompasses **Celestia Core**.
-	* **Celestia Core** is the state interaction, consensus and block production layer. Celestia Core is built on  [Tendermint Core](https://docs.tendermint.com/) , modified to store (1) invalid transactions and (2) data roots of erasure coded blocks, among other changes ( [see ADRs](https://github.com/celestiaorg/celestia-core/tree/master/docs/celestia-architecture) ).
+	* **Celestia Core** is the state interaction, consensus and block production layer. Celestia Core is built on  [Tendermint Core](https://docs.tendermint.com/) , modified to store data roots of erasure coded blocks among other changes ( [see ADRs](https://github.com/celestiaorg/celestia-core/tree/master/docs/celestia-architecture) ).
 2. Celestia Node ( [see repo](https://github.com/celestiaorg/celestia-node) )
 	* **Celestia Node** augments the above with a separate libp2p network that serves data availability sampling requests. The team sometimes refer to this as the “halo” network.
 
