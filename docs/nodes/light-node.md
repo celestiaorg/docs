@@ -161,7 +161,7 @@ make install
 2. To check if the binary was succesfully compiled you can run the binary using the `--help` flag:
 ```shell
 cd $HOME/go/bin
-./celestia-appd —help
+./celestia-appd --help
 ```
 
 3. Create the wallet with any wallet name you want e.g.
@@ -184,11 +184,11 @@ celestia-appd q bank balances celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ### Send a transaction
 In the second terminal, submit a `payForMessage` transaction with `celestia-appd` (or do so in the wallet):
 ```shell
-celestia-appd tx payment payForMessage <hex_namespace> <hex_message> —from <wallet_name> —keyring-backend <keyring-name> —chain-id <chain_name>
+celestia-appd tx payment payForMessage <hex_namespace> <hex_message> --from <wallet_name> --keyring-backend <keyring-name> --chain-id <chain_name>
 ```
 Example:
 ```shell 
-celestia-appd tx payment payForMessage 0102030405060708 68656c6c6f43656c6573746961444153 —from myWallet —keyring-backend test —chain-id devnet-2
+celestia-appd tx payment payForMessage 0102030405060708 68656c6c6f43656c6573746961444153 --from myWallet --keyring-backend test --chain-id devnet-2
 ```
 
 ### Observe DAS in action
