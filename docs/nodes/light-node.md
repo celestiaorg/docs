@@ -155,7 +155,7 @@ Option 2: Download the Celestia App binary which has a CLI for creating wallets
 ```shell
 git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app/
-git checkout tags/v0.2.0 -b v0.2.0
+git checkout tags/v0.1.0 -b v0.1.0
 make install
 ```
 2. To check if the binary was succesfully compiled you can run the binary using the `--help` flag:
