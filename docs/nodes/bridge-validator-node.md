@@ -95,7 +95,7 @@ cd $HOME/go/bin
 ./celestia-appd --help
 ```
 You should see a similar output:
-```shell
+```
 Stargate CosmosHub App
 
 Usage:
@@ -154,11 +154,24 @@ SEEDS="74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"
 PEERS="34d4bfec8998a8fac6393a14c5ae151cf6a5762f@194.163.191.41:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
-Now, reset the network:
+### Configure Pruning
+For lower disk space usage we recommend setting up pruning using the configurations below. You can change this to your own pruning configurations if you want:
+```shell
+pruning="custom"
+pruning_keep_recent="100"
+pruning_keep_every="5000"
+pruning_interval="10"
+
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.celestia-app/config/app.toml
+```
+### Reset Network
+This will delete all data folders so we can start fresh:
 ```shell
 celestia-appd unsafe-reset-all
 ```
-
 ### SystemD
 SystemD is a daemon service useful for running applications as background processes.
 
