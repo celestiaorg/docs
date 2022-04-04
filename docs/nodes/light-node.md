@@ -102,7 +102,7 @@ User=$USER
 ExecStart=$HOME/go/bin/celestia light start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target
