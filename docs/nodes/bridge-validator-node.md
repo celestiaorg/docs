@@ -355,7 +355,7 @@ nano ~/.celestia-bridge/config.toml
 SystemD is a daemon service useful for running applications as background processes.
 
 Create Celestia-Bridge systemd file:
-
+```shell
 sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-bridge.service
 [Unit]
 Description=Celestia-Bridge Cosmos daemon
@@ -371,6 +371,7 @@ LimitNOFILE=65536
 [Install]
 WantedBy=multi-user.target
 EOF
+```
 
 If the file was created successfully you will be able to see its content:
 ```shell
