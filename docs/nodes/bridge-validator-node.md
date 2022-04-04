@@ -187,7 +187,7 @@ User=$USER
 ExecStart=$HOME/go/bin/celestia-appd start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target
@@ -351,22 +351,58 @@ nano ~/.celestia-bridge/config.toml
 ...
 ```
 
-### Start the Bridge Node
-```shell
-celestia bridge start
-```
-Now, the Celestia bridge node will start syncing headers and storing blocks from Celestia application. 
+### SystemD
+SystemD is a daemon service useful for running applications as background processes.
 
-> Note: At startup, we can see the `multiaddress` from Celestia Bridge Node. This is <b>needed for future Light Node</b> connections and communication between Celestia Bridge Nodes  
+Create Celestia-Bridge systemd file:
+
+sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-bridge.service
+[Unit]
+Description=Celestia-Bridge Cosmos daemon
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$HOME/go/bin/celestia bridge start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+If the file was created successfully you will be able to see its content:
+```shell
+cat /etc/systemd/system/celestia-bridge.service
+```
+
+Enable and start Celestia-bridge daemon:
+```shell
+sudo systemctl enable celestia-bridge
+sudo systemctl start celestia-bridge
+```
+
+Check if daemon has been started correctly:
+```shell
+sudo systemctl status celestia-bridge
+```
+	
+Check daemon logs in real time:
+```shell
+sudo journalctl -u celestia-bridge.service -f
+```
+
+The Celestia bridge node will now start syncing headers and storing blocks from Celestia application. 
+	
+> Note: At startup, you will be able to see the `multiaddress` from Celestia Bridge Node. This is <b>needed for future Light Node</b> connections and communication between Celestia Bridge Nodes.  
 
 Example:
 ```shell
 /ip4/46.101.22.123/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22
 ```
 
-You should be seeing logs coming through of the bridge node syncing.
-
-You have successfully set up a bridge node that is syncing with the network. Read on if you are interested in setting up a Validator node.
+You have now successfully set up a bridge node that is syncing with the network! Read on if you are interested in setting up a Validator node.
 
 ## Run a Validator Bridge Node
 Optionally, if you want to join the active validator list, you can create your own validator on-chain following the instructions below. Keep in mind that these steps are necessary ONLY if you want to participate in the consensus.
