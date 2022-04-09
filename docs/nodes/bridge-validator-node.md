@@ -22,7 +22,7 @@ From an implementation perspective, Bridge Nodes run two separate processes:
 The following hardware minimum requirements are recommended for running the bridge node:
 * Memory: 8 GB RAM
 * CPU: Quad-Core
-* Disk: 100 GB SDD Storage
+* Disk: 250 GB SDD Storage
 * Bandwidth: 1 GB of input-output connection
 
 ## Setting Up Your Bridge Node
@@ -172,7 +172,15 @@ This will delete all data folders so we can start fresh:
 ```shell
 celestia-appd unsafe-reset-all
 ```
-### SystemD
+### Optional: Quick-Sync with Snapshot
+Syncing from Genesis can take a long time, depending on your hardware. Using this method you can synchronize your Celestia node very quickly by downloading a recent snapshot of the blockchain. If you would like to sync from the Genesis, then you can skip this part.
+ ```shell
+cd $HOME
+rm -rf ~/.celestia-app/data; \
+mkdir -p ~/.celestia-app/data; 
+SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | egrep -o ">devnet-2.*tar" | tr -d ">"); wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - -C ~/.celestia-app/data/
+```
+### Start the Celestia-App with SystemD
 SystemD is a daemon service useful for running applications as background processes.
 
 Create Celestia-App systemd file:
@@ -290,6 +298,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
+git checkout tags/v0.2.0 -b v0.2.0
 make install
 ```
 Verify that the binary is working and check the version with `celestia version` command:
@@ -351,9 +360,36 @@ nano ~/.celestia-bridge/config.toml
 ...
 ```
 
-### Start the Bridge Node
+### Start the Bridge Node with SystemD
+SystemD is a daemon service useful for running applications as background processes.
+
+Create Celestia Bridge systemd file:
 ```shell
-celestia bridge start
+sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-bridge.service
+[Unit]
+Description=celestia-bridge Cosmos daemon
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$HOME/go/bin/celestia bridge start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+If the file was created successfully you will be able to see its content:
+```shell
+cat /etc/systemd/system/celestia-bridge.service
+```
+
+Enable and start celestia-bridge daemon:
+```shell
+sudo systemctl enable celestia-bridge
+sudo systemctl start celestia-bridge && sudo journalctl -u celestia-bridge.service -f
 ```
 Now, the Celestia bridge node will start syncing headers and storing blocks from Celestia application. 
 
