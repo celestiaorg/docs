@@ -16,7 +16,7 @@ Light Nodes have the following properties:
 The following hardware minimum requirements are recommended for running the light node:
 * Memory: 8 GB RAM
 * CPU: Quad-Core
-* Disk: 5 GB SDD Storage
+* Disk: 5 GB SSD Storage
 * Bandwidth: 1 GB of input-output connection
 
 ## Setting Up Your Light Node
