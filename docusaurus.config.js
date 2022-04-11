@@ -54,6 +54,11 @@ const config = {
             label: 'Run A Node',
           },
           {
+            to: '/developers/overview',
+            position: 'left',
+            label: 'Developers',
+          },
+          {
             href: 'https://github.com/celestiaorg/docs',
             label: 'GitHub',
             position: 'right',
@@ -70,6 +75,10 @@ const config = {
                 label: 'Run A Node',
                 to: '/nodes/overview',
               },
+              {
+                label: 'Developers',
+                to: '/developers/overview',
+              }
             ],
           },
           {
