@@ -160,8 +160,7 @@ make install
 ```
 2. To check if the binary was succesfully compiled you can run the binary using the `--help` flag:
 ```shell
-cd $HOME/go/bin
-./celestia-appd --help
+celestia-appd --help
 ```
 
 3. Create the wallet with any wallet name you want e.g.
