@@ -91,8 +91,7 @@ make install
 
 To check if the binary was successfully compiled you can run the binary using the `--help` flag:
 ```shell
-cd $HOME/go/bin
-./celestia-appd --help
+celestia-appd --help
 ```
 You should see a similar output:
 ```
