@@ -17,7 +17,7 @@ The following hardware minimum requirements are recommended for running the ligh
 * Memory: 8 GB RAM
 * CPU: Quad-Core
 * Disk: 5 GB SSD Storage
-* Bandwidth: 1 GB of input-output connection
+* Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
 ## Setting Up Your Light Node
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machine. 
