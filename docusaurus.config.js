@@ -59,6 +59,11 @@ const config = {
             label: 'Developers',
           },
           {
+            to: '/community/overview',
+            position: 'left',
+            label: 'Community',
+          },
+          {
             href: 'https://github.com/celestiaorg/docs',
             label: 'GitHub',
             position: 'right',
@@ -78,7 +83,11 @@ const config = {
               {
                 label: 'Developers',
                 to: '/developers/overview',
-              }
+              },
+              {
+                label: 'Community',
+                to: '/community/overview'
+              },
             ],
           },
           {
