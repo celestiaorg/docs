@@ -9,6 +9,11 @@ const sidebars = {
     { type: "doc", label: "Overview", id: "developers/overview" },
     { type: "doc", label: "Node API", id: "developers/node-api" },
   ],
+  community: [
+    { type: "doc", label: "Overview", id: "community/overview" },
+    { type: "doc", label: "Code of Conduct", id: "community/coc" },
+    { type: "doc", label: "Community Calendar", id: "community/calendar" },
+  ],
 };
 
 module.exports = sidebars;
