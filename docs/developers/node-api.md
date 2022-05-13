@@ -22,7 +22,7 @@ Response
 ### Share endpoints
 
 #### GET /namespaced_shares/{nID}
-Returns shares of the given namespace ID nID from the latest block (chain head).
+Returns shares of the given namespace ID `nID` from the latest block (chain head).
 
 Request
 ```sh
