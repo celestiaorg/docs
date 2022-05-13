@@ -92,6 +92,6 @@ Request
 curl -X POST -d '{"namespace_id": "0000010000000100", "data": "68656c6c6f", "gas_limit": 100000}' http://<ip>:26658/submit_pfd
 ```
 Response
-```sh
+```json
 {"height":589,"txhash":"065ED98A1D75AF10EADF38FC4D2DF125920C696C525732DA094029FCC3D2FE6E","data":"0A180A162F7061796D656E742E4D7367506179466F7244617461","raw_log":"[{\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"action\",\"value\":\"/payment.MsgPayForData\"}]},{\"type\":\"payfordata\",\"attributes\":[{\"key\":\"signer\",\"value\":\"celes1vdjkcetnxyc8gandddeh2wfcxe3ksdfn09axkdtrwdnryat3v3jkcut8wpjnjerj0y6hz6sga5fzu\"},{\"key\":\"size\",\"value\":\"256\"}]}]}]","logs":[{"events":[{"type":"message","attributes":[{"key":"action","value":"/payment.MsgPayForData"}]},{"type":"payfordata","attributes":[{"key":"signer","value":"celes1vdjkcetnxyc8gandddeh2wfcxe3ksdfn09axkdtrwdnryat3v3jkcut8wpjnjerj0y6hz6sga5fzu"},{"key":"size","value":"256"}]}]}],"gas_wanted":100000,"gas_used":38546}
 ```
