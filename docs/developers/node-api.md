@@ -85,7 +85,7 @@ Response
 ```
 
 #### POST /submit_pfd
-Constructs, signs and submits a PayForData message to a running instance of celestia-app.
+Constructs, signs and submits a PayForData message to a running instance of celestia-app. The body of the `/submit_pfd` request should contain the hex-encoded `namespace_id`, the hex-encoded `data`, and the `gas_limit` as a uint64.
 
 Request
 ```sh
