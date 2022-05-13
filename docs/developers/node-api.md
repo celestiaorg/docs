@@ -5,6 +5,7 @@ This is the Celestia Node API Docs reference page for being able to make API req
 In order to query the API, you will need to setup your node. Resources on how to do this can be found in the following [guide](https://docs.celestia.org/nodes/bridge-validator-node#deploy-the-celestia-node).
 
 ## Endpoints
+
 ### Header endpoints
 
 #### GET /header/{height}
