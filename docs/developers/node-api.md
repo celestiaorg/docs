@@ -68,7 +68,7 @@ Request
 curl -X GET http://<ip>:26658/balance/celes1vuw7pdcyap2u62x6dyqjdzznlg25jll6jj76d0
 ```
 Response
-```sh
+```json
 {"denom":"uceles","amount":"999995000000000"}
 ```
 
