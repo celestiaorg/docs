@@ -35,7 +35,7 @@ Response
 ```
 
 #### GET /namespaced_shares/{nID}/height/{height}
-Returns shares of the given namespace ID nID from the block of the given height height.
+Returns shares of the given namespace ID `nID` from the block of the given height `height`.
 
 Request
 ```sh
