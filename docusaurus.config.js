@@ -35,7 +35,9 @@ const config = {
       }),
     ],
   ],
-
+  plugins: [
+    ['drawio', {}],
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
