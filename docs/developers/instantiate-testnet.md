@@ -67,7 +67,7 @@ go version
 
 Output should be the version installed:
 
-```sh
+```console
 go version go1.17.2 linux/amd64
 ```
 
