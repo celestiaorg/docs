@@ -141,7 +141,7 @@ celestia-appd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 Next, run the following command:
 
 ```sh
-$KEY_NAME=validator
+KEY_NAME=validator
 celestia-appd keys add $KEY_NAME 
 ```
 
