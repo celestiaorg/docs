@@ -8,6 +8,7 @@ const sidebars = {
   developers: [
     { type: "doc", label: "Overview", id: "developers/overview" },
     { type: "doc", label: "Node API", id: "developers/node-api" },
+    { type: "doc", label: "Create A Celestia Testnet", id: "developers/instantiate-testnet" },
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },
