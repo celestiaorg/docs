@@ -35,6 +35,9 @@ const config = {
       }),
     ],
   ],
+  plugins: [
+    ['drawio', {}],
+  ],
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
