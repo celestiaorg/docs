@@ -126,8 +126,8 @@ celestia-appd unsafe-reset-all
 Run the following command:
 
 ```sh
-$VALIDATOR_NAME=validator1
-$CHAIN_ID=testnet
+VALIDATOR_NAME=validator1
+CHAIN_ID=testnet
 celestia-appd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 ```
 
