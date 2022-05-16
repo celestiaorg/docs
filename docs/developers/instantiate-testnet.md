@@ -126,12 +126,14 @@ celestia-appd unsafe-reset-all
 Run the following command:
 
 ```sh
-celestia-appd init [moniker] --chain-id [chain-id]
+$VALIDATOR_NAME=validator1
+$CHAIN_ID=testnet
+celestia-appd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 ```
 
-* The value we will use for `moniker` is validator-1 but you should choose
+* The value we will use for `$VALIDATOR_NAME` is validator1 but you should choose
   your own node name.
-* The value we will use for `chain-id` is `testnet`. The `chain-id` must
+* The value we will use for `$CHAIN_ID` is `testnet`. The `$CHAIN_ID` must
   remain the same for everyone participating in this network.
 
 ### Create A New Key
@@ -139,22 +141,25 @@ celestia-appd init [moniker] --chain-id [chain-id]
 Next, run the following command:
 
 ```sh
-celestia-appd keys add [key_name]
+$KEY_NAME=validator
+celestia-appd keys add $KEY_NAME 
 ```
 
 This will create a new key, with a name of your choosing.
 Save the output of this command somewhere; you'll need
-the address generated here later.
+the address generated here later. Here, we set the value of our
+key `$KEY_NAME` to `validator` for demonstration.
 
 ### Add Genesis Account KeyName
 
 Run the following command:
 
 ```sh
-celestia-appd add-genesis-account [key_name] [amount]
+celestia-appd add-genesis-account $KEY_NAME [amount]
 ```
 
-Here `key_name` is the same key name as before; and `amount` is something like `10000000000000000000000000uceles`.
+Here `$VALIDATOR_NAME` is the same key name as before; and `amount`
+is something like `10000000000000000000000000uceles`.
 
 ### Optional: Adding Other Validators
 
@@ -172,7 +177,7 @@ You can find the `genesis.json` at `$HOME/.celestia-appd/config/genesis.json`
 Run the following command:
 
 ```sh
-celestia-appd gentx [key_name] [amount] --chain-id [chain-id]
+celestia-appd gentx $KEY_NAME [amount] --chain-id $CHAIN_ID
 ```
 
 This will create the genesis transaction for your new chain.
