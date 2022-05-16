@@ -92,7 +92,7 @@ celestia-appd --help
 
 You should see a similar output:
 
-```sh
+```console
 Stargate CosmosHub App
 
 Usage:
