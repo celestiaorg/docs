@@ -55,7 +55,7 @@ rm "go$ver.linux-amd64.tar.gz"
 Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
 
 ```sh
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
