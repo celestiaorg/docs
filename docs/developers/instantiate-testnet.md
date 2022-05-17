@@ -79,7 +79,8 @@ Run the following:
 cd $HOME
 git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app/
-git checkout tags/v0.4.0 -b v0.4.0
+APP_VERSION=$(curl -s https://api.github.com/repos/celestiaorg/celestia-app/releases/latest | jq -r ".tag_name")
+git checkout tags/$APP_VERSION -b $APP_VERSION
 make install
 ```
 
