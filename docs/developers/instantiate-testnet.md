@@ -219,7 +219,7 @@ this new one created.
 
 ### Modify Your Config File
 
-Open the following file `~/.celestia-app/config/config.toml` to modify it.
+Open the following file `$HOME/.celestia-app/config/config.toml` to modify it.
 
 Inside the file, add the other participants by modifying the following line to
 include other participants as persistent peers:
