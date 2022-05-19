@@ -9,11 +9,13 @@ const sidebars = {
     { type: "doc", label: "Overview", id: "developers/overview" },
     { type: "doc", label: "Node Tutorial", id: "developers/node-tutorial" },
     { type: "doc", label: "Node API", id: "developers/node-api" },
+    { type: "doc", label: "Create A Celestia Testnet", id: "developers/instantiate-testnet" },
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },
     { type: "doc", label: "Code of Conduct", id: "community/coc" },
     { type: "doc", label: "Community Calendar", id: "community/calendar" },
+    { type: "doc", label: "Docs Translations", id: "community/translations" },
   ],
 };
 
