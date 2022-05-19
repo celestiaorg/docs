@@ -157,7 +157,8 @@ key `$KEY_NAME` to `validator` for demonstration.
 Run the following command:
 
 ```sh
-celestia-appd add-genesis-account $KEY_NAME [amount] --keyring-backend test
+CELES_AMOUNT="10000000000000000000000000uceles"
+celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT --keyring-backend test
 ```
 
 Here `$VALIDATOR_NAME` is the same key name as before; and `amount`
