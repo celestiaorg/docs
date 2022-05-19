@@ -144,7 +144,7 @@ Next, run the following command:
 
 ```sh
 KEY_NAME=validator
-celestia-appd keys add $KEY_NAME 
+celestia-appd keys add $KEY_NAME --keyring-backend test
 ```
 
 This will create a new key, with a name of your choosing.
