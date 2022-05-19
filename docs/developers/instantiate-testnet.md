@@ -182,7 +182,8 @@ Run the following command:
 
 ```sh
 STAKING_AMOUNT=1000000000uceles
-celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
+celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
+  --keyring-backend test
 ```
 
 This will create the genesis transaction for your new chain.
@@ -212,7 +213,7 @@ celestia-appd collect-gentxs
 This command will look for the gentx files in this repo which should
 be moved to the following directory `$HOME/.celestia-app/config/gentx`.
 
-It will update the `genesis.json` file after in this location 
+It will update the `genesis.json` file after in this location
 `$HOME/.celestia-app/config/genesis.json` which now includes the gentx
 of other participants.
 
