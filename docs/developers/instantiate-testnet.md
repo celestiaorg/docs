@@ -182,7 +182,7 @@ Run the following command:
 
 ```sh
 STAKING_AMOUNT=1000000000uceles
-celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID
+celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 ```
 
 This will create the genesis transaction for your new chain.
