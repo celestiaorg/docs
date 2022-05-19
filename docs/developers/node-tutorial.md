@@ -86,7 +86,7 @@ make install
 
 Verify its installed by running the following command:
 
-```sh
+```console
 $ celestia version
 Semantic version: v0.2.0
 Commit: 1fcf0c0bb5d5a4e18b51cf12440ce86a84cf7a72
