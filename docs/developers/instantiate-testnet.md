@@ -161,7 +161,7 @@ CELES_AMOUNT="10000000000000000000000000uceles"
 celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT --keyring-backend test
 ```
 
-Here `$VALIDATOR_NAME` is the same key name as before; and `amount`
+Here `$VALIDATOR_NAME` is the same key name as before; and `$AMOUNT`
 is something like `10000000000000000000000000uceles`.
 
 ### Optional: Adding Other Validators
