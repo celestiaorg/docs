@@ -212,6 +212,10 @@ celestia-appd collect-gentxs
 This command will look for the gentx files in this repo which should
 be moved to the following directory `$HOME/.celestia-app/config/gentx`.
 
+It will update the `genesis.json` file after in this location 
+``$HOME/.celestia-app/config/genesis.json` which now includes the gentx
+of other participants.
+
 You should then share this final `genesis.json` file with all the
 other particpants who must add it to their `$HOME/.celestia-app/config` directory.
 
