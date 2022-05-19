@@ -189,7 +189,7 @@ Here `amount` should be at least `1000000000uceles`. If you
 provide too much or too little, you will encounter an error
 when starting your node.
 
-You will find the generated gentx JSON file inside `~/.celestia-app/config/gentx/gentx-[key_name].json`
+You will find the generated gentx JSON file inside `$HOME/.celestia-app/config/gentx/gentx-$KEY_NAME.json`
 
 > Note: If you have other validators in your network, they need to also
   run the above command with the `genesis.json` file you shared with
