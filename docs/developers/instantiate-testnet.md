@@ -180,7 +180,8 @@ You can find the `genesis.json` at `$HOME/.celestia-appd/config/genesis.json`
 Run the following command:
 
 ```sh
-celestia-appd gentx $KEY_NAME [amount] --chain-id $CHAIN_ID
+STAKING_AMOUNT=1000000000uceles
+celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID
 ```
 
 This will create the genesis transaction for your new chain.
