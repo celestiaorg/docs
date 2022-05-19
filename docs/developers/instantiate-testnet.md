@@ -185,7 +185,7 @@ celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID
 ```
 
 This will create the genesis transaction for your new chain.
-Here `amount` should be at least `1000000000uceles`. If you
+Here `$STAKING_AMOUNT` should be at least `1000000000uceles`. If you
 provide too much or too little, you will encounter an error
 when starting your node.
 
