@@ -212,7 +212,7 @@ This command will look for the gentx files in this repo which should
 be moved to the following directory `~/.celestia-app/config/gentx`.
 
 You should then share this final `genesis.json` file with all the
-other particpants who must add it to their `~/.celestia-app/config` directory.
+other particpants who must add it to their `$HOME/.celestia-app/config` directory.
 
 Everyone must ensure that they replace their existing `genesis.json` file with
 this new one created.
