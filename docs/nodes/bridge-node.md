@@ -461,4 +461,4 @@ You should be seeing logs coming through of the bridge node syncing.
 
 You have successfully set up a bridge node that is syncing with the network.
 
-If you want to next run a validator node, read the following tutorial [here](link).
+If you want to next run a validator node, read the following tutorial [here](../nodes/validator-node.md).
