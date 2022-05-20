@@ -5,7 +5,6 @@ Validator nodes allow you to participate in consensus in the Celestia network.
 > Note: For this guide, you must complete the steps found in Bridge Node Tutorial
   [here](../nodes/bridge-node.md) in order to proceed.
 
-
 ## Run a Validator Bridge Node
 
 Optionally, if you want to join the active validator list, you can create your

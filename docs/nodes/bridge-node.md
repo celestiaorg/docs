@@ -156,7 +156,7 @@ Use "celestia-appd [command] --help" for more information about a command.
 
 For this section of the guide, select the network you want to connect to:
 
-- [Devnet-2](../nodes/devnet-2.md#setup-p2p-network)
+* [Devnet-2](../nodes/devnet-2.md#setup-p2p-network)
 
 After that, you can proceed with the rest of the tutorial.
 
@@ -196,9 +196,10 @@ this method you can synchronize your Celestia node very quickly by downloading
 a recent snapshot of the blockchain. If you would like to sync from the Genesis,
 then you can skip this part.
 
-If you want to use snapshot, determine the network you would like to sync to from the list below:
+If you want to use snapshot, determine the network you would like to sync
+to from the list below:
 
-- [Devnet-2](../nodes/devnet-2.md#quick-sync-with-snapshot)
+* [Devnet-2](../nodes/devnet-2.md#quick-sync-with-snapshot)
 
 ### Start the Celestia-App with SystemD
 
@@ -321,7 +322,8 @@ celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
 ```
 
 Next, select the network you want to use to delegate to a validator:
-- [Devnet-2](../nodes/devnet-2.md#delegate-to-a-validator)
+
+* [Devnet-2](../nodes/devnet-2.md#delegate-to-a-validator)
 
 ## Deploy the Celestia Node
 
@@ -392,9 +394,11 @@ celestia bridge init --core.remote tcp://127.0.0.1:26657 --headers.trusted-hash 
 
 ### Configure the Bridge Node
 
-To configure your Bridge Node to connect to your network of choice, select one of the networks you would like to connect to from this list and follow the instructions there before proceeding with the rest of this guide:
+To configure your Bridge Node to connect to your network of choice,
+select one of the networks you would like to connect to from this list and
+follow the instructions there before proceeding with the rest of this guide:
 
-- [Devnet-2](../nodes/devnet-2.md#configure-the-bridge-node)
+* [Devnet-2](../nodes/devnet-2.md#configure-the-bridge-node)
 
 ### Start the Bridge Node with SystemD
 
