@@ -1,4 +1,4 @@
-# Setting Up a Celestia Light Node
+# Setting Up A Celestia Light Node
 
 This tutorial will guide you through setting up a Celestia Light Node,
 which can allow you to do data-sampling on the Data Availability (DA)
