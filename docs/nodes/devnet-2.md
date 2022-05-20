@@ -54,7 +54,7 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers \
 *=.*/persistent_peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 
-You can return back to where you left off in the Bridge Node guide [here](../nodes/bridge-node.md#configure-pruning)
+You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#configure-pruning)
 
 ## Quick-Sync With Snapshot
 
@@ -70,7 +70,7 @@ https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 -C ~/.celestia-app/data/
 ```
 
-You can return back to where you left off in the Bridge Node guide [here](../nodes/bridge-node.md#start-the-celestia-app-with-systemd)
+You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#start-the-celestia-app-with-systemd)
 
 ## Delegate to a Validator
 
@@ -102,7 +102,7 @@ txhash: <tx-hash>
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
 
-You can return back to where you left off in the Bridge Node guide [here](../nodes/bridge-node.md#deploy-the-celestia-node)
+You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#deploy-the-celestia-node)
 
 ## Configure The Bridge Node
 
@@ -134,7 +134,7 @@ nano ~/.celestia-bridge/config.toml
 ...
 ```
 
-You can return back to where you left off in the Bridge Node guide [here](../nodes/bridge-node.md#start-the-bridge-node-with-systemd)
+You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#start-the-bridge-node-with-systemd)
 
 ## Connect Validator
 
