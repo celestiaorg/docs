@@ -103,7 +103,10 @@ Install the Celestia Node binary. Make sure that you have `git` and `golang` ins
 ```sh
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.2.0 -b v0.2.0
+APP_VERSION=$(curl -s \
+  https://api.github.com/repos/celestiaorg/celestia-node/releases/latest \
+  | jq -r ".tag_name")
+git checkout tags/$APP_VERSION -b $APP_VERSION
 make install
 ```
 
