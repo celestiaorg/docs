@@ -12,9 +12,9 @@ in order to show you how to connect to them.
 You have a list of options on the type of nodes you can run in order to
 participate in Devnet-2:
 
-* [Bridge Node](../nodes/bridge-node)
-* [Validator Node](../nodes/validator-node)
-* [Light Node](../nodes/light-node)
+* [Bridge Node](../nodes/bridge-node.md)
+* [Validator Node](../nodes/validator-node.md)
+* [Light Node](../nodes/light-node.md)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
