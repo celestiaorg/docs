@@ -1,8 +1,7 @@
 # Getting and Sending Transactions with Celestia Node
 
-In this tutorial we will cover how to use the Celestia Node API to submit and
-retrieve transactions from the Data Availability Layer by their namespace
-merkle tree.
+In this tutorial, we will cover how to use the Celestia Node API to submit and
+retrieve messages from the Data Availability Layer by their namespace ID.
 
 ## Hardware Requirements
 
@@ -12,48 +11,12 @@ You can find hardware requirements [here](https://docs.celestia.org/nodes/bridge
 
 You can follow the tutorial for setting up the dependencies [here](https://docs.celestia.org/nodes/bridge-validator-node#setting-up-your-bridge-node).
 
-## Installing Celestia App
-
-In order to begin, we would need to compile the Celestia App binary.
-
-```sh
-cd $HOME
-git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app/
-git checkout tags/v0.4.0 -b v0.4.0
-make install
-```
-
-For more information, you can follow the steps on compiling the binary [here](https://docs.celestia.org/nodes/bridge-validator-node#install-celestia-app).
-
-### Generate A Wallet
-
-Once the binary is compiled, you can use it to generate a wallet.
-
-Run the following:
-
-```sh
-celestia-appd keys add developer --keyring-backend test
-```
-
-This generates a key called `developer` in `celestia-appd`.
-
-Now, head over to the Celestia Discord channel `#faucet`.
-
-You can request funds to your wallet address using the following command in Discord:
-
-```console
-$request <Wallet-Address>
-```
-
-Where `<Wallet-Address>` is the `celes1******` address generated
-when you created the wallet.
-
-With your wallet funded, you can move on to the next step.
-
 ## Celestia Node
 
-In another terminal window, run the following:
+### Install Celestia Node
+
+We need to install Celestia Node.
+Run the following command:
 
 ```sh
 cd $HOME
@@ -73,21 +36,39 @@ System version: amd64/linux
 Golang version: go1.17.5
 ```
 
+### Instantiate Celestia Light Node
+
 Now, let's instantiate a celestia-light node:
 
 ```sh
 ./build/celestia light init
 ```
 
-With the light-node installed, we can proceed to copying over the keys from
-the celestia-app to the celestia-node so they share the same key.
+### Generate A Wallet
+
+We need to generate a wallet.
+Run the following command:
 
 ```sh
-mkdir ~/.celestia-light/keys/keyring-test
-cp ~/.celestia-app/keyring-test/* ~/.celestia-light/keys/keyring-test
+celestia light keys add developer --keyring-backend test
 ```
 
-This will copy over the keys to your Celestia Light node.
+This generates a key called `developer` in `~/.celestia-light/keys/keyring-test`.
+
+Now, head over to the Celestia Discord channel `#faucet`.
+
+You can request funds to your wallet address using the following command in Discord:
+
+```console
+$request <Wallet-Address>
+```
+
+Where `<Wallet-Address>` is the `celes1******` address generated
+when you created the wallet.
+
+With your wallet funded, you can move on to the next step.
+
+### Connect To A Public Core Endpoint
 
 Let's now run the Celestia Light node with a GRPC connection to
 an example public Core Endpoint.
@@ -96,18 +77,26 @@ an example public Core Endpoint.
   and there are several in the Discord. This one is used for demonstration
   purposes.
 
+Here we are starting a light node with a connection to a Core endpoint at
+64.227.74.87:9090 and also telling the light node to use the `developer`
+key we generated as its default account.
+
 ```sh
-./build/celestia light start --core.grpc http://64.227.74.87:26657/
+./build/celestia light start --core.grpc 64.227.74.87:9090 --keyring.accname developer
 ```
 
 ## Node API Calls
 
+Open up another terminal window in order to begin querying the API.
+`celestia-node` exposes its RPC endpoint on port `26658` by default.
+
 ### Balance
 
-Now, let's query our wallet for its balance:
+Now, let's query our node for the balance of its default account
+(which is the account associated with the `developer` key we generated earlier):
 
 ```sh
-curl -X GET http://127.0.0.1:26658/balance/celes1v7qgpfwt7jxrhnqj943x584zrhk5wa2qwk67k0
+curl -X GET http://127.0.0.1:26658/balance/
 ```
 
 It will output the following:
@@ -305,12 +294,16 @@ It will output something like this:
 
 ### Submit a PFD Transaction
 
-In this example, e will be submitting a transaction to the PFD endpoint.
-PFD is a PayForData Message.
-The endpoint also takes in a `namespace_id` and `data` values.
+In this example, we will be submitting a PayForData
+transaction to the node's `/submit_pfd` endpoint.
 
-Namespace ID should be 8 bytes.
-Data is in hex-encoded bytes of the raw message.
+Some things to consider:
+
+* PFD is a PayForData Message.
+* The endpoint also takes in a `namespace_id` and `data` values.
+* Namespace ID should be 8 bytes.
+* Data is in hex-encoded bytes of the raw message.
+* `gas_limit` is the limit of gas to use for the transaction
 
 We use the following `namespace_id` of `0000010000000100` and
 the `data` value of `68656c6c6f`.
@@ -366,6 +359,9 @@ We get the following output:
 }
 ```
 
+If you notice from the above output, it returns a `height` of
+`589` which we will use for the next command.
+
 ### Get Namespaced Shares by Block Height
 
 After submitting your PFD transaction, upon success, the node will return
@@ -375,7 +371,7 @@ PFD transaction to get your message shares returned to you. In this example,
 the block height we got was 589 which we will use for the following command.
 
 ```sh
-curl -X GET http://127.0.0.1:26658/namespaced_shares/0000000000000001/height/589
+curl -X GET http://127.0.0.1:26658/namespaced_shares/0000010000000100/height/589
 ```
 
 Will generate the following output:
