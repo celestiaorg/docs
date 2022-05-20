@@ -1,13 +1,9 @@
-# Setting Up A Celestia Bridge & Validator Node
+# Setting Up A Celestia Bridge Node
 
 This tutorial will go over the steps to setting up your Celestia Bridge node.
 
 Bridge nodes connect the data availability layer and the consensus layer while
 also having the option of becoming a validator.
-
-If you are reading this tutorial in order to setup a validator, follow through
-the sections until you reach the validator setup guide. If you just want to
-run a bridge node, you don’t need to complete the validator step at the end.
 
 ## Overview of Bridge Nodes
 
@@ -460,5 +456,3 @@ Example:
 You should be seeing logs coming through of the bridge node syncing.
 
 You have successfully set up a bridge node that is syncing with the network.
-
-If you want to next run a validator node, read the following tutorial [here](../nodes/validator-node.md).

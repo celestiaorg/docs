@@ -4,12 +4,12 @@ There are many ways you can participate in the Celestia network.
 
 Celestia node operators can run several options on the network:
 
-* Bridge Node (This node bridges blocks between the Data-Availability network
-  and the Consensus network)
-* Validator Node (Node operators who run a Bridge Node have the option to also
-  participate in Consensus by becoming a validator)
-* Light Client (Light clients conduct data availability sampling on the Data
-  Availability network)
+* [Bridge Node](../nodes/bridge-node.md): This node bridges blocks between the
+  Data-Availability network and the Consensus network.
+* [Validator Node](../nodes/validator-node.md): Node operators who run a Bridge
+  Node have the option to also participate in Consensus by becoming a Validator.
+* [Light Node](../nodes/light-node.md): Light clients conduct data availability
+  sampling on the Data Availability network.
 
 You can learn more about how to setup each different node by going through
 this tutorial guide.
