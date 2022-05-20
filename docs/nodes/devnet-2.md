@@ -1,20 +1,25 @@
 # DevNet-2
 
-This guide contains the relevant sections for how to connect to Devnet, depending on the type of node you are running.
+This guide contains the relevant sections for how to connect to Devnet,
+depending on the type of node you are running. Devnet-2 is a milestone
+in Celestia, allowing everyone to test out core functionalities on the
+network. You can read more on the announcement [here](https://blog.celestia.org/celestia-launches-devnet/)
 
-Devnet-2 is a milestone in Celestia, allowing everyone to test out core functionalities on the network. You can read more on the announcement [here](https://blog.celestia.org/celestia-launches-devnet/)
+Your best approach to participating is to first determine which node
+you would like to run. Each node guides will link to the relevant network
+in order to show you how to connect to them.
 
-Your best approach to participating is to first determine which node you would like to run. Each node guides will link to the relevant network in order to show you how to connect to them.
+You have a list of options on the type of nodes you can run in order to
+participate in Devnet-2:
 
-You have a list of options on the type of nodes you can run in order to participate in Devnet-2:
+* [Bridge Node](../nodes/bridge-node)
+* [Validator Node](../nodes/validator-node)
+* [Light Node](../nodes/light-node)
 
-- [Bridge Node](../nodes/bridge-node)
-- [Validator Node](../nodes/validator-node)
-- [Light Node](../nodes/light-node)
-
-Select the type of node you would like to run and follow the instructions on each respective page.
-
-Whenever you are asked to select the type of network you want to connect to in those guides, select `Devnet-2` in order to refer to the correct instructions on this page on how to connect to Devnet-2.
+Select the type of node you would like to run and follow the instructions
+on each respective page. Whenever you are asked to select the type of network
+you want to connect to in those guides, select `Devnet-2` in order to refer
+to the correct instructions on this page on how to connect to Devnet-2.
 
 ## Setup P2P Network
 
@@ -65,7 +70,6 @@ https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 -C ~/.celestia-app/data/
 ```
 
-
 You can return back to where you left off in the Bridge Node guide [here](../nodes/bridge-node.md#start-the-celestia-app-with-systemd)
 
 ## Delegate to a Validator
@@ -97,7 +101,6 @@ txhash: <tx-hash>
 
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
-
 
 You can return back to where you left off in the Bridge Node guide [here](../nodes/bridge-node.md#deploy-the-celestia-node)
 
@@ -135,7 +138,8 @@ You can return back to where you left off in the Bridge Node guide [here](../nod
 
 ## Connect Validator
 
-Continuing the Validator tutorial, here are the steps to connect your validator to Devnet:
+Continuing the Validator tutorial, here are the steps to connect your
+validator to Devnet:
 
 ```sh
 MONIKER="your_moniker"
