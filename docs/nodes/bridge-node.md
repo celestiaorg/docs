@@ -108,13 +108,18 @@ Output should be the version installed:
 go version go1.17.2 linux/amd64
 ```
 
-## Deploying The Celestia App
+## Optional: Deploying The Celestia App
 
 This section describes part 1 of Celestia Bridge Node setup: running a Celestia
 App daemon with an internal Celestia Core node.
 
 > Note: Make sure you have at least 100+ Gb of free space to safely install+run
-  the Bridge Node.  
+  the Bridge Node.
+
+Completing this step allows you to connect your Bridge Node to a Celestia App
+instance running. Otherwise, you can connect directly to an existing Celestia
+App endpoint remotely and skip over to the
+[Deploy the Celestia Node](#deploy-the-celestia-node) section.
 
 ### Install Celestia App
 
@@ -269,60 +274,6 @@ curl -s localhost:26657/status | jq .result | jq .sync_info
 
 Make sure that you have `"catching_up": false`, otherwise leave it running
 until it is in sync.
-
-### Wallet
-
-#### Create a Wallet
-
-You can pick whatever wallet name you want. For our example we used
-“validator” as the wallet name:
-
-```sh
-celestia-appd keys add validator
-```
-
-Save the mnemonic output as this is the only way to recover your validator
-wallet in case you lose it!
-
-#### Fund a Wallet
-
-For the public celestia address, you can fund the previously created wallet via
-Discord by sending this message to #faucet channel:
-
-```text
-!faucet celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-Wait to see if you get a confirmation that the tokens have been successfully
-sent. To check if tokens have arrived successfully to the destination wallet
-run the command below replacing the public address with your own:
-
-```sh
-celestia-appd q bank balances celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-### Delegate Stake to a Validator
-
-If you want to delegate more stake to any validator, including your own you
-will need the `celesvaloper` address of the validator in question. You can
-either check it using the block explorer mentioned above or you can run the
-command below to get the `celesvaloper` of your local validator wallet in
-case you want to delegate more to it:
-
-```sh
-celestia-appd keys show $VALIDATOR_WALLET --bech val -a
-```
-
-After entering the wallet passphrase you should see a similar output:
-
-```sh
-Enter keyring passphrase:
-celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
-```
-
-Next, select the network you want to use to delegate to a validator:
-
-* [Devnet-2](../nodes/devnet-2.md#delegate-to-a-validator)
 
 ## Deploy the Celestia Node
 
