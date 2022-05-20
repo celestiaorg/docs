@@ -1,4 +1,4 @@
-# Setting Up A Validator Node
+# Setting Up A Celestia Validator Node
 
 Validator nodes allow you to participate in consensus in the Celestia network.
 
