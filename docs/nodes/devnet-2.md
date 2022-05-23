@@ -51,7 +51,7 @@ Set seeds and peers:
 SEEDS="74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"
 PEERS="34d4bfec8998a8fac6393a14c5ae151cf6a5762f@194.163.191.41:26656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers \
-*=.*/persistent_peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
+    *=.*/persistent_peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 
 You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#configure-pruning)
@@ -62,12 +62,12 @@ Run the following command to quick-sync from a snapshot for `devnet-2`:
 
 ```sh
 cd $HOME
-rm -rf ~/.celestia-app/data; \
-mkdir -p ~/.celestia-app/data;
+rm -rf ~/.celestia-app/data
+mkdir -p ~/.celestia-app/data
 SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-egrep -o ">devnet-2.*tar" | tr -d ">"); wget -O - \
-https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
--C ~/.celestia-app/data/
+    egrep -o ">devnet-2.*tar" | tr -d ">")
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
+    -C ~/.celestia-app/data/
 ```
 
 You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#start-the-celestia-app-with-systemd)
@@ -78,13 +78,13 @@ To delegate tokens to the the `celesvaloper` validator, as an example you can ru
 
 ```sh
 celestia-appd tx staking delegate \
-celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd 1000000celes \
---from=$VALIDATOR_WALLET --chain-id=devnet-2
+    celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd 1000000celes \
+    --from=$VALIDATOR_WALLET --chain-id=devnet-2
 ```
 
 If successful, you should see a similar output as:
 
-```sh
+```console
 code: 0
 codespace: ""
 data: ""
@@ -118,7 +118,7 @@ For more information on `config.toml`, please navigate to [this link](../nodes/c
 nano ~/.celestia-bridge/config.toml
 ```
 
-```sh
+```toml
 ...
 [P2P]
   ...
@@ -146,26 +146,26 @@ MONIKER="your_moniker"
 VALIDATOR_WALLET="validator"
 
 celestia-appd tx staking create-validator \
---amount=1000000celes \
---pubkey=$(celestia-appd tendermint show-validator) \
---moniker=$MONIKER \
---chain-id=devnet-2 \
---commission-rate=0.1 \
---commission-max-rate=0.2 \
---commission-max-change-rate=0.01 \
---min-self-delegation=1000000 \
---from=$VALIDATOR_WALLET
+    --amount=1000000celes \
+    --pubkey=$(celestia-appd tendermint show-validator) \
+    --moniker=$MONIKER \
+    --chain-id=devnet-2 \
+    --commission-rate=0.1 \
+    --commission-max-rate=0.2 \
+    --commission-max-change-rate=0.01 \
+    --min-self-delegation=1000000 \
+    --from=$VALIDATOR_WALLET
 ```
 
 You will be prompted to confirm the transaction:
 
-```sh
+```console
 confirm transaction before signing and broadcasting [y/N]: y
 ```
 
 Inputting `y` should provide an output similar to:
 
-```sh
+```console
 code: 0
 codespace: ""
 data: ""
