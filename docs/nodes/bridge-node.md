@@ -160,7 +160,7 @@ Use "celestia-appd [command] --help" for more information about a command.
 
 For this section of the guide, select the network you want to connect to:
 
-* [Devnet-2](../nodes/devnet-2.md#setup-p2p-network)
+* [Mamaki](../nodes/mamaki.md#setup-p2p-network)
 
 After that, you can proceed with the rest of the tutorial.
 
@@ -203,7 +203,7 @@ then you can skip this part.
 If you want to use snapshot, determine the network you would like to sync
 to from the list below:
 
-* [Devnet-2](../nodes/devnet-2.md#quick-sync-with-snapshot)
+* [Mamaki](../nodes/mamaki.md#quick-sync-with-snapshot)
 
 ### Start the Celestia-App with SystemD
 
@@ -351,7 +351,7 @@ To configure your Bridge Node to connect to your network of choice,
 select one of the networks you would like to connect to from this list and
 follow the instructions there before proceeding with the rest of this guide:
 
-* [Devnet-2](../nodes/devnet-2.md#configure-the-bridge-node)
+* [Mamaki](../nodes/mamaki.md#configure-the-bridge-node)
 
 ### Start the Bridge Node with SystemD
 

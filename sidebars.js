@@ -40,8 +40,8 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Devnet-2",
-          id: "nodes/devnet-2"
+          label: "Mamaki",
+          id: "nodes/mamaki"
         }
       ]
     },
