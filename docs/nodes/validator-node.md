@@ -1,48 +1,6 @@
-# Setting Up A Celestia Bridge & Validator Node
+# Setting Up A Celestia Validator Node
 
-This tutorial will go over the steps to setting up your Celestia Bridge node.
-
-Bridge nodes connect the data availability layer and the consensus layer while
-also having the option of becoming a validator.
-
-If you are reading this tutorial in order to setup a validator, follow through
-the sections until you reach the validator setup guide. If you just want to
-run a bridge node, you don’t need to complete the validator step at the end.
-
-## Overview of Bridge Nodes
-
-A Celestia bridge node has the following properties:
-
-1. Import and process “raw” headers & blocks from a trusted Core process
-  (meaning a trusted RPC connection to a celestia-core node) in the Consensus
-  network. Bridge Nodes can run this Core process internally (embedded) or
-  simply connect to a remote endpoint. Bridge Nodes also have the option of
-  being an active validator in the Consensus network.
-2. Validate and erasure code the “raw” blocks
-3. Supply block shares with data availability headers to Light Nodes in the
-  DA network.
-![bridge-node-diagram](/img/nodes/BridgeNodes.png)
-
-From an implementation perspective, Bridge Nodes run two separate processes:
-
-1. Celestia App with Celestia Core
-   ([see repo](https://github.com/celestiaorg/celestia-app))
-
-    * **Celestia App** is the state machine where the application and the
-      proof-of-stake logic is run. Celestia App is built on
-      [Cosmos SDK](https://docs.cosmos.network/) and also encompasses
-      **Celestia Core**.
-    * **Celestia Core** is the state interaction, consensus and block production
-      layer. Celestia Core is built on
-      [Tendermint Core](https://docs.tendermint.com/), modified to store data roots
-      of erasure coded blocks among other changes
-      ([see ADRs](https://github.com/celestiaorg/celestia-core/tree/master/docs/celestia-architecture)).
-
-2. Celestia Node ([see repo](https://github.com/celestiaorg/celestia-node))
-
-    * **Celestia Node** augments the above with a separate libp2p network that
-      serves data availability sampling requests. The team sometimes refer to
-      this as the “halo” network.
+Validator nodes allow you to participate in consensus in the Celestia network.
 
 ## Hardware Requirements
 
@@ -130,7 +88,10 @@ cd $HOME
 rm -rf celestia-app
 git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app/
-git checkout tags/v0.1.0 -b v0.1.0
+APP_VERSION=$(curl -s \
+  https://api.github.com/repos/celestiaorg/celestia-app/releases/latest \
+  | jq -r ".tag_name")
+git checkout tags/$APP_VERSION -b $APP_VERSION
 make install
 ```
 
@@ -154,36 +115,11 @@ Use "celestia-appd [command] --help" for more information about a command.
 
 ### Setup the P2P Networks
 
-Now we will setup the P2P Networks by cloning the networks repository:
+For this section of the guide, select the network you want to connect to:
 
-```sh
-cd $HOME
-rm -rf networks
-git clone https://github.com/celestiaorg/networks.git
-```
+* [Devnet-2](../nodes/devnet-2.md#setup-p2p-network)
 
-To initialize the network pick a “node-name” that describes your
-node. The --chain-id parameter we are using here is `devnet-2`. Keep in
-mind that this might change if a new testnet is deployed.
-
-```sh
-celestia-appd init "node-name" --chain-id devnet-2
-```
-
-Copy the `genesis.json` file. For devnet-2 we are using:
-
-```sh
-cp $HOME/networks/devnet-2/genesis.json $HOME/.celestia-app/config
-```
-
-Set seeds and peers:
-
-```sh
-SEEDS="74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"
-PEERS="34d4bfec8998a8fac6393a14c5ae151cf6a5762f@194.163.191.41:26656"
-sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers \
-*=.*/persistent_peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
-```
+After that, you can proceed with the rest of the tutorial.
 
 ### Configure Pruning
 
@@ -221,15 +157,10 @@ this method you can synchronize your Celestia node very quickly by downloading
 a recent snapshot of the blockchain. If you would like to sync from the Genesis,
 then you can skip this part.
 
- ```sh
-cd $HOME
-rm -rf ~/.celestia-app/data; \
-mkdir -p ~/.celestia-app/data; 
-SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-egrep -o ">devnet-2.*tar" | tr -d ">"); wget -O - \
-https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
--C ~/.celestia-app/data/
-```
+If you want to use snapshot, determine the network you would like to sync
+to from the list below:
+
+* [Devnet-2](../nodes/devnet-2.md#quick-sync-with-snapshot)
 
 ### Start the Celestia-App with SystemD
 
@@ -315,6 +246,12 @@ celestia-appd keys add validator
 Save the mnemonic output as this is the only way to recover your validator
 wallet in case you lose it!
 
+Create an environment variable for the address:
+
+```sh
+VALIDATOR_WALLET=<validator-address>
+```
+
 #### Fund a Wallet
 
 For the public celestia address, you can fund the previously created wallet via
@@ -351,33 +288,9 @@ Enter keyring passphrase:
 celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
 ```
 
-To delegate tokens to the the `celesvaloper` validator, as an example you can run:
+Next, select the network you want to use to delegate to a validator:
 
-```sh
-celestia-appd tx staking delegate \
-celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd 1000000celes \
---from=$VALIDATOR_WALLET --chain-id=devnet-2
-```
-
-If successful, you should see a similar output as:
-
-```sh
-code: 0
-codespace: ""
-data: ""
-gas_used: "0"
-gas_wanted: "0"
-height: "0"
-info: ""
-logs: []
-raw_log: '[]'
-timestamp: ""
-tx: null
-txhash: <tx-hash>
-```
-
-You can check if the TX hash went through using the block explorer by
-inputting the `txhash` ID that was returned.
+* [Devnet-2](../nodes/devnet-2.md#delegate-to-a-validator)
 
 ## Deploy the Celestia Node
 
@@ -393,7 +306,10 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.2.0 -b v0.2.0
+APP_VERSION=$(curl -s \
+  https://api.github.com/repos/celestiaorg/celestia-node/releases/latest \
+  | jq -r ".tag_name")
+git checkout tags/$APP_VERSION -b $APP_VERSION
 make install
 ```
 
@@ -448,33 +364,11 @@ celestia bridge init --core.remote tcp://127.0.0.1:26657 --headers.trusted-hash 
 
 ### Configure the Bridge Node
 
-In order for your Celestia Bridge Node to communicate with other Bridge Nodes,
-then you need to add them as `mutual peers` in the `config.toml` file and allow
-the peer exchange. Please navigate to
-`networks/devnet-2/celestia-node/mutual_peers.txt` to find the list of
-mutual peers
+To configure your Bridge Node to connect to your network of choice,
+select one of the networks you would like to connect to from this list and
+follow the instructions there before proceeding with the rest of this guide:
 
-For more information on `config.toml`, please navigate to [this link](https://github.com/celestiaorg/networks/blob/master/config-toml.md)
-
-```sh
-nano ~/.celestia-bridge/config.toml
-```
-
-```sh
-...
-[P2P]
-  ...
-  #add multiaddresses of other celestia bridge nodes
-  
-  MutualPeers = [
-    "/ip4/46.101.22.123/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22",
-    "/ip4/x.x.x.x/tcp/yyy/p2p/abc"] 
-    # the /ip4/x.x.x.x is only for example.
-    # Don't add it! 
-  PeerExchange = true #change this line to true. By default it's false
-  ...
-...
-```
+* [Devnet-2](../nodes/devnet-2.md#configure-the-bridge-node)
 
 ### Start the Bridge Node with SystemD
 
@@ -530,56 +424,26 @@ Example:
 You should be seeing logs coming through of the bridge node syncing.
 
 You have successfully set up a bridge node that is syncing with the network.
-Read on if you are interested in setting up a Validator node.
 
-## Run a Validator Bridge Node
+If you want to next run a validator node, read the following tutorial [here](../nodes/validator-node.md).
 
-Optionally, if you want to join the active validator list, you can create your
-own validator on-chain following the instructions below. Keep in mind that
-these steps are necessary ONLY if you want to participate in the consensus.
+## Run a Validator Node
 
-Pick a MONIKER name of your choice! This is the validator name that will show
+After completing all the necessary steps, you are now ready to run a validator!
+In order to create your validator on-chain, follow the instructions below.
+Keep in mind that these steps are necessary ONLY if you want to participate
+in the consensus.
+
+Pick a `moniker` name of your choice! This is the validator name that will show
 up on public dashboards and explorers. `VALIDATOR_WALLET` must be the same you
 defined previously. Parameter `--min-self-delegation=1000000` defines the
 amount of tokens that are self delegated from your validator wallet.
 
-```sh
-MONIKER="your_moniker"
-VALIDATOR_WALLET="validator"
+Now, connect to the network of your choice.
 
-celestia-appd tx staking create-validator \
- --amount=1000000celes \
- --pubkey=$(celestia-appd tendermint show-validator) \
- --moniker=$MONIKER \
- --chain-id=devnet-2 \
- --commission-rate=0.1 \
- --commission-max-rate=0.2 \
- --commission-max-change-rate=0.01 \
- --min-self-delegation=1000000 \
- --from=$VALIDATOR_WALLET
-```
+You have the following option of connecting to list of networks shown below:
 
-You will be prompted to confirm the transaction:
+* [Devnet-2](../nodes/devnet-2.md#connect-validator)
 
-```sh
-confirm transaction before signing and broadcasting [y/N]: y
-```
-
-Inputting `y` should provide an output similar to:
-
-```sh
-code: 0
-codespace: ""
-data: ""
-gas_used: "0"
-gas_wanted: "0"
-height: "0"
-info: ""
-logs: []
-raw_log: '[]'
-timestamp: ""
-tx: null
-txhash: <tx-hash>
-```
-
-You should now be able to see your validator from a block explorer like [here](https://celestia.observer/validators)
+Complete the instructions in the respective network you want to validate in
+to complete the validator setup process.

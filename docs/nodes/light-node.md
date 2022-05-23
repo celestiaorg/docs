@@ -1,4 +1,4 @@
-# Setting Up a Celestia Light Node
+# Setting Up A Celestia Light Node
 
 This tutorial will guide you through setting up a Celestia Light Node,
 which can allow you to do data-sampling on the Data Availability (DA)
@@ -103,7 +103,10 @@ Install the Celestia Node binary. Make sure that you have `git` and `golang` ins
 ```sh
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.2.0 -b v0.2.0
+APP_VERSION=$(curl -s \
+  https://api.github.com/repos/celestiaorg/celestia-node/releases/latest \
+  | jq -r ".tag_name")
+git checkout tags/$APP_VERSION -b $APP_VERSION
 make install
 ```
 

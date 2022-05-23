@@ -1,9 +1,70 @@
 const sidebars = {
   nodes: [
-    { type: "doc", label: "Overview", id: "nodes/overview" },
-    { type: "doc", label: "Bridge & Validator Node", id: "nodes/bridge-validator-node" },
-    { type: "doc", label: "Light Node", id: "nodes/light-node" },
-    { type: "doc", label: "Devops Resources", id: "nodes/devops-resources"},
+    { 
+      type: "doc", 
+      label: "Overview", 
+      id: "nodes/overview" 
+    },
+    { 
+      type: "category", 
+      label: "Types of Nodes", 
+      link: {
+        type: 'generated-index'
+      },
+      collapsed: false,
+      items: [
+       { 
+         type: "doc", 
+         label: "Bridge Node", 
+         id: "nodes/bridge-node" 
+       },
+      {
+        type: "doc",
+        label: "Validator Node",
+        id: "nodes/validator-node",
+      },
+      { 
+        type: "doc", 
+        label: "Light Node", 
+        id: "nodes/light-node" 
+      },
+      ]
+    },
+    {
+      type: "category",
+      label: "Participate",
+      link: {
+        type: 'generated-index'
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Devnet-2",
+          id: "nodes/devnet-2"
+        }
+      ]
+    },
+    {
+      type: "category",
+      label: "Resources",
+      link: {
+        type: 'generated-index'
+      },
+      collapsed: false,
+      items: [
+        { 
+          type: "doc", 
+          label: "Devops Resources", 
+          id: "nodes/devops-resources"
+        },
+        {
+          type: "doc",
+          label: "Config.toml Guide",
+          id: "nodes/config-toml"
+        },
+      ]
+    },
   ],
   developers: [
     { type: "doc", label: "Overview", id: "developers/overview" },
