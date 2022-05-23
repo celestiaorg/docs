@@ -246,6 +246,12 @@ celestia-appd keys add validator
 Save the mnemonic output as this is the only way to recover your validator
 wallet in case you lose it!
 
+Create an environment variable for the address:
+
+```sh
+VALIDATOR_WALLET=<validator-address>
+```
+
 #### Fund a Wallet
 
 For the public celestia address, you can fund the previously created wallet via
