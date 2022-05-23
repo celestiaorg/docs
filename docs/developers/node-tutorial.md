@@ -103,7 +103,7 @@ It will output the following:
 
 ```json
 {
-   "denom":"uceles",
+   "denom":"utia",
    "amount":"999995000000000"
 }
 ```
