@@ -58,7 +58,8 @@ You can return back to where you left off in the Bridge Node guide [here](../nod
 
 ## Quick-Sync With Snapshot
 
-Run the following command to quick-sync from a snapshot for `devnet-2`:
+Run the following command to quick-sync from a snapshot for 
+`devnet-2` (Note: this is a 100 GB download):
 
 ```sh
 cd $HOME
