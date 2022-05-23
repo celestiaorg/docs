@@ -158,12 +158,12 @@ key `$KEY_NAME` to `validator` for demonstration.
 Run the following command:
 
 ```sh
-CELES_AMOUNT="10000000000000000000000000uceles"
+CELES_AMOUNT="10000000000000000000000000utia"
 celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT --keyring-backend test
 ```
 
 Here `$VALIDATOR_NAME` is the same key name as before; and `$AMOUNT`
-is something like `10000000000000000000000000uceles`.
+is something like `10000000000000000000000000utia`.
 
 ### Optional: Adding Other Validators
 
@@ -181,13 +181,13 @@ You can find the `genesis.json` at `$HOME/.celestia-appd/config/genesis.json`
 Run the following command:
 
 ```sh
-STAKING_AMOUNT=1000000000uceles
+STAKING_AMOUNT=1000000000utia
 celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
   --keyring-backend test
 ```
 
 This will create the genesis transaction for your new chain.
-Here `$STAKING_AMOUNT` should be at least `1000000000uceles`. If you
+Here `$STAKING_AMOUNT` should be at least `1000000000utia`. If you
 provide too much or too little, you will encounter an error
 when starting your node.
 

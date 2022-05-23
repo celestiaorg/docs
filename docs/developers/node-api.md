@@ -259,7 +259,7 @@ Response
 
 ```json
 {
-   "denom":"uceles",
+   "denom":"utia",
    "amount":"999995000000000"
 }
 ```
@@ -278,7 +278,7 @@ Response
 
 ```json
 {
-   "denom":"uceles",
+   "denom":"utia",
    "amount":"999995000000000"
 }
 ```
