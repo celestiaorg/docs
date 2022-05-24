@@ -143,7 +143,7 @@ sudo systemctl start celestia-fulld
 Check if daemon has been started correctly:
 
 ```sh
-sudo systemctl status celestia-fulld
+systemctl status celestia-fulld
 ```
 
 #### Check Daemon Logs
@@ -151,7 +151,7 @@ sudo systemctl status celestia-fulld
 Check daemon logs in real time:
 
 ```sh
-sudo journalctl -u celestia-fulld.service -f
+journalctl -u celestia-fulld.service -f
 ```
 
 Now, the Celestia Full Node will start syncing.
