@@ -19,10 +19,7 @@ Data Availability:
   sampling on the Data Availability network.
 
 You can learn more about how to setup each different node by going through
-this tutorial guide.
-
-Both Bridge and Validator nodes are part of the same section.
-Light Clients have their own section.
+each tutorial guide.
 
 Please provide any feedback on the tutorials and guides. If you notice
 a bug or issue, feel free to make a Pull Request or write up a Github
