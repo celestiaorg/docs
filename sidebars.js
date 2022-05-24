@@ -13,6 +13,11 @@ const sidebars = {
       },
       collapsed: false,
       items: [
+      {
+        type: "doc",
+        label: "Validator Node",
+        id: "nodes/validator-node",
+      },
        { 
          type: "doc", 
          label: "Bridge Node", 
@@ -20,8 +25,8 @@ const sidebars = {
        },
       {
         type: "doc",
-        label: "Validator Node",
-        id: "nodes/validator-node",
+        label: "Full Node",
+        id: "nodes/full-node",
       },
       { 
         type: "doc", 
