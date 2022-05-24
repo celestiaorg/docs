@@ -248,7 +248,7 @@ validator wallet in case you lose it!
 You can fund an existing wallet via Discord by sending this message to #faucet channel:
 
 ```text
-!faucet celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$request celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 Wait to see if you get a confirmation that the tokens have been
@@ -257,7 +257,7 @@ the destination wallet run the command below replacing the public
 address with your own:
 
 ```sh
-celestia-appd q bank balances celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+celestia-appd q bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ### Send a transaction
