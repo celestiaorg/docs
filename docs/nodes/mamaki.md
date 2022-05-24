@@ -28,6 +28,17 @@ There is a list of RPC endpoints you can use to connect to Mamaki Testnet:
 * [https://api-mamaki.pops.one/](https://api-mamaki.pops.one/)
 * [https://rpc-1.celestia.nodes.guru/](https://rpc-1.celestia.nodes.guru/)
 
+## Mamaki Testnet Faucet
+
+You can request from Mamaki Testnet Faucet on the #faucet channel on
+Celestia's Discord server with the following command:
+
+```text
+$request <CELESTIA-ADDRESS> 
+```
+
+Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
+
 ## Setup P2P Network
 
 Now we will setup the P2P Networks by cloning the networks repository:
@@ -55,11 +66,13 @@ cp $HOME/networks/mamaki/genesis.json $HOME/.celestia-app/config
 Set seeds and peers:
 
 ```sh
-SEEDS="74c0c793db07edd9b9ec17b076cea1a02dca511f@46.101.28.34:26656"
-PEERS="34d4bfec8998a8fac6393a14c5ae151cf6a5762f@194.163.191.41:26656"
+SEEDS="f0c58d904dec824605ac36114db28f1bf84f6ea3@144.76.112.238:26656"
+PEERS="e4429e99609c8c009969b0eb73c973bff33712f9@141.94.73.39:43656"
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers \
     *=.*/persistent_peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
+
+Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mamaki/peers.txt).
 
 You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#configure-pruning)
 
@@ -188,4 +201,4 @@ tx: null
 txhash: <tx-hash>
 ```
 
-You should now be able to see your validator from a block explorer like [here](https://celestia.observer/validators)
+You should now be able to see your validator from a block explorer like [here](https://celestia.explorers.guru/)

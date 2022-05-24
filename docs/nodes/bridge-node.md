@@ -190,7 +190,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
 This will delete all data folders so we can start fresh:
 
 ```sh
-celestia-appd unsafe-reset-all
+celestia-appd unsafe-reset-all --home
 ```
 
 ### Optional: Quick-Sync with Snapshot
@@ -233,18 +233,6 @@ If the file was created successfully you will be able to see its content:
 
 ```sh
 cat /etc/systemd/system/celestia-appd.service
-```
-
-Now, download the address book. You have 2 options:
-
-```sh
-wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/maxzonder/celestia/main/addrbook.json"
-```
-
-OR
-
-```sh
-wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/qubelabsio/celestia/main/addrbook.json"
 ```
 
 Enable and start celestia-appd daemon:
