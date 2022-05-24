@@ -7,7 +7,7 @@ which is a Celestia node that doesn't connect to Celestia App
 ## Hardware Requirements
 
 The following hardware minimum requirements are recommended for running
-the light node:
+the full node:
 
 * Memory: 8 GB RAM
 * CPU: Quad-Core
@@ -23,7 +23,7 @@ instance machine.
 
 Once you have setup your instance, ssh into the instance to begin
 setting up the box with all the needed dependencies in order to
-run your light node.
+run your full node.
 
 First, make sure to update and upgrade the OS:
 
@@ -42,7 +42,7 @@ build-essential git make ncdu -y
 ### Install Golang
 
 Golang will be installed on this machine in order for us to be able
-to build the necessary binaries for running the light node. For Golang
+to build the necessary binaries for running the full node. For Golang
 specifically, it’s needed to be able to compile Celestia Light Node.
 
 ```sh
