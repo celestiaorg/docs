@@ -72,7 +72,7 @@ go version go1.17.2 linux/amd64
 
 ## Deploying The Celestia App
 
-This section describes part 1 of Celestia Validator Bridge Node setup:
+This section describes part 1 of Celestia Validator Node setup:
 running a Celestia App daemon with an internal Celestia Core node.
 
 > Note: Make sure you have at least 100+ Gb of free space to safely install+run
@@ -331,7 +331,7 @@ Golang version: go1.17.5
   [celestia-app.md](https://github.com/celestiaorg/networks/celestia-app.md)
   for installation.  
 
-You need to have the trusted server to initialize the Validator-Bridge Node.
+You need to have the trusted server to initialize the Validator Node.
 You can use `http://localhost:26657` for your local run of `celestia-app`.
 The trusted hash is an optional flag and does not need to be used. If you
 are not passing it, the Bridge Node will just sync from the beginning,
