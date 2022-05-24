@@ -306,7 +306,7 @@ Some things to consider:
 * `gas_limit` is the limit of gas to use for the transaction
 
 We use the following `namespace_id` of `0000010000000100` and
-the `data` value of `68656c6c6f`.
+the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
 
 You can generate your own `namespace_id` and data values using this
 useful Golang Playground we created [here](https://go.dev/play/p/ZZWYSSHTRdo).
@@ -314,20 +314,22 @@ useful Golang Playground we created [here](https://go.dev/play/p/ZZWYSSHTRdo).
 We run the following:
 
 ```sh
-curl -X POST -d '{"namespace_id": "0000010000000100", \
-  "data": "68656c6c6f", "gas_limit": 100000}' http://127.0.0.1:26658/submit_pfd
+curl -X POST -d '{"namespace_id": "0c204d39600fddd3", \
+  "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5", \
+  "gas_limit": 60000}' http://localhost:26658/submit_pfd
 ```
 
 We get the following output:
 
 ```json
 {
-   "height":589,
-   "txhash":"065ED98A1D75AF10EADF38FC4D2DF125920C696C525732DA094029FCC3D2FE6E",
-   "data":"0A180A162F7061796D656E742E4D7367506179466F7244617461",
-   "raw_log":"[{\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"action\",\"value\":\"/payment.MsgPayForData\"}]},{\"type\":\"payfordata\",\"attributes\":[{\"key\":\"signer\",\"value\":\"celes1vdjkcetnxyc8gandddeh2wfcxe3ksdfn09axkdtrwdnryat3v3jkcut8wpjnjerj0y6hz6sga5fzu\"},{\"key\":\"size\",\"value\":\"256\"}]}]}]",
+   "height":2452,
+   "txhash":"04A79AF9DA62FDB41ACD7D82EB0B9004AE4E4ED603B280A65816560B4F38A999",
+   "data":"12200A1E2F7061796D656E742E4D7367506179466F7244617461526573706F6E7365",
+   "raw_log":"[{\"msg_index\":0,\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"action\",\"value\":\"/payment.MsgPayForData\"}]},{\"type\":\"payfordata\",\"attributes\":[{\"key\":\"signer\",\"value\":\"celestia1vdjkcetnw35kzvtgxvmxwmnwwaaxuet4xp3hxut6dce8wctsdq6hjwfcxd5xvvmyddsh5mnvvaaq6776xw\"},{\"key\":\"size\",\"value\":\"27\"}]}]}]",
    "logs":[
       {
+         "msg_index":0,
          "events":[
             {
                "type":"message",
@@ -343,24 +345,199 @@ We get the following output:
                "attributes":[
                   {
                      "key":"signer",
-                     "value":"celes1vdjkcetnxyc8gandddeh2wfcxe3ksdfn09axkdtrwdnryat3v3jkcut8wpjnjerj0y6hz6sga5fzu"
+                     "value":"celestia1vdjkcetnw35kzvtgxvmxwmnwwaaxuet4xp3hxut6dce8wctsdq6hjwfcxd5xvvmyddsh5mnvvaaq6776xw"
                   },
                   {
                      "key":"size",
-                     "value":"256"
+                     "value":"27"
                   }
                ]
             }
          ]
       }
    ],
-   "gas_wanted":100000,
-   "gas_used":38546
+   "events":[
+      {
+         "type":"coin_spent",
+         "attributes":[
+            {
+               "key":"spender",
+               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws",
+               "index":true
+            },
+            {
+               "key":"amount",
+               "value":"1utia",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"coin_received",
+         "attributes":[
+            {
+               "key":"receiver",
+               "value":"celestia17xpfvakm2amg962yls6f84z3kell8c5lpnjs3s",
+               "index":true
+            },
+            {
+               "key":"amount",
+               "value":"1utia",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"transfer",
+         "attributes":[
+            {
+               "key":"recipient",
+               "value":"celestia17xpfvakm2amg962yls6f84z3kell8c5lpnjs3s",
+               "index":true
+            },
+            {
+               "key":"sender",
+               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws",
+               "index":true
+            },
+            {
+               "key":"amount",
+               "value":"1utia",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"message",
+         "attributes":[
+            {
+               "key":"sender",
+               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"fee",
+               "value":"1utia",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"acc_seq",
+               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws/267",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"signature",
+               "value":"JMNihnKS/MtYJDprqEFGJuXh16tVADsDDxXaFFpvv2te57btl4LbiRzwRRiN2rvwkJ2zlAApu2ImT22MZBi5+A==",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"fee",
+               "value":"",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"acc_seq",
+               "value":"celestia13zx48t96zauht0kpcn0kcfykc9wn8fehzcp9wq/1024",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"signature",
+               "value":"mIZIjbzN0/RQAlQN7TDWzqtey3vVBPe7IO3+IIDhJstIH8QU9vsHfl0Rql9qWMZQG4dM+77w9WmUcnCeS7edfw==",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"fee",
+               "value":"",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"acc_seq",
+               "value":"celestia1h36gnnwzneu0csqzn2waph5y983hf3dkaznlgz/0",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"signature",
+               "value":"sfy+XyP7iWU+V9q3zEIOWxbGihvhzUKRLNVeXP+a+5oRefIA/Pyqfm13A5NU9I27hhfvpqo9vhXW1waRgcI9OA==",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"message",
+         "attributes":[
+            {
+               "key":"action",
+               "value":"/payment.MsgPayForData",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"payfordata",
+         "attributes":[
+            {
+               "key":"signer",
+               "value":"celestia1vdjkcetnw35kzvtgxvmxwmnwwaaxuet4xp3hxut6dce8wctsdq6hjwfcxd5xvvmyddsh5mnvvaaq6776xw",
+               "index":true
+            },
+            {
+               "key":"size",
+               "value":"27",
+               "index":true
+            }
+         ]
+      }
+   ]
 }
 ```
 
 If you notice from the above output, it returns a `height` of
-`589` which we will use for the next command.
+`2452` which we will use for the next command.
 
 ### Get Namespaced Shares by Block Height
 
@@ -371,7 +548,8 @@ PFD transaction to get your message shares returned to you. In this example,
 the block height we got was 589 which we will use for the following command.
 
 ```sh
-curl -X GET http://127.0.0.1:26658/namespaced_shares/0000010000000100/height/589
+curl -X GET \
+  http://localhost:26658/namespaced_shares/0c204d39600fddd3/height/2452
 ```
 
 Will generate the following output:
@@ -379,11 +557,8 @@ Will generate the following output:
 ```json
 {
    "shares":[
-      "AAAAAAAAAAEAvgIKkQEKjAEKHC9jb3Ntb3MuYmFuay52MWJldGExLk1zZ1NlbmQSbAosY2VsZXMxeTRxcDBmbjU5OTlubjN6NXo2Mno4bWZ4ejdwc3hqenZ0YTZsOHMSLGNlbGVzMXQzNnNxc3RxZjIzZ2cwcGZ2Y3I5cmg5bWs3ZGxyeGZwdjdzMmU1Gg4KBWNlbGVzEgUxMDAwMBIAEmYKUApGCh8vY29zbW9zLmNyeXB0by5zZWNwMjU2azEuUHViS2V5EiMKIQLEeDg/AraQeXdgchN+pl+hoedi33JUqqfCb4/CWUcHAxIECgIIfxgAEhIKDAoFY2VsZXMSAw==",
-      "AAAAAAAAAAFSMjAwEIDxBBpAzSjtxXYP4iK7F9yf44c6ND1rqcLB9ZS5ScFmpJPDd5JUY91x3axSq+X+gMMdo731cd60XIv+hq7G7tiiVsH2fbsCCpsBCpgBCiMvY29zbW9zLnN0YWtpbmcudjFiZXRhMS5Nc2dEZWxlZ2F0ZRJxCixjZWxlczFuNXR2bXB6Z3JudHJnNTl1MGdhOXd2a3J0NzlsZDd0cHZxZ2ZxdhIzY2VsZXN2YWxvcGVyMW41dHZtcHpncm50cmc1OXUwZ2E5d3ZrcnQ3OWxkN3RwZmQ4dGh5GgwKBWNlbGVzEgMxNjISWQpRCkYKHy9jb3Ntbw==",
-      "AAAAAAAAAAGYcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiECWgWbvDZPaKewrL/QxZjSQVfZtLk/Ub0tiyDzkcZY49MSBAoCCAEY4BYSBBDAmgwaQHFw/iwCikuSl9PMrj4r5VhHp5FSD0v69CoLKNKEsSf+ROH+rYPESyhTjBR9ByTgi1hZrSPpPjNg1XguLgIPIGe6AgqaAQqXAQojL2Nvc21vcy5zdGFraW5nLnYxYmV0YTEuTXNnRGVsZWdhdGUScAosY2VsZXMxOXo4amd0bHA1eXpyeWw5eDl4ZnZyOWx6a2VmMGQ1YW5scGtzbmsSM2NlbGVzdmFsbw==",
-      "AAAAAAAAAAEAcGVyMTl6OGpndGxwNXl6cnlsOXg5eGZ2cjlsemtlZjBkNWFuNnZlank3GgsKBWNlbGVzEgIxNBJZClEKRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiEC/nJ/fvgeT8SFYP1MlejXt3saD9NY0VDLrPbmhJJRW94SBAoCCAEYuzMSBBD0iAoaQEZM83j2PHH1npls+6dwjmvpXa7XtDBf7hc18f3WKbljalXsR7sJ182SCoPxrkqsRvgP1uUdZn8fMs4CffPJtaMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      "DCBNOWAP3dMb8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
    ],
-   "height":589
+   "height":2452
 }
 ```
