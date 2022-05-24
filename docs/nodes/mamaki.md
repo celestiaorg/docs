@@ -21,6 +21,13 @@ on each respective page. Whenever you are asked to select the type of network
 you want to connect to in those guides, select `Mamaki` in order to refer
 to the correct instructions on this page on how to connect to Mamaki.
 
+## RPC Endpoints
+
+There is a list of RPC endpoints you can use to connect to Mamaki Testnet:
+
+* [https://api-mamaki.pops.one/](https://api-mamaki.pops.one/)
+* [https://rpc-1.celestia.nodes.guru/](https://rpc-1.celestia.nodes.guru/)
+
 ## Setup P2P Network
 
 Now we will setup the P2P Networks by cloning the networks repository:
