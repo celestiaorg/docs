@@ -30,6 +30,11 @@ There is a list of RPC endpoints you can use to connect to Mamaki Testnet:
 
 ## Mamaki Testnet Faucet
 
+> USING THIS FAUCET DOES NOT ENTITLE YOU TO PARTICIPATE IN ANY AIRDROP
+  OR OTHER DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA
+  TOKENS DO NOT CURRENTLY EXIST AND THERE ARE NO PUBLIC SALES OR OTHER
+  PUBLIC DISTRIBUTIONS OF ANY MAINNET CELESTIA TOKENS.
+
 You can request from Mamaki Testnet Faucet on the #faucet channel on
 Celestia's Discord server with the following command:
 

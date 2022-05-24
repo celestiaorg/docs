@@ -192,6 +192,22 @@ If the file was created successfully you will be able to see its content:
 cat /etc/systemd/system/celestia-appd.service
 ```
 
+You must now set a few configs in your `config.toml`. Learn more about the
+config.toml file [here](../nodes/config-toml.md)
+
+Run the following command to set timeout to 25 seconds:
+
+```sh
+sed -i.bak -e "s/^timeout-commit *=.*/timeout-commit = \"25s\"/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^skip-timeout-commit *=.*/skip-timeout-commit = false/" $HOME/.celestia-app/config/config.toml
+```
+
+Now run the following command to set the mode:
+
+```sh
+sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
+```
+
 Enable and start celestia-appd daemon:
 
 ```sh
@@ -246,7 +262,7 @@ For the public celestia address, you can fund the previously created wallet via
 Discord by sending this message to #faucet channel:
 
 ```text
-!faucet celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$request celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 Wait to see if you get a confirmation that the tokens have been successfully
@@ -254,7 +270,7 @@ sent. To check if tokens have arrived successfully to the destination wallet
 run the command below replacing the public address with your own:
 
 ```sh
-celestia-appd q bank balances celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+celestia-appd q bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 ### Delegate Stake to a Validator
@@ -435,14 +451,3 @@ You have the following option of connecting to list of networks shown below:
 
 Complete the instructions in the respective network you want to validate in
 to complete the validator setup process.
-
-## More Configuration Options For Validator
-
-In your config.toml, please set the following parameters:
-
-```toml
-timeout-commit = "25s"
-skip_timeout_commit = false
-```
-
-You can learn more about the config.toml file [here](../nodes/config-toml.md).
