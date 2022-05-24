@@ -562,3 +562,5 @@ Will generate the following output:
    "height":2452
 }
 ```
+
+The output here is base64-encoded.
