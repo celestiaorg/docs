@@ -12,7 +12,7 @@ bridge node:
 * Disk: 250 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
-## Setting Up Your Bridge Node
+## Setting Up Your Validator Node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
@@ -72,11 +72,11 @@ go version go1.17.2 linux/amd64
 
 ## Deploying The Celestia App
 
-This section describes part 1 of Celestia Bridge Node setup: running a Celestia
-App daemon with an internal Celestia Core node.
+This section describes part 1 of Celestia Validator Bridge Node setup:
+running a Celestia App daemon with an internal Celestia Core node.
 
 > Note: Make sure you have at least 100+ Gb of free space to safely install+run
-  the Bridge Node.  
+  the Validator Node.  
 
 ### Install Celestia App
 
@@ -294,8 +294,8 @@ Next, select the network you want to use to delegate to a validator:
 
 ## Deploy the Celestia Node
 
-This section describes part 2 of Celestia Bridge Node setup: running a
-Celestia Node daemon.
+This section describes part 2 of Celestia Validator Node setup: running a
+Celestia Bridge Node daemon.
 
 ### Install Celestia Node
 
@@ -331,11 +331,11 @@ Golang version: go1.17.5
   [celestia-app.md](https://github.com/celestiaorg/networks/celestia-app.md)
   for installation.  
 
-You need to have the trusted server to initialize the Bridge Node. You can use
-`http://localhost:26657` for your local run of `celestia-app`. The trusted hash
-is an optional flag and does not need to be used. If you are not passing it,
-the Bridge Node will just sync from the beginning, which is also the preferred
-option of how to run it.
+You need to have the trusted server to initialize the Validator-Bridge Node.
+You can use `http://localhost:26657` for your local run of `celestia-app`.
+The trusted hash is an optional flag and does not need to be used. If you
+are not passing it, the Bridge Node will just sync from the beginning,
+which is also the preferred option of how to run it.
 
 An example of how to query your local celestia-app to get the trusted hash:
 
