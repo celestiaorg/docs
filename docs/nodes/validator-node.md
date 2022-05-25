@@ -37,7 +37,7 @@ Follow the tutorial on installing Celestia App [here](../developers/celestia-app
 
 For this section of the guide, select the network you want to connect to:
 
-* [Devnet-2](../nodes/devnet-2.md#setup-p2p-network)
+* [Mamaki](../nodes/mamaki.md#setup-p2p-network)
 
 After that, you can proceed with the rest of the tutorial.
 
@@ -67,7 +67,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
 This will delete all data folders so we can start fresh:
 
 ```sh
-celestia-appd unsafe-reset-all
+celestia-appd unsafe-reset-all --home $HOME/.celestia-app
 ```
 
 ### Optional: Quick-Sync with Snapshot
@@ -80,7 +80,7 @@ then you can skip this part.
 If you want to use snapshot, determine the network you would like to sync
 to from the list below:
 
-* [Devnet-2](../nodes/devnet-2.md#quick-sync-with-snapshot)
+* [Mamaki](../nodes/mamaki.md#quick-sync-with-snapshot)
 
 ### Start the Celestia-App with SystemD
 
@@ -112,16 +112,20 @@ If the file was created successfully you will be able to see its content:
 cat /etc/systemd/system/celestia-appd.service
 ```
 
-Now, download the address book. You have 2 options:
+You must now set a few configs in your `config.toml`. Learn more about the
+config.toml file [here](../nodes/config-toml.md)
+
+Run the following command to set timeout to 25 seconds:
 
 ```sh
-wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/maxzonder/celestia/main/addrbook.json"
+sed -i.bak -e "s/^timeout-commit *=.*/timeout-commit = \"25s\"/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^skip-timeout-commit *=.*/skip-timeout-commit = false/" $HOME/.celestia-app/config/config.toml
 ```
 
-OR
+Now run the following command to set the mode:
 
 ```sh
-wget -O $HOME/.celestia-app/config/addrbook.json "https://raw.githubusercontent.com/qubelabsio/celestia/main/addrbook.json"
+sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
 ```
 
 Enable and start celestia-appd daemon:
@@ -183,7 +187,7 @@ celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
 
 Next, select the network you want to use to delegate to a validator:
 
-* [Devnet-2](../nodes/devnet-2.md#delegate-to-a-validator)
+* [Mamaki](../nodes/mamaki.md#delegate-to-a-validator)
 
 ## Deploy the Celestia Node
 
@@ -232,7 +236,7 @@ To configure your Bridge Node to connect to your network of choice,
 select one of the networks you would like to connect to from this list and
 follow the instructions there before proceeding with the rest of this guide:
 
-* [Devnet-2](../nodes/devnet-2.md#configure-the-bridge-node)
+* [Mamaki](../nodes/mamaki.md#configure-the-bridge-node)
 
 ### Run the Bridge Node
 
@@ -315,7 +319,7 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
-* [Devnet-2](../nodes/devnet-2.md#connect-validator)
+* [Mamaki](../nodes/mamaki.md#connect-validator)
 
 Complete the instructions in the respective network you want to validate in
 to complete the validator setup process.

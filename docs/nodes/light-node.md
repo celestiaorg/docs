@@ -11,7 +11,7 @@ to interact with the Celestia network.
 
 > Note: In future implementations, Light Nodes can also publish
   transactions ([see ADR](https://github.com/celestiaorg/celestia-node/blob/main/docs/adr/adr-004-state-interaction.md)),
-  though in Devnet, transactions are left to Bridge Nodes.  
+  though in Mamaki, transactions are left to Bridge Nodes.
 
 ![light-node](/img/nodes/LightNodes.png)
 
