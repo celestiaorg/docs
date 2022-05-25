@@ -45,7 +45,7 @@ celestia full init
 Start the Full Node:
 
 ```sh
-celestia full start
+celestia full start --core.grpc <ip addr of core node>:9090
 ```
 
 Now, the Celestia Full Node will start syncing.
