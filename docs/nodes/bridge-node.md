@@ -57,7 +57,7 @@ instance machine.
 
 ### Setup The Dependencies
 
-Follow the tutorial here installing the dependencies [here](../developers/environment).
+Follow the tutorial here installing the dependencies [here](../../developers/environment).
 
 ## Deploy the Celestia Bridge Node
 
@@ -65,7 +65,7 @@ Follow the tutorial here installing the dependencies [here](../developers/enviro
 
 Install the Celestia Node binary, which will be used to run the Bridge Node.
 
-Follow the tutorial for installing Celestia Node [here](../developers/celestia-node).
+Follow the tutorial for installing Celestia Node [here](../../developers/celestia-node).
 
 ### Get the trusted hash
 

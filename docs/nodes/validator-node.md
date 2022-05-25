@@ -19,7 +19,7 @@ instance machine.
 
 ### Setup The Dependencies
 
-Follow the instructions on installing the dependencies [here](../developers/environment).
+Follow the instructions on installing the dependencies [here](../../developers/environment).
 
 ## Deploying The Celestia App
 
@@ -31,7 +31,7 @@ running a Celestia App daemon with an internal Celestia Core node.
 
 ### Install Celestia App
 
-Follow the tutorial on installing Celestia App [here](../developers/celestia-app).
+Follow the tutorial on installing Celestia App [here](../../developers/celestia-app).
 
 ### Setup the P2P Networks
 
@@ -158,7 +158,7 @@ until it is in sync.
 
 ### Wallet
 
-Follow the tutorial on creating a wallet [here](../developers/wallet).
+Follow the tutorial on creating a wallet [here](../../developers/wallet).
 
 ### Delegate Stake to a Validator
 

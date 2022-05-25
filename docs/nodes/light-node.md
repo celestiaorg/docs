@@ -161,7 +161,7 @@ Open 2 terminals in order to see how DASing works:
 
 First, you need a wallet to pay for the transaction.
 
-Follow the tutorial on setting up a wallet [here](../developers/wallet).
+Follow the tutorial on setting up a wallet [here](../../developers/wallet).
 
 ### Send a transaction
 
