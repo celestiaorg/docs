@@ -161,38 +161,6 @@ inputting the `txhash` ID that was returned.
 
 You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#deploy-the-celestia-node)
 
-## Configure The Bridge Node
-
-In order for your Celestia Bridge Node to communicate with other Bridge Nodes,
-then you need to add them as `mutual peers` in the `config.toml` file and allow
-the peer exchange. Please navigate to
-`networks/mamaki/celestia-node/mutual_peers.txt` to find the list of
-mutual peers
-
-For more information on `config.toml`, please navigate to [this link](../nodes/config-toml.md)
-
-```sh
-nano ~/.celestia-bridge/config.toml
-```
-
-```toml
-...
-[P2P]
-  ...
-  #add multiaddresses of other celestia bridge nodes
-  
-  MutualPeers = [
-    "/ip4/46.101.22.123/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22",
-    "/ip4/x.x.x.x/tcp/yyy/p2p/abc"] 
-    # the /ip4/x.x.x.x is only for example.
-    # Don't add it! 
-  PeerExchange = true #change this line to true. By default it's false
-  ...
-...
-```
-
-You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#start-the-bridge-node-with-systemd)
-
 ## Connect Validator
 
 Continuing the Validator tutorial, here are the steps to connect your
