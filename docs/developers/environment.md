@@ -30,7 +30,7 @@ the necessary binaries for running the bridge node. For Golang specifically,
 it’s needed to be able to compile the Celestia Application.
 
 ```sh
-ver="1.17.2"
+ver="1.18.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -54,5 +54,5 @@ go version
 Output should be the version installed:
 
 ```sh
-go version go1.17.2 linux/amd64
+go version go1.18.2 linux/amd64
 ```
