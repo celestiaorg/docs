@@ -2,7 +2,7 @@
 
 This tutorial will guide you through setting up a Celestia Full Node,
 which is a Celestia node that doesn't connect to Celestia App
-(hence not a bridge node) but stores all the data.
+(hence not a full node) but stores all the data.
 
 ## Hardware Requirements
 
@@ -52,3 +52,15 @@ celestia full start --core.grpc <ip addr of core node>:9090
 Now, the Celestia Full Node will start syncing.
 
 With that, you are now running a Celestia Full Node.
+
+#### Optional: Run the Full Node with a Custom Key
+
+In order to run a full node using a custom key:
+
+1. The custom key must exist inside the celestia full node
+directory at the correct path (default: `~/.celestia-full/keys/keyring-test`)
+2. The name of the custom key must be passed upon `start`, like so:
+
+```sh
+celestia full start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key>
+```
