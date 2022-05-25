@@ -71,7 +71,7 @@ celestia light init
 Run the following command to start the Light Node:
 
 ```sh
-celestia light start
+celestia light start --core.grpc <ip>:9090
 ```
 
 #### Optional: Run the Light Node with a Custom Key
@@ -83,7 +83,7 @@ directory at the correct path (default: `~/.celestia-light/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
 ```sh
-celestia light start --keyring.accname <name_of_custom_key>
+celestia light start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key>
 ```
 
 #### Optional: Start Light Node with SystemD

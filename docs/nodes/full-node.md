@@ -62,5 +62,5 @@ directory at the correct path (default: `~/.celestia-full/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
 ```sh
-celestia full start --keyring.accname <name_of_custom_key>
+celestia full start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key>
 ```
