@@ -88,21 +88,11 @@ curl -s http://localhost:26657/block?height=1 | grep -A1 block_id | grep hash
 
 ### Initialize the Bridge Node
 
-```sh
-celestia bridge init --core.remote <ip:port of celestia-app>
-```
-
-If you want to use the trusted hash anyways, here is how to initialize it:
-
-```shell
-celestia bridge init --core.remote <ip:port of celestia-app> \
---headers.trusted-hash <hash_from_celestia_app>
-```
-
-Example:
+Run the following:
 
 ```sh
-celestia bridge init --core.remote tcp://127.0.0.1:26657 --headers.trusted-hash 4632277C441CA6155C4374AC56048CF4CFE3CBB2476E07A548644435980D5E17
+celestia bridge init --core.remote tcp://127.0.0.1:26657 \
+  --core.grpc http://127.0.0.1:9090
 ```
 
 ### Configure the Bridge Node

@@ -217,42 +217,18 @@ System version: amd64/linux
 Golang version: go1.17.5
 ```
 
-### Get the trusted hash
-
-> Caveat: You need a running celestia-app in order to continue this guideline.
-  Please refer to
-  [celestia-app.md](https://github.com/celestiaorg/networks/celestia-app.md)
-  for installation.  
-
-You need to have the trusted server to initialize the Validator Node.
-You can use `http://localhost:26657` for your local run of `celestia-app`.
-The trusted hash is an optional flag and does not need to be used. If you
-are not passing it, the Bridge Node will just sync from the beginning,
-which is also the preferred option of how to run it.
-
-An example of how to query your local celestia-app to get the trusted hash:
-
-```sh
-curl -s http://localhost:26657/block?height=1 | grep -A1 block_id | grep hash
-```
-
 ### Initialize the Bridge Node
 
 ```sh
-celestia bridge init --core.remote <ip:port of celestia-app>
-```
-
-If you want to use the trusted hash anyways, here is how to initialize it:
-
-```shell
 celestia bridge init --core.remote <ip:port of celestia-app> \
---headers.trusted-hash <hash_from_celestia_app>
+  --core.grpc <ip:port>
 ```
 
 Example:
 
 ```sh
-celestia bridge init --core.remote tcp://127.0.0.1:26657 --headers.trusted-hash 4632277C441CA6155C4374AC56048CF4CFE3CBB2476E07A548644435980D5E17
+celestia bridge init --core.remote tcp://127.0.0.1:26657 \
+  --core.grpc http://127.0.0.1:9090
 ```
 
 ### Configure the Bridge Node
