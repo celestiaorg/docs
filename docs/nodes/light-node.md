@@ -1,30 +1,26 @@
 # Setting Up A Celestia Light Node
 
-This tutorial will guide you through setting up a Celestia Light Node,
-which can allow you to do data-sampling on the Data Availability (DA)
+This tutorial will guide you through setting up a Celestia Light Node, which can allow you to do data-sampling on the
+Data Availability (DA)
 network.
 
 ## Overview of Light Nodes
 
-Light nodes (CLN) ensure data availability. This is the most common way
-to interact with the Celestia network.
+Light nodes (CLN) ensure data availability. This is the most common way to interact with the Celestia network.
 
-> Note: In future implementations, Light Nodes can also publish
-  transactions ([see ADR](https://github.com/celestiaorg/celestia-node/blob/main/docs/adr/adr-004-state-interaction.md)),
-  though in Mamaki, transactions are left to Bridge Nodes.
+> Note: In future implementations, Light Nodes can also publish transactions ([see ADR](https://github.com/celestiaorg/celestia-node/blob/main/docs/adr/adr-004-state-interaction.md)), though in Mamaki, transactions are left to Bridge Nodes.
 
 ![light-node](/img/nodes/LightNodes.png)
 
 Light Nodes have the following properties:
 
-1. Listen for ExtendedHeaders, i.e. wrapped “raw” headers, that notify
-   Celestia Nodes of new block headers and relevant DA metadata.
+1. Listen for ExtendedHeaders, i.e. wrapped “raw” headers, that notify Celestia Nodes of new block headers and relevant
+   DA metadata.
 2. Perform data availability sampling (DAS) on the received headers
 
 ## Hardware Requirements
 
-The following hardware minimum requirements are recommended for running
-the light node:
+The following hardware minimum requirements are recommended for running the light node:
 
 * Memory: 2 GB RAM
 * CPU: Single Core
@@ -33,8 +29,7 @@ the light node:
 
 ## Setting Up Your Light Node
 
-The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
-instance machine.
+The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
 ### Setup The Dependencies
 
@@ -42,16 +37,14 @@ Follow the tutorial on setting up your dependencies [here](../developers/environ
 
 ## Install Celestia Node
 
-> Note: Make sure that you have at least 5+ Gb of free space
-  for Celestia Light Node  
+> Note: Make sure that you have at least 5+ Gb of free space for Celestia Light Node
 
 Follow the tutorial on installing Celestia Node [here](../developers/celestia-node)
 
 ### Run the Light Node
 
-> If you want to connect to your Celestia Bridge Node and start syncing
-  the Celestia Light Node from a non-genesis hash, then consider editing
-  `config.toml` file.
+> If you want to connect to your Celestia Bridge Node and start syncing the Celestia Light Node from a non-genesis hash, then consider editing
+`config.toml` file.
 
 More information on `config.toml` is found [here](https://github.com/celestiaorg/networks/blob/master/config-toml.md).
 
@@ -63,11 +56,12 @@ Run the following command:
 celestia light init
 ```
 
-Note: the Light Node is connected to Celestia Core RPC endpoint here.
-
 #### Start the Light Node
 
-Run the following command to start the Light Node:
+Start the Light Node with a connection to a validator node's gRPC endpoint (which is usually exposed on port 9090):
+_*NOTE*: In order for access to the ability to get/submit state-related information, such as the ability to submit
+PayForData transactions, or query for the node's account balance, a gRPC endpoint of a validator (core) node must be
+passed as directed below._
 
 ```sh
 celestia light start --core.grpc <ip>:9090
@@ -77,8 +71,8 @@ celestia light start --core.grpc <ip>:9090
 
 In order to run a light node using a custom key:
 
-1. The custom key must exist inside the celestia light node
-directory at the correct path (default: `~/.celestia-light/keys/keyring-test`)
+1. The custom key must exist inside the celestia light node directory at the correct path (
+   default: `~/.celestia-light/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
 ```sh
@@ -97,7 +91,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/celestia light start
+ExecStart=$HOME/go/bin/celestia light start --core.grpc <ip>:9090
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
@@ -138,9 +132,8 @@ Check daemon logs in real time:
 sudo journalctl -u celestia-lightd.service -f
 ```
 
-Now, the Celestia Light Node will start syncing headers. After sync
-is finished, Light Node will do Data Availability Sampling (DAS) from
-the Bridge Node.
+Now, the Celestia Light Node will start syncing headers. After sync is finished, Light Node will do Data Availability
+Sampling (DAS) from the Bridge Node.
 
 ## Data Availability Sampling(DAS)
 
