@@ -219,16 +219,11 @@ Golang version: go1.17.5
 
 ### Initialize the Bridge Node
 
+Run the following:
+
 ```sh
 celestia bridge init --core.remote <ip:port of celestia-app> \
   --core.grpc <ip:port>
-```
-
-Example:
-
-```sh
-celestia bridge init --core.remote tcp://127.0.0.1:26657 \
-  --core.grpc http://127.0.0.1:9090
 ```
 
 ### Configure the Bridge Node
@@ -239,7 +234,15 @@ follow the instructions there before proceeding with the rest of this guide:
 
 * [Devnet-2](../nodes/devnet-2.md#configure-the-bridge-node)
 
-### Start the Bridge Node with SystemD
+### Run the Bridge Node
+
+Run the following:
+
+```sh
+celestia bridge start
+```
+
+### Optional: Start the Bridge Node with SystemD
 
 SystemD is a daemon service useful for running applications as background processes.
 

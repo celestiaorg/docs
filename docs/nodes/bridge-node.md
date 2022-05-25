@@ -91,8 +91,8 @@ curl -s http://localhost:26657/block?height=1 | grep -A1 block_id | grep hash
 Run the following:
 
 ```sh
-celestia bridge init --core.remote tcp://127.0.0.1:26657 \
-  --core.grpc http://127.0.0.1:9090
+celestia bridge init --core.remote tcp://<ip-address>:26657 \
+  --core.grpc http://<ip-address>:9090
 ```
 
 ### Configure the Bridge Node
@@ -103,7 +103,13 @@ follow the instructions there before proceeding with the rest of this guide:
 
 * [Devnet-2](../nodes/devnet-2.md#configure-the-bridge-node)
 
-### Start the Bridge Node with SystemD
+### Run the Bridge Node
+
+```sh
+celestia bridge start 
+```
+
+### Optional: Start the Bridge Node with SystemD
 
 SystemD is a daemon service useful for running applications as background processes.
 
