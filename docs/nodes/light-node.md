@@ -41,74 +41,14 @@ instance machine.
 
 ### Setup The Dependencies
 
-Once you have setup your instance, ssh into the instance to begin
-setting up the box with all the needed dependencies in order to
-run your light node.
-
-First, make sure to update and upgrade the OS:
-
-```sh
-sudo apt update && sudo apt upgrade -y
-```
-
-These are essential packages that are necessary to execute many
-tasks like downloading files, compiling and monitoring the node:
-
-```sh
-sudo apt install curl tar wget clang pkg-config libssl-dev jq \
-build-essential git make ncdu -y
-```
-
-### Install Golang
-
-Golang will be installed on this machine in order for us to be able
-to build the necessary binaries for running the light node. For Golang
-specifically, it’s needed to be able to compile Celestia Light Node.
-
-```sh
-ver="1.17.2"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
-
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
-
-```sh
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
-To check if Go was installed correctly run:
-
-```sh
-go version
-```
-
-Output should be the version installed:
-
-```sh
-go version go1.17.2 linux/amd64
-```
+Follow the tutorial on setting up your dependencies [here](../developers/environment).
 
 ## Install Celestia Node
 
 > Note: Make sure that you have at least 5+ Gb of free space
   for Celestia Light Node  
 
-Install the Celestia Node binary. Make sure that you have `git` and `golang` installed.
-
-```sh
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-APP_VERSION=$(curl -s \
-  https://api.github.com/repos/celestiaorg/celestia-node/releases/latest \
-  | jq -r ".tag_name")
-git checkout tags/$APP_VERSION -b $APP_VERSION
-make install
-```
+Follow the tutorial on installing Celestia Node [here](../developers/celestia-node)
 
 ### Run the Light Node
 
@@ -202,63 +142,7 @@ Open 2 terminals in order to see how DASing works:
 
 First, you need a wallet to pay for the transaction.
 
-Option 1: Use the Keplr wallet which has beta support for Celestia.
-
-Check out the Observer [here](https://staking.celestia.observer/)
-
-Option 2: Download the Celestia App binary which has a CLI for creating
-wallets
-
-You can follow the next steps for Option 2:
-
-#### Download Celestia-App Binary
-
-Download the celestia-appd binary inside `$HOME/go/bin` folder which
-will be used to create wallets.
-
-```sh
-git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app/
-git checkout tags/v0.1.0 -b v0.1.0
-make install
-```
-
-#### Check Binary Compiled
-
-To check if the binary was succesfully compiled you can run the
-binary using the `--help` flag:
-
-```sh
-celestia-appd --help
-```
-
-#### Create the Wallet
-
-Create the wallet with any wallet name you want e.g.
-
-```sh
-celestia-appd keys add mywallet
-```
-
-Save the mnemonic output as this is the only way to recover your
-validator wallet in case you lose it!
-
-### Fund the Wallet
-
-You can fund an existing wallet via Discord by sending this message to #faucet channel:
-
-```text
-$request celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-Wait to see if you get a confirmation that the tokens have been
-successfully sent. To check if tokens have arrived succesfully to
-the destination wallet run the command below replacing the public
-address with your own:
-
-```sh
-celestia-appd q bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
+Follow the tutorial on setting up a wallet [here](../developers/wallet).
 
 ### Send a transaction
 
