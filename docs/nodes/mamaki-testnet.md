@@ -1,4 +1,4 @@
-# Mamaki
+# Mamaki Testnet
 <!-- markdownlint-disable MD013 -->
 
 ![mamaki-testnet](/img/mamaki.jpg)
@@ -34,7 +34,7 @@ to the correct instructions on this page on how to connect to Mamaki.
 
 There is a list of RPC endpoints you can use to connect to Mamaki Testnet:
 
-* [https://api-mamaki.pops.one/](https://api-mamaki.pops.one/)
+* [https://rpc-mamaki.pops.one](https://rpc-mamaki.pops.one)
 * [https://rpc-1.celestia.nodes.guru/](https://rpc-1.celestia.nodes.guru/)
 
 ## Mamaki Testnet Faucet
