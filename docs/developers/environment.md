@@ -27,7 +27,7 @@ git make ncdu -y
 
 Golang will be installed on this machine in order for us to be able to build
 the necessary binaries for running the bridge node. For Golang specifically,
-it’s needed to be able to compile Celestia Application.
+it’s needed to be able to compile the Celestia Application.
 
 ```sh
 ver="1.17.2"
