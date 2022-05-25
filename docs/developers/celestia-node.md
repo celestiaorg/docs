@@ -6,7 +6,7 @@ environment [here](../developers/environment).
 
 ## Install Celestia Node
 
-Install the Celestia Node binary, which will be used to run the Bridge Node.
+Install the Celestia Node binary by running the following command:
 
 ```sh
 cd $HOME
