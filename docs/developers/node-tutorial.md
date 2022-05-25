@@ -6,7 +6,7 @@ retrieve messages from the Data Availability Layer by their namespace ID.
 
 ## Hardware Requirements
 
-You can find hardware requirements [here](../nodes/light-node#hardware-requirements).
+You can find hardware requirements [here](../../nodes/light-node#hardware-requirements).
 
 ## Setting Up Dependencies
 
