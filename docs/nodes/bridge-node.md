@@ -190,7 +190,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
 This will delete all data folders so we can start fresh:
 
 ```sh
-celestia-appd unsafe-reset-all --home
+celestia-appd unsafe-reset-all --home $HOME/.celestia-app
 ```
 
 ### Optional: Quick-Sync with Snapshot
