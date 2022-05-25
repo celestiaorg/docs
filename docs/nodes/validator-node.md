@@ -12,106 +12,26 @@ bridge node:
 * Disk: 250 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
-## Setting Up Your Bridge Node
+## Setting Up Your Validator Node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
 
 ### Setup The Dependencies
 
-Once you have setup your instance, ssh into the instance to begin setting up
-the box with all the needed dependencies in order to run your bridge node.
-
-First, make sure to update and upgrade the OS:
-
-```sh
-sudo apt update && sudo apt upgrade -y
-```
-
-These are essential packages that are necessary to execute many tasks like
-downloading files, compiling and monitoring the node:
-
-```sh
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential \
-git make ncdu -y
-```
-
-### Install Golang
-
-Golang will be installed on this machine in order for us to be able to build
-the necessary binaries for running the bridge node. For Golang specifically,
-it’s needed to be able to compile Celestia Application.
-
-```sh
-ver="1.17.2"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
-
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
-
-```sh
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
-To check if Go was installed correctly run:
-
-```sh
-go version
-```
-
-Output should be the version installed:
-
-```sh
-go version go1.17.2 linux/amd64
-```
+Follow the instructions on installing the dependencies [here](../developers/environment).
 
 ## Deploying The Celestia App
 
-This section describes part 1 of Celestia Bridge Node setup: running a Celestia
-App daemon with an internal Celestia Core node.
+This section describes part 1 of Celestia Validator Node setup:
+running a Celestia App daemon with an internal Celestia Core node.
 
 > Note: Make sure you have at least 100+ Gb of free space to safely install+run
-  the Bridge Node.  
+  the Validator Node.  
 
 ### Install Celestia App
 
-The steps below will create a binary file named `celestia-appd`
-inside `$HOME/go/bin` folder which will be used later to run the node.
-
-```sh
-cd $HOME
-rm -rf celestia-app
-git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app/
-APP_VERSION=$(curl -s \
-  https://api.github.com/repos/celestiaorg/celestia-app/releases/latest \
-  | jq -r ".tag_name")
-git checkout tags/$APP_VERSION -b $APP_VERSION
-make install
-```
-
-To check if the binary was successfully compiled you can run the binary
-using the `--help` flag:
-
-```sh
-celestia-appd --help
-```
-
-You should see a similar output (with helpful example commands):
-
-```text
-Stargate CosmosHub App
-
-Usage:
-  celestia-appd [command]
-
-Use "celestia-appd [command] --help" for more information about a command.
-```
+Follow the tutorial on installing Celestia App [here](../developers/celestia-app).
 
 ### Setup the P2P Networks
 
@@ -238,42 +158,15 @@ until it is in sync.
 
 ### Wallet
 
-#### Create a Wallet
+Follow the tutorial on creating a wallet [here](../developers/wallet).
 
-You can pick whatever wallet name you want. For our example we used
-“validator” as the wallet name:
-
-```sh
-celestia-appd keys add validator
-```
-
-Save the mnemonic output as this is the only way to recover your validator
-wallet in case you lose it!
+### Delegate Stake to a Validator
 
 Create an environment variable for the address:
 
 ```sh
 VALIDATOR_WALLET=<validator-address>
 ```
-
-#### Fund a Wallet
-
-For the public celestia address, you can fund the previously created wallet via
-Discord by sending this message to #faucet channel:
-
-```text
-$request celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-Wait to see if you get a confirmation that the tokens have been successfully
-sent. To check if tokens have arrived successfully to the destination wallet
-run the command below replacing the public address with your own:
-
-```sh
-celestia-appd q bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-### Delegate Stake to a Validator
 
 If you want to delegate more stake to any validator, including your own you
 will need the `celesvaloper` address of the validator in question. You can
@@ -298,8 +191,8 @@ Next, select the network you want to use to delegate to a validator:
 
 ## Deploy the Celestia Node
 
-This section describes part 2 of Celestia Bridge Node setup: running a
-Celestia Node daemon.
+This section describes part 2 of Celestia Validator Node setup: running a
+Celestia Bridge Node daemon.
 
 ### Install Celestia Node
 
@@ -328,42 +221,13 @@ System version: amd64/linux
 Golang version: go1.17.5
 ```
 
-### Get the trusted hash
-
-> Caveat: You need a running celestia-app in order to continue this guideline.
-  Please refer to
-  [celestia-app.md](https://github.com/celestiaorg/networks/celestia-app.md)
-  for installation.  
-
-You need to have the trusted server to initialize the Bridge Node. You can use
-`http://localhost:26657` for your local run of `celestia-app`. The trusted hash
-is an optional flag and does not need to be used. If you are not passing it,
-the Bridge Node will just sync from the beginning, which is also the preferred
-option of how to run it.
-
-An example of how to query your local celestia-app to get the trusted hash:
-
-```sh
-curl -s http://localhost:26657/block?height=1 | grep -A1 block_id | grep hash
-```
-
 ### Initialize the Bridge Node
 
+Run the following:
+
 ```sh
-celestia bridge init --core.remote <ip:port of celestia-app>
-```
-
-If you want to use the trusted hash anyways, here is how to initialize it:
-
-```shell
 celestia bridge init --core.remote <ip:port of celestia-app> \
---headers.trusted-hash <hash_from_celestia_app>
-```
-
-Example:
-
-```sh
-celestia bridge init --core.remote tcp://127.0.0.1:26657 --headers.trusted-hash 4632277C441CA6155C4374AC56048CF4CFE3CBB2476E07A548644435980D5E17
+  --core.grpc <ip:port>
 ```
 
 ### Configure the Bridge Node
@@ -374,7 +238,15 @@ follow the instructions there before proceeding with the rest of this guide:
 
 * [Mamaki](../nodes/mamaki.md#configure-the-bridge-node)
 
-### Start the Bridge Node with SystemD
+### Run the Bridge Node
+
+Run the following:
+
+```sh
+celestia bridge start
+```
+
+### Optional: Start the Bridge Node with SystemD
 
 SystemD is a daemon service useful for running applications as background processes.
 
