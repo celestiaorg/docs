@@ -288,7 +288,8 @@ from Celestia application.
 Example:
 
 ```sh
-/ip4/<ip-address>/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22
+NODE_IP=<ip-address>
+/ip4/$NODE_IP/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22
 ```
 
 You should be seeing logs coming through of the bridge node syncing.
