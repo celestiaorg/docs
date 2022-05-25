@@ -19,56 +19,7 @@ instance machine.
 
 ### Setup The Dependencies
 
-Once you have setup your instance, ssh into the instance to begin setting up
-the box with all the needed dependencies in order to run your bridge node.
-
-First, make sure to update and upgrade the OS:
-
-```sh
-sudo apt update && sudo apt upgrade -y
-```
-
-These are essential packages that are necessary to execute many tasks like
-downloading files, compiling and monitoring the node:
-
-```sh
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential \
-git make ncdu -y
-```
-
-### Install Golang
-
-Golang will be installed on this machine in order for us to be able to build
-the necessary binaries for running the bridge node. For Golang specifically,
-it’s needed to be able to compile Celestia Application.
-
-```sh
-ver="1.17.2"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
-
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
-
-```sh
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
-To check if Go was installed correctly run:
-
-```sh
-go version
-```
-
-Output should be the version installed:
-
-```sh
-go version go1.17.2 linux/amd64
-```
+Follow the instructions on installing the dependencies [here](../developers/environment).
 
 ## Deploying The Celestia App
 
@@ -80,38 +31,7 @@ running a Celestia App daemon with an internal Celestia Core node.
 
 ### Install Celestia App
 
-The steps below will create a binary file named `celestia-appd`
-inside `$HOME/go/bin` folder which will be used later to run the node.
-
-```sh
-cd $HOME
-rm -rf celestia-app
-git clone https://github.com/celestiaorg/celestia-app.git
-cd celestia-app/
-APP_VERSION=$(curl -s \
-  https://api.github.com/repos/celestiaorg/celestia-app/releases/latest \
-  | jq -r ".tag_name")
-git checkout tags/$APP_VERSION -b $APP_VERSION
-make install
-```
-
-To check if the binary was successfully compiled you can run the binary
-using the `--help` flag:
-
-```sh
-celestia-appd --help
-```
-
-You should see a similar output (with helpful example commands):
-
-```text
-Stargate CosmosHub App
-
-Usage:
-  celestia-appd [command]
-
-Use "celestia-appd [command] --help" for more information about a command.
-```
+Follow the tutorial on installing Celestia App [here](../developers/celestia-app).
 
 ### Setup the P2P Networks
 
@@ -234,42 +154,15 @@ until it is in sync.
 
 ### Wallet
 
-#### Create a Wallet
+Follow the tutorial on creating a wallet [here](../developers/wallet).
 
-You can pick whatever wallet name you want. For our example we used
-“validator” as the wallet name:
-
-```sh
-celestia-appd keys add validator
-```
-
-Save the mnemonic output as this is the only way to recover your validator
-wallet in case you lose it!
+### Delegate Stake to a Validator
 
 Create an environment variable for the address:
 
 ```sh
 VALIDATOR_WALLET=<validator-address>
 ```
-
-#### Fund a Wallet
-
-For the public celestia address, you can fund the previously created wallet via
-Discord by sending this message to #faucet channel:
-
-```text
-!faucet celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-Wait to see if you get a confirmation that the tokens have been successfully
-sent. To check if tokens have arrived successfully to the destination wallet
-run the command below replacing the public address with your own:
-
-```sh
-celestia-appd q bank balances celes1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-### Delegate Stake to a Validator
 
 If you want to delegate more stake to any validator, including your own you
 will need the `celesvaloper` address of the validator in question. You can

@@ -57,56 +57,7 @@ instance machine.
 
 ### Setup The Dependencies
 
-Once you have setup your instance, ssh into the instance to begin setting up
-the box with all the needed dependencies in order to run your bridge node.
-
-First, make sure to update and upgrade the OS:
-
-```sh
-sudo apt update && sudo apt upgrade -y
-```
-
-These are essential packages that are necessary to execute many tasks like
-downloading files, compiling and monitoring the node:
-
-```sh
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential \
-git make ncdu -y
-```
-
-### Install Golang
-
-Golang will be installed on this machine in order for us to be able to build
-the necessary binaries for running the bridge node. For Golang specifically,
-it’s needed to be able to compile Celestia Application.
-
-```sh
-ver="1.17.2"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
-
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
-
-```sh
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
-To check if Go was installed correctly run:
-
-```sh
-go version
-```
-
-Output should be the version installed:
-
-```sh
-go version go1.17.2 linux/amd64
-```
+Follow the tutorial here installing the dependencies [here](../developers/environment).
 
 ## Deploy the Celestia Bridge Node
 
@@ -114,28 +65,7 @@ go version go1.17.2 linux/amd64
 
 Install the Celestia Node binary, which will be used to run the Bridge Node.
 
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-APP_VERSION=$(curl -s \
-  https://api.github.com/repos/celestiaorg/celestia-node/releases/latest \
-  | jq -r ".tag_name")
-git checkout tags/$APP_VERSION -b $APP_VERSION
-make install
-```
-
-Verify that the binary is working and check the version with `celestia version` command:
-
-```sh
-$ celestia version
-Semantic version: v0.2.0
-Commit: 1fcf0c0bb5d5a4e18b51cf12440ce86a84cf7a72
-Build Date: Fri 04 Mar 2022 01:15:07 AM CET
-System version: amd64/linux
-Golang version: go1.17.5
-```
+Follow the tutorial for installing Celestia Node [here](../developers/celestia-node).
 
 ### Get the trusted hash
 
