@@ -109,6 +109,15 @@ follow the instructions there before proceeding with the rest of this guide:
 celestia bridge start 
 ```
 
+#### Optional: Run the Bridge Node with a custom key
+
+In order to run a bridge node using a custom key: 
+1. the custom key must exist inside the celestia bridge node directory at the correct path (default: `~/.celestia-bridge/keys/keyring-test`)
+2. the name of the custom key must be passed upon `start`, like so:
+```sh
+celestia bridge start --keyring.accname <name_of_custom_key>
+```
+
 ### Optional: Start the Bridge Node with SystemD
 
 SystemD is a daemon service useful for running applications as background processes.
