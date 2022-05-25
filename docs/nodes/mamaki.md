@@ -46,6 +46,13 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 > Note: Faucet has a limit of 10 tokens per week per address/Discord ID
 
+## Explorers
+
+There are several explorers you can use for Mamaki:
+
+* [https://celestia.explorers.guru/](https://celestia.explorers.guru/)
+* [https://celestiascan.vercel.app/](https://celestiascan.vercel.app/)
+
 ## Setup P2P Network
 
 Now we will setup the P2P Networks by cloning the networks repository:
