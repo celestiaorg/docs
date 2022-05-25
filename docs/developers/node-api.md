@@ -1,4 +1,5 @@
 # Celestia Node API Docs
+<!-- markdownlint-disable MD013 -->
 
 This is the Celestia Node API Docs reference page for being able to make API
 requests to your Celestia Node.
@@ -223,8 +224,7 @@ height `height`.
 Request
 
 ```sh
-curl -X GET \
-  http://localhost:26658/namespaced_shares/0c204d39600fddd3/height/2452
+curl -X GET http://localhost:26658/namespaced_shares/0c204d39600fddd3/height/2452
 ```
 
 Response
@@ -310,7 +310,7 @@ hex-encoded `namespace_id`, the hex-encoded `data`, and the `gas_limit`
 as a uint64.
 
 Request
-<!-- markdownlint-disable MD013 -->
+
 ```sh
 curl -X POST -d '{"namespace_id": "0c204d39600fddd3", "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5", "gas_limit": 60000}'\
   http://localhost:26658/submit_pfd
