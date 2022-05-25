@@ -1,4 +1,5 @@
 # Celestia App
+<!-- markdownlint-disable MD013 -->
 
 This tutorial will guide you through building Celestia App. This
 tutorial presumes you completed the steps in setting up your
