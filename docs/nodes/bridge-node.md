@@ -64,24 +64,6 @@ Install the Celestia Node binary, which will be used to run the Bridge Node.
 
 Follow the tutorial for installing Celestia Node [here](../../developers/celestia-node).
 
-### Get the trusted hash
-
-> Caveat: You need a running celestia-app in order to continue this guideline.
-Please refer to [celestia-app.md](https://github.com/celestiaorg/networks/celestia-app.md)
-for installation.
-
-You need to have the trusted server to initialize the Bridge Node. You can use
-`http://localhost:26657` for your local run of `celestia-app`. The trusted hash
-is an optional flag and does not need to be used. If you are not passing it, the
-Bridge Node will just sync from the beginning, which is also the preferred
-option of how to run it.
-
-An example of how to query your local celestia-app to get the trusted hash:
-
-```sh
-curl -s http://localhost:26657/block?height=1 | grep -A1 block_id | grep hash
-```
-
 ### Initialize the Bridge Node
 
 Run the following:
@@ -90,13 +72,7 @@ Run the following:
 celestia bridge init --core.remote tcp://<ip-address>:26657 
 ```
 
-### Configure the Bridge Node
-
-To configure your Bridge Node to connect to your network of choice, select one of
-the networks you would like to connect to from this list and follow the instructions
-there before proceeding with the rest of this guide:
-
-* [Mamaki](../nodes/mamaki-testnet.md#configure-the-bridge-node)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
 
 ### Run the Bridge Node
 
@@ -111,6 +87,8 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 ```sh
 celestia bridge start --core.grpc <ip>:9090
 ```
+
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
 
 #### Optional: Run the Bridge Node with a Custom Key
 
