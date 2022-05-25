@@ -1,4 +1,5 @@
 # Mamaki
+<!-- markdownlint-disable MD013 -->
 
 ![mamaki-testnet](/img/mamaki.jpg)
 
@@ -88,7 +89,8 @@ cp $HOME/networks/mamaki/genesis.json $HOME/.celestia-app/config
 Set seeds and peers:
 
 ```sh
-SEEDS="f0c58d904dec824605ac36114db28f1bf84f6ea3@144.76.112.238:26656"
+BOOTSTRAP_PEERS=curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/bootstrap-peers.txt | tr -d '\n' && echo $BOOTSTRAP_PEERS
+sed -i.bak -e "s/^bootstrap-peers =./bootstrap-peers = "$BOOTSTRAP_PEERS"/" $HOME/.celestia-app/config/config.toml
 PEERS="e4429e99609c8c009969b0eb73c973bff33712f9@141.94.73.39:43656\
   09263a4168de6a2aaf7fef86669ddfe4e2d004f6@142.132.209.229:26656,\
   13d8abce0ff9565ed223c5e4b9906160816ee8fa@94.62.146.145:36656,\
