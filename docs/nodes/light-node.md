@@ -17,12 +17,9 @@ to interact with the Celestia network.
 
 Light Nodes have the following properties:
 
-1. Connect to a [Celestia Bridge Node](https://github.com/celestiaorg/networks#celestia-validator-bridge-nodes)
-   in the DA network. _Note: Light Nodes do not communicate with each other,
-   but only with Bridge Nodes._
-2. Listen for ExtendedHeaders, i.e. wrapped “raw” headers, that notify
+1. Listen for ExtendedHeaders, i.e. wrapped “raw” headers, that notify
    Celestia Nodes of new block headers and relevant DA metadata.
-3. Perform data availability sampling (DAS) on the received headers
+2. Perform data availability sampling (DAS) on the received headers
 
 ## Hardware Requirements
 
@@ -66,7 +63,29 @@ Run the following command:
 celestia light init
 ```
 
+Note: the Light Node is connected to Celestia Core RPC endpoint here.
+
 #### Start the Light Node
+
+Run the following command to start the Light Node:
+
+```sh
+celestia light start --core.grpc <ip>:9090
+```
+
+#### Optional: Run the Light Node with a Custom Key
+
+In order to run a light node using a custom key:
+
+1. The custom key must exist inside the celestia light node
+directory at the correct path (default: `~/.celestia-light/keys/keyring-test`)
+2. The name of the custom key must be passed upon `start`, like so:
+
+```sh
+celestia light start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key>
+```
+
+#### Optional: Start Light Node with SystemD
 
 Start the Light Node as daemon process in the background
 
@@ -94,7 +113,7 @@ If the file was created succesfully you will be able to see its content:
 cat /etc/systemd/system/celestia-lightd.service
 ```
 
-#### Start The Daemon
+##### Start The Daemon
 
 Enable and start celestia-lightd daemon:
 
@@ -103,7 +122,7 @@ sudo systemctl enable celestia-lightd
 sudo systemctl start celestia-lightd
 ```
 
-#### Check Daemon Status
+##### Check Daemon Status
 
 Check if daemon has been started correctly:
 
@@ -111,7 +130,7 @@ Check if daemon has been started correctly:
 sudo systemctl status celestia-lightd
 ```
 
-#### Check Daemon Logs
+##### Check Daemon Logs
 
 Check daemon logs in real time:
 
