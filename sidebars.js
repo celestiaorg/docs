@@ -45,8 +45,8 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Mamaki",
-          id: "nodes/mamaki"
+          label: "Mamaki Testnet",
+          id: "nodes/mamaki-testnet"
         }
       ]
     },
