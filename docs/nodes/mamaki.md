@@ -44,6 +44,8 @@ $request <CELESTIA-ADDRESS>
 
 Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
+> Note: Faucet has a limit of 10 tokens per week per address/Discord ID
+
 ## Setup P2P Network
 
 Now we will setup the P2P Networks by cloning the networks repository:
