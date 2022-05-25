@@ -1,7 +1,7 @@
 # Mamaki Testnet
 <!-- markdownlint-disable MD013 -->
 
-![mamaki-testnet](/img/mamaki.jpg)
+![mamaki-testnet](/img/mamaki.png)
 
 This guide contains the relevant sections for how to connect to Mamaki,
 depending on the type of node you are running. Mamaki is a milestone
