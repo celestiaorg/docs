@@ -101,7 +101,7 @@ To configure your Bridge Node to connect to your network of choice,
 select one of the networks you would like to connect to from this list and
 follow the instructions there before proceeding with the rest of this guide:
 
-* [Mamaki](../nodes/mamaki.md#configure-the-bridge-node)
+* [Mamaki](../nodes/mamaki-testnet.md#configure-the-bridge-node)
 
 ### Run the Bridge Node
 

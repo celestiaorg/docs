@@ -37,7 +37,7 @@ Follow the tutorial on installing Celestia App [here](../developers/celestia-app
 
 For this section of the guide, select the network you want to connect to:
 
-* [Mamaki](../nodes/mamaki.md#setup-p2p-network)
+* [Mamaki](../nodes/mamaki-testnet.md#setup-p2p-network)
 
 After that, you can proceed with the rest of the tutorial.
 
@@ -80,7 +80,7 @@ then you can skip this part.
 If you want to use snapshot, determine the network you would like to sync
 to from the list below:
 
-* [Mamaki](../nodes/mamaki.md#quick-sync-with-snapshot)
+* [Mamaki](../nodes/mamaki-testnet.md#quick-sync-with-snapshot)
 
 ### Start the Celestia-App with SystemD
 
@@ -187,7 +187,7 @@ celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
 
 Next, select the network you want to use to delegate to a validator:
 
-* [Mamaki](../nodes/mamaki.md#delegate-to-a-validator)
+* [Mamaki](../nodes/mamaki-testnet.md#delegate-to-a-validator)
 
 ## Deploy the Celestia Node
 
@@ -236,7 +236,7 @@ To configure your Bridge Node to connect to your network of choice,
 select one of the networks you would like to connect to from this list and
 follow the instructions there before proceeding with the rest of this guide:
 
-* [Mamaki](../nodes/mamaki.md#configure-the-bridge-node)
+* [Mamaki](../nodes/mamaki-testnet.md#configure-the-bridge-node)
 
 ### Run the Bridge Node
 
@@ -319,7 +319,7 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
-* [Mamaki](../nodes/mamaki.md#connect-validator)
+* [Mamaki](../nodes/mamaki-testnet.md#connect-validator)
 
 Complete the instructions in the respective network you want to validate in
 to complete the validator setup process.
