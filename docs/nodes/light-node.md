@@ -17,12 +17,9 @@ to interact with the Celestia network.
 
 Light Nodes have the following properties:
 
-1. Connect to a [Celestia Bridge Node](https://github.com/celestiaorg/networks#celestia-validator-light-nodes)
-   in the DA network. _Note: Light Nodes do not communicate with each other,
-   but only with Bridge Nodes._
-2. Listen for ExtendedHeaders, i.e. wrapped “raw” headers, that notify
+1. Listen for ExtendedHeaders, i.e. wrapped “raw” headers, that notify
    Celestia Nodes of new block headers and relevant DA metadata.
-3. Perform data availability sampling (DAS) on the received headers
+2. Perform data availability sampling (DAS) on the received headers
 
 ## Hardware Requirements
 
@@ -65,6 +62,8 @@ Run the following command:
 ```sh
 celestia light init
 ```
+
+Note: the Light Node is connected to Celestia Core RPC endpoint here.
 
 #### Start the Light Node
 
