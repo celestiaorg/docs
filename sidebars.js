@@ -58,6 +58,11 @@ const sidebars = {
       },
       collapsed: false,
       items: [
+        {
+          type: "doc",
+          label: "Keys",
+          id: "nodes/keys"
+        },
         { 
           type: "doc", 
           label: "Devops Resources", 
