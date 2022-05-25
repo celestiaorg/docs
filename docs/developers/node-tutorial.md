@@ -26,7 +26,7 @@ Now, let's instantiate a Celestia Light node:
   such as Light, Bridge and Full Nodes.
 
 ```sh
-./build/celestia light init
+celestia light init
 ```
 
 ### Generate A Wallet
@@ -67,7 +67,7 @@ Here we are starting a light node with a connection to a Core endpoint at
 key we generated as its default account.
 
 ```sh
-./build/celestia light start --core.grpc https://api-mamaki.pops.one/ --keyring.accname developer
+celestia light start --core.grpc https://api-mamaki.pops.one/ --keyring.accname developer
 ```
 
 ## Node API Calls
