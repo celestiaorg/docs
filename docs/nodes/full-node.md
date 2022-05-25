@@ -42,55 +42,10 @@ celestia full init
 
 #### Start the Full Node
 
-Start the Full Node as daemon process in the background
+Start the Full Node:
 
 ```sh
-sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-fulld.service
-[Unit]
-Description=celestia-fulld Full Node
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$HOME/go/bin/celestia full start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=4096
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-If the file was created succesfully you will be able to see its content:
-
-```sh
-cat /etc/systemd/system/celestia-fulld.service
-```
-
-#### Start The Daemon
-
-Enable and start celestia-fulld daemon:
-
-```sh
-sudo systemctl enable celestia-fulld
-sudo systemctl start celestia-fulld
-```
-
-#### Check Daemon Status
-
-Check if daemon has been started correctly:
-
-```sh
-systemctl status celestia-fulld
-```
-
-#### Check Daemon Logs
-
-Check daemon logs in real time:
-
-```sh
-journalctl -u celestia-fulld.service -f
+celestia full start
 ```
 
 Now, the Celestia Full Node will start syncing.
