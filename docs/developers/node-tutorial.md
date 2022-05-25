@@ -294,7 +294,7 @@ We use the following `namespace_id` of `0000010000000100` and
 the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
 
 You can generate your own `namespace_id` and data values using this
-useful Golang Playground we created [here](https://go.dev/play/p/ZZWYSSHTRdo).
+useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
 
 We run the following:
 
