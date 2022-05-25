@@ -150,7 +150,7 @@ Celestia Bridge Nodes
 Example:
 
 ```sh
-/ip4/46.101.22.123/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22
+/ip4/<ip-address>/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22
 ```
 
 You should be seeing logs coming through of the bridge node syncing.

@@ -121,7 +121,7 @@ you must clean up before reinitializing a new directory. You can do so by runnin
 the following command:
 
 ```sh
-celestia-appd unsafe-reset-all
+celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
 ### Initialize A Working Directory

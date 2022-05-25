@@ -67,7 +67,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
 This will delete all data folders so we can start fresh:
 
 ```sh
-celestia-appd unsafe-reset-all --home $HOME/.celestia-app
+celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
 ### Optional: Quick-Sync with Snapshot
@@ -288,7 +288,7 @@ from Celestia application.
 Example:
 
 ```sh
-/ip4/46.101.22.123/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22
+/ip4/<ip-address>/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22
 ```
 
 You should be seeing logs coming through of the bridge node syncing.
