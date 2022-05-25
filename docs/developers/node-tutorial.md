@@ -1,4 +1,5 @@
 # Getting and Sending Transactions with Celestia Node
+<!-- markdownlint-disable MD013 -->
 
 In this tutorial, we will cover how to use the Celestia Node API to submit and
 retrieve messages from the Data Availability Layer by their namespace ID.
@@ -38,7 +39,10 @@ Golang version: go1.17.5
 
 ### Instantiate Celestia Light Node
 
-Now, let's instantiate a celestia-light node:
+Now, let's instantiate a Celestia Light node:
+
+> Note: RPC Endpoints are exposed in all Celestia Node types
+  such as Light, Bridge and Full Nodes.
 
 ```sh
 ./build/celestia light init
@@ -78,11 +82,11 @@ an example public Core Endpoint.
   purposes.
 
 Here we are starting a light node with a connection to a Core endpoint at
-64.227.74.87:9090 and also telling the light node to use the `developer`
+`https://api-mamaki.pops.one/` and also telling the light node to use the `developer`
 key we generated as its default account.
 
 ```sh
-./build/celestia light start --core.grpc 64.227.74.87:9090 --keyring.accname developer
+./build/celestia light start --core.grpc https://api-mamaki.pops.one/ --keyring.accname developer
 ```
 
 ## Node API Calls
