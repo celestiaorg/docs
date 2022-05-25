@@ -74,6 +74,8 @@ is usually exposed on port 9090):
 celestia light start --core.grpc <ip>:9090
 ```
 
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
+
 #### Optional: Run the Light Node with a Custom Key
 
 In order to run a light node using a custom key:
