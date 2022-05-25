@@ -118,7 +118,7 @@ directory at the correct path (default: `~/.celestia-bridge/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
 ```sh
-celestia bridge start --keyring.accname <name_of_custom_key>
+celestia bridge start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key>
 ```
 
 ### Optional: Start the Bridge Node with SystemD
