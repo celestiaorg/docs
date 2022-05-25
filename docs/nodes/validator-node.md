@@ -230,13 +230,7 @@ celestia bridge init --core.remote <ip:port of celestia-app> \
   --core.grpc <ip:port>
 ```
 
-### Configure the Bridge Node
-
-To configure your Bridge Node to connect to your network of choice,
-select one of the networks you would like to connect to from this list and
-follow the instructions there before proceeding with the rest of this guide:
-
-* [Mamaki](../nodes/mamaki-testnet.md#configure-the-bridge-node)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
 
 ### Run the Bridge Node
 
