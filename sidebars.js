@@ -58,6 +58,11 @@ const sidebars = {
       },
       collapsed: false,
       items: [
+        {
+          type: "doc",
+          label: "Keys",
+          id: "nodes/keys"
+        },
         { 
           type: "doc", 
           label: "Devops Resources", 
@@ -119,6 +124,11 @@ const sidebars = {
           type: "doc",
           label: "Installing Celestia Node",
           id: "developers/celestia-node"
+        },
+        { 
+          type: "doc", 
+          label: "Node Tutorial", 
+          id: "developers/node-tutorial" 
         },
         { 
           type: "doc", 
