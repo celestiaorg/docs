@@ -67,10 +67,66 @@ const sidebars = {
     },
   ],
   developers: [
-    { type: "doc", label: "Overview", id: "developers/overview" },
-    { type: "doc", label: "Node Tutorial", id: "developers/node-tutorial" },
-    { type: "doc", label: "Node API", id: "developers/node-api" },
-    { type: "doc", label: "Create A Celestia Testnet", id: "developers/instantiate-testnet" },
+    { 
+      type: "doc", 
+      label: "Overview", 
+      id: "developers/overview" 
+    },
+    { 
+      type: "doc", 
+      label: "Setting Up Environment", 
+      id: "developers/environment" 
+    },
+    {
+      type: "category",
+      label: "Celestia App",
+      link: {
+        type: 'generated-index'
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Installing Celestia App",
+          id: "developers/celestia-app"
+        },
+        {
+          type: "doc",
+          label: "Creating A Wallet",
+          id: "developers/wallet"
+        },
+        { 
+          type: "doc", 
+          label: "Create A Celestia Testnet", 
+          id: "developers/instantiate-testnet" 
+        },
+      ]
+    },
+    {
+      type: "category",
+      label: "Celestia Node",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Installing Celestia Node",
+          id: "developers/celestia-node"
+        },
+        { 
+          type: "doc", 
+          label: "Node Tutorial", 
+          id: "developers/node-tutorial" 
+        },
+        { 
+          type: "doc", 
+          label: "Node API", 
+          id: "developers/node-api" 
+        }
+      ]
+    }
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },

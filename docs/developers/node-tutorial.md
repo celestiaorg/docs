@@ -6,36 +6,17 @@ retrieve messages from the Data Availability Layer by their namespace ID.
 
 ## Hardware Requirements
 
-You can find hardware requirements [here](https://docs.celestia.org/nodes/bridge-validator-node#install-golang).
+You can find hardware requirements [here](../nodes/light-node#hardware-requirements).
 
 ## Setting Up Dependencies
 
-You can follow the tutorial for setting up the dependencies [here](https://docs.celestia.org/nodes/bridge-validator-node#setting-up-your-bridge-node).
+You can follow the tutorial for setting up the dependencies [here](../developers/environment).
 
 ## Celestia Node
 
-### Install Celestia Node
+## Install Celestia Node
 
-We need to install Celestia Node.
-Run the following command:
-
-```sh
-cd $HOME
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-make install
-```
-
-Verify its installed by running the following command:
-
-```console
-$ celestia version
-Semantic version: v0.2.0
-Commit: 1fcf0c0bb5d5a4e18b51cf12440ce86a84cf7a72
-Build Date: Fri 04 Mar 2022 01:15:07 AM CET
-System version: amd64/linux
-Golang version: go1.17.5
-```
+You can follow the tutorial for building Celestia Node [here](../developers/celestia-node)
 
 ### Instantiate Celestia Light Node
 
@@ -67,7 +48,7 @@ You can request funds to your wallet address using the following command in Disc
 $request <Wallet-Address>
 ```
 
-Where `<Wallet-Address>` is the `celes1******` address generated
+Where `<Wallet-Address>` is the `celestia1******` address generated
 when you created the wallet.
 
 With your wallet funded, you can move on to the next step.
