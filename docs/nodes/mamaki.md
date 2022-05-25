@@ -1,5 +1,7 @@
 # Mamaki
 
+![mamaki-testnet](/img/mamaki.jpg)
+
 This guide contains the relevant sections for how to connect to Mamaki,
 depending on the type of node you are running. Mamaki is a milestone
 in Celestia, allowing everyone to test out core functionalities on the
