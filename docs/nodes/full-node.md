@@ -43,7 +43,7 @@ celestia full init
 #### Start the Full Node
 
 Start the Full Node with a connection to a validator
-node's grpc endpoint (which is usually exposed on port 9090):
+node's gRPC endpoint (which is usually exposed on port 9090):
 
 ```sh
 celestia full start --core.grpc <ip addr of core node>:9090
