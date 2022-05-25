@@ -92,7 +92,6 @@ Set seeds and peers:
 BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/bootstrap-peers.txt | tr -d '\n' | head -c -1)
 echo $BOOTSTRAP_PEERS
 sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" $HOME/.celestia-app/config/config.toml
-
 PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/peers.txt | tr -d '\n' | head -c -1)
 echo $PEERS
 sed -i.bak -e "s/^persistent-peers *=.*/persistent-peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
@@ -124,7 +123,7 @@ To delegate tokens to the the `celesvaloper` validator, as an example you can ru
 
 ```sh
 celestia-appd tx staking delegate \
-    celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd 1000000celes \
+    celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd 1000000utia \
     --from=$VALIDATOR_WALLET --chain-id=mamaki
 ```
 
@@ -160,7 +159,7 @@ MONIKER="your_moniker"
 VALIDATOR_WALLET="validator"
 
 celestia-appd tx staking create-validator \
-    --amount=1000000celes \
+    --amount=1000000utia \
     --pubkey=$(celestia-appd tendermint show-validator) \
     --moniker=$MONIKER \
     --chain-id=mamaki \
