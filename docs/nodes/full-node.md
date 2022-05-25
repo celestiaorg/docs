@@ -21,75 +21,14 @@ instance machine.
 
 ### Setup The Dependencies
 
-Once you have setup your instance, ssh into the instance to begin
-setting up the box with all the needed dependencies in order to
-run your full node.
-
-First, make sure to update and upgrade the OS:
-
-```sh
-sudo apt update && sudo apt upgrade -y
-```
-
-These are essential packages that are necessary to execute many
-tasks like downloading files, compiling and monitoring the node:
-
-```sh
-sudo apt install curl tar wget clang pkg-config libssl-dev jq \
-build-essential git make ncdu -y
-```
-
-### Install Golang
-
-Golang will be installed on this machine in order for us to be able
-to build the necessary binaries for running the full node. For Golang
-specifically, it’s needed to be able to compile Celestia Light Node.
-
-```sh
-ver="1.17.2"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
-
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
-
-```sh
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
-To check if Go was installed correctly run:
-
-```sh
-go version
-```
-
-Output should be the version installed:
-
-```sh
-go version go1.17.2 linux/amd64
-```
+You can follow the tutorial for setting up your dependencies [here](../developers/environment)
 
 ## Install Celestia Node
 
 > Note: Make sure that you have at least 250+ Gb of free space
   for Celestia Full Node  
 
-Install the Celestia Node binary.
-Make sure that you have `git` and `golang` installed.
-
-```sh
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-APP_VERSION=$(curl -s \
-  https://api.github.com/repos/celestiaorg/celestia-node/releases/latest \
-  | jq -r ".tag_name")
-git checkout tags/$APP_VERSION -b $APP_VERSION
-make install
-```
+You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node)
 
 ### Run the Full Node
 
@@ -101,9 +40,9 @@ Run the following command:
 celestia full init
 ```
 
-#### Start the Light Node
+#### Start the Full Node
 
-Start the Light Node as daemon process in the background
+Start the Full Node as daemon process in the background
 
 ```sh
 sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-fulld.service
