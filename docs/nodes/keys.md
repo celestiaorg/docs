@@ -7,6 +7,13 @@ type `(bridge || full || light)`, or just keys in general.
 
 ## Installation
 
+You need to first pull down the `celestia-node` repository:
+
+```sh
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+```
+
 It can be built using either of the following commands:
 
 ```sh
