@@ -52,6 +52,7 @@ Start the Full Node with a connection to a validator node's gRPC endpoint
 ```sh
 celestia full start --core.grpc <ip addr of core node>:9090
 ```
+
 ### Optional: Start the Full Node with SystemD
 
 SystemD is a daemon service useful for running applications as background processes.
