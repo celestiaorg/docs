@@ -196,30 +196,7 @@ Celestia Bridge Node daemon.
 
 ### Install Celestia Node
 
-Install the Celestia Node binary, which will be used to run the Bridge Node.
-
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-APP_VERSION=$(curl -s \
-  https://api.github.com/repos/celestiaorg/celestia-node/releases/latest \
-  | jq -r ".tag_name")
-git checkout tags/$APP_VERSION -b $APP_VERSION
-make install
-```
-
-Verify that the binary is working and check the version with `celestia version` command:
-
-```sh
-$ celestia version
-Semantic version: v0.2.0
-Commit: 1fcf0c0bb5d5a4e18b51cf12440ce86a84cf7a72
-Build Date: Fri 04 Mar 2022 01:15:07 AM CET
-System version: amd64/linux
-Golang version: go1.17.5
-```
+You can follow the tutorial for installing Celestia Node [here](../../developers/celestia-node)
 
 ### Initialize the Bridge Node
 
