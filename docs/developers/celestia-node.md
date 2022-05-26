@@ -13,7 +13,10 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.3.0-rc1
+APP_VERSION=$(curl -s \ 
+   https://api.github.com/repos/celestiaorg/celestia-app/releases/latest \ 
+   | jq -r ".tag_name") 
+git checkout tags/$APP_VERSION -b $APP_VERSION
 make install
 ```
 
