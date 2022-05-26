@@ -35,7 +35,7 @@ to the correct instructions on this page on how to connect to Mamaki.
 There is a list of RPC endpoints you can use to connect to Mamaki Testnet:
 
 * [https://rpc-mamaki.pops.one](https://rpc-mamaki.pops.one)
-* [https://rpc-1.celestia.nodes.guru/](https://rpc-1.celestia.nodes.guru/)
+* [https://rpc-1.celestia.nodes.guru](https://rpc-1.celestia.nodes.guru)
 
 ## Mamaki Testnet Faucet
 
@@ -167,7 +167,8 @@ celestia-appd tx staking create-validator \
     --commission-max-rate=0.2 \
     --commission-max-change-rate=0.01 \
     --min-self-delegation=1000000 \
-    --from=$VALIDATOR_WALLET
+    --from=$VALIDATOR_WALLET \
+    --keyring-backend=test
 ```
 
 You will be prompted to confirm the transaction:
