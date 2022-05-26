@@ -1,18 +1,19 @@
-# Setting Up A Celestia Validator Node
+# Setting Up A Celestia Consensus Full Node
 
-Validator nodes allow you to participate in consensus in the Celestia network.
+Consensus Full Nodes allow you to sync blockchain history in the Celestia
+Consensus Layer.
 
 ## Hardware Requirements
 
 The following hardware minimum requirements are recommended for running the
-validator node:
+Consensus Full Node:
 
 * Memory: 8 GB RAM
 * CPU: Quad-Core
 * Disk: 250 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
-## Setting Up Your Validator Node
+## Setting Up Your Consensus Full Node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
@@ -81,6 +82,16 @@ If you want to use snapshot, determine the network you would like to sync
 to from the list below:
 
 * [Mamaki](../nodes/mamaki-testnet.md#quick-sync-with-snapshot)
+
+### Start the Celestia App
+
+In order to start your consensus full node, run the following:
+
+```sh
+celestia-appd start
+```
+
+This will let you sync the Celestia blockchain history.
 
 ### Start the Celestia-App with SystemD
 
@@ -155,143 +166,3 @@ curl -s localhost:26657/status | jq .result | jq .sync_info
 
 Make sure that you have `"catching_up": false`, otherwise leave it running
 until it is in sync.
-
-### Wallet
-
-Follow the tutorial on creating a wallet [here](../../developers/wallet).
-
-### Delegate Stake to a Validator
-
-Create an environment variable for the address:
-
-```sh
-VALIDATOR_WALLET=<validator-address>
-```
-
-If you want to delegate more stake to any validator, including your own you
-will need the `celesvaloper` address of the validator in question. You can
-either check it using the block explorer mentioned above or you can run the
-command below to get the `celesvaloper` of your local validator wallet in
-case you want to delegate more to it:
-
-```sh
-celestia-appd keys show $VALIDATOR_WALLET --bech val -a
-```
-
-After entering the wallet passphrase you should see a similar output:
-
-```sh
-Enter keyring passphrase:
-celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
-```
-
-Next, select the network you want to use to delegate to a validator:
-
-* [Mamaki](../nodes/mamaki-testnet.md#delegate-to-a-validator)
-
-## Deploy the Celestia Node
-
-This section describes part 2 of Celestia Validator Node setup: running a
-Celestia Bridge Node daemon.
-
-### Install Celestia Node
-
-You can follow the tutorial for installing Celestia Node [here](../../developers/celestia-node)
-
-### Initialize the Bridge Node
-
-Run the following:
-
-```sh
-celestia bridge init --core.remote <ip:port of celestia-app> \
-  --core.grpc <ip:port>
-```
-
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
-
-### Run the Bridge Node
-
-Run the following:
-
-```sh
-celestia bridge start
-```
-
-### Optional: Start the Bridge Node with SystemD
-
-SystemD is a daemon service useful for running applications as background processes.
-
-Create Celestia Bridge systemd file:
-
-```sh
-sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-bridge.service
-[Unit]
-Description=celestia-bridge Cosmos daemon
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$HOME/go/bin/celestia bridge start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=4096
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-If the file was created successfully you will be able to see its content:
-
-```sh
-cat /etc/systemd/system/celestia-bridge.service
-```
-
-Enable and start celestia-bridge daemon:
-
-```sh
-sudo systemctl enable celestia-bridge
-sudo systemctl start celestia-bridge && sudo journalctl -u \
-celestia-bridge.service -f
-```
-
-Now, the Celestia bridge node will start syncing headers and storing blocks
-from Celestia application.
-
-> Note: At startup, we can see the `multiaddress` from Celestia Bridge Node.
-  This is **needed for future Light Node** connections and communication
-  between Celestia Bridge Nodes  
-
-Example:
-
-```sh
-NODE_IP=<ip-address>
-/ip4/$NODE_IP/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22
-```
-
-You should be seeing logs coming through of the bridge node syncing.
-
-You have successfully set up a bridge node that is syncing with the network.
-
-If you want to next run a validator node, read the following tutorial [here](../nodes/validator-node.md).
-
-## Run a Validator Node
-
-After completing all the necessary steps, you are now ready to run a validator!
-In order to create your validator on-chain, follow the instructions below.
-Keep in mind that these steps are necessary ONLY if you want to participate
-in the consensus.
-
-Pick a `moniker` name of your choice! This is the validator name that will show
-up on public dashboards and explorers. `VALIDATOR_WALLET` must be the same you
-defined previously. Parameter `--min-self-delegation=1000000` defines the
-amount of tokens that are self delegated from your validator wallet.
-
-Now, connect to the network of your choice.
-
-You have the following option of connecting to list of networks shown below:
-
-* [Mamaki](../nodes/mamaki-testnet.md#connect-validator)
-
-Complete the instructions in the respective network you want to validate in
-to complete the validator setup process.

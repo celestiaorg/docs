@@ -14,25 +14,50 @@ const sidebars = {
       collapsed: false,
       items: [
       {
-        type: "doc",
-        label: "Validator Node",
-        id: "nodes/validator-node",
+        type: "category",
+        label: "Consensus",
+        link: {
+          type: 'generated-index'
+        },
+        collapsed: false,
+        items: [
+          {
+            type: "doc",
+            label: "Validator Node",
+            id: "nodes/validator-node",
+          },
+          { 
+            type: "doc", 
+            label: "Consensus Full Node", 
+            id: "nodes/consensus-full-node" 
+          },
+        ]
       },
-       { 
-         type: "doc", 
-         label: "Bridge Node", 
-         id: "nodes/bridge-node" 
-       },
       {
-        type: "doc",
-        label: "Full Node",
-        id: "nodes/full-node",
-      },
-      { 
-        type: "doc", 
-        label: "Light Node", 
-        id: "nodes/light-node" 
-      },
+        type: "category",
+        label: "Data Availability",
+        link: {
+          type: 'generated-index',
+        },
+        collapsed: false,
+        items: [
+          { 
+            type: "doc", 
+            label: "Bridge Node", 
+            id: "nodes/bridge-node" 
+          },
+          {
+            type: "doc",
+            label: "Full Storage Node",
+            id: "nodes/full-storage-node",
+          },
+          { 
+            type: "doc", 
+            label: "Light Node", 
+            id: "nodes/light-node" 
+          },
+        ]
+      }
       ]
     },
     {
