@@ -20,9 +20,9 @@ Verify that the binary is working and check the version with `celestia version` 
 
 ```console
 $ celestia version
-Semantic version: v0.2.0
-Commit: 1fcf0c0bb5d5a4e18b51cf12440ce86a84cf7a72
-Build Date: Fri 04 Mar 2022 01:15:07 AM CET
+Semantic version: v0.3.0-rc1-7-g45f23d8
+Commit: 45f23d8ecab4c3526a7729cd4bc9a0ebe561846e
+Build Date: Thu 26 May 2022 10:41:59 AM CEST
 System version: amd64/linux
-Golang version: go1.17.5
+Golang version: go1.18.1
 ```
