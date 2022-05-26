@@ -73,6 +73,16 @@ const sidebars = {
           label: "Config.toml Guide",
           id: "nodes/config-toml"
         },
+        {
+          type: "doc",
+          label: "Troubleshoot",
+          id: "nodes/troubleshoot"
+        },
+        {
+          type: "doc",
+          label: "Droplet Test",
+          id: "nodes/droplet-test"
+        },
       ]
     },
   ],
