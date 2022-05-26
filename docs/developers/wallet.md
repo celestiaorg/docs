@@ -2,7 +2,7 @@
 
 ## Create a Wallet
 
-First we need to create an application CLI configuration file:
+First, create an application CLI configuration file:
 
  ```sh
  celestia-appd config keyring-backend test
