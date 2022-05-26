@@ -8,7 +8,8 @@ First, create an application CLI configuration file:
  celestia-appd config keyring-backend test
  ```
 
-You can pick whatever wallet name you want. For our example we used "validator" as the wallet name:
+You can pick whatever wallet name you want.
+For our example we used "validator" as the wallet name:
 
 ```sh
 celestia-appd keys add validator
