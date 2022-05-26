@@ -2,6 +2,12 @@
 
 ## Create a Wallet
 
+First, create an application CLI configuration file:
+
+ ```sh
+ celestia-appd config keyring-backend test
+ ```
+
 You can pick whatever wallet name you want.
 For our example we used "validator" as the wallet name:
 
@@ -11,6 +17,12 @@ celestia-appd keys add validator
 
 Save the mnemonic output as this is the only way to
 recover your validator wallet in case you lose it!
+
+To check all your wallets you can run:
+
+```sh
+celestia-appd keys list
+```
 
 ## Fund a Wallet
 
