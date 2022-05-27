@@ -61,18 +61,6 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
 
 ### Configure Validator Mode
 
-You must now set a few configs in your `config.toml`. Learn more about the
-config.toml file [here](../nodes/config-toml.md)
-
-Run the following command to set timeout to 25 seconds:
-
-```sh
-sed -i.bak -e "s/^timeout-commit *=.*/timeout-commit = \"25s\"/" $HOME/.celestia-app/config/config.toml
-sed -i.bak -e "s/^skip-timeout-commit *=.*/skip-timeout-commit = false/" $HOME/.celestia-app/config/config.toml
-```
-
-Now run the following command to set the mode:
-
 ```sh
 sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
 ```
