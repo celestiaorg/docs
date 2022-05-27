@@ -70,42 +70,7 @@ celestia full start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key>
 
 ### Optional: Start the Full Storage Node with SystemD
 
-SystemD is a daemon service useful for running applications as background processes.
-
-Create Celestia Full Storage Node systemd file:
-
-```sh
-sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-full.service
-[Unit]
-Description=celestia-full Cosmos daemon
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$HOME/go/bin/celestia full start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=4096
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-If the file was created successfully you will be able to see its content:
-
-```sh
-cat /etc/systemd/system/celestia-full.service
-```
-
-Enable and start celestia-full daemon:
-
-```sh
-sudo systemctl enable celestia-full
-sudo systemctl start celestia-full && sudo journalctl -u \
-celestia-full.service -f
-```
-
-Now, the Celestia Full Storage Node will start syncing.
+Follow the tutorial on setting up the full storage node as a background
+process with SystemD [here](../nodes/systemd#celestia-full-storage-node).
 
 With that, you are now running a Celestia Full Storage Node.
