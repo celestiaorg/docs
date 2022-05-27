@@ -5,7 +5,7 @@ Validator nodes allow you to participate in consensus in the Celestia network.
 ## Hardware Requirements
 
 The following hardware minimum requirements are recommended for running the
-bridge node:
+validator node:
 
 * Memory: 8 GB RAM
 * CPU: Quad-Core
@@ -48,18 +48,21 @@ configurations below. You can change this to your own pruning configurations
 if you want:
 
 ```sh
-pruning="custom"
-pruning_keep_recent="100"
-pruning_keep_every="5000"
-pruning_interval="10"
+PRUNING="custom"
+PRUNING_KEEP_RECENT="100"
+PRUNING_INTERVAL="10"
 
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning *=.*/pruning = \"$PRUNING\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \
-\"$pruning_keep_recent\"/" $HOME/.celestia-app/config/app.toml
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \
-\"$pruning_keep_every\"/" $HOME/.celestia-app/config/app.toml
+\"$PRUNING_KEEP_RECENT\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
-\"$pruning_interval\"/" $HOME/.celestia-app/config/app.toml
+\"$PRUNING_INTERVAL\"/" $HOME/.celestia-app/config/app.toml
+```
+
+### Configure Validator Mode
+
+```sh
+sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
 ```
 
 ### Reset Network
@@ -84,77 +87,8 @@ to from the list below:
 
 ### Start the Celestia-App with SystemD
 
-SystemD is a daemon service useful for running applications as background processes.
-
-Create Celestia-App systemd file:
-
-```sh
-sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-appd.service
-[Unit]
-Description=celestia-appd Cosmos daemon
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$HOME/go/bin/celestia-appd start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=4096
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-If the file was created successfully you will be able to see its content:
-
-```sh
-cat /etc/systemd/system/celestia-appd.service
-```
-
-You must now set a few configs in your `config.toml`. Learn more about the
-config.toml file [here](../nodes/config-toml.md)
-
-Run the following command to set timeout to 25 seconds:
-
-```sh
-sed -i.bak -e "s/^timeout-commit *=.*/timeout-commit = \"25s\"/" $HOME/.celestia-app/config/config.toml
-sed -i.bak -e "s/^skip-timeout-commit *=.*/skip-timeout-commit = false/" $HOME/.celestia-app/config/config.toml
-```
-
-Now run the following command to set the mode:
-
-```sh
-sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
-```
-
-Enable and start celestia-appd daemon:
-
-```sh
-sudo systemctl enable celestia-appd
-sudo systemctl start celestia-appd
-```
-
-Check if daemon has been started correctly:
-
-```sh
-sudo systemctl status celestia-appd
-```
-
-Check daemon logs in real time:
-
-```sh
-sudo journalctl -u celestia-appd.service -f
-```
-
-To check if your node is in sync before going forward:
-
-```sh
-curl -s localhost:26657/status | jq .result | jq .sync_info
-```
-
-Make sure that you have `"catching_up": false`, otherwise leave it running
-until it is in sync.
+Follow the tutorial on setting up Celestia-App as a background process
+with SystemD [here](../nodes/systemd#start-the-celestia-app-with-systemd).
 
 ### Wallet
 
@@ -219,61 +153,10 @@ celestia bridge start
 
 ### Optional: Start the Bridge Node with SystemD
 
-SystemD is a daemon service useful for running applications as background processes.
-
-Create Celestia Bridge systemd file:
-
-```sh
-sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-bridge.service
-[Unit]
-Description=celestia-bridge Cosmos daemon
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$HOME/go/bin/celestia bridge start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=4096
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-If the file was created successfully you will be able to see its content:
-
-```sh
-cat /etc/systemd/system/celestia-bridge.service
-```
-
-Enable and start celestia-bridge daemon:
-
-```sh
-sudo systemctl enable celestia-bridge
-sudo systemctl start celestia-bridge && sudo journalctl -u \
-celestia-bridge.service -f
-```
-
-Now, the Celestia bridge node will start syncing headers and storing blocks
-from Celestia application.
-
-> Note: At startup, we can see the `multiaddress` from Celestia Bridge Node.
-  This is **needed for future Light Node** connections and communication
-  between Celestia Bridge Nodes  
-
-Example:
-
-```sh
-NODE_IP=<ip-address>
-/ip4/$NODE_IP/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22
-```
-
-You should be seeing logs coming through of the bridge node syncing.
+Follow the tutorial on setting up the bridge node as a background process with
+SystemD [here](../nodes/systemd#celestia-bridge-node).
 
 You have successfully set up a bridge node that is syncing with the network.
-
-If you want to next run a validator node, read the following tutorial [here](../nodes/validator-node.md).
 
 ## Run a Validator Node
 

@@ -18,11 +18,12 @@ participate in Mamaki:
 Consensus:
 
 * [Validator Node](../nodes/validator-node.md)
+* [Consensus Full Node](../nodes/consensus-full-node.md)
 
 Data Availability:
 
 * [Bridge Node](../nodes/bridge-node.md)
-* [Full Node](../nodes/full-node.md)
+* [Full Storage Node](../nodes/full-storage-node.md)
 * [Light Node](../nodes/light-node.md)
 
 Select the type of node you would like to run and follow the instructions
