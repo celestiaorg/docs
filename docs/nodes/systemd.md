@@ -38,8 +38,8 @@ cat /etc/systemd/system/celestia-appd.service
 Enable and start celestia-appd daemon:
 
 ```sh
-sudo systemctl enable celestia-appd
-sudo systemctl start celestia-appd
+systemctl enable celestia-appd
+systemctl start celestia-appd
 ```
 
 Check if daemon has been started correctly:
@@ -96,8 +96,8 @@ cat /etc/systemd/system/celestia-full.service
 Enable and start celestia-full daemon:
 
 ```sh
-sudo systemctl enable celestia-full
-sudo systemctl start celestia-full && sudo journalctl -u \
+systemctl enable celestia-full
+systemctl start celestia-full && journalctl -u \
 celestia-full.service -f
 ```
 
@@ -134,8 +134,8 @@ cat /etc/systemd/system/celestia-bridge.service
 Enable and start celestia-bridge daemon:
 
 ```sh
-sudo systemctl enable celestia-bridge
-sudo systemctl start celestia-bridge && sudo journalctl -u \
+systemctl enable celestia-bridge
+systemctl start celestia-bridge && journalctl -u \
 celestia-bridge.service -f
 ```
 
@@ -186,20 +186,20 @@ cat /etc/systemd/system/celestia-lightd.service
 Enable and start celestia-lightd daemon:
 
 ```sh
-sudo systemctl enable celestia-lightd
-sudo systemctl start celestia-lightd
+systemctl enable celestia-lightd
+systemctl start celestia-lightd
 ```
 
 Check if daemon has been started correctly:
 
 ```sh
-sudo systemctl status celestia-lightd
+systemctl status celestia-lightd
 ```
 
 Check daemon logs in real time:
 
 ```sh
-sudo journalctl -u celestia-lightd.service -f
+journalctl -u celestia-lightd.service -f
 ```
 
 Now, the Celestia Light Node will start syncing headers.
