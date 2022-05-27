@@ -38,6 +38,7 @@ There is a list of RPC endpoints you can use to connect to Mamaki Testnet:
 * [https://rpc-mamaki.pops.one](https://rpc-mamaki.pops.one)
 * [https://rpc-1.celestia.nodes.guru](https://rpc-1.celestia.nodes.guru)
 * [https://celestia-testnet-rpc.polkachu.com/](https://celestia-testnet-rpc.polkachu.com/)
+* [https://rpc.celestia.testnet.run](https://rpc.celestia.testnet.run/)
 
 ## Mamaki Testnet Faucet
 
@@ -63,6 +64,7 @@ There are several explorers you can use for Mamaki:
 
 * [https://celestia.explorers.guru/](https://celestia.explorers.guru/)
 * [https://celestiascan.vercel.app/](https://celestiascan.vercel.app/)
+* [https://testnet.explorer.testnet.run/](https://testnet.explorer.testnet.run/celestia-mamaki/staking)
 
 ## Setup P2P Network
 
