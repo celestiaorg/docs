@@ -151,13 +151,13 @@ sudo systemctl start celestia-appd
 Check if daemon has been started correctly:
 
 ```sh
-sudo systemctl status celestia-appd
+systemctl status celestia-appd
 ```
 
 Check daemon logs in real time:
 
 ```sh
-sudo journalctl -u celestia-appd.service -f
+journalctl -u celestia-appd.service -f
 ```
 
 To check if your node is in sync before going forward:
