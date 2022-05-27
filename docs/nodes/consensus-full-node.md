@@ -1,4 +1,5 @@
 # Setting Up A Celestia Consensus Full Node
+<!-- markdownlint-disable MD013 -->
 
 Consensus Full Nodes allow you to sync blockchain history in the Celestia
 Consensus Layer.
@@ -49,18 +50,15 @@ configurations below. You can change this to your own pruning configurations
 if you want:
 
 ```sh
-pruning="custom"
-pruning_keep_recent="100"
-pruning_keep_every="5000"
-pruning_interval="10"
+PRUNING="custom"
+PRUNING_KEEP_RECENT="100"
+PRUNING_INTERVAL="10"
 
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning *=.*/pruning = \"$PRUNING\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \
-\"$pruning_keep_recent\"/" $HOME/.celestia-app/config/app.toml
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \
-\"$pruning_keep_every\"/" $HOME/.celestia-app/config/app.toml
+\"$PRUNING_KEEP_RECENT\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
-\"$pruning_interval\"/" $HOME/.celestia-app/config/app.toml
+\"$PRUNING_INTERVAL\"/" $HOME/.celestia-app/config/app.toml
 ```
 
 ### Reset Network
@@ -93,6 +91,26 @@ celestia-appd start
 
 This will let you sync the Celestia blockchain history.
 
+### Optional: Configure For RPC Endpoint
+
+You can configure your Consensus Full Node to be a public RPC endpoint
+and listen to any connections from Data Availability Nodes in order to
+serve requests for the Data Availability API [here](../../developers/node-tutorial).
+
+Note that you would need to ensure port 9090 is open for this.
+
+Run the following commands:
+
+```sh
+EXTERNAL_ADDRESS=$(wget -qO- eth0.me)
+sed -i.bak -e "s/^external-address = \"\"/external-address = \"$EXTERNAL_ADDRESS:26656\"/" $HOME/.celestia-app/config/config.toml
+sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' ~/.celestia-app/config/config.toml
+sed -i 's/timeout_commit = "5s"/timeout_commit = "1s"/g' ~/.celestia-app/config/config.toml
+sed -i 's/timeout_propose = "3s"/timeout_propose = "1s"/g' ~/.celestia-app/config/config.toml
+```
+
+Restart `celestia-appd` in the previous step to load those configs.
+
 ### Start the Celestia-App with SystemD
 
 SystemD is a daemon service useful for running applications as background processes.
@@ -121,22 +139,6 @@ If the file was created successfully you will be able to see its content:
 
 ```sh
 cat /etc/systemd/system/celestia-appd.service
-```
-
-You must now set a few configs in your `config.toml`. Learn more about the
-config.toml file [here](../nodes/config-toml.md)
-
-Run the following command to set timeout to 25 seconds:
-
-```sh
-sed -i.bak -e "s/^timeout-commit *=.*/timeout-commit = \"25s\"/" $HOME/.celestia-app/config/config.toml
-sed -i.bak -e "s/^skip-timeout-commit *=.*/skip-timeout-commit = false/" $HOME/.celestia-app/config/config.toml
-```
-
-Now run the following command to set the mode:
-
-```sh
-sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
 ```
 
 Enable and start celestia-appd daemon:
