@@ -37,6 +37,7 @@ There is a list of RPC endpoints you can use to connect to Mamaki Testnet:
 
 * [https://rpc-mamaki.pops.one](https://rpc-mamaki.pops.one)
 * [https://rpc-1.celestia.nodes.guru](https://rpc-1.celestia.nodes.guru)
+* [https://celestia-testnet-rpc.polkachu.com/](https://celestia-testnet-rpc.polkachu.com/)
 
 ## Mamaki Testnet Faucet
 
