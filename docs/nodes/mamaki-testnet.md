@@ -64,7 +64,6 @@ There are several explorers you can use for Mamaki:
 
 * [https://celestia.explorers.guru/](https://celestia.explorers.guru/)
 * [https://celestiascan.vercel.app/](https://celestiascan.vercel.app/)
-* [https://testnet.explorer.testnet.run/](https://testnet.explorer.testnet.run/celestia-mamaki/staking)
 
 ## Setup P2P Network
 
