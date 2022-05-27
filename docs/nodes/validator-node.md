@@ -99,61 +99,8 @@ to from the list below:
 
 ### Start the Celestia-App with SystemD
 
-SystemD is a daemon service useful for running applications as background processes.
-
-Create Celestia-App systemd file:
-
-```sh
-sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-appd.service
-[Unit]
-Description=celestia-appd Cosmos daemon
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$HOME/go/bin/celestia-appd start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=4096
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-If the file was created successfully you will be able to see its content:
-
-```sh
-cat /etc/systemd/system/celestia-appd.service
-```
-
-Enable and start celestia-appd daemon:
-
-```sh
-sudo systemctl enable celestia-appd
-sudo systemctl start celestia-appd
-```
-
-Check if daemon has been started correctly:
-
-```sh
-sudo systemctl status celestia-appd
-```
-
-Check daemon logs in real time:
-
-```sh
-sudo journalctl -u celestia-appd.service -f
-```
-
-To check if your node is in sync before going forward:
-
-```sh
-curl -s localhost:26657/status | jq .result | jq .sync_info
-```
-
-Make sure that you have `"catching_up": false`, otherwise leave it running
-until it is in sync.
+Follow the tutorial on setting up Celestia-App as a background process
+with SystemD [here](../nodes/systemd#start-the-celestia-app-with-systemd).
 
 ### Wallet
 

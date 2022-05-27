@@ -85,6 +85,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          label: "SystemD",
+          id: "nodes/systemd"
+        },
+        {
+          type: "doc",
           label: "Keys",
           id: "nodes/keys"
         },

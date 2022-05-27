@@ -83,60 +83,8 @@ celestia light start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key
 
 ### Optional: Start Light Node with SystemD
 
-Start the Light Node as daemon process in the background
-
-```sh
-sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-lightd.service
-[Unit]
-Description=celestia-lightd Light Node
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$HOME/go/bin/celestia light start --core.grpc <ip>:9090
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=4096
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-If the file was created succesfully you will be able to see its content:
-
-```sh
-cat /etc/systemd/system/celestia-lightd.service
-```
-
-#### Start The Daemon
-
-Enable and start celestia-lightd daemon:
-
-```sh
-sudo systemctl enable celestia-lightd
-sudo systemctl start celestia-lightd
-```
-
-#### Check Daemon Status
-
-Check if daemon has been started correctly:
-
-```sh
-sudo systemctl status celestia-lightd
-```
-
-#### Check Daemon Logs
-
-Check daemon logs in real time:
-
-```sh
-sudo journalctl -u celestia-lightd.service -f
-```
-
-Now, the Celestia Light Node will start syncing headers.
-After sync is finished, Light Node will do Data Availability
-Sampling (DAS) from the Bridge Node.
+Follow the tutorial on setting up the light node as a background
+process with SystemD [here](../nodes/systemd#celestia-light-node).
 
 ## Data Availability Sampling (DAS)
 
