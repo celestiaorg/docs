@@ -48,18 +48,33 @@ configurations below. You can change this to your own pruning configurations
 if you want:
 
 ```sh
-pruning="custom"
-pruning_keep_recent="100"
-pruning_keep_every="5000"
-pruning_interval="10"
+PRUNING="custom"
+PRUNING_KEEP_RECENT="100"
+PRUNING_INTERVAL="10"
 
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.celestia-app/config/app.toml
+sed -i -e "s/^pruning *=.*/pruning = \"$PRUNING\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \
-\"$pruning_keep_recent\"/" $HOME/.celestia-app/config/app.toml
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \
-\"$pruning_keep_every\"/" $HOME/.celestia-app/config/app.toml
+\"$PRUNING_KEEP_RECENT\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
-\"$pruning_interval\"/" $HOME/.celestia-app/config/app.toml
+\"$PRUNING_INTERVAL\"/" $HOME/.celestia-app/config/app.toml
+```
+
+### Configure Validator Mode
+
+You must now set a few configs in your `config.toml`. Learn more about the
+config.toml file [here](../nodes/config-toml.md)
+
+Run the following command to set timeout to 25 seconds:
+
+```sh
+sed -i.bak -e "s/^timeout-commit *=.*/timeout-commit = \"25s\"/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^skip-timeout-commit *=.*/skip-timeout-commit = false/" $HOME/.celestia-app/config/config.toml
+```
+
+Now run the following command to set the mode:
+
+```sh
+sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
 ```
 
 ### Reset Network
@@ -110,22 +125,6 @@ If the file was created successfully you will be able to see its content:
 
 ```sh
 cat /etc/systemd/system/celestia-appd.service
-```
-
-You must now set a few configs in your `config.toml`. Learn more about the
-config.toml file [here](../nodes/config-toml.md)
-
-Run the following command to set timeout to 25 seconds:
-
-```sh
-sed -i.bak -e "s/^timeout-commit *=.*/timeout-commit = \"25s\"/" $HOME/.celestia-app/config/config.toml
-sed -i.bak -e "s/^skip-timeout-commit *=.*/skip-timeout-commit = false/" $HOME/.celestia-app/config/config.toml
-```
-
-Now run the following command to set the mode:
-
-```sh
-sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
 ```
 
 Enable and start celestia-appd daemon:
