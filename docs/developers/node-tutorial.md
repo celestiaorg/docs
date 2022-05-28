@@ -35,7 +35,7 @@ We need to generate a wallet.
 Run the following command:
 
 ```sh
-celestia light keys add developer --keyring-backend test
+./cel-key add <key_name> --keyring-backend test --node.type light
 ```
 
 This generates a key called `developer` in `~/.celestia-light/keys/keyring-test`.
