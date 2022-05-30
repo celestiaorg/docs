@@ -292,8 +292,8 @@ useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
 We run the following:
 
 ```sh
-curl -X POST -d '{"namespace_id": "0c204d39600fddd3", \
-  "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5", \
+curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
+  "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
   "gas_limit": 60000}' http://localhost:26658/submit_pfd
 ```
 
