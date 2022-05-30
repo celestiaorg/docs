@@ -37,7 +37,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup The Dependencies
 
-Follow the tutorial on setting up your dependencies [here](../developers/environment).
+Follow the tutorial on setting up your dependencies [here](../../developers/environment).
 
 ## Install Celestia Node
 
