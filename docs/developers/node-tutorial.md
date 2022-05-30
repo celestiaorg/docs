@@ -74,7 +74,7 @@ Now, let's query our node for the balance of its default account
 (which is the account associated with the `developer` key we generated earlier):
 
 ```sh
-curl -X GET http://127.0.0.1:26658/balance/
+curl -X GET http://127.0.0.1:26658/balance
 ```
 
 It will output the following:
