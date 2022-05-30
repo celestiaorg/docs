@@ -18,11 +18,12 @@ participate in Mamaki:
 Consensus:
 
 * [Validator Node](../nodes/validator-node.md)
+* [Consensus Full Node](../nodes/consensus-full-node.md)
 
 Data Availability:
 
 * [Bridge Node](../nodes/bridge-node.md)
-* [Full Node](../nodes/full-node.md)
+* [Full Storage Node](../nodes/full-storage-node.md)
 * [Light Node](../nodes/light-node.md)
 
 Select the type of node you would like to run and follow the instructions
@@ -35,7 +36,8 @@ to the correct instructions on this page on how to connect to Mamaki.
 There is a list of RPC endpoints you can use to connect to Mamaki Testnet:
 
 * [https://rpc-mamaki.pops.one](https://rpc-mamaki.pops.one)
-* [https://rpc-1.celestia.nodes.guru/](https://rpc-1.celestia.nodes.guru/)
+* [https://rpc-1.celestia.nodes.guru](https://rpc-1.celestia.nodes.guru)
+* [https://celestia-testnet-rpc.polkachu.com/](https://celestia-testnet-rpc.polkachu.com/)
 
 ## Mamaki Testnet Faucet
 
@@ -92,9 +94,7 @@ Set seeds and peers:
 BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/bootstrap-peers.txt | tr -d '\n')
 echo $BOOTSTRAP_PEERS
 sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" $HOME/.celestia-app/config/config.toml
-PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/peers.txt | tr -d '\n' | head -c -1)
-echo $PEERS
-sed -i.bak -e "s/^persistent-peers *=.*/persistent-peers = \"$PEERS\"/" $HOME/.celestia-app/config/config.toml
+
 ```
 
 Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mamaki/peers.txt).
@@ -167,7 +167,8 @@ celestia-appd tx staking create-validator \
     --commission-max-rate=0.2 \
     --commission-max-change-rate=0.01 \
     --min-self-delegation=1000000 \
-    --from=$VALIDATOR_WALLET
+    --from=$VALIDATOR_WALLET \
+    --keyring-backend=test
 ```
 
 You will be prompted to confirm the transaction:

@@ -7,7 +7,7 @@ node operation purposes and for development.
 ## Setting Up Dependencies
 
 Once you have setup your instance, ssh into the instance to begin setting up
-the box with all the needed dependencies in order to run your bridge node.
+the box with all the needed dependencies in order to run your node.
 
 First, make sure to update and upgrade the OS:
 
@@ -26,11 +26,11 @@ git make ncdu -y
 ## Install Golang
 
 Golang will be installed on this machine in order for us to be able to build
-the necessary binaries for running the bridge node. For Golang specifically,
+the necessary binaries for running the node. For Golang specifically,
 it’s needed to be able to compile the Celestia Application.
 
 ```sh
-ver="1.17.2"
+ver="1.18.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -54,5 +54,5 @@ go version
 Output should be the version installed:
 
 ```sh
-go version go1.17.2 linux/amd64
+go version go1.18.2 linux/amd64
 ```
