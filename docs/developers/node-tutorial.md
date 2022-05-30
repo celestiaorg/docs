@@ -31,7 +31,7 @@ celestia light init
 
 ### Generate A Wallet
 
-You can follow the tutorial for generating a Wallet with Celestia Light Node [here](../../nodes/keys)
+You can follow the tutorial for generating a Wallet with Celestia Light Node [here](../../nodes/keys#steps-for-generating-light-node-keys).
 
 Now, head over to the Celestia Discord channel `#faucet`.
 
