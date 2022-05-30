@@ -108,11 +108,6 @@ const sidebars = {
           label: "Troubleshoot",
           id: "nodes/troubleshoot"
         },
-        {
-          type: "doc",
-          label: "Droplet Test",
-          id: "nodes/droplet-test"
-        },
       ]
     },
   ],
