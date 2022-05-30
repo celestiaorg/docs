@@ -31,14 +31,7 @@ celestia light init
 
 ### Generate A Wallet
 
-We need to generate a wallet.
-Run the following command:
-
-```sh
-celestia light keys add developer --keyring-backend test
-```
-
-This generates a key called `developer` in `~/.celestia-light/keys/keyring-test`.
+You can follow the tutorial for generating a Wallet with Celestia Light Node [here](../../nodes/keys#steps-for-generating-light-node-keys).
 
 Now, head over to the Celestia Discord channel `#faucet`.
 
