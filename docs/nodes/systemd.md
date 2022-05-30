@@ -167,7 +167,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/celestia light start --core.grpc <ip>:9090
+ExecStart=$HOME/go/bin/celestia light start --core.grpc http://<ip>:9090
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096

@@ -138,7 +138,7 @@ Run the following:
 
 ```sh
 celestia bridge init --core.remote <ip:port of celestia-app> \
-  --core.grpc <ip:port>
+  --core.grpc http://<ip:port>
 ```
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
