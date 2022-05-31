@@ -37,13 +37,13 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup The Dependencies
 
-Follow the tutorial on setting up your dependencies [here](../developers/environment).
+Follow the tutorial on setting up your dependencies [here](../../developers/environment).
 
 ## Install Celestia Node
 
 > Note: Make sure that you have at least 5+ Gb of free space for Celestia Light Node
 
-Follow the tutorial on installing Celestia Node [here](../developers/celestia-node)
+Follow the tutorial on installing Celestia Node [here](../../developers/celestia-node)
 
 ### Initialize the Light Node
 
