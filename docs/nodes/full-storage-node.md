@@ -54,7 +54,7 @@ celestia full start --core.grpc <ip addr of core node>:9090
 ```
 
 If you would like to find example RPC endpoints, check out the list of
-resources [here](../nodes/mamaki-testnet#rpc-endpoints).
+resources [here](mamaki-testnet#rpc-endpoints).
 
 ### Optional: Run the Full Storage Node with a Custom Key
 
@@ -71,6 +71,6 @@ celestia full start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key>
 ### Optional: Start the Full Storage Node with SystemD
 
 Follow the tutorial on setting up the full storage node as a background
-process with SystemD [here](../nodes/systemd#celestia-full-storage-node).
+process with SystemD [here](systemd#celestia-full-storage-node).
 
 With that, you are now running a Celestia Full Storage Node.

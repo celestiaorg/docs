@@ -72,7 +72,7 @@ Run the following:
 celestia bridge init --core.remote tcp://<ip-address>:26657 
 ```
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](mamaki-testnet#rpc-endpoints)
 
 ### Run the Bridge Node
 
@@ -88,7 +88,7 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 celestia bridge start --core.grpc <ip>:9090
 ```
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](mamaki-testnet#rpc-endpoints)
 
 #### Optional: Run the Bridge Node with a Custom Key
 
@@ -105,6 +105,6 @@ celestia bridge start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_ke
 ### Optional: Start the Bridge Node with SystemD
 
 Follow the tutorial on setting up the bridge node as a background process with
-SystemD [here](../nodes/systemd#celestia-bridge-node).
+SystemD [here](systemd#celestia-bridge-node).
 
 You have successfully set up a bridge node that is syncing with the network.

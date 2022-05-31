@@ -37,13 +37,13 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup The Dependencies
 
-Follow the tutorial on setting up your dependencies [here](../../developers/environment).
+Follow the tutorial on setting up your dependencies [here](../developers/environment).
 
 ## Install Celestia Node
 
 > Note: Make sure that you have at least 5+ Gb of free space for Celestia Light Node
 
-Follow the tutorial on installing Celestia Node [here](../../developers/celestia-node)
+Follow the tutorial on installing Celestia Node [here](../developers/celestia-node)
 
 ### Initialize the Light Node
 
@@ -67,7 +67,7 @@ is usually exposed on port 9090):
 celestia light start --core.grpc <ip>:9090
 ```
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](mamaki-testnet#rpc-endpoints)
 
 ### Optional: Run the Light Node with a Custom Key
 
@@ -84,7 +84,7 @@ celestia light start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key
 ### Optional: Start Light Node with SystemD
 
 Follow the tutorial on setting up the light node as a background
-process with SystemD [here](../nodes/systemd#celestia-light-node).
+process with SystemD [here](systemd#celestia-light-node).
 
 ## Data Availability Sampling (DAS)
 

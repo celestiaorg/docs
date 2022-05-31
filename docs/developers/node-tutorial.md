@@ -10,13 +10,13 @@ You can find hardware requirements [here](../../nodes/light-node#hardware-requir
 
 ## Setting Up Dependencies
 
-You can follow the tutorial for setting up the dependencies [here](../developers/environment).
+You can follow the tutorial for setting up the dependencies [here](environment).
 
 ## Celestia Node
 
 ## Install Celestia Node
 
-You can follow the tutorial for building Celestia Node [here](../developers/celestia-node)
+You can follow the tutorial for building Celestia Node [here](celestia-node)
 
 ### Instantiate Celestia Light Node
 
@@ -74,7 +74,7 @@ Now, let's query our node for the balance of its default account
 (which is the account associated with the `developer` key we generated earlier):
 
 ```sh
-curl -X GET http://127.0.0.1:26658/balance
+curl -X GET http://127.0.0.1:26658/balance/
 ```
 
 It will output the following:
@@ -292,8 +292,8 @@ useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
 We run the following:
 
 ```sh
-curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
-  "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
+curl -X POST -d '{"namespace_id": "0c204d39600fddd3", \
+  "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5", \
   "gas_limit": 60000}' http://localhost:26658/submit_pfd
 ```
 
