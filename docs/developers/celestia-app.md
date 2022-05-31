@@ -3,7 +3,7 @@
 
 This tutorial will guide you through building Celestia App. This
 tutorial presumes you completed the steps in setting up your
-own environment [here](environment).
+own environment [here](environment.md).
 
 ## Install Celestia App
 

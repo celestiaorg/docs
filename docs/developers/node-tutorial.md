@@ -6,17 +6,17 @@ retrieve messages from the Data Availability Layer by their namespace ID.
 
 ## Hardware Requirements
 
-You can find hardware requirements [here](../../nodes/light-node#hardware-requirements).
+You can find hardware requirements [here](/nodes/light-node.md#hardware-requirements).
 
 ## Setting Up Dependencies
 
-You can follow the tutorial for setting up the dependencies [here](environment).
+You can follow the tutorial for setting up the dependencies [here](environment.md).
 
 ## Celestia Node
 
 ## Install Celestia Node
 
-You can follow the tutorial for building Celestia Node [here](celestia-node)
+You can follow the tutorial for building Celestia Node [here](celestia-node.md)
 
 ### Instantiate Celestia Light Node
 
@@ -31,7 +31,7 @@ celestia light init
 
 ### Generate A Wallet
 
-You can follow the tutorial for generating a Wallet with Celestia Light Node [here](../../nodes/keys#steps-for-generating-light-node-keys).
+You can follow the tutorial for generating a Wallet with Celestia Light Node [here](/nodes/keys.md#steps-for-generating-light-node-keys).
 
 Now, head over to the Celestia Discord channel `#faucet`.
 

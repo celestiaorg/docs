@@ -2,7 +2,7 @@
 
 This tutorial goes over installing and building Celestia Node. This
 tutorial presumes you completed the steps in setting up your own
-environment [here](environment).
+environment [here](environment.md).
 
 ## Install Celestia Node
 
