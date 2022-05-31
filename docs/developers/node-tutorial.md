@@ -10,13 +10,13 @@ You can find hardware requirements [here](../../nodes/light-node#hardware-requir
 
 ## Setting Up Dependencies
 
-You can follow the tutorial for setting up the dependencies [here](../developers/environment).
+You can follow the tutorial for setting up the dependencies [here](../environment).
 
 ## Celestia Node
 
 ## Install Celestia Node
 
-You can follow the tutorial for building Celestia Node [here](../developers/celestia-node)
+You can follow the tutorial for building Celestia Node [here](../celestia-node)
 
 ### Instantiate Celestia Light Node
 
