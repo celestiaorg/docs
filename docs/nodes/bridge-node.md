@@ -90,6 +90,14 @@ celestia bridge start --core.grpc <ip>:9090
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
 
+Once you start the Bridge Node, a wallet key will be generated for you.
+You will need to fund that address with some tokens to pay for PayForData transactions.
+You can find the address with:
+
+```sh
+$HOME/celestia-node/cel-key list --home /home/pops/.celestia-bridge/keys/ --keyring-backend=test
+```
+
 #### Optional: Run the Bridge Node with a Custom Key
 
 In order to run a bridge node using a custom key:
