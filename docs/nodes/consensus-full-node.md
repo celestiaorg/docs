@@ -21,7 +21,7 @@ instance machine.
 
 ### Setup The Dependencies
 
-Follow the instructions on installing the dependencies [here](../../developers/environment).
+Follow the instructions on installing the dependencies [here](/developers/environment.md).
 
 ## Deploying The Celestia App
 
@@ -33,13 +33,13 @@ running a Celestia App daemon with an internal Celestia Core node.
 
 ### Install Celestia App
 
-Follow the tutorial on installing Celestia App [here](../../developers/celestia-app).
+Follow the tutorial on installing Celestia App [here](/developers/celestia-app.md).
 
 ### Setup the P2P Networks
 
 For this section of the guide, select the network you want to connect to:
 
-* [Mamaki](mamaki-testnet#setup-p2p-network)
+* [Mamaki](mamaki-testnet.md#setup-p2p-network)
 
 After that, you can proceed with the rest of the tutorial.
 
@@ -79,7 +79,7 @@ then you can skip this part.
 If you want to use snapshot, determine the network you would like to sync
 to from the list below:
 
-* [Mamaki](mamaki-testnet#quick-sync-with-snapshot)
+* [Mamaki](mamaki-testnet.md#quick-sync-with-snapshot)
 
 ### Start the Celestia App
 
@@ -95,7 +95,7 @@ This will let you sync the Celestia blockchain history.
 
 You can configure your Consensus Full Node to be a public RPC endpoint
 and listen to any connections from Data Availability Nodes in order to
-serve requests for the Data Availability API [here](../../developers/node-tutorial).
+serve requests for the Data Availability API [here](/developers/node-tutorial.md).
 
 Note that you would need to ensure port 9090 is open for this.
 
@@ -112,4 +112,4 @@ Restart `celestia-appd` in the previous step to load those configs.
 ### Start the Celestia-App with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](systemd#start-the-celestia-app-with-systemd).
+with SystemD [here](systemd.md#start-the-celestia-app-with-systemd).
