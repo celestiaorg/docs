@@ -37,7 +37,7 @@ Follow the tutorial on installing Celestia App [here](../../developers/celestia-
 
 For this section of the guide, select the network you want to connect to:
 
-* [Mamaki](../nodes/mamaki-testnet.md#setup-p2p-network)
+* [Mamaki](mamaki-testnet#setup-p2p-network)
 
 After that, you can proceed with the rest of the tutorial.
 
@@ -83,12 +83,12 @@ then you can skip this part.
 If you want to use snapshot, determine the network you would like to sync
 to from the list below:
 
-* [Mamaki](../nodes/mamaki-testnet.md#quick-sync-with-snapshot)
+* [Mamaki](mamaki-testnet#quick-sync-with-snapshot)
 
 ### Start the Celestia-App with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](../nodes/systemd#start-the-celestia-app-with-systemd).
+with SystemD [here](systemd#start-the-celestia-app-with-systemd).
 
 ### Wallet
 
@@ -121,7 +121,7 @@ celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
 
 Next, select the network you want to use to delegate to a validator:
 
-* [Mamaki](../nodes/mamaki-testnet.md#delegate-to-a-validator)
+* [Mamaki](mamaki-testnet#delegate-to-a-validator)
 
 ## Deploy the Celestia Node
 
@@ -141,7 +141,7 @@ celestia bridge init --core.remote <ip:port of celestia-app> \
   --core.grpc <ip:port>
 ```
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](mamaki-testnet#rpc-endpoints)
 
 ### Run the Bridge Node
 
@@ -154,7 +154,7 @@ celestia bridge start
 ### Optional: Start the Bridge Node with SystemD
 
 Follow the tutorial on setting up the bridge node as a background process with
-SystemD [here](../nodes/systemd#celestia-bridge-node).
+SystemD [here](systemd#celestia-bridge-node).
 
 You have successfully set up a bridge node that is syncing with the network.
 
@@ -174,7 +174,7 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
-* [Mamaki](../nodes/mamaki-testnet.md#connect-validator)
+* [Mamaki](mamaki-testnet#connect-validator)
 
 Complete the instructions in the respective network you want to validate in
 to complete the validator setup process.

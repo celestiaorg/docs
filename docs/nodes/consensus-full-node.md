@@ -39,7 +39,7 @@ Follow the tutorial on installing Celestia App [here](../../developers/celestia-
 
 For this section of the guide, select the network you want to connect to:
 
-* [Mamaki](../nodes/mamaki-testnet.md#setup-p2p-network)
+* [Mamaki](mamaki-testnet#setup-p2p-network)
 
 After that, you can proceed with the rest of the tutorial.
 
@@ -79,7 +79,7 @@ then you can skip this part.
 If you want to use snapshot, determine the network you would like to sync
 to from the list below:
 
-* [Mamaki](../nodes/mamaki-testnet.md#quick-sync-with-snapshot)
+* [Mamaki](mamaki-testnet#quick-sync-with-snapshot)
 
 ### Start the Celestia App
 
@@ -112,4 +112,4 @@ Restart `celestia-appd` in the previous step to load those configs.
 ### Start the Celestia-App with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](../nodes/systemd#start-the-celestia-app-with-systemd).
+with SystemD [here](systemd#start-the-celestia-app-with-systemd).

@@ -6,18 +6,18 @@ Celestia node operators can run several options on the network.
 
 Consensus:
 
-* [Validator Node](../nodes/validator-node.md): Node operators who run a Bridge
+* [Validator Node](validator-node): Node operators who run a Bridge
   Node have the option to also participate in Consensus by becoming a Validator.
-* [Consensus Full Node](../nodes/consensus-full-node.md): A Celestia-App Full Node
+* [Consensus Full Node](consensus-full-node): A Celestia-App Full Node
   to sync blockchain history.
 
 Data Availability:
 
-* [Bridge Node](../nodes/bridge-node.md): This node bridges blocks between the
+* [Bridge Node](bridge-node): This node bridges blocks between the
   Data-Availability network and the Consensus network.
-* [Full Storage Node](../nodes/full-storage-node.md): This node stores all
+* [Full Storage Node](full-storage-node): This node stores all
   the data but does not connect to Consensus.
-* [Light Node](../nodes/light-node.md): Light clients conduct data availability
+* [Light Node](light-node): Light clients conduct data availability
   sampling on the Data Availability network.
 
 You can learn more about how to setup each different node by going through
