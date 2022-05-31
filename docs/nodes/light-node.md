@@ -69,8 +69,8 @@ celestia light start --core.grpc <ip>:9090
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
 
-Once you start the Light Node, a wallet key will be generated for you. 
-You will need to fund that address with some tokens to pay for PayForData transactions. 
+Once you start the Light Node, a wallet key will be generated for you.
+You will need to fund that address with some tokens to pay for PayForData transactions.
 You can find the address with:
 
 ```sh
