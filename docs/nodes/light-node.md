@@ -74,7 +74,7 @@ You will need to fund that address with some tokens to pay for PayForData transa
 You can find the address with:
 
 ```sh
-./cel-key list --node.type bridge --keyring-backend test
+./cel-key list --node.type light --keyring-backend test
 ```
 
 ### Optional: Run the Light Node with a Custom Key
