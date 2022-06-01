@@ -19,7 +19,7 @@ instance machine.
 
 ### Setup The Dependencies
 
-Follow the instructions on installing the dependencies [here](/developers/environment.md).
+Follow the instructions on installing the dependencies [here](../developers/environment.md).
 
 ## Deploying The Celestia App
 
@@ -31,13 +31,13 @@ running a Celestia App daemon with an internal Celestia Core node.
 
 ### Install Celestia App
 
-Follow the tutorial on installing Celestia App [here](/developers/celestia-app.md).
+Follow the tutorial on installing Celestia App [here](../developers/celestia-app.md).
 
 ### Setup the P2P Networks
 
 For this section of the guide, select the network you want to connect to:
 
-* [Mamaki](mamaki-testnet.md#setup-p2p-network)
+* [Mamaki](./mamaki-testnet.md#setup-p2p-network)
 
 After that, you can proceed with the rest of the tutorial.
 
@@ -83,16 +83,16 @@ then you can skip this part.
 If you want to use snapshot, determine the network you would like to sync
 to from the list below:
 
-* [Mamaki](mamaki-testnet.md#quick-sync-with-snapshot)
+* [Mamaki](./mamaki-testnet.md#quick-sync-with-snapshot)
 
 ### Start the Celestia-App with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](systemd.md#start-the-celestia-app-with-systemd).
+with SystemD [here](./systemd.md#start-the-celestia-app-with-systemd).
 
 ### Wallet
 
-Follow the tutorial on creating a wallet [here](/developers/wallet.md).
+Follow the tutorial on creating a wallet [here](../developers/wallet.md).
 
 ### Delegate Stake to a Validator
 
@@ -121,7 +121,7 @@ celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
 
 Next, select the network you want to use to delegate to a validator:
 
-* [Mamaki](mamaki-testnet.md#delegate-to-a-validator)
+* [Mamaki](./mamaki-testnet.md#delegate-to-a-validator)
 
 ## Deploy the Celestia Node
 
@@ -130,7 +130,7 @@ Celestia Bridge Node daemon.
 
 ### Install Celestia Node
 
-You can follow the tutorial for installing Celestia Node [here](/developers/celestia-node.md)
+You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.md)
 
 ### Initialize the Bridge Node
 
@@ -141,7 +141,7 @@ celestia bridge init --core.remote <ip:port of celestia-app> \
   --core.grpc <ip:port>
 ```
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](mamaki-testnet.md#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
 ### Run the Bridge Node
 
@@ -154,7 +154,7 @@ celestia bridge start
 ### Optional: Start the Bridge Node with SystemD
 
 Follow the tutorial on setting up the bridge node as a background process with
-SystemD [here](systemd.md#celestia-bridge-node).
+SystemD [here](./systemd.md#celestia-bridge-node).
 
 You have successfully set up a bridge node that is syncing with the network.
 
@@ -174,7 +174,7 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
-* [Mamaki](mamaki-testnet.md#connect-validator)
+* [Mamaki](./mamaki-testnet.md#connect-validator)
 
 Complete the instructions in the respective network you want to validate in
 to complete the validator setup process.
