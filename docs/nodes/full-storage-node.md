@@ -50,7 +50,7 @@ Start the Full Storage Node with a connection to a validator node's gRPC endpoin
   (core) node must be passed as directed below.
 
 ```sh
-celestia full start --core.grpc <ip addr of core node>:9090
+celestia full start --core.grpc http://<ip addr of core node>:9090
 ```
 
 If you would like to find example RPC endpoints, check out the list of
@@ -65,7 +65,7 @@ In order to run a full storage node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 ```sh
-celestia full start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key>
+celestia full start --core.grpc http://<ip>:9090 --keyring.accname <name_of_custom_key>
 ```
 
 ### Optional: Start the Full Storage Node with SystemD

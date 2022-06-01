@@ -53,14 +53,14 @@ an example public Core Endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes.
+  purposes. You can find a list of RPC endpoints [here](../nodes/mamaki-testnet#rpc-endpoints)
 
-Here we are starting a light node with a connection to a Core endpoint at
-`https://api-mamaki.pops.one/` and also telling the light node to use the `developer`
-key we generated as its default account.
+Here we are starting a light node with a connection to a Core endpoint and
+also telling the light node to use the `developer` key we generated
+as its default account.
 
 ```sh
-celestia light start --core.grpc https://api-mamaki.pops.one/ --keyring.accname developer
+celestia light start --core.grpc http://<ip-address>:9090 --keyring.accname developer
 ```
 
 ## Node API Calls

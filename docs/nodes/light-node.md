@@ -64,7 +64,7 @@ is usually exposed on port 9090):
   directed below.
 
 ```sh
-celestia light start --core.grpc <ip>:9090
+celestia light start --core.grpc http://<ip>:9090
 ```
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
@@ -78,7 +78,7 @@ In order to run a light node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 ```sh
-celestia light start --core.grpc <ip>:9090 --keyring.accname <name_of_custom_key>
+celestia light start --core.grpc http://<ip>:9090 --keyring.accname <name_of_custom_key>
 ```
 
 ### Optional: Start Light Node with SystemD
