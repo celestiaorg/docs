@@ -71,7 +71,10 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 
 Once you start the Light Node, a wallet key will be generated for you.
 You will need to fund that address with some tokens to pay for PayForData transactions.
-You can find the address with:
+You can find the address by:
+
+1. Checking the logs output
+2. Using the following command:
 
 ```sh
 ./cel-key list --node.type light --keyring-backend test
