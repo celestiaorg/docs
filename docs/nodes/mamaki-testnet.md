@@ -17,14 +17,14 @@ participate in Mamaki:
 
 Consensus:
 
-* [Validator Node](../nodes/validator-node.md)
-* [Consensus Full Node](../nodes/consensus-full-node.md)
+* [Validator Node](./validator-node.md)
+* [Consensus Full Node](./consensus-full-node.md)
 
 Data Availability:
 
-* [Bridge Node](../nodes/bridge-node.md)
-* [Full Storage Node](../nodes/full-storage-node.md)
-* [Light Node](../nodes/light-node.md)
+* [Bridge Node](./bridge-node.md)
+* [Full Storage Node](./full-storage-node.md)
+* [Light Node](./light-node.md)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
@@ -100,7 +100,7 @@ sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" 
 
 Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mamaki/peers.txt).
 
-You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#configure-pruning)
+You can return back to where you left off in the Bridge Node guide [here](validator-node.md#configure-pruning)
 
 ## Quick-Sync With Snapshot
 
@@ -116,7 +116,7 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
 
-You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#start-the-celestia-app-with-systemd)
+You can return back to where you left off in the Bridge Node guide [here](./validator-node.md#start-the-celestia-app-with-systemd)
 
 ## Delegate to a Validator
 
@@ -148,7 +148,7 @@ txhash: <tx-hash>
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
 
-You can return back to where you left off in the Bridge Node guide [here](../nodes/validator-node.md#deploy-the-celestia-node)
+You can return back to where you left off in the Bridge Node guide [here](./validator-node#deploy-the-celestia-node)
 
 ## Connect Validator
 

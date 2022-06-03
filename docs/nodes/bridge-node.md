@@ -54,7 +54,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup The Dependencies
 
-Follow the tutorial here installing the dependencies [here](../../developers/environment).
+Follow the tutorial here installing the dependencies [here](../developers/environment.md).
 
 ## Deploy the Celestia Bridge Node
 
@@ -62,7 +62,7 @@ Follow the tutorial here installing the dependencies [here](../../developers/env
 
 Install the Celestia Node binary, which will be used to run the Bridge Node.
 
-Follow the tutorial for installing Celestia Node [here](../../developers/celestia-node).
+Follow the tutorial for installing Celestia Node [here](../developers/celestia-node.md).
 
 ### Initialize the Bridge Node
 
@@ -72,7 +72,7 @@ Run the following:
 celestia bridge init --core.remote tcp://<ip-address>:26657 
 ```
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
 ### Run the Bridge Node
 
@@ -88,7 +88,7 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 celestia bridge start --core.grpc http://<ip>:9090
 ```
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../nodes/mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
 #### Optional: Run the Bridge Node with a Custom Key
 
@@ -105,6 +105,6 @@ celestia bridge start --core.grpc http://<ip>:9090 --keyring.accname <name_of_cu
 ### Optional: Start the Bridge Node with SystemD
 
 Follow the tutorial on setting up the bridge node as a background process with
-SystemD [here](../nodes/systemd#celestia-bridge-node).
+SystemD [here](./systemd.md#celestia-bridge-node).
 
 You have successfully set up a bridge node that is syncing with the network.
