@@ -69,6 +69,19 @@ celestia light start --core.grpc http://<ip>:9090
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
+You can create your key for your light node by following the `cel-key` instructions [here](./keys.md)
+
+Once you start the Light Node, a wallet key will be generated for you.
+You will need to fund that address with some tokens to pay for PayForData transactions.
+You can find the address by:
+
+1. Checking the logs output
+2. Using the following command:
+
+```sh
+./cel-key list --node.type light --keyring-backend test
+```
+
 ### Optional: Run the Light Node with a Custom Key
 
 In order to run a light node using a custom key:
