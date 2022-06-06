@@ -56,6 +56,19 @@ celestia full start --core.grpc http://<ip addr of core node>:9090
 If you would like to find example RPC endpoints, check out the list of
 resources [here](./mamaki-testnet.md#rpc-endpoints).
 
+You can create your key for your node by following the `cel-key` instructions [here](./keys.md)
+
+Once you start the Full Node, a wallet key will be generated for you.
+You will need to fund that address with some tokens to pay for PayForData transactions.
+You can find the address by:
+
+1. Checking the logs output
+2. Using the following command:
+
+```sh
+./cel-key list --node.type full --keyring-backend test
+```
+
 ### Optional: Run the Full Storage Node with a Custom Key
 
 In order to run a full storage node using a custom key:
