@@ -53,3 +53,8 @@ p, li {
 [data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+code {
+  max-height: 300px;
+  overflow-y: auto;
+}
