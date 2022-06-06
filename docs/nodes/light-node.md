@@ -82,6 +82,8 @@ You can find the address by:
 ./cel-key list --node.type light --keyring-backend test
 ```
 
+Then you can get some testnet tokens [here](./mamaki-testnet.md#mamaki-testnet-faucet)
+
 ### Optional: Run the Light Node with a Custom Key
 
 In order to run a light node using a custom key:
