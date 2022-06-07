@@ -93,15 +93,15 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 You can create your key for your node by following the `cel-key` instructions [here](./keys.md)
 
 Once you start the Bridge Node, a wallet key will be generated for you.
-You will need to fund that address with some tokens to pay for PayForData transactions.
-You can find the address by:
-
-1. Checking the logs output
-2. Using the following command:
+You will need to fund that address with Mamaki Testnet tokens to pay for
+PayForData transactions.
+You can find the address by running the following command:
 
 ```sh
 ./cel-key list --node.type bridge --keyring-backend test
 ```
+
+Mamaki Testnet tokens can be requested [here](./mamaki-testnet.md#mamaki-testnet-faucet).
 
 #### Optional: Run the Bridge Node with a Custom Key
 
