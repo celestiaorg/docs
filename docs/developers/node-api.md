@@ -242,7 +242,7 @@ Response
 
 #### GET /head
 
-Returns the head of the blockchain.
+Returns the tip (head) of the node's current chain.
 
 Request
 
