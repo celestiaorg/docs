@@ -2132,7 +2132,10 @@ curl -X GET http://<ip>:26658/data_available/25000
 Response
 
 ```json
-{"height":25000,"available":true}
+{
+   "height":25000,
+   "available":true
+}
 ```
 
 #### GET /balance
