@@ -46,6 +46,13 @@ const config = {
     ({
       image: 'img/celestia-logo.png',
       metadata: [{name: 'twitter:card', content: 'summary'}],
+      algolia: {
+        appId: '2KRXIFZ5YL',
+        apiKey: '65a2d036dd3c1b7848fbb50598ccebab',
+        indexName: 'celestia',
+        contextualSearch: true,
+        debug: false
+      },
       navbar: {
         title: 'Celestia Docs',
         logo: {
