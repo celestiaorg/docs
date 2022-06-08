@@ -59,3 +59,17 @@ To generate a key for a celestia light node, do the following:
 ```
 
 This will load the key <key_name> into the directory of the light node.
+
+## Steps for exporting **light** node keys
+
+You can export a private key from the local keyring in ASCII-armored encrypted format.
+
+```sh
+./cel-key export <key-name> --keyring-backend test --node.type light
+```
+
+You can then import your key with `celestia-appd`:
+
+```sh
+celestia-appd keys import <new-key-name> <key-file-location>
+```
