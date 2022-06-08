@@ -2121,7 +2121,7 @@ Returns
 
 #### GET /data_available/{height}
 
-Returns whethere data is available at a specific block height.
+Returns whether data is available at a specific block height.
 
 Request
 
