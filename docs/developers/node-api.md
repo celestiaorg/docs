@@ -2119,6 +2119,22 @@ Returns
 }
 ```
 
+#### GET /data_available/{height}
+
+Returns whethere data is available at a specific block height.
+
+Request
+
+```sh
+curl -X GET http://<ip>:26658/data_available/25000
+```
+
+Response
+
+```json
+{"height":25000,"available":true}
+```
+
 #### GET /balance
 
 Returns the balance of the default account address of the node.
