@@ -7,15 +7,106 @@ to test out new features to build as a core developer.
 
 ## Hardware Requirements
 
-You can follow hardware requirements [here](../nodes/validator-node.md#hardware-requirements).
+The following hardware minimum requirements are recommended for running the
+validator node:
+
+* Memory: 8 GB RAM
+* CPU: Quad-Core
+* Disk: 250 GB SSD Storage
+* Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
 ## Setup Dependencies
 
-You can setup dependencies by following the guide [here](./environment.md).
+The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
+instance machine.
 
-## Celestia App Installation
+Once you have setup your instance, ssh into the instance to begin setting up
+the box with all the needed dependencies in order to run your bridge node.
 
-You can install Celestia App by following the guide [here](./celestia-app.md).
+First, make sure to update and upgrade the OS:
+
+```sh
+sudo apt update && sudo apt upgrade -y
+```
+
+These are essential packages that are necessary to execute many tasks like
+downloading files, compiling and monitoring the node:
+
+```sh
+sudo apt install curl tar wget clang pkg-config libssl-dev jq \
+build-essential git make ncdu -y
+```
+
+### Install Golang
+
+Golang will be installed on this machine in order for us to be able to build
+the necessary binaries for running the bridge node. For Golang specifically,
+it is needed to be able to compile Celestia Application.
+
+```sh
+ver="1.17.2"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+```
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+```sh
+echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+Output should be the version installed:
+
+```console
+go version go1.17.2 linux/amd64
+```
+
+## Installation
+
+Run the following:
+
+```sh
+cd $HOME
+git clone https://github.com/celestiaorg/celestia-app.git
+cd celestia-app/
+APP_VERSION=$(curl -s \
+  https://api.github.com/repos/celestiaorg/celestia-app/releases/latest \
+  | jq -r ".tag_name")
+git checkout tags/$APP_VERSION -b $APP_VERSION
+make install
+```
+
+To check if the binary was successfully compiled you can run the binary
+using the `--help` flag:
+
+```sh
+celestia-appd --help
+```
+
+You should see a similar output:
+
+```console
+Stargate CosmosHub App
+
+Usage:
+  celestia-appd [command]
+
+Available Commands:
+*
+*
+*
+Use "celestia-appd [command] --help" for more information about a command.
+```
 
 ## Spin Up A Celestia Testnet
 
