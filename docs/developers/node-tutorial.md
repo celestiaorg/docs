@@ -14,7 +14,7 @@ You can follow the tutorial for setting up the dependencies [here](./environment
 
 ## Celestia Node
 
-## Install Celestia Node
+### Install Celestia Node
 
 You can follow the tutorial for building Celestia Node [here](./celestia-node.md)
 
