@@ -182,36 +182,6 @@ const sidebars = {
         }
       ]
     },
-    {
-      type: "category",
-      label: "Ethermint Optimint",
-      link: {
-        type: "generated-index",
-      },
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          label: "Connecting Ethermint-Optimint to Metamask",
-          id: "developers/ethermint-to-metamask"
-        },
-        {
-          type: "doc",
-          label: "Ethermint-Optimint Faucet",
-          id: "developers/ethermint-optimint-faucet"
-        },
-        {
-          type: "doc",
-          label: "Deploying Smart Contracts to Ethermint-Optimint with Hardhat",
-          id: "developers/ethermint-optimint-hardhat"
-        },
-        {
-          type: "doc",
-          label: "Deploying Smart Contracts to Ethermint-Optimint with Foundry",
-          id: "developers/ethermint-optimint-foundry"
-        }
-      ]
-    }
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },
