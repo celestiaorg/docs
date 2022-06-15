@@ -68,8 +68,8 @@ const sidebars = {
         items: [
           {
             type: "doc",
-            label: "Ethermint-Optimint Node",
-            id: "nodes/ethermint-optimint-node"
+            label: "Celestia-Ethermint Node",
+            id: "nodes/celestia-ethermint-node"
           }
         ]
       }
