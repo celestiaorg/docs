@@ -166,6 +166,31 @@ const sidebars = {
           id: "developers/node-api" 
         }
       ]
+    },
+    {
+      type: "category",
+      label: "Celestia Ethermint",
+      link: {
+        type: "generated-index"
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Connecting to Celestia Ethermint",
+          id: "developers/connecting-to-celestia-ethermint"
+        },
+        {
+          type: "doc",
+          label: "Deploying a smart contract with Foundry",
+          id: "developers/smart-contract-tutorial-foundry"
+        },
+        {
+          type: "doc",
+          label: "Deploying a smart contract with Hardhat",
+          id: "developers/smart-contract-tutorial-hardhat"
+        }
+      ]
     }
   ],
   community: [
