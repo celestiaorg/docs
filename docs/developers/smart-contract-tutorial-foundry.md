@@ -1,15 +1,18 @@
 # Deploying a smart contract to Celestia Ethermint with Foundry
+<!-- markdownlint-disable MD013 -->
 
 In this guide you'll learn how to deploy a Solidity smart contract to Celestia Ethermint with [Foundry](https://github.com/foundry-rs/foundry).
 
-### About Foundry
+## About Foundry
 
 Foundry is a portable, fast and modular toolkit for Ethereum application development.
 
 Foundry is made up of three components:
 
-[__Forge__](https://github.com/foundry-rs/foundry/tree/master/forge): Ethereum testing framework (like Truffle, Hardhat and DappTools).   
-[__Cast__](https://github.com/foundry-rs/foundry/tree/master/cast): CLI for interacting with EVM smart contracts, sending transactions, and getting chain data.   
+[__Forge__](https://github.com/foundry-rs/foundry/tree/master/forge): Ethereum testing framework (like Truffle, Hardhat and DappTools).
+
+[__Cast__](https://github.com/foundry-rs/foundry/tree/master/cast): CLI for interacting with EVM smart contracts, sending transactions, and getting chain data.
+
 [__Anvil__](https://github.com/foundry-rs/foundry/tree/master/anvil): Local Ethereum node, similar to Ganache or Hardhat Network.
 
 We'll use all three to create, test, and deploy our Solidity project.
@@ -26,7 +29,7 @@ To deploy to Celestia Ethermint you will need to request tokens from the test fa
 
 You can request from Celestia Ethermint Faucet on the `#celestia-ethermint-faucet` channel on Celestia's Discord server with the following command:
 
-```
+```sh
 $request <EVM-WALLET-ADDRESS> 
 ```
 

@@ -1,8 +1,9 @@
 # Deploying a smart contract to Celestia Ethermint with Hardhat
+<!-- markdownlint-disable MD013 -->
 
 In this guide you'll learn how to deploy a Solidity smart contract to Celestia Ethermint with [Hardhat](https://hardhat.org/).
 
-### About Hardhat
+## About Hardhat
 
 Hardhat is a Solidity development environment built with Node.js that allows you to write tests and scripts using JavaScript.
 
@@ -20,7 +21,7 @@ To deploy to Celestia Ethermint you will need to request tokens from the test fa
 
 You can request from Celestia Ethermint Faucet on the `#celestia-ethermint-faucet` channel on Celestia's Discord server with the following command:
 
-```
+```sh
 $request <EVM-WALLET-ADDRESS> 
 ```
 
