@@ -1,4 +1,4 @@
-# Deploying a smart contract to Celestia Ethermint with Hardhat
+# Deploying a Smart Contract to Celestia Ethermint with Hardhat
 <!-- markdownlint-disable MD013 -->
 
 In this guide you'll learn how to deploy a Solidity smart contract to Celestia Ethermint with [Hardhat](https://hardhat.org/).
@@ -38,9 +38,9 @@ npx hardhat init
 ✔ Do you want to install this sample project's dependencies with npm (hardhat @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers)? (Y/n) · y
 ```
 
-Hardhat has created an example smart contract located at __contracts/Greeter.sol__.
+Hardhat has created an example smart contract located at `contracts/Greeter.sol`.
 
-Next, update the configuration at __hardhat.config.js__ to include the Celestia Ethermint network:
+Next, update the configuration at `hardhat.config.js` to include the Celestia Ethermint network:
 
 ```javascript
 require("@nomiclabs/hardhat-waffle");
@@ -60,7 +60,7 @@ module.exports = {
 
 ### Updating the contracts and tests
 
-Let's update the contracts to include a basic counter example. Create a new file in the __src__ directory named __Counter.sol__ and add the following code:
+Let's update the contracts to include a basic counter example. Create a new file in the `src` directory named `Counter.sol` and add the following code:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -88,7 +88,7 @@ contract Counter {
 
 Next, let's create a test for this contract.
 
-Open __test/sample-test.js__ and update the code with the following:
+Open `test/sample-test.js` and update the code with the following:
 
 ```javascript
 const { expect } = require("chai");
@@ -124,7 +124,7 @@ npx hardhat test
 
 Now that we've tested the contract, let's try deploying it locally.
 
-To do so, update the deloyment script at __scripts/sample-script.js__ with the following code:
+To do so, update the deloyment script at `scripts/sample-script.js` with the following code:
 
 ```javascript
 const hre = require("hardhat");

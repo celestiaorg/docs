@@ -182,12 +182,12 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Deploying a smart contract with Foundry",
+          label: "Deploying Smart Contracts with Foundry",
           id: "developers/smart-contract-tutorial-foundry"
         },
         {
           type: "doc",
-          label: "Deploying a smart contract with Hardhat",
+          label: "Deploying Smart Contracts with Hardhat",
           id: "developers/smart-contract-tutorial-hardhat"
         }
       ]

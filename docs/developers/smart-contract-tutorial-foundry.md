@@ -1,4 +1,4 @@
-# Deploying a smart contract to Celestia Ethermint with Foundry
+# Deploying a Smart Contract to Celestia Ethermint with Foundry
 <!-- markdownlint-disable MD013 -->
 
 In this guide you'll learn how to deploy a Solidity smart contract to Celestia Ethermint with [Foundry](https://github.com/foundry-rs/foundry).
@@ -41,15 +41,14 @@ Next, create a new project and change into the directory:
 
 ```sh
 forge init celestia-ethermint-app
-
 cd celestia-ethermint-app
 ```
 
-Foundry has created an example smart contract located at __src/Contract.sol__.
+Foundry has created an example smart contract located at `src/Contract.sol`.
 
 ### Updating the contract and tests
 
-Let's update the contracts to include a basic counter example. Create a new file in the __src__ directory named __Counter.sol__ and add the following code:
+Let's update the contracts to include a basic counter example. Create a new file in the `src` directory named `Counter.sol` and add the following code:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -77,7 +76,7 @@ contract Counter {
 
 Next, let's create a test for this contract.
 
-Open __test/Contract.T.Sol__ and update the code with the following:
+Open `test/Contract.T.Sol` and update the code with the following:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -129,7 +128,7 @@ forge test -vv
 
 Now that we've tested the contract, let's try deploying it locally using [Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html).
 
-To do so, update the deloyment script at __script/Contracts.s.sol__ with the following code:
+To do so, update the deloyment script at `script/Contracts.s.sol` with the following code:
 
 ```solidity
 // SPDX-License-Identifier: MIT

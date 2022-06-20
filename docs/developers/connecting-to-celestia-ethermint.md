@@ -7,7 +7,7 @@ In this guide you'll connect your wallet to the Celestia Ethermint RPC Node.
 
 If you do not have [MetaMask](https://metamask.io/) installed, please install it [here](https://metamask.io/download/)
 
-## Connecting MetaMask to Polygon
+## Connecting MetaMask to Celestia Ethermint
 
 First, open the MetaMask settings and choose "Add Network"
 
