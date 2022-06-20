@@ -29,7 +29,7 @@ To deploy to Celestia Ethermint you will need to request tokens from the test fa
 
 You can request from Celestia Ethermint Faucet on the `#celestia-ethermint-faucet` channel on Celestia's Discord server with the following command:
 
-```sh
+```text
 $request <EVM-WALLET-ADDRESS> 
 ```
 

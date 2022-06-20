@@ -11,7 +11,7 @@ If you do not have [MetaMask](https://metamask.io/) installed, please install it
 
 First, open the MetaMask settings and choose "Add Network"
 
-![Configuring MetaMask](/img/configure-metamask-1.png)
+![Configuring MetaMask](../../static/img/configure-metamask-1.png)
 
 Next, enter the Celestia Ethermint settings as follows:
 
@@ -25,6 +25,6 @@ __Currency__: CET
 
 __Explorer__: leave blank
 
-![MetaMask configuration](/img/configure-metamask-2.png)
+![MetaMask configuration](../../static/img/configure-metamask-2.png)
 
 Click __Save__.
