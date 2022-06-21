@@ -60,7 +60,7 @@ module.exports = {
 
 ### Updating the contracts and tests
 
-Let's update the contracts to include a basic counter example. Create a new file in the `src` directory named `Counter.sol` and add the following code:
+Let's update the contracts to include a basic counter example. Create a new file in the `contracts` directory named `Counter.sol` and add the following code:
 
 ```solidity
 // SPDX-License-Identifier: MIT

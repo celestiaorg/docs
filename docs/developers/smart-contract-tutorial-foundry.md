@@ -171,7 +171,7 @@ Once the contract has been deployed locally, Anvil will log out the contract add
 Next, set the contract address as an environment variable:
 
 ```sh
-CONTRACT_ADDRESS=<contract-address>
+export CONTRACT_ADDRESS=<contract-address>
 ```
 
 We can then test sending transactions to it with `cast send`.
