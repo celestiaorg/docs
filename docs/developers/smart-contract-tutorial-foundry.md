@@ -9,11 +9,9 @@ Foundry is a portable, fast and modular toolkit for Ethereum application develop
 
 Foundry is made up of three components:
 
-[__Forge__](https://github.com/foundry-rs/foundry/tree/master/forge): Ethereum testing framework (like Truffle, Hardhat and DappTools).
-
-[__Cast__](https://github.com/foundry-rs/foundry/tree/master/cast): CLI for interacting with EVM smart contracts, sending transactions, and getting chain data.
-
-[__Anvil__](https://github.com/foundry-rs/foundry/tree/master/anvil): Local Ethereum node, similar to Ganache or Hardhat Network.
+- [__Forge__](https://github.com/foundry-rs/foundry/tree/master/forge): Ethereum testing framework (like Truffle, Hardhat and DappTools).
+- [__Cast__](https://github.com/foundry-rs/foundry/tree/master/cast): CLI for interacting with EVM smart contracts, sending transactions, and getting chain data.
+- [__Anvil__](https://github.com/foundry-rs/foundry/tree/master/anvil): Local Ethereum node, similar to Ganache or Hardhat Network.
 
 We'll use all three to create, test, and deploy our Solidity project.
 
@@ -168,17 +166,25 @@ forge script script/Contract.s.sol:ContractScript --fork-url http://localhost:85
 --private-key $PRIVATE_KEY --broadcast
 ```
 
-Once the contract has been deployed locally, we can test sending transactions to it with `cast send`:
+Once the contract has been deployed locally, Anvil will log out the contract address.
+
+Next, set the contract address as an environment variable:
 
 ```sh
-cast send <contract-address> "incrementCounter()" \
+CONTRACT_ADDRESS=<contract-address>
+```
+
+We can then test sending transactions to it with `cast send`.
+
+```sh
+cast send $CONTRACT_ADDRESS "incrementCounter()" \
 --private-key $PRIVATE_KEY
 ```
 
 We can then perform read operations with `cast call`:
 
 ```sh
-cast call <contract-address> "getCount()(int)"
+cast call $CONTRACT_ADDRESS "getCount()(int)"
 ```
 
 ### Deploying to Celestia Ethermint
@@ -197,12 +203,12 @@ forge script script/Contract.s.sol:ContractScript --rpc-url http://35.208.160.14
 Once the contract has been deployed to Celestia Ethermint, we can use `cast send` to test sending transactions to it:
 
 ```sh
-cast send <contract-address> "incrementCounter()" --rpc-url http://35.208.160.145:8545 \
+cast send $CONTRACT_ADDRESS "incrementCounter()" --rpc-url http://35.208.160.145:8545 \
 --private-key $PRIVATE_KEY 
 ```
 
 We can then perform read operations with `cast call`:
 
 ```sh
-cast call <contract-address> "getCount()(int)" --rpc-url http://35.208.160.145:8545
+cast call $CONTRACT_ADDRESS "getCount()(int)" --rpc-url http://35.208.160.145:8545
 ```
