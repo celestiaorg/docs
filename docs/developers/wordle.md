@@ -360,7 +360,7 @@ func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess)
   // Add New Guess Entry
   k.SetGuess(ctx, newGuess)
   // Setup Reward 
-  reward := sdk.Coins{sdk.NewInt64Coin("CELESTIA", 100)}
+  reward := sdk.Coins{sdk.NewInt64Coin("WORDLE", 100)}
   if !(wordle.Word == submittedSolutionHashString) {
     return &types.MsgSubmitGuessResponse{Title: "Wrong Answer", Body: "Your Guess Was Wrong. Try Again"}, nil
   } else {
