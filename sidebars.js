@@ -166,7 +166,23 @@ const sidebars = {
           id: "developers/node-api" 
         }
       ]
+    },
+    {
+      type: "category",
+      label: "Optimint",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Wordle",
+          id: "developers/wordle"
+        }
+      ]
     }
+
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },
