@@ -48,7 +48,7 @@ const config = {
       metadata: [{name: 'twitter:card', content: 'summary'}],
       algolia: {
         appId: '2KRXIFZ5YL',
-        apiKey: '65a2d036dd3c1b7848fbb50598ccebab',
+        apiKey: '00d6c432aa0b7c20c92283ec9bec23c4',
         indexName: 'celestia',
         contextualSearch: true,
         debug: false
