@@ -2121,7 +2121,7 @@ Returns
 
 #### GET /data_available/{height}
 
-Returns whether data is available at a specific block height.
+Returns whether data is available at a specific block height and the probability that it is available based on the amount of samples collected.
 
 Request
 
