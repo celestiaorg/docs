@@ -177,9 +177,45 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Wordle",
+          label: "Wordle Overview",
           id: "developers/wordle"
-        }
+        },
+        {
+          type: "doc",
+          label: "Scaffolding The Chain",
+          id: "developers/scaffold-wordle"
+        },
+        {
+          type: "doc",
+          label: "Installing Optimint",
+          id: "developers/install-optimint"
+        },
+        {
+          type: "doc",
+          label: "Module",
+          id: "developers/wordle-module"
+        },
+        {
+          type: "doc",
+          label: "Messages",
+          id: "developers/wordle-messages"
+        },
+        {
+          type: "doc",
+          label: "Types",
+          id: "developers/wordle-types"
+        },
+        {
+          type: "doc",
+          label: "Keeper",
+          id: "developers/wordle-keeper"
+        },
+        {
+          type: "doc",
+          label: "Run The Wordle Chain",
+          id: "developers/run-wordle"
+        },
+
       ]
     }
 
