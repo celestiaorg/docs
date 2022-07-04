@@ -1,4 +1,5 @@
 # Run the Wordle Chain
+<!-- markdownlint-disable MD013 -->
 
 In one terminal window, run the following command:
 
@@ -26,12 +27,47 @@ wordled tx wordle submit-wordle giant --from alice
 
 This will ask you to confirm the transaction with the following message:
 
-```sh
-{"body":{"messages":[{"@type":"/YazzyYaz.wordle.wordle.MsgSubmitWordle","creator":"cosmos17lk
-3fgutf00pd5s8zwz5fmefjsdv4wvzyg7d74","word":"giant"}],"memo":"","timeout_height":"0","extensi
-on_options":[],"non_critical_extension_options":[]},"auth_info":{"signer_infos":[],"fee":{"am
-ount":[],"gas_limit":"200000","payer":"","granter":""}},"signatures":[]}
+```json
+{
+   "body":{
+      "messages":[
+         {
+            "@type":"/YazzyYaz.wordle.wordle.MsgSubmitWordle",
+            "creator":"cosmos17lk3fgutf00pd5s8zwz5fmefjsdv4wvzyg7d74",
+            "word":"giant"
+         }
+      ],
+      "memo":"",
+      "timeout_height":"0",
+      "extension_options":[
+         
+      ],
+      "non_critical_extension_options":[
+         
+      ]
+   },
+   "auth_info":{
+      "signer_infos":[
+         
+      ],
+      "fee":{
+         "amount":[
+            
+         ],
+         "gas_limit":"200000",
+         "payer":"",
+         "granter":""
+      }
+   },
+   "signatures":[
+      
+   ]
+}
+```
 
+Ignite will ask you to confirm the transaction here:
+
+```sh
 confirm transaction before signing and broadcasting [y/N]:
 ```
 
@@ -91,6 +127,9 @@ extend the code base.
 
 ## Extending in the Future
 
+You can extend the codebase and improve this tutorial by checking
+out the repository [here](https://github.com/celestiaorg/wordle).
+
 There are many ways this codebase can be extended:
 
 1. You can improve messaging around when you guess the correct word.
@@ -102,3 +141,5 @@ There are many ways this codebase can be extended:
   Wordle. Some examples are [here](https://github.com/nimblebun/wordle-cli).
 4. You can improve current date to stick to a specific timezone.
 5. You can create a bot that submits a wordle every day at a specific time.
+6. You can create a vue.js front-end with Ignite using example open-source
+    repositories [here](https://github.com/yyx990803/vue-wordle) and [here](https://github.com/xudafeng/wordle).
