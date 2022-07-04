@@ -1,13 +1,14 @@
 # Scaffolding the Wordle Chain
+<!-- markdownlint-disable MD013 -->
 
 Now, comes the fun part, creating a new blockchain! With Ignite,
 the process is pretty easy and straightforward.
 
-Ignite CLI comes with several of scaffolding commands that are 
-designed to make development more straightforward by creating 
-everything you need to build your blockchain 
+Ignite CLI comes with several of scaffolding commands that are
+designed to make development more straightforward by creating
+everything you need to build your blockchain.
 
-First, we ill use Ignite CLI to build the foundation of a fresh 
+First, we ill use Ignite CLI to build the foundation of a fresh
 Cosmos SDK blockchain. Ignite minimizes how much blockchain code
 must write yourself. If you are coming from the EVM-world, think of
 Ignite as a Cosmos-SDK version of Foundry or Hardhat but specifically
@@ -34,9 +35,9 @@ cd wordle
 ```
 
 Inside you will see several directories and architecture for
-your cosmos-sdk blockchain. 
+your cosmos-sdk blockchain.
 
-| File/directory | Purpose                                                                                                                                                                 |
+| File/directory | Purpose                                                                                                                                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | app/           | Files that wire together the blockchain. The most important file is `app.go` that contains type definition of the blockchain and functions to create and initialize it. |
 | cmd/           | The main package responsible for the CLI of compiled binary.                                                                                                            |
@@ -46,7 +47,7 @@ your cosmos-sdk blockchain.
 | vue/           | A Vue 3 web app template.                                                                                                                                               |
 | x/             | Cosmos SDK modules and custom modules.                                                                                                                                  |
 | config.yml     | A configuration file for customizing a chain in development.                                                                                                            |
-| readme.md      | A readme file for your sovereign application-specific blockchain project.    
+| readme.md      | A readme file for your sovereign application-specific blockchain project.
 
 Going over each one is outside the scope of this guide, but we encourage you
 to read about it [here](https://docs.ignite.com/kb).
