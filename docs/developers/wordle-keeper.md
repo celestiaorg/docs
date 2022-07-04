@@ -1,13 +1,24 @@
 # Keeper Functions
+<!-- markdownlint-disable MD013 -->
 
 Now it’s time to implement the Keeper functions for each
-message. Keeper is an abstraction on Cosmos that allows us
+message. From the Cosmos-SDK docs, [Keeper](https://docs.cosmos.network/master/building-modules/keeper.html)
+is defined as the following:
+
+> The main core of a Cosmos SDK module is a piece called the keeper.
+  The keeper handles interactions with the store, has references
+  to other keepers for cross-module interactions, and contains most
+  of the core functionality of a module.
+
+Keeper is an abstraction on Cosmos that allows us
 to interact with the Key-Value store and change the state
 of the blockchain.
 
 Here, it will help us outline the logic for each message we create.
 
-We first start with the submit-wordle function.
+## SubmitWordle Function
+
+We first start with the `SubmitWordle` function.
 
 Open up the following file: `x/wordle/keeper/msg_server_submit_wordle.go`
 
@@ -89,6 +100,8 @@ Here in the `SubmitWordle` Keeper function, we are doing a few things:
   day. Everyone else has to guess the submitted wordle.
 * We also have a helper function in there to check if a string only
   contains alphabet characters.
+
+## SubmitGuess Function
 
 The next Keeper function we will add is the following:
 `x/wordle/keeper/msg_server_submit_guess.go`
@@ -203,7 +216,9 @@ In the above code, we are doing the following things:
   We then check if the guess is correct. We store the Guess type with
   the updated count to the state.
 
-A few files need to be modified for this to work.
+## Protobuff File
+
+  A few files need to be modified for this to work.
 
 The first is `proto/wordle/tx.proto`.
 

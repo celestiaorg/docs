@@ -3,15 +3,17 @@
 For the next steps, we will be creating types to be used by
 the messages we created.
 
+## Scaffoling Wordle Types
+
 ```sh
 ignite scaffold map wordle word submitter --no-message
 ```
 
 This type is a map called `Wordle` with two values of
-`word` and `submitter`. Submitter is the address of the
+`word` and `submitter`. `submitter` is the address of the
 person that submitted the Wordle.
 
-The second type is the Guess type. It allows us to store
+The second type is the `Guess` type. It allows us to store
 the latest guess for each address that submitted a solution.
 
 ```sh
