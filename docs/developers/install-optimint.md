@@ -5,7 +5,7 @@ Optimint on our codebase.
 
 ## Optimint Overview
 
-Optimint is an Optimistic-Rollup implementation of 
+Optimint is an Optimistic-Rollup implementation of
 ABCI (Application Blockchain Interface) in order to build optimistic-rollup
 chains using the Cosmos-SDK for Celestia.
 
