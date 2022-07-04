@@ -2133,8 +2133,8 @@ Response
 
 ```json
 {
-   "height":25000,
-   "available":true
+  "available":true,
+  "probability_of_availability":"0.9899774042423815",
 }
 ```
 
