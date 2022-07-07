@@ -1,6 +1,8 @@
 # Run the Wordle Chain
 <!-- markdownlint-disable MD013 -->
 
+## Building and Running Wordle Chain
+
 In one terminal window, run the following command:
 
 ```sh
@@ -18,6 +20,11 @@ can start the chain with optimint configurations by running the following:
 ```sh
 wordled start --optimint.aggregator true --optimint.da_layer celestia --optimint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000,"namespace_id":[0,0,0,0,0,0,255,255]}' --optimint.namespace_id 000000000000FFFF --optimint.da_start_height 21380
 ```
+
+> NOTE: In the above command, you need to pass a Celestia Node IP address
+  to the `base_url` that has an account with Mamaki testnet tokens. Follow
+  the tutorial for setting up a Celestia Light Node and creating a wallet
+  with testnet faucet money [here](./node-tutorial.md) in the Celestia Node section.
 
 In another window, run the following to submit a Wordle:
 
