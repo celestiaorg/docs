@@ -1,4 +1,4 @@
-# Contract Interaction on Cosmwasm with Celestia
+# Contract Interaction on CosmWasm with Celestia
 <!-- markdownlint-disable MD013 -->
 
 In the previous steps, we have stored our Smart Contract `txhash` in an
@@ -72,5 +72,5 @@ NAME_QUERY='{"resolve_record": {"name": "fred"}}'
 wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" $NODE --output json
 ```
 
-With that, we have instantiated and interacted with the Cosmwasm nameservice
+With that, we have instantiated and interacted with the CosmWasm nameservice
 smart contract using Celestia!

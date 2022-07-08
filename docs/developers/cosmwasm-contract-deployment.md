@@ -1,4 +1,4 @@
-# Contract Deployment on Cosmwasm with Optimint
+# Contract Deployment on CosmWasm with Optimint
 <!-- markdownlint-disable MD013 -->
 
 ## Compile the Smart Contract
@@ -31,7 +31,7 @@ RUST_BACKTRACE=1 cargo unit-test
 Because we are deploying the compiled smart contract to `wasmd`,
 we want it to be as small as possible.
 
-Cosmwasm team provides a tool called `rust-optimizer` which we need
+CosmWasm team provides a tool called `rust-optimizer` which we need
 Docker for in order to compile.
 
 Run the following command:

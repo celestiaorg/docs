@@ -1,4 +1,4 @@
-# Cosmwasm Dependency Installations
+# CosmWasm Dependency Installations
 
 ## Environment Setup
 
