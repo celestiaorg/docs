@@ -30,7 +30,7 @@ wasmd query wasm list-contract-by-code $CODE_ID $NODE --output json
 
 We get the following output:
 
-```sh
+```json
 {"contracts":[],"pagination":{"next_key":null,"total":"0"}}
 ```
 
