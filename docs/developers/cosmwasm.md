@@ -9,11 +9,11 @@ You can learn more about CosmWasm [here](https://docs.cosmwasm.com/docs/1.0/).
 
 In this tutorial, we will going over the following:
 
-* Setting Up Your Dependencies for Your CosmWasm Smart Contracts
-* Setting Up Optimint on CosmWasm
-* Instantiate A Local Network For Your CosmWasm Chain connected to Celestia
-* Deploying A Rust Smart Contract to CosmWasm Chain
-* Interacting With The Smart Contract
+* [Setting up your dependencies for your CosmWasm smart contracts](./cosmwasm-dependency.md)
+* [Setting up Optimint on CosmWasm](./cosmwasm-dependency.md#wasmd-installation)
+* [Instantiate a local network for your CosmWasm chain connected to Celestia](./cosmwasm-environment.md)
+* [Deploying a Rust smart contract to CosmWasm chain](./cosmwasm-contract-deployment.md)
+* [Interacting with the smart contract](./cosmwasm-contract-interaction.md)
 
 The smart contract we will use for this tutorial is one provided by
 the CosmWasm team for Nameservice purchasing.
