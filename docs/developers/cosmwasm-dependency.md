@@ -1,4 +1,4 @@
-# Cosmwasm Dependency Installations
+# CosmWasm Dependency Installations
 
 ## Environment Setup
 
@@ -22,13 +22,13 @@ First, before installing Rust, you would need to install `rustup`.
 
 On Mac/Linux systems, here are the commands for installing it:
 
-```ssh
+```sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 After installation, follow the commands here to setup Rust.
 
-```ssh
+```sh
 rustup default stable
 cargo version
 

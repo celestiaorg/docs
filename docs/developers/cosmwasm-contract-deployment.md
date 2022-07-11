@@ -1,4 +1,4 @@
-# Contract Deployment on Cosmwasm with Optimint
+# Contract Deployment on CosmWasm with Optimint
 <!-- markdownlint-disable MD013 -->
 
 ## Compile the Smart Contract
@@ -9,13 +9,11 @@ smart contract and compile it:
 ```sh
 git clone https://github.com/InterWasm/cw-contracts
 cd cw-contracts
-git checkout main
 cd contracts/nameservice
-rustup default stable
-RUSTFLAGS='-C link-arg=-s' cargo wasm
+cargo wasm
 ```
 
-The compiled contract is outputted to the following repository:
+The compiled contract is outputted to:
 `target/wasm32-unknown-unknown/release/cw_nameservice.wasm`.
 
 ## Unit Tests
@@ -23,7 +21,7 @@ The compiled contract is outputted to the following repository:
 If we want to run tests, we can do so with the following command:
 
 ```sh
-RUST_BACKTRACE=1 cargo unit-test
+cargo unit-test
 ```
 
 ## Optimized Smart Contract
@@ -31,7 +29,7 @@ RUST_BACKTRACE=1 cargo unit-test
 Because we are deploying the compiled smart contract to `wasmd`,
 we want it to be as small as possible.
 
-Cosmwasm team provides a tool called `rust-optimizer` which we need
+CosmWasm team provides a tool called `rust-optimizer` which we need
 Docker for in order to compile.
 
 Run the following command:
@@ -43,7 +41,7 @@ docker run --rm -v "$(pwd)":/code \
   cosmwasm/rust-optimizer:0.12.6
 ```
 
-This will compile our code inside `artifacts/cw_nameservice.wasm` directory.
+This will place the optimized Wasm bytecode at `artifacts/cw_nameservice.wasm`.
 
 ## Contract Deployment
 

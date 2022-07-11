@@ -190,12 +190,12 @@ const sidebars = {
           items: [
             {
               type: "doc",
-              label: "Cosmwasm Overview",
+              label: "CosmWasm Overview",
               id: "developers/cosmwasm"
             },
             {
               type: "doc",
-              label: "Cosmwasm Dependencies",
+              label: "CosmWasm Dependencies",
               id: "developers/cosmwasm-dependency"
             },
             {
