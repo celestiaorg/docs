@@ -1,4 +1,4 @@
-# Setting Up Your Environment for Cosmwasm on Celestia
+# Setting Up Your Environment for CosmWasm on Celestia
 <!-- markdownlint-disable MD013 -->
 
 Now the `wasmd` binary is built, we need to setup a local network

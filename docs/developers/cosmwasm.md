@@ -1,22 +1,22 @@
-# Cosmwasm on Optimint
+# CosmWasm on Optimint
 
 CosmWasm is a smart contracting platform built for the Cosmos
 ecosystem by making use of WebAssembly (Wasm) to build smart contracts
 for Cosmos-SDK. In this tutorial, we will be exploring how to integrate
 CosmWasm with Celestia's Data Availability Layer using Optimint.
 
-You can learn more about Cosmwasm [here](https://docs.cosmwasm.com/docs/1.0/).
+You can learn more about CosmWasm [here](https://docs.cosmwasm.com/docs/1.0/).
 
 In this tutorial, we will going over the following:
 
-* Setting Up Your Dependencies for Your Cosmwasm Smart Contracts
-* Setting Up Optimint on Cosmwasm
-* Instantiate A Local Network For Your Cosmwasm Chain connected to Celestia
-* Deploying A Rust Smart Contract to Cosmwasm Chain
-* Interacting With The Smart Contract
+* [Setting up your dependencies for your CosmWasm smart contracts](./cosmwasm-dependency.md)
+* [Setting up Optimint on CosmWasm](./cosmwasm-dependency.md#wasmd-installation)
+* [Instantiate a local network for your CosmWasm chain connected to Celestia](./cosmwasm-environment.md)
+* [Deploying a Rust smart contract to CosmWasm chain](./cosmwasm-contract-deployment.md)
+* [Interacting with the smart contract](./cosmwasm-contract-interaction.md)
 
 The smart contract we will use for this tutorial is one provided by
-the Cosmwasm team for Nameservice purchasing.
+the CosmWasm team for Nameservice purchasing.
 
 You can check out the contract [here](https://github.com/InterWasm/cw-contracts/tree/main/contracts/nameservice).
 
