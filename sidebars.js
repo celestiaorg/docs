@@ -140,6 +140,11 @@ const sidebars = {
           label: "Create A Celestia Testnet", 
           id: "developers/instantiate-testnet" 
         },
+        {
+          type: "doc",
+          label: "Helpful CLI commands",
+          id: "developers/celestia-app-commands"
+        }
       ]
     },
     {

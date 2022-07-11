@@ -2119,6 +2119,26 @@ Returns
 }
 ```
 
+#### GET /data_available/{height}
+
+Returns whether data is available at a specific block height and the probability
+that it is available based on the amount of samples collected.
+
+Request
+
+```sh
+curl -X GET http://<ip>:26658/data_available/25000
+```
+
+Response
+
+```json
+{
+  "available":true,
+  "probability_of_availability":"0.9899774042423815",
+}
+```
+
 #### GET /balance
 
 Returns the balance of the default account address of the node.
