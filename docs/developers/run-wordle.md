@@ -182,7 +182,7 @@ There are many ways this codebase can be extended:
   ensuring the hashing is local so that it’s not revealed via
   front-running by others monitoring the plaintext string when
   it’s submitted on-chain.
-3. You can improve the UI in Terminal using a nice interface for
+3. You can improve the UI in terminal using a nice interface for
   Wordle. Some examples are [here](https://github.com/nimblebun/wordle-cli).
 4. You can improve current date to stick to a specific timezone.
 5. You can create a bot that submits a wordle every day at a specific time.
