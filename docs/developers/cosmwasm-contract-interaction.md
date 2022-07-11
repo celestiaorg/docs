@@ -1,16 +1,16 @@
 # Contract Interaction on CosmWasm with Celestia
 <!-- markdownlint-disable MD013 -->
 
-In the previous steps, we have stored our Smart Contract `txhash` in an
+In the previous steps, we have stored out contract's tx hash in an
 environment variable for later use.
 
 Because of the longer time periods of submitting transactions via Optimint
 due to waiting on Celestia's Data Availability Layer to confirm block inclusion,
-we will need to query our `txhash` directly to get information about it.
+we will need to query our  tx hash directly to get information about it.
 
 ## Contract Querying
 
-Let's start by querying our transaction hash for its Code ID:
+Let's start by querying our transaction hash for its code ID:
 
 ```sh
 CODE_ID=$(wasmd query tx --type=hash $TX_HASH $NODE --output json | jq -r '.logs[0].events[-1].attributes[0].value')
