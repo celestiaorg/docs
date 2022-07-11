@@ -2,13 +2,14 @@
 
 View all options:
 
-```sh
-celestia-appd --help
-```
+```console
+$ celestia-appd --help
+Start celestia app
 
-## Available commands
+Usage:
+  celestia-appd [command]
 
-```sh
+Available Commands:
 add-genesis-account Add a genesis account to genesis.json
 collect-gentxs      Collect genesis txs and output a genesis.json file
 config              Create or query an application CLI configuration file
