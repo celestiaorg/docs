@@ -10,7 +10,7 @@ smart contract and compile it:
 git clone https://github.com/InterWasm/cw-contracts
 cd cw-contracts
 cd contracts/nameservice
-RUSTFLAGS='-C link-arg=-s' cargo wasm
+cargo wasm
 ```
 
 The compiled contract is outputted to the following repository:
