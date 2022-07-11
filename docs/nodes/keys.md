@@ -62,7 +62,8 @@ This will load the key <key_name> into the directory of the light node.
 
 ## Steps for exporting **light** node keys
 
-You can export a private key from the local keyring in ASCII-armored encrypted format.
+You can export a private key from the local keyring in encrypted and
+ ASCII-armored format.
 
 ```sh
 ./cel-key export <key-name> --keyring-backend test --node.type light
