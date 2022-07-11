@@ -17,7 +17,8 @@ Available Commands:
   export              Export state to JSON
   gentx               Generate a genesis tx carrying a self delegation
   help                Help about any command
-  init                Initialize private validator, p2p, genesis, and application configuration files
+  init                Initialize private validator, p2p, genesis, 
+  and application configuration files
   keys                Manage your application's keys
   migrate             Migrate genesis to a specified target version
   query               Querying subcommands
@@ -27,11 +28,12 @@ Available Commands:
   status              Query remote node for status
   tendermint          Tendermint subcommands
   tx                  Transactions subcommands
-  validate-genesis    validates the genesis file at the default location or at the location passed as an arg
+  validate-genesis    validates the genesis file at the default 
+  location or at the location passed as an arg
   version             Print the application binary version information
 ```
 
-### Creating a wallet
+## Creating a wallet
 
 ```sh
 celestia-appd config keyring-backend test
@@ -41,7 +43,7 @@ celestia-appd config keyring-backend test
 
 Options are: `os|file|kwallet|pass|test|memory`.
 
-### Key management
+## Key management
 
 ```sh
 # listing keys
@@ -57,9 +59,9 @@ celestia-appd keys delete <KEY_NAME>
 celestia-appd keys rename <CURRENT_KEY_NAME> <NEW_KEY_NAME>
 ```
 
-#### Importing and exporting keys
+### Importing and exporting keys
 
-Import an ASCII-armored private key into the local keybase.
+Import an encrypted and ASCII-armored private key into the local keybase.
 
 ```sh
 celestia-appd keys import <KEY_NAME> <KEY_FILE>
@@ -71,21 +73,26 @@ Example usage:
 celestia-appd keys import amanda ./keyfile.txt
 ```
 
-Export a private key from the local keyring in ASCII-armored encrypted format:
+Export a private key from the local keyring in encrypted and ASCII-armored format:
 
 ```sh
 celestia-appd keys export <KEY_NAME>
+
+# you will then be prompted to set a password for the encrypted private key:
+Enter passphrase to encrypt the exported key:
 ```
 
-### Querying subcommands
+After you set a password, your encrypted key will be displayed.
+
+## Querying subcommands
 
 Usage:
 
 ```sh
-celestia-appd query flags | command
+celestia-appd query <flags> | <command>
 
 # alias q
-celestia-appd q flags | command
+celestia-appd q <flags> | <command>
 ```
 
 To see all options:
@@ -94,7 +101,7 @@ To see all options:
 celestia-appd q --help
 ```
 
-### Token management
+## Token management
 
 Get token balances:
 
