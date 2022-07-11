@@ -4,13 +4,13 @@
 Now, comes the fun part, creating a new blockchain! With Ignite,
 the process is pretty easy and straightforward.
 
-Ignite CLI comes with several of scaffolding commands that are
+Ignite CLI comes with several scaffolding commands that are
 designed to make development more straightforward by creating
 everything you need to build your blockchain.
 
-First, we ill use Ignite CLI to build the foundation of a fresh
+First, we will use Ignite CLI to build the foundation of a fresh
 Cosmos SDK blockchain. Ignite minimizes how much blockchain code
-must write yourself. If you are coming from the EVM-world, think of
+you must write yourself. If you are coming from the EVM-world, think of
 Ignite as a Cosmos-SDK version of Foundry or Hardhat but specifically
 designed to build blockchains.
 
