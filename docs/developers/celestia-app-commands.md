@@ -89,10 +89,10 @@ After you set a password, your encrypted key will be displayed.
 Usage:
 
 ```sh
-celestia-appd query <flags> | <command>
+celestia-appd query <FLAGS> | <COMMAND>
 
 # alias q
-celestia-appd q <flags> | <command>
+celestia-appd q <FLAGS> | <COMMAND>
 ```
 
 To see all options:
