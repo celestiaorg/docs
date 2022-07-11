@@ -9,9 +9,7 @@ smart contract and compile it:
 ```sh
 git clone https://github.com/InterWasm/cw-contracts
 cd cw-contracts
-git checkout main
 cd contracts/nameservice
-rustup default stable
 RUSTFLAGS='-C link-arg=-s' cargo wasm
 ```
 
