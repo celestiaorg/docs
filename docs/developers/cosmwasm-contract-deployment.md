@@ -13,7 +13,7 @@ cd contracts/nameservice
 cargo wasm
 ```
 
-The compiled contract is outputted to the following repository:
+The compiled contract is outputted to:
 `target/wasm32-unknown-unknown/release/cw_nameservice.wasm`.
 
 ## Unit Tests
@@ -21,7 +21,7 @@ The compiled contract is outputted to the following repository:
 If we want to run tests, we can do so with the following command:
 
 ```sh
-RUST_BACKTRACE=1 cargo unit-test
+cargo unit-test
 ```
 
 ## Optimized Smart Contract
@@ -41,7 +41,7 @@ docker run --rm -v "$(pwd)":/code \
   cosmwasm/rust-optimizer:0.12.6
 ```
 
-This will compile our code inside `artifacts/cw_nameservice.wasm` directory.
+This will place the optimized Wasm bytecode at `artifacts/cw_nameservice.wasm`.
 
 ## Contract Deployment
 
