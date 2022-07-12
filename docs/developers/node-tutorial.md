@@ -1,5 +1,4 @@
 # Getting and Sending Transactions with Celestia Node
-<!-- markdownlint-disable MD013 -->
 
 In this tutorial, we will cover how to use the Celestia Node API to submit and
 retrieve messages from the Data Availability Layer by their namespace ID.

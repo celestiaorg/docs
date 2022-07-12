@@ -155,21 +155,21 @@ const sidebars = {
           label: "Installing Celestia Node",
           id: "developers/celestia-node"
         },
-        { 
-          type: "doc", 
-          label: "Node Tutorial", 
-          id: "developers/node-tutorial" 
+        {
+          type: "doc",
+          label: "Node Tutorial",
+          id: "developers/node-tutorial"
         },
-        { 
-          type: "doc", 
-          label: "Node API", 
-          id: "developers/node-api" 
+        {
+          type: "doc",
+          label: "Node API",
+          id: "developers/node-api"
         }
       ]
     },
     {
       type: "category",
-      label: "Celestia Ethermint",
+      label: "Optimism on Celestia",
       link: {
         type: "generated-index"
       },
@@ -177,8 +177,13 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Connecting to Celestia Ethermint",
-          id: "developers/connecting-to-celestia-ethermint"
+          label: "Overview",
+          id: "developers/optimism-on-celestia",
+        },
+        {
+          type: "doc",
+          label: "Connecting to Optimism",
+          id: "developers/connecting-to-optimism"
         },
         {
           type: "doc",
