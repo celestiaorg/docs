@@ -160,15 +160,45 @@ const sidebars = {
           label: "Installing Celestia Node",
           id: "developers/celestia-node"
         },
-        { 
-          type: "doc", 
-          label: "Node Tutorial", 
-          id: "developers/node-tutorial" 
+        {
+          type: "doc",
+          label: "Node Tutorial",
+          id: "developers/node-tutorial"
         },
-        { 
-          type: "doc", 
-          label: "Node API", 
-          id: "developers/node-api" 
+        {
+          type: "doc",
+          label: "Node API",
+          id: "developers/node-api"
+        }
+      ]
+    },
+    {
+      type: "category",
+      label: "Optimism on Celestia",
+      link: {
+        type: "generated-index"
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Overview",
+          id: "developers/optimism-on-celestia",
+        },
+        {
+          type: "doc",
+          label: "Connecting to Optimism",
+          id: "developers/connecting-to-optimism"
+        },
+        {
+          type: "doc",
+          label: "Deploying Smart Contracts with Foundry",
+          id: "developers/smart-contract-tutorial-foundry"
+        },
+        {
+          type: "doc",
+          label: "Deploying Smart Contracts with Hardhat",
+          id: "developers/smart-contract-tutorial-hardhat"
         }
       ]
     }
