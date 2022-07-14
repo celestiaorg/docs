@@ -55,7 +55,7 @@ const sidebars = {
             type: "doc", 
             label: "Light Node", 
             id: "nodes/light-node" 
-          },
+          }
         ]
       }
       ]
@@ -164,6 +164,11 @@ const sidebars = {
           type: "doc", 
           label: "Node Tutorial", 
           id: "developers/node-tutorial" 
+        },
+        {
+          type: "doc",
+          label: "Node Video Tutorial",
+          id: "developers/light-node-video"
         },
         { 
           type: "doc", 
