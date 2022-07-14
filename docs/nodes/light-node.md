@@ -4,6 +4,8 @@ This tutorial will guide you through setting up a Celestia Light Node,
 which can allow you to do data-sampling on the Data Availability (DA)
 network.
 
+> To view a video tutorial for setting up a Celestia Light Node, click [here](/developers/light-node-video)
+
 ## Overview of Light Nodes
 
 Light nodes (CLN) ensure data availability. This is the most common
