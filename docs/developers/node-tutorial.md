@@ -4,7 +4,7 @@
 In this tutorial, we will cover how to use the Celestia Node API to submit and
 retrieve messages from the Data Availability Layer by their namespace ID.
 
-> To view a video tutorial for setting up a Celestia Light Node, click [here](./light-node-video)
+> To view a video tutorial for setting up a Celestia Light Node, click [here](./light-node-video.md)
 
 ## Hardware Requirements
 

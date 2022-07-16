@@ -4,7 +4,7 @@ This tutorial will guide you through setting up a Celestia Light Node,
 which can allow you to do data-sampling on the Data Availability (DA)
 network.
 
-> To view a video tutorial for setting up a Celestia Light Node, click [here](../developers/light-node-video)
+> To view a video tutorial for setting up a Celestia Light Node, click [here](../developers/light-node-video.md)
 
 ## Overview of Light Nodes
 
