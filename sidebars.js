@@ -57,6 +57,21 @@ const sidebars = {
             id: "nodes/light-node" 
           }
         ]
+      },
+      {
+        type: "category",
+        label: "Settlement",
+        link: {
+          type: "generated-index",
+        },
+        collapsed: false,
+        items: [
+          {
+            type: "doc",
+            label: "Celestia-Ethermint Node",
+            id: "nodes/celestia-ethermint-node"
+          }
+        ]
       }
       ]
     },
@@ -176,7 +191,7 @@ const sidebars = {
           id: "developers/node-api" 
         }
       ]
-    }
+    },
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },
