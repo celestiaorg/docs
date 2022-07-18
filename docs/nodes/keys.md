@@ -1,4 +1,4 @@
-# Using the Cel-Key Utility
+# Using the cel-key utility
 
 Inside the celestia-node repository is a utility called `cel-key` that uses
 the key utility provided by Cosmos-SDK under the hood. The utility can be

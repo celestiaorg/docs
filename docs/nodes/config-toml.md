@@ -10,7 +10,7 @@
     - [[Services]](#services)
       - [TrustedHash and TrustedPeer](#trustedhash-and-trustedpeer)
 
-## Pre-Requisites
+## Prerequisites
 
 Please, make sure that you have installed and initialized celestia node
 
@@ -42,7 +42,7 @@ If you want your node to be a bootstrapper, then activate `Bootstrapper = true`.
 If you want to add your own manually, you need to provide the
 multiaddresses of the peers.
 
-#### Mutual Peers
+#### Mutual peers
 
 The purpose of this config is to set up a bidirectional communication.
 This is usually the case for Celestia Bridge Nodes. In addition, you

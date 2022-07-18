@@ -1,4 +1,4 @@
-# Setting Up A Celestia Light Node
+# Setting up a Celestia Light Node
 
 This tutorial will guide you through setting up a Celestia light node, which
 will allow you to perform data availability sampling on the data
@@ -6,7 +6,7 @@ availability (DA) network.
 
 > To view a video tutorial for setting up a Celestia light node, click [here](../developers/light-node-video.md)
 
-## Overview of Light Nodes
+## Overview of light nodes
 
 Light nodes ensure data availability. This is the most common
 way to interact with the Celestia network.
@@ -19,7 +19,7 @@ Light nodes have the following behavior:
    Celestia nodes of new block headers and relevant DA metadata.
 2. They perform data availability sampling (DAS) on the received headers
 
-## Hardware Requirements
+## Hardware requirements
 
 The following minimum hardware requirements are recommended for running
 a light node:
@@ -29,19 +29,19 @@ a light node:
 * Disk: 5 GB SSD Storage
 * Bandwidth: 56 Kbps for Download/56 Kbps for Upload
 
-## Setting Up Your Light Node
+## Setting up your light node
 
 This tutorial was performed on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
-### Setup The Dependencies
+### Setup the dependencies
 
 Follow the tutorial on setting up your dependencies [here](../developers/environment.md).
 
-## Install Celestia Node
+## Install Celestia node
 
 Follow the tutorial on installing Celestia node [here](../developers/celestia-node.md)
 
-### Initialize the Light Node
+### Initialize the light node
 
 Run the following command:
 
@@ -60,7 +60,7 @@ $ celestia light init
 ```
 <!-- markdownlint-enable MD013 -->
 
-### Start the Light Node
+### Start the light node
 
 Start the light node with a connection to a validator node's gRPC endpoint (which
 is usually exposed on port 9090):
@@ -89,7 +89,7 @@ You can find the address by running the following command:
 
 Mamaki Testnet tokens can be requested [here](./mamaki-testnet.md#mamaki-testnet-faucet).
 
-### Optional: Run the Light Node with a Custom Key
+### Optional: run the light node with a custom key
 
 In order to run a light node using a custom key:
 
@@ -101,12 +101,12 @@ In order to run a light node using a custom key:
 celestia light start --core.grpc http://<ip>:9090 --keyring.accname <name_of_custom_key>
 ```
 
-### Optional: Start Light Node with SystemD
+### Optional: start light node with SystemD
 
 Follow the tutorial on setting up the light node as a background
 process with SystemD [here](./systemd.md#celestia-light-node).
 
-## Data Availability Sampling (DAS)
+## Data availability sampling (DAS)
 
 With your light node running, you can check out this tutorial on
 submitting `PayForData` transactions [here](../developers/node-tutorial.md).
