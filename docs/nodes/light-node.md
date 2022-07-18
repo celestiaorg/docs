@@ -11,10 +11,6 @@ availability (DA) network.
 Light nodes ensure data availability. This is the most common
 way to interact with the Celestia network.
 
-> Note: In future implementations, light nodes will be able to publish
-  transactions ([see ADR](https://github.com/celestiaorg/celestia-node/blob/main/docs/adr/adr-004-state-interaction.md)).
-  However in Mamaki, transactions can only be submitted by Bridge Nodes.
-
 ![light-node](/img/nodes/LightNodes.png)
 
 Light nodes have the following behavior:
