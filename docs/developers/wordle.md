@@ -12,6 +12,10 @@ The tutorial will go over the simple design,
 as well as conclude with future implementations and ideas
 to extend this codebase.
 
+> NOTE: This tutorial will explore developing with Optimint,
+  which is still in Alpha stage. If you run into bugs, please
+  write a Github Issue ticket or let us know in our Discord.
+
 ## Pre-requisites
 
 Given this tutorial is targeted for developers who are experienced
