@@ -55,12 +55,14 @@ celestia light init
 
 You should see output like:
 
+<!-- markdownlint-disable MD013 -->
 ```output
 $ celestia light init
 2022-07-18T02:22:09.449Z INFO node node/init.go:26 Initializing Light Node Store over '/home/ec2-user/.celestia-light'
 2022-07-18T02:22:09.449Z INFO node node/init.go:62 Saving config {"path": "/home/ec2-user/.celestia-light/config.toml"}
 2022-07-18T02:22:09.449Z INFO node node/init.go:67 Node Store initialized
 ```
+<!-- markdownlint-enable MD013 -->
 
 ### Start the Light Node
 

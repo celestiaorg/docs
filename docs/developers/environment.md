@@ -21,17 +21,19 @@ sudo yum update
 These are essential packages that are necessary to execute many tasks like
 downloading files, compiling, and monitoring the node:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 # If you are using the APT package manager
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential \
-git make ncdu -y
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
 # If you are using the YUM package manager
 sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
 ```
+<!-- markdownlint-enable MD013 -->
 
 ## Install Golang
 
-Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we must install Golang to build and run them.
+Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we
+must install Golang to build and run them.
 
 ```sh
 ver="1.18.2"
