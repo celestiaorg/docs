@@ -1,33 +1,37 @@
-# Setting Up Development Environment
+# Development Environment
 
-This tutorial will go over setting up your environment to test out
-Celestia software and build the binaries. It can be used for both
-node operation purposes and for development.
+This tutorial will go over setting up your development environment to run
+Celestia software. This environment can be used for development, building
+binaries, and running nodes.
 
-## Setting Up Dependencies
+## Install Dependencies
 
-Once you have setup your instance, ssh into the instance to begin setting up
-the box with all the needed dependencies in order to run your node.
+Once you have setup your instance, ssh into the instance to begin installing the
+dependencies needed to run a node.
 
 First, make sure to update and upgrade the OS:
 
 ```sh
+# If you are using the APT package manager
 sudo apt update && sudo apt upgrade -y
+# If you are using the YUM package manager
+sudo yum update
 ```
 
 These are essential packages that are necessary to execute many tasks like
-downloading files, compiling and monitoring the node:
+downloading files, compiling, and monitoring the node:
 
 ```sh
+# If you are using the APT package manager
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential \
 git make ncdu -y
+# If you are using the YUM package manager
+sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
 ```
 
 ## Install Golang
 
-Golang will be installed on this machine in order for us to be able to build
-the necessary binaries for running the node. For Golang specifically,
-it’s needed to be able to compile the Celestia Application.
+Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we must install Golang to build and run them.
 
 ```sh
 ver="1.18.2"
@@ -51,7 +55,7 @@ To check if Go was installed correctly run:
 go version
 ```
 
-Output should be the version installed:
+The output should be the version installed:
 
 ```sh
 go version go1.18.2 linux/amd64
