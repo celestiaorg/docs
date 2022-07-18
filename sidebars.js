@@ -176,6 +176,51 @@ const sidebars = {
           id: "developers/node-api" 
         }
       ]
+    },
+    {
+      type: "category",
+      label: "Optimint",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "category",
+          label: "CosmWasm",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "CosmWasm Overview",
+              id: "developers/cosmwasm"
+            },
+            {
+              type: "doc",
+              label: "CosmWasm Dependencies",
+              id: "developers/cosmwasm-dependency"
+            },
+            {
+              type: "doc",
+              label: "Setup Network Environment",
+              id: "developers/cosmwasm-environment"
+            },
+            {
+              type: "doc",
+              label: "Contract Deployment",
+              id: "developers/cosmwasm-contract-deployment"
+            },
+            {
+              type: "doc",
+              label: "Contract Interaction",
+              id: "developers/cosmwasm-contract-interaction"
+            }
+          ]
+        }
+      ]
     }
   ],
   community: [
