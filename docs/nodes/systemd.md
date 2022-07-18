@@ -1,13 +1,13 @@
-# Setting Up Your Node As A Background Process With SystemD
+# Setting up your node as a background process with SystemD
 
 SystemD is a daemon service useful for running applications as background processes.
 
-## Consensus Nodes
+## Consensus nodes
 
 If you are running a validator or consensus full node, here are
 the steps to setting up `celestia-appd` as a background process.
 
-### Start the Celestia-App with SystemD
+### Start the celestia-app with SystemD
 
 SystemD is a daemon service useful for running applications as background processes.
 
@@ -63,9 +63,9 @@ curl -s localhost:26657/status | jq .result | jq .sync_info
 Make sure that you have `"catching_up": false`, otherwise leave it running
 until it is in sync.
 
-## Data Availability Nodes
+## Data availability nodes
 
-### Celestia Full Storage Node
+### Celestia full storage node
 
 Create Celestia Full Storage Node systemd file:
 
@@ -103,7 +103,7 @@ celestia-full.service -f
 
 You should be seeing logs coming through of the full storage node syncing.
 
-### Celestia Bridge Node
+### Celestia bridge node
 
 Create Celestia Bridge systemd file:
 
@@ -155,7 +155,7 @@ NODE_IP=<ip-address>
 
 You should be seeing logs coming through of the bridge node syncing.
 
-### Celestia Light Node
+### Celestia light node
 
 Start the Light Node as daemon process in the background
 
