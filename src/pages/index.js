@@ -15,9 +15,22 @@ function HomepageHeader() {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
-            to="/nodes/overview">
-            Run A Node
+            className="front-page-link"
+            to="/developers/optimism-on-celestia">
+              <p className="button-heading">Smart Contracts</p>
+              Deploy Applications on a Rollup
+          </Link>
+          <Link
+            className="front-page-link"
+            to="/developers/celestia-ethermint">
+              <p className="button-heading">Settlement</p>
+              Deploy a Rollup on Ethermint
+          </Link>
+          <Link
+            className="front-page-link"
+            to="/developers/wordle">
+               <p className="button-heading">Sovereign Chain</p>
+              Deploy a Chain to Celestia
           </Link>
         </div>
       </div>
