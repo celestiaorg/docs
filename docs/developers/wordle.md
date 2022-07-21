@@ -59,41 +59,21 @@ In this current design, we implement the following rules:
 * Every address will have 6 tries to guess the word
 * It must be a five-letter word.  
 * Whoever guesses the word correctly before their
-  6 tries are over gets an award of 100 TIA tokens.
+  6 tries are over gets an award of 100 WORDLE tokens.
 
 We will go over the architecture to achieve this further
 in the guide. But for now, we will get started setting up
 our development environment.
 
-## Ignite
+## Table of Contents For This Tutorial
 
-Ignite is an amazing CLI tool to help us get started building
-our own blockchains for cosmos-sdk apps. It provides lots of
-power toolings and scaffoldings for adding messages, types,
-and modules with a host of cosmos-sdk libraries provided.
+The following tutorial is broken down into the following
+sections:
 
-You can read more about Ignite [here](https://docs.ignite.com/).
-
-To install Ignite, you can run this command in your terminal:
-
-```sh
-curl https://get.ignite.com/cli | bash
-sudo mv ignite /usr/local/bin/
-```
-
-This installs Ignite CLI in your local machine.
-This tutorial uses a MacOS but it should work for Windows.
-For Windows users, check out the Ignite docs on installation
-for Windows machines.
-
-Now, refresh your terminal using `source` or open a new terminal
-session for the change to take place.
-
-If you run the following:
-
-```sh
-ignite --help
-```
-
-You should see an output of help commands meaning Ignite
-was installed successfully!
+1. [Ignite and Chain Scaffolding](./scaffold-wordle.md)
+2. [Installing Optimint](./install-optimint.md)
+3. [Modules](./wordle-module.md)
+4. [Messages](./wordle-messages.md)
+5. [Types](./wordle-types.md)
+6. [Keepers](./wordle-keeper.md)
+7. [Running Wordle](./run-wordle.md)
