@@ -1,5 +1,40 @@
-# Scaffolding the Wordle Chain
+# Ignite and Scaffolding the Wordle Chain
 <!-- markdownlint-disable MD013 -->
+
+## Ignite
+
+Ignite is an amazing CLI tool to help us get started building
+our own blockchains for cosmos-sdk apps. It provides lots of
+power toolings and scaffoldings for adding messages, types,
+and modules with a host of cosmos-sdk libraries provided.
+
+You can read more about Ignite [here](https://docs.ignite.com/).
+
+To install Ignite, you can run this command in your terminal:
+
+```sh
+curl https://get.ignite.com/cli | bash
+sudo mv ignite /usr/local/bin/
+```
+
+This installs Ignite CLI in your local machine.
+This tutorial uses a MacOS but it should work for Windows.
+For Windows users, check out the Ignite docs on installation
+for Windows machines.
+
+Now, refresh your terminal using `source` or open a new terminal
+session for the change to take place.
+
+If you run the following:
+
+```sh
+ignite --help
+```
+
+You should see an output of help commands meaning Ignite
+was installed successfully!
+
+## Scaffolding the Wordle Chain
 
 Now, comes the fun part, creating a new blockchain! With Ignite,
 the process is pretty easy and straightforward.
