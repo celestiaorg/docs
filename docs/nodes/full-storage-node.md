@@ -49,9 +49,11 @@ Start the Full Storage Node with a connection to a validator node's gRPC endpoin
   or query for the node's account balance, a gRPC endpoint of a validator
   (core) node must be passed as directed below.
 
+<!-- markdownlint-disable MD013 -->
 ```sh
-celestia full start --core.grpc http://<ip addr of core node>:9090
+celestia full start --core.ip http://<ip-address> --core.grpc.port 9090 --core.rpc.port 26657
 ```
+<!-- markdownlint-enable MD013 -->
 
 If you would like to find example RPC endpoints, check out the list of
 resources [here](./mamaki-testnet.md#rpc-endpoints).
@@ -77,9 +79,11 @@ In order to run a full storage node using a custom key:
    at the correct path (default: `~/.celestia-full/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
-celestia full start --core.grpc http://<ip>:9090 --keyring.accname <name_of_custom_key>
+celestia full start --core.ip http://<ip-address> --core.grpc.port 9090 --keyring.accname <name_of_custom_key>
 ```
+<!-- markdownlint-enable MD013 -->
 
 ### Optional: Start the Full Storage Node with SystemD
 

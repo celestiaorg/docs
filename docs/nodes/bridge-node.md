@@ -69,7 +69,7 @@ Follow the tutorial for installing Celestia Node [here](../developers/celestia-n
 Run the following:
 
 ```sh
-celestia bridge init --core.remote tcp://<ip-address>:26657 
+celestia bridge init --core.ip <ip-address> --core.rpc.port 26657
 ```
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
@@ -85,7 +85,7 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
   directed below._
 
 ```sh
-celestia bridge start --core.grpc http://<ip>:9090
+celestia bridge start --core.ip <ip> --core.grpc.port 9090
 ```
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
@@ -112,7 +112,7 @@ In order to run a bridge node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 ```sh
-celestia bridge start --core.grpc http://<ip>:9090 --keyring.accname <name_of_custom_key>
+celestia bridge start --core.ip <ip> --core.grpc.port 9090 --keyring.accname <name_of_custom_key>
 ```
 
 ### Optional: Start the Bridge Node with SystemD
