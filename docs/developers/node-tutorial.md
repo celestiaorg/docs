@@ -62,7 +62,7 @@ also telling the light node to use the `developer` key we generated
 as its default account.
 
 ```sh
-celestia light start --core.grpc http://<ip-address>:9090 --keyring.accname developer
+celestia light start --core.ip <ip> --core.grpc.port 9090 --keyring.accname developer
 ```
 
 ## Node API Calls
