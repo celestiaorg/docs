@@ -35,13 +35,80 @@ This tutorial was performed on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
 ### Setup the dependencies
 
-Follow the tutorial on setting up your dependencies [here](../developers/environment.md).
+First, make sure to update and upgrade the OS:
 
-## Install Celestia node
+```sh
+# If you are using the APT package manager
+sudo apt update && sudo apt upgrade -y
 
-Follow the tutorial on installing Celestia node [here](../developers/celestia-node.md)
+# If you are using the YUM package manager
+sudo yum update
+```
 
-### Initialize the light node
+These are essential packages that are necessary to execute many tasks like downloading files, compiling, and monitoring the node:
+
+```sh
+# If you are using the APT package manager
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+
+# If you are using the YUM package manager
+sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+```
+
+### Install Golang
+
+Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we must install Golang to build and run them.
+
+```sh
+ver="1.18.2"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+```
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+```sh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+```sh
+go version go1.18.2 linux/amd64
+```
+
+### Install Celestia node
+
+Install the celestia-node binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+```
+
+Verify that the binary is working and check the version with the celestia version command:
+
+```sh
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+## Initialize the light node
 
 Run the following command:
 
@@ -76,12 +143,25 @@ celestia light start --core.grpc http://<ip>:9090
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
-You can create your key for your node by following the `cel-key` instructions [here](./keys.md)
+For example, your command might look something like this: 
+
+```sh
+celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+```
+
+### Keys and wallets
+
+You can create your key for your node by running the following command:
+
+```sh
+make cel-key
+```
 
 Once you start the Light Node, a wallet key will be generated for you.
 You will need to fund that address with Mamaki Testnet tokens to pay for
 PayForData transactions.
-You can find the address by running the following command:
+
+You can find the address by running the following command in the `celestia-node` directory:
 
 ```sh
 ./cel-key list --node.type light --keyring-backend test
