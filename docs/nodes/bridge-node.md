@@ -5,6 +5,9 @@ This tutorial will go over the steps to setting up your Celestia Bridge node.
 Bridge nodes connect the data availability layer and the consensus layer
 while also having the option of becoming a validator.
 
+Validators do not have to run bridge nodes, but they should because it relays
+blocks to the DA network.
+
 ## Overview of Bridge Nodes
 
 A Celestia bridge node has the following properties:
