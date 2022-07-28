@@ -45,19 +45,23 @@ sudo apt update && sudo apt upgrade -y
 sudo yum update
 ```
 
-These are essential packages that are necessary to execute many tasks like downloading files, compiling, and monitoring the node:
+These are essential packages that are necessary to execute many tasks like downloading
+files, compiling, and monitoring the node:
 
 ```sh
 # If you are using the APT package manager
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential \
+git make ncdu -y
 
 # If you are using the YUM package manager
-sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential \
+git make ncdu -y
 ```
 
 ### Install Golang
 
-Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we must install Golang to build and run them.
+Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we must
+install Golang to build and run them.
 
 ```sh
 ver="1.18.2"
@@ -100,7 +104,8 @@ git checkout tags/v0.3.0-rc2
 make install
 ```
 
-Verify that the binary is working and check the version with the celestia version command:
+Verify that the binary is working and check the version with the
+celestia version command:
 
 ```sh
 $ celestia version
@@ -143,7 +148,7 @@ celestia light start --core.grpc http://<ip>:9090
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
-For example, your command might look something like this: 
+For example, your command might look something like this:
 
 ```sh
 celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
@@ -161,7 +166,8 @@ Once you start the Light Node, a wallet key will be generated for you.
 You will need to fund that address with Mamaki Testnet tokens to pay for
 PayForData transactions.
 
-You can find the address by running the following command in the `celestia-node` directory:
+You can find the address by running the following command in the
+`celestia-node` directory:
 
 ```sh
 ./cel-key list --node.type light --keyring-backend test
