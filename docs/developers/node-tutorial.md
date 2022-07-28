@@ -367,11 +367,11 @@ transaction to the node's `/submit_pfd` endpoint.
 
 Some things to consider:
 
-* PFD is a PayForData Message.
-* The endpoint also takes in a `namespace_id` and `data` values.
-* Namespace ID should be 8 bytes.
-* Data is in hex-encoded bytes of the raw message.
-* `gas_limit` is the limit of gas to use for the transaction
+- PFD is a PayForData Message.
+- The endpoint also takes in a `namespace_id` and `data` values.
+- Namespace ID should be 8 bytes.
+- Data is in hex-encoded bytes of the raw message.
+- `gas_limit` is the limit of gas to use for the transaction
 
 We use the following `namespace_id` of `0000010000000100` and
 the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
