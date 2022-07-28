@@ -25,11 +25,11 @@ Follow the instructions on installing the dependencies [here](../developers/envi
 
 ## Deploying the celestia-app
 
-This section describes part 1 of Celestia Validator Node setup:
+This section describes part 1 of Celestia consensus full node setup:
 running a Celestia App daemon with an internal Celestia Core node.
 
-> Note: Make sure you have at least 100+ Gb of free space to safely install+run
-  the Validator Node.
+> Note: Make sure you have at least 100+ Gb of free space to safely install + run
+  the consensus full node.  
 
 ### Install celestia-app
 
