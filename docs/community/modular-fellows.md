@@ -1,7 +1,7 @@
 # Modular Fellows
 
 The Modular Fellows program aims to support developers who are interested
-in building on modular blockchains like Celestia. Participants will take
+in building on Celestia. Participants will take
 part in the 3 month program outlined below and receive a monthly stipend
 to help fund their work.
 
@@ -17,29 +17,27 @@ participants.
 As part of the Modular fellows program, we will have the following communication
 channels open.
 
-- **Telegram group** - this group will be for open discussion during the current
-  cohort
-- **Modular fellow role on Discord** - you will be granted this role upon acceptance
-  into the program
-- **Slack channel** - upon acceptance to the program you will be invited to join
-  this channel
+- **Telegram group** - This group will be for open discussion during the current
+  cohort.
+- **Slack channel** - Upon acceptance to the program you will be invited to join
+  the Modular Fellows Slack channel
 - **Twitter** - We will share updates about the program and participants via our
-  Twitter (tbd - and Developer Twitter accounts)
+  Twitter account.
 - **Discord** - Members of the Modular Fellows program will also be given a
   special role in Discord.
 
 ### Milestones
 
-- **Month 1** - learning and exploring (start building whenever you’re ready)
+- **Month 1** - Learning and Exploring (start building whenever you’re ready)
   - In this month, you will immerse yourself in modular blockchains to come up
     with ideas of protocols, tools or applications to build during the rest
     of the program.
   - *Milestone - present an idea that you want to pursue*
-- **Month 2** - designing & implementing a basic prototype
+- **Month 2** - Designing & Implementing a Basic Prototype
   - In this month, you will design and implement a basic prototype of the
     idea that you settled on during the first month.
   - *Milestone - present the prototype for feedback*
-- **Month 3** - build out the prototype into a functional product
+- **Month 3** - Build out the Prototype into a Functional Product
   - In this month, you will expand on your prototype to build a functional
   product which you will demo and explain with a write up.
   - *Milestone - demo, write up of product*
@@ -74,7 +72,7 @@ Telegram @naderdabit.
 
 ### Continuation
 
-- **Grants & Funding -** If you’d like to continue to build your project after the
+- **Grants & Funding** - If you’d like to continue to build your project after the
   program is complete, you can apply for a grant or we will assist you in securing
   funding from VCs.
 - **Alumni Network** - Upon completion, you will be inducted into the Modular Fellows
