@@ -137,7 +137,7 @@ You can follow the tutorial for installing Celestia Node [here](../developers/ce
 Run the following:
 
 ```sh
-celestia bridge init --core.remote <ip:port of celestia-app> \
+celestia bridge init --core.remote tcp://<ip:port of celestia-app> \
   --core.grpc http://<ip:port>
 ```
 
