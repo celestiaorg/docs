@@ -1,4 +1,4 @@
-# Overview to Running Nodes on Celestia
+# Overview to running nodes on Celestia
 
 There are many ways you can participate in the Celestia network.
 
