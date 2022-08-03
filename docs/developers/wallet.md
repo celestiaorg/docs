@@ -41,5 +41,5 @@ wallet run the command below replacing the public
 address with your own:
 
 ```sh
-celestia-appd q bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+celestia-appd query bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```

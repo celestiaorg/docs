@@ -4,19 +4,95 @@
 In this tutorial, we will cover how to use the Celestia Node API to submit and
 retrieve messages from the Data Availability Layer by their namespace ID.
 
+This tutorial was assumes you are working in a Linux environment.
+
+> To view a video tutorial for setting up a Celestia Light Node, click [here](./light-node-video.md)
+
 ## Hardware Requirements
 
-You can find hardware requirements [here](../nodes/light-node.md#hardware-requirements).
+The following minimum hardware requirements are recommended for running a light node:
+
+- Memory: 2 GB RAM
+- CPU: Single Core
+- Disk: 5 GB SSD Storage
+- Bandwidth: 56 Kbps for Download/56 Kbps for Upload
 
 ## Setting Up Dependencies
 
-You can follow the tutorial for setting up the dependencies [here](./environment.md).
+First, make sure to update and upgrade the OS:
+
+```sh
+# If you are using the APT package manager
+sudo apt update && sudo apt upgrade -y
+
+# If you are using the YUM package manager
+sudo yum update
+```
+
+These are essential packages that are necessary to execute many tasks like downloading files, compiling, and monitoring the node:
+
+```sh
+# If you are using the APT package manager
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+
+# If you are using the YUM package manager
+sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+```
+
+### Install Golang
+
+Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we must install Golang to build and run them.
+
+```sh
+ver="1.18.2"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+```
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+```sh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+```sh
+go version go1.18.2 linux/amd64
+```
 
 ## Celestia Node
 
 ### Install Celestia Node
 
-You can follow the tutorial for building Celestia Node [here](./celestia-node.md)
+Install the celestia-node binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+```
+
+Verify that the binary is working and check the version with the celestia version command:
+
+```sh
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
 
 ### Instantiate Celestia Light Node
 
@@ -29,11 +105,42 @@ Now, let's instantiate a Celestia Light node:
 celestia light init
 ```
 
-### Generate A Wallet
+### Connect To A Public Core Endpoint
 
-You can follow the tutorial for generating a Wallet with Celestia Light Node [here](../nodes/keys.md#steps-for-generating-light-node-keys).
+Let's now run the Celestia Light node with a GRPC connection to
+an example public Core Endpoint.
 
-Now, head over to the Celestia Discord channel `#faucet`.
+> Note: You are also encouraged to find a community-run API endpoint
+  and there are several in the Discord. This one is used for demonstration
+  purposes. You can find a list of RPC endpoints [here](../nodes/mamaki-testnet#rpc-endpoints)
+
+```sh
+celestia light start --core.grpc http://<ip-address>:9090
+```
+
+For example, your command along with an RPC endpoint might look like this:
+
+```sh
+celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+```
+
+### Keys and wallets
+
+You can create your key for your node by running the following command:
+
+```sh
+make cel-key
+```
+
+Once you start the Light Node, a wallet key will be generated for you. You will need to fund that address with Mamaki Testnet tokens to pay for PayForData transactions.
+
+You can find the address by running the following command in the `celestia-node` directory:
+
+```sh
+./cel-key list --node.type light --keyring-backend test
+```
+
+If you would like to fund your wallet with testnet tokens, head over to the Celestia Discord channel `#faucet`.
 
 You can request funds to your wallet address using the following command in Discord:
 
@@ -45,23 +152,6 @@ Where `<Wallet-Address>` is the `celestia1******` address generated
 when you created the wallet.
 
 With your wallet funded, you can move on to the next step.
-
-### Connect To A Public Core Endpoint
-
-Let's now run the Celestia Light node with a GRPC connection to
-an example public Core Endpoint.
-
-> Note: You are also encouraged to find a community-run API endpoint
-  and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](../nodes/mamaki-testnet#rpc-endpoints)
-
-Here we are starting a light node with a connection to a Core endpoint and
-also telling the light node to use the `developer` key we generated
-as its default account.
-
-```sh
-celestia light start --core.grpc http://<ip-address>:9090 --keyring.accname developer
-```
 
 ## Node API Calls
 
@@ -277,11 +367,11 @@ transaction to the node's `/submit_pfd` endpoint.
 
 Some things to consider:
 
-* PFD is a PayForData Message.
-* The endpoint also takes in a `namespace_id` and `data` values.
-* Namespace ID should be 8 bytes.
-* Data is in hex-encoded bytes of the raw message.
-* `gas_limit` is the limit of gas to use for the transaction
+- PFD is a PayForData Message.
+- The endpoint also takes in a `namespace_id` and `data` values.
+- Namespace ID should be 8 bytes.
+- Data is in hex-encoded bytes of the raw message.
+- `gas_limit` is the limit of gas to use for the transaction
 
 We use the following `namespace_id` of `0000010000000100` and
 the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
