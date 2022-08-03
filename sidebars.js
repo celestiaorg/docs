@@ -234,11 +234,44 @@ const sidebars = {
               id: "developers/run-wordle"
             },
           ]
+        },
+        {
+          type: "category",
+          label: "CosmWasm",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "CosmWasm Overview",
+              id: "developers/cosmwasm"
+            },
+            {
+              type: "doc",
+              label: "CosmWasm Dependencies",
+              id: "developers/cosmwasm-dependency"
+            },
+            {
+              type: "doc",
+              label: "Setup Network Environment",
+              id: "developers/cosmwasm-environment"
+            },
+            {
+              type: "doc",
+              label: "Contract Deployment",
+              id: "developers/cosmwasm-contract-deployment"
+            },
+            {
+              type: "doc",
+              label: "Contract Interaction",
+              id: "developers/cosmwasm-contract-interaction"
+            }
+          ]
         }
-        
       ]
     }
-
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },
