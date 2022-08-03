@@ -6,6 +6,12 @@ This tutorial guide will go over building a cosmos-sdk app
 for Optimint, the Optimistic Rollup implementation of
 Tendermint, for the popular game [Wordle](https://www.nytimes.com/games/wordle/index.html).
 
+> DISCLAIMER: While Optimint allows you to build
+  sovereign rollups on Celestia, they currently do 
+  not support fraud proofs yet and are therefore running in 
+  "pessimistic" mode. Furthermore, Optimint currently only supports
+  a single sequencer.
+
 This tutorial will go over how to setup Optimint
 in the Ignite CLI and use it to build the game.
 The tutorial will go over the simple design,
