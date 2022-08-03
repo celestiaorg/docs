@@ -44,7 +44,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/celestia-logo.png',
+      image: 'img/celestia-doc.png',
       metadata: [{name: 'twitter:card', content: 'summary'}],
       algolia: {
         appId: '2KRXIFZ5YL',
