@@ -14,10 +14,12 @@ to extend this codebase.
 
 > NOTE: This tutorial will explore developing with Optimint,
   which is still in Alpha stage. If you run into bugs, please
-  write a Github Issue ticket or let us know in our Discord. While
-  Optimint allows you to build sovereign rollups on Celestia,
-  it currently does not support fraud proofs yet and is
-  therefore running in "pessimistic" mode. Furthermore,
+  write a Github Issue ticket or let us know in our Discord.
+  Furthermore, while Optimint allows you to build sovereign
+  rollups on Celestia, it currently does not support fraud
+  proofs yet and is therefore running in "pessimistic" mode,
+  where nodes would need to re-execute the transactions to check
+  the validity of the chain (i.e. a full node). Furthermore,
   Optimint currently only supports a single sequencer.
 
 ## Pre-requisites
