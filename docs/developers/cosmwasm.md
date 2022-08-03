@@ -8,10 +8,9 @@ CosmWasm with Celestia's Data Availability Layer using Optimint.
 > NOTE: This tutorial will explore developing with Optimint,
   which is still in Alpha stage. If you run into bugs, please
   write a Github Issue ticket or let us know in our Discord.
-  
-> DISCLAIMER: While Optimint allows you to build
-  sovereign rollups on Celestia, they currently do
-  not support fraud proofs yet and are therefore running in
+  Furthermore, while Optimint allows you to build
+  sovereign rollups on Celestia, it currently does
+  not support fraud proofs yet and is therefore running in
   "pessimistic" mode. Furthermore, Optimint currently only supports
   a single sequencer.
 
