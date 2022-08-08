@@ -45,7 +45,13 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: 'img/celestia-doc.png',
-      metadata: [{name: 'twitter:card', content: 'summary'}],
+      metadata: [
+        {name: 'twitter:card', content: 'summary'}, 
+        {name: 'twitter:site', content: '@celestiaorg'},
+        {name: 'twitter:title', content: 'Celestia Docs'},
+        {name: 'twitter:description', content: 'The developer documentation site for getting started building on the Celestia Network.'},
+        {name: 'twitter:image', content: 'img/celestia-doc.png'},
+      ],
       algolia: {
         appId: '2KRXIFZ5YL',
         apiKey: '00d6c432aa0b7c20c92283ec9bec23c4',
