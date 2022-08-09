@@ -1,30 +1,12 @@
 # Modular Fellows
 
-The Modular Fellows program aims to support developers who are interested
-in building on Celestia. Participants will take
-part in the 3 month program outlined below and receive a monthly stipend
-to help fund their work.
+Modular Fellows aims to empower builders leveraging modularity to build the future of scalable and sovereign blockchain networks.
 
-Apply [here](https://celestia-intake.typeform.com/to/RB5FgXt2).
+During the 3 month program, participants will be provided with support, resources, and mentorship to build out ideas and found projects. They will also be given opportunities to receive grants to continue their work after the program is completed.
+
+Applications are now open [here](https://celestia-intake.typeform.com/to/RB5FgXt2).
 
 ## Overview
-
-Below is an overview of the program for current and future Modular Fellows
-participants.
-
-### Communication channels
-
-As part of the Modular fellows program, we will have the following communication
-channels open.
-
-- **Telegram group** - This group will be for open discussion during the current
-  cohort.
-- **Slack channel** - Upon acceptance to the program you will be invited to join
-  the Modular Fellows Slack channel
-- **Twitter** - We will share updates about the program and participants via our
-  Twitter account.
-- **Discord** - Members of the Modular Fellows program will also be given a
-  special role in Discord.
 
 ### Milestones
 
@@ -51,24 +33,43 @@ An optional meeting to ask questions, get help and receive feedback.
 - Wednesday at 8:00am Central US time
 - Wednesday at 6:00pm Central US time
 
-#### Weekly lessons & tutorials
+#### Lessons & tutorials
 
-*A presentation from a Celestia team member explaining a key concept or giving
-a tutorial on how to use a specific tool.*
+Presentations from Celestia team members and other experts explaining key concepts or giving tutorials on how to use specific tools.
 
-#### Weekly demos from participants
+### Modular Mentors
 
-*Presentations from the fellows on things they are working on and would like
-feedback on.*
+Modular Fellows will get to work closely with the Celestia team and a group of knowledgeable and experienced members of the blockchain community as a whole for mentorship and advice.
+
+- [Wei Dai](https://twitter.com/_weidai) - Research partner at Bain Capital Crypto
+- [Can Gurel](https://twitter.com/CannnGurel) - Researcher at Delphi Digital
+- [Eric Wall](https://twitter.com/ercwl) - Blockchain Researcher
+- [Eli Krenzke](https://twitter.com/eKRENZKE) - Research Team Partner at Polychain
+- [Zaki Manian](https://twitter.com/zmanian) - Co-Founder of Sommelier, Co-Founder of iqlusion, helped build the Cosmos ecosystem, including launching the first public Cosmos testnet
+- [Marko Baricevic](https://twitter.com/mark0baricevic) - Cosmos-sdk lead and founder of binary holdings works.
+- [Morgan Beller](https://twitter.com/beller) - Co-creator of Diem
+- [John Adler](https://twitter.com/jadler0) - CRO, Celestia Labs
+- [Mustafa Al-Bassam](https://twitter.com/musalbas) - CEO, Celestia Labs
+- [Ismail Khoffi](https://twitter.com/KreuzUQuer) - CTO, Celestia Labs
+- [Evan Forbes](https://twitter.com/evansforbes) - Software Engineer, Celestia Labs
 
 ### Payments
 
-Fellows will receive $5,000.00 per month paid on completion of each milestone.
+Fellows will receive $3,000 per month paid on completion of each milestone.
 
-### Contacts
+### Communication channels
 
-For any questions, reach out to Nader Dabit via email nader@celestia.org or
-Telegram @naderdabit.
+As part of the Modular fellows program, we will have the following communication
+channels open.
+
+- **Telegram group** - This group will be for open discussion during the current
+  cohort.
+- **Slack channel** - Upon acceptance to the program you will be invited to join
+  the Modular Fellows Slack channel
+- **Twitter** - We will share updates about the program and participants via our
+  Twitter account.
+- **Discord** - Members of the Modular Fellows program will also be given a
+  special role in Discord.
 
 ### Continuation
 
@@ -78,6 +79,11 @@ Telegram @naderdabit.
 - **Alumni Network** - Upon completion, you will be inducted into the Modular Fellows
   Alumni Network where you will have communication channels open with other past
   and future alumni of the program.
+
+### Contacts
+
+For any questions, reach out to Nader Dabit via email nader@celestia.org or
+Telegram @naderdabit.
 
 ### How to apply
 
