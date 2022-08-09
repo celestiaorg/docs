@@ -46,11 +46,11 @@ const config = {
     ({
       image: 'img/celestia-doc.png',
       metadata: [
-        {name: 'twitter:card', content: 'summary'}, 
+        {name: 'twitter:card', content: 'summary_large_image'}, 
         {name: 'twitter:site', content: '@celestiaorg'},
         {name: 'twitter:title', content: 'Celestia Docs'},
         {name: 'twitter:description', content: 'The developer documentation site for getting started building on the Celestia Network.'},
-        {name: 'twitter:image', content: 'https://docs.celestia.org/img/celestia-doc.png'},
+        {name: 'twitter:image', content: 'https://raw.githubusercontent.com/celestiaorg/docs/main/static/img/celestia-doc.png'},
       ],
       algolia: {
         appId: '2KRXIFZ5YL',
