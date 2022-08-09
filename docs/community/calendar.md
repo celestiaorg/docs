@@ -1,3 +1,7 @@
+---
+sidebar_label : Community Calendar
+---
+
 # Community Calendar
 
 The Celestia Community Calendar is available for finding all the different
