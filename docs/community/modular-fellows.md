@@ -1,7 +1,7 @@
 # Modular Fellows
 
-Modular Fellows aims to empower builders leveraging modularity to build
-the future of scalable and sovereign blockchain networks.
+Modular Fellows aims to empower a community of builders embracingmodularity
+to build the future of scalable and sovereign blockchain networks
 
 During the 3 month program, participants will be provided with support,
 resources, and mentorship to build out ideas and found projects. They
