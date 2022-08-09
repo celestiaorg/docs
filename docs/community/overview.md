@@ -1,3 +1,7 @@
+---
+sidebar_label : Overview
+---
+
 # Community Overview
 
 This section will highlight all the different resources and activities
