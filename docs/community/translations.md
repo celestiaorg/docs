@@ -1,3 +1,7 @@
+---
+sidebar_label : Docs Translations
+---
+
 # Community Translation Support
 
 If you are a passionate Celestia community member who would like to contribute
