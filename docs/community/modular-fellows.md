@@ -1,8 +1,12 @@
 # Modular Fellows
 
-Modular Fellows aims to empower builders leveraging modularity to build the future of scalable and sovereign blockchain networks.
+Modular Fellows aims to empower builders leveraging modularity to build
+the future of scalable and sovereign blockchain networks.
 
-During the 3 month program, participants will be provided with support, resources, and mentorship to build out ideas and found projects. They will also be given opportunities to receive grants to continue their work after the program is completed.
+During the 3 month program, participants will be provided with support,
+resources, and mentorship to build out ideas and found projects. They
+will also be given opportunities to receive grants to continue their work
+after the program is completed.
 
 Applications are now open [here](https://celestia-intake.typeform.com/to/RB5FgXt2).
 
@@ -35,18 +39,24 @@ An optional meeting to ask questions, get help and receive feedback.
 
 #### Lessons & tutorials
 
-Presentations from Celestia team members and other experts explaining key concepts or giving tutorials on how to use specific tools.
+Presentations from Celestia team members and other experts explaining
+key concepts or giving tutorials on how to use specific tools.
 
 ### Modular Mentors
 
-Modular Fellows will get to work closely with the Celestia team and a group of knowledgeable and experienced members of the blockchain community as a whole for mentorship and advice.
+Modular Fellows will get to work closely with the Celestia team and a
+group of knowledgeable and experienced members of the blockchain community
+as a whole for mentorship and advice.
 
 - [Wei Dai](https://twitter.com/_weidai) - Research partner at Bain Capital Crypto
 - [Can Gurel](https://twitter.com/CannnGurel) - Researcher at Delphi Digital
 - [Eric Wall](https://twitter.com/ercwl) - Blockchain Researcher
 - [Eli Krenzke](https://twitter.com/eKRENZKE) - Research Team Partner at Polychain
-- [Zaki Manian](https://twitter.com/zmanian) - Co-Founder of Sommelier, Co-Founder of iqlusion, helped build the Cosmos ecosystem, including launching the first public Cosmos testnet
-- [Marko Baricevic](https://twitter.com/mark0baricevic) - Cosmos-sdk lead and founder of binary holdings works.
+- [Zaki Manian](https://twitter.com/zmanian) - Co-Founder of Sommelier, Co-Founder
+- of iqlusion, helped build the Cosmos ecosystem, including launching the first
+- public Cosmos testnet
+- [Marko Baricevic](https://twitter.com/mark0baricevic) - Cosmos-sdk lead and
+- founder of binary holdings works.
 - [Morgan Beller](https://twitter.com/beller) - Co-creator of Diem
 - [John Adler](https://twitter.com/jadler0) - CRO, Celestia Labs
 - [Mustafa Al-Bassam](https://twitter.com/musalbas) - CEO, Celestia Labs
