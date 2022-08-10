@@ -267,6 +267,11 @@ const sidebars = {
               type: "doc",
               label: "Contract Interaction",
               id: "developers/cosmwasm-contract-interaction"
+            },
+            {
+              type: "doc",
+              label: "CosmWasm Resources",
+              id: "developers/cosmwasm-resources"
             }
           ]
         }
