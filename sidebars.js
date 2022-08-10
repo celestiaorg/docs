@@ -179,6 +179,26 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Ethermint - EVM on Celestia",
+      link: {
+        type: 'generated-index'
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Connecting to Ethermint",
+          id: "developers/connecting-to-ethermint"
+        },
+        {
+          type: "doc",
+          label: "Deploying Smart Contracts to Ethermint",
+          id: "developers/ethermint-smart-contract-tutorial"
+        },
+      ]
+    },
+    {
+      type: "category",
       label: "Optimint",
       link: {
         type: 'generated-index',
