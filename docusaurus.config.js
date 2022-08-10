@@ -50,7 +50,6 @@ const config = {
         {name: 'twitter:site', content: '@celestiaorg'},
         {name: 'twitter:title', content: 'Celestia Docs'},
         {name: 'twitter:description', content: 'The developer documentation site for getting started building on the Celestia Network.'},
-        {name: 'twitter:image', content: 'https://raw.githubusercontent.com/celestiaorg/docs/main/static/img/celestia-doc.png'},
       ],
       algolia: {
         appId: '2KRXIFZ5YL',
