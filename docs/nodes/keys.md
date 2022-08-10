@@ -1,4 +1,4 @@
-# Using the Cel-Key Utility
+# Using the cel-key utility
 
 Inside the celestia-node repository is a utility called `cel-key` that uses
 the key utility provided by Cosmos-SDK under the hood. The utility can be
@@ -32,7 +32,7 @@ For the purpose of this guide, we will use the `make cel-key` command.
 
 ## Steps for generating **bridge** node keys
 
-To generate a key for a celestia bridge node, do the following:
+To generate a key for a Celestia bridge node, do the following:
 
 ```sh
 ./cel-key add <key_name> --keyring-backend test --node.type bridge
@@ -42,17 +42,17 @@ This will load the key <key_name> into the directory of the bridge node.
 
 ## Steps for generating **full** node keys
 
-To generate a key for a celestia full node, do the following:
+To generate a key for a Celestia full node, do the following:
 
 ```sh
-./cel-key add <key_name> --keyring-backend test --node.type full 
+./cel-key add <key_name> --keyring-backend test --node.type full
 ```
 
 This will load the key <key_name> into the directory of the full node.
 
 ## Steps for generating **light** node keys
 
-To generate a key for a celestia light node, do the following:
+To generate a key for a Celestia light node, do the following:
 
 ```sh
 ./cel-key add <key_name> --keyring-backend test --node.type light
@@ -62,7 +62,8 @@ This will load the key <key_name> into the directory of the light node.
 
 ## Steps for exporting **light** node keys
 
-You can export a private key from the local keyring in ASCII-armored encrypted format.
+You can export a private key from the local keyring in encrypted and
+ ASCII-armored format.
 
 ```sh
 ./cel-key export <key-name> --keyring-backend test --node.type light

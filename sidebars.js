@@ -55,7 +55,7 @@ const sidebars = {
             type: "doc", 
             label: "Light Node", 
             id: "nodes/light-node" 
-          },
+          }
         ]
       }
       ]
@@ -140,6 +140,11 @@ const sidebars = {
           label: "Create A Celestia Testnet", 
           id: "developers/instantiate-testnet" 
         },
+        {
+          type: "doc",
+          label: "Helpful CLI commands",
+          id: "developers/celestia-app-commands"
+        }
       ]
     },
     {
@@ -157,13 +162,18 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Node API",
+          id: "developers/node-api"
+        },
+        {
+          type: "doc",
           label: "Node Tutorial",
           id: "developers/node-tutorial"
         },
         {
           type: "doc",
-          label: "Node API",
-          id: "developers/node-api"
+          label: "Node Video Tutorial",
+          id: "developers/light-node-video"
         }
       ]
     },
@@ -196,6 +206,106 @@ const sidebars = {
           id: "developers/smart-contract-tutorial-hardhat"
         }
       ]
+    },
+    {
+      type: "category",
+      label: "Optimint",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "category",
+          label: "Wordle",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Wordle Overview",
+              id: "developers/wordle"
+            },
+            {
+              type: "doc",
+              label: "Scaffolding The Chain",
+              id: "developers/scaffold-wordle"
+            },
+            {
+              type: "doc",
+              label: "Installing Optimint",
+              id: "developers/install-optimint"
+            },
+            {
+              type: "doc",
+              label: "Module",
+              id: "developers/wordle-module"
+            },
+            {
+              type: "doc",
+              label: "Messages",
+              id: "developers/wordle-messages"
+            },
+            {
+              type: "doc",
+              label: "Types",
+              id: "developers/wordle-types"
+            },
+            {
+              type: "doc",
+              label: "Keeper",
+              id: "developers/wordle-keeper"
+            },
+            {
+              type: "doc",
+              label: "Run The Wordle Chain",
+              id: "developers/run-wordle"
+            },
+          ]
+        },
+        {
+          type: "category",
+          label: "CosmWasm",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "CosmWasm Overview",
+              id: "developers/cosmwasm"
+            },
+            {
+              type: "doc",
+              label: "CosmWasm Dependencies",
+              id: "developers/cosmwasm-dependency"
+            },
+            {
+              type: "doc",
+              label: "Setup Network Environment",
+              id: "developers/cosmwasm-environment"
+            },
+            {
+              type: "doc",
+              label: "Contract Deployment",
+              id: "developers/cosmwasm-contract-deployment"
+            },
+            {
+              type: "doc",
+              label: "Contract Interaction",
+              id: "developers/cosmwasm-contract-interaction"
+            },
+            {
+              type: "doc",
+              label: "CosmWasm Resources",
+              id: "developers/cosmwasm-resources"
+            }
+          ]
+        }
+      ]
     }
   ],
   community: [
@@ -203,6 +313,7 @@ const sidebars = {
     { type: "doc", label: "Code of Conduct", id: "community/coc" },
     { type: "doc", label: "Community Calendar", id: "community/calendar" },
     { type: "doc", label: "Docs Translations", id: "community/translations" },
+    { type: "doc", label: "Modular Fellows", id: "community/modular-fellows"}
   ],
 };
 

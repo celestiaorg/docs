@@ -1,51 +1,119 @@
-# Setting Up A Celestia Light Node
+# Setting up a Celestia Light Node
 
-This tutorial will guide you through setting up a Celestia Light Node,
-which can allow you to do data-sampling on the Data Availability (DA)
-network.
+This tutorial will guide you through setting up a Celestia light node, which
+will allow you to perform data availability sampling on the data
+availability (DA) network.
 
-## Overview of Light Nodes
+> To view a video tutorial for setting up a Celestia light node, click [here](../developers/light-node-video.md)
 
-Light nodes (CLN) ensure data availability. This is the most common
+## Overview of light nodes
+
+Light nodes ensure data availability. This is the most common
 way to interact with the Celestia network.
-
-> Note: In future implementations, Light Nodes can also publish
-  transactions ([see ADR](https://github.com/celestiaorg/celestia-node/blob/main/docs/adr/adr-004-state-interaction.md)),
-  though in Mamaki, transactions are left to Bridge Nodes.
 
 ![light-node](/img/nodes/LightNodes.png)
 
-Light Nodes have the following properties:
+Light nodes have the following behavior:
 
-1. Listen for ExtendedHeaders, i.e. wrapped “raw” headers, that notify
-   Celestia Nodes of new block headers and relevant DA metadata.
-2. Perform data availability sampling (DAS) on the received headers
+1. They listen for ExtendedHeaders, i.e. wrapped “raw” headers, that notify
+   Celestia nodes of new block headers and relevant DA metadata.
+2. They perform data availability sampling (DAS) on the received headers
 
-## Hardware Requirements
+## Hardware requirements
 
-The following hardware minimum requirements are recommended for running
-the light node:
+The following minimum hardware requirements are recommended for running
+a light node:
 
 * Memory: 2 GB RAM
 * CPU: Single Core
 * Disk: 5 GB SSD Storage
 * Bandwidth: 56 Kbps for Download/56 Kbps for Upload
 
-## Setting Up Your Light Node
+## Setting up your light node
 
-The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
+This tutorial was performed on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
-### Setup The Dependencies
+### Setup the dependencies
 
-Follow the tutorial on setting up your dependencies [here](../developers/environment.md).
+First, make sure to update and upgrade the OS:
 
-## Install Celestia Node
+```sh
+# If you are using the APT package manager
+sudo apt update && sudo apt upgrade -y
 
-> Note: Make sure that you have at least 5+ Gb of free space for Celestia Light Node
+# If you are using the YUM package manager
+sudo yum update
+```
 
-Follow the tutorial on installing Celestia Node [here](../developers/celestia-node.md)
+These are essential packages that are necessary to execute many tasks like downloading
+files, compiling, and monitoring the node:
 
-### Initialize the Light Node
+```sh
+# If you are using the APT package manager
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential \
+git make ncdu -y
+
+# If you are using the YUM package manager
+sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential \
+git make ncdu -y
+```
+
+### Install Golang
+
+Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we must
+install Golang to build and run them.
+
+```sh
+ver="1.18.2"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+```
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+```sh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+```sh
+go version go1.18.2 linux/amd64
+```
+
+### Install Celestia node
+
+Install the celestia-node binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+```
+
+Verify that the binary is working and check the version with the
+celestia version command:
+
+```sh
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+## Initialize the light node
 
 Run the following command:
 
@@ -53,9 +121,20 @@ Run the following command:
 celestia light init
 ```
 
-### Start the Light Node
+You should see output like:
 
-Start the Light Node with a connection to a validator node's gRPC endpoint (which
+<!-- markdownlint-disable MD013 -->
+```output
+$ celestia light init
+2022-07-18T02:22:09.449Z INFO node node/init.go:26 Initializing Light Node Store over '/home/ec2-user/.celestia-light'
+2022-07-18T02:22:09.449Z INFO node node/init.go:62 Saving config {"path": "/home/ec2-user/.celestia-light/config.toml"}
+2022-07-18T02:22:09.449Z INFO node node/init.go:67 Node Store initialized
+```
+<!-- markdownlint-enable MD013 -->
+
+### Start the light node
+
+Start the light node with a connection to a validator node's gRPC endpoint (which
 is usually exposed on port 9090):
 
 > NOTE: In order for access to the ability to get/submit state-related information,
@@ -69,12 +148,26 @@ celestia light start --core.grpc http://<ip>:9090
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
-You can create your key for your node by following the `cel-key` instructions [here](./keys.md)
+For example, your command might look something like this:
+
+```sh
+celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+```
+
+### Keys and wallets
+
+You can create your key for your node by running the following command:
+
+```sh
+make cel-key
+```
 
 Once you start the Light Node, a wallet key will be generated for you.
 You will need to fund that address with Mamaki Testnet tokens to pay for
 PayForData transactions.
-You can find the address by running the following command:
+
+You can find the address by running the following command in the
+`celestia-node` directory:
 
 ```sh
 ./cel-key list --node.type light --keyring-backend test
@@ -82,7 +175,7 @@ You can find the address by running the following command:
 
 Mamaki Testnet tokens can be requested [here](./mamaki-testnet.md#mamaki-testnet-faucet).
 
-### Optional: Run the Light Node with a Custom Key
+### Optional: run the light node with a custom key
 
 In order to run a light node using a custom key:
 
@@ -94,12 +187,12 @@ In order to run a light node using a custom key:
 celestia light start --core.grpc http://<ip>:9090 --keyring.accname <name_of_custom_key>
 ```
 
-### Optional: Start Light Node with SystemD
+### Optional: start light node with SystemD
 
 Follow the tutorial on setting up the light node as a background
 process with SystemD [here](./systemd.md#celestia-light-node).
 
-## Data Availability Sampling (DAS)
+## Data availability sampling (DAS)
 
-With your Light Node running, you can check out this tutorial on
+With your light node running, you can check out this tutorial on
 submitting `PayForData` transactions [here](../developers/node-tutorial.md).

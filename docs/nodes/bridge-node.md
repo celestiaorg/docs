@@ -1,11 +1,14 @@
-# Setting Up A Celestia Bridge Node
+# Setting up a Celestia Bridge Node
 
 This tutorial will go over the steps to setting up your Celestia Bridge node.
 
 Bridge nodes connect the data availability layer and the consensus layer
 while also having the option of becoming a validator.
 
-## Overview of Bridge Nodes
+Validators do not have to run bridge nodes, but are encouraged to in order
+to relay blocks to the data availability network.
+
+## Overview of bridge nodes
 
 A Celestia bridge node has the following properties:
 
@@ -38,7 +41,7 @@ From an implementation perspective, Bridge Nodes run two separate processes:
       serves data availability sampling requests. The team sometimes refer to
       this as the “halo” network.
 
-## Hardware Requirements
+## Hardware requirements
 
 The following hardware minimum requirements are recommended for running the
 bridge node:
@@ -48,33 +51,33 @@ bridge node:
 * Disk: 250 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
-## Setting Up Your Bridge Node
+## Setting up your bridge node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
-### Setup The Dependencies
+### Setup the dependencies
 
 Follow the tutorial here installing the dependencies [here](../developers/environment.md).
 
-## Deploy the Celestia Bridge Node
+## Deploy the Celestia bridge node
 
-### Install Celestia Node
+### Install Celestia node
 
 Install the Celestia Node binary, which will be used to run the Bridge Node.
 
 Follow the tutorial for installing Celestia Node [here](../developers/celestia-node.md).
 
-### Initialize the Bridge Node
+### Initialize the bridge node
 
 Run the following:
 
 ```sh
-celestia bridge init --core.remote tcp://<ip-address>:26657 
+celestia bridge init --core.remote tcp://<ip-address>:26657
 ```
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
-### Run the Bridge Node
+### Run the bridge node
 
 Start the Bridge Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
@@ -103,7 +106,7 @@ You can find the address by running the following command:
 
 Mamaki Testnet tokens can be requested [here](./mamaki-testnet.md#mamaki-testnet-faucet).
 
-#### Optional: Run the Bridge Node with a Custom Key
+#### Optional: run the bridge node with a custom key
 
 In order to run a bridge node using a custom key:
 
@@ -115,7 +118,7 @@ In order to run a bridge node using a custom key:
 celestia bridge start --core.grpc http://<ip>:9090 --keyring.accname <name_of_custom_key>
 ```
 
-### Optional: Start the Bridge Node with SystemD
+### Optional: start the bridge node with SystemD
 
 Follow the tutorial on setting up the bridge node as a background process with
 SystemD [here](./systemd.md#celestia-bridge-node).

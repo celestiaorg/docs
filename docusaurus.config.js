@@ -44,11 +44,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/celestia-logo.png',
-      metadata: [{name: 'twitter:card', content: 'summary'}],
+      image: 'img/celestia-doc.png',
+      metadata: [
+        {name: 'twitter:card', content: 'summary_large_image'}, 
+        {name: 'twitter:site', content: '@celestiaorg'},
+        {name: 'twitter:title', content: 'Celestia Docs'},
+        {name: 'twitter:description', content: 'The developer documentation site for getting started building on the Celestia Network.'},
+      ],
       algolia: {
         appId: '2KRXIFZ5YL',
-        apiKey: '65a2d036dd3c1b7848fbb50598ccebab',
+        apiKey: '00d6c432aa0b7c20c92283ec9bec23c4',
         indexName: 'celestia',
         contextualSearch: true,
         debug: false
