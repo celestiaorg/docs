@@ -1,105 +1,132 @@
 # Modular Fellows
 
-Modular Fellows aims to empower a community of builders embracingmodularity
-to build the future of scalable and sovereign blockchain networks
+![Modular Fellows](/img/modular_fellows.jpg)
 
-During the 3 month program, participants will be provided with support,
-resources, and mentorship to build out ideas and found projects. They
-will also be given opportunities to receive grants to continue their work
-after the program is completed.
+Modular Fellows is a program designed to empower modular builders with the
+right resources to build the future of scalable and sovereign blockchain networks.
+
+Over the course of the three month program, Modular Fellows will receive engineering
+support, mentorship, and a monthly stipend of $3,000 to build a project of their
+choice. After the program, continuing support will be available for Fellows in the
+form of fundraising help and grants.
 
 Applications are now open [here](https://celestia-intake.typeform.com/to/RB5FgXt2).
+Read on for more details.
 
 ## Overview
 
 ### Milestones
 
+Each month, the Fellows will complete a project milestone, culminating in a
+demo-day presentation.
+
 - **Month 1** - Learning and Exploring (start building whenever you’re ready)
-  - In this month, you will immerse yourself in modular blockchains to come up
-    with ideas of protocols, tools or applications to build during the rest
-    of the program.
+
+  In this month, you will immerse yourself in modular blockchains to come up
+with ideas of protocols, tools or applications to build during the rest
+of the program.
+
   - *Milestone - present an idea that you want to pursue*
+
 - **Month 2** - Designing & Implementing a Basic Prototype
-  - In this month, you will design and implement a basic prototype of the
-    idea that you settled on during the first month.
+
+  In this month, you will design and implement a basic prototype of the
+idea that you settled on during the first month.
+
   - *Milestone - present the prototype for feedback*
+
 - **Month 3** - Build out the Prototype into a Functional Product
-  - In this month, you will expand on your prototype to build a functional
-  product which you will demo and explain with a write up.
+
+  In this month, you will expand on your prototype to build a functional
+product which you will demo and explain with a write up.
+
   - *Milestone - demo, write up of product*
 
-### Events
+## Project ideas
 
-#### Weekly office hours - Alternating to accommodate time zones
+Fellows do not need to have a specific project idea at the start of the program,
+but you will need to settle on one by the end of the first month. There are no
+right or wrong ideas, but here are a few to get you thinking:
 
-An optional meeting to ask questions, get help and receive feedback.
+- New execution layers, e.g. a Move rollup
+- Rollup infrastructure services, e.g. one click deploy rollup sequencers
+- Modular interoperability solutions, e.g. settlement layers or bridges
+- Modular versions of the following
+  - Popular DeFi apps e.g. AMMs & lending protocols
+  - NFT platforms
+  - Naming services like [ENS](https://etherscan.io/token/0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72#code)
+  - Social graphs like [Lens Protocol](https://lens.xyz/)
 
-- Wednesday at 8:00am Central US time
-- Wednesday at 6:00pm Central US time
+## Support
 
-#### Lessons & tutorials
+1. **Weekly office hours**
 
-Presentations from Celestia team members and other experts explaining
-key concepts or giving tutorials on how to use specific tools.
+    *An optional meeting to ask questions, get help and receive feedback.*
+
+    Wednesdays alternating at 8:00am or 6:00pm Central US time.
+
+2. **Lessons & tutorials**
+
+    *Presentations from Celestia Labs team members & mentors explaining key
+    concepts or giving tutorials on specific tools.*
+
+3. **Demos from participants**
+  
+    *Presentations from fellows about what they are working on for feedback.*
+
+4. **Communication**
+
+    *Fellows will share a Telegram group with other Modular Fellows and Modular Mentors.*
+
+5. **Monthly stipend**
+
+    *Fellows will receive $3,000.00 per month paid on completion of each milestone.*
+
+## Continuation
+
+Though the program lasts only 3 months, we will provide you with continuing
+support in the following ways.
+
+- **Grants & Funding -** We will assist you in fundraising or in applying for a
+  grant so that you can continue building your project.
+- **Alumni Network** - You will be inducted into the Modular Fellows alumni network
+  where where you can keep in touch with other past and future Modular Fellows.
 
 ### Modular Mentors
 
-Modular Fellows will get to work closely with the Celestia team and a
-group of knowledgeable and experienced members of the blockchain community
-as a whole for mentorship and advice.
+Modular Fellows will work closely with the Celestia Labs team and a group of
+hand-picked Modular Mentors who will help solve engineering problems and provide
+feedback on milestones.
+
+These are the Mentors for the first cohort:
 
 - [Wei Dai](https://twitter.com/_weidai) - Research partner at Bain Capital Crypto
 - [Can Gurel](https://twitter.com/CannnGurel) - Researcher at Delphi Digital
 - [Eric Wall](https://twitter.com/ercwl) - Blockchain Researcher
 - [Eli Krenzke](https://twitter.com/eKRENZKE) - Research Team Partner at Polychain
 - [Zaki Manian](https://twitter.com/zmanian) - Co-Founder of Sommelier, Co-Founder
-- of iqlusion, helped build the Cosmos ecosystem, including launching the first
-- public Cosmos testnet
+  of iqlusion, helped build the Cosmos ecosystem, including launching the first
+  public Cosmos testnet
 - [Marko Baricevic](https://twitter.com/mark0baricevic) - Cosmos-sdk lead and
-- founder of binary holdings works.
-- [Morgan Beller](https://twitter.com/beller) - Co-creator of Diem
+  founder of binary holdings works.
+- [Morgan Beller](https://twitter.com/beller) - General Partner at NFX, a seed-stage
+  venture capital fund, prev. Head of Strategy for Facebook's Novi
 - [John Adler](https://twitter.com/jadler0) - CRO, Celestia Labs
 - [Mustafa Al-Bassam](https://twitter.com/musalbas) - CEO, Celestia Labs
 - [Ismail Khoffi](https://twitter.com/KreuzUQuer) - CTO, Celestia Labs
 - [Evan Forbes](https://twitter.com/evansforbes) - Software Engineer, Celestia Labs
 
-### Payments
+## How to apply
 
-Fellows will receive $3,000 per month paid on completion of each milestone.
+If you would like to join the program, complete
+**[this](https://celestia-intake.typeform.com/to/RB5FgXt2)** application form.
 
-### Communication channels
+The program is targeted for creative engineers who possess a strong understanding
+of modular blockchains and have a track record of building. Please share links to
+any relevant engineering work on github and written content that demonstrates your
+understanding of modular chains.
 
-As part of the Modular fellows program, we will have the following communication
-channels open.
-
-- **Telegram group** - This group will be for open discussion during the current
-  cohort.
-- **Slack channel** - Upon acceptance to the program you will be invited to join
-  the Modular Fellows Slack channel
-- **Twitter** - We will share updates about the program and participants via our
-  Twitter account.
-- **Discord** - Members of the Modular Fellows program will also be given a
-  special role in Discord.
-
-### Continuation
-
-- **Grants & Funding** - If you’d like to continue to build your project after the
-  program is complete, you can apply for a grant or we will assist you in securing
-  funding from VCs.
-- **Alumni Network** - Upon completion, you will be inducted into the Modular Fellows
-  Alumni Network where you will have communication channels open with other past
-  and future alumni of the program.
-
-### Contacts
+## Contact
 
 For any questions, reach out to Nader Dabit via email nader@celestia.org or
 Telegram @naderdabit.
-
-### How to apply
-
-If you would like to join the program, please apply by completing the questionnaire
-[here](https://celestia-intake.typeform.com/to/RB5FgXt2).
-
-You do not need to know what you want to build in advance though interesting ideas
-are a plus. Demonstrated engineering ability on github or demonstrated knowledge
-of modular blockchains through written content are also a plus.
