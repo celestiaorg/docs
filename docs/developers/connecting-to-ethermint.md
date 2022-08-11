@@ -21,7 +21,7 @@ __RPC URL__: `http://35.208.160.145:8545`
 
 __Chain ID__: 69420
 
-__Currency__: ETC
+__Currency__: CESE
 
 __Explorer__: leave blank
 
