@@ -10,7 +10,7 @@
     - [[Services]](#services)
       - [TrustedHash and TrustedPeer](#trustedhash-and-trustedpeer)
 
-## Prerequisites
+## Pre-requisites
 
 Please, make sure that you have installed and initialized celestia node
 
