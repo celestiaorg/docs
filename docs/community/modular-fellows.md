@@ -1,3 +1,7 @@
+---
+Modular Fellows
+---
+
 # Modular Fellows
 
 ![Modular Fellows](/img/modular_fellows.jpg)
