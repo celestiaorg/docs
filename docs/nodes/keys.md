@@ -1,3 +1,7 @@
+---
+sidebar_label : Keys
+---
+
 # Using the cel-key utility
 
 Inside the celestia-node repository is a utility called `cel-key` that uses
