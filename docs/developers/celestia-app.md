@@ -1,3 +1,7 @@
+---
+sidebar_label : Installing Celestia Node
+---
+
 # Celestia App
 <!-- markdownlint-disable MD013 -->
 
