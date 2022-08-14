@@ -1,3 +1,7 @@
+---
+sidebar_label : Messages
+---
+
 # Messages
 
 Messages allow us to process and submit information to our specific module.
