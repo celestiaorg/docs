@@ -1,3 +1,7 @@
+---
+sidebar_label : Contract Interaction
+---
+
 # Contract Interaction on CosmWasm with Celestia
 <!-- markdownlint-disable MD013 -->
 
