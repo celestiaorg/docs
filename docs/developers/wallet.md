@@ -1,3 +1,7 @@
+---
+sidebar_label : Creating A Wallet
+---
+
 # Wallet
 
 ## Create a Wallet
