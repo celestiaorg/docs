@@ -1,3 +1,7 @@
+---
+sidebar_label : CosmWasm Dependencies
+---
+
 # CosmWasm Dependency Installations
 
 ## Environment Setup
