@@ -1,3 +1,7 @@
+---
+sidebar_label : Node API
+---
+
 # Celestia Node API Docs
 <!-- markdownlint-disable MD013 -->
 
