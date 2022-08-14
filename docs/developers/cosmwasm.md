@@ -1,3 +1,7 @@
+---
+sidebar_label : CosmWasm
+---
+
 # CosmWasm on Optimint
 
 CosmWasm is a smart contracting platform built for the Cosmos
