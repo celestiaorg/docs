@@ -1,3 +1,7 @@
+---
+sidebar_label : Helpful CLI commands
+---
+
 # Helpful CLI commands
 
 View all options:
