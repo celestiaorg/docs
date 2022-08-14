@@ -1,3 +1,7 @@
+---
+sidebar_label : Contract Deployment
+---
+
 # Contract Deployment on CosmWasm with Optimint
 <!-- markdownlint-disable MD013 -->
 
