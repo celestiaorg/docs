@@ -1,3 +1,7 @@
+---
+sidebar_label : Overview
+---
+
 # Overview to running nodes on Celestia
 
 There are many ways you can participate in the Celestia network.
