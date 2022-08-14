@@ -1,3 +1,7 @@
+---
+sidebar_label : Setting Up Environment
+---
+
 # Development Environment
 
 This tutorial will go over setting up your development environment to run
