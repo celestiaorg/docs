@@ -1,5 +1,5 @@
 ---
-sidebar_label : CosmWasm
+sidebar_label : CosmWasm Overview
 ---
 
 # CosmWasm on Optimint
