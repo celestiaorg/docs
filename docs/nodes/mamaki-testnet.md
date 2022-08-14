@@ -1,3 +1,7 @@
+---
+sidebar_label : Mamaki Testnet
+---
+
 # Mamaki Testnet
 <!-- markdownlint-disable MD013 -->
 
