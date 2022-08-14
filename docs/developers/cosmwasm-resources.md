@@ -1,3 +1,7 @@
+---
+sidebar_label : CosmWasm Resources
+---
+
 # CosmWasm Resources
 
 For more resources on getting started building
