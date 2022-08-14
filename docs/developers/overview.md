@@ -1,3 +1,7 @@
+---
+sidebar_label : Overview
+---
+
 # Developers
 
 This section contains all things developer-related for building on top
