@@ -19,6 +19,10 @@
     "message": "Developers",
     "description": "The label of footer link with label=Developers linking to /developers/overview"
   },
+  "link.item.label.Community": {
+    "message": "Community",
+    "description": "The label of footer link with label=Community linking to /community/overview"
+  },
   "link.item.label.Discord": {
     "message": "Discord",
     "description": "The label of footer link with label=Discord linking to https://discord.com/invite/je7UVpDuDu"
@@ -42,9 +46,5 @@
   "copyright": {
     "message": "Copyright © 2022 Celestia Org Built with Docusaurus.",
     "description": "The footer copyright"
-  },
-  "link.item.label.Community": {
-    "message": "Community",
-    "description": "The label of footer link with label=Community linking to /community/overview"
   }
 }
