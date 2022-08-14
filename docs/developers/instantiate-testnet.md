@@ -1,3 +1,7 @@
+---
+sidebar_label : Create A Celestia Testnet
+---
+
 # Celestia App Network Instantiation Guide
 
 This guide is for helping instantiate a new testnetwork and following the
