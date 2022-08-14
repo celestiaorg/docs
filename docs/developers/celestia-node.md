@@ -1,3 +1,7 @@
+---
+sidebar_label : Installing Celestia Node
+---
+
 # Celestia Node
 
 This tutorial goes over building and installing celestia-node. This
