@@ -1,3 +1,7 @@
+---
+sidebar_label : Scaffolding The Chain
+---
+
 # Ignite and Scaffolding the Wordle Chain
 <!-- markdownlint-disable MD013 -->
 
