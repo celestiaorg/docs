@@ -1,3 +1,7 @@
+---
+sidebar_label : Wordle Overview
+---
+
 # Wordle App on Optimint
 
 ![mamaki-testnet](/img/wordle.jpg)
