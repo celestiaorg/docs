@@ -1,0 +1,46 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.nodes.category.Types of Nodes": {
+    "message": "Types of Nodes",
+    "description": "The label for category Types of Nodes in sidebar nodes"
+  },
+  "sidebar.nodes.category.Consensus": {
+    "message": "Consensus",
+    "description": "The label for category Consensus in sidebar nodes"
+  },
+  "sidebar.nodes.category.Data Availability": {
+    "message": "Data Availability",
+    "description": "The label for category Data Availability in sidebar nodes"
+  },
+  "sidebar.nodes.category.Participate": {
+    "message": "Participate",
+    "description": "The label for category Participate in sidebar nodes"
+  },
+  "sidebar.nodes.category.Resources": {
+    "message": "Resources",
+    "description": "The label for category Resources in sidebar nodes"
+  },
+  "sidebar.developers.category.Celestia App": {
+    "message": "Celestia App",
+    "description": "The label for category Celestia App in sidebar developers"
+  },
+  "sidebar.developers.category.Celestia Node": {
+    "message": "Celestia Node",
+    "description": "The label for category Celestia Node in sidebar developers"
+  },
+  "sidebar.developers.category.Optimint": {
+    "message": "Optimint",
+    "description": "The label for category Optimint in sidebar developers"
+  },
+  "sidebar.developers.category.Wordle": {
+    "message": "Wordle",
+    "description": "The label for category Wordle in sidebar developers"
+  },
+  "sidebar.developers.category.CosmWasm": {
+    "message": "CosmWasm",
+    "description": "The label for category CosmWasm in sidebar developers"
+  }
+}
