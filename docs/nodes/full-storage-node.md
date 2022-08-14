@@ -1,3 +1,7 @@
+---
+sidebar_label : Full Storage Node
+---
+
 # Setting up a Celestia Full Storage Node
 
 This tutorial will guide you through setting up a Celestia Full Storage
