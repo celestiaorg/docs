@@ -1,3 +1,7 @@
+---
+sidebar_label : Installing Optimint
+---
+
 # Setting Up Optimint
 
 Before we continue with building our Wordle App, we need to set up
