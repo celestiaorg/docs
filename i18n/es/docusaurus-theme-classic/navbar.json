@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "Celestia Docs",
+    "description": "The title in the navbar"
+  },
+  "item.label.Run A Node": {
+    "message": "Run A Node",
+    "description": "Navbar item with label Run A Node"
+  },
+  "item.label.Developers": {
+    "message": "Developers",
+    "description": "Navbar item with label Developers"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.Community": {
+    "message": "Community",
+    "description": "Navbar item with label Community"
+  }
+}
