@@ -1,3 +1,7 @@
+---
+sidebar_label : Module
+---
+
 # Creating the Wordle Module
 
 For the Wordle module, we can add dependencies offered by Cosmos-SDK.
