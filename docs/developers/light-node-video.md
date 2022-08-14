@@ -1,3 +1,7 @@
+---
+sidebar_label : Node Video Tutorial
+---
+
 # Node Video Tutorial
 <!-- markdownlint-disable MD033 -->
 
