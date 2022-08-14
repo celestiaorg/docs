@@ -1,3 +1,7 @@
+---
+sidebar_label : Config.toml Guide
+---
+
 # Config.toml breakdown
 
 - [Config.toml breakdown](#configtoml-breakdown)
