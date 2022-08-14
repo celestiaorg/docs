@@ -1,3 +1,7 @@
+---
+sidebar_label : Types
+---
+
 # Wordle Types
 
 For the next steps, we will be creating types to be used by
