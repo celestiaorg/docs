@@ -15,7 +15,7 @@ First, open the MetaMask settings and choose "Add Network"
 
 Next, enter the settings as follows:
 
-__Network name__: Troy on Celestia
+__Network name__: Troy
 
 __RPC URL__: `http://35.208.160.145:8545`
 
