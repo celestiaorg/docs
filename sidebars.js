@@ -179,7 +179,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Ethermint - EVM on Celestia",
+      label: "Troy - EVM on Celestia",
       link: {
         type: 'generated-index'
       },
@@ -187,13 +187,18 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Connecting to Ethermint",
-          id: "developers/connecting-to-ethermint"
+          id: "developers/troy-overview",
+          label: "Troy overview"
         },
         {
           type: "doc",
-          label: "Deploying Smart Contracts to Ethermint",
-          id: "developers/ethermint-smart-contract-tutorial"
+          label: "Connecting to Troy",
+          id: "developers/connecting-to-troy"
+        },
+        {
+          type: "doc",
+          label: "Deploying Smart Contracts to Troy",
+          id: "developers/troy-smart-contract-tutorial"
         },
       ]
     },

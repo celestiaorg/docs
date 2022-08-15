@@ -1,6 +1,6 @@
-# Deploying a Smart Contract to Ethermint on Celestia with Foundry
+# Deploying a Smart Contract to Troy with Foundry
 
-In this guide you'll learn how to deploy a Solidity smart contract to Ethermint
+In this guide you'll learn how to deploy a Solidity smart contract to Troy
 on Celestia with [Foundry](https://github.com/foundry-rs/foundry).
 
 ## About Foundry
@@ -22,17 +22,17 @@ We'll use all three to create, test, and deploy our Solidity project.
 
 ## Getting started
 
-To deploy to Ethermint you will need to request tokens from the test faucet.
+To deploy to Troy you will need to request tokens from the test faucet.
 
-### Ethermint on Celestia Faucet
+### Troy on Celestia Faucet
 
 > USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER DISTRIBUTION OF
 CELESTIA OR ANY OTHER TOKENS. MAINNET CELESTIA TOKENS DO NOT CURRENTLY EXIST
 AND THERE ARE NO PUBLIC SALES OR OTHER PUBLIC DISTRIBUTIONS OF ANY MAINNET
 CELESTIA TOKENS.
 
-You can request testnet tokens from the Celestia Ethermint Faucet on the
-`#celestia-ethermint-faucet` channel on Celestia's Discord server with the
+You can request testnet tokens from the Celestia Troy Faucet on the
+`#celestia-troy-faucet` channel on Celestia's Discord server with the
 following command:
 
 ```text
@@ -48,8 +48,8 @@ on your local development environment.
 Next, create a new project and change into the directory:
 
 ```sh
-forge init celestia-ethermint-app
-cd celestia-ethermint-app
+forge init celestia-troy-app
+cd celestia-troy-app
 ```
 
 Foundry has created an example smart contract located at `src/Contract.sol`.
@@ -194,9 +194,9 @@ We can then perform read operations with `cast call`:
 cast call $CONTRACT_ADDRESS "getCount()(int)"
 ```
 
-### Deploying to Ethermint
+### Deploying to Troy
 
-Now that we've deployed and tested locally, we can deploy to Ethermint.
+Now that we've deployed and tested locally, we can deploy to Troy.
 
 > Be sure to be using the private key for the account which holds the test
 > OPC tokens requested from the faucet.
@@ -207,7 +207,7 @@ forge script script/Contract.s.sol:ContractScript \
 --rpc-url http://35.208.160.145:8545 --private-key $PRIVATE_KEY --broadcast
 ```
 
-Once the contract has been deployed to Ethermint, we can use `cast send` to
+Once the contract has been deployed to Troy, we can use `cast send` to
 test sending transactions to it:
 
 ```sh
