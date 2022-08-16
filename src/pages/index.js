@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Documentation Site for Celestia Network<head />">
+      description="Documentation Site for Celestia Network">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
