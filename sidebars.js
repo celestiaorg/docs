@@ -179,27 +179,34 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Troy - EVM on Celestia",
+      label: "Experimental Execution Environment Testnets",
       link: {
-        type: 'generated-index'
+        type: "doc",
+        id: "developers/experimental-execution-environment-testnets",
       },
       collapsed: false,
       items: [
         {
-          type: "doc",
-          id: "developers/troy-overview",
-          label: "Troy overview"
-        },
-        {
-          type: "doc",
-          label: "Connecting to Troy",
-          id: "developers/connecting-to-troy"
-        },
-        {
-          type: "doc",
-          label: "Deploying Smart Contracts to Troy",
-          id: "developers/troy-smart-contract-tutorial"
-        },
+          type: "category",
+          label: "Troy - EVM on Celestia",
+          link: {
+            type: 'doc',
+            id: "developers/troy-overview",
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Connecting to Troy",
+              id: "developers/connecting-to-troy"
+            },
+            {
+              type: "doc",
+              label: "Deploying Smart Contracts to Troy",
+              id: "developers/troy-smart-contract-tutorial"
+            },
+          ]
+        }
       ]
     },
     {
