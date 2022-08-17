@@ -77,8 +77,11 @@ code {
 }
 
 .front-page-link {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   background-color: rgb(77, 3, 193);
-  padding: 23px;
+  padding: 0px 23px;
   text-decoration: none;
   width: 300px;
   margin: 0px 8px;
@@ -89,10 +92,11 @@ code {
   font-weight: 600;
   color: white;
   text-align: left;
+  height: 133px;
 }
 
 .front-page-link:hover {
-  border: 1px solid rgba(255, 255, 255, .55);
+  border: 1px solid rgba(255, 255, 255, .3);
   box-shadow: rgba(77, 3, 193, .5) 0px 4px 12px;
   color: white;
   text-decoration: none;
