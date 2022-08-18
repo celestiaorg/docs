@@ -11,7 +11,7 @@ environments implemented as rollups.
 
 Any rollup testnets that we deploy on top of the Mamaki testnet will serve purely
 as an experimentation. At no point will we transition the rollup testnets to
-\mainnet - though we hope others can launch their own rollup testnets and make
+mainnet - though we hope others can launch their own rollup testnets and make
 the jump to Celestia mainnet!
 
 ## Available Experimental Execution Environment Testnets
