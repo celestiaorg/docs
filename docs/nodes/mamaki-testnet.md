@@ -63,6 +63,7 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 There are several explorers you can use for Mamaki:
 
+* [https://testnet.mintscan.io/celestia-testnet](https://testnet.mintscan.io/celestia-testnet)
 * [https://celestia.explorers.guru/](https://celestia.explorers.guru/)
 * [https://celestiascan.vercel.app/](https://celestiascan.vercel.app/)
 

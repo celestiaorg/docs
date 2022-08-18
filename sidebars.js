@@ -186,6 +186,11 @@ const sidebars = {
       collapsed: false,
       items: [
         {
+          type: "doc",
+          label: "Optimint Overview",
+          id: "developers/optimint-overview"
+        },
+        {
           type: "category",
           label: "Wordle",
           link: {

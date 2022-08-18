@@ -39,13 +39,24 @@ You can start the chain with optimint configurations by
 running the following:
 
 ```sh
-wordled start --optimint.aggregator true --optimint.da_layer celestia --optimint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000,"namespace_id":[0,0,0,0,0,0,255,255]}' --optimint.namespace_id 000000000000FFFF --optimint.da_start_height 21380
+wordled start --optimint.aggregator true --optimint.da_layer celestia --optimint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000}' --optimint.namespace_id 000000000000FFFF --optimint.da_start_height 21380
 ```
+
+Please consider:
 
 > NOTE: In the above command, you need to pass a Celestia Node IP address
   to the `base_url` that has an account with Mamaki testnet tokens. Follow
   the tutorial for setting up a Celestia Light Node and creating a wallet
   with testnet faucet money [here](./node-tutorial.md) in the Celestia Node section.
+
+Also please consider:
+
+> IMPORTANT: Furthermore, in the above command, you need to specify the latest
+  Block Height in Mamaki Testnet for `da_height`. You can find the latest block number
+  in the explorer [here](https://testnet.mintscan.io/celestia-testnet). Also, for the flag
+  `--optimint.namespace_id`, if you don't include the flag, Optimint will generate a random
+  namespace ID for you. So only include the `--optimint.namespace_id` flag if you want
+  to specify your own namespace ID.
 
 In another window, run the following to submit a Wordle:
 
