@@ -181,15 +181,11 @@ const sidebars = {
       type: "category",
       label: "Optimint",
       link: {
-        type: 'generated-index',
+        type: "doc",
+        id: "developers/optimint"
       },
       collapsed: false,
       items: [
-        {
-          type: "doc",
-          label: "Optimint Overview",
-          id: "developers/optimint-overview"
-        },
         {
           type: "category",
           label: "Wordle",
