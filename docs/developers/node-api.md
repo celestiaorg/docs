@@ -207,10 +207,14 @@ curl -X GET http://<ip>:26658/namespaced_data/0c204d39600fddd3/height/182038
 
 Response
 
-```sh
-{"data":["8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1"],"height":182038}
+```json
+{
+   "data":[
+      "8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1"
+   ],
+   "height":182038
+}
 ```
-
 
 #### GET /namespaced_shares/{nID}
 
