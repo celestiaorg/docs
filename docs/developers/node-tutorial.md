@@ -611,7 +611,7 @@ If you notice from the above output, it returns a `height` of
 
 If you encounter an error like:
 
-```shell
+```console
 $ curl -X POST -d '{"namespace_id": "c14da9d459dc57f5", "data": "4f7a3f1aadd83255b8410fef4860c0cd2eba82e24a", "gas_limit": 60000}'  localhost:26658/submit_pfd
 "rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
 ```
