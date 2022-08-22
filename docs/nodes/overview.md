@@ -1,4 +1,4 @@
-# Overview to Running Nodes on Celestia
+# Overview to running nodes on Celestia
 
 There are many ways you can participate in the Celestia network.
 
@@ -6,8 +6,8 @@ Celestia node operators can run several options on the network.
 
 Consensus:
 
-* [Validator Node](./validator-node.md): Node operators who run a Bridge
-  Node have the option to also participate in Consensus by becoming a Validator.
+* [Validator Node](./validator-node.md): This type of node participates
+in consensus by producing and voting on blocks.
 * [Consensus Full Node](./consensus-full-node.md): A Celestia-App Full Node
   to sync blockchain history.
 

@@ -1,10 +1,10 @@
-# Setting Up A Celestia Full Storage Node
+# Setting up a Celestia Full Storage Node
 
 This tutorial will guide you through setting up a Celestia Full Storage
 Node, which is a Celestia node that doesn't connect to Celestia App
 (hence not a full node) but stores all the data.
 
-## Hardware Requirements
+## Hardware requirements
 
 The following hardware minimum requirements are recommended for running
 the full storage node:
@@ -14,24 +14,24 @@ the full storage node:
 * Disk: 250 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
-## Setting Up Your Full Storage Node
+## Setting up your full storage node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
-### Setup The Dependencies
+### Setup the dependencies
 
 You can follow the tutorial for setting up your dependencies [here](../developers/environment.md)
 
-## Install Celestia Node
+## Install Celestia node
 
 > Note: Make sure that you have at least 250+ Gb of free space for
   Celestia Full Storage Node
 
 You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.md)
 
-### Run the Full Storage Node
+### Run the full storage node
 
-#### Initialize the Full Storage Node
+#### Initialize the full storage node
 
 Run the following command:
 
@@ -39,7 +39,7 @@ Run the following command:
 celestia full init
 ```
 
-#### Start the Full Storage Node
+#### Start the full storage node
 
 Start the Full Storage Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
@@ -71,7 +71,7 @@ You can find the address by running the following command:
 
 Mamaki Testnet tokens can be requested [here](./mamaki-testnet.md#mamaki-testnet-faucet).
 
-### Optional: Run the Full Storage Node with a Custom Key
+### Optional: run the full storage node with a custom key
 
 In order to run a full storage node using a custom key:
 
@@ -85,7 +85,7 @@ celestia full start --core.ip http://<ip-address> --core.grpc.port 9090 --keyrin
 ```
 <!-- markdownlint-enable MD013 -->
 
-### Optional: Start the Full Storage Node with SystemD
+### Optional: start the full storage node with SystemD
 
 Follow the tutorial on setting up the full storage node as a background
 process with SystemD [here](./systemd.md#celestia-full-storage-node).
