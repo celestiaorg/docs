@@ -87,7 +87,7 @@ Once all the validators are added, the `genesis.json` file is created. You need
 to share it with all other validators in your testnet in order for everyone to
 proceed with the following step.
 
-You can find the `genesis.json` at `$HOME/.celestia-appd/config/genesis.json`
+You can find the `genesis.json` at `$HOME/.celestia-app/config/genesis.json`
 
 ### Create the Genesis Transaction For New Chain
 
@@ -120,7 +120,7 @@ you will pull all those gentx files inside the following directory:
 Once you added the gentx files of all the particpants, run the following command:
 
 ```sh
-celestia-appd collect-gentxs 
+celestia-appd collect-gentxs
 ```
 
 This command will look for the gentx files in this repo which should

@@ -199,6 +199,27 @@ Response
 
 ### Share endpoints
 
+#### GET /namespaced_data/{nID}/height/{height}
+
+Returns original messages of the given namespace ID `nID` from the given block height.
+
+Request
+
+```sh
+curl -X GET http://<ip>:26658/namespaced_data/0c204d39600fddd3/height/182038
+```
+
+Response
+
+```json
+{
+   "data":[
+      "8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1"
+   ],
+   "height":182038
+}
+```
+
 #### GET /namespaced_shares/{nID}
 
 Returns shares of the given namespace ID `nID` from the latest block (chain head).
