@@ -611,6 +611,19 @@ We get the following output:
 If you notice from the above output, it returns a `height` of
 `2452` which we will use for the next command.
 
+#### Troubleshooting
+
+If you encounter an error like:
+
+```console
+$ curl -X POST -d '{"namespace_id": "c14da9d459dc57f5", "data": "4f7a3f1aadd83255b8410fef4860c0cd2eba82e24a", "gas_limit": 60000}'  localhost:26658/submit_pfd
+"rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
+```
+
+It is possible that the account you are trying to submit a PayForData from
+doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
+account with tokens and then try again.
+
 ### Get Namespaced Shares by Block Height
 
 After submitting your PFD transaction, upon success, the node will return
