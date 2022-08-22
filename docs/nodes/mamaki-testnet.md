@@ -31,7 +31,7 @@ on each respective page. Whenever you are asked to select the type of network
 you want to connect to in those guides, select `Mamaki` in order to refer
 to the correct instructions on this page on how to connect to Mamaki.
 
-## RPC Endpoints
+## RPC endpoints
 
 There is a list of RPC endpoints you can use to connect to Mamaki Testnet:
 
@@ -41,7 +41,7 @@ There is a list of RPC endpoints you can use to connect to Mamaki Testnet:
 * [https://celestia-testnet-rpc.polkachu.com/](https://celestia-testnet-rpc.polkachu.com/)
 * [https://rpc.celestia.testnet.run](https://rpc.celestia.testnet.run/)
 
-## Mamaki Testnet Faucet
+## Mamaki Testnet faucet
 
 > USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER
   DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS
@@ -52,7 +52,7 @@ You can request from Mamaki Testnet Faucet on the #faucet channel on
 Celestia's Discord server with the following command:
 
 ```text
-$request <CELESTIA-ADDRESS> 
+$request <CELESTIA-ADDRESS>
 ```
 
 Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
@@ -66,7 +66,7 @@ There are several explorers you can use for Mamaki:
 * [https://celestia.explorers.guru/](https://celestia.explorers.guru/)
 * [https://celestiascan.vercel.app/](https://celestiascan.vercel.app/)
 
-## Setup P2P Network
+## Setup P2P network
 
 Now we will setup the P2P Networks by cloning the networks repository:
 
@@ -101,9 +101,7 @@ sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" 
 
 Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mamaki/peers.txt).
 
-You can return back to where you left off in the Bridge Node guide [here](validator-node.md#configure-pruning)
-
-## Quick-Sync With Snapshot
+## Quick-sync with snapshot
 
 Run the following command to quick-sync from a snapshot for `mamaki`:
 
@@ -117,9 +115,7 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
 
-You can return back to where you left off in the Bridge Node guide [here](./validator-node.md#start-the-celestia-app-with-systemd)
-
-## Delegate to a Validator
+## Delegate to a validator
 
 To delegate tokens to the the `celestiavaloper` validator, as an example you can run:
 
@@ -149,9 +145,7 @@ txhash: <tx-hash>
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
 
-You can return back to where you left off in the Bridge Node guide [here](./validator-node#deploy-the-celestia-node)
-
-## Connect Validator
+## Connect validator
 
 Continuing the Validator tutorial, here are the steps to connect your
 validator to Mamaki:
