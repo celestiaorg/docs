@@ -4,9 +4,9 @@
 
 First, create an application CLI configuration file:
 
- ```sh
- celestia-appd config keyring-backend test
- ```
+```sh
+celestia-appd config keyring-backend test
+```
 
 You can pick whatever wallet name you want.
 For our example we used "validator" as the wallet name:
@@ -27,7 +27,7 @@ celestia-appd keys list
 ## Fund a Wallet
 
 For the public celestia address, you can fund the
-previously created wallet via Discord by sending
+previously created wallet via [Discord](https://discord.com/invite/YsnTPcSfWQ) by sending
 this message to #faucet channel:
 
 ```text
