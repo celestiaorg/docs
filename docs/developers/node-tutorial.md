@@ -1,3 +1,7 @@
+---
+sidebar_label : Node Tutorial
+---
+
 # Getting and Sending Transactions with Celestia Node
 <!-- markdownlint-disable MD013 -->
 

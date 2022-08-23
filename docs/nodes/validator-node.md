@@ -1,3 +1,7 @@
+---
+sidebar_label : Validator Node
+---
+
 # Setting up a Celestia Validator Node
 
 Validator nodes allow you to participate in consensus in the Celestia network.
