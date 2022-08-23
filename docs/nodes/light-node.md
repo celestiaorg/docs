@@ -142,6 +142,12 @@ is usually exposed on port 9090):
   account balance, a gRPC endpoint of a validator (core) node must be passed as
   directed below.
 
+For ports:
+
+> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can use the flag
+  to specify another port if you prefer.
+
 ```sh
 celestia light start --core.ip <ip> --core.grpc.port 9090
 ```
@@ -151,7 +157,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
 ```
 
 ### Keys and wallets

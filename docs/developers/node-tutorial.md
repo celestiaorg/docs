@@ -118,6 +118,11 @@ an example public Core Endpoint.
 celestia light start --core.ip <ip> --core.grpc.port 9090
 ```
 
+> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can use the flag
+  to specify another port if you prefer.
+
+
 For example, your command along with an RPC endpoint might look like this:
 
 ```sh
