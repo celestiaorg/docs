@@ -140,6 +140,10 @@ Run the following:
 celestia bridge init --core.ip <ip> --core.grpc.port 9090
 ```
 
+> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can use the flag
+  to specify another port if you prefer.
+
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
 ### Run the bridge node

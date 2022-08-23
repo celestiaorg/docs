@@ -49,9 +49,14 @@ Start the Full Storage Node with a connection to a validator node's gRPC endpoin
   or query for the node's account balance, a gRPC endpoint of a validator
   (core) node must be passed as directed below.
 
+
+> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can use the flag
+  to specify another port if you prefer.
+
 <!-- markdownlint-disable MD013 -->
 ```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port 9090 --core.rpc.port 26657
+celestia full start --core.ip http://<ip-address> --core.grpc.port 9090
 ```
 <!-- markdownlint-enable MD013 -->
 
