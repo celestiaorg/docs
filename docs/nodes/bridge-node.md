@@ -1,3 +1,7 @@
+---
+sidebar_label : Bridge Node
+---
+
 # Setting up a Celestia Bridge Node
 
 This tutorial will go over the steps to setting up your Celestia Bridge node.
