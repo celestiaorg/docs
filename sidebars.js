@@ -287,20 +287,9 @@ const sidebars = {
   ],
   overview: [
     {
-      type: "category",
+      type: "doc",
       label: "How Celestia Works",
-      link: {
-        type: "doc",
-        id: "overview/how-celestia-works"
-      },
-      collapsed: true,
-      items: [
-        {
-          type: "doc",
-          label: "Fraud Proofs of Incorrectly Extended Data",
-          id: "overview/fraud-proofs"
-        },
-      ]
+      id: "overview/how-celestia-works"
     },
     {
       type: "link",
