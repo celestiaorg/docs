@@ -1,6 +1,6 @@
 # Deploying a Smart Contract to Troy with Foundry
 
-In this guide you'll learn how to deploy a Solidity smart contract to [Troy](/developers/troy-overview)
+In this guide you'll learn how to deploy a Solidity smart contract to [Troy](./troy.md)
 on Celestia with [Foundry](https://github.com/foundry-rs/foundry).
 
 ## About Foundry

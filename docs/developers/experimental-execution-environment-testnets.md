@@ -16,4 +16,4 @@ the jump to Celestia mainnet!
 
 ## Available Experimental Execution Environment Testnets
 
-- [Troy](/developers/troy-overview)
+- [Troy](./troy.md)

@@ -1,6 +1,8 @@
-# Troy - EVM on Celestia
+# Troy Testnet
 
-Developers can begin testing solidity and vyper smart contracts
+![Troy Testnet](/img/troy-testnet.png)
+
+Developers can begin testing Solidity and Vyper smart contracts
 using the new Troy testnet, an experimental EVM compatible sovereign rollup.
 
 [Start building](./troy-smart-contract-tutorial.md)
@@ -11,7 +13,9 @@ using the new Troy testnet, an experimental EVM compatible sovereign rollup.
 [Ethermint](https://docs.ethermint.zone/intro/overview.html), in tandem with the
 [Cosmos SDK](https://github.com/cosmos/cosmos-sdk/), serve as the basis for
 Troy. Optimint is an ABCI client for Cosmos SDK chains that enables them to become
-rollups. Ethermint is an EVM execution environment that plugs into the Cosmos SDK.
+rollups on Celestia. Ethermint is an EVM-compatible execution environment that plugs
+into the Cosmos SDK.
+
 Together, the combination creates an experimental EVM compatible sovereign rollup
 testnet.
 

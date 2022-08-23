@@ -188,10 +188,10 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Troy - EVM on Celestia",
+          label: "Troy Testnet",
           link: {
             type: 'doc',
-            id: "developers/troy-overview",
+            id: "developers/troy",
           },
           collapsed: true,
           items: [
