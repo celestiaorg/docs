@@ -287,14 +287,30 @@ const sidebars = {
   ],
   overview: [
     {
-      type: "doc",
+      type: "category",
       label: "How Celestia Works",
-      id: "overview/how-celestia-works"
+      link: {
+        type: "doc",
+        id: "overview/how-celestia-works"
+      },
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          label: "Fraud Proofs of Incorrectly Extended Data",
+          id: "overview/fraud-proofs"
+        },
+      ]
     },
     {
-      type: "doc",
-      label: "Fraud Proofs of Incorrectly Extended Data",
-      id: "overview/fraud-proofs"
+      type: "link",
+      label: "Learn Modular",
+      href: "https://celestia.org/learn/"
+    },
+    {
+      type: "link",
+      label: "Glossary",
+      href: "https://celestia.org/glossary/"
     }
   ]
 };
