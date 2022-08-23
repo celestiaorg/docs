@@ -53,6 +53,7 @@ Start the Full Storage Node with a connection to a validator node's gRPC endpoin
   or query for the node's account balance, a gRPC endpoint of a validator
   (core) node must be passed as directed below.
 
+A note on ports:
 
 > NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
   it in the command line, it will default to that port. You can use the flag

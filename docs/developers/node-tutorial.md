@@ -126,7 +126,6 @@ celestia light start --core.ip <ip> --core.grpc.port 9090
   it in the command line, it will default to that port. You can use the flag
   to specify another port if you prefer.
 
-
 For example, your command along with an RPC endpoint might look like this:
 
 ```sh
