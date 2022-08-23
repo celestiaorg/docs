@@ -285,6 +285,18 @@ const sidebars = {
     { type: "doc", label: "Docs Translations", id: "community/translations" },
     { type: "doc", label: "Modular Fellows", id: "community/modular-fellows"}
   ],
+  overview: [
+    {
+      type: "doc",
+      label: "How Celestia Works",
+      id: "overview/how-celestia-works"
+    },
+    {
+      type: "doc",
+      label: "Fraud Proofs of Incorrectly Extended Data",
+      id: "overview/fraud-proofs"
+    }
+  ]
 };
 
 module.exports = sidebars;
