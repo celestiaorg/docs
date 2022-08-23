@@ -81,6 +81,11 @@ const config = {
             label: 'Community',
           },
           {
+            to: '/overview/how-celestia-works',
+            position: 'left',
+            label: 'How Celestia Works'
+          },
+          {
             href: 'https://github.com/celestiaorg/docs',
             label: 'GitHub',
             position: 'right',
