@@ -81,7 +81,7 @@ celestia bridge init --core.ip <ip-address> --core.rpc.port 26657
 
 > NOTE: The `--core.rpc.port` defaults to 26657, so if you do not specify
   it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer. 
+  to specify another port if you prefer.
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
@@ -96,7 +96,7 @@ celestia bridge start --core.ip <ip> --core.grpc.port 9090
 
 > NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
   it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer. 
+  to specify another port if you prefer.
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
