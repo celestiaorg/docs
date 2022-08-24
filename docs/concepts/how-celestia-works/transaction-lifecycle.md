@@ -11,7 +11,7 @@ Thus, the block data consists of data partitioned into namespaces and executable
 
 ![Lifecycle of a Celestia App Transaction](https://lh5.googleusercontent.com/M9zjENYRZZs49DrbGdry3NPxX1wbsgLVn7JYKiibnwSbw2mNKliASmnsPYrINiAZnjr0tvwV1YhqDoheW6-yITDCadrHXB8NBcPKwbvcqYe8Vt1EhVXJ8yMiWTqHMJYZe_uJOr0tIi6d7GuOBGmM2g)
 
-Next, the block producer adds to the block header a commitment of the block data. As described [here](./fraud-proofs), the commitment is the Merkle root of the 4k intermediate Merkle roots (i.e., one for each row and column of the extended matrix). To compute this commitment, the block producer performs the following operations:
+Next, the block producer adds to the block header a commitment of the block data. As described [here](../fraud-proofs), the commitment is the Merkle root of the 4k intermediate Merkle roots (i.e., one for each row and column of the extended matrix). To compute this commitment, the block producer performs the following operations:
 
 - It splits the executable transactions and the namespaced data into shares. Every share consists of some bytes prefixed by a namespace ID. To this end, the executable transactions are associated with a reserved namespace.
 
