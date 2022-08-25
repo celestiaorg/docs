@@ -66,6 +66,11 @@ const config = {
         },
         items: [
           {
+            to: '/concepts/how-celestia-works/introduction',
+            position: 'left',
+            label: 'Concepts'
+          },
+          {
             to: '/nodes/overview',
             position: 'left',
             label: 'Run A Node',
@@ -79,11 +84,6 @@ const config = {
             to: '/community/overview',
             position: 'left',
             label: 'Community',
-          },
-          {
-            to: '/concepts/how-celestia-works/introduction',
-            position: 'left',
-            label: 'Concepts'
           },
           {
             href: 'https://github.com/celestiaorg/docs',
