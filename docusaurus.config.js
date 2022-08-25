@@ -66,6 +66,11 @@ const config = {
         },
         items: [
           {
+            to: '/concepts/how-celestia-works/introduction',
+            position: 'left',
+            label: 'Concepts'
+          },
+          {
             to: '/nodes/overview',
             position: 'left',
             label: 'Run A Node',
