@@ -91,7 +91,7 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
-celestia bridge start --core.ip <ip> --core.grpc.port 9090
+celestia bridge start --core.ip <ip-address> --core.grpc.port <port>
 ```
 
 > NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
