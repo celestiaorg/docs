@@ -1,17 +1,19 @@
-# Summary 
+# Summary
+
 - Modular blockchains prioritize decentralization
 for network security by reducing the cost for users
 to operate nodes and verify the network.
 - Scaling enables modular blockchains to increase
 capacity without making it costly for users to
-verify and secure the network. 
+verify and secure the network.
 - A decentralized network of users are ultimately
 responsible for upholding the security of a
 blockchain in the presence of malicious validators.
 
 ## Introduction
+
 Learning a concept by starting at its foundation
-provides the best path to reaching proficiency. 
+provides the best path to reaching proficiency.
 Like any concept, modular blockchains are no different.
 They come with their own set of fundamental concepts
 that require understanding to grasp the advanced
@@ -20,6 +22,7 @@ of modular blockchains, their purpose and goals
 will become easier to understand.
 
 ## Decentralization
+
 One of the most important distinctions between
 blockchains and traditional distributed systems
 is that they are open and verifiable by any
@@ -34,13 +37,14 @@ Since verifiability is the core difference between
 web2 and web3 systems, we measure decentralization
 by the amount of users that can verify the chain
 directly themselves. More users running nodes
-increases decentralization which makes the 
+increases decentralization which makes the
 blockchain more resilient to attacks. Modular
 blockchains prioritize decentralization for
 network security by reducing the cost for users
 to operate nodes and verify the network.
 
 ## Scalability
+
 As users increase, blockchains must also increase
 the number of transactions they can process.
 However, increasing the number of transactions
@@ -72,6 +76,7 @@ efficiently than full nodes while maintaining
 equivalent security.
 
 ## Security
+
 While security covers a broad scope of topics,
 one fundamental aspect of blockchain security
 relates to the validators or miners. Most Proof
