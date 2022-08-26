@@ -317,9 +317,44 @@ const sidebars = {
       ]
     },
     {
-      type: "link",
+      type: "category",
       label: "Learn Modular",
-      href: "https://celestia.org/learn/"
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          label: "First Principles",
+          id: "concepts/learn-modular/first-principles-of-modular-blockchains"
+        },
+        {
+          type: "doc",
+          label: "Basics",
+          id: "concepts/learn-modular/basics-of-modular-blockchains"
+        },
+        {
+          type: "doc",
+          label: "Modular Architectures",
+          id: "concepts/learn-modular/modular-architectures"
+        },
+        {
+          type: "doc",
+          label: "Modular Settlement Layers",
+          id: "concepts/learn-modular/modular-settlement-layers"
+        },
+        {
+          type: "doc",
+          label: "Modular Scalability",
+          id: "concepts/learn-modular/modular-scalability"
+        },
+        {
+          type: "doc",
+          label: "Creating New Blockchains",
+          id: "concepts/learn-modular/creating-new-blockchains"
+        }
+      ]
     },
     {
       type: "link",
