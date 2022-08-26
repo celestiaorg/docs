@@ -61,7 +61,7 @@ A note on ports:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port 9090
+celestia full start --core.ip http://<ip-address> --core.grpc.port <port>
 ```
 <!-- markdownlint-enable MD013 -->
 
