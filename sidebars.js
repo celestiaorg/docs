@@ -327,32 +327,32 @@ const sidebars = {
         {
           type: 'doc',
           label: "First Principles",
-          id: "learn-modular/first-principles-of-modular-blockchains"
+          id: "concepts/learn-modular/first-principles-of-modular-blockchains"
         },
         {
           type: "doc",
           label: "Basics",
-          id: "learn-modular/basics-of-modular-blockchains"
+          id: "concepts/learn-modular/basics-of-modular-blockchains"
         },
         {
           type: "doc",
           label: "Modular Architectures",
-          id: "learn-modular/modular-architectures"
+          id: "concepts/learn-modular/modular-architectures"
         },
         {
           type: "doc",
           label: "Modular Settlement Layers",
-          id: "learn-modular/modular-settlement-layers"
+          id: "concepts/learn-modular/modular-settlement-layers"
         },
         {
           type: "doc",
           label: "Modular Scalability",
-          id: "learn-modular/modular-scalability"
+          id: "concepts/learn-modular/modular-scalability"
         },
         {
           type: "doc",
           label: "Creating New Blockchains",
-          id: "learn-modular/creating-new-blockchains"
+          id: "concepts/learn-modular/creating-new-blockchains"
         }
       ]
     },
