@@ -61,7 +61,7 @@ monolithic blockchains do everything at the same time on a single layer.
 
 ![GATSBY_EMPTY_ALT](/img/learn-modular/article-1-image-2.png)
 
-#### Some of the constraints that monolithic blockchains face include
+### Some of the constraints that monolithic blockchains face include
 
 - __Inefficient transaction verification:__ Nodes must re-execute
 transactions to check validity.
@@ -70,9 +70,9 @@ capacity of its nodes.
 - __Scalability:__ To increase throughput, security or decentralization
 must be sacrificed to some degree.
 
-### Benefits of modular blockchains
+## Benefits of modular blockchains
 
-#### Sovereignty
+### Sovereignty
 
 New modular blockchains can be sovereign like layer 1s despite the
 utilization of other layers. This allows the blockchain to respond to
@@ -84,7 +84,7 @@ retain the ability for
 to make critical decisions, which is one of the most important facets
 of blockchains as social coordination mechanisms.
 
-#### Launching new blockchains
+### Launching new blockchains
 
 Since modular blockchains don’t need to handle all functions, new
 blockchains can simply utilize existing modular blockchains for the
@@ -94,7 +94,7 @@ costs. For example, a rollup "SDK" like [Optimint](https://github.com/celestiaor
 combined with the Cosmos SDK will help facilitate the creation of
 new blockchains without needing to bootstrap a secure validator set.
 
-#### Scalability
+### Scalability
 
 Modular blockchains aren’t constrained by having to handle all the
 functions. By splitting them into multiple layers, scaling can be
@@ -102,7 +102,7 @@ accomplished without sacrificing security or decentralization. This
 enables sustainable blockchain scalability that is compatible with
 a decentralized, multi-chain landscape.
 
-### Conclusion
+## Conclusion
 
 __Modular blockchains are a new dynamic that change the way blockchains
 can be constructed and utilize each other for an improved system.
