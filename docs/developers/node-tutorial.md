@@ -119,7 +119,7 @@ an example public Core Endpoint.
   purposes. You can find a list of RPC endpoints [here](../nodes/mamaki-testnet#rpc-endpoints)
 
 ```sh
-celestia light start --core.ip <ip> --core.grpc.port 9090
+celestia light start --core.ip <ip-address> --core.grpc.port <port>
 ```
 
 > NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
