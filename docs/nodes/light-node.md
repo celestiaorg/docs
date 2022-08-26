@@ -193,9 +193,11 @@ In order to run a light node using a custom key:
    correct path (default: `~/.celestia-light/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <name_of_custom_key>
 ```
+<!-- markdownlint-enable MD013 -->
 
 ### Optional: start light node with SystemD
 

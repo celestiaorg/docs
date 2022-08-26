@@ -163,6 +163,7 @@ You should be seeing logs coming through of the bridge node syncing.
 
 Start the Light Node as daemon process in the background
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-lightd.service
 [Unit]
@@ -180,6 +181,7 @@ LimitNOFILE=4096
 WantedBy=multi-user.target
 EOF
 ```
+<!-- markdownlint-enable MD013 -->
 
 If the file was created succesfully you will be able to see its content:
 
