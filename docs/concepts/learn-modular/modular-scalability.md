@@ -51,8 +51,6 @@ An optimal settlement layer should have negligible user-based transaction activi
 
 The vast majority of the settlement layers transaction activity should consist of execution layers settling transactions. <a href="https://forum.celestia.org/t/increasing-scalability-of-the-evm-for-rollups-by-restricting-state-and-contract-set/78" target="_blank" rel="noopener noreferrer" style="color:#7B2BF9;">One method</a> of influencing this behavior is to limit smart contracts such that they are only used to interact with execution layers, providing proof verification and bridging tokens. By doing so an environment can be created that is conducive to scaling a settlement layer. Many techniques used to scale execution and data availability layers are also applicable to the settlement layer, including mechanics such as parallel transaction processing, fraud or validity proof, weak statelessness, and history expiry.
 
-<div class="conclusion"> 
-
 #### Conclusion
 
 **Modular blockchains can provide many mechanics for scalability that significantly increase the overall throughput of a modular stack. Such blockchains can make adjustments and implement scalability improvements that may have been infeasible or limiting given a monolithic architecture.**
@@ -60,4 +58,3 @@ The vast majority of the settlement layers transaction activity should consist o
 1. The two main designs of rollups are optimistic and zk-Rollups. Optimistic rollups provide scalability through data compression and alleviating state growth on the parent chain. zk-Rollups scale similarly, as well as through efficient compute verification with validity proofs.
 2. Data availability layers scale block verification and minimize bandwidth costs for light nodes. This is possible with data availability sampling, which allows light nodes to verify data availability by only downloading small random samples of a block.
 3. Settlement layers can scale using the same techniques from execution and data availability layers. In their current form, settlement layers are unideal. A more optimal approach would be to create an environment that limits smart contracts to favor interactions with execution layers.
-</div>
