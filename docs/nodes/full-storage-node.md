@@ -91,7 +91,7 @@ In order to run a full storage node using a custom key:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port 9090 --keyring.accname <name_of_custom_key>
+celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key>
 ```
 <!-- markdownlint-enable MD013 -->
 
