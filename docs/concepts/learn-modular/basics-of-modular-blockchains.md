@@ -109,8 +109,10 @@ can be constructed and utilize each other for an improved system.
 This facilitates the scalability and bootstrapping of new blockchains
 while preserving their sovereignty.__
 
-1. A modular blockchain is a type of blockchain that is part of a modular stack
-A modular stack consists of layers of specialized blockchains that utilize each other to create a complete system.
+1. A modular blockchain is a type of blockchain that is part of a
+modular stack. A modular stack consists of layers of
+specialized blockchains that utilize each other to
+create a complete system.
 2. Monolithic blockchains are limited by handling all functions on a single layer.
 To increase throughput, security or decentralization must be sacrificed.
 3. Modular blockchains provide many benefits over their monolithic counterparts,
