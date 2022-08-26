@@ -10,25 +10,56 @@ sidebar_label : Run The Wordle Chain
 In one terminal window, run the following command:
 
 ```sh
-ignite chain build 
+ignite chain serve 
 ```
 
-This will compile the blockchain code you just wrote.
-It will also compile a daemon binary we can use to
-interact with the blockchain. This binary will have
-the name `wordled`
-
-When the compilation finishes, it's time to start `wordled`. You
-can start the chain with optimint configurations by running the following:
+This will compile the blockchain code you just wrote
+and also create a genesis file and some accounts for you
+to use. Once the log shows something like the following
+log in the output:
 
 ```sh
-wordled start --optimint.aggregator true --optimint.da_layer celestia --optimint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000,"namespace_id":[0,0,0,0,0,0,255,255]}' --optimint.namespace_id 000000000000FFFF --optimint.da_start_height 21380
+root@yaz-workshop:~/wordle# ignite chain serve
+Cosmos SDK's version is: stargate - v0.45.5
+
+🛠️  Building proto...
+📦 Installing dependencies...
+🛠️  Building the blockchain...
+💿 Initializing the app...
+🙂 Created account "alice" with address "cosmos1skalxj42asjhc7dde3lzzawnksnztqmgy6sned" with mnemonic: "exact arrive betray hawk trim surround exhibit host vibrant sting range robot luxury vague manage settle slide town bread adult pact scene journey elite"
+🙂 Created account "bob" with address "cosmos1xe3l8z634frp0ry6qlmzs5vr85x6gcty7tmf0n" with mnemonic: "wisdom jelly fine boat series time panel real world purchase age area coach eager spot fiber slide apology near endorse flight panel ready torch"
+🌍 Tendermint node: http://0.0.0.0:26657
+🌍 Blockchain API: http://0.0.0.0:1317
+🌍 Token faucet: http://0.0.0.0:4500
 ```
+
+Here the command created a binary called `wordled`
+and the `alice` and `bob` addresses, along with a faucet
+and API. You are clear to exit the program with CTRL-C.
+The reason for that is because we will run `wordled`
+binary separately with Optimint flags added.
+
+You can start the chain with optimint configurations by
+running the following:
+
+```sh
+wordled start --optimint.aggregator true --optimint.da_layer celestia --optimint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000}' --optimint.namespace_id 000000000000FFFF --optimint.da_start_height 21380
+```
+
+Please consider:
 
 > NOTE: In the above command, you need to pass a Celestia Node IP address
   to the `base_url` that has an account with Mamaki testnet tokens. Follow
   the tutorial for setting up a Celestia Light Node and creating a wallet
   with testnet faucet money [here](./node-tutorial.md) in the Celestia Node section.
+
+Also please consider:
+
+> IMPORTANT: Furthermore, in the above command, you need to specify the latest
+  Block Height in Mamaki Testnet for `da_height`. You can find the latest block number
+  in the explorer [here](https://testnet.mintscan.io/celestia-testnet). Also, for the flag
+  `--optimint.namespace_id`, you can generate a random Namespace ID using the
+  playground [here](https://go.dev/play/p/7ltvaj8lhRl)
 
 In another window, run the following to submit a Wordle:
 
