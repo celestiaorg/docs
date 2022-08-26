@@ -87,7 +87,7 @@ in an EVM-compatible manner. Some rollups have
 implemented mechanisms that enable their VM to
 compile into a language that is readable using another
 VM that sits inside the EVM, such as Optimism compiling
-Go code into MIPs which runs inside the EVM. 
+Go code into MIPs which runs inside the EVM.
 
 ![GATSBY_EMPTY_ALT](/img/learn-modular/article-4-image-2.png)
 
