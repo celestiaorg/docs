@@ -1,35 +1,36 @@
 import React from 'react';
 import clsx from 'clsx';
+import Translate from '@docusaurus/Translate';
 import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Build Modular',
+    title: <Translate>'Build Modular'</Translate>,
     Svg: require('@site/static/img/modular.svg').default,
     description: (
       <>
-        Celestia is the First Modular Blockchain network which enables developers to deploy 
-        their own blockchain as easy as deploying a new smart contract.
+        <Translate>Celestia is the First Modular Blockchain network which enables developers to deploy 
+        their own blockchain as easy as deploying a new smart contract.</Translate>
       </>
     ),
   },
   {
-    title: 'Run Different Nodes',
+    title: <Translate>'Run Different Nodes'</Translate>,
     Svg: require('@site/static/img/run_node.svg').default,
     description: (
       <>
-        Celestia allows you to run a validator node, a bridge node or a light client
-        to be able to support the network.
+        <Translate>Celestia allows you to run a validator node, a bridge node or a light client
+        to be able to support the network.</Translate>
       </>
     ),
   },
   {
-    title: 'Power-up with Data Availability Layer',
+    title: <Translate>'Power-up with Data Availability Layer'</Translate>,
     Svg: require('@site/static/img/data_availability.svg').default,
     description: (
       <>
-        Celestia introduces what is called the Data Availability Layer for enabling 
-        efficient scaling and allowing L2 Rollups to do data sampling for transactions they need.
+        <Translate>Celestia introduces what is called the Data Availability Layer for enabling 
+        efficient scaling and allowing L2 Rollups to do data sampling for transactions they need.</Translate>
       </>
     ),
   },

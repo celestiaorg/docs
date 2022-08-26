@@ -286,6 +286,48 @@ const sidebars = {
     { type: "doc", label: "Docs Translations", id: "community/translations" },
     { type: "doc", label: "Modular Fellows", id: "community/modular-fellows"}
   ],
+  concepts: [
+    {
+      type: "category",
+      label: "How Celestia Works",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          label: "Introduction",
+          id: "concepts/how-celestia-works/introduction"
+        },
+        {
+          type: "doc",
+          label: "Monolithic vs. Modular Blockchains",
+          id: "concepts/how-celestia-works/monolithic-vs-modular"
+        },
+        {
+          type: "doc",
+          label: "Celestia's Data Availability Layer",
+          id: "concepts/how-celestia-works/data-availability-layer"
+        },
+        {
+          type: "doc",
+          label: "The Lifecycle of a Celestia App Transaction",
+          id: "concepts/how-celestia-works/transaction-lifecycle"
+        }
+      ]
+    },
+    {
+      type: "link",
+      label: "Learn Modular",
+      href: "https://celestia.org/learn/"
+    },
+    {
+      type: "link",
+      label: "Glossary",
+      href: "https://celestia.org/glossary/"
+    }
+  ]
 };
 
 module.exports = sidebars;
