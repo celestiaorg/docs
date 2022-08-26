@@ -129,7 +129,7 @@ celestia light start --core.ip <ip> --core.grpc.port 9090
 For example, your command along with an RPC endpoint might look like this:
 
 ```sh
-celestia light start --core.ip https://rpc-mamaku.pops.one --core.grpc.port 9090
+celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
 ```
 
 ### Keys and wallets
