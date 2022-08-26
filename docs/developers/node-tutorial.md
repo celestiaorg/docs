@@ -137,7 +137,7 @@ celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
 You can create your key for your node by running the following command:
 
 ```sh
-celestia light start --core.ip <ip> --core.grpc.port 9090 --keyring.accname developer
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname developer
 make cel-key
 ```
 
