@@ -68,8 +68,7 @@ Also please consider:
 > IMPORTANT: Furthermore, in the above command, you need to specify the latest
   Block Height in Mamaki Testnet for `da_height`. You can find the latest block number
   in the explorer [here](https://testnet.mintscan.io/celestia-testnet). Also, for the flag
-  `--optimint.namespace_id`, if you don't include the flag, Optimint will generate a random
-  namespace ID for you. So only include the `--optimint.namespace_id` flag if you want
-  to specify your own namespace ID.
+  `--optimint.namespace_id`, you can generate a random Namespace ID using the
+  playground [here](https://go.dev/play/p/7ltvaj8lhRl)
 
 With that, we have kickstarted our `wasmd` network!

@@ -1,6 +1,6 @@
 # Optimint
 
-![sovereign-rollups-optimint](/img/sovereign-rollups-optimint.png)
+![optimint](/img/optimint.png)
 
 [Optimint](https://github.com/celestiaorg/optimint) is an Optimistic-Rollup
 implementation of ABCI (Application Blockchain Interface) in
