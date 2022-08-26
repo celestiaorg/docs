@@ -141,7 +141,7 @@ You can follow the tutorial for installing Celestia Node [here](../developers/ce
 Run the following:
 
 ```sh
-celestia bridge init --core.ip <ip> --core.grpc.port 9090
+celestia bridge init --core.ip <ip-address> --core.grpc.port <port>
 ```
 
 > NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
