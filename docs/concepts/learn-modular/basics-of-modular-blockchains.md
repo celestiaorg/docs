@@ -1,4 +1,4 @@
-#### Introduction
+# Introduction
 
 Blockchain researchers have long grappled with the challenge of creating
 the optimal system. Many architectures have been tried whose goal was to
@@ -63,11 +63,11 @@ monolithic blockchains do everything at the same time on a single layer.
 
 ##### Some of the constraints that monolithic blockchains face include:
 
-- **Inefficient transaction verification:** Nodes must re-execute
+- __Inefficient transaction verification:__ Nodes must re-execute
 transactions to check validity.
-- **Resource constraints:** The blockchain is bound by the resource
+- __Resource constraints:__ The blockchain is bound by the resource
 capacity of its nodes.
-- **Scalability:** To increase throughput, security or decentralization
+- __Scalability:__ To increase throughput, security or decentralization
 must be sacrificed to some degree.
 
 #### Benefits of modular blockchains
@@ -78,8 +78,8 @@ New modular blockchains can be sovereign like layer 1s despite the
 utilization of other layers. This allows the blockchain to respond to
 hacks and push upgrades without permission from any underlying layers.
 This would be possible for blockchains that utilize Celestia as it won’t
-impose any restrictions on them. Essentially, sovereign blockchains retain
-the ability for [social consensus](https://celestia.org/glossary/social-consensus)
+impose any restrictions on them. Essentially, sovereign blockchains
+retain the ability for [social consensus](https://celestia.org/glossary/social-consensus)
 to make critical decisions, which is one of the most important facets
 of blockchains as social coordination mechanisms.
 
@@ -103,15 +103,15 @@ a decentralized, multi-chain landscape.
 
 #### Conclusion
 
-**Modular blockchains are a new dynamic that change the way blockchains
+__Modular blockchains are a new dynamic that change the way blockchains
 can be constructed and utilize each other for an improved system.
 This facilitates the scalability and bootstrapping of new blockchains
-while preserving their sovereignty.**
+while preserving their sovereignty.__
 
 1. A modular blockchain is a type of blockchain that is part of a modular stack
 A modular stack consists of layers of specialized blockchains that utilize each other to create a complete system.
-3. Monolithic blockchains are limited by handling all functions on a single layer.
+2. Monolithic blockchains are limited by handling all functions on a single layer.
 To increase throughput, security or decentralization must be sacrificed.
-5. Modular blockchains provide many benefits over their monolithic counterparts,
+3. Modular blockchains provide many benefits over their monolithic counterparts,
 some of which include efficiently creating new blockchains, sovereignty,
 and scalability.
