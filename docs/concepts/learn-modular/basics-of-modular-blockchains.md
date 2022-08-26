@@ -52,9 +52,6 @@ Since modular blockchains don’t need to handle all functions, new blockchains 
 
 Modular blockchains aren’t constrained by having to handle all the functions. By splitting them into multiple layers, scaling can be accomplished without sacrificing security or decentralization. This enables sustainable blockchain scalability that is compatible with a decentralized, multi-chain landscape.
 
-
-<div class="conclusion"> 
-
 #### Conclusion
 
 **Modular blockchains are a new dynamic that change the way blockchains can be constructed and utilize each other for an improved system. This facilitates the scalability and bootstrapping of new blockchains while preserving their sovereignty.**
@@ -62,4 +59,3 @@ Modular blockchains aren’t constrained by having to handle all the functions. 
 1. A modular blockchain is a type of blockchain that is part of a modular stack. A modular stack consists of layers of specialized blockchains that utilize each other to create a complete system.
 2. Monolithic blockchains are limited by handling all functions on a single layer. To increase throughput, security or decentralization must be sacrificed.
 3. Modular blockchains provide many benefits over their monolithic counterparts, some of which include efficiently creating new blockchains, sovereignty, and scalability.
-</div>
