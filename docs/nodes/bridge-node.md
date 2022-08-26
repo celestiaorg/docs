@@ -76,7 +76,7 @@ Follow the tutorial for installing Celestia Node [here](../developers/celestia-n
 Run the following:
 
 ```sh
-celestia bridge init --core.ip <ip-address> --core.rpc.port 26657
+celestia bridge init --core.ip <ip-address> --core.rpc.port <port>
 ```
 
 > NOTE: The `--core.rpc.port` defaults to 26657, so if you do not specify
