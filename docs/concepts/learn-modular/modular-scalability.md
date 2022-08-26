@@ -141,7 +141,7 @@ For example, given a block size of 1000kb
 and no data availability sampling, the
 bandwidth overhead is the entire 1000kb.
 With data availability sampling, that
-1000kb bandwidth overhead reduces to only 33kb. 
+1000kb bandwidth overhead reduces to only 33kb.
 
 ## Settlement layers
 
