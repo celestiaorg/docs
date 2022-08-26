@@ -15,7 +15,7 @@ purpose and architecture.
 
 The four functions that modular blockchains
 can consist of are execution, settlement,
-consensus, and data availability. 
+consensus, and data availability.
 
 - Execution: The environment where applications
 live and state changes are executed.
@@ -130,7 +130,7 @@ and data availability layer.
 
 Under this modular stack, the execution layer
 would be sovereign such that it has the ability
-to fork, and for its nodes to determine which 
+to fork, and for its nodes to determine which
 execution rules are canonical. If the execution
 layer is a rollup and requires fraud or validity
 proofs to be verified, they can be distributed
@@ -166,7 +166,7 @@ have one without another (e.g. consensus and
 data availability layer).
 2. Naive modular stacks were initially introduced
 with layer 2s, providing scalability to a
-monolithic layer 1 blockchain. Since the 
+monolithic layer 1 blockchain. Since the
 capacity of layer 2s depends on layer 1, a
 more modular approach is required to optimize
 the stack.
