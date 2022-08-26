@@ -153,7 +153,7 @@ For ports:
   to specify another port if you prefer.
 
 ```sh
-celestia light start --core.ip <ip> --core.grpc.port 9090
+celestia light start --core.ip <ip-address> --core.grpc.port <port>
 ```
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
