@@ -34,8 +34,6 @@ Alternatively, rollups can deploy to data availability layers that don’t impos
 
 Coupled with a data availability layer, execution layers can conduct unconstrained experimentation with its execution environment. Additionally, the ease at which new execution layers will be able to be deployed on top of data availability layers further reduces the friction in bootstrapping. This will result in compounding innovation in the execution environment because there are no barriers to experimentation with competition facilitating rapid innovation.
 
-<div class="conclusion"> 
-
 #### Conclusion
 
 **Developing new blockchains was a challenging and resource-intensive task. The advent of SDKs, such as the Cosmos SDK, enabled new blockchains to be created more efficiently than before. With modular data availability layers, new blockchains can be bootstrapped without the hurdles associated with launching an existing independent chain, while simultaneously retaining many benefits.**
@@ -43,4 +41,3 @@ Coupled with a data availability layer, execution layers can conduct unconstrain
 1. The next evolution in creating new blockchains is SDKs that enable new execution layers to be created that can immediately utilize existing modular blockchains. This increases the efficiency at which new blockchains can be created while minimizing the cost.
 2. Execution layers can be deployed on top of data availability layers and retain the sovereignty of an independent layer 1. This enables them to push upgrades and utilize social consensus without any dependence on external communities. Execution layers deployed on settlement layers don’t have the same assurances.
 3. The execution environments that execution layers can build are limited by being deployed on a settlement layer. For an execution layer deployed on a data availability layer, there are no restraints on the type of execution environment that can be built and deployed. This facilitates experimentation and innovation in the execution environment that is unconstrained by any dependency on a data availability layer.  
-</div>
