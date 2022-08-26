@@ -18,8 +18,8 @@ and also create a genesis file and some accounts for you
 to use. Once the log shows something like the following
 log in the output:
 
-```console
-$ ignite chain serve
+```sh
+root@yaz-workshop:~/wordle# ignite chain serve
 Cosmos SDK's version is: stargate - v0.45.5
 
 🛠️  Building proto...
