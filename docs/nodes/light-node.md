@@ -194,7 +194,7 @@ In order to run a light node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 ```sh
-celestia light start --core.ip <ip> --core.grpc.port 9090 --keyring.accname <name_of_custom_key>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <name_of_custom_key>
 ```
 
 ### Optional: start light node with SystemD
