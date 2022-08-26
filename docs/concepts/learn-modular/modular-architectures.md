@@ -48,8 +48,6 @@ Under this modular stack, the execution layer would be sovereign such that it ha
 
 Since there is no settlement layer involved, only the data availability layer is responsible for providing security for transaction ordering and data availability. This enables the execution layer to receive the full scalability benefits of decoupling consensus from execution as there is no middle layer to forward the transaction data to the base layer.
 
-<div class="conclusion"> 
-
 #### Conclusion
 
 **By decoupling functions and dividing them across specialized layers, different modular stacks can be created to serve varying goals with more optimal approaches. With the flexibility that modular blockchains provide, a wide design space is open to tackle unique challenges.**
@@ -58,4 +56,3 @@ Since there is no settlement layer involved, only the data availability layer is
 2. Naive modular stacks were initially introduced with layer 2s, providing scalability to a monolithic layer 1 blockchain. Since the capacity of layer 2s depends on layer 1, a more modular approach is required to optimize the stack.
 3. A modular stack can be constructed that consists of three layers rather than two. The execution layer can utilize a settlement layer for all the functionality that is required (e.g. bridging and dispute resolution) but also harness the benefits of a separate consensus and data availability layer.
 4. A modular stack can also consist of an execution layer that runs natively on a consensus and data availability layer. Under this construction, execution layer nodes would verify blocks through its peer-to-peer layer rather than from a settlement layer contract. This enables sovereignty for the execution layer as it can determine its environment without permission from any underlying layers.
-</div>
