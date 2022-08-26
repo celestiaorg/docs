@@ -1,12 +1,16 @@
+---
+sidebar_label : Creating A Wallet
+---
+
 # Wallet
 
 ## Create a Wallet
 
 First, create an application CLI configuration file:
 
- ```sh
- celestia-appd config keyring-backend test
- ```
+```sh
+celestia-appd config keyring-backend test
+```
 
 You can pick whatever wallet name you want.
 For our example we used "validator" as the wallet name:
@@ -27,8 +31,8 @@ celestia-appd keys list
 ## Fund a Wallet
 
 For the public celestia address, you can fund the
-previously created wallet via Discord by sending
-this message to #faucet channel:
+previously created wallet via [Discord](https://discord.gg/celestiacommunity)
+by sending this message to #faucet channel:
 
 ```text
 $request celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -41,5 +45,6 @@ wallet run the command below replacing the public
 address with your own:
 
 ```sh
+celestia-appd start
 celestia-appd query bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```

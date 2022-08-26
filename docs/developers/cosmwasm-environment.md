@@ -1,3 +1,7 @@
+---
+sidebar_label : Setup Network Environment
+---
+
 # Setting Up Your Environment for CosmWasm on Celestia
 <!-- markdownlint-disable MD013 -->
 

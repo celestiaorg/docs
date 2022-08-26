@@ -1,3 +1,7 @@
+---
+sidebar_label : Run The Wordle Chain
+---
+
 # Run the Wordle Chain
 <!-- markdownlint-disable MD013 -->
 

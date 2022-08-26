@@ -1,3 +1,7 @@
+---
+sidebar_label : Mamaki Testnet
+---
+
 # Mamaki Testnet
 <!-- markdownlint-disable MD013 -->
 
@@ -102,8 +106,6 @@ sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" 
 
 Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mamaki/peers.txt).
 
-You can return back to where you left off in the Bridge Node guide [here](validator-node.md#configure-pruning)
-
 ## Quick-sync with snapshot
 
 Run the following command to quick-sync from a snapshot for `mamaki`:
@@ -117,8 +119,6 @@ SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
 wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
-
-You can return back to where you left off in the Bridge Node guide [here](./validator-node.md#start-the-celestia-app-with-systemd)
 
 ## Delegate to a validator
 
@@ -149,8 +149,6 @@ txhash: <tx-hash>
 
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
-
-You can return back to where you left off in the Bridge Node guide [here](./validator-node#deploy-the-celestia-node)
 
 ## Connect validator
 
