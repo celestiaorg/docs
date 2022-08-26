@@ -19,7 +19,7 @@ A modular blockchain is a type of blockchain that specializes in only a few func
 
 While naive implementations of modular stacks were first introduced with rollups, rather than scaling monolithic chains an entirely new stack of purpose-built modular blockchains can be used to take advantage of this new paradigm.
 
-Rollups are a type of modular blockchain that specialize in execution, off-loading settlement, consensus, and <a href="https://celestia.org/glossary/data-availability" target="_blank" rel="noopener noreferrer" style="color:#7B2BF9;">data availability</a> to separate layers. Celestia is another modular blockchain that specializes in consensus and data availability, off-loading execution to separate chains, such as rollups.
+Rollups are a type of modular blockchain that specialize in execution, off-loading settlement, consensus, and [data availability](https://celestia.org/glossary/data-availability) to separate layers. Celestia is another modular blockchain that specializes in consensus and data availability, off-loading execution to separate chains, such as rollups.
 
 ![GATSBY_EMPTY_ALT](/img/learn-modular/article-1-image-1.png)
 
@@ -42,11 +42,11 @@ Monolithic blockchains are chains that handle all four functions. Where a modula
 
 ##### Sovereignty 
 
-New modular blockchains can be sovereign like layer 1s despite the utilization of other layers. This allows the blockchain to respond to hacks and push upgrades without permission from any underlying layers. This would be possible for blockchains that utilize Celestia as it won’t impose any restrictions on them. Essentially, sovereign blockchains retain the ability for <a href="https://celestia.org/glossary/social-consensus" target="_blank" rel="noopener noreferrer" style="color:#7B2BF9;">social consensus</a> to make critical decisions, which is one of the most important facets of blockchains as social coordination mechanisms.
+New modular blockchains can be sovereign like layer 1s despite the utilization of other layers. This allows the blockchain to respond to hacks and push upgrades without permission from any underlying layers. This would be possible for blockchains that utilize Celestia as it won’t impose any restrictions on them. Essentially, sovereign blockchains retain the ability for [social consensus](https://celestia.org/glossary/social-consensus) to make critical decisions, which is one of the most important facets of blockchains as social coordination mechanisms.
 
 ##### Launching new blockchains
 
-Since modular blockchains don’t need to handle all functions, new blockchains can simply utilize existing modular blockchains for the components they wish to off-load. This allows new blockchains to be bootstrapped efficiently, reducing time to deployment and minimizing costs. For example, a rollup "SDK" like <a href="https://github.com/celestiaorg/optimint" target="_blank" rel="noopener noreferrer" style="color:#7B2BF9;">Optimint</a> combined with the Cosmos SDK will help facilitate the creation of new blockchains without needing to bootstrap a secure validator set.
+Since modular blockchains don’t need to handle all functions, new blockchains can simply utilize existing modular blockchains for the components they wish to off-load. This allows new blockchains to be bootstrapped efficiently, reducing time to deployment and minimizing costs. For example, a rollup "SDK" like [Optimint](https://github.com/celestiaorg/optimint) combined with the Cosmos SDK will help facilitate the creation of new blockchains without needing to bootstrap a secure validator set.
 
 ##### Scalability
 
