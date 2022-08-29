@@ -14,8 +14,7 @@ support, mentorship, and a monthly stipend of $3,000 to build a project of their
 choice. After the program, continuing support will be available for Fellows in the
 form of fundraising help and grants.
 
-Applications are now open [here](https://celestia-intake.typeform.com/to/RB5FgXt2).
-Read on for more details.
+Applications are currently closed. Check back for details about future cohorts.
 
 ## Overview
 
@@ -120,7 +119,7 @@ These are the Mentors for the first cohort:
 - [Ismail Khoffi](https://twitter.com/KreuzUQuer) - CTO, Celestia Labs
 - [Evan Forbes](https://twitter.com/evansforbes) - Software Engineer, Celestia Labs
 
-## How to apply
+<!-- ## How to apply
 
 If you would like to join the program, complete
 **[this](https://celestia-intake.typeform.com/to/RB5FgXt2)** application form.
@@ -128,9 +127,4 @@ If you would like to join the program, complete
 The program is targeted for creative engineers who possess a strong understanding
 of modular blockchains and have a track record of building. Please share links to
 any relevant engineering work on github and written content that demonstrates your
-understanding of modular chains.
-
-## Contact
-
-For any questions, reach out to Nader Dabit via email nader@celestia.org or
-Telegram @naderdabit.
+understanding of modular chains. -->
