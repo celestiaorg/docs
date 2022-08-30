@@ -149,7 +149,7 @@ Among the more important changes to vanilla Tendermint, Celestia Core:
   data (for more details, see the section below describing use cases).
 
 For more details on the changes to Tendermint, take a look at the
-[ADRs](https://github.com/celestiaorg/celestia-core/tree/master/docs/celestia-architecture).
+[ADRs](https://github.com/celestiaorg/celestia-core/tree/v0.34.x-celestia/docs/celestia-architecture).
 Notice that Celestia Core nodes are still using the Tendermint p2p network.
 
 Similarly to Tendermint, Celestia Core is connected to the application layer
