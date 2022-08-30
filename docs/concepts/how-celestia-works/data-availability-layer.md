@@ -59,10 +59,10 @@ feasible for resource-limited light nodes. However, in order to validate
 block headers, Celestia light nodes need to download the 4k intermediate
 Merkle roots.
 
-For a block data size of n bytes, this means that every light node must
-download O(n) bytes. Therefore, any improvement in the bandwidth capacity
-of Celestia light nodes has a quadratic effect on the throughput of Celestia's
-DA layer.
+For a block data size of n bytes, this means that every light node must download
+O(sqrt(n)) bytes. Therefore, any improvement in the bandwidth capacity of
+Celestia light nodes has a quadratic effect on the throughput of Celestia's DA
+layer.
 
 ### Fraud Proofs of Incorrectly Extended Data
 
@@ -71,7 +71,7 @@ consequence of using a 2-dimensional Reed-Solomon encoding scheme. Alternatively
 DAS could be designed with a standard (i.e., 1-dimensional) Reed-Solomon encoding,
 where the original data is split into k  chunks and extended with k additional
 chunks of parity data. Since the block data commitment is the Merkle root of the
-2k resulting data chunks, light nodes no longer need to download O(n) bytes to
+2k resulting data chunks, light nodes no longer need to download 4k bytes to
 validate block headers.
 
 The downside of the standard Reed-Solomon encoding is dealing with malicious
@@ -87,8 +87,8 @@ As a solution, _Fraud Proofs of Incorrectly Generated Extended Data_ enable
 light nodes to reject blocks with invalid extended data. Such proofs require
 reconstructing the encoding and verifying the mismatch. With standard Reed-Solomon
 encoding, this entails downloading the original data, i.e., O(n) bytes.
-Contrastingly, with 2-dimensional Reed-Solomon encoding, only O(n ) bytes are
-required as it is sufficient to verify only one row or one column of the
+Contrastingly, with 2-dimensional Reed-Solomon encoding, only O(sqrt(n)) bytes
+are required as it is sufficient to verify only one row or one column of the
 extended matrix.
 
 ## Namespaced Merkle Trees (NMTs)
