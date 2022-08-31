@@ -53,5 +53,5 @@ You don't have to translate URLs in your language.
 
 ### Specific words
 
-As you will translate innovative concepts, like Data Availability Sampling, feel free to discuss about the best possible translation with the rest of the community.
+As you will translate innovative concepts, like Data Availability Sampling, feel free to discuss about the best translation with the rest of the community.
 Also be careful with date order, period and commas regarding numbers from a language to another. 
