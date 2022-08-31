@@ -43,6 +43,7 @@ For instance, if you see metadata like ```sidebar_label : Hello World```,
 a French translation would be ```sidebar_label : Salut tout le monde```. 
 
 Let's take another example, you wouldn't have to translate anything here : 
+
 ```sh
 cd $HOME
 rm -rf celestia-app
