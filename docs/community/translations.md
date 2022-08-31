@@ -12,7 +12,7 @@ to translating the documentation page, then this is the guide for you.
 Go to the Crowdin project [here](https://crowdin.com/project/celestia-docs).
 
 You will have to create an account and then you will be able to join the project
-in order to begin your translation journey. 
+in order to begin your translation journey.
 
 If you don't see your language, feel free to ask for it on discord, [here](https://discord.gg/celestiacommunity).
 
@@ -23,13 +23,13 @@ Give your opinion!
 
 # Tips
 
-Here are few tips to help you during your translation. 
+Here are few tips to help you during your translation.
 
-## Crowdin documentation 
+## Crowdin documentation
 
 Official Crowdin's documentaton is available [here](https://support.crowdin.com/online-editor).
 
-## Guide 
+## Guide
 
 ### Code
 
@@ -40,9 +40,9 @@ English speaker...So was Alan Turing! That is why
 you should not translate parts of the code "itself".
 
 For instance, if you see metadata like ```sidebar_label : Hello World```,
-a French translation would be ```sidebar_label : Salut tout le monde```. 
+a French translation would be ```sidebar_label : Salut tout le monde```.
 
-Let's take another example, you wouldn't have to translate anything here : 
+Let's take another example, you wouldn't have to translate anything here:
 
 ```sh
 cd $HOME
@@ -56,7 +56,7 @@ git checkout tags/$APP_VERSION -b $APP_VERSION
 make install
 ```
 
-You don't have to translate URLs in your language. 
+You don't have to translate URLs in your language.
 
 ### Specific words
 
@@ -64,5 +64,5 @@ As you will translate innovative concepts, like Data Availability
 Sampling, feel free to discuss about the best translation with the
 rest of the community.
 
-Also be careful with date order, period and commas regarding 
+Also be careful with date order, period and commas regarding
 numbers from a language to another.
