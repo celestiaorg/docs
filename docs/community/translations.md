@@ -21,11 +21,11 @@ downvotes to translations.
 
 Give your opinion!
 
-# Tips
+## Tips
 
 Here are few tips to help you during your translation.
 
-## Crowdin documentation
+### Crowdin documentation
 
 Official Crowdin's documentaton is available [here](https://support.crowdin.com/online-editor).
 
