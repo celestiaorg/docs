@@ -16,8 +16,10 @@ in order to begin your translation journey.
 
 If you don't see your language, feel free to ask for it on discord, [here](https://discord.gg/celestiacommunity).
 
-On Crowdin you can translate, comment translations but also give upvotes and downvotes to translations.
-Give your opinion !
+On Crowdin you can translate, comment translations but also give upvotes and
+downvotes to translations.
+
+Give your opinion!
 
 # Tips
 
