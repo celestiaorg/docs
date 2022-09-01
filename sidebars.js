@@ -328,6 +328,21 @@ const sidebars = {
       href: "https://celestia.org/glossary/"
     },
     {
+      type: "category",
+      label: "Specifications",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          label: "Reserved Namespace IDs",
+          id: "concepts/specifications/reserved-namespace-id"
+        },
+      ]
+    },
+    {
       type: "link",
       label: "Resources",
       href: "https://celestia.org/resources/"
