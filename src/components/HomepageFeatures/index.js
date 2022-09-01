@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: <Translate>'Build Modular'</Translate>,
+    title: <Translate>Build Modular</Translate>,
     Svg: require('@site/static/img/modular.svg').default,
     description: (
       <>
@@ -15,7 +15,7 @@ const FeatureList = [
     ),
   },
   {
-    title: <Translate>'Run Different Nodes'</Translate>,
+    title: <Translate>Run Different Nodes</Translate>,
     Svg: require('@site/static/img/run_node.svg').default,
     description: (
       <>
@@ -25,7 +25,7 @@ const FeatureList = [
     ),
   },
   {
-    title: <Translate>'Power-up with Data Availability Layer'</Translate>,
+    title: <Translate>Power-up with Data Availability Layer</Translate>,
     Svg: require('@site/static/img/data_availability.svg').default,
     description: (
       <>
