@@ -326,6 +326,11 @@ const sidebars = {
       type: "link",
       label: "Glossary",
       href: "https://celestia.org/glossary/"
+    },
+    {
+      type: "link",
+      label: "Resources",
+      href: "https://celestia.org/resources/"
     }
   ]
 };
