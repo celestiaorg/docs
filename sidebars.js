@@ -341,6 +341,11 @@ const sidebars = {
           id: "concepts/specifications/reserved-namespace-id"
         },
       ]
+    },
+    {
+      type: "link",
+      label: "Resources",
+      href: "https://celestia.org/resources/"
     }
   ]
 };
