@@ -12,12 +12,24 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
-            to="/nodes/overview">
-            Run A Node
+            className="front-page-link"
+            to="/concepts/how-celestia-works/introduction">
+              <p className="button-heading">Concepts</p>
+              Learn How Celestia Works
+          </Link>
+          <Link
+            className="front-page-link"
+            to="/developers/node-tutorial">
+              <p className="button-heading">Celestia Node</p>
+              Run a Node
+          </Link>
+          <Link
+            className="front-page-link"
+            to="/developers/wordle">
+               <p className="button-heading">Sovereign Chain</p>
+              Deploy a Rollup to Celestia
           </Link>
         </div>
       </div>

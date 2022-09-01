@@ -7,7 +7,7 @@ const docs = require('./sidebars');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Celestia Docs',
+  title: 'Build Modular.',
   tagline: '',
   url: 'https://docs.celestia.org',
   baseUrl: '/',
