@@ -39,7 +39,7 @@ const config = {
   ],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en','fr','zh']
   },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -65,6 +65,11 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
+          {
+            to: '/concepts/how-celestia-works/introduction',
+            position: 'left',
+            label: 'Concepts'
+          },
           {
             to: '/nodes/overview',
             position: 'left',
