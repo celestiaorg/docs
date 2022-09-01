@@ -15,6 +15,12 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="front-page-link"
+            to="/concepts/how-celestia-works/introduction">
+              <p className="button-heading">Concepts</p>
+              Learn how Celestia works
+          </Link>
+          <Link
+            className="front-page-link"
             to="/developers/node-tutorial">
               <p className="button-heading">Celestia Node</p>
               Run a Node
@@ -24,12 +30,6 @@ function HomepageHeader() {
             to="/developers/wordle">
                <p className="button-heading">Sovereign Chain</p>
               Deploy a Rollup to Celestia
-          </Link>
-          <Link
-            className="front-page-link"
-            to="/developers/experimental-execution-environment-testnets">
-              <p className="button-heading">Execution</p>
-              Experimental Execution Environment Testnets
           </Link>
         </div>
       </div>
