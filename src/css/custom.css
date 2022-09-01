@@ -5,6 +5,16 @@
  */
 
 @font-face {
+  font-family: "RuberoidLight";
+  src: url('/fonts/Ruberoid/Ruberoid-Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: "RuberoidRegular";
+  src: url('/fonts/Ruberoid/Ruberoid-Regular.otf') format('opentype');
+}
+
+@font-face {
   font-family: "RuberoidBold";
   src: url('/fonts/Ruberoid/Ruberoid-Bold.otf') format('opentype');
 }
@@ -77,6 +87,7 @@ code {
 }
 
 .front-page-link {
+  font-family: RuberoidRegular;;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -92,7 +103,7 @@ code {
   font-weight: 600;
   color: white;
   text-align: left;
-  height: 133px;
+  height: 115px;
 }
 
 .front-page-link:hover {
