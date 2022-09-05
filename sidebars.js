@@ -70,6 +70,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          label: "Arabica Devnet",
+          id: "nodes/arabica-devnet"
+        },
+        {
+          type: "doc",
           label: "Mamaki Testnet",
           id: "nodes/mamaki-testnet"
         }
