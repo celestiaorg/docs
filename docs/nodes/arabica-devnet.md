@@ -7,15 +7,14 @@ sidebar_label : Arabica Devnet
 
 ![arabica-devnet](/img/mamaki.png)
 
-Arabica Devnet is a new testnet from Celestia Labs focused exclusively
-on deploying the latest updates from the Celestia Labs team to a
-network that will always have the latest changes.
+Arabica Devnet is a new testnet from Celestia Labs that is focused
+exclusively on providing developers with enhanced performance and
+the latest upgrades for testing their rollups and applications.
 
 Arabica does not focus on validator or consensus-level testing, rather,
 that is what Mamaki Testnet is used for. If you are a validator, we
 recommend just testing your validator operations on Mamaki [here](./mamaki-testnet.md).
 
-Arabica instead focuses exclusively on developers, hence it being a devnet.
 With Arabica having the latest updates from all Celestia's products deployed
 on it, it can be subject to many changes. Therefore, as a fair warning,
 Arabica can break unexpectedly but given it will be continously updated,
