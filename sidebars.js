@@ -277,6 +277,11 @@ const sidebars = {
           ]
         }
       ]
+    },
+    {
+      type: "doc",
+      label: "Full Stack Modular Blockchain Development Tutorial",
+      id: "developers/full-stack-modular-development-guide"
     }
   ],
   community: [
