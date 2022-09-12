@@ -116,7 +116,7 @@ an example public Core Endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](../nodes/mamaki-testnet#rpc-endpoints)
+  purposes. You can find a list of RPC endpoints [here](/nodes/mamaki-testnet#rpc-endpoints)
 
 ```sh
 celestia light start --core.grpc http://<ip-address>:9090
