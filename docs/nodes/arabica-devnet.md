@@ -60,7 +60,7 @@ There is a list of RPC endpoints you can use to connect to Arabica Devnet:
   DO NOT CURRENTLY EXIST AND THERE ARE NO PUBLIC SALES OR OTHER PUBLIC
   DISTRIBUTIONS OF ANY MAINNET CELESTIA TOKENS.
 
-You can request from Arabica Devnet Faucet on the #faucet channel on
+You can request from Arabica Devnet Faucet on the #arabica-faucet channel on
 Celestia's Discord server with the following command:
 
 ```text
