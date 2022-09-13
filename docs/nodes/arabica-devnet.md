@@ -51,7 +51,7 @@ to the correct instructions on this page on how to connect to Arabica.
 
 There is a list of RPC endpoints you can use to connect to Arabica Devnet:
 
-* [TBD URL](https://rpc-mamaki.pops.one)
+* [http://limani.celestia-devops.dev](http://limani.celestia-devops.dev)
 
 ## Arabica Devnet faucet
 
@@ -73,6 +73,6 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 ## Explorers
 
-There are several explorers you can use for Arabica:
+There is an explorer you can use for Arabica:
 
-* [URL TBD](https://testnet.mintscan.io/celestia-testnet)
+* TBD

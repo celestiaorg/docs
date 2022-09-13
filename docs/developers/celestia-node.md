@@ -32,7 +32,7 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.3.0
-Commit: TBD 
+Commit: 00d80c423b2bfacec22a253ce6af3a534a1be3a7
 ```
 
 ### Mamaki Installation
