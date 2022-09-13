@@ -3,7 +3,6 @@ sidebar_label : Node Tutorial
 ---
 
 # Getting and Sending Transactions with Celestia Node
-<!-- markdownlint-disable MD013 -->
 
 In this tutorial, we will cover how to use the Celestia Node API to submit and
 retrieve messages from the Data Availability Layer by their namespace ID.
@@ -33,8 +32,10 @@ sudo apt update && sudo apt upgrade -y
 sudo yum update
 ```
 
-These are essential packages that are necessary to execute many tasks like downloading files, compiling, and monitoring the node:
+These are essential packages that are necessary to execute
+many tasks like downloading files, compiling, and monitoring the node:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 # If you are using the APT package manager
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
@@ -42,10 +43,12 @@ sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential gi
 # If you are using the YUM package manager
 sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
 ```
+<!-- markdownlint-enable MD013 -->
 
 ### Install Golang
 
-Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we must install Golang to build and run them.
+Celestia-app and celestia-node are written in [Golang](https://go.dev/)
+so we must install Golang to build and run them.
 
 ```sh
 ver="1.18.2"
@@ -88,9 +91,11 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make install
+make cel-key
 ```
 
-Verify that the binary is working and check the version with the celestia version command:
+Verify that the binary is working and check the
+version with the celestia version command:
 
 ```sh
 $ celestia version
@@ -137,19 +142,28 @@ celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
 You can create your key for your node by running the following command:
 
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname developer
-make cel-key
+./cel-key add <key_name> --keyring-backend test --node.type light
 ```
 
-Once you start the Light Node, a wallet key will be generated for you. You will need to fund that address with Mamaki Testnet tokens to pay for PayForData transactions.
+<!-- markdownlint-disable MD013 -->
+```sh
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name> 
+```
+<!-- markdownlint-enable MD013 -->
 
-You can find the address by running the following command in the `celestia-node` directory:
+Once you start the Light Node, a wallet key will be generated for you.
+You will need to fund that address with Mamaki Testnet tokens to pay
+for PayForData transactions.
+
+You can find the address by running the following command in
+the `celestia-node` directory:
 
 ```sh
 ./cel-key list --node.type light --keyring-backend test
 ```
 
-If you would like to fund your wallet with testnet tokens, head over to the Celestia Discord channel `#faucet`.
+If you would like to fund your wallet with testnet tokens,
+head over to the Celestia Discord channel `#faucet`.
 
 You can request funds to your wallet address using the following command in Discord:
 
@@ -620,10 +634,12 @@ If you notice from the above output, it returns a `height` of
 
 If you encounter an error like:
 
+<!-- markdownlint-disable MD013 -->
 ```console
 $ curl -X POST -d '{"namespace_id": "c14da9d459dc57f5", "data": "4f7a3f1aadd83255b8410fef4860c0cd2eba82e24a", "gas_limit": 60000}'  localhost:26658/submit_pfd
 "rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
 ```
+<!-- markdownlint-enable MD013 -->
 
 It is possible that the account you are trying to submit a PayForData from
 doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
