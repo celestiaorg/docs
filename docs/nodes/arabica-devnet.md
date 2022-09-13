@@ -5,7 +5,7 @@ sidebar_label : Arabica Devnet
 # Arabica Devnet
 <!-- markdownlint-disable MD013 -->
 
-![arabica-devnet](/img/mamaki.png)
+![arabica-devnet](/img/arabica-devnet.png)
 
 Arabica Devnet is a new testnet from Celestia Labs that is focused
 exclusively on providing developers with enhanced performance and
