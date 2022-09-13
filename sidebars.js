@@ -64,7 +64,8 @@ const sidebars = {
       type: "category",
       label: "Participate",
       link: {
-        type: 'generated-index'
+        type: "doc",
+        id: "nodes/participate"
       },
       collapsed: false,
       items: [
