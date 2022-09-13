@@ -127,7 +127,7 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 
 ## Delegate to a validator
 
-To delegate tokens to the the `celestiavaloper` validator, as an
+To delegate tokens to the `celestiavaloper` validator, as an
 example you can run:
 
 ```sh
