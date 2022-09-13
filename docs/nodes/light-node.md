@@ -106,6 +106,7 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make install
+make cel-key
 ```
 
 Verify that the binary is working and check the version with the
@@ -169,12 +170,18 @@ celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
 You can create your key for your node by running the following command:
 
 ```sh
-make cel-key
+./cel-key add <key_name> --keyring-backend test --node.type light
 ```
 
+<!-- markdownlint-disable MD013 -->
+```sh
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name>
+```
+<!-- markdownlint-enable MD013 -->
+
 Once you start the Light Node, a wallet key will be generated for you.
-You will need to fund that address with Mamaki Testnet tokens to pay for
-PayForData transactions.
+You will need to fund that address with Mamaki Testnet tokens to pay
+for PayForData transactions.
 
 You can find the address by running the following command in the
 `celestia-node` directory:
@@ -183,7 +190,19 @@ You can find the address by running the following command in the
 ./cel-key list --node.type light --keyring-backend test
 ```
 
-Mamaki Testnet tokens can be requested [here](./mamaki-testnet.md#mamaki-testnet-faucet).
+If you would like to fund your wallet with testnet tokens,
+head over to the Celestia Discord channel `#faucet`.
+
+You can request funds to your wallet address using the following command in Discord:
+
+```console
+$request <Wallet-Address>
+```
+
+Where `<Wallet-Address>` is the `celestia1******` address generated
+when you created the wallet.
+
+With your wallet funded, you can move on to the next step.
 
 ### Optional: run the light node with a custom key
 
