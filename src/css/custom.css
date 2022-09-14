@@ -121,6 +121,18 @@ code {
   margin-bottom: 8px;
 }
 
+/* Modular Fellows */
+p.modular-fellows-name {
+  font-family: 'RuberoidBold';
+  margin-bottom: 0px;
+  font-size: 30px;
+}
+
+.modular-fellows-avatar {
+  width: 175px;
+}
+
+/* Responsive */
 @media only screen and (max-width: 1000px) {
   .front-page-link {
     width: 100%;
