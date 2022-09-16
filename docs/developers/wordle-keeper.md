@@ -220,7 +220,7 @@ In the above code, we are doing the following things:
   We then check if the guess is correct. We store the Guess type with
   the updated count to the state.
 
-## Protobuff File
+## Protobuf File
 
   A few files need to be modified for this to work.
 
