@@ -163,6 +163,7 @@ You should be seeing logs coming through of the bridge node syncing.
 
 Start the Light Node as daemon process in the background
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-lightd.service
 [Unit]
@@ -171,7 +172,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/celestia light start --core.grpc http://<ip>:9090
+ExecStart=$HOME/go/bin/celestia light start --core.ip <ip-address> --core.grpc.port <port>
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
@@ -180,6 +181,7 @@ LimitNOFILE=4096
 WantedBy=multi-user.target
 EOF
 ```
+<!-- markdownlint-enable MD013 -->
 
 If the file was created successfully you will be able to see its content:
 
