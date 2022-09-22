@@ -122,7 +122,7 @@ an example public Core Endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](/nodes/mamaki-testnet#rpc-endpoints)
+  purposes. You can find a list of RPC endpoints [here](/nodes/arabica-devnet.md#rpc-endpoints)
 
 ```sh
 celestia light start --core.ip <ip-address> --core.grpc.port <port>
@@ -135,7 +135,7 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port>
 For example, your command along with an RPC endpoint might look like this:
 
 ```sh
-celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
 ```
 
 ### Keys and wallets
