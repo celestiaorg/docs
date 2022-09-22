@@ -92,10 +92,11 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make install
+make cel-key
 ```
 
-Verify that the binary is working and check the version with the
-celestia version command:
+Verify that the binary is working and check the
+version with the celestia version command:
 
 ```sh
 $ celestia version
@@ -121,25 +122,37 @@ an example public Core Endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](/nodes/mamaki-testnet#rpc-endpoints)
+  purposes. You can find a list of RPC endpoints [here](/nodes/arabica-devnet.md#rpc-endpoints)
 
 ```sh
-celestia light start --core.grpc http://<ip-address>:9090
+celestia light start --core.ip <ip-address> --core.grpc.port <port>
 ```
+
+> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can use the flag
+  to specify another port if you prefer.
 
 For example, your command along with an RPC endpoint might look like this:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
-celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
 ```
+<!-- markdownlint-enable MD013 -->
 
 ### Keys and wallets
 
 You can create your key for your node by running the following command:
 
 ```sh
-make cel-key
+./cel-key add <key_name> --keyring-backend test --node.type light
 ```
+
+<!-- markdownlint-disable MD013 -->
+```sh
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name> 
+```
+<!-- markdownlint-enable MD013 -->
 
 Once you start the Light Node, a wallet key will be generated for you.
 You will need to fund that address with Arabica Devnet tokens to pay

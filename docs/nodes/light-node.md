@@ -115,6 +115,7 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make install
+make cel-key
 ```
 
 Verify that the binary is working and check the version with the
@@ -177,25 +178,39 @@ is usually exposed on port 9090):
   account balance, a gRPC endpoint of a validator (core) node must be passed as
   directed below.
 
+For ports:
+
+> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can use the flag
+  to specify another port if you prefer.
+
 ```sh
-celestia light start --core.grpc http://<ip>:9090
+celestia light start --core.ip <ip-address> --core.grpc.port <port>
 ```
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./arabica-devnet.md#rpc-endpoints)
 
 For example, your command might look something like this:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
-celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
 ```
+<!-- markdownlint-enable MD013 -->
 
 ### Keys and wallets
 
 You can create your key for your node by running the following command:
 
 ```sh
-make cel-key
+./cel-key add <key_name> --keyring-backend test --node.type light
 ```
+
+<!-- markdownlint-disable MD013 -->
+```sh
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name>
+```
+<!-- markdownlint-enable MD013 -->
 
 Once you start the Light Node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
@@ -219,6 +234,15 @@ You have two networks to get testnet tokens from:
   test for developing your sovereign rollup. You can still use
   Mamaki Testnet as well, it is just used for Validator operations.
 
+You can request funds to your wallet address using the following command in Discord:
+
+```console
+$request <Wallet-Address>
+```
+
+Where `<Wallet-Address>` is the `celestia1******` address generated
+when you created the wallet.
+
 ### Optional: run the light node with a custom key
 
 In order to run a light node using a custom key:
@@ -227,9 +251,11 @@ In order to run a light node using a custom key:
    correct path (default: `~/.celestia-light/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
-celestia light start --core.grpc http://<ip>:9090 --keyring.accname <name_of_custom_key>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <name_of_custom_key>
 ```
+<!-- markdownlint-enable MD013 -->
 
 ### Optional: start light node with SystemD
 
