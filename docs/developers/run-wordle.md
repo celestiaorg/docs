@@ -57,7 +57,7 @@ Also please consider:
 
 > IMPORTANT: Furthermore, in the above command, you need to specify the latest
   Block Height in Arabica Devnet for `da_height`. You can find the latest block number
-  in the explorer [TBD](https://testnet.mintscan.io/celestia-testnet). Also, for the flag
+  in the explorer [here](https://explorer.celestia.observer/arabica). Also, for the flag
   `--optimint.namespace_id`, you can generate a random Namespace ID using the
   playground [here](https://go.dev/play/p/7ltvaj8lhRl)
 
