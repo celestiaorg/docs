@@ -3,6 +3,7 @@ sidebar_label : Node Tutorial
 ---
 
 # Getting and Sending Transactions with Celestia Node
+<!-- markdownlint-enable MD013 -->
 
 In this tutorial, we will cover how to use the Celestia Node API to submit and
 retrieve messages from the Data Availability Layer by their namespace ID.
@@ -32,8 +33,8 @@ sudo apt update && sudo apt upgrade -y
 sudo yum update
 ```
 
-These are essential packages that are necessary to execute
-many tasks like downloading files, compiling, and monitoring the node:
+These are essential packages that are necessary to execute many
+tasks like downloading files, compiling, and monitoring the node:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
@@ -121,7 +122,7 @@ an example public Core Endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](../nodes/mamaki-testnet#rpc-endpoints)
+  purposes. You can find a list of RPC endpoints [here](/nodes/mamaki-testnet#rpc-endpoints)
 
 ```sh
 celestia light start --core.ip <ip-address> --core.grpc.port <port>
@@ -152,7 +153,7 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.ac
 <!-- markdownlint-enable MD013 -->
 
 Once you start the Light Node, a wallet key will be generated for you.
-You will need to fund that address with Mamaki Testnet tokens to pay
+You will need to fund that address with Arabica Devnet tokens to pay
 for PayForData transactions.
 
 You can find the address by running the following command in
@@ -162,8 +163,8 @@ the `celestia-node` directory:
 ./cel-key list --node.type light --keyring-backend test
 ```
 
-If you would like to fund your wallet with testnet tokens,
-head over to the Celestia Discord channel `#faucet`.
+If you would like to fund your wallet with testnet tokens, head over
+to the Celestia Discord channel `#arabica-faucet`.
 
 You can request funds to your wallet address using the following command in Discord:
 

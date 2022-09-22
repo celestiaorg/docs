@@ -7,7 +7,7 @@ const docs = require('./sidebars');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Celestia Docs',
+  title: 'Build Modular.',
   tagline: '',
   url: 'https://docs.celestia.org',
   baseUrl: '/',
@@ -65,6 +65,11 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
+          {
+            to: '/concepts/how-celestia-works/introduction',
+            position: 'left',
+            label: 'Concepts'
+          },
           {
             to: '/nodes/overview',
             position: 'left',
