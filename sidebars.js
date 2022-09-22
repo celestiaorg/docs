@@ -64,10 +64,16 @@ const sidebars = {
       type: "category",
       label: "Participate",
       link: {
-        type: 'generated-index'
+        type: "doc",
+        id: "nodes/participate"
       },
       collapsed: false,
       items: [
+        {
+          type: "doc",
+          label: "Arabica Devnet",
+          id: "nodes/arabica-devnet"
+        },
         {
           type: "doc",
           label: "Mamaki Testnet",
@@ -181,7 +187,8 @@ const sidebars = {
       type: "category",
       label: "Optimint",
       link: {
-        type: 'generated-index',
+        type: "doc",
+        id: "developers/optimint"
       },
       collapsed: false,
       items: [
@@ -285,6 +292,68 @@ const sidebars = {
     { type: "doc", label: "Docs Translations", id: "community/translations" },
     { type: "doc", label: "Modular Fellows", id: "community/modular-fellows"}
   ],
+  concepts: [
+    {
+      type: "category",
+      label: "How Celestia Works",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          label: "Introduction",
+          id: "concepts/how-celestia-works/introduction"
+        },
+        {
+          type: "doc",
+          label: "Monolithic vs. Modular Blockchains",
+          id: "concepts/how-celestia-works/monolithic-vs-modular"
+        },
+        {
+          type: "doc",
+          label: "Celestia's Data Availability Layer",
+          id: "concepts/how-celestia-works/data-availability-layer"
+        },
+        {
+          type: "doc",
+          label: "The Lifecycle of a Celestia App Transaction",
+          id: "concepts/how-celestia-works/transaction-lifecycle"
+        }
+      ]
+    },
+    {
+      type: "link",
+      label: "Learn Modular",
+      href: "https://celestia.org/learn/"
+    },
+    {
+      type: "link",
+      label: "Glossary",
+      href: "https://celestia.org/glossary/"
+    },
+    {
+      type: "category",
+      label: "Specifications",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          label: "Reserved Namespace IDs",
+          id: "concepts/specifications/reserved-namespace-id"
+        },
+      ]
+    },
+    {
+      type: "link",
+      label: "Resources",
+      href: "https://celestia.org/resources/"
+    }
+  ]
 };
 
 module.exports = sidebars;

@@ -183,7 +183,7 @@ EOF
 ```
 <!-- markdownlint-enable MD013 -->
 
-If the file was created succesfully you will be able to see its content:
+If the file was created successfully you will be able to see its content:
 
 ```sh
 cat /etc/systemd/system/celestia-lightd.service

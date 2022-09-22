@@ -103,7 +103,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 You can create your key for your node by following the `cel-key` instructions [here](./keys.md)
 
 Once you start the Bridge Node, a wallet key will be generated for you.
-You will need to fund that address with Mamaki Testnet tokens to pay for
+You will need to fund that address with Testnet tokens to pay for
 PayForData transactions.
 You can find the address by running the following command:
 
@@ -111,7 +111,14 @@ You can find the address by running the following command:
 ./cel-key list --node.type bridge --keyring-backend test
 ```
 
-Mamaki Testnet tokens can be requested [here](./mamaki-testnet.md#mamaki-testnet-faucet).
+You have two networks to get testnet tokens from:
+
+* [Arabica](./arabica-devnet.md#arabica-devnet-faucet)
+* [Mamaki](./mamaki-testnet.md#mamaki-testnet-faucet)
+
+> NOTE: If you are running a bridge node for your validator
+  it is highly recommended to request Mamaki testnet tokens
+  as this is the testnet used to test out validator operations.
 
 #### Optional: run the bridge node with a custom key
 
