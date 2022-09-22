@@ -134,9 +134,11 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port>
 
 For example, your command along with an RPC endpoint might look like this:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
 ```
+<!-- markdownlint-enable MD013 -->
 
 ### Keys and wallets
 

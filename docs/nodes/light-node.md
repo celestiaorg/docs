@@ -192,9 +192,11 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 
 For example, your command might look something like this:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
 ```
+<!-- markdownlint-enable MD013 -->
 
 ### Keys and wallets
 
