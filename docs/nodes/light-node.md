@@ -193,7 +193,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
 ```
 
 ### Keys and wallets
