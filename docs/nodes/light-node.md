@@ -97,6 +97,15 @@ go version go1.18.2 linux/amd64
 
 ### Install Celestia node
 
+One thing to note here is deciding which version of
+celestia-node you wish to compile. Mamaki Testnet requires
+v0.3.0-rc2 and Arabica Devnet requires v0.3.0.
+
+The following sections highlight how to install it for the
+two networks.
+
+#### Mamaki Testnet installation
+
 Install the celestia-node binary by running the following commands:
 
 ```sh
@@ -115,6 +124,28 @@ celestia version command:
 $ celestia version
 Semantic version: v0.3.0-rc2
 Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+#### Arabica Devnet installation
+
+Install the celestia-node binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0
+make install
+```
+
+Verify that the binary is working and check the version with the
+celestia version command:
+
+```sh
+$ celestia version
+Semantic version: v0.3.0
+Commit: 00d80c423b2bfacec22a253ce6af3a534a1be3a7
 ```
 
 ## Initialize the light node
@@ -150,7 +181,7 @@ is usually exposed on port 9090):
 celestia light start --core.grpc http://<ip>:9090
 ```
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./arabica-devnet.md#rpc-endpoints)
 
 For example, your command might look something like this:
 
@@ -167,7 +198,7 @@ make cel-key
 ```
 
 Once you start the Light Node, a wallet key will be generated for you.
-You will need to fund that address with Mamaki Testnet tokens to pay for
+You will need to fund that address with testnet tokens to pay for
 PayForData transactions.
 
 You can find the address by running the following command in the
@@ -177,7 +208,16 @@ You can find the address by running the following command in the
 ./cel-key list --node.type light --keyring-backend test
 ```
 
-Mamaki Testnet tokens can be requested [here](./mamaki-testnet.md#mamaki-testnet-faucet).
+You have two networks to get testnet tokens from:
+
+* [Arabica](./arabica-devnet.md#arabica-devnet-faucet)
+* [Mamaki](./mamaki-testnet.md#mamaki-testnet-faucet)
+
+> NOTE: If you are running a light node for your sovereign
+  rollup, it is highly recommended to request Arabica devnet tokens
+  as Arabica has the latest changes that can be used to
+  test for developing your sovereign rollup. You can still use
+  Mamaki Testnet as well, it is just used for Validator operations.
 
 ### Optional: run the light node with a custom key
 
