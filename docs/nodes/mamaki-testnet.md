@@ -125,36 +125,6 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
 
-## Delegate to a validator
-
-To delegate tokens to the `celestiavaloper` validator, as an
-example you can run:
-
-```sh
-celestia-appd tx staking delegate \
-    celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd 1000000utia \
-    --from=$VALIDATOR_WALLET --chain-id=mamaki
-```
-
-If successful, you should see a similar output as:
-
-```console
-code: 0
-codespace: ""
-data: ""
-gas_used: "0"
-gas_wanted: "0"
-height: "0"
-info: ""
-logs: []
-raw_log: '[]'
-timestamp: ""
-tx: null
-txhash: <tx-hash>
-```
-
-You can check if the TX hash went through using the block explorer by
-inputting the `txhash` ID that was returned.
 
 ## Connect validator
 
@@ -202,3 +172,34 @@ txhash: <tx-hash>
 ```
 
 You should now be able to see your validator from a block explorer like [here](https://celestia.explorers.guru/)
+
+## Delegate to a validator
+
+To delegate tokens to the `celestiavaloper` validator, as an
+example you can run:
+
+```sh
+celestia-appd tx staking delegate \
+    celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd 1000000utia \
+    --from=$VALIDATOR_WALLET --chain-id=mamaki
+```
+
+If successful, you should see a similar output as:
+
+```console
+code: 0
+codespace: ""
+data: ""
+gas_used: "0"
+gas_wanted: "0"
+height: "0"
+info: ""
+logs: []
+raw_log: '[]'
+timestamp: ""
+tx: null
+txhash: <tx-hash>
+```
+
+You can check if the TX hash went through using the block explorer by
+inputting the `txhash` ID that was returned.
