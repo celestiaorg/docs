@@ -6,36 +6,36 @@ modular stack. Here are the lessons planned for Cohort 1.
 
 ## October 3
 
-#### Introduction to Celestia, the Cosmos SDK, and Optimint
+### Introduction to Celestia, the Cosmos SDK, and Optimint
 
 Nader Dabit and Yaz Khoury
 
 ## October 10
 
-#### Introduction to Cevmos
+### Introduction to Cevmos
 
 Josh Bowen
 
 ## October 24
 
-#### Introduction to Fuel
+### Introduction to Fuel
 
 Emily Herbert
 
 ## November 7
 
-#### Deploying a full-stack dapp with Foundry on Celestia
+### Deploying a full-stack dapp with Foundry on Celestia
 
 Nader Dabit
 
 ## November 21
 
-#### Quantum Gravity Bridge
+### Quantum Gravity Bridge
 
 Evan Forbes
 
 ## December 5
 
-#### Building a Sovereign Rollup on Celestia with CosmWasm
+### Building a Sovereign Rollup on Celestia with CosmWasm
 
 Yaz Khoury
