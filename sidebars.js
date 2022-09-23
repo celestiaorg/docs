@@ -297,6 +297,11 @@ const sidebars = {
           type: "doc",
           label: "First Cohort",
           id: "community/modular-fellows/first-cohort"
+        },
+        {
+          type: "doc",
+          label: "Lessons",
+          id: "community/modular-fellows/lessons"
         }
       ]
     }

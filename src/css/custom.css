@@ -125,11 +125,24 @@ code {
 p.modular-fellows-name {
   font-family: 'RuberoidBold';
   margin-bottom: 0px;
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .modular-fellows-avatar {
   width: 175px;
+}
+
+.modular-break {
+  height: 1px;
+  background-color: #ddd;
+  flex: 1;
+  margin-bottom: 30px;
+}
+
+.modular-fellows-github {
+  width: 26px;
+  opacity: .3;
+  margin-bottom: 20px;
 }
 
 /* Responsive */
