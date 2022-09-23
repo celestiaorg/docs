@@ -1,4 +1,6 @@
 # Modular Fellows - Cohort 1
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
 
 Modular Fellows is a program designed to empower modular builders with the right resources to build the future of scalable and sovereign blockchain networks.
 
@@ -60,7 +62,7 @@ Scanworks is a collective building security tooling and infrastructure for the I
 <a href="https://twitter.com/alexdphan" target="_blank">Alex Phan</a>
 </p>
 
-https://www.alexdphan.com/
+[https://www.alexdphan.com/](https://www.alexdphan.com/)
 
 <a href="https://github.com/alexdphan">
 <img className="modular-fellows-github" src="/img/modular-fellows/github.png" />
@@ -151,7 +153,6 @@ Scott Sunarto is a blockchain architect/engineer and founder of Argus Labs – a
 <a href="https://github.com/smsunarto">
 <img className="modular-fellows-github" src="/img/modular-fellows/github.png" />
 </a>
-
 
 <div className="modular-break" />
 
