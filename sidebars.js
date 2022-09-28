@@ -120,8 +120,8 @@ const sidebars = {
     },
     {
       type: "doc",
-      label: "Integrating Celestia",
-      id: "developers/integrating-celestia",
+      label: "Integrate Celestia",
+      id: "developers/integrate-celestia",
     },
     { 
       type: "doc", 
