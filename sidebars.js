@@ -118,11 +118,6 @@ const sidebars = {
       label: "Overview", 
       id: "developers/overview" 
     },
-    {
-      type: "doc",
-      label: "Integrate Celestia",
-      id: "developers/integrate-celestia",
-    },
     { 
       type: "doc", 
       label: "Setting Up Environment", 
@@ -288,7 +283,12 @@ const sidebars = {
           ]
         }
       ]
-    }
+    },
+    {
+      type: "doc",
+      label: "Integrate Celestia",
+      id: "developers/integrate-celestia",
+    },
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },

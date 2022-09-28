@@ -4,6 +4,9 @@ sidebar_label: Integrate Celestia
 
 # Integrate Celestia
 
+> This document is for third-party service providers, such as custodians and
+> explorers, integrating the Celestia network.
+
 ## Celestia Service Provider Notes
 
 Celestia is a fairly standard Cosmos-SDK based chain. We use the latest version
