@@ -1,8 +1,8 @@
 ---
-sidebar_label: Integrating Celestia
+sidebar_label: Integrate Celestia
 ---
 
-# Integrating Celestia
+# Integrate Celestia
 
 ## Celestia Service Provider Notes
 
