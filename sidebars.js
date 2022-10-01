@@ -281,6 +281,46 @@ const sidebars = {
               id: "developers/cosmwasm-resources"
             }
           ]
+        },
+        {
+          type: "category",
+          label: "Ethermint",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Ethermint Overview",
+              id: "developers/ethermint"
+            },
+            {
+              type: "doc",
+              label: "Ethermint Dependencies",
+              id: "developers/ethermint-dependencies"
+            },
+            {
+              type: "doc",
+              label: "Rollmint on Ethermint",
+              id: "developers/rollmint-on-ethermint"
+            },
+            {
+              type: "doc",
+              label: "Instantiate Ethermint",
+              id: "developers/instantiate-ethermint"
+            },
+            {
+              type: "doc",
+              label: "Deploy Smart Contract on Ethermint",
+              id: "developers/deploy-solidity-ethermint"
+            },
+            {
+              type: "doc",
+              label: "Interact with Ethermint Smart Contract",
+              id: "developers/interact-ethermint-solidity"
+            },
+          ]
         }
       ]
     }
