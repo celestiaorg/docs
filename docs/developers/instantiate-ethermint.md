@@ -1,5 +1,3 @@
-# Instantiate the Ethermint Network
-
 # Setting Up Your Environment for Ethermint on Celestia
 
 Now the `ethermintd` binary is built, we need to setup a local network
@@ -29,12 +27,14 @@ for later reference if needed.
 
 Now, let's add a genesis account and use it to update our genesis file:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 TOKEN_AMOUNT="10000000000000000000000000uether"
 ethermintd add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
 STAKING_AMOUNT=1000000000uether
 ethermintd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 ```
+<!-- markdownlint-enable MD013 -->
 
 With that, we created a local network genesis file.
 
