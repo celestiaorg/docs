@@ -176,6 +176,11 @@ const sidebars = {
           label: "Node Video Tutorial",
           id: "developers/light-node-video"
         },
+        {
+          type: "doc",
+          label: "Node Metrics",
+          id: "developers/celestia-node-metrics"
+        },
         { 
           type: "doc", 
           label: "Node API", 
