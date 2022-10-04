@@ -64,7 +64,7 @@ Also please consider:
 In another window, run the following to submit a Wordle:
 
 ```sh
-wordled tx wordle submit-wordle giant --from alice --keyring-backend test --chain-id wordle -b async
+wordled tx wordle submit-wordle giant --from alice --keyring-backend test --chain-id wordle -b async -y
 ```
 
 > NOTE: We are submitting a transaction asynchronously due to avoiding
