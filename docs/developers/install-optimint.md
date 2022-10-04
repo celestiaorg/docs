@@ -1,21 +1,21 @@
 ---
-sidebar_label : Installing Optimint
+sidebar_label : Installing Rollmint
 ---
 
-# Setting Up Optimint
+# Setting Up Rollmint
 
 Before we continue with building our Wordle App, we need to set up
-Optimint on our codebase.
+Rollmint on our codebase.
 
-## Installing Optimint
+## Installing Rollmint
 
 Run the following command inside the `wordle` directory.
 
 ```sh
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk@v0.45.4-optimint-v0.3.5
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk@v0.45.4-rollmint-v0.3.5
 go mod tidy
 go mod download
 ```
 
-With that, we have Optimint changes added to the project directory. Now,
+With that, we have Rollmint changes added to the project directory. Now,
 let's build the Wordle app!
