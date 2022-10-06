@@ -22,7 +22,7 @@ Celestia's Data Availability layer.
 Run the following command inside the `wordle` directory.
 
 ```sh
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk@v0.45.4-optimint-v0.3.4
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.1-rollmint-v0.4.0
 go mod tidy
 go mod download
 ```
