@@ -185,10 +185,10 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Optimint",
+      label: "Rollmint",
       link: {
         type: "doc",
-        id: "developers/optimint"
+        id: "developers/rollmint"
       },
       collapsed: false,
       items: [
@@ -212,8 +212,8 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Installing Optimint",
-              id: "developers/install-optimint"
+              label: "Installing Rollmint",
+              id: "developers/install-rollmint"
             },
             {
               type: "doc",
