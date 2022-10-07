@@ -125,7 +125,7 @@ an example public Core Endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](/nodes/arabica-devnet.md#rpc-endpoints)
+  purposes. You can find a list of RPC endpoints [here](/nodes/mamaki-testnet.md#rpc-endpoints)
 
 ```sh
 celestia light start --core.ip <ip-address> --core.grpc.port <port>
@@ -139,7 +139,7 @@ For example, your command along with an RPC endpoint might look like this:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
+celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -158,7 +158,7 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.ac
 <!-- markdownlint-enable MD013 -->
 
 Once you start the Light Node, a wallet key will be generated for you.
-You will need to fund that address with Arabica Devnet tokens to pay
+You will need to fund that address with Mamaki Testnet tokens to pay
 for PayForData transactions.
 
 You can find the address by running the following command in
@@ -169,7 +169,7 @@ the `celestia-node` directory:
 ```
 
 If you would like to fund your wallet with testnet tokens, head over
-to the Celestia Discord channel `#arabica-faucet`.
+to the Celestia Discord channel `#mamaki-faucet`.
 
 You can request funds to your wallet address using the following command in Discord:
 

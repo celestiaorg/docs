@@ -62,15 +62,15 @@ wasmd start --optimint.aggregator true --optimint.da_layer celestia --optimint.d
 Please consider:
 
 > NOTE: In the above command, you need to pass a Celestia Node IP address
-  to the `base_url` that has an account with Arabica Devnet tokens. Follow
+  to the `base_url` that has an account with Mamaki Testnet tokens. Follow
   the tutorial for setting up a Celestia Light Node and creating a wallet
   with testnet faucet money [here](./node-tutorial.md) in the Celestia Node section.
 
 Also please consider:
 
 > IMPORTANT: Furthermore, in the above command, you need to specify the latest
-  Block Height in Arabica Devnet for `da_height`. You can find the latest block number
-  in the explorer [here](https://explorer.celestia.observer/arabica). Also,
+  Block Height in Mamaki Testnet for `da_height`. You can find the latest block number
+  in the explorer [here](https://testnet.mintscan.io/celestia-testnet). Also,
   for the flag `--optimint.namespace_id`, you can generate a random Namespace
   ID using the playground [here](https://go.dev/play/p/7ltvaj8lhRl)
 

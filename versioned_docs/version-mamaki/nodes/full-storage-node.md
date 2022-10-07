@@ -79,16 +79,9 @@ You can find the address by running the following command:
 ./cel-key list --node.type full --keyring-backend test
 ```
 
-You have two networks to get testnet tokens from:
+You can request Mamaki Testnet tokens from:
 
-* [Arabica](./arabica-devnet.md#arabica-devnet-faucet)
 * [Mamaki](./mamaki-testnet.md#mamaki-testnet-faucet)
-
-> NOTE: If you are running a full-storage node for your sovereign
-  rollup, it is highly recommended to request Arabica devnet tokens
-  as Arabica has the latest changes that can be used to
-  test for developing your sovereign rollup. You can still use
-  Mamaki Testnet as well, it is just mostly used for Validator operations.
 
 ### Optional: run the full storage node with a custom key
 

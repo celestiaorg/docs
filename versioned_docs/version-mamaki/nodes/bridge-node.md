@@ -111,14 +111,9 @@ You can find the address by running the following command:
 ./cel-key list --node.type bridge --keyring-backend test
 ```
 
-You have two networks to get testnet tokens from:
+You can get Mamaki testnet tokens from:
 
-* [Arabica](./arabica-devnet.md#arabica-devnet-faucet)
 * [Mamaki](./mamaki-testnet.md#mamaki-testnet-faucet)
-
-> NOTE: If you are running a bridge node for your validator
-  it is highly recommended to request Mamaki testnet tokens
-  as this is the testnet used to test out validator operations.
 
 #### Optional: run the bridge node with a custom key
 

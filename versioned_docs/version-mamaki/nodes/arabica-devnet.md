@@ -7,6 +7,11 @@ sidebar_label : Arabica Devnet
 
 ![arabica-devnet](/img/arabica-devnet.png)
 
+> NOTE: You are currently on the Mamaki page of the documentation.
+  While this document on Arabica is here for guidance, you need
+  to select Arabica from the dropdown button on the navbar in order
+  to view Arabica-specific documentation.
+
 Arabica Devnet is a new testnet from Celestia Labs that is focused
 exclusively on providing developers with enhanced performance and
 the latest upgrades for testing their rollups and applications.
