@@ -33,7 +33,8 @@ const config = {
           versions: {
             current: {
               label: `${getNextVersionName()}`,
-              path: 'arabica'
+              path: 'arabica',
+              banner: 'none',
             },
             mamaki: {
               label: "Mamaki"
