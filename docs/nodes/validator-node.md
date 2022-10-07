@@ -4,6 +4,10 @@ sidebar_label : Validator Node
 
 # Setting up a Celestia Validator Node
 
+> NOTE: Validator participation only works on Mamaki Testnet. You are
+  currently on Arabica page. Switch to Mamaki Testnet installations
+  in the Navbar dropdown above.
+
 Validator nodes allow you to participate in consensus in the Celestia network.
 
 ## Hardware requirements

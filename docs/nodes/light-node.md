@@ -97,15 +97,6 @@ go version go1.18.2 linux/amd64
 
 ### Install Celestia node
 
-One thing to note here is deciding which version of
-celestia-node you wish to compile. Mamaki Testnet requires
-v0.3.0-rc2 and Arabica Devnet requires v0.3.0.
-
-The following sections highlight how to install it for the
-two networks.
-
-#### Arabica Devnet installation
-
 Install the celestia-node binary by running the following commands:
 
 ```sh
@@ -128,29 +119,6 @@ Commit: 8bce8d023f9d0a1929e56885e439655717aea4e4
 Build Date: Thu Sep 22 15:15:43 UTC 2022
 System version: amd64/linux
 Golang version: go1.19.1
-```
-
-#### Mamaki Testnet installation
-
-Install the celestia-node binary by running the following commands:
-
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.3.0-rc2
-make install
-make cel-key
-```
-
-Verify that the binary is working and check the version with the
-celestia version command:
-
-```sh
-$ celestia version
-Semantic version: v0.3.0-rc2
-Commit: 89892d8b96660e334741987d84546c36f0996fbe
 ```
 
 ## Initialize the light node
@@ -192,8 +160,6 @@ For ports:
 celestia light start --core.ip <ip-address> --core.grpc.port <port>
 ```
 
-#### Arabica Setup
-
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./arabica-devnet.md#rpc-endpoints)
 
 For example, your command might look something like this:
@@ -201,18 +167,6 @@ For example, your command might look something like this:
 <!-- markdownlint-disable MD013 -->
 ```sh
 celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
-```
-<!-- markdownlint-enable MD013 -->
-
-#### Mamaki Setup
-
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
-
-For example, your command might look something like this:
-
-<!-- markdownlint-disable MD013 -->
-```sh
-celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -241,10 +195,9 @@ You can find the address by running the following command in the
 ./cel-key list --node.type light --keyring-backend test
 ```
 
-You have two networks to get testnet tokens from:
+You can request Arabica Devnet tokens here:
 
 * [Arabica](./arabica-devnet.md#arabica-devnet-faucet)
-* [Mamaki](./mamaki-testnet.md#mamaki-testnet-faucet)
 
 > NOTE: If you are running a light node for your sovereign
   rollup, it is highly recommended to request Arabica devnet tokens

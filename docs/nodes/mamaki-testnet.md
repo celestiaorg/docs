@@ -6,6 +6,11 @@ sidebar_label : Mamaki Testnet
 
 ![mamaki-testnet](/img/mamaki.png)
 
+> NOTE: You have currently selected the Arabica guides of the docs
+  from the navbar dropdown. So all existing documentation you see
+  will be about Arabica. If you want to switch to Mamaki guides,
+  select `Mamaki` from the dropdown in the navbar.
+
 This guide contains the relevant sections for how to connect to Mamaki,
 depending on the type of node you are running. Mamaki Testnet is designed
 to help validators test out their infrastructure and node software

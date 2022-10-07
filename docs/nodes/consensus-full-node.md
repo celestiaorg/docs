@@ -5,6 +5,11 @@ sidebar_label : Consensus Full Node
 # Setting up a Celestia Consensus Full Node
 <!-- markdownlint-disable MD013 -->
 
+> NOTE: You are currently viewing the Arabica Devnet
+  page for this installation. To run a Consensus Full Node,
+  please select the Mamaki option from the dropdown options
+  in the Navbar above.
+
 Consensus Full Nodes allow you to sync blockchain history in the Celestia
 Consensus Layer.
 
