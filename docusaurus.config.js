@@ -5,6 +5,10 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const docs = require('./sidebars');
 
+function getNextVersionName() {
+  return 'Arabica'
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Build Modular.',
@@ -24,6 +28,14 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          lastVersion: 'mamaki',
+          editCurrentVersion: true,
+          versions: {
+            current: {
+              label: `${getNextVersionName()}`,
+              path: 'arabica',
+            },
+          },
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/celestiaorg/docs/tree/main/',
           routeBasePath: "/",
@@ -84,6 +96,10 @@ const config = {
             to: '/community/overview',
             position: 'left',
             label: 'Community',
+          },
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
           },
           {
             href: 'https://github.com/celestiaorg/docs',
