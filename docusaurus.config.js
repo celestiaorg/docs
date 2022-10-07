@@ -29,11 +29,14 @@ const config = {
       ({
         docs: {
           lastVersion: 'mamaki',
-          editCurrentVersion: true,
+          includeCurrentVersion: true,
           versions: {
             current: {
               label: `${getNextVersionName()}`,
-              path: 'arabica',
+              path: 'arabica'
+            },
+            mamaki: {
+              label: "Mamaki"
             },
           },
           sidebarPath: require.resolve('./sidebars.js'),
@@ -80,17 +83,19 @@ const config = {
           {
             to: '/concepts/how-celestia-works/introduction',
             position: 'left',
-            label: 'Concepts'
+            label: 'Concepts',
           },
           {
-            to: '/nodes/overview',
+            docId: 'nodes/overview',
             position: 'left',
             label: 'Run A Node',
+            type: "doc",
           },
           {
-            to: '/developers/overview',
+            docId: 'developers/overview',
             position: 'left',
             label: 'Developers',
+            type: "doc",
           },
           {
             to: '/community/overview',
@@ -109,6 +114,7 @@ const config = {
           {
             type: 'localeDropdown',
             position: 'right',
+            dropdownActiveClassDisabled: true,
           },
         ],
       },
