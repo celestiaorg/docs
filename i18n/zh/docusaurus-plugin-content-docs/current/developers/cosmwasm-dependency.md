@@ -54,7 +54,7 @@ Find the right instructions specific for your OS.
 ## wasmd Installation
 
 Here, we are going to pull down the `wasmd` repository and replace Tendermint
-with Optimint. Optimint is a drop-in replacement for Tendermint that allows
+with Rollmint. Rollmint is a drop-in replacement for Tendermint that allows
 Cosmos-SDK applications to connect to Celestia's Data Availability network.
 
 ```sh

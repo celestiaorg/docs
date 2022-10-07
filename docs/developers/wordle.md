@@ -7,7 +7,7 @@ sidebar_label : Wordle Overview
 ![mamaki-testnet](/img/wordle.jpg)
 
 This tutorial guide will go over building a cosmos-sdk app
-for Rollmint, the Optimistic Rollup implementation of
+for Rollmint, the Sovereign-Rollup implementation of
 Tendermint, for the popular game [Wordle](https://www.nytimes.com/games/wordle/index.html).
 
 This tutorial will go over how to setup Rollmint
