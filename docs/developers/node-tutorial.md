@@ -52,7 +52,7 @@ Celestia-app and celestia-node are written in [Golang](https://go.dev/)
 so we must install Golang to build and run them.
 
 ```sh
-ver="1.19.1"
+ver="1.18.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
