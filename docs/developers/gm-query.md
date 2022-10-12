@@ -4,15 +4,21 @@ sidebar_label : Query your Rollup
 
 # 💬 Say “gm world!”
 
-Now, we’re going to get our blockchain to say “gm world” and in order to do so we need to make the following changes:
+Now, we’re going to get our blockchain to say “gm world” and in order to do so
+we need to make the following changes:
 
 - Modify a protocol buffer file
 - Create a keeper query function that returns data
 - Register a query function
 
-Protocol buffer files contain proto RPC calls that define Cosmos SDK queries and message handlers, and proto messages that define Cosmos SDK types. The RPC calls are also responsible for exposing an HTTP API.
+Protocol buffer files contain proto RPC calls that define Cosmos SDK queries
+and message handlers, and proto messages that define Cosmos SDK types. The RPC
+calls are also responsible for exposing an HTTP API.
 
-The Keeper is required for each Cosmos SDK module and is an abstraction for modifying the state of the blockchain. Keeper functions allow you to query or write to the state. After you add a query to your chain, you need to register the query. You’ll only need to register a query once.
+The Keeper is required for each Cosmos SDK module and is an abstraction for
+modifying the state of the blockchain. Keeper functions allow you to query or
+write to the state. After you add a query to your chain, you need to register
+the query. You’ll only need to register a query once.
 
 A typical Cosmos blockchain developer workflow looks something like this:
 
@@ -23,9 +29,11 @@ A typical Cosmos blockchain developer workflow looks something like this:
 
 ## ✋ Create your first query
 
-**For this part of the tutorial, open a new terminal window that is not the same that you started the chain in.**
+**For this part of the tutorial, open a new terminal window that is not the
+same that you started the chain in.**
 
-In your new terminal window, `cd` into the `gm` directory and run this command to create a `gm` query:
+In your new terminal window, `cd` into the `gm` directory and run this command
+to create a `gm` query:
 
 ```bash
 ignite scaffold query gm --response text
@@ -42,10 +50,16 @@ create x/gm/keeper/grpc_query_gm.go
 🎉 Created a query `gm`.
 ```
 
-What just happened? `query` accepts the name of the query (`gm`), an optional list of request parameters (empty in this tutorial), and an optional comma-separated list of response field with a `--response` flag (`text` in this tutorial).
+What just happened? `query` accepts the name of the query (`gm`), an optional
+list of request parameters (empty in this tutorial), and an optional
+comma-separated list of response field with a `--response` flag (`text` in this
+tutorial).
 
-Navigate to the `proto/gm/query.proto` file, you’ll see that `Gm` RPC has been added to the `Query` service:
+Navigate to the `proto/gm/query.proto` file, you’ll see that `Gm` RPC has been
+added to the `Query` service:
 
+<!-- markdownlint-disable MD010 -->
+<!-- markdownlint-disable MD013 -->
 ```protobuf
 service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
@@ -56,6 +70,8 @@ service Query {
 	}
 }
 ```
+<!-- markdownlint-enable MD013 -->
+<!-- markdownlint-enable MD010 -->
 
 The `Gm` RPC for the `Query` service:
 
@@ -80,8 +96,11 @@ message QueryGmResponse {
 
 ## 👋 Gm keeper function
 
-The `x/gm/keeper/grpc_query_gm.go` file contains the `Gm` keeper function that handles the query and returns data.
+The `x/gm/keeper/grpc_query_gm.go` file contains the `Gm` keeper function that
+handles the query and returns data.
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD010 -->
 ```go
 func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.QueryGmResponse, error) {
 	if req == nil {
@@ -92,17 +111,23 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 	return &types.QueryGmResponse{}, nil
 }
 ```
+<!-- markdownlint-enable MD010 -->
+<!-- markdownlint-enable MD013 -->
 
 The `Gm` function performs the following actions:
 
 - Makes a basic check on the request and throws an error if it’s `nil`
-- Stores context in a `ctx` variable that contains information about the environment of the request
+- Stores context in a `ctx` variable that contains information about the
+environment of the request
 - Returns a response of type `QueryGmResponse`
 
 Currently, the response is empty. Let’s update the keeper function.
 
-Our `query.proto` file defines that the response accepts `text`. Use your text editor to modify the keeper function in `x/gm/keeper/grpc_query_gm.go` . 
+Our `query.proto` file defines that the response accepts `text`. Use your text
+editor to modify the keeper function in `x/gm/keeper/grpc_query_gm.go` .
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD010 -->
 ```go
 func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.QueryGmResponse, error) {
 	if req == nil {
@@ -113,6 +138,8 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 	return &types.QueryGmResponse{Text: "gm world!"}, nil
 }
 ```
+<!-- markdownlint-enable MD010 -->
+<!-- markdownlint-enable MD010 -->
 
 ## 🟢 Start your Sovereign Rollup
 

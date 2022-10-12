@@ -4,8 +4,10 @@ sidebar_label : Run a Light Node
 
 # 🪶 Run a Celestia DA Light Node
 
-The Mamaki Testnet is necessary to complete this tutorial. Run the following commands to install Celestia-Node:
+The Mamaki Testnet is necessary to complete this tutorial. Run the following
+commands to install Celestia-Node:
 
+<!-- markdownlint-disable MD010 -->
 ```bash
 cd $HOME
 rm -rf celestia-node
@@ -14,12 +16,17 @@ cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make go-install
 ```
+<!-- markdownlint-enable MD010 -->
 
 ![1.png](/img/gm/1.png)
 
-Inside the celestia-node repository is a utility called `cel-key` that uses the key utility provided by Cosmos-SDK under the hood. The utility can be used to `add`, `delete`, and manage keys for any DA node type `(bridge || full || light)`, or just keys in general.
+Inside the celestia-node repository is a utility called `cel-key` that uses the
+key utility provided by Cosmos-SDK under the hood. The utility can be used to
+`add`, `delete`, and manage keys for any DA node
+type `(bridge || full || light)`, or just keys in general.
 
 ## 🗝 Create a key
+
 Create your key for the node:
 
 ```bash
@@ -41,6 +48,7 @@ celestia version
 ```
 
 ## 🟢 Initialize Light Node
+
 Now, we’re ready to initialize the Celestia Light Node. You can do that by running:
 
 ```bash
@@ -60,15 +68,17 @@ Query our wallet address using `cel-key` :
 
 Use the `#mamaki-faucet` in the Celestia Discord to request tokens:
 
-```
+```bash
 $request <Wallet-Address>
 ```
 
 Start Celestia Light node with a connection to a public Core Endpoint:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 celestia light start --core.grpc https://rpc-mamaki.pops.one:9090 --keyring.accname my_celes_key
 ```
+<!-- markdownlint-enable MD013 -->
 
 ![3.png](/img/gm/3.png)
 
@@ -83,4 +93,7 @@ Your response should look like this, denominated in `utia` in JSON format.
 ```bash
 {"denom":"utia","amount":"100000000"}
 ```
-Now that we are set with Go and the Ignite CLI installed, and our Celestia Light Node running on our machine, we’re ready to build, test, and launch our own sovereign blockchain.
+
+Now that we are set with Go and the Ignite CLI installed, and our Celestia Light
+Node running on our machine, we’re ready to build, test, and launch our own
+sovereign blockchain.
