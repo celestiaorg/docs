@@ -5,7 +5,7 @@ sidebar_label : Setup Network Environment
 # Setting Up Your Environment for CosmWasm on Celestia
 
 Now the `wasmd` binary is built, we need to setup a local network
-that communicates between `wasmd` and Optimint.
+that communicates between `wasmd` and Rollmint.
 
 ## Building the Wasmd Network
 
@@ -55,7 +55,7 @@ We can run the following to start the `wasmd` network:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-wasmd start --optimint.aggregator true --optimint.da_layer celestia --optimint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000}' --optimint.namespace_id 000000000000FFFF --optimint.da_start_height XXXXX
+wasmd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height XXXXX
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -71,7 +71,7 @@ Also please consider:
 > IMPORTANT: Furthermore, in the above command, you need to specify the latest
   Block Height in Arabica Devnet for `da_height`. You can find the latest block number
   in the explorer [here](https://explorer.celestia.observer/arabica). Also,
-  for the flag `--optimint.namespace_id`, you can generate a random Namespace
+  for the flag `--rollmint.namespace_id`, you can generate a random Namespace
   ID using the playground [here](https://go.dev/play/p/7ltvaj8lhRl)
 
 With that, we have kickstarted our `wasmd` network!
