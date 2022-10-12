@@ -12,9 +12,8 @@ Recommended GNU/Linux or macOS.
 - [Golang v1.18.2](https://go.dev/)
 - [Ignite CLI v0.24.0](https://github.com/ignite/cli/releases/tag/v0.24.0)
 - [Homebrew](https://brew.sh/)
-- [wget](https://www.gnu.org/software/wget/) - Internet file retriever
-- [jq](https://stedolan.github.io/jq/) - Lightweight and flexible command-line
-JSON processor
+- [wget](https://www.gnu.org/software/wget/)
+- [jq](https://stedolan.github.io/jq/)
 - [A Celestia Light Node](https://docs.celestia.org/nodes/light-node/)
 
 ## 🏃 Install Golang
@@ -24,8 +23,8 @@ programming language. We’ll need Golang to build and run them. Celestia’s
 Mamaki testnet requires Golang v1.18.2 to build and run correctly.
 
 ```bash
+cd
 ver="1.18.2"
-cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
@@ -48,23 +47,19 @@ To check if Go was installed correctly run:
 
 ```bash
 go version
-
 ```
 
 The output should be the version installed:
 
 ```bash
 go version go1.19.1 darwin/arm64
-
 ```
 
 ## 🔥 Install Ignite CLI
 
-First you will need to create `/usr/local/bin` if you have not already:
+First, you will need to create `/usr/local/bin` if you have not already:
 
-```jsx
-# this creates the /usr/local/bin directory
-
+```bash
 sudo mkdir -p -m 775 /usr/local/bin
 ```
 
@@ -74,11 +69,12 @@ Run this command in your terminal to install Ignite CLI:
 curl https://get.ignite.com/cli! | bash
 ```
 
-> ✋ On some machines, you may run into permissions errors like the two below.
-You can resolve these errors by following the guidance [here](https://docs.ignite.com/guide/install#write-permission).
+> ✋ On some machines, you may run into permissions errors like the one below.
+You can resolve this error by following the guidance
+[here](https://docs.ignite.com/guide/install#write-permission) and below.
 
 ```bash
-# Error log 1
+# Error
 jcs @ ~ % curl https://get.ignite.com/cli! | bash
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -91,24 +87,13 @@ Installing ignite v0.24.0.....
 jcs @ ~ %
 ```
 
-This should resolve the first permissions error on `Error log 1`:
+The following command should resolve the permissions error:
 
 ```bash
 sudo curl https://get.ignite.com/cli! | sudo bash
 ```
 
-```bash
-# Error log 2
-jcs @ ~ % sudo curl https://get.ignite.com/cli! | sudo bash
-Password:
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  3967    0  3967    0     0  16042      0 --:--:-- --:--:-- --:--:-- 16258
-============
-Error: output directory missing: /usr/local/bin
-```
-
-A successful install will return something similar the response below:
+A successful installation will return something similar the response below:
 
 ```bash
 % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -146,13 +131,13 @@ Is on Gitpod:		false
 
 ## 🍺 Install Homebrew
 
-This will allow us to install dependencies for our Mac.
+Homebrew will allow us to install dependencies for our Mac:
 
 ```jsx
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Be sure to run the commands similar to the output below from the successful installation.
+Be sure to run the commands similar to the output below from the successful installation:
 
 ```jsx
 ==> Next steps:
@@ -164,7 +149,9 @@ Be sure to run the commands similar to the output below from the successful inst
 
 ## 🏃 Install wget and jq
 
+wget is an Internet file retriever and jq is a lightweight and flexible
+command-line JSON processor.
+
 ```bash
-# if you are using macOS and [Homebrew](https://brew.sh/)
 brew install wget && brew install jq
 ```

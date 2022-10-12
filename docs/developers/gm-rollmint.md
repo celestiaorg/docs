@@ -8,7 +8,7 @@ The Ignite CLI comes with scaffolding commands to make development of
 blockchains quicker by creating everything that is needed to start a new
 Cosmos SDK blockchain.
 
-Open a new tab or window in your terminal and run this command to scaffold your blockchain:
+Open a new tab or window in your terminal and run this command to scaffold your rollup:
 
 ```bash
 ignite scaffold chain gm
@@ -40,7 +40,7 @@ imported:
 - `nft` - for creating, transferring, and updating NFTs
 - and [more](https://docs.cosmos.network/master/architecture/adr-043-nft-module.html)
 
-Switch to the `gm` directory:
+Change to the `gm` directory:
 
 ```bash
 cd gm
@@ -96,13 +96,8 @@ The `ignite chain serve` command downloads dependencies and compiles the source
 code into a binary called `gmd` (repo + `d`). From now on, you will use `gmd`
 to run all of your chain commands.
 
-Two API endpoints have been exposed while starting your `gm` chain:
-
-- [http://localhost:26657](http://localhost:26657) - low-level Tendermint API
-- [http://localhost:1317](http://localhost:1317) - high-level blockchain API
-
 ### 🛑 Stopping your blockchain
 
-To stop your blockchain, press `Ctrl+C` in the terminal window where it is
+To stop your blockchain, press `Ctrl + C` in the terminal window where it is
 running. We’re ready to prepare our first Sovereign Rollup query and connect to
 Celestia’s DA layer.
