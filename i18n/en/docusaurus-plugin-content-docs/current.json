@@ -35,6 +35,10 @@
     "message": "Optimint",
     "description": "The label for category Optimint in sidebar developers"
   },
+  "sidebar.developers.category.gm world": {
+    "message": "gm world",
+    "description": "The label for category gm world in sidebar developers"
+  },
   "sidebar.developers.category.Wordle": {
     "message": "Wordle",
     "description": "The label for category Wordle in sidebar developers"
