@@ -4,18 +4,24 @@ sidebar_label : Setup
 
 # 💻 Setup
 
-- Operating systems: GNU/Linux, macOS, or Windows Subsystem for Linux (WSL). Recommended GNU/Linux or macOS.
+- Operating systems: GNU/Linux, macOS, or Windows Subsystem for Linux (WSL).
+Recommended GNU/Linux or macOS.
+
 > This tutorial was made on an M2 Mac with macOS Monterey Version 12.6.
+
 - [Golang v1.18.2](https://go.dev/)
 - [Ignite CLI v0.24.0](https://github.com/ignite/cli/releases/tag/v0.24.0)
 - [Homebrew](https://brew.sh/)
 - [wget](https://www.gnu.org/software/wget/) - Internet file retriever
-- [jq](https://stedolan.github.io/jq/) - Lightweight and flexible command-line JSON processor
+- [jq](https://stedolan.github.io/jq/) - Lightweight and flexible command-line
+JSON processor
 - [A Celestia Light Node](https://docs.celestia.org/nodes/light-node/)
 
 ## 🏃 Install Golang
 
-Celestia-App, Celestia-Node, and Cosmos-SDK are written in the Golang programming language. We’ll need Golang to build and run them. Celestia’s Mamaki testnet requires Golang v1.18.2 to build and run correctly.
+Celestia-App, Celestia-Node, and Cosmos-SDK are written in the Golang
+programming language. We’ll need Golang to build and run them. Celestia’s
+Mamaki testnet requires Golang v1.18.2 to build and run correctly.
 
 ```bash
 ver="1.18.2"
@@ -40,14 +46,14 @@ source $HOME/.zshrc
 
 To check if Go was installed correctly run:
 
-```
+```bash
 go version
 
 ```
 
 The output should be the version installed:
 
-```
+```bash
 go version go1.19.1 darwin/arm64
 
 ```
@@ -68,10 +74,8 @@ Run this command in your terminal to install Ignite CLI:
 curl https://get.ignite.com/cli! | bash
 ```
 
-<aside>
-✋ On some machines, you may run into permissions errors like the two below. You can resolve these errors by following the guidance [here](https://docs.ignite.com/guide/install#write-permission).
-
-</aside>
+> ✋ On some machines, you may run into permissions errors like the two below.
+You can resolve these errors by following the guidance [here](https://docs.ignite.com/guide/install#write-permission).
 
 ```bash
 # Error log 1
@@ -89,7 +93,7 @@ jcs @ ~ %
 
 This should resolve the first permissions error on `Error log 1`:
 
-```
+```bash
 sudo curl https://get.ignite.com/cli! | sudo bash
 ```
 
@@ -123,6 +127,8 @@ ignite version
 
 The response that you receive should look something like this:
 
+<!-- markdownlint-disable MD010 -->
+<!-- markdownlint-disable MD013 -->
 ```bash
 jcs @ ~ % ignite version
 Ignite CLI version:	v0.24.0
@@ -135,6 +141,8 @@ Your uname -a:		Darwin Joshs-MacBook-Air.local 21.6.0 Darwin Kernel Version 21.6
 Your cwd:		/Users/joshcs
 Is on Gitpod:		false
 ```
+<!-- markdownlint-enable MD013 -->
+<!-- markdownlint-enable MD010 -->
 
 ## 🍺 Install Homebrew
 
