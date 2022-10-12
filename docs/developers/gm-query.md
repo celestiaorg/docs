@@ -21,7 +21,7 @@ A typical Cosmos blockchain developer workflow looks something like this:
 - Define message handler logic
 - Finally, implement the logic of these queries and message handlers in keeper functions
 
-## 🙋‍♀️ Create your first query
+## ✋ Create your first query
 
 **For this part of the tutorial, open a new terminal window that is not the same that you started the chain in.**
 
@@ -114,7 +114,7 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 }
 ```
 
-## ▶️ Start your Sovereign Rollup
+## 🟢 Start your Sovereign Rollup
 
 ```bash
 gmd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"[http://localhost:26658](http://134.209.70.139:26658/)","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 100783
