@@ -4,15 +4,14 @@ sidebar_label : Run a Light Node
 
 # 🪶 Run a Celestia DA Light Node
 
-The Mamaki Testnet is necessary to complete this tutorial. Run the following
-commands to install Celestia-Node:
+A Celestia Light Node on the Mamaki Testnet is required to complete this
+tutorial. Run the following commands to install Celestia-Node:
 
 <!-- markdownlint-disable MD010 -->
 ```bash
-cd $HOME
-rm -rf celestia-node
+cd && rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
+cd celestia-node
 git checkout tags/v0.3.0-rc2
 make go-install
 ```
@@ -20,7 +19,7 @@ make go-install
 
 ![1.png](/img/gm/1.png)
 
-Inside the celestia-node repository is a utility called `cel-key` that uses the
+Inside the celestia-node repository is a utility named `cel-key` that uses the
 key utility provided by Cosmos-SDK under the hood. The utility can be used to
 `add`, `delete`, and manage keys for any DA node
 type `(bridge || full || light)`, or just keys in general.
@@ -33,11 +32,14 @@ Create your key for the node:
 make cel-key
 ```
 
-Verify the version of your Celestia-Node, it should be `v0.3.0-rc2`:
+Verify the version of your Celestia-Node with the `celestia version` command,
+it should be `v0.3.0-rc2`:
 
 ```bash
 celestia version
+```
 
+```bash
 # OUTPUT
 
 #Semantic version: v0.3.0-rc2
@@ -49,16 +51,15 @@ celestia version
 
 ## 🟢 Initialize Light Node
 
-Now, we’re ready to initialize the Celestia Light Node. You can do that by running:
+Now, we’re ready to initialize the Celestia Light Node. You can do so by running:
 
 ```bash
 celestia light init
 ```
 
-Query our wallet address using `cel-key` :
+Query our key's address using `cel-key` :
 
 ```bash
-# check wallets
 ./cel-key list --node.type light --keyring-backend test
 ```
 
@@ -66,7 +67,8 @@ Query our wallet address using `cel-key` :
 
 ## 🚰 Visit Faucet
 
-Use the `#mamaki-faucet` in the Celestia Discord to request tokens:
+Use the `#mamaki-faucet` channel in the Celestia Discord to request testnet
+tokens:
 
 ```bash
 $request <Wallet-Address>
@@ -82,7 +84,7 @@ celestia light start --core.grpc https://rpc-mamaki.pops.one:9090 --keyring.accn
 
 ![3.png](/img/gm/3.png)
 
-Check balance from our visit to the faucet:
+In another terminal window, check the balance from our visit to the faucet:
 
 ```bash
 curl -X GET http://134.209.71.236:26658/balance
@@ -94,6 +96,6 @@ Your response should look like this, denominated in `utia` in JSON format.
 {"denom":"utia","amount":"100000000"}
 ```
 
-Now that we are set with Go and the Ignite CLI installed, and our Celestia Light
+Now that we are set with Go and Ignite CLI installed, and our Celestia Light
 Node running on our machine, we’re ready to build, test, and launch our own
-sovereign blockchain.
+sovereign rollup.

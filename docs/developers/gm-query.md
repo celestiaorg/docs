@@ -4,7 +4,7 @@ sidebar_label : Query your Rollup
 
 # 💬 Say “gm world!”
 
-Now, we’re going to get our blockchain to say “gm world” and in order to do so
+Now, we’re going to get our blockchain to say `gm world` and in order to do so
 we need to make the following changes:
 
 - Modify a protocol buffer file
@@ -20,7 +20,7 @@ modifying the state of the blockchain. Keeper functions allow you to query or
 write to the state. After you add a query to your chain, you need to register
 the query. You’ll only need to register a query once.
 
-A typical Cosmos blockchain developer workflow looks something like this:
+The typical Cosmos blockchain developer workflow looks something like this:
 
 - Start with proto files to define Cosmos SDK [messages](https://docs.cosmos.network/master/building-modules/msg-services.html)
 - Define and register [queries](https://docs.cosmos.network/master/building-modules/query-services.html)
@@ -32,8 +32,8 @@ A typical Cosmos blockchain developer workflow looks something like this:
 **For this part of the tutorial, open a new terminal window that is not the
 same that you started the chain in.**
 
-In your new terminal window, `cd` into the `gm` directory and run this command
-to create a `gm` query:
+In your new terminal, `cd` into the `gm` directory and run this command
+to create the `gm` query:
 
 ```bash
 ignite scaffold query gm --response text
@@ -82,6 +82,11 @@ The `Gm` RPC for the `Query` service:
 
 ## 📨 Query request and response types
 
+In the same file, we will find:
+
+- `QueryGmRequest` is empty because it does not require parameters
+- `QueryGmResponse` contains `text` that is returned from the chain
+
 ```protobuf
 message QueryGmRequest {
 }
@@ -90,9 +95,6 @@ message QueryGmResponse {
   string text = 1;
 }
 ```
-
-- `QueryGmRequest` is empty because it does not require parameters
-- `QueryGmResponse` contains `text` that is returned from the chain
 
 ## 👋 Gm keeper function
 
@@ -147,7 +149,11 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 gmd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"[http://localhost:26658](http://134.209.70.139:26658/)","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 100783
 ```
 
-The `query` command has also scaffolded `x/gm/client/cli/query_gm.go` that implements a CLI equivalent of the gm query and mounted this command in `x/gm/client/cli/query.go` . Run the following command and get the following JSON response:
+The `query` command has also scaffolded
+`x/gm/client/cli/query_gm.go` that
+implements a CLI equivalent of the gm query and mounted this command in
+`x/gm/client/cli/query.go`. Run the following command and get the following
+JSON response:
 
 ```bash
 gmd q gm gm
@@ -160,3 +166,5 @@ text: gm world!
 ```
 
 ![4.png](/img/gm/4.png)
+
+Congratulations 🎉 you've successfully built your first rollup and queried it!
