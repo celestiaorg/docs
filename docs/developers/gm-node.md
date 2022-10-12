@@ -19,6 +19,7 @@ make go-install
 
 Inside the celestia-node repository is a utility called `cel-key` that uses the key utility provided by Cosmos-SDK under the hood. The utility can be used to `add`, `delete`, and manage keys for any DA node type `(bridge || full || light)`, or just keys in general.
 
+## 🗝 Create a key
 Create your key for the node:
 
 ```bash
@@ -39,6 +40,7 @@ celestia version
 #Golang version: go1.18.2
 ```
 
+## 🟢 Initialize Light Node
 Now, we’re ready to initialize the Celestia Light Node. You can do that by running:
 
 ```bash
@@ -53,6 +55,8 @@ Query our wallet address using `cel-key` :
 ```
 
 ![2.png](/img/gm/2.png)
+
+## 🚰 Visit Faucet
 
 Use the `#mamaki-faucet` in the Celestia Discord to request tokens:
 
@@ -74,4 +78,9 @@ Check balance from our visit to the faucet:
 curl -X GET http://134.209.71.236:26658/balance
 ```
 
+Your response should look like this, denominated in `utia` in JSON format.
+
+```bash
+{"denom":"utia","amount":"100000000"}
+```
 Now that we are set with Go and the Ignite CLI installed, and our Celestia Light Node running on our machine, we’re ready to build, test, and launch our own sovereign blockchain.

@@ -13,7 +13,7 @@ sidebar_label : Setup
 - [jq](https://stedolan.github.io/jq/) - Lightweight and flexible command-line JSON processor
 - [A Celestia Light Node](https://docs.celestia.org/nodes/light-node/)
 
-## 🏃‍♀️ Install Golang
+## 🏃 Install Golang
 
 Celestia-App, Celestia-Node, and Cosmos-SDK are written in the Golang programming language. We’ll need Golang to build and run them. Celestia’s Mamaki testnet requires Golang v1.18.2 to build and run correctly.
 
@@ -154,7 +154,7 @@ Be sure to run the commands similar to the output below from the successful inst
     eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-## 🏃‍♂️ Install wget and jq with Homebrew
+## 🏃 Install wget and jq
 
 ```bash
 # if you are using macOS and [Homebrew](https://brew.sh/)
