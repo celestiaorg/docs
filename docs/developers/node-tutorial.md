@@ -634,9 +634,10 @@ We get the following output:
 ```
 
 If you notice from the above output, it returns a `height` of
-`2452` which we will use for the next command. 
+`2452` which we will use for the next command.
 
-Note: To learn more about status response codes, please navigate to [cosmos' code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
+Note: To learn more about status response codes, please navigate to
+[cosmos' code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
 
 #### Troubleshooting
 
