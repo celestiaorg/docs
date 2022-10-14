@@ -52,7 +52,7 @@ go version
 The output should be the version installed:
 
 ```bash
-go version go1.19.1 darwin/arm64
+go version go1.18.2 darwin/arm64
 ```
 
 ## 🔥 Install Ignite CLI
@@ -121,7 +121,7 @@ Ignite CLI build date:	2022-09-12T14:14:32Z
 Ignite CLI source hash:	21c6430cfcc17c69885524990c448d4a3f56461c
 Your OS:		darwin
 Your arch:		arm64
-Your go version:	go version go1.19.1 darwin/arm64
+Your go version:	go version go1.18.2 darwin/arm64
 Your uname -a:		Darwin Joshs-MacBook-Air.local 21.6.0 Darwin Kernel Version 21.6.0: Sat Jun 18 17:07:28 PDT 2022; root:xnu-8020.140.41~1/RELEASE_ARM64_T8110 arm64
 Your cwd:		/Users/joshcs
 Is on Gitpod:		false
