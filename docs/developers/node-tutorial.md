@@ -51,6 +51,8 @@ sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential gi
 Celestia-app and celestia-node are written in [Golang](https://go.dev/)
 so we must install Golang to build and run them.
 
+#### If you are running Ubuntu Linux 20.04 (LTS) on an AMD Machine
+
 ```sh
 ver="1.19.1"
 cd $HOME
@@ -58,6 +60,36 @@ wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
+```
+
+#### If you are running Ubuntu Linux 20.04 (LTS) on a Raspberry Pi or ARM Machine
+
+```sh
+cd $HOME
+wget "https://golang.google.cn/dl/go$ver.linux-arm64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
+rm "go$ver.linux-arm64.tar.gz"
+```
+
+#### If you are running macOS on a M1 or M2 Machine
+
+```sh
+cd $HOME
+wget "https://golang.google.cn/dl/go$ver.darwin-arm64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
+rm "go$ver.darwin-arm64.tar.gz"
+```
+
+#### If you are running an macOS on an Intel Machine
+
+```sh
+cd $HOME
+wget "https://golang.google.cn/dl/go$ver.darwin-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
+rm "go$ver.darwin-amd64.tar.gz"
 ```
 
 Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
