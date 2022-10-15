@@ -197,7 +197,7 @@ Semantic version: v0.3.1
 Commit: 8bce8d023f9d0a1929e56885e439655717aea4e4
 Build Date: Thu Sep 22 15:15:43 UTC 2022
 System version: amd64/linux
-Golang version: go1.19.1
+Golang version: go1.18.2
 ```
 
 #### Mamaki Testnet installation
