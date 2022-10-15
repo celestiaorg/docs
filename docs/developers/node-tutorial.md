@@ -84,6 +84,9 @@ processor.
 Celestia-app and celestia-node are written in [Golang](https://go.dev/)
 so we must install Golang to build and run them.
 
+> If you are running an Arabica node, you will need to install Golang Version
+> 1.19.1
+
 #### If you are running Ubuntu Linux 20.04 (LTS) on an AMD Machine
 
 ```bash
@@ -174,7 +177,7 @@ Semantic version: v0.3.1
 Commit: 8bce8d023f9d0a1929e56885e439655717aea4e4
 Build Date: Thu Sep 22 15:15:43 UTC 2022
 System version: amd64/linux
-Golang version: go1.18.2
+Golang version: go1.19.1
 ```
 
 ### Instantiate Celestia Light Node
