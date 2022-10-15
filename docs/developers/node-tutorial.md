@@ -25,7 +25,7 @@ The following minimum hardware requirements are recommended for running a light 
 
 First, make sure to update and upgrade the OS:
 
-```sh
+```bash
 # If you are using the APT package manager
 sudo apt update && sudo apt upgrade -y
 
@@ -37,7 +37,7 @@ These are essential packages that are necessary to execute many
 tasks like downloading files, compiling, and monitoring the node:
 
 <!-- markdownlint-disable MD013 -->
-```sh
+```bash
 # If you are using the APT package manager
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
 
@@ -46,6 +46,39 @@ sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential gi
 ```
 <!-- markdownlint-enable MD013 -->
 
+### macOS Dependency Installation
+
+#### 🍺 Installing Homebrew
+
+[Homebrew](https://brew.sh/) is a package manager for macOS and Linux and will
+allow you to install your dependencies.
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Remember to run the commands in the output that are similar to:
+
+```bash
+==> Next steps:
+- Run these three commands in your terminal to add Homebrew to your PATH:
+    echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/joshstein/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/joshstein/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+#### 🗄 Install wget and jq
+
+Using Homebrew, in your terminal:
+
+```bash
+brew install wget && brew install jq
+```
+
+[wget](https://www.gnu.org/software/wget/) is an internet file retriever and
+[jq](https://stedolan.github.io/jq/) is a lightweight command-line JSON
+processor.
+
 ### Install Golang
 
 Celestia-app and celestia-node are written in [Golang](https://go.dev/)
@@ -53,8 +86,8 @@ so we must install Golang to build and run them.
 
 #### If you are running Ubuntu Linux 20.04 (LTS) on an AMD Machine
 
-```sh
-ver="1.19.1"
+```bash
+ver="1.18.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -62,9 +95,10 @@ sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
 ```
 
-#### If you are running Ubuntu Linux 20.04 (LTS) on a Raspberry Pi or ARM Machine
+#### If you are running Ubuntu Linux 20.04 (LTS) on an ARM Machine or Raspberry Pi
 
-```sh
+```bash
+ver="1.18.2"
 cd $HOME
 wget "https://golang.google.cn/dl/go$ver.linux-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -74,7 +108,8 @@ rm "go$ver.linux-arm64.tar.gz"
 
 #### If you are running macOS on a M1 or M2 Machine
 
-```sh
+```bash
+ver="1.18.2"
 cd $HOME
 wget "https://golang.google.cn/dl/go$ver.darwin-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -84,7 +119,8 @@ rm "go$ver.darwin-arm64.tar.gz"
 
 #### If you are running an macOS on an Intel Machine
 
-```sh
+```bash
+ver="1.18.2"
 cd $HOME
 wget "https://golang.google.cn/dl/go$ver.darwin-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -92,22 +128,24 @@ sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
 rm "go$ver.darwin-amd64.tar.gz"
 ```
 
+#### All Machines
+
 Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
 
-```sh
+```bash
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
 To check if Go was installed correctly run:
 
-```sh
+```bash
 go version
 ```
 
 The output should be the version installed:
 
-```sh
+```bash
 go version go1.18.2 linux/amd64
 ```
 
@@ -117,7 +155,7 @@ go version go1.18.2 linux/amd64
 
 Install the celestia-node binary by running the following commands:
 
-```sh
+```bash
 cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
@@ -130,13 +168,13 @@ make cel-key
 Verify that the binary is working and check the
 version with the celestia version command:
 
-```sh
+```bash
 $ celestia version
 Semantic version: v0.3.1
 Commit: 8bce8d023f9d0a1929e56885e439655717aea4e4
 Build Date: Thu Sep 22 15:15:43 UTC 2022
 System version: amd64/linux
-Golang version: go1.19.1
+Golang version: go1.18.2
 ```
 
 ### Instantiate Celestia Light Node
@@ -146,7 +184,7 @@ Now, let's instantiate a Celestia Light node:
 > Note: RPC Endpoints are exposed in all Celestia Node types
   such as Light, Bridge and Full Nodes.
 
-```sh
+```bash
 celestia light init
 ```
 
@@ -159,7 +197,7 @@ an example public Core Endpoint.
   and there are several in the Discord. This one is used for demonstration
   purposes. You can find a list of RPC endpoints [here](/nodes/arabica-devnet.md#rpc-endpoints)
 
-```sh
+```bash
 celestia light start --core.ip <ip-address> --core.grpc.port <port>
 ```
 
@@ -170,7 +208,7 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port>
 For example, your command along with an RPC endpoint might look like this:
 
 <!-- markdownlint-disable MD013 -->
-```sh
+```bash
 celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
 ```
 <!-- markdownlint-enable MD013 -->
@@ -179,12 +217,12 @@ celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.po
 
 You can create your key for your node by running the following command:
 
-```sh
+```bash
 ./cel-key add <key_name> --keyring-backend test --node.type light
 ```
 
 <!-- markdownlint-disable MD013 -->
-```sh
+```bash
 celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name> 
 ```
 <!-- markdownlint-enable MD013 -->
@@ -196,7 +234,7 @@ for PayForData transactions.
 You can find the address by running the following command in
 the `celestia-node` directory:
 
-```sh
+```bash
 ./cel-key list --node.type light --keyring-backend test
 ```
 
@@ -224,7 +262,7 @@ Open up another terminal window in order to begin querying the API.
 Now, let's query our node for the balance of its default account
 (which is the account associated with the `developer` key we generated earlier):
 
-```sh
+```bash
 curl -X GET http://127.0.0.1:26658/balance
 ```
 
@@ -245,7 +283,7 @@ Now, let's get the block header information.
 
 Here we will get the header from Block 1:
 
-```sh
+```bash
 curl -X GET http://127.0.0.1:26658/header/1
 ```
 
@@ -442,7 +480,7 @@ useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
 
 We run the following:
 
-```sh
+```bash
 curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
   "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
   "gas_limit": 60000}' http://localhost:26658/submit_pfd
@@ -673,7 +711,7 @@ If you notice from the above output, it returns a `height` of
 If you encounter an error like:
 
 <!-- markdownlint-disable MD013 -->
-```console
+```bash
 $ curl -X POST -d '{"namespace_id": "c14da9d459dc57f5", "data": "4f7a3f1aadd83255b8410fef4860c0cd2eba82e24a", "gas_limit": 60000}'  localhost:26658/submit_pfd
 "rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
 ```
@@ -691,7 +729,7 @@ use that block height and the namespace ID with which you submitted your
 PFD transaction to get your message shares returned to you. In this example,
 the block height we got was 589 which we will use for the following command.
 
-```sh
+```bash
 curl -X GET \
   http://localhost:26658/namespaced_shares/0c204d39600fddd3/height/2452
 ```

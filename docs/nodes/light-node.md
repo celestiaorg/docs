@@ -62,13 +62,48 @@ sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential \
 git make ncdu -y
 ```
 
+#### macOS Dependency Installation
+
+##### 🍺 Installing Homebrew
+
+[Homebrew](https://brew.sh/) is a package manager for macOS and Linux and will
+allow you to install your dependencies.
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Remember to run the commands in the output that are similar to:
+
+```bash
+==> Next steps:
+- Run these three commands in your terminal to add Homebrew to your PATH:
+    echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/joshstein/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/joshstein/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+##### 🗄 Install wget and jq
+
+Using Homebrew, in your terminal:
+
+```bash
+brew install wget && brew install jq
+```
+
+[wget](https://www.gnu.org/software/wget/) is an internet file retriever and
+[jq](https://stedolan.github.io/jq/) is a lightweight command-line JSON
+processor.
+
 ### Install Golang
 
 Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we must
 install Golang to build and run them.
 
-```sh
-ver="1.19.1"
+#### If you are running Ubuntu Linux 20.04 (LTS) on an AMD Machine
+
+```bash
+ver="1.18.2"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -76,22 +111,57 @@ sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
 ```
 
+#### If you are running Ubuntu Linux 20.04 (LTS) on an ARM Machine or Raspberry Pi
+
+```bash
+ver="1.18.2"
+cd $HOME
+wget "https://golang.google.cn/dl/go$ver.linux-arm64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
+rm "go$ver.linux-arm64.tar.gz"
+```
+
+#### If you are running macOS on a M1 or M2 Machine
+
+```bash
+ver="1.18.2"
+cd $HOME
+wget "https://golang.google.cn/dl/go$ver.darwin-arm64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
+rm "go$ver.darwin-arm64.tar.gz"
+```
+
+#### If you are running an macOS on an Intel Machine
+
+```bash
+ver="1.18.2"
+cd $HOME
+wget "https://golang.google.cn/dl/go$ver.darwin-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
+rm "go$ver.darwin-amd64.tar.gz"
+```
+
+#### All Machines
+
 Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
 
-```sh
+```bash
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
 To check if Go was installed correctly run:
 
-```sh
+```bash
 go version
 ```
 
 The output should be the version installed:
 
-```sh
+```bash
 go version go1.18.2 linux/amd64
 ```
 
@@ -108,7 +178,7 @@ two networks.
 
 Install the celestia-node binary by running the following commands:
 
-```sh
+```bash
 cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
@@ -121,7 +191,7 @@ make cel-key
 Verify that the binary is working and check the version with the
 celestia version command:
 
-```sh
+```bash
 $ celestia version
 Semantic version: v0.3.1
 Commit: 8bce8d023f9d0a1929e56885e439655717aea4e4
@@ -134,7 +204,7 @@ Golang version: go1.19.1
 
 Install the celestia-node binary by running the following commands:
 
-```sh
+```bash
 cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
@@ -147,7 +217,7 @@ make cel-key
 Verify that the binary is working and check the version with the
 celestia version command:
 
-```sh
+```bash
 $ celestia version
 Semantic version: v0.3.0-rc2
 Commit: 89892d8b96660e334741987d84546c36f0996fbe
@@ -157,7 +227,7 @@ Commit: 89892d8b96660e334741987d84546c36f0996fbe
 
 Run the following command:
 
-```sh
+```bash
 celestia light init
 ```
 
@@ -188,7 +258,7 @@ For ports:
   it in the command line, it will default to that port. You can use the flag
   to specify another port if you prefer.
 
-```sh
+```bash
 celestia light start --core.ip <ip-address> --core.grpc.port <port>
 ```
 
@@ -199,7 +269,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 <!-- markdownlint-disable MD013 -->
-```sh
+```bash
 celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
 ```
 <!-- markdownlint-enable MD013 -->
@@ -211,7 +281,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 <!-- markdownlint-disable MD013 -->
-```sh
+```bash
 celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
 ```
 <!-- markdownlint-enable MD013 -->
@@ -220,12 +290,12 @@ celestia light start --core.ip https://rpc-mamaki.pops.one --core.grpc.port 9090
 
 You can create your key for your node by running the following command:
 
-```sh
+```bash
 ./cel-key add <key_name> --keyring-backend test --node.type light
 ```
 
 <!-- markdownlint-disable MD013 -->
-```sh
+```bash
 celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name>
 ```
 <!-- markdownlint-enable MD013 -->
@@ -237,7 +307,7 @@ PayForData transactions.
 You can find the address by running the following command in the
 `celestia-node` directory:
 
-```sh
+```bash
 ./cel-key list --node.type light --keyring-backend test
 ```
 
@@ -270,7 +340,7 @@ In order to run a light node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 <!-- markdownlint-disable MD013 -->
-```sh
+```bash
 celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <name_of_custom_key>
 ```
 <!-- markdownlint-enable MD013 -->
