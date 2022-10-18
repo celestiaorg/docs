@@ -13,7 +13,7 @@ cd && rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node
 git checkout tags/v0.3.0-rc2
-make go-install
+make install
 ```
 <!-- markdownlint-enable MD010 -->
 
@@ -87,7 +87,7 @@ celestia light start --core.grpc https://rpc-mamaki.pops.one:9090 --keyring.accn
 In another terminal window, check the balance from our visit to the faucet:
 
 ```bash
-curl -X GET http://134.209.71.236:26658/balance
+curl -X GET http://localhost:26658/balance
 ```
 
 Your response should look like this, denominated in `utia` in JSON format.
