@@ -352,10 +352,42 @@ const sidebars = {
       collapsed: true,
       items: [
         {
-          type: 'doc',
-          label: "Reserved Namespace IDs",
-          id: "concepts/specifications/reserved-namespace-id"
+          type: "category",
+          label: "Specs",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              label: "Reserved Namespace IDs",
+              id: "concepts/specifications/reserved-namespace-id"
+            },
+          ]
         },
+        {
+          type: "category",
+          label: "Rationale",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              label: "Fork Choice Rule",
+              id: "concepts/specifications/fork-choice-das"
+            },
+            {
+              type: 'doc',
+              label: "Message Block Layout",
+              id: "concepts/specifications/message-block-layout"
+            },
+
+          ]
+
+        }
       ]
     },
     {
