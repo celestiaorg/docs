@@ -416,7 +416,7 @@ We run the following:
 ```sh
 curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
   "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
-  "gas_limit": 60000}' http://localhost:26658/submit_pfd
+  "gas_limit": 70000}' http://localhost:26658/submit_pfd
 ```
 
 We get the following output:
@@ -638,6 +638,9 @@ We get the following output:
 
 If you notice from the above output, it returns a `height` of
 `2452` which we will use for the next command.
+
+Note: To learn more about status response codes, please navigate to
+[cosmos' code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
 
 #### Troubleshooting
 
