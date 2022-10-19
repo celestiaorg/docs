@@ -39,6 +39,10 @@
     "message": "Wordle",
     "description": "The label for category Wordle in sidebar developers"
   },
+  "sidebar.developers.category.gm world": {
+    "message": "gm world",
+    "description": "The label for category gm world in sidebar developers"
+  },
   "sidebar.developers.category.CosmWasm": {
     "message": "CosmWasm",
     "description": "The label for category CosmWasm in sidebar developers"
