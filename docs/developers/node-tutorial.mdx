@@ -334,6 +334,9 @@ You can create your key for your node by running the following command:
 ./cel-key add <key_name> --keyring-backend test --node.type light
 ```
 
+You can start your light node with the key created above by running the
+following command:
+
 <!-- markdownlint-disable MD013 -->
 ```sh
 celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name> 
