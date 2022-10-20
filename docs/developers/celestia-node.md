@@ -6,7 +6,7 @@ sidebar_label : Installing Celestia Node
 
 This tutorial goes over building and installing celestia-node. This
 tutorial assumes you completed the steps in setting up your development
-environment [here](./environment.md).
+environment [here](./environment.mdx).
 
 ## Install Celestia Node
 
