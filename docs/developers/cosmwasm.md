@@ -25,7 +25,7 @@ In this tutorial, we will going over the following:
 
 * [Setting up your dependencies for your CosmWasm smart contracts](./cosmwasm-dependency.md)
 * [Setting up Rollmint on CosmWasm](./cosmwasm-dependency.md#wasmd-installation)
-* [Instantiate a local network for your CosmWasm chain connected to Celestia](./cosmwasm-environment.md)
+* [Instantiate a local network for your CosmWasm chain connected to Celestia](./cosmwasm-environment.mdx)
 * [Deploying a Rust smart contract to CosmWasm chain](./cosmwasm-contract-deployment.md)
 * [Interacting with the smart contract](./cosmwasm-contract-interaction.md)
 

@@ -61,7 +61,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-Follow the tutorial here installing the dependencies [here](../developers/environment.md).
+Follow the tutorial here installing the dependencies [here](../developers/environment.mdx).
 
 ## Deploy the Celestia bridge node
 
