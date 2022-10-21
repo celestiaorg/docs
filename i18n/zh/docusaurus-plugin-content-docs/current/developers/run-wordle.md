@@ -28,7 +28,7 @@ wordled start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint
 > NOTE: In the above command, you need to pass a Celestia Node IP address
   to the `base_url` that has an account with Mamaki testnet tokens. Follow
   the tutorial for setting up a Celestia Light Node and creating a wallet
-  with testnet faucet money [here](./node-tutorial.md) in the Celestia Node section.
+  with testnet faucet money [here](./node-tutorial.mdx) in the Celestia Node section.
 
 In another window, run the following to submit a Wordle:
 
