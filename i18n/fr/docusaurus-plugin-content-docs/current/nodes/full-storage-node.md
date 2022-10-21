@@ -31,7 +31,7 @@ You can follow the tutorial for setting up your dependencies [here](../developer
 > Note: Make sure that you have at least 250+ Gb of free space for
   Celestia Full Storage Node
 
-You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.md)
+You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.mdx)
 
 ### Run the full storage node
 
