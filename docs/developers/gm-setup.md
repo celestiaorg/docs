@@ -22,7 +22,7 @@ Celestia-App, Celestia-Node, and Cosmos-SDK are written in the Golang
 programming language. We’ll need Golang to build and run them. Celestia’s
 Mamaki testnet requires Golang v1.18.2 to build and run correctly.
 
-You can by [install Golang here](./environment.mdx#install-golang).
+You can [install Golang here](./environment.mdx#install-golang).
 
 ## 🔥 Install Ignite CLI
 
