@@ -55,12 +55,12 @@ list of request parameters (empty in this tutorial), and an optional
 comma-separated list of response field with a `--response` flag (`text` in this
 tutorial).
 
-Navigate to the `proto/gm/query.proto` file, you’ll see that `Gm` RPC has been
-added to the `Query` service:
+Navigate to the `gm/proto/gm/query.proto` file, you’ll see that `Gm` RPC has
+been added to the `Query` service:
 
 <!-- markdownlint-disable MD010 -->
 <!-- markdownlint-disable MD013 -->
-```protobuf
+```protobuf title="gm/proto/gm/query.proto"
 service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/gm/gm/params";
@@ -87,7 +87,7 @@ In the same file, we will find:
 - `QueryGmRequest` is empty because it does not require parameters
 - `QueryGmResponse` contains `text` that is returned from the chain
 
-```protobuf
+```protobuf title="gm/proto/gm/query.proto"
 message QueryGmRequest {
 }
 
@@ -98,12 +98,12 @@ message QueryGmResponse {
 
 ## 👋 Gm keeper function
 
-The `x/gm/keeper/grpc_query_gm.go` file contains the `Gm` keeper function that
+The `gm/x/gm/keeper/grpc_query_gm.go` file contains the `Gm` keeper function that
 handles the query and returns data.
 
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD010 -->
-```go
+```go title="gm/x/gm/keeper/grpc_query_gm.go"
 func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.QueryGmResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
@@ -126,11 +126,11 @@ environment of the request
 Currently, the response is empty. Let’s update the keeper function.
 
 Our `query.proto` file defines that the response accepts `text`. Use your text
-editor to modify the keeper function in `x/gm/keeper/grpc_query_gm.go` .
+editor to modify the keeper function in `gm/x/gm/keeper/grpc_query_gm.go` .
 
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD010 -->
-```go
+```go title="gm/x/gm/keeper/grpc_query_gm.go"
 func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.QueryGmResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")

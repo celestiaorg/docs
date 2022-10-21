@@ -134,7 +134,7 @@ Celestia Bridge Node daemon.
 
 ### Install celestia-node
 
-You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.md)
+You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.mdx)
 
 ### Initialize the bridge node
 
