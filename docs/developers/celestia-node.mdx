@@ -2,6 +2,9 @@
 sidebar_label : Installing Celestia Node
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Celestia Node
 
 This tutorial goes over building and installing celestia-node. This
@@ -10,7 +13,8 @@ environment [here](./environment.mdx).
 
 ## Install Celestia Node
 
-### Arabica Installation
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
 
 Installing celestia-node for Arabica Devnet means installing a specific version
 to be compatible with the network.
@@ -38,7 +42,8 @@ System version: amd64/linux
 Golang version: go1.19.1
 ```
 
-### Mamaki Installation
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
 
 Installing celestia-node for Mamaki Testnet means installing a specific version
 to be compatible with the network.
@@ -62,6 +67,9 @@ $ celestia version
 Semantic version: v0.3.0-rc2
 Commit: 89892d8b96660e334741987d84546c36f0996fbe
 ```
+
+</TabItem>
+</Tabs>
 
 ## Network Selection
 
