@@ -23,7 +23,7 @@ instance machine.
 
 ### Setup the dependencies
 
-Follow the instructions on installing the dependencies [here](../developers/environment.md).
+Follow the instructions on installing the dependencies [here](../developers/environment.mdx).
 
 ## Deploying the celestia-app
 
@@ -134,7 +134,7 @@ Celestia Bridge Node daemon.
 
 ### Install celestia-node
 
-You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.md)
+You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.mdx)
 
 ### Initialize the bridge node
 
