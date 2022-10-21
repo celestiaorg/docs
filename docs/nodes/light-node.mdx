@@ -251,7 +251,7 @@ The output should be the version installed:
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 ```sh
-go version go1.19.1 linux/amd64
+go version go1.18.2 linux/amd64
 ```
 
 </TabItem>
@@ -282,7 +282,7 @@ go version go1.18.2 darwin/amd64
 
 One thing to note here is deciding which version of
 celestia-node you wish to compile. Mamaki Testnet requires
-v0.3.0-rc2 and Arabica Devnet requires v0.3.0.
+v0.3.0-rc2 and Arabica Devnet requires v0.4.0.
 
 The following section highlights how to install it for the
 two networks.
@@ -297,7 +297,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.3.1
+git checkout tags/v0.4.1
 make install
 make cel-key
 ```
@@ -306,11 +306,11 @@ Verify that the binary is working and check the version with the
 celestia version command:
 
 ```sh
-$ celestia version
-Semantic version: v0.3.1
-Commit: 8bce8d023f9d0a1929e56885e439655717aea4e4
-Build Date: Thu Sep 22 15:15:43 UTC 2022
-System version: amd64/linux
+celestia version
+Semantic version: v0.4.1
+Commit: dbaf227c8b35da13ee92b34e364cbf8deb461ff1
+Build Date: Thu Oct 20 22:48:39 EDT 2022
+System version: arm64/darwin
 Golang version: go1.19.1
 ```
 
@@ -376,9 +376,23 @@ For ports:
   it in the command line, it will default to that port. You can use the flag
   to specify another port if you prefer.
 
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port>
+celestia light start --core.ip <IP_address> --core.grpc.port <port>
 ```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh
+celestia light start --core.remote <IP_address> --core.grpc.port <port>
+```
+
+</TabItem>
+</Tabs>
+
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
@@ -399,11 +413,9 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 
 For example, your command might look something like this:
 
-<!-- markdownlint-disable MD013 -->
 ```sh
-celestia light start --core.remote https://rpc-mamaki.pops.one
+celestia light start --core.remote https://rpc-mamaki.pops.one --core.grpc.port 9090
 ```
-<!-- markdownlint-enable MD013 -->
 
 </TabItem>
 </Tabs>
@@ -419,10 +431,23 @@ You can create your key for your node by running the following command:
 You can start your light node with the key created above by running the
 following command:
 
-<!-- markdownlint-disable MD013 -->
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name>
+celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <key_name>
 ```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh
+celestia light start --core.remote <IP_address> --core.grpc.port <port> --keyring.accname <key_name>
+```
+
+</TabItem>
+</Tabs>
+
 <!-- markdownlint-enable MD013 -->
 
 Once you start the Light Node, a wallet key will be generated for you.
@@ -464,11 +489,22 @@ In order to run a light node using a custom key:
    correct path (default: `~/.celestia-light/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
-<!-- markdownlint-disable MD013 -->
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <name_of_custom_key>
+celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <name_of_custom_key>
 ```
-<!-- markdownlint-enable MD013 -->
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh
+celestia light start --core.remote <IP_address> --core.grpc.port <port> --keyring.accname <name_of_custom_key>
+```
+
+</TabItem>
+</Tabs>
 
 ### Optional: start light node with SystemD
 
