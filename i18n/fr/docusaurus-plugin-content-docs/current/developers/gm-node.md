@@ -39,14 +39,14 @@ it should be `v0.3.0-rc2`:
 celestia version
 ```
 
-```bash
+```output
 # OUTPUT
 
-#Semantic version: v0.3.0-rc2
-#Commit: 89892d8b96660e334741987d84546c36f0996fbe
-#Build Date: Fri Oct  7 01:08:14 UTC 2022
-#System version: amd64/linux
-#Golang version: go1.18.2
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+Build Date: Fri Oct  7 01:08:14 UTC 2022
+System version: amd64/linux
+Golang version: go1.18.2
 ```
 
 ## 🟢 Initialize Light Node
@@ -92,7 +92,7 @@ curl -X GET http://localhost:26658/balance
 
 Your response should look like this, denominated in `utia` in JSON format.
 
-```bash
+```json
 {"denom":"utia","amount":"100000000"}
 ```
 
