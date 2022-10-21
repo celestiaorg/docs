@@ -23,7 +23,7 @@ instance machine.
 
 ### Setup the dependencies
 
-Follow the instructions on installing the dependencies [here](../developers/environment.md).
+Follow the instructions on installing the dependencies [here](../developers/environment.mdx).
 
 ## Deploying the celestia-app
 
