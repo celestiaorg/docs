@@ -1,5 +1,5 @@
 ---
-sidebar_label : Setup Network Environment
+sidebar_label: Setup Network Environment
 ---
 
 # Setting Up Your Environment for CosmWasm on Celestia

@@ -1,5 +1,5 @@
 ---
-sidebar_label : Build a Sovereign Rollup
+sidebar_label: Build a Sovereign Rollup
 ---
 
 # 🗞 Building a Sovereign Rollup
