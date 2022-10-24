@@ -475,12 +475,6 @@ is usually exposed on port 9090):
   account balance, a gRPC endpoint of a validator (core) node must be passed as
   directed below.
 
-For ports:
-
-> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer.
-
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
@@ -488,12 +482,24 @@ For ports:
 celestia light start --core.ip <IP_address> --core.grpc.port <port>
 ```
 
+For ports:
+
+> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can use the flag
+  to specify another port if you prefer.
+
 </TabItem>
 <TabItem value="mamaki" label="Mamaki">
 
 ```sh
-celestia light start --core.remote <IP_address> --core.grpc.port <port>
+celestia light start --core.grpc <IP_address>:<port>
 ```
+
+For ports:
+
+> NOTE: The `--core.grpc` port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address.
 
 </TabItem>
 </Tabs>
@@ -505,11 +511,9 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 
 For example, your command might look something like this:
 
-<!-- markdownlint-disable MD013 -->
 ```sh
 celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
 ```
-<!-- markdownlint-enable MD013 -->
 
 </TabItem>
 <TabItem value="mamaki" label="Mamaki">
@@ -519,7 +523,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.remote https://rpc-mamaki.pops.one --core.grpc.port 9090
+celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
 ```
 
 </TabItem>
@@ -547,7 +551,7 @@ celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.ac
 <TabItem value="mamaki" label="Mamaki">
 
 ```sh
-celestia light start --core.remote <IP_address> --core.grpc.port <port> --keyring.accname <key_name>
+celestia light start --core.grpc <IP_address>:<port> --keyring.accname <key_name>
 ```
 
 </TabItem>
@@ -605,7 +609,7 @@ celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.ac
 <TabItem value="mamaki" label="Mamaki">
 
 ```sh
-celestia light start --core.remote <IP_address> --core.grpc.port <port> --keyring.accname <name_of_custom_key>
+celestia light start --core.grpc <IP_address>:<port> --keyring.accname <name_of_custom_key>
 ```
 
 </TabItem>
