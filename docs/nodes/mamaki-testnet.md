@@ -133,7 +133,7 @@ example you can run:
 
 ```sh
 celestia-appd tx staking delegate \
-    celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd 1000000utia \
+    celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \
     --from=$VALIDATOR_WALLET --chain-id=mamaki
 ```
 
