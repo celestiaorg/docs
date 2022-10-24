@@ -6,7 +6,7 @@ sidebar_label : Setup Network Environment
 <!-- markdownlint-disable MD013 -->
 
 Now the `wasmd` binary is built, we need to setup a local network
-that communicates between `wasmd` and Optimint.
+that communicates between `wasmd` and Rollmint.
 
 ## Building the Wasmd Network
 
@@ -53,12 +53,12 @@ export TXFLAG="--chain-id ${CHAIN_ID} --gas-prices 0uwasm --gas auto --gas-adjus
 We can run the following to start the `wasmd` network:
 
 ```sh
-wasmd start --optimint.aggregator true --optimint.da_layer celestia --optimint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000,"namespace_id":[0,0,0,0,0,0,255,255]}' --optimint.namespace_id 000000000000FFFF --optimint.da_start_height 21380
+wasmd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000,"namespace_id":[0,0,0,0,0,0,255,255]}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 21380
 ```
 
 > NOTE: In the above command, you need to pass a Celestia Node IP address
   to the `base_url` that has an account with Mamaki testnet tokens. Follow
   the tutorial for setting up a Celestia Light Node and creating a wallet
-  with testnet faucet money [here](./node-tutorial.md) in the Celestia Node section.
+  with testnet faucet money [here](./node-tutorial.mdx) in the Celestia Node section.
 
 With that, we have kickstarted our `wasmd` network!

@@ -190,13 +190,53 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Optimint",
+      label: "Rollmint",
       link: {
         type: "doc",
-        id: "developers/optimint"
+        id: "developers/rollmint"
       },
       collapsed: false,
       items: [
+        {
+          type: "category",
+          label: "gm world",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "gm world Overview",
+              id: "developers/gm-world"
+            },
+            {
+              type: "doc",
+              label: "Setup",
+              id: "developers/gm-setup"
+            },
+            {
+              type: "doc",
+              label: "Run a Light Node",
+              id: "developers/gm-node"
+            },
+            {
+              type: "doc",
+              label: "Build a Sovereign Rollup",
+              id: "developers/gm-rollmint"
+            },
+            {
+              type: "doc",
+              label: "Query your Rollup",
+              id: "developers/gm-query"
+            },
+            {
+              type: "doc",
+              label: "What's next",
+              id: "developers/gm-next"
+            }
+          ]
+        },
         {
           type: "category",
           label: "Wordle",
@@ -217,8 +257,8 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Installing Optimint",
-              id: "developers/install-optimint"
+              label: "Installing Rollmint",
+              id: "developers/install-rollmint"
             },
             {
               type: "doc",

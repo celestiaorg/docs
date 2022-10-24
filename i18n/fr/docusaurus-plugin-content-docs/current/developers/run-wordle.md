@@ -19,16 +19,16 @@ interact with the blockchain. This binary will have
 the name `wordled`
 
 When the compilation finishes, it's time to start `wordled`. You
-can start the chain with optimint configurations by running the following:
+can start the chain with rollmint configurations by running the following:
 
 ```sh
-wordled start --optimint.aggregator true --optimint.da_layer celestia --optimint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000,"namespace_id":[0,0,0,0,0,0,255,255]}' --optimint.namespace_id 000000000000FFFF --optimint.da_start_height 21380
+wordled start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000,"namespace_id":[0,0,0,0,0,0,255,255]}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 21380
 ```
 
 > NOTE: In the above command, you need to pass a Celestia Node IP address
   to the `base_url` that has an account with Mamaki testnet tokens. Follow
   the tutorial for setting up a Celestia Light Node and creating a wallet
-  with testnet faucet money [here](./node-tutorial.md) in the Celestia Node section.
+  with testnet faucet money [here](./node-tutorial.mdx) in the Celestia Node section.
 
 In another window, run the following to submit a Wordle:
 
@@ -37,10 +37,10 @@ wordled tx wordle submit-wordle giant --from alice --keyring-backend test --chai
 ```
 
 > NOTE: We are submitting a transaction asynchronously due to avoiding
-  any timeout errors. With Optimint as a replacement to Tendermint, we
+  any timeout errors. With Rollmint as a replacement to Tendermint, we
   need to wait for Celestia's Data-Availability network to ensure a block
   was included from Wordle, before proceeding to the next block. Currently,
-  in Optimint, the single aggregator is not moving forward with the next block
+  in Rollmint, the single aggregator is not moving forward with the next block
   production as long as it is trying to submit the current block to the DA network.
   In the future, with leader selection, block production and sync logic improves
   dramatically.
@@ -171,7 +171,7 @@ This outputs all Guess objects submitted so far, with the index
 being today’s date and the address of the submitter.
 
 With that, we implemented a basic example of Wordle using
-Cosmos-SDK and Ignite and Optimint. Read on to how you can
+Cosmos-SDK and Ignite and Rollmint. Read on to how you can
 extend the code base.
 
 ## Extending in the Future

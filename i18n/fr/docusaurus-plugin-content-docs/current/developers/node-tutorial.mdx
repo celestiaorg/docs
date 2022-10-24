@@ -3,7 +3,10 @@ sidebar_label : Node Tutorial
 ---
 
 # Getting and Sending Transactions with Celestia Node
-<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-enable MD013 -->
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 In this tutorial, we will cover how to use the Celestia Node API to submit and
 retrieve messages from the Data Availability Layer by their namespace ID.
@@ -25,27 +28,235 @@ The following minimum hardware requirements are recommended for running a light 
 
 First, make sure to update and upgrade the OS:
 
-```sh
-# If you are using the APT package manager
-sudo apt update && sudo apt upgrade -y
+<Tabs groupId="operating-systems">
+<TabItem value="apt" label="APT">
 
-# If you are using the YUM package manager
+```sh
+sudo apt update && sudo apt upgrade -y
+```
+
+</TabItem>
+<TabItem value="yum" label="YUM">
+
+```sh
 sudo yum update
 ```
 
-These are essential packages that are necessary to execute many tasks like downloading files, compiling, and monitoring the node:
+</TabItem>
+</Tabs>
+
+These are essential packages that are necessary to execute many tasks like
+downloading files, compiling, and monitoring the node:
+
+<Tabs groupId="operating-systems">
+<TabItem value="apt" label="APT">
 
 ```sh
-# If you are using the APT package manager
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+```
 
-# If you are using the YUM package manager
+</TabItem>
+<TabItem value="yum" label="YUM">
+
+```sh
 sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
 ```
 
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+#### 🍺 Installing Homebrew
+
+[Homebrew](https://brew.sh/) is a package manager for macOS and Linux and will
+allow you to install your dependencies.
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Be sure to run the commands in the output that are similar to:
+
+```sh
+==> Next steps:
+- Run these three commands in your terminal to add Homebrew to your PATH:
+    echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/joshstein/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/joshstein/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+#### 🗄 Install wget and jq
+
+Using Homebrew, in your terminal:
+
+```sh
+brew install wget && brew install jq
+```
+
+[wget](https://www.gnu.org/software/wget/) is an internet file retriever and
+[jq](https://stedolan.github.io/jq/) is a lightweight command-line JSON
+processor.
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+#### 🍺 Installing Homebrew
+
+[Homebrew](https://brew.sh/) is a package manager for macOS and Linux and will
+allow you to install your dependencies.
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Be sure to run the commands in the output that are similar to:
+
+```sh
+==> Next steps:
+- Run these three commands in your terminal to add Homebrew to your PATH:
+    echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/joshstein/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/joshstein/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+#### 🗄 Install wget and jq
+
+Using Homebrew, in your terminal:
+
+```sh
+brew install wget && brew install jq
+```
+
+[wget](https://www.gnu.org/software/wget/) is an internet file retriever and
+[jq](https://stedolan.github.io/jq/) is a lightweight command-line JSON
+processor.
+
+</TabItem>
+</Tabs>
+
 ### Install Golang
 
-Celestia-app and celestia-node are written in [Golang](https://go.dev/) so we must install Golang to build and run them.
+Celestia-app and celestia-node are written in [Golang](https://go.dev/)
+so we must install Golang to build and run them.
+
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+```sh
+ver="1.19.1"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+```
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+```sh
+ver="1.19.1"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
+rm "go$ver.linux-arm64.tar.gz"
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+```sh
+ver="1.19.1"
+cd $HOME
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
+rm "go$ver.darwin-arm64.tar.gz"
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+```sh
+ver="1.19.1"
+cd $HOME
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
+rm "go$ver.darwin-amd64.tar.gz"
+```
+
+</TabItem>
+</Tabs>
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+<Tabs groupId="shell">
+<TabItem value="bash" label="bash">
+
+```bash
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+</TabItem>
+<TabItem value="zsh" label="zsh">
+
+```zsh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+source $HOME/.zshrc
+```
+
+</TabItem>
+</Tabs>
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+```sh
+go version go1.19.1 linux/amd64
+```
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+```sh
+go version go1.19.1 linux/arm64
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+```sh
+go version go1.19.1 darwin/arm64
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+```sh
+go version go1.19.1 darwin/amd64
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
 
 ```sh
 ver="1.18.2"
@@ -56,12 +267,65 @@ sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
 ```
 
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
 
 ```sh
+ver="1.18.2"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
+rm "go$ver.linux-arm64.tar.gz"
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+```sh
+ver="1.18.2"
+cd $HOME
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
+rm "go$ver.darwin-arm64.tar.gz"
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+```sh
+ver="1.18.2"
+cd $HOME
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
+rm "go$ver.darwin-amd64.tar.gz"
+```
+
+</TabItem>
+</Tabs>
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+<Tabs groupId="shell">
+<TabItem value="bash" label="bash">
+
+```bash
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
+
+</TabItem>
+<TabItem value="zsh" label="zsh">
+
+```zsh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+source $HOME/.zshrc
+```
+
+</TabItem>
+</Tabs>
 
 To check if Go was installed correctly run:
 
@@ -71,13 +335,142 @@ go version
 
 The output should be the version installed:
 
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
 ```sh
 go version go1.18.2 linux/amd64
 ```
 
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+```sh
+go version go1.18.2 linux/arm64
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+```sh
+go version go1.18.2 darwin/arm64
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+```sh
+go version go1.18.2 darwin/amd64
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
+
+#### All Machines
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+<Tabs groupId="shell">
+<TabItem value="bash" label="bash">
+
+```bash
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+</TabItem>
+<TabItem value="zsh" label="zsh">
+
+```zsh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+source $HOME/.zshrc
+```
+
+</TabItem>
+</Tabs>
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+```sh
+go version go1.18.2 linux/amd64
+```
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+```sh
+go version go1.18.2 linux/arm64
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+```sh
+go version go1.18.2 darwin/arm64
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+```sh
+go version go1.18.2 darwin/amd64
+```
+
+</TabItem>
+</Tabs>
+
 ## Celestia Node
 
 ### Install Celestia Node
+
+One thing to note here is deciding which version of
+celestia-node you wish to compile. Mamaki Testnet requires
+v0.3.0-rc2 and Arabica Devnet requires v0.4.0.
+
+The following section highlights how to install it for the
+two networks.
+
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
+Install the celestia-node binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.4.1
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the
+celestia version command:
+
+```sh
+celestia version
+Semantic version: v0.4.1
+Commit: dbaf227c8b35da13ee92b34e364cbf8deb461ff1
+Build Date: Thu Oct 20 22:48:39 EDT 2022
+System version: arm64/darwin
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
 
 Install the celestia-node binary by running the following commands:
 
@@ -88,15 +481,20 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make install
+make cel-key
 ```
 
-Verify that the binary is working and check the version with the celestia version command:
+Verify that the binary is working and check the version with the
+celestia version command:
 
 ```sh
 $ celestia version
 Semantic version: v0.3.0-rc2
 Commit: 89892d8b96660e334741987d84546c36f0996fbe
 ```
+
+</TabItem>
+</Tabs>
 
 ### Instantiate Celestia Light Node
 
@@ -116,35 +514,89 @@ an example public Core Endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](../nodes/mamaki-testnet#rpc-endpoints)
+  purposes. You can find a list of RPC endpoints [here](/nodes/arabica-devnet.md#rpc-endpoints)
+
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.grpc http://<ip-address>:9090
+celestia light start --core.ip <IP_address> --core.grpc.port <port>
 ```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh
+celestia light start --core.remote <IP_address> --core.grpc.port <port>
+```
+
+</TabItem>
+</Tabs>
+
+> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can use the flag
+  to specify another port if you prefer.
 
 For example, your command along with an RPC endpoint might look like this:
 
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
-celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
 ```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh
+celestia light start --core.remote https://rpc-mamaki.pops.one --core.grpc.port 9090
+```
+
+</TabItem>
+</Tabs>
 
 ### Keys and wallets
 
 You can create your key for your node by running the following command:
 
 ```sh
-make cel-key
+./cel-key add <key_name> --keyring-backend test --node.type light
 ```
 
-Once you start the Light Node, a wallet key will be generated for you. You will need to fund that address with Mamaki Testnet tokens to pay for PayForData transactions.
+You can start your light node with the key created above by running the
+following command:
 
-You can find the address by running the following command in the `celestia-node` directory:
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
+```sh
+celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <key_name>
+```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh
+celestia light start --core.remote <IP_address> --core.grpc.port <port> --keyring.accname <key_name>
+```
+
+</TabItem>
+</Tabs>
+
+Once you start the Light Node, a wallet key will be generated for you.
+You will need to fund that address with Arabica Devnet tokens to pay
+for PayForData transactions.
+
+You can find the address by running the following command in
+the `celestia-node` directory:
 
 ```sh
 ./cel-key list --node.type light --keyring-backend test
 ```
 
-If you would like to fund your wallet with testnet tokens, head over to the Celestia Discord channel `#faucet`.
+If you would like to fund your wallet with testnet tokens, head over
+to the Celestia Discord channel `#arabica-faucet`.
 
 You can request funds to your wallet address using the following command in Discord:
 
@@ -388,7 +840,7 @@ We run the following:
 ```sh
 curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
   "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
-  "gas_limit": 60000}' http://localhost:26658/submit_pfd
+  "gas_limit": 70000}' http://localhost:26658/submit_pfd
 ```
 
 We get the following output:
@@ -611,14 +1063,19 @@ We get the following output:
 If you notice from the above output, it returns a `height` of
 `2452` which we will use for the next command.
 
+Note: To learn more about status response codes, please navigate to
+[cosmos' code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
+
 #### Troubleshooting
 
 If you encounter an error like:
 
-```console
+<!-- markdownlint-disable MD013 -->
+```sh
 $ curl -X POST -d '{"namespace_id": "c14da9d459dc57f5", "data": "4f7a3f1aadd83255b8410fef4860c0cd2eba82e24a", "gas_limit": 60000}'  localhost:26658/submit_pfd
 "rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
 ```
+<!-- markdownlint-enable MD013 -->
 
 It is possible that the account you are trying to submit a PayForData from
 doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
