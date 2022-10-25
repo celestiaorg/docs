@@ -21,5 +21,5 @@ to allow blockchains to communicate with one another.
 - [Introduction](./gm-world.md)
 - [Setup](./gm-setup.md)
 - [Run a Light Node](./gm-node.md)
-- [Build a Sovereign Rollup](./gm-rollup.md)
+- [Build a Sovereign Rollup](./gm-rollmint.md)
 - [Query your Rollup](./gm-query.md)
