@@ -27,6 +27,11 @@ The general process can be broken down into several components:
 - Testing of the features (happens on testnets first prior to activating on
   mainnet in order to ensure the network can upgrade securely).
 
+The two testnets were hardforks are deployed on are:
+
+- [Arabica](./arabica-devnet.md)
+- [Mamaki](./mamaki-testnet.md)
+
 ### Mocha Hardfork
 
 Celestia is planning the Mocha Hardfork upgrade on the Mamaki Testnet.
