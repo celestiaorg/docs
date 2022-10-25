@@ -4,8 +4,8 @@ Blockchain networks often times need to upgrade with new features
 which require coordination work among the validators prior to activating
 the upgrades.
 
-This process is called a Hardfork or a network upgrade. In those events,
-the Celestia Labs team will be coordinating with the validators on the
+This process is called a hardfork or a network upgrade. In those events,
+the Celestia Labs team will be coordinating with the validators on
 what they need to do in order to be ready for an upcoming hardfork.
 
 Hardforks are not backward-compatible with older versions of the network
@@ -16,21 +16,21 @@ to continue validating on the network after the network upgrades.
 
 The general process can be broken down into several components:
 
-- Hardfork Specifications and Features (defined by description of features
+- Hardfork specifications and features (defined by description of features
   and code implementation of those features).
 - Binary used to add those features (a new binary release with those features
-  will be provided by Celestia Node team in order for validators to upgrade
+  will be provided by Celestia team in order for validators to upgrade
   their nodes to the new binary).
 - A block number for when the network upgrades (even if validators upgrade
   their binary to be hardfork ready, the network upgrade does not happen right
-  away, but some short time in the future after at a specific block number).
+  away, but some short time in the future at a specific block number).
 - Testing of the features (happens on testnets first prior to activating on
   mainnet in order to ensure the network can upgrade securely).
 
 ### Mocha Hardfork
 
 Celestia is planning the Mocha Hardfork upgrade on the Mamaki Testnet.
-This hardfork is unique as it will reset the Mamaki network to Block 0
+This hardfork is unique as it will reset the Mamaki network to block 0
 while maintaining the existing state and also will rename Mamaki to Mocha.
 
 The new chain-id will be `mocha`.
