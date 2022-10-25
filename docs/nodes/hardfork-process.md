@@ -41,7 +41,7 @@ The most exciting feature included is setting the stage for QGB on Mocha.
 
 Validators will need to generate 2 new keys in order to be QGB-ready.
 Note that for the Mocha Hardfork, QGB will not launch yet so you
-can swap those keys after for new ones if needed. The keys needed are: 
+can swap those keys after for new ones if needed. The keys needed are:
 
 - 1 EVM key
 - 1 Celestia key
