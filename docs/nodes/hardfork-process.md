@@ -39,7 +39,9 @@ The release logs for `mocha` can be found here (TBD).
 
 The most exciting feature included is setting the stage for QGB on Mocha.
 
-Validators will need to generate 2 new keys in order to be QGB-ready:
+Validators will need to generate 2 new keys in order to be QGB-ready.
+Note that for the Mocha Hardfork, QGB will not launch yet so you
+can swap those keys after for new ones if needed. The keys needed are: 
 
 - 1 EVM key
 - 1 Celestia key
@@ -51,4 +53,5 @@ Those two keys will need to be added to 2 new flags on `celestia-app`:
 
 - `--ethereum-address`: This flag should contain a `0x` EVM address.
 - `--orchesrator-address`: This flag should contain a newly-generated
-  `celestia1` Celestia address.
+  `celestia1` Celestia address. Validators certainly can use their existing
+  Celestia addresses here but it is recommended to create a new one.

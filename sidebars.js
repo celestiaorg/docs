@@ -91,6 +91,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          label: "Hardfork Process",
+          id: "nodes/hardfork-process"
+        },
+        {
+          type: "doc",
           label: "SystemD",
           id: "nodes/systemd"
         },
