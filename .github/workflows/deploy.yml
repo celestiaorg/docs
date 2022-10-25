@@ -20,7 +20,7 @@ jobs:
           cache: npm
 
       - run: yarn install --frozen-lockfile
-      - run: yarn run crowdin:sync
+      - run: yarn crowdin:sync
       - run: yarn build
 
       - name: Deploy to GitHub Pages
