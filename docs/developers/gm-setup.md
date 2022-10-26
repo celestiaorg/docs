@@ -33,47 +33,47 @@ First, you will need to create `/usr/local/bin` if you have not already:
 sudo mkdir -p -m 775 /usr/local/bin
 ```
 
-Install Ignite Version v0.24.0 from source by running the following command:
-
-Run this command in your terminal to install Ignite CLI:
+The most stable version of Ignite CLI is v0.24.0. You can install Ignite
+Version v0.24.0 from source by running the following commands:
 
 ```bash
-curl https://get.ignite.com/cli! | bash
+wget https://github.com/ignite/cli/archive/refs/tags/v0.24.0.zip
+unzip v0.24.0.zip
+cd cli-0.24.0
+make install
+which ignite
+ignite version
 ```
 
-> ✋ On some machines, you may run into permissions errors like the one below.
+> ✋ On some machines, you may run into permissions errors.
 You can resolve this error by following the guidance
-[here](https://docs.ignite.com/guide/install#write-permission) and below.
-
-```bash
-# Error
-jcs @ ~ % curl https://get.ignite.com/cli! | bash
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  3967    0  3967    0     0  38631      0 --:--:-- --:--:-- --:--:-- 41322
-Installing ignite v0.24.0.....
-######################################################################## 100.0%
-**mv: rename ./ignite to /usr/local/bin/ignite: Permission denied**
-============
-**Error: mv failed**
-jcs @ ~ %
-```
-
-The following command should resolve the permissions error:
-
-```bash
-sudo curl https://get.ignite.com/cli! | sudo bash
-```
+[here](https://docs.ignite.com/guide/install#write-permission).
 
 A successful installation will return something similar the response below:
 
+<!-- markdownlint-disable MD010 -->
+<!-- markdownlint-disable MD013 -->
 ```bash
-% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  3967    0  3967    0     0   4122      0 --:--:-- --:--:-- --:--:--  4136
-Installing ignite v0.22.2.....
-######################################################################## 100.0%
-Installed at /usr/local/bin/ignite
+jcs @ ~/cli-0.24.0 % make install
+Installing Ignite CLI...
+Ignite CLI version:	development
+Ignite CLI build date:	2022-10-26T18:27:49
+Ignite CLI source hash:
+Your OS:		darwin
+Your arch:		arm64
+Your Node.js version:	v18.10.0
+Your go version:	go version go1.19.2 darwin/arm64
+Your uname -a:		Darwin Joshs-MacBook-Air.local 21.6.0 Darwin Kernel Version 21.6.0: Mon Aug 22 20:20:07 PDT 2022; root:xnu-8020.140.49~2/RELEASE_ARM64_T8110 arm64
+Your cwd:		/Users/joshstein/cli-0.24.0
+Is on Gitpod:		false
+```
+<!-- markdownlint-enable MD010 -->
+<!-- markdownlint-enable MD013 -->
+
+To remove the .zip and directory used for installation, run the following:
+
+```bash
+cd && rm -rf v0.24.0.zip && rm -rf cli-0.24.0
 ```
 
 Verify you’ve installed Ignite CLI by running:
