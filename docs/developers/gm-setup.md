@@ -70,7 +70,8 @@ Is on Gitpod:		false
 <!-- markdownlint-enable MD010 -->
 <!-- markdownlint-enable MD013 -->
 
-To remove the .zip and directory used for installation, run the following:
+To remove `v0.24.0.zip` and the directory used for installation, run the
+following:
 
 ```bash
 cd && rm -rf v0.24.0.zip && rm -rf cli-0.24.0

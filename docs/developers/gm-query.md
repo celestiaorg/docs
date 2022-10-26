@@ -2,7 +2,7 @@
 sidebar_label : Query your Rollup
 ---
 
-# 💬 Say “gm world!”
+# 💬 Say `gm world!`
 
 Now, we’re going to get our blockchain to say `gm world` and in order to do so
 we need to make the following changes:
@@ -146,7 +146,7 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 ## 🟢 Start your Sovereign Rollup
 
 ```bash
-gmd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"[http://localhost:26658](http://134.209.70.139:26658/)","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 100783
+gmd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 100783
 ```
 
 The `query` command has also scaffolded
