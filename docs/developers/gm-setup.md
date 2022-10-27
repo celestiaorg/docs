@@ -102,7 +102,7 @@ Is on Gitpod:		false
 
 ## 🍺 Install Homebrew
 
-Homebrew will allow us to install dependencies for our Mac:
+Homebrew will allow us to install dependencies for your Mac:
 
 ```jsx
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

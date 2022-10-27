@@ -4,7 +4,7 @@ sidebar_label : Query your Rollup
 
 # 💬 Say `gm world!`
 
-Now, you're going to get our blockchain to say `gm world` and in order to do so
+Now, you're going to get your blockchain to say `gm world` and in order to do so
 you need to make the following changes:
 
 - Modify a protocol buffer file
@@ -125,7 +125,7 @@ environment of the request
 
 Currently, the response is empty. Let’s update the keeper function.
 
-Our `query.proto` file defines that the response accepts `text`. Use your text
+Your `query.proto` file defines that the response accepts `text`. Use your text
 editor to modify the keeper function in `gm/x/gm/keeper/grpc_query_gm.go` .
 
 <!-- markdownlint-disable MD013 -->

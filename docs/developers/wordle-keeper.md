@@ -247,5 +247,5 @@ type BankKeeper interface {
 }
 ```
 
-With that, you implemented all our Keeper functions! Time to
+With that, you implemented all your Keeper functions! Time to
 compile the blockchain and take it out for a test drive.
