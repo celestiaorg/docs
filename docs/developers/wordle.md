@@ -73,7 +73,7 @@ In this current design, you implement the following rules:
 
 You will go over the architecture to achieve this further
 in the guide. But for now, you will get started setting up
-our development environment.
+your development environment.
 
 ## Table of Contents For This Tutorial
 

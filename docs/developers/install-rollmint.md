@@ -4,8 +4,8 @@ sidebar_label : Installing Rollmint
 
 # Setting Up Rollmint
 
-Before you continue with building our Wordle App, you need to set up
-Rollmint on our codebase.
+Before you continue with building your Wordle App, you need to set up
+Rollmint on your codebase.
 
 ## Installing Rollmint
 

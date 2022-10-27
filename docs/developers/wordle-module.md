@@ -37,4 +37,4 @@ You build the module with the `bank` dependency with the following command:
 ignite scaffold module wordle --dep bank
 ```
 
-This will scaffold the Wordle module to our Wordle Chain project.
+This will scaffold the Wordle module to your Wordle Chain project.
