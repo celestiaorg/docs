@@ -61,7 +61,7 @@ go mod download
 
 ## 🎬 Starting the blockchain
 
-Now that we have our fully-functional rollup scaffolded, we can start our chain
+Now that you have our fully-functional rollup scaffolded, you can start our chain
 on our machine by running this command in the `gm` directory:
 
 ```bash
@@ -99,5 +99,5 @@ to run all of your chain commands.
 ### 🛑 Stopping your blockchain
 
 To stop your blockchain, press `Ctrl + C` in the terminal window where it is
-running. We’re ready to prepare our first Sovereign Rollup query and connect to
+running. You're ready to prepare our first Sovereign Rollup query and connect to
 Celestia’s DA layer.

@@ -49,7 +49,7 @@ After that, you can proceed with the rest of the tutorial.
 
 ### Configure pruning
 
-For lower disk space usage we recommend setting up pruning using the
+For lower disk space usage you recommend setting up pruning using the
 configurations below. You can change this to your own pruning configurations
 if you want:
 
@@ -67,7 +67,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
 
 ### Reset network
 
-This will delete all data folders so we can start fresh:
+This will delete all data folders so you can start fresh:
 
 ```sh
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app

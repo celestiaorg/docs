@@ -19,11 +19,9 @@ Recommended GNU/Linux or macOS.
 ## 🏃 Install Golang
 
 Celestia-App, Celestia-Node, and Cosmos-SDK are written in the Golang
-programming language. We’ll need Golang to build and run them. **Celestia’s
-Mamaki testnet requires Golang v1.18.2 to build and run correctly.**
+programming language. We’ll need Golang to build and run them. **Be sure to use the same testnet installation instructions through this entire tutorial.**
 
-You can [install Golang here](./environment.mdx#install-golang). Be sure to
-select Mamaki and your operating system.
+You can [install Golang here](./environment.mdx#install-golang).
 
 ## 🔥 Install Ignite CLI
 
