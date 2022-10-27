@@ -8,7 +8,7 @@ sidebar_label : Node Tutorial
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In this tutorial, we will cover how to use the Celestia Node API to submit and
+In this tutorial, you will cover how to use the Celestia Node API to submit and
 retrieve messages from the Data Availability Layer by their namespace ID.
 
 This tutorial was assumes you are working in a Linux environment.
@@ -136,7 +136,7 @@ processor.
 ### Install Golang
 
 Celestia-app and celestia-node are written in [Golang](https://go.dev/)
-so we must install Golang to build and run them.
+so you must install Golang to build and run them.
 
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
@@ -192,7 +192,7 @@ rm "go$ver.darwin-amd64.tar.gz"
 </TabItem>
 </Tabs>
 
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+Now you need to add the `/usr/local/go/bin` directory to `$PATH`:
 
 <Tabs groupId="shell">
 <TabItem value="bash" label="bash">
@@ -306,7 +306,7 @@ rm "go$ver.darwin-amd64.tar.gz"
 </TabItem>
 </Tabs>
 
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+Now you need to add the `/usr/local/go/bin` directory to `$PATH`:
 
 <Tabs groupId="shell">
 <TabItem value="bash" label="bash">
@@ -371,7 +371,7 @@ go version go1.18.2 darwin/amd64
 
 #### All Machines
 
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+Now you need to add the `/usr/local/go/bin` directory to `$PATH`:
 
 <Tabs groupId="shell">
 <TabItem value="bash" label="bash">
@@ -621,7 +621,7 @@ Open up another terminal window in order to begin querying the API.
 ### Balance
 
 Now, let's query our node for the balance of its default account
-(which is the account associated with the `developer` key we generated earlier):
+(which is the account associated with the `developer` key you generated earlier):
 
 ```sh
 curl -X GET http://127.0.0.1:26658/balance
@@ -642,7 +642,7 @@ This shows you the balance in that wallet.
 
 Now, let's get the block header information.
 
-Here we will get the header from Block 1:
+Here you will get the header from Block 1:
 
 ```sh
 curl -X GET http://127.0.0.1:26658/header/1
@@ -822,7 +822,7 @@ It will output something like this:
 
 ### Submit a PFD Transaction
 
-In this example, we will be submitting a PayForData
+In this example, you will be submitting a PayForData
 transaction to the node's `/submit_pfd` endpoint.
 
 Some things to consider:
@@ -833,13 +833,13 @@ Some things to consider:
 - Data is in hex-encoded bytes of the raw message.
 - `gas_limit` is the limit of gas to use for the transaction
 
-We use the following `namespace_id` of `0000010000000100` and
+You use the following `namespace_id` of `0000010000000100` and
 the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
 
 You can generate your own `namespace_id` and data values using this
-useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
+useful Golang Playground you created [here](https://go.dev/play/p/7ltvaj8lhRl).
 
-We run the following:
+You run the following:
 
 ```sh
 curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
@@ -847,7 +847,7 @@ curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
   "gas_limit": 70000}' http://localhost:26658/submit_pfd
 ```
 
-We get the following output:
+You get the following output:
 
 ```json
 {
@@ -1065,7 +1065,7 @@ We get the following output:
 ```
 
 If you notice from the above output, it returns a `height` of
-`2452` which we will use for the next command.
+`2452` which you will use for the next command.
 
 Note: To learn more about status response codes, please navigate to
 [cosmos' code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
@@ -1091,7 +1091,7 @@ After submitting your PFD transaction, upon success, the node will return
 the block height for which the PFD transaction was included. You can then
 use that block height and the namespace ID with which you submitted your
 PFD transaction to get your message shares returned to you. In this example,
-the block height we got was 589 which we will use for the following command.
+the block height you got was 589 which you will use for the following command.
 
 ```sh
 curl -X GET \

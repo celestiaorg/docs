@@ -4,8 +4,8 @@ sidebar_label : Query your Rollup
 
 # 💬 Say `gm world!`
 
-Now, we’re going to get our blockchain to say `gm world` and in order to do so
-we need to make the following changes:
+Now, you're going to get our blockchain to say `gm world` and in order to do so
+you need to make the following changes:
 
 - Modify a protocol buffer file
 - Create a keeper query function that returns data
@@ -82,7 +82,7 @@ The `Gm` RPC for the `Query` service:
 
 ## 📨 Query request and response types
 
-In the same file, we will find:
+In the same file, you will find:
 
 - `QueryGmRequest` is empty because it does not require parameters
 - `QueryGmResponse` contains `text` that is returned from the chain

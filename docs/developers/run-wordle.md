@@ -36,7 +36,7 @@ Cosmos SDK's version is: stargate - v0.45.5
 Here the command created a binary called `wordled`
 and the `alice` and `bob` addresses, along with a faucet
 and API. You are clear to exit the program with CTRL-C.
-The reason for that is because we will run `wordled`
+The reason for that is because you will run `wordled`
 binary separately with Rollmint flags added.
 
 You can start the chain with rollmint configurations by
@@ -67,8 +67,8 @@ In another window, run the following to submit a Wordle:
 wordled tx wordle submit-wordle giant --from alice --keyring-backend test --chain-id wordle -b async -y
 ```
 
-> NOTE: We are submitting a transaction asynchronously due to avoiding
-  any timeout errors. With Rollmint as a replacement to Tendermint, we
+> NOTE: You are submitting a transaction asynchronously due to avoiding
+  any timeout errors. With Rollmint as a replacement to Tendermint, you
   need to wait for Celestia's Data-Availability network to ensure a block
   was included from Wordle, before proceeding to the next block. Currently,
   in Rollmint, the single aggregator is not moving forward with the next block
@@ -192,7 +192,7 @@ After submitting the transactions and confirming, query the `txhash`
 given the same way you did above. Given you didn’t guess the correct
 word, it will increment the guess count for Bob’s account.
 
-We can verify this by querying the list:
+You can verify this by querying the list:
 
 ```sh
 wordled q wordle list-guess --output json
@@ -201,7 +201,7 @@ wordled q wordle list-guess --output json
 This outputs all Guess objects submitted so far, with the index
 being today’s date and the address of the submitter.
 
-With that, we implemented a basic example of Wordle using
+With that, you implemented a basic example of Wordle using
 Cosmos-SDK and Ignite and Rollmint. Read on to how you can
 extend the code base.
 

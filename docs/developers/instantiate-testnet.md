@@ -47,9 +47,9 @@ CHAIN_ID=testnet
 celestia-appd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 ```
 
-* The value we will use for `$VALIDATOR_NAME` is `validator1` but you should choose
+* The value you will use for `$VALIDATOR_NAME` is `validator1` but you should choose
   your own node name.
-* The value we will use for `$CHAIN_ID` is `testnet`. The `$CHAIN_ID` must
+* The value you will use for `$CHAIN_ID` is `testnet`. The `$CHAIN_ID` must
   remain the same for everyone participating in this network.
 
 ### Create A New Key
@@ -63,7 +63,7 @@ celestia-appd keys add $KEY_NAME --keyring-backend test
 
 This will create a new key, with a name of your choosing.
 Save the output of this command somewhere; you'll need
-the address generated here later. Here, we set the value of our
+the address generated here later. Here, you set the value of your
 key `$KEY_NAME` to `validator` for demonstration.
 
 ### Add Genesis Account KeyName

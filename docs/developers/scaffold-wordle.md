@@ -47,13 +47,13 @@ Ignite CLI comes with several scaffolding commands that are
 designed to make development more straightforward by creating
 everything you need to build your blockchain.
 
-First, we will use Ignite CLI to build the foundation of a fresh
+First, you will use Ignite CLI to build the foundation of a fresh
 Cosmos SDK blockchain. Ignite minimizes how much blockchain code
 you must write yourself. If you are coming from the EVM-world, think of
 Ignite as a Cosmos-SDK version of Foundry or Hardhat but specifically
 designed to build blockchains.
 
-We first run the following command to setup our project for
+You first run the following command to setup our project for
 our new blockchain, Wordle.
 
 ```sh
@@ -62,7 +62,7 @@ ignite scaffold chain github.com/YazzyYaz/wordle --no-module
 
 This command scaffolds a new chain directory called `wordle`
 in your local directory from which you ran the command. Notice
-that we passed the `--no-module` flag, this is because we will be
+that you passed the `--no-module` flag, this is because you will be
 creating the module after.
 
 ## Wordle Directory
