@@ -1,5 +1,5 @@
 ---
-sidebar_label : Docs Translations
+sidebar_label: Docs Translations
 ---
 
 # Community Translation Support

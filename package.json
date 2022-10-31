@@ -12,9 +12,12 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "lint": "markdownlint docs/"
+    "lint": "markdownlint docs/",
+    "crowdin": "crowdin",
+    "crowdin:sync": "docusaurus write-translations && crowdin upload && crowdin download"
   },
   "dependencies": {
+    "@crowdin/cli": "3",
     "@docusaurus/core": "^2.0.0-beta.20",
     "@docusaurus/preset-classic": "^2.0.0-beta.20",
     "@mdx-js/react": "^1.6.22",

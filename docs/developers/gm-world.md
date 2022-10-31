@@ -1,5 +1,5 @@
 ---
-sidebar_label : gm world Overview
+sidebar_label: gm world Overview
 ---
 
 # ☀️ Introduction

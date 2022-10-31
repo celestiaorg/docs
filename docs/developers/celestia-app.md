@@ -1,5 +1,5 @@
 ---
-sidebar_label : Installing Celestia App
+sidebar_label: Installing Celestia App
 ---
 
 # Celestia App
