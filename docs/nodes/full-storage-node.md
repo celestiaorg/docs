@@ -1,5 +1,5 @@
 ---
-sidebar_label : Full Storage Node
+sidebar_label: Full Storage Node
 ---
 
 # Setting up a Celestia Full Storage Node
