@@ -29,7 +29,7 @@ to extend this codebase.
 ## Pre-requisites
 
 Given this tutorial is targeted for developers who are experienced
-in Cosmos-SDK, we recommend you go over the following tutorials
+in Cosmos-SDK, you recommend you go over the following tutorials
 in Ignite to understand all the different components in Cosmos-SDK before
 proceeding with this tutorial.
 
@@ -59,11 +59,11 @@ it’s a correct letter for the Wordle included in
 the wrong position. A grey highlight means the letter
 isn’t part of the Wordle.
 
-For simplicity of the design, we will avoid those
+For simplicity of the design, you will avoid those
 hints, although there are ways to extend this codebase
-to implement that, which we will show at the end.
+to implement that, which you will show at the end.
 
-In this current design, we implement the following rules:
+In this current design, you implement the following rules:
 
 * 1 Wordle can be submitted per day
 * Every address will have 6 tries to guess the word
@@ -71,9 +71,9 @@ In this current design, we implement the following rules:
 * Whoever guesses the word correctly before their
   6 tries are over gets an award of 100 WORDLE tokens.
 
-We will go over the architecture to achieve this further
-in the guide. But for now, we will get started setting up
-our development environment.
+You will go over the architecture to achieve this further
+in the guide. But for now, you will get started setting up
+your development environment.
 
 ## Table of Contents For This Tutorial
 

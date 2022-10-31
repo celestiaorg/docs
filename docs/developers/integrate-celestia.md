@@ -9,9 +9,9 @@ sidebar_label: Integrate Celestia
 
 ## Celestia Service Provider Notes
 
-Celestia is a fairly standard Cosmos-SDK based chain. We use the latest version
+Celestia is a fairly standard Cosmos-SDK based chain. You use the latest version
 of Tendermint and the Cosmos-SDK, with only minor modifications to each. This
-means that we are:
+means that you are:
 
 - Using the default Cosmos-SDK modules: auth, bank, distribution, staking,
 slashing, mint, crisis, ibchost, genutil, evidence, ibctransfer, params, gov
@@ -26,14 +26,14 @@ minimal as possible.
 
 ### Custody and Key Management
 
-Celestia supports many already existing key management systems, as we rely on
+Celestia supports many already existing key management systems, as you rely on
 the Cosmos-SDK and Tendermint libraries for signing and verifying transactions.
 [Cosmos-SDK documentation](https://docs.cosmos.network/master/basics/accounts.html#keys-accounts-addresses-and-signatures)
 
 ### RPC and Querying
 
 In celestia-app, only the standard RPC endpoints for Tendermint and the
-Cosmos-SDK are exposed. We do not currently add or subtract any core
+Cosmos-SDK are exposed. You do not currently add or subtract any core
 functionality, but this could change in the future. The same goes for querying
 data from the chain.
 
@@ -50,7 +50,7 @@ other platforms.
 
 ### Syncing
 
-Since we utilize Tendermint and the Cosmos-SDK, syncing the chain can be
+Since you utilize Tendermint and the Cosmos-SDK, syncing the chain can be
 performed by any method that is supported by those libraries. This includes
 fast-sync, state sync, and quick sync.
 
@@ -59,7 +59,7 @@ fast-sync, state sync, and quick sync.
 Relative to other Tendermint based chains, Celestia will have significantly
 longer blocktimes of around 30* seconds. The reason behind this block time is to
 optimize the bandwidth used by light clients that are sampling the chain, and
-is not because we have modified Tendermint consensus in any meaningful way.
+is not because you have modified Tendermint consensus in any meaningful way.
 Validators will likely download/upload relatively large blocks. It should be
 noted that while these blocks are large, very little typical blockchain state
 execution is actually occurring on Celestia. Meaning that the bandwidth

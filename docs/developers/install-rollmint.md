@@ -4,8 +4,8 @@ sidebar_label : Installing Rollmint
 
 # Setting Up Rollmint
 
-Before we continue with building our Wordle App, we need to set up
-Rollmint on our codebase.
+Before you continue with building your Wordle App, you need to set up
+Rollmint on your codebase.
 
 ## Installing Rollmint
 
@@ -17,5 +17,5 @@ go mod tidy
 go mod download
 ```
 
-With that, we have Rollmint changes added to the project directory. Now,
+With that, you have Rollmint changes added to the project directory. Now,
 let's build the Wordle app!
