@@ -1,5 +1,5 @@
 ---
-sidebar_label : Helpful CLI commands
+sidebar_label: Helpful CLI commands
 ---
 
 # Helpful CLI commands

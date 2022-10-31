@@ -1,5 +1,5 @@
 ---
-sidebar_label : Types
+sidebar_label: Types
 ---
 
 # Wordle Types

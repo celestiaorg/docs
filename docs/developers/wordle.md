@@ -1,5 +1,5 @@
 ---
-sidebar_label : Wordle Overview
+sidebar_label: Wordle Overview
 ---
 
 # Wordle App on Rollmint

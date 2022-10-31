@@ -1,5 +1,5 @@
 ---
-sidebar_label : Run The Wordle Chain
+sidebar_label: Run The Wordle Chain
 ---
 
 # Run the Wordle Chain

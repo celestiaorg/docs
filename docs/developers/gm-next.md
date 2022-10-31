@@ -1,5 +1,5 @@
 ---
-sidebar_label : What's next
+sidebar_label: What's next
 ---
 
 # 👀 What’s next

@@ -1,5 +1,5 @@
 ---
-sidebar_label : Contract Interaction
+sidebar_label: Contract Interaction
 ---
 
 # Contract Interaction on CosmWasm with Celestia
