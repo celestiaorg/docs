@@ -23,6 +23,7 @@
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
     "docusaurus-plugin-drawio": "^0.1.7",
+    "dotenv": "^16.0.3",
     "prism-react-renderer": "^1.2.1",
     "raw-loader": "^4.0.2",
     "react": "^17.0.1",

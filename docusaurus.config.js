@@ -1,148 +1,159 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const docs = require('./sidebars');
+// Pull in .env file
+require("dotenv").config();
+
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const docs = require("./sidebars");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Build Modular.',
-  tagline: '',
-  url: 'https://docs.celestia.org',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'celestiaorg', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
-  deploymentBranch: 'gh-pages',
-  scripts: [{src: 'https://plausible.celestia.org/js/plausible.js', defer: true, 'data-domain': 'docs.celestia.org'}],
+  title: "Build Modular.",
+  tagline: "",
+  url: "https://docs.celestia.org",
+  baseUrl: process.env.BASE_URL,
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+  organizationName: "celestiaorg", // Usually your GitHub org/user name.
+  projectName: "docs", // Usually your repo name.
+  deploymentBranch: "gh-pages",
+  scripts: [
+    {
+      src: "https://plausible.celestia.org/js/plausible.js",
+      defer: true,
+      "data-domain": "docs.celestia.org",
+    },
+  ],
   presets: [
     [
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/celestiaorg/docs/tree/main/',
+          sidebarPath: require.resolve("./sidebars.js"),
+          editUrl: "https://github.com/celestiaorg/docs/tree/main/",
           routeBasePath: "/",
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       }),
     ],
   ],
-  plugins: [
-    ['drawio', {}],
-  ],
+  plugins: [["drawio", {}]],
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en','fr','zh']
+    defaultLocale: "en",
+    locales: ["en", "fr", "zh"],
   },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/celestia-doc.png',
+      image: "img/celestia-doc.png",
       metadata: [
-        {name: 'twitter:card', content: 'summary_large_image'}, 
-        {name: 'twitter:site', content: '@celestiaorg'},
-        {name: 'twitter:title', content: 'Celestia Docs'},
-        {name: 'twitter:description', content: 'The developer documentation site for getting started building on the Celestia Network.'},
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:site", content: "@celestiaorg" },
+        { name: "twitter:title", content: "Celestia Docs" },
+        {
+          name: "twitter:description",
+          content:
+            "The developer documentation site for getting started building on the Celestia Network.",
+        },
       ],
       algolia: {
-        appId: '2KRXIFZ5YL',
-        apiKey: '00d6c432aa0b7c20c92283ec9bec23c4',
-        indexName: 'celestia',
+        appId: "2KRXIFZ5YL",
+        apiKey: "00d6c432aa0b7c20c92283ec9bec23c4",
+        indexName: "celestia",
         contextualSearch: true,
-        debug: false
+        debug: false,
       },
       navbar: {
-        title: 'Celestia Docs',
+        title: "Celestia Docs",
         logo: {
-          alt: 'Celestia Logo',
-          src: 'img/logo.png',
+          alt: "Celestia Logo",
+          src: "img/logo.png",
         },
         items: [
           {
-            to: '/concepts/how-celestia-works/introduction',
-            position: 'left',
-            label: 'Concepts'
+            to: "/concepts/how-celestia-works/introduction",
+            position: "left",
+            label: "Concepts",
           },
           {
-            to: '/nodes/overview',
-            position: 'left',
-            label: 'Run A Node',
+            to: "/nodes/overview",
+            position: "left",
+            label: "Run A Node",
           },
           {
-            to: '/developers/overview',
-            position: 'left',
-            label: 'Developers',
+            to: "/developers/overview",
+            position: "left",
+            label: "Developers",
           },
           {
-            to: '/community/overview',
-            position: 'left',
-            label: 'Community',
+            to: "/community/overview",
+            position: "left",
+            label: "Community",
           },
           {
-            href: 'https://github.com/celestiaorg/docs',
-            label: 'GitHub',
-            position: 'right',
+            href: "https://github.com/celestiaorg/docs",
+            label: "GitHub",
+            position: "right",
           },
           {
-            type: 'localeDropdown',
-            position: 'right',
+            type: "localeDropdown",
+            position: "right",
           },
         ],
       },
       footer: {
-        style: 'dark',
+        style: "dark",
         links: [
           {
-            title: 'Docs',
+            title: "Docs",
             items: [
               {
-                label: 'Run A Node',
-                to: '/nodes/overview',
+                label: "Run A Node",
+                to: "/nodes/overview",
               },
               {
-                label: 'Developers',
-                to: '/developers/overview',
+                label: "Developers",
+                to: "/developers/overview",
               },
               {
-                label: 'Community',
-                to: '/community/overview'
+                label: "Community",
+                to: "/community/overview",
               },
             ],
           },
           {
-            title: 'Community',
+            title: "Community",
             items: [
               {
-                label: 'Discord',
-                href: 'https://discord.com/invite/je7UVpDuDu',
+                label: "Discord",
+                href: "https://discord.com/invite/je7UVpDuDu",
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/CelestiaOrg',
+                label: "Twitter",
+                href: "https://twitter.com/CelestiaOrg",
               },
               {
-                label: 'Forum',
-                href: 'https://forum.celestia.org/',
+                label: "Forum",
+                href: "https://forum.celestia.org/",
               },
             ],
           },
           {
-            title: 'More',
+            title: "More",
             items: [
               {
-                label: 'GitHub',
-                href: 'https://github.com/celestiaorg/docs',
+                label: "GitHub",
+                href: "https://github.com/celestiaorg/docs",
               },
               {
-                label: 'Website',
-                href: 'https://celestia.org/',
+                label: "Website",
+                href: "https://celestia.org/",
               },
             ],
           },
