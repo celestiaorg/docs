@@ -18,7 +18,7 @@ Contemporary blockchains support full nodes (which are
 secure under no assumption on voting power honesty) and
 light nodes (which are secure under an honest majority of
 voting power assumption). Celestia is unique in
-[supporting light nodes with stronger security guarantees](../../nodes/light-node.md):
+[supporting light nodes with stronger security guarantees](../../nodes/light-node.mdx):
 
 1. Full nodes are secure under no assumptions on voting power honesty
 2. Light nodes are secure under [an honest minority of nodes and synchronous communication](https://arxiv.org/abs/1809.09044),
