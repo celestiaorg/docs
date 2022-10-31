@@ -1,5 +1,5 @@
 ---
-sidebar_label : Validator Node
+sidebar_label: Validator Node
 ---
 
 # Setting up a Celestia Validator Node

@@ -1,5 +1,5 @@
 ---
-sidebar_label : Config.toml Guide
+sidebar_label: Config.toml Guide
 ---
 
 # Config.toml breakdown

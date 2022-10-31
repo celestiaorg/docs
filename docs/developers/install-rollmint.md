@@ -1,5 +1,5 @@
 ---
-sidebar_label : Installing Rollmint
+sidebar_label: Installing Rollmint
 ---
 
 # Setting Up Rollmint

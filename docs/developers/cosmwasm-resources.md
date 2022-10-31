@@ -1,5 +1,5 @@
 ---
-sidebar_label : CosmWasm Resources
+sidebar_label: CosmWasm Resources
 ---
 
 # CosmWasm Resources

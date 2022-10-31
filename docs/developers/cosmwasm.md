@@ -1,5 +1,5 @@
 ---
-sidebar_label : CosmWasm Overview
+sidebar_label: CosmWasm Overview
 ---
 
 # CosmWasm and Rollmint

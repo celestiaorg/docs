@@ -1,5 +1,5 @@
 ---
-sidebar_label : Contract Deployment
+sidebar_label: Contract Deployment
 ---
 
 # Contract Deployment on CosmWasm with Rollmint

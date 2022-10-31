@@ -1,5 +1,5 @@
 ---
-sidebar_label : Scaffolding The Chain
+sidebar_label: Scaffolding The Chain
 ---
 
 # Ignite and Scaffolding the Wordle Chain

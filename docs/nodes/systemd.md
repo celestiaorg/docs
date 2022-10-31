@@ -1,5 +1,5 @@
 ---
-sidebar_label : SystemD
+sidebar_label: SystemD
 ---
 
 # Setting up your node as a background process with SystemD
