@@ -31,7 +31,7 @@ Let's break down some of the most used sections.
 ### [Core]
 
 This section is needed for the Celestia Bridge Node.
-By default, `Remote = false`. Still for devnet, we are going
+By default, `Remote = false`. Still for devnet, you are going
 to use the remote core option and this can also be set
 by the command line flag `--core.remote`.
 

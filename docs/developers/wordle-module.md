@@ -4,7 +4,7 @@ sidebar_label : Module
 
 # Creating the Wordle Module
 
-For the Wordle module, we can add dependencies offered by Cosmos-SDK.
+For the Wordle module, you can add dependencies offered by Cosmos-SDK.
 
 From the Cosmos-SDK docs, a [module](https://docs.ignite.com/guide/nameservice#cosmos-sdk-modules)
 is defined as the following:
@@ -19,7 +19,7 @@ Many modules exist for slashing, validating, auth.
 
 ## Scaffolding A Module
 
-We will be using the `bank` module dependency for transactions.
+You will be using the `bank` module dependency for transactions.
 
 From the Cosmos-SDK docs, the [`bank`](https://docs.cosmos.network/master/modules/bank/)
 module is defined as the following:
@@ -31,10 +31,10 @@ module is defined as the following:
   several interfaces with varying capabilities for secure interaction
   with other modules which must alter user balances.
 
-We build the module with the `bank` dependency with the following command:
+You build the module with the `bank` dependency with the following command:
 
 ```sh
 ignite scaffold module wordle --dep bank
 ```
 
-This will scaffold the Wordle module to our Wordle Chain project.
+This will scaffold the Wordle module to your Wordle Chain project.

@@ -18,15 +18,15 @@ Keeper is an abstraction on Cosmos that allows us
 to interact with the Key-Value store and change the state
 of the blockchain.
 
-Here, it will help us outline the logic for each message we create.
+Here, it will help us outline the logic for each message you create.
 
 ## SubmitWordle Function
 
-We first start with the `SubmitWordle` function.
+You first start with the `SubmitWordle` function.
 
 Open up the following file: `x/wordle/keeper/msg_server_submit_wordle.go`
 
-Inside the following, add the following code, which we will go over in a bit:
+Inside the following, add the following code, which you will go over in a bit:
 
 ```go
 package keeper
@@ -89,28 +89,28 @@ func IsLetter(s string) bool {
 }
 ```
 
-Here in the `SubmitWordle` Keeper function, we are doing a few things:
+Here in the `SubmitWordle` Keeper function, you are doing a few things:
 
-* We first ensure that a word submitted for Wordle of the Day is
+* You first ensure that a word submitted for Wordle of the Day is
   5 letters long and only uses alphabets. That means no integers can
   be submitted in the string.
-* We then create a hash from the current day the moment the Wordle was
-  submitted. We set this hash to the index of the Wordle type. This
+* You then create a hash from the current day the moment the Wordle was
+  submitted. You set this hash to the index of the Wordle type. This
   allows us to look up any guesses for this Wordle for subsequent
-  guesses, which we will go over next.
-* We then check if the index for today’s date is currently empty or
+  guesses, which you will go over next.
+* You then check if the index for today’s date is currently empty or
   not. If it’s not empty, this means a Wordle has already been
   submitted. Remember, only one wordle can be submitted per
   day. Everyone else has to guess the submitted wordle.
-* We also have a helper function in there to check if a string only
+* You also have a helper function in there to check if a string only
   contains alphabet characters.
 
 ## SubmitGuess Function
 
-The next Keeper function we will add is the following:
+The next Keeper function you will add is the following:
 `x/wordle/keeper/msg_server_submit_guess.go`
 
-Open that file and add the following code, which we will explain in a bit:
+Open that file and add the following code, which you will explain in a bit:
 
 ```go
 package keeper
@@ -149,7 +149,7 @@ func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess)
     return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "Wordle of The Day Hasn't Been Submitted Yet. Feel Free to Submit One!")
   }
 
-  // We Convert Current Day and Guesser to A Hash To Use As An Index For Today's Guesses For That Guesser
+  // You Convert Current Day and Guesser to A Hash To Use As An Index For Today's Guesses For That Guesser
   // That Way, A Person Can Guess 6 Times A Day For Each New Wordle Created
   var currentTimeGuesserBytes = []byte(currentTime.Format("2006-01-02") + msg.Creator)
   var currentTimeGuesserHash = sha256.Sum256(currentTimeGuesserBytes)
@@ -202,22 +202,22 @@ func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess)
 }
 ```
 
-In the above code, we are doing the following things:
+In the above code, you are doing the following things:
 
-* Here, we are doing initial checks again on the word to ensure
+* Here, you are doing initial checks again on the word to ensure
   it’s 5 characters and only alphabet characters are used, which
   can be refactored in the future or checked within the CLI commands.
-* We then get the Wordle of the Day by getting the hash string of
+* You then get the Wordle of the Day by getting the hash string of
   the current day.
-* Next we create a hash string of current day and the Submitter.
+* Next you create a hash string of current day and the Submitter.
   This allows us to create a Guess type with an index that uses the
-  current day and the address of the submitter. This helps us when we
+  current day and the address of the submitter. This helps us when you
   face a new day and an address wants to guess the new wordle of the day.
   The index setup ensures they can continue guessing a new wordle
   every day up to the max of 6 tries per day.
-* We then check if that Guess type for the Submitter for today’s
-  wordle did reach 6 counts. If it hasn’t, we increment the count.
-  We then check if the guess is correct. We store the Guess type with
+* You then check if that Guess type for the Submitter for today’s
+  wordle did reach 6 counts. If it hasn’t, you increment the count.
+  You then check if the guess is correct. You store the Guess type with
   the updated count to the state.
 
 ## Protobuf File
@@ -238,7 +238,7 @@ message MsgSubmitGuessResponse {
 
 Next file is `x/wordle/types/expected_keepers.go`
 
-Here, we need to add the SendCoins method to the BankKeeper
+Here, you need to add the SendCoins method to the BankKeeper
 interface in order to allow sending the reward to the right guesser.
 
 ```go
@@ -247,5 +247,5 @@ type BankKeeper interface {
 }
 ```
 
-With that, we implemented all our Keeper functions! Time to
+With that, you implemented all your Keeper functions! Time to
 compile the blockchain and take it out for a test drive.

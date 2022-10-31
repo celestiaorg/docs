@@ -7,7 +7,7 @@ sidebar_label : Contract Deployment
 
 ## Compile the Smart Contract
 
-We will run the following commands to pull down the Nameservice
+You will run the following commands to pull down the Nameservice
 smart contract and compile it:
 
 ```sh
@@ -22,7 +22,7 @@ The compiled contract is outputted to:
 
 ## Unit Tests
 
-If we want to run tests, we can do so with the following command:
+If you want to run tests, you can do so with the following command:
 
 ```sh
 cargo unit-test
@@ -30,10 +30,10 @@ cargo unit-test
 
 ## Optimized Smart Contract
 
-Because we are deploying the compiled smart contract to `wasmd`,
-we want it to be as small as possible.
+Because you are deploying the compiled smart contract to `wasmd`,
+you want it to be as small as possible.
 
-CosmWasm team provides a tool called `rust-optimizer` which we need
+CosmWasm team provides a tool called `rust-optimizer` which you need
 Docker for in order to compile.
 
 Run the following command:
@@ -49,7 +49,7 @@ This will place the optimized Wasm bytecode at `artifacts/cw_nameservice.wasm`.
 
 ## Contract Deployment
 
-Let's now deploy our smart contract!
+Let's now deploy your smart contract!
 
 Run the following:
 
@@ -58,6 +58,6 @@ TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from $KEY_NAME --k
 ```
 
 This will get you the transaction hash for the smart contract deployment. Given
-we are using Rollmint, there will be a delay on the transaction being included
+you are using Rollmint, there will be a delay on the transaction being included
 due to Rollmint waiting on Celestia's Data Availability Layer to confirm the block
 has been included before submitting a new block.
