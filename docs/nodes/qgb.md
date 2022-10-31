@@ -6,7 +6,7 @@ of a Celestium, which is an EVM L2 rollup that uses Celestia for data availabili
 but settles on Ethereum (or any other EVM L1 chain).
 
 This tutorial goes over the Quantum Gravity Bridge and how Validators on Celestia
-can enable and run it.
+can run it.
 
 ## Overview
 
