@@ -26,6 +26,11 @@ const sidebars = {
             label: "Validator Node",
             id: "nodes/validator-node",
           },
+          {
+            type: "doc",
+            label: "Quantum Gravity Bridge",
+            id: "nodes/qgb",
+          },
           { 
             type: "doc", 
             label: "Consensus Full Node", 
