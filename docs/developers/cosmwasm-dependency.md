@@ -1,5 +1,5 @@
 ---
-sidebar_label : CosmWasm Dependencies
+sidebar_label: CosmWasm Dependencies
 ---
 
 # CosmWasm Dependency Installations

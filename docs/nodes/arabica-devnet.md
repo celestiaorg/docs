@@ -1,5 +1,5 @@
 ---
-sidebar_label : Arabica Devnet
+sidebar_label: Arabica Devnet
 ---
 
 # Arabica Devnet
