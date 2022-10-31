@@ -32,6 +32,21 @@ The two testnets were hardforks are deployed on are:
 - [Arabica](./arabica-devnet.md)
 - [Mamaki](./mamaki-testnet.md)
 
+### Cosmovisor
+
+We will be using Cosmovisor for upgrading our network for upcoming
+hardforks. 
+
+Cosmovisor is a process management tool that allows switching of binaries
+when a certain block is reached. You can learn more about Cosmovisor
+[here](go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest).
+
+Install Cosmovisor by running the following command:
+
+```sh
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
+```
+
 ### Mocha Hardfork
 
 Celestia is planning the Mocha Hardfork upgrade on the Mamaki Testnet.
