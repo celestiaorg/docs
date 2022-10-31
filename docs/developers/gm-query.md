@@ -1,5 +1,5 @@
 ---
-sidebar_label : Query your Rollup
+sidebar_label: Query your Rollup
 ---
 
 # 💬 Say `gm world!`

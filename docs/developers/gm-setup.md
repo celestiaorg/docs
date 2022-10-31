@@ -1,5 +1,5 @@
 ---
-sidebar_label : Setup
+sidebar_label: Setup
 ---
 
 # 💻 Setup

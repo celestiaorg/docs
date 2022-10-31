@@ -1,5 +1,5 @@
 ---
-sidebar_label : Overview
+sidebar_label: Overview
 ---
 
 # Overview to running nodes on Celestia

@@ -1,5 +1,5 @@
 ---
-sidebar_label : Creating A Wallet
+sidebar_label: Creating A Wallet
 ---
 
 # Wallet

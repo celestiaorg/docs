@@ -1,5 +1,5 @@
 ---
-sidebar_label : Module
+sidebar_label: Module
 ---
 
 # Creating the Wordle Module

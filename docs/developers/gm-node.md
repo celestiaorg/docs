@@ -1,5 +1,5 @@
 ---
-sidebar_label : Run a Light Node
+sidebar_label: Run a Light Node
 ---
 
 # 🪶 Run a Celestia DA Light Node

@@ -1,5 +1,5 @@
 ---
-sidebar_label : Mamaki Testnet
+sidebar_label: Mamaki Testnet
 ---
 
 # Mamaki Testnet

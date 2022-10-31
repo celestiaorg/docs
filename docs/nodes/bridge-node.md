@@ -1,5 +1,5 @@
 ---
-sidebar_label : Bridge Node
+sidebar_label: Bridge Node
 ---
 
 # Setting up a Celestia Bridge Node
