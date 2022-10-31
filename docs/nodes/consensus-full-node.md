@@ -1,5 +1,5 @@
 ---
-sidebar_label : Consensus Full Node
+sidebar_label: Consensus Full Node
 ---
 
 # Setting up a Celestia Consensus Full Node
@@ -25,7 +25,7 @@ instance machine.
 
 ### Setup the dependencies
 
-Follow the instructions on installing the dependencies [here](../developers/environment.md).
+Follow the instructions on installing the dependencies [here](../developers/environment.mdx).
 
 ## Deploying the celestia-app
 
@@ -99,7 +99,7 @@ This will let you sync the Celestia blockchain history.
 
 You can configure your Consensus Full Node to be a public RPC endpoint
 and listen to any connections from Data Availability Nodes in order to
-serve requests for the Data Availability API [here](../developers/node-tutorial.md).
+serve requests for the Data Availability API [here](../developers/node-tutorial.mdx).
 
 Note that you would need to ensure port 9090 is open for this.
 

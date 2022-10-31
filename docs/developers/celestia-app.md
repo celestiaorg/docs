@@ -1,5 +1,5 @@
 ---
-sidebar_label : Installing Celestia App
+sidebar_label: Installing Celestia App
 ---
 
 # Celestia App
@@ -7,7 +7,7 @@ sidebar_label : Installing Celestia App
 
 This tutorial will guide you through building Celestia App. This
 tutorial presumes you completed the steps in setting up your
-own environment [here](./environment.md).
+own environment [here](./environment.mdx).
 
 ## Install Celestia App
 

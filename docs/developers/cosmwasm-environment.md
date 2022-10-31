@@ -1,5 +1,5 @@
 ---
-sidebar_label : Setup Network Environment
+sidebar_label: Setup Network Environment
 ---
 
 # Setting Up Your Environment for CosmWasm on Celestia
@@ -64,7 +64,7 @@ Please consider:
 > NOTE: In the above command, you need to pass a Celestia Node IP address
   to the `base_url` that has an account with Arabica Devnet tokens. Follow
   the tutorial for setting up a Celestia Light Node and creating a wallet
-  with testnet faucet money [here](./node-tutorial.md) in the Celestia Node section.
+  with testnet faucet money [here](./node-tutorial.mdx) in the Celestia Node section.
 
 Also please consider:
 
