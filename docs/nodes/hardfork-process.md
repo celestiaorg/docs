@@ -35,17 +35,86 @@ The two testnets were hardforks are deployed on are:
 ### Cosmovisor
 
 We will be using Cosmovisor for upgrading our network for upcoming
-hardforks. 
+hardforks.
 
 Cosmovisor is a process management tool that allows switching of binaries
 when a certain block is reached. You can learn more about Cosmovisor
-[here](go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest).
+[here](https://docs.cosmos.network/main/tooling/cosmovisor).
 
 Install Cosmovisor by running the following command:
 
 ```sh
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
 ```
+
+Set the environment variables:
+
+```sh
+export DAEMON_NAME=celestia-appd
+export DAEMON_HOME=$HOME/.celestia-app
+```
+
+Now, we will go over an example hardfork scenario with two example
+binaries.
+
+The following table shows the binaries and their properties:
+
+| Version | Hardfork-Binary | Release Status  |
+|---------|-----------------|-----------------|
+| 0.X.1   | FALSE           | Current Release |
+| 0.X.2   | TRUE            | New Release     |
+
+Above, you can see that the example `celestia-app` Version 0.X.1 is the
+current release version a validator would run and it is not the
+hardfork-ready binary while the Version 0.X.2 Binary will be a new release
+that is hardfork-ready.
+
+Create the directory for the current binary Version 0.X.1
+and copy `celestia-appd`:
+
+```sh
+mkdir -p $DAEMON_HOME/cosmovisor/genesis/bin
+cp ./build/celestia-appd $DAEMON_HOME/cosmovisor/genesis/bin
+```
+
+Now you can run Cosmovisor with the current release Version 0.X.1:
+
+```sh
+cosmovisor run start
+```
+
+Now, pull in the New Release which is version 0.X.2 of celestia-app
+separately and build the binary for it:
+
+```sh
+make build
+```
+
+Create the new folder for the version 0.X.2 and copy it over:
+
+```sh
+mkdir -p $DAEMON_HOME/cosmovisor/upgrades/test1/bin
+cp ./build/celestia-appd $DAEMON_HOME/cosmovisor/upgrades/test1/bin
+```
+
+Now, open a new terminal window and run the commands for submitting
+a governance proposal to upgrade the chain and vote on it.
+
+> NOTE: In normal hardfork operations as a validator, you do not need
+  to submit a governance proposal but rather just vote on an existing one
+  submitted by Celestia Labs team.
+
+<!-- markdownlint-disable MD013 -->
+```sh
+./build/celestia-appd tx gov submit-proposal software-upgrade test1 --title upgrade --description upgrade --upgrade-height 200 --from validator --yes
+./build/celestia-appd tx gov deposit 1 10000000stake --from validator --yes
+./build/celestia-appd tx gov vote 1 yes --from validator --yes
+```
+<!-- markdownlint-enable MD013 -->
+
+This will cause the upgrade to happen automatically on block `200`,
+where Cosmovisor will switch the binaries from 0.X.1 (Current Release)
+to 0.X.2 (New Release).
 
 ### Mocha Hardfork
 
