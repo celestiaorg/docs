@@ -16,20 +16,23 @@ consists of two components: an Orchestrator and a Relayer.
 In the following diagram, we show how a celestium would post the data to
 Celestia while the Celestia Validators attest to transactions in a one-way bridge
 connected to an EVM L1 Layer (in this case, Ethereum). Then, the celestium will
-verify the attestations, i.e. valsets and data commitments, directly on Ethereum on the QGB smart contract. You can
-reference the QGB smart contract [here](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
+verify the attestations, i.e. valsets and data commitments, directly on Ethereum
+on the QGB smart contract. You can reference the QGB smart contract [here](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
 
 ![QGB-Architecture](/img/nodes/qgb-diagram.png)
 
-The specification of the QGB `Valset`s, which track the Celestia validator set changes,  can be found in
-this [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
+The specification of the QGB `Valset`s, which track the Celestia validator set
+changes, can be found in this [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
 
-The QGB data commitments, which represent commitments over sets of blocks defined by a data commitment window, are discussed more in-depth in this [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
+The QGB data commitments, which represent commitments over sets of blocks
+defined by a data commitment window, are discussed more in-depth in this [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
 
 The Orchestrator is part of the Validator setup and works as follows:
 
-* Celestia App: creates an attestation on the state machine level that needs to be signed
-* The Orchestrator: queries the attestation, signs it, then submits the signature back to Celestia App
+* Celestia App: creates an attestation on the state machine level that needs to
+  be signed
+* The Orchestrator: queries the attestation, signs it, then submits the signature
+  back to Celestia App
 
 The diagram below goes over this process.
 
@@ -54,7 +57,10 @@ The following section presumes you have the following setup:
 
 ### Validator QGB Flags
 
-Make sure that your validator has already the correct Orchestrator address and EVM address. These can be specified when creating a new Validator, or editing an existing one, using the following flags: `--orchestrator-address` and `--evm-address`.
+Make sure that your validator has already the correct Orchestrator address
+and EVM address. These can be specified when creating a new Validator, or
+editing an existing one, using the following flags:
+`--orchestrator-address` and `--evm-address`.
 
 So, your setup for your Validator node should look like this:
 
@@ -101,7 +107,8 @@ SHOW LOGS
 
 With that, you have started the orchestrator! Now, let's move on to the Relayer.
 
-PS: Validators don't need to run relayers or deploy the QGB smart contract. They can, but it is not a must.
+PS: Validators don't need to run relayers or deploy the QGB smart contract.
+They can, but it is not a must.
 
 ### Using the Relayer to Deploy the QGB Smart Contract
 
