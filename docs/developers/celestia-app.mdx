@@ -2,8 +2,10 @@
 sidebar_label: Installing Celestia App
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Celestia App
-<!-- markdownlint-disable MD013 -->
 
 This tutorial will guide you through building Celestia App. This
 tutorial presumes you completed the steps in setting up your
@@ -12,7 +14,11 @@ own environment [here](./environment.mdx).
 ## Install Celestia App
 
 The steps below will create a binary file named `celestia-appd`
-inside `$HOME/go/bin` folder which will be used later to run the node.
+inside `$HOME/go/bin` folder which will be used later to run the node. Be sure to select the correct network to install the binary for.
+
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
 
 ```sh
 cd $HOME
@@ -25,6 +31,22 @@ APP_VERSION=$(curl -s \
 git checkout tags/$APP_VERSION -b $APP_VERSION
 make install
 ```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh
+cd $HOME
+rm -rf celestia-app
+git clone https://github.com/celestiaorg/celestia-app.git
+cd celestia-app/
+APP_VERSION=v0.6.0
+git checkout tags/$APP_VERSION -b $APP_VERSION
+make install
+```
+
+</TabItem>
+</Tabs>
 
 To check if the binary was successfully compiled you can run the binary
 using the `--help` flag:
