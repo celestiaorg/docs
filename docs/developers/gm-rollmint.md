@@ -54,7 +54,7 @@ Most of our work in this tutorial will happen in the `x` directory.
 To swap out Tendermint for Rollmint, run the following command:
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.1-rollmint-v0.4.0
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.3-rollmint-v0.4.0
 go mod tidy
 go mod download
 ```

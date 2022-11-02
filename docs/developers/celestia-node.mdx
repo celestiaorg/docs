@@ -85,6 +85,43 @@ celestia light init
 celestia light start --node.network arabica
 ```
 
+> NOTE: It is advised before switching newtworks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
+
+### Errors
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following command:
+
+```sh
+rm -rf ~./celestia-light-arabica-1 && celestia light init
+```
+
+Your output will look similar to below:
+
+```sh
+@ ~ % rm -rf ./celestia-light-arabica-1 && celestia light init
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-arabica-1'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-arabica-1/config.toml"}
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
+```
+
+Then start your node:
+
+```sh
+celestia light start --node.network arabica
+```
+
 </TabItem>
 <TabItem value="mamaki" label="Mamaki">
 
