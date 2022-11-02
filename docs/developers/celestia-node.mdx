@@ -30,6 +30,22 @@ git checkout tags/v0.4.2
 make install
 ```
 
+You may encounter an error similar to:
+
+```sh
+jcs @ ~/celestia-node % make install
+--> Building Celestia
+--> Installing Celestia
+install: /usr/local/bin//celestia: Permission denied
+make: *** [install] Error 71
+```
+
+In this case, run the following command to install celestia-node:
+
+```sh
+make go-install
+```
+
 Verify that the binary is working and check the version with the `celestia
 version` command:
 
@@ -57,6 +73,22 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make install
+```
+
+You may encounter an error similar to:
+
+```sh
+jcs @ ~/celestia-node % make install
+--> Building Celestia
+--> Installing Celestia
+install: /usr/local/bin//celestia: Permission denied
+make: *** [install] Error 71
+```
+
+In this case, run the following command to install celestia-node:
+
+```sh
+make go-install
 ```
 
 Verify that the binary is working and check the version with the `celestia
