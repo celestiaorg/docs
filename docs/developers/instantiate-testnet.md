@@ -1,5 +1,5 @@
 ---
-sidebar_label : Create A Celestia Testnet
+sidebar_label: Create A Celestia Testnet
 ---
 
 # Celestia App Network Instantiation Guide
@@ -19,7 +19,7 @@ You can setup dependencies by following the guide [here](./environment.mdx).
 
 ## Celestia App Installation
 
-You can install Celestia App by following the guide [here](./celestia-app.md).
+You can install Celestia App by following the guide [here](./celestia-app.mdx).
 
 ## Spin Up A Celestia Testnet
 

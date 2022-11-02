@@ -1,9 +1,8 @@
 ---
-sidebar_label : Node Tutorial
+sidebar_label: Node Tutorial
 ---
 
 # Getting and Sending Transactions with Celestia Node
-<!-- markdownlint-enable MD013 -->
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -452,7 +451,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.1
+git checkout tags/v0.4.2
 make install
 make cel-key
 ```
@@ -462,8 +461,8 @@ celestia version command:
 
 ```sh
 celestia version
-Semantic version: v0.4.1
-Commit: dbaf227c8b35da13ee92b34e364cbf8deb461ff1
+Semantic version: v0.4.2
+Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
 Build Date: Thu Oct 20 22:48:39 EDT 2022
 System version: arm64/darwin
 Golang version: go1.19.1
@@ -1074,12 +1073,10 @@ Note: To learn more about status response codes, please navigate to
 
 If you encounter an error like:
 
-<!-- markdownlint-disable MD013 -->
 ```sh
 $ curl -X POST -d '{"namespace_id": "c14da9d459dc57f5", "data": "4f7a3f1aadd83255b8410fef4860c0cd2eba82e24a", "gas_limit": 60000}'  localhost:26658/submit_pfd
 "rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
 ```
-<!-- markdownlint-enable MD013 -->
 
 It is possible that the account you are trying to submit a PayForData from
 doesn't have testnet tokens yet. Ensure the testnet faucet has funded your

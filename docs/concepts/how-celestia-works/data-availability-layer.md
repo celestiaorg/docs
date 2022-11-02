@@ -1,3 +1,7 @@
+---
+sidebar_label: Celestia's Data Availability Layer
+---
+
 # Celestia's Data Availability Layer
 
 Celestia is a data availability (DA) layer that provides a

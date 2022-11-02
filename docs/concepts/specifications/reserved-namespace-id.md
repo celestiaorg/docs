@@ -1,3 +1,7 @@
+---
+sidebar_label: Reserved Namespace IDs
+---
+
 # Reserved Namespace IDs
 
 This is a table of reserved namespace IDs on the Celestia Network.

@@ -1,5 +1,5 @@
 ---
-sidebar_label : Validator Node
+sidebar_label: Validator Node
 ---
 
 # Setting up a Celestia Validator Node
@@ -35,7 +35,7 @@ running a Celestia App daemon with an internal Celestia Core node.
 
 ### Install celestia-app
 
-Follow the tutorial on installing Celestia App [here](../developers/celestia-app.md).
+Follow the tutorial on installing Celestia App [here](../developers/celestia-app.mdx).
 
 ### Setup the P2P networks
 
