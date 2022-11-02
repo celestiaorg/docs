@@ -46,7 +46,7 @@ const config = {
   plugins: [["drawio", {}]],
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "fr"],
+    locales: ["en", "fr", "zh"],
   },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
