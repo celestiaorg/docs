@@ -14,17 +14,19 @@ The Quantum Gravity Bridge (will be referred as QGB for the remainder of this ar
 consists of two components: an Orchestrator and a Relayer.
 
 In the following diagram, we show how a celestium would post the data to
-Celestia. This latter which will be attested to by the Celestia validator set, and eventually posted to 
-the target EVM chain (in this case, Ethereum). Then, the celestium, or any party, will be able to
-verify the attestations, i.e. valsets and data commitments, directly on the EVM chain
-on the QGB smart contract. You can reference the QGB smart contract [here](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
+Celestia. This will later be attested to by the Celestia validator set, and
+eventually posted to the target EVM chain (in this case, Ethereum). Then,
+the celestium, or any party, will be able to verify the attestations, i.e. valsets
+and data commitments, directly on the EVM chain on the QGB smart contract. You can
+reference the QGB smart contract [here](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
 
 ![QGB-Architecture](/img/nodes/qgb-diagram.png)
 
 The specification of the QGB valsets, which track the Celestia validator set
 changes, can be found in this [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
 
-The QGB data commitments, which represent commitments over sets of blocks, are discussed more in-depth in the following [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
+The QGB data commitments, which represent commitments over sets of blocks, are
+discussed more in-depth in the following [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
 
 The Orchestrator is part of the Validator setup and works as follows:
 
@@ -167,3 +169,35 @@ SHOW LOG
 With that, the QGB for your Validator is running. You can check the smart contract
 address on Sepolia Block Explorer to view the attestations being submitted to the
 smart contract.
+
+## Automated Network Generation
+
+You have a few resources you can use for instantiating a local QGB Network.
+
+### Shell Script
+
+You have the following script [here](https://github.com/celestiaorg/celestia-app/blob/main/scripts/single-node.sh)
+You can run it with the following command:
+
+```sh
+cd celestia-app/
+bash script/single-node.sh
+```
+
+This starts a local network with QGB enabled. You can then run the Orchestrator
+and Relayer after which were covered in the previous sections.
+
+### Docker Compose
+
+You have a Docker Compose set up you can use to build all the nodes
+and the QGB network for you.
+
+You can start it with the following commands:
+
+```sh
+cd celestia-app/
+cd e2e/qgb/
+docker compose up
+```
+
+This will setup and install your QGB network with Docker Compose.
