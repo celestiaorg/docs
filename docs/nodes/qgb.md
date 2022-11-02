@@ -21,11 +21,10 @@ on the QGB smart contract. You can reference the QGB smart contract [here](https
 
 ![QGB-Architecture](/img/nodes/qgb-diagram.png)
 
-The specification of the QGB `Valset`s, which track the Celestia validator set
+The specification of the QGB valsets, which track the Celestia validator set
 changes, can be found in this [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
 
-The QGB data commitments, which represent commitments over sets of blocks
-defined by a data commitment window, are discussed more in-depth in this [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
+The QGB data commitments, which represent commitments over sets of blocks, are discussed more in-depth in the following [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
 
 The Orchestrator is part of the Validator setup and works as follows:
 
@@ -39,7 +38,7 @@ The diagram below goes over this process.
 ![QGB-Orchestrator](/img/nodes/qgb-orchestrator.png)
 
 The Relayer deploys the QGB smart contract first to the EVM L1 chain (if it is
-not deployed before) and then relays the attestations from Celestia App to the
+not deployed before), and then relays the attestations from Celestia App to the
 EVM L1 Chain.
 
 The diagram below goes over this process.
