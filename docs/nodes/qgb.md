@@ -14,9 +14,9 @@ The Quantum Gravity Bridge (will be referred as QGB for the remainder of this ar
 consists of two components: an Orchestrator and a Relayer.
 
 In the following diagram, we show how a celestium would post the data to
-Celestia while the Celestia Validators attest to transactions in a one-way bridge
-connected to an EVM L1 Layer (in this case, Ethereum). Then, the celestium will
-verify the attestations, i.e. valsets and data commitments, directly on Ethereum
+Celestia. This latter which will be attested to by the Celestia validator set, and eventually posted to 
+the target EVM chain (in this case, Ethereum). Then, the celestium, or any party, will be able to
+verify the attestations, i.e. valsets and data commitments, directly on the EVM chain
 on the QGB smart contract. You can reference the QGB smart contract [here](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
 
 ![QGB-Architecture](/img/nodes/qgb-diagram.png)
