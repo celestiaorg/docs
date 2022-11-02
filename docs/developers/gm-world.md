@@ -19,7 +19,7 @@ to allow blockchains to communicate with one another.
 ## Table of Contents
 
 - [Introduction](./gm-world.md)
-- [Setup](./gm-setup.md)
+- [Setup](./gm-setup.mdx)
 - [Run a Light Node](./gm-node.md)
 - [Build a Sovereign Rollup](./gm-rollmint.md)
 - [Query your Rollup](./gm-query.md)
