@@ -21,6 +21,9 @@ jobs:
 
       - run: yarn install --frozen-lockfile
       - run: yarn crowdin:sync
+      - name: Clean Crowdin Front Matter issues
+        run: ./github/scripts/clean.sh
+        shell: bash
       - run: yarn build
 
       - name: Deploy to GitHub Pages
