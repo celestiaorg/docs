@@ -1,5 +1,5 @@
 ---
-sidebar_label : Installing Celestia Node
+sidebar_label: Installing Celestia Node
 ---
 
 import Tabs from '@theme/Tabs';
@@ -26,7 +26,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.1
+git checkout tags/v0.4.2
 make install
 ```
 
@@ -35,8 +35,8 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.4.1
-Commit: dbaf227c8b35da13ee92b34e364cbf8deb461ff1
+Semantic version: v0.4.2
+Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
 Build Date: Thu Oct 20 22:48:39 EDT 2022
 System version: arm64/darwin
 Golang version: go1.19.1
@@ -83,6 +83,43 @@ versions mentioned above.
 ```sh
 celestia light init --p2p.network arabica
 celestia light start --p2p.network arabica
+```
+
+> NOTE: It is advised before switching newtworks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
+
+### Errors
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following command:
+
+```sh
+rm -rf ~./celestia-light-arabica-1 && celestia light init
+```
+
+Your output will look similar to below:
+
+```sh
+@ ~ % rm -rf ./celestia-light-arabica-1 && celestia light init
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-arabica-1'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-arabica-1/config.toml"}
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
+```
+
+Then start your node:
+
+```sh
+celestia light start --node.network arabica
 ```
 
 </TabItem>

@@ -9,6 +9,8 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
+    env:
+      CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
     permissions: write-all
     steps:
       - uses: actions/checkout@v3
@@ -18,6 +20,10 @@ jobs:
           cache: npm
 
       - run: yarn install --frozen-lockfile
+      - run: yarn crowdin:sync
+      - name: Clean Crowdin Front Matter issues
+        run: ./github/scripts/clean.sh
+        shell: bash
       - run: yarn build
 
       - name: Deploy to GitHub Pages

@@ -1,5 +1,5 @@
 ---
-sidebar_label : Code of Conduct
+sidebar_label: Code of Conduct
 ---
 
 # Celestia.org Code of Conduct

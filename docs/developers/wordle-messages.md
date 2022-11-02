@@ -1,5 +1,5 @@
 ---
-sidebar_label : Messages
+sidebar_label: Messages
 ---
 
 # Messages
