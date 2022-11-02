@@ -13,6 +13,7 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "lint": "markdownlint docs/",
+    "lint-mdx": "eslint docs/ --ext mdx",
     "crowdin": "crowdin",
     "crowdin:sync": "docusaurus write-translations && crowdin upload && crowdin download"
   },
@@ -42,6 +43,8 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-plugin-mdx": "^2.0.5",
     "markdownlint-cli": "^0.31.1"
   }
 }

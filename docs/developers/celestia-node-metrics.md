@@ -1,3 +1,7 @@
+---
+sidebar_label: Node Metrics 
+---
+
 # Celestia Node Metrics
 
 This tutorial is for running metrics for your celestia-node Data
