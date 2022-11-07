@@ -9,20 +9,20 @@ sidebar_label: CosmWasm Dependencies
 For this tutorial, we will be using `curl` and `jq` as helpful
 tools.
 
-We can follow the guide on installing them [here](./environment.mdx#setting-up-dependencies).
+You can follow the guide on installing them [here](./environment.mdx#setting-up-dependencies).
 
 ## Golang Dependency
 
 The Golang version used for this tutorial is v1.18+
 
-If we are using a Linux distribution, we can install Golang
+If you are using a Linux distribution, you can install Golang
 by following our tutorial [here](./environment.mdx#install-golang).
 
 ## Rust Installation
 
 ### Rustup
 
-First, before installing Rust, we would need to install `rustup`.
+First, before installing Rust, you would need to install `rustup`.
 
 On Mac/Linux systems, here are the commands for installing it:
 
