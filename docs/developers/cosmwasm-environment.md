@@ -4,7 +4,7 @@ sidebar_label: Setup Network Environment
 
 # Setting Up Your Environment for CosmWasm on Celestia
 
-Now the `wasmd` binary is built, you need to setup a local network
+Now the `wasmd` binary is built, we need to setup a local network
 that communicates between `wasmd` and Rollmint.
 
 ## Building the Wasmd Network
@@ -26,10 +26,10 @@ KEY_NAME=celeswasm-key
 wasmd keys add $KEY_NAME --keyring-backend test
 ```
 
-Make you sure you store the output of the wallet generated
+Make sure you store the output of the wallet generated
 for later reference if needed.
 
-Now, let's add a genesis account and use it to update your genesis file:
+Now, let's add a genesis account and use it to update our genesis file:
 
 ```sh
 TOKEN_AMOUNT="10000000000000000000000000uwasm"
@@ -38,9 +38,9 @@ STAKING_AMOUNT=1000000000uwasm
 wasmd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 ```
 
-With that, you created a local network genesis file.
+With that, we created a local network genesis file.
 
-Some more useful commands you can setup:
+Some more useful commands we can setup:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
@@ -51,7 +51,7 @@ export TXFLAG="--chain-id ${CHAIN_ID} --gas-prices 0uwasm --gas auto --gas-adjus
 
 ## Starting the Wasmd Network
 
-You can run the following to start the `wasmd` network:
+We can run the following to start the `wasmd` network:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
@@ -74,4 +74,4 @@ Also please consider:
   for the flag `--rollmint.namespace_id`, you can generate a random Namespace
   ID using the playground [here](https://go.dev/play/p/7ltvaj8lhRl)
 
-With that, you have kickstarted your `wasmd` network!
+With that, we have kickstarted our `wasmd` network!

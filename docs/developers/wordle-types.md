@@ -4,8 +4,8 @@ sidebar_label: Types
 
 # Wordle Types
 
-For the next steps, you will be creating types to be used by
-the messages you created.
+For the next steps, we will be creating types to be used by
+the messages we created.
 
 ## Scaffolding Wordle Types
 
@@ -24,5 +24,5 @@ the latest guess for each address that submitted a solution.
 ignite scaffold map guess word submitter count --no-message
 ```
 
-Here, you are also storing `count` to count how many guesses
+Here, we are also storing `count` to count how many guesses
 this address submitted.
