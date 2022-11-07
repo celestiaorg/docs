@@ -32,7 +32,7 @@ or
 make install-key
 ```
 
-For the purpose of this guide, you will use the `make cel-key` command.
+For the purpose of this guide, we will use the `make cel-key` command.
 
 ## Steps for generating **bridge** node keys
 

@@ -8,7 +8,7 @@ The Ignite CLI comes with scaffolding commands to make development of
 blockchains quicker by creating everything that is needed to start a new
 Cosmos SDK blockchain.
 
-Open a new tab or window in your terminal and run this command to scaffold your rollup:
+Open a new tab or window in our terminal and run this command to scaffold your rollup:
 
 ```bash
 ignite scaffold chain gm
@@ -61,8 +61,8 @@ go mod download
 
 ## 🎬 Starting the blockchain
 
-Now that you have your fully-functional rollup scaffolded, you can start your chain
-on your machine by running this command in the `gm` directory:
+Now that we have our fully-functional rollup scaffolded, we can start our chain
+on our machine by running this command in the `gm` directory:
 
 ```bash
 ignite chain serve
@@ -99,5 +99,5 @@ to run all of your chain commands.
 ### 🛑 Stopping your blockchain
 
 To stop your blockchain, press `Ctrl + C` in the terminal window where it is
-running. You're ready to prepare your first Sovereign Rollup query and connect to
+running. We're ready to scaffold our first Sovereign Rollup query and connect to
 Celestia’s DA layer.

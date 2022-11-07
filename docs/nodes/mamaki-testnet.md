@@ -10,7 +10,7 @@ This guide contains the relevant sections for how to connect to Mamaki,
 depending on the type of node you are running. Mamaki Testnet is designed
 to help validators test out their infrastructure and node software
 with the test network. Developers are encouraged to deploy their
-sovereign rollups on Mamaki, but you also recommend [Arabica Devnet](./arabica-devnet.md)
+sovereign rollups on Mamaki, but we also recommend [Arabica Devnet](./arabica-devnet.md)
 for that as it is designed for development purposes.
 
 Mamaki is a milestone in Celestia, allowing everyone to test out
@@ -78,7 +78,7 @@ There are several explorers you can use for Mamaki:
 
 ## Setup P2P network
 
-Now you will setup the P2P Networks by cloning the networks repository:
+Now we will setup the P2P Networks by cloning the networks repository:
 
 ```sh
 cd $HOME
@@ -87,14 +87,14 @@ git clone https://github.com/celestiaorg/networks.git
 ```
 
 To initialize the network pick a "node-name" that describes your
-node. The --chain-id parameter you are using here is `mamaki`. Keep in
+node. The --chain-id parameter we are using here is `mamaki`. Keep in
 mind that this might change if a new testnet is deployed.
 
 ```sh
 celestia-appd init "node-name" --chain-id mamaki
 ```
 
-Copy the `genesis.json` file. For mamaki you are using:
+Copy the `genesis.json` file. For mamaki we are using:
 
 ```sh
 cp $HOME/networks/mamaki/genesis.json $HOME/.celestia-app/config

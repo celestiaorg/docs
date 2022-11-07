@@ -4,7 +4,7 @@ sidebar_label: gm world Overview
 
 # ☀️ Introduction
 
-In this tutorial, you will build a sovereign `gm world` rollup using rollmint
+In this tutorial, we will build a sovereign `gm world` rollup using rollmint
 and Celestia’s data availability and consensus layer to submit rollmint blocks.
 
 This tutorial will cover setting up a Celestia Light Node, Ignite CLI, and

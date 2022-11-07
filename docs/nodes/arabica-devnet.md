@@ -12,7 +12,7 @@ exclusively on providing developers with enhanced performance and
 the latest upgrades for testing their rollups and applications.
 
 Arabica does not focus on validator or consensus-level testing, rather,
-that is what Mamaki Testnet is used for. If you are a validator, you
+that is what Mamaki Testnet is used for. If you are a validator, we
 recommend just testing your validator operations on Mamaki [here](./mamaki-testnet.md).
 
 With Arabica having the latest updates from all Celestia's products deployed

@@ -27,7 +27,7 @@ a single sequencer.
 
 The following tutorials will help you get started building
 Cosmos-SDK applications that connect to Celestia's Data Availability
-Layer via Rollmint. You call those chains Sovereign Rollups.
+Layer via Rollmint. We call those chains Sovereign Rollups.
 
 You can get started with the following tutorials:
 

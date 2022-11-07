@@ -4,7 +4,7 @@ sidebar_label: Query your Rollup
 
 # 💬 Say `gm world!`
 
-Now, you're going to get your blockchain to say `gm world!` - in order to do so
+Now, we're going to get our blockchain to say `gm world!` - in order to do so
 you need to make the following changes:
 
 - Modify a protocol buffer file
@@ -15,7 +15,7 @@ and message handlers, and proto messages that define Cosmos SDK types. The RPC
 calls are also responsible for exposing an HTTP API.
 
 The `Keeper` is required for each Cosmos SDK module and is an abstraction for
-modifying the state of the blockchain. Keeper functions allow you to query or
+modifying the state of the blockchain. Keeper functions allow us to query or
 write to the state.
 
 ## ✋ Create your first query
@@ -73,7 +73,7 @@ The `Gm` RPC for the `Query` service:
 
 ## 📨 Query request and response types
 
-In the same file, you will find:
+In the same file, we will find:
 
 - `QueryGmRequest` is empty because it does not require parameters
 - `QueryGmResponse` contains `text` that is returned from the chain
@@ -116,7 +116,7 @@ environment of the request
 
 Currently, the response is empty and you'll need to update the keeper function.
 
-Your `query.proto` file defines that the response accepts `text`. Use your text
+Our `query.proto` file defines that the response accepts `text`. Use your text
 editor to modify the keeper function in `gm/x/gm/keeper/grpc_query_gm.go` .
 
 <!-- markdownlint-disable MD013 -->
@@ -161,7 +161,7 @@ implements a CLI equivalent of the gm query and mounted this command in
 gmd q gm gm
 ```
 
-You'll get the following JSON response:
+We will get the following JSON response:
 
 ```bash
 text: gm world!
