@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 # Celestia Node
 
-This tutorial goes over building and installing celestia-node. This
+This tutorial goes over building and installing `celestia-node`. This
 tutorial assumes you completed the steps in setting up your development
 environment [here](./environment.mdx).
 
@@ -16,10 +16,13 @@ environment [here](./environment.mdx).
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
-Installing celestia-node for Arabica Devnet means installing a specific version
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
 to be compatible with the network.
 
-Install the celestia-node binary by running the following commands:
+Install the `celestia-node` binary by running the following commands:
 
 ```sh
 cd $HOME
@@ -30,19 +33,61 @@ git checkout tags/v0.4.2
 make install
 ```
 
-You may encounter an error similar to:
+Verify that the binary is working and check the version with the `celestia
+version` command:
 
-```sh
-jcs @ ~/celestia-node % make install
---> Building Celestia
---> Installing Celestia
-install: /usr/local/bin//celestia: Permission denied
-make: *** [install] Error 71
+```output
+celestia version
+Semantic version: v0.4.2
+Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
+Build Date: Thu Oct 20 22:48:39 EDT 2022
+System version: amd64/linux
+Golang version: go1.19.1
 ```
 
-In this case, run the following command to install celestia-node:
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
 
 ```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.4.2
+make install
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.4.2
+Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
+Build Date: Thu Oct 20 22:48:39 EDT 2022
+System version: arm64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.4.2
 make go-install
 ```
 
@@ -59,12 +104,47 @@ Golang version: go1.19.1
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mac" label="Mac (Intel)">
 
-Installing celestia-node for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Arabica Devnet means installing a specific version
 to be compatible with the network.
 
-Install the celestia-node binary by running the following commands:
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.4.2
+make go-install
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.4.2
+Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
+Build Date: Thu Oct 20 22:48:39 EDT 2022
+System version: amd64/darwin
+Golang version: go1.19.1
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
 
 ```sh
 cd $HOME
@@ -75,19 +155,81 @@ git checkout tags/v0.3.0-rc2
 make install
 ```
 
-You may encounter an error similar to:
+Verify that the binary is working and check the version with the `celestia
+version` command:
 
-```sh
-jcs @ ~/celestia-node % make install
---> Building Celestia
---> Installing Celestia
-install: /usr/local/bin//celestia: Permission denied
-make: *** [install] Error 71
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
 ```
 
-In this case, run the following command to install celestia-node:
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
 
 ```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make go-install
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
 make go-install
 ```
 
@@ -103,18 +245,21 @@ Commit: 89892d8b96660e334741987d84546c36f0996fbe
 </TabItem>
 </Tabs>
 
+</TabItem>
+</Tabs>
+
 ## Network Selection
 
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
-You can perform network selection in celestia-node between Arabica and
-Mamaki. However, you should note that networks work best on the celestia-node
+You can perform network selection in `celestia-node` between Arabica and
+Mamaki. However, you should note that networks work best on the `celestia-node`
 versions mentioned above.
 
 ```sh
 celestia light init
-celestia light start --node.network arabica
+celestia light start --node.network arabica-1
 ```
 
 </TabItem>
