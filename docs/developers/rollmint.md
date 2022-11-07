@@ -51,16 +51,12 @@ described below:
 
 To summarize, if a current SDK-based app roughly follows the following
 architecture:
-<!-- add excalidraw versions of graphics below -->
-![Screen Shot 2022-10-26 at 10.36.06 AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6bc47f0f-a383-4f75-8bf5-5e71ff83a31d/Screen_Shot_2022-10-26_at_10.36.06_AM.png)
 
-![Screen Shot 2022-10-26 at 10.36.14 AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4a50776d-bd33-4ada-b2c1-854e74b7749b/Screen_Shot_2022-10-26_at_10.36.14_AM.png)
+![diagram1.png](/img/rollmint/diagram1.png)
 
 When implementing a Cosmos-SDK based Rollmint chain, this overview changes to:
 
-![Screen Shot 2022-10-26 at 10.37.00 AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/911b5535-6eba-4f26-98ad-fa6b892a818a/Screen_Shot_2022-10-26_at_10.37.00_AM.png)
-
-![Screen Shot 2022-10-26 at 10.37.38 AM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bfc24094-a25b-4ca2-9894-370e55a553fa/Screen_Shot_2022-10-26_at_10.37.38_AM.png)
+![diagram2.png](/img/rollmint/diagram2.png)
 
 Note that from the point of view of an application developer, nothing changes.
 Rollmint has the exact same developer experience as the usual Cosmos-SDK with
@@ -89,7 +85,7 @@ Ethereum, Cosmos Hub)
 - With bond on Ethereum, or with longer block times and p2p gossip in
 side-chains subnet, or, liquidity providers
 
-![https://lh3.googleusercontent.com/pGQlfcW5ID4naR_GnfpPsEPmw-aUJ9JXRwFM8uikaGbD2f-xqs8HTrMiPS1QPeVzw96asXWny--DGLLgo9F_ETrHj-TE60MnzlbCZRO7k751vmm5V1UyWla0THD9qs_pNdfTx9JYSTcSUVg3XkPiIgA3gQS7AE9a8FH43S7y1e1fr2V1TGg6_3HN](https://lh3.googleusercontent.com/pGQlfcW5ID4naR_GnfpPsEPmw-aUJ9JXRwFM8uikaGbD2f-xqs8HTrMiPS1QPeVzw96asXWny--DGLLgo9F_ETrHj-TE60MnzlbCZRO7k751vmm5V1UyWla0THD9qs_pNdfTx9JYSTcSUVg3XkPiIgA3gQS7AE9a8FH43S7y1e1fr2V1TGg6_3HN)
+![lazyledger-diagram.png](/img/rollmint/lazyledger-diagram.png)
 
 ##### Full Nodes
 
