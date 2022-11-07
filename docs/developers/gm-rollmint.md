@@ -8,7 +8,7 @@ The Ignite CLI comes with scaffolding commands to make development of
 blockchains quicker by creating everything that is needed to start a new
 Cosmos SDK blockchain.
 
-Open a new tab or window in our terminal and run this command to scaffold your rollup:
+Open a new tab or window in your terminal and run this command to scaffold your rollup:
 
 ```bash
 ignite scaffold chain gm
@@ -47,7 +47,7 @@ cd gm
 ```
 
 You can learn more about the `gm` directory’s file structure [here](https://docs.ignite.com/guide/hello#blockchain-directory-structure).
-Most of your work in this tutorial will happen in the `x` directory.
+Most of our work in this tutorial will happen in the `x` directory.
 
 ## 💎 Installing Rollmint
 
