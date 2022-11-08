@@ -244,6 +244,31 @@ const sidebars = {
         },
         {
           type: "category",
+          label: "Recipe Book",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Recipe Book Overview",
+              id: "developers/recipe-book"
+            },
+            {
+              type: "doc",
+              label: "Scaffold your Chain",
+              id: "developers/recipe-scaffold"
+            },
+            {
+              type: "doc",
+              label: "Message Types",
+              id: "developers/recipe-message"
+            },
+          ]
+        },
+        {
+          type: "category",
           label: "Wordle",
           link: {
             type: 'generated-index',
