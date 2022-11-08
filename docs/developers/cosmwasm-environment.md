@@ -26,7 +26,7 @@ KEY_NAME=celeswasm-key
 wasmd keys add $KEY_NAME --keyring-backend test
 ```
 
-Make you sure you store the output of the wallet generated
+Make sure you store the output of the wallet generated
 for later reference if needed.
 
 Now, let's add a genesis account and use it to update our genesis file:

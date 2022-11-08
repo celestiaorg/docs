@@ -15,3 +15,11 @@ The [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) is a framework for
 building blockchain applications. The Cosmos Ecosystem uses
 [Inter-Blockchain Communication (IBC)](https://github.com/cosmos/ibc-go)
 to allow blockchains to communicate with one another.
+
+## Table of Contents
+
+- [Introduction](./gm-world.md)
+- [Setup](./gm-setup.mdx)
+- [Run a Light Node](./gm-node.md)
+- [Build a Sovereign Rollup](./gm-rollmint.md)
+- [Query your Rollup](./gm-query.md)
