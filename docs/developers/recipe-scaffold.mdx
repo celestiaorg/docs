@@ -2,9 +2,9 @@
 sidebar_label: Scaffold your Rollup
 ---
 
-# 🏗 Scaffolding your `recipes` Rollup with Ignite and Rollmint
+# 🏗 Scaffolding your `recipes` Rollup
 
-Run the following command to scaffold your `recipes` chain:
+Run the following command to scaffold your `recipes` chain using Ignite CLI:
 
 ```bash
 ignite scaffold chain recipes --address-prefix recipes
@@ -19,7 +19,7 @@ cd recipes
 ```
 
 ## 💎 Installing Rollmint
-To swap out Tendermint for Rollmint, run the following command:
+To swap out Tendermint for Rollmint, run the following commands:
 
 ```sh
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.3-rollmint-v0.4.0

@@ -265,6 +265,21 @@ const sidebars = {
               label: "Message Types",
               id: "developers/recipe-message"
             },
+            {
+              type: "doc",
+              label: "Keepers",
+              id: "developers/recipe-keeper"
+            },
+            {
+              type: "doc",
+              label: "Querying Recipes",
+              id: "developers/recipe-query"
+            },
+            {
+              type: "doc",
+              label: "Running the Recipes Rollup",
+              id: "developers/recipe-rollup"
+            },
           ]
         },
         {
