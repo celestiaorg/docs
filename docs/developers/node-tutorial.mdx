@@ -368,68 +368,6 @@ go version go1.18.2 darwin/amd64
 </TabItem>
 </Tabs>
 
-#### All Machines
-
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
-
-<Tabs groupId="shell">
-<TabItem value="bash" label="bash">
-
-```bash
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
-</TabItem>
-<TabItem value="zsh" label="zsh">
-
-```zsh
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
-source $HOME/.zshrc
-```
-
-</TabItem>
-</Tabs>
-
-To check if Go was installed correctly run:
-
-```sh
-go version
-```
-
-The output should be the version installed:
-
-<Tabs groupId="operating-systems">
-<TabItem value="amd" label="Ubuntu (AMD)">
-
-```sh
-go version go1.18.2 linux/amd64
-```
-
-</TabItem>
-<TabItem value="arm" label="Ubuntu (ARM)">
-
-```sh
-go version go1.18.2 linux/arm64
-```
-
-</TabItem>
-<TabItem value="apple" label="Mac (Apple)">
-
-```sh
-go version go1.18.2 darwin/arm64
-```
-
-</TabItem>
-<TabItem value="mac" label="Mac (Intel)">
-
-```sh
-go version go1.18.2 darwin/amd64
-```
-
-</TabItem>
-</Tabs>
-
 ## Celestia Node
 
 ### Install Celestia Node
