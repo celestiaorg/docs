@@ -2,7 +2,9 @@
 sidebar_label: Message Types
 ---
 
-# 💬 Create message types
+# 💬 Message Types
+
+## ✨ Create Message Types
 
 Create a message type and its handler with the `message` command:
 
@@ -26,7 +28,7 @@ create x/recipes/types/message_create_recipe_test.go
 🎉 Created a message `createRecipe`.
 ```
 
-Head to your `recipes/proto/recipes/recipes/tx.proto` file and you’ll see the `MsgCreateRecipe` has been created. Add `uint64 id = 1;` to the `MsgCreateRecipeResponse` function:
+Head to your `recipes/proto/recipes/recipes/tx.proto` file and you will see the `MsgCreateRecipe` has been created. Add `uint64 id = 1;` to the `MsgCreateRecipeResponse` function:
 
 ```protobuf title="recipes/proto/recipes/recipes/tx.proto"
 message MsgCreateRecipeResponse {
@@ -34,7 +36,7 @@ message MsgCreateRecipeResponse {
 }
 ```
 
-## 🤿 Diving deeper into the message code
+### 🤿 Diving deeper into the message code
 
 Looking further into the message, we can see that `MsgCreateRecipe` has 3 fields: creator, dish, and ingredients.
 
@@ -54,9 +56,9 @@ service Msg {
 }
 ```
 
-## 📕 Define messages logic
+`recipes/x/recipes/keeper/msg_server_c## 📕 Define messages logic
 
-Navigate to `recipes/x/recipes/keeper/msg_server_create_recipe.go`. For our recipes chain, we want the dish and ingredients to be written to the blockchain’s state as a new recipe. Add the following code to the `CreateRecipe` function underneath the imports:
+Navigate to reate_recipe.go`. For our recipes chain, we want the dish and ingredients to be written to the blockchain’s state as a new recipe. Add the following code to the `CreateRecipe` function underneath the imports:
 
 ```go title="recipes/x/recipes/keeper/msg_server_create_recipe.go"
 func (k msgServer) CreateRecipe(goCtx context.Context, msg *types.MsgCreateRecipe) (*types.MsgCreateRecipeResponse, error) {
@@ -79,275 +81,3 @@ func (k msgServer) CreateRecipe(goCtx context.Context, msg *types.MsgCreateRecip
 ```
 
 You will see errors in your text editor, which we will resolve in the next step.
-
-## 📗 Define `Recipe` type and `AppendRecipe` keeper method
-
-Create a file `recipes/proto/recipes/recipes/recipe.proto` and define the `Recipe` message:
-
-```go title="recipes/proto/recipes/recipes/recipe.proto"
-syntax = "proto3";
-
-package recipes.recipes;
-
-option go_package = "recipes/x/recipes/types";
-
-message Recipe {
-  string creator = 1;
-  uint64 id = 2;
-  string dish = 3; 
-  string ingredients = 4; 
-}
-```
-
-## 📘 Define keeper methods
-
-Now you’ll define your `AppendRecipe` keeper method.
-
-Create the `recipes/x/recipes/keeper/recipe.go` file. The `AppendRecipe` function is a placeholder to brainstorm how to implement it:
-
-```go title="recipes/x/recipes/keeper/recipe.go"
-package keeper
-
-import (
-  "encoding/binary"
-
-  "github.com/cosmos/cosmos-sdk/store/prefix"
-  sdk "github.com/cosmos/cosmos-sdk/types"
-
-  "recipes/x/recipes/types"
-)
-
-// func (k Keeper) AppendRecipe() uint64 {
-//    count := k.GetRecipeCount()
-//    store.Set()
-//    k.SetRecipeCount()
-//    return count
-// }
-```
-
-Add these prefixes to the `recipes/x/recipes/types/keys.go` file in the `const` and add a comment for your reference:
-
-```go title="recipes/x/recipes/types/keys.go"
-const (
-  //...
-
-  // Keep track of the index of recipes  
-  RecipeKey      = "Recipe-value-"
-  RecipeCountKey = "Recipe-count-"
-)
-```
-
-Next, implement `GetRecipeCount`:
-
-```go title="recipes/x/recipes/keeper/recipe.go"
-func (k Keeper) GetRecipeCount(ctx sdk.Context) uint64 {
-	// Get the store using storeKey (which is "recipes") and RecipeCountKey (which is "Recipe-count-")
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.RecipeCountKey))
-  
-	// Convert the RecipeCountKey to bytes
-	byteKey := []byte(types.RecipeCountKey)
-  
-	// Get the value of the count
-	bz := store.Get(byteKey)
-  
-	// Return zero if the count value is not found (for example, it's the first recipe)
-	if bz == nil {
-	  return 0
-	}
-  
-	// Convert the count into a uint64
-	return binary.BigEndian.Uint64(bz)
-}
-```
-
-And then `SetRecipeCount`:
-
-```go title="recipes/x/recipes/keeper/recipe.go"
-func (k Keeper) SetRecipeCount(ctx sdk.Context, count uint64) {
-	// Get the store using storeKey (which is "recipes") and RecipeCountKey (which is "Recipe-count-")
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.RecipeCountKey))
-  
-	// Convert the RecipeCountKey to bytes
-	byteKey := []byte(types.RecipeCountKey)
-  
-	// Convert count from uint64 to string and get bytes
-	bz := make([]byte, 8)
-	binary.BigEndian.PutUint64(bz, count)
-  
-	// Set the value of Recipe-count- to count
-	store.Set(byteKey, bz)
-}
-```
-
-Now you’re ready to implement the `AppendRecipe` function at the top of the file above `GetRecipeCount` and `SetRecipeCount`:
-
-```go title="recipes/x/recipes/keeper/recipe.go"
-func (k Keeper) AppendRecipe (ctx sdk.Context, recipe types.Recipe) uint64 {
-	// Get the current number of recipes in the store
-	count := k.GetRecipeCount(ctx)
-  
-	// Assign an ID to the recipe based on the number of recipes in the store
-	recipe.Id = count
-  
-	// Get the store
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.RecipeKey))
-  
-	// Convert the recipe ID into bytes
-	byteKey := make([]byte, 8)
-	binary.BigEndian.PutUint64(byteKey, recipe.Id)
-  
-	// Marshal the recipe into bytes
-	appendedValue := k.cdc.MustMarshal(&recipe)
-  
-	// Insert the recipe bytes using recipe ID as a key
-	store.Set(byteKey, appendedValue)
-  
-	// Update the recipe count
-	k.SetRecipeCount(ctx, count+1)
-	return count
-}
-```
-
-Now you have implemented all the code required to create new recipes and store them on-chain. When a transaction that contains a message type `MsgCreateRecipe` is broadcast, the message is routed to the recipes module.
-
-- `x/recipes/handler.go` calls `k.CreateRecipe` which calls `AppendRecipe`, which gets the recipe count, adds a recipe using the count as the ID, increments the count, and returns the ID
-
-## 🖥 Display recipes
-
-In order to display recipes, scaffold a query:
-
-```bash
-ignite scaffold query dishes --response dish,ingredients
-```
-
-Response:
-```bash
-modify proto/recipes/recipes/query.proto
-modify x/recipes/client/cli/query.go
-create x/recipes/client/cli/query_dishes.go
-create x/recipes/keeper/grpc_query_dishes.go
-
-🎉 Created a query `dishes`.
-```
-
-In the `proto/recipes/recipes/query.proto` file import:
-
-```protobuf title="proto/recipes/recipes/query.proto"
-import "recipes/recipes/recipe.proto";
-```
-
-Add pagination to the recipe request:
-
-```protobuf title="proto/recipes/recipes/query.proto"
-message QueryDishesRequest {
-  // Adding pagination to request
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-}
-```
-
-Add pagination to the recipe response:
-
-```protobuf title="proto/recipes/recipes/query.proto"
-message QueryDishesResponse {
-  // Returning a list of recipes
-  repeated Recipe Recipe = 1;
-
-  // Adding pagination to response
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
-}
-```
-
-In order to implement recipe querying logic in `recipes/x/recipes/keeper/grpc_query_dishes.go`, delete the file contents and replace them with:
-
-```go title="recipes/x/recipes/keeper/grpc_query_dishes.go"
-package keeper
-
-import (
-	"context"
-
-	"github.com/cosmos/cosmos-sdk/store/prefix"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/query"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-
-	"recipes/x/recipes/types"
-)
-
-func (k Keeper) Dishes(c context.Context, req *types.QueryDishesRequest) (*types.QueryDishesResponse, error) {
-  // Throw an error if request is nil
-  if req == nil {
-    return nil, status.Error(codes.InvalidArgument, "invalid request")
-  }
-
-  // Define a variable that will store a list of recipes
-  var dishes []*types.Recipe
-
-  // Get context with the information about the environment
-  ctx := sdk.UnwrapSDKContext(c)
-
-  // Get the key-value module store using the store key (in our case store key is "chain")
-  store := ctx.KVStore(k.storeKey)
-
-  // Get the part of the store that keeps recipes (using recipe key, which is "Recipe-value-")
-  recipeStore := prefix.NewStore(store, []byte(types.RecipeKey))
-
-  // Paginate the recipes store based on PageRequest
-  pageRes, err := query.Paginate(recipeStore, req.Pagination, func(key []byte, value []byte) error {
-    var dish types.Recipe
-    if err := k.cdc.Unmarshal(value, &dish); err != nil {
-      return err
-    }
-
-    dishes = append(dishes, &dish)
-
-    return nil
-  })
-
-  // Throw an error if pagination failed
-  if err != nil {
-    return nil, status.Error(codes.Internal, err.Error())
-  }
-
-  // Return a struct containing a list of recipes and pagination info
-  return &types.QueryDishesResponse{Recipe: dishes, Pagination: pageRes}, nil
-}
-```
-
-## 👩‍💻 Use the CLI to create your first recipe
-
-Start the chain with [add rollmint command]:
-
-```bash
-ignite chain serve
-```
-
-Stop your chain using `Ctrl+C`.
-
-[Run a Celestia Light Node.](../nodes/light-node#start-the-light-node)
-
-Start your Rollmint chain:
-
-```bash
-recipesd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 100783
-```
-
-Create your first recipe in the command line, when prompted, confirm the transaction by entering `y`:
-
-```bash
-recipesd tx recipes create-recipe salad vegetables --from alice
-```
-
-![send-tx.png](/img/recipes/send-tx.png)
-
-## ⌨️ Query your recipes with the CLI
-
-To query all of the on-chain recipes:
-
-```bash
-recipesd q recipes dishes
-```
-
-![query.png](/img/recipes/query.png)
-
-🎉 Congratulations, again! You have now successfully built a recipe book blockchain!
