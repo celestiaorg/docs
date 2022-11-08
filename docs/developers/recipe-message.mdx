@@ -210,7 +210,6 @@ func (k Keeper) AppendRecipe (ctx sdk.Context, recipe types.Recipe) uint64 {
 
 Now you have implemented all the code required to create new recipes and store them on-chain. When a transaction that contains a message type `MsgCreateRecipe` is broadcast, the message is routed to the recipes module.
 
-> **Edit this**
 - `x/recipes/handler.go` calls `k.CreateRecipe` which calls `AppendRecipe`, which gets the recipe count, adds a recipe using the count as the ID, increments the count, and returns the ID
 
 ## 🖥 Display recipes
