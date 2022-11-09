@@ -204,7 +204,7 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "gm world",
+          label: "☀️ gm world",
           link: {
             type: 'generated-index',
           },
@@ -244,7 +244,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Recipe Book",
+          label: "🥗 Recipe Book",
           link: {
             type: 'generated-index',
           },
