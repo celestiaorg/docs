@@ -4,7 +4,7 @@ sidebar_label: Running the Recipes Rollup
 
 # 👩‍🍳 Running the Recipes Rollup
 
-## 👩‍💻 Use the CLI to create your first recipe
+## 👩‍💻 Use `recipesd` to create your first recipe
 
 🟢 Start the chain with:
 
@@ -30,7 +30,7 @@ recipesd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmin
 Open another teminal instance. Now, create your first recipe in the command line by sending a transaction from alice, when prompted, confirm the transaction by entering `y`:
 
 ```bash
-recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette, " --from alice
+recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette" --from alice
 ```
 
 ![recipes.gif](/img/recipes/recipes.gif)
@@ -45,4 +45,4 @@ recipesd q recipes dishes
 
 ![query.gif](/img/recipes/query.gif)
 
-🎉 Congratulations, again! You have now successfully built a recipe book blockchain!
+🎉 Congratulations, again! You have now successfully built a recipe book rollup.

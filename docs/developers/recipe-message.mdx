@@ -56,9 +56,9 @@ service Msg {
 }
 ```
 
-`recipes/x/recipes/keeper/msg_server_c## 📕 Define messages logic
+## 📕 Define messages logic
 
-Navigate to reate_recipe.go`. For our recipes chain, we want the dish and ingredients to be written to the blockchain’s state as a new recipe. Add the following code to the `CreateRecipe` function underneath the imports:
+Navigate to `recipes/x/recipes/keeper/msg_server_create_recipe.go`. For our recipes chain, we want the dish and ingredients to be written to the blockchain’s state as a new recipe. Add the following code to the `CreateRecipe` function underneath the imports:
 
 ```go title="recipes/x/recipes/keeper/msg_server_create_recipe.go"
 func (k msgServer) CreateRecipe(goCtx context.Context, msg *types.MsgCreateRecipe) (*types.MsgCreateRecipeResponse, error) {
