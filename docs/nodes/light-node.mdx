@@ -462,7 +462,7 @@ rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.4.2
-make go-install
+make install
 ```
 
 Verify that the binary is working and check the version with the `celestia
@@ -491,7 +491,7 @@ rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.4.2
-make go-install
+make install
 ```
 
 Verify that the binary is working and check the version with the `celestia
@@ -578,8 +578,17 @@ rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
-make go-install
+make install
 ```
+If you hit the following error:
+
+```
+cgo-gcc-prolog:81:11: warning: 'SecKeychainCreate' is deprecated: first deprecated in macOS 12.0 - Custom keychain management is no longer supported [-Wdeprecated-declarations]
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Security.framework/Headers/SecKeychain.h:301:10: note: 'SecKeychainCreate' has been explicitly marked deprecated here
+```
+
+* update keyring from v1.1.6 v1.2.1 in the go.mod file
+* run `go get github.com/cosmos/cosmos-sdk/crypto/keyring@v0.46.0-beta2.0.20220418184507-c53157dd63f6`
 
 Verify that the binary is working and check the version with the `celestia
 version` command:
@@ -604,7 +613,7 @@ rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
-make go-install
+make install
 ```
 
 Verify that the binary is working and check the version with the `celestia
