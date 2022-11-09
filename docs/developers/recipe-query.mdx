@@ -4,15 +4,15 @@ sidebar_label: Querying Recipes
 
 # 🍽️ Querying Recipes
 
-## 🖥 Display recipes
+## 🖥 Query recipes
 
-In order to display recipes, scaffold a query:
+In order to query your recipes, scaffold a query with Ignite:
 
 ```bash
 ignite scaffold query dishes --response dish,ingredients
 ```
 
-Response:
+A response on a successful scaffold will look like this:
 ```bash
 modify proto/recipes/recipes/query.proto
 modify x/recipes/client/cli/query.go

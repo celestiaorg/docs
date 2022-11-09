@@ -6,29 +6,34 @@ sidebar_label: Running the Recipes Rollup
 
 ## 👩‍💻 Use the CLI to create your first recipe
 
-Start the chain with [add rollmint command]:
+🟢 Start the chain with:
 
 ```bash
 ignite chain serve
 ```
 
-Stop your chain using `Ctrl+C`.
+🔴 Then stop your chain using `Ctrl+C`.
 
-[Run a Celestia Light Node.](../nodes/light-node#start-the-light-node)
+## ✨ [Run a Celestia Light Node](../nodes/light-node#start-the-light-node)
 
-Start your Rollmint chain:
+![light-node.png](/img/recipes/light-node.png)  
+
+## 🗞️ Start the Recipes Rollup
+Start your Rollmint chain by running the following command:
 
 ```bash
 recipesd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 100783
 ```
 
-Create your first recipe in the command line, when prompted, confirm the transaction by entering `y`:
+![recipe-start.gif](/img/recipes/recipe-start.gif)
+
+Open another teminal instance. Now, create your first recipe in the command line by sending a transaction from alice, when prompted, confirm the transaction by entering `y`:
 
 ```bash
-recipesd tx recipes create-recipe salad vegetables --from alice
+recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette, " --from alice
 ```
 
-![send-tx.png](/img/recipes/send-tx.png)
+![recipes.gif](/img/recipes/recipes.gif)
 
 ## ⌨️ Query your recipes with the CLI
 
@@ -38,6 +43,6 @@ To query all of the on-chain recipes:
 recipesd q recipes dishes
 ```
 
-![query.png](/img/recipes/query.png)
+![query.gif](/img/recipes/query.gif)
 
 🎉 Congratulations, again! You have now successfully built a recipe book blockchain!
