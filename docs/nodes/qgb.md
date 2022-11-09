@@ -103,7 +103,24 @@ Running the orchestrator command above will show logs like the following
 output:
 
 ```sh
-SHOW LOGS
+D[2022-11-02|23:04:32.758] initializing orchestrator                    
+D[2022-11-02|23:04:32.766] starting orchestrator                        
+I[2022-11-02|23:04:32.766] listening for new block events...            
+I[2022-11-02|23:04:32.768] syncing missing nonces                       latest_nonce=2 last_unbonding_height=0
+D[2022-11-02|23:04:32.768] enqueueing missing attestation nonce         nonce=2
+D[2022-11-02|23:04:32.768] enqueueing missing attestation nonce         nonce=1
+I[2022-11-02|23:04:32.768] finished syncing missing nonces              latest_nonce=2 last_unbonding_height=0
+E[2022-11-02|23:04:32.768] stopping enqueing missing attestations       
+D[2022-11-02|23:04:32.768] processing nonce                             nonce=2
+I[2022-11-02|23:04:32.919] signed commitment                            nonce=2 begin_block=0 end_block=5 commitment=A288BB22829DFF30508A7D22C3943507D3056D6FDEA3E42D845E55277D991996 tx_hash=BC372BF3018CF57A924E9687942EAC3FAC01688D943E5E62B9C85D9DD80175F4
+D[2022-11-02|23:04:32.919] processing nonce                             nonce=1
+I[2022-11-02|23:04:33.938] signed Valset                                nonce=1 tx_hash=0C4F6312D138CEA3D65DA4D5084C0A7BE4B8E680D083A326E150EC23DCBB8FC4
+D[2022-11-02|23:04:36.993] enqueueing new attestation nonce             nonce=3
+D[2022-11-02|23:04:36.993] processing nonce                             nonce=3
+I[2022-11-02|23:04:38.012] signed commitment                            nonce=3 begin_block=5 end_block=10 commitment=7132B548311BA737EEC4085096B34FE436DCC5A78801C3E58F2AD20992567006 tx_hash=358702C95CC848D1511934A894AD9784507FB826BFDE31D2685E704111803302
+D[2022-11-02|23:04:42.097] enqueueing new attestation nonce             nonce=4
+D[2022-11-02|23:04:42.097] processing nonce                             nonce=4
+I[2022-11-02|23:04:43.106] signed commitment                            nonce=4 begin_block=10 end_block=15 commitment=D541B8F010C615172570B181BBE57A8C2314CE3B9E785EF831EC2FF0A5B8D93A tx_hash=FBC01DAFBEE82B02F8041574B05154C9C09A8723A06F66B327F13C6D869868EE
 ```
 
 With that, you have started the orchestrator! Now, let's move on to the Relayer.
@@ -135,7 +152,7 @@ When you run the command, you should get the following output that indicates
 the QGB Smart Contract has been deployed:
 
 ```sh
-SHOW LOGS
+I[2022-11-02|23:05:37.293] deployed QGB contract                        address=0x735e796b72c13E427C8eD9d1a24f6e6147217CE1 hash=0xbc06b4b861f6e9ffbd4c3f8bb393085182a441141e906e7b3b4f5cb38584c3cc
 ```
 
 The logs will show you both the smart contract address for the deployed QGB
@@ -163,7 +180,13 @@ The `-l` flag refers to the gas limit being set for the Relayer.
 Running the command will give you the following output:
 
 ```sh
-SHOW LOG
+D[2022-11-02|23:06:18.029] found enough data commitment confirms to be relayed majThreshHold=2863311532 currThreshold=4294967296
+I[2022-11-02|23:06:18.030] relaying data commitment 0-5...              
+D[2022-11-02|23:06:18.813] waiting for data commitment to be confirmed  nonce=2 hash=0x16d4762e4955691589a1e8f22cd0f25e9f3a7e6783e2b014f708ddd8005fb58b
+I[2022-11-02|23:06:37.018] relayed data commitment                      nonce=2 hash=0x16d4762e4955691589a1e8f22cd0f25e9f3a7e6783e2b014f708ddd8005fb58b
+D[2022-11-02|23:06:37.206] found enough data commitment confirms to be relayed majThreshHold=2863311532 currThreshold=4294967296
+I[2022-11-02|23:06:37.207] relaying data commitment 5-10...             
+D[2022-11-02|23:06:38.023] waiting for data commitment to be confirmed  nonce=3 hash=0xe142d968897c20962211da34e4b61a38379d14e24f0057074bedce6028dc0c76
 ```
 
 With that, the QGB for your Validator is running. You can check the smart contract
@@ -181,6 +204,8 @@ You can run it with the following command:
 
 ```sh
 cd celestia-app/
+git checkout qgb-integration # currently, the QGB V1 lives in a feature branch
+make install
 bash script/single-node.sh
 ```
 
@@ -196,8 +221,9 @@ You can start it with the following commands:
 
 ```sh
 cd celestia-app/
+git checkout qgb-integration
 cd e2e/qgb/
-docker compose up
+docker-compose up
 ```
 
 This will setup and install your QGB network with Docker Compose.
