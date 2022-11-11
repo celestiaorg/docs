@@ -405,6 +405,7 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.4.2
 make install
+make cel-key
 ```
 
 Verify that the binary is working and check the version with the `celestia
@@ -434,6 +435,7 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.4.2
 make install
+make cel-key
 ```
 
 Verify that the binary is working and check the version with the `celestia
@@ -463,6 +465,7 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.4.2
 make go-install
+make cel-key
 ```
 
 Verify that the binary is working and check the version with the `celestia
@@ -492,6 +495,7 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.4.2
 make go-install
+make cel-key
 ```
 
 Verify that the binary is working and check the version with the `celestia
@@ -527,6 +531,7 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make install
+make cel-key
 ```
 
 Verify that the binary is working and check the version with the `celestia
@@ -553,6 +558,7 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make install
+make cel-key
 ```
 
 Verify that the binary is working and check the version with the `celestia
@@ -579,6 +585,7 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make install
+make cel-key
 ```
 
 > If you hit the following error:
@@ -616,6 +623,7 @@ git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
 git checkout tags/v0.3.0-rc2
 make install
+make cel-key
 ```
 
 > If you hit the following error:
@@ -727,7 +735,7 @@ celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
 
 ### Keys and wallets
 
-You can create your key for your node by running the following command:
+You can create your key for your node by running the following command with the [`cel-key`](./keys.md) utility:
 
 ```sh
 ./cel-key add <key_name> --keyring-backend test --node.type light
