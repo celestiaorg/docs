@@ -204,7 +204,7 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "gm world",
+          label: "☀️ gm world",
           link: {
             type: 'generated-index',
           },
@@ -240,6 +240,46 @@ const sidebars = {
               label: "What's next",
               id: "developers/gm-next"
             }
+          ]
+        },
+        {
+          type: "category",
+          label: "🥗 Recipe Book",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Recipe Book Overview",
+              id: "developers/recipe-book"
+            },
+            {
+              type: "doc",
+              label: "Scaffold your Chain",
+              id: "developers/recipe-scaffold"
+            },
+            {
+              type: "doc",
+              label: "Message Types",
+              id: "developers/recipe-message"
+            },
+            {
+              type: "doc",
+              label: "Keepers",
+              id: "developers/recipe-keeper"
+            },
+            {
+              type: "doc",
+              label: "Querying Recipes",
+              id: "developers/recipe-query"
+            },
+            {
+              type: "doc",
+              label: "Running the Recipes Rollup",
+              id: "developers/recipe-rollup"
+            },
           ]
         },
         {
