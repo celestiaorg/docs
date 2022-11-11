@@ -51,7 +51,7 @@ to the correct instructions on this page on how to connect to Arabica.
 
 There is a list of RPC endpoints you can use to connect to Arabica Devnet:
 
-* [https://limani.celestia-devops.dev](https://limani.celestia-devops.dev)
+* [https://rpc.limani.celestia-devops.dev](https://rpc.limani.celestia-devops.dev)
 
 ## Arabica Devnet faucet
 
