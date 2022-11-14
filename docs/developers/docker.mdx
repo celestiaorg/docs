@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 # 🐳 Docker Setup
 
-This page has installation instructions to run `celestia-node` using Docker. If you are looking for instructions to run `celestia-node` using a binary, please refer to the [Celestia Node](./celestia-node.mdx) page.
+This page has instructions to run `celestia-node` using Docker. If you are looking for instructions to run `celestia-node` using a binary, please refer to the [Celestia Node](./celestia-node.mdx) page.
 
 Using Docker is the easiest way to run `celestia-node` for most users. Docker is a containerization platform that allows you to run `celestia-node` in an isolated environment. This means that you can run `celestia-node` on your machine without having to worry about installing and configuring all of the dependencies required to run the node.
 
@@ -16,46 +16,30 @@ The easiest way to install Docker is to use the official Docker Desktop installe
 ## Prerequisites
 - [Docker](https://docs.docker.com/get-docker/) and basic understanding of Docker
 
-<Tabs groupId="operating-systems">
+<Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
 ## Arabica Setup
 
-<Tabs groupId="node-type">
-<TabItem value="light" label="Light Node">
+There is currently no image for the Arabica network.
 
-First, create a new directory `Dockerfiles` and create a new `Dockerfile` in your root directory with the file below:
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
 
-```dockerfile
-FROM alpine:latest
-FROM golang:1.19.1-alpine
- 
-COPY --from=golang:1.19.1-alpine /usr/local/go/ /usr/local/go/
- 
-ENV PATH="/usr/local/go/bin:${PATH}"
+## Mamaki Setup
 
-RUN apk update
-RUN apk add curl tar wget clang pkgconfig libressl-dev jq alpine-sdk bash 
-RUN rm -rf celestia-node && git clone https://github.com/celestiaorg/celestia-node.git && cd celestia-node && git checkout tags/v0.4.2 && make install && make cel-key && celestia light init
-CMD celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
-```
-
-Then `cd` into your new directory with the following command:
+First, set the `sha` variable to the commit sha of `celestia-node` you need to run. Then, pull the image for the node you selected:
 
 ```bash
-cd Dockerfiles
-```
-
-Then, build the image using the following command:
-
-```bash
-docker build -t yourname/arabica-node .
+cd $HOME
+sha="89892d8"
+docker pull ghcr.io/celestiaorg/celestia-node:sha-$sha
 ```
 
 Lastly, run the image using the following command:
 
 ```bash
-docker run -d -p 9090:26658 --name arabica-light yourname/arabica-node
+docker run ghcr.io/celestiaorg/celestia-node:sha-$sha
 ```
 
 ---
@@ -65,7 +49,7 @@ docker run -d -p 9090:26658 --name arabica-light yourname/arabica-node
 To follow the logs of the container, use the following command:
 
 ```bash
-docker logs --follow arabica-light
+docker logs --follow celestia-node
 ```
 
 ---
@@ -87,355 +71,6 @@ If you would like to delete the container, use the following command:
 ```bash
 docker rm arabica-light
 ````
-
-</TabItem>
-
-<TabItem value="full" label="Full Node">
-
-First, create a new directory `Dockerfiles` and create a new `Dockerfile` in your root directory with the file below:
-
-```dockerfile
-FROM alpine:latest
-FROM golang:1.19.1-alpine
- 
-COPY --from=golang:1.19.1-alpine /usr/local/go/ /usr/local/go/
- 
-ENV PATH="/usr/local/go/bin:${PATH}"
-
-RUN apk update
-RUN apk add curl tar wget clang pkgconfig libressl-dev jq alpine-sdk bash 
-RUN rm -rf celestia-node && git clone https://github.com/celestiaorg/celestia-node.git && cd celestia-node && git checkout tags/v0.4.2 && make install && make cel-key && celestia full init
-CMD celestia full start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
-```
-
-Then `cd` into your new directory with the following command:
-
-```bash
-cd Dockerfiles
-```
-
-Then, build the image using the following command:
-
-```bash
-docker build -t yourname/arabica-node .
-```
-
-Lastly, run the image using the following command:
-
-```bash
-docker run -d -p 9090:26658 --name arabica-full yourname/arabica-node
-```
-
----
-
-### Following Logs
-
-To follow the logs of the container, use the following command:
-
-```bash
-docker logs --follow arabica-full
-```
-
----
-
-### Stopping the Container
-
-In the case where you want to stop the node (and container), use the following command:
-
-```bash
-docker stop arabica-full
-```
-
----
-
-### Removing the Container
-
-If you would like to delete the container, use the following command:
-
-```bash
-docker rm arabica-full
-````
-
-</TabItem>
-
-<TabItem value="bridge" label="Bridge Node">
-
-First, create a new directory `Dockerfiles` and create a new `Dockerfile` in your root directory with the file below:
-
-```dockerfile
-FROM alpine:latest
-FROM golang:1.19.1-alpine
- 
-COPY --from=golang:1.19.1-alpine /usr/local/go/ /usr/local/go/
- 
-ENV PATH="/usr/local/go/bin:${PATH}"
-
-RUN apk update
-RUN apk add curl tar wget clang pkgconfig libressl-dev jq alpine-sdk bash 
-RUN rm -rf celestia-node && git clone https://github.com/celestiaorg/celestia-node.git && cd celestia-node && git checkout tags/v0.4.2 && make install && make cel-key && celestia bridge init
-CMD celestia bridge start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
-```
-
-Then `cd` into your new directory with the following command:
-
-```bash
-cd Dockerfiles
-```
-
-Then, build the image using the following command:
-
-```bash
-docker build -t yourname/arabica-node .
-```
-
-Lastly, run the image using the following command:
-
-```bash
-docker run -d -p 9090:26658 --name arabica-bridge yourname/arabica-node
-```
-
----
-
-### Following Logs
-
-To follow the logs of the container, use the following command:
-
-```bash
-docker logs --follow arabica-bridge
-```
-
----
-
-### Stopping the Container
-
-In the case where you want to stop the node (and container), use the following command:
-
-```bash
-docker stop arabica-bridge
-```
-
----
-
-### Removing the Container
-
-If you would like to delete the container, use the following command:
-
-```bash
-docker rm arabica-bridge
-````
-
-</TabItem>
-</Tabs>
-
-</TabItem>
-<TabItem value="mamaki" label="Mamaki">
-
-## Mamaki Setup
-
-<Tabs groupId="node-type">
-<TabItem value="light" label="Light Node">
-
-First, create a new directory `Dockerfiles` and create a new `Dockerfile` in your root directory with the file below:
-
-```dockerfile
-FROM alpine:latest
-FROM golang:1.18.2-alpine
- 
-COPY --from=golang:1.18.2-alpine /usr/local/go/ /usr/local/go/
- 
-ENV PATH="/usr/local/go/bin:${PATH}"
-
-RUN apk update
-RUN apk add curl tar wget clang pkgconfig libressl-dev jq alpine-sdk bash 
-RUN rm -rf celestia-node && git clone https://github.com/celestiaorg/celestia-node.git && cd celestia-node && git checkout tags/v0.3.0-rc2 && make install && make cel-key && celestia light init 
-CMD celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
-```
-
-Then `cd` into your new directory with the following command:
-
-```bash
-cd Dockerfiles
-```
-
-Then, build the image using the following command:
-
-```bash
-docker build -t yourname/mamaki-node .
-```
-
-Lastly, run the image using the following command:
-
-```bash
-docker run -d -p 9090:26658 --name mamaki-light yourname/mamaki-node
-```
-
----
-
-### Following Logs
-
-To follow the logs of the container, use the following command:
-
-```bash
-docker logs --follow mamaki-light
-```
-
----
-
-### Stopping the Container
-In the case where you want to stop the node (and container), use the following command:
-
-```bash
-docker stop mamaki-light
-```
-
----
-
-### Removing the Container
-
-If you would like to delete the container, use the following command:
-
-```bash
-docker rm mamaki-light
-````
-
-</TabItem>
-
-<TabItem value="full" label="Full Node">
-
-First, create a new directory `Dockerfiles` and create a new `Dockerfile` in your root directory with the file below:
-
-```dockerfile
-FROM alpine:latest
-FROM golang:1.18.2-alpine
- 
-COPY --from=golang:1.18.2-alpine /usr/local/go/ /usr/local/go/
- 
-ENV PATH="/usr/local/go/bin:${PATH}"
-
-RUN apk update
-RUN apk add curl tar wget clang pkgconfig libressl-dev jq alpine-sdk bash 
-RUN rm -rf celestia-node && git clone https://github.com/celestiaorg/celestia-node.git && cd celestia-node && git checkout tags/v0.3.0-rc2 && make install && make cel-key && celestia full init 
-CMD celestia full start --core.grpc https://rpc-mamaki.pops.one:9090
-```
-
-Then `cd` into your new directory with the following command:
-
-```bash
-cd Dockerfiles
-```
-
-Then, build the image using the following command:
-
-```bash
-docker build -t yourname/mamaki-node .
-```
-
-Lastly, run the image using the following command:
-
-```bash
-docker run -d -p 9090:26658 --name mamaki-full yourname/mamaki-node
-```
-
----
-
-### Following Logs
-
-To follow the logs of the container, use the following command:
-
-```bash
-docker logs --follow mamaki-full
-```
-
----
-
-### Stopping the Container
-
-In the case where you want to stop the node (and container), use the following command:
-
-```bash
-docker stop mamaki-full
-```
-
----
-
-### Removing the Container
-
-If you would like to delete the container, use the following command:
-
-```bash
-docker rm mamaki-full
-````
-
-</TabItem>
-
-<TabItem value="bridge" label="Bridge Node">
-
-First, create a new directory `Dockerfiles` and create a new `Dockerfile` in your root directory with the file below:
-
-```dockerfile
-FROM alpine:latest
-FROM golang:1.18.2-alpine
- 
-COPY --from=golang:1.18.2-alpine /usr/local/go/ /usr/local/go/
- 
-ENV PATH="/usr/local/go/bin:${PATH}"
-
-RUN apk update
-RUN apk add curl tar wget clang pkgconfig libressl-dev jq alpine-sdk bash 
-RUN rm -rf celestia-node && git clone https://github.com/celestiaorg/celestia-node.git && cd celestia-node && git checkout tags/v0.3.0-rc2 && make install && make cel-key && celestia bridge init
-CMD celestia bridge start --core.grpc https://rpc-mamaki.pops.one:9090 --core.remote tcp://rpc-mamaki.pops.one:26657
-```
-
-Then `cd` into your new directory with the following command:
-
-```bash
-cd Dockerfiles
-```
-
-Then, build the image using the following command:
-
-```bash
-docker build -t yourname/mamaki-node .
-```
-
-Lastly, run the image using the following command:
-
-```bash
-docker run -d -p 9090:26658 --name mamaki-bridge yourname/mamaki-node
-```
-
----
-
-### Following Logs
-
-To follow the logs of the container, use the following command:
-
-```bash
-docker logs --follow mamaki-bridge
-```
-
----
-
-### Stopping the Container
-
-In the case where you want to stop the node (and container), use the following command:
-
-```bash
-docker stop mamaki-bridge
-```
-
----
-
-### Removing the Container
-
-If you would like to delete the container, use the following command:
-
-```bash
-docker rm mamaki-bridge
-````
-
-</TabItem>
-</Tabs>
 
 </TabItem>
 </Tabs>
