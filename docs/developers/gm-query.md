@@ -143,7 +143,7 @@ using:
 ignite chain serve
 ```
 
-Then, stop the chain by using `Ctrl + C`. Now, you're ready to start you
+Then, stop the chain by using `Ctrl + C`. Now, you're ready to start your
 rollup.
 
 ## 🟢 Start your Sovereign Rollup
