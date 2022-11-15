@@ -129,6 +129,11 @@ const sidebars = {
       id: "developers/environment" 
     },
     {
+      type: "doc", 
+      label: "Keplr", 
+      id: "developers/keplr" 
+    },
+    {
       type: "category",
       label: "Celestia App",
       link: {
