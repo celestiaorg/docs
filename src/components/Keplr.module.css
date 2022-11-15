@@ -1,0 +1,13 @@
+.keplrButton {
+  background-color: #1BB8FF;
+  font-size: 22px;
+  font-family: 'RuberoidBold';
+  margin: 0px;
+  line-height: 24px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}

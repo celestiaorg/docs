@@ -368,68 +368,6 @@ go version go1.18.2 darwin/amd64
 </TabItem>
 </Tabs>
 
-#### All Machines
-
-Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
-
-<Tabs groupId="shell">
-<TabItem value="bash" label="bash">
-
-```bash
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
-
-</TabItem>
-<TabItem value="zsh" label="zsh">
-
-```zsh
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
-source $HOME/.zshrc
-```
-
-</TabItem>
-</Tabs>
-
-To check if Go was installed correctly run:
-
-```sh
-go version
-```
-
-The output should be the version installed:
-
-<Tabs groupId="operating-systems">
-<TabItem value="amd" label="Ubuntu (AMD)">
-
-```sh
-go version go1.18.2 linux/amd64
-```
-
-</TabItem>
-<TabItem value="arm" label="Ubuntu (ARM)">
-
-```sh
-go version go1.18.2 linux/arm64
-```
-
-</TabItem>
-<TabItem value="apple" label="Mac (Apple)">
-
-```sh
-go version go1.18.2 darwin/arm64
-```
-
-</TabItem>
-<TabItem value="mac" label="Mac (Intel)">
-
-```sh
-go version go1.18.2 darwin/amd64
-```
-
-</TabItem>
-</Tabs>
-
 ## Celestia Node
 
 ### Install Celestia Node
@@ -444,7 +382,13 @@ two networks.
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
-Install the celestia-node binary by running the following commands:
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
 
 ```sh
 cd $HOME
@@ -456,10 +400,70 @@ make install
 make cel-key
 ```
 
-Verify that the binary is working and check the version with the
-celestia version command:
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.4.2
+Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
+Build Date: Thu Oct 20 22:48:39 EDT 2022
+System version: amd64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
 
 ```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.4.2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.4.2
+Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
+Build Date: Thu Oct 20 22:48:39 EDT 2022
+System version: arm64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.4.2
+make go-install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
 celestia version
 Semantic version: v0.5.0
 Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
@@ -469,9 +473,48 @@ Golang version: go1.19.1
 ```
 
 </TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.4.2
+make go-install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.4.2
+Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
+Build Date: Thu Oct 20 22:48:39 EDT 2022
+System version: amd64/darwin
+Golang version: go1.19.1
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
 <TabItem value="mamaki" label="Mamaki">
 
-Install the celestia-node binary by running the following commands:
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
 
 ```sh
 cd $HOME
@@ -483,14 +526,98 @@ make install
 make cel-key
 ```
 
-Verify that the binary is working and check the version with the
-celestia version command:
+Verify that the binary is working and check the version with the `celestia
+version` command:
 
-```sh
+```console
 $ celestia version
 Semantic version: v0.3.0-rc2
 Commit: 89892d8b96660e334741987d84546c36f0996fbe
 ```
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 </Tabs>
@@ -1067,7 +1194,7 @@ If you notice from the above output, it returns a `height` of
 `2452` which we will use for the next command.
 
 Note: To learn more about status response codes, please navigate to
-[cosmos' code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
+[cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
 
 #### Troubleshooting
 
@@ -1088,7 +1215,7 @@ After submitting your PFD transaction, upon success, the node will return
 the block height for which the PFD transaction was included. You can then
 use that block height and the namespace ID with which you submitted your
 PFD transaction to get your message shares returned to you. In this example,
-the block height we got was 589 which we will use for the following command.
+the block height we got was 2452 which we will use for the following command.
 
 ```sh
 curl -X GET \
