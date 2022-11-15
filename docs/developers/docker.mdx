@@ -49,7 +49,7 @@ docker run ghcr.io/celestiaorg/celestia-node:sha-$sha
 To follow the logs of the container, use the following command:
 
 ```bash
-docker logs --follow celestia-node
+docker logs --follow ghcr.io/celestiaorg/celestia-node:sha-$sha
 ```
 
 ---
@@ -59,7 +59,7 @@ docker logs --follow celestia-node
 In the case where you want to stop the node (and container), use the following command:
 
 ```bash
-docker stop arabica-light
+docker stop ghcr.io/celestiaorg/celestia-node:sha-$sha
 ```
 
 ---
@@ -69,7 +69,7 @@ docker stop arabica-light
 If you would like to delete the container, use the following command:
 
 ```bash
-docker rm arabica-light
+docker rm ghcr.io/celestiaorg/celestia-node:sha-$sha
 ````
 
 </TabItem>
