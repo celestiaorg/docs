@@ -99,5 +99,5 @@ to run all of your chain commands.
 ### 🛑 Stopping your blockchain
 
 To stop your blockchain, press `Ctrl + C` in the terminal window where it is
-running. We’re ready to prepare our first Sovereign Rollup query and connect to
+running. We're ready to scaffold our first Sovereign Rollup query and connect to
 Celestia’s DA layer.

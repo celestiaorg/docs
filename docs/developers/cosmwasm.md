@@ -2,7 +2,7 @@
 sidebar_label: CosmWasm Overview
 ---
 
-# CosmWasm on Rollmint
+# CosmWasm and Rollmint
 
 CosmWasm is a smart contracting platform built for the Cosmos
 ecosystem by making use of WebAssembly (Wasm) to build smart contracts
