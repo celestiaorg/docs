@@ -987,7 +987,7 @@ Flags:
 Use "keys [command] --help" for more information about a command.
 ```
 
-### Importing and exporting keys
+### Importing keys
 
 Importing from a mnemonic:
 
