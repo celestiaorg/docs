@@ -138,6 +138,11 @@ const sidebars = {
               label: "Node Video Tutorial",
               id: "nodes/light-node-video"
             },
+            { 
+              type: "doc", 
+              label: "Docker Setup", 
+              id: "developers/docker" 
+            },
             {
               type: "doc",
               label: "Node Metrics",
@@ -211,6 +216,11 @@ const sidebars = {
       id: "developers/overview" 
     },
     {
+      type: "doc", 
+      label: "Keplr", 
+      id: "developers/keplr" 
+    },
+    {
       type: "category",
       label: "Rollmint",
       link: {
@@ -257,6 +267,46 @@ const sidebars = {
               label: "What's next",
               id: "developers/gm-next"
             }
+          ]
+        },
+        {
+          type: "category",
+          label: "Recipe Book",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Recipe Book Overview",
+              id: "developers/recipe-book"
+            },
+            {
+              type: "doc",
+              label: "Scaffold your Chain",
+              id: "developers/recipe-scaffold"
+            },
+            {
+              type: "doc",
+              label: "Message Types",
+              id: "developers/recipe-message"
+            },
+            {
+              type: "doc",
+              label: "Keepers",
+              id: "developers/recipe-keeper"
+            },
+            {
+              type: "doc",
+              label: "Querying Recipes",
+              id: "developers/recipe-query"
+            },
+            {
+              type: "doc",
+              label: "Running the Recipes Rollup",
+              id: "developers/recipe-rollup"
+            },
           ]
         },
         {
