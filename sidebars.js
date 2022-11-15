@@ -26,11 +26,93 @@ const sidebars = {
         }
       ]
     },
-    { 
-      type: "doc", 
-      label: "Setting Up Environment", 
-      id: "nodes/environment" 
+    {
+      type: "category",
+      label: "Quick Start",
+      link: {
+        type: "doc",
+        id: "nodes/quick-start"
+      },
+      collapsed: false,
+      items: [
+        { 
+          type: "doc", 
+          label: "Setting Up Environment", 
+          id: "nodes/environment" 
+        },
+        {
+          type: "doc",
+          label: "Installing Celestia Node",
+          id: "nodes/celestia-node"
+        },
+        {
+          type: "doc",
+          label: "Installing Celestia App",
+          id: "nodes/celestia-app"
+        },
+        {
+          type: "doc",
+          label: "Deciding Which Node to Run",
+          id: "nodes/decide-node"
+        },
+      ]
     },
+    { 
+      type: "category", 
+      label: "Types of Nodes", 
+      link: {
+        type: 'generated-index'
+      },
+      collapsed: false,
+      items: [
+      {
+        type: "category",
+        label: "Data Availability",
+        link: {
+          type: 'generated-index',
+        },
+        collapsed: false,
+        items: [
+          { 
+            type: "doc", 
+            label: "Light Node", 
+            id: "nodes/light-node" 
+          },
+          { 
+            type: "doc", 
+            label: "Bridge Node", 
+            id: "nodes/bridge-node" 
+          },
+          {
+            type: "doc",
+            label: "Full Storage Node",
+            id: "nodes/full-storage-node",
+          },
+        ]
+      },
+      {
+        type: "category",
+        label: "Consensus",
+        link: {
+          type: 'generated-index'
+        },
+        collapsed: false,
+        items: [
+          {
+            type: "doc",
+            label: "Validator Node",
+            id: "nodes/validator-node",
+          },
+          { 
+            type: "doc", 
+            label: "Consensus Full Node", 
+            id: "nodes/consensus-full-node" 
+          },
+        ]
+      },
+    ]
+    },
+
     {
       type: "category",
       label: "Celestia Node",
@@ -39,11 +121,6 @@ const sidebars = {
       },
       collapsed: false,
       items: [
-        {
-          type: "doc",
-          label: "Installing Celestia Node",
-          id: "nodes/celestia-node"
-        },
         { 
           type: "doc", 
           label: "Node Tutorial", 
@@ -79,11 +156,7 @@ const sidebars = {
       },
       collapsed: false,
       items: [
-        {
-          type: "doc",
-          label: "Installing Celestia App",
-          id: "nodes/celestia-app"
-        },
+        
         {
           type: "doc",
           label: "Creating A Wallet",
@@ -101,62 +174,7 @@ const sidebars = {
         }
       ]
     },
-    { 
-      type: "category", 
-      label: "Types of Nodes", 
-      link: {
-        type: 'generated-index'
-      },
-      collapsed: false,
-      items: [
-      {
-        type: "category",
-        label: "Consensus",
-        link: {
-          type: 'generated-index'
-        },
-        collapsed: false,
-        items: [
-          {
-            type: "doc",
-            label: "Validator Node",
-            id: "nodes/validator-node",
-          },
-          { 
-            type: "doc", 
-            label: "Consensus Full Node", 
-            id: "nodes/consensus-full-node" 
-          },
-        ]
-      },
-      {
-        type: "category",
-        label: "Data Availability",
-        link: {
-          type: 'generated-index',
-        },
-        collapsed: false,
-        items: [
-          { 
-            type: "doc", 
-            label: "Bridge Node", 
-            id: "nodes/bridge-node" 
-          },
-          {
-            type: "doc",
-            label: "Full Storage Node",
-            id: "nodes/full-storage-node",
-          },
-          { 
-            type: "doc", 
-            label: "Light Node", 
-            id: "nodes/light-node" 
-          }
-        ]
-      }
-      ]
-    },
-    {
+        {
       type: "category",
       label: "Resources",
       link: {
