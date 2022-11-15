@@ -29,7 +29,7 @@ const sidebars = {
     { 
       type: "doc", 
       label: "Setting Up Environment", 
-      id: "developers/environment" 
+      id: "nodes/environment" 
     },
     {
       type: "category",
@@ -42,27 +42,27 @@ const sidebars = {
         {
           type: "doc",
           label: "Installing Celestia Node",
-          id: "developers/celestia-node"
+          id: "nodes/celestia-node"
         },
         { 
           type: "doc", 
           label: "Node Tutorial", 
-          id: "developers/node-tutorial" 
+          id: "nodes/node-tutorial" 
         },
         {
           type: "doc",
           label: "Node Video Tutorial",
-          id: "developers/light-node-video"
+          id: "nodes/light-node-video"
         },
         {
           type: "doc",
           label: "Node Metrics",
-          id: "developers/celestia-node-metrics"
+          id: "nodes/celestia-node-metrics"
         },
         { 
           type: "doc", 
           label: "Node API", 
-          id: "developers/node-api" 
+          id: "nodes/node-api" 
         },
         {
           type: "doc",
@@ -82,22 +82,22 @@ const sidebars = {
         {
           type: "doc",
           label: "Installing Celestia App",
-          id: "developers/celestia-app"
+          id: "nodes/celestia-app"
         },
         {
           type: "doc",
           label: "Creating A Wallet",
-          id: "developers/wallet"
+          id: "nodes/wallet"
         },
         { 
           type: "doc", 
           label: "Create A Celestia Testnet", 
-          id: "developers/instantiate-testnet" 
+          id: "nodes/instantiate-testnet" 
         },
         {
           type: "doc",
           label: "Helpful CLI commands",
-          id: "developers/celestia-app-commands"
+          id: "nodes/celestia-app-commands"
         }
       ]
     },

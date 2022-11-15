@@ -23,7 +23,7 @@ instance machine.
 
 ### Setup the dependencies
 
-Follow the instructions on installing the dependencies [here](../developers/environment.mdx).
+Follow the instructions on installing the dependencies [here](./environment.mdx).
 
 ## Deploying the celestia-app
 
@@ -35,7 +35,7 @@ running a Celestia App daemon with an internal Celestia Core node.
 
 ### Install celestia-app
 
-Follow the tutorial on installing Celestia App [here](../developers/celestia-app.mdx).
+Follow the tutorial on installing Celestia App [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -96,7 +96,7 @@ with SystemD [here](./systemd.md#start-the-celestia-app-with-systemd).
 
 ### Wallet
 
-Follow the tutorial on creating a wallet [here](../developers/wallet.md).
+Follow the tutorial on creating a wallet [here](./wallet.md).
 
 ### Delegate stake to a validator
 
@@ -134,7 +134,7 @@ Celestia Bridge Node daemon.
 
 ### Install celestia-node
 
-You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.mdx)
+You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx)
 
 ### Initialize the bridge node
 
