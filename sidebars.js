@@ -5,6 +5,102 @@ const sidebars = {
       label: "Overview", 
       id: "nodes/overview" 
     },
+    {
+      type: "category",
+      label: "Participate",
+      link: {
+        type: "doc",
+        id: "nodes/participate"
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Arabica Devnet",
+          id: "nodes/arabica-devnet"
+        },
+        {
+          type: "doc",
+          label: "Mamaki Testnet",
+          id: "nodes/mamaki-testnet"
+        }
+      ]
+    },
+    { 
+      type: "doc", 
+      label: "Setting Up Environment", 
+      id: "developers/environment" 
+    },
+    {
+      type: "category",
+      label: "Celestia Node",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Installing Celestia Node",
+          id: "developers/celestia-node"
+        },
+        { 
+          type: "doc", 
+          label: "Node Tutorial", 
+          id: "developers/node-tutorial" 
+        },
+        {
+          type: "doc",
+          label: "Node Video Tutorial",
+          id: "developers/light-node-video"
+        },
+        {
+          type: "doc",
+          label: "Node Metrics",
+          id: "developers/celestia-node-metrics"
+        },
+        { 
+          type: "doc", 
+          label: "Node API", 
+          id: "developers/node-api" 
+        },
+        {
+          type: "doc",
+          label: "Keys",
+          id: "nodes/keys"
+        },
+      ]
+    },
+    {
+      type: "category",
+      label: "Celestia App",
+      link: {
+        type: 'generated-index'
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Installing Celestia App",
+          id: "developers/celestia-app"
+        },
+        {
+          type: "doc",
+          label: "Creating A Wallet",
+          id: "developers/wallet"
+        },
+        { 
+          type: "doc", 
+          label: "Create A Celestia Testnet", 
+          id: "developers/instantiate-testnet" 
+        },
+        {
+          type: "doc",
+          label: "Helpful CLI commands",
+          id: "developers/celestia-app-commands"
+        }
+      ]
+    },
     { 
       type: "category", 
       label: "Types of Nodes", 
@@ -62,27 +158,6 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Participate",
-      link: {
-        type: "doc",
-        id: "nodes/participate"
-      },
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          label: "Arabica Devnet",
-          id: "nodes/arabica-devnet"
-        },
-        {
-          type: "doc",
-          label: "Mamaki Testnet",
-          id: "nodes/mamaki-testnet"
-        }
-      ]
-    },
-    {
-      type: "category",
       label: "Resources",
       link: {
         type: 'generated-index'
@@ -98,11 +173,6 @@ const sidebars = {
           type: "doc",
           label: "SystemD",
           id: "nodes/systemd"
-        },
-        {
-          type: "doc",
-          label: "Keys",
-          id: "nodes/keys"
         },
         { 
           type: "doc", 
@@ -122,76 +192,6 @@ const sidebars = {
       type: "doc", 
       label: "Overview", 
       id: "developers/overview" 
-    },
-    { 
-      type: "doc", 
-      label: "Setting Up Environment", 
-      id: "developers/environment" 
-    },
-    {
-      type: "category",
-      label: "Celestia App",
-      link: {
-        type: 'generated-index'
-      },
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          label: "Installing Celestia App",
-          id: "developers/celestia-app"
-        },
-        {
-          type: "doc",
-          label: "Creating A Wallet",
-          id: "developers/wallet"
-        },
-        { 
-          type: "doc", 
-          label: "Create A Celestia Testnet", 
-          id: "developers/instantiate-testnet" 
-        },
-        {
-          type: "doc",
-          label: "Helpful CLI commands",
-          id: "developers/celestia-app-commands"
-        }
-      ]
-    },
-    {
-      type: "category",
-      label: "Celestia Node",
-      link: {
-        type: 'generated-index',
-      },
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          label: "Installing Celestia Node",
-          id: "developers/celestia-node"
-        },
-        { 
-          type: "doc", 
-          label: "Node Tutorial", 
-          id: "developers/node-tutorial" 
-        },
-        {
-          type: "doc",
-          label: "Node Video Tutorial",
-          id: "developers/light-node-video"
-        },
-        {
-          type: "doc",
-          label: "Node Metrics",
-          id: "developers/celestia-node-metrics"
-        },
-        { 
-          type: "doc", 
-          label: "Node API", 
-          id: "developers/node-api" 
-        }
-      ]
     },
     {
       type: "category",
