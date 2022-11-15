@@ -41,11 +41,39 @@ Follow the tutorial on installing Celestia App [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
-For this section of the guide, select the network you want to connect to:
+Now we will setup the P2P Networks by cloning the networks repository:
 
-* [Mamaki](./mamaki-testnet.md#setup-p2p-network)
+```sh
+cd $HOME
+rm -rf networks
+git clone https://github.com/celestiaorg/networks.git
+```
 
-After that, you can proceed with the rest of the tutorial.
+To initialize the network pick a "node-name" that describes your
+node. The --chain-id parameter we are using here is `mamaki`. Keep in
+mind that this might change if a new testnet is deployed.
+
+```sh
+celestia-appd init "node-name" --chain-id mamaki
+```
+
+Copy the `genesis.json` file. For mamaki we are using:
+
+```sh
+cp $HOME/networks/mamaki/genesis.json $HOME/.celestia-app/config
+```
+
+Set seeds and peers:
+
+<!-- markdownlint-disable MD013 -->
+```sh
+BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/bootstrap-peers.txt | tr -d '\n')
+echo $BOOTSTRAP_PEERS
+sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" $HOME/.celestia-app/config/config.toml
+```
+<!-- markdownlint-enable MD013 -->
+
+Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mamaki/peers.txt).
 
 ### Configure pruning
 
@@ -80,10 +108,17 @@ this method you can synchronize your Celestia node very quickly by downloading
 a recent snapshot of the blockchain. If you would like to sync from the Genesis,
 then you can skip this part.
 
-If you want to use snapshot, determine the network you would like to sync
-to from the list below:
+Run the following command to quick-sync from a snapshot for `mamaki`:
 
-* [Mamaki](./mamaki-testnet.md#quick-sync-with-snapshot)
+```sh
+cd $HOME
+rm -rf ~/.celestia-app/data
+mkdir -p ~/.celestia-app/data
+SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
+    egrep -o ">mamaki.*tar" | tr -d ">")
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
+    -C ~/.celestia-app/data/
+```
 
 ### Start the celestia-app
 

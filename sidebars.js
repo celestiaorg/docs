@@ -112,69 +112,7 @@ const sidebars = {
       },
     ]
     },
-
     {
-      type: "category",
-      label: "Celestia Node",
-      link: {
-        type: 'generated-index',
-      },
-      collapsed: false,
-      items: [
-        { 
-          type: "doc", 
-          label: "Node Tutorial", 
-          id: "nodes/node-tutorial" 
-        },
-        {
-          type: "doc",
-          label: "Node Video Tutorial",
-          id: "nodes/light-node-video"
-        },
-        {
-          type: "doc",
-          label: "Node Metrics",
-          id: "nodes/celestia-node-metrics"
-        },
-        { 
-          type: "doc", 
-          label: "Node API", 
-          id: "nodes/node-api" 
-        },
-        {
-          type: "doc",
-          label: "Keys",
-          id: "nodes/keys"
-        },
-      ]
-    },
-    {
-      type: "category",
-      label: "Celestia App",
-      link: {
-        type: 'generated-index'
-      },
-      collapsed: false,
-      items: [
-        
-        {
-          type: "doc",
-          label: "Creating A Wallet",
-          id: "nodes/wallet"
-        },
-        { 
-          type: "doc", 
-          label: "Create A Celestia Testnet", 
-          id: "nodes/instantiate-testnet" 
-        },
-        {
-          type: "doc",
-          label: "Helpful CLI commands",
-          id: "nodes/celestia-app-commands"
-        }
-      ]
-    },
-        {
       type: "category",
       label: "Resources",
       link: {
@@ -182,6 +120,67 @@ const sidebars = {
       },
       collapsed: false,
       items: [
+        {
+          type: "category",
+          label: "Celestia Node",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: false,
+          items: [
+            { 
+              type: "doc", 
+              label: "Node Tutorial", 
+              id: "nodes/node-tutorial" 
+            },
+            {
+              type: "doc",
+              label: "Node Video Tutorial",
+              id: "nodes/light-node-video"
+            },
+            {
+              type: "doc",
+              label: "Node Metrics",
+              id: "nodes/celestia-node-metrics"
+            },
+            { 
+              type: "doc", 
+              label: "Node API", 
+              id: "nodes/node-api" 
+            },
+            {
+              type: "doc",
+              label: "Keys",
+              id: "nodes/keys"
+            },
+          ]
+        },
+        {
+          type: "category",
+          label: "Celestia App",
+          link: {
+            type: 'generated-index'
+          },
+          collapsed: false,
+          items: [
+            
+            {
+              type: "doc",
+              label: "Creating A Wallet",
+              id: "nodes/wallet"
+            },
+            { 
+              type: "doc", 
+              label: "Create A Celestia Testnet", 
+              id: "nodes/instantiate-testnet" 
+            },
+            {
+              type: "doc",
+              label: "Helpful CLI commands",
+              id: "nodes/celestia-app-commands"
+            }
+          ]
+        },
         {
           type: "doc",
           label: "Hardfork Process",
