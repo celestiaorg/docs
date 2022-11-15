@@ -141,7 +141,7 @@ const sidebars = {
             { 
               type: "doc", 
               label: "Docker Setup", 
-              id: "developers/docker" 
+              id: "nodes/docker" 
             },
             {
               type: "doc",
