@@ -29,7 +29,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.2
+git checkout tags/v0.5.0-rc5
 make install
 make cel-key
 ```
@@ -39,9 +39,9 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.4.2
-Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
-Build Date: Thu Oct 20 22:48:39 EDT 2022
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: amd64/linux
 Golang version: go1.19.1
 ```
@@ -59,7 +59,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.2
+git checkout tags/v0.5.0-rc5
 make install
 make cel-key
 ```
@@ -69,9 +69,9 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.4.2
-Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
-Build Date: Thu Oct 20 22:48:39 EDT 2022
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: arm64/linux
 Golang version: go1.19.1
 ```
@@ -89,7 +89,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.2
+git checkout tags/v0.5.0-rc5
 make go-install
 make cel-key
 ```
@@ -99,9 +99,9 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.4.2
-Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
-Build Date: Thu Oct 20 22:48:39 EDT 2022
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: arm64/darwin
 Golang version: go1.19.1
 ```
@@ -119,7 +119,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.2
+git checkout tags/v0.5.0-rc5
 make go-install
 make cel-key
 ```
@@ -129,9 +129,9 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.4.2
-Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
-Build Date: Thu Oct 20 22:48:39 EDT 2022
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: amd64/darwin
 Golang version: go1.19.1
 ```
@@ -266,8 +266,8 @@ Mamaki. However, you should note that networks work best on the `celestia-node`
 versions mentioned above.
 
 ```sh
-celestia light init
-celestia light start --node.network arabica-1
+celestia light init --p2p.network arabica-2
+celestia light start --p2p.network arabica-2
 ```
 
 > NOTE: It is advised before switching networks to reinitialize
