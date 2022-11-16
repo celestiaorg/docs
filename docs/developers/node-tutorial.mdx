@@ -666,7 +666,7 @@ For example, your command along with an RPC endpoint might look like this:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.ip localhost --gateway.port 26659
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr localhost --gateway.port 26659
 ```
 
 </TabItem>
@@ -694,7 +694,7 @@ following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <key_name> --gateway --gateway.ip localhost --gateway.port 26659
+celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <key_name> --gateway --gateway.addr localhost --gateway.port 26659
 ```
 
 </TabItem>
@@ -735,7 +735,7 @@ With your wallet funded, you can move on to the next step.
 ## Node API Calls
 
 Open up another terminal window in order to begin querying the API.
-`celestia-node` exposes its RPC endpoint on port `26658` by default.
+`celestia-node` exposes its REST gateway on port `26659` by default.
 
 ### Balance
 
@@ -743,7 +743,7 @@ Now, let's query our node for the balance of its default account
 (which is the account associated with the `developer` key we generated earlier):
 
 ```sh
-curl -X GET http://127.0.0.1:26658/balance
+curl -X GET http://127.0.0.1:26659/balance
 ```
 
 It will output the following:
@@ -764,7 +764,7 @@ Now, let's get the block header information.
 Here we will get the header from Block 1:
 
 ```sh
-curl -X GET http://127.0.0.1:26658/header/1
+curl -X GET http://127.0.0.1:26659/header/1
 ```
 
 It will output something like this:
@@ -963,7 +963,7 @@ We run the following:
 ```sh
 curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
   "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
-  "gas_limit": 70000}' http://localhost:26658/submit_pfd
+  "gas_limit": 70000}' http://localhost:26659/submit_pfd
 ```
 
 We get the following output:
@@ -1194,7 +1194,7 @@ Note: To learn more about status response codes, please navigate to
 If you encounter an error like:
 
 ```sh
-$ curl -X POST -d '{"namespace_id": "c14da9d459dc57f5", "data": "4f7a3f1aadd83255b8410fef4860c0cd2eba82e24a", "gas_limit": 60000}'  localhost:26658/submit_pfd
+$ curl -X POST -d '{"namespace_id": "c14da9d459dc57f5", "data": "4f7a3f1aadd83255b8410fef4860c0cd2eba82e24a", "gas_limit": 60000}'  localhost:26659/submit_pfd
 "rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
 ```
 
@@ -1212,7 +1212,7 @@ the block height we got was 2452 which we will use for the following command.
 
 ```sh
 curl -X GET \
-  http://localhost:26658/namespaced_shares/0c204d39600fddd3/height/2452
+  http://localhost:26659/namespaced_shares/0c204d39600fddd3/height/2452
 ```
 
 Will generate the following output:
