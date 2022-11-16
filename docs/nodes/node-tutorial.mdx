@@ -388,7 +388,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.2
+git checkout tags/v0.5.0-rc5
 make install
 make cel-key
 ```
@@ -398,9 +398,9 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.4.2
-Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
-Build Date: Thu Oct 20 22:48:39 EDT 2022
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: amd64/linux
 Golang version: go1.19.1
 ```
@@ -418,7 +418,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.2
+git checkout tags/v0.5.0-rc5
 make install
 make cel-key
 ```
@@ -428,9 +428,9 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.4.2
-Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
-Build Date: Thu Oct 20 22:48:39 EDT 2022
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: arm64/linux
 Golang version: go1.19.1
 ```
@@ -448,7 +448,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.2
+git checkout tags/v0.5.0-rc5
 make go-install
 make cel-key
 ```
@@ -458,9 +458,9 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.4.2
-Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
-Build Date: Thu Oct 20 22:48:39 EDT 2022
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: arm64/darwin
 Golang version: go1.19.1
 ```
@@ -478,7 +478,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.2
+git checkout tags/v0.5.0-rc5
 make go-install
 make cel-key
 ```
@@ -488,9 +488,9 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.4.2
-Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
-Build Date: Thu Oct 20 22:48:39 EDT 2022
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: amd64/darwin
 Golang version: go1.19.1
 ```
@@ -639,7 +639,7 @@ an example public Core Endpoint.
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.ip <ip-address> --gateway.port <port>
 ```
 
 > NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
@@ -666,7 +666,7 @@ For example, your command along with an RPC endpoint might look like this:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.ip localhost --gateway.port 26659
 ```
 
 </TabItem>
@@ -694,7 +694,7 @@ following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <key_name>
+celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <key_name> --gateway --gateway.ip localhost --gateway.port 26659
 ```
 
 </TabItem>
@@ -1187,7 +1187,7 @@ If you notice from the above output, it returns a `height` of
 `2452` which we will use for the next command.
 
 Note: To learn more about status response codes, please navigate to
-[cosmos' code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
+[cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
 
 #### Troubleshooting
 
