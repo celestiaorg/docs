@@ -662,7 +662,7 @@ is usually exposed on port 9090):
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --gateway --gateway.ip --gateway.port <port>
+celestia light start --core.ip <IP_address> --core.grpc.port <port> --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 For ports:
@@ -695,7 +695,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.ip localhost --gateway.port 26659
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway.addr localhost --gateway.port 26659
 ```
 
 </TabItem>
@@ -727,7 +727,7 @@ following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.ip <ip-address> --gateway.port <port>
+celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.grpc.port <port> --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
@@ -783,7 +783,7 @@ In order to run a light node using a custom key:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <name_of_custom_key> --gateway --gateway.ip <ip-address> --gateway.port <port>
+celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <name_of_custom_key> --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
