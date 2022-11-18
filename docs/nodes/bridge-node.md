@@ -100,7 +100,7 @@ celestia bridge start --core.ip <ip-address> --core.grpc.port <port>
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
-You can create your key for your node by following the `cel-key` instructions [here](./keys.md)
+You can create your key for your node by following the `cel-key` instructions [here](./keys.mdx)
 
 Once you start the Bridge Node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for
