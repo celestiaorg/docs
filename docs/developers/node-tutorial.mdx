@@ -639,7 +639,7 @@ an example public Core Endpoint.
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 > NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
@@ -666,7 +666,7 @@ For example, your command along with an RPC endpoint might look like this:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway.addr localhost --gateway.port 26659
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr localhost --gateway.port 26659
 ```
 
 </TabItem>
@@ -694,7 +694,7 @@ following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <key_name> --gateway.addr localhost --gateway.port 26659
+celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <key_name> --gateway --gateway.addr localhost --gateway.port 26659
 ```
 
 </TabItem>
