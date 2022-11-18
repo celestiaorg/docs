@@ -7,8 +7,8 @@ sidebar_label: Contract Deployment
 
 ## Compile the Smart Contract
 
-We will run the following commands to pull down the Nameservice
-smart contract and compile it:
+In a new terminal instance, we will run the following commands to pull down the
+Nameservice smart contract and compile it:
 
 ```sh
 git clone https://github.com/InterWasm/cw-contracts
@@ -22,7 +22,8 @@ The compiled contract is outputted to:
 
 ## Unit Tests
 
-If we want to run tests, we can do so with the following command:
+If we want to run tests, we can do so with the following command in the
+`~/cw-contracts/contracts/nameservice` directory:
 
 ```sh
 cargo unit-test
@@ -33,10 +34,11 @@ cargo unit-test
 Because we are deploying the compiled smart contract to `wasmd`,
 we want it to be as small as possible.
 
-CosmWasm team provides a tool called `rust-optimizer` which we need
+The CosmWasm team provides a tool called `rust-optimizer` which we need
 Docker for in order to compile.
 
-Run the following command:
+Run the following command in the `~/cw-contracts/contracts/nameservice`
+directory:
 
 ```sh
 sudo docker run --rm -v "$(pwd)":/code \
