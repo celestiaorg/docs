@@ -662,7 +662,7 @@ is usually exposed on port 9090):
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 For ports:
@@ -675,7 +675,7 @@ For ports:
 <TabItem value="mamaki" label="Mamaki">
 
 ```sh
-celestia light start --core.grpc <IP_address>:<port>
+celestia light start --core.grpc <ip-address>:<port>
 ```
 
 For ports:
@@ -783,14 +783,14 @@ In order to run a light node using a custom key:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
 <TabItem value="mamaki" label="Mamaki">
 
 ```sh
-celestia light start --core.grpc <IP_address>:<port> --keyring.accname <name_of_custom_key>
+celestia light start --core.grpc <ip-address>:<port> --keyring.accname <name_of_custom_key>
 ```
 
 </TabItem>
