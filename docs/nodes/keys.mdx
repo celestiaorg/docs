@@ -45,10 +45,10 @@ For the purpose of this guide, we will use the `make cel-key` command.
 To generate a key for a Celestia bridge node, do the following:
 
 ```sh
-./cel-key add <KEY_NAME> --keyring-backend test --node.type bridge
+./cel-key add <key-name> --keyring-backend test --node.type bridge
 ```
 
-This will load the key <KEY_NAME> into the directory of the bridge node.
+This will load the key `<key-name>` into the directory of the bridge node.
 
 </TabItem>
 <TabItem value="full" label="Full">
@@ -56,10 +56,10 @@ This will load the key <KEY_NAME> into the directory of the bridge node.
 To generate a key for a Celestia full node, do the following:
 
 ```sh
-./cel-key add <KEY_NAME> --keyring-backend test --node.type full
+./cel-key add <key-name> --keyring-backend test --node.type full
 ```
 
-This will load the key <KEY_NAME> into the directory of the full node.
+This will load the key `<key-name>` into the directory of the full node.
 
 
 </TabItem>
@@ -68,10 +68,10 @@ This will load the key <KEY_NAME> into the directory of the full node.
 To generate a key for a Celestia light node, do the following:
 
 ```sh
-./cel-key add <KEY_NAME> --keyring-backend test --node.type light
+./cel-key add <key-name> --keyring-backend test --node.type light
 ```
 
-This will load the key <KEY_NAME> into the directory of the light node.
+This will load the key `<key-name>` into the directory of the light node.
 
 </TabItem>
 </Tabs>
@@ -84,7 +84,7 @@ This will load the key <KEY_NAME> into the directory of the light node.
 You can export a private key from the local keyring in encrypted and ASCII-armored format.
 
 ```sh
-./cel-key export <KEY_NAME> --keyring-backend test --node.type bridge
+./cel-key export <key-name> --keyring-backend test --node.type bridge
 ```
 
 You can then import your key with `celestia-appd`:
@@ -100,7 +100,7 @@ celestia-appd keys import <new-key-name>
 You can export a private key from the local keyring in encrypted and ASCII-armored format.
 
 ```sh
-./cel-key export <KEY_NAME> --keyring-backend test --node.type full
+./cel-key export <key-name> --keyring-backend test --node.type full
 ```
 
 You can then import your key with `celestia-appd`:
@@ -116,7 +116,7 @@ celestia-appd keys import <new-key-name>
 You can export a private key from the local keyring in encrypted and ASCII-armored format.
 
 ```sh
-./cel-key export <KEY_NAME> --keyring-backend test --node.type light
+./cel-key export <key-name> --keyring-backend test --node.type light
 ```
 
 You can then import your key with `celestia-appd`:
@@ -137,7 +137,7 @@ celestia-appd keys import <new-key-name>
 Importing from a mnemonic:
 
 ```sh
-./cel-key add <KEY_NAME> --recover --keyring-backend test --node.type bridge
+./cel-key add <key-name> --recover --keyring-backend test --node.type bridge
 ```
 
 You will then be prompted to enter your bip39 mnemonic.
@@ -154,7 +154,7 @@ Example:
 Importing from a mnemonic:
 
 ```sh
-./cel-key add <KEY_NAME> --recover --keyring-backend test --node.type full
+./cel-key add <key-name> --recover --keyring-backend test --node.type full
 ```
 
 You will then be prompted to enter your bip39 mnemonic.
@@ -171,7 +171,7 @@ Example:
 Importing from a mnemonic:
 
 ```sh
-./cel-key add <KEY_NAME> --recover --keyring-backend test --node.type light
+./cel-key add <key-name> --recover --keyring-backend test --node.type light
 ```
 
 You will then be prompted to enter your bip39 mnemonic.
