@@ -43,17 +43,13 @@ rustup target add wasm32-unknown-unknown
 Your output should look similar to below:
 
 ```sh
-jcs @ ~ % rustup default stable
 info: using existing install for 'stable-aarch64-apple-darwin'
 info: default toolchain set to 'stable-aarch64-apple-darwin'
 
   stable-aarch64-apple-darwin unchanged - rustc 1.65.0 (897e37553 2022-11-02)
-
-jcs @ ~ % cargo version
+  
 cargo 1.65.0 (4bc8f24d3 2022-10-20)
-jcs @ ~ % rustup target list --installed
 aarch64-apple-darwin
-jcs @ ~ % rustup target add wasm32-unknown-unknown
 info: downloading component 'rust-std' for 'wasm32-unknown-unknown'
 info: installing component 'rust-std' for 'wasm32-unknown-unknown'
 ```
