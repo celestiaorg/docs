@@ -145,7 +145,7 @@ include other participants as persistent peers:
 
 ```text
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = "[validator_address]@[ip-address]:[port],[validator_address]@[ip-address]:[port]"
+persistent_peers = "[validator_address]@[ip_address]:[port],[validator_address]@[ip_address]:[port]"
 ```
 
 You can find `validator_address` by running the following command:
