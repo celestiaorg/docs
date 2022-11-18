@@ -191,11 +191,6 @@ const sidebars = {
           label: "Node API", 
           id: "developers/node-api" 
         },
-        {
-          type: "doc",
-          label: "Helpful CLI commands",
-          id: "developers/celestia-node-commands"
-        },
         { 
           type: "doc", 
           label: "Docker Setup", 

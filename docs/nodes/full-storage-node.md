@@ -68,7 +68,7 @@ celestia full start --core.ip http://<ip-address> --core.grpc.port <port>
 If you would like to find example RPC endpoints, check out the list of
 resources [here](./mamaki-testnet.md#rpc-endpoints).
 
-You can create your key for your node by following the `cel-key` instructions [here](./keys.md)
+You can create your key for your node by following the `cel-key` instructions [here](./keys.mdx)
 
 Once you start the Full Node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
