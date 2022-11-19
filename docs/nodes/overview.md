@@ -19,7 +19,7 @@ Data Availability:
 
 * [Bridge Node](./bridge-node.mdx): This node bridges blocks between the
   Data-Availability network and the Consensus network.
-* [Full Storage Node](./full-storage-node.md): This node stores all
+* [Full Storage Node](./full-storage-node.mdx): This node stores all
   the data but does not connect to Consensus.
 * [Light Node](./light-node.mdx): Light clients conduct data availability
   sampling on the Data Availability network.
