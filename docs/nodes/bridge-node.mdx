@@ -4,6 +4,9 @@ sidebar_label: Bridge Node
 
 # Setting up a Celestia Bridge Node
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 This tutorial will go over the steps to setting up your Celestia Bridge node.
 
 Bridge nodes connect the data availability layer and the consensus layer
@@ -73,7 +76,10 @@ Follow the tutorial for installing Celestia Node [here](../developers/celestia-n
 
 ### Initialize the bridge node
 
-Run the following:
+<Tabs groupId="networks">
+<TabItem value="arabica" label="Arabica">
+
+  Run the following:
 
 ```sh
 celestia bridge init --core.ip <ip-address> --core.rpc.port <port>
@@ -85,7 +91,40 @@ celestia bridge init --core.ip <ip-address> --core.rpc.port <port>
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
+Here is an example of initializing the bridge node:
+
+```sh
+celestia bridge init --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090
+```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+Run the following:
+
+```sh
+celestia bridge init --core.remote <ip-address>:<port>
+```
+
+> NOTE: The `--core.remote` port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can use the flag
+  to specify another port if you prefer.
+
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
+
+Here is an example of initializing the bridge node:
+
+```sh
+celestia bridge init --core.remote https://rpc-mamaki.pops.one:9090
+```
+
+</TabItem>
+</Tabs>
+
 ### Run the bridge node
+
+<Tabs groupId="networks">
+<TabItem value="arabica" label="Arabica">
 
 Start the Bridge Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
@@ -99,6 +138,38 @@ celestia bridge start --core.ip <ip-address> --core.grpc.port <port>
   to specify another port if you prefer.
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
+
+Here is an example of starting the bridge node:
+
+```sh
+celestia bridge start --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090
+```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+Start the Bridge Node with a connection to a validator node's gRPC endpoint
+(which is usually exposed on port 9090):
+
+```sh
+celestia bridge start --core.ip <ip-address> --core.grpc.port <port>
+```
+
+> NOTE: The `--core.remote` port defaults to 9090, so if you do not specify it in the command line, it will default to that port. You can use the flag to specify another port if you prefer.
+
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
+
+Here is an example of starting the bridge node:
+
+```sh
+celestia bridge start --core.remote https://rpc-mamaki.pops.one:9090
+```
+
+
+</TabItem>
+</Tabs>
+
+---
 
 You can create your key for your node by following the `cel-key` instructions [here](./keys.md)
 
@@ -128,9 +199,22 @@ In order to run a bridge node using a custom key:
    correct path (default: `~/.celestia-bridge/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
+<Tabs groupId="networks">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
 celestia bridge start --core.ip <ip> --core.grpc.port 9090 --keyring.accname <name_of_custom_key>
 ```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh
+celestia bridge start --core.remote <ip>:<port> --keyring.accname <name_of_custom_key>
+```
+
+</TabItem>
+</Tabs>
 
 ### Optional: start the bridge node with SystemD
 

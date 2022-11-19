@@ -17,7 +17,7 @@ in consensus by producing and voting on blocks.
 
 Data Availability:
 
-* [Bridge Node](./bridge-node.md): This node bridges blocks between the
+* [Bridge Node](./bridge-node.mdx): This node bridges blocks between the
   Data-Availability network and the Consensus network.
 * [Full Storage Node](./full-storage-node.md): This node stores all
   the data but does not connect to Consensus.
