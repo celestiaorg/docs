@@ -15,8 +15,7 @@ tools. You can follow the guide on installing them
 The Golang version used for this tutorial is v1.18.2+.
 
 You can install Golang
-by following our tutorial [here](./environment.mdx#install-golang). You'll need
-to select the network as Mamaki for the correct instructions.
+by following our tutorial [here](./environment.mdx#install-golang).
 
 ## Rust Installation
 
