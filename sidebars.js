@@ -61,6 +61,11 @@ const sidebars = {
       ]
     },
     {
+      type: "doc",
+      label: "Docker Images",
+      id: "nodes/docker-images",
+    },
+    {
       type: "category",
       label: "Participate",
       link: {
