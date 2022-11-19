@@ -264,6 +264,7 @@ Some more useful commands we can setup:
 ```sh
 export NODE="--chain-id ${CHAIN_ID}"
 export TXFLAG="--chain-id ${CHAIN_ID} --gas-prices 0uwasm --gas auto --gas-adjustment 1.3"
+export NODEIP="--node http://127.0.0.1:26657"
 ```
 <!-- markdownlint-enable MD013 -->
 

@@ -17,7 +17,7 @@ we will need to query our  tx hash directly to get information about it.
 Let's start by querying our transaction hash for its code ID:
 
 ```sh
-CODE_ID=$(wasmd query tx --type=hash $TX_HASH $NODE --output json | jq -r '.logs[0].events[-1].attributes[0].value')
+CODE_ID=$(wasmd query tx --type=hash $TX_HASH $NODE $NODEIP --output json | jq -r '.logs[0].events[-1].attributes[0].value')
 echo $CODE_ID
 ```
 
@@ -29,7 +29,7 @@ the value is `1`.
 Now, we can take a look at the contracts instantiated by this Code ID:
 
 ```sh
-wasmd query wasm list-contract-by-code $CODE_ID $NODE --output json
+wasmd query wasm list-contract-by-code $CODE_ID $NODE $NODEIP --output json
 ```
 
 We get the following output:
@@ -46,7 +46,7 @@ is `100uwasm` and `transfer_price` is `999uwasm`.
 
 ```sh
 INIT='{"purchase_price":{"amount":"100","denom":"uwasm"},"transfer_price":{"amount":"999","denom":"uwasm"}}'
-wasmd tx wasm instantiate $CODE_ID "$INIT" --from $KEY_NAME --keyring-backend test --label "name service" $TXFLAG -y --no-admin
+wasmd tx wasm instantiate $CODE_ID "$INIT" --from $KEY_NAME --keyring-backend test --label "name service" $TXFLAG -y --no-admin $NODEIP
 ```
 
 ## Contract Interaction
@@ -54,26 +54,46 @@ wasmd tx wasm instantiate $CODE_ID "$INIT" --from $KEY_NAME --keyring-backend te
 Now that we instantiated it, we can interact further with the contract:
 
 ```sh
-wasmd query wasm list-contract-by-code $CODE_ID $NODE --output json
-CONTRACT=$(wasmd query wasm list-contract-by-code $CODE_ID $NODE --output json | jq -r '.contracts[-1]')
+wasmd query wasm list-contract-by-code $CODE_ID $NODE --output json $NODEIP
+CONTRACT=$(wasmd query wasm list-contract-by-code $CODE_ID $NODE --output json $NODEIP | jq -r '.contracts[-1]')
 echo $CONTRACT
 
-wasmd query wasm contract $CONTRACT $NODE
-wasmd query bank balances $CONTRACT $NODE
+wasmd query wasm contract $NODEIP $CONTRACT $NODE
+wasmd query bank balances $NODEIP $CONTRACT $NODE
 ```
 
 This allows us to see the contract address, contract details, and
 bank balances.
 
+Your output will look similar to below:
+
+```sh
+{"contracts":["wasm1hm4y6fzgxgu688jgf7ek66px6xkrtmn3gyk8fax3eawhp68c2d5qphe2pl"],"pagination":{"next_key":null,"total":"0"}}
+wasm1hm4y6fzgxgu688jgf7ek66px6xkrtmn3gyk8fax3eawhp68c2d5qphe2pl
+address: wasm1hm4y6fzgxgu688jgf7ek66px6xkrtmn3gyk8fax3eawhp68c2d5qphe2pl
+contract_info:
+  admin: ""
+  code_id: "5"
+  created: null
+  creator: wasm1fh4m44rdvjhgkp26cysn467ez235zhg0nmps3a
+  extension: null
+  ibc_port_id: ""
+  label: name service
+balances: []
+pagination:
+  next_key: null
+  total: "0"
+```
+
 Now, let's register a name to the contract for our wallet address:
 
 ```sh
 REGISTER='{"register":{"name":"fred"}}'
-wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from $KEY_NAME $TXFLAG -y
+wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from $KEY_NAME $TXFLAG $NODEIP -y
 
 # Query the owner of the name record
 NAME_QUERY='{"resolve_record": {"name": "fred"}}'
-wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" $NODE --output json
+wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" $NODE $NODEIP --output json
 ```
 
 With that, we have instantiated and interacted with the CosmWasm nameservice
