@@ -30,7 +30,7 @@ Consensus:
 
 Data Availability:
 
-* [Bridge Node](./bridge-node.md)
+* [Bridge Node](./bridge-node.mdx)
 * [Full Storage Node](./full-storage-node.md)
 * [Light Node](./light-node.mdx)
 
