@@ -61,6 +61,11 @@ const sidebars = {
       ]
     },
     {
+      type: "doc",
+      label: "Docker Images",
+      id: "nodes/docker-images"
+    },
+    {
       type: "category",
       label: "Participate",
       link: {
@@ -195,11 +200,6 @@ const sidebars = {
           type: "doc", 
           label: "Node API", 
           id: "developers/node-api" 
-        },
-        { 
-          type: "doc", 
-          label: "Docker Setup", 
-          id: "developers/docker" 
         },
       ]
     },
