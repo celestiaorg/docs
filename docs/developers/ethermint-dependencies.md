@@ -23,4 +23,4 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 The Golang version used for this tutorial is v1.18+
 
 If you are using a Linux distribution, you can install Golang
-by following our tutorial [here](./environment.md#install-golang).
+by following our tutorial [here](../nodes/environment.mdx#install-golang).
