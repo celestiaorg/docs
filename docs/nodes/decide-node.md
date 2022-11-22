@@ -12,7 +12,7 @@ In order to get started, you can proceed to the
 Light Node section [here](./light-node.mdx).
 
 You can also play around with the Data Availability API
-in this tutorial for the Light Node [here](./node-tutorial.mdx).
+in this tutorial for the Light Node [here](../developers/node-tutorial.mdx).
 
 ## Advanced
 

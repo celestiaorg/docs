@@ -130,16 +130,6 @@ const sidebars = {
           items: [
             { 
               type: "doc", 
-              label: "Node Tutorial", 
-              id: "nodes/node-tutorial" 
-            },
-            {
-              type: "doc",
-              label: "Node Video Tutorial",
-              id: "nodes/light-node-video"
-            },
-            { 
-              type: "doc", 
               label: "Docker Setup", 
               id: "nodes/docker" 
             },
@@ -147,16 +137,6 @@ const sidebars = {
               type: "doc",
               label: "Node Metrics",
               id: "nodes/celestia-node-metrics"
-            },
-            { 
-              type: "doc", 
-              label: "Node API", 
-              id: "nodes/node-api" 
-            },
-            {
-              type: "doc",
-              label: "Keys",
-              id: "nodes/keys"
             },
           ]
         },
@@ -168,12 +148,6 @@ const sidebars = {
           },
           collapsed: false,
           items: [
-            
-            {
-              type: "doc",
-              label: "Creating A Wallet",
-              id: "nodes/wallet"
-            },
             { 
               type: "doc", 
               label: "Create A Celestia Testnet", 
@@ -216,9 +190,54 @@ const sidebars = {
       id: "developers/overview" 
     },
     {
-      type: "doc", 
-      label: "Keplr", 
-      id: "developers/keplr" 
+      type: "category",
+      label: "Create A Celestia Wallet",
+      link: {
+        type: "generated-index",
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc", 
+          label: "Keplr", 
+          id: "developers/keplr" 
+        },
+        {
+          type: "doc",
+          label: "Wallet With Celestia App",
+          id: "developers/celestia-app-wallet"
+        },
+        {
+          type: "doc",
+          label: "Wallet With Celestia Node",
+          id: "developers/celestia-node-key"
+        },
+      ]
+    },
+    {
+      type: "category",
+      label: "Data Availability API",
+      link: {
+        type: "generated-index",
+      },
+      collapsed: false,
+      items: [
+        { 
+          type: "doc", 
+          label: "Node Tutorial", 
+          id: "developers/node-tutorial" 
+        },
+        {
+          type: "doc",
+          label: "Node Video Tutorial",
+          id: "developers/light-node-video"
+        },
+        { 
+          type: "doc", 
+          label: "Node API", 
+          id: "developers/node-api" 
+        }
+      ]
     },
     {
       type: "category",
