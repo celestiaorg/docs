@@ -24,14 +24,14 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-You can follow the tutorial for setting up your dependencies [here](../developers/environment.mdx)
+You can follow the tutorial for setting up your dependencies [here](./environment.mdx)
 
 ## Install Celestia node
 
 > Note: Make sure that you have at least 250+ Gb of free space for
   Celestia Full Storage Node
 
-You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.mdx)
+You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx)
 
 ### Run the full storage node
 
@@ -68,7 +68,7 @@ celestia full start --core.ip http://<ip-address> --core.grpc.port <port>
 If you would like to find example RPC endpoints, check out the list of
 resources [here](./mamaki-testnet.md#rpc-endpoints).
 
-You can create your key for your node by following the `cel-key` instructions [here](./keys.md)
+You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.md)
 
 Once you start the Full Node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
