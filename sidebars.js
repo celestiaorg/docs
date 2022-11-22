@@ -5,61 +5,6 @@ const sidebars = {
       label: "Overview", 
       id: "nodes/overview" 
     },
-    { 
-      type: "category", 
-      label: "Types of Nodes", 
-      link: {
-        type: 'generated-index'
-      },
-      collapsed: false,
-      items: [
-      {
-        type: "category",
-        label: "Consensus",
-        link: {
-          type: 'generated-index'
-        },
-        collapsed: false,
-        items: [
-          {
-            type: "doc",
-            label: "Validator Node",
-            id: "nodes/validator-node",
-          },
-          { 
-            type: "doc", 
-            label: "Consensus Full Node", 
-            id: "nodes/consensus-full-node" 
-          },
-        ]
-      },
-      {
-        type: "category",
-        label: "Data Availability",
-        link: {
-          type: 'generated-index',
-        },
-        collapsed: false,
-        items: [
-          { 
-            type: "doc", 
-            label: "Bridge Node", 
-            id: "nodes/bridge-node" 
-          },
-          {
-            type: "doc",
-            label: "Full Storage Node",
-            id: "nodes/full-storage-node",
-          },
-          { 
-            type: "doc", 
-            label: "Light Node", 
-            id: "nodes/light-node" 
-          }
-        ]
-      }
-      ]
-    },
     {
       type: "category",
       label: "Participate",
@@ -83,12 +28,138 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Quick Start",
+      link: {
+        type: "doc",
+        id: "nodes/quick-start"
+      },
+      collapsed: false,
+      items: [
+        { 
+          type: "doc", 
+          label: "Setting Up Environment", 
+          id: "nodes/environment" 
+        },
+        {
+          type: "doc",
+          label: "Installing Celestia Node",
+          id: "nodes/celestia-node"
+        },
+        {
+          type: "doc",
+          label: "Installing Celestia App",
+          id: "nodes/celestia-app"
+        },
+        {
+          type: "doc",
+          label: "Deciding Which Node to Run",
+          id: "nodes/decide-node"
+        },
+      ]
+    },
+    { 
+      type: "category", 
+      label: "Types of Nodes", 
+      link: {
+        type: 'generated-index'
+      },
+      collapsed: false,
+      items: [
+      {
+        type: "category",
+        label: "Data Availability",
+        link: {
+          type: 'generated-index',
+        },
+        collapsed: false,
+        items: [
+          { 
+            type: "doc", 
+            label: "Light Node", 
+            id: "nodes/light-node" 
+          },
+          { 
+            type: "doc", 
+            label: "Bridge Node", 
+            id: "nodes/bridge-node" 
+          },
+          {
+            type: "doc",
+            label: "Full Storage Node",
+            id: "nodes/full-storage-node",
+          },
+        ]
+      },
+      {
+        type: "category",
+        label: "Consensus",
+        link: {
+          type: 'generated-index'
+        },
+        collapsed: false,
+        items: [
+          {
+            type: "doc",
+            label: "Validator Node",
+            id: "nodes/validator-node",
+          },
+          { 
+            type: "doc", 
+            label: "Consensus Full Node", 
+            id: "nodes/consensus-full-node" 
+          },
+        ]
+      },
+    ]
+    },
+    {
+      type: "category",
       label: "Resources",
       link: {
         type: 'generated-index'
       },
       collapsed: false,
       items: [
+        {
+          type: "category",
+          label: "Celestia Node",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: false,
+          items: [
+            { 
+              type: "doc", 
+              label: "Docker Setup", 
+              id: "nodes/docker" 
+            },
+            {
+              type: "doc",
+              label: "Node Metrics",
+              id: "nodes/celestia-node-metrics"
+            },
+          ]
+        },
+        {
+          type: "category",
+          label: "Celestia App",
+          link: {
+            type: 'generated-index'
+          },
+          collapsed: false,
+          items: [
+            { 
+              type: "doc", 
+              label: "Create A Celestia Testnet", 
+              id: "nodes/instantiate-testnet" 
+            },
+            {
+              type: "doc",
+              label: "Helpful CLI commands",
+              id: "nodes/celestia-app-commands"
+            }
+          ]
+        },
         {
           type: "doc",
           label: "Hardfork Process",
@@ -98,11 +169,6 @@ const sidebars = {
           type: "doc",
           label: "SystemD",
           id: "nodes/systemd"
-        },
-        {
-          type: "doc",
-          label: "Keys",
-          id: "nodes/keys"
         },
         { 
           type: "doc", 
@@ -123,59 +189,39 @@ const sidebars = {
       label: "Overview", 
       id: "developers/overview" 
     },
-    { 
-      type: "doc", 
-      label: "Setting Up Environment", 
-      id: "developers/environment" 
-    },
-    {
-      type: "doc", 
-      label: "Keplr", 
-      id: "developers/keplr" 
-    },
     {
       type: "category",
-      label: "Celestia App",
+      label: "Create A Celestia Wallet",
       link: {
-        type: 'generated-index'
+        type: "generated-index",
       },
       collapsed: false,
       items: [
         {
-          type: "doc",
-          label: "Installing Celestia App",
-          id: "developers/celestia-app"
-        },
-        {
-          type: "doc",
-          label: "Creating A Wallet",
-          id: "developers/wallet"
-        },
-        { 
           type: "doc", 
-          label: "Create A Celestia Testnet", 
-          id: "developers/instantiate-testnet" 
+          label: "Keplr", 
+          id: "developers/keplr" 
         },
         {
           type: "doc",
-          label: "Helpful CLI commands",
-          id: "developers/celestia-app-commands"
-        }
+          label: "Wallet With Celestia App",
+          id: "developers/celestia-app-wallet"
+        },
+        {
+          type: "doc",
+          label: "Wallet With Celestia Node",
+          id: "developers/celestia-node-key"
+        },
       ]
     },
     {
       type: "category",
-      label: "Celestia Node",
+      label: "Data Availability API",
       link: {
-        type: 'generated-index',
+        type: "generated-index",
       },
       collapsed: false,
       items: [
-        {
-          type: "doc",
-          label: "Installing Celestia Node",
-          id: "developers/celestia-node"
-        },
         { 
           type: "doc", 
           label: "Node Tutorial", 
@@ -186,21 +232,11 @@ const sidebars = {
           label: "Node Video Tutorial",
           id: "developers/light-node-video"
         },
-        {
-          type: "doc",
-          label: "Node Metrics",
-          id: "developers/celestia-node-metrics"
-        },
         { 
           type: "doc", 
           label: "Node API", 
           id: "developers/node-api" 
-        },
-        { 
-          type: "doc", 
-          label: "Docker Setup", 
-          id: "developers/docker" 
-        },
+        }
       ]
     },
     {
