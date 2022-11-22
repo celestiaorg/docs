@@ -5,61 +5,6 @@ const sidebars = {
       label: "Overview", 
       id: "nodes/overview" 
     },
-    { 
-      type: "category", 
-      label: "Types of Nodes", 
-      link: {
-        type: 'generated-index'
-      },
-      collapsed: false,
-      items: [
-      {
-        type: "category",
-        label: "Consensus",
-        link: {
-          type: 'generated-index'
-        },
-        collapsed: false,
-        items: [
-          {
-            type: "doc",
-            label: "Validator Node",
-            id: "nodes/validator-node",
-          },
-          { 
-            type: "doc", 
-            label: "Consensus Full Node", 
-            id: "nodes/consensus-full-node" 
-          },
-        ]
-      },
-      {
-        type: "category",
-        label: "Data Availability",
-        link: {
-          type: 'generated-index',
-        },
-        collapsed: false,
-        items: [
-          { 
-            type: "doc", 
-            label: "Bridge Node", 
-            id: "nodes/bridge-node" 
-          },
-          {
-            type: "doc",
-            label: "Full Storage Node",
-            id: "nodes/full-storage-node",
-          },
-          { 
-            type: "doc", 
-            label: "Light Node", 
-            id: "nodes/light-node" 
-          }
-        ]
-      }
-      ]
-    },
     {
       type: "category",
       label: "Participate",
@@ -83,6 +28,92 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Quick Start",
+      link: {
+        type: "doc",
+        id: "nodes/quick-start"
+      },
+      collapsed: false,
+      items: [
+        { 
+          type: "doc", 
+          label: "Setting Up Environment", 
+          id: "nodes/environment" 
+        },
+        {
+          type: "doc",
+          label: "Installing Celestia Node",
+          id: "nodes/celestia-node"
+        },
+        {
+          type: "doc",
+          label: "Installing Celestia App",
+          id: "nodes/celestia-app"
+        },
+        {
+          type: "doc",
+          label: "Deciding Which Node to Run",
+          id: "nodes/decide-node"
+        },
+      ]
+    },
+    { 
+      type: "category", 
+      label: "Types of Nodes", 
+      link: {
+        type: 'generated-index'
+      },
+      collapsed: false,
+      items: [
+      {
+        type: "category",
+        label: "Data Availability",
+        link: {
+          type: 'generated-index',
+        },
+        collapsed: false,
+        items: [
+          { 
+            type: "doc", 
+            label: "Light Node", 
+            id: "nodes/light-node" 
+          },
+          { 
+            type: "doc", 
+            label: "Bridge Node", 
+            id: "nodes/bridge-node" 
+          },
+          {
+            type: "doc",
+            label: "Full Storage Node",
+            id: "nodes/full-storage-node",
+          },
+        ]
+      },
+      {
+        type: "category",
+        label: "Consensus",
+        link: {
+          type: 'generated-index'
+        },
+        collapsed: false,
+        items: [
+          {
+            type: "doc",
+            label: "Validator Node",
+            id: "nodes/validator-node",
+          },
+          { 
+            type: "doc", 
+            label: "Consensus Full Node", 
+            id: "nodes/consensus-full-node" 
+          },
+        ]
+      },
+    ]
+    },
+    {
+      type: "category",
       label: "Resources",
       link: {
         type: 'generated-index'
@@ -90,14 +121,54 @@ const sidebars = {
       collapsed: false,
       items: [
         {
-          type: "doc",
-          label: "SystemD",
-          id: "nodes/systemd"
+          type: "category",
+          label: "Celestia Node",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: false,
+          items: [
+            { 
+              type: "doc", 
+              label: "Docker Setup", 
+              id: "nodes/docker" 
+            },
+            {
+              type: "doc",
+              label: "Node Metrics",
+              id: "nodes/celestia-node-metrics"
+            },
+          ]
+        },
+        {
+          type: "category",
+          label: "Celestia App",
+          link: {
+            type: 'generated-index'
+          },
+          collapsed: false,
+          items: [
+            { 
+              type: "doc", 
+              label: "Create A Celestia Testnet", 
+              id: "nodes/instantiate-testnet" 
+            },
+            {
+              type: "doc",
+              label: "Helpful CLI commands",
+              id: "nodes/celestia-app-commands"
+            }
+          ]
         },
         {
           type: "doc",
-          label: "Keys",
-          id: "nodes/keys"
+          label: "Hardfork Process",
+          id: "nodes/hardfork-process"
+        },
+        {
+          type: "doc",
+          label: "SystemD",
+          id: "nodes/systemd"
         },
         { 
           type: "doc", 
@@ -118,54 +189,39 @@ const sidebars = {
       label: "Overview", 
       id: "developers/overview" 
     },
-    { 
-      type: "doc", 
-      label: "Setting Up Environment", 
-      id: "developers/environment" 
-    },
     {
       type: "category",
-      label: "Celestia App",
+      label: "Create A Celestia Wallet",
       link: {
-        type: 'generated-index'
+        type: "generated-index",
       },
       collapsed: false,
       items: [
         {
-          type: "doc",
-          label: "Installing Celestia App",
-          id: "developers/celestia-app"
-        },
-        {
-          type: "doc",
-          label: "Creating A Wallet",
-          id: "developers/wallet"
-        },
-        { 
           type: "doc", 
-          label: "Create A Celestia Testnet", 
-          id: "developers/instantiate-testnet" 
+          label: "Keplr", 
+          id: "developers/keplr" 
         },
         {
           type: "doc",
-          label: "Helpful CLI commands",
-          id: "developers/celestia-app-commands"
-        }
+          label: "Wallet With Celestia App",
+          id: "developers/celestia-app-wallet"
+        },
+        {
+          type: "doc",
+          label: "Wallet With Celestia Node",
+          id: "developers/celestia-node-key"
+        },
       ]
     },
     {
       type: "category",
-      label: "Celestia Node",
+      label: "Data Availability API",
       link: {
-        type: 'generated-index',
+        type: "generated-index",
       },
       collapsed: false,
       items: [
-        {
-          type: "doc",
-          label: "Installing Celestia Node",
-          id: "developers/celestia-node"
-        },
         { 
           type: "doc", 
           label: "Node Tutorial", 
@@ -185,13 +241,93 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Optimint",
+      label: "Rollmint",
       link: {
         type: "doc",
-        id: "developers/optimint"
+        id: "developers/rollmint"
       },
       collapsed: false,
       items: [
+        {
+          type: "category",
+          label: "gm world",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "gm world Overview",
+              id: "developers/gm-world"
+            },
+            {
+              type: "doc",
+              label: "Setup",
+              id: "developers/gm-setup"
+            },
+            {
+              type: "doc",
+              label: "Run a Light Node",
+              id: "developers/gm-node"
+            },
+            {
+              type: "doc",
+              label: "Build a Sovereign Rollup",
+              id: "developers/gm-rollmint"
+            },
+            {
+              type: "doc",
+              label: "Query your Rollup",
+              id: "developers/gm-query"
+            },
+            {
+              type: "doc",
+              label: "What's next",
+              id: "developers/gm-next"
+            }
+          ]
+        },
+        {
+          type: "category",
+          label: "Recipe Book",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Recipe Book Overview",
+              id: "developers/recipe-book"
+            },
+            {
+              type: "doc",
+              label: "Scaffold your Chain",
+              id: "developers/recipe-scaffold"
+            },
+            {
+              type: "doc",
+              label: "Message Types",
+              id: "developers/recipe-message"
+            },
+            {
+              type: "doc",
+              label: "Keepers",
+              id: "developers/recipe-keeper"
+            },
+            {
+              type: "doc",
+              label: "Querying Recipes",
+              id: "developers/recipe-query"
+            },
+            {
+              type: "doc",
+              label: "Running the Recipes Rollup",
+              id: "developers/recipe-rollup"
+            },
+          ]
+        },
         {
           type: "category",
           label: "Wordle",
@@ -212,8 +348,8 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Installing Optimint",
-              id: "developers/install-optimint"
+              label: "Installing Rollmint",
+              id: "developers/install-rollmint"
             },
             {
               type: "doc",
@@ -323,7 +459,12 @@ const sidebars = {
           ]
         }
       ]
-    }
+    },
+    {
+      type: "doc",
+      label: "Integrate Celestia",
+      id: "developers/integrate-celestia",
+    },
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },

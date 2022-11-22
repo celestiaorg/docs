@@ -1,5 +1,5 @@
 ---
-sidebar_label : Node Video Tutorial
+sidebar_label: Node Video Tutorial
 ---
 
 # Node Video Tutorial

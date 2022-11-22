@@ -1,0 +1,349 @@
+---
+sidebar_label: Installing Celestia Node
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Celestia Node
+
+This tutorial goes over building and installing `celestia-node`. This
+tutorial assumes you completed the steps in setting up your development
+environment [here](./environment.mdx).
+
+## Install Celestia Node
+
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.5.0-rc5
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
+System version: amd64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.5.0-rc5
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
+System version: arm64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.5.0-rc5
+make go-install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
+System version: arm64/darwin
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.5.0-rc5
+make go-install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
+System version: amd64/darwin
+Golang version: go1.19.1
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
+
+## Network Selection
+
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
+You can perform network selection in `celestia-node` between Arabica and
+Mamaki. However, you should note that networks work best on the `celestia-node`
+versions mentioned above.
+
+```sh
+celestia light init --p2p.network arabica-2
+celestia light start --p2p.network arabica-2
+```
+
+> NOTE: It is advised before switching networks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
+
+### Errors
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following command:
+
+```sh
+rm -rf ~./celestia-light-arabica-1 && celestia light init
+```
+
+Your output will look similar to below:
+
+```sh
+@ ~ % rm -rf ./celestia-light-arabica-1 && celestia light init
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-arabica-1'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-arabica-1/config.toml"}
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
+```
+
+Then start your node:
+
+```sh
+celestia light start --node.network arabica-1
+```
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+Network selection on v0.3.0-rc2 is not available.
+
+### Errors
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following command:
+
+```sh
+rm -rf ~./celestia-light && celestia light init
+```
+
+Your output will look similar to below:
+
+```sh
+@ ~ % rm -rf ./celestia-light-arabica-1 && celestia light init
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light/config.toml"}
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
+```
+
+Then start your node:
+
+```sh
+celestia light start
+```
+
+</TabItem>
+</Tabs>

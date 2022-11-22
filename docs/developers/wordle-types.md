@@ -1,5 +1,5 @@
 ---
-sidebar_label : Types
+sidebar_label: Types
 ---
 
 # Wordle Types
@@ -7,7 +7,7 @@ sidebar_label : Types
 For the next steps, we will be creating types to be used by
 the messages we created.
 
-## Scaffoling Wordle Types
+## Scaffolding Wordle Types
 
 ```sh
 ignite scaffold map wordle word submitter --no-message
