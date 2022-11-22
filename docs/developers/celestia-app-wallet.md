@@ -1,8 +1,17 @@
 ---
-sidebar_label: Creating A Wallet
+sidebar_label: Wallet With Celestia App
 ---
 
-# Wallet
+# Create a Wallet with Celestia App
+
+For this guide, we will go over how you can generate a Celestia
+wallet using `celestia-app`.
+
+## Prerequisites
+
+* [Gone through Quick Start and Installed Celestia App](../nodes/quick-start.md)
+
+Note, you do not need to install Celestia Node for this tutorial.
 
 ## Create a Wallet
 
