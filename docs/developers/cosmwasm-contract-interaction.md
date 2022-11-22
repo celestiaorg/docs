@@ -68,14 +68,14 @@ bank balances.
 Your output will look similar to below:
 
 ```sh
-{"contracts":["wasm1hm4y6fzgxgu688jgf7ek66px6xkrtmn3gyk8fax3eawhp68c2d5qphe2pl"],"pagination":{"next_key":null,"total":"0"}}
-wasm1hm4y6fzgxgu688jgf7ek66px6xkrtmn3gyk8fax3eawhp68c2d5qphe2pl
-address: wasm1hm4y6fzgxgu688jgf7ek66px6xkrtmn3gyk8fax3eawhp68c2d5qphe2pl
+{"contracts":["wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d"],"pagination":{"next_key":null,"total":"0"}}
+wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d
+address: wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d
 contract_info:
   admin: ""
-  code_id: "5"
+  code_id: "1"
   created: null
-  creator: wasm1fh4m44rdvjhgkp26cysn467ez235zhg0nmps3a
+  creator: wasm1y9ceqvnsnm9xtcdmhrjvv4rslgwfzmrzky2c5z
   extension: null
   ibc_port_id: ""
   label: name service
