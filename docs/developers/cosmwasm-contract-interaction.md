@@ -89,7 +89,7 @@ Now, let's register a name to the contract for our wallet address:
 
 ```sh
 REGISTER='{"register":{"name":"fred"}}'
-wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from $KEY_NAME $TXFLAG $NODEIP -y
+wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from $KEY_NAME $TXFLAG $NODEIP --keyring-backend test -y
 
 # Query the owner of the name record
 NAME_QUERY='{"resolve_record": {"name": "fred"}}'
