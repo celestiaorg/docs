@@ -90,10 +90,39 @@ Now, let's register a name to the contract for our wallet address:
 ```sh
 REGISTER='{"register":{"name":"fred"}}'
 wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from $KEY_NAME $TXFLAG $NODEIP --keyring-backend test -y
+```
 
-# Query the owner of the name record
+Your output will look similar to below:
+
+```sh
+DEIP --keyring-backend test -y
+gas estimate: 167533
+code: 0
+codespace: ""
+data: ""
+events: []
+gas_used: "0"
+gas_wanted: "0"
+height: "0"
+info: ""
+logs: []
+raw_log: '[]'
+timestamp: ""
+tx: null
+txhash: C147257485B72E7FFA5FDB943C94CE951A37817554339586FFD645AD2AA397C3
+```
+
+Next, query the owner of the name record:
+
+```sh
 NAME_QUERY='{"resolve_record": {"name": "fred"}}'
 wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" $NODE $NODEIP --output json
+```
+
+You'll see the owner's address in a JSON response:
+
+```sh
+{"data":{"address":"wasm1y9ceqvnsnm9xtcdmhrjvv4rslgwfzmrzky2c5z"}}
 ```
 
 With that, we have instantiated and interacted with the CosmWasm nameservice
