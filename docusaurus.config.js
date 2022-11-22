@@ -56,10 +56,6 @@ const config = {
           from: '/developers/celestia-app'
         },
         {
-          to: '/nodes/wallet',
-          from: '/developers/wallet'
-        },
-        {
           to: '/nodes/instantiate-testnet',
           from: '/developers/instantiate-testnet'
         },
@@ -72,20 +68,8 @@ const config = {
           from: '/developers/celestia-node'
         },
         {
-          to: '/nodes/node-tutorial',
-          from: '/developers/node-tutorial'
-        },
-        {
-          to: '/nodes/light-node-video',
-          from: '/developers/light-node-video'
-        },
-        {
           to: '/nodes/celestia-node-metrics',
           from: '/developers/celestia-node-metrics'
-        },
-        {
-          to: '/nodes/node-api',
-          from: '/developers/node-api'
         },
         {
           to: '/nodes/docker',

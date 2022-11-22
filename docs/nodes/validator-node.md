@@ -131,7 +131,7 @@ with SystemD [here](./systemd.md#start-the-celestia-app-with-systemd).
 
 ### Wallet
 
-Follow the tutorial on creating a wallet [here](./wallet.md).
+Follow the tutorial on creating a wallet [here](../developers/celestia-app-wallet.md).
 
 ### Delegate stake to a validator
 
