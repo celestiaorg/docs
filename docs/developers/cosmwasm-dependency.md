@@ -1,5 +1,5 @@
 ---
-sidebar_label : CosmWasm Dependencies
+sidebar_label: CosmWasm Dependencies
 ---
 
 # CosmWasm Dependency Installations
@@ -9,14 +9,14 @@ sidebar_label : CosmWasm Dependencies
 For this tutorial, we will be using `curl` and `jq` as helpful
 tools.
 
-You can follow the guide on installing them [here](./environment.md#setting-up-dependencies).
+You can follow the guide on installing them [here](../nodes/environment.mdx#setting-up-dependencies).
 
 ## Golang Dependency
 
 The Golang version used for this tutorial is v1.18+
 
 If you are using a Linux distribution, you can install Golang
-by following our tutorial [here](./environment.md#install-golang).
+by following our tutorial [here](../nodes/environment.mdx#install-golang).
 
 ## Rust Installation
 
@@ -54,7 +54,7 @@ Find the right instructions specific for your OS.
 ## wasmd Installation
 
 Here, we are going to pull down the `wasmd` repository and replace Tendermint
-with Optimint. Optimint is a drop-in replacement for Tendermint that allows
+with Rollmint. Rollmint is a drop-in replacement for Tendermint that allows
 Cosmos-SDK applications to connect to Celestia's Data Availability network.
 
 ```sh
@@ -62,7 +62,7 @@ git clone https://github.com/CosmWasm/wasmd.git
 cd wasmd
 git fetch --tags
 git checkout v0.27.0
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk@v0.45.4-optimint-v0.3.5
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.45.10-rollmint-v0.4.0
 go mod tidy 
 go mod download
 make install

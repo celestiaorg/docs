@@ -1,5 +1,5 @@
 ---
-sidebar_label : CosmWasm Resources
+sidebar_label: CosmWasm Resources
 ---
 
 # CosmWasm Resources
@@ -16,7 +16,7 @@ in this section.
 - [Bonding](https://docs.rs/cw20-bonding/latest/cw20_bonding/)
 - [Escrow](https://docs.rs/cw20-escrow/latest/cw20_escrow/)
 
-## Miscellanious
+## Miscellaneous
 
 - [NFTs](https://github.com/CosmWasm/cw-nfts/tree/main/contracts)
 - [Storage](https://crates.io/crates/cosmwasm-storage)

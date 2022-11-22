@@ -17,3 +17,4 @@ jobs:
           cache: npm
       - run: yarn install --frozen-lockfile
       - run: yarn run lint
+      - run: yarn run lint-mdx

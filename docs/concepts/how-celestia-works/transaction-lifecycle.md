@@ -1,3 +1,7 @@
+---
+sidebar_label: The Lifecycle of a Celestia App Transaction
+---
+
 # The Lifecycle of a Celestia App Transaction
 
 Users request the Celestia App to make data available by

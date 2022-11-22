@@ -1,5 +1,5 @@
 ---
-sidebar_label : Arabica Devnet
+sidebar_label: Arabica Devnet
 ---
 
 # Arabica Devnet
@@ -40,7 +40,7 @@ Data Availability:
 
 * [Bridge Node](./bridge-node.md)
 * [Full Storage Node](./full-storage-node.md)
-* [Light Node](./light-node.md)
+* [Light Node](./light-node.mdx)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
