@@ -448,13 +448,8 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Deploy Smart Contract on Ethermint",
-              id: "developers/deploy-solidity-ethermint"
-            },
-            {
-              type: "doc",
-              label: "Interact with Ethermint Smart Contract",
-              id: "developers/interact-ethermint-solidity"
+              label: "Deploy Smart Contract on Ethermint with Foundry",
+              id: "developers/deploy-solidity-ethermint-foundry"
             },
           ]
         }
