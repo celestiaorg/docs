@@ -35,7 +35,7 @@ Because we are deploying the compiled smart contract to `wasmd`,
 we want it to be as small as possible.
 
 The CosmWasm team provides a tool called `rust-optimizer` which we need
-Docker for in order to compile.
+[Docker](./cosmwasm-dependency.md/#docker-installation) for in order to compile.
 
 Run the following command in the `~/cw-contracts/contracts/nameservice`
 directory:
