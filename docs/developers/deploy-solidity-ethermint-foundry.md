@@ -10,11 +10,11 @@ Foundry is a portable, fast and modular toolkit for Ethereum application develop
 
 Foundry is made up of three components:
 
-- [__Forge__](https://github.com/foundry-rs/foundry/tree/master/forge): Ethereum
+- [__Forge__](https://github.com/foundry-rs/foundry/tree/master/forge) - Ethereum
  testing framework (like Truffle, Hardhat and DappTools).
-- [__Cast__](https://github.com/foundry-rs/foundry/tree/master/cast): CLI for
+- [__Cast__](https://github.com/foundry-rs/foundry/tree/master/cast) - CLI for
 interacting with EVM smart contracts, sending transactions, and getting chain data.
-- [__Anvil__](https://github.com/foundry-rs/foundry/tree/master/anvil): Local
+- [__Anvil__](https://github.com/foundry-rs/foundry/tree/master/anvil) - Local
 Ethereum node, similar to Ganache or Hardhat Network.
 
 We'll use all three to create, test, and deploy our Solidity project.
