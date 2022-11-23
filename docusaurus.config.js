@@ -43,7 +43,41 @@ const config = {
       }),
     ],
   ],
-  plugins: [["drawio", {}]],
+  plugins: [
+    ["drawio", {}],
+    ['@docusaurus/plugin-client-redirects', {
+      redirects: [
+        {
+          to: '/nodes/environment',
+          from: '/developers/environment'
+        },
+        {
+          to: '/nodes/celestia-app',
+          from: '/developers/celestia-app'
+        },
+        {
+          to: '/nodes/instantiate-testnet',
+          from: '/developers/instantiate-testnet'
+        },
+        {
+          to: '/nodes/celestia-app-commands',
+          from: '/developers/celestia-app-commands'
+        },
+        {
+          to: '/nodes/celestia-node',
+          from: '/developers/celestia-node'
+        },
+        {
+          to: '/nodes/celestia-node-metrics',
+          from: '/developers/celestia-node-metrics'
+        },
+        {
+          to: '/nodes/docker',
+          from: '/developers/docker'
+        },
+      ]
+    }]
+  ],
   i18n: {
     defaultLocale: "en",
     locales: ["en", "fr"],
