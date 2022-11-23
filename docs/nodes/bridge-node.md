@@ -61,7 +61,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-Follow the tutorial here installing the dependencies [here](../developers/environment.mdx).
+Follow the tutorial here installing the dependencies [here](./environment.mdx).
 
 ## Deploy the Celestia bridge node
 
@@ -69,7 +69,7 @@ Follow the tutorial here installing the dependencies [here](../developers/enviro
 
 Install the Celestia Node binary, which will be used to run the Bridge Node.
 
-Follow the tutorial for installing Celestia Node [here](../developers/celestia-node.mdx).
+Follow the tutorial for installing Celestia Node [here](./celestia-node.mdx).
 
 ### Initialize the bridge node
 
@@ -100,7 +100,7 @@ celestia bridge start --core.ip <ip-address> --core.grpc.port <port>
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
 
-You can create your key for your node by following the `cel-key` instructions [here](./keys.mdx)
+You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.md)
 
 Once you start the Bridge Node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for
