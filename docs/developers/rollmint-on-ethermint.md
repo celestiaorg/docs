@@ -8,7 +8,7 @@ Rollmint is a drop-in replacement for Tendermint that allows
 Cosmos-SDK applications to connect to Celestia's Data Availability network.
 
 ```sh
-git clone https://github.com/celestia-org/ethermint.git
+git clone https://github.com/celestiaorg/ethermint.git
 cd ethermint 
 make install
 ```
