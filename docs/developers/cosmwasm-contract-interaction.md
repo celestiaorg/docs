@@ -17,7 +17,7 @@ we will need to query our  tx hash directly to get information about it.
 Let's start by querying our transaction hash for its code ID:
 
 ```sh
-CODE_ID=$(wasmd query tx --type=hash $TX_HASH $NODE $NODEIP --output json | jq -r '.logs[0].events[-1].attributes[0].value')
+CODE_ID=$(wasmd query tx --type=hash $TX_HASH $CHAINFLAG $NODEIP --output json | jq -r '.logs[0].events[-1].attributes[0].value')
 echo $CODE_ID
 ```
 
@@ -29,7 +29,7 @@ the value is `1`.
 Now, we can take a look at the contracts instantiated by this Code ID:
 
 ```sh
-wasmd query wasm list-contract-by-code $CODE_ID $NODE $NODEIP --output json
+wasmd query wasm list-contract-by-code $CODE_ID $CHAINFLAG $NODEIP --output json
 ```
 
 We get the following output:
@@ -54,12 +54,12 @@ wasmd tx wasm instantiate $CODE_ID "$INIT" --from $KEY_NAME --keyring-backend te
 Now that we instantiated it, we can interact further with the contract:
 
 ```sh
-wasmd query wasm list-contract-by-code $CODE_ID $NODE --output json $NODEIP
-CONTRACT=$(wasmd query wasm list-contract-by-code $CODE_ID $NODE --output json $NODEIP | jq -r '.contracts[-1]')
+wasmd query wasm list-contract-by-code $CODE_ID $CHAINFLAG --output json $NODEIP
+CONTRACT=$(wasmd query wasm list-contract-by-code $CODE_ID $CHAINFLAG --output json $NODEIP | jq -r '.contracts[-1]')
 echo $CONTRACT
 
-wasmd query wasm contract $NODEIP $CONTRACT $NODE
-wasmd query bank balances $NODEIP $CONTRACT $NODE
+wasmd query wasm contract $NODEIP $CONTRACT $CHAINFLAG
+wasmd query bank balances $NODEIP $CONTRACT $CHAINFLAG
 ```
 
 This allows us to see the contract address, contract details, and
@@ -116,7 +116,7 @@ Next, query the owner of the name record:
 
 ```sh
 NAME_QUERY='{"resolve_record": {"name": "fred"}}'
-wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" $NODE $NODEIP --output json
+wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" $CHAINFLAG $NODEIP --output json
 ```
 
 You'll see the owner's address in a JSON response:
