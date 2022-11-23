@@ -34,7 +34,7 @@ First, we need to setup some environment variables.
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 15; echo;)
+NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 DA_BLOCK_HEIGHT=$(curl https://rpc.limani.celestia-devops.dev/block?height | jq -r '.result.block.header.height')
 ```
 <!-- markdownlint-enable MD013 -->
