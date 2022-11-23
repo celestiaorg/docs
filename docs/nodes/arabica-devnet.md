@@ -38,8 +38,8 @@ participate in Arabica:
 
 Data Availability:
 
-* [Bridge Node](./bridge-node.md)
-* [Full Storage Node](./full-storage-node.md)
+* [Bridge Node](./bridge-node.mdx)
+* [Full Storage Node](./full-storage-node.mdx)
 * [Light Node](./light-node.mdx)
 
 Select the type of node you would like to run and follow the instructions
