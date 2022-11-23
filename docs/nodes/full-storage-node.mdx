@@ -2,6 +2,9 @@
 sidebar_label: Full Storage Node
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Setting up a Celestia Full Storage Node
 
 This tutorial will guide you through setting up a Celestia Full Storage
@@ -59,11 +62,22 @@ A note on ports:
   it in the command line, it will default to that port. You can use the flag
   to specify another port if you prefer.
 
-<!-- markdownlint-disable MD013 -->
+<Tabs groupId="networks">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
 celestia full start --core.ip http://<ip-address> --core.grpc.port <port>
 ```
-<!-- markdownlint-enable MD013 -->
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh 
+celestia full start --core.remote <ip-address>:<port>
+```
+
+</TabItem>
+</Tabs>
 
 If you would like to find example RPC endpoints, check out the list of
 resources [here](./mamaki-testnet.md#rpc-endpoints).
@@ -98,11 +112,22 @@ In order to run a full storage node using a custom key:
    at the correct path (default: `~/.celestia-full/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
-<!-- markdownlint-disable MD013 -->
+<Tabs groupId="networks">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
 celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key>
 ```
-<!-- markdownlint-enable MD013 -->
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh 
+celestia full start --core.remote <ip-address>:<port> --keyring.accname <name-of-custom-key>
+```
+
+</TabItem>
+</Tabs>
 
 ### Optional: start the full storage node with SystemD
 
