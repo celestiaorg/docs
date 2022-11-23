@@ -12,7 +12,7 @@ tools. You can follow the guide on installing them
 
 ## Golang Dependency
 
-The Golang version used for this tutorial is v1.18.2+.
+The Golang version used for this tutorial is v1.18+.
 
 You can install Golang
 by following our tutorial [here](../nodes/environment.mdx#install-golang).
