@@ -662,7 +662,7 @@ is usually exposed on port 9090):
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 For ports:
@@ -675,7 +675,7 @@ For ports:
 <TabItem value="mamaki" label="Mamaki">
 
 ```sh
-celestia light start --core.grpc <IP_address>:<port>
+celestia light start --core.grpc <ip-address>:<port>
 ```
 
 For ports:
@@ -695,7 +695,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway.addr localhost --gateway.port 26659
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr localhost --gateway.port 26659
 ```
 
 </TabItem>
@@ -714,7 +714,7 @@ celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
 
 ### Keys and wallets
 
-You can create your key for your node by running the following command with the [`cel-key`](./keys.md) utility:
+You can create your key for your node by running the following command with the [`cel-key`](../developers/celestia-node-key.md) utility:
 
 ```sh
 ./cel-key add <key_name> --keyring-backend test --node.type light
@@ -727,7 +727,7 @@ following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.grpc.port <port> --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
@@ -783,14 +783,14 @@ In order to run a light node using a custom key:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <name_of_custom_key> --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
 <TabItem value="mamaki" label="Mamaki">
 
 ```sh
-celestia light start --core.grpc <IP_address>:<port> --keyring.accname <name_of_custom_key>
+celestia light start --core.grpc <ip-address>:<port> --keyring.accname <name_of_custom_key>
 ```
 
 </TabItem>
