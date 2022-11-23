@@ -1,8 +1,22 @@
 ---
-sidebar_label: Keys
+sidebar_label: Wallet with Celestia Node
 ---
 
-# Using the cel-key utility
+# Create A Wallet with Celestia Node
+
+This tutorial will go over using the `cel-key` utility
+to generate a wallet on Celestia Node.
+
+While this tutorial will go over installation process
+of `cel-key`, it is recommended that you complete
+the following prerequisites first:
+
+* [Setting Up Your Environment](../nodes/environment)
+
+Once you completed the prerequisite, you can proceed with this
+tutorial.
+
+## Using the cel-key utility
 
 Inside the celestia-node repository is a utility called `cel-key` that uses
 the key utility provided by Cosmos-SDK under the hood. The utility can be
@@ -25,16 +39,9 @@ It can be built using either of the following commands:
 make cel-key
 ```
 
-or
-
-```sh
-# installs binary in GOBIN path, accessible via `cel-key`
-make install-key
-```
-
 For the purpose of this guide, we will use the `make cel-key` command.
 
-## Steps for generating **bridge** node keys
+## Generating Bridge Node Keys
 
 To generate a key for a Celestia bridge node, do the following:
 
@@ -44,7 +51,7 @@ To generate a key for a Celestia bridge node, do the following:
 
 This will load the key <key_name> into the directory of the bridge node.
 
-## Steps for generating **full** node keys
+## Generating Full Storage Node Keys
 
 To generate a key for a Celestia full node, do the following:
 
@@ -54,7 +61,7 @@ To generate a key for a Celestia full node, do the following:
 
 This will load the key <key_name> into the directory of the full node.
 
-## Steps for generating **light** node keys
+## Generating Light Node Keys
 
 To generate a key for a Celestia light node, do the following:
 
@@ -64,10 +71,12 @@ To generate a key for a Celestia light node, do the following:
 
 This will load the key <key_name> into the directory of the light node.
 
-## Steps for exporting **light** node keys
+## Exporting Your Keys
 
 You can export a private key from the local keyring in encrypted and
- ASCII-armored format.
+ASCII-armored format.
+
+In this command, we demonstrate how to export your key for a light node.
 
 ```sh
 ./cel-key export <key-name> --keyring-backend test --node.type light
