@@ -56,13 +56,7 @@ Let's now deploy our smart contract!
 Run the following:
 
 ```sh
-TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from $KEY_NAME --keyring-backend test $TXFLAG $NODEIP --output json -y | jq -r '.txhash')
-```
-
-Your output will be the gas estimate:
-
-```sh
-gas estimate: 1344759
+TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from $KEY_NAME --keyring-backend test $TXFLAG $NODEIP --output json -y | jq -r '.txhash') && echo $TX_HASH
 ```
 
 This will get you the transaction hash for the smart contract deployment. Given
