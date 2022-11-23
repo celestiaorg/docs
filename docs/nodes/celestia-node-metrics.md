@@ -10,7 +10,7 @@ Availability instance.
 This tutorial will focus on running metrics for a light-node.
 
 This tutorial assumes you have already setup your light node
-by following the tutorial in the [Node API tutorial](./node-tutorial.mdx).
+by following the tutorial in the [Node API tutorial](../developers/node-tutorial.mdx).
 
 ## Running metrics flags
 
@@ -19,7 +19,7 @@ command:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --metrics --metrics.endpoint <ip-address:port> --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --metrics --metrics.endpoint <ip-address:port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 <!-- markdownlint-enable MD013 -->
 
