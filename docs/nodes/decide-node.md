@@ -20,4 +20,4 @@ If you are looking to run a validator, please follow the tutorial
 for running a validator [here](./validator-node.md).
 
 Note that running a validator means you must also run a bridge node,
-which is covered [here](./bridge-node.md).
+which is covered [here](./bridge-node.mdx).
