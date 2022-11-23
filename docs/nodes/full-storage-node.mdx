@@ -2,6 +2,9 @@
 sidebar_label: Full Storage Node
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Setting up a Celestia Full Storage Node
 
 This tutorial will guide you through setting up a Celestia Full Storage
@@ -24,14 +27,14 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-You can follow the tutorial for setting up your dependencies [here](../developers/environment.mdx)
+You can follow the tutorial for setting up your dependencies [here](./environment.mdx)
 
 ## Install Celestia node
 
 > Note: Make sure that you have at least 250+ Gb of free space for
   Celestia Full Storage Node
 
-You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.mdx)
+You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx)
 
 ### Run the full storage node
 
@@ -59,16 +62,27 @@ A note on ports:
   it in the command line, it will default to that port. You can use the flag
   to specify another port if you prefer.
 
-<!-- markdownlint-disable MD013 -->
+<Tabs groupId="networks">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
 celestia full start --core.ip http://<ip-address> --core.grpc.port <port>
 ```
-<!-- markdownlint-enable MD013 -->
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh 
+celestia full start --core.remote <ip-address>:<port>
+```
+
+</TabItem>
+</Tabs>
 
 If you would like to find example RPC endpoints, check out the list of
 resources [here](./mamaki-testnet.md#rpc-endpoints).
 
-You can create your key for your node by following the `cel-key` instructions [here](./keys.md)
+You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.md)
 
 Once you start the Full Node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
@@ -98,11 +112,22 @@ In order to run a full storage node using a custom key:
    at the correct path (default: `~/.celestia-full/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
-<!-- markdownlint-disable MD013 -->
+<Tabs groupId="networks">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
 celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key>
 ```
-<!-- markdownlint-enable MD013 -->
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+```sh 
+celestia full start --core.remote <ip-address>:<port> --keyring.accname <name-of-custom-key>
+```
+
+</TabItem>
+</Tabs>
 
 ### Optional: start the full storage node with SystemD
 
