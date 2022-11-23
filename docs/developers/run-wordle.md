@@ -43,7 +43,7 @@ You can start the chain with rollmint configurations by
 running the following:
 
 ```sh
-wordled start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height XXXXX
+wordled start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26659","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height XXXXX
 ```
 
 Please consider:
@@ -51,7 +51,7 @@ Please consider:
 > NOTE: In the above command, you need to pass a Celestia Node IP address
   to the `base_url` that has an account with Arabica devnet tokens. Follow
   the tutorial for setting up a Celestia Light Node and creating a wallet
-  with testnet faucet money [here](./node-tutorial.mdx) in the Celestia Node section.
+  with testnet faucet money [here](../developers/node-tutorial.mdx) in the Celestia Node section.
 
 Also please consider:
 
