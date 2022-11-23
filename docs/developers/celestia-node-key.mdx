@@ -1,0 +1,249 @@
+---
+sidebar_label: Wallet with Celestia Node
+---
+
+# Create A Wallet with Celestia Node
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+This tutorial will go over using the `cel-key` utility
+to generate a wallet on Celestia Node.
+
+While this tutorial will go over installation process
+of `cel-key`, it is recommended that you complete
+the following prerequisites first:
+
+* [Setting Up Your Environment](../nodes/environment)
+
+Once you completed the prerequisite, you can proceed with this
+tutorial.
+
+## Using the `cel-key` utility
+
+Inside the `celestia-node` repository is a utility called `cel-key` that uses
+the key utility provided by Cosmos-SDK under the hood. The utility can be
+used to `add`, `delete`, and manage keys for any DA node
+type `(bridge || full || light)`, or just keys in general.
+
+### Installation
+
+You need to first pull down the `celestia-node` repository:
+
+```sh
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+```
+
+It can be built using either of the following commands:
+
+```sh
+# dumps binary in current working directory, accessible via `./cel-key`
+make cel-key
+```
+
+or
+
+```sh
+# installs binary in GOBIN path, accessible via `cel-key`
+make install-key
+```
+
+For the purpose of this guide, we will use the `make cel-key` command.
+
+### Steps for generating node keys
+
+<Tabs groupId="node-type">
+<TabItem value="bridge" label="Bridge">
+
+To generate a key for a Celestia bridge node, do the following:
+
+```sh
+./cel-key add <key-name> --keyring-backend test --node.type bridge
+```
+
+This will load the key `<key-name>` into the directory of the bridge node.
+
+</TabItem>
+<TabItem value="full" label="Full">
+
+To generate a key for a Celestia full node, do the following:
+
+```sh
+./cel-key add <key-name> --keyring-backend test --node.type full
+```
+
+This will load the key `<key-name>` into the directory of the full node.
+
+
+</TabItem>
+<TabItem value="light" label="Light">
+
+To generate a key for a Celestia light node, do the following:
+
+```sh
+./cel-key add <key-name> --keyring-backend test --node.type light
+```
+
+This will load the key `<key-name>` into the directory of the light node.
+
+</TabItem>
+</Tabs>
+
+### Steps for exporting node keys
+
+<Tabs groupId="node-type">
+<TabItem value="bridge" label="Bridge">
+
+You can export a private key from the local keyring in encrypted and ASCII-armored format.
+
+```sh
+./cel-key export <key-name> --keyring-backend test --node.type bridge
+```
+
+You can then import your key with `celestia-appd`:
+
+```sh
+celestia-appd keys import <new-key-name> 
+  <key-file-location>
+```
+
+</TabItem>
+<TabItem value="full" label="Full">
+
+You can export a private key from the local keyring in encrypted and ASCII-armored format.
+
+```sh
+./cel-key export <key-name> --keyring-backend test --node.type full
+```
+
+You can then import your key with `celestia-appd`:
+
+```sh
+celestia-appd keys import <new-key-name> 
+  <key-file-location>
+```
+
+</TabItem>
+<TabItem value="light" label="Light">
+
+You can export a private key from the local keyring in encrypted and ASCII-armored format.
+
+```sh
+./cel-key export <key-name> --keyring-backend test --node.type light
+```
+
+You can then import your key with `celestia-appd`:
+
+```sh
+celestia-appd keys import <new-key-name> 
+  <key-file-location>
+```
+
+</TabItem>
+</Tabs>
+
+### Steps for importing node keys
+
+<Tabs groupId="node-type">
+<TabItem value="bridge" label="Bridge">
+
+Importing from a mnemonic:
+
+```sh
+./cel-key add <key-name> --recover --keyring-backend test --node.type bridge
+```
+
+You will then be prompted to enter your bip39 mnemonic.
+
+Example:
+
+```sh
+./cel-key add alice --recover --keyring-backend test --node.type bridge
+```
+
+</TabItem>
+<TabItem value="full" label="Full">
+
+Importing from a mnemonic:
+
+```sh
+./cel-key add <key-name> --recover --keyring-backend test --node.type full
+```
+
+You will then be prompted to enter your bip39 mnemonic.
+
+Example:
+
+```sh
+./cel-key add alice --recover --keyring-backend test --node.type full
+```
+
+</TabItem>
+<TabItem value="light" label="Light">
+
+Importing from a mnemonic:
+
+```sh
+./cel-key add <key-name> --recover --keyring-backend test --node.type light
+```
+
+You will then be prompted to enter your bip39 mnemonic.
+
+Example:
+
+```sh
+./cel-key add alice --recover --keyring-backend test --node.type light
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+### View all options for `cel-key`
+
+```sh
+$ ./cel-key --help
+Keyring management commands. These keys may be in any format supported by the
+Tendermint crypto library and can be used by light-clients, full nodes, or any other application
+that needs to sign with a private key.
+The keyring supports the following backends:
+    os          Uses the operating system's default credentials store.
+    file        Uses encrypted file-based keystore within the app's configuration directory.
+                This keyring will request a password each time it is accessed, which may occur
+                multiple times in a single command resulting in repeated password prompts.
+    kwallet     Uses KDE Wallet Manager as a credentials management application.
+    pass        Uses the pass command line utility to store and retrieve keys.
+    test        Stores keys insecurely to disk. It does not prompt for a password to be unlocked
+                and it should be use only for testing purposes.
+kwallet and pass backends depend on external tools. Refer to their respective documentation for more
+information:
+    KWallet     https://github.com/KDE/kwallet
+    pass        https://www.passwordstore.org/
+The pass backend requires GnuPG: https://gnupg.org/
+Usage:
+  keys [command]
+Available Commands:
+  add         Add an encrypted private key (either newly generated or recovered), encrypt it, and save to <name> file
+  completion  Generate the autocompletion script for the specified shell
+  delete      Delete the given keys
+  export      Export private keys
+  help        Help about any command
+  import      Import private keys into the local keybase
+  list        List all keys
+  migrate     Migrate keys from amino to proto serialization format
+  mnemonic    Compute the bip39 mnemonic for some input entropy
+  parse       Parse address from hex to bech32 and vice versa
+  rename      Rename an existing key
+  show        Retrieve key information by name or address
+Flags:
+  -h, --help                     help for keys
+      --home string              The application home directory (default "~")
+      --keyring-backend string   Select keyring's backend (os|file|test) (default "os")
+      --keyring-dir string       The client Keyring directory; if omitted, the default 'home' directory will be used
+      --node.network string      Sets key utility to use the node network's directory (e.g. ~/.celestia-light-mynetwork if --node.network MyNetwork is passed). (default "arabica-1")
+      --node.type string         Sets key utility to use the node type's directory (e.g. ~/.celestia-light-arabica-1 if --node.type light is passed).
+      --output string            Output format (text|json) (default "text")
+Use "keys [command] --help" for more information about a command.
+```
