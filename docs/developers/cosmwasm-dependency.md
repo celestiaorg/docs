@@ -8,14 +8,14 @@ sidebar_label: CosmWasm Dependencies
 
 For this tutorial, we will be using `curl` and `jq` as helpful
 tools. You can follow the guide on installing them
-[here](./environment.mdx#setting-up-dependencies).
+[here](../nodes/environment.mdx#setting-up-dependencies).
 
 ## Golang Dependency
 
 The Golang version used for this tutorial is v1.18.2+.
 
 You can install Golang
-by following our tutorial [here](./environment.mdx#install-golang).
+by following our tutorial [here](../nodes/environment.mdx#install-golang).
 
 ## Rust Installation
 
