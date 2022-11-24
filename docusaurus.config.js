@@ -71,10 +71,6 @@ const config = {
           to: '/nodes/celestia-node-metrics',
           from: '/developers/celestia-node-metrics'
         },
-        {
-          to: '/nodes/docker',
-          from: '/developers/docker'
-        },
       ]
     }]
   ],
