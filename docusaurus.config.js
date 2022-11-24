@@ -76,7 +76,7 @@ const config = {
   ],
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "fr", "ru", "es"],
+    locales: ["en", "fr", "es"],
   },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
