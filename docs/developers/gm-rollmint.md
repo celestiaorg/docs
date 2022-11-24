@@ -54,7 +54,7 @@ Most of our work in this tutorial will happen in the `x` directory.
 To swap out Tendermint for Rollmint, run the following command:
 
 ```bash
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.1-rollmint-v0.4.0
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.3-rollmint-v0.4.0
 go mod tidy
 go mod download
 ```
@@ -99,5 +99,5 @@ to run all of your chain commands.
 ### 🛑 Stopping your blockchain
 
 To stop your blockchain, press `Ctrl + C` in the terminal window where it is
-running. We’re ready to prepare our first Sovereign Rollup query and connect to
+running. We're ready to scaffold our first Sovereign Rollup query and connect to
 Celestia’s DA layer.

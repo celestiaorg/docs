@@ -3,7 +3,7 @@
 Celestia currently has two exisiting testnets that will enable participation:
 
 * [Arabica Devnet](./arabica-devnet.md): A devnet focused on developers who
-  want to deploy sovereign rollups on the lastest changes from Celestia's codebase.
+  want to deploy sovereign rollups on the latest changes from Celestia's codebase.
   Arabica will be updated frequently and might be unstable at times given new updates.
   Validators won't be able to validate on Arabica as it is not designed for
   validators to participate.

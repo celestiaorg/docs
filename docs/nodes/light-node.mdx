@@ -387,44 +387,142 @@ go version go1.18.2 darwin/amd64
 
 ### Install Celestia node
 
-One thing to note here is deciding which version of
-celestia-node you wish to compile. Mamaki Testnet requires
-v0.3.0-rc2 and Arabica Devnet requires v0.4.2.
-
-The following section highlights how to install it for the
-two networks.
-
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
-Install the celestia-node binary by running the following commands:
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
 
 ```sh
 cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.4.2
+git checkout tags/v0.5.0-rc5
 make install
 make cel-key
 ```
 
-Verify that the binary is working and check the version with the
-celestia version command:
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
+System version: amd64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
 
 ```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.5.0-rc5
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
 celestia version
-Semantic version: v0.4.2
-Commit: 75b122f736d0db758ef840a4bf3b2e6635e823bd
-Build Date: Thu Oct 20 22:48:39 EDT 2022
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
+System version: arm64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.5.0-rc5
+make go-install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: arm64/darwin
 Golang version: go1.19.1
 ```
 
 </TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.5.0-rc5
+make go-install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+celestia version
+Semantic version: v0.5.0-rc5
+Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
+Build Date: Tue Nov 15 16:23:30 EST 2022
+System version: amd64/darwin
+Golang version: go1.19.1
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
 <TabItem value="mamaki" label="Mamaki">
 
-Install the celestia-node binary by running the following commands:
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
 
 ```sh
 cd $HOME
@@ -436,14 +534,98 @@ make install
 make cel-key
 ```
 
-Verify that the binary is working and check the version with the
-celestia version command:
+Verify that the binary is working and check the version with the `celestia
+version` command:
 
-```sh
+```console
 $ celestia version
 Semantic version: v0.3.0-rc2
 Commit: 89892d8b96660e334741987d84546c36f0996fbe
 ```
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Mamaki Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.3.0-rc2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```console
+$ celestia version
+Semantic version: v0.3.0-rc2
+Commit: 89892d8b96660e334741987d84546c36f0996fbe
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 </Tabs>
@@ -473,13 +655,14 @@ is usually exposed on port 9090):
 > NOTE: In order for access to the ability to get/submit state-related information,
   such as the ability to submit PayForData transactions, or query for the node's
   account balance, a gRPC endpoint of a validator (core) node must be passed as
-  directed below.
+  directed below. For `gateway`, the default IP Address is `localhost` and the
+  default `port` is `26659`.
 
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 For ports:
@@ -492,7 +675,7 @@ For ports:
 <TabItem value="mamaki" label="Mamaki">
 
 ```sh
-celestia light start --core.grpc <IP_address>:<port>
+celestia light start --core.grpc <ip-address>:<port>
 ```
 
 For ports:
@@ -512,7 +695,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr localhost --gateway.port 26659
 ```
 
 </TabItem>
@@ -531,7 +714,7 @@ celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
 
 ### Keys and wallets
 
-You can create your key for your node by running the following command:
+You can create your key for your node by running the following command with the [`cel-key`](../developers/celestia-node-key.mdx) utility:
 
 ```sh
 ./cel-key add <key_name> --keyring-backend test --node.type light
@@ -544,14 +727,14 @@ following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <key_name>
+celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
 <TabItem value="mamaki" label="Mamaki">
 
 ```sh
-celestia light start --core.grpc <IP_address>:<port> --keyring.accname <key_name>
+celestia light start --core.grpc <ip-address>:<port> --keyring.accname <key-name>
 ```
 
 </TabItem>
@@ -600,14 +783,14 @@ In order to run a light node using a custom key:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <IP_address> --core.grpc.port <port> --keyring.accname <name_of_custom_key>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
 <TabItem value="mamaki" label="Mamaki">
 
 ```sh
-celestia light start --core.grpc <IP_address>:<port> --keyring.accname <name_of_custom_key>
+celestia light start --core.grpc <ip-address>:<port> --keyring.accname <name_of_custom_key>
 ```
 
 </TabItem>
