@@ -22,7 +22,7 @@ Returns the header of the given height.
 Request
 
 ```sh
-curl -X GET http://<ip-address>:26658/header/300
+curl -X GET http://<ip-address>:26659/header/300
 ```
 
 Response
@@ -206,7 +206,7 @@ Returns original messages of the given namespace ID `nID` from the given block h
 Request
 
 ```sh
-curl -X GET http://<ip>:26658/namespaced_data/0c204d39600fddd3/height/182038
+curl -X GET http://<ip>:26659/namespaced_data/0c204d39600fddd3/height/182038
 ```
 
 Response
@@ -227,7 +227,7 @@ Returns shares of the given namespace ID `nID` from the latest block (chain head
 Request
 
 ```sh
-curl -X GET http://<ip>:26658/namespaced_shares/0c204d39600fddd3
+curl -X GET http://<ip>:26659/namespaced_shares/0c204d39600fddd3
 ```
 
 Response
@@ -249,7 +249,7 @@ height `height`.
 Request
 
 ```sh
-curl -X GET http://<ip-address>:26658/namespaced_shares/0c204d39600fddd3/height/2452
+curl -X GET http://<ip-address>:26659/namespaced_shares/0c204d39600fddd3/height/2452
 ```
 
 Response
@@ -272,7 +272,7 @@ Returns the tip (head) of the node's current chain.
 Request
 
 ```sh
-curl -X GET http://<ip>:26658/head
+curl -X GET http://<ip>:26659/head
 ```
 
 Returns
@@ -375,7 +375,7 @@ that it is available based on the amount of samples collected.
 Request
 
 ```sh
-curl -X GET http://<ip>:26658/data_available/25000
+curl -X GET http://<ip>:26659/data_available/25000
 ```
 
 Response
@@ -394,7 +394,7 @@ Returns the balance of the default account address of the node.
 Request
 
 ```sh
-curl -X GET http://<ip>:26658/balance
+curl -X GET http://<ip>:26659/balance
 ```
 
 Response
@@ -413,7 +413,7 @@ Returns the balance of the given address.
 Request
 
 ```sh
-curl -X GET http://<ip-address>:26658/balance/celes1vuw7pdcyap2u62x6dyqjdzznlg25jll6jj76d0
+curl -X GET http://<ip-address>:26659/balance/celes1vuw7pdcyap2u62x6dyqjdzznlg25jll6jj76d0
 ```
 
 Response
@@ -433,7 +433,7 @@ Request
 
 ```sh
 curl -X POST -d '{"tx": "0A83080AFE070A1A2F7061796D656E742E4D736757697265506179466F724461746112DF070A2C63656C65733133753364376D6E757930327070397A6B337A707165706A66746A66376476727A6E6B6C333271120802020202020202021880042280040202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202326608101220B0429A0DB28AE163D9C1A300B320B19CEF93EC90AE87B4BA7ECF76C0703A9F891A408FA20C490F620B6A02E7FF5FA4139B997969BADE13A5E4F1A35086670FDC71550447A4759D57C844E836947F4BB73039D0E836511F3B1B8D8F1D317248DAF707326608201220B0429A0DB28AE163D9C1A300B320B19CEF93EC90AE87B4BA7ECF76C0703A9F891A408FA20C490F620B6A02E7FF5FA4139B997969BADE13A5E4F1A35086670FDC71550447A4759D57C844E836947F4BB73039D0E836511F3B1B8D8F1D317248DAF707326608401220B0429A0DB28AE163D9C1A300B320B19CEF93EC90AE87B4BA7ECF76C0703A9F891A408FA20C490F620B6A02E7FF5FA4139B997969BADE13A5E4F1A35086670FDC71550447A4759D57C844E836947F4BB73039D0E836511F3B1B8D8F1D317248DAF70732670880011220B0429A0DB28AE163D9C1A300B320B19CEF93EC90AE87B4BA7ECF76C0703A9F891A408FA20C490F620B6A02E7FF5FA4139B997969BADE13A5E4F1A35086670FDC71550447A4759D57C844E836947F4BB73039D0E836511F3B1B8D8F1D317248DAF707186312550A4E0A460A1F2F636F736D6F732E63727970746F2E736563703235366B312E5075624B657912230A210318F208E403FE5881227DD423254DA2BD4C11BAD740820B23DA352EF0E7581E6412040A020801120310904E1A405311CD1C8888C562CAA95BF4FBBD6646604D59D66FDD8E291A1C1B2C5286727464E0B3DD9E7DF38F681E0D7A2A154AED45810B6A59D351DE105D11D9383E0D44"}'\
-  http://<ip-address>:26658/submit_tx
+  http://<ip-address>:26659/submit_tx
 ```
 
 Response
@@ -460,7 +460,7 @@ Request
 
 ```sh
 curl -X POST -d '{"namespace_id": "0c204d39600fddd3", "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5", "gas_limit": 60000}'\
-  http://<ip-address>:26658/submit_pfd
+  http://<ip-address>:26659/submit_pfd
 ```
 
 Response
@@ -677,5 +677,222 @@ Response
          ]
       }
    ]
+}
+```
+
+#### POST /transfer
+
+Submits a transfer transaction to a running instance of `celestia-app`.
+The body of the `/transfer` request should contain the
+`to` (receiver) address, the `amount` in utia, and the `gas_limit`
+as a uint64.
+
+To transfer tokens from the address running your node to another.
+
+Request
+
+```sh
+curl -X POST -d '{"to": "<TO_ADDRESS>",
+  "amount": <AMOUNT>,
+  "gas_limit": 80000}' http://<IP>:26659/transfer
+```
+
+Example usage:
+
+```sh
+curl -X POST -d '{"to": "celestia16qx7306vehyy9ndtwsy6crkmfpf7enmphvl2e2",
+  "amount": 1000000,
+  "gas_limit": 80000}' http://localhost:26659/transfer
+```
+
+Example response
+
+```json
+{
+  "height": 67551,
+  "txhash": "EDFF14D27D806782DD7867940C37199B21DE67EF1D33F4C54CC610E31B9B53F2",
+  "data": "12260A242F636F736D6F732E62616E6B2E763162657461312E4D736753656E64526573706F6E7365",
+  "raw_log": "[{\"msg_index\":0,\"events\":[{\"type\":\"coin_received\",\"attributes\":[{\"key\":\"receiver\",\"value\":\"celestia16qx7306vehyy9ndtwsy6crkmfpf7enmphvl2e2\"},{\"key\":\"amount\",\"value\":\"1000utia\"}]},{\"type\":\"coin_spent\",\"attributes\":[{\"key\":\"spender\",\"value\":\"celestia14m95yh3u4tp7xr4cwq2l773lmdk9f0lfr3k87g\"},{\"key\":\"amount\",\"value\":\"1000utia\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"action\",\"value\":\"/cosmos.bank.v1beta1.MsgSend\"},{\"key\":\"sender\",\"value\":\"celestia14m95yh3u4tp7xr4cwq2l773lmdk9f0lfr3k87g\"},{\"key\":\"module\",\"value\":\"bank\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"celestia16qx7306vehyy9ndtwsy6crkmfpf7enmphvl2e2\"},{\"key\":\"sender\",\"value\":\"celestia14m95yh3u4tp7xr4cwq2l773lmdk9f0lfr3k87g\"},{\"key\":\"amount\",\"value\":\"1000utia\"}]}]}]",
+  "logs": [
+    {
+      "msg_index": 0,
+      "events": [
+        {
+          "type": "coin_received",
+          "attributes": [
+            {
+              "key": "receiver",
+              "value": "celestia16qx7306vehyy9ndtwsy6crkmfpf7enmphvl2e2"
+            },
+            {
+              "key": "amount",
+              "value": "1000utia"
+            }
+          ]
+        },
+        {
+          "type": "coin_spent",
+          "attributes": [
+            {
+              "key": "spender",
+              "value": "celestia14m95yh3u4tp7xr4cwq2l773lmdk9f0lfr3k87g"
+            },
+            {
+              "key": "amount",
+              "value": "1000utia"
+            }
+          ]
+        },
+        {
+          "type": "message",
+          "attributes": [
+            {
+              "key": "action",
+              "value": "/cosmos.bank.v1beta1.MsgSend"
+            },
+            {
+              "key": "sender",
+              "value": "celestia14m95yh3u4tp7xr4cwq2l773lmdk9f0lfr3k87g"
+            },
+            {
+              "key": "module",
+              "value": "bank"
+            }
+          ]
+        },
+        {
+          "type": "transfer",
+          "attributes": [
+            {
+              "key": "recipient",
+              "value": "celestia16qx7306vehyy9ndtwsy6crkmfpf7enmphvl2e2"
+            },
+            {
+              "key": "sender",
+              "value": "celestia14m95yh3u4tp7xr4cwq2l773lmdk9f0lfr3k87g"
+            },
+            {
+              "key": "amount",
+              "value": "1000utia"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "gas_wanted": 80000,
+  "gas_used": 73842,
+  "events": [
+    {
+      "type": "tx",
+      "attributes": [
+        {
+          "key": "ZmVl",
+          "value": null,
+          "index": true
+        }
+      ]
+    },
+    {
+      "type": "tx",
+      "attributes": [
+        {
+          "key": "YWNjX3NlcQ==",
+          "value": "Y2VsZXN0aWExNG05NXloM3U0dHA3eHI0Y3dxMmw3NzNsbWRrOWYwbGZyM2s4N2cvMTE1",
+          "index": true
+        }
+      ]
+    },
+    {
+      "type": "tx",
+      "attributes": [
+        {
+          "key": "c2lnbmF0dXJl",
+          "value": "VlVmaDR4V2RlbXN3Vjdoa05BTVR2V1ZYTWRGRkhLbzBpRGNDenMyQmpvOUVkM1JJUnpjSHFHWk52RTNaUDUyS0tyaDhqTXJtbjEyYU1tODA3akVKZ2c9PQ==",
+          "index": true
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "attributes": [
+        {
+          "key": "YWN0aW9u",
+          "value": "L2Nvc21vcy5iYW5rLnYxYmV0YTEuTXNnU2VuZA==",
+          "index": true
+        }
+      ]
+    },
+    {
+      "type": "coin_spent",
+      "attributes": [
+        {
+          "key": "c3BlbmRlcg==",
+          "value": "Y2VsZXN0aWExNG05NXloM3U0dHA3eHI0Y3dxMmw3NzNsbWRrOWYwbGZyM2s4N2c=",
+          "index": true
+        },
+        {
+          "key": "YW1vdW50",
+          "value": "MTAwMHV0aWE=",
+          "index": true
+        }
+      ]
+    },
+    {
+      "type": "coin_received",
+      "attributes": [
+        {
+          "key": "cmVjZWl2ZXI=",
+          "value": "Y2VsZXN0aWExNnF4NzMwNnZlaHl5OW5kdHdzeTZjcmttZnBmN2VubXBodmwyZTI=",
+          "index": true
+        },
+        {
+          "key": "YW1vdW50",
+          "value": "MTAwMHV0aWE=",
+          "index": true
+        }
+      ]
+    },
+    {
+      "type": "transfer",
+      "attributes": [
+        {
+          "key": "cmVjaXBpZW50",
+          "value": "Y2VsZXN0aWExNnF4NzMwNnZlaHl5OW5kdHdzeTZjcmttZnBmN2VubXBodmwyZTI=",
+          "index": true
+        },
+        {
+          "key": "c2VuZGVy",
+          "value": "Y2VsZXN0aWExNG05NXloM3U0dHA3eHI0Y3dxMmw3NzNsbWRrOWYwbGZyM2s4N2c=",
+          "index": true
+        },
+        {
+          "key": "YW1vdW50",
+          "value": "MTAwMHV0aWE=",
+          "index": true
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "attributes": [
+        {
+          "key": "c2VuZGVy",
+          "value": "Y2VsZXN0aWExNG05NXloM3U0dHA3eHI0Y3dxMmw3NzNsbWRrOWYwbGZyM2s4N2c=",
+          "index": true
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "attributes": [
+        {
+          "key": "bW9kdWxl",
+          "value": "YmFuaw==",
+          "index": true
+        }
+      ]
+    }
+  ]
 }
 ```

@@ -1,0 +1,192 @@
+---
+sidebar_label: Keplr Integration 
+---
+
+# Keplr Integration With Celestia
+
+import AddNetworkKeplr from '@site/src/components/AddNetworkKeplr';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+export const ARABICA_PARAMS = {
+  chainId: 'arabica-2',
+  chainName: 'Arabica Devnet',
+  rpc: 'https://rpc.limani.celestia-devops.dev',
+  rest: 'https://limani.celestia-devops.dev'
+}
+
+export const MAMAKI_PARAMS = {
+  chainId: 'mamaki',
+  chainName: 'Mamaki Testnet',
+  rpc: 'https://rpc-mamaki.pops.one',
+  rest: 'https://api-mamaki.pops.one/'
+}
+
+Keplr is a popular Cosmos-based wallet that allows anyone
+to connect to Tendermint chains from their browser.
+
+You can learn more about installing Keplr [here](https://www.keplr.app/download).
+
+In this tutorial, we will have an interactive demo that goes over how
+you can add Celestia network parameters to Keplr.
+
+Most of the overview of integration are found on Keplr's website
+[here](https://docs.keplr.app/api/).
+
+For our demonstration, we converted the Keplr code on their docs
+to React components in order to demonstrate how you can add a Celestia
+network to Keplr from inside the docs.
+
+## Add Celestia Network to Keplr
+
+Before we demonstrate how to export the specific parameters for
+Celestia's testnets, we need to create a ReactJS component
+that allows us to connect directly to Keplr and pass it the network
+params.
+
+In the following code, we show how you can export a component
+that detects whether Keplr is installed and sets the network
+params for it:
+
+```jsx
+import React from 'react'
+import styles from './Keplr.module.css'
+
+export default function AddNetworkKeplr({params}){
+  async function add() {
+    if (!window.keplr) {
+        alert("Please install keplr extension");
+    } else {
+        if (window.keplr.experimentalSuggestChain){
+          try {
+            await window.keplr.experimentalSuggestChain({
+              chainId: params.chainId, 
+							chainName: params.chainName,
+							rpc: params.rpc,
+							rest: params.rest,
+							bip44: {
+									coinType: 118,
+							},
+							bech32Config: {
+									bech32PrefixAccAddr: "celestia",
+									bech32PrefixAccPub: "celestia" + "pub",
+									bech32PrefixValAddr: "celestia" + "valoper",
+									bech32PrefixValPub: "celestia" + "valoperpub",
+									bech32PrefixConsAddr: "celestia" + "valcons",
+									bech32PrefixConsPub: "celestia" + "valconspub",
+							},
+							currencies: [ 
+									{ 
+											coinDenom: "TIA", 
+											coinMinimalDenom: "utia", 
+											coinDecimals: 6, 
+											coinGeckoId: "celestia", 
+									}, 
+							],
+							feeCurrencies: [
+									{
+											coinDenom: "TIA",
+											coinMinimalDenom: "utia",
+											coinDecimals: 6,
+											coinGeckoId: "celestia",
+											gasPriceStep: {
+													low: 0.01,
+													average: 0.025,
+													high: 0.04,
+											},
+									},
+							],
+							stakeCurrency: {
+									coinDenom: "TIA",
+									coinMinimalDenom: "utia",
+									coinDecimals: 6,
+									coinGeckoId: "celestia",
+							},   
+            }) 
+          } catch {
+            alert("Failed to suggest the chain");
+          }
+        }
+        const chainId = params.chainId;
+        // Enabling before using the Keplr is recommended.
+        // This method will ask the user whether to allow access if they haven't visited this website.
+        // Also, it will request that the user unlock the wallet if the wallet is locked.
+        await window.keplr.enable(chainId);
+    }
+  }
+
+  return (
+		<div className={styles.center}>
+      <button className={styles.keplrButton} onClick={add}>Add/Switch To {params.chainName}</button> 
+    </div>
+  )
+}
+```
+
+This example is just for using Celestia configs.
+
+We still need to pass the Celestia network params for it.
+
+We can do it for both testnets in the following section.
+
+You can also test out the `Connect` button to add those
+params to your Keplr wallet. NOTE: You must have Keplr installed
+first.
+
+<Tabs groupId="keplr-network-selection">
+<TabItem value="arabica" label="Arabica">
+
+Here is a demo button that allows you to
+add Arabica Devnet to Keplr.
+
+Try it out:
+<AddNetworkKeplr params={ARABICA_PARAMS} />
+
+Behind the scenes, here are the params
+we are passing to the `AddNetworkKeplr`
+function:
+
+```jsx
+import '@site/src/components/AddNetworkKeplr'
+
+export const ARABICA_PARAMS = {
+  chainId: 'arabica-2',
+  chainName: 'Arabica Devnet',
+  rpc: 'https://rpc.limani.celestia-devops.dev',
+  rest: 'https://limani.celestia-devops.dev'
+}
+
+<AddNetworkKeplr params={ARABICA_PARAMS}/>
+```
+</TabItem>
+
+<TabItem value="mamaki" label="Mamaki">
+
+Here is a demo button that allows you to
+add Mamaki Testnet to Keplr.
+
+Try it out:
+<AddNetworkKeplr params={MAMAKI_PARAMS} />
+
+Behind the scenes, here are the params
+we are passing to the `AddNetworkKeplr`
+function:
+
+```jsx
+import '@site/src/components/AddNetworkKeplr'
+
+export const MAMAKI_PARAMS = {
+  chainId: 'mamaki',
+  chainName: 'Mamaki Testnet',
+  rpc: 'https://rpc-mamaki.pops.one',
+  rest: 'https://api-mamaki.pops.one/'
+}
+
+<AddNetworkKeplr params={MAMAKI_PARAMS}/>
+```
+</TabItem>
+
+
+
+</Tabs>
+
