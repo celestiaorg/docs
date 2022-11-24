@@ -9,3 +9,5 @@ files:
 export_languages:
   - fr
   - zh
+  - ru
+  - es
