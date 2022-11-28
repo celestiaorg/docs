@@ -81,20 +81,22 @@ ignite version
 
 The response that you receive should look something like this:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 jcs @ ~ % ignite version
-Ignite CLI version:	v0.25.1
-Ignite CLI build date:	2022-10-20T15:52:00Z
-Ignite CLI source hash:	cc393a9b59a8792b256432fafb472e5ac0738f7c
-Cosmos SDK version:	v0.46.3
-Your OS:		darwin
-Your arch:		arm64
-Your Node.js version:	v18.10.0
-Your go version:	go version go1.19.2 darwin/arm64
-Your uname -a:		Darwin Joshs-MacBook-Air.local 21.6.0 Darwin Kernel Version 21.6.0: Mon Aug 22 20:20:07 PDT 2022; root:xnu-8020.140.49~2/RELEASE_ARM64_T8110 arm64
-Your cwd:		/Users/joshstein
-Is on Gitpod:		false
+Ignite CLI version: v0.25.1
+Ignite CLI build date: 2022-10-20T15:52:00Z
+Ignite CLI source hash: cc393a9b59a8792b256432fafb472e5ac0738f7c
+Cosmos SDK version: v0.46.3
+Your OS: darwin
+Your arch: arm64
+Your Node.js version: v18.10.0
+Your go version: go version go1.19.2 darwin/arm64
+Your uname -a: Darwin Joshs-MacBook-Air.local 21.6.0 Darwin Kernel Version 21.6.0: Mon Aug 22 20:20:07 PDT 2022; root:xnu-8020.140.49~2/RELEASE_ARM64_T8110 arm64
+Your cwd: /Users/joshstein
+Is on Gitpod: false
 ```
+<!-- markdownlint-enable MD013 -->
 
 ## 🍺 Install Homebrew
 
