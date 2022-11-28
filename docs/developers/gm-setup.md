@@ -2,9 +2,6 @@
 sidebar_label: Setup
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # 💻 Setup
 
 - Operating systems: GNU/Linux, macOS, or Windows Subsystem for Linux (WSL).
@@ -103,13 +100,13 @@ Is on Gitpod:		false
 
 Homebrew will allow us to install dependencies for our Mac:
 
-```jsx
+```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 Be sure to run the commands similar to the output below from the successful installation:
 
-```jsx
+```sh
 ==> Next steps:
 - Run these three commands in your terminal to add Homebrew to your PATH:
     echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/joshstein/.zprofile

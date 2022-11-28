@@ -4,8 +4,10 @@ sidebar_label: Light Node
 
 # Setting up a Celestia Light Node
 
+````mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+````
 
 This tutorial will guide you through setting up a Celestia light node, which
 will allow you to perform data availability sampling on the data
@@ -44,6 +46,7 @@ This tutorial was performed on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
 First, make sure to update and upgrade the OS:
 
+````mdx-code-block
 <Tabs groupId="operating-systems">
 <TabItem value="apt" label="APT">
 
@@ -148,12 +151,14 @@ processor.
 
 </TabItem>
 </Tabs>
+````
 
 ### Install Golang
 
 Celestia-app and celestia-node are written in [Golang](https://go.dev/)
 so we must install Golang to build and run them.
 
+````mdx-code-block
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
@@ -385,8 +390,11 @@ go version go1.18.2 darwin/amd64
 </TabItem>
 </Tabs>
 
+````
+
 ### Install Celestia node
 
+````mdx-code-block
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
@@ -629,6 +637,7 @@ Commit: 89892d8b96660e334741987d84546c36f0996fbe
 
 </TabItem>
 </Tabs>
+````
 
 ## Initialize the light node
 
@@ -658,6 +667,7 @@ is usually exposed on port 9090):
   directed below. For `gateway`, the default IP Address is `localhost` and the
   default `port` is `26659`.
 
+````mdx-code-block
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
@@ -795,6 +805,7 @@ celestia light start --core.grpc <ip-address>:<port> --keyring.accname <name_of_
 
 </TabItem>
 </Tabs>
+````
 
 ### Optional: start light node with SystemD
 

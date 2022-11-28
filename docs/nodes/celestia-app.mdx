@@ -2,8 +2,6 @@
 sidebar_label: Installing Celestia App
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Celestia App
 
@@ -16,6 +14,10 @@ own environment [here](./environment.mdx).
 The steps below will create a binary file named `celestia-appd`
 inside `$HOME/go/bin` folder which will be used later to run the node.
 Be sure to select the correct network to install the binary for.
+
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
@@ -48,6 +50,7 @@ make install
 
 </TabItem>
 </Tabs>
+````
 
 To check if the binary was successfully compiled you can run the binary
 using the `--help` flag:
