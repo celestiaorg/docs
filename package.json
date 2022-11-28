@@ -15,7 +15,7 @@
     "lint": "markdownlint docs/",
     "lint-mdx": "eslint docs/ --ext mdx",
     "crowdin": "crowdin",
-    "crowdin:sync": "docusaurus write-translations && crowdin upload && crowdin download --skip-untranslated-files --export-only-approved"
+    "crowdin:sync": "docusaurus write-translations && crowdin upload --delete-obsolete && crowdin download --skip-untranslated-files --export-only-approved"
   },
   "dependencies": {
     "@crowdin/cli": "3",

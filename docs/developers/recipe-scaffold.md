@@ -12,7 +12,9 @@ Run the following command to scaffold your `recipes` chain using Ignite CLI:
 ignite scaffold chain recipes --address-prefix recipes
 ```
 
-Your new `recipes` chain has been scaffolded and `--address-prefix recipes` allows the address prefix to be `recipes` instead of `cosmos`. 
+Your new `recipes` chain has been scaffolded and
+`--address-prefix recipes` allows the address prefix
+to be `recipes` instead of `cosmos`.
 
 Change into the `recipes` directory:
 
@@ -21,6 +23,7 @@ cd recipes
 ```
 
 ## 💎 Installing Rollmint
+
 To swap out Tendermint for Rollmint, run the following commands:
 
 ```sh
