@@ -4,9 +4,6 @@ sidebar_label: Setting Up Environment
 
 # Development Environment
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 This tutorial will go over setting up your development environment to run
 Celestia software. This environment can be used for development, building
 binaries, and running nodes.
@@ -17,6 +14,10 @@ Once you have setup your instance, ssh into the instance to begin installing the
 dependencies needed to run a node.
 
 First, make sure to update and upgrade the OS:
+
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs groupId="operating-systems">
 <TabItem value="apt" label="APT">
@@ -124,12 +125,14 @@ processor.
 
 </TabItem>
 </Tabs>
+````
 
 ### Install Golang
 
 Celestia-app and celestia-node are written in [Golang](https://go.dev/)
 so we must install Golang to build and run them.
 
+````mdx-code-block
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
@@ -360,3 +363,4 @@ go version go1.18.2 darwin/amd64
 
 </TabItem>
 </Tabs>
+````

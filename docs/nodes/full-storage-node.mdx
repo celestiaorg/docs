@@ -2,8 +2,10 @@
 sidebar_label: Full Storage Node
 ---
 
+````mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+````
 
 # Setting up a Celestia Full Storage Node
 
@@ -62,6 +64,7 @@ A note on ports:
   it in the command line, it will default to that port. You can use the flag
   to specify another port if you prefer.
 
+````mdx-code-block
 <Tabs groupId="networks">
 <TabItem value="arabica" label="Arabica">
 
@@ -78,6 +81,7 @@ celestia full start --core.remote <ip-address>:<port>
 
 </TabItem>
 </Tabs>
+````
 
 If you would like to find example RPC endpoints, check out the list of
 resources [here](./mamaki-testnet.md#rpc-endpoints).
@@ -112,6 +116,7 @@ In order to run a full storage node using a custom key:
    at the correct path (default: `~/.celestia-full/keys/keyring-test`)
 2. The name of the custom key must be passed upon `start`, like so:
 
+````mdx-code-block
 <Tabs groupId="networks">
 <TabItem value="arabica" label="Arabica">
 
@@ -128,6 +133,7 @@ celestia full start --core.remote <ip-address>:<port> --keyring.accname <name-of
 
 </TabItem>
 </Tabs>
+````
 
 ### Optional: start the full storage node with SystemD
 
