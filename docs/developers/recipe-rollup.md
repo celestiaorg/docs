@@ -19,19 +19,26 @@ ignite chain serve
 ![light-node.png](/img/recipes/light-node.png)  
 
 ## 🗞️ Start the Recipes Rollup
+
 Start your Rollmint chain by running the following command:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 recipesd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 100783
 ```
+<!-- markdownlint-enable MD013 -->
 
 ![recipe-start.gif](/img/recipes/recipe-start.gif)
 
-Open another teminal instance. Now, create your first recipe in the command line by sending a transaction from alice, when prompted, confirm the transaction by entering `y`:
+Open another teminal instance. Now, create your first
+recipe in the command line by sending a transaction from alice,
+when prompted, confirm the transaction by entering `y`:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette" --from alice
 ```
+<!-- markdownlint-enable MD013 -->
 
 ![recipes.gif](/img/recipes/recipes.gif)
 
