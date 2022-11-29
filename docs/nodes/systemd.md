@@ -39,7 +39,7 @@ If the file was created successfully you will be able to see its content:
 cat /etc/systemd/system/celestia-appd.service
 ```
 
-Enable and start celestia-appd daemon:
+Enable and start `celestia-appd` daemon:
 
 ```sh
 systemctl enable celestia-appd
@@ -66,6 +66,12 @@ curl -s localhost:26657/status | jq .result | jq .sync_info
 
 Make sure that you have `"catching_up": false`, otherwise leave it running
 until it is in sync.
+
+To stop the `celestia-appd` daemon:
+
+```sh
+systemctl stop celestia-appd
+```
 
 ## Data availability nodes
 
