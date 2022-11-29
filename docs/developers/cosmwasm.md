@@ -9,7 +9,7 @@ ecosystem by making use of [WebAssembly](https://webassembly.org/) (Wasm)
 to build smart contracts for Cosmos-SDK. In this tutorial, we will be
 exploring how to integrate CosmWasm with Celestia's
 [Data Availability Layer](../concepts/how-celestia-works/data-availability-layer)
-using [Rollmint](./rollmint.md).
+using [Rollmint](./rollmint).
 
 > NOTE: This tutorial will explore developing with Rollmint,
   which is still in Alpha stage. If you run into bugs, please write a Github
