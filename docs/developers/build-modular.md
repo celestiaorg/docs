@@ -148,7 +148,7 @@ skillset without having to learn anything new.
 You can write any language and use any execution environment
 you’d like, including Solidity or Vyper and the EVM or Cosmos and Go.
 
-You can use [Rollmint](./rollmint.md) to deploy a rollup for your
+You can use [Rollmint](./rollmint) to deploy a rollup for your
 favorite execution environment connected to Celestia.
 
 ### Sovereign rollups

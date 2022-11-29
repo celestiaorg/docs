@@ -1,3 +1,7 @@
+---
+sidebar_label: Quick Start
+---
+
 # Quick Start Guide
 
 In this section, we show you how to get started
@@ -27,8 +31,8 @@ covers the Data Availability layer.
 ## Getting Started
 
 As covered in the previous section, Celestia offers
-two different test networks, [Arabica](./arabica-devnet.md)
-and [Mamaki](./mamaki-testnet.md).
+two different test networks, [Arabica](./arabica-devnet)
+and [Mamaki](./mamaki-testnet).
 
 If you are planning to run a light node, it is recommended
 to use Arabica, which you will find options to connecting to

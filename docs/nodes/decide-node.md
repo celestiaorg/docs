@@ -1,3 +1,7 @@
+---
+sidebar_label: Deciding Which Node To Run
+---
+
 # Deciding Which Node to Run
 
 Now that you have installed the basic dependencies,

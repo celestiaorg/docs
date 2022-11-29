@@ -8,7 +8,7 @@ CosmWasm is a smart contracting platform built for the Cosmos
 ecosystem by making use of [WebAssembly](https://webassembly.org/) (Wasm)
 to build smart contracts for Cosmos-SDK. In this tutorial, we will be
 exploring how to integrate CosmWasm with Celestia's
-[Data Availability Layer](../concepts/how-celestia-works/data-availability-layer.md)
+[Data Availability Layer](../concepts/how-celestia-works/data-availability-layer)
 using [Rollmint](./rollmint.md).
 
 > NOTE: This tutorial will explore developing with Rollmint,
