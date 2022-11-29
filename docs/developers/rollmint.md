@@ -39,3 +39,4 @@ You can get started with the following tutorials:
 - [Recipe Book](./recipe-book.md)
 - [Wordle Game](./wordle.md)
 - [CosmWasm Tutorial](./cosmwasm.md)
+- [Ethermint Tutorial](./ethermint.md)
