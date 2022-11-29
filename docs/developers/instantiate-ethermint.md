@@ -39,9 +39,10 @@ DA_BLOCK_HEIGHT=$(curl https://rpc.limani.celestia-devops.dev/block?height | jq 
 ```
 <!-- markdownlint-enable MD013 -->
 
-If you are running this on Arabica testnet, you need to get
+If you are running this on Arabica testnet, you need to run your light node with
+an account that has Arabica Devnet tokens. Visit the faucet [here](../nodes/arabica-devnet.md#arabica-devnet-faucet).
 
-With it complete, we can now start our Ethermint Rollup:
+With this setup complete, we can now start our Ethermint Rollup:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
