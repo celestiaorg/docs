@@ -64,7 +64,7 @@ Tendermint provides: they still just have to define their business /
 state-machine logic. The Rollmint-specific ABCI Client is stripped down to only
 handle the network Layer but it also embeds a light node of the DA and
 Consensus Layer chain used and takes care of submitting the block to the DA
-and Consensus Layer.
+and Consensus Layer. This can also be done with a Consensus Full Node.
 
 As with Tendermint the state-machine and Rollmint interact with each other via
 ABCI.
@@ -97,7 +97,7 @@ Consensus Layer.
 ##### Light Nodes
 
 Light nodes are the main producer of transactions in the Rollmint network.
-They participate in gossiping of both transactions and fraud proofs. Light
+They participate in gossiping of and fraud proofs. Light
 nodes may only request or store a subset of the state, just to ensure that they
 can execute rollback.
 
