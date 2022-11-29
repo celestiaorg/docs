@@ -353,6 +353,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Run A Light Node",
+              id: "developers/wordle-node"
+            },
+            {
+              type: "doc",
               label: "Installing Rollmint",
               id: "developers/install-rollmint"
             },
@@ -421,6 +426,41 @@ const sidebars = {
               label: "CosmWasm Resources",
               id: "developers/cosmwasm-resources"
             }
+          ]
+        },
+        {
+          type: "category",
+          label: "Ethermint",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Ethermint Overview",
+              id: "developers/ethermint"
+            },
+            {
+              type: "doc",
+              label: "Ethermint Dependencies",
+              id: "developers/ethermint-dependencies"
+            },
+            {
+              type: "doc",
+              label: "Rollmint on Ethermint",
+              id: "developers/rollmint-on-ethermint"
+            },
+            {
+              type: "doc",
+              label: "Instantiate Ethermint",
+              id: "developers/instantiate-ethermint"
+            },
+            {
+              type: "doc",
+              label: "Deploy Smart Contract on Ethermint with Foundry",
+              id: "developers/deploy-solidity-ethermint-foundry"
+            },
           ]
         }
       ]

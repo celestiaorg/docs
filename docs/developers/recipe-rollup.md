@@ -4,29 +4,47 @@ sidebar_label: Running the Recipes Rollup
 
 # 👩‍🍳 Running the Recipes Rollup
 
-## 👩‍💻 Use `recipesd` to create your first recipe
+## ✨ Run a Celestia Light Node
 
-🟢 Start the chain with:
+Follow instructions to install and start your Celestia Data Availalbility
+layer Light Node selecting the network that you had previously used. You can
+find instructions to install and run the node [here](/nodes/light-node.mdx).
 
-```bash
-ignite chain serve
-```
-
-🔴 Then stop your chain using `Ctrl+C`.
-
-## ✨ [Run a Celestia Light Node](../nodes/light-node#start-the-light-node)
+After you have Go and Ignite CLI installed, and your Celestia Light
+Node running on your machine, you're ready to build, test, and launch your own
+sovereign rollup.
 
 ![light-node.png](/img/recipes/light-node.png)  
 
 ## 🗞️ Start the Recipes Rollup
 
-Start your Rollmint chain by running the following command:
+We have a handy `init.sh` found in this repo
+[here](https://github.com/celestiaorg/devrel-tools).
 
-<!-- markdownlint-disable MD013 -->
-```bash
-recipesd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 100783
+We can copy it over to our directory with the following commands:
+
+```sh
+# From inside the `recipe` directory
+cd ..
+git clone https://github.com/celestiaorg/devrel-tools
+cp devrel-tools/recipes/init.sh recipes/
+cd recipes/
 ```
 <!-- markdownlint-enable MD013 -->
+
+This copies over our `init.sh` script to initialize our
+Recipes Rollup.
+
+You can view the contents of the script to see how we
+initialize the Recipes Rollup.
+
+🟢 Start the chain with:
+
+```sh
+bash init.sh
+```
+
+With that, we have kickstarted our `recipesd` network!
 
 ![recipe-start.gif](/img/recipes/recipe-start.gif)
 
