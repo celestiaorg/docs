@@ -353,6 +353,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Run A Light Node",
+              id: "developers/wordle-node"
+            },
+            {
+              type: "doc",
               label: "Installing Rollmint",
               id: "developers/install-rollmint"
             },
