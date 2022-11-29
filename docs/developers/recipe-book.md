@@ -22,14 +22,14 @@ are sent to the `recipes` blockchain.
 
 ## 💻 Prerequisites
 
-- [gm world Tutorial](./gm-world.md) (recommended)
+- [gm world Tutorial](./gm-world) (recommended)
 - [Install Golang](../nodes/environment.mdx#install-golang)
-- [Install Celestia Node](../nodes/celestia-node.mdx)
-- [Install Ignite CLI](./gm-setup.md#install-ignite-cli)
+- [Install Celestia Node](../nodes/celestia-node)
+- [Install Ignite CLI](./gm-setup)
 
 ## 🧱 Table of Contents
 
-- [Scaffolding your Rollup](./recipe-scaffold.md)
-- [Messages](./recipe-message.md)
-- [Keepers](./recipe-keeper.md)
-- [Querying Recipes](./recipe-query.md)
+- [Scaffolding your Rollup](./recipe-scaffold)
+- [Messages](./recipe-message)
+- [Keepers](./recipe-keeper)
+- [Querying Recipes](./recipe-query)
