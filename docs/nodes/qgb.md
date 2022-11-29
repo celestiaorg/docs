@@ -22,10 +22,11 @@ reference the QGB smart contract [here](https://github.com/celestiaorg/quantum-g
 
 ![QGB-Architecture](/img/nodes/qgb-diagram.png)
 
-The specification of the QGB valsets, which track the Celestia validator set
+The specification of the QGB `Valset`s, which track the Celestia validator set
 changes, can be found in this [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
 
-The QGB data commitments, which represent commitments over sets of blocks, are
+The QGB data commitments, which represent commitments over sets of blocks
+defined by a data commitment window, are
 discussed more in-depth in the following [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
 
 The Orchestrator is part of the Validator setup and works as follows:
@@ -102,6 +103,7 @@ transactions.
 Running the orchestrator command above will show logs like the following
 output:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 D[2022-11-02|23:04:32.758] initializing orchestrator                    
 D[2022-11-02|23:04:32.766] starting orchestrator                        
@@ -122,6 +124,7 @@ D[2022-11-02|23:04:42.097] enqueueing new attestation nonce             nonce=4
 D[2022-11-02|23:04:42.097] processing nonce                             nonce=4
 I[2022-11-02|23:04:43.106] signed commitment                            nonce=4 begin_block=10 end_block=15 commitment=D541B8F010C615172570B181BBE57A8C2314CE3B9E785EF831EC2FF0A5B8D93A tx_hash=FBC01DAFBEE82B02F8041574B05154C9C09A8723A06F66B327F13C6D869868EE
 ```
+<!-- markdownlint-enable MD013 -->
 
 With that, you have started the orchestrator! Now, let's move on to the Relayer.
 
@@ -151,9 +154,11 @@ The `-z` flag references the Chain ID of Sepolia.
 When you run the command, you should get the following output that indicates
 the QGB Smart Contract has been deployed:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 I[2022-11-02|23:05:37.293] deployed QGB contract                        address=0x735e796b72c13E427C8eD9d1a24f6e6147217CE1 hash=0xbc06b4b861f6e9ffbd4c3f8bb393085182a441141e906e7b3b4f5cb38584c3cc
 ```
+<!-- markdownlint-enable MD013 -->
 
 The logs will show you both the smart contract address for the deployed QGB
 smart contract on Sepolia as well as the transaction hash. You can use the
@@ -179,6 +184,7 @@ The `-l` flag refers to the gas limit being set for the Relayer.
 
 Running the command will give you the following output:
 
+<!-- markdownlint-disable MD013 -->
 ```sh
 D[2022-11-02|23:06:18.029] found enough data commitment confirms to be relayed majThreshHold=2863311532 currThreshold=4294967296
 I[2022-11-02|23:06:18.030] relaying data commitment 0-5...              
@@ -188,6 +194,7 @@ D[2022-11-02|23:06:37.206] found enough data commitment confirms to be relayed m
 I[2022-11-02|23:06:37.207] relaying data commitment 5-10...             
 D[2022-11-02|23:06:38.023] waiting for data commitment to be confirmed  nonce=3 hash=0xe142d968897c20962211da34e4b61a38379d14e24f0057074bedce6028dc0c76
 ```
+<!-- markdownlint-enable MD013 -->
 
 With that, the QGB for your Validator is running. You can check the smart contract
 address on Sepolia Block Explorer to view the attestations being submitted to the
@@ -211,6 +218,38 @@ bash script/single-node.sh
 
 This starts a local network with QGB enabled. You can then run the Orchestrator
 and Relayer after which were covered in the previous sections.
+
+#### Orchestrator
+
+To run the Orchestrator,  open up a new terminal window and run the following:
+
+<!-- markdownlint-disable MD013 -->
+```sh
+celestia-appd orchestrator  -x "test" -d da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb9 --keyring-account validator --keyring-backend=test
+```
+<!-- markdownlint-enable MD013 -->
+
+You should be able to see the Orchestrator running.
+
+#### Relayer
+
+To run the Relayer, open up a new terminal window, and run the following:
+
+<!-- markdownlint-disable MD013 -->
+```sh
+celestia-appd deploy -x "test" -d 921318593473bee5ff7a1d4acd849aeccb6659793b7348ae467727f3c89f7fc2 -e https://rpc.sepolia.org -z 11155111
+```
+<!-- markdownlint-enable MD013 -->
+
+This will deploy the QGB contract on Sepolia testnet.
+
+Take the contract address shown in the previous command, and run the Relayer as follows:
+
+<!-- markdownlint-disable MD013 -->
+```sh
+celestia-appd relayer  -a <contract_address> -d 921318593473bee5ff7a1d4acd849aeccb6659793b7348ae467727f3c89f7fc2 -e https://rpc.sepolia.org -z 11155111  -l 25000000
+```
+<!-- markdownlint-enable MD013 -->
 
 ### Docker Compose
 
