@@ -4,7 +4,6 @@ sidebar_label: Running the Recipes Rollup
 
 # 👩‍🍳 Running the Recipes Rollup
 
-
 ## ✨ Run a Celestia Light Node
 
 Follow instructions to install and start your Celestia Data Availalbility
@@ -31,6 +30,7 @@ git clone https://github.com/celestiaorg/devrel-tools
 cp devrel-tools/recipes/init.sh recipes/
 cd recipes/
 ```
+<!-- markdownlint-enable MD013 -->
 
 This copies over our `init.sh` script to initialize our
 Recipes Rollup.
@@ -48,11 +48,15 @@ With that, we have kickstarted our `recipesd` network!
 
 ![recipe-start.gif](/img/recipes/recipe-start.gif)
 
-Open another teminal instance. Now, create your first recipe in the command line by sending a transaction from alice, when prompted, confirm the transaction by entering `y`:
+Open another teminal instance. Now, create your first
+recipe in the command line by sending a transaction from alice,
+when prompted, confirm the transaction by entering `y`:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette" --from alice
 ```
+<!-- markdownlint-enable MD013 -->
 
 ![recipes.gif](/img/recipes/recipes.gif)
 

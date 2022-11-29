@@ -190,6 +190,11 @@ const sidebars = {
       id: "developers/overview" 
     },
     {
+      type: "doc",
+      label: "Build Modular",
+      id: "developers/build-modular"
+    },
+    {
       type: "category",
       label: "Create A Celestia Wallet",
       link: {

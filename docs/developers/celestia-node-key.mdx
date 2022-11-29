@@ -4,9 +4,6 @@ sidebar_label: Wallet with Celestia Node
 
 # Create A Wallet with Celestia Node
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 This tutorial will go over using the `cel-key` utility
 to generate a wallet on Celestia Node.
 
@@ -52,6 +49,10 @@ make install-key
 For the purpose of this guide, we will use the `make cel-key` command.
 
 ### Steps for generating node keys
+
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs groupId="node-type">
 <TabItem value="bridge" label="Bridge">
@@ -142,9 +143,11 @@ celestia-appd keys import <new-key-name>
 
 </TabItem>
 </Tabs>
+````
 
 ### Steps for importing node keys
 
+````mdx-code-block
 <Tabs groupId="node-type">
 <TabItem value="bridge" label="Bridge">
 
@@ -198,6 +201,7 @@ Example:
 
 </TabItem>
 </Tabs>
+````
 
 ---
 

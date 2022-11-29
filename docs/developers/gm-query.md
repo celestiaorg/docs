@@ -2,7 +2,7 @@
 sidebar_label: Query your Rollup
 ---
 
-# 💬 Say `gm world!`
+# 💬 Say gm world
 
 Now, we're going to get our blockchain to say `gm world!` - in order to do so
 you need to make the following changes:
