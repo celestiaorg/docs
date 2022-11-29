@@ -10,7 +10,7 @@ This guide contains the relevant sections for how to connect to Mamaki,
 depending on the type of node you are running. Mamaki Testnet is designed
 to help validators test out their infrastructure and node software
 with the test network. Developers are encouraged to deploy their
-sovereign rollups on Mamaki, but we also recommend [Arabica Devnet](./arabica-devnet.md)
+sovereign rollups on Mamaki, but we also recommend [Arabica Devnet](./arabica-devnet)
 for that as it is designed for development purposes.
 
 Mamaki is a milestone in Celestia, allowing everyone to test out
@@ -25,14 +25,14 @@ participate in Mamaki:
 
 Consensus:
 
-* [Validator Node](./validator-node.md)
-* [Consensus Full Node](./consensus-full-node.md)
+* [Validator Node](./validator-node)
+* [Consensus Full Node](./consensus-full-node)
 
 Data Availability:
 
-* [Bridge Node](./bridge-node.mdx)
-* [Full Storage Node](./full-storage-node.mdx)
-* [Light Node](./light-node.mdx)
+* [Bridge Node](./bridge-node)
+* [Full Storage Node](./full-storage-node)
+* [Light Node](./light-node)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
