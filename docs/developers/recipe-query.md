@@ -13,6 +13,7 @@ ignite scaffold query dishes --response dish,ingredients
 ```
 
 A response on a successful scaffold will look like this:
+
 ```bash
 modify proto/recipes/recipes/query.proto
 modify x/recipes/client/cli/query.go
@@ -49,21 +50,23 @@ message QueryDishesResponse {
 }
 ```
 
-In order to implement recipe querying logic in `recipes/x/recipes/keeper/grpc_query_dishes.go`, delete the file contents and replace them with:
+In order to implement recipe querying logic in
+`recipes/x/recipes/keeper/grpc_query_dishes.go`,
+delete the file contents and replace them with:
 
+<!-- markdownlint-disable MD013 -->
 ```go title="recipes/x/recipes/keeper/grpc_query_dishes.go"
 package keeper
 
 import (
-	"context"
+  "context"
+  "github.com/cosmos/cosmos-sdk/store/prefix"
+  sdk "github.com/cosmos/cosmos-sdk/types"
+  "github.com/cosmos/cosmos-sdk/types/query"
+  "google.golang.org/grpc/codes"
+  "google.golang.org/grpc/status"
 
-	"github.com/cosmos/cosmos-sdk/store/prefix"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/query"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-
-	"recipes/x/recipes/types"
+  "recipes/x/recipes/types"
 )
 
 func (k Keeper) Dishes(c context.Context, req *types.QueryDishesRequest) (*types.QueryDishesResponse, error) {
@@ -105,3 +108,4 @@ func (k Keeper) Dishes(c context.Context, req *types.QueryDishesRequest) (*types
   return &types.QueryDishesResponse{Recipe: dishes, Pagination: pageRes}, nil
 }
 ```
+<!-- markdownlint-enable MD013 -->
