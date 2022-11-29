@@ -38,9 +38,9 @@ participate in Arabica:
 
 Data Availability:
 
-* [Bridge Node](./bridge-node.mdx)
-* [Full Storage Node](./full-storage-node.mdx)
-* [Light Node](./light-node.mdx)
+* [Bridge Node](./bridge-node)
+* [Full Storage Node](./full-storage-node)
+* [Light Node](./light-node)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
