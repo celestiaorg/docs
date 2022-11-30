@@ -167,7 +167,9 @@ You should be seeing logs coming through of the bridge node syncing.
 
 ### Celestia light node
 
-Start the Light Node as daemon process in the background
+Start the Light Node as daemon process in the background. You will need to
+replace `<ip-address>` and `<port>` based on [guidance](./light-node.mdx)
+for your network
 
 <!-- markdownlint-disable MD013 -->
 ```sh
