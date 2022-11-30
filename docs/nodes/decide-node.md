@@ -21,7 +21,7 @@ in this tutorial for the Light Node [here](../developers/node-tutorial.mdx).
 ## Advanced
 
 If you are looking to run a validator, please follow the tutorial
-for running a validator [here](./validator-node.mdx).
+for running a validator [here](./validator-node).
 
 Note that running a validator means you must also run a bridge node,
 which is covered [here](./bridge-node.mdx).
