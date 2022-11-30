@@ -2,11 +2,6 @@
 sidebar_label: Validator Node
 ---
 
-````mdx-code-block
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-````
-
 # Setting up a Celestia Validator Node
 
 Validator nodes allow you to participate in consensus in the Celestia network.
@@ -104,7 +99,7 @@ sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/co
 
 ### Reset network
 
-This will delete all data folders so we can start fresh:
+This will delete all data folders of chain history so we can start fresh:
 
 ```sh
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
@@ -163,12 +158,18 @@ Enter keyring passphrase:
 celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
 ```
 
+Set your valoper address as a variable:
+
+```sh
+VALIDATOR_VALOPER=<valoper-address>
+```
+
 To delegate tokens to the `celestiavaloper` validator, as an
 example you can run:
 
 ```sh
 celestia-appd tx staking delegate \
-    celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd 1000000utia \
+    $VALIDATOR_VALOPER 1000000utia \
     --from=$VALIDATOR_WALLET --chain-id=mamaki
 ```
 
@@ -203,23 +204,6 @@ You can follow the tutorial for installing Celestia Node [here](./celestia-node.
 
 ### Initialize the bridge node
 
-````mdx-code-block
-<Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-Run the following: 
-
-```sh
-celestia bridge init --core.ip <ip-address> --core.rpc.port <port>
-```
-
-> NOTE: The `--core.rpc.port` defaults to 26657, so if you do not specify
-it in the command line, it will default to that port. You can use the flag
-to specify another port if you prefer.
-
-</TabItem>
-<TabItem value="mamaki" label="Mamaki">
-
 Run the following:
 
 ```sh
@@ -232,34 +216,7 @@ celestia bridge init --core.remote <ip-address>:<port>
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet)
 
-</TabItem>
-</Tabs>
-
 ### Run the bridge node
-
-<Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-Start the Bridge Node with a connection to a validator node's gRPC endpoint:
-
-```sh
-celestia bridge start --core.ip <ip-address> --core.grpc.port <port>
-```
-
-> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer.
-
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet#rpc-endpoints)
-
-Here is an example of starting the bridge node:
-
-```sh
-celestia bridge start --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090
-```
-
-</TabItem>
-<TabItem value="mamaki" label="Mamaki">
 
 Start the Bridge Node with a connection to a validator node's gRPC endpoint:
 
@@ -267,19 +224,17 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint:
 celestia bridge start --core.remote <ip-address>:<port>
 ```
 
-> NOTE: The `--core.remote` port defaults to 9090, so if you do not specify it in the command line, it will default to that port. You can use the flag to specify another port if you prefer.
+> NOTE: The `--core.remote` port defaults to 9090, so if you do not specify it
+in the command line, it will default to that port. You can use the flag to
+specify another port if you prefer.
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet#rpc-endpoints)
 
 Here is an example of starting the bridge node:
 
 ```sh
-celestia bridge start --core.remote https://rpc-mamaki.pops.one:26657
+celestia bridge start --core.remote https://rpc-mamaki.pops.one:9090
 ```
-
-</TabItem>
-</Tabs>
-````
 
 ### Optional: start the bridge node with SystemD
 
@@ -300,16 +255,16 @@ up on public dashboards and explorers. `VALIDATOR_WALLET` must be the same you
 defined previously. Parameter `--min-self-delegation=1000000` defines the
 amount of tokens that are self delegated from your validator wallet.
 
-Now, connect to the network of your choice.
+> Now, connect to the network of your choice.
 
-You have the following option of connecting to list of networks shown below:
+> You have the following option of connecting to list of networks shown below:
 
 Continuing the Validator tutorial, here are the steps to connect your
 validator to Mamaki:
 
 ```sh
 MONIKER="your_moniker"
-VALIDATOR_WALLET="validator"
+VALIDATOR_WALLET=<validator address>
 
 celestia-appd tx staking create-validator \
     --amount=1000000utia \
