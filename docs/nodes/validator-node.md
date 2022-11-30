@@ -142,9 +142,9 @@ VALIDATOR_WALLET=<validator-address>
 ```
 
 If you want to delegate more stake to any validator, including your own you
-will need the `celesvaloper` address of the validator in question. You can
+will need the `celestiavaloper` address of the validator in question. You can
 either check it using the block explorer mentioned above or you can run the
-command below to get the `celesvaloper` of your local validator wallet in
+command below to get the `celestiavaloper` of your local validator wallet in
 case you want to delegate more to it:
 
 ```sh
@@ -163,7 +163,7 @@ example you can run:
 
 ```sh
 celestia-appd tx staking delegate \
-    celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \
+    celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd 1000000utia \
     --from=$VALIDATOR_WALLET --chain-id=mamaki
 ```
 
