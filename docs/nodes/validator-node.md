@@ -48,7 +48,7 @@ git clone https://github.com/celestiaorg/networks.git
 ```
 
 To initialize the network pick a "node-name" that describes your
-node. The --chain-id parameter we are using here is `mamaki`. Keep in
+node. The `--chain-id` parameter we are using here is `mamaki`. Keep in
 mind that this might change if a new testnet is deployed.
 
 ```sh
