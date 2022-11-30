@@ -9,7 +9,7 @@ This is the Celestia Node API Docs reference page for being able to make API
 requests to your Celestia Node.
 
 In order to query the API, you will need to setup your node. Resources on
-how to do this can be found in the following [guide](../nodes/validator-node.md#deploy-the-celestia-node).
+how to do this can be found in the following [guide](../nodes/validator-node.mdx#deploy-the-celestia-node).
 
 ## Endpoints
 
