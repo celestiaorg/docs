@@ -255,10 +255,6 @@ up on public dashboards and explorers. `VALIDATOR_WALLET` must be the same you
 defined previously. Parameter `--min-self-delegation=1000000` defines the
 amount of tokens that are self delegated from your validator wallet.
 
-> Now, connect to the network of your choice.
-
-> You have the following option of connecting to list of networks shown below:
-
 Continuing the Validator tutorial, here are the steps to connect your
 validator to Mamaki:
 
