@@ -90,7 +90,7 @@ celestia bridge init --core.ip <ip-address> --core.rpc.port <port>
   it in the command line, it will default to that port. You can use the flag
   to specify another port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
 
 Here is an example of initializing the bridge node:
 
@@ -99,7 +99,7 @@ celestia bridge init --core.ip https://limani.celestia-devops.dev/ --core.grpc.p
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 Run the following:
 
@@ -111,12 +111,12 @@ celestia bridge init --core.remote <ip-address>:<port>
   it in the command line, it will default to that port. You can use the flag
   to specify another port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
 
 Here is an example of initializing the bridge node:
 
 ```sh
-celestia bridge init --core.remote https://rpc-mamaki.pops.one:9090
+celestia bridge init --core.remote https://rpc-mocha.pops.one:9090
 ```
 
 </TabItem>
@@ -138,7 +138,7 @@ celestia bridge start --core.ip <ip-address> --core.grpc.port <port>
   it in the command line, it will default to that port. You can use the flag
   to specify another port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
 
 Here is an example of starting the bridge node:
 
@@ -147,7 +147,7 @@ celestia bridge start --core.ip https://limani.celestia-devops.dev/ --core.grpc.
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 Start the Bridge Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
@@ -158,12 +158,12 @@ celestia bridge start --core.remote <ip-address>:<port>
 
 > NOTE: The `--core.remote` port defaults to 9090, so if you do not specify it in the command line, it will default to that port. You can use the flag to specify another port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
 
 Here is an example of starting the bridge node:
 
 ```sh
-celestia bridge start --core.remote https://rpc-mamaki.pops.one:26657
+celestia bridge start --core.remote https://rpc-mocha.pops.one:26657
 ```
 
 </TabItem>
@@ -184,10 +184,10 @@ You can find the address by running the following command:
 You have two networks to get testnet tokens from:
 
 * [Arabica](./arabica-devnet)
-* [Mamaki](./mamaki-testnet)
+* [Mocha](./mocha-testnet)
 
 > NOTE: If you are running a bridge node for your validator
-  it is highly recommended to request Mamaki testnet tokens
+  it is highly recommended to request Mocha testnet tokens
   as this is the testnet used to test out validator operations.
 
 #### Optional: run the bridge node with a custom key
@@ -207,7 +207,7 @@ celestia bridge start --core.ip <ip> --core.grpc.port 9090 --keyring.accname <na
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
 celestia bridge start --core.remote <ip>:<port> --keyring.accname <name_of_custom_key>

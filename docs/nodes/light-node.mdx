@@ -274,7 +274,7 @@ go version go1.19.1 darwin/amd64
 </Tabs>
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
@@ -522,12 +522,12 @@ Golang version: go1.19.1
 </Tabs>
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -554,7 +554,7 @@ Commit: 89892d8b96660e334741987d84546c36f0996fbe
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -581,7 +581,7 @@ Commit: 89892d8b96660e334741987d84546c36f0996fbe
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -608,7 +608,7 @@ Commit: 89892d8b96660e334741987d84546c36f0996fbe
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -682,7 +682,7 @@ For ports:
   to specify another port if you prefer.
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
 celestia light start --core.grpc <ip-address>:<port>
@@ -709,14 +709,14 @@ celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.po
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
 
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+celestia light start --core.grpc https://rpc-mocha.pops.one:9090
 ```
 
 </TabItem>
@@ -741,7 +741,7 @@ celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
 celestia light start --core.grpc <ip-address>:<port> --keyring.accname <key-name>
@@ -764,13 +764,13 @@ You can find the address by running the following command in the
 You have two networks to get testnet tokens from:
 
 * [Arabica](./arabica-devnet#arabica-devnet-faucet)
-* [Mamaki](./mamaki-testnet#mamaki-testnet-faucet)
+* [Mocha](./mocha-testnet#mocha-testnet-faucet)
 
 > NOTE: If you are running a light node for your sovereign
   rollup, it is highly recommended to request Arabica devnet tokens
   as Arabica has the latest changes that can be used to
   test for developing your sovereign rollup. You can still use
-  Mamaki Testnet as well, it is just used for Validator operations.
+  Mocha Testnet as well, it is just used for Validator operations.
 
 You can request funds to your wallet address using the following command in Discord:
 
@@ -797,7 +797,7 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.ac
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
 celestia light start --core.grpc <ip-address>:<port> --keyring.accname <name_of_custom_key>

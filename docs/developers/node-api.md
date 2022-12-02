@@ -284,7 +284,7 @@ Returns
          "block":11,
          "app":0
       },
-      "chain_id":"mamaki",
+      "chain_id":"mocha",
       "height":32281,
       "time":"2022-06-06T14:48:57.070758938Z",
       "last_block_id":{

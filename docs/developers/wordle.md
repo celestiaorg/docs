@@ -4,7 +4,7 @@ sidebar_label: Wordle Overview
 
 # Wordle App on Rollmint
 
-![mamaki-testnet](/img/wordle.jpg)
+![wordle-app](/img/wordle.jpg)
 
 This tutorial guide will go over building a cosmos-sdk app
 for Rollmint, the Sovereign-Rollup implementation of
