@@ -21,8 +21,8 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Mamaki Testnet",
-          id: "nodes/mamaki-testnet"
+          label: "Mocha Testnet",
+          id: "nodes/mocha-testnet"
         }
       ]
     },

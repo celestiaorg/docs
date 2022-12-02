@@ -258,13 +258,13 @@ go version go1.19.1 darwin/amd64
 </Tabs>
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -276,7 +276,7 @@ rm "go$ver.linux-amd64.tar.gz"
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -288,7 +288,7 @@ rm "go$ver.linux-arm64.tar.gz"
 <TabItem value="apple" label="Mac (Apple)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -300,7 +300,7 @@ rm "go$ver.darwin-arm64.tar.gz"
 <TabItem value="mac" label="Mac (Intel)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -344,28 +344,28 @@ The output should be the version installed:
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 ```sh
-go version go1.18.2 linux/amd64
+go version go1.19.1 linux/amd64
 ```
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 ```sh
-go version go1.18.2 linux/arm64
+go version go1.19.1 linux/arm64
 ```
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
 ```sh
-go version go1.18.2 darwin/arm64
+go version go1.19.1 darwin/arm64
 ```
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
 ```sh
-go version go1.18.2 darwin/amd64
+go version go1.19.1 darwin/amd64
 ```
 
 </TabItem>
@@ -507,12 +507,12 @@ Golang version: go1.19.1
 </Tabs>
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -539,7 +539,7 @@ Commit: 89892d8b96660e334741987d84546c36f0996fbe
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -566,7 +566,7 @@ Commit: 89892d8b96660e334741987d84546c36f0996fbe
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -593,7 +593,7 @@ Commit: 89892d8b96660e334741987d84546c36f0996fbe
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -657,7 +657,7 @@ it in the command line, it will default to that port. You can use the flag
 to specify another port if you prefer.
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
 celestia light start --core.grpc <ip-address>:<port>
@@ -680,10 +680,10 @@ celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.po
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+celestia light start --core.grpc https://rpc-mocha.pops.one:9090
 ```
 
 </TabItem>
@@ -708,7 +708,7 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.ac
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
 celestia light start --core.grpc <ip-address>:<port> --keyring.accname <key_name>

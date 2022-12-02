@@ -52,19 +52,19 @@ you can refer to the
 [`celestia-node` tutorial](../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
-## Mamaki Testnet Setup
+## Mocha Testnet Setup
 
 Run the image from the command line:
 
 ```bash 
-docker run -e NODE_TYPE=light ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+docker run -e NODE_TYPE=light ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia light start --core.grpc https://rpc-mocha.pops.one:9090
 ```
 
-Congratulations! You now have a Celestia Light Node running on the Mamaki testnet.
+Congratulations! You now have a Celestia Light Node running on the Mocha testnet.
 
-![mamaki_light_docker](/img/nodes/mamaki_light_docker.gif)
+![mocha_light_docker](/img/nodes/mocha_light_docker.gif)
 
 If you would like to run the node with custom flags,
 you can refer to the
@@ -97,19 +97,19 @@ you can refer to the
 [`celestia-node` tutorial](../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
-## Mamaki Bridge Node Setup
+## Mocha Bridge Node Setup
 
 Run the image from the command line:
 
 ```bash 
-docker run -e NODE_TYPE=bridge ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia bridge start --core.remote https://rpc-mamaki.pops.one:26657
+docker run -e NODE_TYPE=bridge ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia bridge start --core.remote https://rpc-mocha.pops.one:26657
 ```
 
-Congratulations! You now have a Celestia Bridge Node running on the Mamaki network.
+Congratulations! You now have a Celestia Bridge Node running on the Mocha network.
 
-![mamaki_bridge_docker](/img/nodes/mamaki_bridge_docker.gif)
+![mocha_bridge_docker](/img/nodes/mocha_bridge_docker.gif)
 
 If you would like to run the node with custom flags,
 you can refer to the
@@ -142,19 +142,19 @@ you can refer to the
 [`celestia-node` tutorial](../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
-## Mamaki Full Node Setup
+## Mocha Full Node Setup
 
 Run the image from the command line:
 
 ```bash 
-docker run -e NODE_TYPE=full ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia full start --core.remote https://rpc-mamaki.pops.one:26657
+docker run -e NODE_TYPE=full ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia full start --core.remote https://rpc-mocha.pops.one:26657
 ```
 
-Congratulations! You now have a Celestia Full Storage Node running on the Mamaki network.
+Congratulations! You now have a Celestia Full Storage Node running on the Mocha network.
 
-![mamaki_full_docker](/img/nodes/mamaki_full_docker.gif)
+![mocha_full_docker](/img/nodes/mocha_full_docker.gif)
 
 If you would like to run the node with custom flags,
 you can refer to the
