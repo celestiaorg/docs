@@ -65,9 +65,11 @@ Set seeds and peers:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/bootstrap-peers.txt | tr -d '\n')
-echo $BOOTSTRAP_PEERS
-sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" $HOME/.celestia-app/config/config.toml
+SEEDS="some seeds"
+PEERS="some peers"
+SEED_MODE="true"
+sed -i -e 's|^seeds *=.*|seeds = "'$SEEDS'"|; s|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.celestia-app/config/config.toml
+sed -i -e "s/^seed_mode *=.*/seed_mode = \"$SEED_MODE\"/" $HOME/.celestia-app/config/config.toml
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -89,20 +91,6 @@ sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \
 \"$PRUNING_KEEP_RECENT\"/" $HOME/.celestia-app/config/app.toml
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
 \"$PRUNING_INTERVAL\"/" $HOME/.celestia-app/config/app.toml
-```
-
-### Configure validator mode
-
-```sh
-sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
-```
-
-### Reset network
-
-This will delete all data folders so we can start fresh:
-
-```sh
-celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
 ### Optional: quick-sync with snapshot
