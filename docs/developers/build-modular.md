@@ -1,3 +1,7 @@
+---
+sidebar_label: Build Modular
+---
+
 # Build Modular
 
 This sections will explain the advantages of building on
