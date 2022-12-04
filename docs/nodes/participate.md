@@ -1,5 +1,5 @@
 ---
-sidebar_label: Participate
+sidebar_label: Participate in the Celestia Testnets
 ---
 
 # Participate in the Celestia Testnets
