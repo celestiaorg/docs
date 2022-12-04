@@ -1,3 +1,7 @@
+---
+sidebar_label: Ethermint Dependencies
+---
+
 # Ethermint Dependencies
 
 This section will guide you through installing the dependencies
