@@ -1,3 +1,7 @@
+---
+sidebar_label: Ethermint
+---
+
 # Ethermint
 
 Ethermint is a Comsos-SDK library that integrates an EVM compiler
