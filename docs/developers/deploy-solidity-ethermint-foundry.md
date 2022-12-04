@@ -1,3 +1,7 @@
+---
+sidebar_label: Deploy to Ethermint
+---
+
 # Deploy A Solidity Smart Contract on Ethermint Sovereign Rollup with Foundry
 
 In this guide you'll learn how to deploy a Solidity smart contract to
