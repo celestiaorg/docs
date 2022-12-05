@@ -179,28 +179,9 @@ customizable, modular rollups using the Solana VM.
 
 ### **Week 11 - 5 December**
 
-🧠 **Modular Insights with Celestia Scan**
-
-- **Tuesday 6 December @ 11am EST / 4pm UTC / 5pm CEST**
-  - [Celestia Scan](http://celestiascan.com) will be sharing about the
-  engineering and design of a modular block explorer.
-
 🧑‍🏫 **Office Hour**
 
 - **Wednesday 7 December - @ 11am EST / 4pm UTC / 5pm CEST**
-
-🧠 **Modular Insights with BakingBad**
-
-- **Thursday 8 December @ 12pm EST / 5pm UTC / 6pm CEST**
-  - [Baking Bad](https://twitter.com/TezosBakingBad) – Indexing
-  infrastructure and developer tooling
-
-🧠 **Modular Insights with Duality**
-
-- **Friday 9 December @ 11am EST / 4pm UTC / 5pm CEST**
-  - [Duality](https://www.notion.so/72e9746a960e47898c1f787c366db96f)
-is a simple, flexible, and capital efficient AMM which captures MEV to
-return it to the LPs that create it.
 
 ---
 
