@@ -1,3 +1,7 @@
+---
+sidebar_label: Hardfork Process
+---
+
 # Celestia Hardfork Process
 
 Blockchain networks often times need to upgrade with new features
