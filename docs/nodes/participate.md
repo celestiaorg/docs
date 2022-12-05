@@ -1,3 +1,7 @@
+---
+sidebar_label: Participate in the Celestia Testnets
+---
+
 # Participate in the Celestia Testnets
 
 Celestia currently has two exisiting testnets that will enable participation:
