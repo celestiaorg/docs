@@ -37,6 +37,16 @@ we want it to be as small as possible.
 The CosmWasm team provides a tool called `rust-optimizer` which we need
 [Docker](./cosmwasm-dependency.md/#docker-installation) for in order to compile.
 
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="network">
+<TabItem value="amd" label="AMD">
+
+
+### AMD Machines
+
 Run the following command in the `~/cw-contracts/contracts/nameservice`
 directory:
 
@@ -49,15 +59,49 @@ sudo docker run --rm -v "$(pwd)":/code \
 
 This will place the optimized Wasm bytecode at `artifacts/cw_nameservice.wasm`.
 
+</TabItem>
+<TabItem value="arm" label="ARM">
+
+### ARM Machines
+
+Run the following command in the `~/cw-contracts/contracts/nameservice`
+directory:
+
+```sh
+sudo docker run --platform linux/arm64 --rm -v "$(pwd)":/code \
+  --mount type=volume,source="$(basename "$(pwd)")_cache",target=/code/target \
+  --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
+  cosmwasm/rust-optimizer-arm64:0.12.8
+```
+
+This will place the optimized Wasm bytecode at `artifacts/cw_nameservice.wasm`.
+
+</TabItem>
+</Tabs>
+````
+
 ## Contract Deployment
 
 Let's now deploy our smart contract!
 
-Run the following:
+> Before deploying your contract, you may need to redeclare the following
+variables:
 
+```sh
+CHAIN_ID=celeswasm
+KEY_NAME=celeswasm-key
+CHAINFLAG="--chain-id ${CHAIN_ID}"
+TXFLAG="--chain-id ${CHAIN_ID} --gas-prices 0uwasm --gas auto --gas-adjustment 1.3"
+NODEIP="--node http://127.0.0.1:26657"
+```
+
+Run the following in the `~/cw-contracts/contracts/nameservice` directory:
+
+<!-- markdownlint-disable MD013 -->
 ```sh
 TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from $KEY_NAME --keyring-backend test $TXFLAG $NODEIP --output json -y | jq -r '.txhash') && echo $TX_HASH
 ```
+<!-- markdownlint-ensable MD013 -->
 
 This will get you the transaction hash for the smart contract deployment. Given
 we are using Rollmint, there will be a delay on the transaction being included
