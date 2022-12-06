@@ -63,7 +63,7 @@ feasible for resource-limited light nodes. However, in order to validate
 block headers, Celestia light nodes need to download the 4k intermediate
 Merkle roots.
 
-For a block data size of n bytes, this means that every light node must
+For a block data size of $n^2$ bytes, this means that every light node must
 download O(n) bytes. Therefore, any improvement in the bandwidth capacity
 of Celestia light nodes has a quadratic effect on the throughput of Celestia's
 DA layer.
