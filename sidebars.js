@@ -526,6 +526,11 @@ const sidebars = {
       href: "https://celestia.org/learn/"
     },
     {
+      type: "doc",
+      label: "Data Availability FAQ",
+        id: "concepts/data-availability-faq",
+    },
+    {
       type: "link",
       label: "Glossary",
       href: "https://celestia.org/glossary/"
