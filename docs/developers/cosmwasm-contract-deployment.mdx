@@ -96,11 +96,9 @@ NODEIP="--node http://127.0.0.1:26657"
 
 Run the following in the `~/cw-contracts/contracts/nameservice` directory:
 
-<!-- markdownlint-disable MD013 -->
 ```sh
 TX_HASH=$(wasmd tx wasm store artifacts/cw_nameservice.wasm --from $KEY_NAME --keyring-backend test $TXFLAG $NODEIP --output json -y | jq -r '.txhash') && echo $TX_HASH
 ```
-<!-- markdownlint-ensable MD013 -->
 
 This will get you the transaction hash for the smart contract deployment. Given
 we are using Rollmint, there will be a delay on the transaction being included
