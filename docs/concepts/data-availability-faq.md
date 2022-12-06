@@ -60,7 +60,9 @@ level (e.g. 99%) it will consider the block data as available.
 Want a simpler explanation? Check out [this thread](https://twitter.com/nickwh8te/status/1559977957195751424)
 on how data availability sampling is like flipping a coin.
 
+<!-- markdownlint-disable MD013 -->
 ## What are some of the security assumptions that Celestia makes for data availability sampling?
+<!-- markdownlint-disable MD013 -->
 
 Celestia assumes that there is a minimum number of light nodes that are
 conducting data availability sampling for a given block size. This assumption
