@@ -93,6 +93,7 @@ able to generate a bad encoding fraud proof.
 ## What is data storage?
 
 Data storage is concerned with the ability to store and access past transaction data.
+
 ![Modular VS Monolithic](/img/concepts/data-availability-faq/Data-storage.png)
 
 Data storage and retrieval is needed for multiple purposes, such as:
