@@ -96,6 +96,7 @@ Data storage is concerned with the ability to store and access past transaction 
 ![Modular VS Monolithic](/img/concepts/data-availability-faq/Data-storage.png)
 
 Data storage and retrieval is needed for multiple purposes, such as:
+
 - Reading the information of a previous transaction
 - Syncing a node
 - Indexing and serving transaction data
@@ -147,6 +148,7 @@ are natural incentives for outside parties to store and serve historical data to
 
 There are multiple types of actors that may be likely to store historical data.
 Some of those include:
+
 - Block explorers that provide access to past transaction data.
 - Indexers that provide API queries for past data.
 - Applications or rollups that require historical data for certain processes.
