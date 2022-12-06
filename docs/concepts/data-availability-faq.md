@@ -1,10 +1,11 @@
 ---
-sidebar_label: Data availability FAQ
+sidebar_label: Data Availability FAQ
 ---
 
-# Data availability FAQ
+# Data Availability FAQ
 
 ## What is data availability?
+
 Data availability answers the question, has this data been published?
 Specifically, a node will verify data availability when it receives a
 new block that is getting added to the chain. The node will attempt to
@@ -24,6 +25,7 @@ As the blocks get bigger, it becomes impractical for normal users to
 download all the data, and therefore users can no longer verify the chain.
 
 ## What is the data availability problem?
+
 The problem with data availability occurs when the transaction data for
 a newly proposed block cannot be downloaded and verified. This type of
 attack by a block producer is called a data withholding attack, which
@@ -37,6 +39,7 @@ is kept on-chain or off-chain. The data availability problem commonly
 arises around L2 scaling solutions like rollups and validiums.
 
 ## How do nodes verify data availability in Celestia?
+
 In most blockchains, nodes that verify data availability do so by downloading
 all transaction data for a block. If they are able to download all the data,
 they have verified its availability. In Celestia, light nodes have access to
@@ -45,6 +48,7 @@ the data for a block. This new primitive for verifying data availability is
 called data availability sampling.
 
 ## What is data availability sampling?
+
 Data availability sampling is a mechanism for light nodes to verify data
 availability without having to download all data for a block. Data availability
 sampling (DAS) works by having light nodes conduct multiple rounds of random
@@ -57,6 +61,7 @@ Want a simpler explanation? Check out [this thread](https://twitter.com/nickwh8t
 on how data availability sampling is like flipping a coin.
 
 ## What are some of the security assumptions that Celestia makes for data availability sampling?
+
 Celestia assumes that there is a minimum number of light nodes that are
 conducting data availability sampling for a given block size. This assumption
 is necessary so that a full node can reconstruct an entire block from the
@@ -71,6 +76,7 @@ connected to an honest full node, such as during an eclipse attack, it can’t
 verify that the block is improperly constructed.
 
 ## Why is block reconstruction necessary for security?
+
 In Celestia, blocks need to be erasure coded so that there is redundant
 data to aid the data availability sampling process. However, nodes tasked
 with erasure coding the data could do so incorrectly. Since Celestia uses
@@ -83,6 +89,7 @@ full block from the portions of data stored by light nodes, they wouldn’t be
 able to generate a bad encoding fraud proof.
 
 ## What is data storage?
+
 Data storage is concerned with the ability to store and access past transaction data.
 ![Modular VS Monolithic](/img/concepts/data-availability-faq/Data-storage.png)
 
@@ -93,6 +100,7 @@ Data storage and retrieval is needed for multiple purposes, such as:
 - Retrieving NFT information
 
 ## What is the problem around data storage?
+
 The issue with data storage is whether past transaction data can be stored and
 successfully retrieved at a later time. The inability to retrieve historical
 transaction data can cause problems, such as users being unable to access
@@ -103,6 +111,7 @@ to gain access to historical transaction data. In other words, data storage
 security is a 1 of N honesty assumption.
 
 ## What is the difference between data availability and data storage?
+
 Data availability is about verifying that transaction data for a new block is
 public and available. In contrast, data storage involves storing and accessing
 past transaction data from old blocks. Data availability is fundamental to the
@@ -112,6 +121,7 @@ solve the data availability problem, while the problem with data storage is
 less critical to blockchain security.
 
 ## Where does blockchain state fit into this?
+
 Up until now it’s been all about transaction data, but blockchain state is a
 related topic. The state is different from transaction data. Specifically, the
 state is like a current snapshot of the network, which includes information
@@ -121,6 +131,7 @@ from the size of the state are different in nature than those around
 data availability and retrievability.
 
 ## Why doesn’t Celestia incentivize storage of historical data?
+
 Most blockchains don’t incentivize storage of data because it shouldn’t be the
 responsibility of a blockchain to guarantee past data will be retrievable forever.
 In addition, the data storage problem only requires a single party to store and
@@ -131,6 +142,7 @@ historical data is left up to other entities that require the data. Luckily, the
 are natural incentives for outside parties to store and serve historical data to users.
 
 ## Who may store historical data if there is no reward?
+
 There are multiple types of actors that may be likely to store historical data.
 Some of those include:
 - Block explorers that provide access to past transaction data.
@@ -139,6 +151,7 @@ Some of those include:
 - Users that want to guarantee that they will have access to their transaction history.
 
 ## What are some things blockchains can do to provide stronger assurances of data retrievability?
+
 - Reward nodes based on the amount of transaction data they store and requests for data
 they serve (this is the case with some data storage blockchains, like [Filecoin](https://filecoin.io/)).
 - Publish transaction data onto a data storage blockchain that incentives storing and
