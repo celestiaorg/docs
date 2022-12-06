@@ -79,7 +79,7 @@ go mod download
 make install
 ```
 
-## celestia-node
+## Celestia Node
 
 You will need a light node running with test tokens on Arabica Devnet in order
 to complete this tutorial. Please complete the tutorial
