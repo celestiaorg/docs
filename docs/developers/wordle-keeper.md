@@ -6,7 +6,7 @@ sidebar_label: Keeper
 <!-- markdownlint-disable MD013 -->
 
 Now it’s time to implement the Keeper functions for each
-message. From the Cosmos-SDK docs, [Keeper](https://docs.cosmos.network/master/building-modules/keeper.html)
+message. From the Cosmos-SDK docs, [Keeper](https://docs.cosmos.network/main/building-modules/keeper.html)
 is defined as the following:
 
 > The main core of a Cosmos SDK module is a piece called the keeper.
