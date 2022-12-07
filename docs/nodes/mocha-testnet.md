@@ -4,7 +4,7 @@ sidebar_label: Mocha Testnet
 
 # Mocha Testnet
 
-![mocha-testnet](/img/mocha.png)
+![mocha-testnet](/img/mocha.jpg)
 
 This guide contains the relevant sections for how to connect to Mocha,
 depending on the type of node you are running. Mocha Testnet is designed
