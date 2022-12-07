@@ -41,8 +41,8 @@ It is important to keep in mind that William Shakespeare was an
 English speaker...So was Alan Turing! That is why
 you should not translate parts of the code "itself".
 
-For instance, if you see metadata like `sidebar_label : Hello World`,
-a French translation would be `sidebar_label : Salut tout le monde`.
+For instance, if you see metadata like `sidebar_label: Hello World`,
+a French translation would be `sidebar_label: Salut tout le monde`.
 
 Let's take another example, you wouldn't have to translate anything here:
 

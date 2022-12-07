@@ -476,7 +476,18 @@ const sidebars = {
     { type: "doc", label: "Code of Conduct", id: "community/coc" },
     { type: "doc", label: "Community Calendar", id: "community/calendar" },
     { type: "doc", label: "Docs Translations", id: "community/translations" },
-    { type: "doc", label: "Modular Fellows", id: "community/modular-fellows"}
+    {
+      type: "category",
+      label: "Modular Fellows",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: [
+        { type: "doc", label: "Overview", id: "community/modular-fellows" },
+        { type: "doc", label: "Cohort One Content", id: "community/cohort-one-content" },
+      ]
+    },
   ],
   concepts: [
     {
@@ -513,6 +524,11 @@ const sidebars = {
       type: "link",
       label: "Learn Modular",
       href: "https://celestia.org/learn/"
+    },
+    {
+      type: "doc",
+      label: "Data Availability FAQ",
+        id: "concepts/data-availability-faq",
     },
     {
       type: "link",

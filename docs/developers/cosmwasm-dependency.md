@@ -78,3 +78,9 @@ go mod tidy -compat=1.17
 go mod download
 make install
 ```
+
+## Celestia Node
+
+You will need a light node running with test tokens on Arabica Devnet in order
+to complete this tutorial. Please complete the tutorial
+[here](./node-tutorial.mdx), or start up your node.
