@@ -136,7 +136,7 @@ For more details on NMTs, take a look at the [original paper](https://arxiv.org/
 The Celestia DA layer consists of a PoS blockchain. Celestia is dubbing this
 blockchain as the [Celestia App](https://github.com/celestiaorg/celestia-app),
 an application that provides transactions to facilitate the DA layer and is built
-using [Cosmos SDK](https://docs.cosmos.network/v0.44/). The following figure
+using [Cosmos SDK](https://docs.cosmos.network/main). The following figure
 shows the main components of Celestia App.
 
 ![Main components of Celestia App](/img/concepts/celestia-app.png)
