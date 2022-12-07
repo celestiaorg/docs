@@ -7,6 +7,17 @@ sidebar_label: Integrate Celestia
 > This document is for third-party service providers, such as custodians and
 > explorers, integrating the Celestia network.
 
+## Getting Started
+
+When getting started Celestia, we recommend checking out these resources first:
+
+- [Introduction to Celestia](../concepts/how-celestia-works/introduction)
+- [Monolithic v. Modular](../concepts/how-celestia-works/monolithic-vs-modular)
+- [Celestia's DA Layer](../concepts/how-celestia-works/data-availability-layer)
+- [Learn Modular](https://celestia.org/learn/)
+- [Overview to running nodes on Celestia](../nodes/overview)
+- [Build Moduar](../developers/build-modular.md)
+
 ## Celestia Service Provider Notes
 
 Celestia is a fairly standard Cosmos-SDK based chain. We use the latest version
