@@ -196,7 +196,7 @@ func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess)
     guesserAddress, _ := sdk.AccAddressFromBech32(msg.Creator)
     moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte(types.ModuleName)))
     // Send Reward
-    k.bankKeeper.SendCoins(ctx, guesserAddress, moduleAcct, reward) 
+    k.bankKeeper.SendCoins(ctx, moduleAcct, guesserAddress, reward) 
     return &types.MsgSubmitGuessResponse{Title: "Correct", Body: "You Guessed The Wordle Correctly!"}, nil
   }
 }
