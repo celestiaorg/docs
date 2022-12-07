@@ -14,7 +14,7 @@ sovereign rollups on Mamaki, but we also recommend [Arabica Devnet](./arabica-de
 for that as it is designed for development purposes.
 
 Mamaki is a milestone in Celestia, allowing everyone to test out
-core functionalities on the network. Read the anouncement [here](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api/).
+core functionalities on the network. Read the announcement [here](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api/).
 
 Your best approach to participating is to first determine which node
 you would like to run. Each node guides will link to the relevant network
