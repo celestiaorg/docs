@@ -30,7 +30,7 @@ Documentation: https://docs.ignite.com
 
 This command has created a Cosmos SDK blockchain in the `gm` directory. The
 `gm` directory contains a fully functional blockchain. The following standard
-Cosmos SDK [modules](https://docs.cosmos.network/master/modules/) have been
+Cosmos SDK [modules](https://docs.cosmos.network/main/modules/) have been
 imported:
 
 - `staking` - for delegated Proof-of-Stake (PoS) consensus mechanism
@@ -38,7 +38,7 @@ imported:
 - `gov` - for on-chain governance
 - `mint` - for minting new units of staking token
 - `nft` - for creating, transferring, and updating NFTs
-- and [more](https://docs.cosmos.network/master/architecture/adr-043-nft-module.html)
+- and [more](https://docs.cosmos.network/main/architecture/adr-043-nft-module.html)
 
 Change to the `gm` directory:
 

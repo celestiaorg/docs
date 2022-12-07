@@ -38,7 +38,7 @@ sidebar_label: Cohort One Content & Calendar
 
 - **Monday 10 October @ 11am EDT / 3pm UTC / 5pm CEST**
   - Lesson 2 will cover building a sovereign rollup with
-  [Rollmint](https://docs.celestia.org/developers/optimint) and Celestia using
+  [Rollmint](https://docs.celestia.org/developers/rollmint) and Celestia using
   Ignite CLI and Cosmos-SDK. Yaz will demonstrate how to build a Wordle
   sovereign rollup on Celestia.
 - [Lesson #2 Recording - Building a sovereign rollup with Ignite & Rollmint on Celestia with Yaz](https://youtu.be/mMKvg3lnV-4)
