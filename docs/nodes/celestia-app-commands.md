@@ -201,3 +201,39 @@ sudo journalctl -u <your systemd service> -S today > node_logs.txt
 # This command outputs the last 1 million lines!
 sudo journalctl -u <your systemd service> -n 1000000 > node_logs.txt
 ```
+
+## Signing Genesis For A New Network
+
+You can first run the following commands:
+
+```sh
+VALIDATOR_NAME=validator1
+CHAIN_ID=testnet
+celestia-appd init $VALIDATOR_NAME --chain-id $CHAIN_ID
+```
+
+Next create a wallet:
+
+```sh
+KEY_NAME=validator
+celestia-appd keys add $KEY_NAME --keyring-backend test
+```
+
+Then add genesis account:
+
+```sh
+CELES_AMOUNT="10000000000000000000000000utia"
+celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT --keyring-backend test
+```
+
+Then generate your gentx:
+
+```sh
+STAKING_AMOUNT=1000000000utia
+celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
+  --keyring-backend test
+```
+
+You can then share your gentx JSON file on the networks
+repo [here](https://github.com/celestiaorg/networks) in the respective
+network directory you are participating in.
