@@ -213,6 +213,30 @@ SystemD [here](./systemd).
 
 You have successfully set up a bridge node that is syncing with the network.
 
+### Setup QGB Keys
+
+This step helps get you prepared for when the Quantum Gravity Bridge
+is ready to be deployed. You would still need to go through this step
+before running a validator to configure 2 extra keys.
+
+* `--evm-address`: This flag should contain a `0x` EVM address. Here,
+  you can add any Ethereum-based address to this flag. You can also modify
+  it later if you decide to switch addresses.
+* `--orchesrator-address`: This flag should contain a newly-generated
+  `celestia1` Celestia address. Validators certainly can use their existing
+  Celestia addresses here but it is recommended to create a new one.
+
+You can set both the values to the above flags as
+environment variables:
+
+```sh
+EVM_ADDRESS=<EVM_ADDRESS>
+ORCHESTRATOR_ADDRESS=<CELESTIA_ADDRESS>
+```
+
+Remember to add the values for your addresses in the above
+environment variables before setting them.
+
 ## Run a validator node
 
 After completing all the necessary steps, you are now ready to run a validator!
@@ -246,6 +270,8 @@ celestia-appd tx staking create-validator \
     --commission-max-change-rate=0.01 \
     --min-self-delegation=1000000 \
     --from=$VALIDATOR_WALLET \
+    --evm-address=$EVM_ADDRESS
+    --orchesrator-address=$ORCHESTRATOR_ADDRESS
     --keyring-backend=test
 ```
 
