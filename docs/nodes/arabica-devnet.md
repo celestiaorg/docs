@@ -17,7 +17,7 @@ recommend just testing your validator operations on Mamaki [here](./mamaki-testn
 
 With Arabica having the latest updates from all Celestia's products deployed
 on it, it can be subject to many changes. Therefore, as a fair warning,
-Arabica can break unexpectedly but given it will be continously updated,
+Arabica can break unexpectedly but given it will be continuously updated,
 it is a useful way to keep testing the latest changes in the software.
 
 Developers can still deploy on Mamaki Testnet their sovereign rollups if they
