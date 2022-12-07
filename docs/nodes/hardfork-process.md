@@ -30,7 +30,7 @@ The general process can be broken down into several components:
 The two testnets were hardforks are deployed on are:
 
 - [Arabica](./arabica-devnet)
-- [Mamaki](./mamaki-testnet)
+- [Mocha](./mocha-testnet)
 
 ### Mocha Hardfork
 
