@@ -134,6 +134,18 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 <!-- markdownlint-enable MD010 -->
 <!-- markdownlint-enable MD013 -->
 
+## Install your Sovereign Rollup
+We need to build the app before running it in the next section:
+```
+cd cmd/gmd
+go install .
+cd -
+```
+You might also need to add GOPATH to your PATH to be able to run gmd:
+```
+export PATH=$PATH:$(go env GOPATH)
+```
+
 ## 🟢 Start your Sovereign Rollup
 
 We have a handy `init.sh` found in this repo
