@@ -38,6 +38,13 @@ Recipes Rollup.
 You can view the contents of the script to see how we
 initialize the Recipes Rollup.
 
+Before starting our rollup, we'll need to find
+and change `FlagDisableIAVLFastNode` to `FlagIAVLFastNode`:
+
+```go title="recipesd/cmd/recipesd/cmd/root.go"
+baseapp.SetIAVLFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
+```
+
 🟢 Start the chain with:
 
 ```sh
