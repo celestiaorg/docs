@@ -676,7 +676,7 @@ For example, your command along with an RPC endpoint might look like this:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr localhost --gateway.port 26659
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 0.0.0.0 --gateway.port 26659
 ```
 
 </TabItem>
@@ -704,7 +704,7 @@ following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name> --gateway --gateway.addr localhost --gateway.port 26659
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name> --gateway --gateway.addr 0.0.0.0 --gateway.port 26659
 ```
 
 </TabItem>
