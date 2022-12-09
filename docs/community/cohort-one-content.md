@@ -204,19 +204,28 @@ customizable, modular rollups using the Solana VM.
 🧠 **Modular Insights with CosmWasm**
 
 - **Thursday 15 December @ 11am EST / 5pm UTC / 6pm CEST**
+- CosmWasm is a new smart contracting platform built for the cosmos ecosystem.
 
 ---
 
-### **Dec 19 - Week 13**
+### **Dec 19 - Week 13 - No Scheduled Events, Meet with Mentors**
+
+---
+
+### **Dec 26 - Week 14 - No Scheduled Events, Holiday Break**
+
+---
+
+### **Jan 2 - Week 15 - No Scheduled Events, Meet with Mentors**
+
+---
+
+### **Jan 9 - Week 16 - Submissions Due**
 
 🪧 **Demo Day**
 
-- **Thursday 22 December @ 11am EST / 4pm UTC / 5pm CEST**
-
----
-
-### **Dec 26 - Week 14**
+- **Wednesday 11 January @ 11am EST / 4pm UTC / 5pm CEST**
 
 🪧 **Write up of project due**
 
-- **Friday 30 December @ 11:59pm EST**
+- **Friday 13 January @ 11:59pm EST**
