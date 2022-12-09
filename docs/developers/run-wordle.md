@@ -26,6 +26,12 @@ Wordle Rollup.
 You can view the contents of the script to see how we
 initialize the Wordle Rollup.
 
+> On a Mac, you will need to run the following before initializing:
+
+```sh
+brew install md5sha1sum
+```
+
 You can initialize the script with the following command:
 
 ```sh

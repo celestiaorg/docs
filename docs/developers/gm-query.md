@@ -136,6 +136,13 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 
 ## 🟢 Start your Sovereign Rollup
 
+Before starting our rollup, we'll need to find and
+change `FlagDisableIAVLFastNode` to `FlagIAVLFastNode`:
+
+```go title="gm/cmd/gmd/cmd/root.go"
+baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
+```
+
 We have a handy `init.sh` found in this repo
 [here](https://github.com/celestiaorg/devrel-tools).
 
