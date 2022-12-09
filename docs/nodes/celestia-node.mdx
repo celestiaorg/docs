@@ -313,7 +313,14 @@ celestia light start --p2p.network arabica
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
-Network selection on v0.5.0 is not available.
+```sh
+celestia light init --p2p.network mocha 
+celestia light start --p2p.network mocha
+```
+
+> NOTE: It is advised before switching networks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
 
 ### Errors
 
