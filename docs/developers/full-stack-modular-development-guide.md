@@ -4,72 +4,39 @@ sidebar_label: Full Stack Modular Blockchain Development Guide
 
 # Full Stack Modular Blockchain Development Guide
 
-This guide will introduce you to [modular blockchains](../concepts/how-celestia-works/introduction.md) like Celestia, explain their benefits, and show you how to build a full stack modular dapp with React, Vite, RainbowKit, Celestia, and Foundry.
+This guide will introduce you to
+[modular blockchains](../concepts/how-celestia-works/introduction.md) like
+Celestia, explain their benefits, and show you how to build a full stack
+modular dapp with React, Vite, RainbowKit, Celestia, and Foundry.
 
-Current blockchain architectures are not scalable and face challenges around accessibility. In order for blockchains and web3 to reach mass adoption, these challenges must be addressed.
+Current blockchain architectures are not scalable and face challenges
+around accessibility. In order for blockchains and web3 to reach mass
+adoption, these challenges must be addressed.
 
-Blockchains have evolved over time from application-specific networks like Bitcoin to shared smart contract platforms like Ethereum. This guide will cover how to build dapps on these newer, shared platforms.
+Blockchains have evolved over time from application-specific networks like
+Bitcoin to shared smart contract platforms like Ethereum. This guide will
+cover how to build dapps on these newer, shared platforms.
 
-## Modular blockchains
-
-Modular blockchains like Celestia achieve scalability through a few different methods, including data availability sampling, specialization, and resource pricing.
-
-- **Data availability sampling** enables Celestia's light nodes to provide almost the same security guarantees as a full node, allowing the block size to be increased linearly with the growth of the network. (See more about [Celestia's Data Availability Layer](../concepts/how-celestia-works/data-availability-layer.md))
-- **Specialization** allows each layer of the blockchain to focus on one or many core functions, enabling maximum focus, performance, and capacity.
-- **Resource pricing** in Celestia decouples consensus from execution, allowing transactions to be charged based on the size of the data being submitted and enabling separate fee markets for execution and data availability. This means that spikes of higher throughput in one environment cannot affect another, separate layer.
-
-Modular blockchains enable horizontal scalability, allowing developers to launch their own application-specific chains as rollups, similar to how [Cosmos Zones](https://v1.cosmos.network/resources/faq) enable developers to deploy their own application-specific blockchains.
-
-These features aim to solve the challenges around scalability and accessibility, enabling web3 to reach mass adoption.
-
-## Building on Celestia
-
-There are a handful of ways developers can build on Celestia.
-
-### Smart contracts
-
-The easiest way to get started will be to deploy a smart contract to a rollup chain already running on Celestia.
-
-The barrier to entry is low in that you can use your existing skillet without having to learn anything new.
-
-You can write any language and use any execution environment you’d like, including Solidity or Vyper and the EVM or Cosmos and Go.
-
-*This is the approach we’ll be taking in this guide.*
-
-### Sovereign rollups
-
-One of the most powerful value propositions of Celestia is the idea of [Sovereign Chains](https://blog.celestia.org/sovereign-rollup-chains/).
-
-Rollups on Ethereum are effectively ‘baby chains’ to Ethereum because Ethereum is responsible for validating their transactions. This makes them tightly linked.
-
-Celestia enables a new type of rollup: sovereign rollup chains. These are independent chains that are similar to an independent L1.
-
-### **Execution Layers**
-
-Unlike Ethereum, Celestia has no enshrined settlement layer built in. Instead, there will be various settlement layers available to enable developers to easily deploy their own rollup or application-specific chain to Celestia.
-
-### Celestiums (Ethereum)
-
-[Celestiums](https://blog.celestia.org/celestiums/) allow developers to deploy a to a rollup using Celestia as DA and Ethereum as settlement.
-
-Ethereum rollups batch data from multiple transactions into a single transaction. This rollup transaction data (calldata) is posted to Ethereum but not executed directly.
-
-A Celestium is an L2 chain that uses Ethereum for settlement plus dispute resolution, and  Celestia for data availability.
-
-This provides high throughput data availability for Ethereum L2s with a higher level of security than other off-chain data availability techniques.
+If you're interested in learning more about modular blockchains, or are new
+to the Celestia ecosystem, we recommend you read the
+[Build Modular](./build-modular.md) page first.
 
 ## Getting started
 
 Now that you’ve had an overview of what Celestia is, let’s start building!
 
-The execution environment that we’ll be leveraging today is Troy, an EVM-compatible testnet deployed to Celestia.
+The execution environment that we’ll be leveraging today is Ethermint, an
+EVM-compatible testnet that you will run locally for this tutorial.
 
-Pre-requisites:
+### Pre-requisites
 
 - [Node.js](https://github.com/nvm-sh/nvm)
 - [Foundry](https://github.com/foundry-rs/foundry)
-- Tokens from the Troy testnet faucet (Insert link)
 - [Infura account](https://infura.io/) (for uploading files to IPFS)
+- [A Celestia Light Node running](./node-tutorial.mdx) (to post PFDs from your
+rollup)
+- [Ethermint Tutorial](./ethermint.md) (for running your own Ethermint rollup &
+deploying your smart contract)
 - [MetaMask wallet](https://metamask.io) (for connecting to your Ethermint Rollup)
 
 ### Project setup
@@ -85,8 +52,10 @@ Foundry has created an example smart contract located at `src/Contract.sol`.
 
 #### Updating the contract and tests
 
-Let's update the contracts to include a basic blog example. Create a new file in the `src` directory named `Contract.sol` with the following code:
+Let's update the contracts to include a basic blog example. Create a new file
+in the `src` directory named `Contract.sol` with the following code:
 
+<!-- markdownlint-disable MD013 -->
 ```solidity title="src/Contract.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
@@ -181,6 +150,7 @@ contract Blog {
   }
 }
 ```
+<!-- markdownlint-enable MD013 -->
 
 Next, let's create a test for this contract.
 
@@ -231,9 +201,12 @@ contract ContractTest is Test {
 }
 ```
 
-Foundry uses [Dappsys Test](https://book.getfoundry.sh/reference/ds-test.html) to provide basic logging and assertion functionality. It's included in the Forge Standard Library.
+Foundry uses [Dappsys Test](https://book.getfoundry.sh/reference/ds-test.html)
+to provide basic logging and assertion functionality. It's included in the Forge
+Standard Library.
 
-Here, we are using `assertEq` to assert equality. You can view all of the assertion functions available [here](https://book.getfoundry.sh/reference/ds-test.html?highlight=log_int#asserting).
+Here, we are using `assertEq` to assert equality. You can view all of the
+assertion functions available [here](https://book.getfoundry.sh/reference/ds-test.html?highlight=log_int#asserting).
 
 #### Running the test
 
@@ -245,9 +218,11 @@ forge test -vv
 
 #### Updating the deployment script
 
-Now that we've tested the contract, let's try deploying it locally using [Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html).
+Now that we've tested the contract, let's try deploying it locally using
+[Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html).
 
-To do so, update the deloyment script at `script/Contracts.s.sol` with the following code:
+To do so, update the deloyment script at `script/Contracts.s.sol` with the
+following code:
 
 ```solidity title="script/Contracts.s.sol"
 // SPDX-License-Identifier: MIT
@@ -268,7 +243,8 @@ contract ContractScript is Script {
 }
 ```
 
-Now we can use this script to deploy our smart contract to either a live or test network.
+Now we can use this script to deploy our smart contract to either a live or test
+network.
 
 #### Deploying locally
 
@@ -278,7 +254,8 @@ Next start Anvil, the local testnet:
 anvil --port 9545
 ```
 
-Once started, Anvil will give you a local RPC endpoint as well as a handful of Private Keys and Accounts that you can use.
+Once started, Anvil will give you a local RPC endpoint as well as a handful of
+Private Keys and Accounts that you can use.
 
 We can now use the local RPC along with one of the private keys to deploy locally:
 
@@ -289,7 +266,8 @@ http://localhost:9545 --private-key $PRIVATE_KEY --broadcast
 
 Once the contract has been deployed locally, Anvil will log out the contract address.
 
-**Take a note of this local contract address as we’ll be using it later in the frontend application.**
+**Take a note of this local contract address as we’ll be using it later in the
+frontend application.**
 
 Next, set the contract address as an environment variable:
 
@@ -311,14 +289,16 @@ We can then perform read operations with `cast call`:
 cast call $CONTRACT_ADDRESS "fetchPosts()"
 ```
 
-Once the contract is deployed successfully, **take a note of the contract address as we’ll also be needing it in just a moment when we test the live contract**.
+Once the contract is deployed successfully, **take a note of the contract
+address as we’ll also be needing it in just a moment when we test the live contract**.
 
 ### Deploying to the Ethermint Sovereign Rollup
 
 First, we will need to follow the setup from the [Ethermint tutorial](./ethermint).
 
 > It is required that you complete [dependency setup](./ethermint-dependencies)
-and [RollKit installation](http://localhost:3000/developers/rollmint-on-ethermint) and
+and [RollKit installation](http://localhost:3000/developers/rollmint-on-ethermint)
+and
 [Instantiating and Ethermint rollup](http://localhost:3000/developers/instantiate-ethermint).
 
 Now that we've deployed and tested locally, we can deploy to our
@@ -370,11 +350,14 @@ For the frontend project, we’ll be using the following libraries and framework
 
 [React](https://reactjs.org/) - JavaScript library for building user interfaces
 
-[Vite](https://vitejs.dev/) - Project generator / rapid development tool for modern web projects
+[Vite](https://vitejs.dev/) - Project generator / rapid development tool for
+modern web projects
 
-[Rainbowkit](https://www.rainbowkit.com/) - Easy and beautifl library to connect a wallets
+[Rainbowkit](https://www.rainbowkit.com/) - Easy and beautifl library to connect
+a wallets
 
-[WAGMI](https://github.com/wagmi-dev/wagmi) - 20+ hooks for working with wallets, ENS, contracts, transactions, signing, etc
+[WAGMI](https://github.com/wagmi-dev/wagmi) - 20+ hooks for working with
+wallets, ENS, contracts, transactions, signing, etc
 
 In the root of the Foundry project, create a new Next.js application using [Vite](https://vitejs.dev/):
 
@@ -386,7 +369,9 @@ yarn create vite
 ? Select a variant > JavaScript
 ```
 
-Next, copy the ABI that was created by Foundry into the `frontend` directory so that we can have it later (or manually copy it into a file named `Blog.json` in the `frontend` directory):
+Next, copy the ABI that was created by Foundry into the `frontend` directory so
+that we can have it later (or manually copy it into a file named `Blog.json` in
+the `frontend` directory):
 
 ```bash
 cp out/Contract.sol/Blog.json frontend/
@@ -401,16 +386,19 @@ npm install
 
 #### Configuring environment variables
 
-Next we need to configure the environment variables for the Infura project ID and secret.
+Next we need to configure the environment variables for the Infura project ID
+and secret.
 
-Create a file named `.env.local` in the `app` directory and add the following configuration with your own credentials:
+Create a file named `.env.local` in the `app` directory and add the following
+configuration with your own credentials:
 
 ```env title="frontend/.env.local"
 VITE_INFURA_ID=your-project-api-key
 VITE_INFURA_SECRET=your-project-api-key-secret
 ```
 
-Now that the project is created, let’s install the additional dependencies using either **NPM**, **Yarn**, or **PNPM**:
+Now that the project is created, let’s install the additional dependencies using
+either **NPM**, **Yarn**, or **PNPM**:
 
 ```jsx
 npm install @rainbow-me/rainbowkit wagmi ethers ipfs-http-client react-markdown
@@ -420,9 +408,11 @@ npm install @rainbow-me/rainbowkit wagmi ethers ipfs-http-client react-markdown
 
 Next we’ll update the entrypoint at `src/main.jsx`.
 
-The main things we’re doing here have to do with the configuration of Rainbowkit so that we can have a nice way for the user to connect their wallet.
+The main things we’re doing here have to do with the configuration of Rainbowkit
+so that we can have a nice way for the user to connect their wallet.
 
-Rainbowkit also allows a customizable array of network providers, so we’re creating a new network configuration for `Ethermint`.
+Rainbowkit also allows a customizable array of network providers, so we’re
+creating a new network configuration for `Ethermint`.
 
 ```tsx title="frontend/src/main.jsx"
 import React from 'react'
@@ -490,12 +480,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 ### Creating and reading posts
 
-Now that the the base configuration is set up we’ll create a view that allows users to create and view posts.
+Now that the the base configuration is set up we’ll create a view that allows
+users to create and view posts.
 
-We’ll be using IPFS to upload the content of the post, then anchoring the hash of the post on chain. When we retrieve the post, we can then read the value from IPFS to view the post.
+We’ll be using IPFS to upload the content of the post, then anchoring the hash
+of the post on chain. When we retrieve the post, we can then read the value from
+IPFS to view the post.
 
 Update App.jsx with the following code:
 
+<!-- markdownlint-disable MD013 -->
 ```tsx title="frontend/src/App.jsx"
 import { useState, useEffect } from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
@@ -685,22 +679,27 @@ const buttonContainerStyle = {
 
 export default App
 ```
+<!-- markdownlint-enable MD013 -->
 
 ### Testing it out on Ethermint
 
 Now we’re ready to run the app.
 
-Right now, the app is configured to be using `localhost:8545` using the Ethermint rollup we're running with RollKit.
+Right now, the app is configured to be using `localhost:8545` using the
+Ethermint rollup we're running with RollKit.
 
 First, you'll need to install [MetaMask](https://metamask.io).
 
-To use the test account, you will need to import the private key from Ethermint to MetaMask. First, run the following command:
+To use the test account, you will need to import the private key from Ethermint
+to MetaMask. First, run the following command:
 
 ```bash
-PRIVATE_KEY=$(ethermintd keys unsafe-export-eth-key mykey --keyring-backend test) && echo $PRIVATE_KEY | pbcopy
+PRIVATE_KEY=$(ethermintd keys unsafe-export-eth-key mykey --keyring-backend test)
+&& echo $PRIVATE_KEY | pbcopy
 ```
 
-Now, [import the private key to MetaMask](https://metamask.zendesk.com/hc/en-us/articles/360015489331-How-to-import-an-account#h_01G01W07NV7Q94M7P1EBD5BYM4) and switch to that account.
+Now, [import the private key to MetaMask](https://metamask.zendesk.com/hc/en-us/articles/360015489331-How-to-import-an-account#h_01G01W07NV7Q94M7P1EBD5BYM4)
+and switch to that account.
 
 Next, run the React application:
 
@@ -710,7 +709,8 @@ npm run dev
 
 Next, let’s run it on your Ethermint rollup.
 
-To do so, first update the `contractAddress` variable with the contract address deployed to Ethermint:
+To do so, first update the `contractAddress` variable with the contract address
+deployed to Ethermint:
 
 ```jsx
 /* src/App.jsx */
