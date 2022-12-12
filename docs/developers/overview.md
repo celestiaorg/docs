@@ -1,5 +1,5 @@
 ---
-sidebar_label : Overview
+sidebar_label: Overview
 ---
 
 # Developers
@@ -9,6 +9,6 @@ of Celestia.
 
 It includes:
 
-* How to set up your development environment
-* Installing celestia-app and celestia-node
-* A tutorial on interacting with the Data Availability API
+* How To Create A Celestia Wallet
+* How To Interact With The Data Availability API
+* How To Deploy Sovereign Rollups with Rollmint

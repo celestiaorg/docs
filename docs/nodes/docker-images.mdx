@@ -1,0 +1,167 @@
+---
+sidebar_label: Docker Images
+---
+
+# 🐳 Docker Setup
+
+This page has instructions to run `celestia-node` using Docker. If you are
+looking for instructions to run `celestia-node` using a binary, please
+refer to the [Celestia Node](./celestia-node) page.
+
+Using Docker is the easiest way to run `celestia-node` for most
+users. Docker is a containerization platform that allows you to run `celestia-node`
+in an isolated environment.
+
+This means that you can run `celestia-node` on your machine without having
+to worry about installing and configuring all of the dependencies required
+to run the node.
+
+The easiest way to install Docker is to use the Docker Desktop installer or
+Ubuntu. You can find the instructions for your operating system
+[here](https://docs.docker.com/engine/install/).
+
+## Prerequisites
+- [Docker](https://docs.docker.com/get-docker/) and basic understanding of Docker
+
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupID="node">
+<TabItem value="light" label="Light">
+
+## Light Node Setup
+
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
+## Arabica Devnet Setup
+
+Run the image from the command line:
+
+```bash 
+docker run -e NODE_TYPE=light ghcr.io/celestiaorg/celestia-node:0.5.0-rc5 celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 0.0.0.0 --gateway.port 26659 --p2p.network arabica
+```
+
+Congratulations! You now have a Celestia Light Node running on the Arabica devnet.
+
+![arabica_light_docker](/img/nodes/arabica_light_docker.gif)
+
+If you would like to run the node with custom flags,
+you can refer to the
+[`celestia-node` tutorial](../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+## Mamaki Testnet Setup
+
+Run the image from the command line:
+
+```bash 
+docker run -e NODE_TYPE=light ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+```
+
+Congratulations! You now have a Celestia Light Node running on the Mamaki testnet.
+
+![mamaki_light_docker](/img/nodes/mamaki_light_docker.gif)
+
+If you would like to run the node with custom flags,
+you can refer to the
+[`celestia-node` tutorial](../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
+
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem value="bridge" label="Bridge">
+
+## Bridge Node Setup
+
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
+## Arabica Bridge Node Setup
+
+Run the image from the command line:
+
+```bash 
+docker run -e NODE_TYPE=bridge ghcr.io/celestiaorg/celestia-node:0.5.0-rc5 celestia bridge start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 0.0.0.0 --gateway.port 26659 --p2p.network arabica
+```
+
+Congratulations! You now have a Celestia Bridge Node running on the Arabica network.
+
+![arabica_bridge_docker](/img/nodes/arabica_bridge_docker.gif)
+
+If you would like to run the node with custom flags,
+you can refer to the
+[`celestia-node` tutorial](../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+## Mamaki Bridge Node Setup
+
+Run the image from the command line:
+
+```bash 
+docker run -e NODE_TYPE=bridge ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia bridge start --core.remote https://rpc-mamaki.pops.one:26657
+```
+
+Congratulations! You now have a Celestia Bridge Node running on the Mamaki network.
+
+![mamaki_bridge_docker](/img/nodes/mamaki_bridge_docker.gif)
+
+If you would like to run the node with custom flags,
+you can refer to the
+[`celestia-node` tutorial](../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
+
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem value="full" label="Full">
+
+## Full Node Setup
+
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
+## Arabica Full Node Setup
+
+Run the image from the command line:
+
+```bash 
+docker run -e NODE_TYPE=full ghcr.io/celestiaorg/celestia-node:0.5.0-rc5 celestia full start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 0.0.0.0 --gateway.port 26659 --p2p.network arabica
+```
+
+Congratulations! You now have a Celestia Full Storage Node running on the Arabica network.
+
+![arabica_full_docker](/img/nodes/arabica_full_docker.gif)
+
+If you would like to run the node with custom flags,
+you can refer to the
+[`celestia-node` tutorial](../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
+
+</TabItem>
+<TabItem value="mamaki" label="Mamaki">
+
+## Mamaki Full Node Setup
+
+Run the image from the command line:
+
+```bash 
+docker run -e NODE_TYPE=full ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia full start --core.remote https://rpc-mamaki.pops.one:26657
+```
+
+Congratulations! You now have a Celestia Full Storage Node running on the Mamaki network.
+
+![mamaki_full_docker](/img/nodes/mamaki_full_docker.gif)
+
+If you would like to run the node with custom flags,
+you can refer to the
+[`celestia-node` tutorial](../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
+
+</TabItem>
+</Tabs>
+</TabItem>
+</Tabs>
+````

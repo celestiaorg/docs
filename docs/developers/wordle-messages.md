@@ -1,12 +1,12 @@
 ---
-sidebar_label : Messages
+sidebar_label: Messages
 ---
 
 # Messages
 
 Messages allow us to process and submit information to our specific module.
 
-From the Cosmos-SDK docs, [messages](https://docs.cosmos.network/master/building-modules/messages-and-queries.html#messages)
+From the Cosmos-SDK docs, [messages](https://docs.cosmos.network/main/building-modules/messages-and-queries.html#messages)
 are:
 
 > In the Cosmos SDK, messages are objects that are contained

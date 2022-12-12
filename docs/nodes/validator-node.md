@@ -1,5 +1,5 @@
 ---
-sidebar_label : Validator Node
+sidebar_label: Validator Node
 ---
 
 # Setting up a Celestia Validator Node
@@ -23,7 +23,7 @@ instance machine.
 
 ### Setup the dependencies
 
-Follow the instructions on installing the dependencies [here](../developers/environment.md).
+Follow the instructions on installing the dependencies [here](./environment.mdx).
 
 ## Deploying the celestia-app
 
@@ -35,15 +35,43 @@ running a Celestia App daemon with an internal Celestia Core node.
 
 ### Install celestia-app
 
-Follow the tutorial on installing Celestia App [here](../developers/celestia-app.md).
+Follow the tutorial on installing Celestia App [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
-For this section of the guide, select the network you want to connect to:
+Now we will setup the P2P Networks by cloning the networks repository:
 
-* [Mamaki](./mamaki-testnet.md#setup-p2p-network)
+```sh
+cd $HOME
+rm -rf networks
+git clone https://github.com/celestiaorg/networks.git
+```
 
-After that, you can proceed with the rest of the tutorial.
+To initialize the network pick a "node-name" that describes your
+node. The --chain-id parameter we are using here is `mamaki`. Keep in
+mind that this might change if a new testnet is deployed.
+
+```sh
+celestia-appd init "node-name" --chain-id mamaki
+```
+
+Copy the `genesis.json` file. For mamaki we are using:
+
+```sh
+cp $HOME/networks/mamaki/genesis.json $HOME/.celestia-app/config
+```
+
+Set seeds and peers:
+
+<!-- markdownlint-disable MD013 -->
+```sh
+BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/bootstrap-peers.txt | tr -d '\n')
+echo $BOOTSTRAP_PEERS
+sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" $HOME/.celestia-app/config/config.toml
+```
+<!-- markdownlint-enable MD013 -->
+
+Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mamaki/peers.txt).
 
 ### Configure pruning
 
@@ -84,19 +112,26 @@ this method you can synchronize your Celestia node very quickly by downloading
 a recent snapshot of the blockchain. If you would like to sync from the Genesis,
 then you can skip this part.
 
-If you want to use snapshot, determine the network you would like to sync
-to from the list below:
+Run the following command to quick-sync from a snapshot for `mamaki`:
 
-* [Mamaki](./mamaki-testnet.md#quick-sync-with-snapshot)
+```sh
+cd $HOME
+rm -rf ~/.celestia-app/data
+mkdir -p ~/.celestia-app/data
+SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
+    egrep -o ">mamaki.*tar" | tr -d ">")
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
+    -C ~/.celestia-app/data/
+```
 
 ### Start the celestia-app with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](./systemd.md#start-the-celestia-app-with-systemd).
+with SystemD [here](./systemd).
 
 ### Wallet
 
-Follow the tutorial on creating a wallet [here](../developers/wallet.md).
+Follow the tutorial on creating a wallet [here](../developers/celestia-app-wallet.md).
 
 ### Delegate stake to a validator
 
@@ -123,9 +158,34 @@ Enter keyring passphrase:
 celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
 ```
 
-Next, select the network you want to use to delegate to a validator:
+To delegate tokens to the `celestiavaloper` validator, as an
+example you can run:
 
-* [Mamaki](./mamaki-testnet.md#delegate-to-a-validator)
+```sh
+celestia-appd tx staking delegate \
+    celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \
+    --from=$VALIDATOR_WALLET --chain-id=mamaki
+```
+
+If successful, you should see a similar output as:
+
+```console
+code: 0
+codespace: ""
+data: ""
+gas_used: "0"
+gas_wanted: "0"
+height: "0"
+info: ""
+logs: []
+raw_log: '[]'
+timestamp: ""
+tx: null
+txhash: <tx-hash>
+```
+
+You can check if the TX hash went through using the block explorer by
+inputting the `txhash` ID that was returned.
 
 ## Deploy the celestia-node
 
@@ -134,18 +194,21 @@ Celestia Bridge Node daemon.
 
 ### Install celestia-node
 
-You can follow the tutorial for installing Celestia Node [here](../developers/celestia-node.md)
+You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx)
 
 ### Initialize the bridge node
 
 Run the following:
 
 ```sh
-celestia bridge init --core.remote tcp://<ip:port of celestia-app> \
-  --core.grpc http://<ip:port>
+celestia bridge init --core.ip <ip-address> --core.grpc.port <port>
 ```
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet.md#rpc-endpoints)
+> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can use the flag
+  to specify another port if you prefer.
+
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet)
 
 ### Run the bridge node
 
@@ -158,7 +221,7 @@ celestia bridge start
 ### Optional: start the bridge node with SystemD
 
 Follow the tutorial on setting up the bridge node as a background process with
-SystemD [here](./systemd.md#celestia-bridge-node).
+SystemD [here](./systemd).
 
 You have successfully set up a bridge node that is syncing with the network.
 
@@ -178,7 +241,47 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
-* [Mamaki](./mamaki-testnet.md#connect-validator)
+Continuing the Validator tutorial, here are the steps to connect your
+validator to Mamaki:
 
-Complete the instructions in the respective network you want to validate in
-to complete the validator setup process.
+```sh
+MONIKER="your_moniker"
+VALIDATOR_WALLET="validator"
+
+celestia-appd tx staking create-validator \
+    --amount=1000000utia \
+    --pubkey=$(celestia-appd tendermint show-validator) \
+    --moniker=$MONIKER \
+    --chain-id=mamaki \
+    --commission-rate=0.1 \
+    --commission-max-rate=0.2 \
+    --commission-max-change-rate=0.01 \
+    --min-self-delegation=1000000 \
+    --from=$VALIDATOR_WALLET \
+    --keyring-backend=test
+```
+
+You will be prompted to confirm the transaction:
+
+```console
+confirm transaction before signing and broadcasting [y/N]: y
+```
+
+Inputting `y` should provide an output similar to:
+
+```console
+code: 0
+codespace: ""
+data: ""
+gas_used: "0"
+gas_wanted: "0"
+height: "0"
+info: ""
+logs: []
+raw_log: '[]'
+timestamp: ""
+tx: null
+txhash: <tx-hash>
+```
+
+You should now be able to see your validator from a block explorer like [here](https://celestia.explorers.guru/)

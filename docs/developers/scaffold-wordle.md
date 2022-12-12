@@ -1,5 +1,5 @@
 ---
-sidebar_label : Scaffolding The Chain
+sidebar_label: Scaffolding The Chain
 ---
 
 # Ignite and Scaffolding the Wordle Chain
@@ -57,7 +57,7 @@ We first run the following command to setup our project for
 our new blockchain, Wordle.
 
 ```sh
-ignite scaffold chain github.com/YazzyYaz/wordle --no-module
+ignite scaffold chain wordle --no-module
 ```
 
 This command scaffolds a new chain directory called `wordle`

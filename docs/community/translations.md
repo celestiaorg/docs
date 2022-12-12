@@ -1,5 +1,5 @@
 ---
-sidebar_label : Docs Translations
+sidebar_label: Docs Translations
 ---
 
 # Community Translation Support
@@ -41,8 +41,8 @@ It is important to keep in mind that William Shakespeare was an
 English speaker...So was Alan Turing! That is why
 you should not translate parts of the code "itself".
 
-For instance, if you see metadata like `sidebar_label : Hello World`,
-a French translation would be `sidebar_label : Salut tout le monde`.
+For instance, if you see metadata like `sidebar_label: Hello World`,
+a French translation would be `sidebar_label: Salut tout le monde`.
 
 Let's take another example, you wouldn't have to translate anything here:
 
@@ -68,3 +68,31 @@ rest of the community.
 
 Also, be careful with date order, period and commas regarding
 numbers from a language to another.
+
+## Technical Guidance for Language Managers in Crowdin
+
+If you are the owner of a specific language in the Crowdin translation
+efforts for Celestia, you are basically in charge of approving
+submitted translations.
+
+After you approve translations, you also need to test your changes.
+
+You can do so with the following steps in your shell:
+
+```sh
+git clone https://github.com/celestiaorg/docs.git
+cd docs
+yarn
+# This command creates updated files, pushes it to crowdin and
+# pulls in all latest approved translations
+yarn crowdin:sync
+# Now you can build your specific translation locally. For example
+# for Mandarin, you use `zh`
+yarn run start -- --locale zh
+```
+
+This allows you to start the docs locally with your translations
+added. Test this on your computer to ensure there are no issues
+in your translations from crowdin. Errors cause the whole docs to
+not update and slows documentation process so it is advised for you
+to always test your translations before we add them to the docs.

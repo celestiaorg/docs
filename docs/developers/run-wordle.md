@@ -1,5 +1,5 @@
 ---
-sidebar_label : Run The Wordle Chain
+sidebar_label: Run The Wordle Chain
 ---
 
 # Run the Wordle Chain
@@ -7,71 +7,50 @@ sidebar_label : Run The Wordle Chain
 
 ## Building and Running Wordle Chain
 
-In one terminal window, run the following command:
+We have a handy `init.sh` found in this repo
+[here](https://github.com/celestiaorg/devrel-tools).
+
+We can copy it over to our directory with the following commands:
 
 ```sh
-ignite chain serve 
+# From inside the `wordle` directory
+cd ..
+git clone https://github.com/celestiaorg/devrel-tools
+cp devrel-tools/wordle/init.sh wordle/
+cd wordle/
 ```
 
-This will compile the blockchain code you just wrote
-and also create a genesis file and some accounts for you
-to use. Once the log shows something like the following
-log in the output:
+This copies over our `init.sh` script to initialize our
+Wordle Rollup.
+
+You can view the contents of the script to see how we
+initialize the Wordle Rollup.
+
+> On a Mac, you will need to run the following before initializing:
 
 ```sh
-root@yaz-workshop:~/wordle# ignite chain serve
-Cosmos SDK's version is: stargate - v0.45.5
-
-🛠️  Building proto...
-📦 Installing dependencies...
-🛠️  Building the blockchain...
-💿 Initializing the app...
-🙂 Created account "alice" with address "cosmos1skalxj42asjhc7dde3lzzawnksnztqmgy6sned" with mnemonic: "exact arrive betray hawk trim surround exhibit host vibrant sting range robot luxury vague manage settle slide town bread adult pact scene journey elite"
-🙂 Created account "bob" with address "cosmos1xe3l8z634frp0ry6qlmzs5vr85x6gcty7tmf0n" with mnemonic: "wisdom jelly fine boat series time panel real world purchase age area coach eager spot fiber slide apology near endorse flight panel ready torch"
-🌍 Tendermint node: http://0.0.0.0:26657
-🌍 Blockchain API: http://0.0.0.0:1317
-🌍 Token faucet: http://0.0.0.0:4500
+brew install md5sha1sum
 ```
 
-Here the command created a binary called `wordled`
-and the `alice` and `bob` addresses, along with a faucet
-and API. You are clear to exit the program with CTRL-C.
-The reason for that is because we will run `wordled`
-binary separately with Optimint flags added.
-
-You can start the chain with optimint configurations by
-running the following:
+You can initialize the script with the following command:
 
 ```sh
-wordled start --optimint.aggregator true --optimint.da_layer celestia --optimint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000}' --optimint.namespace_id 000000000000FFFF --optimint.da_start_height XXXXX
+bash init.sh
 ```
 
-Please consider:
-
-> NOTE: In the above command, you need to pass a Celestia Node IP address
-  to the `base_url` that has an account with Mamaki testnet tokens. Follow
-  the tutorial for setting up a Celestia Light Node and creating a wallet
-  with testnet faucet money [here](./node-tutorial.md) in the Celestia Node section.
-
-Also please consider:
-
-> IMPORTANT: Furthermore, in the above command, you need to specify the latest
-  Block Height in Mamaki Testnet for `da_height`. You can find the latest block number
-  in the explorer [here](https://testnet.mintscan.io/celestia-testnet). Also, for the flag
-  `--optimint.namespace_id`, you can generate a random Namespace ID using the
-  playground [here](https://go.dev/play/p/7ltvaj8lhRl)
+With that, we have kickstarted our `wordled` network!
 
 In another window, run the following to submit a Wordle:
 
 ```sh
-wordled tx wordle submit-wordle giant --from alice --keyring-backend test --chain-id wordle -b async
+wordled tx wordle submit-wordle giant --from alice --keyring-backend test --chain-id wordle -b async -y
 ```
 
 > NOTE: We are submitting a transaction asynchronously due to avoiding
-  any timeout errors. With Optimint as a replacement to Tendermint, we
+  any timeout errors. With Rollmint as a replacement to Tendermint, we
   need to wait for Celestia's Data-Availability network to ensure a block
   was included from Wordle, before proceeding to the next block. Currently,
-  in Optimint, the single aggregator is not moving forward with the next block
+  in Rollmint, the single aggregator is not moving forward with the next block
   production as long as it is trying to submit the current block to the DA network.
   In the future, with leader selection, block production and sync logic improves
   dramatically.
@@ -202,7 +181,7 @@ This outputs all Guess objects submitted so far, with the index
 being today’s date and the address of the submitter.
 
 With that, we implemented a basic example of Wordle using
-Cosmos-SDK and Ignite and Optimint. Read on to how you can
+Cosmos-SDK and Ignite and Rollmint. Read on to how you can
 extend the code base.
 
 ## Extending in the Future
