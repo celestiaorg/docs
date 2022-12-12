@@ -297,9 +297,9 @@ address as we’ll also be needing it in just a moment when we test the live con
 First, we will need to follow the setup from the [Ethermint tutorial](./ethermint).
 
 > It is required that you complete [dependency setup](./ethermint-dependencies)
-and [RollKit installation](http://localhost:3000/developers/rollmint-on-ethermint)
+and [RollKit installation](./rollmint-on-ethermint)
 and
-[Instantiating and Ethermint rollup](http://localhost:3000/developers/instantiate-ethermint).
+[Instantiating and Ethermint rollup](./instantiate-ethermint).
 
 Now that we've deployed and tested locally, we can deploy to our
 Ethermint chain.
@@ -434,15 +434,15 @@ import { publicProvider } from 'wagmi/providers/public';
 /* create configuration for Ethermint testnet */
 const ethermint = {
   id: 9000,
-  name: 'Evmos Testnet',
-  network: 'Evmos Testnet',
+  name: 'ethermint',
+  network: 'Ethermint',
   nativeCurrency: {
     decimals: 18,
-    name: 'Evmos Testnet',
-    symbol: 'tEVMOS',
+    name: 'Ethermint',
+    symbol: 'eMINT',
   },
   rpcUrls: {
-    default: 'http://159.65.252.178:8545/'
+    default: 'http://localhost:8545/'
   }
 };
 
