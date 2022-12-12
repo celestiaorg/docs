@@ -1,5 +1,5 @@
 ---
-sidebar_label : Overview
+sidebar_label: Overview
 ---
 
 # Overview to running nodes on Celestia
@@ -17,11 +17,11 @@ in consensus by producing and voting on blocks.
 
 Data Availability:
 
-* [Bridge Node](./bridge-node.md): This node bridges blocks between the
+* [Bridge Node](./bridge-node.mdx): This node bridges blocks between the
   Data-Availability network and the Consensus network.
-* [Full Storage Node](./full-storage-node.md): This node stores all
+* [Full Storage Node](./full-storage-node.mdx): This node stores all
   the data but does not connect to Consensus.
-* [Light Node](./light-node.md): Light clients conduct data availability
+* [Light Node](./light-node.mdx): Light clients conduct data availability
   sampling on the Data Availability network.
 
 You can learn more about how to setup each different node by going through

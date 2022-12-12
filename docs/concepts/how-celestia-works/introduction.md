@@ -1,3 +1,7 @@
+---
+sidebar_label: Introduction
+---
+
 # Introduction
 
 Celestia is a modular blockchain network whose goal is to build a scalable

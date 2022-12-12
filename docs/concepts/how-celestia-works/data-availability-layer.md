@@ -1,3 +1,7 @@
+---
+sidebar_label: Celestia's Data Availability Layer
+---
+
 # Celestia's Data Availability Layer
 
 Celestia is a data availability (DA) layer that provides a
@@ -59,7 +63,7 @@ feasible for resource-limited light nodes. However, in order to validate
 block headers, Celestia light nodes need to download the 4k intermediate
 Merkle roots.
 
-For a block data size of n bytes, this means that every light node must
+For a block data size of $n^2$ bytes, this means that every light node must
 download O(n) bytes. Therefore, any improvement in the bandwidth capacity
 of Celestia light nodes has a quadratic effect on the throughput of Celestia's
 DA layer.
@@ -132,7 +136,7 @@ For more details on NMTs, take a look at the [original paper](https://arxiv.org/
 The Celestia DA layer consists of a PoS blockchain. Celestia is dubbing this
 blockchain as the [Celestia App](https://github.com/celestiaorg/celestia-app),
 an application that provides transactions to facilitate the DA layer and is built
-using [Cosmos SDK](https://docs.cosmos.network/v0.44/). The following figure
+using [Cosmos SDK](https://docs.cosmos.network/main). The following figure
 shows the main components of Celestia App.
 
 ![Main components of Celestia App](/img/concepts/celestia-app.png)
