@@ -21,6 +21,7 @@ Ubuntu. You can find the instructions for your operating system
 [here](https://docs.docker.com/engine/install/).
 
 ## Prerequisites
+
 - [Docker](https://docs.docker.com/get-docker/) and basic understanding of Docker
 
 ````mdx-code-block
@@ -59,7 +60,7 @@ you can refer to the
 Run the image from the command line:
 
 ```bash 
-docker run -e NODE_TYPE=light ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia light start --core.grpc https://rpc-mocha.pops.one:9090
+docker run -e NODE_TYPE=light ghcr.io/celestiaorg/celestia-node:0.5.0 celestia light start --core.grpc https://rpc-mocha.pops.one:9090
 ```
 
 Congratulations! You now have a Celestia Light Node running on the Mocha testnet.
@@ -108,7 +109,7 @@ you can refer to the
 Run the image from the command line:
 
 ```bash 
-docker run -e NODE_TYPE=bridge ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia bridge start --core.remote https://rpc-mocha.pops.one:26657
+docker run -e NODE_TYPE=bridge ghcr.io/celestiaorg/celestia-node:0.5.0 celestia bridge start --core.remote https://rpc-mocha.pops.one:26657
 ```
 
 Congratulations! You now have a Celestia Bridge Node running on the Mocha network.
@@ -153,7 +154,7 @@ you can refer to the
 Run the image from the command line:
 
 ```bash 
-docker run -e NODE_TYPE=full ghcr.io/celestiaorg/celestia-node:sha-89892d8 celestia full start --core.remote https://rpc-mocha.pops.one:26657
+docker run -e NODE_TYPE=full ghcr.io/celestiaorg/celestia-node:0.5.0 celestia full start --core.remote https://rpc-mocha.pops.one:26657
 ```
 
 Congratulations! You now have a Celestia Full Storage Node running on the Mocha network.
