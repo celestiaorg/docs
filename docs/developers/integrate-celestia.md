@@ -39,7 +39,7 @@ minimal as possible.
 
 Celestia supports many already existing key management systems, as we rely on
 the Cosmos-SDK and Tendermint libraries for signing and verifying transactions.
-[Cosmos-SDK documentation](https://docs.cosmos.network/master/basics/accounts.html#keys-accounts-addresses-and-signatures)
+[Cosmos-SDK documentation](https://docs.cosmos.network/main/basics/accounts.html#keys-accounts-addresses-and-signatures)
 
 ### RPC and Querying
 

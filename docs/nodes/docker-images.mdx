@@ -85,7 +85,11 @@ you can refer to the
 Run the image from the command line:
 
 ```bash 
+<<<<<<< HEAD
 docker run -e NODE_TYPE=bridge ghcr.io/celestiaorg/celestia-node:0.5.0 celestia bridge start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
+=======
+docker run -e NODE_TYPE=bridge ghcr.io/celestiaorg/celestia-node:0.5.0-rc5 celestia bridge start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 0.0.0.0 --gateway.port 26659 --p2p.network arabica
+>>>>>>> main
 ```
 
 Congratulations! You now have a Celestia Bridge Node running on the Arabica network.
