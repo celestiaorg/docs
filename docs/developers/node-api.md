@@ -453,8 +453,8 @@ Response
 
 Constructs, signs and submits a PayForData message to a running instance
 of celestia-app. The body of the `/submit_pfd` request should contain the
-hex-encoded `namespace_id`, the hex-encoded `data`, and the `gas_limit`
-as a uint64.
+hex-encoded `namespace_id`, the hex-encoded `data`, the `fee`, and the
+`gas_limit` as a uint64.
 
 Request
 
@@ -684,8 +684,8 @@ Response
 
 Submits a transfer transaction to a running instance of `celestia-app`.
 The body of the `/transfer` request should contain the
-`to` (receiver) address, the `amount` in utia, and the `gas_limit`
-as a uint64.
+`to` (receiver) address, the `amount` in utia, the `fee`,
+and the `gas_limit` as a uint64.
 
 To transfer tokens from the address running your node to another.
 
