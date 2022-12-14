@@ -8,8 +8,8 @@ sidebar_label: Mocha Testnet
 
 This guide contains the relevant sections for how to connect to Mocha,
 depending on the type of node you are running. Mocha Testnet is designed
-to help validators test out their infrastructure and node software
-with the test network. Developers are encouraged to deploy their
+to help validators test out their infrastructure and node software.
+Developers are encouraged to deploy their
 sovereign rollups on Mocha, but we also recommend [Arabica Devnet](./arabica-devnet)
 for that as it is designed for development purposes.
 

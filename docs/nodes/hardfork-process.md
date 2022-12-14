@@ -44,7 +44,7 @@ while maintaining the existing state and also will rename Mamaki to Mocha.
 
 The new chain-id will be `mocha`.
 
-The release logs for `mocha` can be found here (TBD).
+The release logs for `mocha` can be found [here](https://github.com/celestiaorg/celestia-app/releases).
 
 The most exciting feature included is setting the stage for QGB on Mocha.
 
