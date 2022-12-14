@@ -204,7 +204,9 @@ customizable, modular rollups using the Solana VM.
 📗 **Lesson 7 with CosmWasm**
 
 - **Thursday 15 December @ 11am EST / 5pm UTC / 6pm CEST**
-- CosmWasm is a new smart contracting platform built for the cosmos ecosystem.
+- CosmWasm is a new smart contracting platform built for the Cosmos ecosystem.
+Learn to build a Smart Contract in under 1 hour in Rust. You will learn all
+the basic pieces you need to shape your Smart Contract.
 
 ---
 
