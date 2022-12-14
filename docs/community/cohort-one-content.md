@@ -191,7 +191,7 @@ customizable, modular rollups using the Solana VM.
 
 - **Monday 12 December - @ 11am EST / 4pm UTC / 5pm CEST**
 
-🧠 **Modular Insights with Cosmology**
+📗 **Lesson 6 with Cosmology**
 
 - **Tuesday 13 December @ 1pm EST / 6pm UTC / 7pm CEST**
 - Building apps in the Cosmos
@@ -201,7 +201,7 @@ customizable, modular rollups using the Solana VM.
   neatly packaged Typescript modules that can be published to npm and
   brought into frontend projects.*
 
-🧠 **Modular Insights with CosmWasm**
+📗 **Lesson 7 with CosmWasm**
 
 - **Thursday 15 December @ 11am EST / 5pm UTC / 6pm CEST**
 - CosmWasm is a new smart contracting platform built for the cosmos ecosystem.
@@ -210,17 +210,29 @@ customizable, modular rollups using the Solana VM.
 
 ### **Dec 19 - Week 13 - No Scheduled Events, Meet with Mentors**
 
+🧑‍🏫 **Office Hour**
+
+- **Tuesday 20 December @ 11am EDT / 3pm UTC / 5pm CEST**
+
 ---
 
-### **Dec 26 - Week 14 - No Scheduled Events, Holiday Break**
+### **Dec 26 - Week 14 - No Scheduled Events, Holiday Break 🎉**
 
 ---
 
 ### **Jan 2 - Week 15 - No Scheduled Events, Meet with Mentors**
 
+🧑‍🏫 **Office Hour**
+
+- **Wednesday 4 January @ 11am EDT / 3pm UTC / 5pm CEST**
+
 ---
 
 ### **Jan 9 - Week 16 - Submissions Due**
+
+🧑‍🏫 **Office Hour**
+
+- **Monday 9 January @ 11am EDT / 3pm UTC / 5pm CEST**
 
 🪧 **Demo Day**
 
