@@ -145,6 +145,7 @@ the cost of `calldata` on Ethereum.
 ✋ **Modular Fellows AMA with Ismail Khoffi**
 
 - **Tuesday 22 November - @ 11:30am EST / 4:30pm UTC / 5:30pm CEST**
+- [AMA with Ismail Khoffi of Celestia - Recording](https://youtu.be/NU6QHDDoN3c)
 
 🪧 **Present your project prototype**
 
@@ -190,6 +191,7 @@ customizable, modular rollups using the Solana VM.
 ✋ **Modular Fellows AMA with John Adler**
 
 - **Monday 12 December - @ 11am EST / 4pm UTC / 5pm CEST**
+- [AMA with John Adler of Celestia - Recording](https://youtu.be/NU6QHDDoN3c)
 
 📗 **Lesson 6 with Cosmology**
 
@@ -200,6 +202,7 @@ customizable, modular rollups using the Solana VM.
   - *Convert custom Cosmos SDK chains and CosmWasm Smart Contracts into
   neatly packaged Typescript modules that can be published to npm and
   brought into frontend projects.*
+- [Lesson #6 Recording - Cosmology](https://youtu.be/RPOXNUkvU3M)
 
 📗 **Lesson 7 with CosmWasm**
 
