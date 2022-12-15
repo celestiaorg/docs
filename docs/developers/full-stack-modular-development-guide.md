@@ -292,14 +292,30 @@ cast call $CONTRACT_ADDRESS "fetchPosts()"
 Once the contract is deployed successfully, **take a note of the contract
 address as we’ll also be needing it in just a moment when we test the live contract**.
 
+### Adding Ethermint Chain to MetaMask
+
+1. Open your MetaMask wallet and click "Ethereum Mainnet" to open the dropdown.
+2. Select "Add Network"
+3. Then "Add network manually"
+4. Enter the following details:
+
+> - Network Name: `Ethermint`
+> - New RPC URL: `http://159.65.252.178:8545/` **or** `http://localhost:8545`
+> - Chain ID: `69420`
+> - Currency symbol: `CTE`
+
+![add-metamask.gif](/img/full-stack/add-metamask.gif)
+
 ### Deploying to the Ethermint Sovereign Rollup
 
 First, we will need to follow the setup from the [Ethermint tutorial](./ethermint).
 
-> It is required that you complete [dependency setup](./ethermint-dependencies)
-and [RollKit installation](./rollmint-on-ethermint)
-and
-[Instantiating and Ethermint rollup](./instantiate-ethermint).
+> 🛑 It is required that you complete [dependency setup](./ethermint-dependencies),
+[RollKit installation](./rollmint-on-ethermint), and
+[Instantiating and Ethermint rollup](./instantiate-ethermint) for the remainder
+of the tutorial. Note: before [running `bash init.sh`](./instantiate-ethermint#instantiating-the-ethermint-rollup)
+change the `CHAINID` in the `init.sh` script to `CHAINID="roll_69420_1"`. If you
+don't, users will need to add the chain manually.
 
 Now that we've deployed and tested locally, we can deploy to our
 Ethermint chain.
@@ -343,6 +359,9 @@ We can then perform read operations with `cast call`:
 ```bash
 cast call $CONTRACT_ADDRESS "fetchPosts()" --rpc-url http://localhost:8545
 ```
+
+> Note: you will want to redeploy the contract for your frontend, because
+> the post is not uploaded to IPFS in the CLI.
 
 ### Building the frontend
 
