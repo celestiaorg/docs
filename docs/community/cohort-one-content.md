@@ -145,6 +145,7 @@ the cost of `calldata` on Ethereum.
 ✋ **Modular Fellows AMA with Ismail Khoffi**
 
 - **Tuesday 22 November - @ 11:30am EST / 4:30pm UTC / 5:30pm CEST**
+- [AMA with Ismail Khoffi of Celestia - Recording](https://youtu.be/NU6QHDDoN3c)
 
 🪧 **Present your project prototype**
 
@@ -190,8 +191,9 @@ customizable, modular rollups using the Solana VM.
 ✋ **Modular Fellows AMA with John Adler**
 
 - **Monday 12 December - @ 11am EST / 4pm UTC / 5pm CEST**
+- [AMA with John Adler of Celestia - Recording](https://youtu.be/NU6QHDDoN3c)
 
-🧠 **Modular Insights with Cosmology**
+📗 **Lesson 6 with Cosmology**
 
 - **Tuesday 13 December @ 1pm EST / 6pm UTC / 7pm CEST**
 - Building apps in the Cosmos
@@ -200,27 +202,42 @@ customizable, modular rollups using the Solana VM.
   - *Convert custom Cosmos SDK chains and CosmWasm Smart Contracts into
   neatly packaged Typescript modules that can be published to npm and
   brought into frontend projects.*
+- [Lesson #6 Recording - Cosmology](https://youtu.be/RPOXNUkvU3M)
 
-🧠 **Modular Insights with CosmWasm**
+📗 **Lesson 7 with CosmWasm**
 
 - **Thursday 15 December @ 11am EST / 5pm UTC / 6pm CEST**
-- CosmWasm is a new smart contracting platform built for the cosmos ecosystem.
+- CosmWasm is a new smart contracting platform built for the Cosmos ecosystem.
+Learn to build a Smart Contract in under 1 hour in Rust. You will learn all
+the basic pieces you need to shape your Smart Contract.
 
 ---
 
 ### **Dec 19 - Week 13 - No Scheduled Events, Meet with Mentors**
 
+🧑‍🏫 **Office Hour**
+
+- **Tuesday 20 December @ 11am EDT / 3pm UTC / 5pm CEST**
+
 ---
 
-### **Dec 26 - Week 14 - No Scheduled Events, Holiday Break**
+### **Dec 26 - Week 14 - No Scheduled Events, Holiday Break 🎉**
 
 ---
 
 ### **Jan 2 - Week 15 - No Scheduled Events, Meet with Mentors**
 
+🧑‍🏫 **Office Hour**
+
+- **Wednesday 4 January @ 11am EDT / 3pm UTC / 5pm CEST**
+
 ---
 
 ### **Jan 9 - Week 16 - Submissions Due**
+
+🧑‍🏫 **Office Hour**
+
+- **Monday 9 January @ 11am EDT / 3pm UTC / 5pm CEST**
 
 🪧 **Demo Day**
 
