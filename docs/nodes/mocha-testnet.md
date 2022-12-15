@@ -44,6 +44,14 @@ There is a list of RPC endpoints you can use to connect to Mocha Testnet:
 
 * [https://rpc-mocha.pops.one](https://rpc-mocha.pops.one)
 
+## API endpoints
+
+* [https://rpc-mocha.pops.one](https://rpc-mocha.pops.one)
+
+## GRPC endpoints
+
+* [https://rpc-mocha.pops.one](https://rpc-mocha.pops.one)
+
 ## Mocha Testnet faucet
 
 > USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER
