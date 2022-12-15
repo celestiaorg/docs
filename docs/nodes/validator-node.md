@@ -48,30 +48,32 @@ git clone https://github.com/celestiaorg/networks.git
 ```
 
 To initialize the network pick a "node-name" that describes your
-node. The --chain-id parameter we are using here is `mamaki`. Keep in
+node. The --chain-id parameter we are using here is `mocha`. Keep in
 mind that this might change if a new testnet is deployed.
 
 ```sh
-celestia-appd init "node-name" --chain-id mamaki
+celestia-appd init "node-name" --chain-id mocha
 ```
 
-Copy the `genesis.json` file. For mamaki we are using:
+Copy the `genesis.json` file. For mocha we are using:
 
 ```sh
-cp $HOME/networks/mamaki/genesis.json $HOME/.celestia-app/config
+cp $HOME/networks/mocha/genesis.json $HOME/.celestia-app/config
 ```
 
 Set seeds and peers:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/bootstrap-peers.txt | tr -d '\n')
-echo $BOOTSTRAP_PEERS
-sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" $HOME/.celestia-app/config/config.toml
+SEEDS="some seeds"
+PEERS="some peers"
+SEED_MODE="true"
+sed -i -e 's|^seeds *=.*|seeds = "'$SEEDS'"|; s|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.celestia-app/config/config.toml
+sed -i -e "s/^seed_mode *=.*/seed_mode = \"$SEED_MODE\"/" $HOME/.celestia-app/config/config.toml
 ```
 <!-- markdownlint-enable MD013 -->
 
-Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mamaki/peers.txt).
+Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mocha/peers.txt).
 
 ### Configure pruning
 
@@ -91,20 +93,6 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
 \"$PRUNING_INTERVAL\"/" $HOME/.celestia-app/config/app.toml
 ```
 
-### Configure validator mode
-
-```sh
-sed -i.bak -e "s/^mode *=.*/mode = \"validator\"/" $HOME/.celestia-app/config/config.toml
-```
-
-### Reset network
-
-This will delete all data folders so we can start fresh:
-
-```sh
-celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
-```
-
 ### Optional: quick-sync with snapshot
 
 Syncing from Genesis can take a long time, depending on your hardware. Using
@@ -112,14 +100,14 @@ this method you can synchronize your Celestia node very quickly by downloading
 a recent snapshot of the blockchain. If you would like to sync from the Genesis,
 then you can skip this part.
 
-Run the following command to quick-sync from a snapshot for `mamaki`:
+Run the following command to quick-sync from a snapshot for `mocha`:
 
 ```sh
 cd $HOME
 rm -rf ~/.celestia-app/data
 mkdir -p ~/.celestia-app/data
 SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-    egrep -o ">mamaki.*tar" | tr -d ">")
+    egrep -o ">mocha.*tar" | tr -d ">")
 wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
@@ -164,7 +152,7 @@ example you can run:
 ```sh
 celestia-appd tx staking delegate \
     celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \
-    --from=$VALIDATOR_WALLET --chain-id=mamaki
+    --from=$VALIDATOR_WALLET --chain-id=mocha
 ```
 
 If successful, you should see a similar output as:
@@ -208,7 +196,7 @@ celestia bridge init --core.ip <ip-address> --core.grpc.port <port>
   it in the command line, it will default to that port. You can use the flag
   to specify another port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mamaki-testnet)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet)
 
 ### Run the bridge node
 
@@ -224,6 +212,30 @@ Follow the tutorial on setting up the bridge node as a background process with
 SystemD [here](./systemd).
 
 You have successfully set up a bridge node that is syncing with the network.
+
+### Setup QGB Keys
+
+This step helps get you prepared for when the Quantum Gravity Bridge
+is ready to be deployed. You would still need to go through this step
+before running a validator to configure 2 extra keys.
+
+* `--evm-address`: This flag should contain a `0x` EVM address. Here,
+  you can add any Ethereum-based address to this flag. You can also modify
+  it later if you decide to switch addresses.
+* `--orchesrator-address`: This flag should contain a newly-generated
+  `celestia1` Celestia address. Validators certainly can use their existing
+  Celestia addresses here but it is recommended to create a new one.
+
+You can set both the values to the above flags as
+environment variables:
+
+```sh
+EVM_ADDRESS=<EVM_ADDRESS>
+ORCHESTRATOR_ADDRESS=<CELESTIA_ADDRESS>
+```
+
+Remember to add the values for your addresses in the above
+environment variables before setting them.
 
 ## Run a validator node
 
@@ -242,7 +254,7 @@ Now, connect to the network of your choice.
 You have the following option of connecting to list of networks shown below:
 
 Continuing the Validator tutorial, here are the steps to connect your
-validator to Mamaki:
+validator to Mocha:
 
 ```sh
 MONIKER="your_moniker"
@@ -252,12 +264,14 @@ celestia-appd tx staking create-validator \
     --amount=1000000utia \
     --pubkey=$(celestia-appd tendermint show-validator) \
     --moniker=$MONIKER \
-    --chain-id=mamaki \
+    --chain-id=mocha \
     --commission-rate=0.1 \
     --commission-max-rate=0.2 \
     --commission-max-change-rate=0.01 \
     --min-self-delegation=1000000 \
     --from=$VALIDATOR_WALLET \
+    --evm-address=$EVM_ADDRESS
+    --orchesrator-address=$ORCHESTRATOR_ADDRESS
     --keyring-backend=test
 ```
 

@@ -258,13 +258,13 @@ go version go1.19.1 darwin/amd64
 </Tabs>
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -276,7 +276,7 @@ rm "go$ver.linux-amd64.tar.gz"
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -288,7 +288,7 @@ rm "go$ver.linux-arm64.tar.gz"
 <TabItem value="apple" label="Mac (Apple)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -300,7 +300,7 @@ rm "go$ver.darwin-arm64.tar.gz"
 <TabItem value="mac" label="Mac (Intel)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -344,28 +344,28 @@ The output should be the version installed:
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 ```sh
-go version go1.18.2 linux/amd64
+go version go1.19.1 linux/amd64
 ```
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 ```sh
-go version go1.18.2 linux/arm64
+go version go1.19.1 linux/arm64
 ```
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
 ```sh
-go version go1.18.2 darwin/arm64
+go version go1.19.1 darwin/arm64
 ```
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
 ```sh
-go version go1.18.2 darwin/amd64
+go version go1.19.1 darwin/amd64
 ```
 
 </TabItem>
@@ -396,7 +396,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.5.0-rc5
+git checkout tags/v0.6.0
 make install
 make cel-key
 ```
@@ -406,7 +406,7 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.5.0-rc5
+Semantic version: v0.6.0
 Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
 Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: amd64/linux
@@ -426,7 +426,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.5.0-rc5
+git checkout tags/v0.6.0
 make install
 make cel-key
 ```
@@ -436,7 +436,7 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.5.0-rc5
+Semantic version: v0.6.0
 Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
 Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: arm64/linux
@@ -456,7 +456,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.5.0-rc5
+git checkout tags/v0.6.0
 make go-install
 make cel-key
 ```
@@ -466,7 +466,7 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.5.0-rc5
+Semantic version: v0.6.0
 Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
 Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: arm64/darwin
@@ -486,7 +486,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.5.0-rc5
+git checkout tags/v0.6.0
 make go-install
 make cel-key
 ```
@@ -496,7 +496,7 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.5.0-rc5
+Semantic version: v0.6.0
 Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
 Build Date: Tue Nov 15 16:23:30 EST 2022
 System version: amd64/darwin
@@ -507,12 +507,12 @@ Golang version: go1.19.1
 </Tabs>
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -522,7 +522,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.3.0-rc2
+git checkout tags/v0.6.0
 make install
 make cel-key
 ```
@@ -532,14 +532,14 @@ version` command:
 
 ```console
 $ celestia version
-Semantic version: v0.3.0-rc2
+Semantic version: v0.6.0
 Commit: 89892d8b96660e334741987d84546c36f0996fbe
 ```
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -549,7 +549,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.3.0-rc2
+git checkout tags/v0.6.0
 make install
 make cel-key
 ```
@@ -559,14 +559,14 @@ version` command:
 
 ```console
 $ celestia version
-Semantic version: v0.3.0-rc2
+Semantic version: v0.6.0
 Commit: 89892d8b96660e334741987d84546c36f0996fbe
 ```
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -576,7 +576,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.3.0-rc2
+git checkout tags/v0.6.0
 make install
 make cel-key
 ```
@@ -586,14 +586,14 @@ version` command:
 
 ```console
 $ celestia version
-Semantic version: v0.3.0-rc2
+Semantic version: v0.6.0
 Commit: 89892d8b96660e334741987d84546c36f0996fbe
 ```
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -603,7 +603,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.3.0-rc2
+git checkout tags/v0.6.0
 make install
 make cel-key
 ```
@@ -613,7 +613,7 @@ version` command:
 
 ```console
 $ celestia version
-Semantic version: v0.3.0-rc2
+Semantic version: v0.6.0
 Commit: 89892d8b96660e334741987d84546c36f0996fbe
 ```
 
@@ -657,7 +657,7 @@ it in the command line, it will default to that port. You can use the flag
 to specify another port if you prefer.
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
 celestia light start --core.grpc <ip-address>:<port>
@@ -680,10 +680,10 @@ celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.po
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+celestia light start --core.grpc https://rpc-mocha.pops.one:9090
 ```
 
 </TabItem>
@@ -708,7 +708,7 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.ac
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
 celestia light start --core.grpc <ip-address>:<port> --keyring.accname <key_name>
@@ -974,7 +974,7 @@ We run the following:
 ```sh
 curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
   "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
-  "gas_limit": 70000}' http://localhost:26659/submit_pfd
+  "gas_limit": 70000, "fee": 2000}' http://localhost:26659/submit_pfd
 ```
 
 We get the following output:

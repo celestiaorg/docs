@@ -73,7 +73,7 @@ celestia full start --core.ip http://<ip-address> --core.grpc.port <port>
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh 
 celestia full start --core.remote <ip-address>:<port>
@@ -84,7 +84,7 @@ celestia full start --core.remote <ip-address>:<port>
 ````
 
 If you would like to find example RPC endpoints, check out the list of
-resources [here](./mamaki-testnet).
+resources [here](./mocha-testnet).
 
 You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx)
 
@@ -100,13 +100,13 @@ You can find the address by running the following command:
 You have two networks to get testnet tokens from:
 
 * [Arabica](./arabica-devnet)
-* [Mamaki](./mamaki-testnet)
+* [Mocha](./mocha-testnet)
 
 > NOTE: If you are running a full-storage node for your sovereign
   rollup, it is highly recommended to request Arabica devnet tokens
   as Arabica has the latest changes that can be used to
   test for developing your sovereign rollup. You can still use
-  Mamaki Testnet as well, it is just mostly used for Validator operations.
+  Mocha Testnet as well, it is just mostly used for Validator operations.
 
 ### Optional: run the full storage node with a custom key
 
@@ -125,7 +125,7 @@ celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyr
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh 
 celestia full start --core.remote <ip-address>:<port> --keyring.accname <name-of-custom-key>
