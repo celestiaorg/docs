@@ -407,8 +407,8 @@ version` command:
 ```output
 celestia version
 Semantic version: v0.6.0
-Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
-Build Date: Tue Nov 15 16:23:30 EST 2022
+Commit: 4c5d247de0d8f529fc5463d780959c326e256c8a
+Build Date: Thu Dec 15 21:55:31 UTC 2022
 System version: amd64/linux
 Golang version: go1.19.1
 ```
@@ -437,8 +437,8 @@ version` command:
 ```output
 celestia version
 Semantic version: v0.6.0
-Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
-Build Date: Tue Nov 15 16:23:30 EST 2022
+Commit: 4c5d247de0d8f529fc5463d780959c326e256c8a
+Build Date: Thu Dec 15 21:55:31 UTC 2022
 System version: arm64/linux
 Golang version: go1.19.1
 ```
@@ -467,8 +467,8 @@ version` command:
 ```output
 celestia version
 Semantic version: v0.6.0
-Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
-Build Date: Tue Nov 15 16:23:30 EST 2022
+Commit: 4c5d247de0d8f529fc5463d780959c326e256c8a
+Build Date: Thu Dec 15 21:55:31 UTC 2022
 System version: arm64/darwin
 Golang version: go1.19.1
 ```
@@ -497,8 +497,8 @@ version` command:
 ```output
 celestia version
 Semantic version: v0.6.0
-Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
-Build Date: Tue Nov 15 16:23:30 EST 2022
+Commit: 4c5d247de0d8f529fc5463d780959c326e256c8a
+Build Date: Thu Dec 15 21:55:31 UTC 2022
 System version: amd64/darwin
 Golang version: go1.19.1
 ```
@@ -533,7 +533,7 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.0
-Commit: 89892d8b96660e334741987d84546c36f0996fbe
+Commit: 4c5d247de0d8f529fc5463d780959c326e256c8a
 ```
 
 </TabItem>
@@ -560,7 +560,7 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.0
-Commit: 89892d8b96660e334741987d84546c36f0996fbe
+Commit: 4c5d247de0d8f529fc5463d780959c326e256c8a
 ```
 
 </TabItem>
@@ -587,7 +587,7 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.0
-Commit: 89892d8b96660e334741987d84546c36f0996fbe
+Commit: 4c5d247de0d8f529fc5463d780959c326e256c8a
 ```
 
 </TabItem>
@@ -614,7 +614,7 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.0
-Commit: 89892d8b96660e334741987d84546c36f0996fbe
+Commit: 4c5d247de0d8f529fc5463d780959c326e256c8a
 ```
 
 </TabItem>
@@ -649,7 +649,7 @@ an example public Core Endpoint.
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --p2p.network arabica-2 --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 > NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
@@ -676,7 +676,7 @@ For example, your command along with an RPC endpoint might look like this:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 0.0.0.0 --gateway.port 26659
+celestia light start --p2p.network arabica-2 --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 0.0.0.0 --gateway.port 26659
 ```
 
 </TabItem>
@@ -704,7 +704,7 @@ following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name> --gateway --gateway.addr 0.0.0.0 --gateway.port 26659
+celestia light start --p2p.network arabica-2 --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name> --gateway --gateway.addr 0.0.0.0 --gateway.port 26659
 ```
 
 </TabItem>
