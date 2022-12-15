@@ -280,7 +280,7 @@ go version go1.19.1 darwin/amd64
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -292,7 +292,7 @@ rm "go$ver.linux-amd64.tar.gz"
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -304,7 +304,7 @@ rm "go$ver.linux-arm64.tar.gz"
 <TabItem value="apple" label="Mac (Apple)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -316,7 +316,7 @@ rm "go$ver.darwin-arm64.tar.gz"
 <TabItem value="mac" label="Mac (Intel)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -360,28 +360,28 @@ The output should be the version installed:
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 ```sh
-go version go1.18.2 linux/amd64
+go version go1.19.1 linux/amd64
 ```
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 ```sh
-go version go1.18.2 linux/arm64
+go version go1.19.1 linux/arm64
 ```
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
 ```sh
-go version go1.18.2 darwin/arm64
+go version go1.19.1 darwin/arm64
 ```
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
 ```sh
-go version go1.18.2 darwin/amd64
+go version go1.19.1 darwin/amd64
 ```
 
 </TabItem>
@@ -685,12 +685,12 @@ For ports:
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.grpc <ip-address>:<port>
+celestia light start --core.ip <ip-address>:<port>
 ```
 
 For ports:
 
-> NOTE: The `--core.grpc` port defaults to 9090, so if you do not specify
+> NOTE: The `--core.ip` port defaults to 9090, so if you do not specify
   it in the command line, it will default to that port. You can add the port
   after the IP address.
 
@@ -716,7 +716,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.grpc https://rpc-mocha.pops.one:9090
+celestia light start --core.ip https://rpc-mocha.pops.one:9090
 ```
 
 </TabItem>
@@ -744,7 +744,7 @@ celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.grpc <ip-address>:<port> --keyring.accname <key-name>
+celestia light start --core.ip <ip-address>:<port> --keyring.accname <key-name>
 ```
 
 </TabItem>
@@ -800,7 +800,7 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.ac
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.grpc <ip-address>:<port> --keyring.accname <name_of_custom_key>
+celestia light start --core.ip <ip-address>:<port> --keyring.accname <name_of_custom_key>
 ```
 
 </TabItem>
