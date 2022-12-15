@@ -295,7 +295,7 @@ address as we’ll also be needing it in just a moment when we test the live con
 ### Adding Ethermint Chain to MetaMask
 
 1. Open your MetaMask wallet and click "Ethereum Mainnet" to open the dropdown.
-2. Select "Add Network"
+2. Select "Add network"
 3. Then "Add network manually"
 4. Enter the following details:
 
@@ -737,3 +737,8 @@ const contractAddress = "your-ethermint-contract-address"
 ```
 
 When you run the app, you should now be connected to and using the Ethermint rollup.
+
+If you imported the address that started the chain, you'll see quite a large
+balance.
+
+![connect-to-ethermint.gif](/img/full-stack/connect-to-ethermint.gif)
