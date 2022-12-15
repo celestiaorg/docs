@@ -61,6 +61,6 @@ new keys in order to have a successful upgrade.
 Those two keys will need to be added to 2 new flags on `celestia-app`:
 
 - `--evm-address`: This flag should contain a `0x` EVM address.
-- `--orchesrator-address`: This flag should contain a newly-generated
+- `--orchestrator-address`: This flag should contain a newly-generated
   `celestia1` Celestia address. Validators certainly can use their existing
   Celestia addresses here but it is recommended to create a new one.
