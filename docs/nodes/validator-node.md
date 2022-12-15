@@ -222,7 +222,7 @@ before running a validator to configure 2 extra keys.
 * `--evm-address`: This flag should contain a `0x` EVM address. Here,
   you can add any Ethereum-based address to this flag. You can also modify
   it later if you decide to switch addresses.
-* `--orchesrator-address`: This flag should contain a newly-generated
+* `--orchestrator-address`: This flag should contain a newly-generated
   `celestia1` Celestia address. Validators certainly can use their existing
   Celestia addresses here but it is recommended to create a new one.
 
@@ -271,7 +271,7 @@ celestia-appd tx staking create-validator \
     --min-self-delegation=1000000 \
     --from=$VALIDATOR_WALLET \
     --evm-address=$EVM_ADDRESS
-    --orchesrator-address=$ORCHESTRATOR_ADDRESS
+    --orchestrator-address=$ORCHESTRATOR_ADDRESS
     --keyring-backend=test
 ```
 
