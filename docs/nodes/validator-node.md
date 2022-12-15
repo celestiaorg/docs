@@ -270,8 +270,8 @@ celestia-appd tx staking create-validator \
     --commission-max-change-rate=0.01 \
     --min-self-delegation=1000000 \
     --from=$VALIDATOR_WALLET \
-    --evm-address=$EVM_ADDRESS
-    --orchestrator-address=$ORCHESTRATOR_ADDRESS
+    --evm-address=$EVM_ADDRESS \
+    --orchestrator-address=$ORCHESTRATOR_ADDRESS \
     --keyring-backend=test
 ```
 
