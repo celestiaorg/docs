@@ -104,7 +104,7 @@ celestia bridge init --core.ip https://limani.celestia-devops.dev/ --core.grpc.p
 Run the following:
 
 ```sh
-celestia bridge init --core.remote <ip-address>:<port>
+celestia bridge init --core.ip <ip-address>:<port>
 ```
 
 > NOTE: The `--core.remote` port defaults to 9090, so if you do not specify
@@ -116,7 +116,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 Here is an example of initializing the bridge node:
 
 ```sh
-celestia bridge init --core.remote https://rpc-mocha.pops.one:9090
+celestia bridge init --core.ip https://rpc-mocha.pops.one:9090
 ```
 
 </TabItem>
@@ -153,17 +153,17 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
-celestia bridge start --core.remote <ip-address>:<port>
+celestia bridge start --core.ip <ip-address>:<port>
 ```
 
-> NOTE: The `--core.remote` port defaults to 9090, so if you do not specify it in the command line, it will default to that port. You can use the flag to specify another port if you prefer.
+> NOTE: The `--core.ip` port defaults to 9090, so if you do not specify it in the command line, it will default to that port. You can use the flag to specify another port if you prefer.
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
 
 Here is an example of starting the bridge node:
 
 ```sh
-celestia bridge start --core.remote https://rpc-mocha.pops.one:26657
+celestia bridge start --core.ip https://rpc-mocha.pops.one:26657
 ```
 
 </TabItem>
@@ -210,7 +210,7 @@ celestia bridge start --core.ip <ip> --core.grpc.port 9090 --keyring.accname <na
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia bridge start --core.remote <ip>:<port> --keyring.accname <name_of_custom_key>
+celestia bridge start --core.ip <ip>:<port> --keyring.accname <name_of_custom_key>
 ```
 
 </TabItem>
