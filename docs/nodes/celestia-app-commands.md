@@ -120,7 +120,7 @@ Example usage:
 
 ```sh
 celestia-appd q bank balances celestia1czpgn3hdh9sodm06d5qk23xzgpq2uyc8ggdqgw \
---node https://rpc-mamaki.pops.one
+--node https://rpc-mocha.pops.one
 ```
 
 Transfer tokens from one wallet to another:
@@ -134,7 +134,7 @@ Example usage:
 
 ```sh
 celestia-appd tx bank send <FROM_ADDRESS> <TO_ADDRESS> \
-19000000utia --node https://rpc-mamaki.pops.one/ --chain-id mamaki
+19000000utia --node https://rpc-mocha.pops.one/ --chain-id mocha
 ```
 
 To see options:
