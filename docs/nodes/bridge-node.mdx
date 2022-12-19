@@ -83,7 +83,7 @@ import TabItem from '@theme/TabItem';
   Run the following:
 
 ```sh
-celestia bridge init --core.ip <ip-address> --core.grpc.port <port>
+celestia bridge init --core.ip <ip-address> --core.grpc.port <port> --p2p.network arabica
 ```
 
 > NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
@@ -96,7 +96,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 Here is an example of initializing the bridge node:
 
 ```sh
-celestia bridge init --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090
+celestia bridge init --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090 --p2p.network arabica
 ```
 
 </TabItem>
@@ -133,7 +133,7 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
-celestia bridge start --core.ip <ip-address> --core.grpc.port <port>
+celestia bridge start --core.ip <ip-address> --core.grpc.port <port> --p2p.network arabica
 ```
 
 > NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
@@ -146,7 +146,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 Here is an example of starting the bridge node:
 
 ```sh
-celestia bridge start --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090
+celestia bridge start --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090 --p2p.network arabica
 ```
 
 </TabItem>
@@ -209,7 +209,7 @@ In order to run a bridge node using a custom key:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia bridge start --core.ip <ip> --core.grpc.port 9090 --keyring.accname <name_of_custom_key>
+celestia bridge start --core.ip <ip> --core.grpc.port 9090 --keyring.accname <name_of_custom_key> --p2p.network arabica
 ```
 
 </TabItem>
