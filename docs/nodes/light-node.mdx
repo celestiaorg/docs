@@ -689,22 +689,24 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --
 
 For ports:
 
-> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer.
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip <ip-address>:<port>
+celestia light start --core.ip <ip-address>
 ```
 
 For ports:
 
-> NOTE: The `--core.ip` port defaults to 9090, so if you do not specify
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
   it in the command line, it will default to that port. You can add the port
-  after the IP address.
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 </TabItem>
 </Tabs>
