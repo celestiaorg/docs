@@ -655,7 +655,27 @@ Golang version: go1.19.1
 
 Run the following command:
 
+````mdx-code-block
+<Tabs groupId="networks">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
+celestia light init --p2p.network arabica
+```
+
+You should see output like:
+
+```output
+$ celestia light init --p2p.network arabica
+2022-12-19T21:45:00.802Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-arabica-2'
+2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:50  Saving config   {"path": "/root/.celestia-light-arabica-2/config.toml"}
+2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:51  Node Store initialized
+```
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh 
 celestia light init
 ```
 
@@ -663,10 +683,14 @@ You should see output like:
 
 ```output
 $ celestia light init
-2022-07-18T02:22:09.449Z INFO node node/init.go:26 Initializing Light Node Store over '/home/ec2-user/.celestia-light'
-2022-07-18T02:22:09.449Z INFO node node/init.go:62 Saving config {"path": "/home/ec2-user/.celestia-light/config.toml"}
-2022-07-18T02:22:09.449Z INFO node node/init.go:67 Node Store initialized
+2022-12-19T21:45:24.591Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-mocha'
+2022-12-19T21:45:24.591Z        INFO    node    nodebuilder/init.go:50  Saving config   {"path": "/root/.celestia-light-mocha/config.toml"}
+2022-12-19T21:45:24.592Z        INFO    node    nodebuilder/init.go:51  Node Store initialized
 ```
+
+</TabItem>
+</Tabs>
+````
 
 ### Start the light node
 

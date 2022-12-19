@@ -643,9 +643,24 @@ Now, let's instantiate a Celestia Light node:
 > Note: RPC Endpoints are exposed in all Celestia Node types
   such as Light, Bridge and Full Nodes.
 
+````mdx-code-block
+<Tabs groupId="networks">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
+celestia light init --p2p.network arabica
+```
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh 
 celestia light init
 ```
+
+</TabItem>
+</Tabs>
+````
 
 ### Connect To A Public Core Endpoint
 
