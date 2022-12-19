@@ -44,9 +44,24 @@ You can follow the tutorial for installing Celestia Node [here](./celestia-node.
 
 Run the following command:
 
+````mdx-code-block
+<Tabs groupId="networks">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
+celestia full init --p2p.network arabica
+```
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh 
 celestia full init
 ```
+
+</TabItem>
+</Tabs>
+````
 
 #### Start the full storage node
 
@@ -70,7 +85,7 @@ A note on ports:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port <port>
+celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --p2p.network arabica
 ```
 
 </TabItem>
@@ -122,7 +137,7 @@ In order to run a full storage node using a custom key:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key>
+celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key> --p2p.network arabica
 ```
 
 </TabItem>
