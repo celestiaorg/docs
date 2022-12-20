@@ -398,15 +398,17 @@ cp out/Contract.sol/Blog.json frontend/
 
 Now, change into the `frontend` directory and install the `node_modules`:
 
-```jsx
+```bash
 cd frontend
-npm install
+yarn
 ```
 
 #### Configuring environment variables
 
 Next we need to configure the environment variables for the Infura project ID
 and secret.
+
+First, create an Infura account and new project for IPFS.
 
 Create a file named `.env.local` in the `app` directory and add the following
 configuration with your own credentials:
@@ -433,7 +435,7 @@ so that we can have a nice way for the user to connect their wallet.
 Rainbowkit also allows a customizable array of network providers, so we’re
 creating a new network configuration for `Ethermint`.
 
-```tsx title="frontend/src/main.jsx"
+```jsx title="frontend/src/main.jsx"
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
@@ -509,7 +511,7 @@ IPFS to view the post.
 Update App.jsx with the following code:
 
 <!-- markdownlint-disable MD013 -->
-```tsx title="frontend/src/App.jsx"
+```jsx title="frontend/src/App.jsx"
 import { useState, useEffect } from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { ethers } from 'ethers'
@@ -720,12 +722,6 @@ PRIVATE_KEY=$(ethermintd keys unsafe-export-eth-key mykey --keyring-backend test
 Now, [import the private key to MetaMask](https://metamask.zendesk.com/hc/en-us/articles/360015489331-How-to-import-an-account#h_01G01W07NV7Q94M7P1EBD5BYM4)
 and switch to that account.
 
-Next, run the React application:
-
-```bash
-npm run dev
-```
-
 Next, let’s run it on your Ethermint rollup.
 
 To do so, first update the `contractAddress` variable with the contract address
@@ -734,6 +730,12 @@ deployed to Ethermint:
 ```jsx
 /* src/App.jsx */
 const contractAddress = "your-ethermint-contract-address"
+```
+
+Next, run the React application:
+
+```bash
+npm run dev
 ```
 
 When you run the app, you should now be connected to and using the Ethermint rollup.
