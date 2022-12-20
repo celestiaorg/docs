@@ -422,7 +422,7 @@ Now that the project is created, let’s install the additional dependencies usi
 either **NPM**, **Yarn**, or **PNPM**:
 
 ```jsx
-npm install @rainbow-me/rainbowkit wagmi ethers ipfs-http-client react-markdown
+npm install @rainbow-me/rainbowkit@0.8.0 wagmi@0.8.10 ethers ipfs-http-client react-markdown
 ```
 
 ### Configuring the entrypoint
