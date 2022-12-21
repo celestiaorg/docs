@@ -32,21 +32,24 @@ rollup.
 
 First, we need to setup some environment variables.
 
+> 🛑 The commands below are for Arabica. If you're using Mocha, you'll need to
+replace the RPC endpoint with [one for Mocha](../nodes/mocha-testnet.md#rpc-endpoints).
+
 <!-- markdownlint-disable MD013 -->
 ```sh
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
-DA_BLOCK_HEIGHT=$(curl https://rpc.limani.celestia-devops.dev/block?height | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl https://rpc.limani.celestia-devops.dev/block | jq -r '.result.block.header.height')
 ```
 <!-- markdownlint-enable MD013 -->
 
-If you are running this on Arabica testnet, you need to run your light node with
-an account that has Arabica Devnet tokens. Visit the faucet [here](../nodes/arabica-devnet.md#arabica-devnet-faucet).
+If you are running this on Arabica devnet, you need to run your light node with
+an account that has Arabica devnet tokens. Visit the faucet [here](../nodes/arabica-devnet.md#arabica-devnet-faucet).
 
 With this setup complete, we can now start our Ethermint Rollup:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-ethermintd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id $NAMESPACE_ID --rollmint.da_start_height $DA_BLOCK_HEIGHT 
+ethermintd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollmint.namespace_id $NAMESPACE_ID --rollmint.da_start_height $DA_BLOCK_HEIGHT 
 ```
 <!-- markdownlint-enable MD013 -->
 

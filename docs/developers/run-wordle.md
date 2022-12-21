@@ -26,6 +26,12 @@ Wordle Rollup.
 You can view the contents of the script to see how we
 initialize the Wordle Rollup.
 
+> On a Mac, you will need to run the following before initializing:
+
+```sh
+brew install md5sha1sum
+```
+
 You can initialize the script with the following command:
 
 ```sh
@@ -37,7 +43,7 @@ With that, we have kickstarted our `wordled` network!
 In another window, run the following to submit a Wordle:
 
 ```sh
-wordled tx wordle submit-wordle giant --from alice --keyring-backend test --chain-id wordle -b async -y
+wordled tx wordle submit-wordle giant --from recipes-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
 > NOTE: We are submitting a transaction asynchronously due to avoiding
@@ -128,7 +134,7 @@ This should display an output like the following:
 Test out a few things for fun:
 
 ```sh
-wordled tx wordle submit-guess 12345 --from alice --keyring-backend test --chain-id wordle -b async -y
+wordled tx wordle submit-guess 12345 --from recipes-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
 After confirming the transaction, query the `txhash`
@@ -138,7 +144,7 @@ an Invalid Error because you submitted integers.
 Now try:
 
 ```sh
-wordled tx wordle submit-guess ABCDEFG --from alice --keyring-backend test --chain-id wordle -b async -y
+wordled tx wordle submit-guess ABCDEFG --from recipes-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
 After confirming the transaction, query the `txhash` given the same
@@ -148,7 +154,7 @@ an Invalid Error because you submitted a word larger than 5 characters.
 Now try to submit another wordle even though one was already submitted
 
 ```sh
-wordled tx wordle submit-wordle meter --from bob --keyring-backend test --chain-id wordle -b async -y
+wordled tx wordle submit-wordle meter --from recipes-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
 After submitting the transactions and confirming, query the `txhash`
@@ -158,12 +164,12 @@ has already been submitted for the day.
 Now let’s try to guess a five letter word:
 
 ```sh
-wordled tx wordle submit-guess least --from bob --keyring-backend test --chain-id wordle -b async -y
+wordled tx wordle submit-guess least --from recipes-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
 After submitting the transactions and confirming, query the `txhash`
 given the same way you did above. Given you didn’t guess the correct
-word, it will increment the guess count for Bob’s account.
+word, it will increment the guess count for recipes-key's account.
 
 We can verify this by querying the list:
 

@@ -6,7 +6,7 @@ sidebar_label: Keeper
 <!-- markdownlint-disable MD013 -->
 
 Now it’s time to implement the Keeper functions for each
-message. From the Cosmos-SDK docs, [Keeper](https://docs.cosmos.network/master/building-modules/keeper.html)
+message. From the Cosmos-SDK docs, [Keeper](https://docs.cosmos.network/main/building-modules/keeper.html)
 is defined as the following:
 
 > The main core of a Cosmos SDK module is a piece called the keeper.
@@ -35,7 +35,7 @@ import (
   "context"
   "crypto/sha256"
   "encoding/hex"
-  "github.com/YazzyYaz/wordle/x/wordle/types"
+  "wordle/x/wordle/types"
   sdk "github.com/cosmos/cosmos-sdk/types"
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "time"
@@ -76,6 +76,14 @@ func (k msgServer) SubmitWordle(goCtx context.Context, msg *types.MsgSubmitWordl
   }
   // Write Wordle to KV Store
   k.SetWordle(ctx, wordle)
+  reward := sdk.Coins{sdk.NewInt64Coin("token", 100)}
+  // Escrow Reward
+  submitterAddress, _ := sdk.AccAddressFromBech32(msg.Creator)
+  moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte(types.ModuleName)))
+  err := k.bankKeeper.SendCoins(ctx, submitterAddress, moduleAcct, reward)
+  if err != nil {
+    return nil, err
+  }
   return &types.MsgSubmitWordleResponse{}, nil
 }
 
@@ -119,7 +127,7 @@ import (
   "context"
   "crypto/sha256"
   "encoding/hex"
-  "github.com/YazzyYaz/wordle/x/wordle/types"
+  "wordle/x/wordle/types"
   sdk "github.com/cosmos/cosmos-sdk/types"
   sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
   "strconv"
@@ -187,16 +195,19 @@ func (k msgServer) SubmitGuess(goCtx context.Context, msg *types.MsgSubmitGuess)
   k.RemoveGuess(ctx, currentTimeGuesserHashString)
   // Add New Guess Entry
   k.SetGuess(ctx, newGuess)
-  // Setup Reward 
-  reward := sdk.Coins{sdk.NewInt64Coin("WORDLE", 100)}
   if !(wordle.Word == submittedSolutionHashString) {
     return &types.MsgSubmitGuessResponse{Title: "Wrong Answer", Body: "Your Guess Was Wrong. Try Again"}, nil
   } else {
+    // Setup Reward 
+    reward := sdk.Coins{sdk.NewInt64Coin("token", 100)}
     // If Submitter Guesses Correctly
     guesserAddress, _ := sdk.AccAddressFromBech32(msg.Creator)
     moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte(types.ModuleName)))
     // Send Reward
-    k.bankKeeper.SendCoins(ctx, guesserAddress, moduleAcct, reward) 
+    err := k.bankKeeper.SendCoins(ctx, moduleAcct, guesserAddress, reward)
+    if err !=nil {
+      return nil, err
+    }
     return &types.MsgSubmitGuessResponse{Title: "Correct", Body: "You Guessed The Wordle Correctly!"}, nil
   }
 }

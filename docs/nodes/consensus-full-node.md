@@ -50,30 +50,30 @@ git clone https://github.com/celestiaorg/networks.git
 ```
 
 To initialize the network pick a "node-name" that describes your
-node. The --chain-id parameter we are using here is `mamaki`. Keep in
+node. The --chain-id parameter we are using here is `mocha`. Keep in
 mind that this might change if a new testnet is deployed.
 
 ```sh
-celestia-appd init "node-name" --chain-id mamaki
+celestia-appd init "node-name" --chain-id mocha
 ```
 
-Copy the `genesis.json` file. For mamaki we are using:
+Copy the `genesis.json` file. For mocha we are using:
 
 ```sh
-cp $HOME/networks/mamaki/genesis.json $HOME/.celestia-app/config
+cp $HOME/networks/mocha/genesis.json $HOME/.celestia-app/config
 ```
 
 Set seeds and peers:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mamaki/bootstrap-peers.txt | tr -d '\n')
+BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/bootstrap-peers.txt | tr -d '\n')
 echo $BOOTSTRAP_PEERS
 sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 <!-- markdownlint-enable MD013 -->
 
-Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mamaki/peers.txt).
+Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mocha/peers.txt).
 
 ### Configure pruning
 
@@ -108,14 +108,14 @@ this method you can synchronize your Celestia node very quickly by downloading
 a recent snapshot of the blockchain. If you would like to sync from the Genesis,
 then you can skip this part.
 
-Run the following command to quick-sync from a snapshot for `mamaki`:
+Run the following command to quick-sync from a snapshot for `mocha`:
 
 ```sh
 cd $HOME
 rm -rf ~/.celestia-app/data
 mkdir -p ~/.celestia-app/data
 SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-    egrep -o ">mamaki.*tar" | tr -d ">")
+    egrep -o ">mocha.*tar" | tr -d ">")
 wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```

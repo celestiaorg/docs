@@ -39,15 +39,17 @@ separated from data availability and consensus (like Eth2 and Celestia).
 Most blockchain architectures today are *monolithic* - they are
 responsible for all four core functions of a blockchain:
 
+<!-- markdownlint-disable MD037 -->
 - ***Execution*** - executing transactions that update the state correctly.
   Thus, execution must ensure that only valid transactions are executed,
   i.e., transactions that result in valid state machine transitions.
 - ***Settlement*** - an environment for execution layers to verify proofs,
   resolve fraud disputes, and bridge between other execution layers.
 - ***Consensus*** - agreeing on the order of the transactions.
-- **[Data Availability**](https://coinmarketcap.com/alexandria/article/what-is-data-availability)
+- ** [Data Availability](https://coinmarketcap.com/alexandria/article/what-is-data-availability)**
   (DA) - making the transaction data available. Note that execution,
   settlement, and consensus require DA.
+<!-- markdownlint-enable MD037 -->
 
 *Modular blockchains decouple these functions among multiple specialized
 layers, and only specialize in only a few functions, rather than all of
