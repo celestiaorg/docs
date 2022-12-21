@@ -285,7 +285,7 @@ versions mentioned above.
 
 ```sh
 celestia light init --p2p.network arabica
-celestia light start --p2p.network arabica
+celestia light start --p2p.network arabica --core.ip <address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 > NOTE: It is advised before switching networks to reinitialize
@@ -327,7 +327,7 @@ Your output will look similar to below:
 Then start your node:
 
 ```sh
-celestia light start --p2p.network arabica
+celestia light start --p2p.network arabica --core.ip <address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
@@ -335,7 +335,7 @@ celestia light start --p2p.network arabica
 
 ```sh
 celestia light init --p2p.network mocha 
-celestia light start --p2p.network mocha
+celestia light start --p2p.network mocha --core.ip <address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 > NOTE: It is advised before switching networks to reinitialize
@@ -378,7 +378,7 @@ Your output will look similar to below:
 Then start your node:
 
 ```sh
-celestia light start
+celestia light start --p2p.network mocha --core.ip <address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
