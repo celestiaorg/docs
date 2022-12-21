@@ -424,6 +424,32 @@ Response
    "amount":"999995000000000"
 }
 ```
+#### POST p2p.info
+
+This is an RPC call in order to get your node's peerId information.
+
+To get that information, you will need to first generate an auth token:
+
+```sh
+celestia light auth admin
+```
+
+This generates the auth token that you can save here:
+
+```sh
+AUTH_TOKEN=<AUTH_TOKEN>
+```
+
+Then you can get the peerId of your node with the following curl
+command:
+
+```sh
+curl -X POST \
+     -H 'Authorization: Bearer $AUTH_TOKEN'
+     -H 'Content-Type: application/json' \
+     -d '{"jsonrpc":"2.0","id":0,"method":"p2p.Info","params":[]}' \
+     http://localhost:26658
+```
 
 #### POST /submit_tx
 
