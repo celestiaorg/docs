@@ -32,8 +32,12 @@ rollup.
 
 First, we need to setup some environment variables.
 
-> 🛑 The commands below are for Arabica. If you're using Mocha, you'll need to
+:::danger Networks
+
+The commands below are for Arabica. If you're using Mocha, you'll need to
 replace the RPC endpoint with [one for Mocha](../nodes/mocha-testnet.md#rpc-endpoints).
+
+:::
 
 <!-- markdownlint-disable MD013 -->
 ```sh
