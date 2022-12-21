@@ -9,7 +9,7 @@ sidebar_label: Message Types
 Create a message type and its handler with the `message` command:
 
 ```bash
-ignite scaffold message createRecipe dish ingredients
+ignite scaffold message createRecipe dish ingredients -y
 ```
 
 Response:
