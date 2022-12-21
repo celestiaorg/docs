@@ -90,8 +90,8 @@ recoverable, even if the light nodes are sampling sufficient unique chunks
 As a solution, _Fraud Proofs of Incorrectly Generated Extended Data_ enable
 light nodes to reject blocks with invalid extended data. Such proofs require
 reconstructing the encoding and verifying the mismatch. With standard Reed-Solomon
-encoding, this entails downloading the original data, i.e., O(n) bytes.
-Contrastingly, with 2-dimensional Reed-Solomon encoding, only O(n ) bytes are
+encoding, this entails downloading the original data, i.e., $n^2$ bytes.
+Contrastingly, with 2-dimensional Reed-Solomon encoding, only O(n) bytes are
 required as it is sufficient to verify only one row or one column of the
 extended matrix.
 
