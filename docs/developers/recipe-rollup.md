@@ -38,13 +38,6 @@ Recipes Rollup.
 You can view the contents of the script to see how we
 initialize the Recipes Rollup.
 
-Before starting our rollup, we'll need to find
-and change `FlagDisableIAVLFastNode` to `FlagIAVLFastNode`:
-
-```go title="recipesd/cmd/recipesd/cmd/root.go"
-baseapp.SetIAVLFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
-```
-
 🟢 Start the chain with:
 
 ```sh
@@ -56,12 +49,12 @@ With that, we have kickstarted our `recipesd` network!
 ![recipe-start.gif](/img/recipes/recipe-start.gif)
 
 Open another teminal instance. Now, create your first
-recipe in the command line by sending a transaction from alice,
+recipe in the command line by sending a transaction from recipes-key,
 when prompted, confirm the transaction by entering `y`:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette" --from alice
+recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette" --from recipes-key --keyring-backend test
 ```
 <!-- markdownlint-enable MD013 -->
 
