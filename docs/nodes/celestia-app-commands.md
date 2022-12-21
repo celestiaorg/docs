@@ -210,28 +210,43 @@ You can first run the following commands:
 VALIDATOR_NAME=validator1
 CHAIN_ID=testnet
 celestia-appd init $VALIDATOR_NAME --chain-id $CHAIN_ID
+MONIKER=validator_name
 ```
 
 Next create a wallet:
 
 ```sh
 KEY_NAME=validator
-celestia-appd keys add $KEY_NAME --keyring-backend test
+celestia-appd keys add $KEY_NAME
+```
+
+Create or assign an orchestrator and an EVM address:
+
+```sh
+EVM_ADDRESS=<EVM_ADDRESS>
+ORCHESTRATOR_ADDRESS=<CELESTIA_ADDRESS>
 ```
 
 Then add genesis account:
 
 ```sh
-CELES_AMOUNT="10000000000000000000000000utia"
-celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT --keyring-backend test
+CELES_AMOUNT="1000001000000utia"
+celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT
 ```
 
 Then generate your gentx:
 
 ```sh
-STAKING_AMOUNT=1000000000utia
+STAKING_AMOUNT=1000000000000utia
 celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
-  --keyring-backend test
+    --pubkey=$(celestia-appd tendermint show-validator) \
+    --moniker=$MONIKER \
+    --commission-rate=0.1 \
+    --commission-max-rate=0.2 \
+    --commission-max-change-rate=0.01 \
+    --min-self-delegation=1 \
+    --evm-address=$EVM_ADDRESS \
+    --orchestrator-address=$ORCHESTRATOR_ADDRESS
 ```
 
 You can then share your gentx JSON file on the networks
