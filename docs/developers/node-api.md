@@ -424,6 +424,7 @@ Response
    "amount":"999995000000000"
 }
 ```
+
 #### POST p2p.info
 
 This is an RPC call in order to get your node's peerId information.
