@@ -9,7 +9,7 @@ sidebar_label: Querying Recipes
 In order to query your recipes, scaffold a query with Ignite:
 
 ```bash
-ignite scaffold query dishes --response dish,ingredients
+ignite scaffold query dishes --response dish,ingredients -y
 ```
 
 A response on a successful scaffold will look like this:
