@@ -688,7 +688,7 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip <ip-address>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
 > NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
@@ -712,7 +712,7 @@ celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.po
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip https://rpc-mocha.pops.one:9090
+celestia light start --core.ip https://rpc-mocha.pops.one:9090 --core.grpc.port 9090 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 ```
 
 </TabItem>
@@ -740,7 +740,7 @@ celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.ac
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <key_name>
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
 </TabItem>
