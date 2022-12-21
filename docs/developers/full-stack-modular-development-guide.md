@@ -37,7 +37,7 @@ EVM-compatible testnet that you will run locally for this tutorial.
 rollup)
 - [Ethermint Tutorial](./ethermint.md) (for running your own Ethermint rollup &
 deploying your smart contract)
-- [MetaMask wallet](https://metamask.io) (for connecting to your Ethermint Rollup)
+- [MetaMask wallet](https://metamask.io) (for connecting to your frontend)
 
 ### Project setup
 
@@ -254,6 +254,12 @@ Next start Anvil, the local testnet:
 anvil --port 9545
 ```
 
+:::danger caution
+
+We need to use port 9545, because Ethermint will use 8545.
+
+:::
+
 Once started, Anvil will give you a local RPC endpoint as well as a handful of
 Private Keys and Accounts that you can use.
 
@@ -292,30 +298,18 @@ cast call $CONTRACT_ADDRESS "fetchPosts()"
 Once the contract is deployed successfully, **take a note of the contract
 address as we’ll also be needing it in just a moment when we test the live contract**.
 
-### Adding Ethermint Chain to MetaMask
-
-1. Open your MetaMask wallet and click "Ethereum Mainnet" to open the dropdown.
-2. Select "Add network"
-3. Then "Add network manually"
-4. Enter the following details:
-
-> - Network Name: `Ethermint`
-> - New RPC URL: `http://159.65.252.178:8545/` **or** `http://localhost:8545`
-> - Chain ID: `69420`
-> - Currency symbol: `CTE`
-
-![add-metamask.gif](/img/full-stack/add-metamask.gif)
-
 ### Deploying to the Ethermint Sovereign Rollup
 
 First, we will need to follow the setup from the [Ethermint tutorial](./ethermint).
 
-> 🛑 It is required that you complete [dependency setup](./ethermint-dependencies),
+:::danger Pre-requisites
+
+It is required that you complete [dependency setup](./ethermint-dependencies),
 [RollKit installation](./rollmint-on-ethermint), and
-[Instantiating and Ethermint rollup](./instantiate-ethermint) for the remainder
-of the tutorial. Note: before [running `bash init.sh`](./instantiate-ethermint#instantiating-the-ethermint-rollup)
-change the `CHAINID` in the `init.sh` script to `CHAINID="roll_69420_1"`. If you
-don't, users will need to add the chain manually.
+[Instantiating and Ethermint rollup](./instantiate-ethermint)
+to complete the remainder of the tutorial.
+
+:::
 
 Now that we've deployed and tested locally, we can deploy to our
 Ethermint chain.
@@ -436,46 +430,55 @@ Rainbowkit also allows a customizable array of network providers, so we’re
 creating a new network configuration for `Ethermint`.
 
 ```jsx title="frontend/src/main.jsx"
-import React from 'react'
+import "./polyfills";
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import '@rainbow-me/rainbowkit/styles.css';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import {
-  getDefaultWallets,
-  RainbowKitProvider,
-} from '@rainbow-me/rainbowkit';
-import {
+  chain,
   configureChains,
   createClient,
   WagmiConfig,
 } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public';
+import { injectedWallet, metaMaskWallet } from '@rainbow-me/rainbowkit/wallets';
+import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 
 /* create configuration for Ethermint testnet */
 const ethermint = {
   id: 9000,
-  name: 'ethermint',
-  network: 'Ethermint',
+  name: 'Ethermint',
+  network: 'ethermint',
   nativeCurrency: {
     decimals: 18,
     name: 'Ethermint',
-    symbol: 'eMINT',
+    symbol: 'CTE',
   },
   rpcUrls: {
-    default: 'http://localhost:8545/'
-  }
+    default: {
+      http: ['http://localhost:8545/'],
+    },
+  },
+  testnet: true,
 };
 
-const { chains, provider } = configureChains(
-  [ethermint],
+// remove chain.localhost or ethermint depending on which you want to connect to
+const { chains, provider } = configureChains( 
+  [chain.localhost, ethermint],
   [publicProvider()]
 );
 
-const { connectors } = getDefaultWallets({
-  appName: 'Celestia App',
-  chains
-});
+const connectors = connectorsForWallets([
+  {
+    groupName: 'Recommended',
+    wallets: [
+      metaMaskWallet({ chains }),
+      injectedWallet({ chains }),
+    ],
+  },
+]);
 
 const wagmiClient = createClient({
   autoConnect: true,
@@ -518,6 +521,7 @@ import { ethers } from 'ethers'
 import { create } from 'ipfs-http-client'
 import { Buffer } from 'buffer'
 import Blog from '../Blog.json'
+import { useAccount } from "wagmi";
 
 /* configure authorization for Infura and IPFS */
 const auth =
@@ -543,6 +547,7 @@ function App() {
   const [posts, setPosts] = useState([])
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const { address } = useAccount();
 
   /* when the component loads, useEffect will call this function */
   async function fetchPosts() {
@@ -595,16 +600,24 @@ function App() {
     <div style={outerContainerStyle}>
       <div style={innerContainerStyle}>
       <h1>Modular Rollup Blog</h1>
+      <p>This allows users to securely create and share blog posts on the blockchain without the need for a centralized server or authority.</p>
+      {!address ? (<div>
+        <h3>Getting Started</h3>
+      <p>First, you will need to connect your Ethereum wallet to Ethermint to display the posts from the smart contract and make posts.</p>
+      </div> ) : null}
+      <br />
       <h3 style={{ justifyContent: 'right', textAlign: 'right'}}>Connect your Ethereum wallet to begin ✨</h3>
       <div style={buttonContainerStyle}>
       <ConnectButton />
       </div>
+      {address ? (
       <div style={buttonContainerStyle}>
         <button onClick={() => toggleView('view-posts')} style={buttonStyle}>View Posts</button>
         <button  onClick={() => toggleView('create-post')} style={buttonStyle}>Create Post</button>
       </div>
+      ) : null}
       {
-        viewState === 'view-posts' && (
+        viewState === 'view-posts' && address && (
           <div>
             <div style={postContainerStyle}>
             <h1>Posts</h1>
@@ -613,6 +626,9 @@ function App() {
                 <div key={index}>
                   <h2>{post.title}</h2>
                   <button style={{ fontSize: '16px' }} onClick={() => window.open(`https://infura-ipfs.io/ipfs/${post.content}`)}>Read on IPFS</button>
+                  {/* <ReactMarkdown>
+                    {post.postContent}
+                  </ReactMarkdown> */}
                   <p style={mbidStyle}>GMID: {post.id}</p>
                 </div>
               ))
@@ -645,13 +661,13 @@ function App() {
 }
 
 const outerContainerStyle = {
-  width: '100vw',
+  width: '90vw',
   height: '100vh',
-  padding: '50px 0px'
+  padding: '50px 0px',
 }
 
 const innerContainerStyle = {
-  width: '90%',
+  width: '100%',
   maxWidth: '800px',
   margin: '0 auto',
 }
@@ -702,6 +718,23 @@ export default App
 ```
 <!-- markdownlint-enable MD013 -->
 
+### Adding Ethermint Chain to MetaMask
+
+Before we can test out our dapp, we'll need to configure
+the chains on MetaMask if we're deploying our rollup any
+
+1. Open your MetaMask wallet and click "Ethereum Mainnet" to open the dropdown.
+2. Select "Add network"
+3. Then "Add network manually"
+4. Enter the following details:
+
+> - Network Name: `Ethermint`
+> - New RPC URL: `http://localhost:8545` **or** `https://your.custom.ip.address:port`
+> - Chain ID: `9000`
+> - Currency symbol: `CTE`
+
+![add-metamask.gif](/img/full-stack/add-metamask.gif)
+
 ### Testing it out on Ethermint
 
 Now we’re ready to run the app.
@@ -744,3 +777,10 @@ If you imported the address that started the chain, you'll see quite a large
 balance.
 
 ![connect-to-ethermint.gif](/img/full-stack/connect-to-ethermint.gif)
+
+### Now give it a spin 🌀
+
+Now that you have your dapp running, go ahead and test out a new post
+on your Ethermint sovereign rollup. If you enjoyed this tutorial, be
+sure to share your example in our
+[Discord](https://discord.com/invite/je7UVpDuDu)!
