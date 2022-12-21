@@ -192,9 +192,10 @@ Run the following:
 celestia bridge init --core.ip <ip-address> --core.grpc.port <port>
 ```
 
-> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer.
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet)
 

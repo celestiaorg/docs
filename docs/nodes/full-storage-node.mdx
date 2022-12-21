@@ -44,9 +44,24 @@ You can follow the tutorial for installing Celestia Node [here](./celestia-node.
 
 Run the following command:
 
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
+celestia full init --p2p.network arabica
+```
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh 
 celestia full init
 ```
+
+</TabItem>
+</Tabs>
+````
 
 #### Start the full storage node
 
@@ -60,16 +75,17 @@ Start the Full Storage Node with a connection to a validator node's gRPC endpoin
 
 A note on ports:
 
-> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer.
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 ````mdx-code-block
-<Tabs groupId="networks">
+<Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port <port>
+celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --p2p.network arabica
 ```
 
 </TabItem>
@@ -117,11 +133,11 @@ In order to run a full storage node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 ````mdx-code-block
-<Tabs groupId="networks">
+<Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key>
+celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key> --p2p.network arabica
 ```
 
 </TabItem>

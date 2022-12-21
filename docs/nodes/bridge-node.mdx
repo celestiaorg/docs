@@ -77,25 +77,26 @@ Follow the tutorial for installing Celestia Node [here](./celestia-node.mdx).
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs groupId="networks">
+<Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
   Run the following:
 
 ```sh
-celestia bridge init --core.ip <ip-address> --core.rpc.port <port>
+celestia bridge init --core.ip <ip-address> --core.grpc.port <port> --p2p.network arabica
 ```
 
-> NOTE: The `--core.rpc.port` defaults to 26657, so if you do not specify
-  it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer.
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
 
 Here is an example of initializing the bridge node:
 
 ```sh
-celestia bridge init --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090
+celestia bridge init --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090 --p2p.network arabica
 ```
 
 </TabItem>
@@ -107,9 +108,10 @@ Run the following:
 celestia bridge init --core.ip <ip-address>:<port>
 ```
 
-> NOTE: The `--core.remote` port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer.
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
 
@@ -124,26 +126,27 @@ celestia bridge init --core.ip https://rpc-mocha.pops.one:9090
 
 ### Run the bridge node
 
-<Tabs groupId="networks">
+<Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
 Start the Bridge Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
-celestia bridge start --core.ip <ip-address> --core.grpc.port <port>
+celestia bridge start --core.ip <ip-address> --core.grpc.port <port> --p2p.network arabica
 ```
 
-> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer.
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
 
 Here is an example of starting the bridge node:
 
 ```sh
-celestia bridge start --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090
+celestia bridge start --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090 --p2p.network arabica
 ```
 
 </TabItem>
@@ -156,7 +159,10 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 celestia bridge start --core.ip <ip-address>:<port>
 ```
 
-> NOTE: The `--core.ip` port defaults to 9090, so if you do not specify it in the command line, it will default to that port. You can use the flag to specify another port if you prefer.
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
 
@@ -199,11 +205,11 @@ In order to run a bridge node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 ````mdx-code-block
-<Tabs groupId="networks">
+<Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia bridge start --core.ip <ip> --core.grpc.port 9090 --keyring.accname <name_of_custom_key>
+celestia bridge start --core.ip <ip> --core.grpc.port 9090 --keyring.accname <name_of_custom_key> --p2p.network arabica
 ```
 
 </TabItem>
