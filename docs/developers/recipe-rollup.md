@@ -56,12 +56,12 @@ With that, we have kickstarted our `recipesd` network!
 ![recipe-start.gif](/img/recipes/recipe-start.gif)
 
 Open another teminal instance. Now, create your first
-recipe in the command line by sending a transaction from alice,
+recipe in the command line by sending a transaction from recipes-key,
 when prompted, confirm the transaction by entering `y`:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette" --from alice
+recipesd tx recipes create-recipe salad "spinach, mandarin oranges, sliced almonds, smoked gouda, citrus vinagrette" --from recipes-key
 ```
 <!-- markdownlint-enable MD013 -->
 
