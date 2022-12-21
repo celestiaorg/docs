@@ -27,7 +27,7 @@ In your new terminal, `cd` into the `gm` directory and run this command
 to create the `gm` query:
 
 ```bash
-ignite scaffold query gm --response text
+ignite scaffold query gm --response text -y
 ```
 
 Response:

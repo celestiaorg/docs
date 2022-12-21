@@ -21,7 +21,7 @@ Many modules exist for slashing, validating, auth.
 
 We will be using the `bank` module dependency for transactions.
 
-From the Cosmos-SDK docs, the [`bank`](https://docs.cosmos.network/master/modules/bank/)
+From the Cosmos-SDK docs, the [`bank`](https://docs.cosmos.network/main/modules/bank/)
 module is defined as the following:
 
 > The bank module is responsible for handling multi-asset coin

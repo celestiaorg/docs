@@ -258,13 +258,13 @@ go version go1.19.1 darwin/amd64
 </Tabs>
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -276,7 +276,7 @@ rm "go$ver.linux-amd64.tar.gz"
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -288,7 +288,7 @@ rm "go$ver.linux-arm64.tar.gz"
 <TabItem value="apple" label="Mac (Apple)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -300,7 +300,7 @@ rm "go$ver.darwin-arm64.tar.gz"
 <TabItem value="mac" label="Mac (Intel)">
 
 ```sh
-ver="1.18.2"
+ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -344,28 +344,28 @@ The output should be the version installed:
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 ```sh
-go version go1.18.2 linux/amd64
+go version go1.19.1 linux/amd64
 ```
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 ```sh
-go version go1.18.2 linux/arm64
+go version go1.19.1 linux/arm64
 ```
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
 ```sh
-go version go1.18.2 darwin/arm64
+go version go1.19.1 darwin/arm64
 ```
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
 ```sh
-go version go1.18.2 darwin/amd64
+go version go1.19.1 darwin/amd64
 ```
 
 </TabItem>
@@ -396,7 +396,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.5.0-rc5
+git checkout tags/v0.6.1
 make install
 make cel-key
 ```
@@ -406,9 +406,9 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.5.0-rc5
-Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
-Build Date: Tue Nov 15 16:23:30 EST 2022
+Semantic version: v0.6.1
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
 System version: amd64/linux
 Golang version: go1.19.1
 ```
@@ -426,7 +426,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.5.0-rc5
+git checkout tags/v0.6.1
 make install
 make cel-key
 ```
@@ -436,11 +436,10 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.5.0-rc5
-Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
-Build Date: Tue Nov 15 16:23:30 EST 2022
-System version: arm64/linux
-Golang version: go1.19.1
+Semantic version: v0.6.1
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
 ```
 
 </TabItem>
@@ -456,7 +455,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.5.0-rc5
+git checkout tags/v0.6.1
 make go-install
 make cel-key
 ```
@@ -466,10 +465,10 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.5.0-rc5
-Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
-Build Date: Tue Nov 15 16:23:30 EST 2022
-System version: arm64/darwin
+Semantic version: v0.6.1
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
 Golang version: go1.19.1
 ```
 
@@ -486,7 +485,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.5.0-rc5
+git checkout tags/v0.6.1
 make go-install
 make cel-key
 ```
@@ -496,10 +495,10 @@ version` command:
 
 ```output
 celestia version
-Semantic version: v0.5.0-rc5
-Commit: 039facd94104c741f8fa995e80f1321776ae4ad3
-Build Date: Tue Nov 15 16:23:30 EST 2022
-System version: amd64/darwin
+Semantic version: v0.6.1
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
 Golang version: go1.19.1
 ```
 
@@ -507,12 +506,12 @@ Golang version: go1.19.1
 </Tabs>
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -522,7 +521,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.3.0-rc2
+git checkout tags/v0.6.1
 make install
 make cel-key
 ```
@@ -532,14 +531,17 @@ version` command:
 
 ```console
 $ celestia version
-Semantic version: v0.3.0-rc2
-Commit: 89892d8b96660e334741987d84546c36f0996fbe
+Semantic version: v0.6.1
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
+Golang version: go1.19.1
 ```
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -549,7 +551,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.3.0-rc2
+git checkout tags/v0.6.1
 make install
 make cel-key
 ```
@@ -559,14 +561,17 @@ version` command:
 
 ```console
 $ celestia version
-Semantic version: v0.3.0-rc2
-Commit: 89892d8b96660e334741987d84546c36f0996fbe
+Semantic version: v0.6.1
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
+Golang version: go1.19.1
 ```
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -576,8 +581,8 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.3.0-rc2
-make install
+git checkout tags/v0.6.1
+make go-install
 make cel-key
 ```
 
@@ -586,14 +591,17 @@ version` command:
 
 ```console
 $ celestia version
-Semantic version: v0.3.0-rc2
-Commit: 89892d8b96660e334741987d84546c36f0996fbe
+Semantic version: v0.6.1
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
+Golang version: go1.19.1
 ```
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-Installing `celestia-node` for Mamaki Testnet means installing a specific version
+Installing `celestia-node` for Mocha Testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -603,8 +611,8 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.3.0-rc2
-make install
+git checkout tags/v0.6.1
+make go-install
 make cel-key
 ```
 
@@ -613,8 +621,11 @@ version` command:
 
 ```console
 $ celestia version
-Semantic version: v0.3.0-rc2
-Commit: 89892d8b96660e334741987d84546c36f0996fbe
+Semantic version: v0.6.1
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
+Golang version: go1.19.1
 ```
 
 </TabItem>
@@ -631,9 +642,24 @@ Now, let's instantiate a Celestia Light node:
 > Note: RPC Endpoints are exposed in all Celestia Node types
   such as Light, Bridge and Full Nodes.
 
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
+celestia light init --p2p.network arabica
+```
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh 
 celestia light init
 ```
+
+</TabItem>
+</Tabs>
+````
 
 ### Connect To A Public Core Endpoint
 
@@ -649,23 +675,25 @@ an example public Core Endpoint.
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
 ```
 
-> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
-it in the command line, it will default to that port. You can use the flag
-to specify another port if you prefer.
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.grpc <ip-address>:<port>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
-> NOTE: The `--core.grpc` port defaults to 9090, so if you do not specify
-it in the command line, it will default to that port. You can use the flag
-to specify another port if you prefer.
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 </TabItem>
 </Tabs>
@@ -676,14 +704,14 @@ For example, your command along with an RPC endpoint might look like this:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr localhost --gateway.port 26659
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 0.0.0.0 --gateway.port 26659 --p2p.network arabica
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.grpc https://rpc-mamaki.pops.one:9090
+celestia light start --core.ip https://rpc-mocha.pops.one:9090 --core.grpc.port 9090 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 ```
 
 </TabItem>
@@ -704,14 +732,14 @@ following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name> --gateway --gateway.addr localhost --gateway.port 26659
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <key_name> --gateway --gateway.addr 0.0.0.0 --gateway.port 26659 --p2p.network arabica
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.grpc <ip-address>:<port> --keyring.accname <key_name>
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
 </TabItem>
@@ -974,7 +1002,7 @@ We run the following:
 ```sh
 curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
   "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
-  "gas_limit": 70000}' http://localhost:26659/submit_pfd
+  "gas_limit": 70000, "fee": 2000}' http://localhost:26659/submit_pfd
 ```
 
 We get the following output:
@@ -1218,8 +1246,9 @@ account with tokens and then try again.
 After submitting your PFD transaction, upon success, the node will return
 the block height for which the PFD transaction was included. You can then
 use that block height and the namespace ID with which you submitted your
-PFD transaction to get your message shares returned to you. In this example,
+PFD transaction to get your message [shares](./node-api#share-endpoints) returned to you. In this example,
 the block height we got was 2452 which we will use for the following command.
+Read more about shares in the [Celestia Specs](https://celestiaorg.github.io/celestia-specs/latest/specs/data_structures.html?highlight=shares#share).
 
 ```sh
 curl -X GET \

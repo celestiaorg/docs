@@ -70,7 +70,7 @@ Next, implement `GetRecipeCount` in the `recipes/x/recipes/keeper/recipe.go` fil
 <!-- markdownlint-disable MD013 -->
 ```go title="recipes/x/recipes/keeper/recipe.go"
 func (k Keeper) GetRecipeCount(ctx sdk.Context) uint64 {
-  Get the store using storeKey (which is "recipes") and RecipeCountKey (which is "Recipe-count-")
+  // Get the store using storeKey (which is "recipes") and RecipeCountKey (which is "Recipe-count-")
   store := prefix.NewStore(ctx.KVStore(k.storeKey), []byte(types.RecipeCountKey))
   
   // Convert the RecipeCountKey to bytes

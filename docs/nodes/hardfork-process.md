@@ -34,7 +34,7 @@ The general process can be broken down into several components:
 The two testnets were hardforks are deployed on are:
 
 - [Arabica](./arabica-devnet)
-- [Mamaki](./mamaki-testnet)
+- [Mocha](./mocha-testnet)
 
 ### Mocha Hardfork
 
@@ -44,7 +44,7 @@ while maintaining the existing state and also will rename Mamaki to Mocha.
 
 The new chain-id will be `mocha`.
 
-The release logs for `mocha` can be found here (TBD).
+The release logs for `mocha` can be found [here](https://github.com/celestiaorg/celestia-app/releases).
 
 The most exciting feature included is setting the stage for QGB on Mocha.
 
@@ -61,6 +61,6 @@ new keys in order to have a successful upgrade.
 Those two keys will need to be added to 2 new flags on `celestia-app`:
 
 - `--evm-address`: This flag should contain a `0x` EVM address.
-- `--orchesrator-address`: This flag should contain a newly-generated
+- `--orchestrator-address`: This flag should contain a newly-generated
   `celestia1` Celestia address. Validators certainly can use their existing
   Celestia addresses here but it is recommended to create a new one.

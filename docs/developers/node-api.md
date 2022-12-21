@@ -284,7 +284,7 @@ Returns
          "block":11,
          "app":0
       },
-      "chain_id":"mamaki",
+      "chain_id":"mocha",
       "height":32281,
       "time":"2022-06-06T14:48:57.070758938Z",
       "last_block_id":{
@@ -453,13 +453,13 @@ Response
 
 Constructs, signs and submits a PayForData message to a running instance
 of celestia-app. The body of the `/submit_pfd` request should contain the
-hex-encoded `namespace_id`, the hex-encoded `data`, and the `gas_limit`
-as a uint64.
+hex-encoded `namespace_id`, the hex-encoded `data`, the `fee`, and the
+`gas_limit` as a uint64.
 
 Request
 
 ```sh
-curl -X POST -d '{"namespace_id": "0c204d39600fddd3", "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5", "gas_limit": 60000}'\
+curl -X POST -d '{"namespace_id": "0c204d39600fddd3", "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5", "gas_limit": 60000, "fee": 2000}'\
   http://<ip-address>:26659/submit_pfd
 ```
 
@@ -684,8 +684,8 @@ Response
 
 Submits a transfer transaction to a running instance of `celestia-app`.
 The body of the `/transfer` request should contain the
-`to` (receiver) address, the `amount` in utia, and the `gas_limit`
-as a uint64.
+`to` (receiver) address, the `amount` in utia, the `fee`,
+and the `gas_limit` as a uint64.
 
 To transfer tokens from the address running your node to another.
 
@@ -694,7 +694,7 @@ Request
 ```sh
 curl -X POST -d '{"to": "<TO_ADDRESS>",
   "amount": <AMOUNT>,
-  "gas_limit": 80000}' http://<IP>:26659/transfer
+  "gas_limit": 80000, "fee": 2000}' http://<IP>:26659/transfer
 ```
 
 Example usage:
@@ -702,7 +702,7 @@ Example usage:
 ```sh
 curl -X POST -d '{"to": "celestia16qx7306vehyy9ndtwsy6crkmfpf7enmphvl2e2",
   "amount": 1000000,
-  "gas_limit": 80000}' http://localhost:26659/transfer
+  "gas_limit": 80000, "fee": 2000}' http://localhost:26659/transfer
 ```
 
 Example response

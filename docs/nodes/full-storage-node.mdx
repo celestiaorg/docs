@@ -44,9 +44,24 @@ You can follow the tutorial for installing Celestia Node [here](./celestia-node.
 
 Run the following command:
 
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="arabica" label="Arabica">
+
 ```sh
+celestia full init --p2p.network arabica
+```
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh 
 celestia full init
 ```
+
+</TabItem>
+</Tabs>
+````
 
 #### Start the full storage node
 
@@ -60,23 +75,24 @@ Start the Full Storage Node with a connection to a validator node's gRPC endpoin
 
 A note on ports:
 
-> NOTE: The `--core.grpc.port` defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can use the flag
-  to specify another port if you prefer.
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
 
 ````mdx-code-block
-<Tabs groupId="networks">
+<Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port <port>
+celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --p2p.network arabica
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh 
-celestia full start --core.remote <ip-address>:<port>
+celestia full start --core.ip <ip-address>:<port>
 ```
 
 </TabItem>
@@ -84,7 +100,7 @@ celestia full start --core.remote <ip-address>:<port>
 ````
 
 If you would like to find example RPC endpoints, check out the list of
-resources [here](./mamaki-testnet).
+resources [here](./mocha-testnet).
 
 You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx)
 
@@ -100,13 +116,13 @@ You can find the address by running the following command:
 You have two networks to get testnet tokens from:
 
 * [Arabica](./arabica-devnet)
-* [Mamaki](./mamaki-testnet)
+* [Mocha](./mocha-testnet)
 
 > NOTE: If you are running a full-storage node for your sovereign
   rollup, it is highly recommended to request Arabica devnet tokens
   as Arabica has the latest changes that can be used to
   test for developing your sovereign rollup. You can still use
-  Mamaki Testnet as well, it is just mostly used for Validator operations.
+  Mocha Testnet as well, it is just mostly used for Validator operations.
 
 ### Optional: run the full storage node with a custom key
 
@@ -117,18 +133,18 @@ In order to run a full storage node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 ````mdx-code-block
-<Tabs groupId="networks">
+<Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key>
+celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key> --p2p.network arabica
 ```
 
 </TabItem>
-<TabItem value="mamaki" label="Mamaki">
+<TabItem value="mocha" label="Mocha">
 
 ```sh 
-celestia full start --core.remote <ip-address>:<port> --keyring.accname <name-of-custom-key>
+celestia full start --core.ip <ip-address>:<port> --keyring.accname <name-of-custom-key>
 ```
 
 </TabItem>
