@@ -43,14 +43,17 @@ to the correct instructions on this page on how to connect to Mocha.
 There is a list of RPC endpoints you can use to connect to Mocha Testnet:
 
 * [https://rpc-mocha.pops.one](https://rpc-mocha.pops.one)
+* [https://rpc.mocha.celestia.counterpoint.software](https://rpc.mocha.celestia.counterpoint.software)
 
 ## API endpoints
 
 * [https://api-mocha.pops.one](https://api-mocha.pops.one)
+* [https://api.mocha.celestia.counterpoint.software](https://api.mocha.celestia.counterpoint.software)
 
 ## GRPC endpoints
 
 * [https://grpc-mocha.pops.one](https://grpc-mocha.pops.one)
+* [https://grpc.mocha.celestia.counterpoint.software](https://grpc.mocha.celestia.counterpoint.software)
 
 ## Mocha Testnet faucet
 
