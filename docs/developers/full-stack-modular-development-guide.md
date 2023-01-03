@@ -305,8 +305,8 @@ First, we will need to follow the setup from the [Ethermint tutorial](./ethermin
 :::danger Pre-requisites
 
 It is required that you complete [dependency setup](./ethermint-dependencies),
-[RollKit installation](./rollmint-on-ethermint), and
-[Instantiating and Ethermint rollup](./instantiate-ethermint)
+[Rollmint installation](./rollmint-on-ethermint), and
+[Instantiating an Ethermint rollup](./instantiate-ethermint)
 to complete the remainder of the tutorial.
 
 :::
@@ -740,7 +740,7 @@ the chains on MetaMask if we're deploying our rollup any
 Now we’re ready to run the app.
 
 Right now, the app is configured to be using `localhost:8545` using the
-Ethermint rollup we're running with RollKit.
+Ethermint rollup we're running with Rollmint.
 
 First, you'll need to install [MetaMask](https://metamask.io).
 
