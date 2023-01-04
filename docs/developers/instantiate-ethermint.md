@@ -20,6 +20,17 @@ we can proceed to generate the Ethermint rollup.
 In the `ethermint` directory, we have a helpful bash script that
 allows you to instantiate a local Ethermint sovereign rollup on Celestia.
 
+:::danger caution
+
+If you are on macOS, you will need to install md5sha1sum before starting your
+rollup:
+
+```sh
+brew install md5sha1sum
+```
+
+:::
+
 Run the following:
 
 ```sh
