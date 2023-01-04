@@ -155,6 +155,23 @@ gm rollup.
 You can view the contents of the script to see how we
 initialize the gm rollup.
 
+:::danger caution
+
+Before starting our rollup, we'll need to find and change
+`FlagDisableIAVLFastNode` to `FlagIAVLFastNode`:
+
+```go title="gm/cmd/gmd/cmd/root.go"
+baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagIAVLFastNode))),
+```
+
+Also, if you are on macOS, you will need to install md5sha1sum:
+
+```sh
+brew install md5sha1sum
+```
+
+:::
+
 You can initialize the script with the following command:
 
 ```sh
