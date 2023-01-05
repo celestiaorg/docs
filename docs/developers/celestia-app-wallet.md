@@ -41,7 +41,7 @@ celestia-appd keys list
 
 For the public celestia address, you can fund the
 previously created wallet via [Discord](https://discord.gg/celestiacommunity)
-by sending this message to #arabica-faucet channel:
+by sending this message to either the #mocha-faucet or #arabica-faucet channel:
 
 ```text
 $request celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
