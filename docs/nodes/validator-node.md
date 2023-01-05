@@ -67,7 +67,6 @@ Set seeds and peers:
 ```sh
 SEEDS="some seeds"
 PEERS="some peers"
-SEED_MODE="true"
 sed -i -e 's|^seeds *=.*|seeds = "'$SEEDS'"|; s|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.celestia-app/config/config.toml
 sed -i -e "s/^seed_mode *=.*/seed_mode = \"$SEED_MODE\"/" $HOME/.celestia-app/config/config.toml
 ```
