@@ -24,6 +24,14 @@ You can learn more about Ethermint [here](https://docs.ethermint.zone/).
   of the chain (i.e. a full node). Furthermore, Rollmint currently only supports
   a single sequencer.
 
+:::danger caution
+
+The script for this tutorial is built for Mocha Testnet.
+If you choose to use Arabica Devnet,
+you will need to modify the script manually.
+
+:::
+
 In this tutorial, we will go over the following:
 
 * [Setting Up Your Ethermint Dependencies](./ethermint-dependencies.md)

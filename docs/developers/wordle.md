@@ -26,6 +26,14 @@ to extend this codebase.
   the validity of the chain (i.e. a full node). Furthermore,
   Rollmint currently only supports a single sequencer.
 
+:::danger caution
+
+The script for this tutorial is built for Mocha Testnet.
+If you choose to use Arabica Devnet,
+you will need to modify the script manually.
+
+:::
+
 ## Pre-requisites
 
 Given this tutorial is targeted for developers who are experienced

@@ -22,6 +22,14 @@ using [Rollmint](./rollmint).
   (i.e. a full node). Furthermore, Rollmint currently only supports
   a single sequencer.
 
+:::danger caution
+
+The script for this tutorial is built for Mocha Testnet.
+If you choose to use Arabica Devnet,
+you will need to modify the script manually.
+
+:::
+
 You can learn more about CosmWasm [here](https://docs.cosmwasm.com/docs/1.0/).
 
 In this tutorial, we will going over the following:
