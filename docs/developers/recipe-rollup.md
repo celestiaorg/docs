@@ -38,6 +38,17 @@ Recipes Rollup.
 You can view the contents of the script to see how we
 initialize the Recipes Rollup.
 
+:::danger caution
+
+If you are on macOS, you will need to install md5sha1sum before starting your
+rollup:
+
+```sh
+brew install md5sha1sum
+```
+
+:::
+
 🟢 Start the chain with:
 
 ```sh
