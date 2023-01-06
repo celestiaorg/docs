@@ -60,8 +60,6 @@ in the `src` directory named `Contract.sol` with the following code:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-pragma solidity ^0.8.0;
-
 contract Blog {
     string public name;
     address public owner;
