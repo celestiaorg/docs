@@ -29,6 +29,26 @@ On Mac and Linux systems, here are the commands for installing it:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
+:::danger caution
+
+You will see a note similar to below after installing Rust:
+
+```sh
+Rust is installed now. Great!
+
+To get started you may need to restart your current shell.
+This would reload your PATH environment variable to include
+Cargo's bin directory ($HOME/.cargo/bin).
+
+To configure your current shell, run:
+source "$HOME/.cargo/env"
+```
+
+If you don't follow the guidance, you won't be able to continue with the
+tutorial!
+
+:::
+
 After installation, follow the commands here to setup Rust.
 
 ```sh
@@ -73,7 +93,8 @@ git clone https://github.com/CosmWasm/wasmd.git
 cd wasmd
 git fetch --tags
 git checkout v0.27.0
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.45.10-rollmint-v0.4.0
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.45.10-rollmint-v0.5.0-no-fraud-proofs
+go mod edit --replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221013213714-8be9b54c8c21
 go mod tidy -compat=1.17
 go mod download
 make install
