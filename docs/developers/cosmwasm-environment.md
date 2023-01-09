@@ -69,7 +69,7 @@ NODEIP="--node http://127.0.0.1:26657"
 
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 echo $NAMESPACE_ID
-DA_BLOCK_HEIGHT=$(curl https://rpc.limani.celestia-devops.dev/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
 echo $DA_BLOCK_HEIGHT
 
 rm -rf "$HOME"/.wasmd
