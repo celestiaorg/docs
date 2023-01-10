@@ -102,6 +102,6 @@ make install
 
 ## Celestia Node
 
-You will need a light node running with test tokens on Arabica Devnet in order
+You will need a light node running with test tokens on Mocha Testnet in order
 to complete this tutorial. Please complete the tutorial
 [here](./node-tutorial.mdx), or start up your node.
