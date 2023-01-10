@@ -20,6 +20,14 @@ modifying the state with transactions (Cosmos SDK messages)
 that are routed to a module and its message handlers, which
 are sent to the `recipes` blockchain.
 
+:::danger caution
+
+The script for this tutorial is built for Mocha Testnet.
+If you choose to use Arabica Devnet,
+you will need to modify the script manually.
+
+:::
+
 ## 💻 Prerequisites
 
 - [gm world Tutorial](./gm-world) (recommended)
