@@ -17,7 +17,7 @@ we will need to query our  tx hash directly to get information about it.
 Let's start by querying our transaction hash for its code ID:
 
 ```sh
-CODE_ID=$(wasmd query tx --type=hash $TX_HASH $CHAINFLAG $NODEIP --output json | jq -r '.logs[0].events[-1].attributes[0].value')
+CODE_ID=$(wasmd query tx --type=hash $TX_HASH --chain-id celeswasm --node http://127.0.0.1:26657 --output json | jq -r '.logs[0].events[-1].attributes[0].value')
 echo $CODE_ID
 ```
 
@@ -29,7 +29,7 @@ the value is `1`.
 Now, we can take a look at the contracts instantiated by this Code ID:
 
 ```sh
-wasmd query wasm list-contract-by-code $CODE_ID $CHAINFLAG $NODEIP --output json
+wasmd query wasm list-contract-by-code $CODE_ID --chain-id celeswasm --node http://127.0.0.1:26657 --output json
 ```
 
 We get the following output:
@@ -46,7 +46,7 @@ is `100uwasm` and `transfer_price` is `999uwasm`.
 
 ```sh
 INIT='{"purchase_price":{"amount":"100","denom":"uwasm"},"transfer_price":{"amount":"999","denom":"uwasm"}}'
-wasmd tx wasm instantiate $CODE_ID "$INIT" --from $KEY_NAME --keyring-backend test --label "name service" $TXFLAG -y --no-admin $NODEIP
+wasmd tx wasm instantiate $CODE_ID "$INIT" --from celeswasm-key --keyring-backend test --label "name service" --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 -y --no-admin --node http://127.0.0.1:26657
 ```
 
 ## Contract Interaction
@@ -54,12 +54,12 @@ wasmd tx wasm instantiate $CODE_ID "$INIT" --from $KEY_NAME --keyring-backend te
 Now that we instantiated it, we can interact further with the contract:
 
 ```sh
-wasmd query wasm list-contract-by-code $CODE_ID $CHAINFLAG --output json $NODEIP
-CONTRACT=$(wasmd query wasm list-contract-by-code $CODE_ID $CHAINFLAG --output json $NODEIP | jq -r '.contracts[-1]')
+wasmd query wasm list-contract-by-code $CODE_ID --chain-id celeswasm --output json --node http://127.0.0.1:26657
+CONTRACT=$(wasmd query wasm list-contract-by-code $CODE_ID --chain-id celeswasm --output json --node http://127.0.0.1:26657 | jq -r '.contracts[-1]')
 echo $CONTRACT
 
-wasmd query wasm contract $NODEIP $CONTRACT $CHAINFLAG
-wasmd query bank balances $NODEIP $CONTRACT $CHAINFLAG
+wasmd query wasm contract --node http://127.0.0.1:26657 $CONTRACT --chain-id celeswasm
+wasmd query bank balances --node http://127.0.0.1:26657 $CONTRACT --chain-id celeswasm
 ```
 
 This allows us to see the contract address, contract details, and
@@ -89,7 +89,7 @@ Now, let's register a name to the contract for our wallet address:
 
 ```sh
 REGISTER='{"register":{"name":"fred"}}'
-wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from $KEY_NAME $TXFLAG $NODEIP --keyring-backend test -y
+wasmd tx wasm execute $CONTRACT "$REGISTER" --amount 100uwasm --from celeswasm-key --chain-id celeswasm --gas-prices 0uwasm --gas auto --gas-adjustment 1.3 --node http://127.0.0.1:26657 --keyring-backend test -y
 ```
 
 Your output will look similar to below:
@@ -112,11 +112,17 @@ tx: null
 txhash: C147257485B72E7FFA5FDB943C94CE951A37817554339586FFD645AD2AA397C3
 ```
 
+If you try to register the same name again, you'll see an expected error:
+
+```sh
+Error: rpc error: code = Unknown desc = rpc error: code = Unknown desc = failed to execute message; message index: 0: Name has been taken (name fred): execute wasm contract failed [CosmWasm/wasmd/x/wasm/keeper/keeper.go:364] With gas wanted: '0' and gas used: '123809' : unknown request
+```
+
 Next, query the owner of the name record:
 
 ```sh
 NAME_QUERY='{"resolve_record": {"name": "fred"}}'
-wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" $CHAINFLAG $NODEIP --output json
+wasmd query wasm contract-state smart $CONTRACT "$NAME_QUERY" --chain-id celeswasm --node http://127.0.0.1:26657 --output json
 ```
 
 You'll see the owner's address in a JSON response:
