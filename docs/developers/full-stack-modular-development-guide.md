@@ -370,7 +370,7 @@ a wallets
 [WAGMI](https://github.com/wagmi-dev/wagmi) - 20+ hooks for working with
 wallets, ENS, contracts, transactions, signing, etc
 
-In the root of the Foundry project, create a new Next.js application using [Vite](https://vitejs.dev/):
+In the root of the Foundry project, create a new React.js application using [Vite](https://vitejs.dev/):
 
 ```jsx
 yarn create vite
