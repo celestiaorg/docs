@@ -402,7 +402,7 @@ and secret.
 
 First, create an Infura account and new project for IPFS.
 
-Create a file named `.env.local` in the `app` directory and add the following
+Create a file named `.env.local` in the `src` directory and add the following
 configuration with your own credentials:
 
 ```env title="frontend/.env.local"
