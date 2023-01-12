@@ -660,13 +660,13 @@ Run the following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light init --p2p.network arabica
+celestia light init --p2p.network arabica-2
 ```
 
 You should see output like:
 
 ```output
-$ celestia light init --p2p.network arabica
+$ celestia light init --p2p.network arabica-2
 2022-12-19T21:45:00.802Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-arabica-2'
 2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:50  Saving config   {"path": "/root/.celestia-light-arabica-2/config.toml"}
 2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:51  Node Store initialized
@@ -708,7 +708,7 @@ is usually exposed on port 9090):
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica-2
 ```
 
 For ports:
@@ -743,7 +743,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
+celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.port 9090 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica-2
 ```
 
 </TabItem>
@@ -765,8 +765,10 @@ celestia light start --core.ip https://rpc-mocha.pops.one --core.grpc.port <port
 You can create your key for your node by running the following command with the [`cel-key`](../developers/celestia-node-key) utility:
 
 ```sh
-./cel-key add <key_name> --keyring-backend test --node.type light
+./cel-key add <key_name> --keyring-backend test --node.type light --p2p.network <p2p_network>
 ```
+
+For `arabica`, if you are on `0.6.1`, make sure to use `--p2p.network arabica-2` when generating your keys.
 
 You can start your light node with the key created above by running the
 following command:
@@ -775,7 +777,7 @@ following command:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
+celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica-2
 ```
 
 </TabItem>
@@ -831,7 +833,7 @@ In order to run a light node using a custom key:
 <TabItem value="arabica" label="Arabica">
 
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica-2
 ```
 
 </TabItem>
