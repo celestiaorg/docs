@@ -765,7 +765,7 @@ celestia light start --core.ip https://rpc-mocha.pops.one --core.grpc.port <port
 You can create your key for your node by running the following command with the [`cel-key`](../developers/celestia-node-key) utility:
 
 ```sh
-./cel-key add <key_name> --keyring-backend test --node.type light --p2p.network <p2p_network>
+./cel-key add <key_name> --keyring-backend test --node.type light --p2p.network <network>
 ```
 
 For `arabica`, if you are on `0.6.1`, make sure to use `--p2p.network arabica-2` when generating your keys.
@@ -798,7 +798,7 @@ You can find the address by running the following command in the
 `celestia-node` directory:
 
 ```sh
-./cel-key list --node.type light --keyring-backend test
+./cel-key list --node.type light --keyring-backend test --p2p.network <network>
 ```
 
 You have two networks to get testnet tokens from:
