@@ -370,7 +370,7 @@ a wallets
 [WAGMI](https://github.com/wagmi-dev/wagmi) - 20+ hooks for working with
 wallets, ENS, contracts, transactions, signing, etc
 
-In the root of the Foundry project, create a new Next.js application using [Vite](https://vitejs.dev/):
+In the root of the Foundry project, create a new React.js application using [Vite](https://vitejs.dev/):
 
 ```jsx
 yarn create vite
@@ -402,7 +402,7 @@ and secret.
 
 First, create an Infura account and new project for IPFS.
 
-Create a file named `.env.local` in the `app` directory and add the following
+Create a file named `.env.local` in the `frontend/` directory and add the following
 configuration with your own credentials:
 
 ```env title="frontend/.env.local"
