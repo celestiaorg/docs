@@ -480,6 +480,7 @@ const sidebars = {
     { type: "doc", label: "Overview", id: "community/overview" },
     { type: "doc", label: "Code of Conduct", id: "community/coc" },
     { type: "doc", label: "Community Calendar", id: "community/calendar" },
+    { type: "doc", label: "ITN ToS", id: "community/itn-tos" },
     { type: "doc", label: "Docs Translations", id: "community/translations" },
     {
       type: "category",
