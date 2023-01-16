@@ -39,9 +39,8 @@ the Company may, in its sole discretion, provide you ITN Rewards for your succes
 completion of certain tasks on a Testnet designated by the Company. Please note that
 any such Testnet itself (as well as any other Testnets or any mainnet deployment of
 the Celestia Protocol) is not a Service and does not constitute an element of the
-Services. We do not control the Celestia Protocol or any deployment of the Celestia
-Protocol in any testnet or mainnet environment, and accept no liability for the
-operation of any of the foregoing.  
+Services. We do not control the Celestia Protocol and accept no liability for its 
+operation or its deployment in any testnet or mainnet environment.
 
 ## 1.	General Terms
 
