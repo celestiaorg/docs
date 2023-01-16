@@ -3,25 +3,25 @@
 <!-- markdownlint-disable MD009 -->
 <!-- markdownlint-disable MD010 -->
 <!-- markdownlint-disable MD012 -->
+<!-- markdownlint-disable MD033 -->
 
+Last Revised on [1/16/2023]
 
-Last Revised on []
-
-Welcome to the Supplemental Terms (these "ITN Award Program Terms" or "Terms")
+Welcome to the Supplemental Terms (these **"ITN Award Program Terms"** or **"Terms"**)
 for the Incentivized Testnet Award Program
-(the "ITN Award Program" or the "Program") as operated on behalf of Strange
-Loop Labs AG ("Company", "we" or "us"). The ITN Award Program provides eligible
+(the **"ITN Award Program"** or the **"Program"**) as operated on behalf of Strange
+Loop Labs AG (**"Company"**, **"we"** or **"us"**). The ITN Award Program provides eligible
 users of a Testnet designated by the Company the opportunity to earn rewards,
 which may include Celestia tokens. These Terms are supplemental to, and
 incorporate by reference, the broader Celestia Terms of Service
-("Services Terms") available at [Celestia Terms of Service](https://celestia.org/tos/).
+(**"Services Terms"**) available at [Celestia Terms of Service](https://celestia.org/tos/).
 
 Defined terms used but not defined herein have the meaning set forth in the
 Services Terms.  The Program and your participation in it is a Service as
 defined under the Services Terms.
 
 These Terms govern your ability to participate in the Program and any awards
-you receive from that participation, which may include Celestia tokens ("ITN Rewards").
+you receive from that participation, which may include Celestia tokens (**"ITN Rewards"**).
 
 Please read these Terms carefully, as they include important information about
 your legal rights. By participating in the Program or claiming ITN Rewards,
@@ -66,7 +66,7 @@ operation or its deployment in any testnet or mainnet environment.
 
 **1.4**	You agree and acknowledge that (a) you are not a Prohibited Person, (b) you
   are not a U.S. Person as defined in Rule 902(k) of Regulation S under the U.S.
-  Securities Act of 1933, as amended (the "1933 Act" or "Act"), (c) you will not
+  Securities Act of 1933, as amended (the **"1933 Act"** or **"Act"**), (c) you will not
   use a VPN or other tool to circumvent any geoblock or other restrictions that
   we may have implemented for participants in the Program, and (d) you are not
   participating in, and have not become eligible to participate in, the Program
@@ -91,7 +91,7 @@ operation or its deployment in any testnet or mainnet environment.
 
 **1.7**	The Company may share identifying information and documentation with certain vendors
   or third-party providers who provide such identity verification and sanctions and watchlist
-  screening services (the "Third-Party Services").  You agree that your access and use of
+  screening services (the **"Third-Party Services"**).  You agree that your access and use of
   such Third-Party Services is governed solely by the terms and conditions of such Third-Party
 	Services, and the Company is not responsible or liable for, and make no representations
   as to any aspect of such Third-Party Services, including, without limitation, their content
@@ -126,10 +126,10 @@ Additionally, we may collect certain information about you from Third-Party Serv
 may combine information we receive from you with information we obtain from Third-Party
 Services, including but not limited to: 
 
-*	Transaction information. Information related to transactions in your Wallet, your Wallet
+*	<u>Transaction information</u>. Information related to transactions in your Wallet, your Wallet
   address, activities performed using your Wallet, tokens received by your Wallet, or
   transactions initiated or completed.  
-*	Identification information. We collect your government identification (e.g., driver’s
+*	<u>Identification information</u>. We collect your government identification (e.g., driver’s
   license, passport, etc.), proof of address, biometric information, and entity formation
   information if applicable. By agreeing to these Terms, you consent to our use of your
   biometric information, and understand and agree that our use of the biometric information
@@ -147,7 +147,7 @@ Privacy Policy for more information.
 
 ## 4.	Certain Additional Representations
 
-**4.1**	Receipt of Rewards Entirely for Own Account. Your eligibility to receive ITN Rewards is made
+**4.1**	<u>Receipt of Rewards Entirely for Own Account</u>. Your eligibility to receive ITN Rewards is made
   in reliance upon your representation to the Company, which by your agreement to these Terms you
   hereby confirm, that any ITN Rewards you receive will be for your own account, not as a nominee
   or agent, and not with a view to the resale or distribution of any part thereof, and that you have
@@ -159,7 +159,7 @@ Privacy Policy for more information.
   obtaining the ITN Rewards.
 
 
-**4.2**	Disclosure of Information. Your eligibility to receive ITN Rewards is made in reliance upon your
+**4.2**	<u>Disclosure of Information</u>. Your eligibility to receive ITN Rewards is made in reliance upon your
   representation to the Company, which by your agreement to these Terms you hereby confirm, that you
   have sufficient knowledge of and experience in business and financial matters to be able to evaluate
   the risks and merits of your participation in the Program and of any ITN Rewards and are able to bear
@@ -168,7 +168,7 @@ Privacy Policy for more information.
   whether through oral or electronic communication, or any white paper.
 
 
-**4.3**	Compliance with United States Securities Laws. You understand that the ITN Rewards
+**4.3**	<u>Compliance with United States Securities Laws</u>. You understand that the ITN Rewards
   have not been, and will not be, registered under the 1933 Act or any applicable state
   securities laws. You acknowledge that the availability of an exemption from the registration
   provisions of the Securities Act and other applicable state securities laws depends upon,
@@ -188,25 +188,25 @@ Privacy Policy for more information.
   control, for which the Company makes no assurances and may not be able to satisfy.
 
 
-**4.4**	Compliance with Liechtenstein Security Law.  You understand that nothing in these
+**4.4**	<u>Compliance with Liechtenstein Security Law</u>.  You understand that nothing in these
   Terms will be deemed to constitute a prospectus of any sort in Liechtenstein or in
   any jurisdiction in the EU; nor does it in any way pertain to a public offering or
   a solicitation of an offer to buy any securities in Liechtenstein or in any
   jurisdiction in the EU.
 
 
-**4.5**	No Public Market. You understand that no public market now exists for the
+**4.5**	<u>No Public Market</u>. You understand that no public market now exists for the
   ITN Rewards, and that the Company has not made any assurances that a public
   market will ever exist for the ITN Rewards.
 
 
-**4.6**	No Solicitation.  At no time were you presented with or solicited by any publicly
+**4.6**	<u>No Solicitation</u>.  At no time were you presented with or solicited by any publicly
   issued or circulated newspaper, mail, radio, television or other form of general
   advertising or solicitation in connection with any invitation to participate in
   the Program or offer of the ITN Rewards.
 
 
-**4.7**	Other Applicable Laws.  You hereby represent that you have satisfied yourself
+**4.7**	<u>Other Applicable Laws</u>.  You hereby represent that you have satisfied yourself
   as to the full observance of the laws of your jurisdiction in connection with
   any invitation to participate in the Program, receipt of ITN Awards, and other
   use of these Terms, including (a) the legal requirements within your jurisdiction
@@ -219,7 +219,7 @@ Privacy Policy for more information.
   laws of your jurisdiction. 
 
 
-**4.8**	Non-US Transaction.  You are not a U.S. Person as defined in Rule 902(k)
+**4.8**	<u>Non-US Transaction</u>.  You are not a U.S. Person as defined in Rule 902(k)
   of Regulation S under the 1933 Act.  The offer of the ITN Rewards to you was
   made in an offshore transaction (as defined in Rule 902(h) of Regulation S),
   no directed selling efforts (as defined in Rule 902(c) of Regulation S) were
@@ -227,7 +227,7 @@ Privacy Policy for more information.
   account or benefit of any U.S. Person.
 
 
-**4.9**	Transfer Restrictions.  You will not, during the Restricted Period
+**4.9**	<u>Transfer Restrictions</u>.  You will not, during the Restricted Period
   (as defined below) offer or sell any of the ITN Rewards (or create or maintain
   any derivative position equivalent thereto) in the United States, to or for
   the account or benefit of a U.S. Person or other than in accordance with
@@ -235,14 +235,14 @@ Privacy Policy for more information.
   restrictions with respect to the ITN Rewards in its sole discretion. 
 
 
-**4.10** Subsequent Sales.  You will, after the expiration of the applicable
+**4.10** <u>Subsequent Sales</u>.  You will, after the expiration of the applicable
   Restricted Period, only offer, sell, pledge or otherwise transfer the ITN Rewards
   (or create or maintain any derivative position equivalent thereto) pursuant to
   registration under the 1933 Act or any available exemption therefrom and,
   in any case, in accordance with applicable state securities laws.
 
 
-**4.11** Legends. You acknowledge and agree that the ITN Rewards will be deemed
+**4.11** <u>Legends</u>. You acknowledge and agree that the ITN Rewards will be deemed
   to bear the following legends: (a) any legend required by the securities
   laws of any state or country to the extent such laws are applicable to the
   ITN Rewards represented by the certificate so legended, and (b): the following
@@ -252,8 +252,8 @@ THE ITN REWARDS HAVE NOT BEEN REGISTERED UNDER THE ACT WITH THE UNITED STATES
 SECURITIES AND EXCHANGE COMMISSION, AND THE COMPANY DOES NOT INTEND TO REGISTER THEM.
 THE ITN REWARDS HAVE BEEN OBTAINED TO HOLD FOR THE LONG TERM AND NOT WITH A VIEW TO,
 OR IN CONNECTION WITH, THE SALE OR DISTRIBUTION THEREFOR. PRIOR TO THE ONE YEAR
-ANNIVERSARY FROM THE TERMINATION OF THE ITN REWARD PROGRAM (THE "PROGRAM COMPLETION
-DATE" AND SUCH ONE YEAR PERIOD, THE "RESTRICTED PERIOD"), THE ITN REWARDS MAY NOT BE
+ANNIVERSARY FROM THE TERMINATION OF THE ITN REWARD PROGRAM (THE **"PROGRAM COMPLETION
+DATE"** AND SUCH ONE YEAR PERIOD, THE **"RESTRICTED PERIOD"**), THE ITN REWARDS MAY NOT BE
 OFFERED OR SOLD (INCLUDING OPENING A SHORT POSITION IN SUCH ITN REWARDS) IN THE
 UNITED STATES OR TO U.S. PERSONS AS DEFINED BY RULE 902(k) ADOPTED UNDER THE ACT,
 OTHER THAN TO DISTRIBUTORS, UNLESS THE ITN REWARDS ARE REGISTERED UNDER THE ACT,
