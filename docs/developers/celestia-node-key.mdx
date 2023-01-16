@@ -48,6 +48,15 @@ make install-key
 
 For the purpose of this guide, we will use the `make cel-key` command.
 
+### `keyring-backend` usage
+
+`keyring-backend` configures the keyring's backend, where the keys are stored.
+
+Supported options are: `file` and `test`. The default used in Celestia's documentation is `test`.
+
+You can learn more about the keyring on the [Cosmos documentation](https://docs.cosmos.network/main/run-node/keyring.html)
+or [Go Package documentation](https://pkg.go.dev/github.com/cosmos/cosmos-sdk/crypto/keyring).
+
 ### Steps for generating node keys
 
 ````mdx-code-block
