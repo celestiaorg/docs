@@ -5,7 +5,7 @@
 <!-- markdownlint-disable MD012 -->
 <!-- markdownlint-disable MD033 -->
 
-Last Revised on [1/16/2023]
+Last Revised on 1/16/2023
 
 Welcome to the Supplemental Terms (these **"ITN Award Program Terms"** or **"Terms"**)
 for the Incentivized Testnet Award Program
