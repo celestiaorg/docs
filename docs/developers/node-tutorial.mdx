@@ -722,7 +722,7 @@ celestia light start --core.ip https://rpc-mocha.pops.one --core.grpc.port 9090 
 You can create your key for your node by running the following command:
 
 ```sh
-./cel-key add <key_name> --keyring-backend test --node.type light --p2p.network <network>
+./cel-key add <key_name> --keyring-backend test --keyring-dir ~/.celestia-light-<p2p_network>/keys
 ```
 
 You can start your light node with the key created above by running the
@@ -754,7 +754,7 @@ You can find the address by running the following command in
 the `celestia-node` directory:
 
 ```sh
-./cel-key list --node.type light --keyring-backend test --p2p.network <network>
+./cel-key list --keyring-backend test --keyring-dir ~/.celestia-light-<p2p_network>/keys
 ```
 
 If you would like to fund your wallet with testnet tokens, head over
