@@ -303,7 +303,7 @@ First, we will need to follow the setup from the [Ethermint tutorial](./ethermin
 :::danger Pre-requisites
 
 It is required that you complete [dependency setup](./ethermint-dependencies),
-[RollKit installation](./rollmint-on-ethermint), and
+[Rollkit installation](./rollmint-on-ethermint), and
 [Instantiating and Ethermint rollup](./instantiate-ethermint)
 to complete the remainder of the tutorial.
 
