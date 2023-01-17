@@ -298,13 +298,13 @@ address as we’ll also be needing it in just a moment when we test the live con
 
 ### Deploying to the Ethermint Sovereign Rollup
 
-First, we will need to follow the setup from the [Ethermint tutorial](./ethermint).
+First, we will need to follow the setup from the [Ethermint tutorial](./ethermint.md).
 
 :::danger Pre-requisites
 
-It is required that you complete [dependency setup](./ethermint-dependencies),
-[RollKit installation](./rollmint-on-ethermint), and
-[Instantiating and Ethermint rollup](./instantiate-ethermint)
+It is required that you complete [dependency setup](./ethermint-dependencies.md),
+[RollKit installation](./rollmint-on-ethermint.md), and
+[Instantiating and Ethermint rollup](./instantiate-ethermint.md)
 to complete the remainder of the tutorial.
 
 :::
