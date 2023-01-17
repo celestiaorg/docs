@@ -69,7 +69,7 @@ import TabItem from '@theme/TabItem';
 To generate a key for a Celestia bridge node, do the following:
 
 ```sh
-./cel-key add <key-name> --keyring-backend test --node.type bridge --p2p.network <network>
+./cel-key add <key-name> --keyring-backend test --keyring-dir ~/.celestia-bridge-<p2p_network>/keys
 ```
 
 This will load the key `<key-name>` into the directory of the bridge node.
@@ -80,7 +80,7 @@ This will load the key `<key-name>` into the directory of the bridge node.
 To generate a key for a Celestia full node, do the following:
 
 ```sh
-./cel-key add <key-name> --keyring-backend test --node.type full --p2p.network <network>
+./cel-key add <key-name> --keyring-backend test --keyring-dir ~/.celestia-full-<p2p_network>/keys
 ```
 
 This will load the key `<key-name>` into the directory of the full node.
@@ -92,7 +92,7 @@ This will load the key `<key-name>` into the directory of the full node.
 To generate a key for a Celestia light node, do the following:
 
 ```sh
-./cel-key add <key-name> --keyring-backend test --node.type light --p2p.network <network>
+./cel-key add <key-name> --keyring-backend test --keyring-dir ~/.celestia-light-<p2p_network>/keys
 ```
 
 This will load the key `<key-name>` into the directory of the light node.
@@ -107,11 +107,13 @@ Further flags you can use to customize your key are the following:
   save your node data and configurations. Expects a path to a directory.
 * `--p2p.network`: Specifies which network you want the key for. Values
   are `arabica` and `mocha`. Please note the default network will be `mocha`.
+* `--node.type`: Specifies which node type you want the node for. Values
+  are `bridge`, `full`, and `light`.
 
 Keep in mind that your Celestia Node will only pick up keys that 
 are inside the `node.store` directory under `/keys` so you should make
-sure to point `cel-key` utility to the correct directory via the
-`node.store` or `p2p.network` flags if you have specified a custom
+sure to point `cel-key` utility to the correct directory via either the `--keyring-dir` flag, or `node.store` and `p2p.network` flags if
+you have specified a custom
 directory or network other than Mocha.
 
 Also keep in mind that if you do not specify a network with `--p2p.network`,
@@ -125,14 +127,7 @@ the default one will always be `mocha`.
 You can export a private key from the local keyring in encrypted and ASCII-armored format.
 
 ```sh
-./cel-key export <key-name> --keyring-backend test --node.type bridge --p2p.network <network>
-```
-
-You can then import your key with `celestia-appd`:
-
-```sh
-celestia-appd keys import <new-key-name> 
-  <key-file-location>
+./cel-key export <key-name> --keyring-backend test --keyring-dir ~/.celestia-bridge-<p2p_network>/keys
 ```
 
 </TabItem>
@@ -141,14 +136,7 @@ celestia-appd keys import <new-key-name>
 You can export a private key from the local keyring in encrypted and ASCII-armored format.
 
 ```sh
-./cel-key export <key-name> --keyring-backend test --node.type full --p2p.network <network>
-```
-
-You can then import your key with `celestia-appd`:
-
-```sh
-celestia-appd keys import <new-key-name> 
-  <key-file-location>
+./cel-key export <key-name> --keyring-backend test --keyring-dir ~/.celestia-full-<p2p_network>/keys
 ```
 
 </TabItem>
@@ -157,14 +145,7 @@ celestia-appd keys import <new-key-name>
 You can export a private key from the local keyring in encrypted and ASCII-armored format.
 
 ```sh
-./cel-key export <key-name> --keyring-backend test --node.type light --p2p.network <network>
-```
-
-You can then import your key with `celestia-appd`:
-
-```sh
-celestia-appd keys import <new-key-name> 
-  <key-file-location>
+./cel-key export <key-name> --keyring-backend test --keyring-dir ~/.celestia-light-<p2p_network>/keys
 ```
 
 </TabItem>
@@ -180,7 +161,7 @@ celestia-appd keys import <new-key-name>
 Importing from a mnemonic:
 
 ```sh
-./cel-key add <key-name> --recover --keyring-backend test --node.type bridge --p2p.network <network>
+./cel-key add <key-name> --recover --keyring-backend test --keyring-dir ~/.celestia-bridge-<p2p_network>/keys
 ```
 
 You will then be prompted to enter your bip39 mnemonic.
@@ -188,7 +169,7 @@ You will then be prompted to enter your bip39 mnemonic.
 Example:
 
 ```sh
-./cel-key add alice --recover --keyring-backend test --node.type bridge --p2p.network <network>
+./cel-key add alice --recover --keyring-backend test --keyring-dir ~/.celestia-bridge-<p2p_network>/keys
 ```
 
 </TabItem>
@@ -197,7 +178,7 @@ Example:
 Importing from a mnemonic:
 
 ```sh
-./cel-key add <key-name> --recover --keyring-backend test --node.type full --p2p.network <network>
+./cel-key add <key-name> --recover --keyring-backend test --keyring-dir ~/.celestia-full-<p2p_network>/keys
 ```
 
 You will then be prompted to enter your bip39 mnemonic.
@@ -205,7 +186,7 @@ You will then be prompted to enter your bip39 mnemonic.
 Example:
 
 ```sh
-./cel-key add alice --recover --keyring-backend test --node.type full --p2p.network <network>
+./cel-key add alice --recover --keyring-backend test --keyring-dir ~/.celestia-full-<p2p_network>/keys
 ```
 
 </TabItem>
@@ -214,7 +195,7 @@ Example:
 Importing from a mnemonic:
 
 ```sh
-./cel-key add <key-name> --recover --keyring-backend test --node.type light --p2p.network <network>
+./cel-key add <key-name> --recover --keyring-backend test --keyring-dir ~/.celestia-light-<p2p_network>/keys
 ```
 
 You will then be prompted to enter your bip39 mnemonic.
@@ -222,7 +203,7 @@ You will then be prompted to enter your bip39 mnemonic.
 Example:
 
 ```sh
-./cel-key add alice --recover --keyring-backend test --node.type light --p2p.network <network>
+./cel-key add alice --recover --keyring-backend test --keyring-dir ~/.celestia-light-<p2p_network>/keys
 ```
 
 </TabItem>
