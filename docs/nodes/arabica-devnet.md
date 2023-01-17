@@ -49,9 +49,32 @@ to the correct instructions on this page on how to connect to Arabica.
 
 ## RPC endpoints
 
-There is a list of RPC endpoints you can use to connect to Arabica Devnet:
+The RPC endpoint is to allow users to interact with Celestia's nodes by
+making querying the node's state and broadcasting transactions on the
+Celestia network. The default port is 26657.
+
+Below is a list of RPC endpoints you can use to connect to Arabica Devnet:
 
 * [https://rpc.limani.celestia-devops.dev](https://rpc.limani.celestia-devops.dev)
+
+## API endpoints
+
+The API endpoint is to allow users to interact with the REST API in Cosmos
+SDK which is implemented using gRPC-gateway, which exposes gRPC endpoints
+as REST endpoints. This allows for communication with the node using REST
+calls, which can be useful if the client does not support gRPC or HTTP2.
+The default port is 1317.
+
+* [link](https://celestia.org)
+
+## gRPC endpoints
+
+The gRPC endpoint is to allow users to interact with a Celestia node using
+gRPC, a modern open-source and high-performance RPC framework. The default
+port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
+broadcast transactions.
+
+* [link](https://celestia.org)
 
 ## Arabica Devnet faucet
 
