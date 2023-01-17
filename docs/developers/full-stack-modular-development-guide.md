@@ -35,7 +35,8 @@ EVM-compatible testnet that you will run locally for this tutorial.
 - [Infura account](https://infura.io/) (for uploading files to IPFS)
 - [A Celestia Light Node running](./node-tutorial.mdx) (to post PFDs from your
 rollup)
-- [Ethermint Tutorial](https://rollkit.dev/docs/tutorials/ethermint) (for running your own Ethermint rollup &
+- [Ethermint Tutorial](https://rollkit.dev/docs/tutorials/ethermint)
+(for running your own Ethermint rollup &
 deploying your smart contract)
 - [MetaMask wallet](https://metamask.io) (for connecting to your frontend)
 
