@@ -16,4 +16,4 @@ jobs:
           node-version: 16.x
           cache: npm
       - run: yarn install --frozen-lockfile
-      - run: yarn build -- --locale en
+      - run: yarn build

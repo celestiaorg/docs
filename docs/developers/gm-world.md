@@ -16,10 +16,17 @@ building blockchain applications. The Cosmos Ecosystem uses
 [Inter-Blockchain Communication (IBC)](https://github.com/cosmos/ibc-go)
 to allow blockchains to communicate with one another.
 
+:::danger caution
+
+The script for this tutorial is built for Mocha Testnet.
+If you choose to use Arabica Devnet,
+you will need to modify the script manually.
+
+:::
+
 ## Table of Contents
 
-- [Introduction](./gm-world.md)
-- [Setup](./gm-setup.mdx)
-- [Run a Light Node](./gm-node.md)
-- [Build a Sovereign Rollup](./gm-rollmint.md)
-- [Query your Rollup](./gm-query.md)
+- [Setup](./gm-setup)
+- [Run a Light Node](./gm-node)
+- [Build a Sovereign Rollup](./gm-rollmint)
+- [Query your Rollup](./gm-query)

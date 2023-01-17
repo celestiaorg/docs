@@ -5,6 +5,63 @@ const sidebars = {
       label: "Overview", 
       id: "nodes/overview" 
     },
+    {
+      type: "category",
+      label: "Participate",
+      link: {
+        type: "doc",
+        id: "nodes/participate"
+      },
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Arabica Devnet",
+          id: "nodes/arabica-devnet"
+        },
+        {
+          type: "doc",
+          label: "Mocha Testnet",
+          id: "nodes/mocha-testnet"
+        }
+      ]
+    },
+    {
+      type: "category",
+      label: "Quick Start",
+      link: {
+        type: "doc",
+        id: "nodes/quick-start"
+      },
+      collapsed: false,
+      items: [
+        { 
+          type: "doc", 
+          label: "Setting Up Environment", 
+          id: "nodes/environment" 
+        },
+        {
+          type: "doc",
+          label: "Installing Celestia Node",
+          id: "nodes/celestia-node"
+        },
+        {
+          type: "doc",
+          label: "Docker Images",
+          id: "nodes/docker-images",
+        },
+        {
+          type: "doc",
+          label: "Installing Celestia App",
+          id: "nodes/celestia-app"
+        },
+        {
+          type: "doc",
+          label: "Deciding Which Node to Run",
+          id: "nodes/decide-node"
+        },
+      ]
+    },
     { 
       type: "category", 
       label: "Types of Nodes", 
@@ -13,6 +70,31 @@ const sidebars = {
       },
       collapsed: false,
       items: [
+      {
+        type: "category",
+        label: "Data Availability",
+        link: {
+          type: 'generated-index',
+        },
+        collapsed: false,
+        items: [
+          { 
+            type: "doc", 
+            label: "Light Node", 
+            id: "nodes/light-node" 
+          },
+          { 
+            type: "doc", 
+            label: "Bridge Node", 
+            id: "nodes/bridge-node" 
+          },
+          {
+            type: "doc",
+            label: "Full Storage Node",
+            id: "nodes/full-storage-node",
+          },
+        ]
+      },
       {
         type: "category",
         label: "Consensus",
@@ -33,53 +115,7 @@ const sidebars = {
           },
         ]
       },
-      {
-        type: "category",
-        label: "Data Availability",
-        link: {
-          type: 'generated-index',
-        },
-        collapsed: false,
-        items: [
-          { 
-            type: "doc", 
-            label: "Bridge Node", 
-            id: "nodes/bridge-node" 
-          },
-          {
-            type: "doc",
-            label: "Full Storage Node",
-            id: "nodes/full-storage-node",
-          },
-          { 
-            type: "doc", 
-            label: "Light Node", 
-            id: "nodes/light-node" 
-          }
-        ]
-      }
-      ]
-    },
-    {
-      type: "category",
-      label: "Participate",
-      link: {
-        type: "doc",
-        id: "nodes/participate"
-      },
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          label: "Arabica Devnet",
-          id: "nodes/arabica-devnet"
-        },
-        {
-          type: "doc",
-          label: "Mamaki Testnet",
-          id: "nodes/mamaki-testnet"
-        }
-      ]
+    ]
     },
     {
       type: "category",
@@ -90,6 +126,41 @@ const sidebars = {
       collapsed: false,
       items: [
         {
+          type: "category",
+          label: "Celestia Node",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: false,
+          items: [
+            {
+              type: "doc",
+              label: "Node Metrics",
+              id: "nodes/celestia-node-metrics"
+            },
+          ]
+        },
+        {
+          type: "category",
+          label: "Celestia App",
+          link: {
+            type: 'generated-index'
+          },
+          collapsed: false,
+          items: [
+            { 
+              type: "doc", 
+              label: "Create A Celestia Testnet", 
+              id: "nodes/instantiate-testnet" 
+            },
+            {
+              type: "doc",
+              label: "Helpful CLI commands",
+              id: "nodes/celestia-app-commands"
+            }
+          ]
+        },
+        {
           type: "doc",
           label: "Hardfork Process",
           id: "nodes/hardfork-process"
@@ -98,11 +169,6 @@ const sidebars = {
           type: "doc",
           label: "SystemD",
           id: "nodes/systemd"
-        },
-        {
-          type: "doc",
-          label: "Keys",
-          id: "nodes/keys"
         },
         { 
           type: "doc", 
@@ -123,54 +189,44 @@ const sidebars = {
       label: "Overview", 
       id: "developers/overview" 
     },
-    { 
-      type: "doc", 
-      label: "Setting Up Environment", 
-      id: "developers/environment" 
+    {
+      type: "doc",
+      label: "Build Modular",
+      id: "developers/build-modular"
     },
     {
       type: "category",
-      label: "Celestia App",
+      label: "Create A Celestia Wallet",
       link: {
-        type: 'generated-index'
+        type: "generated-index",
       },
       collapsed: false,
       items: [
         {
-          type: "doc",
-          label: "Installing Celestia App",
-          id: "developers/celestia-app"
-        },
-        {
-          type: "doc",
-          label: "Creating A Wallet",
-          id: "developers/wallet"
-        },
-        { 
           type: "doc", 
-          label: "Create A Celestia Testnet", 
-          id: "developers/instantiate-testnet" 
+          label: "Keplr", 
+          id: "developers/keplr" 
         },
         {
           type: "doc",
-          label: "Helpful CLI commands",
-          id: "developers/celestia-app-commands"
-        }
+          label: "Wallet With Celestia App",
+          id: "developers/celestia-app-wallet"
+        },
+        {
+          type: "doc",
+          label: "Wallet With Celestia Node",
+          id: "developers/celestia-node-key"
+        },
       ]
     },
     {
       type: "category",
-      label: "Celestia Node",
+      label: "Data Availability API",
       link: {
-        type: 'generated-index',
+        type: "generated-index",
       },
       collapsed: false,
       items: [
-        {
-          type: "doc",
-          label: "Installing Celestia Node",
-          id: "developers/celestia-node"
-        },
         { 
           type: "doc", 
           label: "Node Tutorial", 
@@ -180,11 +236,6 @@ const sidebars = {
           type: "doc",
           label: "Node Video Tutorial",
           id: "developers/light-node-video"
-        },
-        {
-          type: "doc",
-          label: "Node Metrics",
-          id: "developers/celestia-node-metrics"
         },
         { 
           type: "doc", 
@@ -244,6 +295,46 @@ const sidebars = {
         },
         {
           type: "category",
+          label: "Recipe Book",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Recipe Book Overview",
+              id: "developers/recipe-book"
+            },
+            {
+              type: "doc",
+              label: "Scaffold your Chain",
+              id: "developers/recipe-scaffold"
+            },
+            {
+              type: "doc",
+              label: "Message Types",
+              id: "developers/recipe-message"
+            },
+            {
+              type: "doc",
+              label: "Keepers",
+              id: "developers/recipe-keeper"
+            },
+            {
+              type: "doc",
+              label: "Querying Recipes",
+              id: "developers/recipe-query"
+            },
+            {
+              type: "doc",
+              label: "Running the Recipes Rollup",
+              id: "developers/recipe-rollup"
+            },
+          ]
+        },
+        {
+          type: "category",
           label: "Wordle",
           link: {
             type: 'generated-index',
@@ -259,6 +350,11 @@ const sidebars = {
               type: "doc",
               label: "Scaffolding The Chain",
               id: "developers/scaffold-wordle"
+            },
+            {
+              type: "doc",
+              label: "Run A Light Node",
+              id: "developers/wordle-node"
             },
             {
               type: "doc",
@@ -331,8 +427,48 @@ const sidebars = {
               id: "developers/cosmwasm-resources"
             }
           ]
+        },
+        {
+          type: "category",
+          label: "Ethermint",
+          link: {
+            type: 'generated-index',
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Ethermint Overview",
+              id: "developers/ethermint"
+            },
+            {
+              type: "doc",
+              label: "Ethermint Dependencies",
+              id: "developers/ethermint-dependencies"
+            },
+            {
+              type: "doc",
+              label: "Rollmint on Ethermint",
+              id: "developers/rollmint-on-ethermint"
+            },
+            {
+              type: "doc",
+              label: "Instantiate Ethermint",
+              id: "developers/instantiate-ethermint"
+            },
+            {
+              type: "doc",
+              label: "Deploy Smart Contract on Ethermint with Foundry",
+              id: "developers/deploy-solidity-ethermint-foundry"
+            },
+          ]
         }
       ]
+    },
+    {
+      type: "doc",
+      label: "Full Stack Modular Blockchain Development Tutorial",
+      id: "developers/full-stack-modular-development-guide"
     },
     {
       type: "doc",
@@ -344,8 +480,20 @@ const sidebars = {
     { type: "doc", label: "Overview", id: "community/overview" },
     { type: "doc", label: "Code of Conduct", id: "community/coc" },
     { type: "doc", label: "Community Calendar", id: "community/calendar" },
+    { type: "doc", label: "Incentivized Testnet Supplemental Terms", id: "community/itn-tos" },
     { type: "doc", label: "Docs Translations", id: "community/translations" },
-    { type: "doc", label: "Modular Fellows", id: "community/modular-fellows"}
+    {
+      type: "category",
+      label: "Modular Fellows",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: [
+        { type: "doc", label: "Overview", id: "community/modular-fellows" },
+        { type: "doc", label: "Cohort One Content", id: "community/cohort-one-content" },
+      ]
+    },
   ],
   concepts: [
     {
@@ -382,6 +530,11 @@ const sidebars = {
       type: "link",
       label: "Learn Modular",
       href: "https://celestia.org/learn/"
+    },
+    {
+      type: "doc",
+      label: "Data Availability FAQ",
+        id: "concepts/data-availability-faq",
     },
     {
       type: "link",

@@ -4,7 +4,7 @@ sidebar_label: Wordle Overview
 
 # Wordle App on Rollmint
 
-![mamaki-testnet](/img/wordle.jpg)
+![wordle-app](/img/wordle.jpg)
 
 This tutorial guide will go over building a cosmos-sdk app
 for Rollmint, the Sovereign-Rollup implementation of
@@ -25,6 +25,14 @@ to extend this codebase.
   where nodes would need to re-execute the transactions to check
   the validity of the chain (i.e. a full node). Furthermore,
   Rollmint currently only supports a single sequencer.
+
+:::danger caution
+
+The script for this tutorial is built for Mocha Testnet.
+If you choose to use Arabica Devnet,
+you will need to modify the script manually.
+
+:::
 
 ## Pre-requisites
 
@@ -80,10 +88,10 @@ our development environment.
 The following tutorial is broken down into the following
 sections:
 
-1. [Ignite and Chain Scaffolding](./scaffold-wordle.md)
-2. [Installing Rollmint](./install-rollmint.md)
-3. [Modules](./wordle-module.md)
-4. [Messages](./wordle-messages.md)
-5. [Types](./wordle-types.md)
-6. [Keepers](./wordle-keeper.md)
-7. [Running Wordle](./run-wordle.md)
+1. [Ignite and Chain Scaffolding](./scaffold-wordle)
+2. [Installing Rollmint](./install-rollmint)
+3. [Modules](./wordle-module)
+4. [Messages](./wordle-messages)
+5. [Types](./wordle-types)
+6. [Keepers](./wordle-keeper)
+7. [Running Wordle](./run-wordle)
