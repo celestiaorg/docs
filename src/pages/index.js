@@ -27,7 +27,7 @@ function HomepageHeader() {
           </Link>
           <Link
             className="front-page-link"
-            to="/developers/wordle">
+            to="/developers/full-stack-modular-development-guide">
                <p className="button-heading">Sovereign Chain</p>
               Deploy a Rollup to Celestia
           </Link>

@@ -35,7 +35,7 @@ EVM-compatible testnet that you will run locally for this tutorial.
 - [Infura account](https://infura.io/) (for uploading files to IPFS)
 - [A Celestia Light Node running](./node-tutorial.mdx) (to post PFDs from your
 rollup)
-- [Ethermint Tutorial](./ethermint.md) (for running your own Ethermint rollup &
+- [Ethermint Tutorial](https://rollkit.dev/docs/tutorials/ethermint) (for running your own Ethermint rollup &
 deploying your smart contract)
 - [MetaMask wallet](https://metamask.io) (for connecting to your frontend)
 
@@ -298,13 +298,13 @@ address as we’ll also be needing it in just a moment when we test the live con
 
 ### Deploying to the Ethermint Sovereign Rollup
 
-First, we will need to follow the setup from the [Ethermint tutorial](./ethermint).
+First, we will need to follow the setup from the [Ethermint tutorial](https://rollkit.dev/docs/tutorials/ethermint).
 
 :::danger Pre-requisites
 
-It is required that you complete [dependency setup](./ethermint-dependencies),
-[Rollkit installation](./rollmint-on-ethermint), and
-[Instantiating and Ethermint rollup](./instantiate-ethermint)
+It is required that you complete [dependency setup](https://rollkit.dev/docs/tutorials/ethermint),
+[Rollkit installation](https://rollkit.dev/docs/tutorials/ethermint), and
+[Instantiating and Ethermint rollup](https://rollkit.dev/docs/tutorials/ethermint)
 to complete the remainder of the tutorial.
 
 :::
@@ -738,7 +738,7 @@ the chains on MetaMask if we're deploying our rollup any
 Now we’re ready to run the app.
 
 Right now, the app is configured to be using `localhost:8545` using the
-Ethermint rollup we're running with RollKit.
+Ethermint rollup we're running with Rollkit.
 
 First, you'll need to install [MetaMask](https://metamask.io).
 
