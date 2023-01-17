@@ -432,11 +432,14 @@ This is an RPC call in order to get your node's peerId information.
 To get that information, you will need to first generate an auth token:
 
 ```sh
-AUTH_TOKEN=$(celestia light auth admin)
+NODE_TYPE=light
+AUTH_TOKEN=$(celestia $NODE_TYPE auth admin)
 ```
 
 > NOTE: You can only generate an auth token after initializing
-  and starting your Celestia Node
+  and starting your Celestia Node. Also, `NODE_TYPE` here is set to
+  `light` node but ensure you set it to your desired node type
+  (ex. `bridge`, `full`).
 
 The command generates an auth token that we save
 to an environment variable.
@@ -448,7 +451,7 @@ command:
 
 ```sh
 curl -X POST \
-     -H 'Authorization: Bearer $AUTH_TOKEN'
+     -H "Authorization: Bearer $AUTH_TOKEN"
      -H 'Content-Type: application/json' \
      -d '{"jsonrpc":"2.0","id":0,"method":"p2p.Info","params":[]}' \
      http://localhost:26658
