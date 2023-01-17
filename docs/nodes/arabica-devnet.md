@@ -12,16 +12,16 @@ exclusively on providing developers with enhanced performance and
 the latest upgrades for testing their rollups and applications.
 
 Arabica does not focus on validator or consensus-level testing, rather,
-that is what Mamaki Testnet is used for. If you are a validator, we
-recommend just testing your validator operations on Mamaki [here](./mamaki-testnet.md).
+that is what Mocha Testnet is used for. If you are a validator, we
+recommend just testing your validator operations on Mocha [here](./mocha-testnet).
 
 With Arabica having the latest updates from all Celestia's products deployed
 on it, it can be subject to many changes. Therefore, as a fair warning,
-Arabica can break unexpectedly but given it will be continously updated,
+Arabica can break unexpectedly but given it will be continuously updated,
 it is a useful way to keep testing the latest changes in the software.
 
-Developers can still deploy on Mamaki Testnet their sovereign rollups if they
-chose to do so, it just will always lag behind Arabica Devnet until Mamaki
+Developers can still deploy on Mocha Testnet their sovereign rollups if they
+chose to do so, it just will always lag behind Arabica Devnet until Mocha
 undergoes Hardfork Upgrades in coordination with Validators.
 
 ## Integrations
@@ -38,9 +38,9 @@ participate in Arabica:
 
 Data Availability:
 
-* [Bridge Node](./bridge-node.md)
-* [Full Storage Node](./full-storage-node.md)
-* [Light Node](./light-node.mdx)
+* [Bridge Node](./bridge-node)
+* [Full Storage Node](./full-storage-node)
+* [Light Node](./light-node)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network

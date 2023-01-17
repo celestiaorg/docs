@@ -2,7 +2,7 @@
 sidebar_label: Query your Rollup
 ---
 
-# 💬 Say `gm world!`
+# 💬 Say gm world
 
 Now, we're going to get our blockchain to say `gm world!` - in order to do so
 you need to make the following changes:
@@ -27,7 +27,7 @@ In your new terminal, `cd` into the `gm` directory and run this command
 to create the `gm` query:
 
 ```bash
-ignite scaffold query gm --response text
+ignite scaffold query gm --response text -y
 ```
 
 Response:
@@ -132,30 +132,60 @@ func (k Keeper) Gm(goCtx context.Context, req *types.QueryGmRequest) (*types.Que
 }
 ```
 <!-- markdownlint-enable MD010 -->
-<!-- markdownlint-enable MD010 -->
-
-## 🔄 Restart your Chain
-
-In order for your changes to take effect, you will need to restart your chain
-using:
-
-```sh
-ignite chain serve
-```
-
-Then, stop the chain by using `Ctrl + C`. Now, you're ready to start you
-rollup.
+<!-- markdownlint-enable MD013 -->
 
 ## 🟢 Start your Sovereign Rollup
 
-```bash
-gmd start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26658","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height 100783
+We have a handy `init.sh` found in this repo
+[here](https://github.com/celestiaorg/devrel-tools).
+
+We can copy it over to our directory with the following commands:
+
+```sh
+# From inside the `gm` directory
+cd ..
+git clone https://github.com/celestiaorg/devrel-tools
+cp devrel-tools/gm/init.sh gm/
+cd gm/
 ```
+
+This copies over our `init.sh` script to initialize our
+gm rollup.
+
+You can view the contents of the script to see how we
+initialize the gm rollup.
+
+:::danger caution
+
+Before starting our rollup, we'll need to find and change
+`FlagIAVLFastNode` to `FlagDisableIAVLFastNode`:
+
+```go title="gm/cmd/gmd/cmd/root.go"
+baseapp.SetIAVLDisableFastNode(cast.ToBool(appOpts.Get(server.FlagDisableIAVLFastNode))),
+```
+
+Also, if you are on macOS, you will need to install md5sha1sum:
+
+```sh
+brew install md5sha1sum
+```
+
+:::
+
+You can initialize the script with the following command:
+
+```sh
+bash init.sh
+```
+
+With that, we have kickstarted our `gmd` network!
 
 The `query` command has also scaffolded
 `x/gm/client/cli/query_gm.go` that
 implements a CLI equivalent of the gm query and mounted this command in
-`x/gm/client/cli/query.go`. Run the following command:
+`x/gm/client/cli/query.go`.
+
+In a separate window, run the following command:
 
 ```bash
 gmd q gm gm

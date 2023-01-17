@@ -7,64 +7,48 @@ sidebar_label: Run The Wordle Chain
 
 ## Building and Running Wordle Chain
 
-In one terminal window, run the following command:
+We have a handy `init.sh` found in this repo
+[here](https://github.com/celestiaorg/devrel-tools).
+
+We can copy it over to our directory with the following commands:
 
 ```sh
-ignite chain serve 
+# From inside the `wordle` directory
+cd ..
+git clone https://github.com/celestiaorg/devrel-tools
+cp devrel-tools/wordle/init.sh wordle/
+cd wordle/
 ```
 
-This will compile the blockchain code you just wrote
-and also create a genesis file and some accounts for you
-to use. Once the log shows something like the following
-log in the output:
+This copies over our `init.sh` script to initialize our
+Wordle Rollup.
+
+You can view the contents of the script to see how we
+initialize the Wordle Rollup.
+
+:::danger caution
+
+If you are on macOS, you will need to install md5sha1sum before starting your
+rollup:
 
 ```sh
-root@yaz-workshop:~/wordle# ignite chain serve
-Cosmos SDK's version is: stargate - v0.45.5
-
-🛠️  Building proto...
-📦 Installing dependencies...
-🛠️  Building the blockchain...
-💿 Initializing the app...
-🙂 Created account "alice" with address "cosmos1skalxj42asjhc7dde3lzzawnksnztqmgy6sned" with mnemonic: "exact arrive betray hawk trim surround exhibit host vibrant sting range robot luxury vague manage settle slide town bread adult pact scene journey elite"
-🙂 Created account "bob" with address "cosmos1xe3l8z634frp0ry6qlmzs5vr85x6gcty7tmf0n" with mnemonic: "wisdom jelly fine boat series time panel real world purchase age area coach eager spot fiber slide apology near endorse flight panel ready torch"
-🌍 Tendermint node: http://0.0.0.0:26657
-🌍 Blockchain API: http://0.0.0.0:1317
-🌍 Token faucet: http://0.0.0.0:4500
+brew install md5sha1sum
 ```
 
-Here the command created a binary called `wordled`
-and the `alice` and `bob` addresses, along with a faucet
-and API. You are clear to exit the program with CTRL-C.
-The reason for that is because we will run `wordled`
-binary separately with Rollmint flags added.
+:::
 
-You can start the chain with rollmint configurations by
-running the following:
+You can initialize the script with the following command:
 
 ```sh
-wordled start --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://XXX.XXX.XXX.XXX:26658","timeout":60000000000,"gas_limit":6000000}' --rollmint.namespace_id 000000000000FFFF --rollmint.da_start_height XXXXX
+bash init.sh
 ```
 
-Please consider:
-
-> NOTE: In the above command, you need to pass a Celestia Node IP address
-  to the `base_url` that has an account with Arabica devnet tokens. Follow
-  the tutorial for setting up a Celestia Light Node and creating a wallet
-  with testnet faucet money [here](./node-tutorial.mdx) in the Celestia Node section.
-
-Also please consider:
-
-> IMPORTANT: Furthermore, in the above command, you need to specify the latest
-  Block Height in Arabica Devnet for `da_height`. You can find the latest block number
-  in the explorer [here](https://explorer.celestia.observer/arabica). Also, for the flag
-  `--rollmint.namespace_id`, you can generate a random Namespace ID using the
-  playground [here](https://go.dev/play/p/7ltvaj8lhRl)
+With that, we have kickstarted our `wordled` network!
 
 In another window, run the following to submit a Wordle:
 
 ```sh
-wordled tx wordle submit-wordle giant --from alice --keyring-backend test --chain-id wordle -b async -y
+wordled tx wordle submit-wordle giant --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
 > NOTE: We are submitting a transaction asynchronously due to avoiding
@@ -155,7 +139,7 @@ This should display an output like the following:
 Test out a few things for fun:
 
 ```sh
-wordled tx wordle submit-guess 12345 --from alice --keyring-backend test --chain-id wordle -b async -y
+wordled tx wordle submit-guess 12345 --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
 After confirming the transaction, query the `txhash`
@@ -165,7 +149,7 @@ an Invalid Error because you submitted integers.
 Now try:
 
 ```sh
-wordled tx wordle submit-guess ABCDEFG --from alice --keyring-backend test --chain-id wordle -b async -y
+wordled tx wordle submit-guess ABCDEFG --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
 After confirming the transaction, query the `txhash` given the same
@@ -175,7 +159,7 @@ an Invalid Error because you submitted a word larger than 5 characters.
 Now try to submit another wordle even though one was already submitted
 
 ```sh
-wordled tx wordle submit-wordle meter --from bob --keyring-backend test --chain-id wordle -b async -y
+wordled tx wordle submit-wordle meter --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
 After submitting the transactions and confirming, query the `txhash`
@@ -185,12 +169,12 @@ has already been submitted for the day.
 Now let’s try to guess a five letter word:
 
 ```sh
-wordled tx wordle submit-guess least --from bob --keyring-backend test --chain-id wordle -b async -y
+wordled tx wordle submit-guess least --from wordle-key --keyring-backend test --chain-id wordle -b async -y
 ```
 
 After submitting the transactions and confirming, query the `txhash`
 given the same way you did above. Given you didn’t guess the correct
-word, it will increment the guess count for Bob’s account.
+word, it will increment the guess count for wordle-key's account.
 
 We can verify this by querying the list:
 

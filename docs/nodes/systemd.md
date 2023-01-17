@@ -42,20 +42,20 @@ cat /etc/systemd/system/celestia-appd.service
 Enable and start celestia-appd daemon:
 
 ```sh
-systemctl enable celestia-appd
-systemctl start celestia-appd
+sudo systemctl enable celestia-appd
+sudo systemctl start celestia-appd
 ```
 
 Check if daemon has been started correctly:
 
 ```sh
-systemctl status celestia-appd
+sudo systemctl status celestia-appd
 ```
 
 Check daemon logs in real time:
 
 ```sh
-journalctl -u celestia-appd.service -f
+sudo journalctl -u celestia-appd.service -f
 ```
 
 To check if your node is in sync before going forward:
@@ -100,8 +100,8 @@ cat /etc/systemd/system/celestia-full.service
 Enable and start celestia-full daemon:
 
 ```sh
-systemctl enable celestia-full
-systemctl start celestia-full && journalctl -u \
+sudo systemctl enable celestia-full
+sudo systemctl start celestia-full && sudo journalctl -u \
 celestia-full.service -f
 ```
 
@@ -138,8 +138,8 @@ cat /etc/systemd/system/celestia-bridge.service
 Enable and start celestia-bridge daemon:
 
 ```sh
-systemctl enable celestia-bridge
-systemctl start celestia-bridge && journalctl -u \
+sudo systemctl enable celestia-bridge
+sudo systemctl start celestia-bridge && sudo journalctl -u \
 celestia-bridge.service -f
 ```
 
@@ -172,7 +172,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/celestia light start --core.grpc <ip-address>:<port>
+ExecStart=$HOME/go/bin/celestia light start --core.ip <ip-address> --core.grpc.port <port>
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
@@ -192,20 +192,20 @@ cat /etc/systemd/system/celestia-lightd.service
 Enable and start celestia-lightd daemon:
 
 ```sh
-systemctl enable celestia-lightd
-systemctl start celestia-lightd
+sudo systemctl enable celestia-lightd
+sudo systemctl start celestia-lightd
 ```
 
 Check if daemon has been started correctly:
 
 ```sh
-systemctl status celestia-lightd
+sudo systemctl status celestia-lightd
 ```
 
 Check daemon logs in real time:
 
 ```sh
-journalctl -u celestia-lightd.service -f
+sudo journalctl -u celestia-lightd.service -f
 ```
 
 Now, the Celestia Light Node will start syncing headers.
