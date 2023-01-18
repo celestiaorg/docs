@@ -40,7 +40,8 @@ to the correct instructions on this page on how to connect to Mocha.
 
 ## RPC endpoints
 
-The RPC endpoint is to allow users to interact with Celestia's nodes by querying the node's state and broadcasting transactions on the
+The RPC endpoint is to allow users to interact with Celestia's nodes by
+querying the node's state and broadcasting transactions on the
 Celestia network. The default port is 26657.
 
 Below is a list of RPC endpoints you can use to connect to Mocha Testnet:
