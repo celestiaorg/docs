@@ -67,9 +67,9 @@ Set seeds and peers:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-BOOTSTRAP_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/bootstrap-peers.txt | tr -d '\n')
-echo $BOOTSTRAP_PEERS
-sed -i.bak -e "s/^bootstrap-peers *=.*/bootstrap-peers = \"$BOOTSTRAP_PEERS\"/" $HOME/.celestia-app/config/config.toml
+PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/peers.txt | tr -d '\n')
+echo $PERSISTENT_PEERS
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 <!-- markdownlint-enable MD013 -->
 
