@@ -11,4 +11,4 @@ It includes:
 
 * How To Create A Celestia Wallet
 * How To Interact With The Data Availability API
-* How To Deploy Sovereign Rollups with Rollmint
+* How To Deploy Sovereign Rollups with Rollkit

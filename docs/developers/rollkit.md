@@ -2,9 +2,9 @@
 sidebar_label: Rollkit
 ---
 
-# Rollmint
+# Rollkit
 
-![rollmint](/img/rollmint.png)
+![Rollkit](/img/Rollkit.png)
 
 [Rollkit](https://rollkit.dev) is an ABCI
 (Application Blockchain Interface) implementation for sovereign
