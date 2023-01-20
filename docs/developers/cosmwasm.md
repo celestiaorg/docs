@@ -8,8 +8,8 @@ CosmWasm is a smart contracting platform built for the Cosmos
 ecosystem by making use of [WebAssembly](https://webassembly.org/) (Wasm)
 to build smart contracts for Cosmos-SDK. In this tutorial, we will be
 exploring how to integrate CosmWasm with Celestia's
-[Data Availability Layer](../concepts/how-celestia-works/data-availability-layer)
-using [Rollmint](./rollmint).
+[Data Availability Layer](../concepts/how-celestia-works/data-availability-layer/)
+using [Rollmint](./rollmint/).
 
 > NOTE: This tutorial will explore developing with Rollmint,
   which is still in Alpha stage. If you run into bugs, please write a Github
@@ -34,11 +34,11 @@ You can learn more about CosmWasm [here](https://docs.cosmwasm.com/docs/1.0/).
 
 In this tutorial, we will going over the following:
 
-1. [Setting up your dependencies for your CosmWasm smart contracts](./cosmwasm-dependency.md)
-2. [Setting up Rollmint on CosmWasm](./cosmwasm-dependency.md#wasmd-installation)
-3. [Instantiate a local network for your CosmWasm chain connected to Celestia](./cosmwasm-environment.md)
-4. [Deploying a Rust smart contract to CosmWasm chain](./cosmwasm-contract-deployment.mdx)
-5. [Interacting with the smart contract](./cosmwasm-contract-interaction.md)
+1. [Setting up your dependencies for your CosmWasm smart contracts](./cosmwasm-dependency.md/)
+2. [Setting up Rollmint on CosmWasm](./cosmwasm-dependency.md#wasmd-installation/)
+3. [Instantiate a local network for your CosmWasm chain connected to Celestia](./cosmwasm-environment.md/)
+4. [Deploying a Rust smart contract to CosmWasm chain](./cosmwasm-contract-deployment.mdx/)
+5. [Interacting with the smart contract](./cosmwasm-contract-interaction.md/)
 
 The smart contract we will use for this tutorial is one provided by
 the CosmWasm team for Nameservice purchasing.

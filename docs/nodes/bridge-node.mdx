@@ -61,7 +61,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-Follow the tutorial here installing the dependencies [here](./environment.mdx).
+Follow the tutorial here installing the dependencies [here](./environment.mdx/).
 
 ## Deploy the Celestia bridge node
 
@@ -69,7 +69,7 @@ Follow the tutorial here installing the dependencies [here](./environment.mdx).
 
 Install the Celestia Node binary, which will be used to run the Bridge Node.
 
-Follow the tutorial for installing Celestia Node [here](./celestia-node.mdx).
+Follow the tutorial for installing Celestia Node [here](./celestia-node.mdx/).
 
 ### Initialize the bridge node
 
@@ -91,7 +91,7 @@ celestia bridge init --core.ip <ip-address> --core.grpc.port <port> --p2p.networ
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints/)
 
 Here is an example of initializing the bridge node:
 
@@ -113,7 +113,7 @@ celestia bridge init --core.ip <ip-address>:<port>
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints/)
 
 Here is an example of initializing the bridge node:
 
@@ -141,7 +141,7 @@ celestia bridge start --core.ip <ip-address> --core.grpc.port <port> --p2p.netwo
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints/)
 
 Here is an example of starting the bridge node:
 
@@ -164,7 +164,7 @@ celestia bridge start --core.ip <ip-address>:<port>
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints/)
 
 Here is an example of starting the bridge node:
 
@@ -176,7 +176,7 @@ celestia bridge start --core.ip https://rpc-mocha.pops.one:26657
 </Tabs>
 ````
 
-You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx)
+You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx/)
 
 Once you start the Bridge Node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for
@@ -189,8 +189,8 @@ You can find the address by running the following command:
 
 You have two networks to get testnet tokens from:
 
-* [Arabica](./arabica-devnet)
-* [Mocha](./mocha-testnet)
+* [Arabica](./arabica-devnet/)
+* [Mocha](./mocha-testnet/)
 
 > NOTE: If you are running a bridge node for your validator
   it is highly recommended to request Mocha testnet tokens
@@ -226,6 +226,6 @@ celestia bridge start --core.ip <ip>:<port> --keyring.accname <name_of_custom_ke
 ### Optional: start the bridge node with SystemD
 
 Follow the tutorial on setting up the bridge node as a background process with
-SystemD [here](./systemd).
+SystemD [here](./systemd/).
 
 You have successfully set up a bridge node that is syncing with the network.

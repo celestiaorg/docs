@@ -10,7 +10,7 @@ This guide contains the relevant sections for how to connect to Mocha,
 depending on the type of node you are running. Mocha Testnet is designed
 to help validators test out their infrastructure and node software.
 Developers are encouraged to deploy their
-sovereign rollups on Mocha, but we also recommend [Arabica Devnet](./arabica-devnet)
+sovereign rollups on Mocha, but we also recommend [Arabica Devnet](./arabica-devnet/)
 for that as it is designed for development purposes.
 
 Mocha is a milestone in Celestia, allowing everyone to test out
@@ -24,14 +24,14 @@ participate in Mocha:
 
 Consensus:
 
-* [Validator Node](./validator-node)
-* [Consensus Full Node](./consensus-full-node)
+* [Validator Node](./validator-node/)
+* [Consensus Full Node](./consensus-full-node/)
 
 Data Availability:
 
-* [Bridge Node](./bridge-node)
-* [Full Storage Node](./full-storage-node)
-* [Light Node](./light-node)
+* [Bridge Node](./bridge-node/)
+* [Full Storage Node](./full-storage-node/)
+* [Light Node](./light-node/)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network

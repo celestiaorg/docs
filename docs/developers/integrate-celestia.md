@@ -11,12 +11,12 @@ sidebar_label: Integrate Celestia
 
 When getting started Celestia, we recommend checking out these resources first:
 
-- [Introduction to Celestia](../concepts/how-celestia-works/introduction)
-- [Monolithic v. Modular](../concepts/how-celestia-works/monolithic-vs-modular)
-- [Celestia's DA Layer](../concepts/how-celestia-works/data-availability-layer)
+- [Introduction to Celestia](../concepts/how-celestia-works/introduction/)
+- [Monolithic v. Modular](../concepts/how-celestia-works/monolithic-vs-modular/)
+- [Celestia's DA Layer](../concepts/how-celestia-works/data-availability-layer/)
 - [Learn Modular](https://celestia.org/learn/)
-- [Overview to running nodes on Celestia](../nodes/overview)
-- [Build Moduar](../developers/build-modular.md)
+- [Overview to running nodes on Celestia](../nodes/overview/)
+- [Build Moduar](../developers/build-modular.md/)
 
 ## Celestia Service Provider Notes
 
