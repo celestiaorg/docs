@@ -8,14 +8,14 @@ sidebar_label: CosmWasm Dependencies
 
 For this tutorial, we will be using `curl` and `jq` as helpful
 tools. You can follow the guide on installing them
-[here](../nodes/environment.mdx#setting-up-dependencies/).
+[here](../nodes/environment#setting-up-dependencies).
 
 ## Golang Dependency
 
 The Golang version used for this tutorial is v1.18+
 
 You can install Golang
-by following our tutorial [here](../nodes/environment.mdx#install-golang/).
+by following our tutorial [here](../nodes/environment#install-golang).
 
 ## Rust Installation
 
@@ -78,7 +78,7 @@ info: installing component 'rust-std' for 'wasm32-unknown-unknown'
 We will be using Docker later in this tutorial for compiling a smart contract
 to use a small footprint. We recommend installing Docker on your machine.
 
-Examples on how to install it on Linux are found [here](https://docs.docker.com/engine/install/ubuntu/).
+Examples on how to install it on Linux are found [here](https://docs.docker.com/engine/install/ubuntu).
 Find the right instructions specific for
 [your OS here](https://docs.docker.com/engine/install/).
 
@@ -104,4 +104,4 @@ make install
 
 You will need a light node running with test tokens on Mocha Testnet in order
 to complete this tutorial. Please complete the tutorial
-[here](./node-tutorial.mdx/), or start up your node.
+[here](./node-tutorial.mdx), or start up your node.
