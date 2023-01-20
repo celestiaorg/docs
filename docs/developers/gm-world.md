@@ -26,7 +26,7 @@ you will need to modify the script manually.
 
 ## Table of Contents
 
-- [Setup](./gm-setup)
-- [Run a Light Node](./gm-node)
-- [Build a Sovereign Rollup](./gm-rollmint)
-- [Query your Rollup](./gm-query)
+- [Setup](./gm-setup/)
+- [Run a Light Node](./gm-node/)
+- [Build a Sovereign Rollup](./gm-rollmint/)
+- [Query your Rollup](./gm-query/)

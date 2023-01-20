@@ -10,7 +10,7 @@ Availability instance.
 This tutorial will focus on running metrics for a light-node.
 
 This tutorial assumes you have already setup your light node
-by following the tutorial in the [Node API tutorial](../developers/node-tutorial).
+by following the tutorial in the [Node API tutorial](../developers/node-tutorial/).
 
 ## Running metrics flags
 

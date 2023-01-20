@@ -34,7 +34,7 @@ sidebar_label: Cohort One Content & Calendar
 ### **Week 3 - 10 October**
 
 📗 **Lesson 2 - Building a sovereign rollup with Ignite and
-[Rollmint](../developers/rollmint) on Celestia with Yaz**
+[Rollmint](../developers/rollmint/) on Celestia with Yaz**
 
 - **Monday 10 October @ 11am EDT / 3pm UTC / 5pm CEST**
   - Lesson 2 will cover building a sovereign rollup with

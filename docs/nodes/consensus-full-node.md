@@ -25,7 +25,7 @@ instance machine.
 
 ### Setup the dependencies
 
-Follow the instructions on installing the dependencies [here](./environment.mdx).
+Follow the instructions on installing the dependencies [here](./environment.mdx/).
 
 ## Deploying the celestia-app
 
@@ -37,7 +37,7 @@ running a Celestia App daemon with an internal Celestia Core node.
 
 ### Install celestia-app
 
-Follow the tutorial on installing Celestia App [here](./celestia-app.mdx).
+Follow the tutorial on installing Celestia App [here](./celestia-app.mdx/).
 
 ### Setup the P2P networks
 
@@ -134,7 +134,7 @@ This will let you sync the Celestia blockchain history.
 
 You can configure your Consensus Full Node to be a public RPC endpoint
 and listen to any connections from Data Availability Nodes in order to
-serve requests for the Data Availability API [here](../developers/node-tutorial.mdx).
+serve requests for the Data Availability API [here](../developers/node-tutorial.mdx/).
 
 Note that you would need to ensure port 9090 is open for this.
 
@@ -153,4 +153,4 @@ Restart `celestia-appd` in the previous step to load those configs.
 ### Start the celestia-app with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](./systemd).
+with SystemD [here](./systemd/).

@@ -34,7 +34,7 @@ you will need to modify the script manually.
 
 In this tutorial, we will go over the following:
 
-* [Setting Up Your Ethermint Dependencies](./ethermint-dependencies.md)
-* [Setting Up Rollmint on Ethermint](./rollmint-on-ethermint.md)
-* [Instantiate a local network for your Ethermint chain connected to Celestia](./instantiate-ethermint.md)
-* [Deploying an Ethereum smart contract on your Ethermint Rollup with Foundry](./deploy-solidity-ethermint-foundry.md)
+* [Setting Up Your Ethermint Dependencies](./ethermint-dependencies.md/)
+* [Setting Up Rollmint on Ethermint](./rollmint-on-ethermint.md/)
+* [Instantiate a local network for your Ethermint chain connected to Celestia](./instantiate-ethermint.md/)
+* [Deploying an Ethereum smart contract on your Ethermint Rollup with Foundry](./deploy-solidity-ethermint-foundry.md/)
