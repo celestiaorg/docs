@@ -14,6 +14,7 @@ const config = {
   tagline: "",
   url: "https://docs.celestia.org",
   baseUrl: process.env.BASE_URL,
+  trailingSlash: true,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
