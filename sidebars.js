@@ -3,26 +3,26 @@ const sidebars = {
     { 
       type: "doc", 
       label: "Overview", 
-      id: "nodes/overview" 
+      id: "nodes/overview/" 
     },
     {
       type: "category",
       label: "Participate",
       link: {
         type: "doc",
-        id: "nodes/participate"
+        id: "nodes/participate/"
       },
       collapsed: false,
       items: [
         {
           type: "doc",
           label: "Arabica Devnet",
-          id: "nodes/arabica-devnet"
+          id: "nodes/arabica-devnet/"
         },
         {
           type: "doc",
           label: "Mocha Testnet",
-          id: "nodes/mocha-testnet"
+          id: "nodes/mocha-testnet/"
         }
       ]
     },
@@ -31,34 +31,34 @@ const sidebars = {
       label: "Quick Start",
       link: {
         type: "doc",
-        id: "nodes/quick-start"
+        id: "nodes/quick-start/"
       },
       collapsed: false,
       items: [
         { 
           type: "doc", 
           label: "Setting Up Environment", 
-          id: "nodes/environment" 
+          id: "nodes/environment/" 
         },
         {
           type: "doc",
           label: "Installing Celestia Node",
-          id: "nodes/celestia-node"
+          id: "nodes/celestia-node/"
         },
         {
           type: "doc",
           label: "Docker Images",
-          id: "nodes/docker-images",
+          id: "nodes/docker-images/",
         },
         {
           type: "doc",
           label: "Installing Celestia App",
-          id: "nodes/celestia-app"
+          id: "nodes/celestia-app/"
         },
         {
           type: "doc",
           label: "Deciding Which Node to Run",
-          id: "nodes/decide-node"
+          id: "nodes/decide-node/"
         },
       ]
     },
@@ -81,17 +81,17 @@ const sidebars = {
           { 
             type: "doc", 
             label: "Light Node", 
-            id: "nodes/light-node" 
+            id: "nodes/light-node/" 
           },
           { 
             type: "doc", 
             label: "Bridge Node", 
-            id: "nodes/bridge-node" 
+            id: "nodes/bridge-node/" 
           },
           {
             type: "doc",
             label: "Full Storage Node",
-            id: "nodes/full-storage-node",
+            id: "nodes/full-storage-node/",
           },
         ]
       },
@@ -106,12 +106,12 @@ const sidebars = {
           {
             type: "doc",
             label: "Validator Node",
-            id: "nodes/validator-node",
+            id: "nodes/validator-node/",
           },
           { 
             type: "doc", 
             label: "Consensus Full Node", 
-            id: "nodes/consensus-full-node" 
+            id: "nodes/consensus-full-node/" 
           },
         ]
       },
@@ -136,7 +136,7 @@ const sidebars = {
             {
               type: "doc",
               label: "Node Metrics",
-              id: "nodes/celestia-node-metrics"
+              id: "nodes/celestia-node-metrics/"
             },
           ]
         },
@@ -151,34 +151,34 @@ const sidebars = {
             { 
               type: "doc", 
               label: "Create A Celestia Testnet", 
-              id: "nodes/instantiate-testnet" 
+              id: "nodes/instantiate-testnet/" 
             },
             {
               type: "doc",
               label: "Helpful CLI commands",
-              id: "nodes/celestia-app-commands"
+              id: "nodes/celestia-app-commands/"
             }
           ]
         },
         {
           type: "doc",
           label: "Hardfork Process",
-          id: "nodes/hardfork-process"
+          id: "nodes/hardfork-process/"
         },
         {
           type: "doc",
           label: "SystemD",
-          id: "nodes/systemd"
+          id: "nodes/systemd/"
         },
         { 
           type: "doc", 
           label: "Devops Resources", 
-          id: "nodes/devops-resources"
+          id: "nodes/devops-resources/"
         },
         {
           type: "doc",
           label: "Config.toml Guide",
-          id: "nodes/config-toml"
+          id: "nodes/config-toml/"
         },
       ]
     },
@@ -187,12 +187,12 @@ const sidebars = {
     { 
       type: "doc", 
       label: "Overview", 
-      id: "developers/overview" 
+      id: "developers/overview/" 
     },
     {
       type: "doc",
       label: "Build Modular",
-      id: "developers/build-modular"
+      id: "developers/build-modular/"
     },
     {
       type: "category",
@@ -205,17 +205,17 @@ const sidebars = {
         {
           type: "doc", 
           label: "Keplr", 
-          id: "developers/keplr" 
+          id: "developers/keplr/" 
         },
         {
           type: "doc",
           label: "Wallet With Celestia App",
-          id: "developers/celestia-app-wallet"
+          id: "developers/celestia-app-wallet/"
         },
         {
           type: "doc",
           label: "Wallet With Celestia Node",
-          id: "developers/celestia-node-key"
+          id: "developers/celestia-node-key/"
         },
       ]
     },
@@ -230,17 +230,17 @@ const sidebars = {
         { 
           type: "doc", 
           label: "Node Tutorial", 
-          id: "developers/node-tutorial" 
+          id: "developers/node-tutorial/" 
         },
         {
           type: "doc",
           label: "Node Video Tutorial",
-          id: "developers/light-node-video"
+          id: "developers/light-node-video/"
         },
         { 
           type: "doc", 
           label: "Node API", 
-          id: "developers/node-api" 
+          id: "developers/node-api/" 
         }
       ]
     },
@@ -249,7 +249,7 @@ const sidebars = {
       label: "Rollmint",
       link: {
         type: "doc",
-        id: "developers/rollmint"
+        id: "developers/rollmint/"
       },
       collapsed: false,
       items: [
@@ -264,32 +264,32 @@ const sidebars = {
             {
               type: "doc",
               label: "gm world Overview",
-              id: "developers/gm-world"
+              id: "developers/gm-world/"
             },
             {
               type: "doc",
               label: "Setup",
-              id: "developers/gm-setup"
+              id: "developers/gm-setup/"
             },
             {
               type: "doc",
               label: "Run a Light Node",
-              id: "developers/gm-node"
+              id: "developers/gm-node/"
             },
             {
               type: "doc",
               label: "Build a Sovereign Rollup",
-              id: "developers/gm-rollmint"
+              id: "developers/gm-rollmint/"
             },
             {
               type: "doc",
               label: "Query your Rollup",
-              id: "developers/gm-query"
+              id: "developers/gm-query/"
             },
             {
               type: "doc",
               label: "What's next",
-              id: "developers/gm-next"
+              id: "developers/gm-next/"
             }
           ]
         },
@@ -304,32 +304,32 @@ const sidebars = {
             {
               type: "doc",
               label: "Recipe Book Overview",
-              id: "developers/recipe-book"
+              id: "developers/recipe-book/"
             },
             {
               type: "doc",
               label: "Scaffold your Chain",
-              id: "developers/recipe-scaffold"
+              id: "developers/recipe-scaffold/"
             },
             {
               type: "doc",
               label: "Message Types",
-              id: "developers/recipe-message"
+              id: "developers/recipe-message/"
             },
             {
               type: "doc",
               label: "Keepers",
-              id: "developers/recipe-keeper"
+              id: "developers/recipe-keeper/"
             },
             {
               type: "doc",
               label: "Querying Recipes",
-              id: "developers/recipe-query"
+              id: "developers/recipe-query/"
             },
             {
               type: "doc",
               label: "Running the Recipes Rollup",
-              id: "developers/recipe-rollup"
+              id: "developers/recipe-rollup/"
             },
           ]
         },
@@ -344,47 +344,47 @@ const sidebars = {
             {
               type: "doc",
               label: "Wordle Overview",
-              id: "developers/wordle"
+              id: "developers/wordle/"
             },
             {
               type: "doc",
               label: "Scaffolding The Chain",
-              id: "developers/scaffold-wordle"
+              id: "developers/scaffold-wordle/"
             },
             {
               type: "doc",
               label: "Run A Light Node",
-              id: "developers/wordle-node"
+              id: "developers/wordle-node/"
             },
             {
               type: "doc",
               label: "Installing Rollmint",
-              id: "developers/install-rollmint"
+              id: "developers/install-rollmint/"
             },
             {
               type: "doc",
               label: "Module",
-              id: "developers/wordle-module"
+              id: "developers/wordle-module/"
             },
             {
               type: "doc",
               label: "Messages",
-              id: "developers/wordle-messages"
+              id: "developers/wordle-messages/"
             },
             {
               type: "doc",
               label: "Types",
-              id: "developers/wordle-types"
+              id: "developers/wordle-types/"
             },
             {
               type: "doc",
               label: "Keeper",
-              id: "developers/wordle-keeper"
+              id: "developers/wordle-keeper/"
             },
             {
               type: "doc",
               label: "Run The Wordle Chain",
-              id: "developers/run-wordle"
+              id: "developers/run-wordle/"
             },
           ]
         },
@@ -399,32 +399,32 @@ const sidebars = {
             {
               type: "doc",
               label: "CosmWasm Overview",
-              id: "developers/cosmwasm"
+              id: "developers/cosmwasm/"
             },
             {
               type: "doc",
               label: "CosmWasm Dependencies",
-              id: "developers/cosmwasm-dependency"
+              id: "developers/cosmwasm-dependency/"
             },
             {
               type: "doc",
               label: "Setup Network Environment",
-              id: "developers/cosmwasm-environment"
+              id: "developers/cosmwasm-environment/"
             },
             {
               type: "doc",
               label: "Contract Deployment",
-              id: "developers/cosmwasm-contract-deployment"
+              id: "developers/cosmwasm-contract-deployment/"
             },
             {
               type: "doc",
               label: "Contract Interaction",
-              id: "developers/cosmwasm-contract-interaction"
+              id: "developers/cosmwasm-contract-interaction/"
             },
             {
               type: "doc",
               label: "CosmWasm Resources",
-              id: "developers/cosmwasm-resources"
+              id: "developers/cosmwasm-resources/"
             }
           ]
         },
@@ -439,27 +439,27 @@ const sidebars = {
             {
               type: "doc",
               label: "Ethermint Overview",
-              id: "developers/ethermint"
+              id: "developers/ethermint/"
             },
             {
               type: "doc",
               label: "Ethermint Dependencies",
-              id: "developers/ethermint-dependencies"
+              id: "developers/ethermint-dependencies/"
             },
             {
               type: "doc",
               label: "Rollmint on Ethermint",
-              id: "developers/rollmint-on-ethermint"
+              id: "developers/rollmint-on-ethermint/"
             },
             {
               type: "doc",
               label: "Instantiate Ethermint",
-              id: "developers/instantiate-ethermint"
+              id: "developers/instantiate-ethermint/"
             },
             {
               type: "doc",
               label: "Deploy Smart Contract on Ethermint with Foundry",
-              id: "developers/deploy-solidity-ethermint-foundry"
+              id: "developers/deploy-solidity-ethermint-foundry/"
             },
           ]
         }
@@ -468,20 +468,20 @@ const sidebars = {
     {
       type: "doc",
       label: "Full Stack Modular Blockchain Development Tutorial",
-      id: "developers/full-stack-modular-development-guide"
+      id: "developers/full-stack-modular-development-guide/"
     },
     {
       type: "doc",
       label: "Integrate Celestia",
-      id: "developers/integrate-celestia",
+      id: "developers/integrate-celestia/",
     },
   ],
   community: [
-    { type: "doc", label: "Overview", id: "community/overview" },
-    { type: "doc", label: "Code of Conduct", id: "community/coc" },
-    { type: "doc", label: "Community Calendar", id: "community/calendar" },
-    { type: "doc", label: "Incentivized Testnet Supplemental Terms", id: "community/itn-tos" },
-    { type: "doc", label: "Docs Translations", id: "community/translations" },
+    { type: "doc", label: "Overview", id: "community/overview/" },
+    { type: "doc", label: "Code of Conduct", id: "community/coc/" },
+    { type: "doc", label: "Community Calendar", id: "community/calendar/" },
+    { type: "doc", label: "Incentivized Testnet Supplemental Terms", id: "community/itn-tos/" },
+    { type: "doc", label: "Docs Translations", id: "community/translations/" },
     {
       type: "category",
       label: "Modular Fellows",
@@ -490,8 +490,8 @@ const sidebars = {
       },
       collapsed: false,
       items: [
-        { type: "doc", label: "Overview", id: "community/modular-fellows" },
-        { type: "doc", label: "Cohort One Content", id: "community/cohort-one-content" },
+        { type: "doc", label: "Overview", id: "community/modular-fellows/" },
+        { type: "doc", label: "Cohort One Content", id: "community/cohort-one-content/" },
       ]
     },
   ],
@@ -507,22 +507,22 @@ const sidebars = {
         {
           type: 'doc',
           label: "Introduction",
-          id: "concepts/how-celestia-works/introduction"
+          id: "concepts/how-celestia-works/introduction/"
         },
         {
           type: "doc",
           label: "Monolithic vs. Modular Blockchains",
-          id: "concepts/how-celestia-works/monolithic-vs-modular"
+          id: "concepts/how-celestia-works/monolithic-vs-modular/"
         },
         {
           type: "doc",
           label: "Celestia's Data Availability Layer",
-          id: "concepts/how-celestia-works/data-availability-layer"
+          id: "concepts/how-celestia-works/data-availability-layer/"
         },
         {
           type: "doc",
           label: "The Lifecycle of a Celestia App Transaction",
-          id: "concepts/how-celestia-works/transaction-lifecycle"
+          id: "concepts/how-celestia-works/transaction-lifecycle/"
         }
       ]
     },
@@ -534,7 +534,7 @@ const sidebars = {
     {
       type: "doc",
       label: "Data Availability FAQ",
-        id: "concepts/data-availability-faq",
+        id: "concepts/data-availability-faq/",
     },
     {
       type: "link",
@@ -552,7 +552,7 @@ const sidebars = {
         {
           type: 'doc',
           label: "Reserved Namespace IDs",
-          id: "concepts/specifications/reserved-namespace-id"
+          id: "concepts/specifications/reserved-namespace-id/"
         },
       ]
     },
