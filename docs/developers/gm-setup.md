@@ -7,12 +7,12 @@ sidebar_label: Setup
 - Operating systems: GNU/Linux, macOS, or Windows Subsystem for Linux (WSL).
 Recommended GNU/Linux or macOS.
 
-- [Golang](https://go.dev/)
-- [Ignite CLI v0.25.1](https://github.com/ignite/cli/)
-- [Homebrew](https://brew.sh/)
-- [wget](https://www.gnu.org/software/wget/)
-- [jq](https://stedolan.github.io/jq/)
-- [A Celestia Light Node](/nodes/light-node.mdx/)
+- [Golang](https://go.dev)
+- [Ignite CLI v0.25.1](https://github.com/ignite/cli)
+- [Homebrew](https://brew.sh)
+- [wget](https://www.gnu.org/software/wget)
+- [jq](https://stedolan.github.io/jq)
+- [A Celestia Light Node](/nodes/light-node.mdx)
 
 ## 🏃 Install Golang
 
@@ -21,7 +21,7 @@ programming language. You will need Golang to build and run them.
 > **Be sure to use the same testnet installation instructions through this
 entire tutorial**
 
-You can [install Golang here](../nodes/environment#install-golang).
+You can [install Golang here](../nodes/environment.mdx#install-golang).
 
 ## 🔥 Install Ignite CLI
 

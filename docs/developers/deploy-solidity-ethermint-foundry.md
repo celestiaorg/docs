@@ -23,7 +23,7 @@ Ethereum node, similar to Ganache or Hardhat Network.
 
 We'll use all three to create, test, and deploy our Solidity project.
 
-> To learn more about Foundry, check out the [Foundry Book](https://book.getfoundry.sh/).
+> To learn more about Foundry, check out the [Foundry Book](https://book.getfoundry.sh).
 
 ## Getting started
 

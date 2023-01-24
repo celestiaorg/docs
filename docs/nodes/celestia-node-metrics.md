@@ -10,7 +10,7 @@ Availability instance.
 This tutorial will focus on running metrics for a light-node.
 
 This tutorial assumes you have already setup your light node
-by following the tutorial in the [Node API tutorial](../developers/node-tutorial.mdx/).
+by following the tutorial in the [Node API tutorial](../developers/node-tutorial.mdx).
 
 ## Running metrics flags
 
@@ -37,7 +37,7 @@ Essentially, the design considerations here will necessitate
 running an OpenTelemetry (OTEL) collector that connects to Celestia
 Light Node.
 
-For an overview of OTEL, check out the guide [here](https://opentelemetry.io/docs/collector/).
+For an overview of OTEL, check out the guide [here](https://opentelemetry.io/docs/collector).
 
 The ADR and the OTEL docs will help you run your collector on the metrics endpoint.
 This will then allow you to process the data in the collector on a

@@ -35,8 +35,8 @@ Layer via Rollmint. We call those chains Sovereign Rollups.
 
 You can get started with the following tutorials:
 
-- [gm world](./gm-world.md/)
-- [Recipe Book](./recipe-book.md/)
-- [Wordle Game](./wordle.md/)
-- [CosmWasm Tutorial](./cosmwasm.md/)
-- [Ethermint Tutorial](./ethermint.md/)
+- [gm world](./gm-world.md)
+- [Recipe Book](./recipe-book.md)
+- [Wordle Game](./wordle.md)
+- [CosmWasm Tutorial](./cosmwasm.md)
+- [Ethermint Tutorial](./ethermint.md)
