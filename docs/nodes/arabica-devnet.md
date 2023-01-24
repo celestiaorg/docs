@@ -13,7 +13,7 @@ the latest upgrades for testing their rollups and applications.
 
 Arabica does not focus on validator or consensus-level testing, rather,
 that is what Mocha Testnet is used for. If you are a validator, we
-recommend just testing your validator operations on Mocha [here](./mocha-testnet.md/).
+recommend just testing your validator operations on Mocha [here](./mocha-testnet.md).
 
 With Arabica having the latest updates from all Celestia's products deployed
 on it, it can be subject to many changes. Therefore, as a fair warning,
@@ -38,9 +38,9 @@ participate in Arabica:
 
 Data Availability:
 
-* [Bridge Node](./bridge-node.mdx/)
-* [Full Storage Node](./full-storage-node.mdx/)
-* [Light Node](./light-node.mdx/)
+* [Bridge Node](./bridge-node.mdx)
+* [Full Storage Node](./full-storage-node.mdx)
+* [Light Node](./light-node.mdx)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network

@@ -23,7 +23,7 @@ instance machine.
 
 ### Setup the dependencies
 
-Follow the instructions on installing the dependencies [here](./environment.mdx/).
+Follow the instructions on installing the dependencies [here](./environment.mdx).
 
 ## Deploying the celestia-app
 
@@ -35,7 +35,7 @@ running a Celestia App daemon with an internal Celestia Core node.
 
 ### Install celestia-app
 
-Follow the tutorial on installing Celestia App [here](./celestia-app.mdx/).
+Follow the tutorial on installing Celestia App [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -114,11 +114,11 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 ### Start the celestia-app with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](./systemd.md/).
+with SystemD [here](./systemd.md).
 
 ### Wallet
 
-Follow the tutorial on creating a wallet [here](../developers/celestia-app-wallet.md/).
+Follow the tutorial on creating a wallet [here](../developers/celestia-app-wallet.md).
 
 ### Delegate stake to a validator
 
@@ -181,7 +181,7 @@ Celestia Bridge Node daemon.
 
 ### Install celestia-node
 
-You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx/)
+You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx)
 
 ### Initialize the bridge node
 
@@ -196,7 +196,7 @@ celestia bridge init --core.ip <ip-address> --core.grpc.port <port>
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet.md/)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet.md)
 
 ### Run the bridge node
 
@@ -298,4 +298,4 @@ tx: null
 txhash: <tx-hash>
 ```
 
-You should now be able to see your validator from a block explorer like [here](https://celestia.explorers.guru/)
+You should now be able to see your validator from a block explorer like [here](https://celestia.explorers.guru)

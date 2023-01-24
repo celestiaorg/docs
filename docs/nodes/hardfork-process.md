@@ -33,8 +33,8 @@ The general process can be broken down into several components:
 
 The two testnets were hardforks are deployed on are:
 
-- [Arabica](./arabica-devnet.md/)
-- [Mocha](./mocha-testnet.md/)
+- [Arabica](./arabica-devnet.md)
+- [Mocha](./mocha-testnet.md)
 
 ### Mocha Hardfork
 

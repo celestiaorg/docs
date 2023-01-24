@@ -8,14 +8,14 @@ sidebar_label: CosmWasm Dependencies
 
 For this tutorial, we will be using `curl` and `jq` as helpful
 tools. You can follow the guide on installing them
-[here](../nodes/environment#setting-up-dependencies).
+[here](../nodes/environment.mdx#setting-up-dependencies).
 
 ## Golang Dependency
 
 The Golang version used for this tutorial is v1.18+
 
 You can install Golang
-by following our tutorial [here](../nodes/environment#install-golang).
+by following our tutorial [here](../nodes/environment.mdx#install-golang).
 
 ## Rust Installation
 
@@ -80,7 +80,7 @@ to use a small footprint. We recommend installing Docker on your machine.
 
 Examples on how to install it on Linux are found [here](https://docs.docker.com/engine/install/ubuntu).
 Find the right instructions specific for
-[your OS here](https://docs.docker.com/engine/install/).
+[your OS here](https://docs.docker.com/engine/install).
 
 ## wasmd Installation
 

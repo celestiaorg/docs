@@ -5,7 +5,7 @@ sidebar_label: Full Stack Modular Blockchain Development Guide
 # Full Stack Modular Blockchain Development Guide
 
 This guide will introduce you to
-[modular blockchains](../concepts/how-celestia-works/introduction.md/) like
+[modular blockchains](../concepts/how-celestia-works/introduction.md) like
 Celestia, explain their benefits, and show you how to build a full stack
 modular dapp with React, Vite, RainbowKit, Celestia, and Foundry.
 
@@ -19,7 +19,7 @@ cover how to build dapps on these newer, shared platforms.
 
 If you're interested in learning more about modular blockchains, or are new
 to the Celestia ecosystem, we recommend you read the
-[Build Modular](./build-modular.md/) page first.
+[Build Modular](./build-modular.md) page first.
 
 ## Getting started
 
@@ -32,10 +32,10 @@ EVM-compatible testnet that you will run locally for this tutorial.
 
 - [Node.js](https://github.com/nvm-sh/nvm)
 - [Foundry](https://github.com/foundry-rs/foundry)
-- [Infura account](https://infura.io/) (for uploading files to IPFS)
-- [A Celestia Light Node running](./node-tutorial.mdx/) (to post PFDs from your
+- [Infura account](https://infura.io) (for uploading files to IPFS)
+- [A Celestia Light Node running](./node-tutorial.mdx) (to post PFDs from your
 rollup)
-- [Ethermint Tutorial](./ethermint.md/) (for running your own Ethermint rollup &
+- [Ethermint Tutorial](./ethermint.md) (for running your own Ethermint rollup &
 deploying your smart contract)
 - [MetaMask wallet](https://metamask.io) (for connecting to your frontend)
 
@@ -298,13 +298,13 @@ address as we’ll also be needing it in just a moment when we test the live con
 
 ### Deploying to the Ethermint Sovereign Rollup
 
-First, we will need to follow the setup from the [Ethermint tutorial](./ethermint.md/).
+First, we will need to follow the setup from the [Ethermint tutorial](./ethermint.md).
 
 :::danger Pre-requisites
 
-It is required that you complete [dependency setup](./ethermint-dependencies.md/),
-[RollKit installation](./rollmint-on-ethermint.md/), and
-[Instantiating and Ethermint rollup](./instantiate-ethermint.md/)
+It is required that you complete [dependency setup](./ethermint-dependencies.md),
+[RollKit installation](./rollmint-on-ethermint.md), and
+[Instantiating and Ethermint rollup](./instantiate-ethermint.md)
 to complete the remainder of the tutorial.
 
 :::
@@ -359,18 +359,18 @@ cast call $CONTRACT_ADDRESS "fetchPosts()" --rpc-url http://localhost:8545
 
 For the frontend project, we’ll be using the following libraries and frameworks:
 
-[React](https://reactjs.org/) - JavaScript library for building user interfaces
+[React](https://reactjs.org) - JavaScript library for building user interfaces
 
-[Vite](https://vitejs.dev/) - Project generator / rapid development tool for
+[Vite](https://vitejs.dev) - Project generator / rapid development tool for
 modern web projects
 
-[Rainbowkit](https://www.rainbowkit.com/) - Easy and beautifl library to connect
+[Rainbowkit](https://www.rainbowkit.com) - Easy and beautifl library to connect
 a wallets
 
 [WAGMI](https://github.com/wagmi-dev/wagmi) - 20+ hooks for working with
 wallets, ENS, contracts, transactions, signing, etc
 
-In the root of the Foundry project, create a new React.js application using [Vite](https://vitejs.dev/):
+In the root of the Foundry project, create a new React.js application using [Vite](https://vitejs.dev):
 
 ```jsx
 yarn create vite

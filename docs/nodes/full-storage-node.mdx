@@ -29,14 +29,14 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-You can follow the tutorial for setting up your dependencies [here](./environment.mdx/)
+You can follow the tutorial for setting up your dependencies [here](./environment.mdx)
 
 ## Install Celestia node
 
 > Note: Make sure that you have at least 250+ Gb of free space for
   Celestia Full Storage Node
 
-You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx/)
+You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx)
 
 ### Run the full storage node
 
@@ -100,9 +100,9 @@ celestia full start --core.ip <ip-address>:<port>
 ````
 
 If you would like to find example RPC endpoints, check out the list of
-resources [here](./mocha-testnet.md/).
+resources [here](./mocha-testnet.md).
 
-You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx/)
+You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx)
 
 Once you start the Full Node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
@@ -115,8 +115,8 @@ You can find the address by running the following command:
 
 You have two networks to get testnet tokens from:
 
-* [Arabica](./arabica-devnet.md/)
-* [Mocha](./mocha-testnet.md/)
+* [Arabica](./arabica-devnet.md)
+* [Mocha](./mocha-testnet.md)
 
 > NOTE: If you are running a full-storage node for your sovereign
   rollup, it is highly recommended to request Arabica devnet tokens
@@ -154,6 +154,6 @@ celestia full start --core.ip <ip-address>:<port> --keyring.accname <name-of-cus
 ### Optional: start the full storage node with SystemD
 
 Follow the tutorial on setting up the full storage node as a background
-process with SystemD [here](./systemd).
+process with SystemD [here](./systemd.md).
 
 With that, you are now running a Celestia Full Storage Node.

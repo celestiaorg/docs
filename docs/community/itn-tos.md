@@ -14,7 +14,7 @@ Loop Labs AG (**"Company"**, **"we"** or **"us"**). The ITN Award Program provid
 users of a Testnet designated by the Company the opportunity to earn rewards,
 which may include Celestia tokens. These Terms are supplemental to, and
 incorporate by reference, the broader Celestia Terms of Service
-(**"Services Terms"**) available at [Celestia Terms of Service](https://celestia.org/tos/).
+(**"Services Terms"**) available at [Celestia Terms of Service](https://celestia.org/tos).
 
 Defined terms used but not defined herein have the meaning set forth in the
 Services Terms.  The Program and your participation in it is a Service as
@@ -31,7 +31,7 @@ Terms, please do not participate in the Program or claim ITN Rewards.
 In order to participate in the Program you must provide certain information about you.
 Our collection of such information, your rights with respect to such collection,
 and other relevant information is described in the Celestia Privacy Policy available
-at [Celestia Privacy Policy](https://celestia.org/privacy/), and is supplemented by
+at [Celestia Privacy Policy](https://celestia.org/privacy), and is supplemented by
 Section 3 of these Terms. 
 
 The Program is a discretionary Service provided by the Company, pursuant to which
@@ -140,7 +140,7 @@ ITN Rewards, comply with our legal obligations, detect and prevent fraud, and to
 provide you with the Program.
 
 Any information we receive from third-party sources will be treated in accordance with the
-Celestia Privacy Policy, available at [Celestia Privacy Policy](https://celestia.org/privacy/).
+Celestia Privacy Policy, available at [Celestia Privacy Policy](https://celestia.org/privacy).
 We are not responsible or liable for the accuracy of the information provided to us by third parties
 and are not responsible for any third party’s policies or practices. See Section 9 of the Celestia
 Privacy Policy for more information.

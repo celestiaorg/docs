@@ -10,7 +10,7 @@ Due to the permissionless nature of the blockchain networks,
 a DA layer must provide a mechanism for the execution and settlement
 layers to check in a trust-minimized way whether transaction data is indeed available.
 
-Two key features of Celestia's DA layer are [data availability sampling](https://blog.celestia.org/celestia-mvp-release-data-availability-sampling-light-clients/)
+Two key features of Celestia's DA layer are [data availability sampling](https://blog.celestia.org/celestia-mvp-release-data-availability-sampling-light-clients)
 (DAS) and [Namespaced Merkle trees](https://github.com/celestiaorg/nmt) (NMTs).
 Both features are novel blockchain scaling solutions: DAS enables light
 nodes to verify data availability without needing to download an entire block;

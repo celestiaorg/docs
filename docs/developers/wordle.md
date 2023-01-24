@@ -88,10 +88,10 @@ our development environment.
 The following tutorial is broken down into the following
 sections:
 
-1. [Ignite and Chain Scaffolding](./scaffold-wordle.md/)
-2. [Installing Rollmint](./install-rollmint.md/)
-3. [Modules](./wordle-module.md/)
-4. [Messages](./wordle-messages.md/)
-5. [Types](./wordle-types.md/)
-6. [Keepers](./wordle-keeper.md/)
-7. [Running Wordle](./run-wordle.md/)
+1. [Ignite and Chain Scaffolding](./scaffold-wordle.md)
+2. [Installing Rollmint](./install-rollmint.md)
+3. [Modules](./wordle-module.md)
+4. [Messages](./wordle-messages.md)
+5. [Types](./wordle-types.md)
+6. [Keepers](./wordle-keeper.md)
+7. [Running Wordle](./run-wordle.md)
