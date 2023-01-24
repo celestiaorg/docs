@@ -114,7 +114,7 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 ### Start the celestia-app with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](./systemd.md).
+with SystemD [here](../systemd.md).
 
 ### Wallet
 
