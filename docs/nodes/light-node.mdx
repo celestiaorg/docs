@@ -738,7 +738,7 @@ For ports:
 <Tabs groupId="network">
 <TabItem value="arabica" label="Arabica">
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../arabica-devnet.md#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../arabica-devnet#rpc-endpoints)
 
 For example, your command might look something like this:
 
@@ -749,7 +749,7 @@ celestia light start --core.ip https://limani.celestia-devops.dev --core.grpc.po
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet.md#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
 For example, your command might look something like this:
 
@@ -762,7 +762,7 @@ celestia light start --core.ip https://rpc-mocha.pops.one --core.grpc.port <port
 
 ### Keys and wallets
 
-You can create your key for your node by running the following command with the [`cel-key`](../../developers/celestia-node-key.mdx) utility:
+You can create your key for your node by running the following command with the [`cel-key`](../../developers/celestia-node-key) utility:
 
 ```sh
 ./cel-key add <key_name> --keyring-backend test --node.type light --p2p.network <network>
@@ -803,8 +803,8 @@ You can find the address by running the following command in the
 
 You have two networks to get testnet tokens from:
 
-* [Arabica](./arabica-devnet.md#arabica-devnet-faucet)
-* [Mocha](../mocha-testnet.md#mocha-testnet-faucet)
+* [Arabica](./arabica-devnet#arabica-devnet-faucet)
+* [Mocha](../mocha-testnet#mocha-testnet-faucet)
 
 > NOTE: If you are running a light node for your sovereign
   rollup, it is highly recommended to request Arabica devnet tokens

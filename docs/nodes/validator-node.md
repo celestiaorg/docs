@@ -114,7 +114,7 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 ### Start the celestia-app with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](../systemd.md).
+with SystemD [here]( ../systemd).
 
 ### Wallet
 
@@ -209,7 +209,7 @@ celestia bridge start
 ### Optional: start the bridge node with SystemD
 
 Follow the tutorial on setting up the bridge node as a background process with
-SystemD [here](./systemd).
+SystemD [here](../systemd).
 
 You have successfully set up a bridge node that is syncing with the network.
 
