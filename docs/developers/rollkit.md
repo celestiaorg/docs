@@ -35,7 +35,7 @@ Layer via Rollkit. We call those chains Sovereign Rollups.
 
 You can get started with the following tutorials:
 
-- [gm world](https://rollkit.dev/docs/tutorials/gm-world)
+- [GM World](https://rollkit.dev/docs/tutorials/gm-world)
 - [Recipe Book](https://rollkit.dev/docs/tutorials/recipe-book)
 - [Wordle Game](https://rollkit.dev/docs/tutorials/wordle)
 - [CosmWasm Tutorial](https://rollkit.dev/docs/tutorials/cosmwasm)
