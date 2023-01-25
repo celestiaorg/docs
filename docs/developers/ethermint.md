@@ -4,7 +4,7 @@ sidebar_label: Ethermint
 
 # Ethermint
 
-Ethermint is a Comsos-SDK library that integrates an EVM compiler
+Ethermint is a Cosmos-SDK library that integrates an EVM compiler
 from Geth.
 
 This would allow you to deploy Solidity or Vyper Ethereum smart contracts
