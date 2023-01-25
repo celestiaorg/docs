@@ -365,7 +365,7 @@ For the frontend project, we’ll be using the following libraries and framework
 modern web projects
 
 [Rainbowkit](https://www.rainbowkit.com/) - Easy and beautifl library to connect
-a wallets
+a wallet
 
 [WAGMI](https://github.com/wagmi-dev/wagmi) - 20+ hooks for working with
 wallets, ENS, contracts, transactions, signing, etc
