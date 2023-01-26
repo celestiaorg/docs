@@ -58,7 +58,7 @@ right or wrong ideas, but here are a few to get you thinking:
   - Popular DeFi apps e.g. AMMs & lending protocols
   - NFT platforms
   - Naming services like [ENS](https://etherscan.io/token/0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72#code)
-  - Social graphs like [Lens Protocol](https://lens.xyz/)
+  - Social graphs like [Lens Protocol](https://lens.xyz)
 
 ## Support
 

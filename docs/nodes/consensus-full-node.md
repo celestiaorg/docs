@@ -153,4 +153,4 @@ Restart `celestia-appd` in the previous step to load those configs.
 ### Start the celestia-app with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](./systemd).
+with SystemD [here](./systemd.md).

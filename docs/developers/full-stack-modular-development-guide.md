@@ -32,7 +32,7 @@ EVM-compatible testnet that you will run locally for this tutorial.
 
 - [Node.js](https://github.com/nvm-sh/nvm)
 - [Foundry](https://github.com/foundry-rs/foundry)
-- [Infura account](https://infura.io/) (for uploading files to IPFS)
+- [Infura account](https://infura.io) (for uploading files to IPFS)
 - [A Celestia Light Node running](./node-tutorial.mdx) (to post PFDs from your
 rollup)
 - [Ethermint Tutorial](./ethermint.md) (for running your own Ethermint rollup &
@@ -359,18 +359,18 @@ cast call $CONTRACT_ADDRESS "fetchPosts()" --rpc-url http://localhost:8545
 
 For the frontend project, we’ll be using the following libraries and frameworks:
 
-[React](https://reactjs.org/) - JavaScript library for building user interfaces
+[React](https://reactjs.org) - JavaScript library for building user interfaces
 
-[Vite](https://vitejs.dev/) - Project generator / rapid development tool for
+[Vite](https://vitejs.dev) - Project generator / rapid development tool for
 modern web projects
 
-[Rainbowkit](https://www.rainbowkit.com/) - Easy and beautifl library to connect
-a wallet
+[Rainbowkit](https://www.rainbowkit.com) - Easy and beautifl library to connect
+a wallets
 
 [WAGMI](https://github.com/wagmi-dev/wagmi) - 20+ hooks for working with
 wallets, ENS, contracts, transactions, signing, etc
 
-In the root of the Foundry project, create a new React.js application using [Vite](https://vitejs.dev/):
+In the root of the Foundry project, create a new React.js application using [Vite](https://vitejs.dev):
 
 ```jsx
 yarn create vite

@@ -10,11 +10,11 @@ This guide contains the relevant sections for how to connect to Mocha,
 depending on the type of node you are running. Mocha Testnet is designed
 to help validators test out their infrastructure and node software.
 Developers are encouraged to deploy their
-sovereign rollups on Mocha, but we also recommend [Arabica Devnet](./arabica-devnet)
+sovereign rollups on Mocha, but we also recommend [Arabica Devnet](./arabica-devnet.md)
 for that as it is designed for development purposes.
 
 Mocha is a milestone in Celestia, allowing everyone to test out
-core functionalities on the network. Read the anouncement [here](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api/).
+core functionalities on the network. Read the anouncement [here](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api).
 Your best approach to participating is to first determine which node
 you would like to run. Each node guides will link to the relevant network
 in order to show you how to connect to them.
@@ -24,14 +24,14 @@ participate in Mocha:
 
 Consensus:
 
-* [Validator Node](./validator-node)
-* [Consensus Full Node](./consensus-full-node)
+* [Validator Node](./validator-node.md)
+* [Consensus Full Node](./consensus-full-node.md)
 
 Data Availability:
 
-* [Bridge Node](./bridge-node)
-* [Full Storage Node](./full-storage-node)
-* [Light Node](./light-node)
+* [Bridge Node](./bridge-node.mdx)
+* [Full Storage Node](./full-storage-node.mdx)
+* [Light Node](./light-node.mdx)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
@@ -90,5 +90,5 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 There are several explorers you can use for Mocha:
 
 * [https://testnet.mintscan.io/celestia-testnet](https://testnet.mintscan.io/celestia-testnet)
-* [https://celestia.explorers.guru/](https://celestia.explorers.guru/)
-* [https://celestiascan.vercel.app/](https://celestiascan.vercel.app/)
+* [https://celestia.explorers.guru/](https://celestia.explorers.guru)
+* [https://celestiascan.vercel.app/](https://celestiascan.vercel.app)

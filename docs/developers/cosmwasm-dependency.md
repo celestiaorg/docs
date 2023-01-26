@@ -78,9 +78,9 @@ info: installing component 'rust-std' for 'wasm32-unknown-unknown'
 We will be using Docker later in this tutorial for compiling a smart contract
 to use a small footprint. We recommend installing Docker on your machine.
 
-Examples on how to install it on Linux are found [here](https://docs.docker.com/engine/install/ubuntu/).
+Examples on how to install it on Linux are found [here](https://docs.docker.com/engine/install/ubuntu).
 Find the right instructions specific for
-[your OS here](https://docs.docker.com/engine/install/).
+[your OS here](https://docs.docker.com/engine/install).
 
 ## wasmd Installation
 

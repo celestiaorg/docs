@@ -30,7 +30,7 @@ Documentation: https://docs.ignite.com
 
 This command has created a Cosmos SDK blockchain in the `gm` directory. The
 `gm` directory contains a fully functional blockchain. The following standard
-Cosmos SDK [modules](https://docs.cosmos.network/main/modules/) have been
+Cosmos SDK [modules](https://docs.cosmos.network/main/modules) have been
 imported:
 
 - `staking` - for delegated Proof-of-Stake (PoS) consensus mechanism
