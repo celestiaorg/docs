@@ -7,12 +7,12 @@ sidebar_label: Setup
 - Operating systems: GNU/Linux, macOS, or Windows Subsystem for Linux (WSL).
 Recommended GNU/Linux or macOS.
 
-- [Golang](https://go.dev/)
-- [Ignite CLI v0.25.1](https://github.com/ignite/cli/)
-- [Homebrew](https://brew.sh/)
-- [wget](https://www.gnu.org/software/wget/)
-- [jq](https://stedolan.github.io/jq/)
-- [A Celestia Light Node](/nodes/light-node/)
+- [Golang](https://go.dev)
+- [Ignite CLI v0.25.1](https://github.com/ignite/cli)
+- [Homebrew](https://brew.sh)
+- [wget](https://www.gnu.org/software/wget)
+- [jq](https://stedolan.github.io/jq)
+- [A Celestia Light Node](/nodes/light-node.mdx)
 
 ## 🏃 Install Golang
 

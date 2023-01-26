@@ -12,7 +12,7 @@ our own blockchains for cosmos-sdk apps. It provides lots of
 power toolings and scaffoldings for adding messages, types,
 and modules with a host of cosmos-sdk libraries provided.
 
-You can read more about Ignite [here](https://docs.ignite.com/).
+You can read more about Ignite [here](https://docs.ignite.com).
 
 To install Ignite, you can run this command in your terminal:
 

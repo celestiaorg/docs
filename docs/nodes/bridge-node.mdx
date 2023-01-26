@@ -32,10 +32,10 @@ From an implementation perspective, Bridge Nodes run two separate processes:
 
     * **Celestia App** is the state machine where the application and the
       proof-of-stake logic is run. Celestia App is built on
-      [Cosmos SDK](https://docs.cosmos.network/) and also encompasses
+      [Cosmos SDK](https://docs.cosmos.network) and also encompasses
       **Celestia Core**.
     * **Celestia Core** is the state interaction, consensus and block production
-      layer. Celestia Core is built on [Tendermint Core](https://docs.tendermint.com/),
+      layer. Celestia Core is built on [Tendermint Core](https://docs.tendermint.com),
       modified to store data roots of erasure coded blocks among other changes
       ([see ADRs](https://github.com/celestiaorg/celestia-core/tree/master/docs/celestia-architecture)).
 
@@ -91,7 +91,7 @@ celestia bridge init --core.ip <ip-address> --core.grpc.port <port> --p2p.networ
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
 Here is an example of initializing the bridge node:
 
@@ -113,7 +113,7 @@ celestia bridge init --core.ip <ip-address>:<port>
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
 Here is an example of initializing the bridge node:
 
@@ -141,7 +141,7 @@ celestia bridge start --core.ip <ip-address> --core.grpc.port <port> --p2p.netwo
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
 Here is an example of starting the bridge node:
 
@@ -164,7 +164,7 @@ celestia bridge start --core.ip <ip-address>:<port>
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
 Here is an example of starting the bridge node:
 
@@ -189,8 +189,8 @@ You can find the address by running the following command:
 
 You have two networks to get testnet tokens from:
 
-* [Arabica](./arabica-devnet)
-* [Mocha](./mocha-testnet)
+* [Arabica](./arabica-devnet.md)
+* [Mocha](./mocha-testnet.md)
 
 > NOTE: If you are running a bridge node for your validator
   it is highly recommended to request Mocha testnet tokens
@@ -226,6 +226,6 @@ celestia bridge start --core.ip <ip>:<port> --keyring.accname <name_of_custom_ke
 ### Optional: start the bridge node with SystemD
 
 Follow the tutorial on setting up the bridge node as a background process with
-SystemD [here](./systemd).
+SystemD [here](./systemd.md).
 
 You have successfully set up a bridge node that is syncing with the network.

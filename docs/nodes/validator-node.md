@@ -114,7 +114,7 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 ### Start the celestia-app with SystemD
 
 Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](./systemd).
+with SystemD [here]( ../systemd).
 
 ### Wallet
 
@@ -196,7 +196,7 @@ celestia bridge init --core.ip <ip-address> --core.grpc.port <port>
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet.md)
 
 ### Run the bridge node
 
@@ -209,7 +209,7 @@ celestia bridge start
 ### Optional: start the bridge node with SystemD
 
 Follow the tutorial on setting up the bridge node as a background process with
-SystemD [here](./systemd).
+SystemD [here](../systemd).
 
 You have successfully set up a bridge node that is syncing with the network.
 
@@ -298,4 +298,4 @@ tx: null
 txhash: <tx-hash>
 ```
 
-You should now be able to see your validator from a block explorer like [here](https://celestia.explorers.guru/)
+You should now be able to see your validator from a block explorer like [here](https://celestia.explorers.guru)

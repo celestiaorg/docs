@@ -34,7 +34,7 @@ sidebar_label: Cohort One Content & Calendar
 ### **Week 3 - 10 October**
 
 📗 **Lesson 2 - Building a sovereign rollup with Ignite and
-[Rollmint](../developers/rollmint) on Celestia with Yaz**
+[Rollmint](../developers/rollmint.md) on Celestia with Yaz**
 
 - **Monday 10 October @ 11am EDT / 3pm UTC / 5pm CEST**
   - Lesson 2 will cover building a sovereign rollup with
@@ -63,7 +63,7 @@ sidebar_label: Cohort One Content & Calendar
 
 ### **Week 5 - 24 October**
 
-📗 **Lesson 3 - Introduction to [Fuel](https://www.fuel.network/) with Emily Herbert**
+📗 **Lesson 3 - Introduction to [Fuel](https://www.fuel.network) with Emily Herbert**
 
 - **Monday 24 October @ 11am EDT / 3pm UTC / 5pm CEST**
   - In this lesson, Emily Herbert will teach us about Fuel, the the world's
@@ -136,7 +136,7 @@ EVM-compatible settlement layer built with Ethermint, Cosmos SDK, and Rollmint.
 
 - **Monday 21 November @ 11am EST / 4pm UTC / 5pm CEST**
   - In this lesson, Evan Forbes will teach us about the Quantum Gravity Bridge
-(QGB) and [Celestiums](https://blog.celestia.org/celestiums/). The QGB proves
+(QGB) and [Celestiums](https://blog.celestia.org/celestiums). The QGB proves
 that some data was posted on Celestia. Celestiums use the this bridge to
 provide strong data availability guarantees for block data at a fraction of
 the cost of `calldata` on Ethereum.

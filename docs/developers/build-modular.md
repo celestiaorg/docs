@@ -154,13 +154,13 @@ skillset without having to learn anything new.
 You can write any language and use any execution environment
 you’d like, including Solidity or Vyper and the EVM or Cosmos and Go.
 
-You can use [Rollmint](./rollmint) to deploy a rollup for your
+You can use [Rollmint](./rollmint.md) to deploy a rollup for your
 favorite execution environment connected to Celestia.
 
 ### Sovereign rollups
 
 One of the most powerful value propositions of Celestia is the
-idea of [Sovereign Chains](https://blog.celestia.org/sovereign-rollup-chains/).
+idea of [Sovereign Chains](https://blog.celestia.org/sovereign-rollup-chains).
 
 Rollups on Ethereum are effectively "enshrined" to Ethereum because
 Ethereum is responsible for validating their transactions. This makes
@@ -178,7 +178,7 @@ chain to Celestia.
 
 ### Celestiums (Ethereum)
 
-[Celestiums](https://blog.celestia.org/celestiums/) allow developers
+[Celestiums](https://blog.celestia.org/celestiums) allow developers
 to deploy a to a rollup using Celestia as DA and Ethereum as settlement.
 
 Ethereum rollups batch data from multiple transactions into a single
