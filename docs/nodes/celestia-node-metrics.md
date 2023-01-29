@@ -19,7 +19,7 @@ command:
 
 <!-- markdownlint-disable MD013 -->
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --metrics --metrics.endpoint <ip-address:port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network <network>
+celestia light start --core.ip <ip-address> --metrics --metrics.endpoint <ip-address:port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network <network>
 ```
 <!-- markdownlint-enable MD013 -->
 
