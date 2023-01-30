@@ -65,7 +65,7 @@ as REST endpoints. This allows for communication with the node using REST
 calls, which can be useful if the client does not support gRPC or HTTP2.
 The default port is 1317.
 
-* [https://rpc.limani.celestia-devops.dev](https://rpc.limani.celestia-devops.dev)
+* [https://api.limani.celestia-devops.dev](https://api.limani.celestia-devops.dev)
 
 ## gRPC endpoints
 
