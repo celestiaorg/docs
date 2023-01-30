@@ -47,6 +47,7 @@ Celestia network. The default port is 26657.
 Below is a list of RPC endpoints you can use to connect to Mocha Testnet:
 
 * [https://rpc-mocha.pops.one](https://rpc-mocha.pops.one)
+* [https://rpc.mocha.celestia.counterpoint.software](https://rpc.mocha.celestia.counterpoint.software)
 
 ## API endpoints
 
@@ -57,6 +58,7 @@ calls, which can be useful if the client does not support gRPC or HTTP2.
 The default port is 1317.
 
 * [https://api-mocha.pops.one](https://api-mocha.pops.one)
+* [https://api.mocha.celestia.counterpoint.software](https://api.mocha.celestia.counterpoint.software)
 
 ## gRPC endpoints
 
@@ -66,6 +68,7 @@ port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
 * [https://grpc-mocha.pops.one](https://grpc-mocha.pops.one)
+* [https://grpc.mocha.celestia.counterpoint.software](https://grpc.mocha.celestia.counterpoint.software)
 
 ## Mocha Testnet faucet
 
