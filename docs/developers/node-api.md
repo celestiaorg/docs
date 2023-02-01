@@ -503,10 +503,10 @@ Response
 }
 ```
 
-#### POST /submit_pfd
+#### POST /submit_pfb
 
-Constructs, signs and submits a PayForData message to a running instance
-of celestia-app. The body of the `/submit_pfd` request should contain the
+Constructs, signs and submits a PayForBlob message to a running instance
+of celestia-app. The body of the `/submit_pfb` request should contain the
 hex-encoded `namespace_id`, the hex-encoded `data`, the `fee`, and the
 `gas_limit` as a uint64.
 
@@ -514,7 +514,7 @@ Request
 
 ```sh
 curl -X POST -d '{"namespace_id": "0c204d39600fddd3", "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5", "gas_limit": 60000, "fee": 2000}'\
-  http://<ip-address>:26659/submit_pfd
+  http://<ip-address>:26659/submit_pfb
 ```
 
 Response
