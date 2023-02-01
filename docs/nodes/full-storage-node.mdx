@@ -46,17 +46,17 @@ Run the following command:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-```sh
-celestia full init --p2p.network arabica
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh 
 celestia full init
+```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia full init --p2p.network arabica
 ```
 
 </TabItem>
@@ -82,17 +82,17 @@ A note on ports:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --p2p.network arabica
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh 
-celestia full start --core.ip <ip-address>:<port>
+celestia full start --core.ip <ip-address>
+```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia full start --core.ip http://<ip-address> --p2p.network arabica
 ```
 
 </TabItem>
@@ -134,17 +134,17 @@ In order to run a full storage node using a custom key:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key> --p2p.network arabica
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh 
-celestia full start --core.ip <ip-address>:<port> --keyring.accname <name-of-custom-key>
+celestia full start --core.ip <ip-address> --keyring.accname <name-of-custom-key>
+```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia full start --core.ip http://<ip-address> --keyring.accname <name-of-custom-key> --p2p.network arabica
 ```
 
 </TabItem>
