@@ -16,132 +16,6 @@ import TabItem from '@theme/TabItem';
 
 
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-<Tabs groupId="operating-systems">
-<TabItem value="amd" label="Ubuntu (AMD)">
-
-Installing `celestia-node` for Arabica Devnet means installing a specific version
-to be compatible with the network.
-
-Install the `celestia-node` binary by running the following commands:
-
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.2
-make install
-make cel-key
-```
-
-Verify that the binary is working and check the version with the `celestia
-version` command:
-
-```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
-
-</TabItem>
-<TabItem value="arm" label="Ubuntu (ARM)">
-
-Installing `celestia-node` for Arabica Devnet means installing a specific version
-to be compatible with the network.
-
-Install the `celestia-node` binary by running the following commands:
-
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.2
-make install
-make cel-key
-```
-
-Verify that the binary is working and check the version with the `celestia
-version` command:
-
-```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
-
-</TabItem>
-<TabItem value="apple" label="Mac (Apple)">
-
-Installing `celestia-node` for Arabica Devnet means installing a specific version
-to be compatible with the network.
-
-Install the `celestia-node` binary by running the following commands:
-
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.2
-make go-install
-make cel-key
-```
-
-Verify that the binary is working and check the version with the `celestia
-version` command:
-
-```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
-
-</TabItem>
-<TabItem value="mac" label="Mac (Intel)">
-
-Installing `celestia-node` for Arabica Devnet means installing a specific version
-to be compatible with the network.
-
-Install the `celestia-node` binary by running the following commands:
-
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.2
-make go-install
-make cel-key
-```
-
-Verify that the binary is working and check the version with the `celestia
-version` command:
-
-```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
-
-</TabItem>
-</Tabs>
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
@@ -268,6 +142,132 @@ Golang version: go1.19.1
 </Tabs>
 
 </TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.6.2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+$ celestia version
+Semantic version: v0.6.2
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.6.2
+make install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+$ celestia version
+Semantic version: v0.6.2
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.6.2
+make go-install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+$ celestia version
+Semantic version: v0.6.2
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.6.2
+make go-install
+make cel-key
+```
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+```output
+$ celestia version
+Semantic version: v0.6.2
+Commit: 3a58679ed84da966d01173f32780134c7b830594
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
+Golang version: go1.19.1
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
 </Tabs>
 ````
 
@@ -277,7 +277,58 @@ Note: If you do not select a network, the default network will be 'Mocha'.
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
+<TabItem value="mocha" label="Mocha">
+
+```sh
+celestia light init --p2p.network mocha 
+celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+> NOTE: It is advised before switching networks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
+
+### Errors
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following command:
+
+```sh
+rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
+```
+
+Here's an example for Mocha:
+
+
+```sh
+rm -rf ~./celestia-light-mocha && celestia light init --p2p.network mocha
+```
+
+Your output will look similar to below:
+
+```sh
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light/config.toml"}
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
+```
+
+Then start your node:
+
+```sh
+celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
 
 You can perform network selection in `celestia-node` between Arabica and
 Mocha. However, you should note that networks work best on the `celestia-node`
@@ -285,7 +336,7 @@ versions mentioned above.
 
 ```sh
 celestia light init --p2p.network arabica
-celestia light start --p2p.network arabica --core.ip <address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 > NOTE: It is advised before switching networks to reinitialize
@@ -327,58 +378,7 @@ Your output will look similar to below:
 Then start your node:
 
 ```sh
-celestia light start --p2p.network arabica --core.ip <address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-</TabItem>
-<TabItem value="mocha" label="Mocha">
-
-```sh
-celestia light init --p2p.network mocha 
-celestia light start --p2p.network mocha --core.ip <address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-> NOTE: It is advised before switching networks to reinitialize
-  your node via `init` command. This is due to an old config being present.
-  Re-initialisation will reset the config.
-
-### Errors
-
-If you an encounter an error, it is likely that an old config file is present:
-
-```sh
-Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
-
-# or
-
-Error: nodebuilder/share: interval must be positive
-```
-
-You can re-initialize your node with the following command:
-
-```sh
-rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
-```
-
-Here's an example for Arabica:
-
-
-```sh
-rm -rf ~./celestia-light-mocha && celestia light init --p2p.network mocha
-```
-
-Your output will look similar to below:
-
-```sh
-2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light'
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light/config.toml"}
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
-```
-
-Then start your node:
-
-```sh
-celestia light start --p2p.network mocha --core.ip <address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
