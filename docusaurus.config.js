@@ -71,6 +71,31 @@ const config = {
           to: '/nodes/celestia-node-metrics',
           from: '/developers/celestia-node-metrics'
         },
+        {
+          to: '/developers/rollkit',
+          from: '/developers/ethermint'
+        },
+        {
+          to: '/developers/rollkit',
+          from: '/category/ethermint'
+        },
+        {
+          to: '/developers/rollkit',
+          from: '/developers/ethermint-dependencies'
+        },
+        {
+          to: '/developers/rollkit',
+          from: '/developers/rollmint-on-ethermint'
+        },
+        {
+          to: '/developers/rollkit',
+          from: '/developers/instantiate-ethermint'
+        },
+        {
+          to: '/developers/rollkit',
+          from: '/developers/deploy-solidity-ethermint-foundry'
+        },
+
       ]
     }]
   ],
