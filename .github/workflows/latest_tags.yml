@@ -64,12 +64,20 @@ jobs:
       - uses: actions/checkout@v3
       - name: Write latest tags and commit SHAs to txt files
         run: |
-          echo ${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }} > celestia-app_latest.txt
-          echo ${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }} >> celestia-app_latest.txt
-          echo ${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }} > celestia-core_latest.txt
-          echo ${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }} >> celestia-core_latest.txt
-          echo ${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }} > celestia-node_latest.txt
-          echo ${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }} >> celestia-node_latest.txt
+          CONTENTS=$(cat << EOF
+          const versions = Object.freeze({
+            "golang": "1.19.1",
+            "app-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }},
+            "app-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }},
+            "core-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }},
+            "core-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }} 
+            "node-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }},
+            "node-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}
+          });
+          export default versions;
+          EOF
+          )
+          echo $CONTENTS > docs/nodes/versions.js
       - name: Open PR
         uses: peter-evans/create-pull-request@v4
         with:

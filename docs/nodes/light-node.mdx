@@ -2,12 +2,14 @@
 sidebar_label: Light Node
 ---
 
+import versions from "./versions.js";
+
 # Setting up a Celestia Light Node
 
-````mdx-code-block
+```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-````
+```
 
 This tutorial will guide you through setting up a Celestia light node, which
 will allow you to perform data availability sampling on the data
@@ -33,10 +35,10 @@ Light nodes have the following behavior:
 The following minimum hardware requirements are recommended for running
 a light node:
 
-* Memory: 2 GB RAM
-* CPU: Single Core
-* Disk: 5 GB SSD Storage
-* Bandwidth: 56 Kbps for Download/56 Kbps for Upload
+- Memory: 2 GB RAM
+- CPU: Single Core
+- Disk: 5 GB SSD Storage
+- Bandwidth: 56 Kbps for Download/56 Kbps for Upload
 
 ## Setting up your light node
 
@@ -165,26 +167,26 @@ so we must install Golang to build and run them.
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
+rm "go$ver.linux-amd64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
-rm "go$ver.linux-arm64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz" <br/>
+rm "go$ver.linux-arm64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
@@ -659,7 +661,7 @@ Run the following command:
 <Tabs groupId="network">
 <TabItem value="mocha" label="Mocha">
 
-```sh 
+```sh
 celestia light init
 ```
 
@@ -698,10 +700,10 @@ Start the light node with a connection to a validator node's gRPC endpoint (whic
 is usually exposed on port 9090):
 
 > NOTE: In order for access to the ability to get/submit state-related information,
-  such as the ability to submit PayForData transactions, or query for the node's
-  account balance, a gRPC endpoint of a validator (core) node must be passed as
-  directed below. For `gateway`, the default IP Address is `localhost` and the
-  default `port` is `26659`.
+> such as the ability to submit PayForData transactions, or query for the node's
+> account balance, a gRPC endpoint of a validator (core) node must be passed as
+> directed below. For `gateway`, the default IP Address is `localhost` and the
+> default `port` is `26659`.
 
 ````mdx-code-block
 <Tabs groupId="network">
