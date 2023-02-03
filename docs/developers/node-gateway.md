@@ -7,7 +7,7 @@ sidebar_label: Celestia Node Gateway
 There is a preview to the `celestia-node` API playground available at [https://node-rpc-docs.vercel.app/](https://node-rpc-docs.vercel.app/).
 
 ## `DASER` Module (with toggles)
-
+<!-- markdownlint-disable MD013 -->
 ````mdx-code-block
 <details>
   <summary><code>SamplingStats()</code> <code class="blue-code">das.SamplingStats</code> <text class="purple-text">(perms: read)</text></summary>
