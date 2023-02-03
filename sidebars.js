@@ -241,7 +241,12 @@ const sidebars = {
           type: "doc", 
           label: "Node API", 
           id: "developers/node-api" 
-        }
+        },
+        { 
+          type: "doc", 
+          label: "Node Gateway",
+          id: "developers/node-gateway" 
+        },
       ]
     },
     {
