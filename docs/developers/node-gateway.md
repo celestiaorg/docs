@@ -6,6 +6,179 @@ sidebar_label: Celestia Node Gateway
 
 There is a preview to the `celestia-node` API playground available at [https://node-rpc-docs.vercel.app/](https://node-rpc-docs.vercel.app/).
 
+## `DASER` Module (with toggles)
+
+````mdx-code-block
+<details>
+  <summary><code>SamplingStats()</code> <code class="blue-code">das.SamplingStats</code> <text class="purple-text">(perms: read)</text></summary>
+  <div>
+    <div>SamplingStats returns the current statistics over the DA sampling process.
+</div>
+    <br/>
+    <details>
+      <summary>
+        Example request
+      </summary>
+      <div>
+        <code>
+          {`{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "daser.SamplingStats",
+  "params": []
+}`}
+        </code>
+      </div>
+    </details>
+    <details>
+      <summary>
+        Example Response
+      </summary>
+      <div>
+        <code>
+          {`{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": [
+    {
+      "head_of_sampled_chain": 27499,
+      "head_of_catchup": 29101,
+      "network_head_height": 30483,
+      "workers": [
+        {
+          "current": 28806,
+          "from": 28802,
+          "to": 28901
+        },
+        {
+          "current": 28906,
+          "from": 28902,
+          "to": 29001
+        },
+        {
+          "current": 27794,
+          "from": 27702,
+          "to": 27801
+        },
+        {
+          "current": 28191,
+          "from": 28102,
+          "to": 28201
+        },
+        {
+          "current": 28420,
+          "from": 28402,
+          "to": 28501
+        },
+        {
+          "current": 28334,
+          "from": 28302,
+          "to": 28401
+        },
+        {
+          "current": 27691,
+          "from": 27602,
+          "to": 27701
+        },
+        {
+          "current": 27889,
+          "from": 27802,
+          "to": 27901
+        },
+        {
+          "current": 27990,
+          "from": 27902,
+          "to": 28001
+        },
+        {
+          "current": 28293,
+          "from": 28202,
+          "to": 28301
+        },
+        {
+          "current": 28092,
+          "from": 28002,
+          "to": 28101
+        },
+        {
+          "current": 29004,
+          "from": 29002,
+          "to": 29101
+        },
+        {
+          "current": 28708,
+          "from": 28702,
+          "to": 28801
+        },
+        {
+          "current": 28513,
+          "from": 28502,
+          "to": 28601
+        },
+        {
+          "current": 27500,
+          "from": 27402,
+          "to": 27501
+        },
+        {
+          "current": 28615,
+          "from": 28602,
+          "to": 28701
+        }
+      ],
+      "concurrency": 16,
+      "catch_up_done": false,
+      "is_running": true
+    }
+  ]
+}`}
+        </code>
+      </div>
+    </details>
+  </div>
+</details>
+````
+
+````mdx-code-block
+<details>
+  <summary><code>WaitCatchUp()</code> <text class="purple-text">(perms: read)</text></summary>
+  <div>
+    <div>WaitCatchUp blocks until DASer finishes catching up to the network head.
+</div>
+    <br/>
+    <details>
+      <summary>
+        Example request
+      </summary>
+      <div>
+        <code>
+          {`{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "daser.WaitCatchUp",
+  "params": []
+}`}
+        </code>
+      </div>
+    </details>
+    <details>
+      <summary>
+        Example Response
+      </summary>
+      <div>
+        <code>
+          {`{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": []
+}`}
+        </code>
+      </div>
+    </details>
+  </div>
+</details>
+````
+
 ## `DASER` Module
 
 ### `SamplingStats()` `das.SamplingStats` **(perms: read)**

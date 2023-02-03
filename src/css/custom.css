@@ -127,3 +127,19 @@ code {
     margin-bottom: 10px;
   }
 }
+
+.purple-text {
+  color: #7B2BF9;
+}
+
+[data-theme='dark'] .purple-text {
+  color: #D7BFFD;
+}
+
+.blue-code {
+  color: #0000ff;
+}
+
+[data-theme='dark'] .blue-code {
+  color: #9999FF;
+}
