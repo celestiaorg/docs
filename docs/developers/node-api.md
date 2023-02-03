@@ -510,6 +510,10 @@ of celestia-app. The body of the `/submit_pfd` request should contain the
 hex-encoded `namespace_id`, the hex-encoded `data`, the `fee`, and the
 `gas_limit` as a uint64.
 
+:::danger Deprecation Notice
+This endpoint will soon be depracated in favor of RPC equivalent. Learn more about the RPC [here](https://node-rpc-docs.vercel.app).
+:::
+
 Request
 
 ```sh
@@ -742,6 +746,10 @@ The body of the `/transfer` request should contain the
 and the `gas_limit` as a uint64.
 
 To transfer tokens from the address running your node to another.
+
+:::danger Deprecation Notice
+This endpoint will soon be depracated in favor of RPC equivalent. Learn more about the RPC [here](https://node-rpc-docs.vercel.app).
+:::
 
 Request
 
