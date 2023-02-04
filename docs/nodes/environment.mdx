@@ -2,6 +2,8 @@
 sidebar_label: Setting Up Environment
 ---
 
+import versions from "./versions.js";
+
 # Development Environment
 
 This tutorial will go over setting up your development environment to run
@@ -139,50 +141,50 @@ so we must install Golang to build and run them.
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
+rm "go$ver.linux-amd64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
-rm "go$ver.linux-arm64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz" <br/>
+rm "go$ver.linux-arm64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
-rm "go$ver.darwin-arm64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz" <br/>
+rm "go$ver.darwin-arm64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
-rm "go$ver.darwin-amd64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz" <br/>
+rm "go$ver.darwin-amd64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 </Tabs>
@@ -192,7 +194,7 @@ Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
 <Tabs groupId="shell">
 <TabItem value="bash" label="bash">
 
-```bash
+```sh
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -219,30 +221,30 @@ The output should be the version installed:
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-```sh
-go version go1.19.1 linux/amd64
-```
+<pre><code>
+go version go{versions.golang} linux/amd64
+</code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-```sh
-go version go1.19.1 linux/arm64
-```
+<pre><code>
+go version go{versions.golang} linux/arm64
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-```sh
-go version go1.19.1 darwin/arm64
-```
+<pre><code>
+go version go{versions.golang} darwin/arm64
+</code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-```sh
-go version go1.19.1 darwin/amd64
-```
+<pre><code>
+go version go{versions.golang} darwin/amd64
+</code></pre>
 
 </TabItem>
 </Tabs>
@@ -253,50 +255,50 @@ go version go1.19.1 darwin/amd64
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
+rm "go$ver.linux-amd64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
-rm "go$ver.linux-arm64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz" <br/>
+rm "go$ver.linux-arm64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
-rm "go$ver.darwin-arm64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz" <br/>
+rm "go$ver.darwin-arm64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
-rm "go$ver.darwin-amd64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz" <br/>
+rm "go$ver.darwin-amd64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 </Tabs>
@@ -306,7 +308,7 @@ Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
 <Tabs groupId="shell">
 <TabItem value="bash" label="bash">
 
-```bash
+```sh
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -333,34 +335,35 @@ The output should be the version installed:
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-```sh
-go version go1.19.1 linux/amd64
-```
+<pre><code>
+go version go{versions.golang} linux/amd64
+</code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-```sh
-go version go1.19.1 linux/arm64
-```
+<pre><code>
+go version go{versions.golang} linux/arm64
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-```sh
-go version go1.19.1 darwin/arm64
-```
+<pre><code>
+go version go{versions.golang} darwin/arm64
+</code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-```sh
-go version go1.19.1 darwin/amd64
-```
+<pre><code>
+go version go{versions.golang} darwin/amd64
+</code></pre>
 
 </TabItem>
 </Tabs>
 
 </TabItem>
 </Tabs>
+
 ````
