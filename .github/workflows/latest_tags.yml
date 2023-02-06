@@ -2,15 +2,38 @@ name: Latest Tags
 
 on:
   workflow_dispatch:
+    # Inputs the workflow accepts. These are the options visible when manually
+    # triggering the workflow
+    inputs:
+      # `network` is the name of the input and is customizable. We can name it
+      # whatever we want. Just note that if we change the name here we will need
+      # to change the name where it is referenced
+      network:
+        # Friendly description to be shown in the UI instead of 'network'
+        description: "Which network are we updating the latest tag information"
+        # Input has to be provided for the workflow to run
+        required: true
+        type: choice
+        # These are the drop down options, so we can add other networks, like
+        # mainnet for instance.
+        options:
+          - arabica
+          - mocha
 
 jobs:
+  # This job pulls the latest tag information for the repos listed in the matrix
+  # strategy
   logLatestRelease:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        # If we want more repos, we can just add them here.
         repo: [celestia-app, celestia-core, celestia-node]
     env:
+      # This workflow is set for the celestiaorg github org, if we need other
+      # orgs we will need to restructure this workflow
       owner: celestiaorg
+    # Define the outputs for other steps to access
     outputs:
       celestia-app_latest_tag: ${{ steps.set_outputs.outputs.celestia-app_latest_tag }}
       celestia-app_latest_sha: ${{ steps.set_outputs.outputs.celestia-app_latest_sha }}
@@ -54,6 +77,10 @@ jobs:
           echo "${{matrix.repo}}_latest_tag=${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_OUTPUT
           echo "${{matrix.repo}}_latest_sha=${{ fromJSON(steps.get_latest_commit.outputs.data).object.sha }}" >> $GITHUB_OUTPUT
 
+  # This job creates a PR if there were changes. The changes are created when
+  # the workflow writes to the version files. This means that the workflow
+  # should be able to be run and will just be a no-op if the is no new release.
+  # Either way, since a PR is created, this projects breaking the docs on main.
   createPR:
     needs: logLatestRelease
     runs-on: ubuntu-latest
@@ -63,6 +90,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Write latest tags and commit SHAs to txt files
+        # This is the code that writes to a file. If we need to update the file
+        # layout, contents, or file name, do it here.
         run: |
           CONTENTS=$(cat << EOF
           const versions = Object.freeze({
@@ -77,9 +106,11 @@ jobs:
           export default versions;
           EOF
           )
-          echo $CONTENTS > docs/nodes/versions.js
+          echo $CONTENTS > docs/nodes/$${{ inputs.network }}_versions.js
       - name: Open PR
         uses: peter-evans/create-pull-request@v4
         with:
+          # This github action has a lot of options, currently we just tweak the
+          # commit-message and title of the PR.
           commit-message: "[automated GH action] update latest release tags and commit sha"
           title: "[GH Action] Update release tags and commit SHAs"
