@@ -67,7 +67,7 @@ Run the image from the command line:
 
 <pre><code>
 docker run -e NODE_TYPE=light -e P2P_NETWORK=arabica \ <br/>
-ghcr.io/celestiaorg/celestia-node:{versions.arabicaLatest} \ <br/>
+ghcr.io/celestiaorg/celestia-node:{versions['celestia-node_latest_tag_arabica']} \ <br/>
 celestia light start --core.ip https://limani.celestia-devops.dev \ <br/>
 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 \ <br/>
 --p2p.network arabica
@@ -120,7 +120,7 @@ Run the image from the command line:
 
 <pre><code>
 docker run -e NODE_TYPE=bridge -e P2P_NETWORK=arabica \ <br/>
-ghcr.io/celestiaorg/celestia-node:{versions.arabicaLatest} \ <br/>
+ghcr.io/celestiaorg/celestia-node:{versions['celestia-node_latest_tag_arabica']} \ <br/>
 celestia bridge start --core.ip https://limani.celestia-devops.dev \ <br/>
 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 \ <br/>
 --p2p.network arabica
@@ -173,7 +173,7 @@ Run the image from the command line:
 
 <pre><code>
 docker run -e NODE_TYPE=full -e P2P_NETWORK=arabica \ <br/>
-ghcr.io/celestiaorg/celestia-node:{versions.arabicaLatest} \ <br/>
+ghcr.io/celestiaorg/celestia-node:{versions['celestia-node_latest_tag_arabica']} \ <br/>
 celestia full start --core.ip https://limani.celestia-devops.dev \ <br/>
 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 \ <br/>
 --p2p.network arabica
