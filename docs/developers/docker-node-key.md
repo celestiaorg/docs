@@ -32,7 +32,7 @@ CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS 
 <container_id>   celestia-node   "/entrypoint.sh cele…"   22 seconds ago   Up 21 seconds   2121/tcp   docker-compose-test-celestia-1
 ```
 
-Interact with the container by replacing `<container_id>` for the container ID or `IMAGE` name (`celestia-node`):
+Interact with the container by replacing `<container_id>` for the container ID:
 
 ```bash
 docker exec -ti <container_id> /bin/bash
