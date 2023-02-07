@@ -2,6 +2,8 @@
 sidebar_label: Light Node
 ---
 
+import versions from "./versions.js";
+
 # Setting up a Celestia Light Node
 
 ````mdx-code-block
@@ -33,10 +35,10 @@ Light nodes have the following behavior:
 The following minimum hardware requirements are recommended for running
 a light node:
 
-* Memory: 2 GB RAM
-* CPU: Single Core
-* Disk: 5 GB SSD Storage
-* Bandwidth: 56 Kbps for Download/56 Kbps for Upload
+- Memory: 2 GB RAM
+- CPU: Single Core
+- Disk: 5 GB SSD Storage
+- Bandwidth: 56 Kbps for Download/56 Kbps for Upload
 
 ## Setting up your light node
 
@@ -165,50 +167,50 @@ so we must install Golang to build and run them.
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
+rm "go$ver.linux-amd64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
-rm "go$ver.linux-arm64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz" <br/>
+rm "go$ver.linux-arm64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
-rm "go$ver.darwin-arm64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz" <br/>
+rm "go$ver.darwin-arm64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
-rm "go$ver.darwin-amd64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz" <br/>
+rm "go$ver.darwin-amd64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 </Tabs>
@@ -218,7 +220,7 @@ Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
 <Tabs groupId="shell">
 <TabItem value="bash" label="bash">
 
-```bash
+```sh
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -245,30 +247,30 @@ The output should be the version installed:
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-```sh
-go version go1.19.1 linux/amd64
-```
+<pre><code>
+go version go{versions.golang} linux/amd64
+</code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-```sh
-go version go1.19.1 linux/arm64
-```
+<pre><code>
+go version go{versions.golang} linux/arm64
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-```sh
-go version go1.19.1 darwin/arm64
-```
+<pre><code>
+go version go{versions.golang} darwin/arm64
+</code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-```sh
-go version go1.19.1 darwin/amd64
-```
+<pre><code>
+go version go{versions.golang} darwin/amd64
+</code></pre>
 
 </TabItem>
 </Tabs>
@@ -279,50 +281,50 @@ go version go1.19.1 darwin/amd64
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
+rm "go$ver.linux-amd64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
-rm "go$ver.linux-arm64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz" <br/>
+rm "go$ver.linux-arm64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
-rm "go$ver.darwin-arm64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz" <br/>
+rm "go$ver.darwin-arm64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-```sh
-ver="1.19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
-rm "go$ver.darwin-amd64.tar.gz"
-```
+<pre><code>
+ver="{versions.golang}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz" <br/>
+rm "go$ver.darwin-amd64.tar.gz" <br/>
+</code></pre>
 
 </TabItem>
 </Tabs>
@@ -332,7 +334,7 @@ Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
 <Tabs groupId="shell">
 <TabItem value="bash" label="bash">
 
-```bash
+```sh
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -359,30 +361,30 @@ The output should be the version installed:
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-```sh
-go version go1.19.1 linux/amd64
-```
+<pre><code>
+go version go{versions.golang} linux/amd64
+</code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-```sh
-go version go1.19.1 linux/arm64
-```
+<pre><code>
+go version go{versions.golang} linux/arm64
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-```sh
-go version go1.19.1 darwin/arm64
-```
+<pre><code>
+go version go{versions.golang} darwin/arm64
+</code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-```sh
-go version go1.19.1 darwin/amd64
-```
+<pre><code>
+go version go{versions.golang} darwin/amd64
+</code></pre>
 
 </TabItem>
 </Tabs>
@@ -392,7 +394,7 @@ go version go1.19.1 darwin/amd64
 
 ````
 
-### Install Celestia node
+### Install Celestia Node
 
 ````mdx-code-block
 <Tabs groupId="network">
@@ -406,27 +408,27 @@ to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
 
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.4
-make install
-make cel-key
-```
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/v{versions['celestia-node_latest_tag_mocha']} <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
 
 Verify that the binary is working and check the version with the `celestia
 version` command:
 
-```console
-$ celestia version
-Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
+<pre><code>
+$ celestia version <br/>
+Semantic version: v{versions['celestia-node_latest_tag_mocha']} <br/>
+Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/linux <br/>
+Golang version: go{versions.golang} <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
@@ -436,27 +438,27 @@ to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
 
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.4
-make install
-make cel-key
-```
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/v{versions['celestia-node_latest_tag_mocha']} <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
 
 Verify that the binary is working and check the version with the `celestia
 version` command:
 
-```console
-$ celestia version
-Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
+<pre><code>
+$ celestia version <br/>
+Semantic version: v{versions['celestia-node_latest_tag_mocha']} <br/>
+Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/linux <br/>
+Golang version: go{versions.golang} <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
@@ -466,27 +468,27 @@ to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
 
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.4
-make go-install
-make cel-key
-```
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/v{versions['celestia-node_latest_tag_mocha']} <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
 
 Verify that the binary is working and check the version with the `celestia
 version` command:
 
-```console
-$ celestia version
-Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
+<pre><code>
+$ celestia version <br/>
+Semantic version: v{versions['celestia-node_latest_tag_mocha']} <br/>
+Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/darwin <br/>
+Golang version: go{versions.golang} <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
@@ -496,27 +498,27 @@ to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
 
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.4
-make go-install
-make cel-key
-```
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/v{versions['celestia-node_latest_tag_mocha']} <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
 
 Verify that the binary is working and check the version with the `celestia
 version` command:
 
-```console
-$ celestia version
-Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
+<pre><code>
+$ celestia version <br/>
+Semantic version: v{versions['celestia-node_latest_tag_mocha']} <br/>
+Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/darwin <br/>
+Golang version: go{versions.golang} <br/>
+</code></pre>
 
 </TabItem>
 </Tabs>
@@ -532,27 +534,28 @@ to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
 
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.2
-make install
-make cel-key
-```
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/v{versions['celestia-node_latest_tag_arabica']} <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
 
 Verify that the binary is working and check the version with the `celestia
 version` command:
 
-```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
+<pre><code>
+$ celestia version <br/>
+Semantic version: v{versions['celestia-node_latest_tag_arabica']} <br/>
+Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/linux <br/>
+Golang version: go{versions.golang} <br/>
+</code></pre>
+
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
@@ -562,27 +565,27 @@ to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
 
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.2
-make install
-make cel-key
-```
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/v{versions['celestia-node_latest_tag_arabica']} <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
 
 Verify that the binary is working and check the version with the `celestia
 version` command:
 
-```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
+<pre><code>
+$ celestia version <br/>
+Semantic version: v{versions['celestia-node_latest_tag_arabica']} <br/>
+Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/linux <br/>
+Golang version: go{versions.golang} <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
@@ -592,27 +595,27 @@ to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
 
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.2
-make go-install
-make cel-key
-```
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/v{versions['celestia-node_latest_tag_arabica']} <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
 
 Verify that the binary is working and check the version with the `celestia
 version` command:
 
-```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
+<pre><code>
+$ celestia version <br/>
+Semantic version: v{versions['celestia-node_latest_tag_arabica']} <br/>
+Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/darwin <br/>
+Golang version: go{versions.golang} <br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
@@ -622,27 +625,27 @@ to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
 
-```sh
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-git checkout tags/v0.6.2
-make go-install
-make cel-key
-```
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/v{versions['celestia-node_latest_tag_arabica']} <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
 
 Verify that the binary is working and check the version with the `celestia
 version` command:
 
-```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
-Golang version: go1.19.1
-```
+<pre><code>
+$ celestia version <br/>
+Semantic version: v{versions['celestia-node_latest_tag_arabica']} <br/>
+Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/darwin <br/>
+Golang version: go{versions.golang} <br/>
+</code></pre>
 
 </TabItem>
 </Tabs>
@@ -659,7 +662,7 @@ Run the following command:
 <Tabs groupId="network">
 <TabItem value="mocha" label="Mocha">
 
-```sh 
+```sh
 celestia light init
 ```
 
@@ -698,10 +701,10 @@ Start the light node with a connection to a validator node's gRPC endpoint (whic
 is usually exposed on port 9090):
 
 > NOTE: In order for access to the ability to get/submit state-related information,
-  such as the ability to submit PayForData transactions, or query for the node's
-  account balance, a gRPC endpoint of a validator (core) node must be passed as
-  directed below. For `gateway`, the default IP Address is `localhost` and the
-  default `port` is `26659`.
+> such as the ability to submit PayForData transactions, or query for the node's
+> account balance, a gRPC endpoint of a validator (core) node must be passed as
+> directed below. For `gateway`, the default IP Address is `localhost` and the
+> default `port` is `26659`.
 
 ````mdx-code-block
 <Tabs groupId="network">
