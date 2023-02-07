@@ -74,8 +74,8 @@ jobs:
       - name: Set outputs
         id: set_outputs
         run: |
-          echo "${{matrix.repo}}_latest_tag=${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_OUTPUT
-          echo "${{matrix.repo}}_latest_sha=${{ fromJSON(steps.get_latest_commit.outputs.data).object.sha }}" >> $GITHUB_OUTPUT
+          echo "${{matrix.repo}}_latest_tag=${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_OUTPUT/outputs-${{ env.inputs.network }}.js
+          echo "${{matrix.repo}}_latest_sha=${{ fromJSON(steps.get_latest_commit.outputs.data).object.sha }}" >> $GITHUB_OUTPUT/outputs-${{ env.inputs.network }}.js
 
   # This job creates a PR if there were changes. The changes are created when
   # the workflow writes to the version files. This means that the workflow
