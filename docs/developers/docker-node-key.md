@@ -13,7 +13,10 @@ First, familiarize yourself with the [guide](../nodes/docker-images.mdx) on how 
 Run the Docker image (in this example, we are using a Light Node):
 
 ```bash
-docker run -e NODE_TYPE=light -e P2P_NETWORK=mocha -p 26659:26659 celestia-node celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
+docker run --name celestia-node -e NODE_TYPE=light -e P2P_NETWORK=mocha -p 26659:26659 \
+ghcr.io/celestiaorg/celestia-node:sha-747c9e5 celestia light start \
+--core.ip https://rpc-mocha.pops.one \
+--gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 ```
 
 List active containers in another window with:
@@ -29,7 +32,7 @@ CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS 
 <container_id>   celestia-node   "/entrypoint.sh cele…"   22 seconds ago   Up 21 seconds   2121/tcp   docker-compose-test-celestia-1
 ```
 
-Interact with the container by replacing <container_id> for the container ID:
+Interact with the container by replacing `<container_id>` for the container ID or `IMAGE` name (`celestia-node`):
 
 ```bash
 docker exec -ti <container_id> /bin/bash
@@ -45,7 +48,7 @@ You can also export your key from the container. In the next section, you'll lea
 
 ## Mounting existing keys to container
 
-In this example, we'll be mounting an existing key to the container. This will mount the entire `/.celestia-light<p2p_network>/keys` directory to your image.
+In this example, we'll be mounting an existing key to the container. We're also using an existing image called `celestia-node`. This will mount the entire `/.celestia-light<p2p_network>/keys` directory to your image.
 
 Write a `docker-compose.yml` to accomplish this:
 
