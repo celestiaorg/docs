@@ -106,7 +106,7 @@ jobs:
           export default versions;
           EOF
           )
-          echo $CONTENTS > docs/nodes/$${{ inputs.network }}_versions.js
+          echo $CONTENTS > docs/nodes/$${{ inputs.network.options }}_versions.js
       - name: Open PR
         uses: peter-evans/create-pull-request@v4
         with:
