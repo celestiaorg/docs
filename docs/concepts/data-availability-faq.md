@@ -17,7 +17,7 @@ published to the network.
 ![Modular VS Monolithic](/img/concepts/data-availability-faq/Data-availability.png)
 
 As you’ll see, modular blockchains like Celestia employ other primitives
-that allow nodes to verify data availability more efficiently. Data
+that allow nodes to verify data availability more efficiently.Data
 availability is critical to the security of any blockchain because it
 ensures that anyone can inspect the ledger of transactions and verify it.
 Data availability becomes particularly problematic when scaling blockchains.
