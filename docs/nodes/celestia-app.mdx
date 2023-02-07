@@ -28,7 +28,7 @@ cd $HOME <br/>
 rm -rf celestia-app <br/>
 git clone https://github.com/celestiaorg/celestia-app.git <br/>
 cd celestia-app/ <br/>
-APP_VERSION={versions.appLatest} <br/>
+APP_VERSION=v{versions['celestia-app_latest_tag']} <br/>
 git checkout tags/$APP_VERSION -b $APP_VERSION <br/>
 make install <br/>
 </code></pre>
@@ -42,7 +42,7 @@ cd $HOME <br/>
 rm -rf celestia-app <br/>
 git clone https://github.com/celestiaorg/celestia-app.git <br/>
 cd celestia-app/ <br/>
-APP_VERSION={versions.appLatest} <br/>
+APP_VERSION=v{versions['celestia-app_latest_tag']} <br/>
 git checkout tags/$APP_VERSION -b $APP_VERSION <br/>
 make install <br/>
 </code></pre>
