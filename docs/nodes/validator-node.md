@@ -6,6 +6,8 @@ sidebar_label: Validator Node
 
 Validator nodes allow you to participate in consensus in the Celestia network.
 
+![Validator Node](../../static/img/nodes/validator.png)
+
 ## Hardware requirements
 
 The following hardware minimum requirements are recommended for running the
