@@ -48,7 +48,7 @@ You can also export your key from the container. In the next section, you'll lea
 
 ## Mounting existing keys to container
 
-In this example, we'll be mounting an existing key to the container. We're also using an existing image called `celestia-node`. This will mount the entire `/.celestia-light<p2p_network>/keys` directory to your image.
+In this example, we'll be mounting an existing key to the container. We're also using an existing image called `celestia-node`. This will mount the entire `/.celestia-light-<p2p_network>/keys` directory to your image.
 
 Write a `docker-compose.yml` to accomplish this:
 
