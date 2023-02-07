@@ -36,13 +36,11 @@ jobs:
     # Define the outputs for other steps to access
     outputs:
       celestia-app_latest_tag: ${{ steps.set_outputs.outputs.celestia-app_latest_tag }}
-      # celestia-app_latest_sha: ${{ steps.set_outputs.outputs.celestia-app_latest_sha }}
-      # celestia-core_latest_tag: ${{ steps.set_outputs.outputs.celestia-core_latest_tag }}
-      # celestia-core_latest_sha: ${{ steps.set_outputs.outputs.celestia-core_latest_sha }}
-      celestia-node_latest_tag_arabica: ${{ steps.set_outputs.outputs.celestia-node_latest_tag }}
-      celestia-node_latest_tag_mocha: ${{ steps.set_outputs.outputs.celestia-node_latest_tag }}
-      celestia-node_latest_sha_mocha: ${{ steps.set_outputs.outputs.celestia-node_latest_sha }}
-      # celestia-node_latest_sha: ${{ steps.set_outputs.outputs.celestia-node_latest_sha }}
+      celestia-app_latest_sha: ${{ steps.set_outputs.outputs.celestia-app_latest_sha }}
+      celestia-core_latest_tag: ${{ steps.set_outputs.outputs.celestia-core_latest_tag }}
+      celestia-core_latest_sha: ${{ steps.set_outputs.outputs.celestia-core_latest_sha }}
+      celestia-node_latest_tag: ${{ steps.set_outputs.outputs.celestia-node_latest_tag }}
+      celestia-node_latest_sha: ${{ steps.set_outputs.outputs.celestia-node_latest_sha }}
     steps:
       - name: Log target owner/repo
         run: "echo Pulling info from: '${{ env.owner }}/${{ matrix.repo }}'"
@@ -98,10 +96,12 @@ jobs:
           CONTENTS=$(cat << EOF
           const versions = Object.freeze({
             "golang": "1.19.1",
-            "celestia-app_latest_tag": ${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }},
-            "celestia-node_latest_tag_arabica": ${{ needs.logLatestRelease.outputs.celestia-node_latest_tag}},
-            "celestia-node_latest_tag_mocha": ${{ needs.logLatestRelease.outputs.celestia-node_latest_tag}},
-            "celestia-node_latest_sha_mocha": ${{ needs.logLatestRelease.outputs.celestia-node_latest_sha}},
+            "app-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }},
+            "app-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }},
+            "core-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }},
+            "core-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }} 
+            "node-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }},
+            "node-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}
           });
           export default versions;
           EOF
