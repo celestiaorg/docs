@@ -112,5 +112,5 @@ jobs:
         with:
           # This github action has a lot of options, currently we just tweak the
           # commit-message and title of the PR.
-          commit-message: "[automated GH action] update latest release tags and commit sha for ${{ inputs.network }}"
+          commit-message: "[automated GH action] update latest release tags & commit sha (${{ inputs.network }})"
           title: "[GH Action] Update release tags and commit SHAs for ${{ inputs.network }}"
