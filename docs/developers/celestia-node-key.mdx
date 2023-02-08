@@ -119,13 +119,6 @@ You can export a private key from the local keyring in encrypted and ASCII-armor
 ./cel-key export <key-name> --keyring-backend test --node.type bridge --p2p.network <network>
 ```
 
-You can then import your key with `celestia-appd`:
-
-```sh
-celestia-appd keys import <new-key-name> 
-  <key-file-location>
-```
-
 </TabItem>
 <TabItem value="full" label="Full">
 
@@ -135,13 +128,6 @@ You can export a private key from the local keyring in encrypted and ASCII-armor
 ./cel-key export <key-name> --keyring-backend test --node.type full --p2p.network <network>
 ```
 
-You can then import your key with `celestia-appd`:
-
-```sh
-celestia-appd keys import <new-key-name> 
-  <key-file-location>
-```
-
 </TabItem>
 <TabItem value="light" label="Light">
 
@@ -149,13 +135,6 @@ You can export a private key from the local keyring in encrypted and ASCII-armor
 
 ```sh
 ./cel-key export <key-name> --keyring-backend test --node.type light --p2p.network <network>
-```
-
-You can then import your key with `celestia-appd`:
-
-```sh
-celestia-appd keys import <new-key-name> 
-  <key-file-location>
 ```
 
 </TabItem>
@@ -239,7 +218,7 @@ The keyring supports the following backends:
     kwallet     Uses KDE Wallet Manager as a credentials management application.
     pass        Uses the pass command line utility to store and retrieve keys.
     test        Stores keys insecurely to disk. It does not prompt for a password to be unlocked
-                and it should be use only for testing purposes.
+                and it should be used only for testing purposes.
 
 kwallet and pass backends depend on external tools. Refer to their respective documentation for more
 information:
