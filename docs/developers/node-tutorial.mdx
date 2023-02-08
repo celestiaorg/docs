@@ -748,7 +748,7 @@ celestia light start --core.ip <ip-address> --keyring.accname <key_name> --core.
 
 Once you start the Light Node, a wallet key will be generated for you.
 You will need to fund that address with Arabica Devnet tokens to pay
-for PayForData transactions.
+for `PayForData` transactions.
 
 You can find the address by running the following command in
 the `celestia-node` directory:
@@ -979,14 +979,19 @@ It will output something like this:
 }
 ```
 
+````mdx-code-block
+
+<Tabs groupId="network">
+<TabItem value="mocha" label="Mocha">
+
 ### Submit a PFD Transaction
 
-In this example, we will be submitting a PayForData
+In this example, we will be submitting a `PayForData`
 transaction to the node's `/submit_pfd` endpoint.
 
 Some things to consider:
 
-- PFD is a PayForData Message.
+- PFD is a `PayForData` Message.
 - The endpoint also takes in a `namespace_id` and `data` values.
 - Namespace ID should be 8 bytes.
 - Data is in hex-encoded bytes of the raw message.
@@ -1238,7 +1243,7 @@ $ curl -X POST -d '{"namespace_id": "c14da9d459dc57f5", "data": "4f7a3f1aadd8325
 "rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
 ```
 
-It is possible that the account you are trying to submit a PayForData from
+It is possible that the account you are trying to submit a `PayForData` from
 doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
 account with tokens and then try again.
 
@@ -1268,3 +1273,300 @@ Will generate the following output:
 ```
 
 The output here is base64-encoded.
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+### Submit a PFB Transaction
+
+In this example, we will be submitting a `PayForBlob`
+transaction to the node's `/submit_pfb` endpoint.
+
+Some things to consider:
+
+- PFB is a `PayForBlob` Message.
+- The endpoint also takes in a `namespace_id` and `data` values.
+- Namespace ID should be 8 bytes.
+- Data is in hex-encoded bytes of the raw message.
+- `gas_limit` is the limit of gas to use for the transaction
+
+We use the following `namespace_id` of `0000010000000100` and
+the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
+
+You can generate your own `namespace_id` and data values using this
+useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
+
+We run the following:
+
+```sh
+curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
+  "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
+  "gas_limit": 70000, "fee": 2000}' http://localhost:26659/submit_pfb
+```
+
+We get the following output:
+
+```json
+{
+   "height":2452,
+   "txhash":"04A79AF9DA62FDB41ACD7D82EB0B9004AE4E4ED603B280A65816560B4F38A999",
+   "data":"12200A1E2F7061796D656E742E4D7367506179466F7244617461526573706F6E7365",
+   "raw_log":"[{\"msg_index\":0,\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"action\",\"value\":\"/payment.MsgPayForBlob\"}]},{\"type\":\"payforblob\",\"attributes\":[{\"key\":\"signer\",\"value\":\"celestia1vdjkcetnw35kzvtgxvmxwmnwwaaxuet4xp3hxut6dce8wctsdq6hjwfcxd5xvvmyddsh5mnvvaaq6776xw\"},{\"key\":\"size\",\"value\":\"27\"}]}]}]",
+   "logs":[
+      {
+         "msg_index":0,
+         "events":[
+            {
+               "type":"message",
+               "attributes":[
+                  {
+                     "key":"action",
+                     "value":"/payment.MsgPayForBlob"
+                  }
+               ]
+            },
+            {
+               "type":"payforblob",
+               "attributes":[
+                  {
+                     "key":"signer",
+                     "value":"celestia1vdjkcetnw35kzvtgxvmxwmnwwaaxuet4xp3hxut6dce8wctsdq6hjwfcxd5xvvmyddsh5mnvvaaq6776xw"
+                  },
+                  {
+                     "key":"size",
+                     "value":"27"
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+   "events":[
+      {
+         "type":"coin_spent",
+         "attributes":[
+            {
+               "key":"spender",
+               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws",
+               "index":true
+            },
+            {
+               "key":"amount",
+               "value":"1utia",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"coin_received",
+         "attributes":[
+            {
+               "key":"receiver",
+               "value":"celestia17xpfvakm2amg962yls6f84z3kell8c5lpnjs3s",
+               "index":true
+            },
+            {
+               "key":"amount",
+               "value":"1utia",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"transfer",
+         "attributes":[
+            {
+               "key":"recipient",
+               "value":"celestia17xpfvakm2amg962yls6f84z3kell8c5lpnjs3s",
+               "index":true
+            },
+            {
+               "key":"sender",
+               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws",
+               "index":true
+            },
+            {
+               "key":"amount",
+               "value":"1utia",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"message",
+         "attributes":[
+            {
+               "key":"sender",
+               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"fee",
+               "value":"1utia",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"acc_seq",
+               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws/267",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"signature",
+               "value":"JMNihnKS/MtYJDprqEFGJuXh16tVADsDDxXaFFpvv2te57btl4LbiRzwRRiN2rvwkJ2zlAApu2ImT22MZBi5+A==",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"fee",
+               "value":"",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"acc_seq",
+               "value":"celestia13zx48t96zauht0kpcn0kcfykc9wn8fehzcp9wq/1024",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"signature",
+               "value":"mIZIjbzN0/RQAlQN7TDWzqtey3vVBPe7IO3+IIDhJstIH8QU9vsHfl0Rql9qWMZQG4dM+77w9WmUcnCeS7edfw==",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"fee",
+               "value":"",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"acc_seq",
+               "value":"celestia1h36gnnwzneu0csqzn2waph5y983hf3dkaznlgz/0",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            {
+               "key":"signature",
+               "value":"sfy+XyP7iWU+V9q3zEIOWxbGihvhzUKRLNVeXP+a+5oRefIA/Pyqfm13A5NU9I27hhfvpqo9vhXW1waRgcI9OA==",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"message",
+         "attributes":[
+            {
+               "key":"action",
+               "value":"/payment.MsgPayForBlob",
+               "index":true
+            }
+         ]
+      },
+      {
+         "type":"payforblob",
+         "attributes":[
+            {
+               "key":"signer",
+               "value":"celestia1vdjkcetnw35kzvtgxvmxwmnwwaaxuet4xp3hxut6dce8wctsdq6hjwfcxd5xvvmyddsh5mnvvaaq6776xw",
+               "index":true
+            },
+            {
+               "key":"size",
+               "value":"27",
+               "index":true
+            }
+         ]
+      }
+   ]
+}
+```
+
+If you notice from the above output, it returns a `height` of
+`2452` which we will use for the next command.
+
+Note: To learn more about status response codes, please navigate to
+[cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
+
+#### Troubleshooting
+
+If you encounter an error like:
+
+```sh
+$ curl -X POST -d '{"namespace_id": "c14da9d459dc57f5", "data": "4f7a3f1aadd83255b8410fef4860c0cd2eba82e24a", "gas_limit": 60000}'  localhost:26659/submit_pfb
+"rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
+```
+
+It is possible that the account you are trying to submit a `PayForBlob` from
+doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
+account with tokens and then try again.
+
+### Get Namespaced Shares by Block Height
+
+After submitting your PFB transaction, upon success, the node will return
+the block height for which the PFB transaction was included. You can then
+use that block height and the namespace ID with which you submitted your
+PFB transaction to get your message [shares](./node-api.md#share-endpoints) returned to you. In this example,
+the block height we got was 2452 which we will use for the following command.
+Read more about shares in the [Celestia Specs](https://celestiaorg.github.io/celestia-specs/latest/specs/data_structures.html?highlight=shares#share).
+
+```sh
+curl -X GET \
+  http://localhost:26659/namespaced_shares/0c204d39600fddd3/height/2452
+```
+
+Will generate the following output:
+
+```json
+{
+   "shares":[
+      "DCBNOWAP3dMb8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+   ],
+   "height":2452
+}
+```
+
+The output here is base64-encoded.
+
+</TabItem>
+</Tabs>
+````
