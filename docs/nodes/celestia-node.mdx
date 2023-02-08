@@ -2,7 +2,9 @@
 sidebar_label: Installing Celestia Node
 ---
 
-import versions from "./versions.js";
+import versions from "../../versions/versions.js";
+import mochaVersions from "../../versions/mocha_versions.js";
+import arabicaVersions from "../../versions/arabica_versions.js";
 
 # Celestia Node
 
@@ -34,7 +36,7 @@ cd $HOME <br/>
 rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
-git checkout tags/v{versions['celestia-node_latest_tag_mocha']} <br/>
+git checkout tags/{mochaVersions['node-latest-tag']} <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -44,8 +46,8 @@ version` command:
 
 <pre><code>
 $ celestia version <br/>
-Semantic version: v{versions['celestia-node_latest_tag_mocha']} <br/>
-Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Semantic version: {mochaVersions['node-latest-tag']} <br/>
+Commit: {mochaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: amd64/linux <br/>
 Golang version: go{versions.golang} <br/>
@@ -64,7 +66,7 @@ cd $HOME <br/>
 rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
-git checkout tags/v{versions['celestia-node_latest_tag_mocha']} <br/>
+git checkout tags/{mochaVersions['node-latest-tag']} <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -74,8 +76,8 @@ version` command:
 
 <pre><code>
 $ celestia version <br/>
-Semantic version: v{versions['celestia-node_latest_tag_mocha']} <br/>
-Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Semantic version: {mochaVersions['node-latest-tag']} <br/>
+Commit: {mochaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: arm64/linux <br/>
 Golang version: go{versions.golang} <br/>
@@ -94,7 +96,7 @@ cd $HOME <br/>
 rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
-git checkout tags/v{versions['celestia-node_latest_tag_mocha']} <br/>
+git checkout tags/{mochaVersions['node-latest-tag']} <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -104,8 +106,8 @@ version` command:
 
 <pre><code>
 $ celestia version <br/>
-Semantic version: v{versions['celestia-node_latest_tag_mocha']} <br/>
-Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Semantic version: {mochaVersions['node-latest-tag']} <br/>
+Commit: {mochaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: arm64/darwin <br/>
 Golang version: go{versions.golang} <br/>
@@ -124,7 +126,7 @@ cd $HOME <br/>
 rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
-git checkout tags/v{versions['celestia-node_latest_tag_mocha']} <br/>
+git checkout tags/{mochaVersions['node-latest-tag']} <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -134,8 +136,8 @@ version` command:
 
 <pre><code>
 $ celestia version <br/>
-Semantic version: v{versions['celestia-node_latest_tag_mocha']} <br/>
-Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Semantic version: {mochaVersions['node-latest-tag']} <br/>
+Commit: {mochaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: amd64/darwin <br/>
 Golang version: go{versions.golang} <br/>
@@ -160,7 +162,7 @@ cd $HOME <br/>
 rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
-git checkout tags/v{versions['celestia-node_latest_tag_arabica']} <br/>
+git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -170,8 +172,8 @@ version` command:
 
 <pre><code>
 $ celestia version <br/>
-Semantic version: v{versions['celestia-node_latest_tag_arabica']} <br/>
-Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Semantic version: {arabicaVersions['node-latest-tag']} <br/>
+Commit: {arabicaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: amd64/linux <br/>
 Golang version: go{versions.golang} <br/>
@@ -191,7 +193,7 @@ cd $HOME <br/>
 rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
-git checkout tags/v{versions['celestia-node_latest_tag_arabica']} <br/>
+git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -201,8 +203,8 @@ version` command:
 
 <pre><code>
 $ celestia version <br/>
-Semantic version: v{versions['celestia-node_latest_tag_arabica']} <br/>
-Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Semantic version: {arabicaVersions['node-latest-tag']} <br/>
+Commit: {arabicaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: arm64/linux <br/>
 Golang version: go{versions.golang} <br/>
@@ -221,7 +223,7 @@ cd $HOME <br/>
 rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
-git checkout tags/v{versions['celestia-node_latest_tag_arabica']} <br/>
+git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -231,8 +233,8 @@ version` command:
 
 <pre><code>
 $ celestia version <br/>
-Semantic version: v{versions['celestia-node_latest_tag_arabica']} <br/>
-Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Semantic version: {arabicaVersions['node-latest-tag']} <br/>
+Commit: {arabicaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: arm64/darwin <br/>
 Golang version: go{versions.golang} <br/>
@@ -251,7 +253,7 @@ cd $HOME <br/>
 rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
-git checkout tags/v{versions['celestia-node_latest_tag_arabica']} <br/>
+git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -261,8 +263,8 @@ version` command:
 
 <pre><code>
 $ celestia version <br/>
-Semantic version: v{versions['celestia-node_latest_tag_arabica']} <br/>
-Commit: 3a58679ed84da966d01173f32780134c7b830594 <br/>
+Semantic version: {arabicaVersions['node-latest-tag']} <br/>
+Commit: {arabicaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: amd64/darwin <br/>
 Golang version: go{versions.golang} <br/>
