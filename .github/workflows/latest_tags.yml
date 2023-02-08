@@ -94,7 +94,7 @@ jobs:
         # layout, contents, or file name, do it here.
         run: |
           CONTENTS=$(cat << EOF
-          const versions = Object.freeze({
+          const \${{ inputs.network }}Versions = Object.freeze({
             "golang": "1.19.1",
             "app-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }},
             "app-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }},
