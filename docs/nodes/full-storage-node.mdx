@@ -69,7 +69,7 @@ Start the Full Storage Node with a connection to a validator node's gRPC endpoin
 (which is usually exposed on port 9090):
 
 > NOTE: In order for access to the ability to get/submit state-related
-  information, such as the ability to submit PayForData transactions,
+  information, such as the ability to submit `PayForBlob` transactions,
   or query for the node's account balance, a gRPC endpoint of a validator
   (core) node must be passed as directed below.
 
@@ -106,7 +106,7 @@ You can create your key for your node by following the `cel-key` instructions [h
 
 Once you start the Full Node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
-PayForData transactions.
+`PayForBlob` transactions.
 You can find the address by running the following command:
 
 ```sh
