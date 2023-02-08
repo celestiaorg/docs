@@ -42,8 +42,8 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+Commit: 747c9e593542dfb32a933c731a9cd74b1fab897f
+Build Date: Fri Feb  3 15:19:29 EST 2023
 System version: amd64/linux
 Golang version: go1.19.1
 ```
@@ -72,9 +72,9 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+Commit: 747c9e593542dfb32a933c731a9cd74b1fab897f
+Build Date: Fri Feb  3 15:19:29 EST 2023
+System version: arm64/linux
 Golang version: go1.19.1
 ```
 
@@ -102,9 +102,9 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+Commit: 747c9e593542dfb32a933c731a9cd74b1fab897f
+Build Date: Fri Feb  3 15:19:29 EST 2023
+System version: arm64/darwin
 Golang version: go1.19.1
 ```
 
@@ -132,9 +132,9 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+Commit: 747c9e593542dfb32a933c731a9cd74b1fab897f
+Build Date: Fri Feb  3 15:19:29 EST 2023
+System version: amd64/darwin
 Golang version: go1.19.1
 ```
 
@@ -157,7 +157,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.6.2
+git checkout tags/v0.7.0-rc1
 make install
 make cel-key
 ```
@@ -167,9 +167,9 @@ version` command:
 
 ```output
 $ celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+Semantic version: v0.7.0-rc1
+Commit: 6933f03feb4a35ecd018e1a3cd70d7ae1644eb51
+Build Date: Wed Feb  8 13:13:17 EST 2023
 System version: amd64/linux
 Golang version: go1.19.1
 ```
@@ -187,7 +187,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.6.2
+git checkout tags/v0.7.0-rc1
 make install
 make cel-key
 ```
@@ -197,10 +197,10 @@ version` command:
 
 ```output
 $ celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+Semantic version: v0.7.0-rc1
+Commit: 6933f03feb4a35ecd018e1a3cd70d7ae1644eb51
+Build Date: Wed Feb  8 13:13:17 EST 2023
+System version: arm64/linux
 Golang version: go1.19.1
 ```
 
@@ -217,7 +217,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.6.2
+git checkout tags/v0.7.0-rc1
 make go-install
 make cel-key
 ```
@@ -227,10 +227,10 @@ version` command:
 
 ```output
 $ celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+Semantic version: v0.7.0-rc1
+Commit: 6933f03feb4a35ecd018e1a3cd70d7ae1644eb51
+Build Date: Wed Feb  8 13:13:17 EST 2023
+System version: arm64/darwin
 Golang version: go1.19.1
 ```
 
@@ -247,7 +247,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.6.2
+git checkout tags/v0.7.0-rc1
 make go-install
 make cel-key
 ```
@@ -257,10 +257,10 @@ version` command:
 
 ```output
 $ celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+Semantic version: v0.7.0-rc1
+Commit: 6933f03feb4a35ecd018e1a3cd70d7ae1644eb51
+Build Date: Wed Feb  8 13:13:17 EST 2023
+System version: amd64/darwin
 Golang version: go1.19.1
 ```
 
@@ -364,14 +364,14 @@ rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-nam
 Here's an example for Arabica:
 
 ```sh
-rm -rf ~./celestia-light-arabica-3 && celestia light init --p2p.network arabica
+rm -rf ~./celestia-light-arabica-4 && celestia light init --p2p.network arabica
 ```
 
 Your output will look similar to below:
 
 ```sh
-2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-arabica-3'
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-arabica-3/config.toml"}
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-arabica-4'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-arabica-4/config.toml"}
 2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
 ```
 

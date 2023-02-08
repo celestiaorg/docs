@@ -395,6 +395,7 @@ go version go1.19.1 darwin/amd64
 ### Install Celestia node
 
 ````mdx-code-block
+
 <Tabs groupId="network">
 <TabItem value="mocha" label="Mocha">
 
@@ -422,8 +423,8 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+Commit: 747c9e593542dfb32a933c731a9cd74b1fab897f
+Build Date: Fri Feb  3 15:19:29 EST 2023
 System version: amd64/linux
 Golang version: go1.19.1
 ```
@@ -452,9 +453,9 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+Commit: 747c9e593542dfb32a933c731a9cd74b1fab897f
+Build Date: Fri Feb  3 15:19:29 EST 2023
+System version: arm64/linux
 Golang version: go1.19.1
 ```
 
@@ -482,9 +483,9 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+Commit: 747c9e593542dfb32a933c731a9cd74b1fab897f
+Build Date: Fri Feb  3 15:19:29 EST 2023
+System version: arm64/darwin
 Golang version: go1.19.1
 ```
 
@@ -512,9 +513,9 @@ version` command:
 ```console
 $ celestia version
 Semantic version: v0.6.4
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+Commit: 747c9e593542dfb32a933c731a9cd74b1fab897f
+Build Date: Fri Feb  3 15:19:29 EST 2023
+System version: amd64/darwin
 Golang version: go1.19.1
 ```
 
@@ -537,7 +538,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.6.2
+git checkout tags/v0.7.0-rc1
 make install
 make cel-key
 ```
@@ -546,10 +547,10 @@ Verify that the binary is working and check the version with the `celestia
 version` command:
 
 ```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+$ celestia version
+Semantic version: v0.7.0-rc1
+Commit: 6933f03feb4a35ecd018e1a3cd70d7ae1644eb51
+Build Date: Wed Feb  8 13:13:17 EST 2023
 System version: amd64/linux
 Golang version: go1.19.1
 ```
@@ -567,7 +568,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.6.2
+git checkout tags/v0.7.0-rc1
 make install
 make cel-key
 ```
@@ -576,11 +577,11 @@ Verify that the binary is working and check the version with the `celestia
 version` command:
 
 ```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+$ celestia version
+Semantic version: v0.7.0-rc1
+Commit: 6933f03feb4a35ecd018e1a3cd70d7ae1644eb51
+Build Date: Wed Feb  8 13:13:17 EST 2023
+System version: arm64/linux
 Golang version: go1.19.1
 ```
 
@@ -597,7 +598,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.6.2
+git checkout tags/v0.7.0-rc1
 make go-install
 make cel-key
 ```
@@ -606,11 +607,11 @@ Verify that the binary is working and check the version with the `celestia
 version` command:
 
 ```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+$ celestia version
+Semantic version: v0.7.0-rc1
+Commit: 6933f03feb4a35ecd018e1a3cd70d7ae1644eb51
+Build Date: Wed Feb  8 13:13:17 EST 2023
+System version: arm64/darwin
 Golang version: go1.19.1
 ```
 
@@ -627,7 +628,7 @@ cd $HOME
 rm -rf celestia-node
 git clone https://github.com/celestiaorg/celestia-node.git
 cd celestia-node/
-git checkout tags/v0.6.2
+git checkout tags/v0.7.0-rc1
 make go-install
 make cel-key
 ```
@@ -636,11 +637,11 @@ Verify that the binary is working and check the version with the `celestia
 version` command:
 
 ```output
-celestia version
-Semantic version: v0.6.2
-Commit: 3a58679ed84da966d01173f32780134c7b830594
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022
-System version: amd64/linux
+$ celestia version
+Semantic version: v0.7.0-rc1
+Commit: 6933f03feb4a35ecd018e1a3cd70d7ae1644eb51
+Build Date: Wed Feb  8 13:13:17 EST 2023
+System version: amd64/darwin
 Golang version: go1.19.1
 ```
 
@@ -684,7 +685,7 @@ You should see output like:
 ```output
 $ celestia light init --p2p.network arabica
 2022-12-19T21:45:00.802Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-arabica-2'
-2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:50  Saving config   {"path": "/root/.celestia-light-arabica-3/config.toml"}
+2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:50  Saving config   {"path": "/root/.celestia-light-arabica-4/config.toml"}
 2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:51  Node Store initialized
 ```
 
