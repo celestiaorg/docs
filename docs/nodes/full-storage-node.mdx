@@ -13,6 +13,14 @@ This tutorial will guide you through setting up a Celestia Full Storage
 Node, which is a Celestia node that doesn't connect to Celestia App
 (hence not a full node) but stores all the data.
 
+## Overview of Full Storage Nodes
+
+Full Storage nodes are Celestia nodes that store all the data. Full
+Storage nodes send block shares, headers, and fraud proofs to Light Nodes.
+The Light Nodes gossip headers, fraud proofs, and sometimes block shares, between one another. 
+
+![Full Storage Node](../../static/img/full-storage-node.png)
+
 ## Hardware requirements
 
 The following hardware minimum requirements are recommended for running
@@ -46,17 +54,17 @@ Run the following command:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-```sh
-celestia full init --p2p.network arabica
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh 
 celestia full init
+```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia full init --p2p.network arabica
 ```
 
 </TabItem>
@@ -172,17 +180,17 @@ In order to run a full storage node using a custom key:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-```sh
-celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --keyring.accname <name-of-custom-key> --p2p.network arabica
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh 
-celestia full start --core.ip <ip-address>:<port> --keyring.accname <name-of-custom-key>
+celestia full start --core.ip <ip-address> --keyring.accname <name-of-custom-key>
+```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia full start --core.ip http://<ip-address> --keyring.accname <name-of-custom-key> --p2p.network arabica
 ```
 
 </TabItem>

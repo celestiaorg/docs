@@ -10,10 +10,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const ARABICA_PARAMS = {
-  chainId: 'arabica-3',
+  chainId: 'arabica-4',
   chainName: 'Arabica Devnet',
   rpc: 'https://rpc.limani.celestia-devops.dev',
-  rest: 'https://limani.celestia-devops.dev'
+  rest: 'https://api.limani.celestia-devops.dev'
 }
 
 export const MOCHA_PARAMS = {
@@ -137,32 +137,6 @@ first.
 
 ````mdx-code-block
 <Tabs groupId="keplr-network-selection">
-<TabItem value="arabica" label="Arabica">
-
-Here is a demo button that allows you to
-add Arabica Devnet to Keplr.
-
-Try it out:
-<AddNetworkKeplr params={ARABICA_PARAMS} />
-
-Behind the scenes, here are the params
-we are passing to the `AddNetworkKeplr`
-function:
-
-```jsx
-import '@site/src/components/AddNetworkKeplr'
-
-export const ARABICA_PARAMS = {
-  chainId: 'arabica-3',
-  chainName: 'Arabica Devnet',
-  rpc: 'https://rpc.limani.celestia-devops.dev',
-  rest: 'https://limani.celestia-devops.dev'
-}
-
-<AddNetworkKeplr params={ARABICA_PARAMS}/>
-```
-</TabItem>
-
 <TabItem value="mocha" label="Mocha">
 
 Here is a demo button that allows you to
@@ -189,7 +163,31 @@ export const MOCHA_PARAMS = {
 ```
 </TabItem>
 
+<TabItem value="arabica" label="Arabica 🏗️">
 
+Here is a demo button that allows you to
+add Arabica Devnet to Keplr.
+
+Try it out:
+<AddNetworkKeplr params={ARABICA_PARAMS} />
+
+Behind the scenes, here are the params
+we are passing to the `AddNetworkKeplr`
+function:
+
+```jsx
+import '@site/src/components/AddNetworkKeplr'
+
+export const ARABICA_PARAMS = {
+  chainId: 'arabica-4',
+  chainName: 'Arabica Devnet',
+  rpc: 'https://rpc.limani.celestia-devops.dev',
+  rest: 'https://api.limani.celestia-devops.dev'
+}
+
+<AddNetworkKeplr params={ARABICA_PARAMS}/>
+```
+</TabItem>
 
 </Tabs>
 ````

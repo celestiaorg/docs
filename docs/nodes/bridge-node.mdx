@@ -23,7 +23,8 @@ A Celestia bridge node has the following properties:
    have the option of being an active validator in the Consensus network.
 2. Validate and erasure code the “raw” blocks
 3. Supply block shares with data availability headers to Light Nodes in the DA network.
-   ![bridge-node-diagram](/img/nodes/BridgeNodes.png)
+
+![bridge-node-diagram](/img/nodes/BridgeNodes.png)
 
 From an implementation perspective, Bridge Nodes run two separate processes:
 
@@ -42,7 +43,7 @@ From an implementation perspective, Bridge Nodes run two separate processes:
 2. Celestia Node ([see repo](https://github.com/celestiaorg/celestia-node))
 
     * **Celestia Node** augments the above with a separate libp2p network that
-      serves data availability sampling requests. The team sometimes refer to
+      serves data availability sampling requests. The team sometimes refers to
       this as the “halo” network.
 
 ## Hardware requirements
@@ -78,12 +79,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
+<TabItem value="mocha" label="Mocha">
 
-  Run the following:
+Run the following:
 
 ```sh
-celestia bridge init --core.ip <ip-address> --core.grpc.port <port> --p2p.network arabica
+celestia bridge init --core.ip <ip-address>
 ```
 
 > NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
@@ -96,16 +97,16 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 Here is an example of initializing the bridge node:
 
 ```sh
-celestia bridge init --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090 --p2p.network arabica
+celestia bridge init --core.ip https://rpc-mocha.pops.one
 ```
 
 </TabItem>
-<TabItem value="mocha" label="Mocha">
+<TabItem value="arabica" label="Arabica 🏗️">
 
-Run the following:
+  Run the following:
 
 ```sh
-celestia bridge init --core.ip <ip-address>:<port>
+celestia bridge init --core.ip <ip-address> --p2p.network arabica
 ```
 
 > NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
@@ -118,7 +119,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 Here is an example of initializing the bridge node:
 
 ```sh
-celestia bridge init --core.ip https://rpc-mocha.pops.one
+celestia bridge init --core.ip https://limani.celestia-devops.dev/ --p2p.network arabica
 ```
 
 </TabItem>
@@ -133,7 +134,7 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
-celestia bridge start --core.ip <ip-address>:<port>
+celestia bridge start --core.ip <ip-address>
 ```
 
 > NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
@@ -175,7 +176,7 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
-celestia bridge start --core.ip <ip-address> --core.grpc.port <port> --p2p.network arabica
+celestia bridge start --core.ip <ip-address> --p2p.network arabica
 ```
 
 > NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
@@ -188,7 +189,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 Here is an example of starting the bridge node:
 
 ```sh
-celestia bridge start --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090 --p2p.network arabica
+celestia bridge start --core.ip https://limani.celestia-devops.dev/ --p2p.network arabica
 ```
 
 You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx)
@@ -224,17 +225,17 @@ In order to run a bridge node using a custom key:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-```sh
-celestia bridge start --core.ip <ip> --core.grpc.port 9090 --keyring.accname <name_of_custom_key> --p2p.network arabica
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia bridge start --core.ip <ip>:<port> --keyring.accname <name_of_custom_key>
+celestia bridge start --core.ip <ip> --keyring.accname <name_of_custom_key>
+```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia bridge start --core.ip <ip> --keyring.accname <name_of_custom_key> --p2p.network arabica
 ```
 
 </TabItem>
