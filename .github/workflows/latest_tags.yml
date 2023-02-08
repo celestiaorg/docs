@@ -96,12 +96,12 @@ jobs:
           CONTENTS=$(cat << EOF
           const ${{ inputs.network }}Versions = Object.freeze({
             "golang": "1.19.1",
-            "app-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }},
-            "app-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }},
-            "core-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }},
-            "core-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }} 
-            "node-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }},
-            "node-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}
+            "app-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }}",
+            "app-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }}",
+            "core-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }}",
+            "core-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}", 
+            "node-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }}",
+            "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}"
           });
           export default versions;
           EOF
