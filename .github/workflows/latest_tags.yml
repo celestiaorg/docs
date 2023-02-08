@@ -101,7 +101,7 @@ jobs:
             "core-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }}",
             "core-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}", 
             "node-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }}",
-            "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}"
+            "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-node_latest_sha }}"
           });
           export default ${{ inputs.network }}Versions;
           EOF
