@@ -694,21 +694,21 @@ $ celestia light init
 
 ### Start the light node
 
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="mocha" label="Mocha">
+
 Start the light node with a connection to a validator node's gRPC endpoint (which
 is usually exposed on port 9090):
 
 > NOTE: In order for access to the ability to get/submit state-related information,
-  such as the ability to submit `PayForBlob` transactions, or query for the node's
+  such as the ability to submit `PayForData` transactions, or query for the node's
   account balance, a gRPC endpoint of a validator (core) node must be passed as
   directed below. For `gateway`, the default IP Address is `localhost` and the
   default `port` is `26659`.
 
-````mdx-code-block
-<Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network <network>
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
 For ports:
@@ -719,10 +719,19 @@ For ports:
   port if you prefer.
 
 </TabItem>
-<TabItem value="mocha" label="Mocha">
+<TabItem value="arabica" label="Arabica 🏗️">
+
+Start the light node with a connection to a validator node's gRPC endpoint (which
+is usually exposed on port 9090):
+
+> NOTE: In order for access to the ability to get/submit state-related information,
+  such as the ability to submit `PayForBlob` transactions, or query for the node's
+  account balance, a gRPC endpoint of a validator (core) node must be passed as
+  directed below. For `gateway`, the default IP Address is `localhost` and the
+  default `port` is `26659`.
 
 ```sh
-celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+celestia light start --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network <network>
 ```
 
 For ports:
@@ -774,25 +783,29 @@ You can start your light node with the key created above by running the
 following command:
 
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-```sh
-celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh
 celestia light start --core.ip <ip-address>:<port> --keyring.accname <key-name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
+Once you start the Light Node, a wallet key will be generated for you.
+You will need to fund that address with testnet tokens to pay for
+`PayForData` transactions.
+
 </TabItem>
-</Tabs>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia light start --keyring.accname <key_name> --core.ip <ip-address> --core.grpc.port <port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
+```
 
 Once you start the Light Node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
 `PayForBlob` transactions.
+
+</TabItem>
+</Tabs>
 
 You can find the address by running the following command in the
 `celestia-node` directory:
@@ -854,5 +867,20 @@ process with SystemD [here](./systemd.md#celestia-light-node).
 
 ## Data availability sampling (DAS)
 
+
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="mocha" label="Mocha">
+
+With your light node running, you can check out this tutorial on
+submitting `PayForData` transactions [here](../developers/node-tutorial.mdx).
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
 With your light node running, you can check out this tutorial on
 submitting `PayForBlob` transactions [here](../developers/node-tutorial.mdx).
+
+</TabItem>
+</Tabs>
+````
