@@ -119,13 +119,6 @@ You can export a private key from the local keyring in encrypted and ASCII-armor
 ./cel-key export <key-name> --keyring-backend test --node.type bridge --p2p.network <network>
 ```
 
-You can then import your key with `celestia-appd`:
-
-```sh
-celestia-appd keys import <new-key-name> 
-  <key-file-location>
-```
-
 </TabItem>
 <TabItem value="full" label="Full">
 
@@ -135,13 +128,6 @@ You can export a private key from the local keyring in encrypted and ASCII-armor
 ./cel-key export <key-name> --keyring-backend test --node.type full --p2p.network <network>
 ```
 
-You can then import your key with `celestia-appd`:
-
-```sh
-celestia-appd keys import <new-key-name> 
-  <key-file-location>
-```
-
 </TabItem>
 <TabItem value="light" label="Light">
 
@@ -149,13 +135,6 @@ You can export a private key from the local keyring in encrypted and ASCII-armor
 
 ```sh
 ./cel-key export <key-name> --keyring-backend test --node.type light --p2p.network <network>
-```
-
-You can then import your key with `celestia-appd`:
-
-```sh
-celestia-appd keys import <new-key-name> 
-  <key-file-location>
 ```
 
 </TabItem>
