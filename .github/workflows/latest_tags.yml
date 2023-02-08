@@ -103,7 +103,7 @@ jobs:
             "node-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }}",
             "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}"
           });
-          export default versions;
+          export default ${{ inputs.network }}Versions;
           EOF
           )
           echo $CONTENTS > versions/\${{ inputs.network }}_versions.js
