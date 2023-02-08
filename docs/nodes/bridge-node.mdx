@@ -91,7 +91,7 @@ celestia bridge init --core.ip <ip-address> --core.grpc.port <port> --p2p.networ
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../arabica-devnet.md#rpc-endpoints)
 
 Here is an example of initializing the bridge node:
 
@@ -127,29 +127,6 @@ celestia bridge init --core.ip https://rpc-mocha.pops.one
 ### Run the bridge node
 
 <Tabs groupId="network">
-<TabItem value="arabica" label="Arabica">
-
-Start the Bridge Node with a connection to a validator node's gRPC endpoint
-(which is usually exposed on port 9090):
-
-```sh
-celestia bridge start --core.ip <ip-address> --core.grpc.port <port> --p2p.network arabica
-```
-
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
-
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
-
-Here is an example of starting the bridge node:
-
-```sh
-celestia bridge start --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090 --p2p.network arabica
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 Start the Bridge Node with a connection to a validator node's gRPC endpoint
@@ -172,9 +149,47 @@ Here is an example of starting the bridge node:
 celestia bridge start --core.ip https://rpc-mocha.pops.one:26657
 ```
 
+You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx)
+
+Once you start the Bridge Node, a wallet key will be generated for you.
+You will need to fund that address with Testnet tokens to pay for
+`PayForData` transactions.
+You can find the address by running the following command:
+
+```sh
+./cel-key list --node.type bridge --keyring-backend test --p2p.network <network>
+```
+
+You can get testnet tokens from:
+
+* [Mocha](./mocha-testnet.md)
+
+> NOTE: If you are running a bridge node for your validator
+  it is highly recommended to request Mocha testnet tokens
+  as this is the testnet used to test out validator operations.
+
 </TabItem>
-</Tabs>
-````
+<TabItem value="arabica" label="Arabica 🏗️">
+
+Start the Bridge Node with a connection to a validator node's gRPC endpoint
+(which is usually exposed on port 9090):
+
+```sh
+celestia bridge start --core.ip <ip-address> --core.grpc.port <port> --p2p.network arabica
+```
+
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
+
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
+
+Here is an example of starting the bridge node:
+
+```sh
+celestia bridge start --core.ip https://limani.celestia-devops.dev/ --core.grpc.port 9090 --p2p.network arabica
+```
 
 You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx)
 
@@ -187,14 +202,17 @@ You can find the address by running the following command:
 ./cel-key list --node.type bridge --keyring-backend test --p2p.network <network>
 ```
 
-You have two networks to get testnet tokens from:
+You can get testnet tokens from:
 
 * [Arabica](./arabica-devnet.md)
-* [Mocha](./mocha-testnet.md)
 
 > NOTE: If you are running a bridge node for your validator
-  it is highly recommended to request Mocha testnet tokens
+  it is highly recommended to request Arabica devnet tokens
   as this is the testnet used to test out validator operations.
+  
+</TabItem>
+</Tabs>
+````
 
 #### Optional: run the bridge node with a custom key
 
