@@ -6,14 +6,15 @@
 
 Fuel is an execution layer for the Modular stack.
 
-Fuel is a modular execution layer in the blockchain
-technology that provides a fast and efficient solution
+Fuel is an execution layer in modular blockchains
+that provides a fast and efficient solution
 to scalability. It aims to address the scalability
 crisis in Ethereum, which has seen modest increase
 in total throughput with L2 solutions. Fuel is designed
-to leverage the shift in L1 blockchain architectures,
-where execution is separated from data availability
-and consensus, leading to increased bandwidth capacity.
+to leverage the shift in L1 blockchain architectures
+from monolithic to modular, where execution is separated
+from data availability and consensus, leading to increased
+bandwidth capacity.
 
 Fuel has three key components:
 
