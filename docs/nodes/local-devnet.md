@@ -8,6 +8,24 @@ sidebar_label: Local Devnet
 This tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
 :::
 
+This tutorial will teach developers how to easily run a local Celestia devnet on their own machine (or in the cloud).
+Running a local devnet for Celestia to test your rollup is the recommended first step before deploying to a testnet.
+This eliminates the need for testnet tokens and deploying to a testnet until you are ready.
+
+The development journey for your rollup will look something like this:
+
+1. Run your rollup and post DA to a local devnet, and make sure everything works as expected
+2. Deploy the rollup, posting to a DA testnet. Confirm again that everything is functioning properly
+3. Finally, deploy your rollup to the DA Layer's mainnet
+
+Whether you're a developer simply testing things on your laptop or using a virtual machine in the cloud,
+this process can be done on any machine of your choosing. We tested it out successfully on a machine with the following specs:
+
+- Memory: 1 GB RAM
+- CPU: Single Core AMD
+- Disk: 25 GB SSD Storage
+- OS: Ubuntu 22.10 x64
+
 ## Prerequisites
 
 First, you'll need to have Docker installed or [install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
