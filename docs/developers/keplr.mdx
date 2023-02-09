@@ -4,13 +4,15 @@ sidebar_label: Keplr Integration
 
 # Keplr Integration With Celestia
 
+import constants from "../../versions/constants.js";
+
 ````mdx-code-block
 import AddNetworkKeplr from '@site/src/components/AddNetworkKeplr';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const ARABICA_PARAMS = {
-  chainId: 'arabica-4',
+  chainId: `${constants.arabicaChainId}`,
   chainName: 'Arabica Devnet',
   rpc: 'https://rpc.limani.celestia-devops.dev',
   rest: 'https://api.limani.celestia-devops.dev'
@@ -175,18 +177,19 @@ Behind the scenes, here are the params
 we are passing to the `AddNetworkKeplr`
 function:
 
-```jsx
-import '@site/src/components/AddNetworkKeplr'
-
-export const ARABICA_PARAMS = {
-  chainId: 'arabica-4',
+<pre><code>
+import '@site/src/components/AddNetworkKeplr' <br/>
+<br/>
+export const ARABICA_PARAMS = {`{
+  chainId: 'arabica-5',
   chainName: 'Arabica Devnet',
   rpc: 'https://rpc.limani.celestia-devops.dev',
   rest: 'https://api.limani.celestia-devops.dev'
-}
+}`} <br/>
+<br/>
+{`<AddNetworkKeplr params={ARABICA_PARAMS}/>`}
+</code></pre>
 
-<AddNetworkKeplr params={ARABICA_PARAMS}/>
-```
 </TabItem>
 
 </Tabs>
