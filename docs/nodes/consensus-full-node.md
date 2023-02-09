@@ -8,6 +8,8 @@ sidebar_label: Consensus Full Node
 Consensus Full Nodes allow you to sync blockchain history in the Celestia
 Consensus Layer.
 
+![Consensus Full Node](../../static/img/nodes/consensus-full-node.png)
+
 ## Hardware requirements
 
 The following hardware minimum requirements are recommended for running the

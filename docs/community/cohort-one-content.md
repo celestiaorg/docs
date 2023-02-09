@@ -243,6 +243,8 @@ the basic pieces you need to shape your Smart Contract.
 
 🪧 **Demo Day**
 
+- [Modular Fellows Demo Day: Cohort 1](https://www.youtube.com/watch?v=Wy1_NM0Ac1k)
+
 - **Wednesday 11 January @ 11am EST / 4pm UTC / 5pm CEST**
 
 🪧 **Write up of project due**
