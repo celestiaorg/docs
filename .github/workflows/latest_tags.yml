@@ -76,11 +76,11 @@ jobs:
         run: |
           echo "${{matrix.repo}}_latest_tag=${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_OUTPUT
           echo "${{matrix.repo}}_latest_sha=${{ fromJSON(steps.get_latest_commit.outputs.data).object.sha }}" >> $GITHUB_OUTPUT
-
+trtrrftff
   # This job creates a PR if there were changes. The changes are created when
   # the workflow writes to the version files. This means that the workflow
   # should be able to be run and will just be a no-op if the is no new release.
-  # Either way, since a PR is created, this projects breaking the docs on main.
+  # Either way, since a PR is created, this job won't break the docs on main.
   createPR:
     needs: logLatestRelease
     runs-on: ubuntu-latest
