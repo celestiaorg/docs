@@ -179,7 +179,7 @@ chain to Celestia.
 ### Celestiums (Ethereum)
 
 [Celestiums](https://blog.celestia.org/celestiums) allow developers
-to deploy a rollup using Celestia as DA and Ethereum as settlement.
+to deploy to a rollup using Celestia as DA and Ethereum as settlement.
 
 Ethereum rollups batch data from multiple transactions into a single
 transaction. This rollup transaction data (calldata) is posted to
