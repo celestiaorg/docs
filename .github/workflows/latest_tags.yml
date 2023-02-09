@@ -76,7 +76,7 @@ jobs:
         run: |
           echo "${{matrix.repo}}_latest_tag=${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_OUTPUT
           echo "${{matrix.repo}}_latest_sha=${{ fromJSON(steps.get_latest_commit.outputs.data).object.sha }}" >> $GITHUB_OUTPUT
-trtrrftff
+          
   # This job creates a PR if there were changes. The changes are created when
   # the workflow writes to the version files. This means that the workflow
   # should be able to be run and will just be a no-op if the is no new release.
@@ -106,6 +106,12 @@ trtrrftff
           EOF
           )
           echo $CONTENTS > versions/\${{ inputs.network }}_versions.js
+      - name: Install Prettier
+        run: |
+          npm install -g prettier
+      - name: Format the code with Prettier
+        run: |
+          prettier versions/\${{ inputs.network }}_versions.js --write
       - name: Open PR
         uses: peter-evans/create-pull-request@v4
         with:
