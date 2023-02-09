@@ -94,23 +94,23 @@ jobs:
         # layout, contents, or file name, do it here.
         run: |
           CONTENTS=$(cat << EOF
-          const versions = Object.freeze({
+          const ${{ inputs.network }}Versions = Object.freeze({
             "golang": "1.19.1",
-            "app-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }},
-            "app-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }},
-            "core-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }},
-            "core-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }} 
-            "node-latest-tag": ${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }},
-            "node-latest-sha": ${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}
+            "app-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }}",
+            "app-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }}",
+            "core-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }}",
+            "core-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}", 
+            "node-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }}",
+            "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-node_latest_sha }}"
           });
-          export default versions;
+          export default ${{ inputs.network }}Versions;
           EOF
           )
-          echo $CONTENTS > docs/nodes/$${{ inputs.network }}_versions.js
+          echo $CONTENTS > versions/\${{ inputs.network }}_versions.js
       - name: Open PR
         uses: peter-evans/create-pull-request@v4
         with:
           # This github action has a lot of options, currently we just tweak the
           # commit-message and title of the PR.
-          commit-message: "[automated GH action] update latest release tags and commit sha"
-          title: "[GH Action] Update release tags and commit SHAs"
+          commit-message: "[automated GH action] update latest release tags & commit sha (${{ inputs.network }})"
+          title: "[GH Action] Update release tags and commit SHAs for ${{ inputs.network }}"
