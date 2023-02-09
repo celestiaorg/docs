@@ -4,7 +4,7 @@ sidebar_label: Build Modular
 
 # Build Modular
 
-This sections will explain the advantages of building on
+This section will explain the advantages of building on
 modular blockchains like Celestia.
 
 ## Scalability challenges
