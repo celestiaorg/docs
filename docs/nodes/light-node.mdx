@@ -686,13 +686,12 @@ celestia light init --p2p.network arabica
 
 You should see output like:
 
-```output
-$ celestia light init --p2p.network arabica
-2022-12-19T21:45:00.802Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-arabica-2'
-2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:50  Saving config   {"path": "/root/.celestia-light-arabica-4/config.toml"}
-2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:51  Node Store initialized
-```
-
+<pre><code>
+$ celestia light init --p2p.network arabica <br/>
+2022-12-19T21:45:00.802Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-{constants.arabicaChainId}' <br/>
+2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:50  Saving config   {`{"path": "/root/.celestia-light-${constants.arabicaChainId}/config.toml"}`}` <br/>
+2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:51  Node Store initialized <br/>
+</code></pre>
 </TabItem>
 </Tabs>
 ````

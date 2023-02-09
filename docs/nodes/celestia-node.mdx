@@ -368,17 +368,17 @@ rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-nam
 
 Here's an example for Arabica:
 
-```sh
-rm -rf ~./celestia-light-arabica-4 && celestia light init --p2p.network arabica
-```
+<pre><code>
+rm -rf ~./celestia-light-{constants.arabicaChainId} && celestia light init --p2p.network arabica
+</code></pre>
 
 Your output will look similar to below:
 
-```sh
-2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-arabica-4'
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-arabica-4/config.toml"}
+<pre><code>
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-{constants.arabicaChainId}' <br/>
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{`{"path": "/Users/joshstein/.celestia-light-${constants.arabicaChainId}/config.toml"}`}` <br/>
 2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
-```
+</code></pre>
 
 Then start your node:
 
