@@ -2,7 +2,7 @@
 sidebar_label: Node Tutorial
 ---
 
-import versions from "../../versions/versions.js";
+import constants from "../../versions/constants.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
 import mochaVersions from "../../versions/mocha_versions.js";
 
@@ -152,7 +152,7 @@ so we must install Golang to build and run them.
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golangNode}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -164,7 +164,7 @@ rm "go$ver.linux-amd64.tar.gz" <br/>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golangNode}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -176,7 +176,7 @@ rm "go$ver.linux-arm64.tar.gz" <br/>
 <TabItem value="apple" label="Mac (Apple)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golangNode}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -188,7 +188,7 @@ rm "go$ver.darwin-arm64.tar.gz" <br/>
 <TabItem value="mac" label="Mac (Intel)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golangNode}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -232,28 +232,28 @@ The output should be the version installed:
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 <pre><code>
-go version go{versions.golang} linux/amd64
+go version go{constants.golangNode} linux/amd64
 </code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 <pre><code>
-go version go{versions.golang} linux/arm64
+go version go{constants.golangNode} linux/arm64
 </code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
 <pre><code>
-go version go{versions.golang} darwin/arm64
+go version go{constants.golangNode} darwin/arm64
 </code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
 <pre><code>
-go version go{versions.golang} darwin/amd64
+go version go{constants.golangNode} darwin/amd64
 </code></pre>
 
 </TabItem>
@@ -266,7 +266,7 @@ go version go{versions.golang} darwin/amd64
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golangNode}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -278,7 +278,7 @@ rm "go$ver.linux-amd64.tar.gz" <br/>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golangNode}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -290,7 +290,7 @@ rm "go$ver.linux-arm64.tar.gz" <br/>
 <TabItem value="apple" label="Mac (Apple)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golangNode}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -302,7 +302,7 @@ rm "go$ver.darwin-arm64.tar.gz" <br/>
 <TabItem value="mac" label="Mac (Intel)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golangNode}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -346,28 +346,28 @@ The output should be the version installed:
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 <pre><code>
-go version go{versions.golang} linux/amd64
+go version go{constants.golangNode} linux/amd64
 </code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 <pre><code>
-go version go{versions.golang} linux/arm64
+go version go{constants.golangNode} linux/arm64
 </code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
 <pre><code>
-go version go{versions.golang} darwin/arm64
+go version go{constants.golangNode} darwin/arm64
 </code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
 <pre><code>
-go version go{versions.golang} darwin/amd64
+go version go{constants.golangNode} darwin/amd64
 </code></pre>
 
 </TabItem>
@@ -413,7 +413,7 @@ Semantic version: {mochaVersions['node-latest-tag']} <br/>
 Commit: {mochaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: amd64/linux <br/>
-Golang version: go{versions.golang} <br/>
+Golang version: go{constants.golangNode} <br/>
 </code></pre>
 
 </TabItem>
@@ -443,7 +443,7 @@ Semantic version: {mochaVersions['node-latest-tag']} <br/>
 Commit: {mochaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: arm64/linux <br/>
-Golang version: go{versions.golang} <br/>
+Golang version: go{constants.golangNode} <br/>
 </code></pre>
 
 </TabItem>
@@ -473,7 +473,7 @@ Semantic version: {mochaVersions['node-latest-tag']} <br/>
 Commit: {mochaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: arm64/darwin <br/>
-Golang version: go{versions.golang} <br/>
+Golang version: go{constants.golangNode} <br/>
 </code></pre>
 
 </TabItem>
@@ -503,7 +503,7 @@ Semantic version: {mochaVersions['node-latest-tag']} <br/>
 Commit: {mochaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: amd64/darwin <br/>
-Golang version: go{versions.golang} <br/>
+Golang version: go{constants.golangNode} <br/>
 </code></pre>
 
 </TabItem>
@@ -539,7 +539,7 @@ Semantic version: {arabicaVersions['node-latest-tag']} <br/>
 Commit: {arabicaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: amd64/linux <br/>
-Golang version: go{versions.golang} <br/>
+Golang version: go{constants.golangNode} <br/>
 </code></pre>
 
 </TabItem>
@@ -569,7 +569,7 @@ Semantic version: {arabicaVersions['node-latest-tag']} <br/>
 Commit: {arabicaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: arm64/linux <br/>
-Golang version: go{versions.golang} <br/>
+Golang version: go{constants.golangNode} <br/>
 </code></pre>
 
 </TabItem>
@@ -599,7 +599,7 @@ Semantic version: {arabicaVersions['node-latest-tag']} <br/>
 Commit: {arabicaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: arm64/darwin <br/>
-Golang version: go{versions.golang} <br/>
+Golang version: go{constants.golangNode} <br/>
 </code></pre>
 
 </TabItem>
@@ -629,7 +629,7 @@ Semantic version: {arabicaVersions['node-latest-tag']} <br/>
 Commit: {arabicaVersions['node-latest-sha']} <br/>
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: amd64/darwin <br/>
-Golang version: go{versions.golang} <br/>
+Golang version: go{constants.golangNode} <br/>
 </code></pre>
 
 </TabItem>

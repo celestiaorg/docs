@@ -2,7 +2,7 @@
 sidebar_label: Setting Up Environment
 ---
 
-import versions from "../../versions/versions.js";
+import constants from "../../versions/constants.js";
 
 # Development Environment
 
@@ -142,7 +142,7 @@ so we must install Golang to build and run them.
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golang}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -154,7 +154,7 @@ rm "go$ver.linux-amd64.tar.gz" <br/>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golang}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -166,7 +166,7 @@ rm "go$ver.linux-arm64.tar.gz" <br/>
 <TabItem value="apple" label="Mac (Apple)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golang}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -178,7 +178,7 @@ rm "go$ver.darwin-arm64.tar.gz" <br/>
 <TabItem value="mac" label="Mac (Intel)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golang}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -222,28 +222,28 @@ The output should be the version installed:
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 <pre><code>
-go version go{versions.golang} linux/amd64
+go version go{constants.golang} linux/amd64
 </code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 <pre><code>
-go version go{versions.golang} linux/arm64
+go version go{constants.golang} linux/arm64
 </code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
 <pre><code>
-go version go{versions.golang} darwin/arm64
+go version go{constants.golang} darwin/arm64
 </code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
 <pre><code>
-go version go{versions.golang} darwin/amd64
+go version go{constants.golang} darwin/amd64
 </code></pre>
 
 </TabItem>
@@ -256,7 +256,7 @@ go version go{versions.golang} darwin/amd64
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golang}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -268,7 +268,7 @@ rm "go$ver.linux-amd64.tar.gz" <br/>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golang}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -280,7 +280,7 @@ rm "go$ver.linux-arm64.tar.gz" <br/>
 <TabItem value="apple" label="Mac (Apple)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golang}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -292,7 +292,7 @@ rm "go$ver.darwin-arm64.tar.gz" <br/>
 <TabItem value="mac" label="Mac (Intel)">
 
 <pre><code>
-ver="{versions.golang}" <br/>
+ver="{constants.golang}" <br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
@@ -336,28 +336,28 @@ The output should be the version installed:
 <TabItem value="amd" label="Ubuntu (AMD)">
 
 <pre><code>
-go version go{versions.golang} linux/amd64
+go version go{constants.golang} linux/amd64
 </code></pre>
 
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
 <pre><code>
-go version go{versions.golang} linux/arm64
+go version go{constants.golang} linux/arm64
 </code></pre>
 
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
 <pre><code>
-go version go{versions.golang} darwin/arm64
+go version go{constants.golang} darwin/arm64
 </code></pre>
 
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
 <pre><code>
-go version go{versions.golang} darwin/amd64
+go version go{constants.golang} darwin/amd64
 </code></pre>
 
 </TabItem>
