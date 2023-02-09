@@ -95,7 +95,6 @@ trtrrftff
         run: |
           CONTENTS=$(cat << EOF
           const ${{ inputs.network }}Versions = Object.freeze({
-            "golang": "1.19.1",
             "app-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }}",
             "app-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }}",
             "core-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }}",
