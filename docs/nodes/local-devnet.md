@@ -24,7 +24,7 @@ is functioning properly
 
 Whether you're a developer simply testing things on your laptop or using a
 virtual machine in the cloud, this process can be done on any machine of
-your choosing. We tested it out successfully on a machine with the following
+your choosing. We tested it out on a machine with the following
 specs:
 
 - Memory: 1 GB RAM
@@ -42,14 +42,14 @@ First, you'll need to have Docker installed or [install Docker](https://docs.doc
 Run the `local-celestia-devnet` by running the following command:
 
 ```bash
-docker run -p 26657:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main
+docker run --platform linux/amd64 -p 26657:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main
 ```
 
 If you'd like to name your container with a custom name, you can use the
 `--name` option when first running the `docker run` command, for example:
 
 ```bash
-docker run --name custom_name -p 26657:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main
+docker run --name custom_name --platform linux/amd64 -p 26657:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main
 ```
 
 Nice! You have a local Celestia devnet running now.
