@@ -48,9 +48,11 @@ docker run --platform linux/amd64 -p 26657:26657 -p 26659:26659 ghcr.io/celestia
 If you'd like to name your container with a custom name, you can use the
 `--name` option when first running the `docker run` command, for example:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 docker run --name custom_name --platform linux/amd64 -p 26657:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main
 ```
+<!-- markdownlint-enable MD013 -->
 
 Nice! You have a local Celestia devnet running now.
 
