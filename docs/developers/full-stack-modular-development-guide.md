@@ -33,7 +33,7 @@ EVM-compatible testnet that you will run locally for this tutorial.
 - [Node.js](https://github.com/nvm-sh/nvm)
 - [Foundry](https://github.com/foundry-rs/foundry)
 - [Infura account](https://infura.io) (for uploading files to IPFS)
-- [A Celestia Light Node running](./node-tutorial.mdx) (to post PFDs from your
+- [A Celestia Light Node running](./node-tutorial.mdx) (to post PFBs from your
 rollup)
 - [Ethermint Tutorial](./ethermint.md) (for running your own Ethermint rollup &
 deploying your smart contract)
