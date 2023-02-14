@@ -1,5 +1,5 @@
 ---
-sidebar_label: Managing Wallets in Docker
+sidebar_label: Managing Celestia Node Keys in Docker
 ---
 
 # Docker and `cel-key`
