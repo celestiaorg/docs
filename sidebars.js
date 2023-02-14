@@ -16,6 +16,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          label: "Local Devnet",
+          id: "nodes/local-devnet"
+        },
+        {
+          type: "doc",
           label: "Arabica Devnet",
           id: "nodes/arabica-devnet"
         },
