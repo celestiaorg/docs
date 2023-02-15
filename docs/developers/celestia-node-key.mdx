@@ -4,6 +4,8 @@ sidebar_label: Wallet with Celestia Node
 
 # Create A Wallet with Celestia Node
 
+<!-- markdownlint-disable MD013 -->
+
 This tutorial will go over using the `cel-key` utility
 to generate a wallet on Celestia Node.
 
@@ -238,14 +240,12 @@ on how to run `celestia-node` with Docker.
 
 Run the Docker image (in this example, we are using a Light Node):
 
-<!-- markdownlint-disable MD013 -->
 ```bash
 docker run --name celestia-node -e NODE_TYPE=light -e P2P_NETWORK=mocha -p 26659:26659 \
 ghcr.io/celestiaorg/celestia-node:sha-747c9e5 celestia light start \
 --core.ip https://rpc-mocha.pops.one \
 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 ```
-<!-- markdownlint-enable MD013 -->
 
 List active containers in another window with:
 
@@ -255,12 +255,10 @@ docker ps
 
 The response will look like:
 
-<!-- markdownlint-disable MD013 -->
 ```bash
 CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS      NAMES
 <container_id>   celestia-node   "/entrypoint.sh cele…"   22 seconds ago   Up 21 seconds   2121/tcp   docker-compose-test-celestia-1
 ```
-<!-- markdownlint-enable MD013 -->
 
 Interact with the container by replacing `<container_id>` for the container ID:
 
@@ -286,7 +284,6 @@ using an existing image called `celestia-node`. This will mount the entire
 
 Write a `docker-compose.yml` to accomplish this:
 
-<!-- markdownlint-disable MD013 -->
 ```yaml
 version: '3.8'
 services:
@@ -300,7 +297,6 @@ services:
     ports:
       - 26659:26659
 ```
-<!-- markdownlint-enable MD013 -->
 
 Start the container by running the following command in the directory with your `docker-compose.yml`:
 
@@ -316,12 +312,10 @@ docker ps
 
 The response will look like:
 
-<!-- markdownlint-disable MD013 -->
 ```bash
 CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS      NAMES
 <container_id>   celestia-node   "/entrypoint.sh cele…"   22 seconds ago   Up 21 seconds   2121/tcp   docker-compose-test-celestia-1
 ```
-<!-- markdownlint-enable MD013 -->
 
 Interact with the container by replacing <container_id> for the container ID:
 
@@ -340,3 +334,4 @@ using directory:  ~/.celestia-light-mocha/keys
   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A1/NsoY0RGL7Hqt4VWLg441GQKJsZ2fBUnZXipgns8oV"}'
   type: local
 ```
+<!-- markdownlint-enable MD013 -->
