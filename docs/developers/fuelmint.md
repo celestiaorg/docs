@@ -37,7 +37,7 @@ enabling the next generation of scalable blockchain
 architectures - modular blockchains.
 
 You can learn more about Celestia in our
-[Concepts](../concepts/how-celestia-works/introduction/) page.
+[Concepts](../../concepts/how-celestia-works/introduction) and [Build Modular](../build-modular) pages.
 
 ### Fuelmint
 
@@ -147,7 +147,7 @@ npm start
 
 ## Run Fuelmint on Mocha
 
-Run a Mocha Light Node and get it funded [here](https://docs.celestia.org/nodes/light-node).
+Run a Mocha Light Node and get it funded [here](../../nodes/light-node).
 
 ```bash
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
