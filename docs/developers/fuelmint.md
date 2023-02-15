@@ -69,27 +69,27 @@ Fuelmint Repo is [here](https://github.com/Ferret-san/fuelmint/tree/tx_pool_expe
 
 First step is to clone the Fuelmint repo:
 
-```sh
+```bash
 git clone https://github.com/Ferret-san/fuelmint
 ```
 
 Then go to the docker directory:
 
-```sh
+```bash
 cd fuelmint/local-da
 ```
 
 You can start by running a Docker Compose
 setup with a local DA network
 
-```sh
+```bash
 docker compose -f ./docker/test-docker-compose.yml up
 ```
 
 In a separate terminal session, you must
 build the Fuelmint binary with `cargo`:
 
-```sh
+```bash
 cd ..
 cargo run --bin fuelmint
 ```
@@ -97,7 +97,7 @@ cargo run --bin fuelmint
 In another terminal session, you will need
 to build the Rollkit Node with Golang:
 
-```sh
+```bash
 cd rollkit-node
 go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.7-rollmint-v0.5.0-no-fraud-proofs
 go mod edit --replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221013213714-8be9b54c8c21
@@ -109,7 +109,7 @@ make install
 Then run the following commands:
 
 <!-- markdownlint-disable MD013 -->
-```sh
+```bash
 rm -rf /tmp/fuelmint/
 TMHOME="/tmp/fuelmint" tendermint init
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
@@ -129,7 +129,7 @@ Find the Sway smart contracts [here](https://fuellabs.github.io/fuels-ts/QUICKST
 
 Let's deploy a Sway smart contract for counter!
 
-```sh
+```bash
 cd ..
 cd contract/
 forc build
@@ -141,7 +141,7 @@ This generates the contract id
 Generate the front end with contract-id
 Get the wallet secret generated when you started fuelmint
 
-```sh
+```bash
 npm start
 ```
 
@@ -149,13 +149,13 @@ npm start
 
 Run a Mocha Light Node and get it funded [here](https://docs.celestia.org/nodes/light-node).
 
-```sh
+```bash
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 DA_BLOCK_HEIGHT=$(curl https://rpc.limani.celestia-devops.dev/block | jq -r '.result.block.header.height')
 ```
 
 <!-- markdownlint-disable MD013 -->
-```sh
+```bash
 ./rollkit-node --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollmint.namespace_id $NAMESPACE_ID --rollmint.da_start_height $DA_BLOCK_HEIGHT 
 ```
 <!-- markdownlint-enable MD013 -->
