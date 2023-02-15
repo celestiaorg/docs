@@ -217,11 +217,6 @@ const sidebars = {
           label: "Wallet With Celestia Node",
           id: "developers/celestia-node-key"
         },
-        {
-          type: "doc",
-          label: "Managing Celestia Node Keys in Docker",
-          id: "developers/docker-node-key"
-        },
       ]
     },
     {
