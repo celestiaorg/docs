@@ -102,7 +102,7 @@ const config = {
       },
       navbar: {
         logo: {
-          alt: "Celestia Logo",
+          alt: "Celestia Docs",
           src: "img/celestia-docs.svg",
           srcDark: "img/celestia-docs-dark.svg"
         },
