@@ -37,7 +37,8 @@ enabling the next generation of scalable blockchain
 architectures - modular blockchains.
 
 You can learn more about Celestia in our
-[Concepts](../../concepts/how-celestia-works/introduction) and [Build Modular](../build-modular) pages.
+[Concepts](../../concepts/how-celestia-works/introduction)
+and [Build Modular](../build-modular) pages.
 
 ### Fuelmint
 
