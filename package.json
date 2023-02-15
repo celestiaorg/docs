@@ -18,7 +18,7 @@
     "crowdin:sync": "docusaurus write-translations && crowdin upload && crowdin download --skip-untranslated-files --export-only-approved"
   },
   "dependencies": {
-    "@crowdin/cli": "3",
+    "@crowdin/cli": "3.10.0",
     "@docusaurus/core": "^2.3.1",
     "@docusaurus/plugin-client-redirects": "^2.3.1",
     "@docusaurus/preset-classic": "^2.3.1",
