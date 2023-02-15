@@ -104,6 +104,7 @@ const config = {
         logo: {
           alt: "Celestia Logo",
           src: "img/celestia-docs.svg",
+          srcDark: "img/celestia-docs-dark.svg"
         },
         items: [
           {
