@@ -101,10 +101,10 @@ const config = {
         debug: false,
       },
       navbar: {
-        title: "Celestia Docs",
         logo: {
-          alt: "Celestia Logo",
-          src: "img/logo.png",
+          alt: "Celestia Docs",
+          src: "img/celestia-docs.svg",
+          srcDark: "img/celestia-docs-dark.svg"
         },
         items: [
           {
