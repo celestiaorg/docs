@@ -3,7 +3,7 @@ const constants = Object.freeze({
     golangApp: "1.19.1",
     golangCore: "1.19.1",
     golang: "1.19.1",
-    arabicaChainId: "arabica-5",
+    arabicaChainId: "arabica-6",
   });
   export default constants;
   
