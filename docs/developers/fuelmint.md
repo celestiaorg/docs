@@ -59,10 +59,9 @@ Let's get started!
 You would need to install the following dependencies on your machine
 to be able to setup Fuelmint.
 
-* [Install Rust and Cargo](TBD)
-* [Install Docker](TBD)
-* [Install System Environment Setup for Linux](TBD)
-* [Install Golang](TBD)
+* [Install Rust and Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+* [Install Docker](https://docs.docker.com/engine/install/ubuntu/)
+* [Install System Environment Setup for Linux, including Golang](../nodes/environment)
 
 ### Setup Fuelmint
 
