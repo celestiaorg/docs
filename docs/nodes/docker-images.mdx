@@ -63,7 +63,7 @@ you can refer to the
 Run the image from the command line:
 
 <pre><code>
-docker run -e NODE_TYPE=light -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag'].slice(1)} celestia light start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
+docker run -e NODE_TYPE=light -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia light start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 </code></pre>
 
 Congratulations! You now have a Celestia Light Node running on the Arabica devnet.
@@ -108,7 +108,7 @@ you can refer to the
 Run the image from the command line:
 
 <pre><code>
-docker run -e NODE_TYPE=bridge -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag'].slice(1)} celestia bridge start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
+docker run -e NODE_TYPE=bridge -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia bridge start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 </code></pre>
 
 Congratulations! You now have a Celestia Bridge Node running on the Arabica network.
@@ -153,7 +153,7 @@ you can refer to the
 Run the image from the command line:
 
 <pre><code>
-docker run -e NODE_TYPE=full -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag'].slice(1)} celestia full start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
+docker run -e NODE_TYPE=full -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia full start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 </code></pre>
 
 Congratulations! You now have a Celestia Full Storage Node running on the Arabica network.
