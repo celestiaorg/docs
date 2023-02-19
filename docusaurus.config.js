@@ -46,34 +46,37 @@ const config = {
   ],
   plugins: [
     ["drawio", {}],
-    ['@docusaurus/plugin-client-redirects', {
-      redirects: [
-        {
-          to: '/nodes/environment',
-          from: '/developers/environment'
-        },
-        {
-          to: '/nodes/celestia-app',
-          from: '/developers/celestia-app'
-        },
-        {
-          to: '/nodes/instantiate-testnet',
-          from: '/developers/instantiate-testnet'
-        },
-        {
-          to: '/nodes/celestia-app-commands',
-          from: '/developers/celestia-app-commands'
-        },
-        {
-          to: '/nodes/celestia-node',
-          from: '/developers/celestia-node'
-        },
-        {
-          to: '/nodes/celestia-node-metrics',
-          from: '/developers/celestia-node-metrics'
-        },
-      ]
-    }]
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            to: "/nodes/environment",
+            from: "/developers/environment",
+          },
+          {
+            to: "/nodes/celestia-app",
+            from: "/developers/celestia-app",
+          },
+          {
+            to: "/nodes/instantiate-testnet",
+            from: "/developers/instantiate-testnet",
+          },
+          {
+            to: "/nodes/celestia-app-commands",
+            from: "/developers/celestia-app-commands",
+          },
+          {
+            to: "/nodes/celestia-node",
+            from: "/developers/celestia-node",
+          },
+          {
+            to: "/nodes/celestia-node-metrics",
+            from: "/developers/celestia-node-metrics",
+          },
+        ],
+      },
+    ],
   ],
   i18n: {
     defaultLocale: "en",
@@ -104,7 +107,7 @@ const config = {
         logo: {
           alt: "Celestia Docs",
           src: "img/celestia-docs.svg",
-          srcDark: "img/celestia-docs-dark.svg"
+          srcDark: "img/celestia-docs-dark.svg",
         },
         items: [
           {
@@ -128,13 +131,13 @@ const config = {
             label: "Community",
           },
           {
-            href: "https://github.com/celestiaorg/docs",
-            label: "GitHub",
+            type: "localeDropdown",
             position: "right",
           },
           {
-            type: "localeDropdown",
+            href: "https://github.com/celestiaorg/docs",
             position: "right",
+            className: "header-github-link",
           },
         ],
       },
@@ -194,7 +197,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['solidity']
+        additionalLanguages: ["solidity"],
       },
     }),
 };
