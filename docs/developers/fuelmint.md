@@ -90,7 +90,7 @@ In a separate terminal session, you must
 build the Fuelmint binary with `cargo`:
 
 :::tip note
-If this is your first time running `cargo` to build the Fuelmint binary, it will take some time to install all of the dependencies.
+If this is your first time running `cargo` to build the Fuelmint binary, it will take some time to install all of the required dependencies.
 :::
 
 ```bash
@@ -130,7 +130,7 @@ NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 
 ### Counter smart contract
 
-Find the Sway smart contracts [here](https://fuellabs.github.io/fuels-ts/QUICKSTART)
+Find the Sway smart contracts [here](https://fuellabs.github.io/fuels-ts/QUICKSTART).
 
 Let's deploy a Sway smart contract for counter! First, open a new terminal instance:
 
