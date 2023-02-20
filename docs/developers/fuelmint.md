@@ -1,10 +1,10 @@
-# Fuelmint Documentation
+# Fuelmint documentation
 
 ## Introduction
 
 ### Fuel
 
-Fuel is an execution layer for the Modular stack.
+Fuel is an execution layer for the modular stack.
 
 Fuel is an execution layer in modular blockchains
 that provides a fast and efficient solution
@@ -18,8 +18,8 @@ bandwidth capacity.
 
 Fuel has three key components:
 
-* Parallel Transaction Execution
-* The Fuel Virtual Machine
+* Parallel transaction execution
+* The Fuel virtual machine
 * A great developer experience
 
 Fuel provides a flexible throughput with high security
@@ -27,7 +27,7 @@ and is considered as the engine for the autonomous future,
 where individuals and groups can access verifiable
 autonomous systems.
 
-Learn about Fuel [here](https://www.fuel.network/)
+Learn about Fuel [here](https://www.fuel.network/).
 
 ### Celestia
 
@@ -37,13 +37,13 @@ enabling the next generation of scalable blockchain
 architectures - modular blockchains.
 
 You can learn more about Celestia in our
-[Concepts](../../concepts/how-celestia-works/introduction)
-and [Build Modular](../build-modular) pages.
+[concepts](../../concepts/how-celestia-works/introduction)
+and [build modular](../build-modular) pages.
 
 ### Fuelmint
 
-Fuelmint is a Sovereign FuelVM rollups on Celestia using
-Rollmint and ABCI. You can read the announcement blog post
+Fuelmint is a sovereign FuelVM rollups on Celestia using
+Rollkit and ABCI (Application BlockChain Interface). You can read the announcement blog post
 [here](https://blog.celestia.org).
 
 In this tutorial, we will show you how to setup Fuelmint, so
@@ -56,31 +56,31 @@ Let's get started!
 
 ### Dependencies
 
-You would need to install the following dependencies on your machine
+You will need to install the following dependencies on your machine
 to be able to setup Fuelmint.
 
 * [Install Rust and Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 * [Install Docker](https://docs.docker.com/engine/install/ubuntu/)
-* [Install System Environment Setup for Linux, including Golang](../../nodes/environment)
+* [Install system environment setup for Linux, including Golang](../../nodes/environment)
 
 ### Setup Fuelmint
 
-Fuelmint Repo is [here](https://github.com/Ferret-san/fuelmint/tree/tx_pool_experiment)
+You can find the Fuelmint Repo on GitHub [here](https://github.com/Ferret-san/fuelmint/tree/tx_pool_experiment).
 
-First step is to clone the Fuelmint repo:
+The first step is to clone the Fuelmint repo:
 
 ```bash
 git clone https://github.com/Ferret-san/fuelmint
 ```
 
-Then go to the docker directory:
+Then, go to the Docker directory:
 
 ```bash
 cd fuelmint/local-da
 ```
 
-You can start by running a Docker Compose
-setup with a local DA network
+You can start by running a Docker compose
+setup with a [local DA network](https://github.com/celestiaorg/local-celestia-devnet):
 
 ```bash
 docker compose -f ./docker/test-docker-compose.yml up
@@ -95,7 +95,7 @@ cargo run --bin fuelmint
 ```
 
 In another terminal session, you will need
-to build the Rollkit Node with Golang:
+to build the Rollkit node with Golang:
 
 ```bash
 cd rollkit-node
@@ -117,13 +117,13 @@ NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 ```
 <!-- markdownlint-enable MD013 -->
 
-## Deploy A Sway Smart Contract
+## Deploy a Sway smart contract
 
 ### Install Forc
 
 * Install Forc
 
-### Counter Smart Contract
+### Counter smart contract
 
 Find the Sway smart contracts [here](https://fuellabs.github.io/fuels-ts/QUICKSTART)
 
@@ -136,10 +136,10 @@ forc build
 forc deploy --url localhost:4000 --unsigned
 ```
 
-This generates the contract id
+This generates the `contract-id`
 
-Generate the front end with contract-id
-Get the wallet secret generated when you started fuelmint
+Generate the front end with `contract-id`.
+Get the wallet secret generated when you started fuelmint:
 
 ```bash
 npm start
@@ -147,7 +147,7 @@ npm start
 
 ## Run Fuelmint on Mocha
 
-Run a Mocha Light Node and get it funded [here](../../nodes/light-node).
+Run a Mocha light node and get it funded [here](../../nodes/light-node).
 
 ```bash
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
@@ -160,4 +160,4 @@ DA_BLOCK_HEIGHT=$(curl https://rpc.limani.celestia-devops.dev/block | jq -r '.re
 ```
 <!-- markdownlint-enable MD013 -->
 
-More smart contracts [here](https://github.com/FuelLabs/sway-applications)
+You can find more smart contracts [here](https://github.com/FuelLabs/sway-applications).
