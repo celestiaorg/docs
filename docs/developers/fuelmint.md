@@ -61,7 +61,7 @@ to be able to setup Fuelmint.
 
 * [Install Rust and Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 * [Install Docker](https://docs.docker.com/engine/install/ubuntu/)
-* [Install System Environment Setup for Linux, including Golang](../nodes/environment)
+* [Install System Environment Setup for Linux, including Golang](../../nodes/environment)
 
 ### Setup Fuelmint
 
