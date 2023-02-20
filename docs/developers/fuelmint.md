@@ -61,7 +61,7 @@ to be able to setup Fuelmint.
 
 * [Install Rust and Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 * [Install Docker](https://docs.docker.com/engine/install/ubuntu/)
-* [Install system environment setup for Linux, including Golang](../../nodes/environment)
+* [Install system environment setup for Linux AMD, including Golang](../../nodes/environment)
 
 ### Setup Fuelmint
 
@@ -89,8 +89,13 @@ docker compose -f ./docker/test-docker-compose.yml up
 In a separate terminal session, you must
 build the Fuelmint binary with `cargo`:
 
+:::tip note
+If this is your first time running `cargo` to build the Fuelmint binary, it will take some time to install all of the dependencies.
+:::
+
 ```bash
-cd ..
+cd $HOME
+cd fuelmint
 cargo run --bin fuelmint
 ```
 
@@ -98,15 +103,15 @@ In another terminal session, you will need
 to build the Rollkit node with Golang:
 
 ```bash
-cd rollkit-node
-go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/celestiaorg/cosmos-sdk-rollmint@v0.46.7-rollmint-v0.5.0-no-fraud-proofs
-go mod edit --replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221013213714-8be9b54c8c21
+cd fuelmint/rollkit-node
+go mod edit -replace github.com/cosmos/cosmos-sdk=github.com/rollkit/cosmos-sdk@v0.46.7-rollkit-v0.6.0-no-fraud-proofs
+go mod edit -replace github.com/tendermint/tendermint=github.com/celestiaorg/tendermint@v0.34.22-0.20221202214355-3605c597500d
 go mod tidy
 go mod download
 make install
 ```
 
-Then run the following commands:
+Then, run the following commands:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
@@ -127,16 +132,16 @@ NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 
 Find the Sway smart contracts [here](https://fuellabs.github.io/fuels-ts/QUICKSTART)
 
-Let's deploy a Sway smart contract for counter!
+Let's deploy a Sway smart contract for counter! First, open a new terminal instance:
 
 ```bash
-cd ..
-cd contract/
+cd $HOME
+cd fuelmint/examples/counter/contract
 forc build
 forc deploy --url localhost:4000 --unsigned
 ```
 
-This generates the `contract-id`
+This generates the `contract-id`.
 
 Generate the front end with `contract-id`.
 Get the wallet secret generated when you started fuelmint:
@@ -151,7 +156,7 @@ Run a Mocha light node and get it funded [here](../../nodes/light-node).
 
 ```bash
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
-DA_BLOCK_HEIGHT=$(curl https://rpc.limani.celestia-devops.dev/block | jq -r '.result.block.header.height')
+DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
 ```
 
 <!-- markdownlint-disable MD013 -->
