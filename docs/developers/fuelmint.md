@@ -43,7 +43,8 @@ and [build modular](../build-modular) pages.
 ### Fuelmint
 
 Fuelmint is a sovereign FuelVM rollups on Celestia using
-Rollkit and ABCI (Application BlockChain Interface). You can read the announcement blog post
+Rollkit and ABCI (Application BlockChain Interface).
+You can read the announcement blog post
 [here](https://blog.celestia.org).
 
 In this tutorial, we will show you how to setup Fuelmint, so
@@ -90,7 +91,8 @@ In a separate terminal session, you must
 build the Fuelmint binary with `cargo`:
 
 :::tip note
-If this is your first time running `cargo` to build the Fuelmint binary, it will take some time to install all of the required dependencies.
+If this is your first time running `cargo` to build the Fuelmint binary,
+it will take some time to install all of the required dependencies.
 :::
 
 ```bash
