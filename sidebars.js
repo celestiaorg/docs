@@ -16,24 +16,24 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Local devnet",
+          label: "Local Devnet",
           id: "nodes/local-devnet"
         },
         {
           type: "doc",
-          label: "Arabica devnet",
+          label: "Arabica Devnet",
           id: "nodes/arabica-devnet"
         },
         {
           type: "doc",
-          label: "Mocha testnet",
+          label: "Mocha Testnet",
           id: "nodes/mocha-testnet"
         }
       ]
     },
     {
       type: "category",
-      label: "Quick start",
+      label: "Quick Start",
       link: {
         type: "doc",
         id: "nodes/quick-start"
@@ -42,34 +42,34 @@ const sidebars = {
       items: [
         { 
           type: "doc", 
-          label: "Setting up environment", 
+          label: "Setting Up Environment", 
           id: "nodes/environment" 
         },
         {
           type: "doc",
-          label: "Installing Celestia node",
+          label: "Installing Celestia Node",
           id: "nodes/celestia-node"
         },
         {
           type: "doc",
-          label: "Docker images",
+          label: "Docker Images",
           id: "nodes/docker-images",
         },
         {
           type: "doc",
-          label: "Installing Celestia app",
+          label: "Installing Celestia App",
           id: "nodes/celestia-app"
         },
         {
           type: "doc",
-          label: "Deciding which node to run",
+          label: "Deciding Which Node to Run",
           id: "nodes/decide-node"
         },
       ]
     },
     { 
       type: "category", 
-      label: "Types of nodes", 
+      label: "Types of Nodes", 
       link: {
         type: 'generated-index'
       },
@@ -77,7 +77,7 @@ const sidebars = {
       items: [
       {
         type: "category",
-        label: "Data availability",
+        label: "Data Availability",
         link: {
           type: 'generated-index',
         },
@@ -85,17 +85,17 @@ const sidebars = {
         items: [
           { 
             type: "doc", 
-            label: "Light node", 
+            label: "Light Node", 
             id: "nodes/light-node" 
           },
           { 
             type: "doc", 
-            label: "Bridge node", 
+            label: "Bridge Node", 
             id: "nodes/bridge-node" 
           },
           {
             type: "doc",
-            label: "Full storage node",
+            label: "Full Storage Node",
             id: "nodes/full-storage-node",
           },
         ]
@@ -110,12 +110,12 @@ const sidebars = {
         items: [
           {
             type: "doc",
-            label: "Validator node",
+            label: "Validator Node",
             id: "nodes/validator-node",
           },
           { 
             type: "doc", 
-            label: "Consensus full node", 
+            label: "Consensus Full Node", 
             id: "nodes/consensus-full-node" 
           },
         ]
@@ -132,7 +132,7 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Celestia node",
+          label: "Celestia Node",
           link: {
             type: 'generated-index',
           },
@@ -140,14 +140,14 @@ const sidebars = {
           items: [
             {
               type: "doc",
-              label: "Node metrics",
+              label: "Node Metrics",
               id: "nodes/celestia-node-metrics"
             },
           ]
         },
         {
           type: "category",
-          label: "Celestia app",
+          label: "Celestia App",
           link: {
             type: 'generated-index'
           },
@@ -155,7 +155,7 @@ const sidebars = {
           items: [
             { 
               type: "doc", 
-              label: "Create a Celestia testnet", 
+              label: "Create A Celestia Testnet", 
               id: "nodes/instantiate-testnet" 
             },
             {
@@ -167,7 +167,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Hardfork process",
+          label: "Hardfork Process",
           id: "nodes/hardfork-process"
         },
         {
@@ -177,12 +177,12 @@ const sidebars = {
         },
         { 
           type: "doc", 
-          label: "Devops resources", 
+          label: "Devops Resources", 
           id: "nodes/devops-resources"
         },
         {
           type: "doc",
-          label: "Config.toml guide",
+          label: "Config.toml Guide",
           id: "nodes/config-toml"
         },
       ]
@@ -196,12 +196,12 @@ const sidebars = {
     },
     {
       type: "doc",
-      label: "Build modular",
+      label: "Build Modular",
       id: "developers/build-modular"
     },
     {
       type: "category",
-      label: "Create a Celestia wallet",
+      label: "Create A Celestia Wallet",
       link: {
         type: "generated-index",
       },
@@ -214,19 +214,19 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Wallet with Celestia app",
+          label: "Wallet With Celestia App",
           id: "developers/celestia-app-wallet"
         },
         {
           type: "doc",
-          label: "Wallet with Celestia node",
+          label: "Wallet With Celestia Node",
           id: "developers/celestia-node-key"
         },
       ]
     },
     {
       type: "category",
-      label: "Data availability API",
+      label: "Data Availability API",
       link: {
         type: "generated-index",
       },
@@ -234,12 +234,12 @@ const sidebars = {
       items: [
         { 
           type: "doc", 
-          label: "Node tutorial", 
+          label: "Node Tutorial", 
           id: "developers/node-tutorial" 
         },
         {
           type: "doc",
-          label: "Node video tutorial",
+          label: "Node Video Tutorial",
           id: "developers/light-node-video"
         },
         { 
@@ -256,7 +256,7 @@ const sidebars = {
     },
     {
       type: "doc",
-      label: "Full stack modular blockchain development guide",
+      label: "Full Stack Modular Blockchain Development Tutorial",
       id: "developers/full-stack-modular-development-guide"
     },
     {
@@ -268,9 +268,9 @@ const sidebars = {
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },
     { type: "doc", label: "Code of Conduct", id: "community/coc" },
-    { type: "doc", label: "Community calendar", id: "community/calendar" },
-    { type: "doc", label: "Incentivized testnet supplemental terms", id: "community/itn-tos" },
-    { type: "doc", label: "Docs translations", id: "community/translations" },
+    { type: "doc", label: "Community Calendar", id: "community/calendar" },
+    { type: "doc", label: "Incentivized Testnet Supplemental Terms", id: "community/itn-tos" },
+    { type: "doc", label: "Docs Translations", id: "community/translations" },
     {
       type: "category",
       label: "Modular Fellows",
@@ -280,14 +280,14 @@ const sidebars = {
       collapsed: false,
       items: [
         { type: "doc", label: "Overview", id: "community/modular-fellows" },
-        { type: "doc", label: "Cohort one content", id: "community/cohort-one-content" },
+        { type: "doc", label: "Cohort One Content", id: "community/cohort-one-content" },
       ]
     },
   ],
   concepts: [
     {
       type: "category",
-      label: "How Celestia works",
+      label: "How Celestia Works",
       link: {
         type: 'generated-index',
       },
@@ -300,29 +300,29 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Monolithic vs. modular blockchains",
+          label: "Monolithic vs. Modular Blockchains",
           id: "concepts/how-celestia-works/monolithic-vs-modular"
         },
         {
           type: "doc",
-          label: "Celestia's data availability layer",
+          label: "Celestia's Data Availability Layer",
           id: "concepts/how-celestia-works/data-availability-layer"
         },
         {
           type: "doc",
-          label: "The lifecycle of a Celestia app transaction",
+          label: "The Lifecycle of a Celestia App Transaction",
           id: "concepts/how-celestia-works/transaction-lifecycle"
         }
       ]
     },
     {
       type: "link",
-      label: "Learn modular",
+      label: "Learn Modular",
       href: "https://celestia.org/learn/"
     },
     {
       type: "doc",
-      label: "Data availability FAQ",
+      label: "Data Availability FAQ",
         id: "concepts/data-availability-faq",
     },
     {
@@ -340,7 +340,7 @@ const sidebars = {
       items: [
         {
           type: 'doc',
-          label: "Reserved namespace IDs",
+          label: "Reserved Namespace IDs",
           id: "concepts/specifications/reserved-namespace-id"
         },
       ]
