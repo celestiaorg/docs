@@ -107,7 +107,7 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ### Optional: quick-sync with snapshot
 
 Syncing from Genesis can take a long time, depending on your hardware. Using
-this method you can synchronize your Celestia node very quickly by downloading
+this method you can synchronize your celestia-node very quickly by downloading
 a recent snapshot of the blockchain. If you would like to sync from the Genesis,
 then you can skip this part.
 

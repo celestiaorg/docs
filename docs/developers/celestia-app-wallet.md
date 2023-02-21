@@ -11,7 +11,7 @@ wallet using `celestia-app`.
 
 * [Gone through Quick Start and Installed celestia-app](../nodes/quick-start.md)
 
-Note, you do not need to install Celestia Node for this tutorial.
+Note, you do not need to install celestia-node for this tutorial.
 
 ## Create a wallet
 

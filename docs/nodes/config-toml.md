@@ -16,7 +16,7 @@ sidebar_label: Config.toml guide
 
 ## Pre-requisites
 
-Please, make sure that you have installed and initialized celestia node
+Please, make sure that you have installed and initialized celestia-node
 
 ## Understanding config.toml
 

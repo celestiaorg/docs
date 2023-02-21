@@ -47,7 +47,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Installing Celestia node",
+          label: "Installing celestia-node",
           id: "nodes/celestia-node"
         },
         {
@@ -132,7 +132,7 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Celestia node",
+          label: "celestia-node",
           link: {
             type: 'generated-index',
           },

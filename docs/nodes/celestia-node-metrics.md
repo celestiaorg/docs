@@ -2,7 +2,7 @@
 sidebar_label: Node metrics 
 ---
 
-# Celestia node metrics
+# celestia-node metrics
 
 This tutorial is for running metrics for your celestia-node Data
 Availability instance.

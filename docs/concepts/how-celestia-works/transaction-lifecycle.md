@@ -112,11 +112,11 @@ one for every row and column of the extended matrix.
 
 ![DA network](/img/concepts/consensus-da.png)
 
-To enhance connectivity, the Celestia Node augments the Celestia
-App with a separate libp2p network, i.e., the so-called _DA network_,
+To enhance connectivity, the celestia-node augments the celestia-app
+with a separate libp2p network, i.e., the so-called _DA network_,
 that serves DAS requests.
 
-Light nodes connect to a Celestia Node in the DA network, listen to
+Light nodes connect to a celestia-node in the DA network, listen to
 extended block headers (i.e., the block headers together with the
 relevant DA metadata, such as the 4k intermediate Merkle roots), and
 perform DAS on the received headers (i.e., ask for random data chunks).
