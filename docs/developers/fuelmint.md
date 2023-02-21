@@ -128,7 +128,7 @@ NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 
 ### Install Forc
 
-* Install Forc
+* Install [Forc](https://github.com/FuelLabs/fuelup)
 
 ### Counter smart contract
 
