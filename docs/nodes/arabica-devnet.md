@@ -1,8 +1,8 @@
 ---
-sidebar_label: Arabica Devnet
+sidebar_label: Arabica devnet
 ---
 
-# Arabica Devnet
+# Arabica devnet
 <!-- markdownlint-disable MD013 -->
 
 ![arabica-devnet](/img/arabica-devnet.png)
@@ -76,7 +76,7 @@ broadcast transactions.
 
 * [https://grpc.limani.celestia-devops.dev](https://grpc.limani.celestia-devops.dev)
 
-## Arabica Devnet faucet
+## Arabica devnet faucet
 
 > USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER
   DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS

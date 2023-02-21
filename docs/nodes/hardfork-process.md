@@ -2,7 +2,7 @@
 sidebar_label: Hardfork Process
 ---
 
-# Celestia Hardfork Process
+# Celestia hardfork process
 
 Blockchain networks often times need to upgrade with new features
 which require coordination work among the validators prior to activating
@@ -16,7 +16,7 @@ Hardforks are not backward-compatible with older versions of the network
 software which is why it is important that validators upgrade their software
 to continue validating on the network after the network upgrades.
 
-## General Process
+## General process
 
 The general process can be broken down into several components:
 
@@ -36,7 +36,7 @@ The two testnets were hardforks are deployed on are:
 - [Arabica](./arabica-devnet.md)
 - [Mocha](./mocha-testnet.md)
 
-### Mocha Hardfork
+### Mocha hardfork
 
 Celestia is planning the Mocha Hardfork upgrade on the Mamaki Testnet.
 This hardfork is unique as it will reset the Mamaki network to block 0

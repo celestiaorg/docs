@@ -2,7 +2,8 @@
 sidebar_label: Consensus Full Node
 ---
 
-# Setting up a Celestia Consensus Full Node
+# Setting up a Celestia consensus full node
+
 <!-- markdownlint-disable MD013 -->
 
 Consensus Full Nodes allow you to sync blockchain history in the Celestia

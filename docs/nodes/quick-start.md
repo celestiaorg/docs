@@ -1,14 +1,14 @@
 ---
-sidebar_label: Quick Start
+sidebar_label: Quick start
 ---
 
-# Quick Start Guide
+# Quick start guide
 
 In this section, we show you how to get started
 with installing the needed libraries and packages
 in Celestia to help you run a node on Celestia.
 
-## Celestia Node
+## Celestia node
 
 Installing Celestia Node allows you to get started with
 running a light node and do Data Availability Sampling.
@@ -20,7 +20,7 @@ Celestia Node client also allows you to run other types
 of Data-Availability nodes like Bridge and Full Storage
 nodes, which will be covered in later sections.
 
-## Celestia App
+## Celestia app
 
 Celestia App is the software that allows you to run
 Validator nodes and also provide RPC endpoints.
@@ -28,7 +28,7 @@ Validator nodes and also provide RPC endpoints.
 Celestia App covers the Consensus layer, while Celestia Node
 covers the Data Availability layer.
 
-## Getting Started
+## Getting started
 
 As covered in the previous section, Celestia offers
 two different test networks, [Arabica](./arabica-devnet.md)

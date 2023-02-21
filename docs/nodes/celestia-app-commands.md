@@ -202,7 +202,7 @@ sudo journalctl -u <your systemd service> -S today > node_logs.txt
 sudo journalctl -u <your systemd service> -n 1000000 > node_logs.txt
 ```
 
-## Signing Genesis For A New Network
+## Signing genesis for a new network
 
 You can first run the following commands:
 

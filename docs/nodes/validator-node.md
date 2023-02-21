@@ -1,8 +1,8 @@
 ---
-sidebar_label: Validator Node
+sidebar_label: Validator node
 ---
 
-# Setting up a Celestia Validator Node
+# Setting up a Celestia validator node
 
 Validator nodes allow you to participate in consensus in the Celestia network.
 
@@ -215,7 +215,7 @@ SystemD [here](../systemd).
 
 You have successfully set up a bridge node that is syncing with the network.
 
-### Setup QGB Keys
+### Setup QGB keys
 
 This step helps get you prepared for when the Quantum Gravity Bridge
 is ready to be deployed. You would still need to go through this step
