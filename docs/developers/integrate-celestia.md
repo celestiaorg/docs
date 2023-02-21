@@ -68,7 +68,7 @@ fast-sync, state sync, and quick sync.
 ### Notable exceptions relative to other blockchains
 
 Relative to other Tendermint based chains, Celestia will have significantly
-longer blocktimes of around 30* seconds. The reason behind this block time is to
+longer blocktimes of around 15* seconds. The reason behind this block time is to
 optimize the bandwidth used by light clients that are sampling the chain, and
 is not because we have modified Tendermint consensus in any meaningful way.
 Validators will likely download/upload relatively large blocks. It should be
