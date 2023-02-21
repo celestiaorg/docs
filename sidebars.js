@@ -243,6 +243,11 @@ const sidebars = {
           id: "developers/node-api" 
         },
         { 
+          type: "doc", 
+          label: "Node API test", 
+          id: "developers/node-api-test" 
+        },
+        { 
           type: "link", 
           label: "Node Gateway React Test",
           href: "/node-gateway-tsx" ,
