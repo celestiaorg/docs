@@ -1,8 +1,8 @@
 ---
-sidebar_label: Cohort One Content & Calendar
+sidebar_label: Cohort one content & calendar
 ---
 
-# Cohort One Content & Calendar
+# Cohort one content & calendar
 
 ## Month 1 - learning and exploring (start building whenever you’re ready)
 
@@ -215,7 +215,7 @@ the basic pieces you need to shape your Smart Contract.
 
 ---
 
-### **Dec 19 - Week 13 - No Scheduled Events, Meet with Mentors**
+### **Dec 19 - Week 13 - no scheduled events, meet with mentors**
 
 🧑‍🏫 **Office Hour**
 
@@ -223,11 +223,11 @@ the basic pieces you need to shape your Smart Contract.
 
 ---
 
-### **Dec 26 - Week 14 - No Scheduled Events, Holiday Break 🎉**
+### **Dec 26 - Week 14 - no scheduled events, holiday break 🎉**
 
 ---
 
-### **Jan 2 - Week 15 - No Scheduled Events, Meet with Mentors**
+### **Jan 2 - Week 15 - no scheduled events, meet with mentors**
 
 🧑‍🏫 **Office Hour**
 
@@ -235,7 +235,7 @@ the basic pieces you need to shape your Smart Contract.
 
 ---
 
-### **Jan 9 - Week 16 - Submissions Due**
+### **Jan 9 - Week 16 - submissions bue**
 
 🧑‍🏫 **Office Hour**
 
