@@ -1,8 +1,8 @@
 ---
-sidebar_label: Full stack modular blockchain development guide
+sidebar_label: Full Stack Modular Blockchain Development Guide
 ---
 
-# Full stack modular blockchain development guide
+# Full Stack Modular Blockchain Development Guide
 
 This guide will introduce you to
 [modular blockchains](../concepts/how-celestia-works/introduction.md) like
