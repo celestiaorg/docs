@@ -8,7 +8,7 @@ View all options:
 
 ```console
 $ celestia-appd --help
-Start celestia app
+Start celestia-app
 
 Usage:
   celestia-appd [command]

@@ -20,12 +20,12 @@ Celestia Node client also allows you to run other types
 of Data-Availability nodes like Bridge and Full Storage
 nodes, which will be covered in later sections.
 
-## Celestia app
+## celestia-app
 
-Celestia App is the software that allows you to run
+celestia-app is the software that allows you to run
 Validator nodes and also provide RPC endpoints.
 
-Celestia App covers the Consensus layer, while Celestia Node
+celestia-app covers the Consensus layer, while Celestia Node
 covers the Data Availability layer.
 
 ## Getting started
@@ -42,9 +42,9 @@ If you plan on running a validator, your only option is to run
 your node on Mocha.
 
 In this Quick Start guide, we will go over installing both of
-the software clients: Celestia Node and Celestia App.
+the software clients: Celestia Node and celestia-app.
 
 > NOTE: If you just want to run a Light Node, you don't need to
-  install Celestia App and can skip that part.
+  install celestia-app and can skip that part.
 
 Proceed to the next section in order to get started.

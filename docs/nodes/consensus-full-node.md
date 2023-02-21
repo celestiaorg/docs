@@ -33,14 +33,14 @@ Follow the instructions on installing the dependencies [here](./environment.mdx)
 ## Deploying the celestia-app
 
 This section describes part 1 of Celestia consensus full node setup:
-running a Celestia App daemon with an internal Celestia Core node.
+running a celestia-app daemon with an internal Celestia Core node.
 
 > Note: Make sure you have at least 100+ Gb of free space to safely install + run
   the consensus full node.  
 
 ### Install celestia-app
 
-Follow the tutorial on installing Celestia App [here](./celestia-app.mdx).
+Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
