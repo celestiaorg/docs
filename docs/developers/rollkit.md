@@ -35,10 +35,10 @@ Layer via Rollkit. We call those chains Sovereign Rollups.
 
 You can get started with the following tutorials:
 
-- [Hello World](https://rollkit.dev/docs/tutorials/hello-world)
-- [GM World](https://rollkit.dev/docs/tutorials/gm-world)
-- [Recipe Book](https://rollkit.dev/docs/tutorials/recipe-book)
-- [Wordle Game](https://rollkit.dev/docs/tutorials/wordle)
-- [CosmWasm Tutorial](https://rollkit.dev/docs/tutorials/cosmwasm)
-- [Ethermint Tutorial](https://rollkit.dev/docs/tutorials/ethermint)
-- [Full Stack Modular Blockchain Development Guide](./full-stack-modular-development-guide.md/)
+- [Hello world](https://rollkit.dev/docs/tutorials/hello-world)
+- [GM world](https://rollkit.dev/docs/tutorials/gm-world)
+- [Recipe book](https://rollkit.dev/docs/tutorials/recipe-book)
+- [Wordle game](https://rollkit.dev/docs/tutorials/wordle)
+- [CosmWasm tutorial](https://rollkit.dev/docs/tutorials/cosmwasm)
+- [Ethermint tutorial](https://rollkit.dev/docs/tutorials/ethermint)
+- [Full stack modular blockchain development guide](./full-stack-modular-development-guide.md/)
