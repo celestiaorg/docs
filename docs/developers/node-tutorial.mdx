@@ -1,12 +1,12 @@
 ---
-sidebar_label: Node Tutorial
+sidebar_label: Node tutorial
 ---
 
 import constants from "../../versions/constants.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
 import mochaVersions from "../../versions/mocha_versions.js";
 
-# Getting and Sending Transactions with Celestia Node
+# Getting and sending transactions with Celestia node
 
 In this tutorial, we will cover how to use the Celestia Node API to submit and
 retrieve messages from the Data Availability Layer by their namespace ID.
@@ -15,7 +15,7 @@ This tutorial was assumes you are working in a Linux environment.
 
 > To view a video tutorial for setting up a Celestia Light Node, click [here](./light-node-video.md)
 
-## Hardware Requirements
+## Hardware requirements
 
 The following minimum hardware requirements are recommended for running a light node:
 
@@ -24,7 +24,7 @@ The following minimum hardware requirements are recommended for running a light 
 - Disk: 5 GB SSD Storage
 - Bandwidth: 56 Kbps for Download/56 Kbps for Upload
 
-## Setting Up Dependencies
+## Setting up dependencies
 
 First, make sure to update and upgrade the OS:
 
@@ -378,9 +378,9 @@ go version go{constants.golangNode} darwin/amd64
 
 ````
 
-## Celestia Node
+## Celestia node
 
-### Install Celestia Node
+### Install Celestia node
 
 ````mdx-code-block
 <Tabs groupId="network">
@@ -639,7 +639,7 @@ Golang version: go{constants.golangNode} <br/>
 </Tabs>
 ````
 
-### Instantiate Celestia Light Node
+### Instantiate a Celestia light node
 
 Now, let's instantiate a Celestia Light node:
 
@@ -665,7 +665,7 @@ celestia light init --p2p.network arabica
 </Tabs>
 ````
 
-### Connect To A Public Core Endpoint
+### Connect to a public core endpoint
 
 Let's now run the Celestia Light node with a GRPC connection to
 an example public Core Endpoint.
@@ -776,7 +776,7 @@ when you created the wallet.
 
 With your wallet funded, you can move on to the next step.
 
-## Node API Calls
+## Node API calls
 
 Open up another terminal window in order to begin querying the API.
 `celestia-node` exposes its REST gateway on port `26659` by default.
@@ -801,7 +801,7 @@ It will output the following:
 
 This shows you the balance in that wallet.
 
-### Get Block Header
+### Get block header
 
 Now, let's get the block header information.
 
@@ -988,7 +988,7 @@ It will output something like this:
 <Tabs groupId="network">
 <TabItem value="mocha" label="Mocha">
 
-### Submit a PFD Transaction
+### Submit a PFD transaction
 
 In this example, we will be submitting a `PayForData`
 transaction to the node's `/submit_pfd` endpoint.
@@ -1250,7 +1250,7 @@ It is possible that the account you are trying to submit a `PayForData` from
 doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
 account with tokens and then try again.
 
-### Get Namespaced Shares by Block Height
+### Get namespaced shares by block height
 
 After submitting your PFD transaction, upon success, the node will return
 the block height for which the PFD transaction was included. You can then
@@ -1280,7 +1280,7 @@ The output here is base64-encoded.
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-### Submit a PFB Transaction
+### Submit a PFB transaction
 
 In this example, we will be submitting a `PayForBlob`
 transaction to the node's `/submit_pfb` endpoint.
@@ -1437,7 +1437,7 @@ It is possible that the account you are trying to submit a `PayForBlob` from
 doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
 account with tokens and then try again.
 
-### Get Namespaced Shares by Block Height
+### Get namespaced shares by block height
 
 After submitting your PFB transaction, upon success, the node will return
 the block height for which the PFB transaction was included. You can then

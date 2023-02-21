@@ -1,8 +1,8 @@
 ---
-sidebar_label: Node Video Tutorial
+sidebar_label: Node video tutorial
 ---
 
-# Node Video Tutorial
+# Node video tutorial
 <!-- markdownlint-disable MD033 -->
 
 This video will guide you through setting up a Celestia Light Node,

@@ -2,7 +2,7 @@
 sidebar_label: Node API
 ---
 
-# Celestia Node API Docs
+# Celestia node API docs
 <!-- markdownlint-disable MD013 -->
 
 This is the Celestia Node API Docs reference page for being able to make API

@@ -9,6 +9,6 @@ of Celestia.
 
 It includes:
 
-* How To Create A Celestia Wallet
-* How To Interact With The Data Availability API
-* How To Deploy Sovereign Rollups with [Rollkit](https://rollkit.dev)
+* How to create A Celestia wallet
+* How to interact with the data availability API
+* How to deploy sovereign rollups with [Rollkit](https://rollkit.dev)

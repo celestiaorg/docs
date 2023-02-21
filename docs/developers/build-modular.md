@@ -1,8 +1,8 @@
 ---
-sidebar_label: Build Modular
+sidebar_label: Build modular
 ---
 
-# Build Modular
+# Build modular
 
 This section will explain the advantages of building on
 modular blockchains like Celestia.
@@ -89,7 +89,7 @@ system don’t have to know or care about everything. They only have
 to care about a subset of the features. Specialization is the way
 to ensure maximum focus, performance, and capacity.
 
-### Resource Pricing
+### Resource pricing
 
 By decoupling consensus from execution, Celestia can have much
 more efficient resource pricing than monolithic chains. Transactions
@@ -169,7 +169,7 @@ them tightly linked.
 Celestia enables a new type of rollup: sovereign rollup chains.
 These are independent chains that are similar to an independent L1.
 
-### Execution Layers
+### Execution layers
 
 Unlike Ethereum, Celestia has no enshrined settlement layer built in.
 Instead, there will be various settlement layers available to enable
