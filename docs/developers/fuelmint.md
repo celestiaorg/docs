@@ -54,7 +54,7 @@ rollup on Celestia.
 Let's get started!
 
 :::caution
-This tutorial has only been tested on Ubuntu on an AMD machine.
+This tutorial has only been tested on Ubuntu LTS on an AMD machine.
 :::
 
 ## Installation
