@@ -28,15 +28,15 @@ A Celestia bridge node has the following properties:
 
 From an implementation perspective, Bridge Nodes run two separate processes:
 
-1. celestia-app with Celestia Core
+1. celestia-app with celestia-core
    ([see repo](https://github.com/celestiaorg/celestia-app))
 
     * **celestia-app** is the state machine where the application and the
       proof-of-stake logic is run. celestia-app is built on
       [Cosmos SDK](https://docs.cosmos.network) and also encompasses
-      **Celestia Core**.
-    * **Celestia Core** is the state interaction, consensus and block production
-      layer. Celestia Core is built on [Tendermint Core](https://docs.tendermint.com),
+      **celestia-core**.
+    * **celestia-core** is the state interaction, consensus and block production
+      layer. celestia-core is built on [Tendermint Core](https://docs.tendermint.com),
       modified to store data roots of erasure coded blocks among other changes
       ([see ADRs](https://github.com/celestiaorg/celestia-core/tree/master/docs/celestia-architecture)).
 

@@ -154,9 +154,9 @@ Among the more important changes to vanilla Tendermint, celestia-core:
 
 For more details on the changes to Tendermint, take a look at the
 [ADRs](https://github.com/celestiaorg/celestia-core/tree/v0.34.x-celestia/docs/celestia-architecture).
-Notice that Celestia Core nodes are still using the Tendermint p2p network.
+Notice that celestia-core nodes are still using the Tendermint p2p network.
 
-Similarly to Tendermint, Celestia Core is connected to the application layer
+Similarly to Tendermint, celestia-core is connected to the application layer
 (i.e., the state machine) by [ABCI++](https://github.com/tendermint/tendermint/tree/master/spec/abci%2B%2B),
 a major evolution of [ABCI](https://github.com/tendermint/tendermint/tree/master/spec/abci)
 (Application Blockchain Interface).

@@ -57,7 +57,7 @@ need to change the field `PeerExchange` from false to true.
 #### TrustedHash and TrustedPeer
 
 `TrustedHash` is needed to properly initialize a Celestia Bridge
-Node with an already-running `Remote` Celestia Core node. Celestia
+Node with an already-running `Remote` celestia-core node. Celestia
 Light Node will take a genesis hash as the trusted one, if no hash
 is manually provided during initialization phase.
 
