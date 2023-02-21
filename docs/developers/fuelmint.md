@@ -53,6 +53,10 @@ rollup on Celestia.
 
 Let's get started!
 
+:::caution
+This tutorial has only been tested on Ubuntu on an AMD machine.
+:::
+
 ## Installation
 
 ### Dependencies
@@ -113,7 +117,7 @@ go mod download
 make install
 ```
 
-Then, run the following commands:
+Then, run the following commands from the `[placeholder]` directory:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
