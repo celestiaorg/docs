@@ -67,6 +67,7 @@ to be able to setup Fuelmint.
 * [Install Rust and Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 * [Install Docker](https://docs.docker.com/engine/install/ubuntu/)
 * [Install system environment setup for Linux AMD, including Golang](../../nodes/environment)
+* Node JS and NPM
 
 ### Setup Fuelmint
 
@@ -75,7 +76,7 @@ You can find the Fuelmint Repo on GitHub [here](https://github.com/Ferret-san/fu
 The first step is to clone the Fuelmint repo:
 
 ```bash
-git clone https://github.com/Ferret-san/fuelmint
+git clone https://github.com/Ferret-san/fuelmint.git
 ```
 
 Then, go to the Docker directory:
@@ -101,19 +102,42 @@ it will take some time to install all of the required dependencies.
 
 ```bash
 cd $HOME
+rm ~/.fuel/db
 cd fuelmint
 cargo run --bin fuelmint
 ```
+
+:::caution
+When you restart Fuelmint, you will need to remove existing data from Fuelmint and Tendermint.
+:::
+
+If you'd like to see the CLI menu for Fuelmint, run this command in the `fuelmint` directory:
+
+```bash
+cargo run --bin fuelmint -- --help
+```
+
+Save one of the private keys in the output from the command above,
+you'll be using this again later in the tutorial.
 
 In another terminal session, you will need
 to build the Rollkit node with Golang:
 
 ```bash
 cd fuelmint/rollkit-node
-make build
+go build
 ```
 
-Then, run the following commands from the `[placeholder]` directory:
+In a new terminal clone and install `rollkit/tendermint`:
+
+```bash
+git clone https://github.com/rollkit/tendermint.git
+cd tendermint
+git checkout 8be9b54c8c21
+make install
+```
+
+Then, run the following commands from the `fuelmint/rollkit-node` directory:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
@@ -123,6 +147,13 @@ NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 ./rollkit-node -config "/tmp/fuelmint/config/config.toml" -rollkit.namespace_id $NAMESPACE_ID -rollkit.da_start_height 1
 ```
 <!-- markdownlint-enable MD013 -->
+
+In another terminal, in the `fuelmint/rollkit-node` directory, view the CLI menu
+by running:
+
+```bash
+./rollkit-node -help
+```
 
 ## Deploy a Sway smart contract
 
@@ -145,12 +176,19 @@ forc deploy --url localhost:4000 --unsigned
 
 This generates the `contract-id`.
 
+Open `fuelmint/examples/counter/frontend/src/App.tsx` in your text editor and
+replace the `CONTRACT_ID` with your contract ID from the output of your deployment.
+
 Generate the front end with `contract-id`.
 Get the wallet secret generated when you started fuelmint:
 
 ```bash
+cd fuelmint/examples/counter/frontend
+npm install
 npm start
 ```
+
+You can now view your counter at `http://localhost:3000`!
 
 ## Run Fuelmint on Mocha
 
