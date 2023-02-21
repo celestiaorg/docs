@@ -1,8 +1,8 @@
 ---
-sidebar_label: Celestia's Data Availability Layer
+sidebar_label: Celestia's data availability layer
 ---
 
-# Celestia's Data Availability Layer
+# Celestia's data availability layer
 
 Celestia is a data availability (DA) layer that provides a
 scalable solution to the [data availability problem](https://coinmarketcap.com/alexandria/article/what-is-data-availability).
@@ -17,7 +17,7 @@ nodes to verify data availability without needing to download an entire block;
 NMTs enable execution and settlement layers on Celestia to download transactions
 that are only relevant to them.
 
-## Data Availability Sampling (DAS)
+## Data availability sampling (DAS)
 
 In general, light nodes download only block headers that contain
 commitments (i.e., Merkle roots) of the block data (i.e., the list of transactions).
@@ -68,7 +68,7 @@ download O(n) bytes. Therefore, any improvement in the bandwidth capacity
 of Celestia light nodes has a quadratic effect on the throughput of Celestia's
 DA layer.
 
-### Fraud Proofs of Incorrectly Extended Data
+### Fraud proofs of incorrectly extended data
 
 The requirement of downloading the 4k intermediate Merkle roots is a
 consequence of using a 2-dimensional Reed-Solomon encoding scheme. Alternatively,
@@ -129,9 +129,9 @@ part of namespace 2.
 
 For more details on NMTs, take a look at the [original paper](https://arxiv.org/abs/1905.09274).
 
-## Building a PoS Blockchain for DA
+## Building a PoS blockchain for DA
 
-### Providing Data Availability
+### Providing data availability
 
 The Celestia DA layer consists of a PoS blockchain. Celestia is dubbing this
 blockchain as the [Celestia App](https://github.com/celestiaorg/celestia-app),

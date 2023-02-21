@@ -1,8 +1,8 @@
 ---
-sidebar_label: The Lifecycle of a Celestia App Transaction
+sidebar_label: The lifecycle of a Celestia app transaction
 ---
 
-# The Lifecycle of a Celestia App Transaction
+# The lifecycle of a Celestia app transaction
 
 ````mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -108,7 +108,7 @@ one for every row and column of the extended matrix.
 </Tabs>
 ````
 
-## Checking Data Availability
+## Checking data availability
 
 ![DA network](/img/concepts/consensus-da.png)
 

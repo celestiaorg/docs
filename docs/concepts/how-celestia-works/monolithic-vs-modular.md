@@ -1,8 +1,8 @@
 ---
-sidebar_label: Monolithic vs. Modular Blockchains
+sidebar_label: Monolithic vs. modular blockchains
 ---
 
-# Monolithic vs. Modular Blockchains
+# Monolithic vs. modular blockchains
 
 Blockchains instantiate [replicated state machines](https://dl.acm.org/doi/abs/10.1145/98163.98167):
 the nodes in a permissionless distributed network apply an ordered sequence
