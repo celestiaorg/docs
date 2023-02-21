@@ -2,7 +2,7 @@
 sidebar_label: Data Availability FAQ
 ---
 
-# Data Availability FAQ
+# Data availability FAQ
 
 ## What is data availability?
 
