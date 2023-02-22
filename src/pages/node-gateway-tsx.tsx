@@ -56,7 +56,7 @@ function getMethodsByPackage(spec: any): MethodByPkg {
 
 export default function Hello() {
   return (
-    <Layout title="Hello" description="Hello React Page">
+    // <Layout title="Hello" description="Hello React Page">
       <div className="">
  {Object.entries(getMethodsByPackage(spec)).map(
     ([pkg, methods]) => (
@@ -71,7 +71,7 @@ export default function Hello() {
     )
   )}
       </div>
-    </Layout>
+    // </Layout>
   );
 }
 
