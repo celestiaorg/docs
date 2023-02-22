@@ -3,7 +3,6 @@ import React from 'react'
 import {spec} from '@site/src/components/node-spec'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import {ChevronRightIcon, ChevronDownIcon} from "@heroicons/react/24/solid"
-import Layout from '@theme/Layout';
 
 type Param = {
   name: string;
@@ -56,7 +55,6 @@ function getMethodsByPackage(spec: any): MethodByPkg {
 
 export default function Hello() {
   return (
-    // <Layout title="Hello" description="Hello React Page">
       <div className="">
  {Object.entries(getMethodsByPackage(spec)).map(
     ([pkg, methods]) => (
@@ -71,7 +69,6 @@ export default function Hello() {
     )
   )}
       </div>
-    // </Layout>
   );
 }
 
