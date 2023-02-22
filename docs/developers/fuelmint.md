@@ -67,7 +67,7 @@ to be able to setup Fuelmint.
 * [Install Rust and Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 * [Install Docker](https://docs.docker.com/engine/install/ubuntu/)
 * [Install system environment setup for Linux AMD, including Golang](../../nodes/environment)
-* Node JS and NPM
+* [Install Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ### Setup Fuelmint
 
@@ -108,10 +108,12 @@ cargo run --bin fuelmint
 ```
 
 :::caution
-When you restart Fuelmint, you will need to remove existing data from Fuelmint and Tendermint.
+When you restart Fuelmint, you will need to remove existing data
+from Fuelmint and Tendermint.
 :::
 
-If you'd like to see the CLI menu for Fuelmint, run this command in the `fuelmint` directory:
+If you'd like to see the CLI menu for Fuelmint, run this command in
+the `fuelmint` directory:
 
 ```bash
 cargo run --bin fuelmint -- --help
