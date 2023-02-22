@@ -1,0 +1,57 @@
+---
+sidebar_label: Node API tutorial
+---
+
+# Node API tutorial
+
+This tutorial will teach you how to interact with a node's API.
+
+First, [install celestia-node](../../nodes/light-node).
+
+Initalize your node:
+
+```bash
+celestia <node_type> init --p2p.network <network>
+```
+
+Start your node:
+
+```bash
+celestia <node_type> start --p2p.network <network>
+```
+
+## cURL section
+
+In another terminal instance, run the following command to generate the JWT auth token
+and set it as a variable:
+
+```bash
+# make sure to add network flags if you're using a network other than the default
+# auth level can be any of the following [read || write || admin]
+
+export AUTH_TOKEN=$(celestia <node_type> auth <auth level>)
+```
+
+You'll also need the port that is exposed on your node, by default it is 26658.
+
+To view the CLI menu:
+```bash
+celestia light auth -h
+```
+
+```bash
+# returns the node's SamplingStats
+
+curl -X POST -H 'Authorization: Bearer '$AUTH_TOKEN'' -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":0,"method":"das.SamplingStats","params":[]}' http://localhost:26658/ | jq
+```
+
+```bash
+# returns the node's chain head
+
+curl -X POST -H 'Authorization: Bearer '$AUTH_TOKEN'' -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":0,"method":"header.Head","params":[]}' http://localhost:26658/ | jq
+```
+
+## Go dev section
+- link to Rene's repo
+- README with explanation & comments in Go files
+- what is necessary to communicate for how to interact with your node with Go
