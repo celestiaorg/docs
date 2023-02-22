@@ -83,7 +83,7 @@ const RPCMethod = (pkg: string, method: Method) => {
         {method.params.map((param, i, { length }) => (
           <span key={param.name} className='text-sm text-gray-700'>
             <span>{param.name}</span>{' '}
-            <span className='text-blue-500 hover:cursor-pointer hover:font-bold'>
+            <span className='text-blue-500 hover:font-bold'>
               {param.description}
               {length - 1 != i && ', '}
             </span>
@@ -91,7 +91,7 @@ const RPCMethod = (pkg: string, method: Method) => {
         ))}
         )
         {method.result.description != 'Null' && (
-          <span className='ml-2 text-sm text-blue-500 hover:cursor-pointer hover:font-bold'>
+          <span className='ml-2 text-sm text-blue-500 hover:font-bold'>
             {method.result.description}
           </span>
         )}
@@ -99,10 +99,10 @@ const RPCMethod = (pkg: string, method: Method) => {
           perms: {method.auth}
         </span>
       </p>
-      <p className='text-sm font-light text-gray-700'>{method.description}</p>
-      <div className='mt-6 overflow-hidden rounded-lg bg-white text-sm shadow'>
+      <p className='text-sm font-light text-gray-700 dark:text-gray-400'>{method.description}</p>
+      <div className='mt-6 overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800 text-sm shadow'>
         <div
-          className='flex px-4 py-5 hover:cursor-pointer hover:bg-gray-50 sm:px-6'
+          className='flex px-4 py-5 hover:cursor-pointer hover:bg-purple-200 dark:hover:bg-gray-900 sm:px-6'
           onClick={() => setShowRequest(!showRequest)}
         >
           {showRequest ? (
@@ -113,12 +113,13 @@ const RPCMethod = (pkg: string, method: Method) => {
           Request
         </div>
         {showRequest && (
-          <div className='bg-gray-50 px-4 py-5 text-sm sm:p-6'>
+          <div className='bg-gray-50 dark:bg-gray-900 px-4 py-5 text-sm sm:p-6'>
             <SyntaxHighlighter
-              language='javascript'
-              customStyle={{
-                backgroundColor: 'transparent',
-              }}
+              language='json'
+              // customStyle={{
+              //   backgroundColor: 'black',
+              //   color: 'white',
+              // }}
             >
             {JSON.stringify(
               {
@@ -134,7 +135,7 @@ const RPCMethod = (pkg: string, method: Method) => {
           </div>
         )}
         <div
-          className='flex px-4 py-5 hover:cursor-pointer hover:bg-gray-50 sm:px-6'
+          className='flex px-4 py-5 hover:cursor-pointer hover:bg-purple-200 dark:hover:bg-gray-900 sm:px-6'
           onClick={() => setShowResponse(!showResponse)}
         >
           {showResponse ? (
@@ -145,12 +146,13 @@ const RPCMethod = (pkg: string, method: Method) => {
           Response
         </div>
         {showResponse && (
-          <div className='bg-gray-50 px-4 py-5 text-sm sm:p-6'>
+          <div className='bg-gray-50 dark:bg-gray-900 px-4 py-5 text-sm sm:p-6'>
             <SyntaxHighlighter
-              language='javascript'
-              customStyle={{
-                backgroundColor: 'transparent',
-              }}
+              language='json'
+              // customStyle={{
+              //   backgroundColor: 'black',
+              //   color: 'white',
+              // }}
             >
             {JSON.stringify(
               {
