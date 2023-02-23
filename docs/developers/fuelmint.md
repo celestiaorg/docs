@@ -200,6 +200,10 @@ You can now view your counter at `http://localhost:3000`!
 
 ## Run Fuelmint on Mocha
 
+:::caution
+Posting to Mocha and Arabica coming soon.
+:::
+
 Run a Mocha light node and get it funded [here](../../nodes/light-node).
 
 Then clear the existing database with your fuelmint binary:
@@ -214,6 +218,7 @@ cargo run --bin fuelmint
 In a new terminal, we'll start the Rollkit node:
 
 ```bash
+cd $HOME
 cd fuelmint/rollkit-node
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
