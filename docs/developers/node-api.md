@@ -2,11 +2,11 @@
 sidebar_label: Node API
 ---
 
-# Celestia Node API Docs
+# celestia-node API docs
 <!-- markdownlint-disable MD013 -->
 
-This is the Celestia Node API Docs reference page for being able to make API
-requests to your Celestia Node.
+This is the celestia-node API Docs reference page for being able to make API
+requests to your celestia-node.
 
 In order to query the API, you will need to setup your node. Resources on
 how to do this can be found in the following [guide](../nodes/validator-node.md#deploy-the-celestia-node).
@@ -437,7 +437,7 @@ AUTH_TOKEN=$(celestia $NODE_TYPE auth admin)
 ```
 
 > NOTE: You can only generate an auth token after initializing
-  and starting your Celestia Node. Also, `NODE_TYPE` here is set to
+  and starting your celestia-node. Also, `NODE_TYPE` here is set to
   `light` node but ensure you set it to your desired node type
   (ex. `bridge`, `full`).
 

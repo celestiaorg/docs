@@ -1,15 +1,15 @@
 ---
-sidebar_label: Docker Images
+sidebar_label: Docker images
 ---
 
 import mochaVersions from "../../versions/mocha_versions.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
 
-# 🐳 Docker Setup
+# 🐳 Docker setup
 
 This page has instructions to run `celestia-node` using Docker. If you are
 looking for instructions to run `celestia-node` using a binary, please
-refer to the [Celestia Node](./celestia-node.mdx) page.
+refer to the [celestia-node](./celestia-node.mdx) page.
 
 Using Docker is the easiest way to run `celestia-node` for most
 users. Docker is a containerization platform that allows you to run `celestia-node`
@@ -34,12 +34,12 @@ import TabItem from '@theme/TabItem';
 <Tabs groupID="node">
 <TabItem value="light" label="Light">
 
-## Light Node Setup
+## Light node setup
 
 <Tabs groupId="network">
 <TabItem value="mocha" label="Mocha">
 
-### Mocha Testnet Setup
+### Mocha testnet setup
 
 Run the image from the command line:
 
@@ -47,7 +47,7 @@ Run the image from the command line:
 docker run -e NODE_TYPE=light -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:sha-{mochaVersions['node-latest-sha'].slice(0, 7)} celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 </code></pre>
 
-Congratulations! You now have a Celestia Light Node running on the Mocha testnet.
+Congratulations! You now have a Celestia light node running on the Mocha testnet.
 
 ![mocha_light_docker](/img/nodes/mocha_light_docker.gif)
 
@@ -58,7 +58,7 @@ you can refer to the
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-### Arabica Devnet Setup
+### Arabica devnet setup
 
 Run the image from the command line:
 
@@ -66,7 +66,7 @@ Run the image from the command line:
 docker run -e NODE_TYPE=light -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia light start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 </code></pre>
 
-Congratulations! You now have a Celestia Light Node running on the Arabica devnet.
+Congratulations! You now have a Celestia light node running on the Arabica devnet.
 
 ![arabica_light_docker](/img/nodes/arabica_light_docker.gif)
 
@@ -79,12 +79,12 @@ you can refer to the
 </TabItem>
 <TabItem value="bridge" label="Bridge">
 
-## Bridge Node Setup
+## Bridge node setup
 
 <Tabs groupId="network">
 <TabItem value="mocha" label="Mocha">
 
-### Mocha Bridge Node Setup
+### Mocha bridge node setup
 
 Run the image from the command line:
 
@@ -92,7 +92,7 @@ Run the image from the command line:
 docker run -e NODE_TYPE=bridge -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:sha-{mochaVersions['node-latest-sha'].slice(0, 7)} celestia bridge start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 </code></pre>
 
-Congratulations! You now have a Celestia Bridge Node running on the Mocha network.
+Congratulations! You now have a Celestia bridge node running on the Mocha network.
 
 ![mocha_bridge_docker](/img/nodes/mocha_bridge_docker.gif)
 
@@ -103,7 +103,7 @@ you can refer to the
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-### Arabica Bridge Node Setup
+### Arabica bridge node setup
 
 Run the image from the command line:
 
@@ -111,7 +111,7 @@ Run the image from the command line:
 docker run -e NODE_TYPE=bridge -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia bridge start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 </code></pre>
 
-Congratulations! You now have a Celestia Bridge Node running on the Arabica network.
+Congratulations! You now have a Celestia bridge node running on the Arabica network.
 
 ![arabica_bridge_docker](/img/nodes/arabica_bridge_docker.gif)
 
@@ -124,12 +124,12 @@ you can refer to the
 </TabItem>
 <TabItem value="full" label="Full">
 
-## Full Node Setup
+## Full node setup
 
 <Tabs groupId="network">
 <TabItem value="mocha" label="Mocha">
 
-### Mocha Full Node Setup
+### Mocha full node setup
 
 Run the image from the command line:
 
@@ -137,7 +137,7 @@ Run the image from the command line:
 docker run -e NODE_TYPE=full -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:sha-{mochaVersions['node-latest-sha'].slice(0, 7)} celestia full start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 </code></pre>
 
-Congratulations! You now have a Celestia Full Storage Node running on the Mocha network.
+Congratulations! You now have a Celestia full storage node running on the Mocha network.
 
 ![mocha_full_docker](/img/nodes/mocha_full_docker.gif)
 
@@ -148,7 +148,7 @@ you can refer to the
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-### Arabica Full Node Setup
+### Arabica full node setup
 
 Run the image from the command line:
 
@@ -156,7 +156,7 @@ Run the image from the command line:
 docker run -e NODE_TYPE=full -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia full start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 </code></pre>
 
-Congratulations! You now have a Celestia Full Storage Node running on the Arabica network.
+Congratulations! You now have a Celestia full storage node running on the Arabica network.
 
 ![arabica_full_docker](/img/nodes/arabica_full_docker.gif)
 
