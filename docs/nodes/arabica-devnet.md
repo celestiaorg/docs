@@ -1,8 +1,8 @@
 ---
-sidebar_label: Arabica Devnet
+sidebar_label: Arabica devnet
 ---
 
-# Arabica Devnet
+# Arabica devnet
 <!-- markdownlint-disable MD013 -->
 
 ![arabica-devnet](/img/arabica-devnet.png)
@@ -69,14 +69,14 @@ The default port is 1317.
 
 ## gRPC endpoints
 
-The gRPC endpoint is to allow users to interact with a Celestia node using
+The gRPC endpoint is to allow users to interact with a celestia-node using
 gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
 * [https://grpc.limani.celestia-devops.dev](https://grpc.limani.celestia-devops.dev)
 
-## Arabica Devnet faucet
+## Arabica devnet faucet
 
 > USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER
   DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS

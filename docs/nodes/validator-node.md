@@ -1,8 +1,8 @@
 ---
-sidebar_label: Validator Node
+sidebar_label: Validator node
 ---
 
-# Setting up a Celestia Validator Node
+# Setting up a Celestia validator node
 
 Validator nodes allow you to participate in consensus in the Celestia network.
 
@@ -30,14 +30,14 @@ Follow the instructions on installing the dependencies [here](./environment.mdx)
 ## Deploying the celestia-app
 
 This section describes part 1 of Celestia Validator Node setup:
-running a Celestia App daemon with an internal Celestia Core node.
+running a celestia-app daemon with an internal celestia-core node.
 
 > Note: Make sure you have at least 100+ Gb of free space to safely install+run
   the Validator Node.
 
 ### Install celestia-app
 
-Follow the tutorial on installing Celestia App [here](./celestia-app.mdx).
+Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -183,7 +183,7 @@ Celestia Bridge Node daemon.
 
 ### Install celestia-node
 
-You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx)
+You can follow the tutorial for installing celestia-node [here](./celestia-node.mdx)
 
 ### Initialize the bridge node
 
@@ -215,7 +215,7 @@ SystemD [here](../systemd).
 
 You have successfully set up a bridge node that is syncing with the network.
 
-### Setup QGB Keys
+### Setup QGB keys
 
 This step helps get you prepared for when the Quantum Gravity Bridge
 is ready to be deployed. You would still need to go through this step

@@ -1,16 +1,16 @@
 ---
-sidebar_label: Mocha Testnet
+sidebar_label: Mocha testnet
 ---
 
-# Mocha Testnet
+# Mocha testnet
 
 ![mocha-testnet](/img/mocha.jpg)
 
 This guide contains the relevant sections for how to connect to Mocha,
-depending on the type of node you are running. Mocha Testnet is designed
+depending on the type of node you are running. Mocha testnet is designed
 to help validators test out their infrastructure and node software.
 Developers are encouraged to deploy their
-sovereign rollups on Mocha, but we also recommend [Arabica Devnet](./arabica-devnet.md)
+sovereign rollups on Mocha, but we also recommend [Arabica devnet](./arabica-devnet.md)
 for that as it is designed for development purposes.
 
 Mocha is a milestone in Celestia, allowing everyone to test out
@@ -24,14 +24,14 @@ participate in Mocha:
 
 Consensus:
 
-* [Validator Node](./validator-node.md)
-* [Consensus Full Node](./consensus-full-node.md)
+* [Validator node](./validator-node.md)
+* [Consensus full node](./consensus-full-node.md)
 
 Data Availability:
 
-* [Bridge Node](./bridge-node.mdx)
-* [Full Storage Node](./full-storage-node.mdx)
-* [Light Node](./light-node.mdx)
+* [Bridge node](./bridge-node.mdx)
+* [Full storage node](./full-storage-node.mdx)
+* [Light node](./light-node.mdx)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
@@ -44,7 +44,7 @@ The RPC endpoint is to allow users to interact with Celestia's nodes by
 querying the node's state and broadcasting transactions on the
 Celestia network. The default port is 26657.
 
-Below is a list of RPC endpoints you can use to connect to Mocha Testnet:
+Below is a list of RPC endpoints you can use to connect to Mocha testnet:
 
 * [https://rpc-mocha.pops.one](https://rpc-mocha.pops.one)
 * [https://rpc.mocha.celestia.counterpoint.software](https://rpc.mocha.celestia.counterpoint.software)
@@ -62,7 +62,7 @@ The default port is 1317.
 
 ## gRPC endpoints
 
-The gRPC endpoint is to allow users to interact with a Celestia node using
+The gRPC endpoint is to allow users to interact with a celestia-node using
 gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
@@ -70,7 +70,7 @@ broadcast transactions.
 * [https://grpc-mocha.pops.one](https://grpc-mocha.pops.one)
 * [https://grpc.mocha.celestia.counterpoint.software](https://grpc.mocha.celestia.counterpoint.software)
 
-## Mocha Testnet faucet
+## Mocha testnet faucet
 
 > USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER
   DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS

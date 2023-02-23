@@ -2,7 +2,8 @@
 sidebar_label: Consensus Full Node
 ---
 
-# Setting up a Celestia Consensus Full Node
+# Setting up a Celestia consensus full node
+
 <!-- markdownlint-disable MD013 -->
 
 Consensus Full Nodes allow you to sync blockchain history in the Celestia
@@ -32,14 +33,14 @@ Follow the instructions on installing the dependencies [here](./environment.mdx)
 ## Deploying the celestia-app
 
 This section describes part 1 of Celestia consensus full node setup:
-running a Celestia App daemon with an internal Celestia Core node.
+running a celestia-app daemon with an internal celestia-core node.
 
 > Note: Make sure you have at least 100+ Gb of free space to safely install + run
   the consensus full node.  
 
 ### Install celestia-app
 
-Follow the tutorial on installing Celestia App [here](./celestia-app.mdx).
+Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -106,7 +107,7 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ### Optional: quick-sync with snapshot
 
 Syncing from Genesis can take a long time, depending on your hardware. Using
-this method you can synchronize your Celestia node very quickly by downloading
+this method you can synchronize your celestia-node very quickly by downloading
 a recent snapshot of the blockchain. If you would like to sync from the Genesis,
 then you can skip this part.
 

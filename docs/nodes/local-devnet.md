@@ -1,8 +1,8 @@
 ---
-sidebar_label: Local Devnet
+sidebar_label: Local devnet
 ---
 
-# Running a Local Celestia Devnet
+# Running a local Celestia devnet
 
 :::caution Note
 This tutorial has only been tested on an AMD machine running Ubuntu 22.10 x64.
@@ -37,7 +37,7 @@ specs:
 First, you'll need to have Docker installed or [install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 (*Ubuntu version*)
 
-## Run the Local Devnet
+## Run the local devnet
 
 Run the `local-celestia-devnet` by running the following command:
 
