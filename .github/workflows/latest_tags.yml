@@ -1,0 +1,121 @@
+name: Latest Tags
+
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts. These are the options visible when manually
+    # triggering the workflow
+    inputs:
+      # `network` is the name of the input and is customizable. We can name it
+      # whatever we want. Just note that if we change the name here we will need
+      # to change the name where it is referenced
+      network:
+        # Friendly description to be shown in the UI instead of 'network'
+        description: "Which network are we updating the latest tag information?"
+        # Input has to be provided for the workflow to run
+        required: true
+        type: choice
+        # These are the drop down options, so we can add other networks, like
+        # mainnet for instance.
+        options:
+          - arabica
+          - mocha
+
+jobs:
+  # This job pulls the latest tag information for the repos listed in the matrix
+  # strategy
+  logLatestRelease:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # If we want more repos, we can just add them here.
+        repo: [celestia-app, celestia-core, celestia-node]
+    env:
+      # This workflow is set for the celestiaorg github org, if we need other
+      # orgs we will need to restructure this workflow
+      owner: celestiaorg
+    # Define the outputs for other steps to access
+    outputs:
+      celestia-app_latest_tag: ${{ steps.set_outputs.outputs.celestia-app_latest_tag }}
+      celestia-app_latest_sha: ${{ steps.set_outputs.outputs.celestia-app_latest_sha }}
+      celestia-core_latest_tag: ${{ steps.set_outputs.outputs.celestia-core_latest_tag }}
+      celestia-core_latest_sha: ${{ steps.set_outputs.outputs.celestia-core_latest_sha }}
+      celestia-node_latest_tag: ${{ steps.set_outputs.outputs.celestia-node_latest_tag }}
+      celestia-node_latest_sha: ${{ steps.set_outputs.outputs.celestia-node_latest_sha }}
+    steps:
+      - name: Log target owner/repo
+        run: "echo Pulling info from: '${{ env.owner }}/${{ matrix.repo }}'"
+
+      - name: Query /releases/latest endpoint
+        uses: octokit/request-action@v2.x
+        id: get_latest_release
+        with:
+          route: GET /repos/{owner}/{repo}/releases/latest
+          owner: ${{ env.owner }}
+          repo: ${{ matrix.repo }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log latest tag
+        run: "echo latest tag: '${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}'"
+
+      - name: Query /git/ref/tag endpoint
+        uses: octokit/request-action@v2.x
+        id: get_latest_commit
+        with:
+          route: GET /repos/{owner}/{repo}/git/ref/tags/${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}
+          owner: ${{ env.owner }}
+          repo: ${{ matrix.repo }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log latest sha
+        run: "echo latest commit: '${{ fromJSON(steps.get_latest_commit.outputs.data).object.sha }}'"
+
+      - name: Set outputs
+        id: set_outputs
+        run: |
+          echo "${{matrix.repo}}_latest_tag=${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_OUTPUT
+          echo "${{matrix.repo}}_latest_sha=${{ fromJSON(steps.get_latest_commit.outputs.data).object.sha }}" >> $GITHUB_OUTPUT
+
+  # This job creates a PR if there were changes. The changes are created when
+  # the workflow writes to the version files. This means that the workflow
+  # should be able to be run and will just be a no-op if the is no new release.
+  # Either way, since a PR is created, this job won't break the docs on main.
+  createPR:
+    needs: logLatestRelease
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Write latest tags and commit SHAs to txt files
+        # This is the code that writes to a file. If we need to update the file
+        # layout, contents, or file name, do it here.
+        run: |
+          CONTENTS=$(cat << EOF
+          const ${{ inputs.network }}Versions = Object.freeze({
+            "app-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }}",
+            "app-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }}",
+            "core-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }}",
+            "core-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}", 
+            "node-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }}",
+            "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-node_latest_sha }}"
+          });
+          export default ${{ inputs.network }}Versions;
+          EOF
+          )
+          echo $CONTENTS > versions/\${{ inputs.network }}_versions.js
+      - name: Install Prettier
+        run: |
+          npm install -g prettier
+      - name: Format the code with Prettier
+        run: |
+          prettier versions/\${{ inputs.network }}_versions.js --write
+      - name: Open PR
+        uses: peter-evans/create-pull-request@v4
+        with:
+          # This github action has a lot of options, currently we just tweak the
+          # commit-message and title of the PR.
+          commit-message: "[automated GH action] update latest release tags & commit sha (${{ inputs.network }})"
+          title: "[GH Action] Update release tags and commit SHAs for ${{ inputs.network }}"

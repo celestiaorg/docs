@@ -4,7 +4,7 @@ sidebar_label: Build Modular
 
 # Build Modular
 
-This sections will explain the advantages of building on
+This section will explain the advantages of building on
 modular blockchains like Celestia.
 
 ## Scalability challenges
@@ -154,7 +154,7 @@ skillset without having to learn anything new.
 You can write any language and use any execution environment
 you’d like, including Solidity or Vyper and the EVM or Cosmos and Go.
 
-You can use [Rollmint](./rollmint.md) to deploy a rollup for your
+You can use [Rollkit](https://rollkit.dev) to deploy a rollup for your
 favorite execution environment connected to Celestia.
 
 ### Sovereign rollups
@@ -179,7 +179,7 @@ chain to Celestia.
 ### Celestiums (Ethereum)
 
 [Celestiums](https://blog.celestia.org/celestiums) allow developers
-to deploy a to a rollup using Celestia as DA and Ethereum as settlement.
+to deploy to a rollup using Celestia as DA and Ethereum as settlement.
 
 Ethereum rollups batch data from multiple transactions into a single
 transaction. This rollup transaction data (calldata) is posted to
