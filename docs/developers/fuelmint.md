@@ -53,10 +53,6 @@ rollup on Celestia.
 
 Let's get started!
 
-:::caution
-This tutorial has only been tested on Ubuntu LTS on an AMD machine.
-:::
-
 ## Installation
 
 ### Dependencies
@@ -68,6 +64,10 @@ to be able to setup Fuelmint.
 * [Install Docker](https://docs.docker.com/engine/install/ubuntu/)
 * [Install system environment setup for Linux AMD, including Golang](../../nodes/environment)
 * [Install Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+:::caution
+This tutorial has only been tested on Ubuntu LTS on an AMD machine.
+:::
 
 ### Setup Fuelmint
 
@@ -86,7 +86,8 @@ cd fuelmint/local-da
 ```
 
 You can start by running a Docker compose
-setup with a [local DA network](https://github.com/celestiaorg/local-celestia-devnet):
+setup with a
+[local data availability (DA) network](https://github.com/celestiaorg/local-celestia-devnet):
 
 ```bash
 docker compose -f ./docker/test-docker-compose.yml up
@@ -102,7 +103,7 @@ it will take some time to install all of the required dependencies.
 
 ```bash
 cd $HOME
-rm ~/.fuel/db
+rm -rf ~/.fuel/db
 cd fuelmint
 cargo run --bin fuelmint
 ```
@@ -173,16 +174,21 @@ Let's deploy a Sway smart contract for counter! First, open a new terminal insta
 cd $HOME
 cd fuelmint/examples/counter/contract
 forc build
-forc deploy --url localhost:4000 --unsigned
+forc deploy --unsigned
 ```
 
-This generates the `contract-id`.
+This generates the `contract-id`. You will need to save this along with your
+private key from earlier in the tutorial and add it to your frontend demo
+below.
 
-Open `fuelmint/examples/counter/frontend/src/App.tsx` in your text editor and
-replace the `CONTRACT_ID` with your contract ID from the output of your deployment.
+Open `fuelmint/examples/counter/frontend/src/App.tsx` in your text editor.
+Get the wallet secret generated when you started fuelmint, and replace it for
+the `WALLET_SECRET` on line 9 to allow you to send transactions on the frontend.
+
+Then, replace the `CONTRACT_ID` with your contract ID from the output of your
+deployment.
 
 Generate the front end with `contract-id`.
-Get the wallet secret generated when you started fuelmint:
 
 ```bash
 cd fuelmint/examples/counter/frontend
@@ -196,14 +202,31 @@ You can now view your counter at `http://localhost:3000`!
 
 Run a Mocha light node and get it funded [here](../../nodes/light-node).
 
+Then clear the existing database with your fuelmint binary:
+
 ```bash
+cd $HOME
+rm -rf ~/.fuel/db
+cd fuelmint
+cargo run --bin fuelmint
+```
+
+In a new terminal, we'll start the Rollkit node:
+
+```bash
+cd fuelmint/rollkit-node
 NAMESPACE_ID=$(echo $RANDOM | md5sum | head -c 16; echo;)
 DA_BLOCK_HEIGHT=$(curl https://rpc-mocha.pops.one/block | jq -r '.result.block.header.height')
 ```
 
+From the `fuelmint/rollkit-node` directory, run the following to clear existing configs
+and restart the chain on Mocha:
+
 <!-- markdownlint-disable MD013 -->
 ```bash
-./rollkit-node --rollmint.aggregator true --rollmint.da_layer celestia --rollmint.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' --rollmint.namespace_id $NAMESPACE_ID --rollmint.da_start_height $DA_BLOCK_HEIGHT 
+rm -rf /tmp/fuelmint/
+TMHOME="/tmp/fuelmint" tendermint init
+./rollkit-node -config "/tmp/fuelmint/config/config.toml" -rollkit.aggregator true -rollkit.da_layer celestia -rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"gas_limit":6000000,"fee":6000}' -rollkit.namespace_id $NAMESPACE_ID -rollkit.da_start_height $DA_BLOCK_HEIGHT 
 ```
 <!-- markdownlint-enable MD013 -->
 
