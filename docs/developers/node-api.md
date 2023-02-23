@@ -8,7 +8,8 @@ import Hello from "../../src/pages/node-api-docs.tsx"
 
 ## Overview
 
-This page provides documentation for all of the endpoints that are available via JSON RPC.
+This page provides documentation for all of the endpoints that are available
+via JSON RPC.
 
 ## API docs
 
