@@ -13,6 +13,14 @@ This tutorial will guide you through setting up a Celestia Full Storage
 Node, which is a Celestia node that doesn't connect to Celestia App
 (hence not a full node) but stores all the data.
 
+## Overview of Full Storage Nodes
+
+Full Storage nodes are Celestia nodes that store all the data. Full
+Storage nodes send block shares, headers, and fraud proofs to Light Nodes.
+The Light Nodes gossip headers, fraud proofs, and sometimes block shares, between one another. 
+
+![Full Storage Node](../../static/img/full-storage-node.png)
+
 ## Hardware requirements
 
 The following hardware minimum requirements are recommended for running
@@ -65,11 +73,15 @@ celestia full init --p2p.network arabica
 
 #### Start the full storage node
 
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="mocha" label="Mocha">
+
 Start the Full Storage Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 > NOTE: In order for access to the ability to get/submit state-related
-  information, such as the ability to submit PayForData transactions,
+  information, such as the ability to submit `PayForData` transactions,
   or query for the node's account balance, a gRPC endpoint of a validator
   (core) node must be passed as directed below.
 
@@ -80,49 +92,83 @@ A note on ports:
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-````mdx-code-block
-<Tabs groupId="network">
-<TabItem value="mocha" label="Mocha">
-
 ```sh 
-celestia full start --core.ip <ip-address>
+celestia full start --core.ip <ip-address>:<port>
 ```
-
-</TabItem>
-<TabItem value="arabica" label="Arabica 🏗️">
-
-```sh
-celestia full start --core.ip http://<ip-address> --p2p.network arabica
-```
-
-</TabItem>
-</Tabs>
-````
 
 If you would like to find example RPC endpoints, check out the list of
-resources [here](./mocha-testnet.md).
+resources [here](../mocha-testnet).
 
-You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx)
+You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
 
 Once you start the Full Node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
-PayForData transactions.
+`PayForData` transactions.
 You can find the address by running the following command:
 
 ```sh
 ./cel-key list --node.type full --keyring-backend test --p2p.network <network>
 ```
 
-You have two networks to get testnet tokens from:
+You can get testnet tokens from:
 
-* [Arabica](./arabica-devnet.md)
-* [Mocha](./mocha-testnet.md)
+* [Mocha](../mocha-testnet)
 
 > NOTE: If you are running a full-storage node for your sovereign
   rollup, it is highly recommended to request Arabica devnet tokens
   as Arabica has the latest changes that can be used to
   test for developing your sovereign rollup. You can still use
   Mocha Testnet as well, it is just mostly used for Validator operations.
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+Start the Full Storage Node with a connection to a validator node's gRPC endpoint
+(which is usually exposed on port 9090):
+
+> NOTE: In order for access to the ability to get/submit state-related
+  information, such as the ability to submit `PayForBlob` transactions,
+  or query for the node's account balance, a gRPC endpoint of a validator
+  (core) node must be passed as directed below.
+
+A note on ports:
+
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
+
+```sh
+celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --p2p.network arabica
+```
+
+If you would like to find example RPC endpoints, check out the list of
+resources [here](../arabica-devnet).
+
+You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
+
+Once you start the Full Node, a wallet key will be generated for you.
+You will need to fund that address with testnet tokens to pay for
+`PayForBlob` transactions.
+You can find the address by running the following command:
+
+```sh
+./cel-key list --node.type full --keyring-backend test --p2p.network <network>
+```
+
+You can get testnet tokens from:
+
+* [Arabica](../arabica-devnet)
+
+> NOTE: If you are running a full-storage node for your sovereign
+  rollup, it is highly recommended to request Arabica devnet tokens
+  as Arabica has the latest changes that can be used to
+  test for developing your sovereign rollup. You can still use
+  Mocha Testnet as well, it is just mostly used for Validator operations.
+
+</TabItem>
+</Tabs>
+````
 
 ### Optional: run the full storage node with a custom key
 

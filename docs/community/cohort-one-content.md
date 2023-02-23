@@ -34,14 +34,14 @@ sidebar_label: Cohort One Content & Calendar
 ### **Week 3 - 10 October**
 
 📗 **Lesson 2 - Building a sovereign rollup with Ignite and
-[Rollmint](../developers/rollmint.md) on Celestia with Yaz**
+[Rollkit](https://rollkit.dev) on Celestia with Yaz**
 
 - **Monday 10 October @ 11am EDT / 3pm UTC / 5pm CEST**
   - Lesson 2 will cover building a sovereign rollup with
-  [Rollmint](https://docs.celestia.org/developers/rollmint) and Celestia using
+  [Rollkit](https://rollkit.dev) and Celestia using
   Ignite CLI and Cosmos-SDK. Yaz will demonstrate how to build a Wordle
   sovereign rollup on Celestia.
-- [Lesson #2 - Building a sovereign rollup with Ignite & Rollmint on Celestia with Yaz (Recording)](https://youtu.be/mMKvg3lnV-4)
+- [Lesson #2 - Building a sovereign rollup with Ignite & Rollkit on Celestia with Yaz (Recording)](https://youtu.be/mMKvg3lnV-4)
 
 🧑‍🏫 **Office Hour**
 
@@ -100,7 +100,7 @@ sidebar_label: Cohort One Content & Calendar
 
 - **Monday 7 November @ 11am EST / 4pm UTC / 5pm CEST**
   - In this lesson, Josh Bowen will teach us about Astria. Astria is an
-EVM-compatible settlement layer built with Ethermint, Cosmos SDK, and Rollmint.
+EVM-compatible settlement layer built with Ethermint, Cosmos SDK, and Rollkit.
 - [Lesson #4 - Introduction to Settlement Layers and Astria with Josh Bowen (Recording)](https://youtu.be/g192nkXCUYU)
 
 🧑‍🏫 **Office Hour**
@@ -242,6 +242,8 @@ the basic pieces you need to shape your Smart Contract.
 - **Monday 9 January @ 11am EDT / 3pm UTC / 5pm CEST**
 
 🪧 **Demo Day**
+
+- [Modular Fellows Demo Day: Cohort 1](https://www.youtube.com/watch?v=Wy1_NM0Ac1k)
 
 - **Wednesday 11 January @ 11am EST / 4pm UTC / 5pm CEST**
 
