@@ -45,7 +45,7 @@ and [build modular](../build-modular) pages.
 Fuelmint is a sovereign FuelVM rollups on Celestia using
 Rollkit and ABCI (Application BlockChain Interface).
 You can read the announcement blog post
-[here](https://blog.celestia.org).
+[here](https://diegoferrer.substack.com/p/fuelmint-sovereign-fuelvm-rollups).
 
 In this tutorial, we will show you how to setup Fuelmint, so
 you can test out the advantages of using Sway while having a sovereign
