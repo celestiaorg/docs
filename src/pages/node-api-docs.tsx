@@ -3,7 +3,7 @@ import React from 'react'
 import {spec} from '@site/src/components/node-spec'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import {ChevronRightIcon, ChevronDownIcon} from "@heroicons/react/24/solid"
-import "../css/tailwind.css"
+import styles from "../css/tailwind.css"
 
 type Param = {
   name: string;
@@ -56,7 +56,7 @@ function getMethodsByPackage(spec: any): MethodByPkg {
 
 export default function Hello() {
   return (
-      <div className="">
+      <div className={styles}>
  {Object.entries(getMethodsByPackage(spec)).map(
     ([pkg, methods]) => (
       <div key={pkg} className='pb-6' id={pkg}>
