@@ -205,6 +205,15 @@ Posting to Mocha and Arabica coming soon.
 :::
 
 Run a Mocha light node and get it funded [here](../../nodes/light-node).
+If you're running both nodes on the same machine (Rollkit and Celestia),
+you will need to add the `--rpc.port string` flag to the start command
+of your light node, similar to this:
+
+<!-- markdownlint-disable MD013 -->
+```bash
+celestia light start --core.ip https://rpc-mocha.pops.one --core.grpc.port 9090 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha --rpc.port 36658
+```
+<!-- markdownlint-enable MD013 -->
 
 Then clear the existing database with your fuelmint binary:
 
