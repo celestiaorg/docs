@@ -23,7 +23,8 @@ A Celestia bridge node has the following properties:
    have the option of being an active validator in the Consensus network.
 2. Validate and erasure code the “raw” blocks
 3. Supply block shares with data availability headers to Light Nodes in the DA network.
-   ![bridge-node-diagram](/img/nodes/BridgeNodes.png)
+
+![bridge-node-diagram](/img/nodes/BridgeNodes.png)
 
 From an implementation perspective, Bridge Nodes run two separate processes:
 
@@ -42,7 +43,7 @@ From an implementation perspective, Bridge Nodes run two separate processes:
 2. Celestia Node ([see repo](https://github.com/celestiaorg/celestia-node))
 
     * **Celestia Node** augments the above with a separate libp2p network that
-      serves data availability sampling requests. The team sometimes refer to
+      serves data availability sampling requests. The team sometimes refers to
       this as the “halo” network.
 
 ## Hardware requirements
@@ -113,7 +114,7 @@ celestia bridge init --core.ip <ip-address> --p2p.network arabica
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../arabica-devnet#rpc-endpoints)
 
 Here is an example of initializing the bridge node:
 
@@ -149,6 +150,25 @@ Here is an example of starting the bridge node:
 celestia bridge start --core.ip https://rpc-mocha.pops.one:26657
 ```
 
+You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
+
+Once you start the Bridge Node, a wallet key will be generated for you.
+You will need to fund that address with Testnet tokens to pay for
+`PayForData` transactions.
+You can find the address by running the following command:
+
+```sh
+./cel-key list --node.type bridge --keyring-backend test --p2p.network <network>
+```
+
+You can get testnet tokens from:
+
+* [Mocha](../mocha-testnet)
+
+> NOTE: If you are running a bridge node for your validator
+  it is highly recommended to request Mocha testnet tokens
+  as this is the testnet used to test out validator operations.
+
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
@@ -172,29 +192,24 @@ Here is an example of starting the bridge node:
 celestia bridge start --core.ip https://limani.celestia-devops.dev/ --p2p.network arabica
 ```
 
-</TabItem>
-</Tabs>
-````
-
-You can create your key for your node by following the `cel-key` instructions [here](../developers/celestia-node-key.mdx)
+You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
 
 Once you start the Bridge Node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for
-PayForData transactions.
+`PayForBlob` transactions.
 You can find the address by running the following command:
 
 ```sh
 ./cel-key list --node.type bridge --keyring-backend test --p2p.network <network>
 ```
 
-You have two networks to get testnet tokens from:
+You can get testnet tokens from:
 
-* [Arabica](./arabica-devnet.md)
-* [Mocha](./mocha-testnet.md)
-
-> NOTE: If you are running a bridge node for your validator
-  it is highly recommended to request Mocha testnet tokens
-  as this is the testnet used to test out validator operations.
+* [Arabica](../arabica-devnet)
+  
+</TabItem>
+</Tabs>
+````
 
 #### Optional: run the bridge node with a custom key
 

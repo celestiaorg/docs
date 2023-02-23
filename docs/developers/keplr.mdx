@@ -4,16 +4,18 @@ sidebar_label: Keplr Integration
 
 # Keplr Integration With Celestia
 
+import constants from "../../versions/constants.js";
+
 ````mdx-code-block
 import AddNetworkKeplr from '@site/src/components/AddNetworkKeplr';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 export const ARABICA_PARAMS = {
-  chainId: 'arabica-3',
+  chainId: `${constants.arabicaChainId}`,
   chainName: 'Arabica Devnet',
   rpc: 'https://rpc.limani.celestia-devops.dev',
-  rest: 'https://limani.celestia-devops.dev'
+  rest: 'https://api.limani.celestia-devops.dev'
 }
 
 export const MOCHA_PARAMS = {
@@ -156,7 +158,7 @@ export const MOCHA_PARAMS = {
   chainId: 'mocha',
   chainName: 'Mocha Testnet',
   rpc: 'https://rpc-mocha.pops.one',
-  rest: 'https://api-mocha.pops.one/'
+  rest: 'https://api-mocha.pops.one'
 }
 
 <AddNetworkKeplr params={MOCHA_PARAMS}/>
@@ -175,18 +177,19 @@ Behind the scenes, here are the params
 we are passing to the `AddNetworkKeplr`
 function:
 
-```jsx
-import '@site/src/components/AddNetworkKeplr'
-
-export const ARABICA_PARAMS = {
-  chainId: 'arabica-3',
+<pre><code>
+import '@site/src/components/AddNetworkKeplr' <br/>
+<br/>
+export const ARABICA_PARAMS = {`{
+  chainId: '${constants.arabicaChainId}',
   chainName: 'Arabica Devnet',
   rpc: 'https://rpc.limani.celestia-devops.dev',
-  rest: 'https://limani.celestia-devops.dev'
-}
+  rest: 'https://api.limani.celestia-devops.dev'
+}`} <br/>
+<br/>
+{`<AddNetworkKeplr params={ARABICA_PARAMS}/>`}
+</code></pre>
 
-<AddNetworkKeplr params={ARABICA_PARAMS}/>
-```
 </TabItem>
 
 </Tabs>
