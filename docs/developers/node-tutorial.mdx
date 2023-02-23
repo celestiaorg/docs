@@ -665,18 +665,18 @@ celestia light init --p2p.network arabica
 </Tabs>
 ````
 
-### Connect to a public core endpoint
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="mocha" label="Mocha">
+
+### Connect To A Public Core Endpoint
 
 Let's now run the Celestia Light node with a GRPC connection to
 an example public Core Endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](./nodes/arabica-devnet#rpc-endpoints)
-
-````mdx-code-block
-<Tabs groupId="network">
-<TabItem value="mocha" label="Mocha">
+  purposes. You can find a list of RPC endpoints [here](../../nodes/mocha-testnet#rpc-endpoints)
 
 ```sh
 celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
@@ -689,6 +689,15 @@ celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address
 
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
+
+### Connect To A Public Core Endpoint
+
+Let's now run the Celestia Light node with a GRPC connection to
+an example public Core Endpoint.
+
+> Note: You are also encouraged to find a community-run API endpoint
+  and there are several in the Discord. This one is used for demonstration
+  purposes. You can find a list of RPC endpoints [here](../../nodes/arabica-devnet#rpc-endpoints)
 
 ```sh
 celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica

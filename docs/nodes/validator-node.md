@@ -14,8 +14,8 @@ The following hardware minimum requirements are recommended for running the
 validator node:
 
 * Memory: 8 GB RAM
-* CPU: Quad-Core
-* Disk: 250 GB SSD Storage
+* CPU: 6 cores
+* Disk: 500 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
 ## Setting up your validator node
@@ -198,7 +198,7 @@ celestia bridge init --core.ip <ip-address>
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet.md)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
 ### Run the bridge node
 
