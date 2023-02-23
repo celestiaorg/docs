@@ -14,8 +14,8 @@ The following hardware minimum requirements are recommended for running the
 validator node:
 
 * Memory: 8 GB RAM
-* CPU: Quad-Core
-* Disk: 250 GB SSD Storage
+* CPU: 6 cores
+* Disk: 500 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
 ## Setting up your validator node
