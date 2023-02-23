@@ -244,11 +244,6 @@ const sidebars = {
         },
         { 
           type: "doc", 
-          label: "Node API docs", 
-          id: "developers/node-api-docs" 
-        },
-        { 
-          type: "doc", 
           label: "Node API tutorial", 
           id: "developers/node-api-tutorial" 
         },
