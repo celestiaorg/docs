@@ -198,7 +198,7 @@ celestia bridge init --core.ip <ip-address>
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet.md)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
 ### Run the bridge node
 
