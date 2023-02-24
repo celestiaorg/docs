@@ -261,6 +261,11 @@ const sidebars = {
     },
     {
       type: "doc",
+      label: "Fuelmint",
+      id: "developers/fuelmint"
+    },
+    {
+      type: "doc",
       label: "Integrate Celestia",
       id: "developers/integrate-celestia",
     },
