@@ -4,7 +4,7 @@ sidebar_label: Participate in the Celestia testnets
 
 # Participate in the Celestia testnets
 
-Celestia currently has two exisiting testnets that will enable participation:
+Celestia currently has two existing testnets that will enable participation:
 
 * [Arabica devnet](./arabica-devnet.md): A devnet focused on developers who
   want to deploy sovereign rollups on the latest changes from Celestia's codebase.
