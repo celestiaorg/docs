@@ -1,8 +1,8 @@
 ---
-sidebar_label: Full Storage Node
+sidebar_label: Full storage node
 ---
 
-# Setting up a Celestia Full Storage Node
+# Setting up a Celestia full storage Node
 
 ````mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -10,12 +10,12 @@ import TabItem from '@theme/TabItem';
 ````
 
 This tutorial will guide you through setting up a Celestia Full Storage
-Node, which is a Celestia node that doesn't connect to Celestia App
+Node, which is a celestia-node that doesn't connect to celestia-app
 (hence not a full node) but stores all the data.
 
-## Overview of Full Storage Nodes
+## Overview of full storage nodes
 
-Full Storage nodes are Celestia nodes that store all the data. Full
+Full Storage nodes are celestia-nodes that store all the data. Full
 Storage nodes send block shares, headers, and fraud proofs to Light Nodes.
 The Light Nodes gossip headers, fraud proofs, and sometimes block shares, between one another. 
 
@@ -39,12 +39,12 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 You can follow the tutorial for setting up your dependencies [here](./environment.mdx)
 
-## Install Celestia node
+## Install celestia-node
 
 > Note: Make sure that you have at least 250+ Gb of free space for
   Celestia Full Storage Node
 
-You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx)
+You can follow the tutorial for installing celestia-node [here](./celestia-node.mdx)
 
 ### Run the full storage node
 
@@ -97,7 +97,7 @@ celestia full start --core.ip <ip-address>:<port>
 ```
 
 If you would like to find example RPC endpoints, check out the list of
-resources [here](../mocha-testnet).
+resources [here](../mocha-testnet#rpc-endpoints).
 
 You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
 
@@ -143,7 +143,7 @@ celestia full start --core.ip http://<ip-address> --core.grpc.port <port> --p2p.
 ```
 
 If you would like to find example RPC endpoints, check out the list of
-resources [here](../arabica-devnet).
+resources [here](../arabica-devnet#rpc-endpoints).
 
 You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
 

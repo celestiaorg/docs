@@ -1,8 +1,8 @@
 ---
-sidebar_label: Docs Translations
+sidebar_label: Docs translations
 ---
 
-# Community Translation Support
+# Community translation support
 
 If you are a passionate Celestia community member who would like to contribute
 to translating the documentation page, then this is the guide for you.
@@ -69,7 +69,7 @@ rest of the community.
 Also, be careful with date order, period and commas regarding
 numbers from a language to another.
 
-## Technical Guidance for Language Managers in Crowdin
+## Technical guidance for language managers in Crowdin
 
 If you are the owner of a specific language in the Crowdin translation
 efforts for Celestia, you are basically in charge of approving

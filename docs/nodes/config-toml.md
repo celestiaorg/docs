@@ -1,5 +1,5 @@
 ---
-sidebar_label: Config.toml Guide
+sidebar_label: Config.toml guide
 ---
 
 # Config.toml breakdown
@@ -16,7 +16,7 @@ sidebar_label: Config.toml Guide
 
 ## Pre-requisites
 
-Please, make sure that you have installed and initialized celestia node
+Please, make sure that you have installed and initialized celestia-node
 
 ## Understanding config.toml
 
@@ -57,7 +57,7 @@ need to change the field `PeerExchange` from false to true.
 #### TrustedHash and TrustedPeer
 
 `TrustedHash` is needed to properly initialize a Celestia Bridge
-Node with an already-running `Remote` Celestia Core node. Celestia
+Node with an already-running `Remote` celestia-core node. Celestia
 Light Node will take a genesis hash as the trusted one, if no hash
 is manually provided during initialization phase.
 

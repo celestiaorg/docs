@@ -1,19 +1,19 @@
 ---
-sidebar_label: Wallet With Celestia App
+sidebar_label: Wallet with celestia-app
 ---
 
-# Create a Wallet with Celestia App
+# Create a wallet with celestia-app
 
 For this guide, we will go over how you can generate a Celestia
 wallet using `celestia-app`.
 
 ## Prerequisites
 
-* [Gone through Quick Start and Installed Celestia App](../nodes/quick-start.md)
+* [Gone through Quick Start and Installed celestia-app](../nodes/quick-start.md)
 
-Note, you do not need to install Celestia Node for this tutorial.
+Note, you do not need to install celestia-node for this tutorial.
 
-## Create a Wallet
+## Create a wallet
 
 First, create an application CLI configuration file:
 
@@ -37,7 +37,7 @@ To check all your wallets you can run:
 celestia-appd keys list
 ```
 
-## Fund a Wallet
+## Fund a wallet
 
 For the public celestia address, you can fund the
 previously created wallet via [Discord](https://discord.gg/celestiacommunity)
