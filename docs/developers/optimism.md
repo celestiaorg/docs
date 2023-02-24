@@ -334,11 +334,10 @@ optimism block data on celestia: [00191cef8fb52cf322b77694ff5a92149800000000020b
 
 ## Next steps
 
-There are endless possibilities of what could be built with this stack, because
-the cost for the end user to write data to Celestia is lower than Ethereum:
+There are many possibilities of what could be built with this stack.
+The cost for the end user to write data to Celestia is lower than
+Ethereum, which would make these fun projects to build on this stack:
 
-- deploy smart contracts
 - on-chain gaming
 - decentralized social media
-- DAO governance contracts
 - an NFT ticketing rollup
