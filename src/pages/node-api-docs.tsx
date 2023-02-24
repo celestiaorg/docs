@@ -4,7 +4,7 @@ import {spec} from '@site/src/components/node-spec'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import {ChevronRightIcon, ChevronDownIcon} from "@heroicons/react/24/solid"
 import styles from "../css/tailwind.css"
-import useTailwindLayout from '../../src/components/tailwind-hook.js';
+// import useTailwindLayout from '../../src/components/tailwind-hook.js';
 
 type Param = {
   name: string;
@@ -56,7 +56,7 @@ function getMethodsByPackage(spec: any): MethodByPkg {
 }
 
 export default function Hello() {
-  useTailwindLayout();
+  // useTailwindLayout();
   return (
       <div className={styles}>
         {Object.entries(getMethodsByPackage(spec)).map(
