@@ -266,6 +266,11 @@ const sidebars = {
     },
     {
       type: "doc",
+      label: "Optimism",
+      id: "developers/optimism"
+    },
+    {
+      type: "doc",
       label: "Integrate Celestia",
       id: "developers/integrate-celestia",
     },

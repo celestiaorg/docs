@@ -1,4 +1,8 @@
-# Fuelmint documentation
+---
+sidebar_label: Fuelmint tutorial
+---
+
+# Fuelmint tutorial
 
 ## Introduction
 
