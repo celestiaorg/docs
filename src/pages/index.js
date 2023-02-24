@@ -17,19 +17,19 @@ function HomepageHeader() {
             className="front-page-link"
             to="/concepts/how-celestia-works/introduction">
               <p className="button-heading">Concepts</p>
-              Learn How Celestia Works
+              Learn how Celestia works
           </Link>
           <Link
             className="front-page-link"
             to="/developers/node-tutorial">
-              <p className="button-heading">Celestia Node</p>
-              Run a Node
+              <p className="button-heading">Celestia node</p>
+              Run a node
           </Link>
           <Link
             className="front-page-link"
             to="/developers/rollkit">
-               <p className="button-heading">Sovereign Chain</p>
-              Deploy a Rollup to Celestia
+               <p className="button-heading">Sovereign chain</p>
+              Deploy a rollup to Celestia
           </Link>
         </div>
       </div>

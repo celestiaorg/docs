@@ -1,8 +1,8 @@
 ---
-sidebar_label: Validator Node
+sidebar_label: Validator node
 ---
 
-# Setting up a Celestia Validator Node
+# Setting up a Celestia validator node
 
 Validator nodes allow you to participate in consensus in the Celestia network.
 
@@ -14,8 +14,8 @@ The following hardware minimum requirements are recommended for running the
 validator node:
 
 * Memory: 8 GB RAM
-* CPU: Quad-Core
-* Disk: 250 GB SSD Storage
+* CPU: 6 cores
+* Disk: 500 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
 ## Setting up your validator node
@@ -30,14 +30,14 @@ Follow the instructions on installing the dependencies [here](./environment.mdx)
 ## Deploying the celestia-app
 
 This section describes part 1 of Celestia Validator Node setup:
-running a Celestia App daemon with an internal Celestia Core node.
+running a celestia-app daemon with an internal celestia-core node.
 
 > Note: Make sure you have at least 100+ Gb of free space to safely install+run
   the Validator Node.
 
 ### Install celestia-app
 
-Follow the tutorial on installing Celestia App [here](./celestia-app.mdx).
+Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -183,7 +183,7 @@ Celestia Bridge Node daemon.
 
 ### Install celestia-node
 
-You can follow the tutorial for installing Celestia Node [here](./celestia-node.mdx)
+You can follow the tutorial for installing celestia-node [here](./celestia-node.mdx)
 
 ### Initialize the bridge node
 
@@ -198,7 +198,7 @@ celestia bridge init --core.ip <ip-address>
   after the IP address or use the  `--core.grpc.port` flag to specify another
   port if you prefer.
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](./mocha-testnet.md)
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
 ### Run the bridge node
 
@@ -215,7 +215,7 @@ SystemD [here](../systemd).
 
 You have successfully set up a bridge node that is syncing with the network.
 
-### Setup QGB Keys
+### Setup QGB keys
 
 This step helps get you prepared for when the Quantum Gravity Bridge
 is ready to be deployed. You would still need to go through this step

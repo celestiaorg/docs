@@ -7,7 +7,7 @@ sidebar_label: Integrate Celestia
 > This document is for third-party service providers, such as custodians and
 > explorers, integrating the Celestia network.
 
-## Getting Started
+## Getting started
 
 When getting started Celestia, we recommend checking out these resources first:
 
@@ -18,7 +18,7 @@ When getting started Celestia, we recommend checking out these resources first:
 - [Overview to running nodes on Celestia](../nodes/overview.md)
 - [Build Moduar](../developers/build-modular.md)
 
-## Celestia Service Provider Notes
+## Celestia service provider notes
 
 Celestia is a fairly standard Cosmos-SDK based chain. We use the latest version
 of Tendermint and the Cosmos-SDK, with only minor modifications to each. This
@@ -35,13 +35,13 @@ signing and verifying consensus messages.
 While exactly which modules used is subject to change, Celestia aims to be as
 minimal as possible.
 
-### Custody and Key Management
+### Custody and key management
 
 Celestia supports many already existing key management systems, as we rely on
 the Cosmos-SDK and Tendermint libraries for signing and verifying transactions.
 [Cosmos-SDK documentation](https://docs.cosmos.network/main/basics/accounts.html#keys-accounts-addresses-and-signatures)
 
-### RPC and Querying
+### RPC and querying
 
 In celestia-app, only the standard RPC endpoints for Tendermint and the
 Cosmos-SDK are exposed. We do not currently add or subtract any core

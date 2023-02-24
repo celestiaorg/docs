@@ -144,7 +144,7 @@ celestia-bridge.service -f
 ```
 
 Now, the Celestia bridge node will start syncing headers and storing blocks
-from Celestia application.
+from celestia-app.
 
 > Note: At startup, we can see the `multiaddress` from Celestia Bridge Node.
 This is **needed for future Light Node** connections and communication between

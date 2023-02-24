@@ -1,13 +1,13 @@
 ---
-sidebar_label: Devops Resources
+sidebar_label: Devops resources
 ---
 
-# DevOps Resources
+# DevOps resources
 
 This section will provide an overview of different available resources
 for Developers and Node Operators looking to test out Celestia architecture.
 
-## Docker Compose
+## Docker compose
 
 * One resource for playing with Docker Compose for Celestia infrastructure
   is the [ephemeral-cluster](https://github.com/celestiaorg/ephemeral-cluster)

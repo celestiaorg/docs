@@ -1,33 +1,33 @@
 ---
-sidebar_label: Create A Celestia Testnet
+sidebar_label: Create a Celestia testnet
 ---
 
-# Celestia App Network Instantiation Guide
+# celestia-app network instantiation guide
 
 This guide is for helping instantiate a new testnetwork and following the
 correct steps to do so with Celestia-App. You should only follow this guide
 if you want to experiment with your own Celestia Testnetwork or if you want
 to test out new features to build as a core developer.
 
-## Hardware Requirements
+## Hardware requirements
 
 You can follow hardware requirements [here](../nodes/validator-node.md#hardware-requirements).
 
-## Setup Dependencies
+## Setup dependencies
 
 You can setup dependencies by following the guide [here](./environment.mdx).
 
-## Celestia App Installation
+## celestia-app installation
 
-You can install Celestia App by following the guide [here](./celestia-app.mdx).
+You can install celestia-app by following the guide [here](./celestia-app.mdx).
 
-## Spin Up A Celestia Testnet
+## Spin up a Celestia testnet
 
 If you want to spin up a quick testnet with your friends, you can follow these steps.
 Unless otherwise noted, every step must be done by everyone who wants to
 participate in this testnet.
 
-### Optional: Reset Working Directory
+### Optional: Reset working directory
 
 If you have already initialized a working directory for `celestia-appd` in the past,
 you must clean up before reinitializing a new directory. You can do so by running
@@ -37,7 +37,7 @@ the following command:
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
-### Initialize A Working Directory
+### Initialize a working directory
 
 Run the following command:
 
@@ -52,7 +52,7 @@ celestia-appd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 * The value we will use for `$CHAIN_ID` is `testnet`. The `$CHAIN_ID` must
   remain the same for everyone participating in this network.
 
-### Create A New Key
+### Create a new key
 
 Next, run the following command:
 
@@ -66,7 +66,7 @@ Save the output of this command somewhere; you'll need
 the address generated here later. Here, we set the value of our
 key `$KEY_NAME` to `validator` for demonstration.
 
-### Add Genesis Account KeyName
+### Add genesis account KeyName
 
 Run the following command:
 
@@ -78,7 +78,7 @@ celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT --keyring-backend test
 Here `$VALIDATOR_NAME` is the same key name as before; and `$AMOUNT`
 is something like `10000000000000000000000000utia`.
 
-### Optional: Adding Other Validators
+### Optional: Adding other validators
 
 If other participants in your testnet also want to be validators,
 repeat the command above with the specific amount for their public keys.
@@ -89,7 +89,7 @@ proceed with the following step.
 
 You can find the `genesis.json` at `$HOME/.celestia-app/config/genesis.json`
 
-### Create the Genesis Transaction For New Chain
+### Create the genesis transaction for new chain
 
 Run the following command:
 
@@ -110,7 +110,7 @@ You will find the generated gentx JSON file inside `$HOME/.celestia-app/config/g
   run the above command with the `genesis.json` file you shared with
   them in the previous step.
 
-### Creating the Genesis JSON File
+### Creating the genesis JSON file
 
 Once all participants have submitted their gentx JSON files to you,
 you will pull all those gentx files inside the following directory:
@@ -136,7 +136,7 @@ other particpants who must add it to their `$HOME/.celestia-app/config` director
 Everyone must ensure that they replace their existing `genesis.json` file with
 this new one created.
 
-### Modify Your Config File
+### Modify your config file
 
 Open the following file `$HOME/.celestia-app/config/config.toml` to modify it.
 
@@ -156,7 +156,7 @@ celestia-appd tendermint show-node-id
 
 The output will be the hex-encoded `validator_address`. The default `port` is 26656.
 
-### Instantiate the Network
+### Instantiate the network
 
 You can start your node by running the following command:
 
