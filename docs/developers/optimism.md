@@ -192,7 +192,7 @@ lazydocker
 ```
 
 If you do this, you can skip the [viewing containers](#viewing-containers)
-section
+section and [find a transaction](#find-a-transaction).
 
 :::
 
