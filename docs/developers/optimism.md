@@ -191,6 +191,9 @@ And run the command:
 lazydocker
 ```
 
+If you do this, you can skip the [viewing containers](#viewing-containers)
+section
+
 :::
 
 ### Stop devnet
@@ -216,13 +219,16 @@ To view the containers running, send:
 docker ps
 ```
 
-Find the container ID of the `ops-bedrock_op-batcher_1` and run the following to follow the logs:
+Find the container ID of the `ops-bedrock_op-batcher_1`
+and run the following to follow the logs:
 
 ```bash
 docker logs -f <container-id>
 ```
 
-In a new terminal, find the container ID of the `ghcr.io/celestiaorg/local-celestia-devnet:main` and run the following to follow the logs:
+In a new terminal, find the container ID of the
+`ghcr.io/celestiaorg/local-celestia-devnet:main`
+and run the following to follow the logs:
 
 ```bash
 docker logs -f <container-id>
@@ -259,11 +265,12 @@ stateRoot            0x9d1e02cbf556997123676f47749a043b5bd9bebe629f5dbd3f256a7d5
 timestamp            1677272382
 totalDifficulty      3139
 transactions:        [
-	0x40b79afe3dc05ff398c2142ab47eb94ac3759a03dd1322b2d97bcdc2d1c34934
+    0x40b79afe3dc05ff398c2142ab47eb94ac3759a03dd1322b2d97bcdc2d1c34934
 ]
 ```
 
-And copy the transaction hash from `transactions: [<transaction-hash]` and set it as a variable:
+And copy the transaction hash from `transactions: [<transaction-hash]` and
+set it as a variable:
 
 ```bash
 export TX_HASH=0xb8869dfecf9a5a0e26df6b13e64071b859f2cc0587b97cb4387abf9ddb2ff9a0
