@@ -41,11 +41,10 @@ batches up rollup blocks and posts them to Ethereum. `op-geth` handles
 execution, while `op-proposer` is responsible for intermediate state
 submission.
 
-By using Celestia as a DA layer, this can save existing L2s operational
-costs of posting their data as `calldata` on Ethereum. This is partly
-due to rising gas prices on Ethereum. The committment
-to the block on Celestia, which is posted as `calldata` on Ethereum,
-is much smaller.
+By using Celestia as a DA layer, existing L2s can switch from posting
+their data as `calldata` on Ethereum, to posting to Celestia.
+The committment to the block on Celestia, which is traditionally
+posted as `calldata` on Ethereum, is much smaller.
 
 `op-batcher` sometimes misses batches, but Celestia ingests data much
 faster, potentially making it a faster option, assuming the transaction
