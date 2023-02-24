@@ -234,6 +234,9 @@ and run the following to follow the logs:
 docker logs -f <container-id>
 ```
 
+You can do the same for other containers as you
+explore the stack.
+
 ## Find a transaction
 
 Now, we'll check for a recent transaction with:
