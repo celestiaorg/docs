@@ -335,8 +335,7 @@ There are endless possibilities of what could be built with this stack, because
 the cost for the end user to write data to Celestia is lower than Ethereum:
 
 - deploy smart contracts
-- NFT projects
 - on-chain gaming
 - decentralized social media
 - DAO governance contracts
-- a ticketing platform
+- an NFT ticketing rollup
