@@ -62,7 +62,7 @@ export default function Hello() {
         {Object.entries(getMethodsByPackage(spec)).map(
             ([pkg, methods]) => (
               <div key={pkg} className='pb-6' id={pkg}>
-                <h3 className='font-sans text-2xl font-bold uppercase'>
+                <h3 className='text-2xl font-bold uppercase'>
                   {pkg}
                 </h3>
                 {methods.map((method) =>
