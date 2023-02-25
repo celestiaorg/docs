@@ -46,11 +46,7 @@ their data as `calldata` on Ethereum, to posting to Celestia.
 The committment to the block on Celestia, which is traditionally
 posted as `calldata` on Ethereum, is much smaller.
 
-`op-batcher` sometimes misses batches, but Celestia ingests data much
-faster, potentially making it a faster option, assuming the transaction
-goes through on Celestia.
-
-If you'd like to switch your existing DA layer to Celestia, Bedrock has
+If you'd like to switch your existing DA layer to Celestia, bedrock has
 made it easy to swap this out!
 
 ## Dependency setup
