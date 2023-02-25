@@ -211,7 +211,7 @@ of your light node, similar to this:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-celestia light start --core.ip https://rpc-mocha.pops.one --core.grpc.port 9090 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha --rpc.port 36658
+celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha --rpc.port 36658
 ```
 <!-- markdownlint-enable MD013 -->
 
