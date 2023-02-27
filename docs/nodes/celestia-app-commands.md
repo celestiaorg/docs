@@ -220,11 +220,10 @@ KEY_NAME=validator
 celestia-appd keys add $KEY_NAME
 ```
 
-Create or assign an orchestrator and an EVM address:
+Create or assign an EVM address:
 
 ```sh
 EVM_ADDRESS=<EVM_ADDRESS>
-ORCHESTRATOR_ADDRESS=<CELESTIA_ADDRESS>
 ```
 
 Then add genesis account:
@@ -246,7 +245,6 @@ celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
     --commission-max-change-rate=0.01 \
     --min-self-delegation=1 \
     --evm-address=$EVM_ADDRESS \
-    --orchestrator-address=$ORCHESTRATOR_ADDRESS
 ```
 
 You can then share your gentx JSON file on the networks
