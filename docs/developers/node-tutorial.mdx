@@ -1024,6 +1024,16 @@ the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
 You can generate your own `namespace_id` and data values using this
 useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
 
+:::caution
+When running a Celestia node, you will need to use the following flags
+when starting your node to submit a PFD:
+
+- the `--core.ip string` flag, to allow you to submit transactions
+to your node
+- the `--gateway`, `--gateway.addr string`,
+and `--gateway.port string`, to open the gateway
+and allow anyone to use your IP as an endpoint to submit PFDs
+:::
 We run the following:
 
 ```sh
@@ -1315,6 +1325,17 @@ the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
 
 You can generate your own `namespace_id` and data values using this
 useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
+
+:::caution
+When running a Celestia node, you will need to use the following flags
+when starting your node to submit a PFB:
+
+- the `--core.ip string` flag, to allow you to submit transactions
+to your node
+- the `--gateway`, `--gateway.addr string`,
+and `--gateway.port string`, to open the gateway
+and allow anyone to use your IP as an endpoint to submit PFBs
+:::
 
 We run the following:
 
