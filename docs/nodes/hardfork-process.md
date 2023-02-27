@@ -61,4 +61,3 @@ new keys in order to have a successful upgrade.
 Those two keys will need to be added to 2 new flags on `celestia-app`:
 
 - `--evm-address`: This flag should contain a `0x` EVM address.
-
