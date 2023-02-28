@@ -75,7 +75,7 @@ govern participation in the program.
 ### Getting Started
 
 * All participants should join [Celestia Discord](https://discord.gg/celestiacommunity).
-* All participants must create a profile on [Knack portal](https://www.knack.com/).
+* All participants will receive access to their profile on [Knack portal](https://www.knack.com/).
   Wait for an email for further instructions on profile setup.
 * Participants will be granted appropriate tags on Discord based on the
   node type they were selected for.
