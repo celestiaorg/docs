@@ -90,8 +90,7 @@ refer to our Security Policy found [here](https://blog.celestia.org/the-blockspa
 
 Celestia is allocating 15,000,000.00 TIA tokens in rewards for
 participants of the Blockspace Race. Points earned during the event
-will be converted into TIA tokens after the event ends. Each node
-category has a different point-to-token ratio.
+will be converted into TIA tokens after the event ends.
 
 Please note that the points you receive for participating and
 completing the incentivized testnet program will be available to
