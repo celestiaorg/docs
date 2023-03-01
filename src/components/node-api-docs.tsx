@@ -3,9 +3,13 @@ import React from 'react'
 import {spec} from '@site/src/components/node-spec'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import {ChevronRightIcon, ChevronDownIcon} from "@heroicons/react/24/solid"
-// import styles from "../css/tailwind.css"
-// import useTailwindLayout from './tailwind-hook.js';
-import styles from "../css/custom.css"
+import styles from "../css/tailwind.css"
+
+// the hook currently doesn't work
+import useTailwindLayout from './tailwind-hook.js';
+
+// using the styles from custom css file applies tailwind to entire site
+// import styles from "../css/custom.css"
 
 type Param = {
   name: string;
@@ -57,7 +61,7 @@ function getMethodsByPackage(spec: any): MethodByPkg {
 }
 
 export default function Hello() {
-  // useTailwindLayout();
+  useTailwindLayout();
   return (
       // <div>
       <div className={styles}>
