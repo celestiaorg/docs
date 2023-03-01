@@ -6,4 +6,5 @@ module.exports = {
   },
   plugins: [],
   darkMode: ["class", '[data-theme="dark"]'],
+  prefix: "tw-",
 };

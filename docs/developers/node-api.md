@@ -4,7 +4,7 @@ sidebar_label: Node API
 
 # Node API docs
 
-import Hello from "../../src/pages/node-api-docs.tsx"
+import Hello from "../../src/components/node-api-docs.tsx"
 
 ## Overview
 

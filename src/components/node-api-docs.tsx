@@ -3,8 +3,9 @@ import React from 'react'
 import {spec} from '@site/src/components/node-spec'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import {ChevronRightIcon, ChevronDownIcon} from "@heroicons/react/24/solid"
-import styles from "../css/tailwind.css"
-// import useTailwindLayout from '../../src/components/tailwind-hook.js';
+// import styles from "../css/tailwind.css"
+// import useTailwindLayout from './tailwind-hook.js';
+import styles from "../css/custom.css"
 
 type Param = {
   name: string;
@@ -58,11 +59,12 @@ function getMethodsByPackage(spec: any): MethodByPkg {
 export default function Hello() {
   // useTailwindLayout();
   return (
+      // <div>
       <div className={styles}>
         {Object.entries(getMethodsByPackage(spec)).map(
             ([pkg, methods]) => (
-              <div key={pkg} className='pb-6' id={pkg}>
-                <h3 className='text-2xl font-bold uppercase'>
+              <div key={pkg} className='tw-pb-6' id={pkg}>
+                <h3 className='tw-text-2xl tw-font-bold tw-uppercase'>
                   {pkg}
                 </h3>
                 {methods.map((method) =>
@@ -80,13 +82,13 @@ const RPCMethod = (pkg: string, method: Method) => {
   const [showResponse, setShowResponse] = useState(false);
 
   return (
-    <div key={method.name} className='py-2'>
-      <p className='text-md'>
+    <div key={method.name} className='tw-py-2'>
+      <p className='tw-text-md'>
         {method.name}(
         {method.params.map((param, i, { length }) => (
-          <span key={param.name} className='text-sm text-gray-700'>
+          <span key={param.name} className='tw-text-sm tw-text-gray-700'>
             <span>{param.name}</span>{' '}
-            <span className='text-blue-500 hover:font-bold'>
+            <span className='tw-text-blue-500 hover:tw-font-bold'>
               {param.description}
               {length - 1 != i && ', '}
             </span>
@@ -94,29 +96,29 @@ const RPCMethod = (pkg: string, method: Method) => {
         ))}
         )
         {method.result.description != 'Null' && (
-          <span className='ml-2 text-sm text-blue-500 hover:font-bold'>
+          <span className='tw-ml-2 tw-text-sm tw-text-blue-500 hover:tw-font-bold'>
             {method.result.description}
           </span>
         )}
-        <span className='ml-2 inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800'>
+        <span className='tw-ml-2 tw-inline-flex tw-items-center tw-rounded-full tw-bg-purple-100 tw-px-2.5 tw-py-0.5 tw-text-xs tw-font-medium tw-text-purple-800'>
           perms: {method.auth}
         </span>
       </p>
-      <p className='text-sm font-light text-gray-700 dark:text-gray-400'>{method.description}</p>
-      <div className='mt-6 overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800 text-sm shadow'>
+      <p className='tw-text-sm tw-font-light tw-text-gray-700 dark:tw-text-gray-400'>{method.description}</p>
+      <div className='tw-mt-6 tw-overflow-hidden tw-rounded-lg tw-bg-gray-200 dark:tw-bg-gray-800 tw-text-sm tw-shadow'>
         <div
-          className='flex px-4 py-5 hover:cursor-pointer hover:bg-purple-200 dark:hover:bg-gray-900 sm:px-6'
+          className='tw-flex tw-px-4 tw-py-5 hover:tw-cursor-pointer hover:tw-bg-purple-200 dark:hover:tw-bg-gray-900 sm:tw-px-6'
           onClick={() => setShowRequest(!showRequest)}
         >
           {showRequest ? (
-            <ChevronDownIcon className='mr-2 h-5 w-5' aria-hidden='true' />
+            <ChevronDownIcon className='tw-mr-2 tw-h-5 tw-w-5' aria-hidden='true' />
           ) : (
-            <ChevronRightIcon className='mr-2 h-5 w-5' aria-hidden='true' />
+            <ChevronRightIcon className='tw-mr-2 tw-h-5 tw-w-5' aria-hidden='true' />
           )}
           Request
         </div>
         {showRequest && (
-          <div className='bg-gray-50 dark:bg-gray-900 px-4 py-5 text-sm sm:p-6'>
+          <div className='tw-bg-gray-50 dark:tw-bg-gray-900 tw-px-4 tw-py-5 tw-text-sm sm:tw-p-6'>
             <SyntaxHighlighter
               language='json'
               // customStyle={{
@@ -138,18 +140,18 @@ const RPCMethod = (pkg: string, method: Method) => {
           </div>
         )}
         <div
-          className='flex px-4 py-5 hover:cursor-pointer hover:bg-purple-200 dark:hover:bg-gray-900 sm:px-6'
+          className='tw-flex tw-px-4 tw-py-5 hover:tw-cursor-pointer hover:tw-bg-purple-200 dark:hover:tw-bg-gray-900 sm:tw-px-6'
           onClick={() => setShowResponse(!showResponse)}
         >
           {showResponse ? (
-            <ChevronDownIcon className='mr-2 h-5 w-5' aria-hidden='true' />
+            <ChevronDownIcon className='tw-mr-2 tw-h-5 tw-w-5' aria-hidden='true' />
           ) : (
-            <ChevronRightIcon className='mr-2 h-5 w-5' aria-hidden='true' />
+            <ChevronRightIcon className='tw-mr-2 tw-h-5 tw-w-5' aria-hidden='true' />
           )}{' '}
           Response
         </div>
         {showResponse && (
-          <div className='bg-gray-50 dark:bg-gray-900 px-4 py-5 text-sm sm:p-6'>
+          <div className='tw-bg-gray-50 dark:tw-bg-gray-900 tw-px-4 tw-py-5 tw-text-sm sm:tw-p-6'>
             <SyntaxHighlighter
               language='json'
               // customStyle={{
