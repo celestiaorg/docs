@@ -1,3 +1,6 @@
+/* if using these styles, the styling across
+the site will have tailwind applied 
+but will be applied to unintended pages (the whole site) */
 /* all: unset;
 @tailwind base;
 @tailwind components;
