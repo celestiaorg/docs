@@ -5,8 +5,7 @@ sidebar_label: Optimism & Celestia tutorial
 # Optimism & Celestia tutorial
 
 *This tutorial will show how existing blockchains, such as Optimism,
-can integrate with Celestia to switch from their existing data
-availability service.*
+can integrate with Celestia to go modular.*
 
 :::caution
 This tutorial was tested on a machine with 8GB RAM, 160 GB SSD,
@@ -46,7 +45,7 @@ their data as `calldata` on Ethereum, to posting to Celestia.
 The committment to the block on Celestia, which is traditionally
 posted as `calldata` on Ethereum, is much smaller.
 
-If you'd like to switch your existing DA layer to Celestia, bedrock has
+If you'd like to go modular, bedrock has
 made it easy to swap this out!
 
 ## Dependency setup
