@@ -42,8 +42,9 @@ submission.
 
 By using Celestia as a DA layer, existing L2s can switch from posting
 their data as `calldata` on Ethereum, to posting to Celestia.
-The committment to the block on Celestia, which is traditionally
-posted as `calldata` on Ethereum, is much smaller.
+The commitment to the block is posted on Celestia, which is
+purpose-built for data availability. This is a more scalable than
+the traditional method of posting this data as `calldata` on monolithic chains.
 
 If you'd like to go modular, bedrock has
 made it easy to swap this out!
