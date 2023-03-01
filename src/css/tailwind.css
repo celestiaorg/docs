@@ -1,15 +1,15 @@
 /* if using these styles, the styling across
 the site will have tailwind applied 
 but will be applied to unintended pages (the whole site) */
-/* all: unset;
+all: unset;
 @tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 /* for use with hook */
-.tailwind-layout {
+/* .tailwind-layout {
     all: unset;
     @tailwind base;
     @tailwind components;
     @tailwind utilities;
-}
+} */
