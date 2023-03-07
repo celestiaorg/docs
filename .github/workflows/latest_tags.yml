@@ -19,6 +19,7 @@ on:
         options:
           - arabica
           - mocha
+          - blockspacerace
 
 jobs:
   # This job pulls the latest tag information for the repos listed in the matrix
