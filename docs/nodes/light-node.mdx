@@ -5,6 +5,7 @@ sidebar_label: Light node
 import constants from "../../versions/constants.js";
 import mochaVersions from "../../versions/mocha_versions.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
+import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
 
 # Setting up a Celestia light node
 
@@ -164,6 +165,120 @@ so we must install Golang to build and run them.
 
 ````mdx-code-block
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
+rm "go$ver.linux-amd64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz" <br/>
+rm "go$ver.linux-arm64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz" <br/>
+rm "go$ver.darwin-arm64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz" <br/>
+rm "go$ver.darwin-amd64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+<Tabs groupId="shell">
+<TabItem value="bash" label="bash">
+
+```sh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+</TabItem>
+<TabItem value="zsh" label="zsh">
+
+```zsh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+source $HOME/.zshrc
+```
+
+</TabItem>
+</Tabs>
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+go version go{constants.golangNode} linux/amd64
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+go version go{constants.golangNode} linux/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+go version go{constants.golangNode} darwin/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+go version go{constants.golangNode} darwin/amd64
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
@@ -399,8 +514,137 @@ go version go{constants.golangNode} darwin/amd64
 ### Install celestia-node
 
 ````mdx-code-block
-
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
@@ -670,6 +914,22 @@ Run the following command:
 
 ````mdx-code-block
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+```sh
+celestia light init --p2p.network blockspacerace
+```
+
+You should see output like:
+
+```output
+$ celestia light init
+2022-12-19T21:45:24.591Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-blockspacerace'
+2022-12-19T21:45:24.591Z        INFO    node    nodebuilder/init.go:50  Saving config   {"path": "/root/.celestia-light-blockspacerace/config.toml"}
+2022-12-19T21:45:24.592Z        INFO    node    nodebuilder/init.go:51  Node Store initialized
+```
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh
@@ -708,6 +968,29 @@ $ celestia light init --p2p.network arabica <br/>
 
 ````mdx-code-block
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+Start the light node with a connection to a validator node's gRPC endpoint (which
+is usually exposed on port 9090):
+
+> NOTE: In order for access to the ability to get/submit state-related information,
+  such as the ability to submit `PayForBlob` transactions, or query for the node's
+  account balance, a gRPC endpoint of a validator (core) node must be passed as
+  directed below. For `gateway`, the default IP Address is `localhost` and the
+  default `port` is `26659`.
+
+```sh
+celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network <network>
+```
+
+For ports:
+
+> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
+  it in the command line, it will default to that port. You can add the port
+  after the IP address or use the  `--core.grpc.port` flag to specify another
+  port if you prefer.
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 Start the light node with a connection to a validator node's gRPC endpoint (which
@@ -757,6 +1040,17 @@ For ports:
 </Tabs>
 
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../blockspace-race)
+
+For example, your command might look something like this:
+
+```sh
+celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
+```
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
@@ -795,6 +1089,17 @@ You can start your light node with the key created above by running the
 following command:
 
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+```sh
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
+```
+
+Once you start the Light Node, a wallet key will be generated for you.
+You will need to fund that address with testnet tokens to pay for
+`PayForBlob` transactions.
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh
@@ -826,10 +1131,11 @@ You can find the address by running the following command in the
 ./cel-key list --node.type light --keyring-backend test --p2p.network <network>
 ```
 
-You have two networks to get testnet tokens from:
+You have three networks to get testnet tokens from:
 
 * [Arabica](../arabica-devnet#arabica-devnet-faucet)
 * [Mocha](../mocha-testnet#mocha-testnet-faucet)
+* [Blockspace race](../blockspace-race)
 
 > NOTE: If you are running a light node for your sovereign
   rollup, it is highly recommended to request Arabica devnet tokens
@@ -855,6 +1161,13 @@ In order to run a light node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+```sh
+celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
+```
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh
@@ -882,6 +1195,12 @@ process with SystemD [here](./systemd.md#celestia-light-node).
 
 ````mdx-code-block
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+With your light node running, you can check out this tutorial on
+submitting `PayForData` transactions [here](../../developers/node-tutorial).
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 With your light node running, you can check out this tutorial on
