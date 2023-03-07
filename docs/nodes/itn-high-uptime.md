@@ -11,7 +11,7 @@ best possible uptime outside of those events.
 
 ## Directions
 
-1. Ensure your validator does not go offline otherwise it 
+1. Ensure your validator does not go offline otherwise it
 impacts your uptime score.
 
 ## Judging Criteria
