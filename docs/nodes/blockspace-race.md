@@ -138,7 +138,28 @@ that will be used in the incentivized testnet:
 
 ## Testnet Phases
 
-**Phase 1 will be announced on March 7.**
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD013 -->
+### Phase 1: Liftoff
+
+![Banner](/img/phase1.jpg)
+
+* Start: 7 March 2023
+* End: 21 March 2023
+* Break: 7 days
+
+<details>
+<summary>Validator Tasks</summary>
+
+| Validator Tasks | Task type | Points |
+| ------------- | ------------- | ------------- |
+| [Set up your validator](./itn-setup-validator.md) | Network  | 80 |
+| [Sign the genesis block](./itn-sign-genesis.md) | Network  | 45 |
+| [Maintain high uptime](./itn-high-uptime.md) | Network | Score at the end of Phase 5 |
+</details>
+
+<!-- markdownlint-enable MD033 -->
+<!-- markdownlint-enable MD013 -->
 
 ## Useful Links
 
