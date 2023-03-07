@@ -32,7 +32,7 @@ Follow the instructions on installing the dependencies [here](./environment.mdx)
 This section describes part 1 of Celestia Validator Node setup:
 running a celestia-app daemon with an internal celestia-core node.
 
-> Note: Make sure you have at least 100+ Gb of free space to safely install+run
+> Note: Make sure you have at least 500+ Gb of free space to safely install+run
   the Validator Node.
 
 ### Install celestia-app
