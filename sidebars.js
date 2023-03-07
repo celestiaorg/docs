@@ -16,6 +16,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          label: "Blockspace race",
+          id: "nodes/blockspace-race"
+        },
+        {
+          type: "doc",
           label: "Local devnet",
           id: "nodes/local-devnet"
         },
