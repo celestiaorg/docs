@@ -25,7 +25,7 @@ You can pick whatever wallet name you want.
 For our example we used "validator" as the wallet name:
 
 ```sh
-celestia-appd keys add validator
+celestia-appd keys add validator --interactive
 ```
 
 Save the mnemonic output as this is the only way to
