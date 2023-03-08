@@ -236,7 +236,7 @@ celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT
 Then generate your gentx:
 
 ```sh
-STAKING_AMOUNT=1000000000000utia
+STAKING_AMOUNT=5000000000000utia
 celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
     --pubkey=$(celestia-appd tendermint show-validator) \
     --moniker=$MONIKER \
