@@ -229,7 +229,7 @@ EVM_ADDRESS=<EVM_ADDRESS>
 Then add genesis account:
 
 ```sh
-CELES_AMOUNT="1000001000000utia"
+CELES_AMOUNT="5000100000000utia"
 celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT
 ```
 
