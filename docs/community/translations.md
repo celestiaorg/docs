@@ -29,7 +29,7 @@ Here are few tips to help you during your translation.
 
 ### Crowdin documentation
 
-Official Crowdin's documentaton is available [here](https://support.crowdin.com/online-editor).
+Official Crowdin's documentation is available [here](https://support.crowdin.com/online-editor).
 
 ### Guide
 
