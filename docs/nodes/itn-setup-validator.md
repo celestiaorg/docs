@@ -26,12 +26,13 @@ This task is for you to setup your own validator.
   change to `blockspacerace` chain-id for your validator. **Please DO
   NOT use pruning for now due to the bridge node, if this changes, we
   will let you know.**
-5. Instructions to start a bridge node are found [here](https://docs.celestia.org/nodes/bridge-node/#deploy-the-celestia-bridge-node).
+5. **Make sure to wait for official node release AFTER genesis,
+  before setting it up.** Instructions to start a bridge
+  node are found [here](https://docs.celestia.org/nodes/bridge-node/#deploy-the-celestia-bridge-node).
   Please use your own celestia-app node as the endpoint for your
   bridge node and make sure to add
   `--metrics.tls=false --metrics --metrics.endpoint [<ip>:<port>](http://otel.celestia.tools:4318)`
-  to your bridge node's start command. **Make sure to wait for official
-  node release AFTER genesis, before setting it up.**
+  to your bridge node's start command.
 6. How to find your bridge node id is found [here](https://docs.celestia.org/developers/node-api/#post-p2pinfo).
 
 ## Judging Criteria
