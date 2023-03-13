@@ -136,6 +136,11 @@ that will be used in the incentivized testnet:
 * 50 bridge nodes
 * 50 full storage nodes
 
+#### RPC Endpoints
+
+We will be listing RPC endpoints
+provided by the communuity here.
+
 ## Testnet Phases
 
 <!-- markdownlint-disable MD033 -->
