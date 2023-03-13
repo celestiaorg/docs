@@ -127,7 +127,7 @@ Follow the tutorial on creating a wallet [here](../developers/celestia-app-walle
 Create an environment variable for the address:
 
 ```sh
-VALIDATOR_WALLET=<validator-address>
+VALIDATOR_WALLET=<validator-wallet-name>
 ```
 
 If you want to delegate more stake to any validator, including your own you
