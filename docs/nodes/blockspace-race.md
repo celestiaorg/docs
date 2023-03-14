@@ -139,7 +139,9 @@ that will be used in the incentivized testnet:
 #### RPC Endpoints
 
 We will be listing RPC endpoints
-provided by the communuity here.
+provided by the community here.
+
+* [https://rpc-blockspacerace.pops.one/](https://rpc-blockspacerace.pops.one/)
 
 ## Testnet Phases
 
