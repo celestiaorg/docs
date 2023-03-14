@@ -31,7 +31,7 @@ This task is for you to setup your own validator.
   node are found [here](https://docs.celestia.org/nodes/bridge-node/#deploy-the-celestia-bridge-node).
   Please use your own celestia-app node as the endpoint for your
   bridge node and make sure to add
-  `--metrics.tls=false --metrics --metrics.endpoint http://otel.celestia.tools:4318`
+  `--metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318`
   to your bridge node's start command.
 6. How to find your bridge node id is found [here](https://docs.celestia.org/developers/node-api/#post-p2pinfo).
 
