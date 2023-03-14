@@ -433,7 +433,7 @@ To get that information, you will need to first generate an auth token:
 
 ```sh
 NODE_TYPE=light
-AUTH_TOKEN=$(celestia $NODE_TYPE auth admin)
+AUTH_TOKEN=$(celestia $NODE_TYPE auth admin --p2p.network blockspacerace)
 ```
 
 > NOTE: You can only generate an auth token after initializing
