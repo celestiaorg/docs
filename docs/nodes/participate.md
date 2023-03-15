@@ -4,8 +4,11 @@ sidebar_label: Participate in the Celestia testnets
 
 # Participate in the Celestia testnets
 
-Celestia currently has two exisiting testnets that will enable participation:
+Celestia currently has three existing testnets that you can participate in:
 
+* [Blockspace race](./blockspace-race.md): An incentivised testnet for all participants:
+  validators and other node operators, integrators, rollups and anyone curious. This
+  testnet closely reflects the version of Celestia at launch.
 * [Arabica devnet](./arabica-devnet.md): A devnet focused on developers who
   want to deploy sovereign rollups on the latest changes from Celestia's codebase.
   Arabica will be updated frequently and might be unstable at times given new updates.
