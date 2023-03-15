@@ -247,10 +247,10 @@ const sidebars = {
           label: "Node tutorial", 
           id: "developers/node-tutorial" 
         },
-        { 
-          type: "doc", 
-          label: "Node API docs", 
-          id: "developers/node-api" 
+        {
+          type: "link",
+          label: "Node API docs",
+          href: "https://node-rpc-docs.vercel.app/"
         },
         { 
           type: "doc", 
