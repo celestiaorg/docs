@@ -123,6 +123,11 @@ const sidebars = {
             label: "Consensus full node", 
             id: "nodes/consensus-full-node" 
           },
+          { 
+            type: "doc", 
+            label: "Relayer", 
+            id: "nodes/relayer" 
+          },
         ]
       },
     ]
