@@ -239,7 +239,7 @@ const sidebars = {
         },
         { 
           type: "doc", 
-          label: "Node API", 
+          label: "Node API docs", 
           id: "developers/node-api" 
         },
         { 
