@@ -5,6 +5,7 @@ sidebar_label: Installing celestia-node
 import constants from "../../versions/constants.js";
 import mochaVersions from "../../versions/mocha_versions.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
+import blockspaceraceVersions from "../../versions/blockspacerace_versions.js"
 
 # celestia-node
 
@@ -21,6 +22,136 @@ environment [here](./environment.mdx).
 
 ````mdx-code-block
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
@@ -37,6 +168,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -67,6 +199,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -97,6 +230,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -127,6 +261,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -163,6 +298,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -193,6 +329,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -223,6 +360,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -253,6 +391,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -282,6 +421,57 @@ Note: If you do not select a network, the default network will be 'Mocha'.
 
 ````mdx-code-block
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+```sh
+celestia light init --p2p.network blockspacerace 
+celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+> NOTE: It is advised before switching networks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
+
+### Errors
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following command:
+
+```sh
+rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
+```
+
+Here's an example for blockspacerace:
+
+
+```sh
+rm -rf ~./celestia-light-blockspacerace && celestia light init --p2p.network blockspacerace
+```
+
+Your output will look similar to below:
+
+```sh
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light/config.toml"}
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
+```
+
+Then start your node:
+
+```sh
+celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh

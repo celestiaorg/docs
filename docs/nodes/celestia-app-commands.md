@@ -220,24 +220,23 @@ KEY_NAME=validator
 celestia-appd keys add $KEY_NAME
 ```
 
-Create or assign an orchestrator and an EVM address:
+Create or assign an EVM address:
 
 ```sh
 EVM_ADDRESS=<EVM_ADDRESS>
-ORCHESTRATOR_ADDRESS=<CELESTIA_ADDRESS>
 ```
 
 Then add genesis account:
 
 ```sh
-CELES_AMOUNT="1000001000000utia"
+CELES_AMOUNT="5000100000000utia"
 celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT
 ```
 
 Then generate your gentx:
 
 ```sh
-STAKING_AMOUNT=1000000000000utia
+STAKING_AMOUNT=5000000000000utia
 celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
     --pubkey=$(celestia-appd tendermint show-validator) \
     --moniker=$MONIKER \
@@ -246,7 +245,6 @@ celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
     --commission-max-change-rate=0.01 \
     --min-self-delegation=1 \
     --evm-address=$EVM_ADDRESS \
-    --orchestrator-address=$ORCHESTRATOR_ADDRESS
 ```
 
 You can then share your gentx JSON file on the networks

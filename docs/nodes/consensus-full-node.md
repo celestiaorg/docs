@@ -157,3 +157,19 @@ Restart `celestia-appd` in the previous step to load those configs.
 
 Follow the tutorial on setting up Celestia-App as a background process
 with SystemD [here](./systemd.md).
+
+## Transaction indexer configuration options
+
+This section will show you how to set your `config.toml` file in `celestia-app`
+to chose which transactions to index. In some
+cases, a node operator will be able to decide which transactions to index
+based on configuration set in the application.
+
+The options are:
+
+1. `null`
+2. `kv` (default) - the simplest possible indexer backed by key-value storage
+(defaults to levelDB; see DBBackend)
+   1. when `kv` is chosen `tx.height` and `tx.hash` will always be indexed
+3. `psql` - the indexer services backed by PostgreSQL
+   1. when `kv` or `psql` is chosen, `tx.height` and `tx.hash` will always be indexed
