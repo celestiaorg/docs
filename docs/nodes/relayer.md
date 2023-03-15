@@ -74,11 +74,13 @@ You can confirm the keys by executing:
 hermes keys list --chain blockspacerace-1
 ```
 
-Make sure you have added the keys and have sufficient funds for each chain you are relaying across.
+Make sure you have added the keys and have sufficient
+funds for each chain you are relaying across.
 
 ### Running
 
-Now, you should be able to start the process. As a quick sanity check, first run
+Now, you should be able to start the process. As a quick
+sanity check, first run
 
 ```bash
 hermes config validate
