@@ -20,7 +20,7 @@ Start your node:
 celestia <node_type> start --p2p.network <network>
 ```
 
-## cURL section
+## cURL guide
 
 In another terminal instance, run the following command to generate the JWT auth token
 and set it as a variable:
@@ -51,7 +51,8 @@ curl -X POST -H 'Authorization: Bearer '$AUTH_TOKEN'' -H 'Content-Type: applicat
 curl -X POST -H 'Authorization: Bearer '$AUTH_TOKEN'' -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":0,"method":"header.Head","params":[]}' http://localhost:26658/ | jq
 ```
 
-## Go dev section
-- link to Rene's repo
-- README with explanation & comments in Go files
-- what is necessary to communicate for how to interact with your node with Go
+## Golang guide
+
+If you're interested in interacting with the node's API in Go,
+you can use the [da-rpc-client-tutorial](https://github.com/renaynay/da-rpc-client-tutorial)
+repo.
