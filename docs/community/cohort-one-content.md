@@ -235,7 +235,7 @@ the basic pieces you need to shape your Smart Contract.
 
 ---
 
-### **Jan 9 - Week 16 - submissions bue**
+### **Jan 9 - Week 16 - submissions due**
 
 🧑‍🏫 **Office Hour**
 
