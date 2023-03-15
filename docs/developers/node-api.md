@@ -1,5 +1,5 @@
 ---
-sidebar_label: Node API
+sidebar_label: Node API docs
 ---
 
 # Node API docs
