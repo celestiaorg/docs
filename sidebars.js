@@ -237,11 +237,6 @@ const sidebars = {
           label: "Node tutorial", 
           id: "developers/node-tutorial" 
         },
-        {
-          type: "doc",
-          label: "Node video tutorial",
-          id: "developers/light-node-video"
-        },
         { 
           type: "doc", 
           label: "Node API", 
@@ -256,6 +251,11 @@ const sidebars = {
           type: "doc",
           label: "Gateway API docs",
           id: "developers/node-gateway-docs"
+        },
+        {
+          type: "doc",
+          label: "Node video tutorial",
+          id: "developers/light-node-video"
         },
       ]
     },
