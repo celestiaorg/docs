@@ -145,8 +145,13 @@ const sidebars = {
           items: [
             {
               type: "doc",
-              label: "Node metrics",
+              label: "Setting up metrics",
               id: "nodes/celestia-node-metrics"
+            },
+            {
+              type: "doc",
+              label: "Config.toml guide",
+              id: "nodes/config-toml"
             },
           ]
         },
@@ -184,11 +189,6 @@ const sidebars = {
           type: "doc", 
           label: "Devops resources", 
           id: "nodes/devops-resources"
-        },
-        {
-          type: "doc",
-          label: "Config.toml guide",
-          id: "nodes/config-toml"
         },
       ]
     },
