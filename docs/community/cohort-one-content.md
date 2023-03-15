@@ -66,7 +66,7 @@ sidebar_label: Cohort one content & calendar
 📗 **Lesson 3 - Introduction to [Fuel](https://www.fuel.network) with Emily Herbert**
 
 - **Monday 24 October @ 11am EDT / 3pm UTC / 5pm CEST**
-  - In this lesson, Emily Herbert will teach us about Fuel, the the world's
+  - In this lesson, Emily Herbert will teach us about Fuel, the world's
   fastest Modular Execution Layer. Fuel delivers maximum security and the
   highest flexible throughput.
 - [Lesson #3 - Introduction to Fuel with Emily Herbert (Recording)](https://youtu.be/pSm41vqek0o)

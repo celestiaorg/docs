@@ -32,7 +32,7 @@ Follow the instructions on installing the dependencies [here](./environment.mdx)
 This section describes part 1 of Celestia Validator Node setup:
 running a celestia-app daemon with an internal celestia-core node.
 
-> Note: Make sure you have at least 100+ Gb of free space to safely install+run
+> Note: Make sure you have at least 500+ Gb of free space to safely install+run
   the Validator Node.
 
 ### Install celestia-app
@@ -127,7 +127,7 @@ Follow the tutorial on creating a wallet [here](../developers/celestia-app-walle
 Create an environment variable for the address:
 
 ```sh
-VALIDATOR_WALLET=<validator-address>
+VALIDATOR_WALLET=<validator-wallet-name>
 ```
 
 If you want to delegate more stake to any validator, including your own you
@@ -224,16 +224,12 @@ before running a validator to configure 2 extra keys.
 * `--evm-address`: This flag should contain a `0x` EVM address. Here,
   you can add any Ethereum-based address to this flag. You can also modify
   it later if you decide to switch addresses.
-* `--orchestrator-address`: This flag should contain a newly-generated
-  `celestia1` Celestia address. Validators certainly can use their existing
-  Celestia addresses here but it is recommended to create a new one.
 
 You can set both the values to the above flags as
 environment variables:
 
 ```sh
 EVM_ADDRESS=<EVM_ADDRESS>
-ORCHESTRATOR_ADDRESS=<CELESTIA_ADDRESS>
 ```
 
 Remember to add the values for your addresses in the above
@@ -273,7 +269,6 @@ celestia-appd tx staking create-validator \
     --min-self-delegation=1000000 \
     --from=$VALIDATOR_WALLET \
     --evm-address=$EVM_ADDRESS \
-    --orchestrator-address=$ORCHESTRATOR_ADDRESS \
     --keyring-backend=test
 ```
 

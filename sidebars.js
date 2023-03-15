@@ -16,6 +16,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          label: "Blockspace race",
+          id: "nodes/blockspace-race"
+        },
+        {
+          type: "doc",
           label: "Local devnet",
           id: "nodes/local-devnet"
         },
@@ -118,6 +123,11 @@ const sidebars = {
             label: "Consensus full node", 
             id: "nodes/consensus-full-node" 
           },
+          { 
+            type: "doc", 
+            label: "Relayer", 
+            id: "nodes/relayer" 
+          },
         ]
       },
     ]
@@ -140,8 +150,13 @@ const sidebars = {
           items: [
             {
               type: "doc",
-              label: "Node metrics",
+              label: "Setting up metrics",
               id: "nodes/celestia-node-metrics"
+            },
+            {
+              type: "doc",
+              label: "Config.toml guide",
+              id: "nodes/config-toml"
             },
           ]
         },
@@ -179,11 +194,6 @@ const sidebars = {
           type: "doc", 
           label: "Devops resources", 
           id: "nodes/devops-resources"
-        },
-        {
-          type: "doc",
-          label: "Config.toml guide",
-          id: "nodes/config-toml"
         },
       ]
     },
@@ -268,6 +278,11 @@ const sidebars = {
       type: "doc",
       label: "Full stack modular blockchain development guide",
       id: "developers/full-stack-modular-development-guide"
+    },
+    {
+      type: "doc",
+      label: "Fuelmint",
+      id: "developers/fuelmint"
     },
     {
       type: "doc",
