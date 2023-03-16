@@ -26,14 +26,20 @@ This task is for you to setup your own validator.
   change to `blockspacerace-0` chain-id for your validator. **Please DO
   NOT use pruning for now due to the bridge node, if this changes, we
   will let you know.**
-5. **Make sure to wait for official node release AFTER genesis,
+5. **OPTIONAL** Enable geolocation for your validator:
+  a. Open `~/celestia-app/config/config.toml`
+  b. Look for `[rpc]` section
+  c. Make sure the `laddr` is set like this: `laddr = "tcp://0.0.0.0:26657"`
+  d. In your infrastructure settings, allow the port 26657 to be accessible publicly
+  e. Then restart your validator
+6. **Make sure to wait for official node release AFTER genesis,
   before setting it up.** Instructions to start a bridge
   node are found [here](https://docs.celestia.org/nodes/bridge-node/#deploy-the-celestia-bridge-node).
   Please use your own celestia-app node as the endpoint for your
   bridge node and make sure to add
   `--metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318`
   to your bridge node's start command.
-6. How to find your bridge node id is found [here](../developers/node-gateway-docs.mdx/#post-p2pinfo).
+7. How to find your bridge node id is found [here](../developers/node-gateway-docs.mdx/#post-p2pinfo).
 
 ## Judging Criteria
 
