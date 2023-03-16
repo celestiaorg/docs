@@ -60,6 +60,7 @@ a package manager like `brew`.
 Next, create a config file `$HOME/.celestia-app/config/prometheus.yml`
 and fill out some basic settings as follows:
 
+<!-- markdownlint-disable MD013 -->
 ```yml
 global:
   scrape_interval:     15s # By default, scrape targets every 15 seconds.
@@ -82,6 +83,7 @@ scrape_configs:
       # Point to the same endpoint that Celestia is publishing on
       - targets: ['localhost:26660']
 ```
+<!-- markdownlint-enable MD013 -->
 
 Note, that Prometheus by default runs its server on `:9090`.
 If you are running this on the same machine as your consensus
