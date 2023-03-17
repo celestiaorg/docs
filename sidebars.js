@@ -168,6 +168,11 @@ const sidebars = {
           },
           collapsed: false,
           items: [
+            {
+              type: "doc",
+              label: "Metrics, Visualizations and Alerts",
+              id: "nodes/celestia-app-metrics"
+            },
             { 
               type: "doc", 
               label: "Create a Celestia testnet", 
