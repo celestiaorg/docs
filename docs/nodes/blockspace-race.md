@@ -142,14 +142,20 @@ We will be listing RPC endpoints
 provided by the community here.
 
 * [https://rpc-blockspacerace.pops.one/](https://rpc-blockspacerace.pops.one/)
+* [https://rpc-1.celestia.nodes.guru/](https://rpc-1.celestia.nodes.guru/)
+* [https://rpc-2.celestia.nodes.guru/](https://rpc-2.celestia.nodes.guru/)
 
 #### gRPC Endpoints
 
 * [https://grpc-blockspacerace.pops.one/](https://grpc-blockspacerace.pops.one/)
+* [http://rpc-1.celestia.nodes.guru:10790](http://rpc-1.celestia.nodes.guru:10790)
+* [http://rpc-2.celestia.nodes.guru:10790](http://rpc-2.celestia.nodes.guru:10790)
 
 #### API Endpoints
 
 * [https://api-blockspacerace.pops.one/](https://api-blockspacerace.pops.one/)
+* [https://api-1.celestia.nodes.guru/](https://api-1.celestia.nodes.guru/)
+* [https://api-2.celestia.nodes.guru/](https://api-2.celestia.nodes.guru/)
 
 ## Testnet Phases
 
