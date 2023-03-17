@@ -250,7 +250,7 @@ const sidebars = {
         {
           type: "link",
           label: "Node API docs",
-          href: "https://node-rpc-docs.vercel.app/"
+          href: "https://celestiaorg.github.io/node-rpc-docs/"
         },
         { 
           type: "doc", 
