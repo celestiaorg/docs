@@ -6,6 +6,8 @@ require("dotenv").config();
 
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const math = require("remark-math");
+const katex = require("rehype-katex");
 const docs = require("./sidebars");
 
 /** @type {import('@docusaurus/types').Config} */
@@ -28,6 +30,15 @@ const config = {
       "data-domain": "docs.celestia.org",
     },
   ],
+  stylesheets: [
+    {
+      href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+      type: "text/css",
+      integrity:
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+      crossorigin: "anonymous",
+    },
+  ],
   presets: [
     [
       "classic",
@@ -37,6 +48,8 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/celestiaorg/docs/tree/main/",
           routeBasePath: "/",
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -46,34 +59,37 @@ const config = {
   ],
   plugins: [
     ["drawio", {}],
-    ['@docusaurus/plugin-client-redirects', {
-      redirects: [
-        {
-          to: '/nodes/environment',
-          from: '/developers/environment'
-        },
-        {
-          to: '/nodes/celestia-app',
-          from: '/developers/celestia-app'
-        },
-        {
-          to: '/nodes/instantiate-testnet',
-          from: '/developers/instantiate-testnet'
-        },
-        {
-          to: '/nodes/celestia-app-commands',
-          from: '/developers/celestia-app-commands'
-        },
-        {
-          to: '/nodes/celestia-node',
-          from: '/developers/celestia-node'
-        },
-        {
-          to: '/nodes/celestia-node-metrics',
-          from: '/developers/celestia-node-metrics'
-        },
-      ]
-    }]
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            to: "/nodes/environment",
+            from: "/developers/environment",
+          },
+          {
+            to: "/nodes/celestia-app",
+            from: "/developers/celestia-app",
+          },
+          {
+            to: "/nodes/instantiate-testnet",
+            from: "/developers/instantiate-testnet",
+          },
+          {
+            to: "/nodes/celestia-app-commands",
+            from: "/developers/celestia-app-commands",
+          },
+          {
+            to: "/nodes/celestia-node",
+            from: "/developers/celestia-node",
+          },
+          {
+            to: "/nodes/celestia-node-metrics",
+            from: "/developers/celestia-node-metrics",
+          },
+        ],
+      },
+    ],
   ],
   i18n: {
     defaultLocale: "en",
@@ -104,7 +120,7 @@ const config = {
         logo: {
           alt: "Celestia Docs",
           src: "img/celestia-docs.svg",
-          srcDark: "img/celestia-docs-dark.svg"
+          srcDark: "img/celestia-docs-dark.svg",
         },
         items: [
           {
@@ -194,7 +210,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['solidity']
+        additionalLanguages: ["solidity"],
       },
     }),
 };
