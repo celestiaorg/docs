@@ -142,14 +142,17 @@ We will be listing RPC endpoints
 provided by the community here.
 
 * [https://rpc-blockspacerace.pops.one/](https://rpc-blockspacerace.pops.one/)
+* [https://rpc-blockspacerace.ryabina.io/](https://rpc-blockspacerace.ryabina.io/)
 
 #### gRPC Endpoints
 
 * [https://grpc-blockspacerace.pops.one/](https://grpc-blockspacerace.pops.one/)
+* grpc-blockspacerace.ryabina.io:9090
 
 #### API Endpoints
 
 * [https://api-blockspacerace.pops.one/](https://api-blockspacerace.pops.one/)
+* [https://api-blockspacerace.ryabina.io/](https://api-blockspacerace.ryabina.io/)
 
 ## Testnet Phases
 
