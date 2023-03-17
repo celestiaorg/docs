@@ -142,14 +142,17 @@ We will be listing RPC endpoints
 provided by the community here.
 
 * [https://rpc-blockspacerace.pops.one/](https://rpc-blockspacerace.pops.one/)
+* [https://rpc-blockspacerace.mzonder.com](https://rpc-blockspacerace.mzonder.com)
 
 #### gRPC Endpoints
 
 * [https://grpc-blockspacerace.pops.one/](https://grpc-blockspacerace.pops.one/)
+* grpc-blockspacerace.mzonder.com:443
 
 #### API Endpoints
 
 * [https://api-blockspacerace.pops.one/](https://api-blockspacerace.pops.one/)
+* [https://api-blockspacerace.mzonder.com](https://api-blockspacerace.mzonder.com)
 
 ## Testnet Phases
 
