@@ -143,6 +143,14 @@ provided by the community here.
 
 * [https://rpc-blockspacerace.pops.one/](https://rpc-blockspacerace.pops.one/)
 
+#### gRPC Endpoints
+
+* [https://grpc-blockspacerace.pops.one/](https://grpc-blockspacerace.pops.one/)
+
+#### API Endpoints
+
+* [https://api-blockspacerace.pops.one/](https://api-blockspacerace.pops.one/)
+
 ## Testnet Phases
 
 <!-- markdownlint-disable MD033 -->
