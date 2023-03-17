@@ -144,16 +144,18 @@ provided by the community here.
 * [https://rpc-blockspacerace.pops.one/](https://rpc-blockspacerace.pops.one/)
 * [https://rpc-1.celestia.nodes.guru/](https://rpc-1.celestia.nodes.guru/)
 * [https://rpc-2.celestia.nodes.guru/](https://rpc-2.celestia.nodes.guru/)
-* [https://celestia-testnet.rpc.kjnodes.com](https://celestia-testnet.rpc.kjnodes.com)
+* [https://celestia-testnet.rpc.kjnodes.com/](https://celestia-testnet.rpc.kjnodes.com/)
 * [https://celestia.rpc.waynewayner.de/](https://celestia.rpc.waynewayner.de/)
+* [https://rpc-blockspacerace.mzonder.com/](https://rpc-blockspacerace.mzonder.com/)
 
 #### gRPC Endpoints
 
 * [https://grpc-blockspacerace.pops.one/](https://grpc-blockspacerace.pops.one/)
-* [http://rpc-1.celestia.nodes.guru:10790](http://rpc-1.celestia.nodes.guru:10790)
-* [http://rpc-2.celestia.nodes.guru:10790](http://rpc-2.celestia.nodes.guru:10790)
-* [https://celestia-testnet.grpc.kjnodes.com](https://celestia-testnet.grpc.kjnodes.com)
-* [https://celestia.waynewayner.de/grpc](https://celestia.waynewayner.de/grpc)
+* [http://rpc-1.celestia.nodes.guru:10790/](http://rpc-1.celestia.nodes.guru:10790/)
+* [http://rpc-2.celestia.nodes.guru:10790/](http://rpc-2.celestia.nodes.guru:10790/)
+* [https://celestia-testnet.grpc.kjnodes.com/](https://celestia-testnet.grpc.kjnodes.com/)
+* [https://celestia.waynewayner.de/grpc/](https://celestia.waynewayner.de/grpc/)
+* [https://grpc-blockspacerace.mzonder.com:443/](https://grpc-blockspacerace.mzonder.com:443/)
 
 #### API Endpoints
 
@@ -162,6 +164,7 @@ provided by the community here.
 * [https://api-2.celestia.nodes.guru/](https://api-2.celestia.nodes.guru/)
 * [https://celestia-testnet.api.kjnodes.com](https://celestia-testnet.api.kjnodes.com)
 * [https://celestia.waynewayner.de/api](https://celestia.waynewayner.de/api)
+* [https://api-blockspacerace.mzonder.com/](https://api-blockspacerace.mzonder.com/)
 
 ## Testnet Phases
 
