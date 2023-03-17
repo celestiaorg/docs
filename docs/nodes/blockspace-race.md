@@ -142,14 +142,17 @@ We will be listing RPC endpoints
 provided by the community here.
 
 * [https://rpc-blockspacerace.pops.one/](https://rpc-blockspacerace.pops.one/)
+* [https://celestia.rpc.waynewayner.de/](https://celestia.rpc.waynewayner.de/)
 
 #### gRPC Endpoints
 
 * [https://grpc-blockspacerace.pops.one/](https://grpc-blockspacerace.pops.one/)
+* [https://celestia.waynewayner.de/grpc](https://celestia.waynewayner.de/grpc)
 
 #### API Endpoints
 
 * [https://api-blockspacerace.pops.one/](https://api-blockspacerace.pops.one/)
+* [https://celestia.waynewayner.de/api](https://celestia.waynewayner.de/api)
 
 ## Testnet Phases
 
