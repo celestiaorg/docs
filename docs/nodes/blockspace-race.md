@@ -144,18 +144,21 @@ provided by the community here.
 * [https://rpc-blockspacerace.pops.one/](https://rpc-blockspacerace.pops.one/)
 * [https://rpc-1.celestia.nodes.guru/](https://rpc-1.celestia.nodes.guru/)
 * [https://rpc-2.celestia.nodes.guru/](https://rpc-2.celestia.nodes.guru/)
+* [https://celestia-testnet.rpc.kjnodes.com](https://celestia-testnet.rpc.kjnodes.com)
 
 #### gRPC Endpoints
 
 * [https://grpc-blockspacerace.pops.one/](https://grpc-blockspacerace.pops.one/)
 * [http://rpc-1.celestia.nodes.guru:10790](http://rpc-1.celestia.nodes.guru:10790)
 * [http://rpc-2.celestia.nodes.guru:10790](http://rpc-2.celestia.nodes.guru:10790)
+* [https://celestia-testnet.grpc.kjnodes.com](https://celestia-testnet.grpc.kjnodes.com)
 
 #### API Endpoints
 
 * [https://api-blockspacerace.pops.one/](https://api-blockspacerace.pops.one/)
 * [https://api-1.celestia.nodes.guru/](https://api-1.celestia.nodes.guru/)
 * [https://api-2.celestia.nodes.guru/](https://api-2.celestia.nodes.guru/)
+* [https://celestia-testnet.api.kjnodes.com](https://celestia-testnet.api.kjnodes.com)
 
 ## Testnet Phases
 
