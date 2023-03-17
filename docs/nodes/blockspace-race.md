@@ -147,6 +147,7 @@ provided by the community here.
 * [https://celestia-testnet.rpc.kjnodes.com/](https://celestia-testnet.rpc.kjnodes.com/)
 * [https://celestia.rpc.waynewayner.de/](https://celestia.rpc.waynewayner.de/)
 * [https://rpc-blockspacerace.mzonder.com/](https://rpc-blockspacerace.mzonder.com/)
+* [https://rpc-t.celestia.nodestake.top/](https://rpc-t.celestia.nodestake.top/)
 
 #### gRPC Endpoints
 
@@ -156,6 +157,7 @@ provided by the community here.
 * [https://celestia-testnet.grpc.kjnodes.com/](https://celestia-testnet.grpc.kjnodes.com/)
 * [https://celestia.waynewayner.de/grpc/](https://celestia.waynewayner.de/grpc/)
 * [https://grpc-blockspacerace.mzonder.com:443/](https://grpc-blockspacerace.mzonder.com:443/)
+* [https://grpc-t.celestia.nodestake.top/](https://grpc-t.celestia.nodestake.top/)
 
 #### API Endpoints
 
@@ -165,6 +167,7 @@ provided by the community here.
 * [https://celestia-testnet.api.kjnodes.com](https://celestia-testnet.api.kjnodes.com)
 * [https://celestia.waynewayner.de/api](https://celestia.waynewayner.de/api)
 * [https://api-blockspacerace.mzonder.com/](https://api-blockspacerace.mzonder.com/)
+* [https://api-t.celestia.nodestake.top/](https://api-t.celestia.nodestake.top/)
 
 ## Testnet Phases
 
