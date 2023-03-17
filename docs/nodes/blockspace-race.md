@@ -147,7 +147,7 @@ provided by the community here.
 #### gRPC Endpoints
 
 * [https://grpc-blockspacerace.pops.one/](https://grpc-blockspacerace.pops.one/)
-* [grpc-blockspacerace.mzonder.com:443](grpc-blockspacerace.mzonder.com:443)
+* grpc-blockspacerace.mzonder.com:443
 
 #### API Endpoints
 
