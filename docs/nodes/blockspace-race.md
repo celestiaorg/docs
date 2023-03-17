@@ -142,17 +142,17 @@ We will be listing RPC endpoints
 provided by the community here.
 
 * [https://rpc-blockspacerace.pops.one/](https://rpc-blockspacerace.pops.one/)
-* https://blockspacerace-rpc.chainode.tech/
+* [https://blockspacerace-rpc.chainode.tech/](https://blockspacerace-rpc.chainode.tech/)
 
 #### gRPC Endpoints
 
 * [https://grpc-blockspacerace.pops.one/](https://grpc-blockspacerace.pops.one/)
-* https://blockspacerace-grpc.chainode.tech/
+* [https://blockspacerace-grpc.chainode.tech/](https://blockspacerace-grpc.chainode.tech/)
 
 #### API Endpoints
 
 * [https://api-blockspacerace.pops.one/](https://api-blockspacerace.pops.one/)
-* https://blockspacerace-api.chainode.tech/
+* [https://blockspacerace-api.chainode.tech/](https://blockspacerace-api.chainode.tech/)
 
 ## Testnet Phases
 
