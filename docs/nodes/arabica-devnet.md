@@ -98,4 +98,4 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 There is an explorer you can use for Arabica:
 
-* [https://explorer.celestia.observer/arabica](https://explorer.celestia.observer/arabica)
+* [https://explorer.celestia.tools/arabica](https://explorer.celestia.tools/arabica/)
