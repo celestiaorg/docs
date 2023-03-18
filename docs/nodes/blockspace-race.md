@@ -151,6 +151,7 @@ provided by the community here.
 * [https://rpc-blockspacerace.ryabina.io/](https://rpc-blockspacerace.ryabina.io/)
 * [https://celest-archive.rpc.theamsolutions.info/](https://celest-archive.rpc.theamsolutions.info/)
 * [https://blockspacerace-rpc.chainode.tech/](https://blockspacerace-rpc.chainode.tech/)
+* [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 
 #### gRPC Endpoints
 
@@ -164,6 +165,7 @@ provided by the community here.
 * [https://grpc-blockspacerace.ryabina.io:9090/](https://grpc-blockspacerace.ryabina.io:9090)
 * [https://celest-archive.grpc.theamsolutions.info:9090/](https://celest-archive.grpc.theamsolutions.info:9090/)
 * [https://blockspacerace-grpc.chainode.tech/](https://blockspacerace-grpc.chainode.tech/)
+* [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 
 #### API Endpoints
 
@@ -177,6 +179,7 @@ provided by the community here.
 * [https://api-blockspacerace.ryabina.io/](https://api-blockspacerace.ryabina.io/)
 * [https://celest-archive.api.theamsolutions.info/](https://celest-archive.api.theamsolutions.info/)
 * [https://blockspacerace-api.chainode.tech/](https://blockspacerace-api.chainode.tech/)
+* [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 
 ## Testnet Phases
 
