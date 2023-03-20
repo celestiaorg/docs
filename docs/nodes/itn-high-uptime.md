@@ -18,6 +18,7 @@ impacts your uptime score.
 
 1. Points are awarded based on the following [formula](https://www.wolframalpha.com/input?i=y%3D1.08%5Ex%2F1.08%5E100+from+0+to+100).
 2. `validator_uptime = total_signed_blocks/network_height`
+3. Maximum score for uptime at the end of phase 5 is 350 points.
 
 ## Submission
 
