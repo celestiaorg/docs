@@ -187,7 +187,7 @@ provided by the community here.
 ![Banner](/img/phase1.jpg)
 
 * Start: 7 March 2023
-* End: 21 March 2023
+* End: 21 March 2023, 23:59 UTC
 * Break: 7 days
 
 <details>
