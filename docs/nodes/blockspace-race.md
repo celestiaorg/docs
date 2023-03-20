@@ -151,6 +151,7 @@ provided by the community here.
 * [https://rpc-blockspacerace.ryabina.io/](https://rpc-blockspacerace.ryabina.io/)
 * [https://celest-archive.rpc.theamsolutions.info/](https://celest-archive.rpc.theamsolutions.info/)
 * [https://blockspacerace-rpc.chainode.tech/](https://blockspacerace-rpc.chainode.tech/)
+* [https://rpc-blockspacerace.suntzu.pro/](https://rpc-blockspacerace.suntzu.pro/)
 * [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 
 #### gRPC Endpoints
@@ -165,6 +166,7 @@ provided by the community here.
 * [https://grpc-blockspacerace.ryabina.io:9090/](https://grpc-blockspacerace.ryabina.io:9090)
 * [https://celest-archive.grpc.theamsolutions.info:9090/](https://celest-archive.grpc.theamsolutions.info:9090/)
 * [https://blockspacerace-grpc.chainode.tech/](https://blockspacerace-grpc.chainode.tech/)
+* [https://grpc-blockspacerace.suntzu.pro:9090/](https://grpc-blockspacerace.suntzu.pro:9090/)
 * [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 
 #### API Endpoints
@@ -179,6 +181,7 @@ provided by the community here.
 * [https://api-blockspacerace.ryabina.io/](https://api-blockspacerace.ryabina.io/)
 * [https://celest-archive.api.theamsolutions.info/](https://celest-archive.api.theamsolutions.info/)
 * [https://blockspacerace-api.chainode.tech/](https://blockspacerace-api.chainode.tech/)
+* [https://api-blockspacerace.suntzu.pro/](https://api-blockspacerace.suntzu.pro/)
 * [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 
 ## Testnet Phases
@@ -190,7 +193,7 @@ provided by the community here.
 ![Banner](/img/phase1.jpg)
 
 * Start: 7 March 2023
-* End: 21 March 2023
+* End: 21 March 2023, 23:59 UTC
 * Break: 7 days
 
 <details>
@@ -200,7 +203,7 @@ provided by the community here.
 | ------------- | ------------- | ------------- |
 | [Set up your validator](./itn-setup-validator.md) | Network  | 80 |
 | [Sign the genesis block](./itn-sign-genesis.md) | Network  | 45 |
-| [Maintain high uptime](./itn-high-uptime.md) | Network | Score at the end of Phase 5 |
+| [Maintain high uptime](./itn-high-uptime.md) | Network | Score at the end of Phase 5 / 350 |
 </details>
 
 <!-- markdownlint-enable MD033 -->
