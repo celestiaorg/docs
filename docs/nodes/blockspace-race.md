@@ -197,7 +197,7 @@ provided by the community here.
 | ------------- | ------------- | ------------- |
 | [Set up your validator](./itn-setup-validator.md) | Network  | 80 |
 | [Sign the genesis block](./itn-sign-genesis.md) | Network  | 45 |
-| [Maintain high uptime](./itn-high-uptime.md) | Network | Score at the end of Phase 5 |
+| [Maintain high uptime](./itn-high-uptime.md) | Network | Score at the end of Phase 5 / 350 |
 </details>
 
 <!-- markdownlint-enable MD033 -->
