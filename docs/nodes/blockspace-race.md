@@ -154,6 +154,7 @@ provided by the community here.
 * [https://rpc-blockspacerace.suntzu.pro/](https://rpc-blockspacerace.suntzu.pro/)
 * [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 * [https://rpc.celestia.stakewith.us/](https://rpc.celestia.stakewith.us/)
+* [https://celrace-rpc.easy2stake.com](https://celrace-rpc.easy2stake.com)
 
 #### gRPC Endpoints
 
@@ -170,6 +171,7 @@ provided by the community here.
 * [https://grpc-blockspacerace.suntzu.pro:9090/](https://grpc-blockspacerace.suntzu.pro:9090/)
 * [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 * [https://grpc.celestia.stakewith.us/](https://grpc.celestia.stakewith.us/)
+* [https://celrace-grpc.easy2stake.com](https://celrace-grpc.easy2stake.com)
 
 #### API Endpoints
 
@@ -186,6 +188,7 @@ provided by the community here.
 * [https://api-blockspacerace.suntzu.pro/](https://api-blockspacerace.suntzu.pro/)
 * [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 * [https://api.celestia.stakewith.us/](https://api.celestia.stakewith.us/)
+* [https://celrace-lcd.easy2stake.com](https://celrace-lcd.easy2stake.com)
 
 ## Testnet Phases
 
