@@ -236,31 +236,51 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Data availability API",
+      label: "Node API",
       link: {
         type: "generated-index",
       },
       collapsed: false,
       items: [
-        { 
-          type: "doc", 
-          label: "Node tutorial", 
-          id: "developers/node-tutorial" 
+        {
+          type: "category",
+          label: "Gateway API",
+          link: {
+            type: "generated-index",
+          },
+          collapsed: false,
+          items: [
+            {
+              type: "doc",
+              label: "Gateway API docs",
+              id: "developers/node-gateway-docs"
+            },
+            { 
+              type: "doc", 
+              label: "Gateway API tutorial", 
+              id: "developers/gateway-api-tutorial" 
+            },
+          ]
         },
         {
-          type: "link",
-          label: "Node API docs",
-          href: "https://node-rpc-docs.celestia.org/"
-        },
-        { 
-          type: "doc", 
-          label: "Node API tutorial", 
-          id: "developers/node-api-tutorial" 
-        },
-        {
-          type: "doc",
-          label: "Gateway API docs",
-          id: "developers/node-gateway-docs"
+          type: "category",
+          label: "RPC API",
+          link: {
+            type: "generated-index",
+          },
+          collapsed: false,
+          items: [
+            {
+              type: "link",
+              label: "Node RPC docs",
+              href: "https://node-rpc-docs.celestia.org/"
+            },
+            { 
+              type: "doc", 
+              label: "RPC API tutorial", 
+              id: "developers/node-tutorial" 
+            },
+          ]
         },
         // {
         //   type: "doc",
