@@ -262,11 +262,11 @@ const sidebars = {
           label: "Gateway API docs",
           id: "developers/node-gateway-docs"
         },
-        {
-          type: "doc",
-          label: "Node video tutorial",
-          id: "developers/light-node-video"
-        },
+        // {
+        //   type: "doc",
+        //   label: "Node video tutorial",
+        //   id: "developers/light-node-video"
+        // },
       ]
     },
     {
