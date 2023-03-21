@@ -154,6 +154,7 @@ provided by the community here.
 * [https://rpc-blockspacerace.suntzu.pro/](https://rpc-blockspacerace.suntzu.pro/)
 * [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 * [https://rpc.celestia.stakewith.us/](https://rpc.celestia.stakewith.us/)
+* [https://celestia-rpc.validatrium.club/](https://celestia-rpc.validatrium.club/)
 
 #### gRPC Endpoints
 
@@ -186,6 +187,7 @@ provided by the community here.
 * [https://api-blockspacerace.suntzu.pro/](https://api-blockspacerace.suntzu.pro/)
 * [http://public.celestia.w3hitchhiker.com/](http://public.celestia.w3hitchhiker.com/)
 * [https://api.celestia.stakewith.us/](https://api.celestia.stakewith.us/)
+* [https://celestia-api.validatrium.club/](https://celestia-api.validatrium.club/)
 
 ## Testnet Phases
 
