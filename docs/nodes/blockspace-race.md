@@ -138,10 +138,6 @@ that will be used in the incentivized testnet:
 
 #### RPC Endpoints
 
-The RPC endpoint is to allow users to interact with Celestia's nodes by
-querying the node's state and broadcasting transactions on the
-Celestia network. The default port is 26657.
-
 We will be listing RPC endpoints
 provided by the community here.
 
@@ -163,11 +159,6 @@ provided by the community here.
 
 #### gRPC Endpoints
 
-The gRPC endpoint is to allow users to interact with a celestia-node using
-gRPC, a modern open-source and high-performance RPC framework. The default
-port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
-broadcast transactions.
-
 * [https://grpc-blockspacerace.pops.one/](https://grpc-blockspacerace.pops.one/)
 * [http://rpc-1.celestia.nodes.guru:10790/](http://rpc-1.celestia.nodes.guru:10790/)
 * [http://rpc-2.celestia.nodes.guru:10790/](http://rpc-2.celestia.nodes.guru:10790/)
@@ -184,12 +175,6 @@ broadcast transactions.
 * [https://celrace-grpc.easy2stake.com](https://celrace-grpc.easy2stake.com)
 
 #### API Endpoints
-
-The API endpoint is to allow users to interact with the REST API in Cosmos
-SDK which is implemented using gRPC-gateway, which exposes gRPC endpoints
-as REST endpoints. This allows for communication with the node using REST
-calls, which can be useful if the client does not support gRPC or HTTP2.
-The default port is 1317.
 
 * [https://api-blockspacerace.pops.one/](https://api-blockspacerace.pops.one/)
 * [https://api-1.celestia.nodes.guru/](https://api-1.celestia.nodes.guru/)
