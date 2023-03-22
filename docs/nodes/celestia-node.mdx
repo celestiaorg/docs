@@ -613,7 +613,7 @@ You can re-initialize your node with the following commands:
 Here's an example for Arabica:
 
 <pre><code>
-rm -rf ~./celestia-light-{constants.arabicaChainId}/data <br/>
+rm -rf ~./celestia-light-{constants.arabicaChainId} <br/>
 celestia light init --p2p.network arabica <br/>
 </code></pre>
 
@@ -658,6 +658,7 @@ You can re-initialize your node with the following commands:
   ```sh
   rm -rf ~./<path-to-node-store>/data
   rm -rf ~./<path-to-node-store>/transients
+  rm -rf ~./<path-to-node-store>/index
   rm -rf ~./<path-to-node-store>/blocks
   ```
 
@@ -695,6 +696,7 @@ You can re-initialize your node with the following commands:
   ```sh
   rm -rf ~./<path-to-node-store>/data
   rm -rf ~./<path-to-node-store>/transients
+  rm -rf ~./<path-to-node-store>/index
   rm -rf ~./<path-to-node-store>/blocks
   ```
 
@@ -732,6 +734,7 @@ You can re-initialize your node with the following commands:
   ```sh
   rm -rf ~./<path-to-node-store>/data
   rm -rf ~./<path-to-node-store>/transients
+  rm -rf ~./<path-to-node-store>/index
   rm -rf ~./<path-to-node-store>/blocks
   ```
 
