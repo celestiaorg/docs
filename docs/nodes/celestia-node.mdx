@@ -432,7 +432,41 @@ celestia light start --p2p.network blockspacerace --core.ip <address> --gateway 
   your node via `init` command. This is due to an old config being present.
   Re-initialisation will reset the config.
 
-### Errors
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh
+celestia light init --p2p.network mocha 
+celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+> NOTE: It is advised before switching networks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia light init --p2p.network arabica
+celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
+
+> NOTE: It is advised before switching networks to reinitialize
+  your node via `init` command. This is due to an old config being present.
+  Re-initialisation will reset the config.
+
+</TabItem>
+</Tabs>
+````
+
+## Clearing data store
+
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+### Light nodes
 
 If you an encounter an error, it is likely that an old config file is present:
 
@@ -444,17 +478,31 @@ Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid I
 Error: nodebuilder/share: interval must be positive
 ```
 
-You can re-initialize your node with the following command:
+You can re-initialize your node with the following commands:
 
-```sh
-rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
-```
+1. First, remove the data store:
+
+  ```sh
+  rm -rf ~./<path-to-node-store>/data
+  ```
+
+2. Re-initialize the node:
+
+  ```sh
+  celestia light init --p2p.network blockspacerace
+  ```
+
+3. Start the node: 
+
+  ```sh
+  celestia light start --p2p.network blockspacerace
+  ```
 
 Here's an example for blockspacerace:
 
-
 ```sh
-rm -rf ~./celestia-light-blockspacerace && celestia light init --p2p.network blockspacerace
+rm -rf ~./celestia-light-blockspacerace
+celestia light init --p2p.network blockspacerace
 ```
 
 Your output will look similar to below:
@@ -474,16 +522,7 @@ celestia light start --p2p.network blockspacerace --core.ip <address> --gateway 
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
-```sh
-celestia light init --p2p.network mocha 
-celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-> NOTE: It is advised before switching networks to reinitialize
-  your node via `init` command. This is due to an old config being present.
-  Re-initialisation will reset the config.
-
-### Errors
+### Light nodes
 
 If you an encounter an error, it is likely that an old config file is present:
 
@@ -495,17 +534,31 @@ Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid I
 Error: nodebuilder/share: interval must be positive
 ```
 
-You can re-initialize your node with the following command:
+You can re-initialize your node with the following commands:
 
-```sh
-rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
-```
+1. First, remove the data store:
+
+  ```sh
+  rm -rf ~./<path-to-node-store>/data
+  ```
+
+2. Re-initialize the node:
+
+  ```sh
+  celestia light init --p2p.network mocha
+  ```
+
+3. Start the node: 
+
+  ```sh
+  celestia light start --p2p.network mocha
+  ```
 
 Here's an example for Mocha:
 
-
 ```sh
-rm -rf ~./celestia-light-mocha && celestia light init --p2p.network mocha
+rm -rf ~./celestia-light-mocha
+celestia light init --p2p.network mocha
 ```
 
 Your output will look similar to below:
@@ -525,20 +578,7 @@ celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-You can perform network selection in `celestia-node` between Arabica and
-Mocha. However, you should note that networks work best on the `celestia-node`
-versions mentioned above.
-
-```sh
-celestia light init --p2p.network arabica
-celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-> NOTE: It is advised before switching networks to reinitialize
-  your node via `init` command. This is due to an old config being present.
-  Re-initialisation will reset the config.
-
-### Errors
+### Light nodes
 
 If you an encounter an error, it is likely that an old config file is present:
 
@@ -550,16 +590,31 @@ Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid I
 Error: nodebuilder/share: interval must be positive
 ```
 
-You can re-initialize your node with the following command:
+You can re-initialize your node with the following commands:
 
-```sh
-rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
-```
+1. First, remove the data store:
+
+  ```sh
+  rm -rf ~./<path-to-node-store>/data
+  ```
+
+2. Re-initialize the node:
+
+  ```sh
+  celestia light init --p2p.network arabica
+  ```
+
+3. Start the node: 
+
+  ```sh
+  celestia light start --p2p.network arabica
+  ```
 
 Here's an example for Arabica:
 
 <pre><code>
-rm -rf ~./celestia-light-{constants.arabicaChainId} && celestia light init --p2p.network arabica
+rm -rf ~./celestia-light-{constants.arabicaChainId} <br/>
+celestia light init --p2p.network arabica <br/>
 </code></pre>
 
 Your output will look similar to below:
@@ -575,6 +630,122 @@ Then start your node:
 ```sh
 celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
+
+</TabItem>
+</Tabs>
+````
+
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="blockspacerace">
+
+### Bridge and full nodes
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following commands:
+
+1. First, remove the data store:
+
+  ```sh
+  rm -rf ~./<path-to-node-store>/data
+  rm -rf ~./<path-to-node-store>/transients
+  rm -rf ~./<path-to-node-store>/blocks
+  ```
+
+2. Re-initialize the node:
+
+  ```sh
+  celestia <bridge or full> init --p2p.network blockspacerace
+  ```
+
+3. Start the node: 
+
+  ```sh
+  celestia <bridge or full> start --p2p.network blockspacerace
+  ```
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+### Bridge and full nodes
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following commands:
+
+1. First, remove the data store:
+
+  ```sh
+  rm -rf ~./<path-to-node-store>/data
+  rm -rf ~./<path-to-node-store>/transients
+  rm -rf ~./<path-to-node-store>/blocks
+  ```
+
+2. Re-initialize the node:
+
+  ```sh
+  celestia <bridge or full> init --p2p.network mocha
+  ```
+
+3. Start the node: 
+
+  ```sh
+  celestia <bridge or full> start --p2p.network mocha
+  ```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+### Bridge and full nodes
+
+If you an encounter an error, it is likely that an old config file is present:
+
+```sh
+Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
+
+# or
+
+Error: nodebuilder/share: interval must be positive
+```
+
+You can re-initialize your node with the following commands:
+
+1. First, remove the data store:
+
+  ```sh
+  rm -rf ~./<path-to-node-store>/data
+  rm -rf ~./<path-to-node-store>/transients
+  rm -rf ~./<path-to-node-store>/blocks
+  ```
+
+2. Re-initialize the node:
+
+  ```sh
+  celestia <bridge or full> init --p2p.network arabica
+  ```
+
+3. Start the node: 
+
+  ```sh
+  celestia <bridge or full> start --p2p.network arabica
+  ```
 
 </TabItem>
 </Tabs>
