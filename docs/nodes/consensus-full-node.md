@@ -175,7 +175,6 @@ sed -i 's#"tcp://127.0.0.1:26657"#"tcp://127.0.0.1:26657"#g' ~/.celestia-app/con
 
 Restart `celestia-appd` in the previous step to load those configs.
 
-
 ## Transaction indexer configuration options
 
 This section will show you how to set your `config.toml` file in `celestia-app`
