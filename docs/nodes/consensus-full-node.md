@@ -21,7 +21,7 @@ Consensus Full Node:
 * Disk: 250 GB SSD Storage
 * Bandwidth: 1 Gbps for Download/100 Mbps for Upload
 
-## Setting up your consensus full node
+## Setting up a consensus full node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
@@ -29,14 +29,6 @@ instance machine.
 ### Setup the dependencies
 
 Follow the instructions on installing the dependencies [here](./environment.mdx).
-
-## Deploying the celestia-app
-
-This section describes part 1 of Celestia consensus full node setup:
-running a celestia-app daemon with an internal celestia-core node.
-
-> Note: Make sure you have at least 100+ Gb of free space to safely install + run
-  the consensus full node.  
 
 ### Install celestia-app
 
@@ -104,12 +96,43 @@ This will delete all data folders so we can start fresh:
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
-### Optional: quick-sync with snapshot
+### Syncing
 
-Syncing from Genesis can take a long time, depending on your hardware. Using
-this method you can synchronize your celestia-node very quickly by downloading
-a recent snapshot of the blockchain. If you would like to sync from the Genesis,
-then you can skip this part.
+By default, a consensus node will sync using block sync; that is request, validate
+and execute every block up to the head of the blockchain. This is the most secure
+mechanism yet the slowest (taking up to days depending on the height of the blockchain).
+
+There are two alternatives for quicker syncing.
+
+#### Statesync
+
+Statesync uses light client verification to verify state snapshots from peers
+and then apply them. State sync relies on weak subjectivity; a trusted header
+(specifically the hash and height) must be provided. This can be found by querying
+a trusted RPC endpoint (/block). RPC endpoints are also required for retrieving
+light blocks. These can be found in the docs here under the respective networks or
+from the [chain-registry](https://github.com/cosmos/chain-registry).
+
+In `$HOME/.celestia-app/config/config.toml`, set
+
+```toml
+rpc_servers = ""
+trust_height = 0
+trust_hash = ""
+```
+
+to their respective fields. At least two different rpc endpoints should be provided.
+The more, the greater the chance of detecting any fraudulent behavior.
+
+Once setup, you should be ready to start the node as normal. In the logs, you should
+see: `Discovering snapshots`. This may take a few minutes before snapshots are found
+depending on the network topology.
+
+#### Quicksync
+
+Quicksync effectively downloads the entire `data` directory from a third-party provider
+meaning the node has all the application and blockchain state as the node it was
+copied from.
 
 Run the following command to quick-sync from a snapshot for `mocha`:
 
@@ -131,15 +154,14 @@ In order to start your consensus full node, run the following:
 celestia-appd start
 ```
 
-This will let you sync the Celestia blockchain history.
+Follow the tutorial on setting up Celestia-App as a background process
+with SystemD [here](./systemd.md).
 
 ### Optional: configure for RPC endpoint
 
 You can configure your Consensus Full Node to be a public RPC endpoint
 and listen to any connections from Data Availability Nodes in order to
 serve requests for the Data Availability API [here](../developers/node-tutorial.mdx).
-
-Note that you would need to ensure port 9090 is open for this.
 
 Run the following commands:
 
@@ -153,10 +175,6 @@ sed -i 's#"tcp://127.0.0.1:26657"#"tcp://127.0.0.1:26657"#g' ~/.celestia-app/con
 
 Restart `celestia-appd` in the previous step to load those configs.
 
-### Start the celestia-app with SystemD
-
-Follow the tutorial on setting up Celestia-App as a background process
-with SystemD [here](./systemd.md).
 
 ## Transaction indexer configuration options
 
