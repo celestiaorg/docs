@@ -94,9 +94,9 @@ mechanism yet the slowest (taking up to days depending on the height of the bloc
 
 There are two alternatives for quicker syncing.
 
-#### Statesync
+#### State sync
 
-Statesync uses light client verification to verify state snapshots from peers
+State sync uses light client verification to verify state snapshots from peers
 and then apply them. State sync relies on weak subjectivity; a trusted header
 (specifically the hash and height) must be provided. This can be found by querying
 a trusted RPC endpoint (/block). RPC endpoints are also required for retrieving
@@ -118,9 +118,9 @@ Once setup, you should be ready to start the node as normal. In the logs, you sh
 see: `Discovering snapshots`. This may take a few minutes before snapshots are found
 depending on the network topology.
 
-#### Quicksync
+#### Quick sync
 
-Quicksync effectively downloads the entire `data` directory from a third-party provider
+Quick sync effectively downloads the entire `data` directory from a third-party provider
 meaning the node has all the application and blockchain state as the node it was
 copied from.
 
