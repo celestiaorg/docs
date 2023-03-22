@@ -182,13 +182,13 @@ const sidebars = {
               type: "doc",
               label: "Helpful CLI commands",
               id: "nodes/celestia-app-commands"
-            },
-            {
-              type: "doc",
-             label: "SystemD",
-              id: "nodes/systemd"
             }
           ]
+        },
+        {
+          type: "doc",
+         label: "SystemD",
+          id: "nodes/systemd"
         },
         {
           type: "doc",
