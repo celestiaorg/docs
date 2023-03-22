@@ -182,6 +182,11 @@ const sidebars = {
               type: "doc",
               label: "Helpful CLI commands",
               id: "nodes/celestia-app-commands"
+            },
+            {
+              type: "doc",
+             label: "SystemD",
+              id: "nodes/systemd"
             }
           ]
         },
@@ -189,11 +194,6 @@ const sidebars = {
           type: "doc",
           label: "Hardfork process",
           id: "nodes/hardfork-process"
-        },
-        {
-          type: "doc",
-          label: "SystemD",
-          id: "nodes/systemd"
         },
         { 
           type: "doc", 
