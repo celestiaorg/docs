@@ -255,15 +255,15 @@ const sidebars = {
           },
           collapsed: false,
           items: [
+            { 
+              type: "doc", 
+              label: "Gateway API tutorial", 
+              id: "developers/node-tutorial" 
+            },
             {
               type: "doc",
               label: "Gateway API docs",
               id: "developers/node-gateway-docs"
-            },
-            { 
-              type: "doc", 
-              label: "Gateway API tutorial", 
-              id: "developers/gateway-api-tutorial" 
             },
           ]
         },
@@ -275,15 +275,15 @@ const sidebars = {
           },
           collapsed: false,
           items: [
-            {
-              type: "link",
-              label: "Node RPC docs",
-              href: "https://node-rpc-docs.celestia.org/"
-            },
             { 
               type: "doc", 
               label: "RPC API tutorial", 
-              id: "developers/node-tutorial" 
+              id: "developers/rpc-tutorial" 
+            },
+            {
+              type: "link",
+              label: "RPC API docs",
+              href: "https://node-rpc-docs.celestia.org/"
             },
           ]
         },
