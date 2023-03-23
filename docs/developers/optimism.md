@@ -336,3 +336,4 @@ These projects would be good to build on this stack:
 - decentralized social media
 - an NFT ticketing rollup
 - Optimism on CelOPstia
+- OP Craft on Celestia
