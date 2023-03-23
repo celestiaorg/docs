@@ -421,8 +421,8 @@ Golang version: go{constants.golangNode} <br/>
 Note: If you do not select a network, the default network will be 'Mocha'.
 
 ```sh
-celestia light init --p2p.network <network> 
-celestia light start --p2p.network <network> --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia <node-type> init --p2p.network <network> 
+celestia <node-type> start --p2p.network <network> --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 > NOTE: It is advised before switching networks to reinitialize
@@ -431,7 +431,7 @@ celestia light start --p2p.network <network> --core.ip <address> --gateway --gat
 
 ### Resetting your config
 
-### All nodes
+#### All nodes
 
 If you an encounter an error, it is likely that an old config file is present:
 
@@ -458,7 +458,7 @@ Save your config so custom values are not lost.
 2. Re-initialize the node:
 
   ```sh
-  celestia light init --p2p.network <network>
+  celestia <node-type> init --p2p.network <network>
   ```
 
 :::tip
@@ -468,12 +468,12 @@ If you have saved any custom value, add them back to the config.
 3. Start the node: 
 
   ```sh
-  celestia light start --p2p.network <network>
+  celestia <node-type> start --p2p.network <network>
   ```
 
-#### Example for blockspacerace
+##### Example for blockspacerace
 
-Here's an example for blockspacerace:
+Here's an example for blockspacerace with a light node:
 
 ```sh
 rm -rf ~./celestia-light-blockspacerace-0/data
@@ -496,7 +496,7 @@ celestia light start --p2p.network blockspacerace --core.ip <address> --gateway 
 
 ### Clearing the data store
 
-### Bridge and full nodes
+#### Bridge and full nodes
 
 1. First, remove the data store:
 
@@ -519,7 +519,7 @@ celestia light start --p2p.network blockspacerace --core.ip <address> --gateway 
   celestia <node type> start --p2p.network <network>
   ```
 
-### Light nodes
+#### Light nodes
 
 1. First, remove the data store:
 
