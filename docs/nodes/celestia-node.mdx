@@ -414,59 +414,24 @@ Golang version: go{constants.golangNode} <br/>
 </TabItem>
 </Tabs>
 ````
+## Troubleshooting
 
-## Network selection
+### Network selection
 
 Note: If you do not select a network, the default network will be 'Mocha'.
 
-````mdx-code-block
-<Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
-
 ```sh
-celestia light init --p2p.network blockspacerace 
-celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia light init --p2p.network <network> 
+celestia light start --p2p.network <network> --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 > NOTE: It is advised before switching networks to reinitialize
   your node via `init` command. This is due to an old config being present.
   Re-initialisation will reset the config.
 
-</TabItem>
-<TabItem value="mocha" label="Mocha">
+### Resetting your config
 
-```sh
-celestia light init --p2p.network mocha 
-celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-> NOTE: It is advised before switching networks to reinitialize
-  your node via `init` command. This is due to an old config being present.
-  Re-initialisation will reset the config.
-
-</TabItem>
-<TabItem value="arabica" label="Arabica 🏗️">
-
-```sh
-celestia light init --p2p.network arabica
-celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-> NOTE: It is advised before switching networks to reinitialize
-  your node via `init` command. This is due to an old config being present.
-  Re-initialisation will reset the config.
-
-</TabItem>
-</Tabs>
-````
-
-## Clearing data store
-
-````mdx-code-block
-<Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
-
-### Light nodes
+### All nodes
 
 If you an encounter an error, it is likely that an old config file is present:
 
@@ -478,38 +443,48 @@ Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid I
 Error: nodebuilder/share: interval must be positive
 ```
 
-You can re-initialize your node with the following commands:
+You can re-initialize your node's config with the following commands:
 
-1. First, remove the data store:
+:::tip
+Save your config so custom values are not lost.
+:::
+
+1. First, remove your config:
 
   ```sh
-  rm -rf ~./<path-to-node-store>/data
+  rm ~./<path-to-node-store>/config.toml
   ```
 
 2. Re-initialize the node:
 
   ```sh
-  celestia light init --p2p.network blockspacerace
+  celestia light init --p2p.network <network>
   ```
+
+:::tip
+If you have saved any custom value, add them back to the config.
+:::
 
 3. Start the node: 
 
   ```sh
-  celestia light start --p2p.network blockspacerace
+  celestia light start --p2p.network <network>
   ```
+
+#### Example for blockspacerace
 
 Here's an example for blockspacerace:
 
 ```sh
-rm -rf ~./celestia-light-blockspacerace/data
+rm -rf ~./celestia-light-blockspacerace-0/data
 celestia light init --p2p.network blockspacerace
 ```
 
 Your output will look similar to below:
 
 ```sh
-2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light'
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light/config.toml"}
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-blockspacerace-0'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-blockspacerace-0/config.toml"}
 2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
 ```
 
@@ -519,23 +494,33 @@ Then start your node:
 celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
-</TabItem>
-<TabItem value="mocha" label="Mocha">
+### Clearing the data store
+
+### Bridge and full nodes
+
+1. First, remove the data store:
+
+  ```sh
+  rm -rf ~./<path-to-node-store>/data
+  rm -rf ~./<path-to-node-store>/transients
+  rm -rf ~./<path-to-node-store>/index
+  rm -rf ~./<path-to-node-store>/blocks
+  ```
+
+2. Re-initialize the node:
+
+  ```sh
+  celestia <node type> init --p2p.network <network>
+  ```
+
+3. Start the node: 
+
+  ```sh
+  celestia <node type> start --p2p.network <network>
+  ```
 
 ### Light nodes
 
-If you an encounter an error, it is likely that an old config file is present:
-
-```sh
-Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
-
-# or
-
-Error: nodebuilder/share: interval must be positive
-```
-
-You can re-initialize your node with the following commands:
-
 1. First, remove the data store:
 
   ```sh
@@ -545,211 +530,11 @@ You can re-initialize your node with the following commands:
 2. Re-initialize the node:
 
   ```sh
-  celestia light init --p2p.network mocha
+  celestia light init --p2p.network <network>
   ```
 
 3. Start the node: 
 
   ```sh
-  celestia light start --p2p.network mocha
+  celestia light start --p2p.network <network>
   ```
-
-Here's an example for Mocha:
-
-```sh
-rm -rf ~./celestia-light-mocha/data
-celestia light init --p2p.network mocha
-```
-
-Your output will look similar to below:
-
-```sh
-2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light'
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light/config.toml"}
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
-```
-
-Then start your node:
-
-```sh
-celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-</TabItem>
-<TabItem value="arabica" label="Arabica 🏗️">
-
-### Light nodes
-
-If you an encounter an error, it is likely that an old config file is present:
-
-```sh
-Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
-
-# or
-
-Error: nodebuilder/share: interval must be positive
-```
-
-You can re-initialize your node with the following commands:
-
-1. First, remove the data store:
-
-  ```sh
-  rm -rf ~./<path-to-node-store>/data
-  ```
-
-2. Re-initialize the node:
-
-  ```sh
-  celestia light init --p2p.network arabica
-  ```
-
-3. Start the node: 
-
-  ```sh
-  celestia light start --p2p.network arabica
-  ```
-
-Here's an example for Arabica:
-
-<pre><code>
-rm -rf ~./celestia-light-{constants.arabicaChainId}/data <br/>
-celestia light init --p2p.network arabica <br/>
-</code></pre>
-
-Your output will look similar to below:
-
-<pre><code>
-2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-{constants.arabicaChainId}' <br/>
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{`{"path": "/Users/joshstein/.celestia-light-${constants.arabicaChainId}/config.toml"}`}` <br/>
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
-</code></pre>
-
-Then start your node:
-
-```sh
-celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-</TabItem>
-</Tabs>
-````
-
-````mdx-code-block
-<Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
-
-### Bridge and full nodes
-
-If you an encounter an error, it is likely that an old config file is present:
-
-```sh
-Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
-
-# or
-
-Error: nodebuilder/share: interval must be positive
-```
-
-You can re-initialize your node with the following commands:
-
-1. First, remove the data store:
-
-  ```sh
-  rm -rf ~./<path-to-node-store>/data
-  rm -rf ~./<path-to-node-store>/transients
-  rm -rf ~./<path-to-node-store>/index
-  rm -rf ~./<path-to-node-store>/blocks
-  ```
-
-2. Re-initialize the node:
-
-  ```sh
-  celestia <bridge or full> init --p2p.network blockspacerace
-  ```
-
-3. Start the node: 
-
-  ```sh
-  celestia <bridge or full> start --p2p.network blockspacerace
-  ```
-
-</TabItem>
-<TabItem value="mocha" label="Mocha">
-
-### Bridge and full nodes
-
-If you an encounter an error, it is likely that an old config file is present:
-
-```sh
-Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
-
-# or
-
-Error: nodebuilder/share: interval must be positive
-```
-
-You can re-initialize your node with the following commands:
-
-1. First, remove the data store:
-
-  ```sh
-  rm -rf ~./<path-to-node-store>/data
-  rm -rf ~./<path-to-node-store>/transients
-  rm -rf ~./<path-to-node-store>/index
-  rm -rf ~./<path-to-node-store>/blocks
-  ```
-
-2. Re-initialize the node:
-
-  ```sh
-  celestia <bridge or full> init --p2p.network mocha
-  ```
-
-3. Start the node: 
-
-  ```sh
-  celestia <bridge or full> start --p2p.network mocha
-  ```
-
-</TabItem>
-<TabItem value="arabica" label="Arabica 🏗️">
-
-### Bridge and full nodes
-
-If you an encounter an error, it is likely that an old config file is present:
-
-```sh
-Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
-
-# or
-
-Error: nodebuilder/share: interval must be positive
-```
-
-You can re-initialize your node with the following commands:
-
-1. First, remove the data store:
-
-  ```sh
-  rm -rf ~./<path-to-node-store>/data
-  rm -rf ~./<path-to-node-store>/transients
-  rm -rf ~./<path-to-node-store>/index
-  rm -rf ~./<path-to-node-store>/blocks
-  ```
-
-2. Re-initialize the node:
-
-  ```sh
-  celestia <bridge or full> init --p2p.network arabica
-  ```
-
-3. Start the node: 
-
-  ```sh
-  celestia <bridge or full> start --p2p.network arabica
-  ```
-
-</TabItem>
-</Tabs>
-````
