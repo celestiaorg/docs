@@ -68,7 +68,7 @@ git checkout celestia
 
 ### asdf
 
-Install `asdf` to allow us to intall a specific version of NPM easily:
+Install `asdf` to allow us to intall a specific version of node easily:
 
 ```bash
 cd $HOME
@@ -103,13 +103,20 @@ source ~/.bashrc
 Optional: you may need to update NPM:
 
 ```bash
-npm install -g npm@9.5.1
+apt install npm
 ```
 
 ### Foundry
 
+Install Foundry:
+
 ```bash
 curl -L https://foundry.paradigm.xyz/ | bash
+```
+
+Set path:
+
+```bash
 source /root/.bashrc
 ```
 
@@ -120,6 +127,9 @@ Install yarn:
 ```bash
 npm install -g yarn
 ```
+
+Depending on the version installed,
+you may need to update your version of NPM.
 
 ### Docker compose
 
