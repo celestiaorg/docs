@@ -335,3 +335,4 @@ These projects would be good to build on this stack:
 - on-chain gaming
 - decentralized social media
 - an NFT ticketing rollup
+- Optimism on CelOPstia
