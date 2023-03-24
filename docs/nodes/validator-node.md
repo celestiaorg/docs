@@ -27,14 +27,6 @@ instance machine.
 
 Follow the instructions on installing the dependencies [here](./environment.mdx).
 
-## Deploying the celestia-app
-
-This section describes part 1 of Celestia Validator Node setup:
-running a celestia-app daemon with an internal celestia-core node.
-
-> Note: Make sure you have at least 500+ Gb of free space to safely install+run
-  the Validator Node.
-
 ### Install celestia-app
 
 Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
@@ -94,12 +86,43 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
 \"$PRUNING_INTERVAL\"/" $HOME/.celestia-app/config/app.toml
 ```
 
-### Optional: quick-sync with snapshot
+### Syncing
 
-Syncing from Genesis can take a long time, depending on your hardware. Using
-this method you can synchronize your Celestia node very quickly by downloading
-a recent snapshot of the blockchain. If you would like to sync from the Genesis,
-then you can skip this part.
+By default, a consensus node will sync using block sync; that is request, validate
+and execute every block up to the head of the blockchain. This is the most secure
+mechanism yet the slowest (taking up to days depending on the height of the blockchain).
+
+There are two alternatives for quicker syncing.
+
+#### State sync
+
+State sync uses light client verification to verify state snapshots from peers
+and then apply them. State sync relies on weak subjectivity; a trusted header
+(specifically the hash and height) must be provided. This can be found by querying
+a trusted RPC endpoint (/block). RPC endpoints are also required for retrieving
+light blocks. These can be found in the docs here under the respective networks or
+from the [chain-registry](https://github.com/cosmos/chain-registry).
+
+In `$HOME/.celestia-app/config/config.toml`, set
+
+```toml
+rpc_servers = ""
+trust_height = 0
+trust_hash = ""
+```
+
+to their respective fields. At least two different rpc endpoints should be provided.
+The more, the greater the chance of detecting any fraudulent behavior.
+
+Once setup, you should be ready to start the node as normal. In the logs, you should
+see: `Discovering snapshots`. This may take a few minutes before snapshots are found
+depending on the network topology.
+
+#### Quick sync
+
+Quick sync effectively downloads the entire `data` directory from a third-party provider
+meaning the node has all the application and blockchain state as the node it was
+copied from.
 
 Run the following command to quick-sync from a snapshot for `mocha`:
 
@@ -113,7 +136,13 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
 
-### Start the celestia-app with SystemD
+### Start the celestia-app
+
+In order to start your validator node, run the following:
+
+```sh
+celestia-appd start
+```
 
 Follow the tutorial on setting up Celestia-App as a background process
 with SystemD [here]( ../systemd).
