@@ -260,6 +260,34 @@ The default port is 1317.
 | [Maintain high uptime throughout the Incentivized testnet](./itn-high-uptime-node.md) (Full storage nodes) | Network | Score at the end of Phase 5 / 80 |
 </details>
 
+### Bonus Phase
+
+* Start: 28 Mar 2023
+* End: 8 May 2023
+
+<details>
+<summary>Validator Tasks</summary>
+
+| Validator Tasks | Task type | Points |
+| ------------- | ------------- | ------------- |
+| [Write a technical article](./itn-setup-writeup.md) | Bonus  | Bonus Pool |
+| [Create Toolings for the Celestia Network](./itn-toolings.md) | Bonus  | Bonus Pool |
+| [Run a public seed or RPC node](./itn-rpc-node.md) | Bonus | Bonus Pool |
+| [Deploy a sovereign rollup](./itn-deploy-rollup.md) | Bonus  | Bonus Pool |
+</details>
+
+<details>
+<summary>Node Operator Tasks</summary>
+
+| Node Operator Tasks | Task type | Points |
+| ------------- | ------------- | ------------- |
+| [Write a technical article](./itn-setup-writeup.md) (bridge and full storage nodes) | Bonus  | Bonus Pool |
+| [Create Toolings for the Celestia Network](./itn-toolings.md) (all 3 node types) | Bonus  | Bonus Pool |
+| [Create a UI for submitting PayForBlob txs](./itn-pfb-ui.md) (all 3 node types) | Bonus | Bonus Pool |
+| [Deploy a sovereign rollup](./itn-deploy-rollup.md) (all 3 node types) | Bonus  | Bonus Pool |
+| [Conduct performance analysis of your node](./itn-node-analysis.md) (all 3 node types) | Bonus | Bonus Pool |
+</details>
+
 <!-- markdownlint-enable MD033 -->
 <!-- markdownlint-enable MD013 -->
 

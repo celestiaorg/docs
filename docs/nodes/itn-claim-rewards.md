@@ -18,7 +18,9 @@ about how to claim validator rewards in the tutorial [here](https://docs.celesti
 
 ## How to Submit
 
-Please submit the claim rewards transaction hash. You can use the block explorer to check if the transaction has succeeded.
+Please submit the claim rewards transaction hash. You
+can use the block explorer to check if the
+transaction has succeeded.
 
 Submission link can be found [here](https://celestia.knack.com/theblockspacerace#testnet-portal).
 

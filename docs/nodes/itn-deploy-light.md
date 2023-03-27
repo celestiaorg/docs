@@ -16,7 +16,11 @@ For an RPC endpoint to connect to, please see the list [here](https://docs.celes
 2. Perform Data Availability Sampling (DAS).
 3. How to find your light node id is found [here](https://docs.celestia.org/developers/node-api/#post-p2pinfo).
 4. Make sure that the wallet address the node uses is funded.
-5. The keys directory under `.celestia-light-blockspacerace-0/keys` contains your `pubkey` for both DA and Tendermint networks. In the leaderboard your pubkey for DA nodes looks similar to this '12D3KooWSJoAF9pF7AkyEAhQCtNF9TA8JrAujWdqoPJ11uojuKZb' 
+5. The keys directory under `.celestia-light-blockspacerace-0/keys`
+  contains your `pubkey` for both DA and Tendermint networks. In
+  the leaderboard your pubkey for DA nodes looks similar to this
+  `12D3KooWSJoAF9pF7AkyEAhQCtNF9TA8JrAujWdqoPJ11uojuKZb`
+
 Please do a backup of the keys directory in order to not lose your progress.
 
 ## Judging Criteria
