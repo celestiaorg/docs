@@ -187,13 +187,13 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Hardfork process",
-          id: "nodes/hardfork-process"
+         label: "SystemD",
+          id: "nodes/systemd"
         },
         {
           type: "doc",
-          label: "SystemD",
-          id: "nodes/systemd"
+          label: "Hardfork process",
+          id: "nodes/hardfork-process"
         },
         { 
           type: "doc", 
