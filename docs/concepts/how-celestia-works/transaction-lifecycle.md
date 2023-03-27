@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 Users request the celestia-app to make data available by
 sending `PayForBlob` transactions. Every such transaction consists
