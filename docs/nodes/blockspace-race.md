@@ -229,6 +229,37 @@ The default port is 1317.
 | [Maintain high uptime](./itn-high-uptime.md) | Network | Score at the end of Phase 5 / 350 |
 </details>
 
+### Phase 2: Staging
+
+* Start: 28 Mar 2023
+* End: 3 Apr 2023
+* Break: 7 days
+
+![Banner](/img/phase2.png)
+
+<details>
+<summary>Validator Tasks</summary>
+
+| Validator Tasks  | Task type | Points |
+| ------------- | ------------- | ------------- |
+| [Maintain high uptime](./itn-high-uptime.md) | Network  | Score at the end of Phase 5 / 350 |
+| [Claim your validator rewards](./itn-claim-rewards.md) | Network  | 20 |
+</details>
+
+<details>
+<summary>Node Operator Tasks</summary>
+
+| Node Operator Tasks | Task type | Points |
+| ------------- | ------------- | ------------- |
+| [Deploy Light Node](./itn-deploy-light.md) | Network  | 10 |
+| [Deploy Bridge Node](./itn-deploy-bridge.md) | Network  | 30 |
+| [Deploy Full Storage Node](./itn-deploy-full.md) | Network  | 15 |
+| [Restart your node with metrics flags for tracking uptime (all 3 node types)](./itn-enable-telemetry-nodes.md) | Network  | 5 |
+| [Maintain high uptime throughout the Incentivized testnet](./itn-high-uptime-node.md) (Light nodes) | Network | Score at the end of Phase 5 / 25 |
+| [Maintain high uptime throughout the Incentivized testnet](./itn-high-uptime-node.md) (Bridge nodes) | Network | Score at the end of Phase 5 / 110 |
+| [Maintain high uptime throughout the Incentivized testnet](./itn-high-uptime-node.md) (Full storage nodes) | Network | Score at the end of Phase 5 / 80 |
+</details>
+
 <!-- markdownlint-enable MD033 -->
 <!-- markdownlint-enable MD013 -->
 
