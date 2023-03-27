@@ -38,6 +38,18 @@ Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
 
 Now we will setup the P2P Networks by cloning the networks repository:
 
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="network">
+<TabItem value="mocha" label="Mocha">
+</TabItem>
+<TabItem value="blockspacerace" label="Blockspace Race">
+</TabItem>
+</Tabs>
+````
+
 ```sh
 cd $HOME
 rm -rf networks

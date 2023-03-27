@@ -165,7 +165,7 @@ so we must install Golang to build and run them.
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
@@ -515,12 +515,12 @@ go version go{constants.golangNode} darwin/amd64
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -551,7 +551,7 @@ Golang version: go{constants.golangNode} <br/>
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -582,7 +582,7 @@ Golang version: go{constants.golangNode} <br/>
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -613,7 +613,7 @@ Golang version: go{constants.golangNode} <br/>
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-Installing `celestia-node` for the blockspacerace testnet means installing a specific version
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -914,7 +914,7 @@ Run the following command:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
 celestia light init --p2p.network blockspacerace
@@ -924,8 +924,8 @@ You should see output like:
 
 ```output
 $ celestia light init
-2022-12-19T21:45:24.591Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-blockspacerace'
-2022-12-19T21:45:24.591Z        INFO    node    nodebuilder/init.go:50  Saving config   {"path": "/root/.celestia-light-blockspacerace/config.toml"}
+2022-12-19T21:45:24.591Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-blockspacerace-0'
+2022-12-19T21:45:24.591Z        INFO    node    nodebuilder/init.go:50  Saving config   {"path": "/root/.celestia-light-blockspacerace-0/config.toml"}
 2022-12-19T21:45:24.592Z        INFO    node    nodebuilder/init.go:51  Node Store initialized
 ```
 
@@ -968,7 +968,7 @@ $ celestia light init --p2p.network arabica <br/>
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 Start the light node with a connection to a validator node's gRPC endpoint (which
 is usually exposed on port 9090):
@@ -1040,7 +1040,7 @@ For ports:
 </Tabs>
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../blockspace-race)
 
@@ -1089,7 +1089,7 @@ You can start your light node with the key created above by running the
 following command:
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
 celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
@@ -1161,7 +1161,7 @@ In order to run a light node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
 celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
@@ -1195,7 +1195,7 @@ process with SystemD [here](./systemd.md#celestia-light-node).
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="blockspacerace">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 With your light node running, you can check out this tutorial on
 submitting `PayForData` transactions [here](../../developers/node-tutorial).
