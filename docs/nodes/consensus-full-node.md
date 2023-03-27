@@ -38,23 +38,18 @@ Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
 
 Now we will setup the P2P Networks by cloning the networks repository:
 
+```sh
+cd $HOME
+rm -rf networks
+git clone https://github.com/celestiaorg/networks.git
+```
+
 ````mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="network">
 <TabItem value="mocha" label="Mocha">
-</TabItem>
-<TabItem value="blockspacerace" label="Blockspace Race">
-</TabItem>
-</Tabs>
-````
-
-```sh
-cd $HOME
-rm -rf networks
-git clone https://github.com/celestiaorg/networks.git
-```
 
 To initialize the network pick a "node-name" that describes your
 node. The --chain-id parameter we are using here is `mocha`. Keep in
@@ -72,15 +67,44 @@ cp $HOME/networks/mocha/genesis.json $HOME/.celestia-app/config
 
 Set seeds and peers:
 
-<!-- markdownlint-disable MD013 -->
 ```sh
 PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha/peers.txt | tr -d '\n')
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
-<!-- markdownlint-enable MD013 -->
 
 Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mocha/peers.txt).
+
+</TabItem>
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+To initialize the network pick a "node-name" that describes your
+node. The --chain-id parameter we are using here is `blockspacerace`. Keep in
+mind that this might change if a new testnet is deployed.
+
+```sh
+celestia-appd init "node-name" --chain-id blockspacerace
+```
+
+Copy the `genesis.json` file. For blockspacerace we are using:
+
+```sh
+cp $HOME/networks/blockspacerace/genesis.json $HOME/.celestia-app/config
+```
+
+Set seeds and peers:
+
+```sh
+PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/blockspacerace/peers.txt | tr -d '\n')
+echo $PERSISTENT_PEERS
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
+```
+
+Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/blockspacerace/peers.txt).
+
+</TabItem>
+</Tabs>
+````
 
 ### Configure pruning
 
@@ -146,6 +170,10 @@ Quick sync effectively downloads the entire `data` directory from a third-party 
 meaning the node has all the application and blockchain state as the node it was
 copied from.
 
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="mocha" label="Mocha">
+
 Run the following command to quick-sync from a snapshot for `mocha`:
 
 ```sh
@@ -157,6 +185,25 @@ SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
 wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
+
+</TabItem>
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+Run the following command to quick-sync from a snapshot for `blockspacerace`:
+
+```sh
+cd $HOME
+rm -rf ~/.celestia-app/data
+mkdir -p ~/.celestia-app/data
+SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
+    egrep -o ">blockspacerace.*tar" | tr -d ">")
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
+    -C ~/.celestia-app/data/
+```
+
+</TabItem>
+</Tabs>
+````
 
 ### Start the celestia-app
 
