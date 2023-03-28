@@ -251,7 +251,7 @@ The default port is 1317.
 
 | Node operator tasks | Task type | Points |
 | ------------- | ------------- | ------------- |
-| [Deploy Light Node](./itn-deploy-light.md) | Network  | 10 |
+| [Deploy light node](./itn-deploy-light.md) | Network  | 10 |
 | [Deploy Bridge Node](./itn-deploy-bridge.md) | Network  | 30 |
 | [Deploy Full Storage Node](./itn-deploy-full.md) | Network  | 15 |
 | [Restart your node with metrics flags for tracking uptime (all 3 node types)](./itn-enable-telemetry-nodes.md) | Network  | 5 |
