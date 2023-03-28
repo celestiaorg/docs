@@ -21,7 +21,7 @@ and inspiration.
   or a useful dashboard.
 3. The tool should have supporting documentation or readme.
 
-## Judging Criteria
+## Judging criteria
 
 1. Points will be given for creativity and usefulness of the tool.
 2. Github repositories must be provided and the code must be open-source.
