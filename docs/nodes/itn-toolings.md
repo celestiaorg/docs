@@ -1,4 +1,4 @@
-# Create Toolings for the Celestia Network
+# Create toolings for the Celestia Network
 
 ## Description
 
