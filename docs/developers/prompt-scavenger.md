@@ -1,3 +1,8 @@
+---
+sidebar_label: Prompt scavenger
+description: Learn how to interact with the Celestia Node API with this tutorial
+---
+
 # Prompt Scavenger
 
 Welcome to the world of Prompt Scavenger, a game where
