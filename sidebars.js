@@ -265,6 +265,11 @@ const sidebars = {
               label: "Gateway API docs",
               id: "developers/node-gateway-docs"
             },
+            {
+              type: "doc",
+              label: "Prompt scavenger",
+              id: "developers/prompt-scavenger"
+            },
           ]
         },
         {
