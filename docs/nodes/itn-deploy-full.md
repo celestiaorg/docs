@@ -1,4 +1,4 @@
-# Deploy A Full Storage Node
+# Deploy a full storage node
 
 ## Description
 
@@ -22,7 +22,7 @@ For an RPC endpoint to connect to, please see the list [here](https://docs.celes
 
 Please do a backup of the keys directory in order to not lose your progress.
 
-## Judging Criteria
+## Judging criteria
 
 1. Full points for submitting node id and wallet address.
 2. No points for not submitting both.

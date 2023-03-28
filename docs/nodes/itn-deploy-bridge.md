@@ -1,4 +1,4 @@
-# Deploy A Bridge Node
+# Deploy a bridge node
 
 ## Description
 
@@ -26,9 +26,9 @@ The docs for that are found [here](https://docs.celestia.org/nodes/consensus-ful
 
 Please do a backup of the keys directory in order to not lose your progress.
 
-## Judging Criteria
+## Judging criteria
 
-1. Full points for submitting node id and Wallet Address.
+1. Full points for submitting node ID and wallet address.
 2. No points for not submitting both.
 
 ## Submission

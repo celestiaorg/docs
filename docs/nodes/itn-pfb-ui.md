@@ -1,4 +1,4 @@
-# Create a UI for Submitting PayForBlob Transactions
+# Create a UI for submitting PayForBlob transactions
 
 ## Description
 
@@ -12,13 +12,13 @@ It shows you how you can call the API in order to submit a PFB transaction.
 2. Create a UI for submitting a PFB transaction.
 3. Ensure it is open source and share the Github repository as well.
 
-## Judging Criteria
+## Judging criteria
 
 1. Full points if you have a working UI that allows folks to submit a PFB
 transaction and the dashboard is open-source.
 2. No points if not.
 
-## How to Submit
+## How to submit
 
 Please submit the link to the UI and the Github repository.
 

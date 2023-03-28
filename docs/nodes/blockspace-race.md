@@ -247,42 +247,42 @@ The default port is 1317.
 </details>
 
 <details>
-<summary>Node Operator Tasks</summary>
+<summary>Node operator tasks</summary>
 
 | Node operator tasks | Task type | Points |
 | ------------- | ------------- | ------------- |
 | [Deploy light node](./itn-deploy-light.md) | Network  | 10 |
 | [Deploy bridge node](./itn-deploy-bridge.md) | Network  | 30 |
-| [Deploy Full Storage Node](./itn-deploy-full.md) | Network  | 15 |
+| [Deploy full storage node](./itn-deploy-full.md) | Network  | 15 |
 | [Restart your node with metrics flags for tracking uptime (all 3 node types)](./itn-enable-telemetry-nodes.md) | Network  | 5 |
-| [Maintain high uptime throughout the Incentivized testnet](./itn-high-uptime-node.md) (Light nodes) | Network | Score at the end of Phase 5 / 25 |
-| [Maintain high uptime throughout the Incentivized testnet](./itn-high-uptime-node.md) (Bridge nodes) | Network | Score at the end of Phase 5 / 110 |
-| [Maintain high uptime throughout the Incentivized testnet](./itn-high-uptime-node.md) (Full storage nodes) | Network | Score at the end of Phase 5 / 80 |
+| [Maintain high uptime throughout the Incentivized Testnet](./itn-high-uptime-node.md) (Light nodes) | Network | Score at the end of Phase 5 / 25 |
+| [Maintain high uptime throughout the Incentivized Testnet](./itn-high-uptime-node.md) (Bridge nodes) | Network | Score at the end of Phase 5 / 110 |
+| [Maintain high uptime throughout the Incentivized Testnet](./itn-high-uptime-node.md) (Full storage nodes) | Network | Score at the end of Phase 5 / 80 |
 </details>
 
-### Bonus Phase
+### Bonus phase
 
 * Start: 28 Mar 2023
 * End: 8 May 2023
 
 <details>
-<summary>Validator Tasks</summary>
+<summary>Validator tasks</summary>
 
-| Validator Tasks | Task type | Points |
+| Validator tasks | Task type | Points |
 | ------------- | ------------- | ------------- |
-| [Write a technical article](./itn-setup-writeup.md) | Bonus  | Bonus Pool |
-| [Create Toolings for the Celestia Network](./itn-toolings.md) | Bonus  | Bonus Pool |
-| [Run a public seed or RPC node](./itn-rpc-node.md) | Bonus | Bonus Pool |
-| [Deploy a sovereign rollup](./itn-deploy-rollup.md) | Bonus  | Bonus Pool |
+| [Write a technical article](./itn-setup-writeup.md) | Bonus  | Bonus pool |
+| [Create toolings for the Celestia Network](./itn-toolings.md) | Bonus  | Bonus pool |
+| [Run a public seed or RPC node](./itn-rpc-node.md) | Bonus | Bonus pool |
+| [Deploy a sovereign rollup](./itn-deploy-rollup.md) | Bonus  | Bonus pool |
 </details>
 
 <details>
-<summary>Node Operator Tasks</summary>
+<summary>Node operator tasks</summary>
 
-| Node Operator Tasks | Task type | Points |
+| Node operator tasks | Task type | Points |
 | ------------- | ------------- | ------------- |
-| [Write a technical article](./itn-setup-writeup.md) (bridge and full storage nodes) | Bonus  | Bonus Pool |
-| [Create Toolings for the Celestia Network](./itn-toolings.md) (all 3 node types) | Bonus  | Bonus Pool |
+| [Write a technical article](./itn-setup-writeup.md) (bridge and full storage nodes) | Bonus  | Bonus pool |
+| [Create toolings for the Celestia Network](./itn-toolings.md) (all 3 node types) | Bonus  | Bonus pool |
 | [Create a UI for submitting PayForBlob txs](./itn-pfb-ui.md) (all 3 node types) | Bonus | Bonus Pool |
 | [Deploy a sovereign rollup](./itn-deploy-rollup.md) (all 3 node types) | Bonus  | Bonus Pool |
 | [Conduct performance analysis of your node](./itn-node-analysis.md) (all 3 node types) | Bonus | Bonus Pool |
