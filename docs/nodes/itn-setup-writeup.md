@@ -22,7 +22,7 @@ Available topics are:
 
 Write your article on Medium.
 
-## Judging Criteria
+## Judging criteria
 
 1. Articles lacking in quality and originality will not qualify.
 
