@@ -267,7 +267,7 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Prompt Scavenger",
+              label: "Prompt scavenger",
               id: "developers/prompt-scavenger"
             },
           ]

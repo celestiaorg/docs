@@ -3,7 +3,7 @@ sidebar_label: Prompt scavenger
 description: Learn how to interact with the Celestia Node API with this tutorial
 ---
 
-# Prompt Scavenger
+# Prompt scavenger
 
 Welcome to the world of Prompt Scavenger, a game where
 you’ll be using Celestia’s Node API and OpenAI’s GPT-3.5
@@ -29,7 +29,7 @@ The following dependencies are needed to be installed or obtained:
 * Celestia Light Node
 * Getting an OpenAI API Key for GPT3.5
 
-### Golang Installation
+### Golang installation
 
 Run the following to install golang on your machine:
 
@@ -61,7 +61,7 @@ The output should be the version installed:
 go version go1.19.1 linux/amd64
 ```
 
-### Install Celestia Node and Run a Light Node
+### Install Celestia Node and run a Light Node
 
 Install the `celestia-node` binary by running the following commands:
 
@@ -135,7 +135,7 @@ You should now have a running light node on your machine.
 The rest of the tutorial will assume you will be building the
 script and running it where the light node is in your localhost.
 
-### Node API Authentication Key
+### Node API authentication key
 
 In the same machine as where you Celestia Light Node is running, run the following:
 
@@ -151,7 +151,7 @@ echo $AUTH_TOKEN
 
 This will be used for the env var file we setup later.
 
-### OpenAI Key
+### OpenAI key
 
 Make sure to go over to [OpenAI](https://openai.com/) in
 order to sign up to an account and generate an OpenAI API key.
@@ -176,7 +176,7 @@ made a sample one for you to use but you can generate your own.
 
 Now, let’s build!
 
-### Copy Over Go Files
+### Copy over Go files
 
 Run the following:
 
@@ -222,7 +222,7 @@ func main() {
 Here we setup all required libraries we need to use plus the `main`
 function where we will use for our game.
 
-### Helpful Functions
+### Helpful functions
 
 First we will need to create some helpful functions that you will
 need later.
@@ -383,7 +383,7 @@ func gpt3(msg string) {
 }
 ```
 
-### Wrapping Up the functions
+### Wrapping up the functions
 
 Now, we will update our `main`function to include the logic from the functions we built where we show you how to do the following:
 
@@ -422,7 +422,7 @@ go run main.go
 
 After some time, it’ll post the output of the prompt you submitted to OpenAI that you pulled from Celestia’s blockchain.
 
-## Next Steps
+## Next steps
 
 With this tutorial, you were able to construct a PFB transaction, submit it to Celestia, get it back from Celestia and decode its contents, then for added bonus, submit the message to GPT-3.5.
 
