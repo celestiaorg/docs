@@ -240,7 +240,7 @@ The default port is 1317.
 <details>
 <summary>Validator tasks</summary>
 
-| Validator Tasks  | Task type | Points |
+| Validator tasks  | Task type | Points |
 | ------------- | ------------- | ------------- |
 | [Maintain high uptime](./itn-high-uptime.md) | Network  | Score at the end of Phase 5 / 350 |
 | [Claim your validator rewards](./itn-claim-rewards.md) | Network  | 20 |
