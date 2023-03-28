@@ -19,6 +19,9 @@ to track your uptime.
 2. No points if we cannot
 3. Note that we will keep track of your metrics throughout the whole
   ITN so make sure you leave it connected throughout all phases.
+4. Make sure you can see your node ID on https://tiascan.com in
+  your respective node category. You can also check your node uptime
+  status there.
 
 ## How to submit
 
