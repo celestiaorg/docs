@@ -1,4 +1,4 @@
-# Write A Technical Article
+# Write a technical article
 
 ## Description
 
