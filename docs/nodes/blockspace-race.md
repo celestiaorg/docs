@@ -249,7 +249,7 @@ The default port is 1317.
 <details>
 <summary>Node Operator Tasks</summary>
 
-| Node Operator Tasks | Task type | Points |
+| Node operator tasks | Task type | Points |
 | ------------- | ------------- | ------------- |
 | [Deploy Light Node](./itn-deploy-light.md) | Network  | 10 |
 | [Deploy Bridge Node](./itn-deploy-bridge.md) | Network  | 30 |
