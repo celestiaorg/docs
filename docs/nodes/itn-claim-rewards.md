@@ -1,4 +1,4 @@
-# Claim Your Validator Rewards
+# Claim your validator rewards
 
 ## Description
 
@@ -11,12 +11,12 @@ about how to claim validator rewards in the tutorial [here](https://docs.celesti
 1. Claim your validator rewards for your validator.
 2. Keep a record of the transaction for the validator reward you claimed.
 
-## Judging Criteria
+## Judging criteria
 
 1. Full points if you claim your validator rewards.
 2. No points if you do not.
 
-## How to Submit
+## How to submit
 
 Please submit the claim rewards transaction hash. You
 can use the block explorer to check if the

@@ -1,4 +1,4 @@
-# Run a Public RPC Node
+# Run a public RPC node
 
 ## Description
 
@@ -15,13 +15,13 @@ for running celestia-app to provide an RPC endpoint.
   can use it.
 3. Please submit a PR to our docs with your RPC [here](https://github.com/celestiaorg/docs/blob/main/docs/nodes/blockspace-race.md#rpc-endpoints).
 
-## Judging Criteria
+## Judging criteria
 
 1. Full points if your RPC node is available for use by others and Data Availability
   nodes can connect to it.
 2. No points if not.
 
-## How to Submit
+## How to submit
 
 Please submit your node's IP and port. Make sure it is accessible to
 the internet in case you have a firewall set up.

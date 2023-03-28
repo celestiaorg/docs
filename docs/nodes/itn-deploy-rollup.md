@@ -1,4 +1,4 @@
-# Deploy A Sovereign Rollup
+# Deploy a sovereign rollup
 
 ## Description
 
@@ -20,7 +20,7 @@ one.
 5. You can also deploy an Ethermint or Cosmwasm rollup with
   a special application built on top of it.
 
-## Judging Criteria
+## Judging criteria
 
 1. Full points awarded for deploying your own unique rollup
   with documentation. Extra points awarded if you can write up

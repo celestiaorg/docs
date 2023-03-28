@@ -1,4 +1,4 @@
-# Maintain High Node Uptime
+# Maintain high node uptime
 
 ## Description
 
@@ -14,7 +14,7 @@ how many sampling requests were submitted upon a certain period of time.
   otherwise it impacts your uptime score.
 2. You can monitor your node uptime by searching for your node id [here](https://tiascan.com).
 
-## Judging Criteria
+## Judging criteria
 
 1. Points are awarded based on the following [formula](https://www.wolframalpha.com/input?i=y%3D1.05%5Ex%2F1.05%5E100+from+0+to+100).
   Base for Full Storage and Bridge nodes is 1.05 and 100% uptime, base
