@@ -238,7 +238,7 @@ The default port is 1317.
 ![Banner](/img/phase2.png)
 
 <details>
-<summary>Validator Tasks</summary>
+<summary>Validator tasks</summary>
 
 | Validator Tasks  | Task type | Points |
 | ------------- | ------------- | ------------- |
