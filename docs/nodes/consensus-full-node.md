@@ -132,6 +132,11 @@ This will delete all data folders so we can start fresh:
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 ### Syncing
 
 By default, a consensus node will sync using block sync; that is request, validate
@@ -215,6 +220,11 @@ celestia-appd start
 
 Follow the tutorial on setting up Celestia-App as a background process
 with SystemD [here](./systemd.md).
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 ### Optional: configure for RPC endpoint
 

@@ -445,6 +445,11 @@ celestia <node-type> init --p2p.network <network>
 celestia <node-type> start --p2p.network <network> --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 > NOTE: It is advised before switching networks to reinitialize
   your node via `init` command. This is due to an old config being present.
   Re-initialisation will reset the config.
@@ -482,7 +487,7 @@ Save your config so custom values are not lost.
   ```
 
 :::tip
-If you have saved any custom value, add them back to the config.
+If you have saved any custom values, add them back to the config.
 :::
 
 3. Start the node: 
@@ -490,6 +495,11 @@ If you have saved any custom value, add them back to the config.
   ```sh
   celestia <node-type> start --p2p.network <network>
   ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 ##### Example for Blockspace Race
 
@@ -513,6 +523,11 @@ Then start your node:
 ```sh
 celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 ### Clearing the data store
 
@@ -539,6 +554,11 @@ celestia light start --p2p.network blockspacerace --core.ip <address> --gateway 
   celestia <node type> start --p2p.network <network>
   ```
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 #### Light nodes
 
 1. First, remove the data store:
@@ -558,3 +578,8 @@ celestia light start --p2p.network blockspacerace --core.ip <address> --gateway 
   ```sh
   celestia light start --p2p.network <network>
   ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::

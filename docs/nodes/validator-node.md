@@ -166,6 +166,12 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 
 In order to start your validator node, run the following:
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports)
+section for information on which ports are
+required to be open on your machine.
+:::
+
 ```sh
 celestia-appd start
 ```
@@ -248,10 +254,11 @@ Run the following:
 celestia bridge init --core.ip <ip-address>
 ```
 
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports)
+section for information on which ports are
+required to be open on your machine.
+:::
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
