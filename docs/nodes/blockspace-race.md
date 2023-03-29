@@ -207,6 +207,22 @@ The default port is 1317.
 * [https://celestia-api.validatrium.club/](https://celestia-api.validatrium.club/)
 * [https://celrace-lcd.easy2stake.com](https://celrace-lcd.easy2stake.com)
 
+### Blockspace Race testnet faucet
+
+USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS DO NOT CURRENTLY EXIST AND THERE ARE NO PUBLIC SALES OR OTHER PUBLIC DISTRIBUTIONS OF ANY MAINNET CELESTIA TOKENS.
+
+You can request from Blockspace Race Testnet Faucet on the #faucet
+channel in the Blockspace Race category on Celestia's
+Discord server with the following command:
+
+```bash
+$request <CELESTIA-ADDRESS>
+```
+
+Where \<CELESTIA-ADDRESS> is a celestia1****** generated address.
+
+Note: Faucet has a limit of 500 tokens per week per address/Discord ID
+
 ## Testnet Phases
 
 <!-- markdownlint-disable MD033 -->
