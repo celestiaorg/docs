@@ -21,6 +21,19 @@ command:
 ```sh
 celestia light start --core.ip <ip-address> --metrics --metrics.endpoint <ip-address:port> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network <network>
 ```
+
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 <!-- markdownlint-enable MD013 -->
 
 Note that the `--metrics` flags enables metrics and expects

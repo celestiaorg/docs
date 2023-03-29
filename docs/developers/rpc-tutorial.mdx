@@ -20,6 +20,18 @@ Start your node:
 celestia <node_type> start --p2p.network <network>
 ```
 
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 ## cURL guide
 
 In another terminal instance, run the following command to generate the JWT (JSON Web Token)

@@ -941,10 +941,17 @@ an example public core endpoint.
 celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
 ```
 
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 </TabItem>
 <TabItem value="mocha" label="Mocha">
@@ -962,10 +969,17 @@ an example public core endpoint.
 celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
@@ -983,10 +997,17 @@ an example public core endpoint.
 celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
 ```
 
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 </TabItem>
 </Tabs>
@@ -1000,6 +1021,11 @@ For example, your command along with an RPC endpoint might look like this:
 celestia light start --core.ip <ip-address> --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
 ```
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
@@ -1007,12 +1033,22 @@ celestia light start --core.ip <ip-address> --gateway --gateway.addr 127.0.0.1 -
 celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 ```
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
 ```sh
 celestia light start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 </TabItem>
 </Tabs>
@@ -1035,6 +1071,11 @@ following command:
 celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
 ```
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
@@ -1042,12 +1083,22 @@ celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gatew
 celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
 ```sh
 celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 </TabItem>
 </Tabs>
