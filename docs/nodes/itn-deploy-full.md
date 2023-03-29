@@ -13,7 +13,8 @@ For an RPC endpoint to connect to, please see the list [here](https://docs.celes
 ## Directions
 
 1. Setup Your Celestia Full Storage Node
-2. How to find your full storage node id is found [here](https://docs.celestia.org/developers/node-api/#post-p2pinfo)
+2. How to find your full storage node id is found
+  [here](https://docs.celestia.org/developers/node-gateway-docs/#post-p2pinfo)
 3. Make sure that the wallet address the node uses is funded.
 4. The keys directory under `.celestia-full-blockspacerace-0/keys`
   contains your `pubkey` for both DA and Tendermint networks. In the
