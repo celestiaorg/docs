@@ -20,7 +20,7 @@ If you are having troubles after a node
 restart, please do the following:
 
 - Keep restarting the node process until
-  it works (without deleting any folders)
+  it works.
 - Do not be afraid of warnings or occasional
   errors - as long as blocks are syncing, it's fine
 - Try using a different RPC from the list [here](https://docs.celestia.org/nodes/blockspace-race/#rpc-endpoints)
