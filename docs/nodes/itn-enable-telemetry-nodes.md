@@ -10,7 +10,7 @@ to track your uptime.
 
 ## Directions
 
-1. Add `--metrics.tls=false --metrics --metrics.endpoint http://otel.celestia.tools:4318`
+1. Add `--metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318`
   to your node's start command and restart your node.
 
 ## Judging criteria
