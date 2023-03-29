@@ -8,7 +8,7 @@ network, whether for validators, node operators, or developers.
 
 It can target the consensus, data availability or execution layer.
 
-The tool can interact with `celestia-app`, `celestia-node` or `rollmint`.
+The tool can interact with `celestia-app`, `celestia-node` or `rollkit`.
 
 You can view our [documentation](https://docs.celestia.org) for ideas
 and inspiration.
