@@ -36,15 +36,16 @@ The following dependencies are needed to be installed or obtained:
 
 Run the following to install golang on your machine:
 
+````mdx-code-block
 <pre><code>
 ver="{constants.golang}" <br/>
+<br/>
 cd $HOME <br/>
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
 sudo rm -rf /usr/local/go <br/>
 sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
 rm "go$ver.linux-amd64.tar.gz" <br/>
 </code></pre>
-
 
 Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
 
@@ -89,6 +90,7 @@ Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
 System version: amd64/linux <br/>
 Golang version: go{constants.golangNode} <br/>
 </code></pre>
+````
 
 Let’s run the following commands to get our env
 vars setup (NOTE: For `CORE_IP` you can select
