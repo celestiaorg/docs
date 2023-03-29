@@ -235,7 +235,7 @@ The default port is 1317.
 * End: 3 Apr 2023
 * Break: 7 days
 
-![Banner](/img/phase2.png)
+![Banner](/img/phase2.jpg)
 
 <details>
 <summary>Validator tasks</summary>
