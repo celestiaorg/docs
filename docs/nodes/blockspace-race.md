@@ -222,7 +222,7 @@ Discord server with the following command:
 $request <CELESTIA-ADDRESS>
 ```
 
-Where \<CELESTIA-ADDRESS> is a celestia1****** generated address.
+Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 Note: Faucet has a limit of 500 tokens per week per address/Discord ID
 
