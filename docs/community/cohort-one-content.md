@@ -250,3 +250,28 @@ the basic pieces you need to shape your Smart Contract.
 🪧 **Write up of project due**
 
 - **Friday 13 January @ 11:59pm EST**
+
+## Project repositories
+
+### Individual fellows
+
+- [Argus Labs](https://github.com/Argus-Labs/world-engine)
+- [Bridgebuilder](https://github.com/Semaeopus/Celestia-Bridgebuilder)
+- [Cardinal Gray](https://github.com/jpchap/mf_rollmint)
+- [Celestia Name Service](https://github.com/Celestia-Naming-Service/CNS)
+- [cNFTs](https://github.com/alexdphan/cNFTs)
+- [Corgis.xyz](https://github.com/codentell/modular-chain-game)
+- [Fuelmint](https://github.com/Ferret-san/fuelmint)
+- [Long term storage proxy](https://github.com/DED-EDU/celestia-long-term-data-storage-mvp)
+- [Scanworks (Range)](https://github.com/teamscanworks/celestia-monitoring)
+
+### Team fellows
+
+- [Modular Cloud](https://github.com/modularcloud/explorer)
+- [Caldera](https://calderaxyz.gitbook.io/caldera-documentation/getting-started/overview)
+- [Cosmology](https://github.com/cosmology-tech)
+- [Duality](https://duality.xyz/)
+- [Dymension](https://github.com/dymensionxyz)
+- [Eclipse](https://github.com/Eclipse-Laboratories-Inc)
+- [Sovereign Labs](https://github.com/Sovereign-Labs)
+- [Skip Protocol](https://github.com/skip-mev)
