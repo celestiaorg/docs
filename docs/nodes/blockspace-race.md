@@ -160,7 +160,7 @@ provided by the community here.
 * [https://rpc.celestia.stakewith.us/](https://rpc.celestia.stakewith.us/)
 * [https://celestia-rpc.validatrium.club/](https://celestia-rpc.validatrium.club/)
 * [https://celrace-rpc.easy2stake.com](https://celrace-rpc.easy2stake.com)
-* [http://rpc.celestia.blockscope.net:26657](http://rpc.celestia.blockscope.net)
+* [http://rpc.celestia.blockscope.net](http://rpc.celestia.blockscope.net)
 
 #### gRPC Endpoints
 
