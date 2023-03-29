@@ -36,15 +36,14 @@ The following dependencies are needed to be installed or obtained:
 
 Run the following to install golang on your machine:
 
-<pre><code>
-ver="{constants.golang}" <br/>
-cd $HOME <br/>
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
-sudo rm -rf /usr/local/go <br/>
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
-rm "go$ver.linux-amd64.tar.gz" <br/>
-</code></pre>
-
+```sh
+ver="1.19.1"
+cd $HOME
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
+```
 
 Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
 
@@ -61,34 +60,33 @@ go version
 
 The output should be the version installed:
 
-<pre><code>
-go version go{constants.golang} linux/amd64
-</code></pre>
+```sh
+go version go1.19.1 linux/amd64
+```
 
 ### Install Celestia Node and run a Light Node
 
 Install the `celestia-node` binary by running the following commands:
 
-<pre><code>
-cd $HOME <br/>
-rm -rf celestia-node <br/>
-git clone https://github.com/celestiaorg/celestia-node.git <br/>
-cd celestia-node/ <br/>
-git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
-make build <br/>
-make install <br/>
-make cel-key <br/>
-</code></pre>
+```sh
+cd $HOME
+rm -rf celestia-node
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+git checkout tags/v0.8.0
+make build
+make install
+make cel-key
+```
 
-
-<pre><code>
-$ celestia version <br/>
-Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
-Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
-System version: amd64/linux <br/>
-Golang version: go{constants.golangNode} <br/>
-</code></pre>
+```sh
+$ celestia version
+Semantic version: v0.8.0
+Commit: ef582655342c73384a66314972428b152227e428
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022
+System version: amd64/linux
+Golang version: go1.19.1
+```
 
 Let’s run the following commands to get our env
 vars setup (NOTE: For `CORE_IP` you can select
