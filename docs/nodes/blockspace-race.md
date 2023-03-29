@@ -250,6 +250,10 @@ Note: Faucet has a limit of 500 tokens per week per address/Discord ID
 
 ### Phase 2: Staging
 
+:::danger
+Submissions are currently paused for Phase 2.
+:::
+
 * Start: 29 Mar 2023
 * End: 3 Apr 2023
 * Break: 7 days
@@ -280,6 +284,10 @@ Note: Faucet has a limit of 500 tokens per week per address/Discord ID
 </details>
 
 ### Bonus phase
+
+:::danger
+Submissions are currently paused for Bonus Phase.
+:::
 
 * Start: 29 Mar 2023
 * End: 8 May 2023
