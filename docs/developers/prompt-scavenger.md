@@ -34,12 +34,12 @@ The following dependencies are needed to be installed or obtained:
 Run the following to install golang on your machine:
 
 ```sh
-ver=“19.1”
+ver="19.1"
 cd $HOME
-wget “https://golang.org/dl/go$ver.linux-amd64.tar.gz”
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf “go$ver.linux-amd64.tar.gz”
-rm “go$ver.linux-amd64.tar.gz”
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+rm "go$ver.linux-amd64.tar.gz"
 ```
 
 Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
@@ -70,7 +70,7 @@ cd $HOME
 rm -rf celestia-node 
 git clone https://github.com/celestiaorg/celestia-node.git 
 cd celestia-node/ 
-git checkout tags/v0.7.2 
+git checkout tags/v0.8.0 
 make build 
 make install 
 make cel-key
@@ -79,8 +79,8 @@ make cel-key
 ```sh
 $ celestia version 
 
-Semantic version: v0.7.2 
-Commit: eea18a72891af318fb26abb7264416b679ec2a16 
+Semantic version: v0.8.0 
+Commit: ef582655342c73384a66314972428b152227e428 
 Build Date: Thu Dec 15 10:19:22 PM UTC 2022 
 System version: amd64/linux 
 Golang version: go1.19.1
