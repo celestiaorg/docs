@@ -59,6 +59,7 @@ celestia-appd query bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for
+information on which ports are required
+to be open on your machine.
 :::
