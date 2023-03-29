@@ -14,7 +14,7 @@ For an RPC endpoint to connect to, please see the list [here](https://docs.celes
 
 1. Setup Your Celestia Light Node
 2. Perform Data Availability Sampling (DAS).
-3. How to find your light node id is found [here](https://docs.celestia.org/developers/node-api/#post-p2pinfo).
+3. How to find your light node id is found [here](https://docs.celestia.org/developers/node-gateway-docs/#post-p2pinfo).
 4. Make sure that the wallet address the node uses is funded.
   To find your auto generated wallet by your node, use
   `./cel-key list --node.type light --keyring-backend test --p2p.network blockspacerace`
