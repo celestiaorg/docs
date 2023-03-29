@@ -124,6 +124,13 @@ Quick sync effectively downloads the entire `data` directory from a third-party 
 meaning the node has all the application and blockchain state as the node it was
 copied from.
 
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="network">
+<TabItem value="mocha" label="Mocha">
+
 Run the following command to quick-sync from a snapshot for `mocha`:
 
 ```sh
@@ -135,6 +142,25 @@ SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
 wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
+
+</TabItem>
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+Run the following command to quick-sync from a snapshot for `blockspacerace`:
+
+```sh
+cd $HOME
+rm -rf ~/.celestia-app/data
+mkdir -p ~/.celestia-app/data
+SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
+    egrep -o ">blockspacerace.*tar" | tr -d ">")
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
+    -C ~/.celestia-app/data/
+```
+
+</TabItem>
+</Tabs>
+````
 
 ### Start the celestia-app
 
