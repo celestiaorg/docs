@@ -414,6 +414,26 @@ Golang version: go{constants.golangNode} <br/>
 </TabItem>
 </Tabs>
 ````
+
+## Ports
+
+When interacting with a Celestia node,
+you may need to open ports on your machine to allow
+communication between nodes, such as bridge nodes. It is essential that
+specific ports are accessible.
+
+For example, validator ports 9090
+and 26657 need to be accessible by the bridge, and port 2121 is
+required for P2P connections for all node types.
+
+The following ports are used by Celestia nodes:
+
+| Port | Protocol | Address | Description | Enabled by default on node |
+| ---- | -------- | ------- | ----------- | ----------------- |
+| 2121 | TCP/UDP | localhost | P2P | true |
+| 26658 | HTTP | localhost | RPC | true |
+| 26659 | HTTP | localhost | Gateway | false |
+
 ## Troubleshooting
 
 ### Network selection
@@ -538,20 +558,3 @@ celestia light start --p2p.network blockspacerace --core.ip <address> --gateway 
   ```sh
   celestia light start --p2p.network <network>
   ```
-
-## Ports
-
-When interacting with a Celestia node,
-you may need to open ports on your machine to allow
-communication between nodes, such as bridge nodes. It is essential that
-specific ports are accessible. For example, validator ports 9090
-and 26657 need to be accessible by the bridge, and port 2121 is
-required for P2P connections for all node types.
-
-The following ports are used by Celestia nodes:
-
-| Port | Protocol | Address | Description | Enabled by default |
-| ---- | -------- | ------- | ----------- | ----------------- |
-| 2121 | TCP/UDP | localhost | P2P | true |
-| 26658 | HTTP | localhost | RPC | false |
-| 26659 | HTTP | localhost | Gateway | false |
