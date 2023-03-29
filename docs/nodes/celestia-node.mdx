@@ -538,3 +538,22 @@ celestia light start --p2p.network blockspacerace --core.ip <address> --gateway 
   ```sh
   celestia light start --p2p.network <network>
   ```
+
+## Ports
+
+When interacting with a Celestia node, you may need to open ports to allow
+communication between nodes.
+
+In order to ensure proper communication between Celestia nodes
+and other nodes, such as the bridge nodes, it is essential that
+specific ports are accessible. For example, validator ports 9090
+and 26657 need to be accessible by the bridge, and port 2121 is
+required for P2P connections open to the public.
+
+The following ports are used by Celestia nodes:
+
+| Port | Protocol | Address | Description | Enabled by default |
+| ---- | -------- | ------- | ----------- | ----------------- |
+| 26658 | TCP | 0.0.0.0 | RPC (optional) | false |
+| 26659 | TCP | 0.0.0.0 | Gateway (optional) | false |
+| 2121 | TCP/UDP | 0.0.0.0 | P2P (open by default) | true |
