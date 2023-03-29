@@ -231,7 +231,7 @@ The default port is 1317.
 
 ### Phase 2: Staging
 
-* Start: 28 Mar 2023
+* Start: 29 Mar 2023
 * End: 3 Apr 2023
 * Break: 7 days
 
@@ -262,7 +262,7 @@ The default port is 1317.
 
 ### Bonus phase
 
-* Start: 28 Mar 2023
+* Start: 29 Mar 2023
 * End: 8 May 2023
 
 <details>
