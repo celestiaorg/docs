@@ -120,9 +120,9 @@ participation rules:
 Here we list the relevant version numbers for the software packages and libraries
 that will be used in the incentivized testnet:
 
-* Celestia Node - v0.7.1
-* Celestia App - v0.12.0
-* Rollmint - TBD
+* Celestia Node - v0.8.0
+* Celestia App - v0.12.1
+* Rollkit - v0.7.1
 
 ### Participation By Node Count
 
@@ -246,6 +246,65 @@ Note: Faucet has a limit of 500 tokens per week per address/Discord ID
 | [Set up your validator](./itn-setup-validator.md) | Network  | 80 |
 | [Sign the genesis block](./itn-sign-genesis.md) | Network  | 45 |
 | [Maintain high uptime](./itn-high-uptime.md) | Network | Score at the end of Phase 5 / 350 |
+</details>
+
+### Phase 2: Staging
+
+* Start: 29 Mar 2023
+* End: 3 Apr 2023
+* Break: 7 days
+
+![Banner](/img/phase2.jpg)
+
+<details>
+<summary>Validator tasks</summary>
+
+| Validator tasks  | Task type | Points |
+| ------------- | ------------- | ------------- |
+| [Maintain high uptime](./itn-high-uptime.md) | Network  | Score at the end of Phase 5 / 350 |
+| [Claim your validator rewards](./itn-claim-rewards.md) | Network  | 20 |
+</details>
+
+<details>
+<summary>Node operator tasks</summary>
+
+| Node operator tasks | Task type | Points |
+| ------------- | ------------- | ------------- |
+| [Deploy light node](./itn-deploy-light.md) | Network  | 10 |
+| [Deploy bridge node](./itn-deploy-bridge.md) | Network  | 30 |
+| [Deploy full storage node](./itn-deploy-full.md) | Network  | 15 |
+| [Restart your node with metrics flags for tracking uptime (all 3 node types)](./itn-enable-telemetry-nodes.md) | Network  | 5 |
+| [Maintain high uptime throughout the Incentivized Testnet](./itn-high-uptime-node.md) (Light nodes) | Network | Score at the end of Phase 5 / 25 |
+| [Maintain high uptime throughout the Incentivized Testnet](./itn-high-uptime-node.md) (Bridge nodes) | Network | Score at the end of Phase 5 / 110 |
+| [Maintain high uptime throughout the Incentivized Testnet](./itn-high-uptime-node.md) (Full storage nodes) | Network | Score at the end of Phase 5 / 80 |
+</details>
+
+### Bonus phase
+
+* Start: 29 Mar 2023
+* End: 8 May 2023
+
+<details>
+<summary>Validator tasks</summary>
+
+| Validator tasks | Task type | Points |
+| ------------- | ------------- | ------------- |
+| [Write a technical article](./itn-setup-writeup.md) | Bonus  | Bonus pool |
+| [Create toolings for the Celestia Network](./itn-toolings.md) | Bonus  | Bonus pool |
+| [Run a public seed or RPC node](./itn-rpc-node.md) | Bonus | Bonus pool |
+| [Deploy a sovereign rollup](./itn-deploy-rollup.md) | Bonus  | Bonus pool |
+</details>
+
+<details>
+<summary>Node operator tasks</summary>
+
+| Node operator tasks | Task type | Points |
+| ------------- | ------------- | ------------- |
+| [Write a technical article](./itn-setup-writeup.md) (bridge and full storage nodes) | Bonus  | Bonus pool |
+| [Create toolings for the Celestia Network](./itn-toolings.md) (all 3 node types) | Bonus  | Bonus pool |
+| [Create a UI for submitting PayForBlob txs](./itn-pfb-ui.md) (all 3 node types) | Bonus | Bonus Pool |
+| [Deploy a sovereign rollup](./itn-deploy-rollup.md) (all 3 node types) | Bonus  | Bonus Pool |
+| [Conduct performance analysis of your node](./itn-node-analysis.md) (all 3 node types) | Bonus | Bonus Pool |
 </details>
 
 <!-- markdownlint-enable MD033 -->
