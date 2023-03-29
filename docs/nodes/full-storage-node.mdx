@@ -87,17 +87,17 @@ celestia full init --p2p.network arabica
 Start the Full Storage Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
-> NOTE: In order for access to the ability to get/submit state-related
-  information, such as the ability to submit `PayForBlob` transactions,
-  or query for the node's account balance, a gRPC endpoint of a validator
-  (core) node must be passed as directed below.
+:::tip
+In order for access to the ability to get/submit
+state-related information, such as the ability to
+submit `PayForBlob` transactions, or query for the
+node's account balance, a gRPC endpoint of a validator
+(core) node must be passed as directed below.
 
-A note on ports:
-
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+Please refer to the [ports](../../nodes/celestia-node/#ports)
+section for information on which ports are
+required to be open on your machine.
+:::
 
 ```sh
 celestia full start --core.ip http://<ip-address> --p2p.network blockspacerace
@@ -133,17 +133,17 @@ You can get testnet tokens from:
 Start the Full Storage Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
-> NOTE: In order for access to the ability to get/submit state-related
-  information, such as the ability to submit `PayForData` transactions,
-  or query for the node's account balance, a gRPC endpoint of a validator
-  (core) node must be passed as directed below.
+:::tip
+In order for access to the ability to get/submit
+state-related information, such as the ability to
+submit `PayForBlob` transactions, or query for the
+node's account balance, a gRPC endpoint of a validator
+(core) node must be passed as directed below.
 
-A note on ports:
-
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+Please refer to the [ports](../../nodes/celestia-node/#ports)
+section for information on which ports are
+required to be open on your machine.
+:::
 
 ```sh 
 celestia full start --core.ip <ip-address>:<port>
@@ -179,17 +179,17 @@ You can get testnet tokens from:
 Start the Full Storage Node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
-> NOTE: In order for access to the ability to get/submit state-related
-  information, such as the ability to submit `PayForBlob` transactions,
-  or query for the node's account balance, a gRPC endpoint of a validator
-  (core) node must be passed as directed below.
+:::tip
+In order for access to the ability to get/submit
+state-related information, such as the ability to
+submit `PayForBlob` transactions, or query for the
+node's account balance, a gRPC endpoint of a validator
+(core) node must be passed as directed below.
 
-A note on ports:
-
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+Please refer to the [ports](../../nodes/celestia-node/#ports)
+section for information on which ports are
+required to be open on your machine.
+:::
 
 ```sh
 celestia full start --core.ip http://<ip-address> --p2p.network arabica
