@@ -5,6 +5,7 @@ description: Learn how to interact with the Celestia Node API with this tutorial
 
 import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
 import constants from "../../versions/constants.js";
+<!-- markdownlint-disable MD013 -->
 
 # Prompt scavenger
 
@@ -424,11 +425,10 @@ CORE_IP=""
 ```
 
 First, let’s generate a wallet key for our light node:
-<!-- markdownlint-disable MD013 -->
+
 ```sh
 ./cel-key add $KEYNAME --keyring-backend test --node.type $NODETYPE --p2p.network $NETWORK
 ```
-<!-- markdownlint-enable MD013 -->
 
 Be sure to save the mnemonics and your celestia1 public
 address in a safe place.
@@ -449,12 +449,10 @@ celestia light init --p2p.network blockspacerace
 
 Next, we will start our node:
 
-<!-- markdownlint-disable MD013 -->
 ```sh
 celestia light start --core.ip $CORE_IP --p2p.network $NETWORK --gateway --gateway.addr 12
 7.0.0.1 --gateway.port 26659 --keyring.accname $KEYNAME
 ```
-<!-- markdownlint-enable MD013 -->
 
 You should now have a running light node on your machine.
 The rest of the tutorial will assume you will be building the
@@ -631,7 +629,6 @@ string which is needed by Node API.
 
 We will need to create just a few more functions before we wrap up things.
 
-<!-- markdownlint-disable MD013 -->
 ```go
 // postDataAndGetHeight submits a new transaction with the
 // provided data to the Celestia node.
@@ -648,7 +645,6 @@ ceID, payLoad, fee, gasLimit)
         return height
 }
 ```
-<!-- markdownlint-disable MD013 -->
 
 In the function `postDataAndGetHeight`, we show you how to submit
 a message to a specific namespace ID provided on Celestia. After
