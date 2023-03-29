@@ -3,6 +3,9 @@ sidebar_label: Prompt scavenger
 description: Learn how to interact with the Celestia Node API with this tutorial
 ---
 
+import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
+import constants from "../../versions/constants.js";
+
 # Prompt scavenger
 
 Welcome to the world of Prompt Scavenger, a game where
@@ -31,23 +34,84 @@ The following dependencies are needed to be installed or obtained:
 
 ### Golang installation
 
-Run the following to install golang on your machine:
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-```sh
-ver="19.1"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
+rm "go$ver.linux-amd64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz" <br/>
+rm "go$ver.linux-arm64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz" <br/>
+rm "go$ver.darwin-arm64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz" <br/>
+rm "go$ver.darwin-amd64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
 
 Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+<Tabs groupId="shell">
+<TabItem value="bash" label="bash">
 
 ```sh
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
+
+</TabItem>
+<TabItem value="zsh" label="zsh">
+
+```zsh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+source $HOME/.zshrc
+```
+
+</TabItem>
+</Tabs>
 
 To check if Go was installed correctly run:
 
@@ -57,34 +121,295 @@ go version
 
 The output should be the version installed:
 
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+go version go{constants.golangNode} linux/amd64
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+go version go{constants.golangNode} linux/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+go version go{constants.golangNode} darwin/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+go version go{constants.golangNode} darwin/amd64
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
+rm "go$ver.linux-amd64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz" <br/>
+rm "go$ver.linux-arm64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz" <br/>
+rm "go$ver.darwin-arm64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz" <br/>
+rm "go$ver.darwin-amd64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+<Tabs groupId="shell">
+<TabItem value="bash" label="bash">
+
 ```sh
-go version go1.19.1 linux/amd64
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
 ```
+
+</TabItem>
+<TabItem value="zsh" label="zsh">
+
+```zsh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+source $HOME/.zshrc
+```
+
+</TabItem>
+</Tabs>
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+go version go{constants.golangNode} linux/amd64
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+go version go{constants.golangNode} linux/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+go version go{constants.golangNode} darwin/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+go version go{constants.golangNode} darwin/amd64
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
+rm "go$ver.linux-amd64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz" <br/>
+rm "go$ver.linux-arm64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz" <br/>
+rm "go$ver.darwin-arm64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+ver="{constants.golangNode}" <br/>
+cd $HOME <br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz" <br/>
+sudo rm -rf /usr/local/go <br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz" <br/>
+rm "go$ver.darwin-amd64.tar.gz" <br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+<Tabs groupId="shell">
+<TabItem value="bash" label="bash">
+
+```sh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+</TabItem>
+<TabItem value="zsh" label="zsh">
+
+```zsh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+source $HOME/.zshrc
+```
+
+</TabItem>
+</Tabs>
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+go version go{constants.golangNode} linux/amd64
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+go version go{constants.golangNode} linux/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+go version go{constants.golangNode} darwin/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+go version go{constants.golangNode} darwin/amd64
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
+
+````
 
 ### Install Celestia Node and run a Light Node
 
 Install the `celestia-node` binary by running the following commands:
 
-```sh
-cd $HOME 
-rm -rf celestia-node 
-git clone https://github.com/celestiaorg/celestia-node.git 
-cd celestia-node/ 
-git checkout tags/v0.8.0 
-make build 
-make install 
-make cel-key
-```
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
 
-```sh
-$ celestia version 
+<pre><code>
+$ celestia version <br/>
 
-Semantic version: v0.8.0 
-Commit: ef582655342c73384a66314972428b152227e428 
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022 
-System version: amd64/linux 
-Golang version: go1.19.1
-```
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
 
 Let’s run the following commands to get our env
 vars setup (NOTE: For `CORE_IP` you can select
