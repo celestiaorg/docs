@@ -164,4 +164,10 @@ You can start your node by running the following command:
 celestia-appd start
 ```
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports)
+section for information on which ports are
+required to be open on your machine.
+:::
+
 Now you have a new Celestia Testnet to play around with!

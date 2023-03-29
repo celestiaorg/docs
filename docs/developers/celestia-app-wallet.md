@@ -57,3 +57,9 @@ address with your own:
 celestia-appd start
 celestia-appd query bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for
+information on which ports are required
+to be open on your machine.
+:::

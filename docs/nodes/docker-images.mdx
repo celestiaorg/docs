@@ -48,6 +48,11 @@ Run the image from the command line:
 docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light start --core.ip IP_ADDRESS --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
 </code></pre>
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 Congratulations! You now have a Celestia light node running on the Blockspace Race testnet.
 
 If you would like to run the node with custom flags,
@@ -64,6 +69,11 @@ Run the image from the command line:
 <pre><code>
 docker run -e NODE_TYPE=light -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:sha-{mochaVersions['node-latest-sha'].slice(0, 7)} celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 </code></pre>
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 Congratulations! You now have a Celestia light node running on the Mocha testnet.
 
@@ -83,6 +93,11 @@ Run the image from the command line:
 <pre><code>
 docker run -e NODE_TYPE=light -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia light start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 </code></pre>
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 Congratulations! You now have a Celestia light node running on the Arabica devnet.
 
@@ -110,6 +125,11 @@ Run the image from the command line:
 docker run -e NODE_TYPE=bridge -e P2P_NETWORK=blockspacerace ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia bridge start --core.ip IP_ADDRESS --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
 </code></pre>
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 Congratulations! You now have a Celestia bridge node running on the Blockspace Race testnet.
 
 If you would like to run the node with custom flags,
@@ -126,6 +146,11 @@ Run the image from the command line:
 <pre><code>
 docker run -e NODE_TYPE=bridge -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:sha-{mochaVersions['node-latest-sha'].slice(0, 7)} celestia bridge start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 </code></pre>
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 Congratulations! You now have a Celestia bridge node running on the Mocha network.
 
@@ -145,6 +170,11 @@ Run the image from the command line:
 <pre><code>
 docker run -e NODE_TYPE=bridge -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia bridge start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 </code></pre>
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 Congratulations! You now have a Celestia bridge node running on the Arabica network.
 
@@ -172,6 +202,11 @@ Run the image from the command line:
 docker run -e NODE_TYPE=full -e P2P_NETWORK=blockspacerace ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia full start --core.ip IP_ADDRESS --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
 </code></pre>
 
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
 Congratulations! You now have a Celestia full node running on the Blockspace Race testnet.
 
 If you would like to run the node with custom flags,
@@ -188,6 +223,11 @@ Run the image from the command line:
 <pre><code>
 docker run -e NODE_TYPE=full -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:sha-{mochaVersions['node-latest-sha'].slice(0, 7)} celestia full start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 </code></pre>
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 Congratulations! You now have a Celestia full storage node running on the Mocha network.
 
@@ -207,6 +247,11 @@ Run the image from the command line:
 <pre><code>
 docker run -e NODE_TYPE=full -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia full start --core.ip https://limani.celestia-devops.dev --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 </code></pre>
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 Congratulations! You now have a Celestia full storage node running on the Arabica network.
 
