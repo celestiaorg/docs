@@ -15,7 +15,7 @@ to track your uptime.
 
 ## Judging criteria
 
-:::warn
+:::tip
 If you are having troubles after a node
 restart, please do the following:
 
