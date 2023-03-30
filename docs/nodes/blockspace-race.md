@@ -161,6 +161,7 @@ provided by the community here.
 * [https://celestia-rpc.validatrium.club/](https://celestia-rpc.validatrium.club/)
 * [https://celrace-rpc.easy2stake.com/](https://celrace-rpc.easy2stake.com/)
 * [http://rpc.celestia.blockscope.net/](http://rpc.celestia.blockscope.net/)
+* [http://celestiarpc.bloclick.com/](http://celestiarpc.bloclick.com/)
 
 #### gRPC Endpoints
 
@@ -184,6 +185,7 @@ broadcast transactions.
 * [https://grpc.celestia.stakewith.us/](https://grpc.celestia.stakewith.us/)
 * [https://celrace-grpc.easy2stake.com/](https://celrace-grpc.easy2stake.com/)
 * [http://rpc.celestia.blockscope.net:9191/](http://rpc.celestia.blockscope.net:9191/)
+* [http://celestiarpc.bloclick.com:9090/](http://celestiarpc.bloclick.com:9090/)
 
 #### API Endpoints
 
@@ -209,6 +211,7 @@ The default port is 1317.
 * [https://celestia-api.validatrium.club/](https://celestia-api.validatrium.club/)
 * [https://celrace-lcd.easy2stake.com/](https://celrace-lcd.easy2stake.com/)
 * [http://rpc.celestia.blockscope.net/](http://rpc.celestia.blockscope.net/)
+* [http://celestiarpc.bloclick.com/](http://celestiarpc.bloclick.com/)
 
 ### Blockspace Race testnet faucet
 
