@@ -159,7 +159,8 @@ provided by the community here.
 * [https://public.celestia.w3hitchhiker.com/](https://public.celestia.w3hitchhiker.com/)
 * [https://rpc.celestia.stakewith.us/](https://rpc.celestia.stakewith.us/)
 * [https://celestia-rpc.validatrium.club/](https://celestia-rpc.validatrium.club/)
-* [https://celrace-rpc.easy2stake.com](https://celrace-rpc.easy2stake.com)
+* [https://celrace-rpc.easy2stake.com/](https://celrace-rpc.easy2stake.com/)
+* [http://rpc.celestia.blockscope.net/](http://rpc.celestia.blockscope.net/)
 * [https://rpc-celestia-testnet-blockspacerace.keplr.app/](https://rpc-celestia-testnet-blockspacerace.keplr.app/)
 
 #### gRPC Endpoints
@@ -182,7 +183,8 @@ broadcast transactions.
 * [https://grpc-blockspacerace.suntzu.pro:9090/](https://grpc-blockspacerace.suntzu.pro:9090/)
 * [https://public.celestia.w3hitchhiker.com/](https://public.celestia.w3hitchhiker.com/)
 * [https://grpc.celestia.stakewith.us/](https://grpc.celestia.stakewith.us/)
-* [https://celrace-grpc.easy2stake.com](https://celrace-grpc.easy2stake.com)
+* [https://celrace-grpc.easy2stake.com/](https://celrace-grpc.easy2stake.com/)
+* [http://rpc.celestia.blockscope.net:9191/](http://rpc.celestia.blockscope.net:9191/)
 * [https://grpc-celestia-testnet-blockspacerace.keplr.app/](https://grpc-celestia-testnet-blockspacerace.keplr.app/)
 
 #### API Endpoints
@@ -207,7 +209,8 @@ The default port is 1317.
 * [https://public.celestia.w3hitchhiker.com/](https://public.celestia.w3hitchhiker.com/)
 * [https://api.celestia.stakewith.us/](https://api.celestia.stakewith.us/)
 * [https://celestia-api.validatrium.club/](https://celestia-api.validatrium.club/)
-* [https://celrace-lcd.easy2stake.com](https://celrace-lcd.easy2stake.com)
+* [https://celrace-lcd.easy2stake.com/](https://celrace-lcd.easy2stake.com/)
+* [http://rpc.celestia.blockscope.net/](http://rpc.celestia.blockscope.net/)
 * [https://lcd-celestia-testnet-blockspacerace.keplr.app/](https://lcd-celestia-testnet-blockspacerace.keplr.app/)
 
 ### Blockspace Race testnet faucet
@@ -227,7 +230,7 @@ $request <CELESTIA-ADDRESS>
 
 Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
-Note: Faucet has a limit of 500 tokens per week per address/Discord ID
+Note: Faucet has a limit of 50 tokens per week per address/Discord ID
 
 ## Testnet Phases
 

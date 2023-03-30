@@ -45,6 +45,11 @@ const sidebars = {
       },
       collapsed: false,
       items: [
+         {
+          type: "doc",
+          label: "Docker images",
+          id: "nodes/docker-images",
+        },
         { 
           type: "doc", 
           label: "Setting up environment", 
@@ -54,11 +59,6 @@ const sidebars = {
           type: "doc",
           label: "Installing celestia-node",
           id: "nodes/celestia-node"
-        },
-        {
-          type: "doc",
-          label: "Docker images",
-          id: "nodes/docker-images",
         },
         {
           type: "doc",
