@@ -162,6 +162,7 @@ provided by the community here.
 * [https://celrace-rpc.easy2stake.com/](https://celrace-rpc.easy2stake.com/)
 * [http://rpc.celestia.blockscope.net/](http://rpc.celestia.blockscope.net/)
 * [https://rpc-celestia-testnet-blockspacerace.keplr.app/](https://rpc-celestia-testnet-blockspacerace.keplr.app/)
+* [https://celestia-testnet-rpc.swiss-staking.ch/](https://celestia-testnet-rpc.swiss-staking.ch/)
 
 #### gRPC Endpoints
 
@@ -186,6 +187,7 @@ broadcast transactions.
 * [https://celrace-grpc.easy2stake.com/](https://celrace-grpc.easy2stake.com/)
 * [http://rpc.celestia.blockscope.net:9191/](http://rpc.celestia.blockscope.net:9191/)
 * [https://grpc-celestia-testnet-blockspacerace.keplr.app/](https://grpc-celestia-testnet-blockspacerace.keplr.app/)
+* [http://celestia-testnet-grpc.swiss-staking.ch:10690/](http://celestia-testnet-grpc.swiss-staking.ch:10690/)
 
 #### API Endpoints
 
@@ -212,6 +214,7 @@ The default port is 1317.
 * [https://celrace-lcd.easy2stake.com/](https://celrace-lcd.easy2stake.com/)
 * [http://rpc.celestia.blockscope.net/](http://rpc.celestia.blockscope.net/)
 * [https://lcd-celestia-testnet-blockspacerace.keplr.app/](https://lcd-celestia-testnet-blockspacerace.keplr.app/)
+* [https://celestia-testnet-api.swiss-staking.ch/](https://celestia-testnet-api.swiss-staking.ch/)
 
 ### Blockspace Race testnet faucet
 
