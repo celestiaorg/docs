@@ -501,37 +501,14 @@ Please refer to the [ports](../../nodes/celestia-node/#ports) section for inform
 which ports are required to be open on your machine.
 :::
 
-##### Example for Blockspace Race
-
-Here's an example for Blockspace Race with a light node:
-
-```sh
-rm -rf ~./celestia-light-blockspacerace-0/data
-celestia light init --p2p.network blockspacerace
-```
-
-Your output will look similar to below:
-
-```sh
-2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-blockspacerace-0'
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-blockspacerace-0/config.toml"}
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
-```
-
-Then start your node:
-
-```sh
-celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-:::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
-:::
-
 ### Clearing the data store
 
 #### Bridge and full nodes
+
+:::danger
+Make sure not to remove anything except the
+directories listed below.
+:::
 
 1. First, remove the data store:
 
@@ -561,6 +538,11 @@ which ports are required to be open on your machine.
 
 #### Light nodes
 
+:::danger
+Make sure not to remove anything except the
+`<path-to-node-store>/data` directory.
+:::
+
 1. First, remove the data store:
 
   ```sh
@@ -578,6 +560,40 @@ which ports are required to be open on your machine.
   ```sh
   celestia light start --p2p.network <network>
   ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+##### Example for Blockspace Race
+
+Here's an example for clearing the data store
+on Blockspace Race with a light node:
+
+:::danger
+Make sure not to remove anything except the
+`<path-to-node-store>/data` directory.
+:::
+
+```sh
+rm -rf ~./celestia-light-blockspacerace-0/data
+celestia light init --p2p.network blockspacerace
+```
+
+Your output will look similar to below:
+
+```sh
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-blockspacerace-0'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-blockspacerace-0/config.toml"}
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
+```
+
+Then start your node:
+
+```sh
+celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+```
 
 :::tip
 Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
