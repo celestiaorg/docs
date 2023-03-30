@@ -24,7 +24,7 @@ Description=celestia-appd Cosmos daemon
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/celestia-appd start
+ExecStart=$(which celestia-appd) start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
@@ -81,7 +81,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/celestia full start
+ExecStart=$(which celestia) full start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
@@ -119,7 +119,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/celestia bridge start
+ExecStart=$(which celestia) bridge start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
@@ -172,7 +172,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$HOME/go/bin/celestia light start --core.ip <ip-address>
+ExecStart=$(which celestia) light start --core.ip <ip-address>
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
