@@ -49,6 +49,15 @@ otherwise it will read from the environment's
 `CELESTIA_NODE_AUTH_TOKEN` variable.
 If a token is not found, authentication will not be set.
 
+To set your authentication token, you can use the
+following command. Be sure to replace `<node-type>` with
+the type of node and `<network>`
+with the network you are running on:
+
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia <node-type> auth admin --p2p.network <network>)
+```
+
 The `--host URL` flag sets the host address,
 the default is `localhost:26658` over HTTP.
 
