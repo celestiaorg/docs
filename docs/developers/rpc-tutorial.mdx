@@ -74,10 +74,10 @@ Query node information:
 celestia rpc node Info
 ```
 
-Get share by data availibility header:
+Get share by data availibility header and index:
 
 ```bash
-celestia rpc share GetShare '{"row_roots":["//////////7//////////ql+/VFmJ8PWE9BcjrTDLrY/hzVeGdzFCpfEhiXDXZmt","/////////////////////zHeGnUtPJn8QyPpePSYl4qRVrcUvG2fwptyoA85Myik"],"column_roots":["//////////7//////////ql+/VFmJ8PWE9BcjrTDLrY/hzVeGdzFCpfEhiXDXZmt","/////////////////////zHeGnUtPJn8QyPpePSYl4qRVrcUvG2fwptyoA85Myik"]}' 1 1
+celesta rpc share GetShare $(celestia rpc header GetByHeight 200 | jq '.result.dah' -r ) 5 6 
 ```
 
 Get header by height:
