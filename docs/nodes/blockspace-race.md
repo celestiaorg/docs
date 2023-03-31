@@ -162,6 +162,7 @@ provided by the community here.
 * [https://celrace-rpc.easy2stake.com/](https://celrace-rpc.easy2stake.com/)
 * [http://rpc.celestia.blockscope.net/](http://rpc.celestia.blockscope.net/)
 * [https://rpc-celestia-testnet-blockspacerace.keplr.app/](https://rpc-celestia-testnet-blockspacerace.keplr.app/)
+* [https://rpc-testnet.celestia.forbole.com/](https://rpc-testnet.celestia.forbole.com/)
 
 #### gRPC Endpoints
 
