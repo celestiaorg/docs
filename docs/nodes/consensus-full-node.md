@@ -83,7 +83,7 @@ node. The --chain-id parameter we are using here is `blockspacerace`. Keep in
 mind that this might change if a new testnet is deployed.
 
 ```sh
-celestia-appd init "node-name" --chain-id blockspacerace
+celestia-appd init "node-name" --chain-id blockspacerace-0
 ```
 
 Copy the `genesis.json` file. For blockspacerace we are using:
