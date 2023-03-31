@@ -420,7 +420,12 @@ Golang version: go{constants.golangNode} <br/>
 When interacting with a Celestia node,
 you may need to open ports on your machine to allow
 communication between nodes, such as bridge nodes. It is essential that
-specific ports are accessible.
+specific ports are accessible. Make sure that your firewall allows
+connections to the correct ports.
+
+If you run a node on a cloud server, make sure that the ports are open
+on the server's firewall. If you run a node at home, make sure that your
+router allows connections to the correct ports.
 
 For example, validator ports 9090
 and 26657 need to be accessible by the bridge, and port 2121 is
@@ -428,11 +433,11 @@ required for P2P connections for all node types.
 
 The following ports are used by Celestia nodes:
 
-| Port | Protocol | Address | Description | Enabled by default on node |
-| ---- | -------- | ------- | ----------- | ----------------- |
-| 2121 | TCP/UDP | localhost | P2P | true |
-| 26658 | HTTP | localhost | RPC | true |
-| 26659 | HTTP | localhost | Gateway | false |
+| Port | Protocol | Address | Description | Enabled by default on node | Flag |
+| ---- | -------- | ------- | ----------- | ----------------- | ---- |
+| 2121 | TCP/UDP | localhost | P2P | true | N/A |
+| 26658 | HTTP | localhost | RPC | true | `--rpc.port string` |
+| 26659 | HTTP | localhost | REST Gateway | false | `--gateway.port string` |
 
 ## Troubleshooting
 
