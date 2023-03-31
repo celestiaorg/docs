@@ -32,39 +32,69 @@ Please refer to the [ports](../../nodes/celestia-node/#ports) section for inform
 which ports are required to be open on your machine.
 :::
 
-## cURL guide
+## Celestia Node CLI guide
 
-In another terminal instance, run the following command to generate the JWT (JSON Web Token)
-auth token and set it as a variable:
+The Celestia Node CLI has a `rpc` subcommand that
+allows you to interact with the node's RPC API via
+your terminal.
+
+The format will be as follows:
 
 ```bash
-# make sure to add network flags if you're using a network other than the default
-# auth level can be any of the following [read || write || admin]
-
-export AUTH_TOKEN=$(celestia <node_type> auth <auth level>)
+celestia rpc [module] [method] [...args]
 ```
 
-You'll also need the port that is exposed on your node, by default it is 26658.
+The `--auth TOKEN` flag sets the authentication token,
+otherwise it will read from the environment's
+`CELESTIA_NODE_AUTH_TOKEN` variable.
+If a is not found, it will not set authentication.
 
-To view the CLI menu:
+The `--host URL` flag sets the host address,
+the default is `localhost:26658` over HTTP.
+
+The arguments for `SubmitPayForBlob` are parsed specially,
+to improve UX.
+
+`SubmitPayForBlob` can be done in a few ways:
+
+- The namespace ID can be encoded as either hex or base64
+- The blob can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)
+
+### Examples
+
+Submit a blob to the network:
+
 ```bash
-celestia light auth -h
+celestia rpc state SubmitPayForBlob 0x1874e642f5dde589 '"Hello there!!"' 2000 100000
 ```
 
-```bash
-# returns the node's SamplingStats
+Query node information:
 
-curl -X POST -H 'Authorization: Bearer '$AUTH_TOKEN'' -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":0,"method":"das.SamplingStats","params":[]}' http://localhost:26658/ | jq
+```bash
+celestia rpc node Info
 ```
 
-```bash
-# returns the node's chain head
+Get share by data availibility header:
 
-curl -X POST -H 'Authorization: Bearer '$AUTH_TOKEN'' -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":0,"method":"header.Head","params":[]}' http://localhost:26658/ | jq
+```bash
+celestia rpc share GetShare '{"row_roots":["//////////7//////////ql+/VFmJ8PWE9BcjrTDLrY/hzVeGdzFCpfEhiXDXZmt","/////////////////////zHeGnUtPJn8QyPpePSYl4qRVrcUvG2fwptyoA85Myik"],"column_roots":["//////////7//////////ql+/VFmJ8PWE9BcjrTDLrY/hzVeGdzFCpfEhiXDXZmt","/////////////////////zHeGnUtPJn8QyPpePSYl4qRVrcUvG2fwptyoA85Myik"]}' 1 1
+```
+
+Get header by height:
+
+```bash
+celestia rpc header GetByHeight 5
+```
+
+Get data availability sampler stats:
+
+```bash
+celestia rpc das SamplingStats
 ```
 
 ## Golang guide
 
-If you're interested in interacting with the node's API in Go,
+If you're interested in interacting with the node's API in Go
+([`client.go`](https://github.com/celestiaorg/celestia-node/blob/main/api/rpc/client/client.go)),
 you can use the [da-rpc-client-tutorial](https://github.com/renaynay/da-rpc-client-tutorial)
 repo.
