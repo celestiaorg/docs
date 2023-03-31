@@ -110,3 +110,27 @@ Flags:
 
 Use "celestia-appd [command] --help" for more information about a command.
 ```
+
+## Ports
+
+When interacting with a Celestia node,
+you may need to open ports on your machine to allow
+communication between nodes, such as bridge nodes. It is essential that
+specific ports are accessible. Make sure that your firewall allows
+connections to the correct ports.
+
+If you run a node on a cloud server, make sure that the ports are open
+on the server's firewall. If you run a node at home, make sure that your
+router allows connections to the correct ports.
+
+For example, validator ports 9090
+and 26657 need to be accessible by the bridge, and port 2121 is
+required for P2P connections for all node types.
+
+The following ports are used by Celestia app nodes:
+
+| Port | Protocol | Address | Description | Enabled by default on node |
+| ---- | -------- | ------- | ----------- | ----------------- |
+| 2121 | TCP/UDP | localhost | P2P | true |
+| 9090 | HTTP | localhost | gRPC | true (to 0.0.0.0) |
+| 26657 | HTTP | localhost | RPC | false (only open to localhost) |
