@@ -79,7 +79,7 @@ Note: You can find more peers [here](https://github.com/celestiaorg/networks/blo
 <TabItem value="blockspacerace" label="Blockspace Race">
 
 To initialize the network pick a "node-name" that describes your
-node. The --chain-id parameter we are using here is `blockspacerace`. Keep in
+node. The --chain-id parameter we are using here is `blockspacerace-0`. Keep in
 mind that this might change if a new testnet is deployed.
 
 ```sh
