@@ -167,6 +167,7 @@ provided by the community here.
 * [https://rpc-blockspacerace.moonli.me/](https://rpc-blockspacerace.moonli.me/)
 * [http://rpc-celestia.gpvalidator.com/](https://rpc-celestia.gpvalidator.com/)
 * [https://rpc-celestia.activenodes.io/](https://rpc-celestia.activenodes.io/)
+* [https://rpc-testnet.celestia.forbole.com/](https://rpc-testnet.celestia.forbole.com/)
 
 #### gRPC Endpoints
 
