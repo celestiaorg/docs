@@ -439,6 +439,56 @@ The following ports are used by Celestia nodes:
 | 26658 | HTTP | localhost | RPC | true | `--rpc.port string` |
 | 26659 | HTTP | localhost | REST Gateway | false | `--gateway.port string` |
 
+## Upgrading your binary
+
+To upgrade your binary, you can use the following commands:
+
+1. [Install](#install-celestia-node) the latest version of
+the `celestia-node` binary. The latest version
+will overwrite your existing binary.
+
+:::danger
+If you run into
+errors after upgrading the binary and trying to restart
+your node, you will need to follow
+steps 2-4.
+These steps are only necessary if you are upgrading from a version of
+`celestia-node` with breaking changes.
+
+If your node starts successfully, you do not need to follow steps 2-4.
+:::
+
+2. Clear the data store. Pay attention to the node type you are updating:
+    1. For **bridge and full nodes _only_**:
+        - Remove the data store:
+        ```bash
+        rm -rf ~./<path-to-node-store>/data
+        rm -rf ~./<path-to-node-store>/transients
+        rm -rf ~./<path-to-node-store>/index
+        rm -rf ~./<path-to-node-store>/blocks
+        ```
+    2. For **light nodes _only_**:
+        - Remove the data store:
+        ```bash
+        rm -rf ~./<path-to-node-store>/data
+        ```
+3. Remove your `config.toml` (for all node types):
+
+```bash
+rm ~./<path-to-node-store>/config.toml
+```
+
+4. Initialize your node:
+```bash
+celestia <node-type> init --p2p.network <network> [...flags]
+```
+
+5. Start your node:
+```bash
+celestia <node-type> start --p2p.network <network> --core.ip <address> [...flags]
+```
+
+
 ## Troubleshooting
 
 ### Network selection
