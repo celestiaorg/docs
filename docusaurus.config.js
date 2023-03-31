@@ -131,7 +131,7 @@ const config = {
           {
             to: "/nodes/overview",
             position: "left",
-            label: "Run A Node",
+            label: "Run a Node",
           },
           {
             to: "/developers/overview",
@@ -161,7 +161,7 @@ const config = {
             title: "Docs",
             items: [
               {
-                label: "Run A Node",
+                label: "Run a Node",
                 to: "/nodes/overview",
               },
               {
