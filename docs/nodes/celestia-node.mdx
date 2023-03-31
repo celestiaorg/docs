@@ -433,11 +433,11 @@ required for P2P connections for all node types.
 
 The following ports are used by Celestia nodes:
 
-| Port | Protocol | Address | Description | Enabled by default on node |
-| ---- | -------- | ------- | ----------- | ----------------- |
-| 2121 | TCP/UDP | localhost | P2P | true |
-| 26658 | HTTP | localhost | RPC | true |
-| 26659 | HTTP | localhost | REST Gateway | false |
+| Port | Protocol | Address | Description | Enabled by default on node | Flag |
+| ---- | -------- | ------- | ----------- | ----------------- | ---- |
+| 2121 | TCP/UDP | localhost | P2P | true | N/A |
+| 26658 | HTTP | localhost | RPC | true | `--rpc.port string` |
+| 26659 | HTTP | localhost | REST Gateway | false | `--gateway.port string` |
 
 ## Troubleshooting
 
