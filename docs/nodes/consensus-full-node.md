@@ -79,11 +79,11 @@ Note: You can find more peers [here](https://github.com/celestiaorg/networks/blo
 <TabItem value="blockspacerace" label="Blockspace Race">
 
 To initialize the network pick a "node-name" that describes your
-node. The --chain-id parameter we are using here is `blockspacerace`. Keep in
+node. The --chain-id parameter we are using here is `blockspacerace-0`. Keep in
 mind that this might change if a new testnet is deployed.
 
 ```sh
-celestia-appd init "node-name" --chain-id blockspacerace
+celestia-appd init "node-name" --chain-id blockspacerace-0
 ```
 
 Copy the `genesis.json` file. For blockspacerace we are using:
@@ -237,7 +237,7 @@ Run the following commands:
 <!-- markdownlint-disable MD013 -->
 ```sh
 EXTERNAL_ADDRESS=$(wget -qO- eth0.me)
-sed -i.bak -e "s/^external-address = \"\"/external-address = \"$EXTERNAL_ADDRESS:26656\"/" $HOME/.celestia-app/config/config.toml
+sed -i.bak -e "s/^external_address = \"\"/external_address = \"$EXTERNAL_ADDRESS:26656\"/" $HOME/.celestia-app/config/config.toml
 sed -i 's#"tcp://0.0.0.0:26657"#"tcp://0.0.0.0:26657"#g' ~/.celestia-app/config/config.toml
 ```
 <!-- markdownlint-enable MD013 -->
