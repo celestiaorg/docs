@@ -166,6 +166,7 @@ provided by the community here.
 * [https://celestia-testnet-rpc.swiss-staking.ch/](https://celestia-testnet-rpc.swiss-staking.ch/)
 * [https://rpc-blockspacerace.moonli.me/](https://rpc-blockspacerace.moonli.me/)
 * [http://rpc-celestia.gpvalidator.com/](https://rpc-celestia.gpvalidator.com/)
+* [https://rpc-celestia.activenodes.io/](https://rpc-celestia.activenodes.io/)
 
 #### gRPC Endpoints
 
