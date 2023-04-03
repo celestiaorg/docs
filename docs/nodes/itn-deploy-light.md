@@ -14,12 +14,23 @@ For an RPC endpoint to connect to, please see the list [here](https://docs.celes
 If you encounter errors, please visit the [upgrading your binary](../nodes/celestia-node.mdx#upgrading-your-binary)
 and the [troubleshooting](../nodes/celestia-node.mdx#troubleshooting)
 sections on the Install Celestia Node page.
+
+The error you may encounter for a light node are:
+
+```bash
+error getting latest head during Start: header: not found
+```
+
 :::
 
 :::caution
 Make sure that the wallet address the node uses is funded.
-To find your auto generated wallet by your node, use
-`./cel-key list --node.type light --keyring-backend test --p2p.network blockspacerace`
+To find your auto generated wallet by your node, use:
+
+```bash
+./cel-key list --node.type light --keyring-backend test --p2p.network blockspacerace
+```
+
 The keys directory under
 `.celestia-light-blockspacerace-0/keys`
 contains your pubkey for both DA and Tendermint networks.
