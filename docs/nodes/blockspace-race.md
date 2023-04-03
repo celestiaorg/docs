@@ -120,7 +120,7 @@ participation rules:
 Here we list the relevant version numbers for the software packages and libraries
 that will be used in the incentivized testnet:
 
-* Celestia Node - v0.8.0
+* Celestia Node - v0.8.1
 * Celestia App - v0.12.1
 * Rollkit - v0.7.1
 
