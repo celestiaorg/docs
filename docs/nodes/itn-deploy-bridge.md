@@ -39,7 +39,8 @@ If you move the keys folder, you will need to upgrade permissions with:
 chmod 600 keys
 ```
 
-To learn more, visit the [Wallet with celestia-node](../../developers/celestia-node-key/) page.
+To learn more, visit the
+[Wallet with celestia-node](../../developers/celestia-node-key/) page.
 :::
 
 ## Directions
