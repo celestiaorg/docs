@@ -57,12 +57,12 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Installing celestia-node",
+          label: "Installing Celestia Node",
           id: "nodes/celestia-node"
         },
         {
           type: "doc",
-          label: "Installing celestia-app",
+          label: "Installing Celestia App",
           id: "nodes/celestia-app"
         },
         {
@@ -142,7 +142,7 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "celestia-node",
+          label: "Celestia Node",
           link: {
             type: 'generated-index',
           },
@@ -162,7 +162,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "celestia-app",
+          label: "Celestia App",
           link: {
             type: 'generated-index'
           },
@@ -229,12 +229,12 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Wallet with celestia-app",
+          label: "Wallet with Celestia App",
           id: "developers/celestia-app-wallet"
         },
         {
           type: "doc",
-          label: "Wallet with celestia-node",
+          label: "Wallet with Celestia Node",
           id: "developers/celestia-node-key"
         },
       ]
@@ -360,7 +360,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "The lifecycle of a celestia-app transaction",
+          label: "The lifecycle of a Celestia App transaction",
           id: "concepts/how-celestia-works/transaction-lifecycle"
         }
       ]
