@@ -29,7 +29,7 @@ Follow the instructions on installing the dependencies [here](./environment.mdx)
 
 ### Install celestia-app
 
-Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
+Follow the tutorial on installing `celestia-app` [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -176,7 +176,7 @@ required to be open on your machine.
 celestia-appd start
 ```
 
-Follow the tutorial on setting up Celestia-App as a background process
+Follow the tutorial on setting up `celestia-app` as a background process
 with SystemD [here]( ../systemd).
 
 ### Wallet
@@ -237,14 +237,14 @@ txhash: <tx-hash>
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
 
-## Deploy the celestia-node
+## Deploy the Celestia Node
 
 This section describes part 2 of Celestia Validator Node setup: running a
 Celestia Bridge Node daemon.
 
-### Install celestia-node
+### Install Celestia Node
 
-You can follow the tutorial for installing celestia-node [here](./celestia-node.mdx)
+You can follow the tutorial for installing `celestia-node` [here](./celestia-node.mdx)
 
 ### Initialize the bridge node
 

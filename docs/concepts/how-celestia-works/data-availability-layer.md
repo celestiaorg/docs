@@ -134,14 +134,14 @@ For more details on NMTs, take a look at the [original paper](https://arxiv.org/
 ### Providing data availability
 
 The Celestia DA layer consists of a PoS blockchain. Celestia is dubbing this
-blockchain as the [celestia-app](https://github.com/celestiaorg/celestia-app),
+blockchain as the [`celestia-app`](https://github.com/celestiaorg/celestia-app),
 an application that provides transactions to facilitate the DA layer and is built
 using [Cosmos SDK](https://docs.cosmos.network/main). The following figure
-shows the main components of celestia-app.
+shows the main components of `celestia-app`.
 
-![Main components of celestia-app](/img/concepts/celestia-app.png)
+![Main components of `celestia-app`](/img/concepts/celestia-app.png)
 
-celestia-app is built on top of [celestia-core](https://github.com/celestiaorg/celestia-core),
+`celestia-app` is built on top of [celestia-core](https://github.com/celestiaorg/celestia-core),
 a modified version of the [Tendermint consensus algorithm](https://arxiv.org/abs/1807.04938).
 Among the more important changes to vanilla Tendermint, celestia-core:
 
@@ -161,8 +161,8 @@ Similarly to Tendermint, celestia-core is connected to the application layer
 a major evolution of [ABCI](https://github.com/tendermint/tendermint/tree/master/spec/abci)
 (Application Blockchain Interface).
 
-The celestia-app state machine is necessary to execute the PoS logic and to
+The `celestia-app` state machine is necessary to execute the PoS logic and to
 enable the governance of the DA layer.
 
-However, the celestia-app is data-agnostic -- the state machine neither
-validates nor stores the data that is made available by the celestia-app.
+However, the `celestia-app` is data-agnostic -- the state machine neither
+validates nor stores the data that is made available by the `celestia-app`.

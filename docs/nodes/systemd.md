@@ -39,7 +39,7 @@ If the file was created successfully you will be able to see its content:
 cat /etc/systemd/system/celestia-appd.service
 ```
 
-Enable and start celestia-appd daemon:
+Enable and start `celestia-appd` daemon:
 
 ```sh
 sudo systemctl enable celestia-appd
@@ -144,7 +144,7 @@ celestia-bridge.service -f
 ```
 
 Now, the Celestia bridge node will start syncing headers and storing blocks
-from celestia-app.
+from `celestia-app`.
 
 > Note: At startup, we can see the `multiaddress` from Celestia Bridge Node.
 This is **needed for future Light Node** connections and communication between

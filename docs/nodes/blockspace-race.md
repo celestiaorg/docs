@@ -110,7 +110,7 @@ participation rules:
   into any points or mainnet tokens**.
 * Validators are required to also run bridge nodes but cannot gain
   points for running both
-* Please ensure you submit your own work (node id, tx hashes, etc).
+* Please ensure you submit your own work (Node ID, tx hashes, etc).
   Submitting another participant’s work will result in immediate removal
   from the incentivized testnet. We will be monitoring it and have security
   checks in place.
@@ -171,7 +171,7 @@ provided by the community here.
 
 #### gRPC Endpoints
 
-The gRPC endpoint is to allow users to interact with a celestia-node using
+The gRPC endpoint is to allow users to interact with a Celestia Node using
 gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
