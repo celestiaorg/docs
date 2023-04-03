@@ -10,6 +10,34 @@ tutorial [here](https://docs.celestia.org/nodes/light-node).
 
 For an RPC endpoint to connect to, please see the list [here](https://docs.celestia.org/nodes/blockspace-race/#rpc-endpoints).
 
+:::tip
+If you encounter errors, please visit the [upgrading your binary](../nodes/celestia-node.mdx#upgrading-your-binary)
+and the [troubleshooting](../nodes/celestia-node.mdx#troubleshooting)
+sections on the Install Celestia Node page.
+:::
+
+:::caution
+Make sure that the wallet address the node uses is funded.
+To find your auto generated wallet by your node, use
+`./cel-key list --node.type light --keyring-backend test --p2p.network blockspacerace`
+The keys directory under
+`.celestia-light-blockspacerace-0/keys`
+contains your pubkey for both DA and Tendermint networks.
+In the leaderboard your pubkey for DA nodes looks similar to this:
+
+```bash
+12D3KooWJ3K6x9mXvy9oAJMr2gjeJ45KtU1LH6aL5stKF8YtRkkm
+```
+
+If you move the keys folder, you will need to upgrade permissions with:
+
+```bash
+chmod 600 keys
+```
+
+To learn more, visit the [Wallet with celestia-node](../../developers/celestia-node-key/) page.
+:::
+
 ## Directions
 
 1. Setup Your Celestia Light Node
