@@ -110,7 +110,7 @@ participation rules:
   into any points or mainnet tokens**.
 * Validators are required to also run bridge nodes but cannot gain
   points for running both
-* Please ensure you submit your own work (node id, tx hashes, etc).
+* Please ensure you submit your own work (Node ID, tx hashes, etc).
   Submitting another participant’s work will result in immediate removal
   from the incentivized testnet. We will be monitoring it and have security
   checks in place.
