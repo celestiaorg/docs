@@ -77,7 +77,7 @@ celestia rpc node Info
 Get share by data availibility header and index:
 
 ```bash
-celesta rpc share GetShare $(celestia rpc header GetByHeight 200 | jq '.result.dah' -r ) 5 6 
+celestia rpc share GetShare $(celestia rpc header GetByHeight 200 | jq '.result.dah' -r ) 5 6 
 ```
 
 Get header by height:
