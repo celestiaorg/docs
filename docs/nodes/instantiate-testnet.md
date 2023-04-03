@@ -2,10 +2,10 @@
 sidebar_label: Create a Celestia testnet
 ---
 
-# celestia-app network instantiation guide
+# Celestia App network instantiation guide
 
 This guide is for helping instantiate a new testnetwork and following the
-correct steps to do so with Celestia-App. You should only follow this guide
+correct steps to do so with Celestia App. You should only follow this guide
 if you want to experiment with your own Celestia Testnetwork or if you want
 to test out new features to build as a core developer.
 
@@ -19,7 +19,7 @@ You can setup dependencies by following the guide [here](./environment.mdx).
 
 ## celestia-app installation
 
-You can install celestia-app by following the guide [here](./celestia-app.mdx).
+You can install `celestia-app` by following the guide [here](./celestia-app.mdx).
 
 ## Spin up a Celestia testnet
 

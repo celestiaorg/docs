@@ -29,7 +29,7 @@ Follow the instructions on installing the dependencies [here](./environment.mdx)
 
 ### Install celestia-app
 
-Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
+Follow the tutorial on installing `celestia-app` [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -176,7 +176,7 @@ required to be open on your machine.
 celestia-appd start
 ```
 
-Follow the tutorial on setting up Celestia-App as a background process
+Follow the tutorial on setting up `celestia-app` as a background process
 with SystemD [here]( ../systemd).
 
 ### Wallet
