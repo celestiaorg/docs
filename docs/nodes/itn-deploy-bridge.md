@@ -40,7 +40,7 @@ chmod 600 keys
 ```
 
 To learn more, visit the
-[Wallet with celestia-node](../../developers/celestia-node-key/) page.
+[Wallet with Celestia Node](../../developers/celestia-node-key/) page.
 :::
 
 ## Directions
