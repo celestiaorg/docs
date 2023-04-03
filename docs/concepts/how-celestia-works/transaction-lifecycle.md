@@ -1,8 +1,8 @@
 ---
-sidebar_label: The lifecycle of a celestia-app transaction
+sidebar_label: The lifecycle of a Celestia App transaction
 ---
 
-# The lifecycle of a celestia-app transaction
+# The lifecycle of a Celestia App transaction
 
 ````mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 <Tabs groupId="network">
 <TabItem value="blockspacerace" label="Blockspace Race">
 
-Users request the celestia-app to make data available by
+Users request the `celestia-app` to make data available by
 sending `PayForBlob` transactions. Every such transaction consists
 of the identity of the sender, the data to be made available, also
 referred to as the message, the data size, the namespace ID, and
@@ -30,7 +30,7 @@ Thus, the block data consists of data partitioned into namespaces
 and executable transactions. Note that only these transactions are
 executed by the Celestia state machine once the block is committed.
 
-![Lifecycle of a celestia-app Transaction](/img/concepts/tx-lifecycle.png)
+![Lifecycle of a `celestia-app` Transaction](/img/concepts/tx-lifecycle.png)
 
 Next, the block producer adds to the block header a commitment
 of the block data. As described [here](../data-availability-layer),
@@ -59,7 +59,7 @@ one for every row and column of the extended matrix.
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
-Users request the celestia-app to make data available by
+Users request the `celestia-app` to make data available by
 sending `PayForData` transactions. Every such transaction consists
 of the identity of the sender, the data to be made available, also
 referred to as the message, the data size, the namespace ID, and
@@ -78,7 +78,7 @@ Thus, the block data consists of data partitioned into namespaces
 and executable transactions. Note that only these transactions are
 executed by the Celestia state machine once the block is committed.
 
-![Lifecycle of a celestia-app Transaction](/img/concepts/tx-lifecycle.png)
+![Lifecycle of a `celestia-app` Transaction](/img/concepts/tx-lifecycle.png)
 
 Next, the block producer adds to the block header a commitment
 of the block data. As described [here](../data-availability-layer),
@@ -107,7 +107,7 @@ one for every row and column of the extended matrix.
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-Users request the celestia-app to make data available by
+Users request the `celestia-app` to make data available by
 sending `PayForBlob` transactions. Every such transaction consists
 of the identity of the sender, the data to be made available, also
 referred to as the message, the data size, the namespace ID, and
@@ -126,7 +126,7 @@ Thus, the block data consists of data partitioned into namespaces
 and executable transactions. Note that only these transactions are
 executed by the Celestia state machine once the block is committed.
 
-![Lifecycle of a celestia-app Transaction](/img/concepts/tx-lifecycle.png)
+![Lifecycle of a `celestia-app` Transaction](/img/concepts/tx-lifecycle.png)
 
 Next, the block producer adds to the block header a commitment
 of the block data. As described [here](../data-availability-layer),
@@ -160,7 +160,7 @@ one for every row and column of the extended matrix.
 
 ![DA network](/img/concepts/consensus-da.png)
 
-To enhance connectivity, the celestia-node augments the celestia-app
+To enhance connectivity, the celestia-node augments the `celestia-app`
 with a separate libp2p network, i.e., the so-called _DA network_,
 that serves DAS requests.
 
@@ -172,7 +172,7 @@ perform DAS on the received headers (i.e., ask for random data chunks).
 Note that although it is recommended, performing DAS is optional -- light
 nodes could just trust that the data corresponding to the commitments in
 the block headers was indeed made available by the Celestia DA layer.
-In addition, light nodes can also submit transactions to the celestia-app,
+In addition, light nodes can also submit transactions to the `celestia-app`,
 i.e., `PayForData` transactions.
 
 While performing DAS for a block header, every light node queries Celestia
