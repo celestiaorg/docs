@@ -168,6 +168,7 @@ provided by the community here.
 * [http://rpc-celestia.gpvalidator.com/](https://rpc-celestia.gpvalidator.com/)
 * [https://rpc-celestia.activenodes.io/](https://rpc-celestia.activenodes.io/)
 * [https://rpc-testnet.celestia.forbole.com/](https://rpc-testnet.celestia.forbole.com/)
+* [https://rpc-celestia.notional.ventures/](https://rpc-celestia.notional.ventures/)
 
 #### gRPC Endpoints
 
@@ -195,6 +196,7 @@ broadcast transactions.
 * [http://celestiarpc.bloclick.com:9090/](http://celestiarpc.bloclick.com:9090/)
 * [http://celestia-testnet-grpc.swiss-staking.ch:10690/](http://celestia-testnet-grpc.swiss-staking.ch:10690/)
 * [http://rpc-celestia.gpvalidator.com:9090/](https://rpc-celestia.gpvalidator.com:9090/)
+* [https://grpc-celestia.notional.ventures/](https://grpc-celestia.notional.ventures/)
 
 #### API Endpoints
 
@@ -224,6 +226,7 @@ The default port is 1317.
 * [http://celestiarpc.bloclick.com/](http://celestiarpc.bloclick.com/)
 * [https://celestia-testnet-api.swiss-staking.ch/](https://celestia-testnet-api.swiss-staking.ch/)
 * [http://rpc-celestia.gpvalidator.com/](https://rpc-celestia.gpvalidator.com/)
+* [https://api-celestia.notional.ventures/](https://api-celestia.notional.ventures/)
 
 ### Blockspace Race testnet faucet
 
