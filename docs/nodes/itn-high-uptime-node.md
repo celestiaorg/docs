@@ -12,7 +12,7 @@ how many sampling requests were submitted upon a certain period of time.
 
 1. Ensure your node does not go offline for long periods of time
   otherwise it impacts your uptime score.
-2. You can monitor your node uptime by searching for your node id [here](https://tiascan.com).
+2. You can monitor your node uptime by searching for your Node ID [here](https://tiascan.com).
 
 ## Judging criteria
 

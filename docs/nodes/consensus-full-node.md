@@ -32,7 +32,7 @@ Follow the instructions on installing the dependencies [here](./environment.mdx)
 
 ### Install celestia-app
 
-Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
+Follow the tutorial on installing `celestia-app` [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -218,7 +218,7 @@ In order to start your consensus full node, run the following:
 celestia-appd start
 ```
 
-Follow the tutorial on setting up Celestia-App as a background process
+Follow the tutorial on setting up Celestia App as a background process
 with SystemD [here](./systemd.md).
 
 :::tip

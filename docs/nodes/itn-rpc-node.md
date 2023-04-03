@@ -4,7 +4,7 @@
 
 Run a publicly-available RPC Node (preferraly with seed mode).
 You can follow the instructions [here](https://docs.celestia.org/nodes/consensus-full-node)
-for running celestia-app to provide an RPC endpoint.
+for running `celestia-app` to provide an RPC endpoint.
 
 ## Directions
 

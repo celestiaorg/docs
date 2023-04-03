@@ -4,7 +4,7 @@ sidebar_label: Gateway API docs
 
 # Gateway API docs
 
-This page contains the API documentation for the celestia-node Gateway API.
+This page contains the API documentation for the `celestia-node` Gateway API.
 The Gateway API is a REST API that allows you to send and receive messages
 to and from the Gateway.
 
@@ -439,7 +439,7 @@ AUTH_TOKEN=$(celestia $NODE_TYPE auth admin --p2p.network blockspacerace)
 ```
 
 > NOTE: You can only generate an auth token after initializing
-  and starting your celestia-node. Also, `NODE_TYPE` here is set to
+  and starting your `celestia-node`. Also, `NODE_TYPE` here is set to
   `light` node but ensure you set it to your desired node type
   (ex. `bridge`, `full`).
 
@@ -479,11 +479,11 @@ Response
 }
 ```
 
-The node ID is in the `ID` value from the response.
+The Node ID is in the `ID` value from the response.
 
 #### POST `/submit_tx`
 
-Submits the given transaction to a running instance of celestia-app.
+Submits the given transaction to a running instance of `celestia-app`.
 
 Request
 
@@ -515,7 +515,7 @@ import TabItem from '@theme/TabItem';
 #### POST `/submit_pfb`
 
 Constructs, signs and submits a `PayForBlob` message to a running instance
-of celestia-app. The body of the `/submit_pfb` request should contain the
+of `celestia-app`. The body of the `/submit_pfb` request should contain the
 hex-encoded `namespace_id`, the hex-encoded `data`, the `fee`, and the
 `gas_limit` as a uint64.
 
