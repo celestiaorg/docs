@@ -21,9 +21,11 @@ sections on the Install Celestia Node page.
 
 The errors you may encounter for a bridge node are:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 storing EDS to eds.Store for block height XXXXX: failed to check if root already exists in index: failed to acquire reader of mount on initialization: mount fetch failed: open /home/avril14th/.celestia-bridge-blockspacerace-0/transients/transient-B82CC0ED0F163D0BB3604A176B650D3E83A47D68505362CC54EAEE4ABCF84DA9.partial: too many open files
 ```
+<!-- markdownlint-enable MD013 -->
 
 :::
 
