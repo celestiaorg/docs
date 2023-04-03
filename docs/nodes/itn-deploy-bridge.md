@@ -46,7 +46,7 @@ To learn more, visit the
 ## Directions
 
 1. Setup Your Celestia Bridge Node
-2. How to find your bridge node id is found
+2. How to find your bridge Node ID is found
   [here](https://docs.celestia.org/developers/node-gateway-docs/#post-p2pinfo)
 3. Make sure that the wallet address the node uses is funded
 4. The keys directory under `.celestia-bridge-blockspacerace-0/keys`
@@ -58,7 +58,7 @@ Please do a backup of the keys directory in order to not lose your progress.
 
 ## Judging criteria
 
-1. Full points for submitting node ID and wallet address.
+1. Full points for submitting Node ID and wallet address.
 2. No points for not submitting both.
 
 ## Submission
