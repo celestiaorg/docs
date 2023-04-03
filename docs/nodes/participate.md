@@ -6,7 +6,7 @@ sidebar_label: Participate in the Celestia testnets
 
 Celestia currently has three existing testnets that you can participate in:
 
-* [Blockspace race](./blockspace-race.md): An incentivised testnet for all participants:
+* [Blockspace race](./blockspace-race.mdx): An incentivised testnet for all participants:
   validators and other node operators, integrators, rollups and anyone curious. This
   testnet closely reflects the version of Celestia at launch.
 * [Arabica devnet](./arabica-devnet.md): A devnet focused on developers who
