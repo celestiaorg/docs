@@ -12,8 +12,8 @@ or want to assist other validators.
 This task is for you to setup your own validator.
 
 1. Relevant docs: [environment setup](https://docs.celestia.org/nodes/environment/),
-  [Celestia app installation](https://docs.celestia.org/nodes/celestia-app/),
-  [Celestia node installation](https://docs.celestia.org/nodes/celestia-node/).
+  [Celestia App installation](https://docs.celestia.org/nodes/celestia-app/),
+  [Celestia Node installation](https://docs.celestia.org/nodes/celestia-node/).
 2. Genesis instructions are found [here](https://docs.celestia.org/nodes/celestia-app-commands#signing-genesis-for-a-new-network).
   Please use chain-id blockspacerace-0 and staking amount for gentx
   5000000000000utia. The repo to submit gentx is found on Discord.

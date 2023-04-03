@@ -171,7 +171,7 @@ provided by the community here.
 
 #### gRPC Endpoints
 
-The gRPC endpoint is to allow users to interact with a celestia-node using
+The gRPC endpoint is to allow users to interact with a Celestia Node using
 gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.

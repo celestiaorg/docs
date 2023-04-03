@@ -43,12 +43,12 @@ the Cosmos-SDK and Tendermint libraries for signing and verifying transactions.
 
 ### RPC and querying
 
-In celestia-app, only the standard RPC endpoints for Tendermint and the
+In `celestia-app`, only the standard RPC endpoints for Tendermint and the
 Cosmos-SDK are exposed. We do not currently add or subtract any core
 functionality, but this could change in the future. The same goes for querying
 data from the chain.
 
-In celestia-node, the Data Availability node client, there is a JSON-RPC API
+In `celestia-node`, the Data Availability node client, there is a JSON-RPC API
 that allows you to interact directly with Celestia's Data Availability layer.
 The guide for it can be found [here](https://docs.celestia.org/developers/node-tutorial).
 

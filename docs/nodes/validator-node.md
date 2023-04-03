@@ -237,14 +237,14 @@ txhash: <tx-hash>
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
 
-## Deploy the celestia-node
+## Deploy the Celestia Node
 
 This section describes part 2 of Celestia Validator Node setup: running a
 Celestia Bridge Node daemon.
 
-### Install celestia-node
+### Install Celestia Node
 
-You can follow the tutorial for installing celestia-node [here](./celestia-node.mdx)
+You can follow the tutorial for installing `celestia-node` [here](./celestia-node.mdx)
 
 ### Initialize the bridge node
 
