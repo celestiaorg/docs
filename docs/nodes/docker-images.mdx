@@ -270,3 +270,32 @@ you can refer to the
 </TabItem>
 </Tabs>
 ````
+
+## Persistent storage
+
+If you delete a container that you started above, all data will be lost.
+To avoid this, you can mount a volume to the container.
+This will allow you to persist data even after the container is deleted.
+
+Before mounting a volume, you will need to set permissions for
+the user on the host machine by running:
+
+```bash
+sudo chown 10001:10001 ./host/path
+```
+
+In order to mount a volume to the container, you need to specify
+the path to the volume. When you run your container, you can specify
+the path to the volume using the `--volume` (or `-v` for short) flag:
+
+```bash
+# --volume == -v [local path]:[container path]
+docker run [...args] -v ./host/path:/home/celestia celestia <node-type> start [...args]
+```
+
+A full start command will look similar to below. This is an example using
+a light node on Blockspace Race:
+
+```bash
+docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v /DEV/node:/home/celestia ghcr.io/celestiaorg/celestia-node:v0.8.1 celestia light start --core.ip IP_ADDRESS --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
+```
