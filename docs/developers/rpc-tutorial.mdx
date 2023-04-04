@@ -2,19 +2,21 @@
 sidebar_label: RPC API tutorial
 ---
 
-# RPC API tutorial
+# RPC API tutorial ☎️
 
-This tutorial will teach you how to interact with a node's RPC API.
+This tutorial will teach you how to interact with a Celestia Node's
+[RPC (Remote Procedure Call) API](https://node-rpc-docs.celestia.org/).
 
-First, [install celestia-node](../../nodes/light-node).
+First, you will need to [install `celestia-node`](../../nodes/light-node) if
+you have not already.
 
-Initalize your node:
+If you have not yet initalized your node, initialize it:
 
 ```bash
 celestia <node_type> init --p2p.network <network>
 ```
 
-Start your node:
+Start your node if it is not yet running:
 
 ```bash
 celestia <node_type> start --p2p.network <network>
@@ -34,11 +36,11 @@ which ports are required to be open on your machine.
 
 ## Celestia Node CLI guide
 
-The Celestia Node CLI has a `rpc` subcommand that
+The Celestia Node CLI (Command Line Interface) has a `rpc` subcommand that
 allows you to interact with the node's RPC API via
 your terminal.
 
-The format will be as follows:
+The format for the `rpc` subcommand is as follows:
 
 ```bash
 celestia rpc [module] [method] [...args]
@@ -46,15 +48,19 @@ celestia rpc [module] [method] [...args]
 
 ### Auth token
 
+In order to interact with the API using the `rpc` subcommand,
+you will need to set your authentication token.
+
 The `--auth TOKEN` flag sets the authentication token,
 otherwise it will read from the environment's
 `CELESTIA_NODE_AUTH_TOKEN` variable.
 If a token is not found, authentication will not be set.
+And if authentication is not set, the request will fail.
 
 To set your authentication token, you can use the
 following command. Be sure to replace `<node-type>` with
 the type of node and `<network>`
-with the network you are running on:
+with the network that you are running your node on:
 
 ```bash
 export CELESTIA_NODE_AUTH_TOKEN=$(celestia <node-type> auth admin --p2p.network <network>)
@@ -65,24 +71,33 @@ export CELESTIA_NODE_AUTH_TOKEN=$(celestia <node-type> auth admin --p2p.network 
 The `--host URL` flag sets the host address,
 the default is `localhost:26658` over HTTP.
 
-
 ### `SubmitPayForBlob` arguments
+
+Using the `rpc` subcommand, you can submit a blob to the network
+using the `SubmitPayForBlob` method.
 
 The arguments for `SubmitPayForBlob` are parsed specially,
 to improve UX.
 
 `SubmitPayForBlob` can be done in a few ways:
 
-- The namespace ID can be encoded as either hex or base64
-- The blob can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)
+- The **namespace ID** can be encoded as either hex or base64
+- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)
 
 ### Completions
 
-If you would like to turn on completions for the Celestia Node CLI,
-you can use the following command and follow the instructions in the CLI:
+If you would like to turn on completions for the Celestia Node CLI `rpc`
+subcommand, you can use the following command and follow the instructions
+in the CLI:
 
 ```bash
 celestia completion
+```
+
+If you'd like to see the help menu for your shell, you can then run:
+
+```bash
+celestia completion [bash | fish | powershell | zsh] --help
 ```
 
 ### Examples
@@ -108,7 +123,13 @@ celestia rpc node Info
 Get share by data availibility header and index:
 
 ```bash
-celestia rpc share GetShare $(celestia rpc header GetByHeight 200 | jq '.result.dah' -r ) 5 6 
+celestia rpc share GetShare "$(celestia rpc header GetByHeight 162011 | jq '.result.dah' -r)" 162011 0
+```
+
+Get share by namespace:
+
+```bash
+celestia rpc share GetSharesByNamespace "$(celestia rpc header GetByHeight 162011 | jq '.result.dah' -r)" GHTmQvXd5Yk=
 ```
 
 Get header by height:
