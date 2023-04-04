@@ -20,7 +20,7 @@ Available topics are:
 
 ## Directions
 
-Write your article on Medium.
+Write your article on Medium or any other publicly accessible platform.
 
 ## Judging criteria
 
