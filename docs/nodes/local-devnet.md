@@ -42,7 +42,7 @@ First, you'll need to have Docker installed or [install Docker](https://docs.doc
 Run the `local-celestia-devnet` by running the following command:
 
 ```bash
-docker run --platform linux/amd64 -p 26657:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main
+docker run --platform linux/amd64 -p 26657:26657 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:main
 ```
 
 If you'd like to name your container with a custom name, you can use the
@@ -50,7 +50,7 @@ If you'd like to name your container with a custom name, you can use the
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-docker run --name custom_name --platform linux/amd64 -p 26657:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main
+docker run --name custom_name --platform linux/amd64 -p 26657:26657 -p 26659:26659 ghcr.io/rollkit/local-celestia-devnet:main
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -140,7 +140,7 @@ This will give you an output similar to this:
 <!-- markdownlint-disable MD013 -->
 ```bash
 CONTAINER ID   IMAGE                                            COMMAND            CREATED         STATUS         PORTS                                                                                                                         NAMES
-d9af68de54e4   ghcr.io/celestiaorg/local-celestia-devnet:main   "/entrypoint.sh"   5 minutes ago   Up 2 minutes   1317/tcp, 9090/tcp, 0.0.0.0:26657->26657/tcp, :::26657->26657/tcp, 26656/tcp, 0.0.0.0:26659->26659/tcp, :::26659->26659/tcp   musing_matsumoto
+d9af68de54e4   ghcr.io/rollkit/local-celestia-devnet:main   "/entrypoint.sh"   5 minutes ago   Up 2 minutes   1317/tcp, 9090/tcp, 0.0.0.0:26657->26657/tcp, :::26657->26657/tcp, 26656/tcp, 0.0.0.0:26659->26659/tcp, :::26659->26659/tcp   musing_matsumoto
 ```
 <!-- markdownlint-enable MD013 -->
 
