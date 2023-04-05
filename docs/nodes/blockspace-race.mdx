@@ -1,5 +1,9 @@
 # The Blockspace Race
 
+import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
+import constants from "../../versions/constants.js";
+import VersionTags from '../../src/components/VersionTags';
+
 ![Banner](/img/blockspace_race.jpg)
 
 ## Table of Contents
@@ -110,7 +114,7 @@ participation rules:
   into any points or mainnet tokens**.
 * Validators are required to also run bridge nodes but cannot gain
   points for running both
-* Please ensure you submit your own work (node id, tx hashes, etc).
+* Please ensure you submit your own work (Node ID, tx hashes, etc).
   Submitting another participant’s work will result in immediate removal
   from the incentivized testnet. We will be monitoring it and have security
   checks in place.
@@ -120,9 +124,7 @@ participation rules:
 Here we list the relevant version numbers for the software packages and libraries
 that will be used in the incentivized testnet:
 
-* Celestia Node - v0.8.0
-* Celestia App - v0.12.1
-* Rollkit - v0.7.1
+<VersionTags/>
 
 ### Participation By Node Count
 
@@ -168,11 +170,16 @@ provided by the community here.
 * [http://rpc-celestia.gpvalidator.com/](https://rpc-celestia.gpvalidator.com/)
 * [https://rpc-celestia.activenodes.io/](https://rpc-celestia.activenodes.io/)
 * [https://rpc-testnet.celestia.forbole.com/](https://rpc-testnet.celestia.forbole.com/)
-* [https://rpc-celestia.notional.ventures/](https://rpc-celestia.notional.ventures/)
+* [http://209.126.86.119:26657/](http://209.126.86.119:26657/)
+* [http://37.27.2.226:26657/](http://37.27.2.226:26657/)
+* [http://rpc-celestia.lowfeevalidation.com/](http://rpc-celestia.lowfeevalidation.com/)
+* [https://cel-cre.crescent.network:26657/](https://cel-cre.crescent.network:26657/)
+* [http://209.126.86.119:26657/](http://65.109.112.178:35657/)
+* [http://51.159.223.25:30657/](http://51.159.223.25:30657/)
 
 #### gRPC Endpoints
 
-The gRPC endpoint is to allow users to interact with a celestia-node using
+The gRPC endpoint is to allow users to interact with a Celestia Node using
 gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
@@ -196,7 +203,8 @@ broadcast transactions.
 * [http://celestiarpc.bloclick.com:9090/](http://celestiarpc.bloclick.com:9090/)
 * [http://celestia-testnet-grpc.swiss-staking.ch:10690/](http://celestia-testnet-grpc.swiss-staking.ch:10690/)
 * [http://rpc-celestia.gpvalidator.com:9090/](https://rpc-celestia.gpvalidator.com:9090/)
-* [https://grpc-celestia.notional.ventures/](https://grpc-celestia.notional.ventures/)
+* [http://rpc-celestia.lowfeevalidation.com:9090/](http://rpc-celestia.lowfeevalidation.com:9090/)
+* [https://cel-cre.crescent.network:9090/](https://cel-cre.crescent.network:9090/)
 
 #### API Endpoints
 
@@ -226,7 +234,8 @@ The default port is 1317.
 * [http://celestiarpc.bloclick.com/](http://celestiarpc.bloclick.com/)
 * [https://celestia-testnet-api.swiss-staking.ch/](https://celestia-testnet-api.swiss-staking.ch/)
 * [http://rpc-celestia.gpvalidator.com/](https://rpc-celestia.gpvalidator.com/)
-* [https://api-celestia.notional.ventures/](https://api-celestia.notional.ventures/)
+* [http://rpc-celestia.lowfeevalidation.com/](http://rpc-celestia.lowfeevalidation.com/)
+* [https://cel-cre.crescent.network:1317/](https://cel-cre.crescent.network:1317/)
 
 ### Blockspace Race testnet faucet
 
@@ -249,8 +258,6 @@ Note: Faucet has a limit of 50 tokens per week per address/Discord ID
 
 ## Testnet Phases
 
-<!-- markdownlint-disable MD033 -->
-<!-- markdownlint-disable MD013 -->
 ### Phase 1: Liftoff
 
 ![Banner](/img/phase1.jpg)
@@ -327,9 +334,6 @@ Note: Faucet has a limit of 50 tokens per week per address/Discord ID
 | [Deploy a sovereign rollup](./itn-deploy-rollup.md) (all 3 node types) | Bonus  | Bonus Pool |
 | [Conduct performance analysis of your node](./itn-node-analysis.md) (all 3 node types) | Bonus | Bonus Pool |
 </details>
-
-<!-- markdownlint-enable MD033 -->
-<!-- markdownlint-enable MD013 -->
 
 ## Useful Links
 

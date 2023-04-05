@@ -44,13 +44,29 @@ The format will be as follows:
 celestia rpc [module] [method] [...args]
 ```
 
+### Auth token
+
 The `--auth TOKEN` flag sets the authentication token,
 otherwise it will read from the environment's
 `CELESTIA_NODE_AUTH_TOKEN` variable.
 If a token is not found, authentication will not be set.
 
+To set your authentication token, you can use the
+following command. Be sure to replace `<node-type>` with
+the type of node and `<network>`
+with the network you are running on:
+
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia <node-type> auth admin --p2p.network <network>)
+```
+
+### Host URL
+
 The `--host URL` flag sets the host address,
 the default is `localhost:26658` over HTTP.
+
+
+### `SubmitPayForBlob` arguments
 
 The arguments for `SubmitPayForBlob` are parsed specially,
 to improve UX.
@@ -60,7 +76,22 @@ to improve UX.
 - The namespace ID can be encoded as either hex or base64
 - The blob can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)
 
+### Completions
+
+If you would like to turn on completions for the Celestia Node CLI,
+you can use the following command and follow the instructions in the CLI:
+
+```bash
+celestia completion
+```
+
 ### Examples
+
+Set your auth token on a light node on Blockspace Race:
+
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network blockspacerace)
+```
 
 Submit a blob to the network:
 
@@ -77,7 +108,7 @@ celestia rpc node Info
 Get share by data availibility header and index:
 
 ```bash
-celesta rpc share GetShare $(celestia rpc header GetByHeight 200 | jq '.result.dah' -r ) 5 6 
+celestia rpc share GetShare $(celestia rpc header GetByHeight 200 | jq '.result.dah' -r ) 5 6 
 ```
 
 Get header by height:

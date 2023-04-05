@@ -4,7 +4,7 @@
 
 Run a publicly-available RPC Node (preferraly with seed mode).
 You can follow the instructions [here](https://docs.celestia.org/nodes/consensus-full-node)
-for running celestia-app to provide an RPC endpoint.
+for running `celestia-app` to provide an RPC endpoint.
 
 ## Directions
 
@@ -13,7 +13,7 @@ for running celestia-app to provide an RPC endpoint.
 2. Provide the IP and port of the available RPC node to the community
   and ensure the correct ports are open so that the community
   can use it.
-3. Please submit a PR to our docs with your RPC [here](https://github.com/celestiaorg/docs/blob/main/docs/nodes/blockspace-race.md#rpc-endpoints).
+3. Please submit a PR to our docs with your RPC [here](https://github.com/celestiaorg/docs/blob/main/docs/nodes/blockspace-race.mdx#rpc-endpoints).
 
 ## Judging criteria
 

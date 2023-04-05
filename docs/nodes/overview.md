@@ -12,7 +12,7 @@ Consensus:
 
 * [Validator Node](./validator-node.md): This type of node participates
 in consensus by producing and voting on blocks.
-* [Consensus Full Node](./consensus-full-node.md): A Celestia-App Full Node
+* [Consensus Full Node](./consensus-full-node.md): A `celestia-app` Full Node
   to sync blockchain history.
 
 Data Availability:

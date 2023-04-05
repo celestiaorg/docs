@@ -2,9 +2,9 @@
 sidebar_label: Node metrics 
 ---
 
-# celestia-node metrics
+# Celestia Node metrics
 
-This tutorial is for running metrics for your celestia-node Data
+This tutorial is for running metrics for your `celestia-node` Data
 Availability instance.
 
 This tutorial will focus on running metrics for a light-node.
@@ -14,7 +14,7 @@ by following the tutorial in the [Node API tutorial](../developers/node-tutorial
 
 ## Running metrics flags
 
-You can enable the celestia-node metric flags with the following
+You can enable the `celestia-node` metric flags with the following
 command:
 
 <!-- markdownlint-disable MD013 -->
@@ -43,7 +43,7 @@ We will go over what the endpoint will need to be in the following section.
 
 ## Metrics endpoint design considerations
 
-At the moment, the architecture of celestia-node metrics
+At the moment, the architecture of `celestia-node` metrics
 works as specified in the following [ADR](https://github.com/celestiaorg/celestia-node/blob/main/docs/adr/adr-010-incentivized-testnet-monitoring.md).
 
 Essentially, the design considerations here will necessitate
