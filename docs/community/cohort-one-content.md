@@ -255,7 +255,6 @@ the basic pieces you need to shape your Smart Contract.
 
 ### Individual fellows
 
-- [Argus Labs](https://argus.gg)
 <!-- - [Bridgebuilder](https://github.com/Semaeopus/Celestia-Bridgebuilder) -->
 - [Cardinal Gray](https://github.com/jpchap/mf_rollmint)
 - [Celestia Name Service](https://github.com/Celestia-Naming-Service/CNS)
@@ -267,11 +266,12 @@ the basic pieces you need to shape your Smart Contract.
 
 ### Team fellows
 
-- [Modular Cloud](https://github.com/modularcloud/explorer)
-- [Caldera](https://calderaxyz.gitbook.io/caldera-documentation/getting-started/overview)
-- [Cosmology](https://github.com/cosmology-tech)
+- [Argus Labs](https://argus.gg)
+- [Caldera](https://calderaxyz.gitbook.io/
+- [Cosmology](https://github.com/cosmology-tech)caldera-documentation/getting-started/overview)
 - [Duality](https://duality.xyz/)
 - [Dymension](https://github.com/dymensionxyz)
 - [Eclipse](https://github.com/Eclipse-Laboratories-Inc)
+- [Modular Cloud](https://github.com/modularcloud/explorer)
 - [Sovereign Labs](https://github.com/Sovereign-Labs)
 - [Skip Protocol](https://github.com/skip-mev)
