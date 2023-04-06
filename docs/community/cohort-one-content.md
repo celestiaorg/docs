@@ -255,8 +255,8 @@ the basic pieces you need to shape your Smart Contract.
 
 ### Individual fellows
 
-- [Argus Labs](https://github.com/Argus-Labs/world-engine)
-- [Bridgebuilder](https://github.com/Semaeopus/Celestia-Bridgebuilder)
+- [Argus Labs](https://argus.gg)
+<!-- - [Bridgebuilder](https://github.com/Semaeopus/Celestia-Bridgebuilder) -->
 - [Cardinal Gray](https://github.com/jpchap/mf_rollmint)
 - [Celestia Name Service](https://github.com/Celestia-Naming-Service/CNS)
 - [cNFTs](https://github.com/alexdphan/cNFTs)
