@@ -267,8 +267,8 @@ the basic pieces you need to shape your Smart Contract.
 ### Team fellows
 
 - [Argus Labs](https://argus.gg)
-- [Caldera](https://calderaxyz.gitbook.io/
-- [Cosmology](https://github.com/cosmology-tech)caldera-documentation/getting-started/overview)
+- [Caldera](https://calderaxyz.gitbook.io/caldera-documentation/getting-started/overview)
+- [Cosmology](https://github.com/cosmology-tech)
 - [Duality](https://duality.xyz/)
 - [Dymension](https://github.com/dymensionxyz)
 - [Eclipse](https://github.com/Eclipse-Laboratories-Inc)
