@@ -489,6 +489,40 @@ celestia <node-type> init --p2p.network <network> [...flags]
 celestia <node-type> start --p2p.network <network> [...flags]
 ```
 
+## Changing the location of your node store
+
+In this section, we'll guide you through starting your node using a
+node store in a different location than you originally started with.
+
+First, stop your node safely using `control + C`.
+
+Then, init your node again with a new node store:
+
+```bash
+celestia <node-type> init --node.store /home/user/celestia-<node-type>-location/ --p2p.network blockspacerace
+```
+
+Next, start your node:
+
+```bash
+celestia full start --core.ip https://rpc-blockspacerace.pops.one/ --p2p.network blockspacerace --node.store /home/user/celestia-<node-type>-location/
+```
+
+If you choose to change the location of your node store,
+you will need to execute each command on your node with
+the following flag:
+
+```bash
+--node.store /home/user/celestia-<node-type>-location/
+```
+
+When using `cel-key`, the process is different.
+To show the keys you should add `--keyring-dir` like this example:
+
+```bash
+./cel-key list --p2p.network blockspacerace --node.type full --keyring-dir /home/user/celestia-<node-type>-location/keys/
+```
+
 ## Troubleshooting
 
 ### Network selection
