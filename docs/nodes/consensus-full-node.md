@@ -19,7 +19,7 @@ Consensus Full Node:
 * Memory: 8 GB RAM
 * CPU: Quad-Core
 * Disk: 250 GB SSD Storage
-* Bandwidth: 1 Gbps for Download/100 Mbps for Upload
+* Bandwidth: 1 Gbps for Download/1 Gbps for Upload
 
 ## Setting up a consensus full node
 
