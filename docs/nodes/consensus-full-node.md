@@ -16,10 +16,10 @@ Consensus Layer.
 The following hardware minimum requirements are recommended for running the
 Consensus Full Node:
 
-* Memory: 8 GB RAM
-* CPU: Quad-Core
-* Disk: 250 GB SSD Storage
-* Bandwidth: 1 Gbps for Download/1 Gbps for Upload
+* Memory: **8 GB RAM**
+* CPU: **Quad-Core**
+* Disk: **250 GB SSD Storage**
+* Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up a consensus full node
 
