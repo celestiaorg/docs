@@ -18,7 +18,9 @@ to delegate tokens [here](https://docs.celestia.org/nodes/celestia-app-commands#
 
 ## How to Submit
 
-Please submit the two delegation transaction hashes separated by comma. You can use the block explorer to check if the transactions have succeeded.
+Please submit the two delegation transaction hashes
+separated by comma. You can use the block explorer
+to check if the transactions have succeeded.
 
 Submission link can be found [here](https://celestia.knack.com/theblockspacerace#testnet-portal).
 
