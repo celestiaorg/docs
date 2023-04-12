@@ -281,21 +281,21 @@ You have successfully set up a bridge node that is syncing with the network.
 
 This step helps get you prepared for when the Quantum Gravity Bridge
 is ready to be deployed. You would still need to go through this step
-before running a validator to configure 2 extra keys.
+before running a validator to configure an extra key.
 
 * `--evm-address`: This flag should contain a `0x` EVM address. Here,
   you can add any Ethereum-based address to this flag. You can also modify
   it later if you decide to switch addresses.
 
-You can set both the values to the above flags as
-environment variables:
+You can set this value to the above flag as an
+environment variable:
 
 ```sh
 EVM_ADDRESS=<EVM_ADDRESS>
 ```
 
-Remember to add the values for your addresses in the above
-environment variables before setting them.
+Remember to add the value for your address in the above
+environment variable before setting it.
 
 ## Run a validator node
 
