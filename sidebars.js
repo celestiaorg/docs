@@ -16,6 +16,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          label: "Blockspace race",
+          id: "nodes/blockspace-race"
+        },
+        {
+          type: "doc",
           label: "Local devnet",
           id: "nodes/local-devnet"
         },
@@ -40,6 +45,11 @@ const sidebars = {
       },
       collapsed: false,
       items: [
+         {
+          type: "doc",
+          label: "Docker images",
+          id: "nodes/docker-images",
+        },
         { 
           type: "doc", 
           label: "Setting up environment", 
@@ -47,17 +57,12 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Installing celestia-node",
+          label: "Installing Celestia Node",
           id: "nodes/celestia-node"
         },
         {
           type: "doc",
-          label: "Docker images",
-          id: "nodes/docker-images",
-        },
-        {
-          type: "doc",
-          label: "Installing celestia-app",
+          label: "Installing Celestia App",
           id: "nodes/celestia-app"
         },
         {
@@ -118,6 +123,11 @@ const sidebars = {
             label: "Consensus full node", 
             id: "nodes/consensus-full-node" 
           },
+          { 
+            type: "doc", 
+            label: "Relayer", 
+            id: "nodes/relayer" 
+          },
         ]
       },
     ]
@@ -132,7 +142,7 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "celestia-node",
+          label: "Celestia Node",
           link: {
             type: 'generated-index',
           },
@@ -140,19 +150,29 @@ const sidebars = {
           items: [
             {
               type: "doc",
-              label: "Node metrics",
+              label: "Setting up metrics",
               id: "nodes/celestia-node-metrics"
+            },
+            {
+              type: "doc",
+              label: "Config.toml guide",
+              id: "nodes/config-toml"
             },
           ]
         },
         {
           type: "category",
-          label: "celestia-app",
+          label: "Celestia App",
           link: {
             type: 'generated-index'
           },
           collapsed: false,
           items: [
+            {
+              type: "doc",
+              label: "Metrics, Visualizations and Alerts",
+              id: "nodes/celestia-app-metrics"
+            },
             { 
               type: "doc", 
               label: "Create a Celestia testnet", 
@@ -167,23 +187,18 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Hardfork process",
-          id: "nodes/hardfork-process"
+         label: "SystemD",
+          id: "nodes/systemd"
         },
         {
           type: "doc",
-          label: "SystemD",
-          id: "nodes/systemd"
+          label: "Hardfork process",
+          id: "nodes/hardfork-process"
         },
         { 
           type: "doc", 
           label: "Devops resources", 
           id: "nodes/devops-resources"
-        },
-        {
-          type: "doc",
-          label: "Config.toml guide",
-          id: "nodes/config-toml"
         },
       ]
     },
@@ -214,39 +229,74 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Wallet with celestia-app",
+          label: "Wallet with Celestia App",
           id: "developers/celestia-app-wallet"
         },
         {
           type: "doc",
-          label: "Wallet with celestia-node",
+          label: "Wallet with Celestia Node",
           id: "developers/celestia-node-key"
         },
       ]
     },
     {
       type: "category",
-      label: "Data availability API",
+      label: "Node API",
       link: {
         type: "generated-index",
       },
       collapsed: false,
       items: [
-        { 
-          type: "doc", 
-          label: "Node tutorial", 
-          id: "developers/node-tutorial" 
+        {
+          type: "category",
+          label: "Gateway API",
+          link: {
+            type: "generated-index",
+          },
+          collapsed: false,
+          items: [
+            { 
+              type: "doc", 
+              label: "Gateway API tutorial", 
+              id: "developers/node-tutorial" 
+            },
+            {
+              type: "doc",
+              label: "Gateway API docs",
+              id: "developers/node-gateway-docs"
+            },
+            {
+              type: "doc",
+              label: "Prompt scavenger",
+              id: "developers/prompt-scavenger"
+            },
+          ]
         },
         {
-          type: "doc",
-          label: "Node video tutorial",
-          id: "developers/light-node-video"
+          type: "category",
+          label: "RPC API",
+          link: {
+            type: "generated-index",
+          },
+          collapsed: false,
+          items: [
+            { 
+              type: "doc", 
+              label: "RPC API tutorial", 
+              id: "developers/rpc-tutorial" 
+            },
+            {
+              type: "link",
+              label: "RPC API docs",
+              href: "https://node-rpc-docs.celestia.org/"
+            },
+          ]
         },
-        { 
-          type: "doc", 
-          label: "Node API", 
-          id: "developers/node-api" 
-        }
+        // {
+        //   type: "doc",
+        //   label: "Node video tutorial",
+        //   id: "developers/light-node-video"
+        // },
       ]
     },
     {
@@ -258,11 +308,6 @@ const sidebars = {
       type: "doc",
       label: "Full stack modular blockchain development guide",
       id: "developers/full-stack-modular-development-guide"
-    },
-    {
-      type: "doc",
-      label: "Fuelmint",
-      id: "developers/fuelmint"
     },
     {
       type: "doc",
@@ -320,7 +365,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "The lifecycle of a celestia-app transaction",
+          label: "The lifecycle of a Celestia App transaction",
           id: "concepts/how-celestia-works/transaction-lifecycle"
         }
       ]

@@ -69,7 +69,7 @@ The default port is 1317.
 
 ## gRPC endpoints
 
-The gRPC endpoint is to allow users to interact with a celestia-node using
+The gRPC endpoint is to allow users to interact with a Celestia Node using
 gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
@@ -98,4 +98,4 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 There is an explorer you can use for Arabica:
 
-* [https://explorer.celestia.observer/arabica](https://explorer.celestia.observer/arabica)
+* [https://explorer.celestia.tools/arabica](https://explorer.celestia.tools/arabica/)

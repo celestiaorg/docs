@@ -1,17 +1,17 @@
 ---
-sidebar_label: Wallet with celestia-app
+sidebar_label: Wallet with Celestia App
 ---
 
-# Create a wallet with celestia-app
+# Create a wallet with Celestia App
 
 For this guide, we will go over how you can generate a Celestia
 wallet using `celestia-app`.
 
 ## Prerequisites
 
-* [Gone through Quick Start and Installed celestia-app](../nodes/quick-start.md)
+* [Gone through Quick Start and Installed `celestia-app`](../nodes/quick-start.md)
 
-Note, you do not need to install celestia-node for this tutorial.
+Note, you do not need to install `celestia-node` for this tutorial.
 
 ## Create a wallet
 
@@ -25,7 +25,7 @@ You can pick whatever wallet name you want.
 For our example we used "validator" as the wallet name:
 
 ```sh
-celestia-appd keys add validator
+celestia-appd keys add validator --interactive
 ```
 
 Save the mnemonic output as this is the only way to
@@ -57,3 +57,9 @@ address with your own:
 celestia-appd start
 celestia-appd query bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for
+information on which ports are required
+to be open on your machine.
+:::

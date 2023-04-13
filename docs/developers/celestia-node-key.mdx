@@ -1,11 +1,11 @@
 ---
-sidebar_label: Wallet with celestia-node
+sidebar_label: Wallet with Celestia Node
 ---
 
-# Create a wallet with celestia-node
+# Create a wallet with Celestia Node
 
 This tutorial will go over using the `cel-key` utility
-to generate a wallet on celestia-node.
+to generate a wallet on `celestia-node`.
 
 While this tutorial will go over installation process
 of `cel-key`, it is recommended that you complete
@@ -99,7 +99,7 @@ Further flags you can use to customize your key are the following:
 * `--p2p.network`: Specifies which network you want the key for. Values
   are `arabica` and `mocha`. Please note the default network will be `mocha`.
 
-Keep in mind that your celestia-node will only pick up keys that 
+Keep in mind that your `celestia-node` will only pick up keys that 
 are inside the `node.store` directory under `/keys` so you should make
 sure to point `cel-key` utility to the correct directory via the
 `node.store` or `p2p.network` flags if you have specified a custom
@@ -223,6 +223,11 @@ ghcr.io/celestiaorg/celestia-node:sha-747c9e5 celestia light start \
 --core.ip https://rpc-mocha.pops.one \
 --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 List active containers in another window with:
 

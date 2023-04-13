@@ -24,6 +24,13 @@ export const MOCHA_PARAMS = {
   rpc: 'https://rpc-mocha.pops.one',
   rest: 'https://api-mocha.pops.one'
 }
+
+export const BLOCKSPACERACE_PARAMS = {
+  chainId: 'blockspacerace',
+  chainName: 'Blockspace Race Testnet',
+  rpc: 'https://rpc-blockspacerace.pops.one',
+  rest: 'https://api-blockspacerace.pops.one'
+}
 ````
 
 Keplr is a popular Cosmos-based wallet that allows anyone
@@ -139,6 +146,31 @@ first.
 
 ````mdx-code-block
 <Tabs groupId="keplr-network-selection">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+Here is a demo button that allows you to
+add the blockspace race testnet to Keplr.
+
+Try it out:
+<AddNetworkKeplr params={BLOCKSPACERACE_PARAMS} />
+
+Behind the scenes, here are the params
+we are passing to the `AddNetworkKeplr`
+function:
+
+```jsx
+import '@site/src/components/AddNetworkKeplr'
+
+export const BLOCKSPACERACE_PARAMS = {
+  chainId: 'blockspacerace',
+  chainName: 'Blockspace Race Testnet',
+  rpc: 'https://rpc-blockspacerace.pops.one',
+  rest: 'https://api-blockspacerace.pops.one'
+}
+
+<AddNetworkKeplr params={BLOCKSPACERACE_PARAMS}/>
+```
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 Here is a demo button that allows you to

@@ -6,8 +6,7 @@ sidebar_label: Bridge node
 
 This tutorial will go over the steps to setting up your Celestia Bridge node.
 
-Bridge nodes connect the data availability layer and the consensus layer
-while also having the option of becoming a validator.
+Bridge nodes connect the data availability layer and the consensus layer.
 
 Validators do not have to run bridge nodes, but are encouraged to in order
 to relay blocks to the data availability network.
@@ -28,21 +27,21 @@ A Celestia bridge node has the following properties:
 
 From an implementation perspective, Bridge Nodes run two separate processes:
 
-1. celestia-app with celestia-core
+1. `celestia-app` with `celestia-core`
    ([see repo](https://github.com/celestiaorg/celestia-app))
 
-    * **celestia-app** is the state machine where the application and the
-      proof-of-stake logic is run. celestia-app is built on
+    * **`celestia-app`** is the state machine where the application and the
+      proof-of-stake logic is run. `celestia-app` is built on
       [Cosmos SDK](https://docs.cosmos.network) and also encompasses
-      **celestia-core**.
-    * **celestia-core** is the state interaction, consensus and block production
-      layer. celestia-core is built on [Tendermint Core](https://docs.tendermint.com),
+      **`celestia-core`**.
+    * **`celestia-core`** is the state interaction, consensus and block production
+      layer. `celestia-core` is built on [Tendermint Core](https://docs.tendermint.com),
       modified to store data roots of erasure coded blocks among other changes
       ([see ADRs](https://github.com/celestiaorg/celestia-core/tree/master/docs/celestia-architecture)).
 
-2. celestia-node ([see repo](https://github.com/celestiaorg/celestia-node))
+2. `celestia-node` ([see repo](https://github.com/celestiaorg/celestia-node))
 
-    * **celestia-node** augments the above with a separate libp2p network that
+    * **`celestia-node`** augments the above with a separate libp2p network that
       serves data availability sampling requests. The team sometimes refers to
       this as the “halo” network.
 
@@ -51,10 +50,10 @@ From an implementation perspective, Bridge Nodes run two separate processes:
 The following hardware minimum requirements are recommended for running the
 bridge node:
 
-* Memory: 8 GB RAM
-* CPU: 6 cores
-* Disk: 500 GB SSD Storage
-* Bandwidth: 1 Gbps for Download/100 Mbps for Upload
+* Memory: **8 GB RAM**
+* CPU: **6 cores**
+* Disk: **1 TB SSD Storage**
+* Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up your bridge node
 
@@ -66,11 +65,11 @@ Follow the tutorial here installing the dependencies [here](./environment.mdx).
 
 ## Deploy the Celestia bridge node
 
-### Install celestia-node
+### Install Celestia Node
 
-Install the celestia-node binary, which will be used to run the Bridge Node.
+Install the `celestia-node` binary, which will be used to run the Bridge Node.
 
-Follow the tutorial for installing celestia-node [here](./celestia-node.mdx).
+Follow the tutorial for installing `celestia-node` [here](./celestia-node.mdx).
 
 ### Initialize the bridge node
 
@@ -79,6 +78,35 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+Run the following:
+
+```sh
+celestia bridge init --core.ip <ip-address> --p2p.network blockspacerace
+```
+
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../blockspace-race)
+
+Here is an example of initializing the bridge node:
+
+```sh
+celestia bridge init --core.ip <ip-address> --p2p.network blockspacerace
+```
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 Run the following:
@@ -87,10 +115,17 @@ Run the following:
 celestia bridge init --core.ip <ip-address>
 ```
 
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
@@ -109,10 +144,17 @@ celestia bridge init --core.ip https://rpc-mocha.pops.one
 celestia bridge init --core.ip <ip-address> --p2p.network arabica
 ```
 
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../arabica-devnet#rpc-endpoints)
 
@@ -128,6 +170,51 @@ celestia bridge init --core.ip https://limani.celestia-devops.dev/ --p2p.network
 ### Run the bridge node
 
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+Start the Bridge Node with a connection to a validator node's gRPC endpoint
+(which is usually exposed on port 9090):
+
+```sh
+celestia bridge start --core.ip <ip-address> --p2p.network blockspacerace
+```
+
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+If you need a list of RPC endpoints to connect to, you can check from the list [here](../blockspace-race)
+
+Here is an example of starting the bridge node:
+
+```sh
+celestia bridge start --core.ip <ip-address> --p2p.network blockspacerace
+```
+
+You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
+
+Once you start the Bridge Node, a wallet key will be generated for you.
+You will need to fund that address with Testnet tokens to pay for
+`PayForBlob` transactions.
+You can find the address by running the following command:
+
+```sh
+./cel-key list --node.type bridge --keyring-backend test --p2p.network <network>
+```
+
+You can get testnet tokens from:
+
+* [Blockspace Race](../arabica-devnet)
+  
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 Start the Bridge Node with a connection to a validator node's gRPC endpoint
@@ -137,10 +224,17 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 celestia bridge start --core.ip <ip-address>
 ```
 
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
@@ -179,10 +273,17 @@ Start the Bridge Node with a connection to a validator node's gRPC endpoint
 celestia bridge start --core.ip <ip-address> --p2p.network arabica
 ```
 
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
@@ -221,6 +322,13 @@ In order to run a bridge node using a custom key:
 
 ````mdx-code-block
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+```sh
+celestia bridge start --core.ip <ip> --keyring.accname <name_of_custom_key> --p2p.network blockspacerace
+```
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh

@@ -13,10 +13,10 @@ Validator nodes allow you to participate in consensus in the Celestia network.
 The following hardware minimum requirements are recommended for running the
 validator node:
 
-* Memory: 8 GB RAM
-* CPU: 6 cores
-* Disk: 500 GB SSD Storage
-* Bandwidth: 1 Gbps for Download/100 Mbps for Upload
+* Memory: **8 GB RAM**
+* CPU: **6 cores**
+* Disk: **500 GB SSD Storage**
+* Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up your validator node
 
@@ -27,17 +27,9 @@ instance machine.
 
 Follow the instructions on installing the dependencies [here](./environment.mdx).
 
-## Deploying the celestia-app
-
-This section describes part 1 of Celestia Validator Node setup:
-running a celestia-app daemon with an internal celestia-core node.
-
-> Note: Make sure you have at least 100+ Gb of free space to safely install+run
-  the Validator Node.
-
 ### Install celestia-app
 
-Follow the tutorial on installing celestia-app [here](./celestia-app.mdx).
+Follow the tutorial on installing `celestia-app` [here](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -94,12 +86,50 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
 \"$PRUNING_INTERVAL\"/" $HOME/.celestia-app/config/app.toml
 ```
 
-### Optional: quick-sync with snapshot
+### Syncing
 
-Syncing from Genesis can take a long time, depending on your hardware. Using
-this method you can synchronize your Celestia node very quickly by downloading
-a recent snapshot of the blockchain. If you would like to sync from the Genesis,
-then you can skip this part.
+By default, a consensus node will sync using block sync; that is request, validate
+and execute every block up to the head of the blockchain. This is the most secure
+mechanism yet the slowest (taking up to days depending on the height of the blockchain).
+
+There are two alternatives for quicker syncing.
+
+#### State sync
+
+State sync uses light client verification to verify state snapshots from peers
+and then apply them. State sync relies on weak subjectivity; a trusted header
+(specifically the hash and height) must be provided. This can be found by querying
+a trusted RPC endpoint (/block). RPC endpoints are also required for retrieving
+light blocks. These can be found in the docs here under the respective networks or
+from the [chain-registry](https://github.com/cosmos/chain-registry).
+
+In `$HOME/.celestia-app/config/config.toml`, set
+
+```toml
+rpc_servers = ""
+trust_height = 0
+trust_hash = ""
+```
+
+to their respective fields. At least two different rpc endpoints should be provided.
+The more, the greater the chance of detecting any fraudulent behavior.
+
+Once setup, you should be ready to start the node as normal. In the logs, you should
+see: `Discovering snapshots`. This may take a few minutes before snapshots are found
+depending on the network topology.
+
+#### Quick sync
+
+Quick sync effectively downloads the entire `data` directory from a third-party provider
+meaning the node has all the application and blockchain state as the node it was
+copied from.
+
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="network">
+<TabItem value="mocha" label="Mocha">
 
 Run the following command to quick-sync from a snapshot for `mocha`:
 
@@ -113,9 +143,40 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
 
-### Start the celestia-app with SystemD
+</TabItem>
+<TabItem value="blockspacerace" label="Blockspace Race">
 
-Follow the tutorial on setting up Celestia-App as a background process
+Run the following command to quick-sync from a snapshot for `blockspacerace`:
+
+```sh
+cd $HOME
+rm -rf ~/.celestia-app/data
+mkdir -p ~/.celestia-app/data
+SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
+    egrep -o ">blockspacerace.*tar" | tr -d ">")
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
+    -C ~/.celestia-app/data/
+```
+
+</TabItem>
+</Tabs>
+````
+
+### Start the celestia-app
+
+In order to start your validator node, run the following:
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports)
+section for information on which ports are
+required to be open on your machine.
+:::
+
+```sh
+celestia-appd start
+```
+
+Follow the tutorial on setting up `celestia-app` as a background process
 with SystemD [here]( ../systemd).
 
 ### Wallet
@@ -127,7 +188,7 @@ Follow the tutorial on creating a wallet [here](../developers/celestia-app-walle
 Create an environment variable for the address:
 
 ```sh
-VALIDATOR_WALLET=<validator-address>
+VALIDATOR_WALLET=<validator-wallet-name>
 ```
 
 If you want to delegate more stake to any validator, including your own you
@@ -176,14 +237,14 @@ txhash: <tx-hash>
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
 
-## Deploy the celestia-node
+## Deploy the Celestia Node
 
 This section describes part 2 of Celestia Validator Node setup: running a
 Celestia Bridge Node daemon.
 
-### Install celestia-node
+### Install Celestia Node
 
-You can follow the tutorial for installing celestia-node [here](./celestia-node.mdx)
+You can follow the tutorial for installing `celestia-node` [here](./celestia-node.mdx)
 
 ### Initialize the bridge node
 
@@ -193,10 +254,11 @@ Run the following:
 celestia bridge init --core.ip <ip-address>
 ```
 
-> NOTE: The `--core.ip` gRPC port defaults to 9090, so if you do not specify
-  it in the command line, it will default to that port. You can add the port
-  after the IP address or use the  `--core.grpc.port` flag to specify another
-  port if you prefer.
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports)
+section for information on which ports are
+required to be open on your machine.
+:::
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
 
@@ -219,25 +281,21 @@ You have successfully set up a bridge node that is syncing with the network.
 
 This step helps get you prepared for when the Quantum Gravity Bridge
 is ready to be deployed. You would still need to go through this step
-before running a validator to configure 2 extra keys.
+before running a validator to configure an extra key.
 
 * `--evm-address`: This flag should contain a `0x` EVM address. Here,
   you can add any Ethereum-based address to this flag. You can also modify
   it later if you decide to switch addresses.
-* `--orchestrator-address`: This flag should contain a newly-generated
-  `celestia1` Celestia address. Validators certainly can use their existing
-  Celestia addresses here but it is recommended to create a new one.
 
-You can set both the values to the above flags as
-environment variables:
+You can set this value to the above flag as an
+environment variable:
 
 ```sh
 EVM_ADDRESS=<EVM_ADDRESS>
-ORCHESTRATOR_ADDRESS=<CELESTIA_ADDRESS>
 ```
 
-Remember to add the values for your addresses in the above
-environment variables before setting them.
+Remember to add the value for your address in the above
+environment variable before setting it.
 
 ## Run a validator node
 
@@ -273,7 +331,6 @@ celestia-appd tx staking create-validator \
     --min-self-delegation=1000000 \
     --from=$VALIDATOR_WALLET \
     --evm-address=$EVM_ADDRESS \
-    --orchestrator-address=$ORCHESTRATOR_ADDRESS \
     --keyring-backend=test
 ```
 

@@ -2,21 +2,11 @@
 sidebar_label: Config.toml guide
 ---
 
-# Config.toml breakdown
-
-- [Config.toml breakdown](#configtoml-breakdown)
-  - [Pre-Requisites](#pre-requisites)
-  - [Understanding config.toml](#understanding-configtoml)
-    - [[Core]](#core)
-    - [[P2P]](#p2p)
-      - [Bootstrap](#bootstrap)
-      - [Mutual Peers](#mutual-peers)
-    - [[Services]](#services)
-      - [TrustedHash and TrustedPeer](#trustedhash-and-trustedpeer)
+# Config.toml guide
 
 ## Pre-requisites
 
-Please, make sure that you have installed and initialized celestia-node
+Please, make sure that you have installed and initialized `celestia-node`
 
 ## Understanding config.toml
 
@@ -28,14 +18,14 @@ After initialization, for any type of node, you will find a
 
 Let's break down some of the most used sections.
 
-### [Core]
+### Core
 
 This section is needed for the Celestia Bridge Node.
 By default, `Remote = false`. Still for devnet, we are going
 to use the remote core option and this can also be set
 by the command line flag `--core.remote`.
 
-### [P2P]
+### P2P
 
 #### Bootstrap
 
@@ -52,7 +42,7 @@ The purpose of this config is to set up a bidirectional communication.
 This is usually the case for Celestia Bridge Nodes. In addition, you
 need to change the field `PeerExchange` from false to true.
 
-### [Services]
+### Services
 
 #### TrustedHash and TrustedPeer
 

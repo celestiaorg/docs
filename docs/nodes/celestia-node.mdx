@@ -1,12 +1,13 @@
 ---
-sidebar_label: Installing celestia-node
+sidebar_label: Installing Celestia Node
 ---
 
 import constants from "../../versions/constants.js";
 import mochaVersions from "../../versions/mocha_versions.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
+import blockspaceraceVersions from "../../versions/blockspacerace_versions.js"
 
-# celestia-node
+# Celestia Node
 
 ````mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -21,6 +22,136 @@ environment [here](./environment.mdx).
 
 ````mdx-code-block
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/linux <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: arm64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-node <br/>
+git clone https://github.com/celestiaorg/celestia-node.git <br/>
+cd celestia-node/ <br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
+make build <br/>
+make go-install <br/>
+make cel-key <br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version <br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
+Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
+System version: amd64/darwin <br/>
+Golang version: go{constants.golangNode} <br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
@@ -37,6 +168,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -67,6 +199,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -97,6 +230,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -127,6 +261,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{mochaVersions['node-latest-tag']} <br/>
+make build <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -163,6 +298,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -193,6 +329,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
 make install <br/>
 make cel-key <br/>
 </code></pre>
@@ -223,6 +360,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -253,6 +391,7 @@ rm -rf celestia-node <br/>
 git clone https://github.com/celestiaorg/celestia-node.git <br/>
 cd celestia-node/ <br/>
 git checkout tags/{arabicaVersions['node-latest-tag']} <br/>
+make build <br/>
 make go-install <br/>
 make cel-key <br/>
 </code></pre>
@@ -276,24 +415,137 @@ Golang version: go{constants.golangNode} <br/>
 </Tabs>
 ````
 
-## Network selection
+## Ports
+
+When interacting with a Celestia node,
+you may need to open ports on your machine to allow
+communication between nodes, such as bridge nodes. It is essential that
+specific ports are accessible. Make sure that your firewall allows
+connections to the correct ports.
+
+If you run a node on a cloud server, make sure that the ports are open
+on the server's firewall. If you run a node at home, make sure that your
+router allows connections to the correct ports.
+
+For example, validator ports 9090
+and 26657 need to be accessible by the bridge, and port 2121 is
+required for P2P connections for all node types.
+
+The following ports are used by Celestia nodes:
+
+| Port | Protocol | Address | Description | Enabled by default on node | Flag |
+| ---- | -------- | ------- | ----------- | ----------------- | ---- |
+| 2121 | TCP/UDP | localhost | P2P | true | N/A |
+| 26658 | HTTP | localhost | RPC | true | `--rpc.port string` |
+| 26659 | HTTP | localhost | REST Gateway | false | `--gateway.port string` |
+
+## Upgrading your binary
+
+To upgrade your binary, you can use the following commands:
+
+1. [Install](#install-celestia-node) the latest version of
+the `celestia-node` binary. The latest version
+will overwrite your existing binary.
+
+:::danger
+If you run into
+errors after upgrading the binary and trying to restart
+your node, you will need to follow
+steps 2-4.
+These steps are only necessary if you are upgrading from a version of
+`celestia-node` with breaking changes.
+
+If your node starts successfully, you do not need to follow steps 2-4.
+
+:::
+
+2. Clear the data store. Pay attention to the node type you are updating:
+    1. For **bridge and full nodes _only_**:
+        - Remove the data store:
+        ```bash
+        rm -rf ~./<path-to-node-store>/data
+        rm -rf ~./<path-to-node-store>/transients
+        rm -rf ~./<path-to-node-store>/index
+        rm -rf ~./<path-to-node-store>/blocks
+        ```
+    2. For **light nodes _only_**:
+        - Remove the data store:
+        ```bash
+        rm -rf ~./<path-to-node-store>/data
+        ```
+3. Remove your `config.toml` (for all node types):
+
+```bash
+rm ~./<path-to-node-store>/config.toml
+```
+
+4. Initialize your node:
+```bash
+celestia <node-type> init --p2p.network <network> [...flags]
+```
+
+5. Start your node:
+```bash
+celestia <node-type> start --p2p.network <network> [...flags]
+```
+
+## Changing the location of your node store
+
+In this section, we'll guide you through starting your node using a
+node store in a different location than you originally started with.
+
+First, stop your node safely using `control + C`.
+
+Then, init your node again with a new node store:
+
+```bash
+celestia <node-type> init --node.store /home/user/celestia-<node-type>-location/ --p2p.network blockspacerace
+```
+
+Next, start your node:
+
+```bash
+celestia full start --core.ip https://rpc-blockspacerace.pops.one/ --p2p.network blockspacerace --node.store /home/user/celestia-<node-type>-location/
+```
+
+If you choose to change the location of your node store,
+you will need to execute each command on your node with
+the following flag:
+
+```bash
+--node.store /home/user/celestia-<node-type>-location/
+```
+
+When using `cel-key`, the process is different.
+To show the keys you should add `--keyring-dir` like this example:
+
+```bash
+./cel-key list --p2p.network blockspacerace --node.type full --keyring-dir /home/user/celestia-<node-type>-location/keys/
+```
+
+## Troubleshooting
+
+### Network selection
 
 Note: If you do not select a network, the default network will be 'Mocha'.
 
-````mdx-code-block
-<Tabs groupId="network">
-<TabItem value="mocha" label="Mocha">
-
 ```sh
-celestia light init --p2p.network mocha 
-celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia <node-type> init --p2p.network <network> 
+celestia <node-type> start --p2p.network <network> --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
 
 > NOTE: It is advised before switching networks to reinitialize
   your node via `init` command. This is due to an old config being present.
   Re-initialisation will reset the config.
 
-### Errors
+### Resetting your config
+
+#### All nodes
 
 If you an encounter an error, it is likely that an old config file is present:
 
@@ -305,87 +557,134 @@ Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid I
 Error: nodebuilder/share: interval must be positive
 ```
 
-You can re-initialize your node with the following command:
+You can re-initialize your node's config with the following commands:
+
+:::tip
+Save your config so custom values are not lost.
+:::
+
+1. First, remove your config:
+
+  ```sh
+  rm ~./<path-to-node-store>/config.toml
+  ```
+
+2. Re-initialize the node:
+
+  ```sh
+  celestia <node-type> init --p2p.network <network>
+  ```
+
+:::tip
+If you have saved any custom values, add them back to the config.
+:::
+
+3. Start the node: 
+
+  ```sh
+  celestia <node-type> start --p2p.network <network>
+  ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+### Clearing the data store
+
+#### Bridge and full nodes
+
+:::danger
+Make sure not to remove anything except the
+directories listed below.
+:::
+
+1. First, remove the data store:
+
+  ```sh
+  rm -rf ~./<path-to-node-store>/data
+  rm -rf ~./<path-to-node-store>/transients
+  rm -rf ~./<path-to-node-store>/index
+  rm -rf ~./<path-to-node-store>/blocks
+  ```
+
+2. Re-initialize the node:
+
+  ```sh
+  celestia <node type> init --p2p.network <network>
+  ```
+
+3. Start the node: 
+
+  ```sh
+  celestia <node type> start --p2p.network <network>
+  ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+#### Light nodes
+
+:::danger
+Make sure not to remove anything except the
+`<path-to-node-store>/data` directory.
+:::
+
+1. First, remove the data store:
+
+  ```sh
+  rm -rf ~./<path-to-node-store>/data
+  ```
+
+2. Re-initialize the node:
+
+  ```sh
+  celestia light init --p2p.network <network>
+  ```
+
+3. Start the node: 
+
+  ```sh
+  celestia light start --p2p.network <network>
+  ```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+##### Example for Blockspace Race
+
+Here's an example for clearing the data store
+on Blockspace Race with a light node:
+
+:::danger
+Make sure not to remove anything except the
+`<path-to-node-store>/data` directory.
+:::
 
 ```sh
-rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
-```
-
-Here's an example for Mocha:
-
-
-```sh
-rm -rf ~./celestia-light-mocha && celestia light init --p2p.network mocha
+rm -rf ~./celestia-light-blockspacerace-0/data
+celestia light init --p2p.network blockspacerace
 ```
 
 Your output will look similar to below:
 
 ```sh
-2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light'
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light/config.toml"}
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-blockspacerace-0'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-blockspacerace-0/config.toml"}
 2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
 ```
 
 Then start your node:
 
 ```sh
-celestia light start --p2p.network mocha --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
-</TabItem>
-<TabItem value="arabica" label="Arabica 🏗️">
-
-You can perform network selection in `celestia-node` between Arabica and
-Mocha. However, you should note that networks work best on the `celestia-node`
-versions mentioned above.
-
-```sh
-celestia light init --p2p.network arabica
-celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-> NOTE: It is advised before switching networks to reinitialize
-  your node via `init` command. This is due to an old config being present.
-  Re-initialisation will reset the config.
-
-### Errors
-
-If you an encounter an error, it is likely that an old config file is present:
-
-```sh
-Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
-
-# or
-
-Error: nodebuilder/share: interval must be positive
-```
-
-You can re-initialize your node with the following command:
-
-```sh
-rm -rf ~./<path-to-node-store> && celestia light init --p2p.network <network-name>
-```
-
-Here's an example for Arabica:
-
-<pre><code>
-rm -rf ~./celestia-light-{constants.arabicaChainId} && celestia light init --p2p.network arabica
-</code></pre>
-
-Your output will look similar to below:
-
-<pre><code>
-2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-{constants.arabicaChainId}' <br/>
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{`{"path": "/Users/joshstein/.celestia-light-${constants.arabicaChainId}/config.toml"}`}` <br/>
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
-</code></pre>
-
-Then start your node:
-
-```sh
-celestia light start --p2p.network arabica --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
-```
-
-</TabItem>
-</Tabs>
-````
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::

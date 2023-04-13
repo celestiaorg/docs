@@ -1,13 +1,14 @@
 ---
-sidebar_label: Installing celestia-app
+sidebar_label: Installing Celestia App
 ---
 
 import mochaVersions from "../../versions/mocha_versions.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
+import blockspaceraceVersions  from   "../../versions/blockspacerace_versions.js";
 
-# celestia-app
+# Celestia App
 
-This tutorial will guide you through building celestia-app. This
+This tutorial will guide you through building `celestia-app`. This
 tutorial presumes you completed the steps in setting up your
 own environment [here](./environment.mdx).
 
@@ -22,6 +23,19 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+<pre><code>
+cd $HOME <br/>
+rm -rf celestia-app <br/>
+git clone https://github.com/celestiaorg/celestia-app.git <br/>
+cd celestia-app/ <br/>
+APP_VERSION={blockspaceraceVersions['app-latest-tag']} <br/>
+git checkout tags/$APP_VERSION -b $APP_VERSION <br/>
+make install <br/>
+</code></pre>
+
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 <pre><code>
@@ -96,3 +110,27 @@ Flags:
 
 Use "celestia-appd [command] --help" for more information about a command.
 ```
+
+## Ports
+
+When interacting with a Celestia node,
+you may need to open ports on your machine to allow
+communication between nodes, such as bridge nodes. It is essential that
+specific ports are accessible. Make sure that your firewall allows
+connections to the correct ports.
+
+If you run a node on a cloud server, make sure that the ports are open
+on the server's firewall. If you run a node at home, make sure that your
+router allows connections to the correct ports.
+
+For example, validator ports 9090
+and 26657 need to be accessible by the bridge, and port 2121 is
+required for P2P connections for all node types.
+
+The following ports are used by Celestia app nodes:
+
+| Port | Protocol | Address | Description | Enabled by default on node | Flag |
+| ---- | -------- | ------- | ----------- | -------------------------- | ---- |
+| 2121 | TCP/UDP | localhost | P2P | true | N/A |
+| 9090 | HTTP | 0.0.0.0 | gRPC | true | `--grpc.address string` |
+| 26657 | TCP | localhost | RPC | false (only open to localhost) | `--rpc.laddr string` |

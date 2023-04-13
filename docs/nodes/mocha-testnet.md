@@ -14,7 +14,7 @@ sovereign rollups on Mocha, but we also recommend [Arabica devnet](./arabica-dev
 for that as it is designed for development purposes.
 
 Mocha is a milestone in Celestia, allowing everyone to test out
-core functionalities on the network. Read the anouncement [here](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api).
+core functionalities on the network. Read the announcement [here](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api).
 Your best approach to participating is to first determine which node
 you would like to run. Each node guides will link to the relevant network
 in order to show you how to connect to them.
@@ -62,7 +62,7 @@ The default port is 1317.
 
 ## gRPC endpoints
 
-The gRPC endpoint is to allow users to interact with a celestia-node using
+The gRPC endpoint is to allow users to interact with a Celestia Node using
 gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
