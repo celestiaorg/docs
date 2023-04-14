@@ -447,6 +447,17 @@ To upgrade your binary, you can use the following commands:
 the `celestia-node` binary. The latest version
 will overwrite your existing binary.
 
+:::danger for v0.9.0+
+2. For **bridge, full, and light nodes _only_ on `celestia-node v0.9.0+`**,
+remove the data store:
+
+```bash
+celestia <node-type> unsafe-reset-store --p2p.network <network>
+```
+
+**On `celestia-node v0.9.0+`, you can skip steps 3 and 4.**
+:::
+
 :::danger
 If you run into
 errors after upgrading the binary and trying to restart
@@ -457,6 +468,7 @@ These steps are only necessary if you are upgrading from a version of
 
 If your node starts successfully, you do not need to follow steps 2-4.
 
+These steps are not necessary for nodes running v0.9.0 or higher.
 :::
 
 2. Clear the data store. Pay attention to the node type you are updating:
@@ -473,6 +485,7 @@ If your node starts successfully, you do not need to follow steps 2-4.
         ```bash
         rm -rf ~./<path-to-node-store>/data
         ```
+                
 3. Remove your `config.toml` (for all node types):
 
 ```bash
@@ -592,7 +605,24 @@ which ports are required to be open on your machine.
 
 ### Clearing the data store
 
-#### Bridge and full nodes
+#### Version 0.9.0+
+
+:::danger for v0.9.0+
+For **bridge, full, and light nodes _only_ on `celestia-node v0.9.0+`**,
+remove the data store with this command:
+
+```bash
+celestia <node-type> unsafe-reset-store --p2p.network <network>
+```
+:::
+
+##### Example for light node on Blockspace Race on v0.9.0+
+
+```bash
+celestia light unsafe-reset-store --p2p.network blockspacerace
+```
+
+#### Bridge and full nodes v0.8.2 and lower
 
 :::danger
 Make sure not to remove anything except the
@@ -625,7 +655,7 @@ Please refer to the [ports](../../nodes/celestia-node/#ports) section for inform
 which ports are required to be open on your machine.
 :::
 
-#### Light nodes
+#### Light nodes v0.8.2 and lower
 
 :::danger
 Make sure not to remove anything except the
@@ -655,7 +685,7 @@ Please refer to the [ports](../../nodes/celestia-node/#ports) section for inform
 which ports are required to be open on your machine.
 :::
 
-##### Example for Blockspace Race
+##### Example for Blockspace Race on v0.8.2 and lower
 
 Here's an example for clearing the data store
 on Blockspace Race with a light node:
