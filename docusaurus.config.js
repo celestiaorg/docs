@@ -147,11 +147,7 @@ const config = {
             href: "https://github.com/celestiaorg/docs",
             label: "GitHub",
             position: "right",
-          },
-          {
-            type: "localeDropdown",
-            position: "right",
-          },
+          }
         ],
       },
       footer: {
