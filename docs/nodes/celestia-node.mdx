@@ -447,7 +447,9 @@ To upgrade your binary, you can use the following commands:
 the `celestia-node` binary. The latest version
 will overwrite your existing binary.
 
-:::danger for v0.9.0+
+<Tabs groupId="nodever">
+<TabItem value="0.9.0" label="v0.9.0 and later">
+
 2. For **bridge, full, and light nodes _only_ on `celestia-node v0.9.0+`**,
 remove the data store:
 
@@ -455,10 +457,22 @@ remove the data store:
 celestia <node-type> unsafe-reset-store --p2p.network <network>
 ```
 
-**On `celestia-node v0.9.0+`, you can skip steps 3 and 4.**
-:::
+3. Then you can remove the old config with:
 
-:::danger for v0.8.2 and earlier
+```bash
+celestia <node-type> config-remove --p2p.network <network>
+```
+
+4. And restart your node:
+
+```bash
+celestia <node-type> start --p2p.network <network>
+```
+
+</TabItem>
+<TabItem value="0.8.2" label="v0.8.2 and earlier">
+
+:::caution for v0.8.2 and earlier
 If you run into
 errors after upgrading the binary and trying to restart
 your node, **you will need to follow steps 2-4**.
@@ -467,7 +481,6 @@ These steps are only necessary if you are upgrading from a version of
 
 If your node starts successfully, you do not need to follow steps 2-4.
 
-These steps are not necessary for nodes running v0.9.0 or higher.
 :::
 
 2. Clear the data store. Pay attention to the node type you are updating:
@@ -500,6 +513,9 @@ celestia <node-type> init --p2p.network <network> [...flags]
 ```bash
 celestia <node-type> start --p2p.network <network> [...flags]
 ```
+
+</TabItem>
+</Tabs>
 
 ## Changing the location of your node store
 
@@ -557,7 +573,6 @@ which ports are required to be open on your machine.
 
 ### Resetting your config
 
-#### All nodes
 
 If you an encounter an error, it is likely that an old config file is present:
 
@@ -574,6 +589,31 @@ You can re-initialize your node's config with the following commands:
 :::tip
 Save your config so custom values are not lost.
 :::
+
+<Tabs groupId="nodever">
+<TabItem value="0.9.1" label="v0.9.1 and later">
+
+#### All node types on v0.9.1 and later
+
+Run the following command to update your config:
+
+```bash
+celestia <node-type> config-update --p2p.network <network>
+```
+
+This will pull in any new values from new configuration
+and merge them into the existing configuration.
+
+Then, to start your node again:
+
+```bash
+celestia <node-type> start --p2p.network <network>
+```
+
+</TabItem>
+<TabItem value="0.9.0" label="v0.9.0 and earlier">
+
+#### All node types on v0.9.0 and earlier
 
 1. First, remove your config:
 
@@ -602,7 +642,13 @@ Please refer to the [ports](../../nodes/celestia-node/#ports) section for inform
 which ports are required to be open on your machine.
 :::
 
+</TabItem>
+</Tabs>
+
 ### Clearing the data store
+
+<Tabs groupId="nodever">
+<TabItem value="0.9.0" label="v0.9.0 and later">
 
 #### Version 0.9.0+
 
@@ -621,7 +667,10 @@ celestia <node-type> unsafe-reset-store --p2p.network <network>
 celestia light unsafe-reset-store --p2p.network blockspacerace
 ```
 
-#### Bridge and full nodes v0.8.2 and lower
+</TabItem>
+<TabItem value="0.8.2" label="v0.8.2 and earlier">
+
+#### Bridge and full nodes v0.8.2 and earlier
 
 :::danger
 Make sure not to remove anything except the
@@ -654,7 +703,7 @@ Please refer to the [ports](../../nodes/celestia-node/#ports) section for inform
 which ports are required to be open on your machine.
 :::
 
-#### Light nodes v0.8.2 and lower
+#### Light nodes v0.8.2 and earlier
 
 :::danger
 Make sure not to remove anything except the
@@ -684,7 +733,7 @@ Please refer to the [ports](../../nodes/celestia-node/#ports) section for inform
 which ports are required to be open on your machine.
 :::
 
-##### Example for Blockspace Race on v0.8.2 and lower
+##### Example for Blockspace Race on v0.8.2 and earlier
 
 Here's an example for clearing the data store
 on Blockspace Race with a light node:
@@ -712,6 +761,9 @@ Then start your node:
 ```sh
 celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
+
+</TabItem>
+</Tabs>
 
 :::tip
 Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
