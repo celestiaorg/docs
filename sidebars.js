@@ -127,15 +127,25 @@ const sidebars = {
                 id: "nodes/validator-node",
               },
               {
-                type: "doc",
-                label: "QGB Orchestrator",
-                id: "nodes/qgb-orchestrator",
-              },
-              {
-                type: "doc",
-                label: "QGB keys subcommand",
-                id: "nodes/qgb-keys",
-              },
+                type: "category",
+                label: "QGB",
+                link: {
+                  type: 'generated-index'
+                },
+                collapsed: false,
+                items: [
+                    {
+                      type: "doc",
+                      label: "Orchestrator",
+                      id: "nodes/qgb-orchestrator",
+                    },
+                    {
+                      type: "doc",
+                      label: "Keys subcommand",
+                      id: "nodes/qgb-keys",
+                    },
+                ]
+              }
             ]
           },
           { 
