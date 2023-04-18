@@ -398,6 +398,11 @@ const sidebars = {
           label: "Reserved namespace IDs",
           id: "concepts/specifications/reserved-namespace-id"
         },
+        {
+          type: "link",
+          label: "Celestia App",
+          href: "https://celestiaorg.github.io/celestia-app/",
+        },
       ]
     },
     {
