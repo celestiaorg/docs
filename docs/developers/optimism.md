@@ -14,9 +14,9 @@ Ubuntu 22.10, and a 4 core AMD CPU.
 
 ## Optimism
 
-Optimism currently uses Ethereum as a data availability (DA) layer. Currently,
-settlement and DA for Optimism are on Ethereum, both on-chain. `op-batcher`
-batches up rollup blocks and posts to Ethereum.
+[Optimism](https://www.optimism.io/) currently uses Ethereum as a data availability (DA)
+layer. Currently, settlement and DA for Optimism are on Ethereum, both on-chain.
+`op-batcher` batches up rollup blocks and posts to Ethereum.
 
 Learn more about Optimism [here](https://www.optimism.io/).
 
