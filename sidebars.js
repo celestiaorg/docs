@@ -182,6 +182,11 @@ const sidebars = {
               type: "doc",
               label: "Helpful CLI commands",
               id: "nodes/celestia-app-commands"
+            },
+            {
+              type: "link",
+              label: "Specifications",
+              href: "https://celestiaorg.github.io/celestia-app/",
             }
           ]
         },
