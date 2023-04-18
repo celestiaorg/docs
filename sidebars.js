@@ -182,6 +182,11 @@ const sidebars = {
               type: "doc",
               label: "Helpful CLI commands",
               id: "nodes/celestia-app-commands"
+            },
+            {
+              type: "link",
+              label: "Specifications",
+              href: "https://celestiaorg.github.io/celestia-app/",
             }
           ]
         },
@@ -392,6 +397,11 @@ const sidebars = {
           type: 'doc',
           label: "Reserved namespace IDs",
           id: "concepts/specifications/reserved-namespace-id"
+        },
+        {
+          type: "link",
+          label: "Celestia App",
+          href: "https://celestiaorg.github.io/celestia-app/",
         },
       ]
     },
