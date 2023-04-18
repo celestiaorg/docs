@@ -114,9 +114,29 @@ const sidebars = {
         collapsed: false,
         items: [
           {
-            type: "doc",
-            label: "Validator node",
-            id: "nodes/validator-node",
+            type: "category",
+            label: "Validators",
+            link: {
+              type: 'generated-index'
+            },
+            collapsed: false,
+            items: [
+              {
+                type: "doc",
+                label: "Validator node",
+                id: "nodes/validator-node",
+              },
+              {
+                type: "doc",
+                label: "QGB Orchestrator",
+                id: "nodes/qgb-orchestrator",
+              },
+              {
+                type: "doc",
+                label: "QGB keys subcommand",
+                id: "nodes/qgb-keys",
+              },
+            ]
           },
           { 
             type: "doc", 
@@ -125,9 +145,29 @@ const sidebars = {
           },
           { 
             type: "doc", 
-            label: "Relayer", 
-            id: "nodes/relayer" 
+            label: "IBC Relayer", 
+            id: "nodes/ibc-relayer" 
+          }
+        ]
+      },
+      {
+        type: "category",
+        label: "Celestiums (QGB)",
+        link: {
+          type: 'generated-index'
+        },
+        collapsed: false,
+        items: [
+          {
+            type: "doc",
+            label: "QGB Relayer",
+            id: "nodes/qgb-relayer",
           },
+          {
+            type: "doc",
+            label: "Deploy the QGB contract",
+            id: "nodes/qgb-deploy",
+          }
         ]
       },
     ]

@@ -1,5 +1,5 @@
 ---
-sidebar_label: Relayer
+sidebar_label: IBC Relayer
 ---
 
 # Relaying
