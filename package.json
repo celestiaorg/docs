@@ -6,7 +6,7 @@
     "import-md": "node importMarkdown.mjs",
     "docusaurus": "docusaurus",
     "start": "node importMarkdown.mjs && docusaurus start",
-    "build": "docusaurus build",
+    "build": "node importMarkdown.mjs && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

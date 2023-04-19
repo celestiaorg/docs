@@ -1,4 +1,6 @@
-# Deploy
+# Deploy the QGB contract
+
+<!-- markdownlint-disable MD013 -->
 
 The `deploy` is a helper command that allows deploying the QGB smart contract to a new EVM chain:
 
