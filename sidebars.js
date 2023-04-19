@@ -21,11 +21,6 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Local devnet",
-          id: "nodes/local-devnet"
-        },
-        {
-          type: "doc",
           label: "Arabica devnet",
           id: "nodes/arabica-devnet"
         },
@@ -199,11 +194,6 @@ const sidebars = {
           type: "doc",
           label: "Hardfork process",
           id: "nodes/hardfork-process"
-        },
-        { 
-          type: "doc", 
-          label: "Devops resources", 
-          id: "nodes/devops-resources"
         },
       ]
     },
