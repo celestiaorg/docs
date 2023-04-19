@@ -1,5 +1,7 @@
 # Orchestrator
 
+<!-- markdownlint-disable MD013 -->
+
 The role of the orchestrator is to sign attestations using its corresponding validator EVM private key. These attestations are generated within the QGB module of the Celestia-app state machine. To learn more about what attestations are, you can refer to this [link](https://github.com/celestiaorg/celestia-app/tree/main/x/qgb).
 
 ## How it works

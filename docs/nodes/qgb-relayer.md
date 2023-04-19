@@ -1,4 +1,6 @@
-# Relayer
+# QGB Relayer
+
+<!-- markdownlint-disable MD013 -->
 
 The role of the relayer is to gather attestations' signatures from the orchestrators, and submit them to a target EVM chain. The attestations are generated within the QGB module of the Celestia-app state machine. To learn more about what attestations are, you can refer to this [link](https://github.com/celestiaorg/celestia-app/tree/main/x/qgb).
 

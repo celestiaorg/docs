@@ -1,4 +1,6 @@
-# Keys
+# Key management
+
+<!-- markdownlint-disable MD013 -->
 
 The QGB `keys` command allows managing EVM private keys and P2P identities. It is defined as a subcommand for multiple commands with the only difference being the directory where the keys are stored. For the remaining functionality, it is the same for all the commands.
 
