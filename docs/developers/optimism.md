@@ -142,10 +142,10 @@ Install docker-compose:
 apt install docker-compose
 ```
 
-### gcc
+### gcc & libusb
 
 ```bash
-apt install gcc
+apt install gcc libusb-1.0-0-dev 
 ```
 
 ## Build devnet
