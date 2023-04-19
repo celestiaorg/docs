@@ -141,7 +141,7 @@ const sidebars = {
                     },
                     {
                       type: "doc",
-                      label: "Keys subcommand",
+                      label: "Key management",
                       id: "nodes/qgb-keys",
                     },
                 ]
