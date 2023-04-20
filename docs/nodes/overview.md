@@ -27,6 +27,8 @@ Data Availability:
 You can learn more about how to setup each different node by going through
 each tutorial guide.
 
+![Banner](/img/node-requirements.jpg)
+
 Please provide any feedback on the tutorials and guides. If you notice
 a bug or issue, feel free to make a Pull Request or write up a Github
 Issue ticket!
