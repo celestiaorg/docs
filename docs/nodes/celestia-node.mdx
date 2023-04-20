@@ -5,14 +5,14 @@ sidebar_label: Installing Celestia Node
 import constants from "../../versions/constants.js";
 import mochaVersions from "../../versions/mocha_versions.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
-import blockspaceraceVersions from "../../versions/blockspacerace_versions.js"
+import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
 
 # Celestia Node
 
-````mdx-code-block
+```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-````
+```
 
 This tutorial goes over building and installing `celestia-node`. This
 tutorial assumes you completed the steps in setting up your development
@@ -20,7 +20,7 @@ environment [here](./environment.mdx).
 
 ## Install celestia-node
 
-````mdx-code-block
+```mdx-code-block
 <Tabs groupId="network">
 <TabItem value="blockspacerace" label="Blockspace Race">
 
@@ -413,7 +413,7 @@ Golang version: go{constants.golangNodeOther} <br/>
 
 </TabItem>
 </Tabs>
-````
+```
 
 ## Ports
 
@@ -433,25 +433,25 @@ required for P2P connections for all node types.
 
 The following ports are used by Celestia nodes:
 
-| Port | Protocol | Address | Description | Enabled by default on node | Flag |
-| ---- | -------- | ------- | ----------- | ----------------- | ---- |
-| 2121 | TCP/UDP | localhost | P2P | true | N/A |
-| 26658 | HTTP | localhost | RPC | true | `--rpc.port string` |
-| 26659 | HTTP | localhost | REST Gateway | false | `--gateway.port string` |
+| Port  | Protocol | Address   | Description  | Enabled by default on node | Flag                    |
+| ----- | -------- | --------- | ------------ | -------------------------- | ----------------------- |
+| 2121  | TCP/UDP  | localhost | P2P          | true                       | N/A                     |
+| 26658 | HTTP     | localhost | RPC          | true                       | `--rpc.port string`     |
+| 26659 | HTTP     | localhost | REST Gateway | false                      | `--gateway.port string` |
 
 ## Upgrading your binary
 
 To upgrade your binary, you can use the following commands:
 
 1. [Install](#install-celestia-node) the latest version of
-the `celestia-node` binary. The latest version
-will overwrite your existing binary.
+   the `celestia-node` binary. The latest version
+   will overwrite your existing binary.
 
 <Tabs groupId="nodever">
 <TabItem value="0.9.0" label="v0.9.0 and later">
 
 2. For **bridge, full, and light nodes**,
-remove the data store:
+   remove the data store:
 
 ```bash
 celestia <node-type> unsafe-reset-store --p2p.network <network>
@@ -481,20 +481,21 @@ These steps are only necessary if you are upgrading from a version of
 If your node starts successfully, you do not need to follow steps 2-4.
 
 2. Clear the data store. Pay attention to the node type you are updating:
-    1. For **bridge and full nodes _only_**:
-        - Remove the data store:
-        ```bash
-        rm -rf ~./<path-to-node-store>/data
-        rm -rf ~./<path-to-node-store>/transients
-        rm -rf ~./<path-to-node-store>/index
-        rm -rf ~./<path-to-node-store>/blocks
-        ```
-    2. For **light nodes _only_**:
-        - Remove the data store:
-        ```bash
-        rm -rf ~./<path-to-node-store>/data
-        ```
-                
+
+   1. For **bridge and full nodes _only_**:
+      - Remove the data store:
+      ```bash
+      rm -rf ~./<path-to-node-store>/data
+      rm -rf ~./<path-to-node-store>/transients
+      rm -rf ~./<path-to-node-store>/index
+      rm -rf ~./<path-to-node-store>/blocks
+      ```
+   2. For **light nodes _only_**:
+      - Remove the data store:
+      ```bash
+      rm -rf ~./<path-to-node-store>/data
+      ```
+
 3. Remove your `config.toml` (for all node types):
 
 ```bash
@@ -502,11 +503,13 @@ rm ~./<path-to-node-store>/config.toml
 ```
 
 4. Initialize your node:
+
 ```bash
 celestia <node-type> init --p2p.network <network> [...flags]
 ```
 
 5. Start your node:
+
 ```bash
 celestia <node-type> start --p2p.network <network> [...flags]
 ```
@@ -555,7 +558,7 @@ To show the keys you should add `--keyring-dir` like this example:
 Note: If you do not select a network, the default network will be 'Mocha'.
 
 ```sh
-celestia <node-type> init --p2p.network <network> 
+celestia <node-type> init --p2p.network <network>
 celestia <node-type> start --p2p.network <network> --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
@@ -565,11 +568,10 @@ which ports are required to be open on your machine.
 :::
 
 > NOTE: It is advised before switching networks to reinitialize
-  your node via `init` command. This is due to an old config being present.
-  Re-initialisation will reset the config.
+> your node via `init` command. This is due to an old config being present.
+> Re-initialisation will reset the config.
 
 ### Resetting your config
-
 
 If you an encounter an error, it is likely that an old config file is present:
 
@@ -619,25 +621,25 @@ celestia <node-type> start --p2p.network <network>
 
 1. First, remove your config:
 
-  ```sh
-  rm ~./<path-to-node-store>/config.toml
-  ```
+```sh
+rm ~./<path-to-node-store>/config.toml
+```
 
 2. Re-initialize the node:
 
-  ```sh
-  celestia <node-type> init --p2p.network <network>
-  ```
+```sh
+celestia <node-type> init --p2p.network <network>
+```
 
 :::tip
 If you have saved any custom values, add them back to the config.
 :::
 
-3. Start the node: 
+3. Start the node:
 
-  ```sh
-  celestia <node-type> start --p2p.network <network>
-  ```
+```sh
+celestia <node-type> start --p2p.network <network>
+```
 
 :::tip
 Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
@@ -679,24 +681,24 @@ directories listed below.
 
 1. First, remove the data store:
 
-  ```sh
-  rm -rf ~./<path-to-node-store>/data
-  rm -rf ~./<path-to-node-store>/transients
-  rm -rf ~./<path-to-node-store>/index
-  rm -rf ~./<path-to-node-store>/blocks
-  ```
+```sh
+rm -rf ~./<path-to-node-store>/data
+rm -rf ~./<path-to-node-store>/transients
+rm -rf ~./<path-to-node-store>/index
+rm -rf ~./<path-to-node-store>/blocks
+```
 
 2. Re-initialize the node:
 
-  ```sh
-  celestia <node type> init --p2p.network <network>
-  ```
+```sh
+celestia <node type> init --p2p.network <network>
+```
 
-3. Start the node: 
+3. Start the node:
 
-  ```sh
-  celestia <node type> start --p2p.network <network>
-  ```
+```sh
+celestia <node type> start --p2p.network <network>
+```
 
 :::tip
 Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
@@ -712,21 +714,21 @@ Make sure not to remove anything except the
 
 1. First, remove the data store:
 
-  ```sh
-  rm -rf ~./<path-to-node-store>/data
-  ```
+```sh
+rm -rf ~./<path-to-node-store>/data
+```
 
 2. Re-initialize the node:
 
-  ```sh
-  celestia light init --p2p.network <network>
-  ```
+```sh
+celestia light init --p2p.network <network>
+```
 
-3. Start the node: 
+3. Start the node:
 
-  ```sh
-  celestia light start --p2p.network <network>
-  ```
+```sh
+celestia light start --p2p.network <network>
+```
 
 :::tip
 Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
@@ -769,3 +771,24 @@ celestia light start --p2p.network blockspacerace --core.ip <address> --gateway 
 Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
 which ports are required to be open on your machine.
 :::
+
+### FATAL headers given to the heightSub are in the wrong order
+
+If you observe a FATAL log line like:
+
+```log
+FATAL	header/store	store/heightsub.go:87	PLEASE FILE A BUG REPORT: headers given to the heightSub are in the wrong order"
+```
+
+then it is possible the celestia-node `data/` directory contains headers from a
+previous instance of the network that you are currently trying to run against.
+One resolution strategy is to delete the existing celestia-node config for the
+target network and re-initialize it:
+
+```sh
+# rm -rf ~/.celestia-<node-type>-<network>
+rm -rf ~/.celestia-bridge-private
+
+# celestia <node-type> init --p2p.network <network>
+celestia bridge init --p2p.network private
+```
