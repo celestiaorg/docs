@@ -101,10 +101,16 @@ asdf local nodejs 16.16.0
 source ~/.bashrc
 ```
 
-Optional: you may need to update NPM:
+Install [NPM](https://www.npmjs.com/):
 
 ```bash
 apt install npm
+```
+
+Update NPM to v9.6.5:
+
+```bash
+npm install -g npm@9.6.5
 ```
 
 ### Foundry
