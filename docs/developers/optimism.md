@@ -109,13 +109,19 @@ apt install npm
 
 ### Foundry
 
-Install Foundry:
+Download the Foundry script execute it to set up environment:
 
 ```bash
 curl -L https://foundry.paradigm.xyz/ | bash
 ```
 
 Set path:
+
+```bash
+source /root/.bashrc
+```
+
+Run foundryup to install Foundry (`forge`, `cast`, `anvil`, `chisel`):
 
 ```bash
 source /root/.bashrc
