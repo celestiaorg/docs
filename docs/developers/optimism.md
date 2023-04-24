@@ -182,7 +182,7 @@ export L2OO_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 Start the network by running:
 
 ```bash
-make devnet-up-deploy 
+make devnet-up 
 ```
 
 This starts up the layer 1 (ETH), layer 2 (`op-geth`), data availability
