@@ -18,6 +18,11 @@ const filesToImport = [
     url: 'https://raw.githubusercontent.com/celestiaorg/orchestrator-relayer/main/docs/relayer.md',
     fileName: 'qgb-relayer.md',
   },
+  // TODO: add introduction to QGB section
+  // {
+  //   url: 'https://raw.githubusercontent.com/celestiaorg/orchestrator-relayer/main/README.md',
+  //   fileName: 'qgb-intro.md',
+  // },
 ];
 
 async function importMarkdown(file) {

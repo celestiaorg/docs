@@ -134,6 +134,12 @@ const sidebars = {
                 },
                 collapsed: false,
                 items: [
+                    // TODO: add intro section
+                    // {
+                    //   type: "doc",
+                    //   label: "Introduction",
+                    //   id: "nodes/qgb-intro",
+                    // },
                     {
                       type: "doc",
                       label: "Orchestrator",
