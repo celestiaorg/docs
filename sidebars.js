@@ -7,7 +7,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Participate",
+      label: "Networks",
       link: {
         type: "doc",
         id: "nodes/participate"
@@ -73,7 +73,7 @@ const sidebars = {
       link: {
         type: 'generated-index'
       },
-      collapsed: false,
+      collapsed: true,
       items: [
       {
         type: "category",
@@ -81,7 +81,7 @@ const sidebars = {
         link: {
           type: 'generated-index',
         },
-        collapsed: false,
+        collapsed: true,
         items: [
           { 
             type: "doc", 
@@ -106,7 +106,7 @@ const sidebars = {
         link: {
           type: 'generated-index'
         },
-        collapsed: false,
+        collapsed: true,
         items: [
           {
             type: "doc",
@@ -133,7 +133,7 @@ const sidebars = {
       link: {
         type: 'generated-index'
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "category",
@@ -141,7 +141,7 @@ const sidebars = {
           link: {
             type: 'generated-index',
           },
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               type: "doc",
@@ -161,7 +161,7 @@ const sidebars = {
           link: {
             type: 'generated-index'
           },
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               type: "doc",
