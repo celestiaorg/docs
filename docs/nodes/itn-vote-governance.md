@@ -12,7 +12,7 @@ proposals via the tutorial [here](https://docs.celestia.org/nodes/celestia-app-c
 
 ## Judging Criteria
 
-1. Full points if you vote on the governance propsoal.
+1. Full points if you vote on the governance proposal.
 2. No points if you do not vote.
 
 ## How to Submit
