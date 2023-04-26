@@ -219,10 +219,10 @@ forge test -vv
 Now that we've tested the contract, let's try deploying it locally using
 [Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html).
 
-To do so, update the deloyment script at `script/Contracts.s.sol` with the
+To do so, update the deloyment script at `script/Contract.s.sol` with the
 following code:
 
-```solidity title="script/Contracts.s.sol"
+```solidity title="script/Contract.s.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
