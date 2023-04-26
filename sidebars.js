@@ -141,7 +141,7 @@ const sidebars = {
                     },
                     {
                       type: "doc",
-                      label: "Orchestrator",
+                      label: "QGB Orchestrator",
                       id: "nodes/qgb-orchestrator",
                     },
                     {
@@ -151,7 +151,7 @@ const sidebars = {
                     },
                     {
                       type: "doc",
-                      label: "Relayer",
+                      label: "QGB Relayer",
                       id: "nodes/qgb-relayer",
                     },
                     {
