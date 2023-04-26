@@ -1,4 +1,4 @@
-# QGB Relayer
+# Relayer
 
 <!-- markdownlint-disable MD013 -->
 
@@ -93,8 +93,8 @@ Usage:
   qgb relayer start <flags> [flags]
 
 Flags:
-  -c, --celes-grpc string          Specify the grpc address (default "localhost:9090")
-  -t, --celes-http-rpc string      Specify the rest rpc address (default "http://localhost:26657")
+  -c, --celes-grpc string          Specify the grpc address without the protocol prefix (default "localhost:9090")
+  -t, --celes-rpc string           Specify the rest rpc address (default "tcp://localhost:26657")
   -a, --contract-address string    Specify the contract at which the qgb is deployed
   -d, --evm-address string         Specify the EVM account address to use for signing (Note: the private key should be in the keystore)
   -z, --evm-chain-id uint          Specify the evm chain id (default 5)
