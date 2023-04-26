@@ -16,5 +16,7 @@ and [here](https://blog.celestia.org/celestiums/).
 In order to utilize the QGB orchestrator-relayer, users need to set up the
 appropriate environment and tools. This involves installing Go 1.20.2, cloning
 the repository, and installing the QGB CLI. Once set up, users can run the
-orchestrator if they are a Celestia-app validator or deploy a new QGB contract
-and run a relayer to post commitments on an EVM chain.
+orchestrator if they are a `celestia-app` validator.
+However, if they're a Celestium and want to target a new EVM chain,
+they can deploy a new QGB contract and run a relayer to post
+commitments on that chain.
