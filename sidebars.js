@@ -150,6 +150,16 @@ const sidebars = {
                       label: "Key management",
                       id: "nodes/qgb-keys",
                     },
+                    {
+                      type: "doc",
+                      label: "QGB Relayer",
+                      id: "nodes/qgb-relayer",
+                    },
+                    {
+                      type: "doc",
+                      label: "Deploy the QGB contract",
+                      id: "nodes/qgb-deploy",
+                    }
                 ]
               }
             ]
@@ -163,26 +173,6 @@ const sidebars = {
             type: "doc", 
             label: "IBC Relayer", 
             id: "nodes/ibc-relayer" 
-          }
-        ]
-      },
-      {
-        type: "category",
-        label: "Celestiums (QGB)",
-        link: {
-          type: 'generated-index'
-        },
-        collapsed: false,
-        items: [
-          {
-            type: "doc",
-            label: "QGB Relayer",
-            id: "nodes/qgb-relayer",
-          },
-          {
-            type: "doc",
-            label: "Deploy the QGB contract",
-            id: "nodes/qgb-deploy",
           }
         ]
       },
