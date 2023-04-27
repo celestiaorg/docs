@@ -61,3 +61,18 @@ new keys in order to have a successful upgrade.
 Those two keys will need to be added to 2 new flags on `celestia-app`:
 
 - `--evm-address`: This flag should contain a `0x` EVM address.
+
+### Blockspace race hardfork
+
+The Blockspace Race hardfork process will follow
+a different workflow than regular Tendermint and Cosmos-SDK
+network upgrades.
+
+Instead of using tools like Cosmovisor and swapping binaries at block
+activation number, validators will be upgrading to new binaries
+ahead of the hardfork block number. The new binaries will have
+the new logic and features for activating when the target block
+number for the hardfork is reached.
+
+To prepare for the hardfork, please upgrade to the new `celestia-app`
+version referenced in the Blockspace Race task.
