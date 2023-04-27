@@ -118,11 +118,7 @@ security is a 1 of N honesty assumption.
 
 Data availability is about verifying that transaction data for a new block is
 public and available. In contrast, data storage involves storing and accessing
-past transaction data from old blocks. Data availability is fundamental to the
-security of a blockchain because it requires an honest majority assumption,
-whereas data storage only requires a 1 of N assumption. So, it is crucial to
-solve the data availability problem, while the problem with data storage is
-less critical to blockchain security.
+past transaction data from old blocks.
 
 ## Where does blockchain state fit into this?
 
