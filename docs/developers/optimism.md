@@ -64,7 +64,7 @@ Next, clone the repo:
 cd $HOME
 git clone https://github.com/celestiaorg/optimism
 cd optimism
-git checkout celestia
+git checkout celestia-develop
 ```
 
 ### asdf
