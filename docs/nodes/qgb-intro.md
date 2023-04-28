@@ -69,7 +69,8 @@ The following sections in this category presume you have the following setup:
 
 ## Next steps
 
-1. [QGB Orchestrator](../qgb-orchestrator)
-2. [Key management](../qgb-keys)
-3. [QGB Relayer](../qgb-relayer)
-4. [Deploy the QGB contract](../qgb-deploy)
+1. [Install the binary](../qgb-binary)
+2. [QGB Orchestrator](../qgb-orchestrator)
+3. [Key management](../qgb-keys)
+4. [QGB Relayer](../qgb-relayer)
+5. [Deploy the QGB contract](../qgb-deploy)

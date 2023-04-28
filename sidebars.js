@@ -141,6 +141,11 @@ const sidebars = {
                     },
                     {
                       type: "doc",
+                      label: "Install the binary",
+                      id: "nodes/qgb-binary",
+                    },
+                    {
+                      type: "doc",
                       label: "QGB Orchestrator",
                       id: "nodes/qgb-orchestrator",
                     },

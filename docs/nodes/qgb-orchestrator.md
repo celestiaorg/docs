@@ -29,7 +29,7 @@ I[2023-04-26|00:04:28.175] waiting for routing table to populate        targetnu
 
 ### Install the QGB binary
 
-Make sure to have the QGB binary installed. Check [here](https://github.com/celestiaorg/orchestrator-relayer/blob/main/README.md) for more details.
+Make sure to have the QGB binary installed. Check [here](./qgb-binary.md) for more details.
 
 ### Init the store
 
