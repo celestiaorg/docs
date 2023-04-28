@@ -1,6 +1,7 @@
 # QGB Orchestrator
 
 <!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD010 -->
 
 The role of the orchestrator is to sign attestations using its corresponding validator EVM private key. These attestations are generated within the QGB module of the Celestia-app state machine. To learn more about what attestations are, you can refer to this [link](https://github.com/celestiaorg/celestia-app/tree/main/x/qgb).
 
@@ -109,7 +110,7 @@ Before running the orchestrator, make sure to have the node indexing enabled. To
 # Options:
 #   1) "null"
 #   2) "kv" (default) - the simplest possible indexer, backed by key-value storage (defaults to levelDB; see DBBackend).
-# 	- When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
+# 		- When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
 #   3) "psql" - the indexer services backed by PostgreSQL.
 # When "kv" or "psql" is chosen "tx.height" and "tx.hash" will always be indexed.
 indexer = "kv"
