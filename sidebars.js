@@ -109,9 +109,59 @@ const sidebars = {
         collapsed: true,
         items: [
           {
-            type: "doc",
-            label: "Validator node",
-            id: "nodes/validator-node",
+            type: "category",
+            label: "Validators",
+            link: {
+              type: 'generated-index'
+            },
+            collapsed: false,
+            items: [
+              {
+                type: "doc",
+                label: "Validator node",
+                id: "nodes/validator-node",
+              },
+              {
+                type: "category",
+                label: "QGB",
+                link: {
+                  type: 'generated-index'
+                },
+                collapsed: false,
+                items: [
+                    {
+                      type: "doc",
+                      label: "Quantum Gravity Bridge",
+                      id: "nodes/qgb-intro",
+                    },
+                    {
+                      type: "doc",
+                      label: "Install the binary",
+                      id: "nodes/qgb-binary",
+                    },
+                    {
+                      type: "doc",
+                      label: "QGB Orchestrator",
+                      id: "nodes/qgb-orchestrator",
+                    },
+                    {
+                      type: "doc",
+                      label: "Key management",
+                      id: "nodes/qgb-keys",
+                    },
+                    {
+                      type: "doc",
+                      label: "QGB Relayer",
+                      id: "nodes/qgb-relayer",
+                    },
+                    {
+                      type: "doc",
+                      label: "Deploy the QGB contract",
+                      id: "nodes/qgb-deploy",
+                    }
+                ]
+              }
+            ]
           },
           { 
             type: "doc", 
@@ -120,9 +170,9 @@ const sidebars = {
           },
           { 
             type: "doc", 
-            label: "Relayer", 
-            id: "nodes/relayer" 
-          },
+            label: "IBC Relayer", 
+            id: "nodes/ibc-relayer" 
+          }
         ]
       },
     ]
