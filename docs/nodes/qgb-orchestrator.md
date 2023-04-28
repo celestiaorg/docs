@@ -235,3 +235,54 @@ celestia-appd query staking validator <validator_valoper_address>
 ```
 
 Now, you can restart the orchestrator, and it should start signing.
+
+#### Systemd service
+
+If you want to start the orchestrator as a `systemd` service, you could use the following:
+
+- Make sure you have the store initialized and the EVM address private key imported. Check the above sections for how to do that.
+- Put the following configuration under: `/etc/systemd/system/orchestrator.service`:
+
+```text
+[Unit]
+Description=QGB orchestrator service
+After=network.target
+[Service]
+Type=simple
+ExecStart=<absolute_path_to_qgb_binary> orchestrator start -d <evm_address> --evm-passphrase <evm_passphrase> --celes-grpc <grpc_endpoint> -t <rpc_endpoint> -b <bootstrappers_list>
+LimitNOFILE=infinity
+LimitCORE=infinity
+Restart=always
+RestartSec=1
+StartLimitBurst=5
+User=<username>
+StandardError=journal
+StandardOutput=journal
+TTYPath=/dev/tty0
+[Install]
+WantedBy=multi-user.target
+```
+
+- Start the orchestrator service using:
+
+```shell
+sudo systemctl start orchestrator
+```
+
+- Follow the logs to see if everything is running correctly:
+
+```shell
+sudo journalctl -f -u orchestrator
+```
+
+And you should see the orchestrator signing.
+
+##### Issue: Journald not outputting the logs
+
+Sometimes, `journald` wouldn't load the logs from the specified service. An easy fix would be to restart it:
+
+```shell
+sudo systemctl restart systemd-journald
+```
+
+Then, you should be able to follow the logs as expected.
