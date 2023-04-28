@@ -1,22 +1,75 @@
-# Introducing the Quantum Gravity Bridge (QGB) Orchestrator-Relayer
+# Quantum Gravity Bridge
 
-The QGB orchestrator-relayer is a crucial component in the implementation
-of the Quantum Gravity Bridge. It is designed to streamline communication
-between different blockchain networks, specifically between Celestia and
-Ethereum Virtual Machine (EVM) chains. The orchestrator is responsible
-for signing QGB attestations, while the relayer ensures that these attestations
-are relayed to the target EVM chain.
+The Quantum Gravity Bridge, covered previously in the Celestia blog post
+found [here](https://blog.celestia.org/celestiums/), introduces the concept
+of a Celestium, which is an EVM L2 rollup that uses Celestia for data availability
+but settles on Ethereum (or any other EVM L1 chain).
 
-You can view the `orchestrator-relayer` repository
-[here](https://github.com/celestiaorg/orchestrator-relayer).
-Read more about the QGB
-[here](https://github.com/celestiaorg/quantum-gravity-bridge/tree/76efeca0be1a17d32ef633c0fdbd3c8f5e4cc53f#how-it-works)
-and [here](https://blog.celestia.org/celestiums/).
+This page and following tutorials will go over the Quantum Gravity
+Bridge and how Validators on Celestia can run it.
 
-In order to utilize the QGB orchestrator-relayer, users need to set up the
-appropriate environment and tools. This involves installing Go 1.20.2, cloning
-the repository, and installing the QGB CLI. Once set up, users can run the
-orchestrator if they are a `celestia-app` validator.
-However, if they're a Celestium and want to target a new EVM chain,
-they can deploy a new QGB contract and run a relayer to post
-commitments on that chain.
+If you're looking to learn more, you can view the
+`orchestrator-relayer` repository
+[here](https://github.com/celestiaorg/orchestrator-relayer), and
+read more about the QGB
+[here](https://github.com/celestiaorg/quantum-gravity-bridge#how-it-works).
+
+## Overview
+
+The Quantum Gravity Bridge (QGB),
+consists of two components: an [Orchestrator](../qgb-orchestrator)
+and a [Relayer](../qgb-relayer).
+
+In the following diagram, we show how a celestium would post the data to
+Celestia. This will later be attested to by the Celestia validator set, and
+eventually posted to the target EVM chain (in this case, Ethereum). Then,
+the celestium, or any party, will be able to verify the attestations, i.e. valsets
+and data commitments, directly on the EVM chain on the QGB smart contract. You can
+reference the QGB smart contract
+[here](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
+
+![QGB-Architecture](/img/qgb/qgb-diagram.png)
+
+The specification of the QGB `Valset`s, which track the Celestia validator set
+changes, can be found in this [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
+
+The QGB data commitments, which represent commitments over sets of blocks
+defined by a data commitment window, are
+discussed more in-depth in the following
+[ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
+
+The Orchestrator is part of the Validator setup and works as follows:
+
+* Celestia App: creates an attestation on the state machine level that needs to
+  be signed
+* The Orchestrator: queries the attestation, signs it, then submits the signature
+  back to Celestia App
+
+The diagram below goes over this process.
+
+![QGB-Orchestrator](/img/qgb/qgb-orchestrator.png)
+
+The Relayer deploys the QGB smart contract first to the EVM L1 chain (if it is
+not deployed before), and then relays the attestations from Celestia App to the
+EVM L1 Chain.
+
+The diagram below goes over this process.
+
+![QGB-Relayer](/img/qgb/qgb-relayer.png)
+
+You can learn more about the mechanics behind the Relayer in this
+[ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-004-qgb-relayer-security.md).
+
+## Setting up the QGB
+
+The following sections in this category presume you have the following setup:
+
+* A Celestia App [Validator](../validator-node) running
+* A Celestia Node - [Bridge Node](../bridge-node) running
+
+## Next steps
+
+1. [QGB Orchestrator](../qgb-orchestrator)
+2. [Key management](../qgb-keys)
+3. [QGB Relayer](../qgb-relayer)
+4. [Deploy the QGB contract](../qgb-deploy)

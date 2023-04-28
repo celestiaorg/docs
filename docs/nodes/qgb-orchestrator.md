@@ -14,6 +14,16 @@ The orchestrator does the following:
 4. Then, the orchestrator pushes its signature to the P2P network it is connected to, via adding it as a DHT value.
 5. Listen for new attestations and go back to step 2.
 
+The orchestrator connects to a separate P2P network than the consensus or the data availability one. So, we will provide bootstrappers for that one.
+
+This means that even if the consensus node is already connected to the consensus network, if the orchestrator doesn't start with a list of bootstrapper to its specific network, then, it will not work and will output the following logs:
+
+```text
+I[2023-04-26|00:04:08.175] waiting for routing table to populate        targetnumberofpeers=1 currentcount=0
+I[2023-04-26|00:04:18.175] waiting for routing table to populate        targetnumberofpeers=1 currentcount=0
+I[2023-04-26|00:04:28.175] waiting for routing table to populate        targetnumberofpeers=1 currentcount=0
+```
+
 ## How to run
 
 ### Install the QGB binary
@@ -236,6 +246,8 @@ celestia-appd query staking validator <validator_valoper_address>
 
 Now, you can restart the orchestrator, and it should start signing.
 
+Note: A validator set change is triggered if more than 5% of the total staking power of the network changes (0.5% for BSR). This means that even if you change your EVM address, and you don't see your orchestrator signing, it's alright. Just wait until the validator set changes, and then your orchestrator will automatically start signing.
+
 #### Systemd service
 
 If you want to start the orchestrator as a `systemd` service, you could use the following:
@@ -247,6 +259,7 @@ If you want to start the orchestrator as a `systemd` service, you could use the 
 [Unit]
 Description=QGB orchestrator service
 After=network.target
+
 [Service]
 Type=simple
 ExecStart=<absolute_path_to_qgb_binary> orchestrator start -d <evm_address> --evm-passphrase <evm_passphrase> --celes-grpc <grpc_endpoint> -t <rpc_endpoint> -b <bootstrappers_list>
@@ -259,6 +272,7 @@ User=<username>
 StandardError=journal
 StandardOutput=journal
 TTYPath=/dev/tty0
+
 [Install]
 WantedBy=multi-user.target
 ```

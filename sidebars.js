@@ -136,7 +136,7 @@ const sidebars = {
                 items: [
                     {
                       type: "doc",
-                      label: "Introduction",
+                      label: "Quantum Gravity Bridge",
                       id: "nodes/qgb-intro",
                     },
                     {
