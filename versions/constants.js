@@ -7,6 +7,7 @@ const constants = Object.freeze({
     arabicaChainId: "arabica-6",
     rollkitVersion: "v0.7.3",
     localCelestiaDevnetVersion: "v0.8.2",
+    golangQGB: "1.20.2",
   });
   export default constants;
   
