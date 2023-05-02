@@ -279,8 +279,8 @@ You have successfully set up a bridge node that is syncing with the network.
 
 ### Setup QGB keys
 
-This step helps get you prepared for when the Quantum Gravity Bridge
-is ready to be deployed. You would still need to go through this step
+This step helps get you prepared for when the Quantum Gravity Bridge relayer
+is deployed by Celestia Labs. You would still need to go through this step
 before running a validator to configure an extra key.
 
 * `--evm-address`: This flag should contain a `0x` EVM address. Here,
@@ -358,3 +358,9 @@ txhash: <tx-hash>
 ```
 
 You should now be able to see your validator from a block explorer like [here](https://celestia.explorers.guru)
+
+## Run the QGB Orchestrator
+
+Now that the QGB will be enabled for BSR,  we should run the QGB
+orchestrator to be able to sign attestations. To run it, please
+check the docs [here](https://docs.celestia.org/nodes/qgb-orchestrator/#install-the-qgb-binary).
