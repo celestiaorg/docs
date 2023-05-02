@@ -350,6 +350,94 @@ celestia block height: 3114; tx index: 0
 optimism block data on celestia: [00191cef8fb52cf322b77694ff5a92149800000000020b78dadae1c7f0c37b015fdd84970dfbe3ff4ab7abe8b9083c94aebe7df77e705bba47f8e72b762fadcecd6b62695920e9eee3e5369b3fd265726ebcfbfcbf3f5fcde3bd6960f53b7da1c147ae4fefe689b724ff54c83a0031ef93479f5a75f08e6a9bbd0b755c220e4ed8b3fd5c9cfc1b9ed0ca69dcabbf5cbd274aac793950f38ef6bd59e551e56d77fcf7aabd9287abd8af7b9de39cb3235732c58be7034774bf54134beb828c19b15f3553a74b64ffbd3a2fe0e8cbb77b0217dccb4f68de9774fbac5efaed040190797950f3e22bafc9d7884cf616d87db6a46ace99b277252dd36f9c7d5ebabfd46d5a71bec9872696b605173ccc153d4a7befbd69f64f6db25cc7dd59f86d5de586b457f7d759f73fe57fde0c32af006a5eebdcfb85d385b3ef3d158fbccaf263cb8b35cb2a58cc0f083f5cf3b742d555f3fe2362cd2b829a37c9c9446fedbf8d911f3f86cc79c335e960f26d5eef25e735f7dd9b926019dcf1ed5b134bfb02416e36be3b277635b757f36f2bff9260ddcf1f20132e5071afe8bcdd9ccdcffda440e69540cddbb548ecdd73863673ab122e2d36d69dfc8bd71be61dbae235cf63e3a9a0121141b726968e051d2b7ef076b11f3c9964b4fee0acfb93777fbd37d94dfdecfdd6836af39ebaaff58c07995706352fdf9259b773cfd42e0ed168914542c54ca28147969b18b7987ef233fcd41c1cde44ac79150700010000fffff649400701]
 ```
 
+## Deploying a smart contract
+
+First, review the [devnet page](https://github.com/celestiaorg/optimism/blob/celestia/specs/meta/devnet.md)
+with information about the faucet accounts. You will need a funded
+account to deploy your smart contract.
+
+Next, clone the `gm-portal` from Github and start the frontend:
+
+```bash
+cd $HOME
+git clone https://github.com/jcstein/gm-portal.git
+cd gm-portal/frontend
+yarn && yarn dev
+```
+
+In a new terminal instance, set the private key for the faucet as a variable:
+
+```bash
+export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+```
+
+Now, change into the `gm-portal/contracts` directory in the same terminal and deploy
+the contract using Foundry:
+
+```bash
+cd $HOME/gm-portal/contracts
+forge script script/WavePortal.s.sol:WavePortalScript --rpc-url http://localhost:9545 --private-key $PRIVATE_KEY --broadcast
+```
+
+In the output of the deployment, find the contract address and set it as a variable:
+
+```bash
+export CONTRACT_ADDRESS=<your contract address from the output above>
+```
+
+Next, you're ready to interact with the contract from your terminal!
+
+First, send a "gm" to the contract:
+
+```bash
+cast send $CONTRACT_ADDRESS \
+"wave(string)" "gm" \
+--private-key $PRIVATE_KEY \
+--rpc-url http://localhost:9545
+```
+
+Now that you've posted to the contract, you can read all "waves" (GMs) from the contract with
+this command:
+
+```bash
+cast call $CONTRACT_ADDRESS "getAllWaves()" --rpc-url http://localhost:9545
+```
+
+Next, query the total number of waves, which will be returned as a hex value:
+
+```bash
+cast call $CONTRACT_ADDRESS "getTotalWaves()" --rpc-url http://localhost:9545
+```
+
+In order to interact with the contract on the frontend, you'll need to fund an account that
+you have in your Ethereum wallet. Transfer to an external account with this command:
+
+```bash
+export RECEIVER=<receiver ETH address>
+cast send --private-key $PRIVATE_KEY $RECEIVER --value 1ether --rpc-url http://localhost:9545
+```
+
+If you are in a different terminal than the one you set the private key in, you may need to
+set it again.
+
+### Update the frontend
+
+Next, you will need to update a few things before you can interact with the contract on the frontend:
+
+1. Change the contract address on `gm-portal/frontend/src/App.tsx` to your contract address
+2. Match the chain info on `gm-portal/frontend/src/main.tsx` with the chain config of your L2
+3. If you changed the contract, update the ABI in `gm-portal/frontend/WavePortal.json` from
+`gm-portal/contracts/out/WavePortal.sol/WavePortal.json`. This can be done with:
+
+```bash
+cd $HOME
+cp gm-portal/contracts/out/WavePortal.sol/WavePortal.json gm-portal/frontend`
+```
+
+### Interact with the frontend
+
+Now, login with your wallet that you funded, and post a GM on your GM portal!
+
 ## Next steps
 
 There are many possibilities of what could be built with this stack.
