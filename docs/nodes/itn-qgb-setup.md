@@ -1,10 +1,10 @@
-# Setup Your QGB Orchestrator
+# Setup your QGB Orchestrator
 
 ## Description
 
 Setup your QGB Orchestrator to run alongside your validator node.
 
-Docs on how to set it up are found [here](https://docs.celestia.org/nodes/qgb-orchestrator/#how-to-run)
+Docs on how to set it up are found [here](../nodes/qgb-orchestrator/#how-to-run)
 
 ## Directions
 
@@ -12,12 +12,12 @@ Docs on how to set it up are found [here](https://docs.celestia.org/nodes/qgb-or
 2. After successfully initializing it, share your EVM address
   on the Knack portal submission page for this task.
 
-## Judging Criteria
+## Judging criteria
 
 1. Full points if you successfully run the QGB orchestrator.
 2. No points if you do not run the QGB orchestrator.
 
-## How to Submit
+## How to submit
 
 Link to submit can be found [here](https://celestia.knack.com/theblockspacerace#testnet-portal).
 
