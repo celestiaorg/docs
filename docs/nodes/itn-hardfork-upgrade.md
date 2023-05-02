@@ -5,7 +5,7 @@
 In this phase, the Celestia Network will undergo a Hardfork Upgrade
 as an exercise for all Validators.
 
-You can read more about the our hardfork process [here](../nodes/hardfork-process#blockspace-race-hardfork).
+You can read more about the our hardfork process [here](https://docs.celestia.org/nodes/hardfork-process#blockspace-race-hardfork).
 
 ## Directions
 
