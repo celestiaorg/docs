@@ -1,4 +1,4 @@
-# Upgrade and Restart Your Bridge Node
+# Upgrade and restart your bridge node
 
 ## Description
 
@@ -7,21 +7,21 @@ can find the latest version release [here](https://github.com/celestiaorg/celest
 
 Update your full consensus node to the latest release. You
 can find the latest version release [here](https://github.com/celestiaorg/celestia-app/releases).
-Note that your Bridge node will not work without upgrading 
+Note that your Bridge node will not work without upgrading
 your full consensus node.
 
 ## Directions
 
-1. Compile the latest celestia-node version release and 
+1. Compile the latest celestia-node version release and
 celestia-app version release.
-3. Restart your nodes with the latest compiled releases.
+2. Restart your nodes with the latest compiled releases.
 
-## Judging Criteria
+## Judging criteria
 
 1. Full points if you are on the latest version release.
 2. No points if you are not.
 
-## How to Submit
+## How to submit
 
 Please submit a screenshot of your terminal, showing the
 command `celestia version` and its output. The output looks

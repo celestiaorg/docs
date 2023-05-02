@@ -1,11 +1,11 @@
-# Upgrade Your Validator Node for the Hardfork
+# Upgrade your validator node for the hardfork
 
 ## Description
 
 In this phase, the Celestia Network will undergo a Hardfork Upgrade
 as an exercise for all Validators.
 
-You can read more about the our hardfork process [here](https://docs.celestia.org/nodes/hardfork-process#blockspace-race-hardfork).
+You can read more about the our hardfork process [here](../nodes/hardfork-process#blockspace-race-hardfork).
 
 ## Directions
 
@@ -16,13 +16,13 @@ You can read more about the our hardfork process [here](https://docs.celestia.or
   new binaries.
 3. Maintain high validator uptime after the hardfork activates.
 
-## Judging Criteria
+## Judging criteria
 
 1. Full points if you have upgraded to v0.13.0 prior to the
   hardfork block number.
 2. No points if you did not upgrade in time.
 
-## How to Submit
+## How to submit
 
 Please submit your `celestiavaloper` operator address.
 

@@ -1,4 +1,4 @@
-# Upgrade and Restart Your Light or Full Storage Node
+# Upgrade and restart your light or full storage node
 
 ## Description
 
@@ -10,12 +10,12 @@ can find the latest version release [here](https://github.com/celestiaorg/celest
 1. Compile the latest celestia-node version release.
 2. Restart your node with the latest compiled release.
 
-## Judging Criteria
+## Judging criteria
 
 1. Full points if you are on the latest version release.
 2. No points if you are not.
 
-## How to Submit
+## How to submit
 
 Please submit a screenshot of your terminal, showing the
 command `celestia version` and its output. The output looks
