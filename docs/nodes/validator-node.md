@@ -361,6 +361,6 @@ You should now be able to see your validator from a block explorer like [here](h
 
 ## Run the QGB Orchestrator
 
-Now that the QGB will be enabled for Blockspace Race (BSR),  all validators will need to run the QGB
-orchestrator to be able to sign attestations. To run it, please
-check the docs [here](https://docs.celestia.org/nodes/qgb-orchestrator/#how-to-run).
+Now that the QGB will be enabled for Blockspace Race (BSR), all validators
+will need to run the QGB orchestrator to be able to sign attestations.
+To run it, please check the docs [here](https://docs.celestia.org/nodes/qgb-orchestrator/#how-to-run).
