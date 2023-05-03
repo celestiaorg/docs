@@ -4,8 +4,9 @@ sidebar_label: Optimism & Celestia tutorial
 
 # Optimism & Celestia tutorial
 
-*This tutorial will show how existing blockchains, such as Optimism,
-can integrate with Celestia to go modular.*
+*This tutorial will show how existing blockchain frameworks,
+such as [the OP Stack](https://stack.optimism.io/)
+can integrate with Celestia.*
 
 :::caution
 This tutorial was tested on a machine with 8GB RAM, 160 GB SSD,
@@ -51,6 +52,36 @@ If you'd like to go modular, bedrock has
 made it easy to swap this out!
 
 ## Dependency setup
+
+### Pick your node type
+
+Using Celestia and OP stack, you have the option to either
+run a light node of your own on your `$HOME` directory or a
+`local-celestia-devnet`, which will give you a local devnet
+to test things out with.
+
+#### Using a light node
+
+If you choose to use your own node store, the light node
+must be **fully synced** and **funded** for you to be able to submit
+and retreive `PayForBlobs`.
+
+If it is not synced, you will run into [errors](https://github.com/celestiaorg/celestia-node/issues/2151).
+
+Visit the [Blockspace Race page](../../nodes/blockspace-race/)
+to visit the faucet.
+
+When using your own node store, the `$HOME` directory is just the default, and can be changed in
+`optimism/ops-bedrock/docker-compose.yml` if you'd like.
+
+By default, the node will run with the account named
+`my_celes_key`.
+
+#### Using a local devnet
+
+If you'd like to use the `local-celestia-devnet`, open up the
+`optimism/ops-bedrock/docker-compose.yml` file in your text editior
+and uncomment lines 18-30 and 168-170.
 
 ### Environment setup and Golang installation
 
@@ -374,10 +405,12 @@ export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2f
 Now, change into the `gm-portal/contracts` directory in the same terminal and deploy
 the contract using Foundry:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 cd $HOME/gm-portal/contracts
 forge script script/WavePortal.s.sol:WavePortalScript --rpc-url http://localhost:9545 --private-key $PRIVATE_KEY --broadcast
 ```
+<!-- markdownlint-enable MD013 -->
 
 In the output of the deployment, find the contract address and set it as a variable:
 
@@ -396,7 +429,8 @@ cast send $CONTRACT_ADDRESS \
 --rpc-url http://localhost:9545
 ```
 
-Now that you've posted to the contract, you can read all "waves" (GMs) from the contract with
+Now that you've posted to the contract, you can read all "waves" (GMs) from the
+contract with
 this command:
 
 ```bash
@@ -409,24 +443,29 @@ Next, query the total number of waves, which will be returned as a hex value:
 cast call $CONTRACT_ADDRESS "getTotalWaves()" --rpc-url http://localhost:9545
 ```
 
-In order to interact with the contract on the frontend, you'll need to fund an account that
-you have in your Ethereum wallet. Transfer to an external account with this command:
+In order to interact with the contract on the frontend, you'll need to fund an
+account thatyou have in your Ethereum wallet. Transfer to an external account
+with this command:
 
 ```bash
 export RECEIVER=<receiver ETH address>
 cast send --private-key $PRIVATE_KEY $RECEIVER --value 1ether --rpc-url http://localhost:9545
 ```
 
-If you are in a different terminal than the one you set the private key in, you may need to
-set it again.
+If you are in a different terminal than the one you set the private key in, you
+may need to set it again.
 
 ### Update the frontend
 
-Next, you will need to update a few things before you can interact with the contract on the frontend:
+Next, you will need to update a few things before you can interact with the
+contract on the frontend:
 
-1. Change the contract address on `gm-portal/frontend/src/App.tsx` to your contract address
-2. Match the chain info on `gm-portal/frontend/src/main.tsx` with the chain config of your L2
-3. If you changed the contract, update the ABI in `gm-portal/frontend/WavePortal.json` from
+1. Change the contract address on `gm-portal/frontend/src/App.tsx` to your
+contract address
+2. Match the chain info on `gm-portal/frontend/src/main.tsx` with the chain
+config of your L2
+3. If you changed the contract, update the ABI in
+`gm-portal/frontend/WavePortal.json` from
 `gm-portal/contracts/out/WavePortal.sol/WavePortal.json`. This can be done with:
 
 ```bash
