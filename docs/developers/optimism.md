@@ -219,7 +219,7 @@ make devnet-up
 
 This starts up the layer 1 (ETH), layer 2 (`op-geth`), data availability
 layer (Celestia), the sequencer (`op-node`), batch submitter (`op-batcher`),
-intermediate-state root (ISR) service (`op-proposer`).
+state commitment service (`op-proposer`).
 
 :::tip optional
 
