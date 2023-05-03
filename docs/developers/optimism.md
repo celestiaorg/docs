@@ -82,7 +82,7 @@ By default, the node will run with the account named
 
 If you'd like to use the `local-celestia-devnet`, open up the
 `optimism/ops-bedrock/docker-compose.yml` file in your text editior
-and uncomment lines 18-30 and 168-170.
+and uncomment lines 18-30 and 159-161.
 
 ### Environment setup and Golang installation
 
