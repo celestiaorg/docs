@@ -31,11 +31,14 @@ Celestia is a shared security (DA and consensus) layer 1 blockchain.
 This tutorial will guide you through how start your own devnet with a
 modified version of `optimism-bedrock` that uses Celestia as a DA layer.
 
-The handling of data is accomplished in two ways. First, data is bundled
-by the `op-batcher`. Second, it is read back by `op-node`
-When the batcher writes data, `op-node` simply reads it back from the data
-layer. Previously, `op-node` was reading from calldata on Ethereum, but
-now it reads data from Celestia.
+The handling of data is accomplished in two ways. First, data is written
+to the data availability (DA) layer i.e. in this case Celestia, then the
+data commitment is written to the `op-batcher`. When reading `op-node`
+simply reads the data back from the DA layer by reading the
+data commitment from the `op-batcher` first, then reading the
+data from the DA layer using the data commitment. Hence, while
+previously `op-node` was reading from calldata on Ethereum,
+but now it reads data from Celestia.
 
 There are a few tools involved in the data handling process. `op-batcher`
 batches up rollup blocks and posts them to Ethereum. `op-geth` handles
