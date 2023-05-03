@@ -39,7 +39,7 @@ now it reads data from Celestia.
 
 There are a few tools involved in the data handling process. `op-batcher`
 batches up rollup blocks and posts them to Ethereum. `op-geth` handles
-execution, while `op-proposer` is responsible for intermediate state
+execution, while `op-proposer` is responsible for state commitment
 submission.
 
 By using Celestia as a DA layer, existing L2s can switch from posting
