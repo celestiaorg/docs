@@ -32,7 +32,7 @@ This tutorial will guide you through how start your own devnet with a
 modified version of `optimism-bedrock` that uses Celestia as a DA layer.
 
 The handling of data is accomplished in two ways. First, data is bundled
-by the `op-batcher`. Second, it is written by either `op-node` or `rollup-node`.
+by the `op-batcher`. Second, it is read back by `op-node`
 When the batcher writes data, `op-node` simply reads it back from the data
 layer. Previously, `op-node` was reading from calldata on Ethereum, but
 now it reads data from Celestia.
