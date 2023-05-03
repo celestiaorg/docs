@@ -53,7 +53,7 @@ made it easy to swap this out!
 
 ## Dependency setup
 
-### Pick your node type
+<!-- ### Pick your node type
 
 Using Celestia and OP stack, you have the option to either
 run a light node of your own on your `$HOME` directory or a
@@ -82,7 +82,7 @@ By default, the node will run with the account named
 
 If you'd like to use the `local-celestia-devnet`, open up the
 `optimism/ops-bedrock/docker-compose.yml` file in your text editior
-and uncomment lines 18-30 and 159-161.
+and uncomment lines 18-30 and 159-161. -->
 
 ### Environment setup and Golang installation
 
