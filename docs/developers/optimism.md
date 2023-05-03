@@ -71,7 +71,8 @@ If it is not synced, you will run into [errors](https://github.com/celestiaorg/c
 Visit the [Blockspace Race page](../../nodes/blockspace-race/)
 to visit the faucet.
 
-When using your own node store, the `$HOME` directory is just the default, and can be changed in
+When using your own node store, the `$HOME` directory is just the
+default, and can be changed in
 `optimism/ops-bedrock/docker-compose.yml` if you'd like.
 
 By default, the node will run with the account named
