@@ -3,7 +3,7 @@
 ## Description
 
 **NOTE: Only begin this task AFTER the hardfork has been activated
-on block `674000`.**
+on block `446500`.**
 
 Setup your QGB Orchestrator to run alongside your validator node.
 
