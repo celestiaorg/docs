@@ -1,5 +1,7 @@
 # Celestia Modular Meetup Program
 
+![Modular Meetup Banner](/img/Celestia_Modular_meetup2.jpg)
+
 Welcome to the ultimate guide for Modular Meetup organizers! 
 This collection of resources is designed for those enthusiastic about fostering grassroots Modular Meetups with support from Celestia around the world.
 
@@ -39,9 +41,9 @@ Make sure to join the channel #meetups where we will be also giving you the rele
 
 As a meetup organizer, you'll gain access to the Celestia Modular Meetup Program's list of resources. This collection should become your trusted companion in organizing events. Drawing upon the wisdom of seasoned event organizers, this resource is available for you and your co-organizers to explore and learn.
 
-* [Modular Meetup Toolkit]()
-* [Speaker List]()
-* [Meetup Checklist]()
+* [Modular Meetup Toolkit](./modular-meetup-toolkit.md)
+* [Speaker List](./speaker-list.md)
+* [Meetup Guide](./modular-meetup-guide.md)
 
 ## Signup Form
 
