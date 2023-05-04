@@ -8,6 +8,9 @@ sidebar_label: Optimism & Celestia tutorial
   <br />
   <br />
   <a href="https://optimism.io"><img alt="Optimism" src="https://raw.githubusercontent.com/ethereum-optimism/brand-kit/main/assets/svg/OPTIMISM-R.svg" width={600} /></a>
+  <br/>
+  <br/>
+  <br/>
   <h3><a href="https://optimism.io">Optimism</a> is a low-cost and lightning-fast Ethereum L2 blockchain, built with the OP Stack.</h3>
   <br />
   <h3>+</h3>
@@ -18,29 +21,32 @@ sidebar_label: Optimism & Celestia tutorial
 
 ## About the integration
 
-*This tutorial will show how existing blockchain frameworks,
-such as [the OP Stack](https://stack.optimism.io/)
-can integrate with Celestia.*
+*Discover how to integrate existing blockchain frameworks
+like [the OP Stack](https://stack.optimism.io/)
+can integrate with Celestia in this tutorial*
 
 :::tip
-This tutorial was tested on a machine with 8GB RAM, 160 GB SSD,
+Tested on a machine with 8GB RAM, 160 GB SSD,
 Ubuntu 22.10, and a 4 core AMD CPU.
 :::
 
-[Optimism](https://www.optimism.io/) currently uses Ethereum as
+[Optimism](https://www.optimism.io/) uses Ethereum as
 a data availability (DA) layer. Currently, settlement and DA for
 Optimism are on Ethereum, both on-chain. `op-batcher` batches up
 rollup blocks and posts to Ethereum.
 
+
+## Celestia + OP Stack repository
+
+Find the repository for this integration [here](https://github.com/celestiaorg/optimism/)!
+
 ### What are Optimism and the OP Stack?
 
-Optimism is a low-cost and lightning-fast Ethereum L2 blockchain, **but it's also so much more than that**.
+Optimism, an Ethereum L2 blockchain, is powered by the OP Stack, which is also the foundation for the [Optimism Collective](https://app.optimism.io/announcement) committed to the **impact=profit** principle. This rewards individuals for their positive contributions to the collective.
 
-The OP Stack powers Optimism, an Ethereum L2 blockchain, and forms the technical foundation for the [the Optimism Collective](https://app.optimism.io/announcement)—a group committed to the **impact=profit** principle. This principle rewards individuals for their positive contributions to the collective.
+Optimism addresses crypto ecosystem coordination failures, like funding public goods and infrastructure. The OP Stack fosters collaboration and prevents redundancy by creating a shared, open-source system for developing new L2 blockchains within the proposed Superchain ecosystem.
 
-Optimism addresses critical coordination failures in the crypto ecosystem, such as funding public goods and infrastructure. The OP Stack focuses on creating a shared, open-source system for developing new L2 blockchains within the proposed Superchain ecosystem, promoting collaboration and preventing redundant efforts.
-
-As Optimism evolves, the OP Stack will adapt, encompassing components ranging from blockchain infrastructure to governance systems. This software suite aims to simplify L2 blockchain creation while supporting the growth and development of the Optimism ecosystem.
+As Optimism evolves, the OP Stack will adapt to include components from blockchain infrastructure to governance systems. This software suite aims to simplify L2 blockchain creation and support the Optimism ecosystem's growth and development.
 
 Learn more about Optimism [here](https://www.optimism.io/).
 
@@ -79,42 +85,7 @@ the traditional method of posting this data as `calldata` on monolithic chains.
 If you'd like to go modular, bedrock has
 made it easy to swap this out!
 
-## Celestia + OP Stack repository
-
-If you're looking to visit the repository for this tutorial, you can find it [here](https://github.com/celestiaorg/optimism/)!
-
 ## Dependency setup
-
-{/* ### Pick your node type
-
-Using Celestia and OP stack, you have the option to either
-run a light node of your own on your `$HOME` directory or a
-`local-celestia-devnet`, which will give you a local devnet
-to test things out with.
-
-#### Using a light node
-
-If you choose to use your own node store, the light node
-must be **fully synced** and **funded** for you to be able to submit
-and retreive `PayForBlobs`.
-
-If it is not synced, you will run into [errors](https://github.com/celestiaorg/celestia-node/issues/2151).
-
-Visit the [Blockspace Race page](../../nodes/blockspace-race/)
-to visit the faucet.
-
-When using your own node store, the `$HOME` directory is just the
-default, and can be changed in
-`optimism/ops-bedrock/docker-compose.yml` if you'd like.
-
-By default, the node will run with the account named
-`my_celes_key`.
-
-#### Using a local devnet
-
-If you'd like to use the `local-celestia-devnet`, open up the
-`optimism/ops-bedrock/docker-compose.yml` file in your text editior
-and uncomment lines 18-30 and 159-161. */}
 
 ### Environment setup and Golang installation
 
