@@ -21,29 +21,32 @@ sidebar_label: Optimism & Celestia tutorial
 
 ## About the integration
 
-*This tutorial will show how existing blockchain frameworks,
-such as [the OP Stack](https://stack.optimism.io/)
-can integrate with Celestia.*
+*Discover how to integrate existing blockchain frameworks
+like [the OP Stack](https://stack.optimism.io/)
+can integrate with Celestia in this tutorial*
 
 :::tip
-This tutorial was tested on a machine with 8GB RAM, 160 GB SSD,
+Tested on a machine with 8GB RAM, 160 GB SSD,
 Ubuntu 22.10, and a 4 core AMD CPU.
 :::
 
-[Optimism](https://www.optimism.io/) currently uses Ethereum as
+[Optimism](https://www.optimism.io/) uses Ethereum as
 a data availability (DA) layer. Currently, settlement and DA for
 Optimism are on Ethereum, both on-chain. `op-batcher` batches up
 rollup blocks and posts to Ethereum.
 
+
+## Celestia + OP Stack repository
+
+Find the repository for this integration [here](https://github.com/celestiaorg/optimism/)!
+
 ### What are Optimism and the OP Stack?
 
-Optimism is a low-cost and lightning-fast Ethereum L2 blockchain, **but it's also so much more than that**.
+Optimism, an Ethereum L2 blockchain, is powered by the OP Stack, which is also the foundation for the [Optimism Collective](https://app.optimism.io/announcement) committed to the **impact=profit** principle. This rewards individuals for their positive contributions to the collective.
 
-The OP Stack powers Optimism, an Ethereum L2 blockchain, and forms the technical foundation for the [the Optimism Collective](https://app.optimism.io/announcement)—a group committed to the **impact=profit** principle. This principle rewards individuals for their positive contributions to the collective.
+Optimism addresses crypto ecosystem coordination failures, like funding public goods and infrastructure. The OP Stack fosters collaboration and prevents redundancy by creating a shared, open-source system for developing new L2 blockchains within the proposed Superchain ecosystem.
 
-Optimism addresses critical coordination failures in the crypto ecosystem, such as funding public goods and infrastructure. The OP Stack focuses on creating a shared, open-source system for developing new L2 blockchains within the proposed Superchain ecosystem, promoting collaboration and preventing redundant efforts.
-
-As Optimism evolves, the OP Stack will adapt, encompassing components ranging from blockchain infrastructure to governance systems. This software suite aims to simplify L2 blockchain creation while supporting the growth and development of the Optimism ecosystem.
+As Optimism evolves, the OP Stack will adapt to include components from blockchain infrastructure to governance systems. This software suite aims to simplify L2 blockchain creation and support the Optimism ecosystem's growth and development.
 
 Learn more about Optimism [here](https://www.optimism.io/).
 
@@ -81,10 +84,6 @@ the traditional method of posting this data as `calldata` on monolithic chains.
 
 If you'd like to go modular, bedrock has
 made it easy to swap this out!
-
-## Celestia + OP Stack repository
-
-If you're looking to visit the repository for this tutorial, you can find it [here](https://github.com/celestiaorg/optimism/)!
 
 ## Dependency setup
 
