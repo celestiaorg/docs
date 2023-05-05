@@ -394,7 +394,7 @@ const sidebars = {
         { type: "doc", label: "Introduction", id: "community/modular-meetup-intro" },
         { type: "doc", label: "Modular Meetup Toolkit", id: "community/modular-meetup-toolkit" },
         { type: "doc", label: "Speaker list", id: "community/speaker-list" },
-        { type: "doc", label: "Meetup Guide", id: "community/modular-meetup-guide" },
+        { type: "doc", label: "Meetup guide", id: "community/modular-meetup-guide" },
       ]
     },
   ],
