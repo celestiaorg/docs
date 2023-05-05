@@ -11,7 +11,7 @@ help you plan and execute your meetups effectively.
 * [BrandKit](https://company-223625.frontify.com/d/JoSwaZS4Mjpj/guidelines)
     1. Includes logo files, color schemes, typography, icons and illustrations
 
-## Sample “Introduction to Modularity” Workshop Presentation
+## Sample “Introduction to Modularity” workshop presentation
 
 * [Link](https://docs.google.com/presentation/d/1R4bkWgU2nql1chwVwND4seREHbKzugl0-Xr88w3QdIQ/edit#slide=id.g1b629412475_0_0)
 * Summary: This is an overview presentation on Modular blockchains and
