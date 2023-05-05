@@ -338,7 +338,7 @@ those who cannot attend in person and expand the reach of your event.
       after the event. This helps attendees revisit the content and allows
       those who couldn't attend to learn from the talks.
 
-### Utilizing [Meetup.com](http://Meetup.com) Platform
+### Utilizing [Meetup.com](http://Meetup.com) platform
 
 Celestia Labs is committed to supporting your meetup efforts by helping
 you with meetup.com, from setting up the group to covering organizer dues.
