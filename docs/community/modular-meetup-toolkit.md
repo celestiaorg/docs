@@ -6,7 +6,7 @@ As the first modular blockchain, Celestia offers a lot to discuss
 and explore. This kit includes useful resources and materials to
 help you plan and execute your meetups effectively.
 
-## Celestia Branding Guidelines
+## Celestia branding guidelines
 
 * [BrandKit](https://company-223625.frontify.com/d/JoSwaZS4Mjpj/guidelines)
     1. Includes logo files, color schemes, typography, icons and illustrations
