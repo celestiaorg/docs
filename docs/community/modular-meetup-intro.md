@@ -1,3 +1,8 @@
+---
+sidebar_label: Celestia Modular Meetup program
+description: The ultimate guide for Modular Meetup organizers!
+---
+
 # Celestia Modular Meetup Program
 
 ![Modular Meetup Banner](/img/Celestia_Modular_meetup2.jpg)
