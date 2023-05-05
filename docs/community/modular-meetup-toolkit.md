@@ -1,3 +1,8 @@
+---
+sidebar_label: Modular Meetup Toolkit
+description: A toolkit for Modular Meetups.
+---
+
 # Modular Meetup Toolkit
 
 Welcome to the Modular Meetups Toolkit! This kit is designed
