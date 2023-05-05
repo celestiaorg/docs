@@ -266,7 +266,7 @@ costs related to venue and refreshments.
       the meetup. Acknowledging their support encourages continued
       collaboration and enhances the credibility of your event.
 
-### Communications and Marketing
+### Communications and marketing
 
 Effectively marketing and announcing your Modular Meetup is essential
 for attracting attendees and ensuring a successful event.
