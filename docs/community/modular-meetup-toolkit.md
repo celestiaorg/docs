@@ -52,7 +52,7 @@ You can find existing video presentations for this here:
     4. Setting up a sovereign rollup: hardware and software requirements
     5. Q&A session
 
-## Sample “Modular Meetup Introduction” Workshop Presentation
+## Sample “Modular Meetup Introduction” workshop presentation
 
 * [Link to the Presentation](https://docs.google.com/presentation/d/1HIOKwnCRylofo4sp5I93hsfY3DKWbmXxfvMdoiIk-3I/edit?usp=sharing)
 * The sample presentation covers:
