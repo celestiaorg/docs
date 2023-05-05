@@ -63,7 +63,7 @@ You can find existing video presentations for this here:
     5. Speakers
     6. Supporting the Program
 
-## Swag Logistics
+## Swag logistics
 
 * Merchandise support
     1. For merchandise support for your meetup, please email natnet@celestia.org
