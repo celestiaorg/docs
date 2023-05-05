@@ -70,7 +70,7 @@ to explore and learn.
 * [Speaker List](./speaker-list.md)
 * [Meetup Guide](./modular-meetup-guide.md)
 
-## Signup Form
+## Signup form
 
 In order to be added to the Modular Meetup Organizer call, please
 complete the following form:
