@@ -1,4 +1,9 @@
-# Speaker List
+---
+sidebar_label: Speaker list
+description: Invite a speaker from the ecosystem to your Modular Meetup.
+---
+
+# Speaker list
 
 As a Modular Meetup organizer, we understand the importance
 of delivering engaging and informative content to your attendees.
