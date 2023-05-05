@@ -7,7 +7,7 @@ This collection of resources is designed for those enthusiastic
 about fostering grassroots Modular Meetups with support from
 Celestia around the world.
 
-## Program Description
+## Program description
 
 The Celestia Modular Meetup Program aims to empower meetup
 organizers, providing education and support, and encouraging
