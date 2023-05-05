@@ -379,7 +379,7 @@ Below is a detailed overview of how Celestia Labs can assist you.
       joining your group. If you'd like to customize this message,
       let them know.
 
-### Onboarding Questions for Community Members Joining a Modular Meetup
+### Onboarding questions for community members joining a Modular Meetup
 
 1. Q1: How did you hear about this Modular Meetup?
     * Why: This information helps us understand the most
