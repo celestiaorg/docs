@@ -113,7 +113,7 @@ borrowing recording equipment, tripods, or even having them
 record the event for you. Some providers may offer these
 services for free or at a reduced cost.
 
-### Catering and Refreshments
+### Catering and refreshments
 
 Providing refreshments or catering for your Modular Meetup
 enhances the overall experience and encourages networking
