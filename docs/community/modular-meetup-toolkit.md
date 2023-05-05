@@ -39,7 +39,7 @@ You can find existing video presentations for this here:
     6. Best practices for maintaining a light node
     7. Q&A session
 
-## Sample “Deploy a sovereign rollup” Presentation
+## Sample “Deploy a Sovereign Rollup” workshop presentation
 
 * [Link](https://docs.google.com/presentation/d/163yP8lQ28k-xfL3jcdX2cfO-3zg8e63AOuHeHxde3vk/edit#slide=id.g20713cce7c2_1_596)
 * Summary: This is an overview presentation on deploying a sovereign rollup
