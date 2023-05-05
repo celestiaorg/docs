@@ -1,4 +1,4 @@
-# Modular Meetup Guide
+# Modular Meetup guide
 
 These are recommended steps you can follow that can
 help you organize a successful Modular Meetup. You aren’t
