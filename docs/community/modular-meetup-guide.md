@@ -60,7 +60,7 @@ to help aid you in your journey to organize a Modular Meetup.
 6. Begin planning for the next meetup, applying insights gained from
   the previous event to enhance the experience for future attendees.
 
-## Logistics and Guidance
+## Logistics and guidance
 
 These are provided guidelines for different components of kickstarting
 a Modular Meetup to help you get started on the logistics of organizing
