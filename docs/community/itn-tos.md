@@ -1,3 +1,8 @@
+---
+sidebar_label: Incentivized testnet supplemental terms
+description: These Terms govern your ability to participate in the Incentivized Testnet Award Program.
+---
+
 # SUPPLEMENTAL INCENTIVIZED TESTNET TERMS
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD009 -->

@@ -1,5 +1,6 @@
 ---
 sidebar_label: Cohort one content & calendar
+description: The Content and calendar of the first Modular Fellows cohort.
 ---
 
 # Cohort one content & calendar

@@ -1,3 +1,8 @@
+---
+sidebar_label: Setup your QGB Orchestrator
+description: Setup your QGB Orchestrator to run alongside your validator node.
+---
+
 # Setup your QGB Orchestrator
 
 ## Description

@@ -1,3 +1,8 @@
+---
+sidebar_label: Upgrade and restart your light or full storage node
+description: Instructions for updating your light or full storage node to the latest version release.
+---
+
 # Upgrade and restart your light or full storage node
 
 ## Description

@@ -1,5 +1,6 @@
 ---
 sidebar_label: Docs translations
+description: Learn how you can help translate the documentation page.
 ---
 
 # Community translation support

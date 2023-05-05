@@ -1,5 +1,6 @@
 ---
 sidebar_label: Helpful CLI commands
+description: Some of the most helpful Celestia App CLI commands. 
 ---
 
 # Helpful CLI commands

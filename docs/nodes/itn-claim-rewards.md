@@ -1,3 +1,8 @@
+---
+sidebar_label: Claim your validator rewards
+description: Learn how you can claim rewards for your validator.
+---
+
 # Claim your validator rewards
 
 ## Description

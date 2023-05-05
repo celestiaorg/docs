@@ -1,3 +1,8 @@
+---
+sidebar_label: Delegate Tokens to 2 Other Validators
+description: Delegate Celestia tokens to two 2 other validator addresses on the network.
+---
+
 # Delegate Tokens to 2 Other Validators
 
 ## Description

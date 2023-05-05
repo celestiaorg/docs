@@ -1,5 +1,6 @@
 ---
 sidebar_label: The lifecycle of a Celestia App transaction
+description: Learn what is the lifecycle of a Celestia App transaction.
 ---
 
 # The lifecycle of a Celestia App transaction

@@ -1,5 +1,6 @@
 ---
 sidebar_label: Arabica devnet
+description: A guide to Arabica devnet.
 ---
 
 # Arabica devnet

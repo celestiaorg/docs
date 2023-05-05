@@ -1,3 +1,8 @@
+---
+sidebar_label: Run a public RPC node
+description: Instructions for running a publicly-available RPC Node.
+---
+
 # Run a public RPC node
 
 ## Description

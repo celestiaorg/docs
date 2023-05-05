@@ -1,3 +1,8 @@
+---
+sidebar_label: Setup Your Validator
+description: Instructions for setting up your own validator.
+---
+
 # Setup Your Validator
 
 ## Description

@@ -1,5 +1,6 @@
 ---
 sidebar_label: Build modular
+description: Advantages of building on modular blockchains like Celestia.
 ---
 
 # Build modular

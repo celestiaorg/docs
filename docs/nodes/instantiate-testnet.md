@@ -1,5 +1,6 @@
 ---
 sidebar_label: Create a Celestia testnet
+description: A guide that helps you instantiate a new testnetwork with Celestia App.
 ---
 
 # Celestia App network instantiation guide

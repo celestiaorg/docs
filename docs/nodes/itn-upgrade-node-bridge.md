@@ -1,3 +1,8 @@
+---
+sidebar_label: Upgrade and restart your bridge node
+description: Instructions for updating your Bridge node to the latest version release.
+---
+
 # Upgrade and restart your bridge node
 
 ## Description

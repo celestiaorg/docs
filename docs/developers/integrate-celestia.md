@@ -1,5 +1,6 @@
 ---
 sidebar_label: Integrate Celestia
+description: Learn how you can integrate the Celestia network.
 ---
 
 # Integrate Celestia
