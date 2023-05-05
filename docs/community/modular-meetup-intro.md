@@ -20,7 +20,7 @@ and make the most of the insightful resources provided. These
 resources are designed to serve as a go-to playbook for meetup
 organizers, especially when starting your journey.
 
-## Important Info
+## Important info
 
 ### Celestia.org Community Code of Conduct
 
