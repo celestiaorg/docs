@@ -11,7 +11,7 @@ You can read more about the our hardfork process [here](https://docs.celestia.or
 
 1. Upgrade your `celestia-app` binary to version v0.13.0
   ahead of the hardfork block number `446500`. Also, upgrade
-  your bridge node version of `celestia-node` to v0.9.2.
+  your bridge node version of `celestia-node` to v0.9.3.
 2. You will need restart your validator and bridge nodes with the
   new binaries.
 3. Maintain high validator uptime after the hardfork activates.
