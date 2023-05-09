@@ -21,6 +21,8 @@ Bootstrapper for the Blockspace Race is:
 
 * `/dns/bootstr-incent-1.celestia.tools/tcp/30000/p2p/12D3KooWSGZ2LXW2soQFHgU82uLfN7pNW5gMMkTnu1fhMXG43TvP`
 
+Make sure to specify it using the `-b` flag when running the orchestrator.
+
 This means that even if the consensus node is already connected to the consensus network, if the orchestrator doesn't start with a list of bootstrapper to its specific network, then, it will not work and will output the following logs:
 
 ```text
