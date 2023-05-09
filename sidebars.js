@@ -383,6 +383,20 @@ const sidebars = {
         { type: "doc", label: "Cohort one content", id: "community/cohort-one-content" },
       ]
     },
+    {
+      type: "category",
+      label: "Modular Meetup Program",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: [
+        { type: "doc", label: "Introduction", id: "community/modular-meetup-intro" },
+        { type: "doc", label: "Modular Meetup Toolkit", id: "community/modular-meetup-toolkit" },
+        { type: "doc", label: "Speaker list", id: "community/speaker-list" },
+        { type: "doc", label: "Meetup guide", id: "community/modular-meetup-guide" },
+      ]
+    },
   ],
   concepts: [
     {
