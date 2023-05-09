@@ -1,6 +1,6 @@
 ---
 sidebar_label: Docs translations
-description: Learn how you can help translate the documentation page.
+description: Learn how you can help translate Celestia's documentation.
 ---
 
 # Community translation support
