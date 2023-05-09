@@ -6,6 +6,9 @@
 on block `446500`.**
 
 Setup your QGB Orchestrator to run alongside your validator node.
+For the bootstrapper to use, it is the following:
+
+* `/dns/bootstr-incent-1.celestia.tools/tcp/30000/p2p/12D3KooWSGZ2LXW2soQFHgU82uLfN7pNW5gMMkTnu1fhMXG43TvP`
 
 Docs on how to set it up are found [here](https://docs.celestia.org/nodes/qgb-orchestrator/#how-to-run)
 
