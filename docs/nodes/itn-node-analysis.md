@@ -1,3 +1,8 @@
+---
+sidebar_label: Perform analysis of your node
+description: Perform analysis of your node for any behavior you are interested in.
+---
+
 # Perform analysis of your node
 
 ## Description

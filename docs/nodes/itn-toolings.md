@@ -1,3 +1,8 @@
+---
+sidebar_label: Create toolings for the Celestia Network
+description: Create useful tools for the Celestia Network.
+---
+
 # Create toolings for the Celestia Network
 
 ## Description

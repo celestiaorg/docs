@@ -1,5 +1,6 @@
 ---
 sidebar_label: Hardfork Process
+description: Overview of the Celestia hardfork process.
 ---
 
 # Celestia hardfork process

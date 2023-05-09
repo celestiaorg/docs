@@ -1,5 +1,6 @@
 ---
 sidebar_label: Introduction
+description: A brief introduction to the Celestia modular blockchain.
 ---
 
 # Introduction

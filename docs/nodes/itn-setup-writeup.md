@@ -1,3 +1,8 @@
+---
+sidebar_label: Write a technical article
+description: Write an original technical blog post.
+---
+
 # Write a technical article
 
 ## Description

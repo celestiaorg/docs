@@ -1,5 +1,6 @@
 ---
 sidebar_label: Rollkit
+description: Learn how to build Cosmos-SDK applications that connect to Celestia's Data Availability Layer via Rollkit.
 ---
 
 # Rollkit

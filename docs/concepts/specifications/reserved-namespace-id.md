@@ -1,5 +1,6 @@
 ---
 sidebar_label: Reserved Namespace IDs
+description: Reserved namespace IDs on the Celestia Network.
 ---
 
 # Reserved Namespace IDs

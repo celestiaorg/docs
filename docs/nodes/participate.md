@@ -1,5 +1,6 @@
 ---
 sidebar_label: Participate in the Celestia testnets
+description: Celestia testnets that you can participate in.
 ---
 
 # Participate in the Celestia testnets

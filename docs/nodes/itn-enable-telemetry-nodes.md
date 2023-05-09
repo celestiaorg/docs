@@ -1,3 +1,8 @@
+---
+sidebar_label: Restart your node with metrics flags
+description: Instructions metrics flags to your node start command.
+---
+
 # Restart your node with metrics flags
 
 ## Description

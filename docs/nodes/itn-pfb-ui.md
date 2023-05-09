@@ -1,3 +1,8 @@
+---
+sidebar_label: Create a UI for submitting PayForBlob transactions
+description: Create a UI for allowing users to submit PayForBlob Transactions.
+---
+
 # Create a UI for submitting PayForBlob transactions
 
 ## Description

@@ -1,5 +1,6 @@
 ---
 sidebar_label: Celestia's data availability layer
+description: Celestia's Data Availability layer and its key features.
 ---
 
 # Celestia's data availability layer

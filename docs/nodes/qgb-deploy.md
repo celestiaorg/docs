@@ -1,3 +1,8 @@
+---
+sidebar_label: Deploy the QGB contract
+description: Learn how to deploy the QGB smart contract.
+---
+
 # Deploy the QGB contract
 
 <!-- markdownlint-disable MD013 -->

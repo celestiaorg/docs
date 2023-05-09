@@ -1,5 +1,6 @@
 ---
 sidebar_label: Full stack modular blockchain development guide
+description: Learn to build a full stack modular dapp.
 ---
 
 # Full stack modular blockchain development guide

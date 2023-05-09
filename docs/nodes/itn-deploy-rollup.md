@@ -1,3 +1,8 @@
+---
+sidebar_label: Deploy a sovereign rollup
+description: Instructions for deploying a Sovereign Rollup with Rollkit.
+---
+
 # Deploy a sovereign rollup
 
 ## Description

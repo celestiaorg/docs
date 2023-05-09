@@ -1,5 +1,6 @@
 ---
 sidebar_label: Monolithic vs. modular blockchains
+description: Comparison between monolithic and modular blockchains.
 ---
 
 # Monolithic vs. modular blockchains

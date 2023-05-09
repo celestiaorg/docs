@@ -1,3 +1,8 @@
+---
+sidebar_label: QGB Orchestrator
+description: Learn about the QGB Orchestrator.
+---
+
 # QGB Orchestrator
 
 <!-- markdownlint-disable MD013 -->

@@ -1,3 +1,8 @@
+---
+sidebar_label: QGB Relayer
+description: Learn about the QGB Relayer.
+---
+
 # QGB Relayer
 
 <!-- markdownlint-disable MD013 -->

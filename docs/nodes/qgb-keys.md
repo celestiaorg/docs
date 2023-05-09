@@ -1,3 +1,8 @@
+---
+sidebar_label: Key management
+description: Learn how to manage EVM private keys and P2P identities.
+---
+
 # Key management
 
 <!-- markdownlint-disable MD013 -->

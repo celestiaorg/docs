@@ -1,3 +1,8 @@
+---
+sidebar_label: Sign The Genesis Block
+description: Instructions for signing the Genesis Block.
+---
+
 # Sign The Genesis Block
 
 ## Description

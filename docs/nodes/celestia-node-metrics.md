@@ -1,5 +1,6 @@
 ---
 sidebar_label: Node metrics 
+description: A guide on how to run metrics for your Celestia Node DA instance.
 ---
 
 # Celestia Node metrics

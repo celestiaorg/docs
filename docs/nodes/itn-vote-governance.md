@@ -1,3 +1,9 @@
+---
+sidebar_label: Vote On a Network Governance Proposal
+description: Vote on an existing proposal being submitted via the Celestia governance process.
+---
+
+
 # Vote On a Network Governance Proposal
 
 ## Description

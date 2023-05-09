@@ -1,3 +1,8 @@
+---
+sidebar_label: Deploy a full storage node
+description: Instructions for deploying a Celestia Full Storage Node.
+---
+
 # Deploy a full storage node
 
 ## Description
