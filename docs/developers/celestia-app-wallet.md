@@ -1,5 +1,6 @@
 ---
 sidebar_label: Wallet with Celestia App
+description: Learn how to generate a Celestia wallet using Celestia App.
 ---
 
 # Create a wallet with Celestia App

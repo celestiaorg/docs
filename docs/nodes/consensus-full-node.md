@@ -1,5 +1,6 @@
 ---
 sidebar_label: Consensus full node
+description: Learn how to set up a Celestia consensus full node.
 ---
 
 # Setting up a Celestia consensus full node

@@ -1,3 +1,8 @@
+---
+sidebar_label: Maintain High Validator Uptime
+description: Ensure your validator has a high up-time during the Blockspace Race.
+---
+
 # Maintain High Validator Uptime
 
 ## Description

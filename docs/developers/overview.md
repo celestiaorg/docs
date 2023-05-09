@@ -1,5 +1,6 @@
 ---
 sidebar_label: Overview
+description: All things developer-related for building on top of Celestia.
 ---
 
 # Developers

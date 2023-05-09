@@ -1,5 +1,6 @@
 ---
 sidebar_label: IBC Relayer
+description: A guide on relaying and setting up Hermes.
 ---
 
 # Relaying

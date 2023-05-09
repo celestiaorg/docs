@@ -1,3 +1,8 @@
+---
+sidebar_label: Deploy a bridge node
+description: Instructions for deploying a Celestia Bridge Node.
+---
+
 # Deploy a bridge node
 
 ## Description

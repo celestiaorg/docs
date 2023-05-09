@@ -1,5 +1,6 @@
 ---
 sidebar_label: Community calendar
+description: Find all the different community call events happening in Celestia's community.
 ---
 
 # Community calendar

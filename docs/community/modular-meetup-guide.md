@@ -1,3 +1,8 @@
+---
+sidebar_label: Meetup guide
+description: A guide that helps in organizing a successful Modular Meetup.
+---
+
 # Modular Meetup guide
 
 These are recommended steps you can follow that can

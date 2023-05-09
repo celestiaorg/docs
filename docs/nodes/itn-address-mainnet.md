@@ -1,3 +1,8 @@
+---
+sidebar_label: Claim your Mainnet rewards
+description: Create and Submit Your Address For Mainnet to Receive Rewards.
+---
+
 # Create and Submit Your Address For Mainnet to Receive Rewards
 
 ## Description

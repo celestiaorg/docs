@@ -1,5 +1,6 @@
 ---
 sidebar_label: Metrics, Visualization and Alerts
+description: A guide on how to monitor the health and performance of your system.
 ---
 
 # Metrics

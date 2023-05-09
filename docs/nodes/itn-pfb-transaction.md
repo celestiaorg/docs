@@ -1,3 +1,8 @@
+---
+sidebar_label: Submit a PFB transaction
+description: Steps for submitting a PFB transaction.
+---
+
 # Submit a PFB transaction
 
 ## Description

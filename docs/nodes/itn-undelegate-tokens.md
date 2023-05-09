@@ -1,3 +1,8 @@
+---
+sidebar_label: Redelegate or Undelegate Tokens From Another Validator
+description: Instructions on how to redelegate or undelegate Celestia.
+---
+
 # Redelegate or Undelegate Tokens From Another Validator
 
 ## Description
