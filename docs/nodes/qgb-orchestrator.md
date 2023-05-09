@@ -55,8 +55,8 @@ By default, the store will be created under `~/.orchestrator`. However, if you w
 
 In order for the orchestrator to start, it will need two private keys:
 
-- EVM private key
-- P2P private key
+* *EVM private key
+* *P2P private key
 
 The EVM private key is the most important one since it needs to correspond to the EVM address provided when creating the validator.
 
@@ -94,9 +94,9 @@ For more information about the `keys` command, check the `keys` documentation in
 
 To run an orchestrator, you will need to have access to the following:
 
-- Access to your EVM address private key. This latter doesn't need to be funded in any network.
-- A list of bootstrappers for the P2P network. These will be shared by the team for every network we plan on supporting.
-- Access to your consensus node RPC and gRPC ports.
+* *Access to your EVM address private key. This latter doesn't need to be funded in any network.
+* *A list of bootstrappers for the P2P network. These will be shared by the team for every network we plan on supporting.
+* *Access to your consensus node RPC and gRPC ports.
 
 #### Consensus node configuration
 
@@ -128,8 +128,8 @@ If the indexer was just activated, then, by default, it will not have the previo
 
 To solve this, you can do either of the following:
 
-- Re-index by deleting the history and resyncing.
-- Or, connect the orchestrator at first to a public RPC that has indexing activated, and wait for it to catchup and sign up to the last unbonding period. Then, switch the orchestrator to point to your personal validator at the next unbonding period.
+* *Re-index by deleting the history and resyncing.
+* *Or, connect the orchestrator at first to a public RPC that has indexing activated, and wait for it to catchup and sign up to the last unbonding period. Then, switch the orchestrator to point to your personal validator at the next unbonding period.
 
 ### Start the orchestrator
 
@@ -259,8 +259,8 @@ Note: A validator set change is triggered if more than 5% of the total staking p
 
 If you want to start the orchestrator as a `systemd` service, you could use the following:
 
-- Make sure you have the store initialized and the EVM address private key imported. Check the above sections for how to do that.
-- Put the following configuration under: `/etc/systemd/system/orchestrator.service`:
+* *Make sure you have the store initialized and the EVM address private key imported. Check the above sections for how to do that.
+* *Put the following configuration under: `/etc/systemd/system/orchestrator.service`:
 
 ```text
 [Unit]
@@ -284,13 +284,13 @@ TTYPath=/dev/tty0
 WantedBy=multi-user.target
 ```
 
-- Start the orchestrator service using:
+* *Start the orchestrator service using:
 
 ```shell
 sudo systemctl start orchestrator
 ```
 
-- Follow the logs to see if everything is running correctly:
+* Follow the logs to see if everything is running correctly:
 
 ```shell
 sudo journalctl -f -u orchestrator
