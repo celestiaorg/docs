@@ -1,5 +1,6 @@
 ---
 sidebar_label: Overview
+description: An overview on how to participate in the Celestia network.
 ---
 
 # Overview to running nodes on Celestia

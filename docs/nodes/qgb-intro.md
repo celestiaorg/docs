@@ -1,3 +1,8 @@
+---
+sidebar_label: Quantum Gravity Bridge
+description: An overview of the Quantum Gravity Bridge.
+---
+
 # Quantum Gravity Bridge
 
 The Quantum Gravity Bridge, covered previously in the Celestia blog post

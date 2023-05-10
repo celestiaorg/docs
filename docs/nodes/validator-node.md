@@ -1,5 +1,6 @@
 ---
 sidebar_label: Validator node
+description: A tutorial for setting up a Celestia validator node.
 ---
 
 # Setting up a Celestia validator node

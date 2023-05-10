@@ -1,5 +1,6 @@
 ---
 sidebar_label: Quick start
+description: Learn how to get started and run your first node on Celestia.
 ---
 
 # Quick start guide

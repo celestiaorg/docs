@@ -1,5 +1,6 @@
 ---
 sidebar_label: Overview
+description: A program designed to support the future of scalable and sovereign blockchain networks.
 ---
 
 # Modular Fellows

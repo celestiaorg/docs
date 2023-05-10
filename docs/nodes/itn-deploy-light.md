@@ -1,3 +1,8 @@
+---
+sidebar_label: Deploy a light node
+description: Instructions for deploying a Celestia Light Node.
+---
+
 # Deploy a light node
 
 ## Description

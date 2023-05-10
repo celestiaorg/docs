@@ -1,5 +1,6 @@
 ---
 sidebar_label: Node video tutorial
+description: A video showing how to set up a Celestia Light Node.
 ---
 
 # Node video tutorial

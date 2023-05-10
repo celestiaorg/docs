@@ -1,5 +1,6 @@
 ---
 sidebar_label: Overview
+description: Resources and activities for the Celestia community.
 ---
 
 # Community overview

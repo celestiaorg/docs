@@ -1,3 +1,8 @@
+---
+sidebar_label: Maintain high node uptime
+description: Ensure your Data Availability node has a high up-time during the Blockspace Race.
+---
+
 # Maintain high node uptime
 
 ## Description

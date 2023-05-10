@@ -1,5 +1,6 @@
 ---
 sidebar_label: Deciding which node to run
+description: Guide on helping you decide which type of node to run.
 ---
 
 # Deciding which node to run

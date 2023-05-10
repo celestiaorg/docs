@@ -1,5 +1,6 @@
 ---
 sidebar_label: Mocha testnet
+description: Learn how to connect to the Mocha network.
 ---
 
 # Mocha testnet

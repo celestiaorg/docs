@@ -1,3 +1,8 @@
+---
+sidebar_label: Upgrade your validator node for the hardfork
+description: Instructions for preparing your validator nodes for the hardfork.
+---
+
 # Upgrade your validator node for the hardfork
 
 ## Description

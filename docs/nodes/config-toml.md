@@ -1,5 +1,6 @@
 ---
 sidebar_label: Config.toml guide
+description: A guide to the contents of the Config.toml file.
 ---
 
 # Config.toml guide
