@@ -367,7 +367,7 @@ const sidebars = {
 					items: [
 						{
 							type: "doc",
-							label: "Introduction to OP-Stack integration",
+							label: "Introduction to OP Stack integration",
               id: "developers/intro-to-op-stack"
 						},
             {
@@ -387,7 +387,12 @@ const sidebars = {
             },
             {
 							type: "doc",
-							label: "Deploy an OP-Stack rollup on Celestia",
+							label: "Deploy an OP Stack devnet",
+      				id: "developers/optimism-devnet"
+            },
+            {
+							type: "doc",
+							label: "Deploy an OP Stack testnet on Celestia",
       				id: "developers/optimism"
             },
 					]
