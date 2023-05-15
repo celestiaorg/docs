@@ -367,22 +367,27 @@ const sidebars = {
 					items: [
 						{
 							type: "doc",
-							label: "Introduction to OP-Stack Integration",
+							label: "Introduction to OP-Stack integration",
               id: "developers/intro-to-op-stack"
 						},
+            {
+							type: "doc",
+              label: "Taro testnet",
+              id: "developers/taro-testnet",
+            },
 						{
 							type: "doc",
-							label: "Deploy Smart Contract on Taro Testnet",
+							label: "Deploy a smart contract on Taro testnet",
               id: "developers/deploy-on-taro"
 						},
             {
 							type: "doc",
-              label: "Deploy gm-portal dapp on Taro Testnet",
+              label: "Deploy a GM-portal dapp on Taro testnet",
               id: "developers/gm-portal-taro",
             },
             {
 							type: "doc",
-							label: "Deploy OP-Stack Rollup on Celestia",
+							label: "Deploy an OP-Stack rollup on Celestia",
       				id: "developers/optimism"
             },
 					]
