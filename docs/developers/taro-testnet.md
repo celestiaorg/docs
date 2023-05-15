@@ -1,0 +1,1 @@
+![Taro testnet](../../static/img/Celestia_Taro_Testnet.png)

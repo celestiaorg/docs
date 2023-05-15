@@ -395,6 +395,26 @@ const sidebars = {
 							label: "Deploy an OP Stack testnet on Celestia",
       				id: "developers/optimism"
             },
+            // {
+            //   type: "category",
+            //   label: "Use cases",
+            //   link: {
+            //     type: "generated-index",
+            //   },
+            //   collapsed: true,
+            //   items: [
+            //     {
+            //       type: "doc",
+            //       label: "Introduction to OP Stack integration",
+            //       id: "developers/intro-to-op-stack"
+            //     },
+            //     {
+            //       type: "doc",
+            //       label: "Taro testnet",
+            //       id: "developers/taro-testnet",
+            //     }
+            //   ]
+            // },
 					]
     		},
 			]
