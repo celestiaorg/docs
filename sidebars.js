@@ -345,14 +345,49 @@ const sidebars = {
       ]
     },
     {
-      type: "doc",
-      label: "Rollkit",
-      id: "developers/rollkit"
-    },
-    {
-      type: "doc",
-      label: "Optimism",
-      id: "developers/optimism"
+      type: "category",
+      label: "Deploy A Rollup",
+			link: {
+				type: "generated-index",
+			},
+			collapsed: false,
+			items: [
+				{
+      		type: "doc",
+      		label: "Rollkit",
+      		id: "developers/rollkit"
+    		},
+    		{
+      		type: "category",
+      		label: "Optimism",
+					link: {
+						type: "generated-index",
+					},
+					collapsed: false,
+					items: [
+						{
+							type: "doc",
+							label: "Introduction to OP-Stack Integration",
+              id: "developers/intro-to-op-stack"
+						},
+						{
+							type: "doc",
+							label: "Deploy Smart Contract on Taro Testnet",
+              id: "developers/deploy-on-taro"
+						},
+            {
+							type: "doc",
+              label: "Deploy gm-portal dapp on Taro Testnet",
+              id: "developers/gm-portal-taro",
+            },
+            {
+							type: "doc",
+							label: "Deploy OP-Stack Rollup on Celestia",
+      				id: "developers/optimism"
+            },
+					]
+    		},
+			]
     },
     {
       type: "doc",
