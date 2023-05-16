@@ -32,15 +32,12 @@ If it is not synced, you will run into [errors](https://github.com/celestiaorg/c
 Visit the [Blockspace Race page](../../nodes/blockspace-race/)
 to visit the faucet.
 
-When using your own node, the RPC URL is set to the Docker
-bridge IP, which means you will need to run your node with the
-gateway IP address of `172.17.0.1` on port `26659`.
+When using your own node store, the `$HOME` directory is just the
+default, and can be changed in
+`optimism/ops-bedrock/docker-compose.yml` if you'd like.
 
-An example start command would look like:
-
-```bash
-celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 172.17.0.1 --gateway.port 26659 --p2p.network blockspacerace
-```
+By default, the node will run with the account named
+`my_celes_key`.
 
 If you have your own setup you'd like to try, you can always edit
 `optimism/ops-bedrock/docker-compose-testnet.yml` to work with your setup.
@@ -51,7 +48,7 @@ If you'd like to use a RaaS provider, you can do so by...
 
 ## Start the testnet
 
-First, make sure your light node is running and funded.
+First, make sure your light node is synced and funded.
 
 Next, you can start up the testnet with the following command:
 
