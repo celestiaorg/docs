@@ -5,9 +5,10 @@ description: Make your own GM Portal dapp on the OP Stack.
 
 # Deploying a dapp on Taro testnet
 
-First, review the [devnet page](https://github.com/celestiaorg/optimism/blob/celestia/specs/meta/devnet.md)
-with information about the faucet accounts. You will need a funded
-account to deploy your smart contract.
+First, review the [Taro testnet page](../taro-testnet) and the
+[Deploy a smart contract to Taro testnet](../deploy-to-taro) tutorial.
+
+**You will need a funded account to deploy your smart contract.**
 
 Next, clone the `gm-portal` from Github and start the frontend:
 
@@ -18,10 +19,11 @@ cd gm-portal/frontend
 yarn && yarn dev
 ```
 
-In a new terminal instance, set the private key for the faucet as a variable:
+In a new terminal instance, set your private key for the faucet as a variable and the RPC URL you're using:
 
 ```bash
 export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+export TARO_RPC_URL=http://rpc.tarotestnet.com
 ```
 
 Now, change into the `gm-portal/contracts` directory in the same terminal and deploy
@@ -30,7 +32,7 @@ the contract using Foundry:
 <!-- markdownlint-disable MD013 -->
 ```bash
 cd $HOME/gm-portal/contracts
-forge script script/WavePortal.s.sol:WavePortalScript --rpc-url http://localhost:9545 --private-key $PRIVATE_KEY --broadcast
+forge script script/WavePortal.s.sol:WavePortalScript --rpc-url $TARO_RPC_URL --private-key $PRIVATE_KEY --broadcast
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -48,7 +50,7 @@ First, send a "gm" to the contract:
 cast send $CONTRACT_ADDRESS \
 "wave(string)" "gm" \
 --private-key $PRIVATE_KEY \
---rpc-url http://localhost:9545
+--rpc-url $TARO_RPC_URL
 ```
 
 Now that you've posted to the contract, you can read all "waves" (GMs) from the
@@ -56,13 +58,13 @@ contract with
 this command:
 
 ```bash
-cast call $CONTRACT_ADDRESS "getAllWaves()" --rpc-url http://localhost:9545
+cast call $CONTRACT_ADDRESS "getAllWaves()" --rpc-url $TARO_RPC_URL
 ```
 
 Next, query the total number of waves, which will be returned as a hex value:
 
 ```bash
-cast call $CONTRACT_ADDRESS "getTotalWaves()" --rpc-url http://localhost:9545
+cast call $CONTRACT_ADDRESS "getTotalWaves()" --rpc-url $TARO_RPC_URL
 ```
 
 In order to interact with the contract on the frontend, you'll need to fund an
@@ -71,7 +73,7 @@ with this command:
 
 ```bash
 export RECEIVER=<receiver ETH address>
-cast send --private-key $PRIVATE_KEY $RECEIVER --value 1ether --rpc-url http://localhost:9545
+cast send --private-key $PRIVATE_KEY $RECEIVER --value 1ether --rpc-url $TARO_RPC_URL
 ```
 
 If you are in a different terminal than the one you set the private key in, you

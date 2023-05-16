@@ -263,4 +263,4 @@ echo $((0x000000000000000000000000000000000000000000000000000000000000000a))
 Congratulations! You've learned how to deploy a smart contract to Taro testnet.
 
 What will you build next? Now, you're ready to check out the
-[GM Portal tutorial](../gm-portal-taro)
+[GM Portal tutorial](../gm-portal-taro).
