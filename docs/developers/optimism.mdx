@@ -32,9 +32,24 @@ If it is not synced, you will run into [errors](https://github.com/celestiaorg/c
 Visit the [Blockspace Race page](../../nodes/blockspace-race/)
 to visit the faucet.
 
-When using your own node store, the `$HOME` directory is just the
-default, and can be changed in
-`optimism/ops-bedrock/docker-compose.yml` if you'd like.
+:::tip Note
+In order to mount existing data, you must have a node store that is
+in the `optimism/op-celestia/blockspacerace-data/` directory. In order
+to move an existing node store to this location, you can copy it
+to the directory.
+
+```bash
+cp -r $HOME/.celestia-light-blockspacerace-0 $HOME/optimism/op-celestia/blockspacerace-data/
+```
+
+You may need to give permissions to your keys in order to do this. Here are some example commands:
+
+```bash
+chmod go-rwx op-celestia/blockspacerace-data/keys/OAZHALLLMV4Q
+chmod go-rwx op-celestia/blockspacerace-data/keys/NJ3XILLTMVRXEZLUFZVHO5A
+chmod go-rwx op-celestia/blockspacerace-data/keys
+```
+:::
 
 By default, the node will run with the account named
 `my_celes_key`.
