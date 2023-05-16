@@ -382,7 +382,7 @@ const sidebars = {
 						},
             {
 							type: "doc",
-              label: "Deploy a GM-portal dapp on Taro testnet",
+              label: "Deploy a GM Portal dapp on Taro testnet",
               id: "developers/gm-portal-taro",
             },
             {
