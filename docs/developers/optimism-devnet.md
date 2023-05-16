@@ -87,7 +87,7 @@ source /root/.bashrc
 Run foundryup to install Foundry (`forge`, `cast`, `anvil`, `chisel`):
 
 ```bash
-source /root/.bashrc
+foundryup
 ```
 
 ### Yarn

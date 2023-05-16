@@ -41,16 +41,6 @@ to the directory. This will also preserve your original store.
 ```bash
 cp -r $HOME/.celestia-light-blockspacerace-0 $HOME/optimism/op-celestia/blockspacerace-data/
 ```
-
-You may need to give permissions to your keys in order to do this.
-Here are some example commands being ran from the `$HOME/optimism/`
-directory:
-
-```bash
-chmod go-rwx op-celestia/blockspacerace-data/keys/OAZHALLLMV4Q
-chmod go-rwx op-celestia/blockspacerace-data/keys/NJ3XILLTMVRXEZLUFZVHO5A
-chmod go-rwx op-celestia/blockspacerace-data/keys
-```
 :::
 
 By default, the node will run with the account named
@@ -59,9 +49,10 @@ By default, the node will run with the account named
 If you have your own setup you'd like to try, you can always edit
 `optimism/ops-bedrock/docker-compose-testnet.yml` to work with your setup.
 
-#### Caldera: Using a RaaS provider
+#### Using a RaaS provider
 
-If you'd like to use a RaaS provider, you can do so by...
+If you'd like to use a Rollups as a Service (RaaS) provider, you can do so
+by going to the [RaaS category](../../category/rollups-as-a-service/).
 
 ## Start the testnet
 

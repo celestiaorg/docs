@@ -415,6 +415,26 @@ const sidebars = {
             //     }
             //   ]
             // },
+            {
+              type: "category",
+              label: "Rollups as a Service",
+              link: {
+                type: "generated-index",
+              },
+              collapsed: true,
+              items: [
+                {
+                  type: "link",
+                  label: "Caldera",
+                  href: "https://caldera.xyz",
+                },
+                {
+                  type: "link",
+                  label: "Conduit",
+                  href: "https://conduit.xyz",
+                }
+              ]
+            },
 					]
     		},
 			]
