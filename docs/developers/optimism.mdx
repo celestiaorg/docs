@@ -2,3 +2,37 @@
 sidebar_label: Deploy an OP Stack testnet on Celestia
 description: Start your own testnet with a modified version of optimism-bedrock.
 ---
+
+# Deploy an OP Stack testnet with Celestia
+
+In order to deploy a testnet with Celestia, you will need to have a modified
+version of optimism-bedrock. You can find the steps to install dependencies
+and the modified version [here](../optimism-devnet).
+
+Next, you will need to
+
+## Start the testnet
+
+First, make sure your light node is running and funded.
+
+Next, you can start up the testnet with the following command:
+
+```bash
+make testnet-up
+```
+
+## Stop the testnet
+
+To safely stop the testnet, run the following command:
+
+```bash
+make testnet-down
+```
+
+## Clean the testnet
+
+To remove all data from the testnet, run the following command:
+
+```bash
+make testnet-clean
+```
