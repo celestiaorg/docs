@@ -9,7 +9,45 @@ In order to deploy a testnet with Celestia, you will need to have a modified
 version of optimism-bedrock. You can find the steps to install dependencies
 and the modified version [here](../optimism-devnet).
 
-Next, you will need to
+## Pick your deployment type
+
+Using Celestia and OP stack, you have the option to either
+run a light node of your own or a `local-celestia-devnet`,
+which will give you a local devnet to test things out with.
+
+### Using a local devnet
+
+If you'd like to use the `local-celestia-devnet`, you're in luck!
+This is the default for the OP Stack + Celestia repository. Head
+to the [previous page](../optimism-devnet) to get started.
+
+#### Using a light node
+
+If you choose to use your own node store, the light node
+must be **fully synced** and **funded** for you to be able to submit
+and retreive `PayForBlobs`.
+
+If it is not synced, you will run into [errors](https://github.com/celestiaorg/celestia-node/issues/2151).
+
+Visit the [Blockspace Race page](../../nodes/blockspace-race/)
+to visit the faucet.
+
+When using your own node, the RPC URL is set to the Docker
+bridge IP, which means you will need to run your node with the
+gateway IP address of `172.17.0.1` on port `26659`.
+
+An example start command would look like:
+
+```bash
+celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 172.17.0.1 --gateway.port 26659 --p2p.network blockspacerace
+```
+
+If you have your own setup you'd like to try, you can always edit
+`optimism/ops-bedrock/docker-compose-testnet.yml` to work with your setup.
+
+#### Caldera: Using a RaaS provider
+
+If you'd like to use a RaaS provider, you can do so by...
 
 ## Start the testnet
 
