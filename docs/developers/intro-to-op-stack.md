@@ -5,10 +5,12 @@ description: Learn about the integration of OP Stack with Celestia.
 
 # Introduction to OP Stack integration
 
-[Optimism](https://optimism.io) is a low-cost and lightning-fast Ethereum L2 blockchain, built with the OP Stack.
+[Optimism](https://optimism.io) is a low-cost and lightning-fast Ethereum
+L2 blockchain, built with the OP Stack.
 
-[Celestia](https://celestia.org) is a modular consensus and data network, built to enable anyone to easily
-deploy their own blockchain with minimal overhead.
+[Celestia](https://celestia.org) is a modular consensus and data network,
+built to enable anyone to easily deploy their own blockchain with
+minimal overhead.
 
 ## About the integration
 
@@ -36,23 +38,40 @@ rollup blocks and posts to Ethereum.
 
 ## Celestia + OP Stack repository
 
-Find the repository for this integration [here](https://github.com/celestiaorg/optimism/) or at `https://github.com/celestiaorg/optimism`.
+Find the repository for this integration
+[here](https://github.com/celestiaorg/optimism/) or at
+`https://github.com/celestiaorg/optimism`.
 
 ### What are Optimism and the OP Stack?
 
-Optimism, an Ethereum L2 blockchain, is powered by the OP Stack, which is also the foundation for the [Optimism Collective](https://app.optimism.io/announcement) committed to the **impact=profit** principle. This rewards individuals for their positive contributions to the collective.
+Optimism, an Ethereum L2 blockchain, is powered by the OP Stack,
+which is also the foundation for the
+[Optimism Collective](https://app.optimism.io/announcement) committed
+to the **impact=profit** principle. This rewards individuals for their
+positive contributions to the collective.
 
-Optimism addresses crypto ecosystem coordination failures, like funding public goods and infrastructure. The OP Stack fosters collaboration and prevents redundancy by creating a shared, open-source system for developing new L2 blockchains within the proposed Superchain ecosystem.
+Optimism addresses crypto ecosystem coordination failures, like funding public
+goods and infrastructure. The OP Stack fosters collaboration and prevents
+redundancy by creating a shared, open-source system for developing new L2
+blockchains within the proposed Superchain ecosystem.
 
-As Optimism evolves, the OP Stack will adapt to include components from blockchain infrastructure to governance systems. This software suite aims to simplify L2 blockchain creation and support the Optimism ecosystem's growth and development.
+As Optimism evolves, the OP Stack will adapt to include components from
+blockchain infrastructure to governance systems. This software suite aims
+to simplify L2 blockchain creation and support the Optimism ecosystem's
+growth and development.
 
 Learn more about Optimism [here](https://www.optimism.io/).
 
 ### What is Celestia?
 
-Celestia is a modular consensus and data network, built to enable anyone to easily deploy their own blockchain with minimal overhead.
+Celestia is a modular consensus and data network, built to enable anyone to
+easily deploy their own blockchain with minimal overhead.
 
-Celestia is a minimal blockchain that only orders and publishes transactions and does not execute them. By decoupling the consensus and application execution layers, Celestia modularizes the blockchain technology stack and unlocks new possibilities for decentralized application builders. Lean more at [Celestia.org](https://celestia.org).
+Celestia is a minimal blockchain that only orders and publishes transactions
+and does not execute them. By decoupling the consensus and application
+execution layers, Celestia modularizes the blockchain technology stack
+and unlocks new possibilities for decentralized application builders.
+Lean more at [Celestia.org](https://celestia.org).
 
 ## OP Stack + Celestia
 

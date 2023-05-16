@@ -27,10 +27,12 @@ export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2f
 Now, change into the `gm-portal/contracts` directory in the same terminal and deploy
 the contract using Foundry:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 cd $HOME/gm-portal/contracts
 forge script script/WavePortal.s.sol:WavePortalScript --rpc-url http://localhost:9545 --private-key $PRIVATE_KEY --broadcast
 ```
+<!-- markdownlint-enable MD013 -->
 
 In the output of the deployment, find the contract address and set it as a variable:
 
