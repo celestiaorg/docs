@@ -144,6 +144,15 @@ This starts up the layer 1 (ETH), layer 2 (`op-geth`), data availability
 layer (Celestia), the sequencer (`op-node`), batch submitter (`op-batcher`),
 state commitment service (`op-proposer`).
 
+### View the logs of the devnet
+
+If you'd like to view the logs of the devnet, run the following command
+from the root of the Optimism directory:
+
+```bash
+make devnet-logs
+```
+
 :::tip optional
 
 #### lazydocker
