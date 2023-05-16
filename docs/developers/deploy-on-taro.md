@@ -217,9 +217,11 @@ Foundry uses `cast`, a CLI for performing Ethereum RPC calls.
 
 To write to the contract, we'll use the `cast send` command:
 
+<!-- markdownlint-disable MD013 -->
 ```bash
 cast send $CONTRACT_ADDRESS "setNumber(uint256)" 10 --rpc-url $TARO_RPC_URL --private-key $PRIVATE_KEY
 ```
+<!-- markdownlint-enable MD013 -->
 
 Your output will look similar:
 

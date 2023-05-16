@@ -6,7 +6,7 @@ description: Make your own GM Portal dapp on the OP Stack.
 # Deploying a dapp on Taro testnet
 
 First, review the [Taro testnet page](../taro-testnet) and the
-[Deploy a smart contract to Taro testnet](../deploy-to-taro) tutorial.
+[Deploy a smart contract to Taro testnet](../deploy-on-taro) tutorial.
 
 **You will need a funded account to deploy your smart contract.**
 
@@ -19,7 +19,8 @@ cd gm-portal/frontend
 yarn && yarn dev
 ```
 
-In a new terminal instance, set your private key for the faucet as a variable and the RPC URL you're using:
+In a new terminal instance, set your private key for the
+faucet as a variable and the RPC URL you're using:
 
 ```bash
 export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
