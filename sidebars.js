@@ -346,7 +346,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Deploy A Rollup",
+      label: "Deploy a Rollup",
 			link: {
 				type: "generated-index",
 			},
