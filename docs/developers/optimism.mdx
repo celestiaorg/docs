@@ -26,13 +26,10 @@ to the [previous page](../optimism-devnet) to get started.
 :::caution
 This is a beta integration and we are working on a fix due to unexpected
 reorgs. The compatible version of the `celestia-node`
-software is not yet released, but available on `v0.9.6-alpha.2`.
+software is `v0.9.5`.
 
-When installing `celestia-node`, you can use `git checkout v0.9.6-alpha.2`
-before building the binary.
-
-Next, in order to allow your light node to post
-and retrieve data without errors, you will need to change the `UseShareExchange`
+In order to allow your light node to post
+and retrieve data without errors, you will need to change `UseShareExchange`
 to `false` in the `.celestia-light-blockspacerace-0/config.toml` file.
 
 This will be fixed in an official release in the future.
