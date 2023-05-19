@@ -6,7 +6,7 @@ description: Learn about the integration of OP Stack with Celestia.
 # Introduction to OP Stack integration
 
 [Optimism](https://optimism.io) is a low-cost and lightning-fast Ethereum
-L2 blockchain, built with the OP Stack.
+L2 blockchain, built with [the OP Stack](https://stack.optimism.io/).
 
 [Celestia](https://celestia.org) is a modular consensus and data network,
 built to enable anyone to easily deploy their own blockchain with
@@ -15,7 +15,7 @@ minimal overhead.
 ## About the integration
 
 *Discover how to integrate existing blockchain frameworks
-like [the OP Stack](https://stack.optimism.io/)
+like the OP Stack
 can integrate with Celestia in this category.*
 
 :::tip
