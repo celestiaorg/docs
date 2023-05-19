@@ -53,13 +53,17 @@ blockchain.
 
 For the Taro Testnet, you can connect to the following RPC URLs:
 
-* `https://tarotestnet.xyz`
+* `https://rpc.tarotestnet.com`
 
 This URL serves as the entry point to the Taro Testnet. You can use it
 in your applications to connect to the testnet and interact with the smart
 contracts you deploy there.
 
 Remember, Taro Testnet is a testing environment!
+
+### Faucet
+
+To visit the Taro testnet faucet, go to [`https://tarofaucet.com`](https://tarofaucet.com).
 
 ## Next steps
 
