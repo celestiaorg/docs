@@ -26,9 +26,8 @@ Ubuntu 22.10, and a 4 core AMD CPU.
 :::caution
 This is a **beta integration** and we are working on resolving open
 [issues](https://github.com/celestiaorg/optimism/issues).
-The current version of `celestia-node` that is compatible with
-the [testnet setup](../optimism/#using-a-light-node)
-of this stack is `v0.9.5` on the `blockspacerace` testnet.
+The current testnet this setup is compatible with is the
+[Blockspace Race](../nodes/blockspace-race) testnet.
 :::
 
 [Optimism](https://www.optimism.io/) uses Ethereum as
