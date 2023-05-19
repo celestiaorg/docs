@@ -428,11 +428,11 @@ const sidebars = {
                   label: "Caldera",
                   href: "https://caldera.xyz",
                 },
-                {
-                  type: "link",
-                  label: "Conduit",
-                  href: "https://conduit.xyz",
-                }
+                // {
+                //   type: "link",
+                //   label: "Conduit",
+                //   href: "https://conduit.xyz",
+                // }
               ]
             },
 					]
