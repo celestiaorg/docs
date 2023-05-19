@@ -21,7 +21,7 @@ Next, clone the repo:
 cd $HOME
 git clone https://github.com/celestiaorg/optimism
 cd optimism
-git checkout v1.0.6-celestia-node-v0.9.5
+git checkout v0.1.0-OP_v1.0.6-CN_v0.9.5
 ```
 
 ### asdf
