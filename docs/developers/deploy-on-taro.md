@@ -157,7 +157,7 @@ the local server, run:
 anvil
 ```
 
-You'll see a local RPC endpoint (127.0.0.1:8545) and accounts to test with.
+You'll see a local RPC endpoint (`127.0.0.1:8545`) and accounts to test with.
 
 Let's deploy the contract now. First, set a private key from anvil:
 
@@ -177,11 +177,12 @@ src/Counter.sol:Counter
 ### Using Taro
 
 First, set a private key from your funded Ethereum wallet and
-set the `TARO_RPC_URL` variable with an RPC of your choosing:
+set the `TARO_RPC_URL` variable with an [RPC](../taro-testnet/#rpc-urls)
+of your choosing:
 
 ```bash
 export TARO_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-export TARO_RPC_URL=http://localhost:8545
+export TARO_RPC_URL=http://rpc.tarotestnet.com
 ```
 
 Now that we're ready to deploy the smart contract onto Taro, we will run

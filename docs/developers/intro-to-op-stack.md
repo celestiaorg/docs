@@ -35,7 +35,7 @@ a data availability (DA) layer. Currently, settlement and DA for
 Optimism are on Ethereum, both on-chain. `op-batcher` batches up
 rollup blocks and posts to Ethereum.
 
-### Table of contents
+### Table of contents of the category
 
 * [Taro testnet](../taro-testnet)
 * [Deploy a smart contract on Taro testnet](../deploy-on-taro)
@@ -82,8 +82,9 @@ Lean more at [Celestia.org](https://celestia.org).
 
 ## OP Stack + Celestia
 
-This tutorial will guide you through how start your own devnet with a
-modified version of `optimism-bedrock` that uses Celestia as a DA layer.
+This category will guide you through how start your own devnet or testnet
+with a modified version of `optimism-bedrock` that uses Celestia as a
+DA layer.
 
 The handling of data is accomplished in two ways. First, data is written
 to the data availability (DA) layer i.e. in this case Celestia, then the
