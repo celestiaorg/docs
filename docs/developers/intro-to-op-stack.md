@@ -43,7 +43,7 @@ rollup blocks and posts to Ethereum.
 * [Deploy an OP Stack devnet](../optimism-devnet)
 * [Deploy an OP Stack testnet on Celestia](../optimism)
 
-## Celestia + OP Stack repository
+## Celestia and OP Stack repository
 
 Find the repository for this integration
 [here](https://github.com/celestiaorg/optimism/) or at
@@ -80,7 +80,7 @@ execution layers, Celestia modularizes the blockchain technology stack
 and unlocks new possibilities for decentralized application builders.
 Lean more at [Celestia.org](https://celestia.org).
 
-## OP Stack + Celestia
+## OP Stack and Celestia
 
 This category will guide you through how start your own devnet or testnet
 with a modified version of `optimism-bedrock` that uses Celestia as a
