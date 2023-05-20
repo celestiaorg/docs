@@ -11,13 +11,14 @@ Taro Testnet is a fresh offering from Celestia Labs, built with OP Stack
 and Celestia, and is dedicated to providing developers with an EVM-compatible
 execution layer to deploy their EVM applications on.
 
-## Taro Testnet: Celestia + OP Stack
+## Built with the OP Stack and Celestia
 
 The Taro Testnet is a testnet rollup a modified version of
 `optimism-bedrock` that uses Celestia as a data availability (DA)
 layer. This integration can be found in this
 [repository](https://github.com/celestiaorg/optimism). The testnet
-is hosted by [Caldera](https://caldera.xyz), who makes it easy to launch rollups with no code required.
+is hosted by [Caldera](https://caldera.xyz), who makes it easy to launch
+rollup swith no code required.
 
 In this setup, data handling is accomplished in two ways. Firstly, data is
 written to the DA layer, in this case, Celestia. Then, the data commitment
