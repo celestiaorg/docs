@@ -308,6 +308,8 @@ docker run [...args] -v ./celestia-pwd:/home/celestia celestia <node-type> start
 A full start command will look similar to below. This is an example using
 a light node on Blockspace Race:
 
-```bash
-docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v ./celestia-pwd:/home/celestia ghcr.io/celestiaorg/celestia-node:v0.8.1 celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
-```
+````mdx-code-block
+<pre><code>
+docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v ./celestia-pwd:/home/celestia ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
+</code></pre>
+````
