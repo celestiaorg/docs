@@ -3,7 +3,7 @@ sidebar_label: Update your DA node
 description: Instructions for updating your DA node to the latest version release.
 ---
 
-# Upgrade and restart your light or full storage node
+# Upgrade and restart your light, bridge or full storage node
 
 ## Description
 
