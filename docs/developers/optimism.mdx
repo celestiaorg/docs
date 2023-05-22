@@ -9,7 +9,11 @@ import constants from "../../versions/constants.js";
 
 ````mdx-code-block
 In order to deploy a testnet with Celestia, you will need to have a modified
-version of `optimism-bedrock`. You can find the steps to install dependencies
+version of `optimism-bedrock`.
+
+## Install dependencies
+
+You can find the steps to install dependencies
 and the modified version [here](../optimism-devnet/).
 
 ## Pick your deployment type
@@ -70,6 +74,23 @@ If you have your own setup you'd like to try, you can always edit
 
 If you'd like to use a Rollups as a Service (RaaS) provider, you can do so
 by going to the [RaaS category](../../category/rollups-as-a-service/).
+
+## Build the testnet
+
+Build TypeScript definitions for TS dependencies:
+
+```bash
+cd $HOME
+cd optimism
+make build-ts
+```
+
+Set environment variables to start network:
+
+```bash
+export SEQUENCER_BATCH_INBOX_ADDRESS=0xff00000000000000000000000000000000000000
+export L2OO_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+```
 
 ## Start the testnet
 
