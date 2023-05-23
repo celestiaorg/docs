@@ -345,19 +345,103 @@ const sidebars = {
       ]
     },
     {
-      type: "doc",
-      label: "Rollkit",
-      id: "developers/rollkit"
-    },
-    {
-      type: "doc",
-      label: "Optimism",
-      id: "developers/optimism"
-    },
-    {
-      type: "doc",
-      label: "Full stack modular blockchain development guide",
-      id: "developers/full-stack-modular-development-guide"
+      type: "category",
+      label: "Deploy a Rollup",
+			link: {
+				type: "generated-index",
+			},
+			collapsed: false,
+			items: [
+				{
+      		type: "doc",
+      		label: "Rollkit",
+      		id: "developers/rollkit"
+    		},
+    		{
+      		type: "category",
+      		label: "Optimism",
+					link: {
+						type: "generated-index",
+					},
+					collapsed: false,
+					items: [
+						{
+							type: "doc",
+							label: "Introduction to OP Stack integration",
+              id: "developers/intro-to-op-stack"
+						},
+            // {
+						// 	type: "doc",
+            //   label: "Taro testnet",
+            //   id: "developers/taro-testnet",
+            // },
+						// {
+						// 	type: "doc",
+						// 	label: "Deploy a smart contract on Taro testnet",
+            //   id: "developers/deploy-on-taro"
+						// },
+            // {
+						// 	type: "doc",
+            //   label: "Deploy a GM Portal dapp on Taro testnet",
+            //   id: "developers/gm-portal-taro",
+            // },
+            {
+							type: "doc",
+							label: "Deploy an OP Stack devnet",
+      				id: "developers/optimism-devnet"
+            },
+            {
+							type: "doc",
+							label: "Deploy an OP Stack testnet on Celestia",
+      				id: "developers/optimism"
+            },
+            // {
+            //   type: "category",
+            //   label: "Use cases",
+            //   link: {
+            //     type: "generated-index",
+            //   },
+            //   collapsed: true,
+            //   items: [
+            //     {
+            //       type: "doc",
+            //       label: "Introduction to OP Stack integration",
+            //       id: "developers/intro-to-op-stack"
+            //     },
+            //     {
+            //       type: "doc",
+            //       label: "Taro testnet",
+            //       id: "developers/taro-testnet",
+            //     }
+            //   ]
+            // },
+            {
+              type: "category",
+              label: "Rollups as a Service",
+              link: {
+                type: "generated-index",
+              },
+              collapsed: true,
+              items: [
+                {
+                  type: "link",
+                  label: "Caldera",
+                  href: "https://caldera.xyz",
+                },
+                {
+                  type: "link",
+                  label: "Conduit (coming soon)",
+                  href: "https://conduit.xyz",
+                }
+              ]
+            },
+					]
+    		},{
+          type: "doc",
+          label: "Full stack modular blockchain development guide",
+          id: "developers/full-stack-modular-development-guide"
+        },
+			]
     },
     {
       type: "doc",
