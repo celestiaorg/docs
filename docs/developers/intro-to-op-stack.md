@@ -27,7 +27,7 @@ Ubuntu 22.10, and a 4 core AMD CPU.
 This is a **beta integration** and we are working on resolving open
 [issues](https://github.com/celestiaorg/optimism/issues).
 The current testnet this setup is compatible with is the
-[Arabica](../../nodes/arabica-devnet) devnet.
+[Blockspace Race](../../nodes/blockspace-race) testnet.
 :::
 
 [Optimism](https://www.optimism.io/) uses Ethereum as
@@ -37,9 +37,9 @@ rollup blocks and posts to Ethereum.
 
 ### Table of contents of the category
 
-* [Taro testnet](../taro-testnet)
+<!-- * [Taro testnet](../taro-testnet)
 * [Deploy a smart contract on Taro testnet](../deploy-on-taro)
-* [Deploy a GM Portal dapp on Taro testnet](../gm-portal-taro)
+* [Deploy a GM Portal dapp on Taro testnet](../gm-portal-taro) -->
 * [Deploy an OP Stack devnet](../optimism-devnet)
 * [Deploy an OP Stack testnet on Celestia](../optimism)
 
