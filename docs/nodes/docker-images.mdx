@@ -277,11 +277,11 @@ This will allow you to persist data even after the container is deleted.
 First, you will need to create a directory on your host machine.
 This directory will be used to store the data for the container.
 Create a directory on your host machine and give it a name.
-For example, you can name it `celestia-pwd`:
+For example, you can name it `my-node-store`:
 
 ```bash
 cd $HOME
-mkdir celestia-pwd
+mkdir my-node-store
 ```
 
 Now, you can mount this directory to the container.
@@ -289,7 +289,7 @@ Before mounting a volume, you _may_ need to set permissions for
 the user on the host machine by running:
 
 ```bash
-sudo chown 10001:10001 $HOME/celestia-pwd
+sudo chown 10001:10001 $HOME/my-node-store
 ```
 
 ### Initialize the node store and key
@@ -301,14 +301,14 @@ In this command, we'll create our key and initialize the node store:
 
 ```bash
 # --volume == -v [local path]:[container path]
-docker run [...args] -v $HOME/celestia-pwd:/home/celestia celestia <node-type> init [...args]
+docker run [...args] -v $HOME/my-node-store:/home/celestia celestia <node-type> init [...args]
 ```
 
 An example init command for the Blockspace Race will look similar to below:
 
 ````mdx-code-block
 <pre><code>
-docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v $HOME/celestia-pwd:/home/celestia ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light init --p2p.network blockspacerace
+docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light init --p2p.network blockspacerace
 </code></pre>
 ````
 
@@ -318,7 +318,7 @@ Run the following command to start the node:
 
 ```bash
 # --volume == -v [local path]:[container path]
-docker run [...args] -v $HOME/celestia-pwd:/home/celestia celestia <node-type> start [...args]
+docker run [...args] -v $HOME/my-node-store:/home/celestia celestia <node-type> start [...args]
 ```
 
 A full start command will look similar to below. This is an example using
@@ -326,6 +326,6 @@ a light node on Blockspace Race:
 
 ````mdx-code-block
 <pre><code>
-docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v $HOME/celestia-pwd:/home/celestia ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
+docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
 </code></pre>
 ````
