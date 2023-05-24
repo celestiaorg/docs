@@ -38,13 +38,13 @@ Run the following to install golang on your machine:
 
 ````mdx-code-block
 <pre><code>
-ver="{constants.golangNodeBSR}" <br/>
+ver="{constants.golangNodeBSR}"<br/>
 <br/>
-cd $HOME <br/>
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" <br/>
-sudo rm -rf /usr/local/go <br/>
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" <br/>
-rm "go$ver.linux-amd64.tar.gz" <br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"<br/>
+rm "go$ver.linux-amd64.tar.gz"<br/>
 </code></pre>
 
 Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
@@ -71,24 +71,24 @@ go version go{constants.golangNodeBSR} linux/amd64
 Install the `celestia-node` binary by running the following commands:
 
 <pre><code>
-cd $HOME <br/>
-rm -rf celestia-node <br/>
-git clone https://github.com/celestiaorg/celestia-node.git <br/>
-cd celestia-node/ <br/>
-git checkout tags/{blockspaceraceVersions['node-latest-tag']} <br/>
-make build <br/>
-make install <br/>
-make cel-key <br/>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']}<br/>
+make build<br/>
+make install<br/>
+make cel-key<br/>
 </code></pre>
 
 
 <pre><code>
-$ celestia version <br/>
-Semantic version: {blockspaceraceVersions['node-latest-tag']} <br/>
-Commit: {blockspaceraceVersions['node-latest-sha']} <br/>
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022 <br/>
-System version: amd64/linux <br/>
-Golang version: go{constants.golangNodeBSR} <br/>
+$ celestia version<br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']}<br/>
+Commit: {blockspaceraceVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: amd64/linux<br/>
+Golang version: go{constants.golangNodeBSR}<br/>
 </code></pre>
 ````
 
