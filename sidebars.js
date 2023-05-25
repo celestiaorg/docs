@@ -40,7 +40,12 @@ const sidebars = {
       },
       collapsed: false,
       items: [
-         {
+        {
+          type: "doc",
+          label: "Deciding which node to run",
+          id: "nodes/decide-node"
+        },
+        {
           type: "doc",
           label: "Docker images",
           id: "nodes/docker-images",
@@ -62,8 +67,8 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Deciding which node to run",
-          id: "nodes/decide-node"
+          label: "Node video tutorials",
+          id: "developers/light-node-video"
         },
       ]
     },
@@ -337,11 +342,6 @@ const sidebars = {
             },
           ]
         },
-        // {
-        //   type: "doc",
-        //   label: "Node video tutorial",
-        //   id: "developers/light-node-video"
-        // },
       ]
     },
     {
