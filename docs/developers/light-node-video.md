@@ -22,6 +22,18 @@ network.
   </iframe>
 </div>
 
+### 2.5 minute version
+
+<div class="youtube-wrapper">
+  <iframe
+     class="youtube-video"
+     title="Running a Celestia Light Node"
+     src="https://youtube.com/embed/ROZv871Q7RM"
+     allowfullscreen
+  >
+  </iframe>
+</div>
+
 ## Running a light node for developers
 
 Coming soon
