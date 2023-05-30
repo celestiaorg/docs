@@ -16,11 +16,6 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Blockspace race",
-          id: "nodes/blockspace-race"
-        },
-        {
-          type: "doc",
           label: "Arabica devnet",
           id: "nodes/arabica-devnet"
         },
@@ -28,7 +23,12 @@ const sidebars = {
           type: "doc",
           label: "Mocha testnet",
           id: "nodes/mocha-testnet"
-        }
+        },
+        {
+          type: "doc",
+          label: "Blockspace race",
+          id: "nodes/blockspace-race"
+        },
       ]
     },
     {
