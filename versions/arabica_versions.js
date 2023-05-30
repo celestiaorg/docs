@@ -1,9 +1,9 @@
 const arabicaVersions = Object.freeze({
-  "app-latest-tag": "v0.12.0",
-  "app-latest-sha": "1943735bdefc751ae98732760921d49a3534a70a",
-  "core-latest-tag": "v1.15.0-tm-v0.34.23",
-  "core-latest-sha": "77a1de71feadebaa89c5ecaef0309fd8b9f2f921",
-  "node-latest-tag": "v0.7.1",
-  "node-latest-sha": "c958fd3b3921ca993489d88530e59fe7f337bf4d",
+  "app-latest-tag": "v0.13.3",
+  "app-latest-sha": "ab64b67797653e99691e846a4303bd71f44d1a8e",
+  "core-latest-tag": "v1.21.1-tm-v0.34.27",
+  "core-latest-sha": "904ca9e002d1cd7220b4288113197e2e9bdf7ad5",
+  "node-latest-tag": "v0.10.2",
+  "node-latest-sha": "960b522ec4ed2fb2069a220e2cef2da609158f4d",
 });
 export default arabicaVersions;
