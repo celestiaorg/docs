@@ -4,7 +4,7 @@ const constants = Object.freeze({
     golangApp: "1.19.1",
     golangCore: "1.19.1",
     golang: "1.19.1",
-    arabicaChainId: "arabica-6",
+    arabicaChainId: "arabica-8",
     bsrChainId: "blockspacerace-0",
     rollkitVersion: "v0.7.3",
     localCelestiaDevnetVersion: "v0.8.2",
