@@ -23,7 +23,7 @@ _This guide was adapted from https://medium.com/qubelabs/ibc-connection-and-rela
 
 ## Setup
 
-[Hermes](https://hermes.informal.systems/quick-start/) is an open-source Rust implementation of an Inter-Blockchain Communication protocol (IBC) relayer released as part of the ibc-relayer-cli crate. It includes a CLI for relaying packets between Cosmos SDK chains, as well as Prometheus metrics and a REST API.
+[Hermes](https://hermes.informal.systems/quick-start/) is an open-source Rust implementation of an Inter-Blockchain Communication protocol (IBC) relayer released as part of the `ibc-relayer-cli` crate. It includes a CLI for relaying packets between Cosmos SDK chains, as well as Prometheus metrics and a REST API.
 
 ### Install Rust
 
