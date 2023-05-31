@@ -17,7 +17,9 @@ are two standard implementations:
 - [Hermes](https://hermes.informal.systems/) built in Rust
 - [Go Relayer](https://pkg.go.dev/github.com/cosmos/relayer) built in Go
 
-The following guide explains how to establish IBC connections and relay packets between the **Celestias Blockspace Race** and **Dymension 35-C** networks by using the Hermes relayer.
+The following guide explains how to establish IBC connections and relay packets between **Celestia's Blockspace Race** and **Dymension's 35-C** networks by using the Hermes relayer.
+
+_This guide was adapted from https://medium.com/qubelabs/ibc-connection-and-relaying-celestia-bsr-dymension-35-c-e4423699e856._
 
 ## Setup
 
