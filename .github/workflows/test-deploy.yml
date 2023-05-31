@@ -17,3 +17,5 @@ jobs:
           cache: npm
       - run: yarn install --frozen-lockfile
       - run: yarn build
+        env:
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}

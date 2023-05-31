@@ -20,8 +20,12 @@ jobs:
 
       - name: Install
         run: yarn install --frozen-lockfile
+
       - name: Build
         run: BASE_URL='/pr-preview/pr-${{ github.event.number }}/' yarn build
+        env:
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+
       - name: Add CNAME file
         run: echo docs.celestia.org > ./build/CNAME
 
