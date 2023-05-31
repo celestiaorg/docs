@@ -440,6 +440,10 @@ const sidebars = {
           type: "doc",
           label: "Full stack modular blockchain development guide",
           id: "developers/full-stack-modular-development-guide"
+        },{
+          type: "doc",
+          label: "IBC Relaying Guide",
+          id: "developers/ibc-relayer"
         },
 			]
     },
