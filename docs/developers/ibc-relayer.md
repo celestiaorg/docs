@@ -62,7 +62,7 @@ Create a `keys` directory and copy the template `config.toml` to the `.hermes` d
 
 For this tutorial, we will be using the following chains:
 
-- Celestia Blockspace Race `blockspacerace-0`
+- Celestia's Blockspace Race `blockspacerace-0`
  https://docs.celestia.org/nodes/blockspace-race/
 
 - Dymension 35-C `35-C`
