@@ -56,8 +56,7 @@ Celestia network. The default port is 26657.
 
 Below is a list of RPC endpoints you can use to connect to Arabica Devnet:
 
-* [https://rpc-arabica-8.consensus.celestia-arabica.com/](https://rpc-arabica-8.consensus.celestia-arabica.com/)
-* [https://rpc-2-arabica-8.consensus.celestia-arabica.com/](https://rpc-2-arabica-8.consensus.celestia-arabica.com/)
+* [http://consensus-full-arabica-8.celestia-arabica.com/](http://consensus-full-arabica-8.celestia-arabica.com/)
 
 ## API endpoints
 
