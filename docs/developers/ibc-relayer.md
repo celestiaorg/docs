@@ -65,7 +65,7 @@ For this tutorial, we will be using the following chains:
 - Celestia's Blockspace Race `blockspacerace-0`
  https://docs.celestia.org/nodes/blockspace-race/
 
-- Dymension 35-C `35-C`
+- Dymension's 35-C `35-C`
 https://docs.dymension.xyz/validate/dymension-hub/build-dymd
 
 If you are running both nodes on the same server where Hermes is running, you can use the local host. Please adjust the ports and IPs depending on your configurations.
