@@ -56,7 +56,7 @@ Celestia network. The default port is 26657.
 
 Below is a list of RPC endpoints you can use to connect to Arabica Devnet:
 
-* [https://rpc.limani.celestia-devops.dev](https://rpc.limani.celestia-devops.dev)
+* [https://consensus-full-arabica-8.celestia-arabica.com/](https://consensus-full-arabica-8.celestia-arabica.com/)
 
 ## API endpoints
 
@@ -66,7 +66,8 @@ as REST endpoints. This allows for communication with the node using REST
 calls, which can be useful if the client does not support gRPC or HTTP2.
 The default port is 1317.
 
-* [https://api.limani.celestia-devops.dev](https://api.limani.celestia-devops.dev)
+* [https://api-arabica-8.consensus.celestia-arabica.com/](https://api-arabica-8.consensus.celestia-arabica.com/)
+* [https://api-2-arabica-8.consensus.celestia-arabica.com/](https://api-2-arabica-8.consensus.celestia-arabica.com/)
 
 ## gRPC endpoints
 
@@ -75,7 +76,8 @@ gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
-* [https://grpc.limani.celestia-devops.dev](https://grpc.limani.celestia-devops.dev)
+* `grpc-arabica-8.consensus.celestia-arabica.com:443`
+* `grpc-2-arabica-8.consensus.celestia-arabica.com:443`
 
 ## Arabica devnet faucet
 
@@ -83,6 +85,8 @@ broadcast transactions.
   DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS
   DO NOT CURRENTLY EXIST AND THERE ARE NO PUBLIC SALES OR OTHER PUBLIC
   DISTRIBUTIONS OF ANY MAINNET CELESTIA TOKENS.
+
+### Discord
 
 You can request from Arabica Devnet Faucet on the #arabica-faucet channel on
 Celestia's Discord server with the following command:
@@ -95,8 +99,12 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 > Note: Faucet has a limit of 10 tokens per week per address/Discord ID
 
+### Web
+
+The web faucet is available at [https://faucet-arabica-8.celestia-arabica.com/](https://faucet-arabica-8.celestia-arabica.com/).
+
 ## Explorers
 
 There is an explorer you can use for Arabica:
 
-* [https://explorer.celestia.tools/arabica](https://explorer.celestia.tools/arabica/)
+* [https://explorer-arabica-8.celestia-arabica.com/arabica-8](https://explorer-arabica-8.celestia-arabica.com/arabica-8)

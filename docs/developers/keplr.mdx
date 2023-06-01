@@ -15,8 +15,8 @@ import TabItem from '@theme/TabItem';
 export const ARABICA_PARAMS = {
   chainId: `${constants.arabicaChainId}`,
   chainName: 'Arabica Devnet',
-  rpc: 'https://rpc.limani.celestia-devops.dev',
-  rest: 'https://api.limani.celestia-devops.dev'
+  rpc: 'https://consensus-full-arabica-8.celestia-arabica.com/',
+  rest: 'https://api-arabica-8.consensus.celestia-arabica.com/'
 }
 
 export const MOCHA_PARAMS = {
@@ -211,14 +211,14 @@ we are passing to the `AddNetworkKeplr`
 function:
 
 <pre><code>
-import '@site/src/components/AddNetworkKeplr' <br/>
+import '@site/src/components/AddNetworkKeplr'<br/>
 <br/>
 export const ARABICA_PARAMS = {`{
   chainId: '${constants.arabicaChainId}',
   chainName: 'Arabica Devnet',
-  rpc: 'https://rpc.limani.celestia-devops.dev',
-  rest: 'https://api.limani.celestia-devops.dev'
-}`} <br/>
+  rpc: 'https://consensus-full-arabica-8.celestia-arabica.com/',
+  rest: 'https://api-arabica-8.consensus.celestia-arabica.com/'
+}`}<br/>
 <br/>
 {`<AddNetworkKeplr params={ARABICA_PARAMS}/>`}
 </code></pre>

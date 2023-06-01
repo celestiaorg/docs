@@ -1,10 +1,11 @@
 const constants = Object.freeze({
     golangNodeBSR: "1.20.2",
-    golangNodeOther: "1.19.1",
+    golangNodeMocha: "1.19.1",
+    golangNodeArabica: "1.20.2",
     golangApp: "1.19.1",
     golangCore: "1.19.1",
     golang: "1.19.1",
-    arabicaChainId: "arabica-6",
+    arabicaChainId: "arabica-8",
     bsrChainId: "blockspacerace-0",
     rollkitVersion: "v0.7.3",
     localCelestiaDevnetVersion: "v0.8.2",

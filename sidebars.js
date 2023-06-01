@@ -16,11 +16,6 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Blockspace race",
-          id: "nodes/blockspace-race"
-        },
-        {
-          type: "doc",
           label: "Arabica devnet",
           id: "nodes/arabica-devnet"
         },
@@ -28,7 +23,12 @@ const sidebars = {
           type: "doc",
           label: "Mocha testnet",
           id: "nodes/mocha-testnet"
-        }
+        },
+        {
+          type: "doc",
+          label: "Blockspace race",
+          id: "nodes/blockspace-race"
+        },
       ]
     },
     {
@@ -40,7 +40,12 @@ const sidebars = {
       },
       collapsed: false,
       items: [
-         {
+        {
+          type: "doc",
+          label: "Deciding which node to run",
+          id: "nodes/decide-node"
+        },
+        {
           type: "doc",
           label: "Docker images",
           id: "nodes/docker-images",
@@ -62,8 +67,8 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Deciding which node to run",
-          id: "nodes/decide-node"
+          label: "Node video tutorials",
+          id: "developers/light-node-video"
         },
       ]
     },
@@ -337,11 +342,6 @@ const sidebars = {
             },
           ]
         },
-        // {
-        //   type: "doc",
-        //   label: "Node video tutorial",
-        //   id: "developers/light-node-video"
-        // },
       ]
     },
     {
@@ -428,11 +428,11 @@ const sidebars = {
                   label: "Caldera",
                   href: "https://caldera.xyz",
                 },
-                {
-                  type: "link",
-                  label: "Conduit (coming soon)",
-                  href: "https://conduit.xyz",
-                }
+                // {
+                //   type: "link",
+                //   label: "Conduit (coming soon)",
+                //   href: "https://conduit.xyz",
+                // }
               ]
             },
 					]
@@ -440,6 +440,10 @@ const sidebars = {
           type: "doc",
           label: "Full stack modular blockchain development guide",
           id: "developers/full-stack-modular-development-guide"
+        },{
+          type: "doc",
+          label: "IBC Relaying Guide",
+          id: "developers/ibc-relayer"
         },
 			]
     },
