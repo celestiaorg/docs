@@ -21,6 +21,17 @@ Next, clone the repo:
 cd $HOME
 git clone https://github.com/celestiaorg/optimism
 cd optimism
+git checkout v0.1.0-OP_v1.0.6-CN_v0.10.0
+```
+
+If you are using **Arabica** and deploying using the
+[**testnet deployment guide**](../optimism/) use the following
+version:
+
+```bash
+cd $HOME
+git clone https://github.com/celestiaorg/optimism
+cd optimism
 git checkout v0.1.1-OP_v1.0.6-CN_v0.11.0-rc1
 ```
 
