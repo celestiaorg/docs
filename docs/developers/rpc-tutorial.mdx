@@ -5,6 +5,10 @@ description: Find out how to interact with a Celestia Node's RPC (Remote Procedu
 
 # RPC API tutorial ☎️
 
+:::tip
+This tutorial is made for versions of Celestia node v0.7.2 and above.
+:::
+
 This tutorial will teach you how to interact with a Celestia Node's
 [RPC (Remote Procedure Call) API](https://node-rpc-docs.celestia.org/).
 
@@ -114,6 +118,15 @@ Submit a blob to the network:
 ```bash
 celestia rpc state SubmitPayForBlob 0x1874e642f5dde589 '"Hello there!!"' 2000 100000
 ```
+
+NEW SUBMIT PFB:
+
+Submit a blob to the network using base64:
+
+```bash
+celestia rpc blob Submit 0x0f0c204d39600fdd 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
+```
+
 
 Query node information:
 
