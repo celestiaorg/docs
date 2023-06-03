@@ -437,6 +437,10 @@ const sidebars = {
             },
 					]
     		},{
+          type: "link",
+          label: "Sovereign SDK",
+          href: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup",
+        },{
           type: "doc",
           label: "Full stack modular blockchain development guide",
           id: "developers/full-stack-modular-development-guide"
