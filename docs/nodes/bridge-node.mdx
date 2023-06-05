@@ -79,35 +79,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-Run the following:
-
-```sh
-celestia bridge init --core.ip <ip-address> --p2p.network blockspacerace
-```
-
-:::tip
-The `--core.ip` gRPC port defaults to 9090,
-so if you do not specify it in the command
-line, it will default to that port. You can
-add the port after the IP address or use the
-`--core.grpc.port` flag to specify another
-port if you prefer.
-
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
-:::
-
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../blockspace-race)
-
-Here is an example of initializing the bridge node:
-
-```sh
-celestia bridge init --core.ip <ip-address> --p2p.network blockspacerace
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 Run the following:
@@ -171,51 +142,6 @@ celestia bridge init --core.ip https://consensus-full-arabica-8.celestia-arabica
 ### Run the bridge node
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-Start the Bridge Node with a connection to a validator node's gRPC endpoint
-(which is usually exposed on port 9090):
-
-```sh
-celestia bridge start --core.ip <ip-address> --p2p.network blockspacerace
-```
-
-:::tip
-The `--core.ip` gRPC port defaults to 9090,
-so if you do not specify it in the command
-line, it will default to that port. You can
-add the port after the IP address or use the
-`--core.grpc.port` flag to specify another
-port if you prefer.
-
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
-:::
-
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../blockspace-race)
-
-Here is an example of starting the bridge node:
-
-```sh
-celestia bridge start --core.ip <ip-address> --p2p.network blockspacerace
-```
-
-You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
-
-Once you start the Bridge Node, a wallet key will be generated for you.
-You will need to fund that address with Testnet tokens to pay for
-`PayForBlob` transactions.
-You can find the address by running the following command:
-
-```sh
-./cel-key list --node.type bridge --keyring-backend test --p2p.network <network>
-```
-
-You can get testnet tokens from:
-
-* [Blockspace Race](../arabica-devnet)
-  
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 Start the Bridge Node with a connection to a validator node's gRPC endpoint
@@ -323,13 +249,6 @@ In order to run a bridge node using a custom key:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-```sh
-celestia bridge start --core.ip <ip> --keyring.accname <name_of_custom_key> --p2p.network blockspacerace
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh

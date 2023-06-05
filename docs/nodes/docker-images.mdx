@@ -5,7 +5,6 @@ description: Running Celestia Node using Docker.
 
 import mochaVersions from "../../versions/mocha_versions.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
-import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
 
 # 🐳 Docker setup
 
@@ -43,28 +42,6 @@ import TabItem from '@theme/TabItem';
 <TabItem value="light" label="Light">
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-## Blockspace Race light node setup
-
-Run the image from the command line:
-
-<pre><code>
-docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
-</code></pre>
-
-:::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
-:::
-
-Congratulations! You now have a Celestia light node running on the Blockspace Race testnet.
-
-If you would like to run the node with custom flags,
-you can refer to the
-[`celestia-node` tutorial](../../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ## Mocha testnet light node setup
@@ -118,28 +95,6 @@ you can refer to the
 <TabItem value="bridge" label="Bridge">
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-## Blockspace Race bridge node setup
-
-Run the image from the command line:
-
-<pre><code>
-docker run -e NODE_TYPE=bridge -e P2P_NETWORK=blockspacerace ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia bridge start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
-</code></pre>
-
-:::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
-:::
-
-Congratulations! You now have a Celestia bridge node running on the Blockspace Race testnet.
-
-If you would like to run the node with custom flags,
-you can refer to the
-[`celestia-node` tutorial](../../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ## Mocha bridge node setup
@@ -193,28 +148,6 @@ you can refer to the
 <TabItem value="full" label="Full">
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-## Blockspace Race full node setup
-
-Run the image from the command line:
-
-<pre><code>
-docker run -e NODE_TYPE=full -e P2P_NETWORK=blockspacerace ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia full start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
-</code></pre>
-
-:::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
-:::
-
-Congratulations! You now have a Celestia full node running on the Blockspace Race testnet.
-
-If you would like to run the node with custom flags,
-you can refer to the
-[`celestia-node` tutorial](../../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ## Mocha full node setup
@@ -304,11 +237,11 @@ In this command, we'll create our key and initialize the node store:
 docker run [...args] -v $HOME/my-node-store:/home/celestia celestia <node-type> init [...args]
 ```
 
-An example init command for the Blockspace Race will look similar to below:
+An example init command for Arabica will look similar to below:
 
 ````mdx-code-block
 <pre><code>
-docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light init --p2p.network blockspacerace
+docker run -e NODE_TYPE=light -e P2P_NETWORK=arabica -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia light init --p2p.network arabica
 </code></pre>
 ````
 
@@ -326,7 +259,7 @@ a light node on Blockspace Race:
 
 ````mdx-code-block
 <pre><code>
-docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
+docker run -e NODE_TYPE=light -e P2P_NETWORK=arabica -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia light start --core.ip consensus-full-arabica-8.celestia-arabica.com --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 </code></pre>
 ````
 

@@ -6,7 +6,6 @@ description: Learn to build and install Celestia Node.
 import constants from "../../versions/constants.js";
 import mochaVersions from "../../versions/mocha_versions.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
-import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
 
 # Celestia Node
 
@@ -23,136 +22,6 @@ environment [here](./environment.mdx).
 
 ```mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-<Tabs groupId="operating-systems">
-<TabItem value="amd" label="Ubuntu (AMD)">
-
-Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
-to be compatible with the network.
-
-Install the `celestia-node` binary by running the following commands:
-
-<pre><code>
-cd $HOME<br/>
-rm -rf celestia-node<br/>
-git clone https://github.com/celestiaorg/celestia-node.git<br/>
-cd celestia-node/<br/>
-git checkout tags/{blockspaceraceVersions['node-latest-tag']}<br/>
-make build<br/>
-make install<br/>
-make cel-key<br/>
-</code></pre>
-
-Verify that the binary is working and check the version with the `celestia
-version` command:
-
-<pre><code>
-$ celestia version<br/>
-Semantic version: {blockspaceraceVersions['node-latest-tag']}<br/>
-Commit: {blockspaceraceVersions['node-latest-sha']}<br/>
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
-System version: amd64/linux<br/>
-Golang version: go{constants.golangNodeBSR}<br/>
-</code></pre>
-
-</TabItem>
-<TabItem value="arm" label="Ubuntu (ARM)">
-
-Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
-to be compatible with the network.
-
-Install the `celestia-node` binary by running the following commands:
-
-<pre><code>
-cd $HOME<br/>
-rm -rf celestia-node<br/>
-git clone https://github.com/celestiaorg/celestia-node.git<br/>
-cd celestia-node/<br/>
-git checkout tags/{blockspaceraceVersions['node-latest-tag']}<br/>
-make build<br/>
-make install<br/>
-make cel-key<br/>
-</code></pre>
-
-Verify that the binary is working and check the version with the `celestia
-version` command:
-
-<pre><code>
-$ celestia version<br/>
-Semantic version: {blockspaceraceVersions['node-latest-tag']}<br/>
-Commit: {blockspaceraceVersions['node-latest-sha']}<br/>
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
-System version: arm64/linux<br/>
-Golang version: go{constants.golangNodeBSR}<br/>
-</code></pre>
-
-</TabItem>
-<TabItem value="apple" label="Mac (Apple)">
-
-Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
-to be compatible with the network.
-
-Install the `celestia-node` binary by running the following commands:
-
-<pre><code>
-cd $HOME<br/>
-rm -rf celestia-node<br/>
-git clone https://github.com/celestiaorg/celestia-node.git<br/>
-cd celestia-node/<br/>
-git checkout tags/{blockspaceraceVersions['node-latest-tag']}<br/>
-make build<br/>
-make go-install<br/>
-make cel-key<br/>
-</code></pre>
-
-Verify that the binary is working and check the version with the `celestia
-version` command:
-
-<pre><code>
-$ celestia version<br/>
-Semantic version: {blockspaceraceVersions['node-latest-tag']}<br/>
-Commit: {blockspaceraceVersions['node-latest-sha']}<br/>
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
-System version: arm64/darwin<br/>
-Golang version: go{constants.golangNodeBSR}<br/>
-</code></pre>
-
-</TabItem>
-<TabItem value="mac" label="Mac (Intel)">
-
-Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
-to be compatible with the network.
-
-Install the `celestia-node` binary by running the following commands:
-
-<pre><code>
-cd $HOME<br/>
-rm -rf celestia-node<br/>
-git clone https://github.com/celestiaorg/celestia-node.git<br/>
-cd celestia-node/<br/>
-git checkout tags/{blockspaceraceVersions['node-latest-tag']}<br/>
-make build<br/>
-make go-install<br/>
-make cel-key<br/>
-</code></pre>
-
-Verify that the binary is working and check the version with the `celestia
-version` command:
-
-<pre><code>
-$ celestia version<br/>
-Semantic version: {blockspaceraceVersions['node-latest-tag']}<br/>
-Commit: {blockspaceraceVersions['node-latest-sha']}<br/>
-Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
-System version: amd64/darwin<br/>
-Golang version: go{constants.golangNodeBSR}<br/>
-</code></pre>
-
-</TabItem>
-</Tabs>
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
@@ -528,13 +397,13 @@ First, stop your node safely using `control + C`.
 Then, init your node again with a new node store:
 
 ```bash
-celestia <node-type> init --node.store /home/user/celestia-<node-type>-location/ --p2p.network blockspacerace
+celestia <node-type> init --node.store /home/user/celestia-<node-type>-location/ --p2p.network arabica
 ```
 
 Next, start your node:
 
 ```bash
-celestia full start --core.ip https://rpc-blockspacerace.pops.one/ --p2p.network blockspacerace --node.store /home/user/celestia-<node-type>-location/
+celestia full start --core.ip consensus-full-arabica-8.celestia-arabica.co --p2p.network arabica --node.store /home/user/celestia-<node-type>-location/
 ```
 
 If you choose to change the location of your node store,
@@ -549,7 +418,7 @@ When using `cel-key`, the process is different.
 To show the keys you should add `--keyring-dir` like this example:
 
 ```bash
-./cel-key list --p2p.network blockspacerace --node.type full --keyring-dir /home/user/celestia-<node-type>-location/keys/
+./cel-key list --p2p.network arabica --node.type full --keyring-dir /home/user/celestia-<node-type>-location/keys/
 ```
 
 ## Troubleshooting
@@ -667,7 +536,7 @@ celestia <node-type> unsafe-reset-store --p2p.network <network>
 ##### Example for light node on Blockspace Race on v0.9.0+
 
 ```bash
-celestia light unsafe-reset-store --p2p.network blockspacerace
+celestia light unsafe-reset-store --p2p.network arabica
 ```
 
 </TabItem>

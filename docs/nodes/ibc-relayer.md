@@ -66,13 +66,13 @@ echo word1 ... word12or24 > mnemonic_file
 Next, run the following:
 
 ```bash
-hermes keys add --chain blockspacerace-1 --mnemonic-file mnemonic_file
+hermes keys add --chain arabica-8 --mnemonic-file mnemonic_file
 ```
 
 You can confirm the keys by executing:
 
 ```bash
-hermes keys list --chain blockspacerace-1
+hermes keys list --chain arabica-8
 ```
 
 Make sure you have added the keys and have sufficient

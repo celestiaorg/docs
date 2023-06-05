@@ -55,13 +55,6 @@ Run the following command:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-```sh
-celestia full init --p2p.network blockspacerace
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh 
@@ -83,52 +76,6 @@ celestia full init --p2p.network arabica
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-Start the Full Storage Node with a connection to a validator node's gRPC endpoint
-(which is usually exposed on port 9090):
-
-:::tip
-In order for access to the ability to get/submit
-state-related information, such as the ability to
-submit `PayForBlob` transactions, or query for the
-node's account balance, a gRPC endpoint of a validator
-(core) node must be passed as directed below.
-
-Please refer to the [ports](../../nodes/celestia-node/#ports)
-section for information on which ports are
-required to be open on your machine.
-:::
-
-```sh
-celestia full start --core.ip http://<ip-address> --p2p.network blockspacerace
-```
-
-If you would like to find example RPC endpoints, check out the list of
-resources [here](../blockspace-race).
-
-You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
-
-Once you start the Full Node, a wallet key will be generated for you.
-You will need to fund that address with testnet tokens to pay for
-`PayForBlob` transactions.
-You can find the address by running the following command:
-
-```sh
-./cel-key list --node.type full --keyring-backend test --p2p.network <network>
-```
-
-You can get testnet tokens from:
-
-* [Blockspace Race](../blockspace-race)
-
-> NOTE: If you are running a full-storage node for your sovereign
-  rollup, it is highly recommended to request Arabica devnet tokens
-  as Arabica has the latest changes that can be used to
-  test for developing your sovereign rollup. You can still use
-  Mocha Testnet as well, it is just mostly used for Validator operations.
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 Start the Full Storage Node with a connection to a validator node's gRPC endpoint
@@ -234,13 +181,6 @@ In order to run a full storage node using a custom key:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-```sh
-celestia full start --core.ip http://<ip-address> --keyring.accname <name-of-custom-key> --p2p.network blockspacerace
-```
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh 

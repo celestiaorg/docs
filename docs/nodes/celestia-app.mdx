@@ -5,7 +5,6 @@ description: Learn how you can build Celestia App.
 
 import mochaVersions from "../../versions/mocha_versions.js";
 import arabicaVersions from "../../versions/arabica_versions.js";
-import blockspaceraceVersions  from   "../../versions/blockspacerace_versions.js";
 
 # Celestia App
 
@@ -24,19 +23,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-<pre><code>
-cd $HOME<br/>
-rm -rf celestia-app<br/>
-git clone https://github.com/celestiaorg/celestia-app.git<br/>
-cd celestia-app/<br/>
-APP_VERSION={blockspaceraceVersions['app-latest-tag']}<br/>
-git checkout tags/$APP_VERSION -b $APP_VERSION<br/>
-make install<br/>
-</code></pre>
-
-</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 <pre><code>

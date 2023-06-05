@@ -24,11 +24,6 @@ const sidebars = {
           label: "Mocha testnet",
           id: "nodes/mocha-testnet"
         },
-        {
-          type: "doc",
-          label: "Blockspace race",
-          id: "nodes/blockspace-race"
-        },
       ]
     },
     {
@@ -437,7 +432,6 @@ const sidebars = {
     { type: "doc", label: "Overview", id: "community/overview" },
     { type: "doc", label: "Code of Conduct", id: "community/coc" },
     { type: "doc", label: "Community calendar", id: "community/calendar" },
-    { type: "doc", label: "Incentivized testnet supplemental terms", id: "community/itn-tos" },
     { type: "doc", label: "Docs translations", id: "community/translations" },
     {
       type: "category",

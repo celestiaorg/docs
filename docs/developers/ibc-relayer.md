@@ -75,8 +75,8 @@ the chains you want to relay between.
 
 For this tutorial, we will be using the following chains:
 
-- Celestia's Blockspace Race `blockspacerace-0`
-[https://docs.celestia.org/nodes/blockspace-race/](https://docs.celestia.org/nodes/blockspace-race/)
+- Celestia's Arabica devnet `arabica-8`
+[https://docs.celestia.org/nodes/arabica-devnet/](https://docs.celestia.org/nodes/arabica-devnet/)
 
 - Dymension's 35-C `35-C`
 [https://docs.dymension.xyz/validate/dymension-hub/build-dymd](https://docs.dymension.xyz/validate/dymension-hub/build-dymd)
@@ -95,7 +95,7 @@ default with the example at the end of the file.
 
 ```bash
 [[chains]]
-id = 'blockspacerace-0'
+id = 'arabica-8'
 rpc_addr = 'http://127.0.0.1:26657'
 grpc_addr = 'http://127.0.0.1:9090'
 websocket_addr = 'ws://127.0.0.1:26657/websocket'
@@ -180,7 +180,7 @@ use wallets for anything else but relaying to avoid running into
 account sequence errors.
 
 ```bash
-hermes keys add --chain blockspacerace-0 --mnemonic-file <seed-file>
+hermes keys add --chain arabica-8 --mnemonic-file <seed-file>
 hermes keys add --chain C-35 --mnemonic-file <seed-file>
 ```
 
@@ -210,7 +210,7 @@ place and use the existing ones if they do. In that case you can
 section.
 
 In this example, we are creating a new connection with new clients between `35-C`
-and `blockspacerace-0` networks.
+and `arabica-8` networks.
 
 ### Open connection over new clients
 
@@ -224,7 +224,7 @@ Most networks already have appropriate relay paths set up!
 To create a new connection over new clients, use the following setup
 
 ```bash
-hermes create connection --a-chain 35-C --b-chain blockspacerace-0
+hermes create connection --a-chain 35-C --b-chain arabica-8
 ```
 
 You should be seeing a similar output to this:
@@ -252,7 +252,7 @@ SUCCESS Connection {
     b_side: ConnectionSide {
         chain: BaseChainHandle {
             chain_id: ChainId {
-                id: "blockspacerace-0",
+                id: "arabica-8",
                 version: 0,
             },
             runtime_sender: Sender { .. },
@@ -310,7 +310,7 @@ SUCCESS Channel {
     b_side: ChannelSide {
         chain: BaseChainHandle {
             chain_id: ChainId {
-                id: "blockspacerace-0",
+                id: "arabica-8",
                 version: 0,
             },
             runtime_sender: Sender { .. },
@@ -353,11 +353,11 @@ For `35-C` add:
 [chains.packet_filter]
 policy = 'allow'
 list = [
-  ['transfer', 'channel-14'], # blockspacerace-0
+  ['transfer', 'channel-14'], # arabica-8
 ]
 ```
 
-For `blockspacerace-0` add:
+For `arabica-8` add:
 
 ```bash
 [chains.packet_filter]
@@ -403,7 +403,7 @@ seeing a similar output:
 
 ```bash
 INFO ThreadId(01) spawn:chain{chain=35-C}: spawning Wallet worker: wallet::35-C
-INFO ThreadId(01) spawn:chain{chain=blockspacerace-0}: spawning Wallet worker: wallet::blockspacerace-0
+INFO ThreadId(01) spawn:chain{chain=arabica-8}: spawning Wallet worker: wallet::arabica-8
 2023-05-12T22:51:03.193852Z  INFO ThreadId(01) Hermes has started
 ```
 
