@@ -297,6 +297,21 @@ const sidebars = {
       },
       collapsed: false,
       items: [
+        { 
+          type: "doc", 
+          label: "Node API tutorial", 
+          id: "developers/node-tutorial" 
+        },
+        { 
+          type: "doc", 
+          label: "Node API tutorial2", 
+          id: "developers/node-tutorial-2" 
+        },
+        {
+          type: "link",
+          label: "Node API docs",
+          href: "https://node-rpc-docs.celestia.org/"
+        },
         {
           type: "category",
           label: "Gateway API",
@@ -305,40 +320,10 @@ const sidebars = {
           },
           collapsed: false,
           items: [
-            { 
-              type: "doc", 
-              label: "Gateway API tutorial", 
-              id: "developers/node-tutorial" 
-            },
-            {
-              type: "doc",
-              label: "Gateway API docs",
-              id: "developers/node-gateway-docs"
-            },
             {
               type: "doc",
               label: "Prompt scavenger",
               id: "developers/prompt-scavenger"
-            },
-          ]
-        },
-        {
-          type: "category",
-          label: "RPC API",
-          link: {
-            type: "generated-index",
-          },
-          collapsed: false,
-          items: [
-            { 
-              type: "doc", 
-              label: "RPC API tutorial", 
-              id: "developers/rpc-tutorial" 
-            },
-            {
-              type: "link",
-              label: "RPC API docs",
-              href: "https://node-rpc-docs.celestia.org/"
             },
           ]
         },
