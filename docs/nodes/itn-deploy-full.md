@@ -61,7 +61,7 @@ To learn more, visit the
 
 1. Setup Your Celestia Full Storage Node
 2. How to find your full storage Node ID is found
-  [here](https://docs.celestia.org/developers/node-gateway-docs/#post-p2pinfo)
+  [here](../../developers/node-tutorial/#get-your-node-id)
 3. Make sure that the wallet address the node uses is funded.
 4. The keys directory under `.celestia-full-blockspacerace-0/keys`
   contains your `pubkey` for both DA and Tendermint networks. In the
