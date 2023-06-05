@@ -352,6 +352,11 @@ const sidebars = {
 			},
 			collapsed: false,
 			items: [
+        {
+          type: "link",
+          label: "Dymension",
+          href: "https://dymension.xyz/"
+        },
     		{
           type: "doc",
           label: "Full stack modular blockchain development guide",
