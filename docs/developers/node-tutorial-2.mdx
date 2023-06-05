@@ -1,0 +1,1581 @@
+---
+sidebar_label: Node API tutorial2
+description: Find out how to interact with a Celestia Node's RPC (Remote Procedure Call) API to submit and retrieve data from the DA layer.
+---
+
+import constants from "../../versions/constants.js";
+import arabicaVersions from "../../versions/arabica_versions.js";
+import mochaVersions from "../../versions/mocha_versions.js";
+import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
+
+# Celestia node and RPC CLI tutorial
+
+In this tutorial, we will cover how to use the Celestia Node RPC API to submit and
+retrieve messages from the Data Availability Layer by their namespace ID.
+
+> To view a video tutorial for setting up a Celestia Light Node, click [here](./light-node-video.md).
+
+## Table of contents
+
+This tutorial is broken up into the following sections:
+* [Hardware requirements](#hardware-requirements)
+* [Setting up dependencies](#setting-up-dependencies)
+* [Install and run Celestia node](#celestia-node)
+* [RPC CLI guide](#rpc-cli-guide)
+* [Additional resources](#additional-resources)
+
+## Hardware requirements
+
+The following minimum hardware requirements are recommended for running a light node:
+
+- Memory: **2 GB RAM**
+- CPU: **Single Core**
+- Disk: **25 GB SSD Storage**
+- Bandwidth: **56 Kbps for Download/56 Kbps for Upload**
+
+## Setting up dependencies
+
+First, make sure to update and upgrade the OS:
+
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="operating-systems">
+<TabItem value="apt" label="APT">
+
+```sh
+sudo apt update && sudo apt upgrade -y
+```
+
+</TabItem>
+<TabItem value="yum" label="YUM">
+
+```sh
+sudo yum update
+```
+
+</TabItem>
+</Tabs>
+
+These are essential packages that are necessary to execute many tasks like
+downloading files, compiling, and monitoring the node:
+
+<Tabs groupId="operating-systems">
+<TabItem value="apt" label="APT">
+
+```sh
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+```
+
+</TabItem>
+<TabItem value="yum" label="YUM">
+
+```sh
+sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+```
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+#### 🍺 Installing Homebrew
+
+[Homebrew](https://brew.sh) is a package manager for macOS and Linux and will
+allow you to install your dependencies.
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Be sure to run the commands in the output that are similar to:
+
+```sh
+==> Next steps:
+- Run these three commands in your terminal to add Homebrew to your PATH:
+    echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/joshstein/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/joshstein/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+#### 🗄 Install wget and jq
+
+Using Homebrew, in your terminal:
+
+```sh
+brew install wget && brew install jq
+```
+
+[wget](https://www.gnu.org/software/wget) is an internet file retriever and
+[jq](https://stedolan.github.io/jq) is a lightweight command-line JSON
+processor.
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+#### 🍺 Installing Homebrew
+
+[Homebrew](https://brew.sh) is a package manager for macOS and Linux and will
+allow you to install your dependencies.
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Be sure to run the commands in the output that are similar to:
+
+```sh
+==> Next steps:
+- Run these three commands in your terminal to add Homebrew to your PATH:
+    echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /Users/joshstein/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/joshstein/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+#### 🗄 Install wget and jq
+
+Using Homebrew, in your terminal:
+
+```sh
+brew install wget && brew install jq
+```
+
+[wget](https://www.gnu.org/software/wget) is an internet file retriever and
+[jq](https://stedolan.github.io/jq) is a lightweight command-line JSON
+processor.
+
+</TabItem>
+</Tabs>
+````
+
+### Install Golang
+
+`celestia-app` and `celestia-node` are written in [Golang](https://go.dev)
+so we must install Golang to build and run them.
+
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+ver="{constants.golangNodeBSR}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"<br/>
+rm "go$ver.linux-amd64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+ver="{constants.golangNodeBSR}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"<br/>
+rm "go$ver.linux-arm64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+ver="{constants.golangNodeBSR}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"<br/>
+rm "go$ver.darwin-arm64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+ver="{constants.golangNodeBSR}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"<br/>
+rm "go$ver.darwin-amd64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+<Tabs groupId="shell">
+<TabItem value="bash" label="bash">
+
+```sh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+</TabItem>
+<TabItem value="zsh" label="zsh">
+
+```zsh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+source $HOME/.zshrc
+```
+
+</TabItem>
+</Tabs>
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+go version go{constants.golangNodeBSR} linux/amd64
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+go version go{constants.golangNodeBSR} linux/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+go version go{constants.golangNodeBSR} darwin/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+go version go{constants.golangNodeBSR} darwin/amd64
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+ver="{constants.golangNodeMocha}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"<br/>
+rm "go$ver.linux-amd64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+ver="{constants.golangNodeMocha}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"<br/>
+rm "go$ver.linux-arm64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+ver="{constants.golangNodeMocha}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"<br/>
+rm "go$ver.darwin-arm64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+ver="{constants.golangNodeMocha}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"<br/>
+rm "go$ver.darwin-amd64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+<Tabs groupId="shell">
+<TabItem value="bash" label="bash">
+
+```sh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+</TabItem>
+<TabItem value="zsh" label="zsh">
+
+```zsh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+source $HOME/.zshrc
+```
+
+</TabItem>
+</Tabs>
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+go version go{constants.golangNodeMocha} linux/amd64
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+go version go{constants.golangNodeMocha} linux/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+go version go{constants.golangNodeMocha} darwin/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+go version go{constants.golangNodeMocha} darwin/amd64
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+ver="{constants.golangNodeArabica}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"<br/>
+rm "go$ver.linux-amd64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+ver="{constants.golangNodeArabica}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"<br/>
+rm "go$ver.linux-arm64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+ver="{constants.golangNodeArabica}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"<br/>
+rm "go$ver.darwin-arm64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+ver="{constants.golangNodeArabica}"<br/>
+cd $HOME<br/>
+wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"<br/>
+sudo rm -rf /usr/local/go<br/>
+sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"<br/>
+rm "go$ver.darwin-amd64.tar.gz"<br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+Now we need to add the `/usr/local/go/bin` directory to `$PATH`:
+
+<Tabs groupId="shell">
+<TabItem value="bash" label="bash">
+
+```sh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+</TabItem>
+<TabItem value="zsh" label="zsh">
+
+```zsh
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+source $HOME/.zshrc
+```
+
+</TabItem>
+</Tabs>
+
+To check if Go was installed correctly run:
+
+```sh
+go version
+```
+
+The output should be the version installed:
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+<pre><code>
+go version go{constants.golangNodeArabica} linux/amd64
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+<pre><code>
+go version go{constants.golangNodeArabica} linux/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+<pre><code>
+go version go{constants.golangNodeArabica} darwin/arm64
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+<pre><code>
+go version go{constants.golangNodeArabica} darwin/amd64
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
+
+````
+
+## Celestia node
+
+### Install Celestia Node
+
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']}<br/>
+make build<br/>
+make install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']}<br/>
+Commit: {blockspaceraceVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: amd64/linux<br/>
+Golang version: go{constants.golangNodeBSR}<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']}<br/>
+make build<br/>
+make install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']}<br/>
+Commit: {blockspaceraceVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: arm64/linux<br/>
+Golang version: go{constants.golangNodeBSR}<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']}<br/>
+make build<br/>
+make go-install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']}<br/>
+Commit: {blockspaceraceVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: arm64/darwin<br/>
+Golang version: go{constants.golangNodeBSR}<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for the Blockspace Race testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{blockspaceraceVersions['node-latest-tag']}<br/>
+make build<br/>
+make go-install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {blockspaceraceVersions['node-latest-tag']}<br/>
+Commit: {blockspaceraceVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: amd64/darwin<br/>
+Golang version: go{constants.golangNodeBSR}<br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Mocha Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{mochaVersions['node-latest-tag']}<br/>
+make build<br/>
+make install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {mochaVersions['node-latest-tag']}<br/>
+Commit: {mochaVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: amd64/linux<br/>
+Golang version: go{constants.golangNodeMocha}<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Mocha Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{mochaVersions['node-latest-tag']}<br/>
+make build<br/>
+make install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {mochaVersions['node-latest-tag']}<br/>
+Commit: {mochaVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: arm64/linux<br/>
+Golang version: go{constants.golangNodeMocha}<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Mocha Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{mochaVersions['node-latest-tag']}<br/>
+make build<br/>
+make go-install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {mochaVersions['node-latest-tag']}<br/>
+Commit: {mochaVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: arm64/darwin<br/>
+Golang version: go{constants.golangNodeMocha}<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Mocha Testnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{mochaVersions['node-latest-tag']}<br/>
+make build<br/>
+make go-install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {mochaVersions['node-latest-tag']}<br/>
+Commit: {mochaVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: amd64/darwin<br/>
+Golang version: go{constants.golangNodeMocha}<br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+<Tabs groupId="operating-systems">
+<TabItem value="amd" label="Ubuntu (AMD)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{arabicaVersions['node-latest-tag']}<br/>
+make build<br/>
+make install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {arabicaVersions['node-latest-tag']}<br/>
+Commit: {arabicaVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: amd64/linux<br/>
+Golang version: go{constants.golangNodeArabica}<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="arm" label="Ubuntu (ARM)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{arabicaVersions['node-latest-tag']}<br/>
+make build<br/>
+make install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {arabicaVersions['node-latest-tag']}<br/>
+Commit: {arabicaVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: arm64/linux<br/>
+Golang version: go{constants.golangNodeArabica}<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="apple" label="Mac (Apple)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{arabicaVersions['node-latest-tag']}<br/>
+make build<br/>
+make go-install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {arabicaVersions['node-latest-tag']}<br/>
+Commit: {arabicaVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: arm64/darwin<br/>
+Golang version: go{constants.golangNodeArabica}<br/>
+</code></pre>
+
+</TabItem>
+<TabItem value="mac" label="Mac (Intel)">
+
+Installing `celestia-node` for Arabica Devnet means installing a specific version
+to be compatible with the network.
+
+Install the `celestia-node` binary by running the following commands:
+
+<pre><code>
+cd $HOME<br/>
+rm -rf celestia-node<br/>
+git clone https://github.com/celestiaorg/celestia-node.git<br/>
+cd celestia-node/<br/>
+git checkout tags/{arabicaVersions['node-latest-tag']}<br/>
+make build<br/>
+make go-install<br/>
+make cel-key<br/>
+</code></pre>
+
+Verify that the binary is working and check the version with the `celestia
+version` command:
+
+<pre><code>
+$ celestia version<br/>
+Semantic version: {arabicaVersions['node-latest-tag']}<br/>
+Commit: {arabicaVersions['node-latest-sha']}<br/>
+Build Date: Thu Dec 15 10:19:22 PM UTC 2022<br/>
+System version: amd64/darwin<br/>
+Golang version: go{constants.golangNodeArabica}<br/>
+</code></pre>
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
+````
+
+### Instantiate a Celestia light node
+
+Now, let's instantiate a Celestia Light node:
+
+> Note: RPC Endpoints are exposed in all `celestia-node` types
+  such as Light, Bridge and Full Nodes.
+
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+```sh 
+celestia light init --p2p.network blockspacerace
+```
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh 
+celestia light init
+```
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia light init --p2p.network arabica
+```
+
+</TabItem>
+</Tabs>
+````
+
+````mdx-code-block
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+### Connect to a public core endpoint
+
+Let's now run the Celestia Light node with a GRPC connection to
+an example public core endpoint.
+
+> Note: You are also encouraged to find a community-run API endpoint
+  and there are several in the Discord. This one is used for demonstration
+  purposes. You can find a list of RPC endpoints [here](../../nodes/blockspace-race).
+
+```sh
+celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
+```
+
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+### Connect to a public core endpoint
+
+Let's now run the Celestia Light node with a GRPC connection to
+an example public core endpoint.
+
+> Note: You are also encouraged to find a community-run API endpoint
+  and there are several in the Discord. This one is used for demonstration
+  purposes. You can find a list of RPC endpoints [here](../../nodes/mocha-testnet#rpc-endpoints).
+
+```sh
+celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+```
+
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+### Connect to a public core endpoint
+
+Let's now run the Celestia Light node with a GRPC connection to
+an example public core endpoint.
+
+> Note: You are also encouraged to find a community-run API endpoint
+  and there are several in the Discord. This one is used for demonstration
+  purposes. You can find a list of RPC endpoints [here](../../nodes/arabica-devnet#rpc-endpoints).
+
+```sh
+celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
+```
+
+:::tip
+The `--core.ip` gRPC port defaults to 9090,
+so if you do not specify it in the command
+line, it will default to that port. You can
+add the port after the IP address or use the
+`--core.grpc.port` flag to specify another
+port if you prefer.
+
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+</TabItem>
+</Tabs>
+
+For example, your command along with an RPC endpoint might look like this:
+
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+```sh
+celestia light start --core.ip <ip-address> --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
+```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh
+celestia light start --core.ip https://rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
+```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia light start --core.ip https://consensus-full-arabica-8.celestia-arabica.com/ --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
+```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+</TabItem>
+</Tabs>
+
+### Keys and wallets
+
+You can create your key for your node by running the following command:
+
+```sh
+./cel-key add <key_name> --keyring-backend test --node.type light --p2p.network <network>
+```
+
+You can start your light node with the key created above by running the
+following command:
+
+<Tabs groupId="network">
+<TabItem value="blockspacerace" label="Blockspace Race">
+
+```sh
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
+```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+</TabItem>
+<TabItem value="mocha" label="Mocha">
+
+```sh
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+</TabItem>
+<TabItem value="arabica" label="Arabica 🏗️">
+
+```sh
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
+```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+</TabItem>
+</Tabs>
+````
+
+Once you start the Light Node, a wallet key will be generated for you.
+You will need to fund that address with Mocha Testnet or Arabica Devnet
+tokens to pay for `PayForData` transactions or `PayForBlob transactions`, respectively.
+
+You can find the address by running the following command in
+the `celestia-node` directory:
+
+```sh
+./cel-key list --node.type light --keyring-backend test --p2p.network <network>
+```
+
+If you would like to fund your wallet with testnet tokens, head over
+to either the `#mocha-faucet` or `#arabica-faucet` channels on the
+Celestia [Discord](https://discord.gg/celestiacommunity).
+
+You can request funds to your wallet address using the following command in Discord:
+
+```console
+$request <Wallet-Address>
+```
+
+Where `<Wallet-Address>` is the `celestia1******` address generated
+when you created the wallet.
+
+With your wallet funded, you can move on to the next step.
+
+## RPC CLI guide
+
+This section of the tutorial will teach you how to interact with a
+Celestia node's
+[RPC (Remote Procedure Call) API](https://node-rpc-docs.celestia.org/).
+
+First, you will need to [install and run `celestia-node`](#setting-up-dependencies) if
+you have not already. Open up another terminal window in order to begin querying the API.
+
+The Celestia Node CLI (Command Line Interface) has a `rpc` subcommand that
+allows you to interact with the node's RPC API via
+your terminal.
+
+The format for the `rpc` subcommand is as follows:
+
+```bash
+celestia rpc [module] [method] [...args]
+```
+
+### Setup
+
+#### Auth token 🔐
+
+In order to interact with the API using the `rpc` subcommand,
+you will need to set your authentication token.
+
+The `--auth TOKEN` flag sets the authentication token,
+otherwise it will read from the environment's
+`CELESTIA_NODE_AUTH_TOKEN` variable.
+If a token is not found, authentication will not be set.
+And if authentication is not set, the request will fail.
+
+To set your authentication token, you can use the
+following command. Be sure to replace `<node-type>` with
+the type of node and `<network>`
+with the network that you are running your node on:
+
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia <node-type> auth admin --p2p.network <network>)
+```
+
+Here's an example of how to set your auth token on a light node on Arabica:
+
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
+```
+
+#### Host URL 
+
+The `--host URL` flag sets the host address,
+the default is `localhost:26658` over HTTP.
+
+#### Completions
+
+If you would like to turn on completions for the Celestia Node CLI `rpc`
+subcommand, you can use the following command and follow the instructions
+in the CLI:
+
+```bash
+# pick your shell type from the array
+celestia completion [bash | fish | powershell | zsh]
+```
+
+If you'd like to see the help menu for your shell, you can then run:
+
+```bash
+# pick your shell type from the array
+celestia completion [bash | fish | powershell | zsh] --help
+```
+
+### Examples
+
+#### Check your balance
+
+Let's query our node for the balance of its default account
+(which is the account associated with the `CELESTIA_NODE_AUTH_TOKEN`
+key we generated above):
+
+```bash
+celestia rpc state Balance
+```
+
+The response will look similar to:
+
+```bash
+{
+ “jsonrpc”: “2.0",
+ “result”: {
+  “denom”: “utia”,
+  “amount”: “79934811”
+ },
+ “id”: 1
+}
+```
+
+#### Get your node ID
+
+This is an RPC call in order to get your node's peerId information:
+
+```bash
+celestia rpc p2p Info
+```
+
+The Node ID is in the `ID` value from the response:
+
+```bash
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "ID": "12D3KooWQHg8eo2DMjkw9WrNrhDq5Z7tPs32uMJkpj8njbGNF8kj",
+    "Addrs": [
+      "/ip4/10.0.0.171/tcp/2121",
+      "/ip6/::1/tcp/2121",
+      "/ip4/10.0.0.171/udp/2121/quic-v1",
+      "/ip6/::1/udp/2121/quic-v1",
+      "/ip4/71.200.65.106/tcp/54588",
+      "/ip4/71.200.65.106/udp/54588/quic-v1"
+    ]
+  },
+  "id": 1
+}
+```
+
+#### Get your account address
+
+This is an RPC call in order to get your node's account address:
+
+```bash
+celestia rpc state AccountAddress
+```
+
+Response: 
+
+```bash
+{
+  "jsonrpc": "2.0",
+  "result": "celestia182wascu47m2fsu6davhktsaledd4pukahs2dgs",
+  "id": 1
+}
+```
+
+#### Get block header by height
+
+Now, let's get the block header information.
+
+Here we will get the header from Block 1:
+
+```bash
+celestia rpc header GetByHeight 1
+```
+
+It will output something like this:
+
+```bash
+{
+ “jsonrpc”: “2.0",
+ “result”: {
+  “header”: {
+   “version”: {
+    “block”: “11”,
+    “app”: “1”
+   },
+   “chain_id”: “arabica-8”,
+   “height”: “1”,
+   “time”: “2023-05-30T15:06:21.9265Z”,
+   “last_block_id”: {
+    “hash”: “”,
+    “parts”: {
+     “total”: 0,
+     “hash”: “”
+    }
+   },
+   “last_commit_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+   “data_hash”: “3D96B7D238E7E0456F6AF8E7CDF0A67BD6CF9C2089ECB559C659DCAA1F880353",
+   “validators_hash”: “C4F7F08A8F3024A28D6486B4BA434B12391A29DFA8C04C74589A013A9A0BE427",
+   “next_validators_hash”: “C4F7F08A8F3024A28D6486B4BA434B12391A29DFA8C04C74589A013A9A0BE427",
+   “consensus_hash”: “048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F”,
+   “app_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+   “last_results_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+   “evidence_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+   “proposer_address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397"
+  },
+  “validator_set”: {
+   “validators”: [
+    {
+     “address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397",
+     “pub_key”: {
+      “type”: “tendermint/PubKeyEd25519”,
+      “value”: “oubutxNSyuD0XZNmMQSraHazmE2PjFsZVZ8RNHFX3WA=”
+     },
+     “voting_power”: “500000000”,
+     “proposer_priority”: “0”
+    }
+   ],
+   “proposer”: {
+    “address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397",
+    “pub_key”: {
+     “type”: “tendermint/PubKeyEd25519”,
+     “value”: “oubutxNSyuD0XZNmMQSraHazmE2PjFsZVZ8RNHFX3WA=”
+    },
+    “voting_power”: “500000000”,
+    “proposer_priority”: “0”
+   }
+  },
+  “commit”: {
+   “height”: 1,
+   “round”: 0,
+   “block_id”: {
+    “hash”: “E5D620B5BE7873222DCD83464C285FD0F215C209393E7481F9A5979280AD6CA2”,
+    “parts”: {
+     “total”: 1,
+     “hash”: “5BDD329766F3803594FA840D5B4860A82115AFA70CB307F28F7E84D3FE883A55”
+    }
+   },
+   “signatures”: [
+    {
+     “block_id_flag”: 2,
+     “validator_address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397”,
+     “timestamp”: “2023-05-30T17:44:48.957739642Z”,
+     “signature”: “vgp6mcStXsCN5OmmqtPJCReoSu47bRcysDphTbXjqq4FuR876dwMD0fu/8lyrrpLBSt3vMAA0bTQ0GggXh6VAw==”
+    }
+   ]
+  },
+  “dah”: {
+   “row_roots”: [
+    “//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU”,
+    “/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3”
+   ],
+   “column_roots”: [
+    “//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU”,
+    “/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3"
+   ]
+  }
+ },
+ “id”: 1
+}
+```
+
+#### Submit a blob to the network with a PFB
+
+In this example, we will be submitting a `PayForBlob`
+transaction using our light node.
+
+Some things to consider:
+
+- PFB is a `PayForBlob` Message.
+- The endpoint also takes in `namespace_id` and `data` values.
+- Namespace ID should be 10 bytes, prefixed by `0x`
+- Data should be in hex-encoded bytes of the raw message
+
+We use the following `namespace_id` of `0x0c204d39600fddd3` and
+the `data` value of `0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
+
+You can generate your own `namespace_id` and data values using this
+useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
+
+We run the following to submit a blob to the network in hexadecimal format:
+
+```bash
+celestia rpc blob Submit 0x0c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
+```
+
+We get the following output:
+
+```bash
+{
+ “jsonrpc”: “2.0”,
+ “result”: 32236,
+ “id”: 1
+}
+```
+
+If you notice from the above output, it returns a `height` of
+`32236` which we will use for the next command.
+
+Note: To learn more about status response codes, please navigate to
+[cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
+
+##### `SubmitPayForBlob` arguments
+
+Using the `rpc` subcommand, you can submit a blob to the network
+using the `SubmitPayForBlob` method.
+
+The arguments for `SubmitPayForBlob` are parsed specially,
+to improve UX.
+
+`SubmitPayForBlob` can be done in a few ways:
+
+- The **namespace ID** can be encoded as either hex or base64
+- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)
+
+#### Get namespaced shares by block height
+
+After submitting your PFB transaction, upon success, the node will return
+the block height for which the PFB transaction was included. You can then
+use that block height and the namespace ID with which you submitted your
+PFB transaction to get your message shares (data) returned to you. In this example,
+the block height we got was 32236 which we will use for the following command.
+Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
+
+```bash
+celestia rpc blob GetAll 32236 0x0c204d39600fddd3
+```
+
+Will generate the following output:
+
+```json
+{
+ “jsonrpc”: “2.0”,
+ “result”: [
+  {
+   “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
+   “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
+   “share_version”: 0,
+   “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
+  }
+ ],
+ “id”: 1
+}
+```
+
+The output here is base64-encoded.
+
+To see the JSON request sent over the wire, for example for sending requests via cURL, pass the `-—print-request` flag:
+
+```bash
+celestia rpc blob GetAll 32236 0x0c204d39600fddd3 --print-request
+```
+
+Response:
+
+```bash
+{
+ “Request”: {
+  “id”: 1,
+  “jsonrpc”: “2.0",
+  “method”: “blob.GetAll”,
+  “params”: [
+   32236,
+   [
+    “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=”
+   ]
+  ]
+ },
+ “Response”: {
+  “jsonrpc”: “2.0”,
+  “result”: [
+   {
+    “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
+    “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
+    “share_version”: 0,
+    “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
+   }
+  ],
+  “id”: 1
+ }
+}
+```
+
+Simiarly, you can cURL the response by running the following command:
+
+```bash
+curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
+   -H 'Content-Type: application/json' \
+   -d '{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "blob.GetAll",
+  "params": [
+   32236,
+   [
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA="
+   ]
+  ]
+ }' \
+   http://localhost:26658
+```
+
+Response:
+
+```bash
+{“jsonrpc”:“2.0",“result”:[{“namespace”:“AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,”data”:“8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1”,“share_version”:0,“commitment”:“y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=“}],“id”:1}
+```
+
+### More examples
+
+Query node information:
+
+```bash
+celestia rpc node Info
+```
+
+Get share by data availibility header and index:
+
+```bash
+celestia rpc share GetShare "$(celestia rpc header GetByHeight 32236 | jq '.result.dah' -r)" 32236 0
+```
+
+Get share by namespace:
+
+```bash
+celestia rpc share GetSharesByNamespace "$(celestia rpc header GetByHeight 32236 | jq '.result.dah' -r)" GHTmQvXd5Yk=
+```
+
+Get header by height:
+
+```bash
+celestia rpc header GetByHeight 5
+```
+
+Get data availability sampler stats:
+
+```bash
+celestia rpc das SamplingStats
+```
+
+## Additional resources
+
+### Post an SVG as a PFB
+
+If you'd like to create your own SVG, post it to Celestia, and retrieve it,
+you can check out the [Base64 SVG Tutorial](https://based64.xyz/).
+
+### Golang guide
+
+If you're interested in interacting with the node's API in Go
+([`client.go`](https://github.com/celestiaorg/celestia-node/blob/main/api/rpc/client/client.go)),
+you can use the [da-rpc-client-tutorial](https://github.com/renaynay/da-rpc-client-tutorial)
+repo.
+
+### Troubleshooting
+
+If you encounter an error like:
+
+```sh
+"rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
+```
+
+It is possible that the account you are trying to submit a `PayForBlob` from
+doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
+account with tokens and then try again.
