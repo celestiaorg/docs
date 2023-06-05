@@ -47,8 +47,8 @@ Celestia network. The default port is 26657.
 
 Below is a list of RPC endpoints you can use to connect to Mocha testnet:
 
-* [https://rpc-mocha.pops.one](https://rpc-mocha.pops.one)
-* [https://rpc.mocha.celestia.counterpoint.software](https://rpc.mocha.celestia.counterpoint.software)
+* `rpc-mocha.pops.one`
+* `rpc.mocha.celestia.counterpoint.software`
 
 ## API endpoints
 
