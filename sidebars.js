@@ -302,11 +302,6 @@ const sidebars = {
           label: "Node API tutorial", 
           id: "developers/node-tutorial" 
         },
-        { 
-          type: "doc", 
-          label: "Node API tutorial2", 
-          id: "developers/node-tutorial-2" 
-        },
         {
           type: "link",
           label: "Node API docs",
