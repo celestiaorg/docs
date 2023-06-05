@@ -77,31 +77,31 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"
 Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/mocha/peers.txt).
 
 </TabItem>
-<TabItem value="blockspacerace" label="Blockspace Race">
+<TabItem value="arabica" label="🏗️ Arabica">
 
 To initialize the network pick a "node-name" that describes your
-node. The --chain-id parameter we are using here is `blockspacerace-0`. Keep in
+node. The --chain-id parameter we are using here is `arabica-8`. Keep in
 mind that this might change if a new testnet is deployed.
 
 ```sh
-celestia-appd init "node-name" --chain-id blockspacerace-0
+celestia-appd init "node-name" --chain-id arabica-8
 ```
 
-Copy the `genesis.json` file. For blockspacerace we are using:
+Copy the `genesis.json` file. For arabica-8 we are using:
 
 ```sh
-cp $HOME/networks/blockspacerace/genesis.json $HOME/.celestia-app/config
+cp $HOME/networks/arabica-8/genesis.json $HOME/.celestia-app/config
 ```
 
 Set seeds and peers:
 
 ```sh
-PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/blockspacerace/peers.txt | tr -d '\n')
+PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/arabica-8/peers.txt | tr -d '\n')
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 
-Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/blockspacerace/peers.txt).
+Note: You can find more peers [here](https://github.com/celestiaorg/networks/blob/master/arabica-8/peers.txt).
 
 </TabItem>
 </Tabs>
@@ -193,16 +193,16 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 ```
 
 </TabItem>
-<TabItem value="blockspacerace" label="Blockspace Race">
+<TabItem value="arabica" label="🏗️ Arabica">
 
-Run the following command to quick-sync from a snapshot for `blockspacerace`:
+Run the following command to quick-sync from a snapshot for `arabica-8`:
 
 ```sh
 cd $HOME
 rm -rf ~/.celestia-app/data
 mkdir -p ~/.celestia-app/data
 SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-    egrep -o ">blockspacerace.*tar" | tr -d ">")
+    egrep -o ">arabica-8.*tar" | tr -d ">")
 wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
