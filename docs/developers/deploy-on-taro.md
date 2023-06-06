@@ -182,7 +182,7 @@ of your choosing:
 
 ```bash
 export TARO_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-export TARO_RPC_URL=http://rpc.tarotestnet.com
+export TARO_RPC_URL=https://taro-testnet.calderachain.xyz/http
 ```
 
 Now that we're ready to deploy the smart contract onto Taro, we will run

@@ -24,7 +24,7 @@ faucet as a variable and the RPC URL you're using:
 
 ```bash
 export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-export TARO_RPC_URL=http://rpc.tarotestnet.com
+export TARO_RPC_URL=https://taro-testnet.calderachain.xyz/http
 ```
 
 Now, change into the `gm-portal/contracts` directory in the same terminal and deploy
@@ -33,9 +33,11 @@ the contract using Foundry:
 <!-- markdownlint-disable MD013 -->
 ```bash
 cd $HOME/gm-portal/contracts
-forge script script/WavePortal.s.sol:WavePortalScript --rpc-url $TARO_RPC_URL --private-key $PRIVATE_KEY --broadcast
+forge script script/GmPortal.s.sol:GmPortalScript --rpc-url $TARO_RPC_URL --private-key $PRIVATE_KEY --broadcast
 ```
 <!-- markdownlint-enable MD013 -->
+
+![gm-contract](../../static/img/gm/gm_contract.png)
 
 In the output of the deployment, find the contract address and set it as a variable:
 
@@ -49,23 +51,23 @@ First, send a "gm" to the contract:
 
 ```bash
 cast send $CONTRACT_ADDRESS \
-"wave(string)" "gm" \
+"gm(string)" "gm" \
 --private-key $PRIVATE_KEY \
 --rpc-url $TARO_RPC_URL
 ```
 
-Now that you've posted to the contract, you can read all "waves" (GMs) from the
+Now that you've posted to the contract, you can read all "gms" (GMs) from the
 contract with
 this command:
 
 ```bash
-cast call $CONTRACT_ADDRESS "getAllWaves()" --rpc-url $TARO_RPC_URL
+cast call $CONTRACT_ADDRESS "getAllGms()" --rpc-url $TARO_RPC_URL
 ```
 
-Next, query the total number of waves, which will be returned as a hex value:
+Next, query the total number of gms, which will be returned as a hex value:
 
 ```bash
-cast call $CONTRACT_ADDRESS "getTotalWaves()" --rpc-url $TARO_RPC_URL
+cast call $CONTRACT_ADDRESS "getTotalGms()" --rpc-url $TARO_RPC_URL
 ```
 
 In order to interact with the contract on the frontend, you'll need to fund an
@@ -90,17 +92,19 @@ contract address
 2. Match the chain info on `gm-portal/frontend/src/main.tsx` with the chain
 config of your L2
 3. If you changed the contract, update the ABI in
-`gm-portal/frontend/WavePortal.json` from
-`gm-portal/contracts/out/WavePortal.sol/WavePortal.json`. This can be done with:
+`gm-portal/frontend/GmPortal.json` from
+`gm-portal/contracts/out/GmPortal.sol/GmPortal.json`. This can be done with:
 
 ```bash
 cd $HOME
-cp gm-portal/contracts/out/WavePortal.sol/WavePortal.json gm-portal/frontend`
+cp dev/gm-portal/contracts/out/GmPortal.sol/GmPortal.json dev/gm-portal/frontend
 ```
 
 ## Interact with the frontend
 
 Now, login with your wallet that you funded, and post a GM on your GM portal!
+
+![gm-taro](../../static/img/gm/gm_taro.png)
 
 ## Next steps
 
