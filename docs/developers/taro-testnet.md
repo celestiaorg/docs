@@ -7,9 +7,9 @@ description: The first testnet built with OP Stack and Celestia.
 
 ![Taro testnet](../../static/img/Celestia_Taro_Testnet.png)
 
-Taro Testnet is a fresh offering from Celestia Labs, built with OP Stack
-and Celestia, and is dedicated to providing developers with an EVM-compatible
-execution layer to deploy their EVM applications on.
+[Taro Testnet](https://tarotestnet.com) is a fresh offering from Celestia Labs,
+built with OP Stack and Celestia, and is dedicated to providing developers with
+an EVM-compatible execution layer to deploy their EVM applications on.
 
 ## Built with the OP Stack and Celestia
 
@@ -47,6 +47,8 @@ execution layer, making it an ideal platform for developers looking to
 build and test applications in a setting that closely mirrors an OP Stack
 rollup on Celestia.
 
+Learn more at [tarotestnet.com](https://tarotestnet.com).
+
 ### RPC URLs
 
 Remote Procedure Call (RPC) URLs are endpoints that allow developers to
@@ -66,7 +68,13 @@ Remember, Taro Testnet is a testing environment!
 
 ### Faucet
 
-To visit the Taro testnet faucet, go to [`https://tarofaucet.com`](https://tarofaucet.com).
+To visit the Taro testnet faucet, go to
+[`https://tarotestnet.com`](https://tarotestnet.com).
+
+### Explorer
+
+To visit the explorer, go to
+[`http://explorer.tarotestnet.com/`](http://explorer.tarotestnet.com/).
 
 ## Next steps
 
