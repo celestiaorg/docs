@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
-      ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
     permissions: write-all
     steps:
       - uses: actions/checkout@v3
