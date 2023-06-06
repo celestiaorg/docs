@@ -370,21 +370,21 @@ const sidebars = {
 							label: "Introduction to OP Stack integration",
               id: "developers/intro-to-op-stack"
 						},
-            // {
-						// 	type: "doc",
-            //   label: "Taro testnet",
-            //   id: "developers/taro-testnet",
-            // },
-						// {
-						// 	type: "doc",
-						// 	label: "Deploy a smart contract on Taro testnet",
-            //   id: "developers/deploy-on-taro"
-						// },
-            // {
-						// 	type: "doc",
-            //   label: "Deploy a GM Portal dapp on Taro testnet",
-            //   id: "developers/gm-portal-taro",
-            // },
+            {
+							type: "doc",
+              label: "Taro testnet",
+              id: "developers/taro-testnet",
+            },
+						{
+							type: "doc",
+							label: "Deploy a smart contract on Taro testnet",
+              id: "developers/deploy-on-taro"
+						},
+            {
+							type: "doc",
+              label: "Deploy a GM Portal dapp on Taro testnet",
+              id: "developers/gm-portal-taro",
+            },
             {
 							type: "doc",
 							label: "Deploy an OP Stack devnet",

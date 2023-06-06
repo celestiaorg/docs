@@ -37,9 +37,9 @@ rollup blocks and posts to Ethereum.
 
 ### Table of contents of the category
 
-<!-- * [Taro testnet](../taro-testnet)
+* [Taro testnet](../taro-testnet)
 * [Deploy a smart contract on Taro testnet](../deploy-on-taro)
-* [Deploy a GM Portal dapp on Taro testnet](../gm-portal-taro) -->
+* [Deploy a GM Portal dapp on Taro testnet](../gm-portal-taro)
 * [Deploy an OP Stack devnet](../optimism-devnet)
 * [Deploy an OP Stack testnet on Celestia](../optimism)
 
