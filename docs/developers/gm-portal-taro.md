@@ -24,7 +24,7 @@ faucet as a variable and the RPC URL you're using:
 
 ```bash
 export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-export TARO_RPC_URL=http://rpc.tarotestnet.com
+export TARO_RPC_URL=https://taro-testnet.calderachain.xyz/http
 ```
 
 Now, change into the `gm-portal/contracts` directory in the same terminal and deploy
@@ -36,6 +36,8 @@ cd $HOME/gm-portal/contracts
 forge script script/GmPortal.s.sol:GmPortalScript --rpc-url $TARO_RPC_URL --private-key $PRIVATE_KEY --broadcast
 ```
 <!-- markdownlint-enable MD013 -->
+
+![gm-contract](../../static/img/gm/gm_contract.png)
 
 In the output of the deployment, find the contract address and set it as a variable:
 
@@ -101,6 +103,8 @@ cp dev/gm-portal/contracts/out/GmPortal.sol/GmPortal.json dev/gm-portal/frontend
 ## Interact with the frontend
 
 Now, login with your wallet that you funded, and post a GM on your GM portal!
+
+![gm-taro](../../static/img/gm/gm_taro.png)
 
 ## Next steps
 

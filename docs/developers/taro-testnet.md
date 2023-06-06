@@ -58,7 +58,13 @@ blockchain.
 
 For the Taro Testnet, you can connect to the following RPC URLs:
 
-* `https://rpc.tarotestnet.com`
+#### HTTPS
+
+* `https://taro-testnet.calderachain.xyz/http`
+
+#### WSS
+
+* `wss://taro-testnet.calderachain.xyz/ws`
 
 This URL serves as the entry point to the Taro Testnet. You can use it
 in your applications to connect to the testnet and interact with the smart
