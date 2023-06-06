@@ -80,7 +80,7 @@ To visit the Taro testnet faucet, go to
 ### Explorer
 
 To visit the explorer, go to
-[`http://explorer.tarotestnet.com/`](http://explorer.tarotestnet.com/).
+[`https://explorer.tarotestnet.com/`](https://explorer.tarotestnet.com/).
 
 ## Next steps
 
