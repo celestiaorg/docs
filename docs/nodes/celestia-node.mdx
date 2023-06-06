@@ -442,81 +442,9 @@ The following ports are used by Celestia nodes:
 
 ## Upgrading your binary
 
-To upgrade your binary, you can use the following commands:
-
-1. [Install](#install-celestia-node) the latest version of
-   the `celestia-node` binary. The latest version
-   will overwrite your existing binary.
-
-<Tabs groupId="nodever">
-<TabItem value="0.9.0" label="v0.9.0 and later">
-
-2. For **bridge, full, and light nodes**,
-   remove the data store:
-
-```bash
-celestia <node-type> unsafe-reset-store --p2p.network <network>
-```
-
-3. Then you can remove the old config with:
-
-```bash
-celestia <node-type> config-remove --p2p.network <network>
-```
-
-4. And restart your node:
-
-```bash
-celestia <node-type> start --p2p.network <network>
-```
-
-</TabItem>
-<TabItem value="0.8.2" label="v0.8.2 and earlier">
-
-If you run into
-errors after upgrading the binary and trying to restart
-your node, **you will need to follow steps 2-4**.
-These steps are only necessary if you are upgrading from a version of
-`celestia-node` with breaking changes.
-
-If your node starts successfully, you do not need to follow steps 2-4.
-
-2. Clear the data store. Pay attention to the node type you are updating:
-
-   1. For **bridge and full nodes _only_**:
-      - Remove the data store:
-      ```bash
-      rm -rf ~./<path-to-node-store>/data
-      rm -rf ~./<path-to-node-store>/transients
-      rm -rf ~./<path-to-node-store>/index
-      rm -rf ~./<path-to-node-store>/blocks
-      ```
-   2. For **light nodes _only_**:
-      - Remove the data store:
-      ```bash
-      rm -rf ~./<path-to-node-store>/data
-      ```
-
-3. Remove your `config.toml` (for all node types):
-
-```bash
-rm ~./<path-to-node-store>/config.toml
-```
-
-4. Initialize your node:
-
-```bash
-celestia <node-type> init --p2p.network <network> [...flags]
-```
-
-5. Start your node:
-
-```bash
-celestia <node-type> start --p2p.network <network> [...flags]
-```
-
-</TabItem>
-</Tabs>
+To upgrade your binary, you can install the latest version from the
+instructions above and restart your node. If you run into any issues,
+please refer to the [troubleshooting](#troubleshooting) section.
 
 ## Changing the location of your node store
 
