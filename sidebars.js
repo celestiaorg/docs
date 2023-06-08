@@ -353,19 +353,10 @@ const sidebars = {
 			collapsed: false,
 			items: [
         {
-          type: "link",
-          label: "Dymension",
-          href: "https://dymension.xyz/"
-        },
-    		{
-          type: "doc",
-          label: "Full stack modular blockchain development guide",
-          id: "developers/full-stack-modular-development-guide"
-        },{
-          type: "doc",
-          label: "IBC Relaying Guide",
-          id: "developers/ibc-relayer"
-        },{
+      		type: "doc",
+      		label: "Rollkit",
+      		id: "developers/rollkit"
+    		},{
       		type: "category",
       		label: "Optimism",
 					link: {
@@ -445,14 +436,22 @@ const sidebars = {
             },
 					]
     		},{
-      		type: "doc",
-      		label: "Rollkit",
-      		id: "developers/rollkit"
-    		},{
+          type: "doc",
+          label: "Full stack modular blockchain development guide",
+          id: "developers/full-stack-modular-development-guide"
+        },{
+          type: "doc",
+          label: "IBC Relaying Guide",
+          id: "developers/ibc-relayer"
+        },{
           type: "link",
           label: "Sovereign SDK",
           href: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup",
-        },
+        },{
+          type: "link",
+          label: "Dymension",
+          href: "https://dymension.xyz/"
+        }
 			]
     },
     {
