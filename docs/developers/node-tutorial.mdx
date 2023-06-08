@@ -1410,6 +1410,13 @@ We get the following output:
 }
 ```
 
+We can also use a string of text as the data value, which will be
+converted to base64:
+
+```bash
+celestia rpc blob Submit 0x0c204d39600fddd3 '"gm"'
+```
+
 If you notice from the above output, it returns a `height` of
 `32236` which we will use for the next command.
 
