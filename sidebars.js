@@ -363,7 +363,7 @@ const sidebars = {
 					link: {
 						type: "generated-index",
 					},
-					collapsed: false,
+					collapsed: true,
 					items: [
 						{
 							type: "doc",
@@ -384,6 +384,16 @@ const sidebars = {
 							type: "doc",
               label: "Deploy a GM Portal dapp on Taro testnet",
               id: "developers/gm-portal-taro",
+            },
+            {
+              type: "link",
+              label: "Deploy a dapp with scaffold-eth",
+              href: "https://github.com/jcstein/scaffold-eth",
+            },
+            {
+              type: "link",
+              label: "Deploy a dapp with thirdweb",
+              href: "https://thirdweb.com/taro-testnet",
             },
             {
 							type: "doc",
