@@ -7,7 +7,8 @@ description: The first testnet built with OP Stack and Celestia.
 
 ![Taro testnet](../../static/img/Celestia_Taro_Testnet.png)
 
-[Taro Testnet](https://tarotestnet.com) is a fresh offering from Celestia Labs,
+[Taro Testnet](https://tarotestnet.com) is a fresh offering from
+[Caldera](https://caldera.xyz) with support from Celestia Labs,
 built with OP Stack and Celestia, and is dedicated to providing developers with
 an EVM-compatible execution layer to deploy their EVM applications on.
 
@@ -21,10 +22,11 @@ is hosted by [Caldera](https://caldera.xyz), who makes it easy to launch
 rollup swith no code required.
 
 In this setup, data handling is accomplished in two ways. Firstly, data is
-written to the DA layer, in this case, Celestia. Then, the data commitment
-is written to the `op-batcher`. When reading, the `op-node` retrieves the
-data back from the DA layer by first reading the data commitment from the
-`op-batcher`, then reading the data from the DA layer using the data
+written to the DA layer, in this case, Celestia
+(on the [Arabica devnet](../../nodes/arabica-devnet.md)). Then, the data
+commitment is written to the `op-batcher`. When reading, the `op-node`
+retrieves the data back from the DA layer by first reading the data commitment
+from the `op-batcher`, then reading the data from the DA layer using the data
 commitment. Hence, while previously `op-node` was reading from `calldata` on
 Ethereum, it now reads data from Celestia.
 
