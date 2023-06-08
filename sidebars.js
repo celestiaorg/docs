@@ -352,12 +352,11 @@ const sidebars = {
 			},
 			collapsed: false,
 			items: [
-				{
+        {
       		type: "doc",
       		label: "Rollkit",
       		id: "developers/rollkit"
-    		},
-    		{
+    		},{
       		type: "category",
       		label: "Optimism",
 					link: {
@@ -444,7 +443,15 @@ const sidebars = {
           type: "doc",
           label: "IBC Relaying Guide",
           id: "developers/ibc-relayer"
-        },
+        },{
+          type: "link",
+          label: "Sovereign SDK",
+          href: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup",
+        },{
+          type: "link",
+          label: "Dymension",
+          href: "https://dymension.xyz/"
+        }
 			]
     },
     {
