@@ -92,5 +92,5 @@ capabilities:
 
 * [Deploy a smart contract on Taro testnet](../deploy-on-taro)
 * [Deploy a GM Portal dapp on Taro testnet](../gm-portal-taro)
-* [Deploy a dapp with scaffold-eth](https://github.com/jcstein/scaffold-eth)
+<!-- * [Deploy a dapp with scaffold-eth](https://github.com/jcstein/scaffold-eth) -->
 * [Deploy a smart contract with Thirdweb](https://thirdweb.com/taro-testnet)
