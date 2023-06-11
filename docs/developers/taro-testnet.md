@@ -23,7 +23,7 @@ rollup swith no code required.
 
 In this setup, data handling is accomplished in two ways. Firstly, data is
 written to the DA layer, in this case, Celestia
-(on the [Arabica devnet](../../nodes/arabica-devnet.md)). Then, the data
+(on the [Arabica devnet](../../nodes/arabica-devnet)). Then, the data
 commitment is written to the `op-batcher`. When reading, the `op-node`
 retrieves the data back from the DA layer by first reading the data commitment
 from the `op-batcher`, then reading the data from the DA layer using the data
