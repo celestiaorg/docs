@@ -1,6 +1,6 @@
 ---
-sidebar_label: Gateway API tutorial
-description: Use Celestia Node Gateway API to submit and retrieve messages from the Celestia's DA layer.
+sidebar_label: Node RPC CLI tutorial
+description: Find out how to interact with a Celestia Node's RPC (Remote Procedure Call) API using the CLI to submit and retrieve data from the DA layer.
 ---
 
 import constants from "../../versions/constants.js";
@@ -8,14 +8,21 @@ import arabicaVersions from "../../versions/arabica_versions.js";
 import mochaVersions from "../../versions/mocha_versions.js";
 import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
 
-# Getting and sending transactions with Celestia Node's Gateway API
+# Celestia Node RPC CLI tutorial
 
-In this tutorial, we will cover how to use the Celestia Node Gateway API to submit and
+In this tutorial, we will cover how to use the Celestia Node RPC API to submit and
 retrieve messages from the Data Availability Layer by their namespace ID.
 
-This tutorial assumes you are working in a Linux environment.
-
 > To view a video tutorial for setting up a Celestia Light Node, click [here](./light-node-video.md).
+
+## Table of contents
+
+This tutorial is broken up into the following sections:
+* [Hardware requirements](#hardware-requirements)
+* [Setting up dependencies](#setting-up-dependencies)
+* [Install and run Celestia node](#celestia-node)
+* [RPC CLI guide](#rpc-cli-guide)
+* [Additional resources](#additional-resources)
 
 ## Hardware requirements
 
@@ -1131,879 +1138,444 @@ when you created the wallet.
 
 With your wallet funded, you can move on to the next step.
 
-## Node API calls
+## RPC CLI guide
 
-Open up another terminal window in order to begin querying the API.
-`celestia-node` exposes its REST gateway on port `26659` by default.
+This section of the tutorial will teach you how to interact with a
+Celestia node's
+[RPC (Remote Procedure Call) API](https://node-rpc-docs.celestia.org/).
 
-:::danger Deprecation Notice
-This endpoint will soon be deprecated in favor of RPC equivalent. Learn more about the RPC [here](https://node-rpc-docs.celestia.org/).
-:::
+First, you will need to [install and run `celestia-node`](#setting-up-dependencies) if
+you have not already. Open up another terminal window in order to begin querying the API.
 
-### Balance
+The Celestia Node CLI (Command Line Interface) has a `rpc` subcommand that
+allows you to interact with the node's RPC API via
+your terminal.
 
-Now, let's query our node for the balance of its default account
-(which is the account associated with the `developer` key we generated earlier):
+The format for the `rpc` subcommand is as follows:
 
-```sh
-curl -X GET http://127.0.0.1:26659/balance
+```bash
+celestia rpc [module] [method] [...args]
 ```
 
-It will output the following:
+### Setup
 
-```json
+#### Auth token 🔐
+
+In order to interact with the API using the `rpc` subcommand,
+you will need to set your authentication token.
+
+The `--auth TOKEN` flag sets the authentication token,
+otherwise it will read from the environment's
+`CELESTIA_NODE_AUTH_TOKEN` variable.
+If a token is not found, authentication will not be set.
+And if authentication is not set, the request will fail.
+
+To set your authentication token, you can use the
+following command. Be sure to replace `<node-type>` with
+the type of node and `<network>`
+with the network that you are running your node on:
+
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia <node-type> auth admin --p2p.network <network>)
+```
+
+Here's an example of how to set your auth token on a light node on Arabica:
+
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
+```
+
+#### Host URL 
+
+The `--host URL` flag sets the host address,
+the default is `localhost:26658` over HTTP.
+
+#### Completions
+
+If you would like to turn on completions for the Celestia Node CLI `rpc`
+subcommand, you can use the following command and follow the instructions
+in the CLI:
+
+```bash
+# pick your shell type from the array
+celestia completion [bash | fish | powershell | zsh]
+```
+
+If you'd like to see the help menu for your shell, you can then run:
+
+```bash
+# pick your shell type from the array
+celestia completion [bash | fish | powershell | zsh] --help
+```
+
+### Examples
+
+#### Check your balance
+
+Let's query our node for the balance of its default account
+(which is the account associated with the `CELESTIA_NODE_AUTH_TOKEN`
+key we generated above):
+
+```bash
+celestia rpc state Balance
+```
+
+The response will look similar to:
+
+```bash
 {
-   "denom":"utia",
-   "amount":"999995000000000"
+ “jsonrpc”: “2.0",
+ “result”: {
+  “denom”: “utia”,
+  “amount”: “79934811”
+ },
+ “id”: 1
 }
 ```
 
-This shows you the balance in that wallet.
+#### Get your node ID
 
-### Get block header
+This is an RPC call in order to get your node's peerId information:
+
+```bash
+celestia rpc p2p Info
+```
+
+The Node ID is in the `ID` value from the response:
+
+```bash
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "ID": "12D3KooWQHg8eo2DMjkw9WrNrhDq5Z7tPs32uMJkpj8njbGNF8kj",
+    "Addrs": [
+      "/ip4/10.0.0.171/tcp/2121",
+      "/ip6/::1/tcp/2121",
+      "/ip4/10.0.0.171/udp/2121/quic-v1",
+      "/ip6/::1/udp/2121/quic-v1",
+      "/ip4/71.200.65.106/tcp/54588",
+      "/ip4/71.200.65.106/udp/54588/quic-v1"
+    ]
+  },
+  "id": 1
+}
+```
+
+#### Get your account address
+
+This is an RPC call in order to get your node's account address:
+
+```bash
+celestia rpc state AccountAddress
+```
+
+Response: 
+
+```bash
+{
+  "jsonrpc": "2.0",
+  "result": "celestia182wascu47m2fsu6davhktsaledd4pukahs2dgs",
+  "id": 1
+}
+```
+
+#### Get block header by height
 
 Now, let's get the block header information.
 
 Here we will get the header from Block 1:
 
-```sh
-curl -X GET http://127.0.0.1:26659/header/1
+```bash
+celestia rpc header GetByHeight 1
 ```
 
 It will output something like this:
 
-```json
+```bash
 {
-   "header":{
-      "version":{
-         "block":11
-      },
-      "chain_id":"devnet-2",
-      "height":1,
-      "time":"2021-11-23T02:24:05.965728875Z",
-      "last_block_id":{
-         "hash":"",
-         "parts":{
-            "total":0,
-            "hash":""
-         }
-      },
-      "last_commit_hash":"E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-      "data_hash":"7B578B351B1B0BBD70BB350019EBC964C44A140A37EF715B552A7F8F315ACD19",
-      "validators_hash":"7F4EA93A134DEDBDA6A1FDD30D05760DD98A2B5FBA95DB3EFFFE7FCE4B361855",
-      "next_validators_hash":"7F4EA93A134DEDBDA6A1FDD30D05760DD98A2B5FBA95DB3EFFFE7FCE4B361855",
-      "consensus_hash":"048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
-      "app_hash":"E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-      "last_results_hash":"E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-      "evidence_hash":"E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-      "proposer_address":"04881EB0A0A4C1DB414C708249CEEC2FCF348F3E"
+ “jsonrpc”: “2.0",
+ “result”: {
+  “header”: {
+   “version”: {
+    “block”: “11”,
+    “app”: “1”
    },
-   "commit":{
-      "height":1,
-      "round":1,
-      "block_id":{
-         "hash":"4632277C441CA6155C4374AC56048CF4CFE3CBB2476E07A548644435980D5E17",
-         "parts":{
-            "total":1,
-            "hash":"BE1B789969938DB061B7723BE45C8A7B4B27192339A8E0A4E216775B2CB58D97"
-         }
-      },
-      "signatures":[
-         {
-            "block_id_flag":2,
-            "validator_address":"03F1044A6DF782189C7061FF89146B3D33608F17",
-            "timestamp":"2021-11-23T11:53:56.123958759Z",
-            "signature":"q/XF7Nc2ThcQgWfqi6LYOUEqLcU+sgVPY1nB2CLWdjRo80WwI6xy6QaYx1B0lmcKAkWR0YMxbc7vJzKF70qwBA=="
-         },
-         {
-            "block_id_flag":2,
-            "validator_address":"04881EB0A0A4C1DB414C708249CEEC2FCF348F3E",
-            "timestamp":"2021-11-23T11:53:56.036027188Z",
-            "signature":"0bbxeviCvgLlyIF47JoY1CMN2e/MhHtFzhdgV0zCM+P3qeO/rkh+0TSxoRVUB1MDvMCoA8hyffCw3amxympMAA=="
-         },
-         {
-            "block_id_flag":2,
-            "validator_address":"31711F367349D1BD619BD0A39568A69614B8A048",
-            "timestamp":"2021-11-23T11:53:56.135943844Z",
-            "signature":"gT23rZ8+XcG5rQ9QS+uh+Wn5eAiJDVy8bh23Fb8hevnHsuO1er2892MXAohaLRF6TTWs/C6dItYph4B/k3b6DQ=="
-         },
-         {
-            "block_id_flag":2,
-            "validator_address":"5A253EC2A9AB20AFD48C7BED2AFCA53F5C80BCA6",
-            "timestamp":"2021-11-23T11:53:56.081698742Z",
-            "signature":"nMngIlJ7PPPtu0N20YwKhWt/H3/JrEKJC3rnS5KG/8J3IppTacuwjGDUqIuHpRlrD0MmWa1mlY+6+ulbytt2AA=="
-         },
-         {
-            "block_id_flag":2,
-            "validator_address":"79BEB39F4B396F9278DA03F1C97F9BE3B10B12D3",
-            "timestamp":"2021-11-23T11:53:56.037896319Z",
-            "signature":"wPAL/sK4YXSU7iRXl00GDLvi4IItVlkY2zRkxIUeV9VA3Tq8Tke6wGE0N6pXKmtMcKUMoyjm03RWHv4mrtj1BA=="
-         },
-         {
-            "block_id_flag":1,
-            "validator_address":"",
-            "timestamp":"0001-01-01T00:00:00Z",
-            "signature":null
-         },
-         {
-            "block_id_flag":1,
-            "validator_address":"",
-            "timestamp":"0001-01-01T00:00:00Z",
-            "signature":null
-         },
-         {
-            "block_id_flag":2,
-            "validator_address":"D345D62BBD18C301B843DF7C65F10E57AB17BD98",
-            "timestamp":"2021-11-23T11:53:56.123499237Z",
-            "signature":"puj5Epw3yPGjSsJk6aQI74S2prgL7+cuiEpCxXYzQxOi0kNIqh8UMZLYf+AVHDQNJXehSmrAK6+VsIt9NF0DDg=="
-         },
-         {
-            "block_id_flag":2,
-            "validator_address":"DEC2642E786A941511A401090D21621E7F08A36D",
-            "timestamp":"2021-11-23T11:53:56.123136439Z",
-            "signature":"J/lnFqARXj42Lfx5MGY0FO/wug+AyQRxTnQp1u1HyczvV+0hXXuk06Uosi61jQKgJG6JBJF2VidqA41/uKMEDw=="
-         }
-      ]
+   “chain_id”: “arabica-8”,
+   “height”: “1”,
+   “time”: “2023-05-30T15:06:21.9265Z”,
+   “last_block_id”: {
+    “hash”: “”,
+    “parts”: {
+     “total”: 0,
+     “hash”: “”
+    }
    },
-   "validator_set":{
-      "validators":[
-         {
-            "address":"03F1044A6DF782189C7061FF89146B3D33608F17",
-            "pub_key":"sMcFgSIzlD77eZYgV7H4akyxoHCPc2oIQW05qWEB6b4=",
-            "voting_power":5000,
-            "proposer_priority":-40000
-         },
-         {
-            "address":"04881EB0A0A4C1DB414C708249CEEC2FCF348F3E",
-            "pub_key":"WdqZ8hoyc1HxZCJfQrAGKm2fFJZFg7PngPNGkA1RWXc=",
-            "voting_power":5000,
-            "proposer_priority":5000
-         },
-         {
-            "address":"31711F367349D1BD619BD0A39568A69614B8A048",
-            "pub_key":"pvwSRksq3ekXIiYK7IzjQJ870BxLqEma8zRr9n9VnXI=",
-            "voting_power":5000,
-            "proposer_priority":5000
-         },
-         {
-            "address":"5A253EC2A9AB20AFD48C7BED2AFCA53F5C80BCA6",
-            "pub_key":"RnmnTlKoKxNoh2TpohBDP3cKlx4ATiPOCvQFk/6xpUU=",
-            "voting_power":5000,
-            "proposer_priority":5000
-         },
-         {
-            "address":"79BEB39F4B396F9278DA03F1C97F9BE3B10B12D3",
-            "pub_key":"oh/N+GOIennBOAa/gPNCso1mDlqaHQNn7Op/X8opbeY=",
-            "voting_power":5000,
-            "proposer_priority":5000
-         },
-         {
-            "address":"7F1105B7B219481810C49730AECB1A83036BCA3A",
-            "pub_key":"Ow/AHP/Q3guPGymUKpvhnwae+QoCOpGztpVnP179IG8=",
-            "voting_power":5000,
-            "proposer_priority":5000
-         },
-         {
-            "address":"87265CC17922E01497F40B701EC9F05373B83467",
-            "pub_key":"MNi0Z+uNF5X1Bxj988IDXVl0BKUcLs7LItoMnX6dbg4=",
-            "voting_power":5000,
-            "proposer_priority":5000
-         },
-         {
-            "address":"D345D62BBD18C301B843DF7C65F10E57AB17BD98",
-            "pub_key":"4g3hhdyU4IIgWW/4sR0nax8bsC/M/fDbt1N8s/QanF8=",
-            "voting_power":5000,
-            "proposer_priority":5000
-         },
-         {
-            "address":"DEC2642E786A941511A401090D21621E7F08A36D",
-            "pub_key":"b+Vv6Lcp0bhIjOQncr+OYBHixCvU5+k34y4RqyvpluE=",
-            "voting_power":5000,
-            "proposer_priority":5000
-         }
-      ],
-      "proposer":{
-         "address":"03F1044A6DF782189C7061FF89146B3D33608F17",
-         "pub_key":"sMcFgSIzlD77eZYgV7H4akyxoHCPc2oIQW05qWEB6b4=",
-         "voting_power":5000,
-         "proposer_priority":-40000
-      }
-   },
-   "dah":{
-      "row_roots":[
-         "//////////7//////////uyLCVMJmAItYqbOqgHXm3OwHsq1xQiAX1kZV2Tgcobm",
-         "/////////////////////ykyWNfDJZfigziZC5BN5L00KKuoyDPduwynDywauskL"
-      ],
-      "column_roots":[
-         "//////////7//////////uyLCVMJmAItYqbOqgHXm3OwHsq1xQiAX1kZV2Tgcobm",
-         "/////////////////////ykyWNfDJZfigziZC5BN5L00KKuoyDPduwynDywauskL"
-      ]
+   “last_commit_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+   “data_hash”: “3D96B7D238E7E0456F6AF8E7CDF0A67BD6CF9C2089ECB559C659DCAA1F880353",
+   “validators_hash”: “C4F7F08A8F3024A28D6486B4BA434B12391A29DFA8C04C74589A013A9A0BE427",
+   “next_validators_hash”: “C4F7F08A8F3024A28D6486B4BA434B12391A29DFA8C04C74589A013A9A0BE427",
+   “consensus_hash”: “048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F”,
+   “app_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+   “last_results_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+   “evidence_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+   “proposer_address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397"
+  },
+  “validator_set”: {
+   “validators”: [
+    {
+     “address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397",
+     “pub_key”: {
+      “type”: “tendermint/PubKeyEd25519”,
+      “value”: “oubutxNSyuD0XZNmMQSraHazmE2PjFsZVZ8RNHFX3WA=”
+     },
+     “voting_power”: “500000000”,
+     “proposer_priority”: “0”
+    }
+   ],
+   “proposer”: {
+    “address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397",
+    “pub_key”: {
+     “type”: “tendermint/PubKeyEd25519”,
+     “value”: “oubutxNSyuD0XZNmMQSraHazmE2PjFsZVZ8RNHFX3WA=”
+    },
+    “voting_power”: “500000000”,
+    “proposer_priority”: “0”
    }
-}
-```
-
-````mdx-code-block
-
-<Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-### Submit a PFB transaction
-
-In this example, we will be submitting a `PayForBlob`
-transaction to the node's `/submit_pfb` endpoint.
-
-Some things to consider:
-
-- PFB is a `PayForBlob` Message.
-- The endpoint also takes in a `namespace_id` and `data` values.
-- Namespace ID should be 8 bytes.
-- Data is in hex-encoded bytes of the raw message.
-- `gas_limit` is the limit of gas to use for the transaction
-
-We use the following `namespace_id` of `0000010000000100` and
-the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
-
-You can generate your own `namespace_id` and data values using this
-useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
-
-:::caution
-When running a Celestia node, you will need to use the following flags
-when starting your node to submit a PFB:
-
-- the `--core.ip string` flag, to allow you to submit transactions
-to your node
-- the `--gateway`, `--gateway.addr string`,
-and `--gateway.port string`, to open the gateway
-and allow anyone to use your IP as an endpoint to submit PFBs
-:::
-
-We run the following:
-
-```sh
-curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
-  "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
-  "gas_limit": 80000, "fee": 2000}' http://localhost:26659/submit_pfb
-```
-
-We get the following output:
-
-```json
-{
-  "height": 4249,
-  "txhash": "B31DEA16E1F3EE13895D4A70FE808801E8BCF8381AACD5071CB51E929F17AB65",
-  "codespace": "undefined",
-  "code": 111222,
-  "raw_log": "recovered: UnmarshalJSON cannot decode empty bytes\nstack:\ngoroutine 61 [running]:\nruntime/debug.Stack()\n\t/usr/local/go/src/runtime/debug/stack.go:24 +0x65\ngithub.com/cosmos/cosmos-sdk/baseapp.newDefaultRecoveryMiddleware.func1({0x1f63960, 0xc00653eef0})\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/recovery.go:71 +0x27\ngithub.com/cosmos/cosmos-sdk/baseapp.newRecoveryMiddleware.func1({0x1f63960?, 0xc00653eef0?})\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/recovery.go:39 +0x30\ngithub.com/cosmos/cosmos-sdk/baseapp.processRecovery({0x1f63960, 0xc00653eef0}, 0xc0091f4580?)\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/recovery.go:28 +0x37\ngithub.com/cosmos/cosmos-sdk/baseapp.processRecovery({0x1f63960, 0xc00653eef0}, 0x2d32158?)\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/recovery.go:33 +0x5e\ngithub.com/cosmos/cosmos-sdk/baseapp.(*BaseApp).runTx.func1()\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/baseapp.go:639 +0xf0\npanic({0x1f63960, 0xc00653eef0})\n\t/usr/local/go/src/runtime/panic.go:838 +0x207\ngithub.com/cosmos/cosmos-sdk/x/params/types.Subspace.Get({{0x2d31748, 0xc001099090}, 0xc0004ee198, {0x2d0e170, 0xc001099730}, {0x2d0e1c0, 0xc001099c10}, {0xc00168aba0, 0x4, 0x12}, ...}, ...)\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/x/params/types/subspace.go:110 +0x307\ngithub.com/celestiaorg/celestia-app/x/blob/keeper.Keeper.GasPerBlobByte(...)\n\t/celestia-app/x/blob/keeper/params.go:36\ngithub.com/celestiaorg/celestia-app/x/blob/keeper.Keeper.PayForBlobs({{0x2d31748, 0xc001099090}, {0x2d0e170, 0xc001099ac0}, {0x2d0e170, 0x0}, {{0x2d31748, 0xc001099090}, 0xc0004ee198, {0x2d0e170, ...}, ...}}, ...)\n\t/celestia-app/x/blob/keeper/keeper.go:60 +0x3a8\ngithub.com/celestiaorg/celestia-app/x/blob.NewHandler.func1({{0x2d24c58, 0xc000138020}, {0x2d32158, 0xc00acc0680}, {{0xb, 0x0}, {0xc0067752e0, 0x9}, 0x1099, {0x5f89ec0, ...}, ...}, ...}, ...)\n\t/celestia-app/x/blob/handler.go:20 +0x195\ngithub.com/cosmos/cosmos-sdk/baseapp.(*BaseApp).runMsgs(_, {{0x2d24c58, 0xc000138020}, {0x2d32158, 0xc00acc0680}, {{0xb, 0x0}, {0xc0067752e0, 0x9}, 0x1099, ...}, ...}, ...)\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/baseapp.go:800 +0x7a8\ngithub.com/cosmos/cosmos-sdk/baseapp.(*BaseApp).runTx(0xc000be6e00, 0x3, {0xc0026698c0, 0x143, 0x143})\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/baseapp.go:725 +0xc45\ngithub.com/cosmos/cosmos-sdk/baseapp.(*BaseApp).DeliverTx(0xc000be6e00, {{0xc0026698c0?, 0x20?, 0xc00abfe9c0?}})\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/abci.go:283 +0x17a\ngithub.com/tendermint/tendermint/abci/client.(*localClient).DeliverTxAsync(0xc000cf9320, {{0xc0026698c0?, 0x0?, 0xc000cf9320?}})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/abci/client/local_client.go:93 +0x105\ngithub.com/tendermint/tendermint/proxy.(*appConnConsensus).DeliverTxAsync(0xc00a464780?, {{0xc0026698c0?, 0x20?, 0xb?}})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/proxy/app_conn.go:88 +0x26\ngithub.com/tendermint/tendermint/state.execBlockOnProxyApp({0x2d25e10?, 0xc000d69f20}, {0x2d2ffe8, 0xc000dafdd0}, 0xc008a5ba00, {0x2d329b0, 0xc001194120}, 0x1098?)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/state/execution.go:390 +0x822\ngithub.com/tendermint/tendermint/state.(*BlockExecutor).ApplyBlock(_, {{{0xb, 0x0}, {0xc000c8b080, 0x7}}, {0xc000c8b087, 0x9}, 0x1, 0x1098, {{0xc00a536640, ...}, ...}, ...}, ...)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/state/execution.go:210 +0x171\ngithub.com/tendermint/tendermint/consensus.(*State).finalizeCommit(0xc0010dc700, 0x1099)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:1668 +0xb2d\ngithub.com/tendermint/tendermint/consensus.(*State).tryFinalizeCommit(0xc0010dc700, 0x1099)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:1576 +0x2ff\ngithub.com/tendermint/tendermint/consensus.(*State).enterCommit.func1()\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:1511 +0x87\ngithub.com/tendermint/tendermint/consensus.(*State).enterCommit(0xc0010dc700, 0x1099, 0x0)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:1549 +0xcb7\ngithub.com/tendermint/tendermint/consensus.(*State).addVote(0xc0010dc700, 0xc008e7b220, {0x0, 0x0})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:2171 +0xb7c\ngithub.com/tendermint/tendermint/consensus.(*State).tryAddVote(0xc0010dc700, 0xc008e7b220, {0x0?, 0x47b9a6?})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:1963 +0x2c\ngithub.com/tendermint/tendermint/consensus.(*State).handleMsg(0xc0010dc700, {{0x2d06640?, 0xc0011f6c70?}, {0x0?, 0x0?}})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:853 +0x44b\ngithub.com/tendermint/tendermint/consensus.(*State).receiveRoutine(0xc0010dc700, 0x0)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:780 +0x512\ncreated by github.com/tendermint/tendermint/consensus.(*State).OnStart\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:379 +0x12d\n: panic",
-  "logs": null,
-  "gas_wanted": 80000,
-  "gas_used": 62131,
-  "events": [
-    {
-      "type": "coin_spent",
-      "attributes": [
-        {
-          "key": "c3BlbmRlcg==",
-          "value": "Y2VsZXN0aWExOG1lbHFkNmV0eXZ5aDZ3M3BkMDZkODRleXA5cHU1c2xuN2h5ODU=",
-          "index": true
-        },
-        {
-          "key": "YW1vdW50",
-          "value": "MjAwMHV0aWE=",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "coin_received",
-      "attributes": [
-        {
-          "key": "cmVjZWl2ZXI=",
-          "value": "Y2VsZXN0aWExN3hwZnZha20yYW1nOTYyeWxzNmY4NHoza2VsbDhjNWxwbmpzM3M=",
-          "index": true
-        },
-        {
-          "key": "YW1vdW50",
-          "value": "MjAwMHV0aWE=",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "transfer",
-      "attributes": [
-        {
-          "key": "cmVjaXBpZW50",
-          "value": "Y2VsZXN0aWExN3hwZnZha20yYW1nOTYyeWxzNmY4NHoza2VsbDhjNWxwbmpzM3M=",
-          "index": true
-        },
-        {
-          "key": "c2VuZGVy",
-          "value": "Y2VsZXN0aWExOG1lbHFkNmV0eXZ5aDZ3M3BkMDZkODRleXA5cHU1c2xuN2h5ODU=",
-          "index": true
-        },
-        {
-          "key": "YW1vdW50",
-          "value": "MjAwMHV0aWE=",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "message",
-      "attributes": [
-        {
-          "key": "c2VuZGVy",
-          "value": "Y2VsZXN0aWExOG1lbHFkNmV0eXZ5aDZ3M3BkMDZkODRleXA5cHU1c2xuN2h5ODU=",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "tx",
-      "attributes": [
-        {
-          "key": "ZmVl",
-          "value": "MjAwMHV0aWE=",
-          "index": true
-        },
-        {
-          "key": "ZmVlX3BheWVy",
-          "value": "Y2VsZXN0aWExOG1lbHFkNmV0eXZ5aDZ3M3BkMDZkODRleXA5cHU1c2xuN2h5ODU=",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "tx",
-      "attributes": [
-        {
-          "key": "YWNjX3NlcQ==",
-          "value": "Y2VsZXN0aWExOG1lbHFkNmV0eXZ5aDZ3M3BkMDZkODRleXA5cHU1c2xuN2h5ODUvMQ==",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "tx",
-      "attributes": [
-        {
-          "key": "c2lnbmF0dXJl",
-          "value": "ZUdtRWhHNUFtYk1uUUE0MjFzdUM3RERqSE9seFBuNC81b3ZlZHB5YUI0RVpQL0RHc3NYTTEzTnUvZEVPTllBWEJ2dDFuSWpqM2JNOHZiMlEwQmhXdHc9PQ==",
-          "index": true
-        }
-      ]
+  },
+  “commit”: {
+   “height”: 1,
+   “round”: 0,
+   “block_id”: {
+    “hash”: “E5D620B5BE7873222DCD83464C285FD0F215C209393E7481F9A5979280AD6CA2”,
+    “parts”: {
+     “total”: 1,
+     “hash”: “5BDD329766F3803594FA840D5B4860A82115AFA70CB307F28F7E84D3FE883A55”
     }
-  ]
-}
-```
-
-If you notice from the above output, it returns a `height` of
-`4249` which we will use for the next command.
-
-Note: To learn more about status response codes, please navigate to
-[cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
-
-#### Troubleshooting
-
-If you encounter an error like:
-
-```sh
-"rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
-```
-
-It is possible that the account you are trying to submit a `PayForBlob` from
-doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
-account with tokens and then try again.
-
-### Get namespaced shares by block height
-
-After submitting your PFB transaction, upon success, the node will return
-the block height for which the PFB transaction was included. You can then
-use that block height and the namespace ID with which you submitted your
-PFB transaction to get your message [shares](../node-gateway-docs#share-endpoints) returned to you. In this example,
-the block height we got was 2452 which we will use for the following command.
-Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
-
-```sh
-curl -X GET \
-  http://localhost:26659/namespaced_shares/0c204d39600fddd3/height/4249
-```
-
-Will generate the following output:
-
-```json
-{
-  "shares": [
-    "DCBNOWAP3dMBAAAAG/HyDKgAfpEKO/iy5h2g8mvKB+94cXpupUFl9QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-  ],
-  "height": 4249
-}
-```
-
-The output here is base64-encoded.
-
-</TabItem>
-<TabItem value="mocha" label="Mocha">
-
-### Submit a PFD transaction
-
-In this example, we will be submitting a `PayForData`
-transaction to the node's `/submit_pfd` endpoint.
-
-Some things to consider:
-
-- PFD is a `PayForData` Message.
-- The endpoint also takes in a `namespace_id` and `data` values.
-- Namespace ID should be 8 bytes.
-- Data is in hex-encoded bytes of the raw message.
-- `gas_limit` is the limit of gas to use for the transaction
-
-We use the following `namespace_id` of `0000010000000100` and
-the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
-
-You can generate your own `namespace_id` and data values using this
-useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
-
-:::caution
-When running a Celestia node, you will need to use the following flags
-when starting your node to submit a PFD:
-
-- the `--core.ip string` flag, to allow you to submit transactions
-to your node
-- the `--gateway`, `--gateway.addr string`,
-and `--gateway.port string`, to open the gateway
-and allow anyone to use your IP as an endpoint to submit PFDs
-:::
-We run the following:
-
-```sh
-curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
-  "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
-  "gas_limit": 80000, "fee": 2000}' http://localhost:26659/submit_pfd
-```
-
-We get the following output:
-
-```json
-{
-   "height":2452,
-   "txhash":"04A79AF9DA62FDB41ACD7D82EB0B9004AE4E4ED603B280A65816560B4F38A999",
-   "data":"12200A1E2F7061796D656E742E4D7367506179466F7244617461526573706F6E7365",
-   "raw_log":"[{\"msg_index\":0,\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"action\",\"value\":\"/payment.MsgPayForData\"}]},{\"type\":\"payfordata\",\"attributes\":[{\"key\":\"signer\",\"value\":\"celestia1vdjkcetnw35kzvtgxvmxwmnwwaaxuet4xp3hxut6dce8wctsdq6hjwfcxd5xvvmyddsh5mnvvaaq6776xw\"},{\"key\":\"size\",\"value\":\"27\"}]}]}]",
-   "logs":[
-      {
-         "msg_index":0,
-         "events":[
-            {
-               "type":"message",
-               "attributes":[
-                  {
-                     "key":"action",
-                     "value":"/payment.MsgPayForData"
-                  }
-               ]
-            },
-            {
-               "type":"payfordata",
-               "attributes":[
-                  {
-                     "key":"signer",
-                     "value":"celestia1vdjkcetnw35kzvtgxvmxwmnwwaaxuet4xp3hxut6dce8wctsdq6hjwfcxd5xvvmyddsh5mnvvaaq6776xw"
-                  },
-                  {
-                     "key":"size",
-                     "value":"27"
-                  }
-               ]
-            }
-         ]
-      }
-   ],
-   "events":[
-      {
-         "type":"coin_spent",
-         "attributes":[
-            {
-               "key":"spender",
-               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws",
-               "index":true
-            },
-            {
-               "key":"amount",
-               "value":"1utia",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"coin_received",
-         "attributes":[
-            {
-               "key":"receiver",
-               "value":"celestia17xpfvakm2amg962yls6f84z3kell8c5lpnjs3s",
-               "index":true
-            },
-            {
-               "key":"amount",
-               "value":"1utia",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"transfer",
-         "attributes":[
-            {
-               "key":"recipient",
-               "value":"celestia17xpfvakm2amg962yls6f84z3kell8c5lpnjs3s",
-               "index":true
-            },
-            {
-               "key":"sender",
-               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws",
-               "index":true
-            },
-            {
-               "key":"amount",
-               "value":"1utia",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"message",
-         "attributes":[
-            {
-               "key":"sender",
-               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"tx",
-         "attributes":[
-            {
-               "key":"fee",
-               "value":"1utia",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"tx",
-         "attributes":[
-            {
-               "key":"acc_seq",
-               "value":"celestia10jhckjxxymsufflglvypxscnmggetwh0gfasws/267",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"tx",
-         "attributes":[
-            {
-               "key":"signature",
-               "value":"JMNihnKS/MtYJDprqEFGJuXh16tVADsDDxXaFFpvv2te57btl4LbiRzwRRiN2rvwkJ2zlAApu2ImT22MZBi5+A==",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"tx",
-         "attributes":[
-            {
-               "key":"fee",
-               "value":"",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"tx",
-         "attributes":[
-            {
-               "key":"acc_seq",
-               "value":"celestia13zx48t96zauht0kpcn0kcfykc9wn8fehzcp9wq/1024",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"tx",
-         "attributes":[
-            {
-               "key":"signature",
-               "value":"mIZIjbzN0/RQAlQN7TDWzqtey3vVBPe7IO3+IIDhJstIH8QU9vsHfl0Rql9qWMZQG4dM+77w9WmUcnCeS7edfw==",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"tx",
-         "attributes":[
-            {
-               "key":"fee",
-               "value":"",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"tx",
-         "attributes":[
-            {
-               "key":"acc_seq",
-               "value":"celestia1h36gnnwzneu0csqzn2waph5y983hf3dkaznlgz/0",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"tx",
-         "attributes":[
-            {
-               "key":"signature",
-               "value":"sfy+XyP7iWU+V9q3zEIOWxbGihvhzUKRLNVeXP+a+5oRefIA/Pyqfm13A5NU9I27hhfvpqo9vhXW1waRgcI9OA==",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"message",
-         "attributes":[
-            {
-               "key":"action",
-               "value":"/payment.MsgPayForData",
-               "index":true
-            }
-         ]
-      },
-      {
-         "type":"payfordata",
-         "attributes":[
-            {
-               "key":"signer",
-               "value":"celestia1vdjkcetnw35kzvtgxvmxwmnwwaaxuet4xp3hxut6dce8wctsdq6hjwfcxd5xvvmyddsh5mnvvaaq6776xw",
-               "index":true
-            },
-            {
-               "key":"size",
-               "value":"27",
-               "index":true
-            }
-         ]
-      }
+   },
+   “signatures”: [
+    {
+     “block_id_flag”: 2,
+     “validator_address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397”,
+     “timestamp”: “2023-05-30T17:44:48.957739642Z”,
+     “signature”: “vgp6mcStXsCN5OmmqtPJCReoSu47bRcysDphTbXjqq4FuR876dwMD0fu/8lyrrpLBSt3vMAA0bTQ0GggXh6VAw==”
+    }
    ]
+  },
+  “dah”: {
+   “row_roots”: [
+    “//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU”,
+    “/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3”
+   ],
+   “column_roots”: [
+    “//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU”,
+    “/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3"
+   ]
+  }
+ },
+ “id”: 1
 }
 ```
 
+#### Submit a blob to the network with a PFB
+
+In this example, we will be submitting a `PayForBlob`
+transaction using our light node.
+
+Some things to consider:
+
+- PFB is a `PayForBlob` Message.
+- The endpoint also takes in `namespace_id` and `data` values.
+- Namespace ID should be 10 bytes, prefixed by `0x`
+- Data should be in hex-encoded bytes of the raw message
+
+We use the following `namespace_id` of `0x0c204d39600fddd3` and
+the `data` value of `0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
+
+You can generate your own `namespace_id` and data values using this
+useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
+
+We run the following to submit a blob to the network in hexadecimal format:
+
+```bash
+celestia rpc blob Submit 0x0c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
+```
+
+We get the following output:
+
+```bash
+{
+ “jsonrpc”: “2.0”,
+ “result”: 32236,
+ “id”: 1
+}
+```
+
+We can also use a string of text as the data value, which will be
+converted to base64:
+
+```bash
+celestia rpc blob Submit 0x0c204d39600fddd3 '"gm"'
+```
+
 If you notice from the above output, it returns a `height` of
-`2452` which we will use for the next command.
+`32236` which we will use for the next command.
 
 Note: To learn more about status response codes, please navigate to
 [cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
 
-#### Troubleshooting
+##### `SubmitPayForBlob` arguments
 
-If you encounter an error like:
+Using the `rpc` subcommand, you can submit a blob to the network
+using the `SubmitPayForBlob` method.
 
-```sh
-"rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
-```
+The arguments for `SubmitPayForBlob` are parsed specially,
+to improve UX.
 
-It is possible that the account you are trying to submit a `PayForData` from
-doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
-account with tokens and then try again.
+`SubmitPayForBlob` can be done in a few ways:
 
-### Get namespaced shares by block height
+- The **namespace ID** can be encoded as either hex or base64
+- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)
 
-After submitting your PFD transaction, upon success, the node will return
-the block height for which the PFD transaction was included. You can then
+#### Get namespaced shares by block height
+
+After submitting your PFB transaction, upon success, the node will return
+the block height for which the PFB transaction was included. You can then
 use that block height and the namespace ID with which you submitted your
-PFD transaction to get your message [shares](../node-gateway-docs#share-endpoints) returned to you. In this example,
-the block height we got was 2452 which we will use for the following command.
-Read more about shares in the [Celestia Specs](https://celestiaorg.github.io/celestia-specs/latest/specs/data_structures.html?highlight=shares#share).
+PFB transaction to get your message shares (data) returned to you. In this example,
+the block height we got was 32236 which we will use for the following command.
+Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
 
-```sh
-curl -X GET \
-  http://localhost:26659/namespaced_shares/0c204d39600fddd3/height/2452
+```bash
+celestia rpc blob GetAll 32236 0x0c204d39600fddd3
 ```
 
 Will generate the following output:
 
 ```json
 {
-   "shares":[
-      "DCBNOWAP3dMb8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-   ],
-   "height":2452
+ “jsonrpc”: “2.0”,
+ “result”: [
+  {
+   “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
+   “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
+   “share_version”: 0,
+   “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
+  }
+ ],
+ “id”: 1
 }
 ```
 
 The output here is base64-encoded.
 
-</TabItem>
-<TabItem value="arabica" label="Arabica 🏗️">
+To see the JSON request sent over the wire, for example for sending requests via cURL, pass the `-—print-request` flag:
 
-### Submit a PFB transaction
-
-In this example, we will be submitting a `PayForBlob`
-transaction to the node's `/submit_pfb` endpoint.
-
-Some things to consider:
-
-- PFB is a `PayForBlob` Message.
-- The endpoint also takes in a `namespace_id` and `data` values.
-- Namespace ID should be 8 bytes.
-- Data is in hex-encoded bytes of the raw message.
-- `gas_limit` is the limit of gas to use for the transaction
-
-We use the following `namespace_id` of `0000010000000100` and
-the `data` value of `f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
-
-You can generate your own `namespace_id` and data values using this
-useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
-
-:::caution
-When running a Celestia node, you will need to use the following flags
-when starting your node to submit a PFB:
-
-- the `--core.ip string` flag, to allow you to submit transactions
-to your node
-- the `--gateway`, `--gateway.addr string`,
-and `--gateway.port string`, to open the gateway
-and allow anyone to use your IP as an endpoint to submit PFBs
-:::
-
-We run the following:
-
-```sh
-curl -X POST -d '{"namespace_id": "0c204d39600fddd3",
-  "data": "f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5",
-  "gas_limit": 80000, "fee": 2000}' http://localhost:26659/submit_pfb
+```bash
+celestia rpc blob GetAll 32236 0x0c204d39600fddd3 --print-request
 ```
 
-We get the following output:
+Response:
 
-```json
+```bash
 {
-  "height": 4249,
-  "txhash": "B31DEA16E1F3EE13895D4A70FE808801E8BCF8381AACD5071CB51E929F17AB65",
-  "codespace": "undefined",
-  "code": 111222,
-  "raw_log": "recovered: UnmarshalJSON cannot decode empty bytes\nstack:\ngoroutine 61 [running]:\nruntime/debug.Stack()\n\t/usr/local/go/src/runtime/debug/stack.go:24 +0x65\ngithub.com/cosmos/cosmos-sdk/baseapp.newDefaultRecoveryMiddleware.func1({0x1f63960, 0xc00653eef0})\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/recovery.go:71 +0x27\ngithub.com/cosmos/cosmos-sdk/baseapp.newRecoveryMiddleware.func1({0x1f63960?, 0xc00653eef0?})\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/recovery.go:39 +0x30\ngithub.com/cosmos/cosmos-sdk/baseapp.processRecovery({0x1f63960, 0xc00653eef0}, 0xc0091f4580?)\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/recovery.go:28 +0x37\ngithub.com/cosmos/cosmos-sdk/baseapp.processRecovery({0x1f63960, 0xc00653eef0}, 0x2d32158?)\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/recovery.go:33 +0x5e\ngithub.com/cosmos/cosmos-sdk/baseapp.(*BaseApp).runTx.func1()\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/baseapp.go:639 +0xf0\npanic({0x1f63960, 0xc00653eef0})\n\t/usr/local/go/src/runtime/panic.go:838 +0x207\ngithub.com/cosmos/cosmos-sdk/x/params/types.Subspace.Get({{0x2d31748, 0xc001099090}, 0xc0004ee198, {0x2d0e170, 0xc001099730}, {0x2d0e1c0, 0xc001099c10}, {0xc00168aba0, 0x4, 0x12}, ...}, ...)\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/x/params/types/subspace.go:110 +0x307\ngithub.com/celestiaorg/celestia-app/x/blob/keeper.Keeper.GasPerBlobByte(...)\n\t/celestia-app/x/blob/keeper/params.go:36\ngithub.com/celestiaorg/celestia-app/x/blob/keeper.Keeper.PayForBlobs({{0x2d31748, 0xc001099090}, {0x2d0e170, 0xc001099ac0}, {0x2d0e170, 0x0}, {{0x2d31748, 0xc001099090}, 0xc0004ee198, {0x2d0e170, ...}, ...}}, ...)\n\t/celestia-app/x/blob/keeper/keeper.go:60 +0x3a8\ngithub.com/celestiaorg/celestia-app/x/blob.NewHandler.func1({{0x2d24c58, 0xc000138020}, {0x2d32158, 0xc00acc0680}, {{0xb, 0x0}, {0xc0067752e0, 0x9}, 0x1099, {0x5f89ec0, ...}, ...}, ...}, ...)\n\t/celestia-app/x/blob/handler.go:20 +0x195\ngithub.com/cosmos/cosmos-sdk/baseapp.(*BaseApp).runMsgs(_, {{0x2d24c58, 0xc000138020}, {0x2d32158, 0xc00acc0680}, {{0xb, 0x0}, {0xc0067752e0, 0x9}, 0x1099, ...}, ...}, ...)\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/baseapp.go:800 +0x7a8\ngithub.com/cosmos/cosmos-sdk/baseapp.(*BaseApp).runTx(0xc000be6e00, 0x3, {0xc0026698c0, 0x143, 0x143})\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/baseapp.go:725 +0xc45\ngithub.com/cosmos/cosmos-sdk/baseapp.(*BaseApp).DeliverTx(0xc000be6e00, {{0xc0026698c0?, 0x20?, 0xc00abfe9c0?}})\n\t/go/pkg/mod/github.com/celestiaorg/cosmos-sdk@v1.8.0-sdk-0.46.7/baseapp/abci.go:283 +0x17a\ngithub.com/tendermint/tendermint/abci/client.(*localClient).DeliverTxAsync(0xc000cf9320, {{0xc0026698c0?, 0x0?, 0xc000cf9320?}})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/abci/client/local_client.go:93 +0x105\ngithub.com/tendermint/tendermint/proxy.(*appConnConsensus).DeliverTxAsync(0xc00a464780?, {{0xc0026698c0?, 0x20?, 0xb?}})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/proxy/app_conn.go:88 +0x26\ngithub.com/tendermint/tendermint/state.execBlockOnProxyApp({0x2d25e10?, 0xc000d69f20}, {0x2d2ffe8, 0xc000dafdd0}, 0xc008a5ba00, {0x2d329b0, 0xc001194120}, 0x1098?)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/state/execution.go:390 +0x822\ngithub.com/tendermint/tendermint/state.(*BlockExecutor).ApplyBlock(_, {{{0xb, 0x0}, {0xc000c8b080, 0x7}}, {0xc000c8b087, 0x9}, 0x1, 0x1098, {{0xc00a536640, ...}, ...}, ...}, ...)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/state/execution.go:210 +0x171\ngithub.com/tendermint/tendermint/consensus.(*State).finalizeCommit(0xc0010dc700, 0x1099)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:1668 +0xb2d\ngithub.com/tendermint/tendermint/consensus.(*State).tryFinalizeCommit(0xc0010dc700, 0x1099)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:1576 +0x2ff\ngithub.com/tendermint/tendermint/consensus.(*State).enterCommit.func1()\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:1511 +0x87\ngithub.com/tendermint/tendermint/consensus.(*State).enterCommit(0xc0010dc700, 0x1099, 0x0)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:1549 +0xcb7\ngithub.com/tendermint/tendermint/consensus.(*State).addVote(0xc0010dc700, 0xc008e7b220, {0x0, 0x0})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:2171 +0xb7c\ngithub.com/tendermint/tendermint/consensus.(*State).tryAddVote(0xc0010dc700, 0xc008e7b220, {0x0?, 0x47b9a6?})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:1963 +0x2c\ngithub.com/tendermint/tendermint/consensus.(*State).handleMsg(0xc0010dc700, {{0x2d06640?, 0xc0011f6c70?}, {0x0?, 0x0?}})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:853 +0x44b\ngithub.com/tendermint/tendermint/consensus.(*State).receiveRoutine(0xc0010dc700, 0x0)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:780 +0x512\ncreated by github.com/tendermint/tendermint/consensus.(*State).OnStart\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.14.0-tm-v0.34.23/consensus/state.go:379 +0x12d\n: panic",
-  "logs": null,
-  "gas_wanted": 80000,
-  "gas_used": 62131,
-  "events": [
-    {
-      "type": "coin_spent",
-      "attributes": [
-        {
-          "key": "c3BlbmRlcg==",
-          "value": "Y2VsZXN0aWExOG1lbHFkNmV0eXZ5aDZ3M3BkMDZkODRleXA5cHU1c2xuN2h5ODU=",
-          "index": true
-        },
-        {
-          "key": "YW1vdW50",
-          "value": "MjAwMHV0aWE=",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "coin_received",
-      "attributes": [
-        {
-          "key": "cmVjZWl2ZXI=",
-          "value": "Y2VsZXN0aWExN3hwZnZha20yYW1nOTYyeWxzNmY4NHoza2VsbDhjNWxwbmpzM3M=",
-          "index": true
-        },
-        {
-          "key": "YW1vdW50",
-          "value": "MjAwMHV0aWE=",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "transfer",
-      "attributes": [
-        {
-          "key": "cmVjaXBpZW50",
-          "value": "Y2VsZXN0aWExN3hwZnZha20yYW1nOTYyeWxzNmY4NHoza2VsbDhjNWxwbmpzM3M=",
-          "index": true
-        },
-        {
-          "key": "c2VuZGVy",
-          "value": "Y2VsZXN0aWExOG1lbHFkNmV0eXZ5aDZ3M3BkMDZkODRleXA5cHU1c2xuN2h5ODU=",
-          "index": true
-        },
-        {
-          "key": "YW1vdW50",
-          "value": "MjAwMHV0aWE=",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "message",
-      "attributes": [
-        {
-          "key": "c2VuZGVy",
-          "value": "Y2VsZXN0aWExOG1lbHFkNmV0eXZ5aDZ3M3BkMDZkODRleXA5cHU1c2xuN2h5ODU=",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "tx",
-      "attributes": [
-        {
-          "key": "ZmVl",
-          "value": "MjAwMHV0aWE=",
-          "index": true
-        },
-        {
-          "key": "ZmVlX3BheWVy",
-          "value": "Y2VsZXN0aWExOG1lbHFkNmV0eXZ5aDZ3M3BkMDZkODRleXA5cHU1c2xuN2h5ODU=",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "tx",
-      "attributes": [
-        {
-          "key": "YWNjX3NlcQ==",
-          "value": "Y2VsZXN0aWExOG1lbHFkNmV0eXZ5aDZ3M3BkMDZkODRleXA5cHU1c2xuN2h5ODUvMQ==",
-          "index": true
-        }
-      ]
-    },
-    {
-      "type": "tx",
-      "attributes": [
-        {
-          "key": "c2lnbmF0dXJl",
-          "value": "ZUdtRWhHNUFtYk1uUUE0MjFzdUM3RERqSE9seFBuNC81b3ZlZHB5YUI0RVpQL0RHc3NYTTEzTnUvZEVPTllBWEJ2dDFuSWpqM2JNOHZiMlEwQmhXdHc9PQ==",
-          "index": true
-        }
-      ]
-    }
+ “Request”: {
+  “id”: 1,
+  “jsonrpc”: “2.0",
+  “method”: “blob.GetAll”,
+  “params”: [
+   32236,
+   [
+    “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=”
+   ]
   ]
+ },
+ “Response”: {
+  “jsonrpc”: “2.0”,
+  “result”: [
+   {
+    “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
+    “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
+    “share_version”: 0,
+    “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
+   }
+  ],
+  “id”: 1
+ }
 }
 ```
 
-If you notice from the above output, it returns a `height` of
-`4249` which we will use for the next command.
+Simiarly, you can cURL the response by running the following command:
 
-Note: To learn more about status response codes, please navigate to
-[cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
+```bash
+curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
+   -H 'Content-Type: application/json' \
+   -d '{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "blob.GetAll",
+  "params": [
+   32236,
+   [
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA="
+   ]
+  ]
+ }' \
+   http://localhost:26658
+```
 
-#### Troubleshooting
+Response:
+
+```bash
+{“jsonrpc”:“2.0",“result”:[{“namespace”:“AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,”data”:“8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1”,“share_version”:0,“commitment”:“y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=“}],“id”:1}
+```
+
+### More examples
+
+Query node information:
+
+```bash
+celestia rpc node Info
+```
+
+Get share by data availibility header and index:
+
+```bash
+celestia rpc share GetShare "$(celestia rpc header GetByHeight 32236 | jq '.result.dah' -r)" 32236 0
+```
+
+Get share by namespace:
+
+```bash
+celestia rpc share GetSharesByNamespace "$(celestia rpc header GetByHeight 32236 | jq '.result.dah' -r)" GHTmQvXd5Yk=
+```
+
+Get header by height:
+
+```bash
+celestia rpc header GetByHeight 5
+```
+
+Get data availability sampler stats:
+
+```bash
+celestia rpc das SamplingStats
+```
+
+## Additional resources
+
+### Post an SVG as a PFB
+
+If you'd like to create your own SVG, post it to Celestia, and retrieve it,
+you can check out the [Base64 SVG Tutorial](https://based64.xyz/).
+
+### Golang guide
+
+If you're interested in interacting with the node's API in Go
+([`client.go`](https://github.com/celestiaorg/celestia-node/blob/main/api/rpc/client/client.go)),
+you can use the [da-rpc-client-tutorial](https://github.com/renaynay/da-rpc-client-tutorial)
+repo.
+
+### Troubleshooting
 
 If you encounter an error like:
 
@@ -2014,34 +1586,3 @@ If you encounter an error like:
 It is possible that the account you are trying to submit a `PayForBlob` from
 doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
 account with tokens and then try again.
-
-### Get namespaced shares by block height
-
-After submitting your PFB transaction, upon success, the node will return
-the block height for which the PFB transaction was included. You can then
-use that block height and the namespace ID with which you submitted your
-PFB transaction to get your message [shares](../node-gateway-docs#share-endpoints) returned to you. In this example,
-the block height we got was 2452 which we will use for the following command.
-Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
-
-```sh
-curl -X GET \
-  http://localhost:26659/namespaced_shares/0c204d39600fddd3/height/4249
-```
-
-Will generate the following output:
-
-```json
-{
-  "shares": [
-    "DCBNOWAP3dMBAAAAG/HyDKgAfpEKO/iy5h2g8mvKB+94cXpupUFl9QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-  ],
-  "height": 4249
-}
-```
-
-The output here is base64-encoded.
-
-</TabItem>
-</Tabs>
-````
