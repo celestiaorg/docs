@@ -238,7 +238,15 @@ txhash: <tx-hash>
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
 
-## Deploy the Celestia Node
+## Optional: Deploy the Celestia Node
+
+Running a bridge node is critical to the Celestia network as it enables
+the data availability and consensus nodes to communicate with one
+another. It is recommended to support the data availability network,
+but is not required for `celestia-app`.
+
+If you are not running a bridge node, you can skip to
+[Run a validator node](#run-a-validator-node).
 
 This section describes part 2 of Celestia Validator Node setup: running a
 Celestia Bridge Node daemon.
