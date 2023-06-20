@@ -342,7 +342,7 @@ const sidebars = {
 					link: {
 						type: "generated-index",
 					},
-					collapsed: false,
+					collapsed: true,
 					items: [
 						{
 							type: "doc",
