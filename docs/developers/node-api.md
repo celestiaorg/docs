@@ -14,7 +14,8 @@ can be found [here](https://node-rpc-docs.celestia.org/).
 
 The RPC API primarily focuses on developers and projects building on
 top of Celestia, who are willing to run their own DA nodes. The RPC API
-provides a richer set of features and a superior user experience. Unlike the Gateway API, the RPC API allows access
+provides a richer set of features and a superior user experience.
+Unlike the Gateway API, the RPC API allows access
 to the internal wallet and keyring of the DA node, as well as other
 sensitive and administrative capabilities.
 
@@ -34,7 +35,8 @@ signing + providing RPC-level DOS protection.
 
 ### RPC API tutorial
 
-The [node tutorial](../node-tutorial/), which uses the RPC CLI, is the recommended way
+The [node tutorial](../node-tutorial/), which uses the RPC CLI, is the
+recommended way
 to get started interacting with your Celestia node.
 
 ## Gateway API
