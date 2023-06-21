@@ -293,7 +293,8 @@ const sidebars = {
       type: "category",
       label: "Node API",
       link: {
-        type: "generated-index",
+        type: "doc",
+        id: "developers/node-api"
       },
       collapsed: false,
       items: [
