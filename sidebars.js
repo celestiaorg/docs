@@ -208,6 +208,11 @@ const sidebars = {
               label: "Config.toml guide",
               id: "nodes/config-toml"
             },
+            {
+              type: "doc",
+              label: "Troubleshooting",
+              id: "nodes/celestia-node-troubleshooting"
+            },
           ]
         },
         {
