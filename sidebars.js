@@ -446,6 +446,11 @@ const sidebars = {
     },
     {
       type: "doc",
+      label: "Demos on Celestia",
+      id: "developers/demos",
+    },
+    {
+      type: "doc",
       label: "Integrate Celestia",
       id: "developers/integrate-celestia",
     },
