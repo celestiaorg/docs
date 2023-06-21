@@ -63,7 +63,6 @@ const config = {
     ],
   ],
   plugins: [
-    "@docusaurus/plugin-sitemap",
     ["drawio", {}],
     [
       "@docusaurus/plugin-client-redirects",
