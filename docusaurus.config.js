@@ -237,14 +237,6 @@ const config = {
               }
             `,
           },
-          {
-            tagName: 'script',
-            attributes: {
-              src: 'https://www.chatbase.co/embed.min.js',
-              id: 'oeduJpy4UAtpDuOQcCuVM',
-              defer: true,
-            },
-          },
         ],
       },
     }),
