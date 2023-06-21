@@ -29,6 +29,10 @@ const config = {
       defer: true,
       "data-domain": "docs.celestia.org",
     },
+    {
+      src: '../custom.html',
+      async: true,
+    },
   ],
   stylesheets: [
     {
