@@ -208,6 +208,27 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ["solidity"],
       },
+      injectHtmlTags: {
+        headTags: [],
+        bodyTags: [
+          {
+            tagName: 'script',
+            innerHTML: `
+              window.chatbaseConfig = {
+                chatbotId: "oeduJpy4UAtpDuOQcCuVM",
+              }
+            `,
+          },
+          {
+            tagName: 'script',
+            attributes: {
+              src: 'https://www.chatbase.co/embed.min.js',
+              id: 'oeduJpy4UAtpDuOQcCuVM',
+              defer: true,
+            },
+          },
+        ],
+      },
     }),
 };
 
