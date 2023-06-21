@@ -30,7 +30,7 @@ const config = {
       "data-domain": "docs.celestia.org",
     },
     {
-      src: '../custom.html',
+      src: './custom.html',
       async: true,
     },
   ],
