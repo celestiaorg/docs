@@ -10,19 +10,47 @@ import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
 
 # Celestia Node RPC CLI tutorial
 
-In this tutorial, we will cover how to use the Celestia Node RPC API to submit and
-retrieve messages from the Data Availability Layer by their namespace ID.
+In this tutorial, we will cover how to use the Celestia Node RPC API
+to submit and retrieve data (blobs) from the data availability
+layer by their namespace.
 
-> To view a video tutorial for setting up a Celestia Light Node, click [here](./light-node-video.md).
+:::tip
+To view a video tutorial for setting up a Celestia light node, click [here](./light-node-video.md).
+:::
 
 ## Table of contents
 
 This tutorial is broken up into the following sections:
+* [Introduction](#introduction)
 * [Hardware requirements](#hardware-requirements)
 * [Setting up dependencies](#setting-up-dependencies)
-* [Install and run Celestia node](#celestia-node)
+* [Install and run Celestia Node](#celestia-node)
 * [RPC CLI guide](#rpc-cli-guide)
+    * [Setup](#setup)
+    * [Submitting data](#submitting-data)
+    * [Retrieving data](#retrieving-data)
+    * [More examples](#more-examples)
 * [Additional resources](#additional-resources)
+
+:::tip
+If you already have a running and funded node,
+you can skip to the [RPC CLI guide](#rpc-cli-guide) section.
+:::
+
+## Introduction
+
+### Blobs
+
+Data is posted to Celestia's DA layer by using `MsgPayForBlobs`
+transactions to the core network. Read more about `MsgPayForBlobs`
+[here](https://github.com/celestiaorg/celestia-app/blob/main/x/blob/README.md#messages).
+
+### Namespaces
+
+Celestia partitions the block data into 
+multiple namespaces, one for every application. This allows applications
+to only download their data, and not the data of other applications.
+Read more about Namespaced Merkle Trees (NMTs) [here](../../concepts/how-celestia-works/data-availability-layer/#namespaced-merkle-trees-nmts).
 
 ## Hardware requirements
 
@@ -500,7 +528,7 @@ go version go{constants.golangNodeArabica} darwin/amd64
 
 ````
 
-## Celestia node
+## Celestia Node
 
 ### Install Celestia Node
 
@@ -1204,6 +1232,159 @@ If you'd like to see the help menu for your shell, you can then run:
 celestia completion [bash | fish | powershell | zsh] --help
 ```
 
+### Submitting data
+
+In this example, we will be submitting a `PayForBlob`
+transaction using our light node.
+
+Some things to consider:
+
+- PFB is a `PayForBlob` Message.
+- The endpoint also takes in `namespace_id` and `data` values.
+- Namespace ID should be 10 bytes, prefixed by `0x`
+- Data should be in hex-encoded bytes of the raw message
+
+We use the following `namespace_id` of `0x0c204d39600fddd3` and
+the `data` value of `0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
+
+You can generate your own `namespace_id` and data values using this
+useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
+
+We run the following to submit a blob to the network in hexadecimal format:
+
+```bash
+celestia rpc blob Submit 0x0c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
+```
+
+We get the following output:
+
+```bash
+{
+ “jsonrpc”: “2.0”,
+ “result”: 32236,
+ “id”: 1
+}
+```
+
+We can also use a string of text as the data value, which will be
+converted to base64:
+
+```bash
+celestia rpc blob Submit 0x0c204d39600fddd3 '"gm"'
+```
+
+If you notice from the above output, it returns a `height` of
+`32236` which we will use for the next command.
+
+Note: To learn more about status response codes, please navigate to
+[cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
+
+#### `SubmitPayForBlob` arguments
+
+Using the `rpc` subcommand, you can submit a blob to the network
+using the `SubmitPayForBlob` method.
+
+The arguments for `SubmitPayForBlob` are parsed specially,
+to improve UX.
+
+`SubmitPayForBlob` can be done in a few ways:
+
+- The **namespace ID** can be encoded as either hex or base64
+- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)
+
+### Retrieving data
+
+After submitting your PFB transaction, upon success, the node will return
+the block height for which the PFB transaction was included. You can then
+use that block height and the namespace ID with which you submitted your
+PFB transaction to get your message shares (data) returned to you. In this example,
+the block height we got was 32236 which we will use for the following command.
+Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
+
+```bash
+celestia rpc blob GetAll 32236 0x0c204d39600fddd3
+```
+
+Will generate the following output:
+
+```json
+{
+ “jsonrpc”: “2.0”,
+ “result”: [
+  {
+   “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
+   “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
+   “share_version”: 0,
+   “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
+  }
+ ],
+ “id”: 1
+}
+```
+
+The output here is base64-encoded.
+
+To see the JSON request sent over the wire, for example for sending requests via cURL, pass the `-—print-request` flag:
+
+```bash
+celestia rpc blob GetAll 32236 0x0c204d39600fddd3 --print-request
+```
+
+Response:
+
+```bash
+{
+ “Request”: {
+  “id”: 1,
+  “jsonrpc”: “2.0",
+  “method”: “blob.GetAll”,
+  “params”: [
+   32236,
+   [
+    “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=”
+   ]
+  ]
+ },
+ “Response”: {
+  “jsonrpc”: “2.0”,
+  “result”: [
+   {
+    “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
+    “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
+    “share_version”: 0,
+    “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
+   }
+  ],
+  “id”: 1
+ }
+}
+```
+
+Simiarly, you can cURL the response by running the following command:
+
+```bash
+curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
+   -H 'Content-Type: application/json' \
+   -d '{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "blob.GetAll",
+  "params": [
+   32236,
+   [
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA="
+   ]
+  ]
+ }' \
+   http://localhost:26658
+```
+
+Response:
+
+```bash
+{“jsonrpc”:“2.0",“result”:[{“namespace”:“AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,”data”:“8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1”,“share_version”:0,“commitment”:“y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=“}],“id”:1}
+```
+
 ### Examples
 
 #### Check your balance
@@ -1237,7 +1418,7 @@ This is an RPC call in order to get your node's peerId information:
 celestia rpc p2p Info
 ```
 
-The Node ID is in the `ID` value from the response:
+The node ID is in the `ID` value from the response:
 
 ```bash
 {
@@ -1370,159 +1551,6 @@ It will output something like this:
  },
  “id”: 1
 }
-```
-
-#### Submit a blob to the network with a PFB
-
-In this example, we will be submitting a `PayForBlob`
-transaction using our light node.
-
-Some things to consider:
-
-- PFB is a `PayForBlob` Message.
-- The endpoint also takes in `namespace_id` and `data` values.
-- Namespace ID should be 10 bytes, prefixed by `0x`
-- Data should be in hex-encoded bytes of the raw message
-
-We use the following `namespace_id` of `0x0c204d39600fddd3` and
-the `data` value of `0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
-
-You can generate your own `namespace_id` and data values using this
-useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
-
-We run the following to submit a blob to the network in hexadecimal format:
-
-```bash
-celestia rpc blob Submit 0x0c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
-```
-
-We get the following output:
-
-```bash
-{
- “jsonrpc”: “2.0”,
- “result”: 32236,
- “id”: 1
-}
-```
-
-We can also use a string of text as the data value, which will be
-converted to base64:
-
-```bash
-celestia rpc blob Submit 0x0c204d39600fddd3 '"gm"'
-```
-
-If you notice from the above output, it returns a `height` of
-`32236` which we will use for the next command.
-
-Note: To learn more about status response codes, please navigate to
-[cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
-
-##### `SubmitPayForBlob` arguments
-
-Using the `rpc` subcommand, you can submit a blob to the network
-using the `SubmitPayForBlob` method.
-
-The arguments for `SubmitPayForBlob` are parsed specially,
-to improve UX.
-
-`SubmitPayForBlob` can be done in a few ways:
-
-- The **namespace ID** can be encoded as either hex or base64
-- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)
-
-#### Get namespaced shares by block height
-
-After submitting your PFB transaction, upon success, the node will return
-the block height for which the PFB transaction was included. You can then
-use that block height and the namespace ID with which you submitted your
-PFB transaction to get your message shares (data) returned to you. In this example,
-the block height we got was 32236 which we will use for the following command.
-Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
-
-```bash
-celestia rpc blob GetAll 32236 0x0c204d39600fddd3
-```
-
-Will generate the following output:
-
-```json
-{
- “jsonrpc”: “2.0”,
- “result”: [
-  {
-   “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
-   “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
-   “share_version”: 0,
-   “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
-  }
- ],
- “id”: 1
-}
-```
-
-The output here is base64-encoded.
-
-To see the JSON request sent over the wire, for example for sending requests via cURL, pass the `-—print-request` flag:
-
-```bash
-celestia rpc blob GetAll 32236 0x0c204d39600fddd3 --print-request
-```
-
-Response:
-
-```bash
-{
- “Request”: {
-  “id”: 1,
-  “jsonrpc”: “2.0",
-  “method”: “blob.GetAll”,
-  “params”: [
-   32236,
-   [
-    “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=”
-   ]
-  ]
- },
- “Response”: {
-  “jsonrpc”: “2.0”,
-  “result”: [
-   {
-    “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
-    “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
-    “share_version”: 0,
-    “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
-   }
-  ],
-  “id”: 1
- }
-}
-```
-
-Simiarly, you can cURL the response by running the following command:
-
-```bash
-curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
-   -H 'Content-Type: application/json' \
-   -d '{
-  "id": 1,
-  "jsonrpc": "2.0",
-  "method": "blob.GetAll",
-  "params": [
-   32236,
-   [
-    "AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA="
-   ]
-  ]
- }' \
-   http://localhost:26658
-```
-
-Response:
-
-```bash
-{“jsonrpc”:“2.0",“result”:[{“namespace”:“AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,”data”:“8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1”,“share_version”:0,“commitment”:“y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=“}],“id”:1}
 ```
 
 ### More examples
