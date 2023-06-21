@@ -1229,6 +1229,27 @@ The response will look similar to:
 }
 ```
 
+#### Check the balance of another address
+
+Let's query our node for the balance of another address:
+
+```bash
+celestia rpc state BalanceForAddress celestia10rtd9lhel2cuh6c659l25yncl6atcyt37umard
+```
+
+The response will be the balance of the address you queried:
+
+```bash
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "denom": "utia",
+    "amount": "100000000"
+  },
+  "id": 1
+}
+```
+
 #### Get your node ID
 
 This is an RPC call in order to get your node's peerId information:
