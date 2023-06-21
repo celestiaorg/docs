@@ -96,3 +96,8 @@ There are several explorers you can use for Mocha:
 * [https://testnet.mintscan.io/celestia-testnet](https://testnet.mintscan.io/celestia-testnet)
 * [https://celestia.explorers.guru/](https://celestia.explorers.guru)
 * [https://celestiascan.vercel.app/](https://celestiascan.vercel.app)
+
+## Network upgrades
+
+Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+for network upgrades.

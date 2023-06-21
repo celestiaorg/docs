@@ -20,3 +20,8 @@ Celestia currently has three existing testnets that you can participate in:
   can also deploy sovereign rollups on Mocha, it just will always be behind Arabica
   as Mocha upgrades are slower given they need to be done via hardforks in coordination
   with the validator community on Mocha.
+
+## Network upgrades
+
+Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+for network upgrades.

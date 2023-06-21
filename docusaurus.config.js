@@ -198,6 +198,10 @@ const config = {
                 label: "Website",
                 href: "https://celestia.org/",
               },
+              {
+                label: "Network upgrades channel",
+                href: "https://t.me/+smSFIA7XXLU4MjJh/",
+              },
             ],
           },
         ],
