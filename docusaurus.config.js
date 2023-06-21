@@ -227,19 +227,6 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ["solidity"],
       },
-      injectHtmlTags: {
-        headTags: [],
-        bodyTags: [
-          {
-            tagName: 'script',
-            innerHTML: `
-              window.chatbaseConfig = {
-                chatbotId: "oeduJpy4UAtpDuOQcCuVM",
-              }
-            `,
-          },
-        ],
-      },
     }),
 };
 
