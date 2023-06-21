@@ -1384,7 +1384,7 @@ Some things to consider:
 - Namespace ID should be 10 bytes, prefixed by `0x`
 - Data should be in hex-encoded bytes of the raw message
 
-We use the following `namespace_id` of `0x0c204d39600fddd3` and
+We use the following `namespace_id` of `0x42690c204d39600fddd3` and
 the `data` value of `0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
 
 You can generate your own `namespace_id` and data values using this
@@ -1393,7 +1393,7 @@ useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
 We run the following to submit a blob to the network in hexadecimal format:
 
 ```bash
-celestia rpc blob Submit 0x0c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
+celestia rpc blob Submit 0x42690c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
 ```
 
 We get the following output:
@@ -1410,7 +1410,7 @@ We can also use a string of text as the data value, which will be
 converted to base64:
 
 ```bash
-celestia rpc blob Submit 0x0c204d39600fddd3 '"gm"'
+celestia rpc blob Submit 0x42690c204d39600fddd3 '"gm"'
 ```
 
 If you notice from the above output, it returns a `height` of
@@ -1442,7 +1442,7 @@ the block height we got was 32236 which we will use for the following command.
 Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
 
 ```bash
-celestia rpc blob GetAll 32236 0x0c204d39600fddd3
+celestia rpc blob GetAll 32236 0x42690c204d39600fddd3
 ```
 
 Will generate the following output:
@@ -1467,7 +1467,7 @@ The output here is base64-encoded.
 To see the JSON request sent over the wire, for example for sending requests via cURL, pass the `-—print-request` flag:
 
 ```bash
-celestia rpc blob GetAll 32236 0x0c204d39600fddd3 --print-request
+celestia rpc blob GetAll 32236 0x42690c204d39600fddd3 --print-request
 ```
 
 Response:
