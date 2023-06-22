@@ -208,6 +208,11 @@ const sidebars = {
               label: "Config.toml guide",
               id: "nodes/config-toml"
             },
+            {
+              type: "doc",
+              label: "Troubleshooting",
+              id: "nodes/celestia-node-troubleshooting"
+            },
           ]
         },
         {
@@ -293,7 +298,8 @@ const sidebars = {
       type: "category",
       label: "Node API",
       link: {
-        type: "generated-index",
+        type: "doc",
+        id: "developers/node-api"
       },
       collapsed: false,
       items: [
@@ -342,7 +348,7 @@ const sidebars = {
 					link: {
 						type: "generated-index",
 					},
-					collapsed: false,
+					collapsed: true,
 					items: [
 						{
 							type: "doc",
