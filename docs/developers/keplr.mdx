@@ -20,7 +20,7 @@ export const ARABICA_PARAMS = {
 }
 
 export const MOCHA_PARAMS = {
-  chainId: 'mocha',
+  chainId: `${constants.mochaChainId}`,
   chainName: 'Mocha Testnet',
   rpc: 'https://rpc-mocha.pops.one',
   rest: 'https://api-mocha.pops.one'
@@ -184,18 +184,19 @@ Behind the scenes, here are the params
 we are passing to the `AddNetworkKeplr`
 function:
 
-```jsx
-import '@site/src/components/AddNetworkKeplr'
-
-export const MOCHA_PARAMS = {
-  chainId: 'mocha',
+<pre><code>
+import '@site/src/components/AddNetworkKeplr'<br/>
+<br/>
+export const MOCHA_PARAMS = {`{
+  chainId: '${constants.mochaChainId}',
   chainName: 'Mocha Testnet',
   rpc: 'https://rpc-mocha.pops.one',
-  rest: 'https://api-mocha.pops.one'
-}
+  rest: 'https://api-mocha.pops.one/'
+}`}<br/>
+<br/>
+{`<AddNetworkKeplr params={MOCHA_PARAMS}/>`}
+</code></pre>
 
-<AddNetworkKeplr params={MOCHA_PARAMS}/>
-```
 </TabItem>
 
 <TabItem value="arabica" label="Arabica 🏗️">
