@@ -939,12 +939,12 @@ celestia light init
 
 You should see output like:
 
-```output
-$ celestia light init
-2022-12-19T21:45:24.591Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-mocha'
-2022-12-19T21:45:24.591Z        INFO    node    nodebuilder/init.go:50  Saving config   {"path": "/root/.celestia-light-mocha/config.toml"}
-2022-12-19T21:45:24.592Z        INFO    node    nodebuilder/init.go:51  Node Store initialized
-```
+<pre><code>
+$ celestia light init --p2p.network mocha<br/>
+2022-12-19T21:45:00.802Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-{constants.mochaChainId}'<br/>
+2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:50  Saving config   {`{"path": "/root/.celestia-light-${constants.mochaChainId}/config.toml"}`}`<br/>
+2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:51  Node Store initialized<br/>
+</code></pre>
 
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
