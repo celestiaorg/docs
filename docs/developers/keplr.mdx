@@ -15,12 +15,12 @@ import TabItem from '@theme/TabItem';
 export const ARABICA_PARAMS = {
   chainId: `${constants.arabicaChainId}`,
   chainName: 'Arabica Devnet',
-  rpc: 'https://rpc.limani.celestia-devops.dev',
-  rest: 'https://api.limani.celestia-devops.dev'
+  rpc: 'https://consensus-full-arabica-8.celestia-arabica.com/',
+  rest: 'https://api-arabica-8.consensus.celestia-arabica.com/'
 }
 
 export const MOCHA_PARAMS = {
-  chainId: 'mocha',
+  chainId: `${constants.mochaChainId}`,
   chainName: 'Mocha Testnet',
   rpc: 'https://rpc-mocha.pops.one',
   rest: 'https://api-mocha.pops.one'
@@ -184,18 +184,19 @@ Behind the scenes, here are the params
 we are passing to the `AddNetworkKeplr`
 function:
 
-```jsx
-import '@site/src/components/AddNetworkKeplr'
-
-export const MOCHA_PARAMS = {
-  chainId: 'mocha',
+<pre><code>
+import '@site/src/components/AddNetworkKeplr'<br/>
+<br/>
+export const MOCHA_PARAMS = {`{
+  chainId: '${constants.mochaChainId}',
   chainName: 'Mocha Testnet',
   rpc: 'https://rpc-mocha.pops.one',
-  rest: 'https://api-mocha.pops.one'
-}
+  rest: 'https://api-mocha.pops.one/'
+}`}<br/>
+<br/>
+{`<AddNetworkKeplr params={MOCHA_PARAMS}/>`}
+</code></pre>
 
-<AddNetworkKeplr params={MOCHA_PARAMS}/>
-```
 </TabItem>
 
 <TabItem value="arabica" label="Arabica 🏗️">
@@ -211,14 +212,14 @@ we are passing to the `AddNetworkKeplr`
 function:
 
 <pre><code>
-import '@site/src/components/AddNetworkKeplr' <br/>
+import '@site/src/components/AddNetworkKeplr'<br/>
 <br/>
 export const ARABICA_PARAMS = {`{
   chainId: '${constants.arabicaChainId}',
   chainName: 'Arabica Devnet',
-  rpc: 'https://rpc.limani.celestia-devops.dev',
-  rest: 'https://api.limani.celestia-devops.dev'
-}`} <br/>
+  rpc: 'https://consensus-full-arabica-8.celestia-arabica.com/',
+  rest: 'https://api-arabica-8.consensus.celestia-arabica.com/'
+}`}<br/>
 <br/>
 {`<AddNetworkKeplr params={ARABICA_PARAMS}/>`}
 </code></pre>

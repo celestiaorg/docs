@@ -4,7 +4,8 @@ description: A guide to Arabica devnet.
 ---
 
 # Arabica devnet
-<!-- markdownlint-disable MD013 -->
+
+import ArabicaVersionTags from '../../src/components/ArabicaVersionTags';
 
 ![arabica-devnet](/img/arabica-devnet.png)
 
@@ -14,7 +15,7 @@ the latest upgrades for testing their rollups and applications.
 
 Arabica does not focus on validator or consensus-level testing, rather,
 that is what Mocha Testnet is used for. If you are a validator, we
-recommend just testing your validator operations on Mocha [here](./mocha-testnet.md).
+recommend just testing your validator operations on Mocha [here](./mocha-testnet.mdx).
 
 With Arabica having the latest updates from all Celestia's products deployed
 on it, it can be subject to many changes. Therefore, as a fair warning,
@@ -24,6 +25,10 @@ it is a useful way to keep testing the latest changes in the software.
 Developers can still deploy on Mocha Testnet their sovereign rollups if they
 chose to do so, it just will always lag behind Arabica Devnet until Mocha
 undergoes Hardfork Upgrades in coordination with Validators.
+
+## Software version numbers
+
+<ArabicaVersionTags />
 
 ## Integrations
 
@@ -56,7 +61,7 @@ Celestia network. The default port is 26657.
 
 Below is a list of RPC endpoints you can use to connect to Arabica Devnet:
 
-* [https://rpc.limani.celestia-devops.dev](https://rpc.limani.celestia-devops.dev)
+* `consensus-full-arabica-8.celestia-arabica.com`
 
 ## API endpoints
 
@@ -66,7 +71,8 @@ as REST endpoints. This allows for communication with the node using REST
 calls, which can be useful if the client does not support gRPC or HTTP2.
 The default port is 1317.
 
-* [https://api.limani.celestia-devops.dev](https://api.limani.celestia-devops.dev)
+* [https://api-arabica-8.consensus.celestia-arabica.com/](https://api-arabica-8.consensus.celestia-arabica.com/)
+* [https://api-2-arabica-8.consensus.celestia-arabica.com/](https://api-2-arabica-8.consensus.celestia-arabica.com/)
 
 ## gRPC endpoints
 
@@ -75,7 +81,8 @@ gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
-* [https://grpc.limani.celestia-devops.dev](https://grpc.limani.celestia-devops.dev)
+* `grpc-arabica-8.consensus.celestia-arabica.com:443`
+* `grpc-2-arabica-8.consensus.celestia-arabica.com:443`
 
 ## Arabica devnet faucet
 
@@ -83,6 +90,8 @@ broadcast transactions.
   DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS
   DO NOT CURRENTLY EXIST AND THERE ARE NO PUBLIC SALES OR OTHER PUBLIC
   DISTRIBUTIONS OF ANY MAINNET CELESTIA TOKENS.
+
+### Discord
 
 You can request from Arabica Devnet Faucet on the #arabica-faucet channel on
 Celestia's Discord server with the following command:
@@ -95,8 +104,17 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 > Note: Faucet has a limit of 10 tokens per week per address/Discord ID
 
+### Web
+
+The web faucet is available at [https://faucet-arabica-8.celestia-arabica.com/](https://faucet-arabica-8.celestia-arabica.com/).
+
 ## Explorers
 
 There is an explorer you can use for Arabica:
 
-* [https://explorer.celestia.tools/arabica](https://explorer.celestia.tools/arabica/)
+* [https://explorer-arabica-8.celestia-arabica.com/arabica-8](https://explorer-arabica-8.celestia-arabica.com/arabica-8)
+
+## Network upgrades
+
+Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+for network upgrades.

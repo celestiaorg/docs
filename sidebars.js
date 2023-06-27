@@ -16,11 +16,6 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Blockspace race",
-          id: "nodes/blockspace-race"
-        },
-        {
-          type: "doc",
           label: "Arabica devnet",
           id: "nodes/arabica-devnet"
         },
@@ -28,7 +23,12 @@ const sidebars = {
           type: "doc",
           label: "Mocha testnet",
           id: "nodes/mocha-testnet"
-        }
+        },
+        {
+          type: "doc",
+          label: "Blockspace race",
+          id: "nodes/blockspace-race"
+        },
       ]
     },
     {
@@ -40,7 +40,12 @@ const sidebars = {
       },
       collapsed: false,
       items: [
-         {
+        {
+          type: "doc",
+          label: "Deciding which node to run",
+          id: "nodes/decide-node"
+        },
+        {
           type: "doc",
           label: "Docker images",
           id: "nodes/docker-images",
@@ -62,8 +67,8 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Deciding which node to run",
-          id: "nodes/decide-node"
+          label: "Node video tutorials",
+          id: "developers/light-node-video"
         },
       ]
     },
@@ -203,6 +208,11 @@ const sidebars = {
               label: "Config.toml guide",
               id: "nodes/config-toml"
             },
+            {
+              type: "doc",
+              label: "Troubleshooting",
+              id: "nodes/celestia-node-troubleshooting"
+            },
           ]
         },
         {
@@ -288,10 +298,21 @@ const sidebars = {
       type: "category",
       label: "Node API",
       link: {
-        type: "generated-index",
+        type: "doc",
+        id: "developers/node-api"
       },
       collapsed: false,
       items: [
+        { 
+          type: "doc", 
+          label: "Node API tutorial", 
+          id: "developers/node-tutorial" 
+        },
+        {
+          type: "link",
+          label: "Node API docs",
+          href: "https://node-rpc-docs.celestia.org/"
+        },
         {
           type: "category",
           label: "Gateway API",
@@ -300,16 +321,6 @@ const sidebars = {
           },
           collapsed: false,
           items: [
-            { 
-              type: "doc", 
-              label: "Gateway API tutorial", 
-              id: "developers/node-tutorial" 
-            },
-            {
-              type: "doc",
-              label: "Gateway API docs",
-              id: "developers/node-gateway-docs"
-            },
             {
               type: "doc",
               label: "Prompt scavenger",
@@ -317,47 +328,132 @@ const sidebars = {
             },
           ]
         },
-        {
-          type: "category",
-          label: "RPC API",
-          link: {
-            type: "generated-index",
-          },
-          collapsed: false,
-          items: [
-            { 
-              type: "doc", 
-              label: "RPC API tutorial", 
-              id: "developers/rpc-tutorial" 
-            },
-            {
-              type: "link",
-              label: "RPC API docs",
-              href: "https://node-rpc-docs.celestia.org/"
-            },
-          ]
-        },
-        // {
-        //   type: "doc",
-        //   label: "Node video tutorial",
-        //   id: "developers/light-node-video"
-        // },
       ]
     },
     {
-      type: "doc",
-      label: "Rollkit",
-      id: "developers/rollkit"
+      type: "category",
+      label: "Deploy a Rollup",
+			link: {
+				type: "generated-index",
+			},
+			collapsed: false,
+			items: [
+        {
+      		type: "doc",
+      		label: "Rollkit",
+      		id: "developers/rollkit"
+    		},{
+      		type: "category",
+      		label: "Optimism",
+					link: {
+						type: "generated-index",
+					},
+					collapsed: true,
+					items: [
+						{
+							type: "doc",
+							label: "Introduction to OP Stack integration",
+              id: "developers/intro-to-op-stack"
+						},
+            {
+							type: "doc",
+              label: "Taro testnet",
+              id: "developers/taro-testnet",
+            },
+						{
+							type: "doc",
+							label: "Deploy a smart contract on Taro testnet",
+              id: "developers/deploy-on-taro"
+						},
+            {
+							type: "doc",
+              label: "Deploy a GM Portal dapp on Taro testnet",
+              id: "developers/gm-portal-taro",
+            },
+            // {
+            //   type: "link",
+            //   label: "Deploy a dapp with scaffold-eth",
+            //   href: "https://github.com/jcstein/scaffold-eth",
+            // },
+            {
+              type: "link",
+              label: "Deploy a dapp with thirdweb",
+              href: "https://thirdweb.com/taro-testnet",
+            },
+            {
+							type: "doc",
+							label: "Deploy an OP Stack devnet",
+      				id: "developers/optimism-devnet"
+            },
+            {
+							type: "doc",
+							label: "Deploy an OP Stack testnet on Celestia",
+      				id: "developers/optimism"
+            },
+            // {
+            //   type: "category",
+            //   label: "Use cases",
+            //   link: {
+            //     type: "generated-index",
+            //   },
+            //   collapsed: true,
+            //   items: [
+            //     {
+            //       type: "doc",
+            //       label: "Introduction to OP Stack integration",
+            //       id: "developers/intro-to-op-stack"
+            //     },
+            //     {
+            //       type: "doc",
+            //       label: "Taro testnet",
+            //       id: "developers/taro-testnet",
+            //     }
+            //   ]
+            // },
+            {
+              type: "category",
+              label: "Rollups as a Service",
+              link: {
+                type: "generated-index",
+              },
+              collapsed: true,
+              items: [
+                {
+                  type: "link",
+                  label: "Caldera",
+                  href: "https://caldera.xyz",
+                },
+                // {
+                //   type: "link",
+                //   label: "Conduit (coming soon)",
+                //   href: "https://conduit.xyz",
+                // }
+              ]
+            },
+					]
+    		},{
+          type: "doc",
+          label: "Full stack modular blockchain development guide",
+          id: "developers/full-stack-modular-development-guide"
+        },{
+          type: "doc",
+          label: "IBC Relaying Guide",
+          id: "developers/ibc-relayer"
+        },{
+          type: "link",
+          label: "Sovereign SDK",
+          href: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup",
+        },{
+          type: "link",
+          label: "Dymension",
+          href: "https://dymension.xyz/"
+        }
+			]
     },
     {
       type: "doc",
-      label: "Optimism",
-      id: "developers/optimism"
-    },
-    {
-      type: "doc",
-      label: "Full stack modular blockchain development guide",
-      id: "developers/full-stack-modular-development-guide"
+      label: "Demos on Celestia",
+      id: "developers/demos",
     },
     {
       type: "doc",

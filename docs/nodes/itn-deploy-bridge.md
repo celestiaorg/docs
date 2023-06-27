@@ -65,7 +65,7 @@ To learn more, visit the
 
 1. Setup Your Celestia Bridge Node
 2. How to find your bridge Node ID is found
-  [here](https://docs.celestia.org/developers/node-gateway-docs/#post-p2pinfo)
+  [here](../../developers/node-tutorial/#get-your-node-id)
 3. Make sure that the wallet address the node uses is funded
 4. The keys directory under `.celestia-bridge-blockspacerace-0/keys`
   contains your `pubkey` for both DA and Tendermint networks. In

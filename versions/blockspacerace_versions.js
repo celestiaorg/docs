@@ -1,9 +1,9 @@
 const blockspaceraceVersions = Object.freeze({
-  "app-latest-tag": "v0.13.2",
-  "app-latest-sha": "1c51eb36f5e733e7cd0eefef67d7da9202968b87",
-  "core-latest-tag": "v1.19.0-tm-v0.34.27",
-  "core-latest-sha": "2a26e7a5ffb5451bf12d09fe9a88a15c6f867b62",
-  "node-latest-tag": "v0.9.5",
-  "node-latest-sha": "2fa72c7199e5b93772a2c7e25141cfbd28f16a8e",
+  "app-latest-tag": "v0.13.3",
+  "app-latest-sha": "ab64b67797653e99691e846a4303bd71f44d1a8e",
+  "core-latest-tag": "v1.21.2-tm-v0.34.27",
+  "core-latest-sha": "d280f37a8376ed54ae03b10896fa25a4cbbc6d5b",
+  "node-latest-tag": "v0.10.4",
+  "node-latest-sha": "03ff94a7d779caf1225f3dccb53a68e8f1646dc6",
 });
 export default blockspaceraceVersions;

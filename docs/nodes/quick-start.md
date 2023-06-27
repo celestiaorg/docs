@@ -32,8 +32,8 @@ covers the Data Availability layer.
 ## Getting started
 
 As covered in the previous section, Celestia offers
-two different test networks, [Arabica](./arabica-devnet.md)
-and [Mocha](./mocha-testnet.md).
+two different test networks, [Arabica](./arabica-devnet.mdx)
+and [Mocha](./mocha-testnet.mdx).
 
 If you are planning to run a light node, it is recommended
 to use Arabica, which you will find options to connecting to
