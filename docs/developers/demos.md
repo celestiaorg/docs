@@ -26,7 +26,7 @@ and make a pull request to do so!
 
 * frontend for gm world tutorial by [@JoshCStein](https://twitter.com/JoshCStein) - [rollkit-frontend.vercel.app](https://rollkit.dev/docs/tutorials/gm-world/)
 * ethermint demo by [@JoshCStein](https://twitter.com/JoshCStein) - [saymoo.lol](https://saymoo.lol/) (deprecated)
-* [NFT collection](https://tiny-base-4787.on.fleek.co/) made with Thirdweb SDK and their widgets by [@JoshCStein](https://twitter.com/JoshCStein) -  (deprecated)
+* [NFT collection](https://github.com/jcstein/celestia-rollkit-nfts) made with Thirdweb SDK and their widgets by [@JoshCStein](https://twitter.com/JoshCStein) -  (deprecated)
 
 ## Miscellaneous
 
