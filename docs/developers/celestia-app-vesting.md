@@ -39,11 +39,11 @@ Home directory: /var/folders/_8/ljj6hspn0kn09qf9fy8kdyh40000gn/T/celestia_app_XX
 --> Updating go.mod
 ```
 
-And set the location as the `NODE_STORE` variable. We will use this
+And set the location as the `CElESTIA_APP_HOME` variable. We will use this
 for the remainder of the devnet section.
 
 ```bash
-export NODE_STORE=/var/folders/_8/ljj6hspn0kn09qf9fy8kdyh40000gn/T/celestia_app_XXXXXXXXXXXXX.XV92a3qx
+export CElESTIA_APP_HOME=/var/folders/_8/ljj6hspn0kn09qf9fy8kdyh40000gn/T/celestia_app_XXXXXXXXXXXXX.XV92a3qx
 ```
 
 :::tip note
@@ -82,7 +82,7 @@ First, create a vesting key:
 
 ```bash
 cd $HOME/celestia-app/build
-./celestia-appd keys add vesting-key --home $NODE_STORE
+./celestia-appd keys add vesting-key --home $CElESTIA_APP_HOME
 ```
 
 You will see the address, mnemonic, and more details about your key in the
@@ -104,7 +104,7 @@ index enter egg broken ostrich duty bitter blind all car hollow coral youth earl
 #### List your keys
 
 ```bash
-./celestia-appd keys list --home $NODE_STORE
+./celestia-appd keys list --home $CElESTIA_APP_HOME
 ```
 
 Output:
@@ -141,7 +141,7 @@ flag.
 :::
 
 ```bash
-./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $NODE_STORE
+./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $CElESTIA_APP_HOME
 ```
 
 Select "Y" to choose "yes".
@@ -151,7 +151,7 @@ If you'd like to run the command with the `-y` flag, it will
 execute the transaction without needing to provide the "y" answer as above.
 
 ```bash
-./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $NODE_STORE -y
+./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $CElESTIA_APP_HOME -y
 ```
 
 :::
@@ -210,7 +210,7 @@ Check that the account has been created and works as expected by quering
 the `TO_ADDRESS` account details:
 
 ```bash
-./celestia-appd query account $TO_ADDRESS --home $NODE_STORE
+./celestia-appd query account $TO_ADDRESS --home $CElESTIA_APP_HOME
 ```
 
 In the output, you will notice that the account type is a
@@ -238,7 +238,7 @@ start_time: "1687908352"
 Check the `FROM_ADDRESS` account details:
 
 ```bash
-./celestia-appd query account $FROM_ADDRESS --home $NODE_STORE
+./celestia-appd query account $FROM_ADDRESS --home $CElESTIA_APP_HOME
 ```
 
 In the output, you will notice the account type is `BaseAccount`:
@@ -258,7 +258,7 @@ sequence: "2"
 Next, we can check the balance of the accounts:
 
 ```bash
-./celestia-appd query bank balances $TO_ADDRESS --home $NODE_STORE
+./celestia-appd query bank balances $TO_ADDRESS --home $CElESTIA_APP_HOME
 ```
 
 Output will show you the balance of the vesting account:
@@ -273,7 +273,7 @@ pagination:
 ```
 
 ```bash
-./celestia-appd query bank balances $FROM_ADDRESS --home $NODE_STORE
+./celestia-appd query bank balances $FROM_ADDRESS --home $CElESTIA_APP_HOME
 ```
 
 The output will show the remaining balance of the validator:
