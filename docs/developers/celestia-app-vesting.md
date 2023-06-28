@@ -340,7 +340,7 @@ the transaction to. You can find an RPC [here](../../nodes/mocha-testnet/#rpc-en
 Set your RPC URL:
 
 ```bash
-export RPC_URL=tcp://64.227.18.169:26657
+export RPC_URL=tcp://rpc-mocha.pops.one:26657
 ```
 
 We will use a few flags in our vesting command that are different than the
@@ -393,7 +393,7 @@ keyring-backend = "test"
 # CLI output format (text|json)
 output = "text"
 # <host>:<port> to Tendermint RPC interface for this chain
-node = "tcp://64.227.18.169:26657"
+node = "tcp://rpc-mocha.pops.one:26657"
 # Transaction broadcasting mode (sync|async|block)
 broadcast-mode = "sync"
 ```
