@@ -1,28 +1,28 @@
 ---
-sidebar_label: Consensus full node
-description: Learn how to set up a Celestia consensus full node.
+sidebar_label: Full consensus node
+description: Learn how to set up a Celestia full consensus node.
 ---
 
-# Setting up a Celestia consensus full node
+# Setting up a Celestia full consensus node
 
 <!-- markdownlint-disable MD013 -->
 
-Consensus Full Nodes allow you to sync blockchain history in the Celestia
+Full Consensus Nodes allow you to sync blockchain history in the Celestia
 Consensus Layer.
 
-![Consensus Full Node](../../static/img/nodes/consensus-full-node.png)
+![Full Consensus Node](../../static/img/nodes/full-consensus-node.png)
 
 ## Hardware requirements
 
 The following hardware minimum requirements are recommended for running the
-Consensus Full Node:
+Full Consensus Nodes:
 
 * Memory: **8 GB RAM**
 * CPU: **Quad-Core**
 * Disk: **250 GB SSD Storage**
 * Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
-## Setting up a consensus full node
+## Setting up a full consensus node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
@@ -213,7 +213,7 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 
 ### Start the celestia-app
 
-In order to start your consensus full node, run the following:
+In order to start your full consensus node, run the following:
 
 ```sh
 celestia-appd start
@@ -229,7 +229,7 @@ which ports are required to be open on your machine.
 
 ### Optional: configure for RPC endpoint
 
-You can configure your Consensus Full Node to be a public RPC endpoint
+You can configure your Full Consensus Node to be a public RPC endpoint
 and listen to any connections from Data Availability Nodes in order to
 serve requests for the Data Availability API [here](../developers/node-tutorial.mdx).
 
