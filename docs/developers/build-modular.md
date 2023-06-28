@@ -60,8 +60,8 @@ Of course, a much higher scale is necessary if we want to support
 many more users. And modular blockchains use some new innovative
 technologies that can help us get there.
 
-- [Data availability sampling](https://celestia.org/glossary/) enables
-modular blockchains like Celestia to scale data availability with the
+- [Data availability sampling](https://celestia.org/glossary/data-availability-sampling/)
+enables modular blockchains like Celestia to scale data availability with the
 number of light nodes - that means more capacity for rollups.
 - __Fraud and validity proofs__ make rollups vastly more efficient
 to verify. Nodes only need to verify a small proof of transaction
