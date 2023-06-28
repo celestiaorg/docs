@@ -9,7 +9,7 @@ SystemD is a daemon service useful for running applications as background proces
 
 ## Consensus nodes
 
-If you are running a validator or consensus full node, here are
+If you are running a validator or full consensus node, here are
 the steps to setting up `celestia-appd` as a background process.
 
 ### Start the celestia-app with SystemD
