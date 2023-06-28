@@ -170,8 +170,8 @@ const sidebars = {
           },
           { 
             type: "doc", 
-            label: "Consensus full node", 
-            id: "nodes/consensus-full-node" 
+            label: "Full consensus node", 
+            id: "nodes/full-consensus-node" 
           },
           { 
             type: "doc", 

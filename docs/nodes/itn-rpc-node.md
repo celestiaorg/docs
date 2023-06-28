@@ -8,13 +8,13 @@ description: Instructions for running a publicly-available RPC Node.
 ## Description
 
 Run a publicly-available RPC Node (preferraly with seed mode).
-You can follow the instructions [here](https://docs.celestia.org/nodes/consensus-full-node)
+You can follow the instructions [here](https://docs.celestia.org/nodes/full-consensus-node)
 for running `celestia-app` to provide an RPC endpoint.
 
 ## Directions
 
 1. Run a publicly-available RPC node by following the
-  Consensus Full Node tutorial.
+  Full Consensus Node tutorial.
 2. Provide the IP and port of the available RPC node to the community
   and ensure the correct ports are open so that the community
   can use it.
