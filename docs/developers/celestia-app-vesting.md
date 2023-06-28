@@ -340,7 +340,7 @@ the transaction to. You can find an RPC [here](../../nodes/mocha-testnet/#rpc-en
 Set your RPC URL:
 
 ```bash
-export RPC_URL=http://64.227.18.169:26657
+export RPC_URL=tcp://64.227.18.169:26657
 ```
 
 We will use a few flags in our vesting command that are different than the
