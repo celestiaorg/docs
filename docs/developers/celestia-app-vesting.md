@@ -4,6 +4,7 @@ description: Learn how to generate a vesting account using Celestia App.
 ---
 
 # How to create a vesting account with Celestia App
+<!-- markdownlint-disable MD013 -->
 
 In this guide, we will learn how to create a vesting account using
 celestia-appd for both a local devnet and on Mocha testnet.
@@ -64,7 +65,8 @@ cd $HOME/celestia-app/build
 
 Congratulations! You now have a private devnet running locally on your machine.
 The devnet is made up of one validator that is creating new blocks. This is the
-Celestia consensus network on your machine! The key that was created to run the validator also lives in a temporary directory for the devnet.
+Celestia consensus network on your machine! The key that was created to
+run the validator also lives in a temporary directory for the devnet.
 
 Now you are ready to test creating a vesting accout on our devnet before going
 to Mocha, a live testnet.
