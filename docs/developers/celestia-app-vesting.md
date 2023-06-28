@@ -366,7 +366,7 @@ celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 168674805
 Running a consensus full node or validator will prevent you from needing
 to use an RPC.
 
-You can set up a [validator](../../nodes/consensus-full-node) or [full node](../../nodes/validator-node) for the previous portion
+You can set up a [validator](../../nodes/full-consensus-node) or [full node](../../nodes/validator-node) for the previous portion
 of the tutorial.
 
 Note: this may take some time depending on how you choose to sync the
