@@ -48,8 +48,8 @@ export CElESTIA_APP_HOME=/var/folders/_8/ljj6hspn0kn09qf9fy8kdyh40000gn/T/celest
 
 :::tip note
 This does not replace the `celestia-appd` binary that was
-installed with `celestia-appd`, but builds and runs one in the `/build`
-directory.
+installed with `celestia-appd`, but builds and runs one
+in the `$HOME/celestia-app/build` directory.
 :::
 
 #### Check the version of the devnet
