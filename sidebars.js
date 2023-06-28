@@ -289,7 +289,7 @@ const sidebars = {
             type: "doc",
             id: "developers/celestia-app-wallet"
           },
-          collapsed: true,
+          collapsed: false,
           items: [
             {
               type: "doc",
