@@ -132,7 +132,7 @@ const sidebars = {
                 link: {
                   type: 'generated-index'
                 },
-                collapsed: false,
+                collapsed: true,
                 items: [
                     {
                       type: "doc",
@@ -283,9 +283,20 @@ const sidebars = {
           id: "developers/keplr" 
         },
         {
-          type: "doc",
+          type: "category",
           label: "Wallet with Celestia App",
-          id: "developers/celestia-app-wallet"
+          link: {
+            type: "doc",
+            id: "developers/celestia-app-wallet"
+          },
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Create a vesting account",
+              id: "developers/celestia-app-vesting"
+            },
+          ]
         },
         {
           type: "doc",
