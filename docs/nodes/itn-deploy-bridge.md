@@ -15,9 +15,9 @@ tutorial [here](../../nodes/bridge-node)
 and [here](../../developers/node-tutorial#submit-a-pfd-transaction).
 
 For an RPC endpoint, you as a Bridge Node Operator must run your own
-Consensus Full Node and connect your Bridge Node to it.
+Full Consensus Node and connect your Bridge Node to it.
 
-The docs for that are found [here](https://docs.celestia.org/nodes/consensus-full-node).
+The docs for that are found [here](https://docs.celestia.org/nodes/full-consensus-node).
 
 :::tip
 If you encounter errors, please visit the [upgrading your binary](../nodes/celestia-node.mdx#upgrading-your-binary)
