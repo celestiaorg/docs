@@ -7,7 +7,7 @@ description: Learn how to generate a vesting account using Celestia App.
 <!-- markdownlint-disable MD013 -->
 
 In this guide, we will learn how to create a vesting account using
-celestia-appd for both a local devnet and on Mocha testnet.
+celestia-app for both a local devnet and on Mocha testnet.
 
 ## Local devnet
 
