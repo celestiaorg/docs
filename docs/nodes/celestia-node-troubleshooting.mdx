@@ -74,7 +74,7 @@ Note: If you do not select a network, the default network will be 'Mocha'.
 
 ```sh
 celestia <node-type> init --p2p.network <network>
-celestia <node-type> start --p2p.network <network> --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia <node-type> start --p2p.network <network> --core.ip <address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 :::tip
@@ -276,7 +276,7 @@ Your output will look similar to below:
 Then start your node:
 
 ```sh
-celestia light start --p2p.network blockspacerace --core.ip <address> --gateway --gateway.addr <ip-address> --gateway.port <port>
+celestia light start --p2p.network blockspacerace --core.ip <address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port>
 ```
 
 </TabItem>
