@@ -974,7 +974,7 @@ an example public core endpoint.
   purposes. You can find a list of RPC endpoints [here](../../nodes/blockspace-race).
 
 ```sh
-celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
+celestia light start --core.ip <ip-address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
 ```
 
 :::tip
@@ -1000,7 +1000,7 @@ an example public core endpoint.
   purposes. You can find a list of RPC endpoints [here](../../nodes/mocha-testnet#rpc-endpoints).
 
 ```sh
-celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+celestia light start --core.ip <ip-address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
 :::tip
@@ -1026,7 +1026,7 @@ an example public core endpoint.
   purposes. You can find a list of RPC endpoints [here](../../nodes/arabica-devnet#rpc-endpoints).
 
 ```sh
-celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
+celestia light start --core.ip <ip-address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
 ```
 
 :::tip
@@ -1050,7 +1050,7 @@ For example, your command along with an RPC endpoint might look like this:
 <TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
-celestia light start --core.ip <ip-address> --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
+celestia light start --core.ip <ip-address> --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
 ```
 
 :::tip
@@ -1062,7 +1062,7 @@ which ports are required to be open on your machine.
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
+celestia light start --core.ip rpc-mocha.pops.one --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 ```
 
 :::tip
@@ -1074,7 +1074,7 @@ which ports are required to be open on your machine.
 <TabItem value="arabica" label="Arabica 🏗️">
 
 ```sh
-celestia light start --core.ip consensus-full-arabica-8.celestia-arabica.com --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
+celestia light start --core.ip consensus-full-arabica-8.celestia-arabica.com --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 ```
 
 :::tip
@@ -1100,7 +1100,7 @@ following command:
 <TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
 ```
 
 :::tip
@@ -1112,7 +1112,7 @@ which ports are required to be open on your machine.
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
 :::tip
@@ -1124,7 +1124,7 @@ which ports are required to be open on your machine.
 <TabItem value="arabica" label="Arabica 🏗️">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 ```
 
 :::tip
