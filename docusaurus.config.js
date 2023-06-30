@@ -112,7 +112,7 @@ const config = {
       algolia: {
         appId: "2KRXIFZ5YL",
         apiKey: "00d6c432aa0b7c20c92283ec9bec23c4",
-        indexName: "celestia",
+        indexName: "celestia_new",
         contextualSearch: true,
         debug: false,
       },
