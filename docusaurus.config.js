@@ -98,6 +98,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      docs:{
+        sidebar: {
+          hideable: true,
+          autoCollapseCategories: true,
+        },
+      },
       image: "img/celestia-doc.png",
       metadata: [
         { name: "twitter:card", content: "summary_large_image" },
