@@ -987,7 +987,7 @@ required to be open on your machine.
 :::
 
 ```sh
-celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network <network>
+celestia light start --core.ip <ip-address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network <network>
 ```
 
 </TabItem>
@@ -1009,7 +1009,7 @@ required to be open on your machine.
 :::
 
 ```sh
-celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+celestia light start --core.ip <ip-address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
 </TabItem>
@@ -1031,7 +1031,7 @@ required to be open on your machine.
 :::
 
 ```sh
-celestia light start --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network <network>
+celestia light start --core.ip <ip-address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network <network>
 ```
 
 </TabItem>
@@ -1045,7 +1045,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.ip rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
+celestia light start --core.ip rpc-blockspacerace.pops.one --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network blockspacerace
 ```
 
 </TabItem>
@@ -1056,7 +1056,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.ip rpc-mocha.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
+celestia light start --core.ip rpc-mocha.pops.one --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
 ```
 
 </TabItem>
@@ -1067,7 +1067,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.ip consensus-full-arabica-8.celestia-arabica.com --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
+celestia light start --core.ip consensus-full-arabica-8.celestia-arabica.com --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network arabica
 ```
 
 </TabItem>
@@ -1090,7 +1090,7 @@ following command:
 <TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
 ```
 
 Once you start the Light Node, a wallet key will be generated for you.
@@ -1101,7 +1101,7 @@ You will need to fund that address with testnet tokens to pay for
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <key-name> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+celestia light start --core.ip <ip-address> --keyring.accname <key-name> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
 Once you start the Light Node, a wallet key will be generated for you.
@@ -1112,7 +1112,7 @@ You will need to fund that address with testnet tokens to pay for
 <TabItem value="arabica" label="Arabica 🏗️">
 
 ```sh
-celestia light start --keyring.accname <key_name> --core.ip <ip-address> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
+celestia light start --keyring.accname <key_name> --core.ip <ip-address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
 ```
 
 Once you start the Light Node, a wallet key will be generated for you.
@@ -1162,21 +1162,21 @@ In order to run a light node using a custom key:
 <TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
+celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network blockspacerace
 ```
 
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
 ```
 
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
+celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
 ```
 
 </TabItem>
