@@ -46,24 +46,24 @@ jobs:
       - name: Log target owner/repo
         run: "echo Pulling info from: '${{ env.owner }}/${{ matrix.repo }}'"
 
-      - name: Query /releases/latest endpoint
+      - name: Query /releases endpoint
         uses: octokit/request-action@v2.x
         id: get_latest_release
         with:
-          route: GET /repos/{owner}/{repo}/releases/latest
+          route: GET /repos/{owner}/{repo}/releases
           owner: ${{ env.owner }}
           repo: ${{ matrix.repo }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Log latest tag
-        run: "echo latest tag: '${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}'"
+        run: "echo latest tag: '${{ fromJSON(steps.get_latest_release.outputs.data)[0].tag_name }}'"
 
       - name: Query /git/ref/tag endpoint
         uses: octokit/request-action@v2.x
         id: get_latest_commit
         with:
-          route: GET /repos/{owner}/{repo}/git/ref/tags/${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}
+          route: GET /repos/{owner}/{repo}/git/ref/tags/${{ fromJSON(steps.get_latest_release.outputs.data)[0].tag_name }}
           owner: ${{ env.owner }}
           repo: ${{ matrix.repo }}
         env:
@@ -75,7 +75,7 @@ jobs:
       - name: Set outputs
         id: set_outputs
         run: |
-          echo "${{matrix.repo}}_latest_tag=${{ fromJSON(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_OUTPUT
+          echo "${{matrix.repo}}_latest_tag=${{ fromJSON(steps.get_latest_release.outputs.data)[0].tag_name }}" >> $GITHUB_OUTPUT
           echo "${{matrix.repo}}_latest_sha=${{ fromJSON(steps.get_latest_commit.outputs.data).object.sha }}" >> $GITHUB_OUTPUT
 
   # This job creates a PR if there were changes. The changes are created when

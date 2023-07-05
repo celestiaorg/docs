@@ -27,7 +27,7 @@ function HomepageHeader() {
           </Link>
           <Link
             className="front-page-link"
-            to="/developers/rollkit">
+            to="/category/deploy-a-rollup">
                <p className="button-heading">Sovereign chain</p>
               Deploy a rollup to Celestia
           </Link>

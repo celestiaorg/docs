@@ -12,7 +12,7 @@ Sampling (DAS).
 
 You can find resources on doing this by following the
 tutorial [here](../../nodes/bridge-node)
-and [here](../../developers/node-tutorial#submit-a-pfd-transaction).
+and [here](../../developers/node-tutorial#submit-a-pfb-transaction).
 
 For an RPC endpoint, you as a Bridge Node Operator must run your own
 Full Consensus Node and connect your Bridge Node to it.

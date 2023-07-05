@@ -37,9 +37,9 @@ rollup blocks and posts to Ethereum.
 
 ### Table of contents of the category
 
-* [Taro testnet](../taro-testnet)
-* [Deploy a smart contract on Taro testnet](../deploy-on-taro)
-* [Deploy a GM Portal dapp on Taro testnet](../gm-portal-taro)
+* [Bubs testnet](../bubs-testnet)
+* [Deploy a smart contract on Bubs testnet](../deploy-on-bubs)
+* [Deploy a GM Portal dapp on Bubs testnet](../gm-portal-bubs)
 * [Deploy an OP Stack devnet](../optimism-devnet)
 * [Deploy an OP Stack testnet on Celestia](../optimism)
 
@@ -112,6 +112,6 @@ made it easy to swap this out!
 ## Next steps
 
 Now that you understand the integration, you can start learning about the
-[Taro testnet](../taro-testnet), built with OP Stack and Celestia! This
+[Bubs testnet](../bubs-testnet), built with OP Stack and Celestia! This
 testnet is a great way to explore the possibilities of this integration
 and test your applications in a live environment.
