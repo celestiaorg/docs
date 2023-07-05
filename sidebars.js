@@ -357,18 +357,18 @@ const sidebars = {
 						},
             {
 							type: "doc",
-              label: "Taro testnet",
-              id: "developers/taro-testnet",
+              label: "Bubs testnet",
+              id: "developers/bubs-testnet",
             },
 						{
 							type: "doc",
-							label: "Deploy a smart contract on Taro testnet",
-              id: "developers/deploy-on-taro"
+							label: "Deploy a smart contract on Bubs testnet",
+              id: "developers/deploy-on-bubs"
 						},
             {
 							type: "doc",
-              label: "Deploy a GM Portal dapp on Taro testnet",
-              id: "developers/gm-portal-taro",
+              label: "Deploy a GM Portal dapp on Bubs testnet",
+              id: "developers/gm-portal-bubs",
             },
             // {
             //   type: "link",
@@ -378,7 +378,7 @@ const sidebars = {
             {
               type: "link",
               label: "Deploy a dapp with thirdweb",
-              href: "https://thirdweb.com/taro-testnet",
+              href: "https://thirdweb.com/bubs-testnet",
             },
             {
 							type: "doc",
@@ -405,8 +405,8 @@ const sidebars = {
             //     },
             //     {
             //       type: "doc",
-            //       label: "Taro testnet",
-            //       id: "developers/taro-testnet",
+            //       label: "Bubs testnet",
+            //       id: "developers/bubs-testnet",
             //     }
             //   ]
             // },
