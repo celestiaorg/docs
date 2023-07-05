@@ -5,190 +5,130 @@ description: Advantages of building on modular blockchains like Celestia.
 
 # Build modular
 
-This section will explain the advantages of building on
-modular blockchains like Celestia.
-
-## Scalability challenges
-
-Blockchain architectures as they exist today are inherently
-not scalable.
-
-To scale, blockchains must increase the number of transactions
-they can process while still remaining performant and decentralized
-(enabling average users to verify the chain).
-
-High and unstable gas costs are also prohibitive for a large number
 of use cases, preventing many users around the world from participating
-in web3 or interacting with dapps.
 
-For blockchains and web3 to reach mass adoption, challenges around both
-scalability and accessibility have to be solved.
+“I’m a developer, and I want to know what the benefits of modular blockchains
+are for me!”
 
-## Evolution of blockchains
+You’ve come to the right place. This page will give you the rundown on modular
+blockchains and their benefits for developers like you.
 
-Blockchains have evolved over time from application-specific networks
-like Bitcoin to shared smart contract platforms like Ethereum, which
-allow developers to deploy their own applications with business logic
-and state, without having to bootstrap their own blockchain from scratch.
+If you already know all this, skip to the end to get straight into building.
 
-## Modular blockchains
+## What is a modular blockchain?
 
-What we're seeing happen now is another paradigm shift. We're moving
-away from monolithic designs to modular designs, where execution is
-separated from data availability and consensus (like Eth2 and Celestia).
+With blockchains there are more or less four core functions that they do.
 
-Most blockchain architectures today are *monolithic* - they are
-responsible for all four core functions of a blockchain:
+- __Execution__: transaction execution and state update.
+- __Settlement__: finality and dispute resolution.
+- __Consensus__: agreement on transaction ordering.
+- __Data availability__: prove data was published to the network.
 
-<!-- markdownlint-disable MD037 -->
-- ***Execution*** - executing transactions that update the state correctly.
-  Thus, execution must ensure that only valid transactions are executed,
-  i.e., transactions that result in valid state machine transitions.
-- ***Settlement*** - an environment for execution layers to verify proofs,
-  resolve fraud disputes, and bridge between other execution layers.
-- ***Consensus*** - agreeing on the order of the transactions.
-- ** [Data Availability](https://coinmarketcap.com/alexandria/article/what-is-data-availability)**
-  (DA) - making the transaction data available. Note that execution,
-  settlement, and consensus require DA.
-<!-- markdownlint-enable MD037 -->
+Modular blockchains specialize in one or two of these functions rather
+than doing all of them like a monolithic blockchain. You probably know
+about layer 1s and layer 2s. That’s the general idea.
 
-*Modular blockchains decouple these functions among multiple specialized
-layers, and only specialize in only a few functions, rather than all of
-them.*
+A typical example of a modular blockchain you might’ve heard of is a
+rollup. Rollups host smart contracts and execute transactions, much like
+any monolithic chain. But, the data of those transactions get sent to a
+layer 1 blockchain to carry out the remaining functions.
 
-## Scalability
+If you want to brush up on your understanding of modular blockchains,
+head over to [Learn Modular](https://celestia.org/learn/).
 
-Modular blockchains achieve scalability in a few different ways.
+## Ease of deploying a chain
 
-### Block size
+One of the goals of modular blockchains is to make it as easy to deploy
+a blockchain as a smart contract. There are a few unique ways that
+modular blockchains can significantly reduce the cost of deploying a
+new blockchain.
 
-At Celestia’s center is a core mathematical primitive:
-[data availability sampling.](https://twitter.com/nickwh8te/status/1559977957195751424)
+1. __No validator set is required__. Rollups can deploy without sourcing
+their own set of validators or sequencers.
+2. __Inherit security from the start__. Rollups don’t need to build all
+their security from scratch.
+3. __Any part of the stack can be delegated__. Development time can be
+reduced by outsourcing functions of the rollup to external providers.
 
-Data Availability Sampling enables Celestia Light Nodes to provide
-almost the same security guarantees as a full node. As the light
-node count increases, the block size can be increased linearly to
-its growth.
+All in all, builders will be able to outsource as much of the stackas
+they need. Deploying a new blockchain will be as simple as clicking a
+few options to initialize a production-ready rollup.
 
-Now the only limit for block size (throughput) is the number of
-light nodes in the network.
+## Scaling
 
-This primitive allows Celestia to be *the first blockchain that
-can scale its block size with the number of users*.
+Of course, a much higher scale is necessary if we want to support
+many more users. And modular blockchains use some new innovative
+technologies that can help us get there.
 
-### Specialization
+- [Data availability sampling](https://celestia.org/glossary/data-availability-sampling/)
+enables modular blockchains like Celestia to scale data availability with the
+number of light nodes - that means more capacity for rollups.
+- __Fraud and validity proofs__ make rollups vastly more efficient
+to verify. Nodes only need to verify a small proof of transaction
+validity ([validity proof](https://celestia.org/glossary/validity-proof/))
+or assume transactions are valid by default
+([fraud proof](https://celestia.org/glossary/state-transition-fraud-proof/)).
+This means rollups don’t require every node in the network to re-execute
+every transaction.
 
-Because of the decoupling of functionality, each layer can specialize
-in one or many of the core functions of a blockchain.
+![image](/img/da-and-validity.png)
 
-This allows each layer to focus on becoming the most optimal at
-its use case without the limitations of the requirement of
-interoperability with other layers.
+- __Decoupling execution from consensus__ lets developers define the VM
+that best fits the scaling needs of their application.
+- __Separating applications__ across multiple rollups isolates congestion.
+If an application congests the execution capacity of one rollup, all
+other rollups remain unaffected in their execution capacity.
 
-When the components become modular, those using or building the
-system don’t have to know or care about everything. They only have
-to care about a subset of the features. Specialization is the way
-to ensure maximum focus, performance, and capacity.
+All these scaling properties combined make new types of applications
+and features possible, like onchain gaming, dynamic metadata, and
+ephemeral rollups, to name a few.
 
-### Resource pricing
+## Customizability
 
-By decoupling consensus from execution, Celestia can have much
-more efficient resource pricing than monolithic chains. Transactions
-published to the network can be charged purely based on the size
-of the data being submitted.
+By design, modular blockchains don’t lock in any feature set.
+They promote experimentation and customization.
 
-State growth and historical data are treated separately in Celestia.
-Celestia only stores historical data from rollups (measured and paid
-in bytes), while rollups handle and meter their own state execution.
+Remember how decoupling execution from consensus enables VM
+customizability? Well, rollups are the execution component. Applications
+can run on their own rollup and adjust the VM to maximize their
+application's performance. Developers have that flexibility because
+Celestia's execution logic doesn't restrict rollups.
 
-This enables completely separate fee markets for execution and data
-availability, allowing fundamentally orthogonal resources to be
-priced by the market independently, resulting in more accurate and
-flexible pricing.
+Basically, rollups can be customized to integrate any new or existing
+VM stack.
 
-This means that spikes of higher throughput in one environment cannot
-affect another, separate layer.
+With existing rollup frameworks, developers can run rollup testnets
+using the EVM or Cosmos SDK. In the future, one can imagine a variety
+of VMs that rollup frameworks support, providing developers with more
+out-of-the-box options for their applications.
 
-## Shared execution and monolithic blockchains
+Some customizations that could be made to a rollup's VM include
+custom precompiles, changing transaction processing from sequential
+to parallel, or adding support for private smart contracts.
 
-Most blockchains share execution with countless other applications
-and users of those applications.
-
-![Screen Shot 2022-08-15 at 3.33.06 PM.png](/img/shared-execution.png)
-
-If you compare this to how scalability is achieved in the traditional
-tech stack, where applications have their own servers or run their
-own "serverless" infrastructure that spins up a dedicated execution
-environment / container specifically for that individual application,
-the bottleneck becomes pretty clear.
-
-Scalability can typically be achieved in [two ways - horizontal and vertical scaling](https://stackoverflow.com/questions/11707879/difference-between-scaling-horizontally-and-vertically-for-databases#answer-11715598).
-
-Applications on traditional tech infrastructure can handle tens of
-millions of interactions per second by scaling both horizontally as
-well as vertically, while blockchains have struggled to reach thousands
-of transactions per second while still remaining decentralized.
-
-In addition to scaling the protocol itself (vertical), Celestia enables
-horizontal scalability. Developers can launch their own
-application-specific chains as rollups, similar to how
-[Cosmos Zones](https://v1.cosmos.network/resources/faq) enable
-developers to deploy their own application-specific blockchains.
-
-Modular blockchains are a paradigm shift in blockchain design that
-aim to solve the challenges around both scalability as well as
-accessibility, opening the door to a larger number of use cases,
-and ultimately enabling web3 to reach mass adoption.
+All of this only scratches the surface.
 
 ## Building on Celestia
 
-There are a handful of ways developers can build on Celestia.
+So, you’re ready to start experimenting and building on Celestia?
+Here are a few options that are currently available for developers.
 
 ### Smart contracts
 
-The easiest way to get started will be to deploy a smart contract
-to a rollup chain already running on Celestia.
-
-The barrier to entry is low in that you can use your existing
-skillset without having to learn anything new.
-
-You can write any language and use any execution environment
-you’d like, including Solidity or Vyper and the EVM or Cosmos and Go.
-
-You can use [Rollkit](https://rollkit.dev) to deploy a rollup for your
-favorite execution environment connected to Celestia.
+[Bubs testnet](https://bubstestnet.com/) is a dedicated EVM-compatible
+rollup that developerscan use to test and deploy smart contract
+applications.
 
 ### Sovereign rollups
 
-One of the most powerful value propositions of Celestia is the
-idea of [Sovereign Chains](https://blog.celestia.org/sovereign-rollup-chains).
+Developers can build applications on a sovereign rollup testnet
+on Celestia. [Rollkit](https://rollkit.dev/) and
+[Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup)
+provide frameworks for deploying sovereign rollup testnets
+on Celestia.
 
-Rollups on Ethereum are effectively "enshrined" to Ethereum because
-Ethereum is responsible for validating their transactions. This makes
-them tightly linked.
+### Rollups
 
-Celestia enables a new type of rollup: sovereign rollup chains.
-These are independent chains that are similar to an independent L1.
-
-### Execution layers
-
-Unlike Ethereum, Celestia has no enshrined settlement layer built in.
-Instead, there will be various settlement layers available to enable
-developers to easily deploy their own rollup or application-specific
-chain to Celestia.
-
-### Celestiums (Ethereum)
-
-[Celestiums](https://blog.celestia.org/celestiums) allow developers
-to deploy to a rollup using Celestia as DA and Ethereum as settlement.
-
-Ethereum rollups batch data from multiple transactions into a single
-transaction. This rollup transaction data (calldata) is posted to
-Ethereum but not executed directly.
-
-A Celestium is an L2 chain that uses Ethereum for settlement plus dispute
-resolution, and  Celestia for data availability.
-
-This provides high throughput data availability for Ethereum L2s with
-a higher level of security than other off-chain data availability
-techniques.
+Developers can also build rollup testnets for their applications
+using [Dymension’s Rollapps](https://docs.dymension.xyz/) or
+[Optimism’s OP Stack](https://docs.celestia.org/developers/optimism-devnet/).
