@@ -62,11 +62,11 @@ For the Bubs Testnet, you can connect to the following RPC URLs:
 
 #### HTTPS
 
-* `https://bubs-testnet.calderachain.xyz/http`
+* `https://bubs.calderachain.xyz/http`
 
 #### WSS
 
-* `wss://bubs-testnet.calderachain.xyz/ws`
+* `wss://bubs.calderachain.xyz/ws`
 
 This URL serves as the entry point to the Bubs Testnet. You can use it
 in your applications to connect to the testnet and interact with the smart
