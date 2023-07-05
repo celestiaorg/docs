@@ -412,6 +412,12 @@ node = "tcp://rpc-mocha.pops.one:443"
 broadcast-mode = "sync"
 ```
 
+## Notes
+
+Not all vesting accounts can be created with a message, some need to be
+set at genesis. Learn more
+[here](https://docs.cosmos.network/v0.46/modules/auth/05_vesting.html#note).
+
 ## Conclusion
 
 Congratulations! You've learned how to create a local devnet, create a
