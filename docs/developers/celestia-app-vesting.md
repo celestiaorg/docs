@@ -9,6 +9,12 @@ description: Learn how to generate a vesting account using Celestia App.
 In this guide, we will learn how to create a vesting account using
 celestia-app for both a local devnet and on Mocha testnet.
 
+:::tip note
+The instructions for this tutorial are for a **continuous** vesting account,
+if you'd like to make a delayed vesting account, just add the `--delayed`
+flag to your vesting transaction.
+:::
+
 ## Local devnet
 
 First, download and [install Celestia App](../../nodes/celestia-app),
@@ -135,9 +141,16 @@ export TO_ADDRESS=celestia127fpaygehlsgjdknwvlr2mux7h5uvhkxktgkc5
 Create the vesting account with the following command:
 
 :::tip note
-The remainder of the instructions are for a continuous vesting account,
+The remainder of the instructions are for a **continuous** vesting account,
 if you'd like to make a delayed vesting account, use the `--delayed`
 flag.
+
+For example, the command to create a delayed vesting account would look like:
+
+```bash
+./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $CElESTIA_APP_HOME --delayed
+```
+
 :::
 
 ```bash
@@ -155,6 +168,7 @@ execute the transaction without needing to provide the "y" answer as above.
 ```
 
 :::
+
 Output:
 
 ```bash
