@@ -24,7 +24,7 @@ faucet as a variable and the RPC URL you're using:
 
 ```bash
 export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-export BUBS_RPC_URL=https://bubs-testnet.calderachain.xyz/http
+export BUBS_RPC_URL=https://bubs.calderachain.xyz/http
 ```
 
 Now, change into the `gm-portal/contracts` directory in the same terminal and deploy
