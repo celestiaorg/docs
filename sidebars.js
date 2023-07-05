@@ -24,11 +24,6 @@ const sidebars = {
           label: "Mocha testnet",
           id: "nodes/mocha-testnet"
         },
-        {
-          type: "doc",
-          label: "Blockspace race",
-          id: "nodes/blockspace-race"
-        },
       ]
     },
     {
