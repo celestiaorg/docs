@@ -115,7 +115,7 @@ Here are a few options that are currently available for developers.
 
 ### Smart contracts
 
-[Taro testnet](https://tarotestnet.com/) is a dedicated EVM-compatible
+[Bubs testnet](https://bubstestnet.com/) is a dedicated EVM-compatible
 rollup that developerscan use to test and deploy smart contract
 applications.
 
