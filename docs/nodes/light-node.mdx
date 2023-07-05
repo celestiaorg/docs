@@ -940,7 +940,7 @@ celestia light init
 You should see output like:
 
 <pre><code>
-$ celestia light init --p2p.network mocha<br/>
+$ celestia light init --p2p.network mocha-3<br/>
 2022-12-19T21:45:00.802Z        INFO    node    nodebuilder/init.go:19  Initializing Light Node Store over '/root/.celestia-light-{constants.mochaChainId}'<br/>
 2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:50  Saving config   {`{"path": "/root/.celestia-light-${constants.mochaChainId}/config.toml"}`}`<br/>
 2022-12-19T21:45:00.803Z        INFO    node    nodebuilder/init.go:51  Node Store initialized<br/>
@@ -1009,7 +1009,7 @@ required to be open on your machine.
 :::
 
 ```sh
-celestia light start --core.ip <ip-address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+celestia light start --core.ip <ip-address> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha-3
 ```
 
 </TabItem>
@@ -1056,7 +1056,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.ip rpc-mocha.pops.one --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha
+celestia light start --core.ip rpc-mocha.pops.one --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha-3
 ```
 
 </TabItem>
@@ -1101,7 +1101,7 @@ You will need to fund that address with testnet tokens to pay for
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <key-name> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+celestia light start --core.ip <ip-address> --keyring.accname <key-name> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha-3
 ```
 
 Once you start the Light Node, a wallet key will be generated for you.
@@ -1169,7 +1169,7 @@ celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_ke
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha-3
 ```
 
 </TabItem>
