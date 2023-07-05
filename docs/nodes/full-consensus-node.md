@@ -53,11 +53,11 @@ import TabItem from '@theme/TabItem';
 <TabItem value="mocha" label="Mocha">
 
 To initialize the network pick a "node-name" that describes your
-node. The --chain-id parameter we are using here is `mocha`. Keep in
+node. The --chain-id parameter we are using here is `mocha-3`. Keep in
 mind that this might change if a new testnet is deployed.
 
 ```sh
-celestia-appd init "node-name" --chain-id mocha
+celestia-appd init "node-name" --chain-id mocha-3
 ```
 
 Copy the `genesis.json` file. For mocha we are using:
