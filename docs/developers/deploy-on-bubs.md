@@ -1,7 +1,7 @@
-# Deploy a smart contract on Taro testnet
+# Deploy a smart contract on Bubs testnet
 
 In this tutorial, we will deploy a smart contract to the
-Taro testnet.
+Bubs testnet.
 
 ## Dependencies
 
@@ -9,8 +9,8 @@ Taro testnet.
 * [Node.js](https://nodejs.org/en)
 * Basic understanding of Ethereum
 * Basic understanding of Solidity and Node.js
-* Taro ETH from the [Taro faucet](https://tarofaucet.com)
-* A Taro RPC URL from the [Taro testnet page](../taro-testnet)
+* Bubs ETH from the [Bubs faucet](https://bubsfaucet.com)
+* A Bubs RPC URL from the [Bubs testnet page](../bubs-testnet)
 
 ## Setup
 
@@ -174,23 +174,23 @@ forge create --rpc-url $ANVIL_RPC_URL \
 src/Counter.sol:Counter
 ```
 
-### Using Taro
+### Using Bubs
 
 First, set a private key from your funded Ethereum wallet and
-set the `TARO_RPC_URL` variable with an [RPC](../taro-testnet/#rpc-urls)
+set the `BUBS_RPC_URL` variable with an [RPC](../bubs-testnet/#rpc-urls)
 of your choosing:
 
 ```bash
-export TARO_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-export TARO_RPC_URL=https://taro-testnet.calderachain.xyz/http
+export BUBS_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+export BUBS_RPC_URL=https://bubs.calderachain.xyz/http
 ```
 
-Now that we're ready to deploy the smart contract onto Taro, we will run
+Now that we're ready to deploy the smart contract onto Bubs, we will run
 the `forge create` command.
 
 ```bash
-forge create --rpc-url $TARO_RPC_URL \
---private-key $TARO_PRIVATE_KEY \
+forge create --rpc-url $BUBS_RPC_URL \
+--private-key $BUBS_PRIVATE_KEY \
 src/Counter.sol:Counter
 ```
 
@@ -220,7 +220,7 @@ To write to the contract, we'll use the `cast send` command:
 
 <!-- markdownlint-disable MD013 -->
 ```bash
-cast send $CONTRACT_ADDRESS "setNumber(uint256)" 10 --rpc-url $TARO_RPC_URL --private-key $PRIVATE_KEY
+cast send $CONTRACT_ADDRESS "setNumber(uint256)" 10 --rpc-url $BUBS_RPC_URL --private-key $PRIVATE_KEY
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -246,7 +246,7 @@ Now, we can make a read call to view the state of the number variable,
 using the `cast call` command:
 
 ```bash
-cast call $CONTRACT_ADDRESS "number()" --rpc-url $TARO_RPC_URL
+cast call $CONTRACT_ADDRESS "number()" --rpc-url $BUBS_RPC_URL
 ```
 
 The result will look similar:
@@ -263,7 +263,7 @@ echo $((0x000000000000000000000000000000000000000000000000000000000000000a))
 
 ## Next steps
 
-Congratulations! You've learned how to deploy a smart contract to Taro testnet.
+Congratulations! You've learned how to deploy a smart contract to Bubs testnet.
 
 What will you build next? Now, you're ready to check out the
-[GM Portal tutorial](../gm-portal-taro).
+[GM Portal tutorial](../gm-portal-bubs).

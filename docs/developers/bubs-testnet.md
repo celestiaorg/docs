@@ -1,20 +1,20 @@
 ---
-sidebar_label: Taro testnet
+sidebar_label: Bubs testnet
 description: The first testnet built with OP Stack and Celestia.
 ---
 
-# Taro testnet
+# Bubs testnet
 
-![Taro testnet](../../static/img/Celestia_Taro_Testnet.png)
+![Bubs testnet](../../static/img/Celestia_Bubs_Testnet.jpg)
 
-[Taro Testnet](https://tarotestnet.com) is a fresh offering from
+[Bubs Testnet](https://bubstestnet.com) is a fresh offering from
 [Caldera](https://caldera.xyz) with support from Celestia Labs,
 built with OP Stack and Celestia, and is dedicated to providing developers with
 an EVM-compatible execution layer to deploy their EVM applications on.
 
 ## Built with the OP Stack and Celestia
 
-The Taro Testnet is a testnet rollup, a modified version of
+The Bubs Testnet is a testnet rollup, a modified version of
 `optimism-bedrock` that uses Celestia as a data availability (DA)
 layer. This integration can be found in this
 [repository](https://github.com/celestiaorg/optimism). The testnet
@@ -41,15 +41,15 @@ block is posted on Celestia, which is purpose-built for data availability.
 This is more scalable than the traditional method of posting this data as
 `calldata` on monolithic chains.
 
-## Building on Taro
+## Building on Bubs
 
-Taro Testnet provides a robust environment for developers to test their
+Bubs Testnet provides a robust environment for developers to test their
 Ethereum Virtual Machine (EVM) applications. It offers an EVM-compatible
 execution layer, making it an ideal platform for developers looking to
 build and test applications in a setting that closely mirrors an OP Stack
 rollup on Celestia.
 
-Learn more at [tarotestnet.com](https://tarotestnet.com).
+Learn more at [bubstestnet.com](https://bubstestnet.com).
 
 ### RPC URLs
 
@@ -58,39 +58,39 @@ interact with the blockchain. They are essential for sending transactions,
 querying blockchain data, and performing other interactions with the
 blockchain.
 
-For the Taro Testnet, you can connect to the following RPC URLs:
+For the Bubs Testnet, you can connect to the following RPC URLs:
 
 #### HTTPS
 
-* `https://taro-testnet.calderachain.xyz/http`
+* `https://bubs.calderachain.xyz/http`
 
 #### WSS
 
-* `wss://taro-testnet.calderachain.xyz/ws`
+* `wss://bubs.calderachain.xyz/ws`
 
-This URL serves as the entry point to the Taro Testnet. You can use it
+This URL serves as the entry point to the Bubs Testnet. You can use it
 in your applications to connect to the testnet and interact with the smart
 contracts you deploy there.
 
-Remember, Taro Testnet is a testing environment!
+Remember, Bubs Testnet is a testing environment!
 
 ### Faucet
 
-To visit the Taro testnet faucet, go to
-[`https://tarotestnet.com`](https://tarotestnet.com).
+To visit the Bubs testnet faucet, go to
+[`https://bubstestnet.com`](https://bubstestnet.com).
 
 ### Explorer
 
 To visit the explorer, go to
-[`https://explorer.tarotestnet.com/`](https://explorer.tarotestnet.com/).
+[`https://explorer.bubstestnet.com/`](https://explorer.bubstestnet.com/).
 
 ## Next steps
 
-Now that you have a better understanding of the Taro Testnet and its
+Now that you have a better understanding of the Bubs Testnet and its
 integration of OP Stack and Celestia, you can start exploring its
 capabilities:
 
-* [Deploy a smart contract on Taro testnet](../deploy-on-taro)
-* [Deploy a GM Portal dapp on Taro testnet](../gm-portal-taro)
+* [Deploy a smart contract on Bubs testnet](../deploy-on-bubs)
+* [Deploy a GM Portal dapp on Bubs testnet](../gm-portal-bubs)
 <!-- * [Deploy a dapp with scaffold-eth](https://github.com/jcstein/scaffold-eth) -->
-* [Deploy a smart contract with Thirdweb](https://thirdweb.com/taro-testnet)
+* [Deploy a smart contract with Thirdweb](https://thirdweb.com/bubs-testnet)

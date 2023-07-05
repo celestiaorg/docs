@@ -1,12 +1,12 @@
 ---
-sidebar_label: Deploy a GM Portal dapp on Taro testnet
+sidebar_label: Deploy a GM Portal dapp on Bubs testnet
 description: Make your own GM Portal dapp on the OP Stack.
 ---
 
-# Deploying a dapp on Taro testnet
+# Deploying a dapp on Bubs testnet
 
-First, review the [Taro testnet page](../taro-testnet) and the
-[Deploy a smart contract to Taro testnet](../deploy-on-taro) tutorial.
+First, review the [Bubs testnet page](../bubs-testnet) and the
+[Deploy a smart contract to Bubs testnet](../deploy-on-bubs) tutorial.
 
 **You will need a funded account to deploy your smart contract.**
 
@@ -24,7 +24,7 @@ faucet as a variable and the RPC URL you're using:
 
 ```bash
 export PRIVATE_KEY=ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-export TARO_RPC_URL=https://taro-testnet.calderachain.xyz/http
+export BUBS_RPC_URL=https://bubs.calderachain.xyz/http
 ```
 
 Now, change into the `gm-portal/contracts` directory in the same terminal and deploy
@@ -33,7 +33,7 @@ the contract using Foundry:
 <!-- markdownlint-disable MD013 -->
 ```bash
 cd $HOME/gm-portal/contracts
-forge script script/GmPortal.s.sol:GmPortalScript --rpc-url $TARO_RPC_URL --private-key $PRIVATE_KEY --broadcast
+forge script script/GmPortal.s.sol:GmPortalScript --rpc-url $BUBS_RPC_URL --private-key $PRIVATE_KEY --broadcast
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -53,7 +53,7 @@ First, send a "gm" to the contract:
 cast send $CONTRACT_ADDRESS \
 "gm(string)" "gm" \
 --private-key $PRIVATE_KEY \
---rpc-url $TARO_RPC_URL
+--rpc-url $BUBS_RPC_URL
 ```
 
 Now that you've posted to the contract, you can read all "gms" (GMs) from the
@@ -61,13 +61,13 @@ contract with
 this command:
 
 ```bash
-cast call $CONTRACT_ADDRESS "getAllGms()" --rpc-url $TARO_RPC_URL
+cast call $CONTRACT_ADDRESS "getAllGms()" --rpc-url $BUBS_RPC_URL
 ```
 
 Next, query the total number of gms, which will be returned as a hex value:
 
 ```bash
-cast call $CONTRACT_ADDRESS "getTotalGms()" --rpc-url $TARO_RPC_URL
+cast call $CONTRACT_ADDRESS "getTotalGms()" --rpc-url $BUBS_RPC_URL
 ```
 
 In order to interact with the contract on the frontend, you'll need to fund an
@@ -76,7 +76,7 @@ with this command:
 
 ```bash
 export RECEIVER=<receiver ETH address>
-cast send --private-key $PRIVATE_KEY $RECEIVER --value 1ether --rpc-url $TARO_RPC_URL
+cast send --private-key $PRIVATE_KEY $RECEIVER --value 1ether --rpc-url $BUBS_RPC_URL
 ```
 
 If you are in a different terminal than the one you set the private key in, you
@@ -104,7 +104,7 @@ cp dev/gm-portal/contracts/out/GmPortal.sol/GmPortal.json dev/gm-portal/frontend
 
 Now, login with your wallet that you funded, and post a GM on your GM portal!
 
-![gm-taro](../../static/img/gm/gm_taro.png)
+![gm-bubs](../../static/img/gm/gm_bubs.png)
 
 ## Next steps
 
