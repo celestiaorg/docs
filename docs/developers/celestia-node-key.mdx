@@ -277,7 +277,7 @@ services:
       - NODE_TYPE=light
     command: celestia light start --core.ip rpc-mocha.pops.one --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --p2p.network mocha --keyring.accname my_celes_key
     volumes:
-      - ${PWD}/keys:/root/.celestia-light-mocha/keys
+      - ${PWD}/keys:/root/.celestia-light-mocha-3/keys
     ports:
       - 26659:26659
 ```
@@ -312,7 +312,7 @@ expect with the key you mounted:
 
 ```bash
 root@<container_id>:/# ./cel-key list --keyring-backend test --node.type light
-using directory:  ~/.celestia-light-mocha/keys
+using directory:  ~/.celestia-light-mocha-3/keys
 - address: celestia1wkhyhr7ngf0ayqlpnsnxg4d72hfs5453dvunm9
   name: my_celes_key
   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A1/NsoY0RGL7Hqt4VWLg441GQKJsZ2fBUnZXipgns8oV"}'
