@@ -31,12 +31,6 @@ function HomepageHeader() {
                <p className="button-heading">Sovereign chain</p>
               Deploy a rollup to Celestia
           </Link>
-          {/* <iframe
-          src="https://www.chatbase.co/chatbot-iframe/oeduJpy4UAtpDuOQcCuVM"
-          width="100%"
-          height="700"
-          frameborder="0"
-          ></iframe> */}
         </div>
       </div>
     </header>
