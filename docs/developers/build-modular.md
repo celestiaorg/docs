@@ -5,15 +5,14 @@ description: Advantages of building on modular blockchains like Celestia.
 
 # Build modular
 
-of use cases, preventing many users around the world from participating
-
 “I’m a developer, and I want to know what the benefits of modular blockchains
 are for me!”
 
 You’ve come to the right place. This page will give you the rundown on modular
 blockchains and their benefits for developers like you.
 
-If you already know all this, skip to the end to get straight into building.
+If you already know all this, [skip to the end](https://docs.celestia.org/developers/build-modular/#building-on-celestia)
+to get straight into building.
 
 ## What is a modular blockchain?
 
