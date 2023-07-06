@@ -11,7 +11,7 @@ are for me!”
 You’ve come to the right place. This page will give you the rundown on modular
 blockchains and their benefits for developers like you.
 
-If you already know all this, (skip to the end)[https://docs.celestia.org/developers/build-modular/#building-on-celestia]
+If you already know all this, [skip to the end](https://docs.celestia.org/developers/build-modular/#building-on-celestia)
 to get straight into building.
 
 ## What is a modular blockchain?
