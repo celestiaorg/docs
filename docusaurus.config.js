@@ -29,6 +29,11 @@ const config = {
       defer: true,
       "data-domain": "docs.celestia.org",
     },
+    {
+      src: "https://www.chatbase.co/embed.min.js",
+      id: "oeduJpy4UAtpDuOQcCuVM",
+      defer: true,
+    },
   ],
   stylesheets: [
     {
@@ -121,6 +126,19 @@ const config = {
         indexName: "celestia",
         contextualSearch: true,
         debug: false,
+      },
+      injectHtmlTags: {
+        headTags: [],
+        bodyTags: [
+          {
+            tagName: 'script',
+            innerHTML: `
+              window.chatbaseConfig = {
+                chatbotId: "oeduJpy4UAtpDuOQcCuVM",
+              }
+            `,
+          },
+        ],
       },
       navbar: {
         logo: {
