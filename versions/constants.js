@@ -8,7 +8,7 @@ const constants = Object.freeze({
     arabicaChainId: "arabica-9",
     bsrChainId: "blockspacerace-0",
     mochaChainId: "mocha-3",
-    arabicaRollkitVersion: "v0.8.2-rc0",
+    arabicaRollkitVersion: "v0.9.0",
     mochaRollkitVersion: "currently not compatible",
     bsrRollkitVersion: "v0.8.1",
     localCelestiaDevnetVersion: "v0.8.2",
