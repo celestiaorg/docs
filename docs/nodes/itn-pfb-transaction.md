@@ -17,7 +17,7 @@ tutorial [here](https://docs.celestia.org/developers/node-tutorial/#submit-a-pfb
 1. Submit the PFB using the wallet you submitted to us in Phase 2, task 1.
 2. Share PFB transaction hash you submitted.
 3. It has to be unique. We will be checking.
-4. If PFB will be sucessfull, there will a large output, the
+4. If PFB will be successful, there will a large output, the
 tx hash is found by simply checking the `txhash` field in
 the first line of the output.
 
