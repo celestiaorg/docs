@@ -74,7 +74,7 @@ The devnet is made up of one validator that is creating new blocks. This is the
 Celestia consensus network on your machine! The key that was created to
 run the validator also lives in a temporary directory for the devnet.
 
-Now you are ready to test creating a vesting accout on our devnet before going
+Now you are ready to test creating a vesting account on our devnet before going
 to Mocha, a live testnet.
 
 ### Setting up vesting account on devnet
@@ -220,7 +220,7 @@ balances to verify this.
 
 #### Query the devnet vesting account details
 
-Check that the account has been created and works as expected by quering
+Check that the account has been created and works as expected by querying
 the `TO_ADDRESS` account details:
 
 ```bash
