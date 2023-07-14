@@ -1,6 +1,6 @@
 const arabicaVersions = Object.freeze({
   "app-latest-tag": "v1.0.0-rc9",
-  "app-latest-sha": "ebfc4168cb5b5ac17a92ea0dbb9e50c78d8ae1bc",
+  "app-latest-sha": "2ad80bc4aa1be3ddae6b417189ce58088a93c666",
   "core-latest-tag": "v1.24.0-tm-v0.34.28",
   "core-latest-sha": "67cc27bcb051f911c40444530f4e5257b04dd469",
   "node-latest-tag": "v0.11.0-rc8",
