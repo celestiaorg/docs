@@ -17,6 +17,15 @@ Install dependencies [here](../nodes/environment.mdx).
 
 Next, clone the repo:
 
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="network-type">
+<TabItem value="local-devnet" label="Local Devnet">
+
+This is the version for this tutorial:
+
 ```bash
 cd $HOME
 git clone https://github.com/celestiaorg/optimism
@@ -24,7 +33,10 @@ cd optimism
 git checkout v0.1.0-OP_v1.0.6-CN_v0.10.0
 ```
 
-If you are using **Arabica** and deploying using the
+</TabItem>
+<TabItem value="arabica-devnet" label="Arabica Devnet">
+
+If you are using **Arabica Devnet** and deploying using the
 [**testnet deployment guide**](../optimism/) use the following
 version:
 
@@ -35,9 +47,16 @@ cd optimism
 git checkout v0.1.1-OP_v1.0.6-CN_v0.11.0-rc1
 ```
 
+</TabItem>
+</Tabs>
+````
+
 ### asdf
 
-Install `asdf` to allow us to intall a specific version of node easily:
+[Install `asdf`](https://asdf-vm.com/guide/getting-started.html)
+to allow us to intall a specific version of node easily.
+
+Here is an example for Ubuntu using bash:
 
 ```bash
 cd $HOME
@@ -46,7 +65,10 @@ echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
 echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
 ```
 
-Set the path:
+Set the path from the asdf documentation based on your operating
+system and shell type.
+
+Here is an example for Ubuntu using bash:
 
 ```bash
 export PATH=$PATH:~/.asdf/bin/
@@ -79,6 +101,29 @@ Update NPM to v9.6.5:
 
 ```bash
 npm install -g npm@9.6.5
+```
+
+If using NVM, install NPM v9.6.5:
+
+```bash
+nvm install v9.6.5
+```
+
+Then set the version:
+
+```bash
+nvm use v9.6.5
+```
+
+### python
+
+Install python 3.10.7:
+
+```bash
+asdf plugin-add python
+asdf install python 3.10.7
+asdf local python 3.10.7
+source ~/.bashrc
 ```
 
 ### Foundry
@@ -126,6 +171,14 @@ apt install docker-compose
 apt install gcc libusb-1.0-0-dev 
 ```
 
+### macOS only: set up python
+
+```bash
+brew install python3
+npm config set python /usr/local/bin/python3
+npm cache clean --force
+```
+
 ## Build devnet
 
 Build TypeScript definitions for TS dependencies:
@@ -133,7 +186,7 @@ Build TypeScript definitions for TS dependencies:
 ```bash
 cd $HOME
 cd optimism
-make build-ts
+yarn && make build-ts
 ```
 
 Set environment variables to start network:
@@ -232,7 +285,7 @@ explore the stack.
 
 ## Find a transaction
 
-Now, we'll check for a recent transaction with:
+Now, we'll check for a recent transaction on the L1 with:
 
 ```bash
 cast block latest --rpc-url localhost:8545
@@ -274,7 +327,7 @@ export TX_HASH=0xb8869dfecf9a5a0e26df6b13e64071b859f2cc0587b97cb4387abf9ddb2ff9a
 
 ## Read the transaction call data
 
-Now read the transaction call data:
+Now read the transaction call data on the L1:
 
 ```bash
 cast tx $TX_HASH --rpc-url localhost:8545
