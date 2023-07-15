@@ -1613,6 +1613,12 @@ export ADDRESS=celestia1c425ckmve2489atttx022qpc02gxspa29wmh0d
 celestia rpc state Transfer $ADDRESS 100000 8000 80000
 ```
 
+If you'd just like to return the transaction hash, you can use jq:
+
+```bash
+celestia rpc state Transfer $ADDRESS 100000 8000 80000 | jq .result.txhash
+```
+
 ## Additional resources
 
 ### Post an SVG as a PFB
