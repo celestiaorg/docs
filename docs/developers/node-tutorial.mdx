@@ -1606,6 +1606,13 @@ Get data availability sampler stats:
 celestia rpc das SamplingStats
 ```
 
+Transfer balance of utia to another account. First, set your address as a variable:
+
+```bash
+export ADDRESS=celestia1c425ckmve2489atttx022qpc02gxspa29wmh0d
+celestia rpc state Transfer $ADDRESS 100000 100000 100000
+```
+
 ## Additional resources
 
 ### Post an SVG as a PFB
