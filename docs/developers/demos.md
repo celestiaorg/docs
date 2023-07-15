@@ -13,21 +13,21 @@ and make a pull request to do so!
 
 ## Celestia
 
-* macOS light node client by [@JoshCStein](https://twitter.com/JoshCStein) - [quasarapp.xyz](https://quasarapp.xyz)
-* RPC CLI tutorial with an on-chain SVG by [@JoshCStein](https://twitter.com/JoshCStein) - [based64.xyz](https://based64.xyz)
+* macOS light node client - [quasarapp.xyz](https://quasarapp.xyz)
+* RPC CLI tutorial with an on-chain SVG - [based64.xyz](https://based64.xyz)
 
 ## OP Stack testnet
 
-* gm portal, a smart contract demo by [@JoshCStein](https://twitter.com/JoshCStein) - [gmportal.xyz](https://gmportal.xyz)
-* generative art marketplace by [@JoshCStein](https://twitter.com/JoshCStein) - [buildmarket.xyz](https://buildmarket.xyz)
-* pessimistic loogies SVG NFT built with scaffold-eth by [@JoshCStein](https://twitter.com/JoshCStein) - [pessimistic.co](https://pessimistic.co)
+* gm portal, a smart contract demo - [gmportal.xyz](https://gmportal.xyz)
+* generative art marketplace - [buildmarket.xyz](https://buildmarket.xyz)
+<!-- * pessimistic loogies SVG NFT built with scaffold-eth - [pessimistic.co](https://pessimistic.co) -->
 
 ## Rollkit
 
-* frontend for gm world tutorial by [@JoshCStein](https://twitter.com/JoshCStein) - [rollkit-frontend.vercel.app](https://rollkit.dev/docs/tutorials/gm-world/)
-* ethermint demo by [@JoshCStein](https://twitter.com/JoshCStein) - [saymoo.lol](https://saymoo.lol/) (deprecated)
-* [NFT collection](https://github.com/jcstein/celestia-rollkit-nfts) made with Thirdweb SDK and their widgets by [@JoshCStein](https://twitter.com/JoshCStein) -  (deprecated)
+* frontend for gm world tutorial - [rollkit-frontend.vercel.app](https://rollkit.dev/docs/tutorials/gm-world/)
+* ethermint demo - [saymoo.lol](https://saymoo.lol/) (deprecated)
+* [NFT collection](https://github.com/jcstein/celestia-rollkit-nfts) made with Thirdweb SDK and their widgets -  (deprecated)
 
 ## Miscellaneous
 
-* [buildwhatever.com](https://buildwhatever.com) by [@JoshCStein](https://twitter.com/JoshCStein)
+* [buildwhatever.com](https://buildwhatever.com)
