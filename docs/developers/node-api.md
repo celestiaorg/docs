@@ -41,6 +41,12 @@ to get started interacting with your Celestia node.
 
 ## Gateway API
 
+:::caution
+The gateway endpoints have been deprecated and will be removed in the future.
+If you would like to use them anyway, you can find more details
+[here](https://github.com/celestiaorg/celestia-node/pull/2360).
+:::
+
 The gateway API is a REST API which is meant to be deployed by infra
 providers to enable the public read-only gateway to the DA network for
 external users who don't want or can't run light nodes
