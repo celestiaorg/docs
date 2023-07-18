@@ -39,9 +39,9 @@ export default function AddNetworkKeplr({params}){
 											coinDecimals: 6,
 											coinGeckoId: "celestia",
 											gasPriceStep: {
-													low: 0.01,
-													average: 0.025,
-													high: 0.04,
+													low: 0.1,
+													average: 0.2,
+													high: 0.4,
 											},
 									},
 							],
