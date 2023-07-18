@@ -22,6 +22,8 @@ Full Consensus Nodes:
 * Disk: **250 GB SSD Storage**
 * Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
+**Note**: Running a full consensus node requires significant storage capacity to store the entire blockchain history. As of the latest recommendation, it is advisable to have at least 250 GB of SSD storage for a Celestia full consensus node. Please ensure that your storage meets this requirement to ensure smooth syncing and operation of the node.
+
 ## Setting up a full consensus node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
