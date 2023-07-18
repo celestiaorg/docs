@@ -1101,7 +1101,7 @@ You will need to fund that address with testnet tokens to pay for
 <TabItem value="mocha" label="Mocha">
 
 ```sh
-celestia light start --core.ip rpc-mocha.pops.one --keyring.accname <key-name> --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network mocha
+celestia light start --core.ip rpc-mocha.pops.one --keyring.accname my_celes_key --p2p.network mocha
 ```
 
 Once you start the Light Node, a wallet key will be generated for you.
@@ -1112,7 +1112,7 @@ You will need to fund that address with testnet tokens to pay for
 <TabItem value="arabica" label="Arabica 🏗️">
 
 ```sh
-celestia light start --keyring.accname <key_name> --core.ip consensus-full-arabica-9.celestia-arabica.com --gateway.deprecated-endpoints --gateway --gateway.addr <ip-address> --gateway.port <port> --p2p.network arabica
+celestia light start --keyring.accname my_celes_key --core.ip consensus-full-arabica-9.celestia-arabica.com --p2p.network arabica
 ```
 
 Once you start the Light Node, a wallet key will be generated for you.
