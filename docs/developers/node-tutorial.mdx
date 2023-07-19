@@ -1254,6 +1254,12 @@ the `data` value of `0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
 You can generate your own `namespace_id` and data values using this
 useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
 
+Here is an example of the format of the `PayForBlob` transaction:
+
+```bash
+celestia rpc blob SubmitPayForBlob [namespace in hex] [data in hex]
+```
+
 We run the following to submit a blob to the network in hexadecimal format:
 
 ```bash
@@ -1271,7 +1277,13 @@ We get the following output:
 ```
 
 We can also use a string of text as the data value, which will be
-converted to base64:
+converted to base64. Here is an example of the format:
+
+```bash
+celestia rpc blob Submit [namespace in hex] "'[data]'"
+```
+
+And an example to submit "gm" as the plain text data:
 
 ```bash
 celestia rpc blob Submit 0x42690c204d39600fddd3 '"gm"'
@@ -1304,6 +1316,14 @@ use that block height and the namespace ID with which you submitted your
 PFB transaction to get your message shares (data) returned to you. In this example,
 the block height we got was 32236 which we will use for the following command.
 Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
+
+Here is what an example of the format of the `GetAll` command looks like:
+
+```bash
+celestia rpc blob GetAll [block height] [namespace in hex]
+```
+
+Here is an example command to retrieve the data from above, on `arabica-9`:
 
 ```bash
 celestia rpc blob GetAll 32236 0x42690c204d39600fddd3
@@ -1416,6 +1436,12 @@ The response will look similar to:
 
 #### Check the balance of another address
 
+Here is an example of the format of the `BalanceForAddress` command:
+
+```bash
+celestia rpc state BalanceForAddress [address]
+```
+
 Let's query our node for the balance of another address:
 
 ```bash
@@ -1482,6 +1508,12 @@ Response:
 ```
 
 #### Get block header by height
+
+Here is an example of the format of the `GetByHeight` command:
+
+```bash
+celestia rpc header GetByHeight [height]
+```
 
 Now, let's get the block header information.
 
@@ -1580,22 +1612,42 @@ It will output something like this:
 
 ### More examples
 
-Query node information:
+#### Query node information:
 
 ```bash
 celestia rpc node Info
 ```
 
-Get header by height:
-
-```bash
-celestia rpc header GetByHeight 5
-```
-
-Get data availability sampler stats:
+#### Get data availability sampler stats:
 
 ```bash
 celestia rpc das SamplingStats
+```
+
+#### Transfer balance of utia to another account
+
+First, set your address as a variable:
+
+```bash
+export ADDRESS=celestia1c425ckmve2489atttx022qpc02gxspa29wmh0d
+```
+
+Then, transfer the amount of tokens that you would like, while setting the recipient's address, gas fee, and gasLimit. This is what the format will look like:
+
+```bash
+celestia rpc state Transfer $ADDRESS [amount in utia] [gas fee in utia] [gas fee in utia]
+```
+
+Here is an example, sending 0.1 TIA, with a gas fee of 0.008 TIA, and a gas limit of 0.08 TIA:
+
+```bash
+celestia rpc state Transfer $ADDRESS 100000 8000 80000
+```
+
+If you'd just like to return the transaction hash, you can use jq:
+
+```bash
+celestia rpc state Transfer $ADDRESS 100000 8000 80000 | jq .result.txhash
 ```
 
 ## Additional resources
@@ -1614,6 +1666,7 @@ repo.
 
 ### Troubleshooting
 
+:::tip
 If you encounter an error like:
 
 ```sh
@@ -1623,3 +1676,4 @@ If you encounter an error like:
 It is possible that the account you are trying to submit a `PayForBlob` from
 doesn't have testnet tokens yet. Ensure the testnet faucet has funded your
 account with tokens and then try again.
+:::
