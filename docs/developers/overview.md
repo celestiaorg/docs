@@ -10,6 +10,10 @@ of Celestia.
 
 It includes:
 
-* How to create A Celestia wallet
-* How to interact with the data availability API
-* How to deploy sovereign rollups with [Rollkit](https://rollkit.dev)
+* How to [create a Celestia wallet](../../category/create-a-celestia-wallet/)
+* How to [interact with the Node API](../../developers/node-api/)
+* How to [deploy sovereign rollups](../../category/deploy-a-rollup/)
+* How to [integrate with Celestia](../../developers/integrate-celestia/)
+  * [Rollkit](../../developers/rollkit/)
+  * [OP Stack](../../category/optimism/)
+* [Demos](../../developers/demos/) on Celestia
