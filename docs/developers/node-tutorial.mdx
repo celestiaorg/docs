@@ -1582,12 +1582,6 @@ Query node information:
 celestia rpc node Info
 ```
 
-Get share by namespace:
-
-```bash
-celestia rpc share GetSharesByNamespace "$(celestia rpc header GetByHeight 32236 | jq '.result.dah' -r)" GHTmQvXd5Yk=
-```
-
 Get header by height:
 
 ```bash
