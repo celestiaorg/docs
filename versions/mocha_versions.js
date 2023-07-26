@@ -1,6 +1,6 @@
 const mochaVersions = Object.freeze({
-  "app-latest-tag": "v1.0.0-rc9",
-  "app-latest-sha": "ebfc4168cb5b5ac17a92ea0dbb9e50c78d8ae1bc",
+  "app-latest-tag": "v1.0.0-rc10",
+  "app-latest-sha": "96b86ba8c0a11b1b854da1c256c5d737dbaeede3",
   "core-latest-tag": "v1.24.0-tm-v0.34.28",
   "core-latest-sha": "d24c81afe0ecc4ccfbb7eb543a45a11794f04db4",
   "node-latest-tag": "v0.11.0-rc8",
