@@ -72,7 +72,7 @@ you can refer to the
 Run the image from the command line:
 
 <pre><code>
-docker run -e NODE_TYPE=light -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:sha-{mochaVersions['node-latest-sha'].slice(0, 7)} celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
+docker run -e NODE_TYPE=light -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:{mochaVersions['node-latest-tag']} celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 </code></pre>
 
 :::tip
@@ -81,8 +81,6 @@ which ports are required to be open on your machine.
 :::
 
 Congratulations! You now have a Celestia light node running on the Mocha testnet.
-
-![mocha_light_docker](/img/nodes/mocha_light_docker.gif)
 
 If you would like to run the node with custom flags,
 you can refer to the
@@ -105,8 +103,6 @@ which ports are required to be open on your machine.
 :::
 
 Congratulations! You now have a Celestia light node running on the Arabica devnet.
-
-![arabica_light_docker](/img/nodes/arabica_light_docker.gif)
 
 If you would like to run the node with custom flags,
 you can refer to the
@@ -147,7 +143,7 @@ you can refer to the
 Run the image from the command line:
 
 <pre><code>
-docker run -e NODE_TYPE=bridge -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:sha-{mochaVersions['node-latest-sha'].slice(0, 7)} celestia bridge start --core.ip rpc-mocha.pops.one --p2p.network mocha
+docker run -e NODE_TYPE=bridge -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:{mochaVersions['node-latest-tag']} celestia bridge start --core.ip rpc-mocha.pops.one --p2p.network mocha
 </code></pre>
 
 :::tip
@@ -156,8 +152,6 @@ which ports are required to be open on your machine.
 :::
 
 Congratulations! You now have a Celestia bridge node running on the Mocha network.
-
-![mocha_bridge_docker](/img/nodes/mocha_bridge_docker.gif)
 
 If you would like to run the node with custom flags,
 you can refer to the
@@ -180,8 +174,6 @@ which ports are required to be open on your machine.
 :::
 
 Congratulations! You now have a Celestia bridge node running on the Arabica network.
-
-![arabica_bridge_docker](/img/nodes/arabica_bridge_docker.gif)
 
 If you would like to run the node with custom flags,
 you can refer to the
@@ -222,7 +214,7 @@ you can refer to the
 Run the image from the command line:
 
 <pre><code>
-docker run -e NODE_TYPE=full -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:sha-{mochaVersions['node-latest-sha'].slice(0, 7)} celestia full start --core.ip rpc-mocha.pops.one --p2p.network mocha
+docker run -e NODE_TYPE=full -e P2P_NETWORK=mocha ghcr.io/celestiaorg/celestia-node:{mochaVersions['node-latest-tag']} celestia full start --core.ip rpc-mocha.pops.one --p2p.network mocha
 </code></pre>
 
 :::tip
@@ -231,8 +223,6 @@ which ports are required to be open on your machine.
 :::
 
 Congratulations! You now have a Celestia full storage node running on the Mocha network.
-
-![mocha_full_docker](/img/nodes/mocha_full_docker.gif)
 
 If you would like to run the node with custom flags,
 you can refer to the
@@ -255,8 +245,6 @@ which ports are required to be open on your machine.
 :::
 
 Congratulations! You now have a Celestia full storage node running on the Arabica network.
-
-![arabica_full_docker](/img/nodes/arabica_full_docker.gif)
 
 If you would like to run the node with custom flags,
 you can refer to the
