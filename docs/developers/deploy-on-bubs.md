@@ -9,7 +9,7 @@ Bubs testnet.
 * [Node.js](https://nodejs.org/en)
 * Basic understanding of Ethereum
 * Basic understanding of Solidity and Node.js
-* Bubs ETH from the [Bubs faucet](https://bubsfaucet.com)
+* Bubs ETH from the [Bubs faucet](https://bubstestnet.com)
 * A Bubs RPC URL from the [Bubs testnet page](../bubs-testnet)
 
 ## Setup
