@@ -1424,22 +1424,65 @@ curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
    -d '{
   "id": 1,
   "jsonrpc": "2.0",
-  "method": "blob.GetAll",
+  "method": "blob.get-all",
   "params": [
    219832,
-   [
-    "AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA="
-   ]
+   0x42690c204d39600fddd3,
+   IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E=
   ]
  }' \
    http://localhost:26658
 ```
+
+NOTE: THIS ERRORS ^^^
 
 Response:
 
 ```bash
 {“jsonrpc”:“2.0",“result”:[{“namespace”:“AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,”data”:“8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1”,“share_version”:0,“commitment”:“y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=“}],“id”:1}
 ``` */}
+
+To get all blobs in the namespace at the block height, use `get-all` instead of `get`:
+
+```bash
+celestia rpc blob get-all 219832 0x42690c204d39600fddd3
+```
+
+This will return the following:
+
+```json
+{
+  "result": [
+    {
+      "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+      "data": "Z20=",
+      "share_version": 0,
+      "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
+    }
+  ]
+}
+```
+
+To display the response in plaintext, use:
+
+```bash
+celestia rpc blob get-all 219832 0x42690c204d39600fddd3 --plaintext=TRUE
+```
+
+Which will return:
+
+```json
+{
+  "result": [
+    {
+      "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+      "data": "gm",
+      "share_version": 0,
+      "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
+    }
+  ]
+}
+```
 
 ### Examples
 
