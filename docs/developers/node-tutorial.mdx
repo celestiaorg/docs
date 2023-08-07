@@ -1185,6 +1185,11 @@ The format for the `rpc` subcommand is as follows:
 celestia rpc [module] [method] [...args]
 ```
 
+:::tip
+The `blob` module is the only module that uses kebab-case for
+its methods. The other modules use camelCase.
+:::
+
 ### Setup
 
 #### Auth token 🔐
@@ -1257,22 +1262,23 @@ useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
 Here is an example of the format of the `PayForBlob` transaction:
 
 ```bash
-celestia rpc blob SubmitPayForBlob [namespace in hex] [data in hex]
+celestia rpc blob submit [namespace in hex] [data in hex]
 ```
 
 We run the following to submit a blob to the network in hexadecimal format:
 
 ```bash
-celestia rpc blob Submit 0x42690c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
+celestia rpc blob submit 0x42690c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
 ```
 
 We get the following output:
 
-```bash
+```json
 {
- “jsonrpc”: “2.0”,
- “result”: 32236,
- “id”: 1
+  "result": {
+    "uint64": 219832,
+    "commitment": "t7sRPeQVT3jEMlDnhDVU6jxB/FNhhyl6b6wl3+0ENZ0="
+  }
 }
 ```
 
@@ -1280,33 +1286,44 @@ We can also use a string of text as the data value, which will be
 converted to base64. Here is an example of the format:
 
 ```bash
-celestia rpc blob Submit [namespace in hex] "'[data]'"
+celestia rpc blob submit [namespace in hex] '[data]'
 ```
 
 And an example to submit "gm" as the plain text data:
 
 ```bash
-celestia rpc blob Submit 0x42690c204d39600fddd3 '"gm"'
+celestia rpc blob submit 0x42690c204d39600fddd3 'gm'
+```
+
+Output:
+
+```json
+{
+  "result": {
+    "uint64": 219832,
+    "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
+  }
+}
 ```
 
 If you notice from the above output, it returns a `height` of
-`32236` which we will use for the next command.
+`219832` which we will use for the next command.
 
 Note: To learn more about status response codes, please navigate to
 [cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
 
-#### `SubmitPayForBlob` arguments
+#### `submit` arguments
 
 Using the `rpc` subcommand, you can submit a blob to the network
-using the `SubmitPayForBlob` method.
+using the `submit` method.
 
-The arguments for `SubmitPayForBlob` are parsed specially,
+The arguments for `submit` are parsed specially,
 to improve UX.
 
-`SubmitPayForBlob` can be done in a few ways:
+`submit` can be done in a few ways:
 
 - The **namespace ID** can be encoded as either hex or base64
-- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)
+- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'Hello There!'`)
 
 ### Retrieving data
 
@@ -1314,44 +1331,40 @@ After submitting your PFB transaction, upon success, the node will return
 the block height for which the PFB transaction was included. You can then
 use that block height and the namespace ID with which you submitted your
 PFB transaction to get your message shares (data) returned to you. In this example,
-the block height we got was 32236 which we will use for the following command.
+the block height we got was 219832 which we will use for the following command.
 Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
 
-Here is what an example of the format of the `GetAll` command looks like:
+Here is what an example of the format of the `get` command looks like:
 
 ```bash
-celestia rpc blob GetAll [block height] [namespace in hex]
+celestia rpc blob get [block height] [namespace in hex] [committment from output above]
 ```
 
 Here is an example command to retrieve the data from above, on `arabica-9`:
 
 ```bash
-celestia rpc blob GetAll 32236 0x42690c204d39600fddd3
+celestia rpc blob get 219832 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E=
 ```
 
 Will generate the following output:
 
 ```json
 {
- “jsonrpc”: “2.0”,
- “result”: [
-  {
-   “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
-   “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
-   “share_version”: 0,
-   “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
+  "result": {
+    "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+    "data": "Z20=",
+    "share_version": 0,
+    "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
   }
- ],
- “id”: 1
 }
 ```
 
 The output here is base64-encoded.
 
-To see the JSON request sent over the wire, for example for sending requests via cURL, pass the `-—print-request` flag:
+{/* To see the JSON request sent over the wire, for example for sending requests via cURL, pass the `-—print-request` flag:
 
 ```bash
-celestia rpc blob GetAll 32236 0x42690c204d39600fddd3 --print-request
+celestia rpc blob get-all 219832 0x42690c204d39600fddd3 --print-request
 ```
 
 Response:
@@ -1363,7 +1376,7 @@ Response:
   “jsonrpc”: “2.0",
   “method”: “blob.GetAll”,
   “params”: [
-   32236,
+   219832,
    [
     “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=”
    ]
@@ -1382,9 +1395,28 @@ Response:
   “id”: 1
  }
 }
+``` */}
+
+To see the plaintext response, use the `--plaintext` flag set to `TRUE` (`--plaintext=TRUE`):
+
+```bash
+celestia rpc blob get 219832 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E= --plaintext=TRUE
 ```
 
-Simiarly, you can cURL the response by running the following command:
+The response will look similar to this:
+
+```json
+{
+  "result": {
+    "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+    "data": "gm",
+    "share_version": 0,
+    "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
+  }
+}
+```
+
+{/* Simiarly, you can cURL the response by running the following command:
 
 ```bash
 curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
@@ -1394,7 +1426,7 @@ curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
   "jsonrpc": "2.0",
   "method": "blob.GetAll",
   "params": [
-   32236,
+   219832,
    [
     "AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA="
    ]
@@ -1407,7 +1439,7 @@ Response:
 
 ```bash
 {“jsonrpc”:“2.0",“result”:[{“namespace”:“AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,”data”:“8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1”,“share_version”:0,“commitment”:“y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=“}],“id”:1}
-```
+``` */}
 
 ### Examples
 
@@ -1423,14 +1455,14 @@ celestia rpc state Balance
 
 The response will look similar to:
 
-```bash
+```json
 {
- “jsonrpc”: “2.0",
- “result”: {
-  “denom”: “utia”,
-  “amount”: “79934811”
- },
- “id”: 1
+  "jsonrpc": "2.0",
+  "result": {
+    "denom": "utia",
+    "amount": "172118057"
+  },
+  "id": 1
 }
 ```
 
@@ -1450,12 +1482,12 @@ celestia rpc state BalanceForAddress celestia10rtd9lhel2cuh6c659l25yncl6atcyt37u
 
 The response will be the balance of the address you queried:
 
-```bash
+```json
 {
   "jsonrpc": "2.0",
   "result": {
     "denom": "utia",
-    "amount": "100000000"
+    "amount": "1000000"
   },
   "id": 1
 }
@@ -1471,18 +1503,18 @@ celestia rpc p2p Info
 
 The node ID is in the `ID` value from the response:
 
-```bash
+```json
 {
   "jsonrpc": "2.0",
   "result": {
-    "ID": "12D3KooWQHg8eo2DMjkw9WrNrhDq5Z7tPs32uMJkpj8njbGNF8kj",
+    "ID": "12D3KooWFFhCaAqY56oEqY3pLZUdLsv4RYAfVWKATZRepUPdosLp",
     "Addrs": [
       "/ip4/10.0.0.171/tcp/2121",
-      "/ip6/::1/tcp/2121",
       "/ip4/10.0.0.171/udp/2121/quic-v1",
-      "/ip6/::1/udp/2121/quic-v1",
-      "/ip4/71.200.65.106/tcp/54588",
-      "/ip4/71.200.65.106/udp/54588/quic-v1"
+      "/ip4/71.200.65.106/tcp/25630",
+      "/ip4/71.200.65.106/udp/25630/quic-v1",
+      "/ip6/::1/tcp/2121",
+      "/ip6/::1/udp/2121/quic-v1"
     ]
   },
   "id": 1
@@ -1499,10 +1531,10 @@ celestia rpc state AccountAddress
 
 Response: 
 
-```bash
+```json
 {
   "jsonrpc": "2.0",
-  "result": "celestia182wascu47m2fsu6davhktsaledd4pukahs2dgs",
+  "result": "celestia1znk24rh52pgcd9z5x2x42jztjh6raaaphuvrt3",
   "id": 1
 }
 ```
@@ -1525,88 +1557,88 @@ celestia rpc header GetByHeight 1
 
 It will output something like this:
 
-```bash
+```json
 {
- “jsonrpc”: “2.0",
- “result”: {
-  “header”: {
-   “version”: {
-    “block”: “11”,
-    “app”: “1”
-   },
-   “chain_id”: “arabica-9”,
-   “height”: “1”,
-   “time”: “2023-05-30T15:06:21.9265Z”,
-   “last_block_id”: {
-    “hash”: “”,
-    “parts”: {
-     “total”: 0,
-     “hash”: “”
-    }
-   },
-   “last_commit_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-   “data_hash”: “3D96B7D238E7E0456F6AF8E7CDF0A67BD6CF9C2089ECB559C659DCAA1F880353",
-   “validators_hash”: “C4F7F08A8F3024A28D6486B4BA434B12391A29DFA8C04C74589A013A9A0BE427",
-   “next_validators_hash”: “C4F7F08A8F3024A28D6486B4BA434B12391A29DFA8C04C74589A013A9A0BE427",
-   “consensus_hash”: “048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F”,
-   “app_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-   “last_results_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-   “evidence_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-   “proposer_address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397"
-  },
-  “validator_set”: {
-   “validators”: [
-    {
-     “address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397",
-     “pub_key”: {
-      “type”: “tendermint/PubKeyEd25519”,
-      “value”: “oubutxNSyuD0XZNmMQSraHazmE2PjFsZVZ8RNHFX3WA=”
-     },
-     “voting_power”: “500000000”,
-     “proposer_priority”: “0”
-    }
-   ],
-   “proposer”: {
-    “address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397",
-    “pub_key”: {
-     “type”: “tendermint/PubKeyEd25519”,
-     “value”: “oubutxNSyuD0XZNmMQSraHazmE2PjFsZVZ8RNHFX3WA=”
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "version": {
+        "block": "11",
+        "app": "1"
+      },
+      "chain_id": "arabica-9",
+      "height": "1",
+      "time": "2023-06-27T13:02:39.741743Z",
+      "last_block_id": {
+        "hash": "",
+        "parts": {
+          "total": 0,
+          "hash": ""
+        }
+      },
+      "last_commit_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "data_hash": "3D96B7D238E7E0456F6AF8E7CDF0A67BD6CF9C2089ECB559C659DCAA1F880353",
+      "validators_hash": "6363C68770C200FD794445668F9B18F5B1DD1125180D6E8D5AB004F7DD7A0F48",
+      "next_validators_hash": "6363C68770C200FD794445668F9B18F5B1DD1125180D6E8D5AB004F7DD7A0F48",
+      "consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
+      "app_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "last_results_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "evidence_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "proposer_address": "91E04695CF9CF531BC0891E7B1D602B3E8022C86"
     },
-    “voting_power”: “500000000”,
-    “proposer_priority”: “0”
-   }
-  },
-  “commit”: {
-   “height”: 1,
-   “round”: 0,
-   “block_id”: {
-    “hash”: “E5D620B5BE7873222DCD83464C285FD0F215C209393E7481F9A5979280AD6CA2”,
-    “parts”: {
-     “total”: 1,
-     “hash”: “5BDD329766F3803594FA840D5B4860A82115AFA70CB307F28F7E84D3FE883A55”
+    "validator_set": {
+      "validators": [
+        {
+          "address": "91E04695CF9CF531BC0891E7B1D602B3E8022C86",
+          "pub_key": {
+            "type": "tendermint/PubKeyEd25519",
+            "value": "9aNBAxno1B4X5LR2qY5qWqwrMNOzejkctXwzq9BExsg="
+          },
+          "voting_power": "500000000",
+          "proposer_priority": "0"
+        }
+      ],
+      "proposer": {
+        "address": "91E04695CF9CF531BC0891E7B1D602B3E8022C86",
+        "pub_key": {
+          "type": "tendermint/PubKeyEd25519",
+          "value": "9aNBAxno1B4X5LR2qY5qWqwrMNOzejkctXwzq9BExsg="
+        },
+        "voting_power": "500000000",
+        "proposer_priority": "0"
+      }
+    },
+    "commit": {
+      "height": 1,
+      "round": 0,
+      "block_id": {
+        "hash": "7A5FABB19713D732D967B1DA84FA0DF5E87A7B62302D783F78743E216C1A3550",
+        "parts": {
+          "total": 1,
+          "hash": "D85C907CE660878A8203AC74BAA147CCC1F87114B45B568B72AD207B62AFE45E"
+        }
+      },
+      "signatures": [
+        {
+          "block_id_flag": 2,
+          "validator_address": "91E04695CF9CF531BC0891E7B1D602B3E8022C86",
+          "timestamp": "2023-06-30T08:40:19.299137127Z",
+          "signature": "qmaEzrnbtgEXCRYc8pCvGRbS+uMuknIBoRAE4qyE7oSgWCRwBVYS/oPReXQLg9ER1oEY1De4MkWvMjlFnQOOCg=="
+        }
+      ]
+    },
+    "dah": {
+      "row_roots": [
+        "//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU",
+        "/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3"
+      ],
+      "column_roots": [
+        "//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU",
+        "/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3"
+      ]
     }
-   },
-   “signatures”: [
-    {
-     “block_id_flag”: 2,
-     “validator_address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397”,
-     “timestamp”: “2023-05-30T17:44:48.957739642Z”,
-     “signature”: “vgp6mcStXsCN5OmmqtPJCReoSu47bRcysDphTbXjqq4FuR876dwMD0fu/8lyrrpLBSt3vMAA0bTQ0GggXh6VAw==”
-    }
-   ]
   },
-  “dah”: {
-   “row_roots”: [
-    “//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU”,
-    “/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3”
-   ],
-   “column_roots”: [
-    “//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU”,
-    “/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3"
-   ]
-  }
- },
- “id”: 1
+  "id": 1
 }
 ```
 
