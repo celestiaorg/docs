@@ -1218,6 +1218,39 @@ Here's an example of how to set your auth token on a light node on Arabica:
 export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
 ```
 
+##### Auth token on custom or private network
+
+:::tip
+If you are using a private and custom network, you will **need to set the location of the
+node store in your auth command**:
+:::
+
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network private --node.store $HOME/.celestia-light-private)
+```
+
+The above is an example from the following custom network set up with:
+
+```bash
+CELESTIA_CUSTOM=private celestia light init
+```
+
+or
+
+```bash
+celestia light init --p2p.network private
+```
+
+As an example, this is what a completely custom network would look like:
+
+```bash
+# Initialize node store
+CELESTIA_CUSTOM=robusta-22 celestia light init
+
+# Set auth token
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network private --node.store $HOME/.celestia-light-robusta-22)
+```
+
 #### Host URL 
 
 The `--host URL` flag sets the host address,
