@@ -1220,6 +1220,8 @@ export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network arabic
 
 ##### Auth token on custom or private network
 
+This section is for users who are using a `CELESTIA_CUSTOM` or private network.
+
 :::tip
 If you are using a private and custom network, you will **need to set the location of the
 node store in your auth command**:
@@ -1322,7 +1324,7 @@ converted to base64. Here is an example of the format:
 celestia rpc blob submit [namespace in hex] '[data]'
 ```
 
-And an example to submit "gm" as the plain text data:
+And an example to submit "gm" as the plain-text data:
 
 ```bash
 celestia rpc blob submit 0x42690c204d39600fddd3 'gm'
@@ -1385,55 +1387,19 @@ Will generate the following output:
 {
   "result": {
     "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
-    "data": "Z20=",
+    "data": "gm",
     "share_version": 0,
     "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
   }
 }
 ```
 
-The output here is base64-encoded.
+The output here is base64 decoded to plain-text.
 
-{/* To see the JSON request sent over the wire, for example for sending requests via cURL, pass the `-—print-request` flag:
-
-```bash
-celestia rpc blob get-all 219832 0x42690c204d39600fddd3 --print-request
-```
-
-Response:
+To see the base64 response, use the `--base64` flag set to `TRUE` (`--base64=TRUE`):
 
 ```bash
-{
- “Request”: {
-  “id”: 1,
-  “jsonrpc”: “2.0",
-  “method”: “blob.GetAll”,
-  “params”: [
-   219832,
-   [
-    “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=”
-   ]
-  ]
- },
- “Response”: {
-  “jsonrpc”: “2.0”,
-  “result”: [
-   {
-    “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
-    “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
-    “share_version”: 0,
-    “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
-   }
-  ],
-  “id”: 1
- }
-}
-``` */}
-
-To see the plaintext response, use the `--plaintext` flag set to `TRUE` (`--plaintext=TRUE`):
-
-```bash
-celestia rpc blob get 219832 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E= --plaintext=TRUE
+celestia rpc blob get 219832 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E= --base64=TRUE
 ```
 
 The response will look similar to this:
@@ -1442,38 +1408,12 @@ The response will look similar to this:
 {
   "result": {
     "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
-    "data": "gm",
+    "data": "Z20=",
     "share_version": 0,
     "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
   }
 }
 ```
-
-{/* Simiarly, you can cURL the response by running the following command:
-
-```bash
-curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
-   -H 'Content-Type: application/json' \
-   -d '{
-  "id": 1,
-  "jsonrpc": "2.0",
-  "method": "blob.get-all",
-  "params": [
-   219832,
-   0x42690c204d39600fddd3,
-   IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E=
-  ]
- }' \
-   http://localhost:26658
-```
-
-NOTE: THIS ERRORS ^^^
-
-Response:
-
-```bash
-{“jsonrpc”:“2.0",“result”:[{“namespace”:“AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,”data”:“8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1”,“share_version”:0,“commitment”:“y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=“}],“id”:1}
-``` */}
 
 To get all blobs in the namespace at the block height, use `get-all` instead of `get`:
 
@@ -1488,7 +1428,7 @@ This will return the following:
   "result": [
     {
       "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
-      "data": "Z20=",
+      "data": "gm",
       "share_version": 0,
       "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
     }
@@ -1496,10 +1436,10 @@ This will return the following:
 }
 ```
 
-To display the response in plaintext, use:
+To display the response in base64, use:
 
 ```bash
-celestia rpc blob get-all 219832 0x42690c204d39600fddd3 --plaintext=TRUE
+celestia rpc blob get-all 219832 0x42690c204d39600fddd3 --base64=TRUE
 ```
 
 Which will return:
