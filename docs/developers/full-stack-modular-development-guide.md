@@ -8,7 +8,7 @@ description: Learn to build a full stack modular dapp.
 This guide will introduce you to
 [modular blockchains](../concepts/how-celestia-works/introduction.md) like
 Celestia, explain their benefits, and show you how to build a full stack
-modular dapp with React, Vite, RainbowKit, Celestia, and Foundry.
+modular dapp with React, Vite, RainbowKit, Celestia, [OP Stack](../intro-to-op-stack), and Foundry.
 
 Current blockchain architectures are not scalable and face challenges
 around accessibility. In order for blockchains and web3 to reach mass
@@ -34,10 +34,10 @@ EVM-compatible testnet that you will run locally for this tutorial.
 - [Node.js](https://github.com/nvm-sh/nvm)
 - [Foundry](https://github.com/foundry-rs/foundry)
 - [Infura account](https://infura.io) (for uploading files to IPFS)
-- [A Celestia Light Node running](./node-tutorial.mdx) (to post PFBs from your
+- [A funded, synced Celestia light node running](./node-tutorial.mdx) (to post PFBs from your
 rollup)
-- [Ethermint Tutorial](https://rollkit.dev/docs/tutorials/ethermint) (for
-running your own Ethermint rollup & deploying your smart contract)
+- OP Stack Tutorial(s) ([devnet](../optimism-devnet/), [testnet](../optimism/)) (for
+running your own OP Stack rollup & deploying your smart contract)
 - [MetaMask wallet](https://metamask.io) (for connecting to your frontend)
 
 ### Project setup

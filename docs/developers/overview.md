@@ -13,6 +13,7 @@ It includes:
 * How to [create a Celestia wallet](../../category/create-a-celestia-wallet/)
 * How to [interact with the Node API](../../developers/node-api/)
 * How to [deploy sovereign rollups](../../category/deploy-a-rollup/)
+* How to [build a full-stack dapp](../../developers/gm-portal-bubs/)
 * How to [integrate with Celestia](../../developers/integrate-celestia/)
   * [Rollkit](../../developers/rollkit/)
   * [OP Stack](../../category/optimism/)
