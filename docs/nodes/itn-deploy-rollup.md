@@ -11,7 +11,7 @@ Deploy a Sovereign Rollup with Rollkit.
 
 It can be a regular Cosmos-SDK rollup or an Ethermint Rollup.
 You can find tutorials on deploying sovereign rollups with
-Rollkit [here](https://rollkit.dev/docs/tutorials/building-and-deploying-a-rollup).
+Rollkit [here](https://rollkit.dev/tutorials/building-and-deploying-a-rollup).
 
 ## Direction
 

@@ -36,8 +36,8 @@ EVM-compatible testnet that you will run locally for this tutorial.
 - [Infura account](https://infura.io) (for uploading files to IPFS)
 - [A Celestia Light Node running](./node-tutorial.mdx) (to post PFBs from your
 rollup)
-- [Ethermint Tutorial](https://rollkit.dev/docs/tutorials/ethermint) (for
-running your own Ethermint rollup & deploying your smart contract)
+- EVM Tutorial (Coming soon!) - for
+running your own EVM rollup & deploying your smart contract
 - [MetaMask wallet](https://metamask.io) (for connecting to your frontend)
 
 ### Project setup
@@ -299,14 +299,14 @@ address as we’ll also be needing it in just a moment when we test the live con
 
 ### Deploying to the Ethermint Sovereign Rollup
 
-First, we will need to follow the setup from the [Ethermint tutorial](https://rollkit.dev/docs/tutorials/ethermint).
+First, we will need to follow the setup from the EVM tutorial.
 
 :::danger Pre-requisites
 
 It is required that you complete dependency setup,
-RollKit installation, and
-Instantiating and Ethermint rollup from the
-[Ethermint tutorial](https://rollkit.dev/docs/tutorials/ethermint)
+Rollkit installation, and
+Instantiating and EVM rollup from the
+EVM tutorial
 to complete the remainder of the tutorial.
 
 :::
