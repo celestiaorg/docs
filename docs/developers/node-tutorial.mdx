@@ -1270,9 +1270,9 @@ We get the following output:
 
 ```bash
 {
- “jsonrpc”: “2.0”,
- “result”: 32236,
- “id”: 1
+  "jsonrpc": "2.0",
+  "result": 272667,
+  "id": 1
 }
 ```
 
@@ -1290,7 +1290,7 @@ celestia rpc blob Submit 0x42690c204d39600fddd3 '"gm"'
 ```
 
 If you notice from the above output, it returns a `height` of
-`32236` which we will use for the next command.
+`272667` which we will use for the next command.
 
 Note: To learn more about status response codes, please navigate to
 [cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
@@ -1314,7 +1314,7 @@ After submitting your PFB transaction, upon success, the node will return
 the block height for which the PFB transaction was included. You can then
 use that block height and the namespace ID with which you submitted your
 PFB transaction to get your message shares (data) returned to you. In this example,
-the block height we got was 32236 which we will use for the following command.
+the block height we got was 272667 which we will use for the following command.
 Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
 
 Here is what an example of the format of the `GetAll` command looks like:
@@ -1326,23 +1326,23 @@ celestia rpc blob GetAll [block height] [namespace in hex]
 Here is an example command to retrieve the data from above, on `arabica-9`:
 
 ```bash
-celestia rpc blob GetAll 32236 0x42690c204d39600fddd3
+celestia rpc blob GetAll 272667 0x42690c204d39600fddd3
 ```
 
 Will generate the following output:
 
 ```json
 {
- “jsonrpc”: “2.0”,
- “result”: [
-  {
-   “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
-   “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
-   “share_version”: 0,
-   “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
-  }
- ],
- “id”: 1
+  "jsonrpc": "2.0",
+  "result": [
+    {
+      "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+      "data": "8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
+      "share_version": 0,
+      "commitment": "R4DRTAENQ7fGawPbt8aMse1+YReCZYg87xZIZf2fAxc="
+    }
+  ],
+  "id": 1
 }
 ```
 
@@ -1351,36 +1351,36 @@ The output here is base64-encoded.
 To see the JSON request sent over the wire, for example for sending requests via cURL, pass the `-—print-request` flag:
 
 ```bash
-celestia rpc blob GetAll 32236 0x42690c204d39600fddd3 --print-request
+celestia rpc blob GetAll 272667 0x42690c204d39600fddd3 --print-request
 ```
 
 Response:
 
 ```bash
 {
- “Request”: {
-  “id”: 1,
-  “jsonrpc”: “2.0",
-  “method”: “blob.GetAll”,
-  “params”: [
-   32236,
-   [
-    “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=”
-   ]
-  ]
- },
- “Response”: {
-  “jsonrpc”: “2.0”,
-  “result”: [
-   {
-    “namespace”: “AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,
-    “data”: “8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
-    “share_version”: 0,
-    “commitment”: “y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=”
-   }
-  ],
-  “id”: 1
- }
+  "Request": {
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "blob.GetAll",
+    "params": [
+      272667,
+      [
+        "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM="
+      ]
+    ]
+  },
+  "Response": {
+    "jsonrpc": "2.0",
+    "result": [
+      {
+        "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+        "data": "8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
+        "share_version": 0,
+        "commitment": "R4DRTAENQ7fGawPbt8aMse1+YReCZYg87xZIZf2fAxc="
+      }
+    ],
+    "id": 1
+  }
 }
 ```
 
@@ -1394,9 +1394,9 @@ curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
   "jsonrpc": "2.0",
   "method": "blob.GetAll",
   "params": [
-   32236,
+   272667,
    [
-    "AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA="
+    "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM="
    ]
   ]
  }' \
@@ -1406,7 +1406,7 @@ curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
 Response:
 
 ```bash
-{“jsonrpc”:“2.0",“result”:[{“namespace”:“AAAAAAAAAAAAAAAAAAAAAAAAAAwgTTlgD93TAAA=“,”data”:“8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1”,“share_version”:0,“commitment”:“y0WFz9YPTAtkdv781IfcMO144qkdnAnjKnL9oJxkQ44=“}],“id”:1}
+{"jsonrpc":"2.0","result":[{"namespace":"AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=","data":"8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1","share_version":0,"commitment":"R4DRTAENQ7fGawPbt8aMse1+YReCZYg87xZIZf2fAxc="}],"id":1}
 ```
 
 ### Examples
