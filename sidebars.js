@@ -557,7 +557,7 @@ const sidebars = {
         {
           type: 'doc',
           label: "Reserved namespaces",
-          id: "concepts/specifications/reserved-namespace-id"
+          id: "concepts/specifications/reserved-namespaces"
         },
         {
           type: "link",
