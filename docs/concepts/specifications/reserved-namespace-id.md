@@ -1,11 +1,10 @@
 ---
-sidebar_label: Reserved Namespace IDs
-description: Reserved namespace IDs on the Celestia Network.
+sidebar_label: Reserved Namespaces
+description: Reserved Namespaces on the Celestia Network.
 ---
+# Reserved Namespaces
 
-# Reserved Namespace IDs
-
-This is a table of reserved namespace IDs on the Celestia Network.
+This is a table of reserved namespaces on the Celestia Network.
 
 You can learn more
 [here](https://celestiaorg.github.io/celestia-app/specs/namespace.html#reserved-namespaces)
