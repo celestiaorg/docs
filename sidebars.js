@@ -556,8 +556,8 @@ const sidebars = {
       items: [
         {
           type: 'doc',
-          label: "Reserved namespace IDs",
-          id: "concepts/specifications/reserved-namespace-id"
+          label: "Reserved namespaces",
+          id: "concepts/specifications/reserved-namespaces"
         },
         {
           type: "link",
