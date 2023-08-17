@@ -1,0 +1,55 @@
+---
+sidebar_label: Cosmostation integration 
+description: How you can add Celestia network parameters to Cosmostation wallet.
+---
+
+# Cosmostation integration with Celestia
+
+import constants from "../../versions/constants.js";
+import InlineText from "../../src/components/InlineText.js";
+
+This guide will go over how you can add Celestia network parameters to Cosmostation wallet.
+
+The example in this guide is for <InlineText constant={constants.mochaChainId} /> testnet, and the same workflow can be used for any Celestia network.
+
+## Install Cosmostation
+
+Cosmostation is a popular Cosmos-based wallet that allows anyone
+to connect to Cosmos chains from their browser or phone.
+
+Learn more and download Cosmostation [here](https://www.leapwallet.io/).
+
+Download the Chrome extension from this
+[page](https://cosmostation.io/products/cosmostation_extension).
+Follow the instructions to install the extension.
+
+## Add Celestia network parameters
+
+Click the hamburger menu icon in the top corner of Cosmostation wallet. Scroll down and
+click "Add Custom Chain"
+
+![cosmostation-add-chain](/img/cosmostation/cosmostation.gif)
+
+You can
+then add the following parameters:
+
+* Custom Chain name: `Mocha Testnet`
+* Rest URL: `https://api-mocha.pops.one`
+* New RPC URL: `https://rpc-mocha.pops.one`
+* Currency symbol: `TIA`
+* Address prefix: `celestia`
+* Demon: `utia`
+* Symbol image URL (optional): `https://raw.githubusercontent.com/cosmos/chain-registry/master/testnets/celestiatestnet/images/celestia.svg`
+* Explorer URL (optional): `https://testnet.mintscan.io/celestia-testnet`
+* Coin Type: `118`
+* Decimals: `6`
+* Gas rate Tiny: `0.1`
+* Gas rate Low: `0.25`
+* Gas rate Average: `0.5`
+
+Now, click `Add a custom chain` and you will be able to view your Celestia
+account balance and transactions in Cosmostation wallet.
+
+Switch chains to "Mocha Testnet" and you'll see that you're connected to Celestia's Mocha Testnet!
+
+![cosmostation](/img/cosmostation/cosmostation.png)
