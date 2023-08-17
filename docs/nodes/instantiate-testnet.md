@@ -97,7 +97,8 @@ Run the following command:
 ```sh
 STAKING_AMOUNT=1000000000utia
 celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
-  --keyring-backend test
+  --keyring-backend test \
+  --evm-address 0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488
 ```
 
 This will create the genesis transaction for your new chain.
