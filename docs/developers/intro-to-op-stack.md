@@ -15,8 +15,7 @@ minimal overhead.
 ## About the integration
 
 *Discover how to integrate existing blockchain frameworks
-like the OP Stack
-can integrate with Celestia in this category.*
+like the OP Stack with Celestia in this category.*
 
 :::tip
 Tested on a machine with 8GB RAM, 160 GB SSD,
