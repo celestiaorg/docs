@@ -23,13 +23,7 @@ From user-friendly interfaces to software binaries, this category will guide you
     1. [Ledger](../keplr) the Keplr guide will also show you how to use your Ledger
     device to securely manage your account.
 
-2. [Leap wallet](../leap)
-
-    Leap stands out with its intuitive design and advanced security features. Being
-    integrated into the Celestia ecosystem, Leap offers both new and seasoned users a
-    reliable environment for managing their digital assets.
-
-3. [Cosmostation wallet](../leap)
+2. [Cosmostation wallet](../leap)
 
     Renowned for its staking and defi capabilities, Cosmostation's integration with
     Celestia pushes the boundaries of what's possible in the wallet ecosystem. Users
