@@ -24,7 +24,7 @@ through the offerings in the Celestia wallet space.
     1. [Ledger](../keplr) the Keplr guide will also show you how to use your Ledger
     device to securely manage your account.
 
-2. [Cosmostation wallet](../leap)
+2. [Cosmostation wallet](../cosmostation)
 
     Renowned for its staking and defi capabilities, Cosmostation's integration with
     Celestia pushes the boundaries of what's possible in the wallet ecosystem. Users
