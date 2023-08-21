@@ -166,7 +166,7 @@ so we must install Golang to build and run them.
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
@@ -279,7 +279,7 @@ go version go{constants.golangNodeBSR} darwin/amd64
 </TabItem>
 </Tabs>
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
@@ -516,7 +516,7 @@ go version go{constants.golangNodeArabica} darwin/amd64
 
 ```mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
@@ -645,7 +645,7 @@ Golang version: go{constants.golangNodeBSR}<br/>
 </TabItem>
 </Tabs>
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
@@ -915,7 +915,7 @@ Run the following command:
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
 celestia light init --p2p.network blockspacerace
@@ -930,7 +930,7 @@ $ celestia light init
 2022-12-19T21:45:24.592Z        INFO    node    nodebuilder/init.go:51  Node Store initialized
 ```
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 ```sh
@@ -969,7 +969,7 @@ $ celestia light init --p2p.network arabica<br/>
 
 ````mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 Start the light node with a connection to a validator node's gRPC endpoint (which
 is usually exposed on port 9090):
@@ -990,7 +990,7 @@ required to be open on your machine.
 celestia light start --core.ip <ip-address> --p2p.network <network>
 ```
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 Start the light node with a connection to a validator node's gRPC endpoint (which
@@ -1038,7 +1038,7 @@ celestia light start --core.ip <ip-address> --p2p.network <network>
 </Tabs>
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../blockspace-race)
 
@@ -1048,7 +1048,7 @@ For example, your command might look something like this:
 celestia light start --core.ip rpc-blockspacerace.pops.one --p2p.network blockspacerace
 ```
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
@@ -1087,7 +1087,7 @@ You can start your light node with the key created above by running the
 following command:
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
 celestia light start --core.ip <ip-address> --keyring.accname <key_name> --p2p.network blockspacerace
@@ -1097,7 +1097,7 @@ Once you start the Light Node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
 `PayForBlob` transactions.
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 ```sh
@@ -1159,13 +1159,13 @@ In order to run a light node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
 celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_key> --p2p.network blockspacerace
 ```
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 ```sh
@@ -1192,12 +1192,12 @@ process with SystemD [here](./systemd.md#celestia-light-node).
 
 ```mdx-code-block
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 With your light node running, you can check out this tutorial on
 submitting `PayForBlob` transactions [here](../../developers/node-tutorial).
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 With your light node running, you can check out this tutorial on

@@ -48,13 +48,13 @@ First, stop your node safely using `control + C`.
 Then, init your node again with a new node store:
 
 ```bash
-celestia <node-type> init --node.store /home/user/celestia-<node-type>-location/ --p2p.network blockspacerace
+celestia <node-type> init --node.store /home/user/celestia-<node-type>-location/ --p2p.network mocha
 ```
 
 Next, start your node:
 
 ```bash
-celestia full start --core.ip rpc-blockspacerace.pops.one --p2p.network blockspacerace --node.store /home/user/celestia-<node-type>-location/
+celestia full start --core.ip rpc-mocha.pops.one --p2p.network mocha --node.store /home/user/celestia-<node-type>-location/
 ```
 
 If you choose to change the location of your node store,
@@ -69,7 +69,7 @@ When using `cel-key`, the process is different.
 To show the keys you should add `--keyring-dir` like this example:
 
 ```bash
-./cel-key list --p2p.network blockspacerace --node.type full --keyring-dir /home/user/celestia-<node-type>-location/keys/
+./cel-key list --p2p.network mocha --node.type full --keyring-dir /home/user/celestia-<node-type>-location/keys/
 ```
 
 ## Network selection
@@ -185,7 +185,7 @@ celestia <node-type> unsafe-reset-store --p2p.network <network>
 ### Example for light node on Blockspace Race on v0.9.0+
 
 ```bash
-celestia light unsafe-reset-store --p2p.network blockspacerace
+celestia light unsafe-reset-store --p2p.network mocha
 ```
 
 </TabItem>
@@ -265,22 +265,22 @@ Make sure not to remove anything except the
 :::
 
 ```sh
-rm -rf ~./celestia-light-blockspacerace-0/data
-celestia light init --p2p.network blockspacerace
+rm -rf ~./celestia-light-mocha-0/data
+celestia light init --p2p.network mocha
 ```
 
 Your output will look similar to below:
 
 ```sh
-2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-blockspacerace-0'
-2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-blockspacerace-0/config.toml"}
+2022-11-01T22:23:19.581+0100	INFO	node	nodebuilder/init.go:20	Initializing Light Node Store over '/Users/joshstein/.celestia-light-mocha-0'
+2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:51	Saving config	{"path": "/Users/joshstein/.celestia-light-mocha-0/config.toml"}
 2022-11-01T22:23:19.582+0100	INFO	node	nodebuilder/init.go:52	Node Store initialized
 ```
 
 Then start your node:
 
 ```sh
-celestia light start --p2p.network blockspacerace --core.ip <address>
+celestia light start --p2p.network mocha --core.ip <address>
 ```
 
 </TabItem>
