@@ -9,7 +9,8 @@ This category covers different types of wallets available for use on the
 Celestia network. Celestia's ecosystem offers a wide assortment of wallet solutions,
 providing users and developers options for storing and managing their TIA.
 
-From user-friendly interfaces to software binaries, this category will guide you through the offerings in the Celestia wallet space.
+From user-friendly interfaces to software binaries, this category will guide you
+through the offerings in the Celestia wallet space.
 
 ## Wallets
 
@@ -27,8 +28,8 @@ From user-friendly interfaces to software binaries, this category will guide you
 
     Renowned for its staking and defi capabilities, Cosmostation's integration with
     Celestia pushes the boundaries of what's possible in the wallet ecosystem. Users
-    benefit from a holistic wallet experience, encompassing everything from staking to
-    asset management.
+    benefit from a holistic wallet experience, encompassing everything from staking
+    to asset management.
 
 ## For developers
 
