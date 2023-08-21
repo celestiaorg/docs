@@ -266,7 +266,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Create a Celestia wallet",
+      label: "Wallets on Celestia",
       link: {
         type: "doc",
         id: "developers/wallets"

@@ -10,7 +10,7 @@ of Celestia.
 
 It includes:
 
-* How to [create a Celestia wallet](../../developers/wallets/)
+* An overview of [wallets on Celestia](../../developers/wallets/)
 * How to [interact with the Node API](../../developers/node-api/)
 * How to [deploy sovereign rollups](../../category/deploy-a-rollup/)
 * How to [integrate with Celestia](../../developers/integrate-celestia/)
