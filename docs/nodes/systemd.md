@@ -72,7 +72,7 @@ until it is in sync.
 
 ### Celestia full storage node
 
-Create Celestia Full Storage Node systemd file:
+Create Celestia full storage node systemd file:
 
 ```sh
 sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-full.service
@@ -147,8 +147,8 @@ celestia-bridge.service -f
 Now, the Celestia bridge node will start syncing headers and storing blocks
 from `celestia-app`.
 
-> Note: At startup, we can see the `multiaddress` from Celestia Bridge Node.
-This is **needed for future Light Node** connections and communication between
+> Note: At startup, we can see the `multiaddress` from Celestia bridge node.
+This is **needed for future light node** connections and communication between
 Celestia Bridge Nodes
 
 Example:
@@ -162,13 +162,13 @@ You should be seeing logs coming through of the bridge node syncing.
 
 ### Celestia light node
 
-Start the Light Node as daemon process in the background
+Start the light node as daemon process in the background
 
 <!-- markdownlint-disable MD013 -->
 ```sh
 sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-lightd.service
 [Unit]
-Description=celestia-lightd Light Node
+Description=celestia-lightd light node
 After=network-online.target
 
 [Service]
@@ -209,6 +209,6 @@ Check daemon logs in real time:
 sudo journalctl -u celestia-lightd.service -f
 ```
 
-Now, the Celestia Light Node will start syncing headers.
-After sync is finished, Light Node will do Data Availability
-Sampling (DAS) from the Bridge Node.
+Now, the Celestia light node will start syncing headers.
+After sync is finished, light node will do Data Availability
+Sampling (DAS) from the bridge node.

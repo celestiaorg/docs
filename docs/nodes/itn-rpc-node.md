@@ -14,7 +14,7 @@ for running `celestia-app` to provide an RPC endpoint.
 ## Directions
 
 1. Run a publicly-available RPC node by following the
-  Full Consensus Node tutorial.
+  Full consensus node tutorial.
 2. Provide the IP and port of the available RPC node to the community
   and ensure the correct ports are open so that the community
   can use it.

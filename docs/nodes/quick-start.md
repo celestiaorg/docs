@@ -24,7 +24,7 @@ nodes, which will be covered in later sections.
 ## Celestia App
 
 `celestia-app` is the software that allows you to run
-Validator nodes and also provide RPC endpoints.
+validator nodes and also provide RPC endpoints.
 
 `celestia-app` covers the Consensus layer, while `celestia-node`
 covers the Data Availability layer.
@@ -45,7 +45,7 @@ your node on Mocha.
 In this Quick Start guide, we will go over installing both of
 the software clients: `celestia-node` and `celestia-app`.
 
-> NOTE: If you just want to run a Light Node, you don't need to
+> NOTE: If you just want to run a light node, you don't need to
   install `celestia-app` and can skip that part.
 
 Proceed to the next section in order to get started.
