@@ -16,20 +16,10 @@ through the offerings in the Celestia wallet space.
 
 1. [Keplr wallet](../keplr)
 
-    Keplr is a widely recognized non-custodial wallet. The seamless integration with
-    Celestia ensures that users have a secure and user-friendly platform for managing
-    their assets. With the cross-chain capabilities of Keplr, users can manage, stake,
-    and swap tokens effortlessly.
-
     1. [Ledger](../keplr) the Keplr guide will also show you how to use your Ledger
     device to securely manage your account.
 
 2. [Cosmostation wallet](../cosmostation)
-
-    Renowned for its staking and defi capabilities, Cosmostation's integration with
-    Celestia pushes the boundaries of what's possible in the wallet ecosystem. Users
-    benefit from a holistic wallet experience, encompassing everything from staking
-    to asset management.
 
 ## For developers
 
