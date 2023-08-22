@@ -6,9 +6,9 @@ description: Learn how to stake your tokens on the Celestia network.
 # Staking on Celestia
 
 Engage with the Celestia network at a deeper level through staking. As an
-essential mechanism to a proof-of-stake network, staking strengthens the
-network's security and offers participants the opportunity to earn rewards.
-Dive into the specifics and best practices of Celestia staking on this page.
+essential mechanism to a proof-of-stake network, users can secure the
+network by delegating to a validator and receiving a share of it's
+staking rewards.
 
 Currently, the following staking interfaces exist for the
 [Mocha testnet](../../nodes/mocha-testnet).
