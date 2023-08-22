@@ -7,7 +7,7 @@ description: An overview of wallets for users and developers on the Celestia net
 
 This category covers different types of wallets available for use on the
 Celestia network. Celestia's ecosystem offers a wide assortment of wallet solutions,
-providing users and developers options for storing and managing their TIA.
+providing users and developers options for storing and managing their tokens.
 
 From user-friendly interfaces to software binaries, this category will guide you
 through the offerings in the Celestia wallet space.
