@@ -29,7 +29,7 @@ help you plan and execute your meetups effectively.
     5. Sovereign Rollups
     6. Q&A session
 
-## Sample “Run a Celestia Light Node” workshop presentation
+## Sample “Run a Celestia light node” workshop presentation
 
 * [Link](https://docs.google.com/presentation/d/1fV7OYUdW4kafkZcgHwFenFWDbSIwkk0R6BnSKrAV-Hc/edit#slide=id.g20713cce7c2_1_0)
 * Summary:

@@ -7,7 +7,7 @@ description: A tutorial for setting up a Celestia validator node.
 
 Validator nodes allow you to participate in consensus in the Celestia network.
 
-![Validator Node](../../static/img/nodes/validator.png)
+![Validator node](../../static/img/nodes/validator.png)
 
 ## Hardware requirements
 
@@ -233,8 +233,8 @@ but is not required for `celestia-app`.
 If you are not running a bridge node, you can skip to
 [Run a validator node](#run-a-validator-node).
 
-This section describes part 2 of Celestia Validator Node setup: running a
-Celestia Bridge Node daemon.
+This section describes part 2 of Celestia validator node setup: running a
+Celestia bridge node daemon.
 
 ### Install Celestia Node
 
@@ -307,7 +307,7 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
-Continuing the Validator tutorial, here are the steps to connect your
+Continuing the validator tutorial, here are the steps to connect your
 validator to Mocha:
 
 ```sh

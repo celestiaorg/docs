@@ -43,7 +43,7 @@ defined by a data commitment window, are
 discussed more in-depth in the following
 [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
 
-The Orchestrator is part of the Validator setup and works as follows:
+The Orchestrator is part of the validator setup and works as follows:
 
 * Celestia App: creates an attestation on the state machine level that needs to
   be signed
@@ -69,8 +69,8 @@ You can learn more about the mechanics behind the Relayer in this
 
 The following sections in this category presume you have the following setup:
 
-* A Celestia App [Validator](../validator-node) running
-* A Celestia Node - [Bridge Node](../bridge-node) running
+* A Celestia App [validator](../validator-node) running
+* A Celestia Node - [bridge node](../bridge-node) running
 
 ## Next steps
 
