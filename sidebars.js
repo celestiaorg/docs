@@ -266,9 +266,10 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Create a Celestia wallet",
+      label: "Wallets on Celestia",
       link: {
-        type: "generated-index",
+        type: "doc",
+        id: "developers/wallets"
       },
       collapsed: false,
       items: [
