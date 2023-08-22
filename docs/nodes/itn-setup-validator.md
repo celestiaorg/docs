@@ -56,7 +56,7 @@ This task is for you to setup your own validator.
 ## Submission
 
 Validators need to submit their `celestiavaloper` operator address and
-their Bridge Node ID.
+their bridge node ID.
 
 Link to submit can be found [here](https://celestia.knack.com/theblockspacerace#testnet-portal).
 

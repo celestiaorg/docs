@@ -1,11 +1,11 @@
 ---
 sidebar_label: Bridge node
-description: Learn how to set up your Celestia Bridge node.
+description: Learn how to set up your Celestia bridge node.
 ---
 
 # Setting up a Celestia bridge node
 
-This tutorial will go over the steps to setting up your Celestia Bridge node.
+This tutorial will go over the steps to setting up your Celestia bridge node.
 
 Bridge nodes connect the data availability layer and the consensus layer.
 
@@ -68,7 +68,7 @@ Follow the tutorial here installing the dependencies [here](./environment.mdx).
 
 ### Install Celestia Node
 
-Install the `celestia-node` binary, which will be used to run the Bridge Node.
+Install the `celestia-node` binary, which will be used to run the bridge node.
 
 Follow the tutorial for installing `celestia-node` [here](./celestia-node.mdx).
 
@@ -173,7 +173,7 @@ celestia bridge init --core.ip consensus-full-arabica-9.celestia-arabica.com --p
 <Tabs groupId="network">
 <TabItem value="blockspacerace" label="Blockspace Race">
 
-Start the Bridge Node with a connection to a validator node's gRPC endpoint
+Start the bridge node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
@@ -202,7 +202,7 @@ celestia bridge start --core.ip <ip-address> --p2p.network blockspacerace
 
 You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
 
-Once you start the Bridge Node, a wallet key will be generated for you.
+Once you start the bridge node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for
 `PayForBlob` transactions.
 You can find the address by running the following command:
@@ -218,7 +218,7 @@ You can get testnet tokens from:
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
-Start the Bridge Node with a connection to a validator node's gRPC endpoint
+Start the bridge node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
@@ -247,7 +247,7 @@ celestia bridge start --core.ip rpc-mocha.pops.one:26657
 
 You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
 
-Once you start the Bridge Node, a wallet key will be generated for you.
+Once you start the bridge node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for
 `PayForBlob` transactions.
 You can find the address by running the following command:
@@ -267,7 +267,7 @@ You can get testnet tokens from:
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-Start the Bridge Node with a connection to a validator node's gRPC endpoint
+Start the bridge node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
@@ -296,7 +296,7 @@ celestia bridge start --core.ip consensus-full-arabica-9.celestia-arabica.com --
 
 You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
 
-Once you start the Bridge Node, a wallet key will be generated for you.
+Once you start the bridge node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for
 `PayForBlob` transactions.
 You can find the address by running the following command:

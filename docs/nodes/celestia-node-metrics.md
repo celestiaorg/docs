@@ -49,7 +49,7 @@ works as specified in the following [ADR](https://github.com/celestiaorg/celesti
 
 Essentially, the design considerations here will necessitate
 running an OpenTelemetry (OTEL) collector that connects to Celestia
-Light Node.
+light node.
 
 For an overview of OTEL, check out the guide [here](https://opentelemetry.io/docs/collector).
 

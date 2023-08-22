@@ -7,12 +7,12 @@ description: Instructions for updating your Bridge node to the latest version re
 
 ## Description
 
-Update your Bridge node to the latest version release. You
+Update your bridge node to the latest version release. You
 can find the latest version release [here](https://github.com/celestiaorg/celestia-node/releases).
 
 Update your full consensus node to the latest release. You
 can find the latest version release [here](https://github.com/celestiaorg/celestia-app/releases).
-Note that your Bridge node will not work without upgrading
+Note that your bridge node will not work without upgrading
 your full consensus node.
 
 ## Directions
