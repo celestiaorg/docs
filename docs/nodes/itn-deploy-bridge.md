@@ -1,21 +1,21 @@
 ---
 sidebar_label: Deploy a bridge node
-description: Instructions for deploying a Celestia Bridge Node.
+description: Instructions for deploying a Celestia bridge node.
 ---
 
 # Deploy a bridge node
 
 ## Description
 
-Deploy a Celestia Bridge Node and Perform Data Availability
+Deploy a Celestia bridge node and Perform Data Availability
 Sampling (DAS).
 
 You can find resources on doing this by following the
 tutorial [here](../../nodes/bridge-node)
 and [here](../../developers/node-tutorial#submit-a-pfb-transaction).
 
-For an RPC endpoint, you as a Bridge Node Operator must run your own
-Full Consensus Node and connect your Bridge Node to it.
+For an RPC endpoint, you as a bridge node Operator must run your own
+full consensus node and connect your bridge node to it.
 
 The docs for that are found [here](https://docs.celestia.org/nodes/full-consensus-node).
 
@@ -63,8 +63,8 @@ To learn more, visit the
 
 ## Directions
 
-1. Setup Your Celestia Bridge Node
-2. How to find your bridge Node ID is found
+1. Setup Your Celestia bridge node
+2. How to find your bridge node ID is found
   [here](../../developers/node-tutorial/#get-your-node-id)
 3. Make sure that the wallet address the node uses is funded
 4. The keys directory under `.celestia-bridge-blockspacerace-0/keys`
@@ -81,7 +81,7 @@ Please do a backup of the keys directory in order to not lose your progress.
 
 ## Submission
 
-Please submit your Bridge Node ID and wallet address.
+Please submit your bridge node ID and wallet address.
 
 Submission link can be found [here](https://celestia.knack.com/theblockspacerace#testnet-portal).
 

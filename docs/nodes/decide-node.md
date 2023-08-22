@@ -11,13 +11,13 @@ you can start exploring which nodes to run!
 ## Beginner
 
 It is highly recommended if you are a beginner to
-get started with running a Data-Availability Light Node.
+get started with running a Data-Availability light node.
 
 In order to get started, you can proceed to the
-Light Node section [here](./light-node.mdx).
+light node section [here](./light-node.mdx).
 
 You can also play around with the Data Availability API
-in this tutorial for the Light Node [here](../developers/node-tutorial.mdx).
+in this tutorial for the light node [here](../developers/node-tutorial.mdx).
 
 ## Advanced
 

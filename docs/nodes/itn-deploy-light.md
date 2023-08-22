@@ -1,13 +1,13 @@
 ---
 sidebar_label: Deploy a light node
-description: Instructions for deploying a Celestia Light Node.
+description: Instructions for deploying a Celestia light node.
 ---
 
 # Deploy a light node
 
 ## Description
 
-Deploy a Celestia Light Node and Perform Data Availability
+Deploy a Celestia light node and perform Data Availability
 Sampling (DAS).
 
 You can find resources on doing this by following the
@@ -57,9 +57,9 @@ To learn more, visit the
 
 ## Directions
 
-1. Setup Your Celestia Light Node
+1. Setup Your Celestia light node
 2. Perform Data Availability Sampling (DAS).
-3. How to find your light Node ID is found
+3. How to find your light node ID is found
   [here](../../developers/node-tutorial/#get-your-node-id).
 4. Make sure that the wallet address the node uses is funded.
   To find your auto generated wallet by your node, use
@@ -78,7 +78,7 @@ Please do a backup of the keys directory in order to not lose your progress.
 
 ## Submission
 
-Please submit your Light Node ID and your wallet address.
+Please submit your light node ID and your wallet address.
 
 Submission link can be found [here](https://celestia.knack.com/theblockspacerace#testnet-portal).
 

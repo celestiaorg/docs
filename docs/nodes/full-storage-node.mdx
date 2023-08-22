@@ -20,7 +20,7 @@ Full Storage nodes are Celestia nodes that store all the data. Full
 Storage nodes send block shares, headers, and fraud proofs to Light Nodes.
 The Light Nodes gossip headers, fraud proofs, and sometimes block shares, between one another. 
 
-![Full Storage Node](../../static/img/full-storage-node.png)
+![Full storage node](../../static/img/full-storage-node.png)
 
 ## Hardware requirements
 
@@ -43,7 +43,7 @@ You can follow the tutorial for setting up your dependencies [here](./environmen
 ## Install celestia-node
 
 > Note: Make sure that you have at least 250+ Gb of free space for
-  Celestia Full Storage Node
+  Celestia full storage node
 
 You can follow the tutorial for installing `celestia-node` [here](./celestia-node.mdx)
 
@@ -85,7 +85,7 @@ celestia full init --p2p.network arabica
 <Tabs groupId="network">
 <TabItem value="blockspacerace" label="Blockspace Race">
 
-Start the Full Storage Node with a connection to a validator node's gRPC endpoint
+Start the full storage node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 :::tip
@@ -126,12 +126,12 @@ You can get testnet tokens from:
   rollup, it is highly recommended to request Arabica devnet tokens
   as Arabica has the latest changes that can be used to
   test for developing your sovereign rollup. You can still use
-  Mocha Testnet as well, it is just mostly used for Validator operations.
+  Mocha Testnet as well, it is just mostly used for validator operations.
 
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
-Start the Full Storage Node with a connection to a validator node's gRPC endpoint
+Start the full storage node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 :::tip
@@ -172,12 +172,12 @@ You can get testnet tokens from:
   rollup, it is highly recommended to request Arabica devnet tokens
   as Arabica has the latest changes that can be used to
   test for developing your sovereign rollup. You can still use
-  Mocha Testnet as well, it is just mostly used for Validator operations.
+  Mocha Testnet as well, it is just mostly used for validator operations.
 
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-Start the Full Storage Node with a connection to a validator node's gRPC endpoint
+Start the full storage node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 :::tip
@@ -218,7 +218,7 @@ You can get testnet tokens from:
   rollup, it is highly recommended to request Arabica devnet tokens
   as Arabica has the latest changes that can be used to
   test for developing your sovereign rollup. You can still use
-  Mocha Testnet as well, it is just mostly used for Validator operations.
+  Mocha Testnet as well, it is just mostly used for validator operations.
 
 </TabItem>
 </Tabs>
@@ -263,7 +263,7 @@ celestia full start --core.ip http://<ip-address> --keyring.accname <name-of-cus
 Follow the tutorial on setting up the full storage node as a background
 process with SystemD [here](./systemd.md).
 
-With that, you are now running a Celestia Full Storage Node.
+With that, you are now running a Celestia full storage node.
 
 ### Stop the full node
 

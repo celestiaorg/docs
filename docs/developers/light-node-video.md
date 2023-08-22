@@ -1,12 +1,12 @@
 ---
 sidebar_label: Node video tutorials
-description: A video showing how to set up a Celestia Light Node.
+description: A video showing how to set up a Celestia light node.
 ---
 
 # Node video tutorial
 <!-- markdownlint-disable MD033 -->
 
-This video will guide you through setting up a Celestia Light Node,
+This video will guide you through setting up a Celestia light node,
 which can allow you to do data-sampling on the Data Availability (DA)
 network.
 
@@ -15,7 +15,7 @@ network.
 <div class="youtube-wrapper">
   <iframe
      class="youtube-video"
-     title="Running a Celestia Light Node"
+     title="Running a Celestia light node"
      src="https://youtube.com/embed/WFubhQc8tGk"
      allowfullscreen
   >
@@ -27,7 +27,7 @@ network.
 <div class="youtube-wrapper">
   <iframe
      class="youtube-video"
-     title="Running a Celestia Light Node"
+     title="Running a Celestia light node"
      src="https://youtube.com/embed/ROZv871Q7RM"
      allowfullscreen
   >
