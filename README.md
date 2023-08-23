@@ -1,6 +1,8 @@
 # Celestia Docs Page
 
 Celestia Docs is built using [Docusaurus 2](https://docusaurus.io), a modern static website generator.
+Learn more in the
+[Docusaurus Documentation](https://docusaurus.io/docs).
 
 ## Installation 🛠️
 
