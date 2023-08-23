@@ -94,7 +94,7 @@ you can refer to the
 Run the image from the command line:
 
 <pre><code>
-docker run -e NODE_TYPE=light -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia light start --core.ip rpc-arabica-9.consensus.celestia-arabica.com --p2p.network arabica
+docker run -e NODE_TYPE=light -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia light start --core.ip consensus-validator-arabica-9.celestia-arabica.com --p2p.network arabica
 </code></pre>
 
 :::tip
@@ -165,7 +165,7 @@ you can refer to the
 Run the image from the command line:
 
 <pre><code>
-docker run -e NODE_TYPE=bridge -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia bridge start --core.ip rpc-arabica-9.consensus.celestia-arabica.com --p2p.network arabica
+docker run -e NODE_TYPE=bridge -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia bridge start --core.ip consensus-validator-arabica-9.celestia-arabica.com --p2p.network arabica
 </code></pre>
 
 :::tip
@@ -236,7 +236,7 @@ you can refer to the
 Run the image from the command line:
 
 <pre><code>
-docker run -e NODE_TYPE=full -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia full start --core.ip rpc-arabica-9.consensus.celestia-arabica.com --p2p.network arabica
+docker run -e NODE_TYPE=full -e P2P_NETWORK=arabica ghcr.io/celestiaorg/celestia-node:{arabicaVersions['node-latest-tag']} celestia full start --core.ip consensus-validator-arabica-9.celestia-arabica.com --p2p.network arabica
 </code></pre>
 
 :::tip
