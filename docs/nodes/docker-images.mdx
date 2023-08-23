@@ -43,7 +43,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="light" label="Light">
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 ## Blockspace Race light node setup
 
@@ -64,7 +64,7 @@ If you would like to run the node with custom flags,
 you can refer to the
 [`celestia-node` tutorial](../../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 ## Mocha testnet light node setup
@@ -114,7 +114,7 @@ you can refer to the
 <TabItem value="bridge" label="Bridge">
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 ## Blockspace Race bridge node setup
 
@@ -135,7 +135,7 @@ If you would like to run the node with custom flags,
 you can refer to the
 [`celestia-node` tutorial](../../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 ## Mocha bridge node setup
@@ -185,7 +185,7 @@ you can refer to the
 <TabItem value="full" label="Full">
 
 <Tabs groupId="network">
-<TabItem value="blockspacerace" label="Blockspace Race">
+{/* <TabItem value="blockspacerace" label="Blockspace Race">
 
 ## Blockspace Race full node setup
 
@@ -206,7 +206,7 @@ If you would like to run the node with custom flags,
 you can refer to the
 [`celestia-node` tutorial](../../developers/node-tutorial#connect-to-a-public-core-endpoint) page.
 
-</TabItem>
+</TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
 ## Mocha full node setup
@@ -292,11 +292,11 @@ In this command, we'll create our key and initialize the node store:
 docker run [...args] -v $HOME/my-node-store:/home/celestia celestia <node-type> init [...args]
 ```
 
-An example init command for the Blockspace Race will look similar to below:
+An example init command for Mocha testnet will look similar to below:
 
 ````mdx-code-block
 <pre><code>
-docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light init --p2p.network blockspacerace
+docker run -e NODE_TYPE=light -e P2P_NETWORK=mocha -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{mochaVersions['node-latest-tag']} celestia light init --p2p.network mocha
 </code></pre>
 ````
 
@@ -310,11 +310,11 @@ docker run [...args] -v $HOME/my-node-store:/home/celestia celestia <node-type> 
 ```
 
 A full start command will look similar to below. This is an example using
-a light node on Blockspace Race:
+a light node on Mocha testnet:
 
 ````mdx-code-block
 <pre><code>
-docker run -e NODE_TYPE=light -e P2P_NETWORK=blockspacerace -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{blockspaceraceVersions['node-latest-tag']} celestia light start --core.ip rpc-blockspacerace.pops.one --p2p.network blockspacerace
+docker run -e NODE_TYPE=light -e P2P_NETWORK=mocha -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{mochaVersions['node-latest-tag']} celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 </code></pre>
 ````
 
