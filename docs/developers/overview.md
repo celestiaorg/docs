@@ -25,8 +25,7 @@ It includes:
   * [OP Stack](../../category/optimism/)
   * [Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup)
   * [Dymension](https://dymension.xyz/)
-* Full stack modular [blockchain develpment guide](../../developers/full-stack-modular-development-guide/)
+* Full stack modular [blockchain development guide](../../developers/full-stack-modular-development-guide/)
 * [Demos](../../developers/demos/) on Celestia
 * [Integrate with Celestia Network](../../developers/integrate-celestia/) for third-party service providers
 * [Frequently Asked Questions (FAQs)](../../developers/faqs/)
-
