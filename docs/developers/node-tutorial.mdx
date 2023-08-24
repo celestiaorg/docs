@@ -1257,7 +1257,7 @@ useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
 Here is an example of the format of the `PayForBlob` transaction:
 
 ```bash
-celestia rpc blob SubmitPayForBlob [namespace in hex] [data in hex]
+celestia rpc blob Submit [namespace in hex] [data in hex]
 ```
 
 We run the following to submit a blob to the network in hexadecimal format:
@@ -1295,15 +1295,15 @@ If you notice from the above output, it returns a `height` of
 Note: To learn more about status response codes, please navigate to
 [cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
 
-#### `SubmitPayForBlob` arguments
+#### `Submit` arguments
 
 Using the `rpc` subcommand, you can submit a blob to the network
-using the `SubmitPayForBlob` method.
+using the `Submit` method.
 
-The arguments for `SubmitPayForBlob` are parsed specially,
+The arguments for `Submit` are parsed specially,
 to improve UX.
 
-`SubmitPayForBlob` can be done in a few ways:
+`Submit` can be done in a few ways:
 
 - The **namespace ID** can be encoded as either hex or base64
 - The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)

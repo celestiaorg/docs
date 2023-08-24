@@ -27,5 +27,6 @@ It includes:
   * [Dymension](https://dymension.xyz/)
 * Full stack modular [blockchain development guide](../../developers/full-stack-modular-development-guide/)
 * [Demos](../../developers/demos/) on Celestia
-* [Integrate with Celestia Network](../../developers/integrate-celestia/) for third-party service providers
+* [Integrate with Celestia Network](../../developers/integrate-celestia/)
+for third-party service providers
 * [Frequently Asked Questions (FAQs)](../../developers/faqs/)
