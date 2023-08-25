@@ -280,6 +280,11 @@ const sidebars = {
         },
         {
           type: "doc", 
+          label: "Leap", 
+          id: "developers/leap"
+        },
+        {
+          type: "doc",
           label: "Cosmostation", 
           id: "developers/cosmostation" 
         },
