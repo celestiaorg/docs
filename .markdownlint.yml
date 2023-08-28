@@ -1,4 +1,4 @@
-"default": true # Default state for all rules
-"MD013": false # Disable rule for line length
-"MD024": false # Disable rule for "Multiple headings with the same content"
-"MD033": false # Disable rule banning inline HTML
+default: true # Default state for all rules
+MD013: false # Disable rule for line length
+MD024: false # Disable rule for "Multiple headings with the same content"
+MD033: false # Disable rule banning inline HTML
