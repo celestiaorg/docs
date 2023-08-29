@@ -1289,11 +1289,10 @@ And an example to submit "gm" as the plain text data:
 celestia rpc blob Submit 0x42690c204d39600fddd3 '"gm"'
 ```
 
-If you notice from the above output, it returns a `height` of
-`272667` which we will use for the next command.
-
-Note: To learn more about status response codes, please navigate to
-[cosmos code explanation](https://github.com/cosmos/cosmos-sdk/blob/main/types/errors/errors.go)
+If you notice from the above output, it returns a `result` of
+`272667` which we will use for the next command. The `result`
+corresponds to the height of the block in which the transaction
+was included.
 
 #### `Submit` arguments
 
