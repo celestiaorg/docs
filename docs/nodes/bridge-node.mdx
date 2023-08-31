@@ -24,7 +24,7 @@ A Celestia bridge node has the following properties:
 2. Validate and erasure code the “raw” blocks
 3. Supply block shares with data availability headers to Light Nodes in the DA network.
 
-![bridge-node-diagram](/img/nodes/BridgeNodes.png)
+![bridge-node-diagram](../img/nodes/BridgeNodes.png)
 
 From an implementation perspective, Bridge Nodes run two separate processes:
 
@@ -162,7 +162,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 Here is an example of initializing the bridge node:
 
 ```sh
-celestia bridge init --core.ip consensus-validator-arabica-9.celestia-arabica.com --p2p.network arabica
+celestia bridge init --core.ip consensus-validator.celestia-arabica-10.com --p2p.network arabica
 ```
 
 </TabItem>
@@ -291,7 +291,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 Here is an example of starting the bridge node:
 
 ```sh
-celestia bridge start --core.ip consensus-validator-arabica-9.celestia-arabica.com --p2p.network arabica
+celestia bridge start --core.ip consensus-validator.celestia-arabica-10.com --p2p.network arabica
 ```
 
 You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)

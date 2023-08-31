@@ -1,0 +1,20 @@
+@media (max-width: 996px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (min-width: 997px) {
+  .hideOnLargeScreens {
+    display: none;
+  }
+}
+
+.heading:before {
+  content: "";
+  display: block;
+  height: 20px;
+  margin-top: -20px;
+  visibility: hidden;
+  pointer-events: none;
+}

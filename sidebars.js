@@ -12,7 +12,7 @@ const sidebars = {
         type: "doc",
         id: "nodes/participate"
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -33,7 +33,7 @@ const sidebars = {
         type: "doc",
         id: "nodes/quick-start"
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -114,7 +114,7 @@ const sidebars = {
             link: {
               type: 'generated-index'
             },
-            collapsed: false,
+            collapsed: true,
             items: [
               {
                 type: "doc",
@@ -271,7 +271,7 @@ const sidebars = {
         type: "doc",
         id: "developers/wallets"
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc", 
@@ -295,7 +295,7 @@ const sidebars = {
             type: "doc",
             id: "developers/celestia-app-wallet"
           },
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               type: "doc",
@@ -318,7 +318,7 @@ const sidebars = {
         type: "doc",
         id: "developers/node-api"
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         { 
           type: "doc", 
@@ -326,9 +326,9 @@ const sidebars = {
           id: "developers/node-tutorial" 
         },
         {
-          type: "link",
-          label: "Node API docs",
-          href: "https://node-rpc-docs.celestia.org/"
+          "type": "link",
+          "label": "Celestia Node API",
+          "href": "/api/next"
         },
         {
           type: "category",
@@ -336,7 +336,7 @@ const sidebars = {
           link: {
             type: "generated-index",
           },
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               type: "doc",
@@ -353,7 +353,7 @@ const sidebars = {
 			link: {
 				type: "generated-index",
 			},
-			collapsed: false,
+			collapsed: true,
 			items: [
         {
       		type: "doc",
@@ -495,7 +495,7 @@ const sidebars = {
       link: {
         type: 'generated-index',
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         { type: "doc", label: "Overview", id: "community/modular-fellows" },
         { type: "doc", label: "Cohort one content", id: "community/cohort-one-content" },
@@ -507,7 +507,7 @@ const sidebars = {
       link: {
         type: 'generated-index',
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         { type: "doc", label: "Introduction", id: "community/modular-meetup-intro" },
         { type: "doc", label: "Modular Meetup Toolkit", id: "community/modular-meetup-toolkit" },

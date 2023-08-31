@@ -1,8 +1,6 @@
 import React from 'react';
-import mochaVersions from "../../versions/mocha_versions.js";
-import constants from "../../versions/constants.js";
 
-const MochaVersionTags = () => {
+const MochaVersionTags = ({ mochaVersions, constants }) => {
   return (
     <ul>
       <li>Celestia Chain ID - <a href={`https://github.com/celestiaorg/networks/tree/master/${constants.mochaChainId}`} target="_blank" rel="noopener noreferrer">{constants.mochaChainId}</a></li>

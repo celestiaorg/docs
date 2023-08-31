@@ -12,14 +12,15 @@ It includes:
 
 * Overview of [wallets on Celestia](../../developers/wallets/)
   * [Keplr](../../developers/keplr/)
+  * [Leap](../../developers/leap)
   * [Cosmostation](../../developers/cosmostation/)
   * Generate a wallet with
     * [Celestia app](../../developers/celestia-app-wallet/)
     * [Celestia node](../../developers/celestia-node-key/)
-* How to [interact with the Celestia node API](../../developers/node-api/)
+* An overview of [the Celestia node API](../../developers/node-api/)
+  * [Node API docs](/api/next)
   * How to use the [Celestia node RPC API](../../developers/node-tutorial/)
   * Learn [Celestia node API](../../developers/prompt-scavenger/) with a game
-  * [Node API docs](https://node-rpc-docs.celestia.org/)
 * How to [deploy rollups with](../../category/deploy-a-rollup/)
   * [Rollkit](../../developers/rollkit/)
   * [OP Stack](../../category/optimism/)

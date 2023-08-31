@@ -1,0 +1,318 @@
+---
+sidebar_label: Wallet with Celestia Node
+description: Use the cel-key utility to generate a wallet on Celestia Node.
+---
+
+# Create a wallet with Celestia Node
+
+This tutorial will go over using the `cel-key` utility
+to generate a wallet on `celestia-node`.
+
+While this tutorial will go over installation process
+of `cel-key`, it is recommended that you complete
+the following prerequisites first:
+
+* [Setting Up Your Environment](../nodes/environment.mdx)
+
+Once you completed the prerequisite, you can proceed with this
+tutorial.
+
+## Using the `cel-key` utility
+
+Inside the `celestia-node` repository is a utility called `cel-key` that uses
+the key utility provided by Cosmos-SDK under the hood. The utility can be
+used to `add`, `delete`, and manage keys for any DA node
+type `(bridge || full || light)`, or just keys in general.
+
+### Installation
+
+You need to first pull down the `celestia-node` repository:
+
+```sh
+git clone https://github.com/celestiaorg/celestia-node.git
+cd celestia-node/
+```
+
+It can be built using either of the following commands:
+
+```sh
+# dumps binary in current working directory, accessible via `./cel-key`
+make cel-key
+```
+
+or
+
+```sh
+# installs binary in GOBIN path, accessible via `cel-key`
+make install-key
+```
+
+For the purpose of this guide, we will use the `make cel-key` command.
+
+### Steps for generating node keys
+
+````mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="node-type">
+<TabItem value="bridge" label="Bridge">
+
+To generate a key for a Celestia bridge node, do the following:
+
+```sh
+./cel-key add <key-name> --keyring-backend test --node.type bridge --p2p.network <network>
+```
+
+This will load the key `<key-name>` into the directory of the bridge node.
+
+</TabItem>
+<TabItem value="full" label="Full">
+
+To generate a key for a Celestia full node, do the following:
+
+```sh
+./cel-key add <key-name> --keyring-backend test --node.type full --p2p.network <network>
+```
+
+This will load the key `<key-name>` into the directory of the full node.
+
+
+</TabItem>
+<TabItem value="light" label="Light">
+
+To generate a key for a Celestia light node, do the following:
+
+```sh
+./cel-key add <key-name> --keyring-backend test --node.type light --p2p.network <network>
+```
+
+This will load the key `<key-name>` into the directory of the light node.
+
+</TabItem>
+</Tabs>
+
+
+Further flags you can use to customize your key are the following:
+
+* `--node.store`: Specifies a different directory you can use to
+  save your node data and configurations. Expects a path to a directory.
+* `--p2p.network`: Specifies which network you want the key for. Values
+  are `arabica` and `mocha`. Please note the default network will be `mocha`.
+
+Keep in mind that your `celestia-node` will only pick up keys that 
+are inside the `node.store` directory under `/keys` so you should make
+sure to point `cel-key` utility to the correct directory via the
+`node.store` or `p2p.network` flags if you have specified a custom
+directory or network other than Mocha.
+
+Also keep in mind that if you do not specify a network with `--p2p.network`,
+the default one will always be `mocha`.
+
+### Steps for exporting node keys
+
+<Tabs groupId="node-type">
+<TabItem value="bridge" label="Bridge">
+
+You can export a private key from the local keyring in encrypted and ASCII-armored format.
+
+```sh
+./cel-key export <key-name> --keyring-backend test --node.type bridge --p2p.network <network>
+```
+
+</TabItem>
+<TabItem value="full" label="Full">
+
+You can export a private key from the local keyring in encrypted and ASCII-armored format.
+
+```sh
+./cel-key export <key-name> --keyring-backend test --node.type full --p2p.network <network>
+```
+
+</TabItem>
+<TabItem value="light" label="Light">
+
+You can export a private key from the local keyring in encrypted and ASCII-armored format.
+
+```sh
+./cel-key export <key-name> --keyring-backend test --node.type light --p2p.network <network>
+```
+
+</TabItem>
+</Tabs>
+````
+
+### Steps for importing node keys
+
+````mdx-code-block
+<Tabs groupId="node-type">
+<TabItem value="bridge" label="Bridge">
+
+Importing from a mnemonic:
+
+```sh
+./cel-key add <key-name> --recover --keyring-backend test --node.type bridge --p2p.network <network>
+```
+
+You will then be prompted to enter your bip39 mnemonic.
+
+Example:
+
+```sh
+./cel-key add alice --recover --keyring-backend test --node.type bridge --p2p.network <network>
+```
+
+</TabItem>
+<TabItem value="full" label="Full">
+
+Importing from a mnemonic:
+
+```sh
+./cel-key add <key-name> --recover --keyring-backend test --node.type full --p2p.network <network>
+```
+
+You will then be prompted to enter your bip39 mnemonic.
+
+Example:
+
+```sh
+./cel-key add alice --recover --keyring-backend test --node.type full --p2p.network <network>
+```
+
+</TabItem>
+<TabItem value="light" label="Light">
+
+Importing from a mnemonic:
+
+```sh
+./cel-key add <key-name> --recover --keyring-backend test --node.type light --p2p.network <network>
+```
+
+You will then be prompted to enter your bip39 mnemonic.
+
+Example:
+
+```sh
+./cel-key add alice --recover --keyring-backend test --node.type light --p2p.network <network>
+```
+
+</TabItem>
+</Tabs>
+````
+
+### View all options for `cel-key`
+
+```sh
+./cel-key --help
+```
+
+## Docker and `cel-key`
+
+### Prerequisites
+
+- Docker installed on your machine
+- Understanding of the [guide](../nodes/docker-images.mdx)
+on how to run `celestia-node` with Docker.
+
+### Running your node
+
+Run the Docker image (in this example, we are using a light node):
+
+```bash
+docker run --name celestia-node -e NODE_TYPE=light -e P2P_NETWORK=mocha -p 26659:26659 \
+ghcr.io/celestiaorg/celestia-node:sha-747c9e5 celestia light start \
+--core.ip rpc-mocha.pops.one --p2p.network mocha
+```
+
+:::tip
+Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
+which ports are required to be open on your machine.
+:::
+
+List active containers in another window with:
+
+```bash
+docker ps
+```
+
+The response will look like:
+
+```bash
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS      NAMES
+<container_id>   celestia-node   "/entrypoint.sh cele…"   22 seconds ago   Up 21 seconds   2121/tcp   docker-compose-test-celestia-1
+```
+
+Interact with the container by replacing `<container_id>` for the container ID:
+
+```bash
+docker exec -ti <container_id> /bin/bash
+```
+
+Now, interact with `cel-key` to check for the key that was autogenerated when
+you started the node:
+
+```bash
+./cel-key list --keyring-backend test --node.type light
+```
+
+You can also export your key from the container. In the next section, you'll
+learn how to mount existing keys to the container.
+
+### Mounting existing keys to container
+
+In this example, we'll be mounting an existing key to the container. We're also
+using an existing image called `celestia-node`. This will mount the entire
+`/.celestia-light-<p2p_network>/keys` directory to your image.
+
+Write a `docker-compose.yml` to accomplish this:
+
+```yaml
+version: '3.8'
+services:
+  celestia:
+    image: celestia-node
+    environment:
+      - NODE_TYPE=light
+    command: celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha --keyring.accname my_celes_key
+    volumes:
+      - ${PWD}/keys:/root/.celestia-light-mocha-3/keys
+    ports:
+      - 26659:26659
+```
+
+Start the container by running the following command in the directory with your `docker-compose.yml`:
+
+```bash
+docker-compose up
+```
+
+List active containers in another window with:
+
+```bash
+docker ps
+```
+
+The response will look like:
+
+```bash
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS      NAMES
+<container_id>   celestia-node   "/entrypoint.sh cele…"   22 seconds ago   Up 21 seconds   2121/tcp   docker-compose-test-celestia-1
+```
+
+Interact with the container by replacing `<container_id>` for the container ID:
+
+```bash
+docker exec -ti <container_id> /bin/bash
+```
+
+Now, interact with `cel-key` to check your address matches the address you
+expect with the key you mounted:
+
+```bash
+root@<container_id>:/# ./cel-key list --keyring-backend test --node.type light
+using directory:  ~/.celestia-light-mocha-3/keys
+- address: celestia1wkhyhr7ngf0ayqlpnsnxg4d72hfs5453dvunm9
+  name: my_celes_key
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A1/NsoY0RGL7Hqt4VWLg441GQKJsZ2fBUnZXipgns8oV"}'
+  type: local
+```

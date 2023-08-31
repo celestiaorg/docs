@@ -5,9 +5,11 @@ description: A guide to Arabica devnet.
 
 # Arabica devnet
 
-import ArabicaVersionTags from '../../src/components/ArabicaVersionTags';
+import ArabicaVersionTags from '@site/src/components/ArabicaVersionTags';
+import arabicaVersions from '../constants/arabica_versions.js';
+import constants from '../constants/constants.js';
 
-![arabica-devnet](/img/arabica-devnet.png)
+![arabica-devnet](../img/arabica-devnet.png)
 
 Arabica Devnet is a new testnet from Celestia Labs that is focused
 exclusively on providing developers with enhanced performance and
@@ -28,7 +30,7 @@ undergoes Hardfork Upgrades in coordination with Validators.
 
 ## Software version numbers
 
-<ArabicaVersionTags />
+<ArabicaVersionTags arabicaVersions={arabicaVersions} constants={constants} />
 
 ## Integrations
 
@@ -65,9 +67,9 @@ Below is a list of RPC endpoints you can use to connect to Arabica Devnet:
 
 ### Bridge, full, and light nodes
 
-* `consensus-validator-arabica-9.celestia-arabica.com`
-* `validator.consensus-arabica-9.celestia-arabica.com`
-* `consensus-full-arabica-9.celestia-arabica.com`
+* `consensus-validator.celestia-arabica-10.com`
+* `validator.consensus.celestia-arabica-10.com`
+* `consensus-full.celestia-arabica-10.com`
 
 ### Full and light nodes ONLY
 
@@ -76,8 +78,8 @@ them. We advise that if you are running a bridge node, that you also
 run a local [full consensus node](../full-consensus-node) in order to download full blocks from
 it. 
 
-* `rpc-arabica-9.consensus.celestia-arabica.com`
-* `rpc-2-arabica-9.consensus.celestia-arabica.com`
+* `rpc.consensus.celestia-arabica-10.com`
+* `rpc-2.consensus.celestia-arabica-10.com`
 
 :::
 
@@ -89,8 +91,8 @@ as REST endpoints. This allows for communication with the node using REST
 calls, which can be useful if the client does not support gRPC or HTTP2.
 The default port is 1317.
 
-* [https://api-arabica-9.consensus.celestia-arabica.com/](https://api-arabica-9.consensus.celestia-arabica.com/)
-* [https://api-2-arabica-9.consensus.celestia-arabica.com/](https://api-2-arabica-9.consensus.celestia-arabica.com/)
+* [https://api.consensus.celestia-arabica-10.com/](https://api.consensus.celestia-arabica-10.com/)
+* [https://api-2.consensus.celestia-arabica-10.com/](https://api-2.consensus.celestia-arabica-10.com/)
 
 ## gRPC endpoints
 
@@ -99,10 +101,10 @@ gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
-* `grpc-arabica-9.consensus.celestia-arabica.com:443`
-* `grpc-2-arabica-9.consensus.celestia-arabica.com:443`
-* `validator.consensus-arabica-9.celestia-arabica.com:9090`
-* `consensus-validator-arabica-9.celestia-arabica.com:9090`
+* `grpc.consensus.celestia-arabica-10.com:443`
+* `grpc-2.consensus.celestia-arabica-10.com:443`
+* `validator.consensus.celestia-arabica-10.com:9090`
+* `consensus-validator.celestia-arabica-10.com:9090`
 
 ## Arabica devnet faucet
 
@@ -126,13 +128,13 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 ### Web
 
-The web faucet is available at [https://faucet-arabica-9.celestia-arabica.com/](https://faucet-arabica-9.celestia-arabica.com/).
+The web faucet is available at [https://faucet.celestia-arabica-10.com/](https://faucet.celestia-arabica-10.com/).
 
 ## Explorers
 
 There is an explorer you can use for Arabica:
 
-* [https://explorer-arabica-9.celestia-arabica.com/arabica-9](https://explorer-arabica-9.celestia-arabica.com/arabica-9)
+* [https://explorer.celestia-arabica-10.com](https://explorer.celestia-arabica-10.com)
 
 ## Network upgrades
 

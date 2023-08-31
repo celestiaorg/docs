@@ -3,10 +3,10 @@ sidebar_label: Node RPC CLI tutorial
 description: Find out how to interact with a Celestia Node's RPC (Remote Procedure Call) API using the CLI to submit and retrieve data from the DA layer.
 ---
 
-import constants from "../../versions/constants.js";
-import arabicaVersions from "../../versions/arabica_versions.js";
-import mochaVersions from "../../versions/mocha_versions.js";
-import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
+import constants from "../constants/constants.js";
+import arabicaVersions from "../constants/arabica_versions.js";
+import mochaVersions from "../constants/mocha_versions.js";
+import blockspaceraceVersions from "../constants/blockspacerace_versions.js";
 
 # Celestia Node RPC CLI tutorial
 
@@ -62,7 +62,7 @@ The following minimum hardware requirements are recommended for running a light 
 
 - Memory: **2 GB RAM**
 - CPU: **Single Core**
-- Disk: **25 GB SSD Storage** (Recommended **50 GB SSD Storage**)
+- Disk: **25 GB SSD Storage**
 - Bandwidth: **56 Kbps for Download/56 Kbps for Upload**
 
 ## Setting up dependencies
@@ -186,7 +186,7 @@ so we must install Golang to build and run them.
 
 ````mdx-code-block
 <Tabs groupId="network">
-{/* <TabItem value="blockspacerace" label="Blockspace Race">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
@@ -299,7 +299,7 @@ go version go{constants.golangNodeBSR} darwin/amd64
 </TabItem>
 </Tabs>
 
-</TabItem> */}
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
@@ -538,7 +538,7 @@ go version go{constants.golangNodeArabica} darwin/amd64
 
 ````mdx-code-block
 <Tabs groupId="network">
-{/* <TabItem value="blockspacerace" label="Blockspace Race">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
@@ -667,7 +667,7 @@ Golang version: go{constants.golangNodeBSR}<br/>
 </TabItem>
 </Tabs>
 
-</TabItem> */}
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 <Tabs groupId="operating-systems">
@@ -933,20 +933,20 @@ Golang version: go{constants.golangNodeArabica}<br/>
 
 ### Instantiate a Celestia light node
 
-Now, let's instantiate a Celestia light node:
+Now, let's instantiate a Celestia Light node:
 
 > Note: RPC Endpoints are exposed in all `celestia-node` types
   such as Light, Bridge and Full Nodes.
 
 ````mdx-code-block
 <Tabs groupId="network">
-{/* <TabItem value="blockspacerace" label="Blockspace Race">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh 
 celestia light init --p2p.network blockspacerace
 ```
 
-</TabItem> */}
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh 
@@ -968,9 +968,9 @@ celestia light init --p2p.network arabica
 
 ````mdx-code-block
 <Tabs groupId="network">
-{/* <TabItem value="blockspacerace" label="Blockspace Race">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
-Let's now run the Celestia light node with a GRPC connection to
+Let's now run the Celestia Light node with a GRPC connection to
 an example public core endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
@@ -993,10 +993,10 @@ Please refer to the [ports](../../nodes/celestia-node/#ports) section for inform
 which ports are required to be open on your machine.
 :::
 
-</TabItem> */}
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
-Let's now run the Celestia light node with a GRPC connection to
+Let's now run the Celestia Light node with a GRPC connection to
 an example public core endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
@@ -1022,7 +1022,7 @@ which ports are required to be open on your machine.
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-Let's now run the Celestia light node with a GRPC connection to
+Let's now run the Celestia Light node with a GRPC connection to
 an example public core endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
@@ -1051,7 +1051,7 @@ which ports are required to be open on your machine.
 For example, your command along with an RPC endpoint might look like this:
 
 <Tabs groupId="network">
-{/* <TabItem value="blockspacerace" label="Blockspace Race">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
 celestia light start --core.ip <ip-address> --p2p.network blockspacerace
@@ -1062,7 +1062,7 @@ Please refer to the [ports](../../nodes/celestia-node/#ports) section for inform
 which ports are required to be open on your machine.
 :::
 
-</TabItem> */}
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh
@@ -1078,7 +1078,7 @@ which ports are required to be open on your machine.
 <TabItem value="arabica" label="Arabica 🏗️">
 
 ```sh
-celestia light start --core.ip consensus-validator-arabica-9.celestia-arabica.com --p2p.network arabica
+celestia light start --core.ip consensus-full.celestia-arabica-10.com --p2p.network arabica
 ```
 
 :::tip
@@ -1101,7 +1101,7 @@ You can start your light node with the key created above by running the
 following command:
 
 <Tabs groupId="network">
-{/* <TabItem value="blockspacerace" label="Blockspace Race">
+<TabItem value="blockspacerace" label="Blockspace Race">
 
 ```sh
 celestia light start --core.ip <ip-address> --keyring.accname <key_name> <port> --p2p.network blockspacerace
@@ -1112,7 +1112,7 @@ Please refer to the [ports](../../nodes/celestia-node/#ports) section for inform
 which ports are required to be open on your machine.
 :::
 
-</TabItem> */}
+</TabItem>
 <TabItem value="mocha" label="Mocha">
 
 ```sh
@@ -1140,7 +1140,7 @@ which ports are required to be open on your machine.
 </Tabs>
 ````
 
-Once you start the light node, a wallet key will be generated for you.
+Once you start the Light Node, a wallet key will be generated for you.
 You will need to fund that address with Mocha Testnet or Arabica Devnet
 tokens to pay for `PayForBlob` transactions or `PayForBlob transactions`, respectively.
 
@@ -1170,7 +1170,7 @@ With your wallet funded, you can move on to the next step.
 
 This section of the tutorial will teach you how to interact with a
 Celestia node's
-[RPC (Remote Procedure Call) API](https://node-rpc-docs.celestia.org/).
+[RPC (Remote Procedure Call) API](/api/next).
 
 First, you will need to [install and run `celestia-node`](#setting-up-dependencies) if
 you have not already. Open up another terminal window in order to begin querying the API.
@@ -1184,6 +1184,11 @@ The format for the `rpc` subcommand is as follows:
 ```bash
 celestia rpc [module] [method] [...args]
 ```
+
+:::tip
+The `blob` module is the only module that uses kebab-case for
+its methods. The other modules use camelCase.
+:::
 
 ### Setup
 
@@ -1211,6 +1216,41 @@ Here's an example of how to set your auth token on a light node on Arabica:
 
 ```bash
 export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
+```
+
+##### Auth token on custom or private network
+
+This section is for users who are using a `CELESTIA_CUSTOM` or private network.
+
+:::tip
+If you are using a private and custom network, you will **need to set the location of the
+node store in your auth command**:
+:::
+
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network private --node.store $HOME/.celestia-light-private)
+```
+
+The above is an example from the following custom network set up with:
+
+```bash
+CELESTIA_CUSTOM=private celestia light init
+```
+
+or
+
+```bash
+celestia light init --p2p.network private
+```
+
+As an example, this is what a completely custom network would look like:
+
+```bash
+# Initialize node store
+CELESTIA_CUSTOM=robusta-22 celestia light init
+
+# Set auth token
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network private --node.store $HOME/.celestia-light-robusta-22)
 ```
 
 #### Host URL 
@@ -1257,22 +1297,23 @@ useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
 Here is an example of the format of the `PayForBlob` transaction:
 
 ```bash
-celestia rpc blob Submit [namespace in hex] [data in hex]
+celestia rpc blob submit [namespace in hex] [data in hex]
 ```
 
 We run the following to submit a blob to the network in hexadecimal format:
 
 ```bash
-celestia rpc blob Submit 0x42690c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
+celestia rpc blob submit 0x42690c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
 ```
 
 We get the following output:
 
-```bash
+```json
 {
-  "jsonrpc": "2.0",
-  "result": 272667,
-  "id": 1
+  "result": {
+    "uint64": 219832,
+    "commitment": "t7sRPeQVT3jEMlDnhDVU6jxB/FNhhyl6b6wl3+0ENZ0="
+  }
 }
 ```
 
@@ -1280,13 +1321,24 @@ We can also use a string of text as the data value, which will be
 converted to base64. Here is an example of the format:
 
 ```bash
-celestia rpc blob Submit [namespace in hex] "'[data]'"
+celestia rpc blob submit [namespace in hex] '[data]'
 ```
 
-And an example to submit "gm" as the plain text data:
+And an example to submit "gm" as the plain-text data:
 
 ```bash
-celestia rpc blob Submit 0x42690c204d39600fddd3 '"gm"'
+celestia rpc blob submit 0x42690c204d39600fddd3 'gm'
+```
+
+Output:
+
+```json
+{
+  "result": {
+    "uint64": 219832,
+    "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
+  }
+}
 ```
 
 If you notice from the above output, it returns a `result` of
@@ -1294,18 +1346,18 @@ If you notice from the above output, it returns a `result` of
 corresponds to the height of the block in which the transaction
 was included.
 
-#### `Submit` arguments
+#### `submit` arguments
 
 Using the `rpc` subcommand, you can submit a blob to the network
-using the `Submit` method.
+using the `submit` method.
 
-The arguments for `Submit` are parsed specially,
+The arguments for `submit` are parsed specially,
 to improve UX.
 
-`Submit` can be done in a few ways:
+`submit` can be done in a few ways:
 
 - The **namespace ID** can be encoded as either hex or base64
-- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'"Hello There!"'`)
+- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'Hello There!'`)
 
 ### Retrieving data
 
@@ -1313,99 +1365,95 @@ After submitting your PFB transaction, upon success, the node will return
 the block height for which the PFB transaction was included. You can then
 use that block height and the namespace ID with which you submitted your
 PFB transaction to get your message shares (data) returned to you. In this example,
-the block height we got was 272667 which we will use for the following command.
-Read more about shares in the [Celestia Specs](https://node-rpc-docs.celestia.org/#share).
+the block height we got was 219832 which we will use for the following command.
+Read more about shares in the [Celestia Specs](/api/next/#share).
 
-Here is what an example of the format of the `GetAll` command looks like:
+Here is what an example of the format of the `get` command looks like:
 
 ```bash
-celestia rpc blob GetAll [block height] [namespace in hex]
+celestia rpc blob get [block height] [namespace in hex] [committment from output above]
 ```
 
-Here is an example command to retrieve the data from above, on `arabica-9`:
+Here is an example command to retrieve the data from above, on `arabica-10`:
 
 ```bash
-celestia rpc blob GetAll 272667 0x42690c204d39600fddd3
+celestia rpc blob get 219832 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E=
 ```
 
 Will generate the following output:
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "result": [
-    {
-      "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
-      "data": "8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
-      "share_version": 0,
-      "commitment": "R4DRTAENQ7fGawPbt8aMse1+YReCZYg87xZIZf2fAxc="
-    }
-  ],
-  "id": 1
-}
-```
-
-The output here is base64-encoded.
-
-To see the JSON request sent over the wire, for example for sending requests via cURL, pass the `-—print-request` flag:
-
-```bash
-celestia rpc blob GetAll 272667 0x42690c204d39600fddd3 --print-request
-```
-
-Response:
-
-```bash
-{
-  "Request": {
-    "id": 1,
-    "jsonrpc": "2.0",
-    "method": "blob.GetAll",
-    "params": [
-      272667,
-      [
-        "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM="
-      ]
-    ]
-  },
-  "Response": {
-    "jsonrpc": "2.0",
-    "result": [
-      {
-        "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
-        "data": "8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1",
-        "share_version": 0,
-        "commitment": "R4DRTAENQ7fGawPbt8aMse1+YReCZYg87xZIZf2fAxc="
-      }
-    ],
-    "id": 1
+  "result": {
+    "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+    "data": "gm",
+    "share_version": 0,
+    "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
   }
 }
 ```
 
-Simiarly, you can cURL the response by running the following command:
+The output here is base64 decoded to plain-text.
+
+To see the base64 response, use the `--base64` flag set to `TRUE` (`--base64=TRUE`):
 
 ```bash
-curl -X POST -H "Authorization: Bearer ${CELESTIA_NODE_AUTH_TOKEN}" \
-   -H 'Content-Type: application/json' \
-   -d '{
-  "id": 1,
-  "jsonrpc": "2.0",
-  "method": "blob.GetAll",
-  "params": [
-   272667,
-   [
-    "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM="
-   ]
-  ]
- }' \
-   http://localhost:26658
+celestia rpc blob get 219832 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E= --base64=TRUE
 ```
 
-Response:
+The response will look similar to this:
+
+```json
+{
+  "result": {
+    "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+    "data": "Z20=",
+    "share_version": 0,
+    "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
+  }
+}
+```
+
+To get all blobs in the namespace at the block height, use `get-all` instead of `get`:
 
 ```bash
-{"jsonrpc":"2.0","result":[{"namespace":"AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=","data":"8fIMqAB+kQo7+LLmHaDya8oH73hxem6lQWX1","share_version":0,"commitment":"R4DRTAENQ7fGawPbt8aMse1+YReCZYg87xZIZf2fAxc="}],"id":1}
+celestia rpc blob get-all 219832 0x42690c204d39600fddd3
+```
+
+This will return the following:
+
+```json
+{
+  "result": [
+    {
+      "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+      "data": "gm",
+      "share_version": 0,
+      "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
+    }
+  ]
+}
+```
+
+To display the response in base64, use:
+
+```bash
+celestia rpc blob get-all 219832 0x42690c204d39600fddd3 --base64=TRUE
+```
+
+Which will return:
+
+```json
+{
+  "result": [
+    {
+      "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+      "data": "gm",
+      "share_version": 0,
+      "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
+    }
+  ]
+}
 ```
 
 ### Examples
@@ -1422,14 +1470,14 @@ celestia rpc state Balance
 
 The response will look similar to:
 
-```bash
+```json
 {
- “jsonrpc”: “2.0",
- “result”: {
-  “denom”: “utia”,
-  “amount”: “79934811”
- },
- “id”: 1
+  "jsonrpc": "2.0",
+  "result": {
+    "denom": "utia",
+    "amount": "172118057"
+  },
+  "id": 1
 }
 ```
 
@@ -1449,12 +1497,12 @@ celestia rpc state BalanceForAddress celestia10rtd9lhel2cuh6c659l25yncl6atcyt37u
 
 The response will be the balance of the address you queried:
 
-```bash
+```json
 {
   "jsonrpc": "2.0",
   "result": {
     "denom": "utia",
-    "amount": "100000000"
+    "amount": "1000000"
   },
   "id": 1
 }
@@ -1470,18 +1518,18 @@ celestia rpc p2p Info
 
 The node ID is in the `ID` value from the response:
 
-```bash
+```json
 {
   "jsonrpc": "2.0",
   "result": {
-    "ID": "12D3KooWQHg8eo2DMjkw9WrNrhDq5Z7tPs32uMJkpj8njbGNF8kj",
+    "ID": "12D3KooWFFhCaAqY56oEqY3pLZUdLsv4RYAfVWKATZRepUPdosLp",
     "Addrs": [
       "/ip4/10.0.0.171/tcp/2121",
-      "/ip6/::1/tcp/2121",
       "/ip4/10.0.0.171/udp/2121/quic-v1",
-      "/ip6/::1/udp/2121/quic-v1",
-      "/ip4/71.200.65.106/tcp/54588",
-      "/ip4/71.200.65.106/udp/54588/quic-v1"
+      "/ip4/71.200.65.106/tcp/25630",
+      "/ip4/71.200.65.106/udp/25630/quic-v1",
+      "/ip6/::1/tcp/2121",
+      "/ip6/::1/udp/2121/quic-v1"
     ]
   },
   "id": 1
@@ -1498,10 +1546,10 @@ celestia rpc state AccountAddress
 
 Response: 
 
-```bash
+```json
 {
   "jsonrpc": "2.0",
-  "result": "celestia182wascu47m2fsu6davhktsaledd4pukahs2dgs",
+  "result": "celestia1znk24rh52pgcd9z5x2x42jztjh6raaaphuvrt3",
   "id": 1
 }
 ```
@@ -1524,88 +1572,88 @@ celestia rpc header GetByHeight 1
 
 It will output something like this:
 
-```bash
+```json
 {
- “jsonrpc”: “2.0",
- “result”: {
-  “header”: {
-   “version”: {
-    “block”: “11”,
-    “app”: “1”
-   },
-   “chain_id”: “arabica-9”,
-   “height”: “1”,
-   “time”: “2023-05-30T15:06:21.9265Z”,
-   “last_block_id”: {
-    “hash”: “”,
-    “parts”: {
-     “total”: 0,
-     “hash”: “”
-    }
-   },
-   “last_commit_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-   “data_hash”: “3D96B7D238E7E0456F6AF8E7CDF0A67BD6CF9C2089ECB559C659DCAA1F880353",
-   “validators_hash”: “C4F7F08A8F3024A28D6486B4BA434B12391A29DFA8C04C74589A013A9A0BE427",
-   “next_validators_hash”: “C4F7F08A8F3024A28D6486B4BA434B12391A29DFA8C04C74589A013A9A0BE427",
-   “consensus_hash”: “048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F”,
-   “app_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-   “last_results_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-   “evidence_hash”: “E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-   “proposer_address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397"
-  },
-  “validator_set”: {
-   “validators”: [
-    {
-     “address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397",
-     “pub_key”: {
-      “type”: “tendermint/PubKeyEd25519”,
-      “value”: “oubutxNSyuD0XZNmMQSraHazmE2PjFsZVZ8RNHFX3WA=”
-     },
-     “voting_power”: “500000000”,
-     “proposer_priority”: “0”
-    }
-   ],
-   “proposer”: {
-    “address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397",
-    “pub_key”: {
-     “type”: “tendermint/PubKeyEd25519”,
-     “value”: “oubutxNSyuD0XZNmMQSraHazmE2PjFsZVZ8RNHFX3WA=”
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "version": {
+        "block": "11",
+        "app": "1"
+      },
+      "chain_id": "arabica-10",
+      "height": "1",
+      "time": "2023-06-27T13:02:39.741743Z",
+      "last_block_id": {
+        "hash": "",
+        "parts": {
+          "total": 0,
+          "hash": ""
+        }
+      },
+      "last_commit_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "data_hash": "3D96B7D238E7E0456F6AF8E7CDF0A67BD6CF9C2089ECB559C659DCAA1F880353",
+      "validators_hash": "6363C68770C200FD794445668F9B18F5B1DD1125180D6E8D5AB004F7DD7A0F48",
+      "next_validators_hash": "6363C68770C200FD794445668F9B18F5B1DD1125180D6E8D5AB004F7DD7A0F48",
+      "consensus_hash": "048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F",
+      "app_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "last_results_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "evidence_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "proposer_address": "91E04695CF9CF531BC0891E7B1D602B3E8022C86"
     },
-    “voting_power”: “500000000”,
-    “proposer_priority”: “0”
-   }
-  },
-  “commit”: {
-   “height”: 1,
-   “round”: 0,
-   “block_id”: {
-    “hash”: “E5D620B5BE7873222DCD83464C285FD0F215C209393E7481F9A5979280AD6CA2”,
-    “parts”: {
-     “total”: 1,
-     “hash”: “5BDD329766F3803594FA840D5B4860A82115AFA70CB307F28F7E84D3FE883A55”
+    "validator_set": {
+      "validators": [
+        {
+          "address": "91E04695CF9CF531BC0891E7B1D602B3E8022C86",
+          "pub_key": {
+            "type": "tendermint/PubKeyEd25519",
+            "value": "9aNBAxno1B4X5LR2qY5qWqwrMNOzejkctXwzq9BExsg="
+          },
+          "voting_power": "500000000",
+          "proposer_priority": "0"
+        }
+      ],
+      "proposer": {
+        "address": "91E04695CF9CF531BC0891E7B1D602B3E8022C86",
+        "pub_key": {
+          "type": "tendermint/PubKeyEd25519",
+          "value": "9aNBAxno1B4X5LR2qY5qWqwrMNOzejkctXwzq9BExsg="
+        },
+        "voting_power": "500000000",
+        "proposer_priority": "0"
+      }
+    },
+    "commit": {
+      "height": 1,
+      "round": 0,
+      "block_id": {
+        "hash": "7A5FABB19713D732D967B1DA84FA0DF5E87A7B62302D783F78743E216C1A3550",
+        "parts": {
+          "total": 1,
+          "hash": "D85C907CE660878A8203AC74BAA147CCC1F87114B45B568B72AD207B62AFE45E"
+        }
+      },
+      "signatures": [
+        {
+          "block_id_flag": 2,
+          "validator_address": "91E04695CF9CF531BC0891E7B1D602B3E8022C86",
+          "timestamp": "2023-06-30T08:40:19.299137127Z",
+          "signature": "qmaEzrnbtgEXCRYc8pCvGRbS+uMuknIBoRAE4qyE7oSgWCRwBVYS/oPReXQLg9ER1oEY1De4MkWvMjlFnQOOCg=="
+        }
+      ]
+    },
+    "dah": {
+      "row_roots": [
+        "//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU",
+        "/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3"
+      ],
+      "column_roots": [
+        "//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU",
+        "/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3"
+      ]
     }
-   },
-   “signatures”: [
-    {
-     “block_id_flag”: 2,
-     “validator_address”: “7CD439E5F1A00E8594AA243CC9C4BFE1A6E7C397”,
-     “timestamp”: “2023-05-30T17:44:48.957739642Z”,
-     “signature”: “vgp6mcStXsCN5OmmqtPJCReoSu47bRcysDphTbXjqq4FuR876dwMD0fu/8lyrrpLBSt3vMAA0bTQ0GggXh6VAw==”
-    }
-   ]
   },
-  “dah”: {
-   “row_roots”: [
-    “//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU”,
-    “/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3”
-   ],
-   “column_roots”: [
-    “//////////////////////////////////////7//////////////////////////////////////huZWOTTDmD36N1F75A9BshxNlRasCnNpQiWqIhdVHcU”,
-    “/////////////////////////////////////////////////////////////////////////////5iieeroHBMfF+sER3JpvROIeEJZjbY+TRE0ntADQLL3"
-   ]
-  }
- },
- “id”: 1
+  "id": 1
 }
 ```
 

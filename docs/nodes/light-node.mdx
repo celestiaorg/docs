@@ -3,10 +3,10 @@ sidebar_label: Light node
 description: This tutorial covers setting up a Celestia light node.
 ---
 
-import constants from "../../versions/constants.js";
-import mochaVersions from "../../versions/mocha_versions.js";
-import arabicaVersions from "../../versions/arabica_versions.js";
-import blockspaceraceVersions from "../../versions/blockspacerace_versions.js";
+import constants from "../constants/constants.js";
+import mochaVersions from "../constants/mocha_versions.js";
+import arabicaVersions from "../constants/arabica_versions.js";
+import blockspaceraceVersions from "../constants/blockspacerace_versions.js";
 
 # Setting up a Celestia light node
 
@@ -26,7 +26,7 @@ availability (DA) network.
 Light nodes ensure data availability. This is the most common
 way to interact with the Celestia network.
 
-![light-node](/img/nodes/LightNodes.png)
+![light-node](../img/nodes/LightNodes.png)
 
 Light nodes have the following behavior:
 
@@ -1067,7 +1067,7 @@ If you need a list of RPC endpoints to connect to, you can check from the list [
 For example, your command might look something like this:
 
 ```sh
-celestia light start --core.ip consensus-validator-arabica-9.celestia-arabica.com --p2p.network arabica
+celestia light start --core.ip consensus-validator.celestia-arabica-10.com --p2p.network arabica
 ```
 
 </TabItem>
@@ -1112,7 +1112,7 @@ You will need to fund that address with testnet tokens to pay for
 <TabItem value="arabica" label="Arabica 🏗️">
 
 ```sh
-celestia light start --keyring.accname my_celes_key --core.ip consensus-validator-arabica-9.celestia-arabica.com --p2p.network arabica
+celestia light start --keyring.accname my_celes_key --core.ip consensus-validator.celestia-arabica-10.com --p2p.network arabica
 ```
 
 Once you start the light node, a wallet key will be generated for you.

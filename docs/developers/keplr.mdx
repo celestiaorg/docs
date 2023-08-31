@@ -5,7 +5,7 @@ description: How you can add Celestia network parameters to Keplr.
 
 # Keplr integration with Celestia
 
-import constants from "../../versions/constants.js";
+import constants from "../constants/constants.js";
 
 ````mdx-code-block
 import AddNetworkKeplr from '@site/src/components/AddNetworkKeplr';
@@ -15,8 +15,8 @@ import TabItem from '@theme/TabItem';
 export const ARABICA_PARAMS = {
   chainId: `${constants.arabicaChainId}`,
   chainName: 'Arabica Devnet',
-  rpc: 'https://consensus-full-arabica-9.celestia-arabica.com/',
-  rest: 'https://api-arabica-9.consensus.celestia-arabica.com/'
+  rpc: 'https://consensus-full.celestia-arabica-10.com/',
+  rest: 'https://api.consensus.celestia-arabica-10.com/'
 }
 
 export const MOCHA_PARAMS = {
@@ -229,8 +229,8 @@ import '@site/src/components/AddNetworkKeplr'<br/>
 export const ARABICA_PARAMS = {`{
   chainId: '${constants.arabicaChainId}',
   chainName: 'Arabica Devnet',
-  rpc: 'https://consensus-full-arabica-9.celestia-arabica.com/',
-  rest: 'https://api-arabica-9.consensus.celestia-arabica.com/'
+  rpc: 'https://consensus-full.celestia-arabica-10.com/',
+  rest: 'https://api.consensus.celestia-arabica-10.com/'
 }`}<br/>
 <br/>
 {`<AddNetworkKeplr params={ARABICA_PARAMS}/>`}

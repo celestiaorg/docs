@@ -12,8 +12,8 @@ const docs = require("./sidebars");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Build Modular.",
-  tagline: "",
+  title: "Celestia Docs",
+  tagline: "Build Modular.",
   url: "https://docs.celestia.org",
   baseUrl: process.env.BASE_URL,
   trailingSlash: true,
@@ -64,6 +64,15 @@ const config = {
   ],
   plugins: [
     ["drawio", {}],
+    [ "@docusaurus/plugin-ideal-image",
+      {
+        quality: 70,
+        max: 500,
+        min: 300,
+        steps: 2,
+        disableInDev: false,
+      },
+    ],
     [
       "@docusaurus/plugin-client-redirects",
       {
@@ -148,24 +157,32 @@ const config = {
         },
         items: [
           {
-            to: "/concepts/how-celestia-works/introduction",
-            position: "left",
-            label: "Concepts",
+            type: 'docsVersionDropdown',
+            position: 'right',
           },
           {
-            to: "/nodes/overview",
-            position: "left",
-            label: "Run a Node",
+            type: 'doc',
+            docId: 'concepts/how-celestia-works/introduction',
+            position: 'left',
+            label: 'Concepts',
           },
           {
-            to: "/developers/overview",
-            position: "left",
-            label: "Developers",
+            type: 'doc',
+            docId: 'nodes/overview',
+            position: 'left',
+            label: 'Run a Node',
           },
           {
-            to: "/community/overview",
-            position: "left",
-            label: "Community",
+            type: 'doc',
+            docId: 'developers/overview',
+            position: 'left',
+            label: 'Developers',
+          },
+          {
+            type: 'doc',
+            docId: 'community/overview',
+            position: 'left',
+            label: 'Community',
           },
           {
             href: "https://github.com/celestiaorg/docs",

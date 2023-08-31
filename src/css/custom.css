@@ -127,3 +127,22 @@ code {
     margin-bottom: 10px;
   }
 }
+
+/* Use the light mode background by default */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 100;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+/* Use the dark mode background when the data-theme attribute is set to 'dark' */
+[data-theme='dark'] .sticky-header {
+  background-color: #1b1b1d;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+}
+
+.sticky-header h3 {
+  margin-bottom: 0;
+}

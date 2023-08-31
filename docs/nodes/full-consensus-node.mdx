@@ -5,12 +5,14 @@ description: Learn how to set up a Celestia full consensus node.
 
 # Setting up a Celestia full consensus node
 
-import constants from "../../versions/constants.js";
+import constants from "../constants/constants.js";
+import Image from '@theme/IdealImage';
+import fullConsensusNode from '../img/nodes/full-consensus-node.png';
 
 Full Consensus Nodes allow you to sync blockchain history in the Celestia
 Consensus Layer.
 
-![Full consensus node](../../static/img/nodes/full-consensus-node.png)
+<Image img={fullConsensusNode} width={500}/>
 
 ## Hardware requirements
 
@@ -207,7 +209,7 @@ wget -O - https://snaps.qubelabs.io/celestia/$&#123;SNAP_NAME&#125; | tar xf - \
 </TabItem>
 <TabItem value="arabica" label="Arabica">
 
-Run the following command to quick-sync from a snapshot for `arabica-9`:
+Run the following command to quick-sync from a snapshot for `arabica-10`:
 
 <pre><code>
 cd $HOME<br/>

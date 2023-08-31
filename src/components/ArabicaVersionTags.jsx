@@ -1,8 +1,6 @@
 import React from 'react';
-import arabicaVersions from "../../versions/arabica_versions.js";
-import constants from "../../versions/constants.js";
 
-const ArabicaVersionTags = () => {
+const ArabicaVersionTags = ({ arabicaVersions, constants }) => {
   return (
     <ul>
       <li>Celestia Chain ID - <a href={`https://github.com/celestiaorg/networks/tree/master/${constants.arabicaChainId}`} target="_blank" rel="noopener noreferrer">{constants.arabicaChainId}</a></li>

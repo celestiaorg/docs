@@ -105,13 +105,13 @@ jobs:
           export default ${{ inputs.network }}Versions;
           EOF
           )
-          echo $CONTENTS > versions/\${{ inputs.network }}_versions.js
+          echo $CONTENTS > docs/constants/\${{ inputs.network }}_versions.js
       - name: Install Prettier
         run: |
           npm install -g prettier
       - name: Format the code with Prettier
         run: |
-          prettier versions/\${{ inputs.network }}_versions.js --write
+          prettier docs/constants/\${{ inputs.network }}_versions.js --write
       - name: Open PR
         uses: peter-evans/create-pull-request@v4
         with:
