@@ -21,7 +21,7 @@ export default function NavbarMobilePrimaryMenu() {
     ? items.filter(item => item.type !== 'docsVersionDropdown') 
     : items;
 
-  const versions = ['v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8', 'Next']; 
+  const versions = ['v0.11.0-rc10', 'v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8', 'Next']; 
 
   return (
     <ul className="menu__list">

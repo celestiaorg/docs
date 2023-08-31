@@ -52,7 +52,7 @@ export default function NavbarContent() {
   const [leftItems, rightItems] = splitNavbarItems(items);
   const searchBarItem = items.find((item) => item.type === 'search');
   const location = useLocation();
-  const versions = ['v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8', 'Next'];
+  const versions = ['v0.11.0-rc10', 'v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8', 'Next'];
 
   // If pathname starts with '/api/', hide 'docsVersionDropdown'
   const filteredRightItems = location.pathname.startsWith('/api/') 

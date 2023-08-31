@@ -47,7 +47,7 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 In order to version the docs site and API docs in their entirety, you will need to do a few things.
 
 1. change into the `docs/` repository
-2. Replace `v0.11.0-rc9` with your desired version of `celestia-node`.
+2. Replace `your-new-version` with your desired version of `celestia-node`.
 Then, run the following to create a new version of the documentation:
 
 ```bash
