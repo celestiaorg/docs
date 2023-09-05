@@ -159,6 +159,13 @@ const config = {
           {
             type: 'docsVersionDropdown',
             position: 'right',
+            dropdownItemsBefore: [
+              {
+                type: 'html',
+                className: 'dropdown-versions',
+                value: '<b>Celestia Node version</b>',
+              },
+            ],
           },
           {
             type: 'doc',
