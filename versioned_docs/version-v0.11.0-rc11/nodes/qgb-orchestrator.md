@@ -103,39 +103,6 @@ To run an orchestrator, you will need to have access to the following:
 * *A list of bootstrappers for the P2P network. These will be shared by the team for every network we plan on supporting.
 * *Access to your consensus node RPC and gRPC ports.
 
-#### Consensus node configuration
-
-Before running the orchestrator, make sure to have the node indexing enabled. To check, open your consensus node `config/config.toml` and check the following section:
-
-```toml
-#######################################################
-###   Transaction Indexer Configuration Options     ###
-#######################################################
-[tx_index]
-
-# What indexer to use for transactions
-#
-# The application will set which txs to index. In some cases a node operator will be able
-# to decide which txs to index based on configuration set in the application.
-#
-# Options:
-#   1) "null"
-#   2) "kv" (default) - the simplest possible indexer, backed by key-value storage (defaults to levelDB; see DBBackend).
-# 		- When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
-#   3) "psql" - the indexer services backed by PostgreSQL.
-# When "kv" or "psql" is chosen "tx.height" and "tx.hash" will always be indexed.
-indexer = "kv"
-```
-
-Make sure to have the `indexer` set to something other than `"null"`, as seen above where it is set to `"kv"`.
-
-If the indexer was just activated, then, by default, it will not have the previous transactions indexed. And, if you run the orchestrator at the same time, it will try to create the commitments and will fail as the transactions are not indexed.
-
-To solve this, you can do either of the following:
-
-* *Re-index by deleting the history and resyncing.
-* *Or, connect the orchestrator at first to a public RPC that has indexing activated, and wait for it to catchup and sign up to the last unbonding period. Then, switch the orchestrator to point to your personal validator at the next unbonding period.
-
 ### Start the orchestrator
 
 Now that we have the store initialized, we can start the orchestrator. Make sure you have your Celestia-app node RPC and gRPC accessible, and able to connect to the P2P network bootstrappers.
@@ -149,33 +116,30 @@ Starts the QGB orchestrator to sign attestations
 
 Usage:
   qgb orchestrator start <flags> [flags]
-
-Flags:
-  -c, --celes-grpc string          Specify the grpc address without the protocol prefix (default "localhost:9090")
-  -t, --celes-rpc string           Specify the rest rpc address (default "tcp://localhost:26657")
-  -d, --evm-address string         Specify the EVM account address to use for signing (Note: the private key should be in the keystore)
-  -h, --help                       help for start
-      --home string                The qgb orchestrator home directory
-  -b, --p2p-bootstrappers string   Comma-separated multiaddresses of p2p peers to connect to
-  -q, --p2p-listen-addr string     MultiAddr for the p2p peer to listen on (default "/ip4/0.0.0.0/tcp/30000")
-  -p, --p2p-nickname string        Nickname of the p2p private key to use (if not provided, an existing one from the p2p store or a newly generated one will be used)
-      --evm-passphrase string          the account passphrase (if not specified as a flag, it will be asked interactively)
 ```
 
 To start the orchestrator in the default home directory, run the following:
 
 ```ssh
 qgb orchestrator start \
-    -c localhost:9090 \
-    -t http://localhost:26657 \
-    -d 0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488 \
-    -b /ip4/127.0.0.1/tcp/30001/p2p/12D3KooWFFHahpcZcuqnUhpBoX5fJ68Qm5Hc8dxiBcX1oo46fLxh \
-    -q /ip4/0.0.0.0/tcp/30000
+    --core.grpc.host localhost \
+    --core.grpc.port 9090 \
+    --core.rpc.host localhost \
+    --core.rpc.port 26657 \
+    --evm.account 0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488 \
+    --p2p.bootstrappers /ip4/127.0.0.1/tcp/30001/p2p/12D3KooWFFHahpcZcuqnUhpBoX5fJ68Qm5Hc8dxiBcX1oo46fLxh \
+    --p2p.listen-addr /ip4/0.0.0.0/tcp/30000
 ```
 
 And, you will be prompted to enter your EVM key passphrase so that the orchestrator can use it to sign attestations. Make sure that it's the EVM address that was provided when creating the validator. If not, then the orchestrator will not sign, and you will keep seeing a "validator not part of valset" warning message. If you see such message, first verify that your validator is part of the active validator set. If so, then probably the EVM address provided to the orchestrator is not the right one, and you should check which EVM address is registered to your validator. Check the next section for more information.
 
 If you no longer have access to your EVM address, you could always edit your validator with a new EVM address. This can be done through the `edit-validator` command. Check the next section.
+
+### Open the P2P port
+
+In order for the signature propagation to be successful, you will need to expose the P2P port, which is by default `30000`.
+
+If not, then the signatures may not be available to the network and relayers will not be able to query them.
 
 #### Edit validator
 
@@ -274,7 +238,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=<absolute_path_to_qgb_binary> orchestrator start -d <evm_address> --evm-passphrase <evm_passphrase> --celes-grpc <grpc_endpoint> -t <rpc_endpoint> -b <bootstrappers_list>
+ExecStart=<absolute_path_to_qgb_binary> orchestrator start --evm.account <evm_account> --evm.passphrase <evm_passphrase> --core.grpc.host <grpc_endpoint_host> --core.grpc.port <grpc_endpoint_port> --core.rpc.host <rpc_endpoint_host> --core.rpc.port <rpc_endpoint_port> --p2p.bootstrappers <bootstrappers_list>
 LimitNOFILE=infinity
 LimitCORE=infinity
 Restart=always

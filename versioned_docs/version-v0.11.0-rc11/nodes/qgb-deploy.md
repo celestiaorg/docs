@@ -20,19 +20,6 @@ Usage:
 
 Available Commands:
   keys        QGB keys manager
-
-Flags:
-  -c, --celes-grpc string       Specify the grpc address (default "localhost:9090")
-  -d, --evm-address string      Specify the EVM account address to use for signing (Note: the private key should be in the keystore)
-  -z, --evm-chain-id uint       Specify the evm chain id (default 5)
-  -l, --evm-gas-limit uint      Specify the evm gas limit (default 25000000)
-      --evm-passphrase string   the evm account passphrase (if not specified as a flag, it will be asked interactively)
-  -e, --evm-rpc string          Specify the ethereum rpc address (default "http://localhost:8545")
-  -h, --help                    help for deploy
-      --home string             The qgb deployer home directory
-  -n, --starting-nonce string   Specify the nonce to start the QGB contract from. "earliest": for genesis, "latest": for latest valset nonce, "nonce": for the latest valset before the provided nonce, provided nonce included. (default "latest")
-
-Use "qgb deploy [command] --help" for more information about a command.
 ```
 
 ## How to run
@@ -71,11 +58,12 @@ Now, we can deploy the QGB contract to a new EVM chain:
 
 ```ssh
 qgb deploy \
-  -z 4 \
-  -d 0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 \
-  -c localhost:9090 \
-  -n latest \
-  -e http://localhost:8545
+  --evm.chain-id 4 \
+  --evm.contract-address 0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 \
+  --core.grpc.host localhost \
+  --core.grpc.port 9090 \
+  --starting-nonce latest \
+  --evm.rpc http://localhost:8545
 ```
 
 The `latest` can be replaced by the following:
