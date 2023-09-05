@@ -151,6 +151,7 @@ function ApiComponent({ openrpcData }) {
       <h1 style={{ fontSize: '3em'}}>Celestia Node API</h1>
       <h2 className={styles.hideOnLargeScreens}>API Version: <a href={`https://github.com/celestiaorg/celestia-node/releases/tag/${version}`}>{version}</a></h2>
       <h3 style={{ fontFamily: 'Inter', fontWeight: '500'}}>{description}</h3>
+      <p>Always check which network is compatible with the API version you are using in the changelog. You can find the latest releases <a href="https://github.com/celestiaorg/celestia-node/releases">here</a>.</p>
       <hr />
         {/* Loop through the modules */}
         {Object.entries(modules)
