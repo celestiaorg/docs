@@ -223,5 +223,9 @@ func DemoSubmitData(grpcAddr string, kr keyring.Keyring) error {
 
 ### RPC to a celestia-node
 
-> TODO: fill in. Is this the blob module, state module, or rest api? Should we
-> just reference the other part of the docs?
+Using the RPC API, submit data using the following methods:
+
+* [blob.Submit](/api/next/#blob.Submit)
+* [state.SubmitPayForBlob](/api/next/#state.SubmitPayForBlob)
+
+Learn more in the [celestia-node API docs](/api/next).

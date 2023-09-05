@@ -22,6 +22,13 @@ function ApiComponent({ openrpcData }) {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && headingRefs.current[hash]) {
+      headingRefs.current[hash].scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [headingRefs, modules]);
+
   function organizeByModule(methods) {
     let modules = {};
     methods.forEach(method => {
@@ -167,6 +174,7 @@ function ApiComponent({ openrpcData }) {
                 onMouseEnter={() => setHoveredHeader(moduleName)}
                 onMouseLeave={() => setHoveredHeader(null)}
                 style={{ textTransform: 'uppercase' }}
+                ref={el => headingRefs.current['#' + moduleName.toLowerCase()] = el}
               >
                 {moduleName}
                 {hoveredHeader === moduleName && 
@@ -185,11 +193,12 @@ function ApiComponent({ openrpcData }) {
               {methods.filter(method => method.name.toLowerCase().includes(searchTerm.toLowerCase())).map((method) => (
             <div key={method.name}>
               {/* Linked Heading for Method */}
-             <h2 
+              <h2 
                 id={method.name}
                 className={styles.heading}
                 onMouseEnter={() => setHoveredHeader(method.name)}
                 onMouseLeave={() => setHoveredHeader(null)}
+                ref={el => headingRefs.current['#' + method.name] = el}
               >
                 {method.name.split(".")[1]}
                 {hoveredHeader === method.name && 
