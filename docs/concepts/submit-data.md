@@ -108,6 +108,12 @@ celestia-appd tx blob PayForBlobs <hex encoded namespace> <hex encoded data> [fl
 
 ### The celestia-node light node CLI
 
+```terminal
+celestia rpc blob submit <namespace in hex> <data in hex> [flags]
+```
+
+Learn more in the [node tutorial](../../developers/node-tutorial).
+
 ### GRPC to a consensus node via the `user` package
 
 ```go
