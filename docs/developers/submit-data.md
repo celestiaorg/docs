@@ -98,7 +98,7 @@ willingness to accept a changes to fix this issue.
 
 ## API
 
-Users can currently create and submit BlobTxs in three ways.
+Users can currently create and submit BlobTxs in four ways.
 
 ### The celestia-app consensus node CLI
 
