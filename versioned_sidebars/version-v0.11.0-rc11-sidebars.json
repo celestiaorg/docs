@@ -20,6 +20,11 @@
           "id": "nodes/arabica-devnet"
         },
         {
+          "type": "link",
+          "label": "Arabica-9 devnet",
+          "href": "/arabica-9"
+        },
+        {
           "type": "doc",
           "label": "Mocha testnet",
           "id": "nodes/mocha-testnet"
