@@ -6,7 +6,7 @@ export default function Api() {
   const [openrpcData, setOpenrpcData] = useState(null);
 
   useEffect(() => {
-    import(`@site/src/openrpc-spec/openrpc-v0.11.0-rc10.json`)
+    import(`@site/src/openrpc-spec/openrpc-v0.11.0-rc11.json`)
       .then((data) => {
         setOpenrpcData(data.default);
       })
