@@ -84,3 +84,13 @@
         display: none;
     }
 }
+
+[data-theme='light'] .custom-version-selector select {
+    color: var(--ifm-menu-color);
+}
+
+@media (min-width: 997px) {
+    [data-theme='light'] .custom-version-selector select {
+        color: var(--ifm-navbar-link-color);
+    }
+}
