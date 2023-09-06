@@ -16,16 +16,11 @@ export default function NavbarMobilePrimaryMenu() {
   const location = useLocation();
   const items = useNavbarItems();
 
-  // If pathname starts with '/api/', hide 'docsVersionDropdown'
-  const filteredItems = location.pathname.startsWith('/api/') 
-    ? items.filter(item => item.type !== 'docsVersionDropdown') 
-    : items;
-
-  const versions = ['v0.11.0-rc11', 'v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8', 'Next']; 
+  const versions = ['v0.11.0-rc11', 'v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8']; 
 
   return (
     <ul className="menu__list">
-      {filteredItems.map((item, i) => (
+      {items.map((item, i) => (
         <NavbarItem
           mobile
           {...item}

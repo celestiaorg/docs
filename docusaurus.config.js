@@ -157,17 +157,6 @@ const config = {
         },
         items: [
           {
-            type: 'docsVersionDropdown',
-            position: 'right',
-            dropdownItemsBefore: [
-              {
-                type: 'html',
-                className: 'dropdown-versions',
-                value: '<b>Celestia Node version</b>',
-              },
-            ],
-          },
-          {
             type: 'doc',
             docId: 'concepts/how-celestia-works/introduction',
             position: 'left',
