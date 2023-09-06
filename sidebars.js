@@ -553,19 +553,24 @@ const sidebars = {
       ]
     },
     {
-      type: "link",
-      label: "Learn modular",
-      href: "https://celestia.org/learn/"
-    },
-    {
       type: "doc",
       label: "Data availability FAQ",
         id: "concepts/data-availability-faq",
     },
     {
-      type: "link",
-      label: "Glossary",
-      href: "https://celestia.org/glossary/"
+      type: "category",
+      label: "Paying for blobspace",
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          label: "Submitting data blobs to Celestia",
+          id: "concepts/submit-data"
+        }
+      ]
     },
     {
       type: "category",
@@ -589,8 +594,13 @@ const sidebars = {
     },
     {
       type: "link",
-      label: "Resources",
-      href: "https://celestia.org/resources/"
+      label: "Learn modular",
+      href: "https://celestia.org/learn/"
+    },
+    {
+      type: "link",
+      label: "Glossary",
+      href: "https://celestia.org/glossary/"
     }
   ]
 };
