@@ -2,7 +2,7 @@
 
 To submit data to Celestia, users submit blob transactions (`BlobTx`). Blob
 transactions contain two components, a standard Cosmos-SDK transaction called
-`MsgPayForBlobs` and a Blob of data.
+`MsgPayForBlobs` and a `Blob` of data.
 
 ## Fee market and mempool
 
