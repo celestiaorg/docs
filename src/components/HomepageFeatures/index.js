@@ -15,7 +15,7 @@ const FeatureList = [
     ),
   },
   {
-    title: <Translate>Run Different Nodes</Translate>,
+    title: <Translate>Join the Network</Translate>,
     Svg: require('@site/static/img/run_node.svg').default,
     description: (
       <>

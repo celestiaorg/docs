@@ -265,7 +265,9 @@
                                 "end": 4,
                                 "nodes": [
                                     "dGVzdA=="
-                                ]
+                                ],
+                                "leaf_hash": null,
+                                "is_max_namespace_id_ignored": true
                             }
                         ]
                     ],
@@ -338,7 +340,9 @@
                                     "end": 4,
                                     "nodes": [
                                         "dGVzdA=="
-                                    ]
+                                    ],
+                                    "leaf_hash": null,
+                                    "is_max_namespace_id_ignored": true
                                 }
                             ]
                         ],
@@ -4918,10 +4922,10 @@
                     "examples": [
                         [
                             {
-                                "Shares": [
+                                "shares": [
                                     "Ynl0ZSBhcnJheQ=="
                                 ],
-                                "Proof": {
+                                "proof": {
                                     "start": 0,
                                     "end": 0,
                                     "nodes": null,
@@ -4935,11 +4939,11 @@
                         {
                             "additionalProperties": false,
                             "properties": {
-                                "Proof": {
+                                "proof": {
                                     "additionalProperties": false,
                                     "type": "object"
                                 },
-                                "Shares": {
+                                "shares": {
                                     "items": {
                                         "media": {
                                             "binaryEncoding": "base64"

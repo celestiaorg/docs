@@ -1,0 +1,147 @@
+---
+sidebar_label: Mocha testnet
+description: Learn how to connect to the Mocha network.
+---
+
+# Mocha testnet
+
+import MochaVersionTags from '@site/src/components/MochaVersionTags';
+import mochaVersions from '../constants/mocha_versions.js';
+import constants from '../constants/constants.js';
+
+![mocha-testnet](../img/mocha.jpg)
+
+This guide contains the relevant sections for how to connect to Mocha,
+depending on the type of node you are running. Mocha testnet is designed
+to help validators test out their infrastructure and node software.
+Developers are encouraged to deploy their
+sovereign rollups on Mocha, but we also recommend [Arabica devnet](./arabica-devnet.mdx)
+for that as it is designed for development purposes.
+
+Mocha is a milestone in Celestia, allowing everyone to test out
+core functionalities on the network. Read the announcement [here](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api).
+Your best approach to participating is to first determine which node
+you would like to run. Each node guides will link to the relevant network
+in order to show you how to connect to them.
+
+You have a list of options on the type of nodes you can run in order to
+participate in Mocha:
+
+Consensus:
+
+* [Validator node](./validator-node.mdx)
+* [Full consensus node](./full-consensus-node.mdx)
+
+Data Availability:
+
+* [Bridge node](./bridge-node.mdx)
+* [Full storage node](./full-storage-node.mdx)
+* [Light node](./light-node.mdx)
+
+Select the type of node you would like to run and follow the instructions
+on each respective page. Whenever you are asked to select the type of network
+you want to connect to in those guides, select `Mocha` in order to refer
+to the correct instructions on this page on how to connect to Mocha.
+
+## Software version numbers
+
+<MochaVersionTags mochaVersions={mochaVersions} constants={constants} />
+
+## RPC endpoints
+
+The RPC endpoint is to allow users to interact with Celestia's nodes by
+querying the node's state and broadcasting transactions on the
+Celestia network. The default port is 26657.
+
+Below is a list of RPC endpoints you can use to connect to Mocha testnet:
+
+:::tip
+We advise that if you are running a bridge node, that you also
+run a local [full consensus node](../full-consensus-node) in order to download full blocks from
+it. 
+:::
+
+* `rpc-mocha.pops.one`
+* `rpc.mocha.celestia.counterpoint.software`
+* `celestia-testnet-rpc.itrocket.net`
+* `celestia-testnet.rpc.kjnodes.com`
+* `rpc-t.celestia.nodestake.top`
+* `celestia.cumulo.org.es`
+* `celestia-testnet-rpc.polkachu.com`
+* `rpc.mocha-3.celestia.aviaone.com`
+* `rpc-celestia-mocha3.architectnodes.com`
+* `celestia-rpc.f5nodes.com`
+* `rpc-celestia-testnet.mms.team`
+* `celestia-testnet.nodejumper.io`
+
+## API endpoints
+
+The API endpoint is to allow users to interact with the REST API in Cosmos
+SDK which is implemented using gRPC-gateway, which exposes gRPC endpoints
+as REST endpoints. This allows for communication with the node using REST
+calls, which can be useful if the client does not support gRPC or HTTP2.
+The default port is 1317.
+
+* [https://api-mocha.pops.one](https://api-mocha.pops.one)
+* [https://api.mocha.celestia.counterpoint.software](https://api.mocha.celestia.counterpoint.software)
+* [https://celestia-testnet-api.itrocket.net](https://celestia-testnet-api.itrocket.net:443)
+* [https://celestia-testnet.api.kjnodes.com](https://celestia-testnet.api.kjnodes.com)
+* [https://api-t.celestia.nodestake.top](https://api-t.celestia.nodestake.top)
+* [https://celestia.api.cumulo.org.es](https://celestia.api.cumulo.org.es)
+* [https://celestia-testnet-api.polkachu.com](https://celestia-testnet-api.polkachu.com)
+* [https://api.mocha-3.celestia.aviaone.com](https://api.mocha-3.celestia.aviaone.com)
+* [https://rest-celestia-mocha3.architectnodes.com](https://rest-celestia-mocha3.architectnodes.com)
+* [https://celestia-api.f5nodes.com](https://celestia-api.f5nodes.com)
+* [https://api-celestia-testnet.mms.team](https://api-celestia-testnet.mms.team)
+* [https://celestia-testnet.nodejumper.io:1317](https://celestia-testnet.nodejumper.io:1317)
+
+## gRPC endpoints
+
+The gRPC endpoint is to allow users to interact with a Celestia Node using
+gRPC, a modern open-source and high-performance RPC framework. The default
+port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
+broadcast transactions.
+
+* [https://grpc-mocha.pops.one](https://grpc-mocha.pops.one)
+* [https://grpc.mocha.celestia.counterpoint.software](https://grpc.mocha.celestia.counterpoint.software)
+* [https://celestia-testnet-grpc.itrocket.net:11090](https://celestia-testnet-grpc.itrocket.net:11090)
+* [https://celestia-testnet.grpc.kjnodes.com](https://celestia-testnet.grpc.kjnodes.com)
+* [https://grpc-t.celestia.nodestake.top](https://grpc-t.celestia.nodestake.top)
+* [https://gprc.mocha-3.celestia.aviaone.com/](https://gprc.mocha-3.celestia.aviaone.com/)
+* [https://grpc-celestia-mocha3.architectnodes.com:1443](https://grpc-celestia-mocha3.architectnodes.com:1443)
+* [https://celestia.grpc.cumulo.org.es](https://celestia.grpc.cumulo.org.es)
+* [https://celestia-grpc.f5nodes.com](https://celestia-grpc.f5nodes.com)
+* [https://grpc-celestia-testnet.mms.team:12090](https://grpc-celestia-testnet.mms.team)
+* [https://celestia-testnet.nodejumper.io:9090](https://celestia-testnet.nodejumper.io:9090)
+
+## Mocha testnet faucet
+
+> USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER
+  DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS
+  DO NOT CURRENTLY EXIST AND THERE ARE NO PUBLIC SALES OR OTHER PUBLIC
+  DISTRIBUTIONS OF ANY MAINNET CELESTIA TOKENS.
+
+You can request from Mocha Testnet Faucet on the #mocha-faucet channel on
+Celestia's Discord server with the following command:
+
+```text
+$request <CELESTIA-ADDRESS>
+```
+
+Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
+
+> Note: Faucet has a limit of 10 tokens per week per address/Discord ID
+
+## Explorers
+
+There are several explorers you can use for Mocha:
+
+* [https://testnet.mintscan.io/celestia-testnet](https://testnet.mintscan.io/celestia-testnet)
+* [https://celestia.explorers.guru/](https://celestia.explorers.guru)
+* [https://celestiascan.vercel.app/](https://celestiascan.vercel.app)
+* [https://explorer.nodestake.top/celestia-testnet/](https://explorer.nodestake.top/celestia-testnet)
+
+## Network upgrades
+
+Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+for network upgrades.

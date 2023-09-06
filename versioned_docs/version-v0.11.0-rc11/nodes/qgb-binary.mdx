@@ -1,0 +1,52 @@
+---
+sidebar_label: Install the QGB binary
+description: This guide shows you how to install the QGB binary.
+---
+
+# Install the QGB binary
+
+import constants from "../constants/constants.js";
+import InlineText from "@site/src/components/InlineText.js";
+
+The [orchestrator](../qgb-orchestrator) is the software that signs the
+QGB attestations, and the [relayer](../qgb-relayer) is the one that
+relays them to the target EVM chain.
+
+## Install
+
+````mdx-code-block
+1. [Install Go](https://go.dev/doc/install) <InlineText constant={constants.golangQGB} />
+2. Clone the `https://github.com/celestiaorg/orchestrator-relayer` repository:
+
+    <pre><code>
+    git clone https://github.com/celestiaorg/orchestrator-relayer.git<br />
+    cd orchestrator-relayer<br />
+    git checkout {constants.orchrelayVersion}<br />
+    </code></pre>
+````
+3. Install the QGB CLI
+
+    ```sh
+    make install
+    ```
+
+## Usage
+
+```sh
+# Print help
+qgb --help
+```
+
+## How to run
+
+If you are a Celestia-app validator, all you need to do is run the
+orchestrator. Check [here](../qgb-orchestrator) for more details.
+
+If you want to post commitments on an EVM chain, you will need to deploy
+a new QGB contract and run a relayer. Check [here](../qgb-relayer) for
+relayer docs and [here](../qgb-deploy) for how to deploy a new QGB
+contract.
+
+Note: the QGB P2P network is a separate network than the consensus or
+the data availability one. Thus, you will need its specific
+bootstrappers to be able to connect to it.

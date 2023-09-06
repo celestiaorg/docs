@@ -106,35 +106,22 @@ Runs the QGB relayer to submit attestations to the target EVM chain
 
 Usage:
   qgb relayer start <flags> [flags]
-
-Flags:
-  -c, --celes-grpc string          Specify the grpc address without the protocol prefix (default "localhost:9090")
-  -t, --celes-rpc string           Specify the rest rpc address (default "tcp://localhost:26657")
-  -a, --contract-address string    Specify the contract at which the qgb is deployed
-  -d, --evm-address string         Specify the EVM account address to use for signing (Note: the private key should be in the keystore)
-  -z, --evm-chain-id uint          Specify the evm chain id (default 5)
-  -l, --evm-gas-limit uint         Specify the evm gas limit (default 25000000)
-      --evm-passphrase string      the evm account passphrase (if not specified as a flag, it will be asked interactively)
-  -e, --evm-rpc string             Specify the ethereum rpc address (default "http://localhost:8545")
-  -h, --help                       help for start
-      --home string                The qgb relayer home directory
-  -b, --p2p-bootstrappers string   Comma-separated multiaddresses of p2p peers to connect to
-  -q, --p2p-listen-addr string     MultiAddr for the p2p peer to listen on (default "/ip4/127.0.0.1/tcp/30000")
-  -p, --p2p-nickname string        Nickname of the p2p private key to use (if not provided, an existing one from the p2p store or a newly generated one will be used)
 ```
 
 To start the relayer using the default home directory, run the following:
 
 ```ssh
 /bin/qgb relayer start \
-  -d=0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 \
-  -t=http://localhost:26657 \
-  -c=localhost:9090 \
-  -z=4 \
-  -e=http://localhost:8545 \
-  -a=0x35a1F8CE94187E4b043f4D57548EF2348Ed556c8 \
-  -b=/ip4/127.0.0.1/tcp/30001/p2p/12D3KooWFFHahpcZcuqnUhpBoX5fJ68Qm5Hc8dxiBcX1oo46fLxh \
-  -q=/ip4/0.0.0.0/tcp/30001
+  --evm.contract-address=0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 \
+  --core.rpc.host=localhost \
+  --core.rpc.port=26657 \
+  --core.grpc.host=localhost \
+  --core.grpc.port=9090 \
+  --evm.chain-id=4 \
+  --evm.rpc=http://localhost:8545 \
+  --evm.account=0x35a1F8CE94187E4b043f4D57548EF2348Ed556c8 \
+  --p2p.bootstrappers=/ip4/127.0.0.1/tcp/30001/p2p/12D3KooWFFHahpcZcuqnUhpBoX5fJ68Qm5Hc8dxiBcX1oo46fLxh \
+  --p2p.listen-addr=/ip4/0.0.0.0/tcp/30001
 ```
 
 And, you will be prompted to enter your EVM key passphrase for the EVM address passed using the `-d` flag, so that the relayer can use it to send transactions to the target QGB smart contract. Make sure that it's funded.
