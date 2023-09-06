@@ -110,8 +110,10 @@ celestia-appd tx blob PayForBlobs <hex encoded namespace> <hex encoded data> [fl
 
 ### The celestia-node light node CLI
 
+Using `blob.Submit`:
+
 ```terminal
-celestia rpc blob submit <namespace in hex> <data in hex> [flags]
+celestia rpc blob submit <namespace in hex> <data in hex>
 ```
 
 Learn more in the [node tutorial](../../developers/node-tutorial).
@@ -227,7 +229,7 @@ func DemoSubmitData(grpcAddr string, kr keyring.Keyring) error {
 
 Using the JSON RPC API, submit data using the following methods:
 
-* [blob.Submit](/api/next/#blob.Submit)
-* [state.SubmitPayForBlob](/api/next/#state.SubmitPayForBlob)
+* [blob.Submit](/api/v0.11.0-rc11/#blob.Submit)
+* [state.SubmitPayForBlob](/api/v0.11.0-rc11/#state.SubmitPayForBlob)
 
-Learn more in the [celestia-node API docs](/api/next).
+Learn more in the [celestia-node API docs](/api/v0.11.0-rc11).
