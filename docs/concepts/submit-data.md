@@ -12,20 +12,22 @@ will be prioritized by validators.
 
 ### Fees and gas limits
 
-As of version v1.0.0 of the application (celestia-app), there is no enforced
-protocol minimum fee (similar to EIP-1559 in Ethereum). Instead, each consensus
-node running a mempool uses a locally configured gas price threshold that must
-be met in order for that node to accept a transaction, either from a user
-or from another consensus node, into its mempool. Members of the community have
-already expressed interest in pursuing or accepting some flavor of a protocol
-enforced minimum fee.
+As of version v1.0.0 of the application (celestia-app), there is no protocol
+enforced protocol minimum fee (similar to EIP-1559 in Ethereum). Instead, each
+consensus node running a mempool uses a locally configured gas price threshold
+that must be met in order for that node to accept a transaction, either directly
+from a user or gossiped from another node, into its mempool.
 
 As of version v1.0.0 of the application (celestia-app), gas is not refunded.
 Instead, transaction fees are deducted by a flat fee, originally determined by
 the user via multiplying the gas limit by the desired gas price. This means that
 users should use an accurate gas limit value if they do not wish to over pay.
-Again, community members have already expressed pursuing and accepting a
-solution to this problem.
+
+Under the hood, fees are currently handled by specifying and deducting a flat
+fee. However gas price is often specifed by users instead of calculating the
+flat fee from the gas used and the gas price. Since the state machine not
+refunding users for unused gas, Gas price can therefore be calculated by
+dividing the total fee by the gas limit.
 
 #### Estimating PFB gas
 
