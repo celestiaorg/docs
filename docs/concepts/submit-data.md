@@ -4,7 +4,7 @@ To submit data to Celestia, users submit blob transactions (`BlobTx`). Blob
 transactions contain two components, a standard Cosmos-SDK transaction called
 `MsgPayForBlobs` and a Blob of data.
 
-## Fee Market and Mempool
+## Fee market and mempool
 
 Celestia makes use of a standard gas-priced prioritized mempool. By default,
 transactions with fees higher than that of other transactions in the mempool
