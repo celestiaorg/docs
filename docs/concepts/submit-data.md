@@ -25,9 +25,9 @@ users should use an accurate gas limit value if they do not wish to over pay.
 
 Under the hood, fees are currently handled by specifying and deducting a flat
 fee. However gas price is often specifed by users instead of calculating the
-flat fee from the gas used and the gas price. Since the state machine not
-refunding users for unused gas, Gas price can therefore be calculated by
-dividing the total fee by the gas limit.
+flat fee from the gas used and the gas price. Since the state machine does not
+refund users for unused gas, gas price is calculated by dividing the total fee
+by the gas limit.
 
 #### Estimating PFB gas
 
@@ -41,7 +41,7 @@ a dynamic cost based on the size of each blob involved in the transaction.
 
 The "fixed cost" is an approximation of the gas consumed by operations outside
 the function `GasToConsume` (for example, signature verification, tx size, read
-access to accounts), which has a default value of 65,000.
+access to accounts), which has a default value of 65,000 gas.
 
 > Note: the first transaction sent by an account (sequence number == 0) has an
 > additional one time gas cost of 10,000. If this is the case, this should be
@@ -54,9 +54,9 @@ how many shares are needed to store the blob size. Then, it computes the product
 of the number of shares, the number of bytes per share, and the `gasPerByte`
 parameter. Finally, it adds a static amount per blob.
 
-The gas cost per blob byte and gas cost per transaction byte are parameters that
+The `GasCostPerBlobByte` and `GasCostPerTransactionByte` are parameters that
 could potentially be adjusted through the system's governance mechanisms. Hence,
-actual costs may vary depending on the current settings of these parameters.
+actual costs may vary depending on the current state of these parameters.
 
 #### Estimating gas programmatically
 
@@ -100,7 +100,7 @@ willingness to accept changes to fix this issue.
 
 ## API
 
-Users can currently create and submit BlobTxs in four ways.
+Users can currently create and submit `BlobTx`s in four ways.
 
 ### The celestia-app consensus node CLI
 
