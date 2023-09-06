@@ -1,21 +1,21 @@
-# Submitting Data Blobs to Celestia
+# Submitting data blobs to Celestia
 
-To submit data to celestia, users submit blob transactions (`BlobTx`). Blob
-transactions contain two components, a standard cosmos-sdk transaction called
+To submit data to Celestia, users submit blob transactions (`BlobTx`). Blob
+transactions contain two components, a standard Cosmos-SDK transaction called
 `MsgPayForBlobs` and a Blob of data.
 
 ## Fee Market and Mempool
 
-Celestia makes use of a standard gas priced prioritized mempool. By default,
+Celestia makes use of a standard gas-priced prioritized mempool. By default,
 transactions with fees higher than that of other transactions in the mempool
 will be prioritized by validators.
 
-### Fees and Gas Limits
+### Fees and gas limits
 
 As of version v1.0.0 of the application (celestia-app), there is no enforced
-protocol minimum fee (similar to EIP1559 in Ethereum). Instead, each consensus
+protocol minimum fee (similar to EIP-1559 in Ethereum). Instead, each consensus
 node running a mempool uses a locally configured gas price threshold that must
-be breached in order for that node to accept a transaction, either from a user
+be met in order for that node to accept a transaction, either from a user
 or from another consensus node, into its mempool. Members of the community have
 already expressed interest in pursuing or accepting some flavor of a protocol
 enforced minimum fee.
@@ -27,14 +27,14 @@ users should use an accurate gas limit value if they do not wish to over pay.
 Again, community members have already expressed pursuing and accepting a
 solution to this problem.
 
-#### Estimating PFB Gas
+#### Estimating PFB gas
 
 Generally, the gas used by a PFB transaction involves a static "fixed cost" and
 a dynamic cost based on the size of each blob involved in the transaction.
 
 > Note: For a general use case of a normal account submitting a PFB, the static
 > costs can be treated as such. However, due to the description above of how gas
-> works in the cosmos-sdk this is not always the case. Notably, if we use a
+> works in the Cosmos-SDK this is not always the case. Notably, if we use a
 > vesting account or the `feegrant` modules, then these static costs change.
 
 The "fixed cost" is an approximation of the gas consumed by operations outside
@@ -56,7 +56,7 @@ The gas cost per blob byte and gas cost per transaction byte are parameters that
 could potentially be adjusted through the system's governance mechanisms. Hence,
 actual costs may vary depending on the current settings of these parameters.
 
-#### Estimating Gas Programmatically
+#### Estimating gas programmatically
 
 Users can estimate an efficient gas limit by using this function:
 
@@ -77,16 +77,16 @@ specs](https://github.com/celestiaorg/celestia-app/blob/d17e231ae3a0150b50a1854f
 and the exact formula can be found in the [blob
 module](https://github.com/celestiaorg/celestia-app/blob/d17e231ae3a0150b50a1854f3e9a268c34502b6b/x/blob/types/payforblob.go#L157-L181).
 
-### Submitting Multiple Transactions in One Block From The Same Account
+### Submitting multiple transactions in one block from the same account
 
 The mempool Celestia uses works by maintaining a fork of the canonical state
 each block. This means that each time we submit a transaction to it, it will
 update the sequence number (aka nonce) for the account that submitted the
 transaction. If users wish to submit a second transaction, they can, but must
 specify the nonce manually. If this is not done, the new transactions will not
-be able to be submitted until the first transactions is pruned.
+be able to be submitted until the first transaction is reaped from the mempool (i.e. included in a block), or dropped due to timing out.
 
-By default, nodes will prune a transaction if it does not get included in 10
+By default, nodes will drop a transaction if it does not get included in 10
 blocks (roughly 2.5 minutes). At this point, the user must resubmit their
 transaction if they want it to eventually be included.
 
@@ -94,7 +94,7 @@ As of v1.0.0 of the application (celestia-app), users are unable to replace an
 existing transaction with a different one with higher fees. They must instead
 wait 10 blocks from the original submitted time and then resubmit the
 transaction. Again, community members have already suggested solutions and a
-willingness to accept a changes to fix this issue.
+willingness to accept changes to fix this issue.
 
 ## API
 
@@ -223,7 +223,7 @@ func DemoSubmitData(grpcAddr string, kr keyring.Keyring) error {
 
 ### RPC to a celestia-node
 
-Using the RPC API, submit data using the following methods:
+Using the JSON RPC API, submit data using the following methods:
 
 * [blob.Submit](/api/next/#blob.Submit)
 * [state.SubmitPayForBlob](/api/next/#state.SubmitPayForBlob)
