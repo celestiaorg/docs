@@ -3,5 +3,13 @@
   "settings": {
     "mdx/code-blocks": true,
     "mdx/language-mapper": {}
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.mdx"],
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ]
 }
