@@ -454,6 +454,33 @@
                     },
                     "required": true,
                     "deprecated": false
+                },
+                {
+                    "name": "options",
+                    "description": "*blob.SubmitOptions",
+                    "summary": "",
+                    "schema": {
+                        "examples": [
+                            {
+                                "Fee": 42,
+                                "GasLimit": 42
+                            }
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "Fee": {
+                                "type": "integer"
+                            },
+                            "GasLimit": {
+                                "type": "integer"
+                            }
+                        },
+                        "type": [
+                            "object"
+                        ]
+                    },
+                    "required": true,
+                    "deprecated": false
                 }
             ],
             "result": {
