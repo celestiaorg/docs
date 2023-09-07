@@ -55,7 +55,7 @@ export default function NavbarContent() {
   const [leftItems, rightItems] = splitNavbarItems(items);
   const searchBarItem = items.find((item) => item.type === 'search');
   const location = useLocation();
-  const versions = ['v0.11.0-rc11', 'v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8'];
+  const versions = ['v0.11.0-rc12', 'v0.11.0-rc11', 'v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8'];
 
   return (
     <NavbarContentLayout

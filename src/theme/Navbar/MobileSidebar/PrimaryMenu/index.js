@@ -16,7 +16,7 @@ export default function NavbarMobilePrimaryMenu() {
   const location = useLocation();
   const items = useNavbarItems();
 
-  const versions = ['v0.11.0-rc11', 'v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8']; 
+  const versions = ['v0.11.0-rc12', 'v0.11.0-rc11', 'v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8']; 
 
   return (
     <ul className="menu__list">

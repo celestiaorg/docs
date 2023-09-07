@@ -333,7 +333,7 @@ const sidebars = {
         {
           "type": "link",
           "label": "Celestia Node API",
-          "href": "/api/v0.11.0-rc11"
+          "href": "/api/v0.11.0-rc12"
         },
         {
           type: "category",

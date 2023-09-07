@@ -7,7 +7,7 @@ const constants = Object.freeze({
   golang: "1.20.2",
   arabicaChainId: "arabica-10",
   bsrChainId: "blockspacerace-0",
-  mochaChainId: "mocha-3",
+  mochaChainId: "mocha-4",
   arabicaRollkitVersion: "v0.10.2",
   mochaRollkitVersion: "v0.10.2",
   bsrRollkitVersion: "v0.8.1",
