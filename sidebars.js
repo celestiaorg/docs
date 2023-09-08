@@ -314,6 +314,11 @@ const sidebars = {
           label: "Wallet with Celestia Node",
           id: "developers/celestia-node-key"
         },
+        {
+          type: "doc",
+          label: "Staking",
+          id: "developers/staking"
+        },
       ]
     },
     {
