@@ -5,9 +5,9 @@ description: Learn how to stake your tokens on the Celestia network.
 
 # Staking on Celestia
 
-Engage with the Celestia network at a deeper level through staking. As an
+Engage with the Celestia network at a deeper level through staking. An
 essential mechanism to a proof-of-stake network, users can secure the
-network by delegating to a validator and receiving a share of it's
+network by delegating to a validator and receive a share of it's
 staking rewards.
 
 Currently, the following staking interfaces exist for the
