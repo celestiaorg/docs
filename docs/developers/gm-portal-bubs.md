@@ -71,7 +71,7 @@ cast call $CONTRACT_ADDRESS "getTotalGms()" --rpc-url $BUBS_RPC_URL
 ```
 
 In order to interact with the contract on the frontend, you'll need to fund an
-account thatyou have in your Ethereum wallet. Transfer to an external account
+account that you have in your Ethereum wallet. Transfer to an external account
 with this command:
 
 ```bash
