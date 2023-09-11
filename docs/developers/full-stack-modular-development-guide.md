@@ -6,7 +6,7 @@ description: Learn to build a full stack modular dapp.
 # Full stack modular blockchain development guide
 
 This guide will introduce you to
-[modular blockchains](../concepts/how-celestia-works/introduction.md) like
+[modular blockchains](../learn/how-celestia-works/introduction.md) like
 Celestia, explain their benefits, and show you how to build a full stack
 modular dapp with React, Vite, RainbowKit, Celestia, and Foundry.
 

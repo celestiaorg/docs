@@ -526,7 +526,7 @@ const sidebars = {
       ]
     },
   ],
-  concepts: [
+  learn: [
     {
       type: "category",
       label: "How Celestia works",
@@ -538,29 +538,29 @@ const sidebars = {
         {
           type: 'doc',
           label: "Introduction",
-          id: "concepts/how-celestia-works/introduction"
+          id: "learn/how-celestia-works/introduction"
         },
         {
           type: "doc",
           label: "Monolithic vs. modular blockchains",
-          id: "concepts/how-celestia-works/monolithic-vs-modular"
+          id: "learn/how-celestia-works/monolithic-vs-modular"
         },
         {
           type: "doc",
           label: "Celestia's data availability layer",
-          id: "concepts/how-celestia-works/data-availability-layer"
+          id: "learn/how-celestia-works/data-availability-layer"
         },
         {
           type: "doc",
           label: "The lifecycle of a Celestia App transaction",
-          id: "concepts/how-celestia-works/transaction-lifecycle"
+          id: "learn/how-celestia-works/transaction-lifecycle"
         }
       ]
     },
     {
       type: "doc",
       label: "Data availability FAQ",
-        id: "concepts/data-availability-faq",
+        id: "learn/data-availability-faq",
     },
     {
       type: "category",
@@ -573,7 +573,7 @@ const sidebars = {
         {
           type: 'doc',
           label: "Submitting data blobs to Celestia",
-          id: "concepts/submit-data"
+          id: "learn/submit-data"
         }
       ]
     },
@@ -588,7 +588,7 @@ const sidebars = {
         {
           type: 'doc',
           label: "Reserved namespaces",
-          id: "concepts/specifications/reserved-namespaces"
+          id: "learn/specifications/reserved-namespaces"
         },
         {
           type: "link",

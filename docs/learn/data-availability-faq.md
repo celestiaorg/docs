@@ -15,7 +15,7 @@ If the node can download all the transaction data, then it successfully
 verified data availability, proving that the block data was actually
 published to the network.
 
-![Modular VS Monolithic](../img/concepts/data-availability-faq/Data-availability.png)
+![Modular VS Monolithic](../img/learn/data-availability-faq/Data-availability.png)
 
 As you’ll see, modular blockchains like Celestia employ other primitives
 that allow nodes to verify data availability more efficiently. Data
@@ -95,7 +95,7 @@ able to generate a bad encoding fraud proof.
 
 Data storage is concerned with the ability to store and access past transaction data.
 
-![Modular VS Monolithic](../img/concepts/data-availability-faq/Data-storage.png)
+![Modular VS Monolithic](../img/learn/data-availability-faq/Data-storage.png)
 
 Data storage and retrieval is needed for multiple purposes, such as:
 

@@ -16,8 +16,8 @@ function HomepageHeader() {
           <div className={styles.buttons}>
             <Link
               className="front-page-link"
-              to="/concepts/how-celestia-works/introduction">
-                <p className="button-heading">Concepts</p>
+              to="/learn/how-celestia-works/introduction">
+                <p className="button-heading">Learn</p>
                 Learn how Celestia works
             </Link>
             <Link

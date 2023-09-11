@@ -105,6 +105,34 @@ const config = {
             to: "/developers/node-api",
             from: "/category/node-api",
           },
+          {
+            to: "/learn/submit-data",
+            from: "/concepts/submit-data",
+          },
+          {
+            to: "/learn/data-availability-faq",
+            from: "/concepts/data-availability-faq",
+          },
+          {
+            to: "/learn/specifications/reserved-namespaces",
+            from: "/concepts/specifications/reserved-namespaces",
+          },
+          {
+            to: "/learn/how-celestia-works/data-availability-layer",
+            from: "/concepts/how-celestia-works/data-availability-layer",
+          },
+          {
+            to: "/learn/how-celestia-works/introduction",
+            from: "/concepts/how-celestia-works/introduction",
+          },
+          {
+            to: "/learn/how-celestia-works/monolithic-vs-modular",
+            from: "/concepts/how-celestia-works/monolithic-vs-modular",
+          },
+          {
+            to: "/learn/how-celestia-works/transaction-lifecycle",
+            from: "/concepts/how-celestia-works/transaction-lifecycle",
+          },
         ],
       },
     ],
@@ -121,6 +149,10 @@ const config = {
           hideable: true,
           autoCollapseCategories: true,
         },
+      },
+      colorMode: {
+        defaultMode: 'light',
+        respectPrefersColorScheme: true,
       },
       image: "img/celestia-doc.png",
       metadata: [
@@ -162,9 +194,9 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'concepts/how-celestia-works/introduction',
+            docId: 'learn/how-celestia-works/introduction',
             position: 'left',
-            label: 'Concepts',
+            label: 'Learn',
           },
           {
             type: 'doc',
