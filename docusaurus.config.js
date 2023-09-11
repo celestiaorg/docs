@@ -101,6 +101,10 @@ const config = {
             to: "/nodes/celestia-node-metrics",
             from: "/developers/celestia-node-metrics",
           },
+          {
+            to: "/developers/node-api",
+            from: "/category/node-api",
+          },
         ],
       },
     ],
