@@ -1456,6 +1456,51 @@ Which will return:
 }
 ```
 
+### Setting the gas fee and limit
+
+:::tip
+
+These flags are only currently live on celestia-node versions v0.11.0-rc13 and
+higher. They are also **optional** to use with `blob.submit`.
+
+:::
+
+To set the gas fee and limit, you can use the `--fee` and `--gas.limit` flags
+respectively when submitting data using the RPC CLI.
+
+Learn more about gas fees and limits [here](../../learn/submit-data).
+
+To set the fee of 10000 gas, use the `--fee 10000` flag:
+
+```bash
+celestia rpc blob submit 0x42690c204d39600fddd3 'gm' --fee 10000
+```
+
+To set a gas limit of 100000, use the `--gas.limit 100000` flag:
+
+```bash
+celestia rpc blob submit 0x42690c204d39600fddd3 'gm' --gas.limit 100000
+```
+
+To set a fee of 10000 gas and gas limit of 100000, use the
+`--fee 10000 --gas.limit 100000` flags:
+
+```bash
+celestia rpc blob submit 0x42690c204d39600fddd3 'gm' --fee 10000 --gas.limit 100000
+```
+
+You will receive the height and committment of the block in which the
+transaction was included for these three examples:
+
+```json
+{
+  "result": {
+    "height": 62562,
+    "commitment": "IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E="
+  }
+}
+```
+
 ### Examples
 
 #### Check your balance
