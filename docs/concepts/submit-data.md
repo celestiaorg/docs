@@ -229,7 +229,7 @@ func DemoSubmitData(grpcAddr string, kr keyring.Keyring) error {
 
 Using the JSON RPC API, submit data using the following methods:
 
-* [blob.Submit](/api/v0.11.0-rc11/#blob.Submit)
-* [state.SubmitPayForBlob](/api/v0.11.0-rc11/#state.SubmitPayForBlob)
+* [blob.Submit](/api/v0.11.0-rc12/#blob.Submit)
+* [state.SubmitPayForBlob](/api/v0.11.0-rc12/#state.SubmitPayForBlob)
 
-Learn more in the [celestia-node API docs](/api/v0.11.0-rc11).
+Learn more in the [celestia-node API docs](/api/v0.11.0-rc12).
