@@ -1,6 +1,6 @@
 ---
 sidebar_label: Helpful CLI commands
-description: Some of the most helpful Celestia App CLI commands. 
+description: Some of the most helpful Celestia App CLI commands.
 ---
 
 # Helpful CLI commands
@@ -22,7 +22,7 @@ Available Commands:
   export              Export state to JSON
   gentx               Generate a genesis tx carrying a self delegation
   help                Help about any command
-  init                Initialize private validator, p2p, genesis, 
+  init                Initialize private validator, p2p, genesis,
   and application configuration files
   keys                Manage your application's keys
   migrate             Migrate genesis to a specified target version
@@ -33,7 +33,7 @@ Available Commands:
   status              Query remote node for status
   tendermint          Tendermint subcommands
   tx                  Transactions subcommands
-  validate-genesis    validates the genesis file at the default 
+  validate-genesis    validates the genesis file at the default
   location or at the location passed as an arg
   version             Print the application binary version information
 ```

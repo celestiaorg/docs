@@ -15,6 +15,6 @@ Currently, the following staking interfaces exist for the
 
 Just connect your wallet to get started!
 
-* [https://explorer.kjnodes.com/celestia-testnet](https://explorer.kjnodes.com/celestia-testnet)
-* [https://test.anode.team/celestia](https://test.anode.team/celestia)
-* [https://testnet.keplr.app/chains/celestia-mocha-testnet](https://testnet.keplr.app/chains/celestia-mocha-testnet)
+- [https://explorer.kjnodes.com/celestia-testnet](https://explorer.kjnodes.com/celestia-testnet)
+- [https://test.anode.team/celestia](https://test.anode.team/celestia)
+- [https://testnet.keplr.app/chains/celestia-mocha-testnet](https://testnet.keplr.app/chains/celestia-mocha-testnet)

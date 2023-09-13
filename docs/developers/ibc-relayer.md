@@ -76,10 +76,10 @@ the chains you want to relay between.
 For this tutorial, we will be using the following chains:
 
 - Celestia's Blockspace Race `blockspacerace-0`
-[https://docs.celestia.org/nodes/blockspace-race/](https://docs.celestia.org/nodes/blockspace-race/)
+  [https://docs.celestia.org/nodes/blockspace-race/](https://docs.celestia.org/nodes/blockspace-race/)
 
 - Dymension's 35-C `35-C`
-[https://docs.dymension.xyz/validate/dymension-hub/build-dymd](https://docs.dymension.xyz/validate/dymension-hub/build-dymd)
+  [https://docs.dymension.xyz/validate/dymension-hub/build-dymd](https://docs.dymension.xyz/validate/dymension-hub/build-dymd)
 
 If you are running both nodes on the same server where Hermes is running,
 you can use the local host. Please adjust the ports and IPs depending
@@ -273,9 +273,11 @@ Now that the connection has been established over new clients,
 we need to create a new channel, by leveraging an existing connection:
 
 <!-- markdownlint-disable MD013 -->
+
 ```bash
 hermes create channel --order unordered --a-chain 35-C --a-connection connection-15 --a-port  transfer --b-port transfer
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 You should be seeing a similar output to this:

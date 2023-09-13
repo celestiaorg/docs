@@ -10,7 +10,7 @@ wallet using `celestia-app`.
 
 ## Prerequisites
 
-* [Gone through Quick Start and Installed `celestia-app`](../nodes/quick-start.md)
+- [Gone through Quick Start and Installed `celestia-app`](../nodes/quick-start.md)
 
 Note, you do not need to install `celestia-node` for this tutorial.
 

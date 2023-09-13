@@ -35,7 +35,7 @@ Ubuntu. You can find the instructions for your operating system
 
 ## Quick start
 
-````mdx-code-block
+```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -254,7 +254,7 @@ you can refer to the
 </Tabs>
 </TabItem>
 </Tabs>
-````
+```
 
 ## Light node setup with persistent storage
 
@@ -294,11 +294,11 @@ docker run [...args] -v $HOME/my-node-store:/home/celestia celestia <node-type> 
 
 An example init command for Mocha testnet will look similar to below:
 
-````mdx-code-block
+```mdx-code-block
 <pre><code>
 docker run -e NODE_TYPE=light -e P2P_NETWORK=mocha -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{mochaVersions['node-latest-tag']} celestia light init --p2p.network mocha
 </code></pre>
-````
+```
 
 ### Start the node
 
@@ -312,32 +312,30 @@ docker run [...args] -v $HOME/my-node-store:/home/celestia celestia <node-type> 
 A full start command will look similar to below. This is an example using
 a light node on Mocha testnet:
 
-````mdx-code-block
+```mdx-code-block
 <pre><code>
 docker run -e NODE_TYPE=light -e P2P_NETWORK=mocha -v $HOME/my-node-store:/home/celestia ghcr.io/celestiaorg/celestia-node:{mochaVersions['node-latest-tag']} celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 </code></pre>
-````
+```
 
 ## Video walkthrough
 
 <div class="youtube-wrapper">
   <iframe
-     class="youtube-video"
-     title="Running a Celestia light node"
-     src="https://youtube.com/embed/WFubhQc8tGk"
-     allowfullscreen
-  >
-  </iframe>
+    class="youtube-video"
+    title="Running a Celestia light node"
+    src="https://youtube.com/embed/WFubhQc8tGk"
+    allowfullscreen
+  ></iframe>
 </div>
 
 ### 2.5 minute version
 
 <div class="youtube-wrapper">
   <iframe
-     class="youtube-video"
-     title="Running a Celestia light node"
-     src="https://youtube.com/embed/ROZv871Q7RM"
-     allowfullscreen
-  >
-  </iframe>
+    class="youtube-video"
+    title="Running a Celestia light node"
+    src="https://youtube.com/embed/ROZv871Q7RM"
+    allowfullscreen
+  ></iframe>
 </div>

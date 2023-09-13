@@ -22,6 +22,7 @@ sensitive and administrative capabilities.
 ### Library
 
 The node can be used as a Golang library and designed for programmatic API access.
+
 <!-- (WIP atm([celestiaorg/celestia-node#2349](https://github.com/celestiaorg/celestia-node/issues/2349))
 and needs to be cleaned up for convenience as well as needs examples) -->
 

@@ -46,6 +46,6 @@ In this Quick Start guide, we will go over installing both of
 the software clients: `celestia-node` and `celestia-app`.
 
 > NOTE: If you just want to run a light node, you don't need to
-  install `celestia-app` and can skip that part.
+> install `celestia-app` and can skip that part.
 
 Proceed to the next section in order to get started.

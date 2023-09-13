@@ -41,7 +41,7 @@ Code of Conduct. Organizers will respectfully enforce this code
 throughout the event. We genuinely appreciate the cooperation of all
 participants in maintaining a safe and empowering space for everyone.
 
-* [Celestia.org Community Code of Conduct](https://docs.celestia.org/community/coc/)
+- [Celestia.org Community Code of Conduct](https://docs.celestia.org/community/coc/)
 
 ### Emails
 
@@ -58,7 +58,7 @@ Your active participation is key to unlocking the full potential
 of this vibrant community. Our primary communication tool is Discord,
 providing an engaging platform to connect with fellow organizers:
 
-* [Discord link](https://discord.com/invite/je7UVpDuDu)
+- [Discord link](https://discord.com/invite/je7UVpDuDu)
 
 Make sure to join the channel #meetups where we will be also giving
 you the relevant role as a Meetup Organizer.
@@ -71,16 +71,16 @@ companion in organizing events. Drawing upon the wisdom of seasoned event
 organizers, this resource is available for you and your co-organizers
 to explore and learn.
 
-* [Modular Meetup Toolkit](./modular-meetup-toolkit.md)
-* [Speaker List](./speaker-list.md)
-* [Meetup Guide](./modular-meetup-guide.md)
+- [Modular Meetup Toolkit](./modular-meetup-toolkit.md)
+- [Speaker List](./speaker-list.md)
+- [Meetup Guide](./modular-meetup-guide.md)
 
 ## Signup form
 
 In order to be added to the Modular Meetup Organizer call, please
 complete the following form:
 
-* [Signup Form](https://celestia-intake.typeform.com/to/zNI5W4uI).
+- [Signup Form](https://celestia-intake.typeform.com/to/zNI5W4uI).
 
 We will then send you an email and add you to next upcoming Modular
 Meetup Organizer call. Please keep in mind, this program is meant

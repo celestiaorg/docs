@@ -18,10 +18,10 @@ Validator nodes allow you to participate in consensus in the Celestia network.
 The following hardware minimum requirements are recommended for running the
 validator node:
 
-* Memory: **8 GB RAM**
-* CPU: **6 cores**
-* Disk: **500 GB SSD Storage**
-* Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
+- Memory: **8 GB RAM**
+- CPU: **6 cores**
+- Disk: **500 GB SSD Storage**
+- Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up your validator node
 
@@ -50,7 +50,7 @@ To initialize the network pick a "node-name" that describes your
 node. The `--chain-id` parameter we are using here is **<InlineText constant={constants.mochaChainId} />**. Keep in
 mind that this might change if a new testnet is deployed.
 
-````mdx-code-block
+```mdx-code-block
 <pre><code>
 celestia-appd init "node-name" --chain-id {constants.mochaChainId}
 </code></pre>
@@ -60,7 +60,7 @@ Copy the `genesis.json` file. For mocha we are using:
 <pre><code>
 cp $HOME/networks/{constants.mochaChainId}/genesis.json $HOME/.celestia-app/config
 </code></pre>
-````
+```
 
 Set seeds and peers:
 
@@ -216,11 +216,13 @@ celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
 To delegate tokens to the `celestiavaloper` validator, as an
 example you can run:
 
-<pre><code>
-celestia-appd tx staking delegate \ <br/>
-    celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \ <br/>
+<pre>
+  <code>
+    celestia-appd tx staking delegate \ <br />
+    celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \ <br />
     --from=$VALIDATOR_WALLET --chain-id={constants.mochaChainId}
-</code></pre>
+  </code>
+</pre>
 
 If successful, you should see a similar output as:
 

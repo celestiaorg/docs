@@ -45,9 +45,9 @@ discussed more in-depth in the following
 
 The Orchestrator is part of the validator setup and works as follows:
 
-* Celestia App: creates an attestation on the state machine level that needs to
+- Celestia App: creates an attestation on the state machine level that needs to
   be signed
-* The Orchestrator: queries the attestation, signs it, then submits the signature
+- The Orchestrator: queries the attestation, signs it, then submits the signature
   back to Celestia App
 
 The diagram below goes over this process.
@@ -69,8 +69,8 @@ You can learn more about the mechanics behind the Relayer in this
 
 The following sections in this category presume you have the following setup:
 
-* A Celestia App [validator](../validator-node) running
-* A Celestia Node - [bridge node](../bridge-node) running
+- A Celestia App [validator](../validator-node) running
+- A Celestia Node - [bridge node](../bridge-node) running
 
 ## Next steps
 

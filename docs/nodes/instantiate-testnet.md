@@ -48,9 +48,9 @@ CHAIN_ID=testnet
 celestia-appd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 ```
 
-* The value we will use for `$VALIDATOR_NAME` is `validator1` but you should choose
+- The value we will use for `$VALIDATOR_NAME` is `validator1` but you should choose
   your own node name.
-* The value we will use for `$CHAIN_ID` is `testnet`. The `$CHAIN_ID` must
+- The value we will use for `$CHAIN_ID` is `testnet`. The `$CHAIN_ID` must
   remain the same for everyone participating in this network.
 
 ### Create a new key
@@ -108,8 +108,8 @@ when starting your node.
 You will find the generated gentx JSON file inside `$HOME/.celestia-app/config/gentx/gentx-$KEY_NAME.json`
 
 > Note: If you have other validators in your network, they need to also
-  run the above command with the `genesis.json` file you shared with
-  them in the previous step.
+> run the above command with the `genesis.json` file you shared with
+> them in the previous step.
 
 ### Creating the genesis JSON file
 

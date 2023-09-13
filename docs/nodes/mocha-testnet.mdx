@@ -5,9 +5,9 @@ description: Learn how to connect to the Mocha network.
 
 # Mocha testnet
 
-import MochaVersionTags from '@site/src/components/MochaVersionTags';
-import mochaVersions from '../constants/mocha_versions.js';
-import constants from '../constants/constants.js';
+import MochaVersionTags from "@site/src/components/MochaVersionTags";
+import mochaVersions from "../constants/mocha_versions.js";
+import constants from "../constants/constants.js";
 
 ![mocha-testnet](../img/mocha.jpg)
 
@@ -29,14 +29,14 @@ participate in Mocha:
 
 Consensus:
 
-* [Validator node](./validator-node.mdx)
-* [Full consensus node](./full-consensus-node.mdx)
+- [Validator node](./validator-node.mdx)
+- [Full consensus node](./full-consensus-node.mdx)
 
 Data Availability:
 
-* [Bridge node](./bridge-node.mdx)
-* [Full storage node](./full-storage-node.mdx)
-* [Light node](./light-node.mdx)
+- [Bridge node](./bridge-node.mdx)
+- [Full storage node](./full-storage-node.mdx)
+- [Light node](./light-node.mdx)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
@@ -59,22 +59,22 @@ Below is a list of RPC endpoints you can use to connect to Mocha testnet:
 
 ### Bridge, full, and light nodes
 
-* `full.consensus.mocha-4.celestia-mocha.com`
-* `consensus-full-mocha-4.celestia-mocha.com`
-* `rpc-mocha.pops.one`
-* `celestia-rpc.f5nodes.com`
-* `celestia-testnet.brightlystake.com`
-* `rpc-celestia-mocha.architectnodes.com`
+- `full.consensus.mocha-4.celestia-mocha.com`
+- `consensus-full-mocha-4.celestia-mocha.com`
+- `rpc-mocha.pops.one`
+- `celestia-rpc.f5nodes.com`
+- `celestia-testnet.brightlystake.com`
+- `rpc-celestia-mocha.architectnodes.com`
 
 ### Full and light nodes ONLY
 
 These RPC endpoints do not allow you to download full blocks from
 them. We advise that if you are running a bridge node, that you also
 run a local [full consensus node](../full-consensus-node) in order to download full blocks from
-it. 
+it.
 
-* `rpc.celestia-mocha.com`
-* `rpc-2.celestia-mocha.com`
+- `rpc.celestia-mocha.com`
+- `rpc-2.celestia-mocha.com`
 
 :::
 
@@ -86,12 +86,12 @@ as REST endpoints. This allows for communication with the node using REST
 calls, which can be useful if the client does not support gRPC or HTTP2.
 The default port is 1317.
 
-* [https://api-mocha.pops.one](https://api-mocha.pops.one)
-* [https://api.celestia-mocha.com/](https://api.celestia-mocha.com/)
-* [https://api-2.celestia-mocha.com/](https://api-2.celestia-mocha.com/)
-* [https://celestia-api.f5nodes.com](https://celestia-api.f5nodes.com)
-* [https://celestia-testnet.brightlystake.com/api](https://celestia-testnet.brightlystake.com/api)
-* [https://rest-celestia-mocha.architectnodes.com](https://rest-celestia-mocha.architectnodes.com)
+- [https://api-mocha.pops.one](https://api-mocha.pops.one)
+- [https://api.celestia-mocha.com/](https://api.celestia-mocha.com/)
+- [https://api-2.celestia-mocha.com/](https://api-2.celestia-mocha.com/)
+- [https://celestia-api.f5nodes.com](https://celestia-api.f5nodes.com)
+- [https://celestia-testnet.brightlystake.com/api](https://celestia-testnet.brightlystake.com/api)
+- [https://rest-celestia-mocha.architectnodes.com](https://rest-celestia-mocha.architectnodes.com)
 
 ## gRPC endpoints
 
@@ -100,14 +100,14 @@ gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
-* [https://grpc-mocha.pops.one](https://grpc-mocha.pops.one)
-* `grpc.celestia-mocha.com:443`
-* `grpc-2.celestia-mocha.com:443`
-* `full.consensus.mocha-4.celestia-mocha.com:9090`
-* `consensus-full-mocha-4.celestia-mocha.com:9090`
-* `celestia-grpc.f5nodes.com`
-* `celestia-testnet.brightlystake.com:9390`
-* `grpc-celestia-mocha.architectnodes.com:1443`
+- [https://grpc-mocha.pops.one](https://grpc-mocha.pops.one)
+- `grpc.celestia-mocha.com:443`
+- `grpc-2.celestia-mocha.com:443`
+- `full.consensus.mocha-4.celestia-mocha.com:9090`
+- `consensus-full-mocha-4.celestia-mocha.com:9090`
+- `celestia-grpc.f5nodes.com`
+- `celestia-testnet.brightlystake.com:9390`
+- `grpc-celestia-mocha.architectnodes.com:1443`
 
 ## Bridge and full node endpoints
 
@@ -116,30 +116,30 @@ find bootstrapper peers in the p2p network.
 
 Bridge node 1:
 
-* da-bridge-mocha-4.celestia-mocha.com
-* bridge-mocha-4.da.celestia-mocha.com
+- da-bridge-mocha-4.celestia-mocha.com
+- bridge-mocha-4.da.celestia-mocha.com
 
 Bridge node 2:
 
-* da-bridge-mocha-4-2.celestia-mocha.com
-* bridge-mocha-4-2.da.celestia-mocha.com
+- da-bridge-mocha-4-2.celestia-mocha.com
+- bridge-mocha-4-2.da.celestia-mocha.com
 
 Full node 1:
 
-* da-full-1-mocha-4.celestia-mocha.com
-* full-1-mocha-4.da.celestia-mocha.com
+- da-full-1-mocha-4.celestia-mocha.com
+- full-1-mocha-4.da.celestia-mocha.com
 
 Full node 2:
 
-* da-full-2-mocha-4.celestia-mocha.com
-* full-2-mocha-4.da.celestia-mocha.com
+- da-full-2-mocha-4.celestia-mocha.com
+- full-2-mocha-4.da.celestia-mocha.com
 
 ## Mocha testnet faucet
 
 > USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER
-  DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS
-  DO NOT CURRENTLY EXIST AND THERE ARE NO PUBLIC SALES OR OTHER PUBLIC
-  DISTRIBUTIONS OF ANY MAINNET CELESTIA TOKENS.
+> DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS
+> DO NOT CURRENTLY EXIST AND THERE ARE NO PUBLIC SALES OR OTHER PUBLIC
+> DISTRIBUTIONS OF ANY MAINNET CELESTIA TOKENS.
 
 You can request from Mocha Testnet Faucet on the #mocha-faucet channel on
 Celestia's Discord server with the following command:
@@ -156,10 +156,10 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 There are several explorers you can use for Mocha:
 
-* [https://testnet.mintscan.io/celestia-testnet](https://testnet.mintscan.io/celestia-testnet)
-* [https://celestia.explorers.guru/](https://celestia.explorers.guru)
-* [https://celestiascan.com](https://celestiascan.com)
-* [https://explorer.nodestake.top/celestia-testnet/](https://explorer.nodestake.top/celestia-testnet)
+- [https://testnet.mintscan.io/celestia-testnet](https://testnet.mintscan.io/celestia-testnet)
+- [https://celestiascan.com](https://celestiascan.com)
+- [https://celestia.explorers.guru/](https://celestia.explorers.guru)
+- [https://explorer.nodestake.top/celestia-testnet/](https://explorer.nodestake.top/celestia-testnet)
 
 ## Network upgrades
 

@@ -1,5 +1,5 @@
 ---
-sidebar_label:  Introduction to OP Stack integration
+sidebar_label: Introduction to OP Stack integration
 description: Learn about the integration of OP Stack with Celestia.
 ---
 
@@ -14,8 +14,8 @@ minimal overhead.
 
 ## About the integration
 
-*Discover how to integrate existing blockchain frameworks
-like the OP Stack with Celestia in this category.*
+_Discover how to integrate existing blockchain frameworks
+like the OP Stack with Celestia in this category._
 
 :::tip
 Tested on a machine with 8GB RAM, 160 GB SSD,
@@ -36,11 +36,11 @@ rollup blocks and posts to Ethereum.
 
 ### Table of contents of the category
 
-* [Bubs testnet](../bubs-testnet)
-* [Deploy a smart contract on Bubs testnet](../deploy-on-bubs)
-* [Deploy a GM Portal dapp on Bubs testnet](../gm-portal-bubs)
-* [Deploy an OP Stack devnet](../optimism-devnet)
-* [Deploy an OP Stack testnet on Celestia](../optimism)
+- [Bubs testnet](../bubs-testnet)
+- [Deploy a smart contract on Bubs testnet](../deploy-on-bubs)
+- [Deploy a GM Portal dapp on Bubs testnet](../gm-portal-bubs)
+- [Deploy an OP Stack devnet](../optimism-devnet)
+- [Deploy an OP Stack testnet on Celestia](../optimism)
 
 ## Celestia and OP Stack repository
 

@@ -13,25 +13,25 @@ The QGB `keys` command allows managing EVM private keys and P2P identities. It i
 
 The `qgb orchestrator keys` command manages keys for the orchestrator. By default, it uses the orchestrator default home directory to store the keys: `~/.orchestrator/keystore`. However, the default home can be changed either by specifying a different directory using the `--home` flag or setting the following environment variable:
 
-| Variable            | Explanation                           | Default value     | Required |
-|---------------------|---------------------------------------|-------------------|----------|
-| `ORCHESTRATOR_HOME` | Home directory for the orchestrator   | `~/.orchestrator` | Optional |
+| Variable            | Explanation                         | Default value     | Required |
+| ------------------- | ----------------------------------- | ----------------- | -------- |
+| `ORCHESTRATOR_HOME` | Home directory for the orchestrator | `~/.orchestrator` | Optional |
 
 ## Relayer command
 
 The `qgb relayer keys` command manages keys for the relayer. By default, it uses the relayer default home directory to store the keys: `~/.relayer/keystore`. However, the default home can be changed either by specifying a different directory using the `--home` flag or setting the following environment variable:
 
-| Variable            | Explanation                           | Default value     | Required |
-|---------------------|---------------------------------------|-------------------|----------|
-| `RELAYER_HOME`      | Home directory for the relayer        | `~/.relayer`      | Optional |
+| Variable       | Explanation                    | Default value | Required |
+| -------------- | ------------------------------ | ------------- | -------- |
+| `RELAYER_HOME` | Home directory for the relayer | `~/.relayer`  | Optional |
 
 ## Deploy command
 
 The `qgb deploy keys` command manages keys for the deployer. By default, it uses the deployer default home directory to store the keys: `~/.deployer/keystore`. However, the default home can be changed either by specifying a different directory using the `--home` flag or setting the following environment variable:
 
-| Variable            | Explanation                           | Default value     | Required |
-|---------------------|---------------------------------------|-------------------|----------|
-| `DEPLOYER_HOME`     | Home directory for the deploy command | `~/.deployer`     | Optional |
+| Variable        | Explanation                           | Default value | Required |
+| --------------- | ------------------------------------- | ------------- | -------- |
+| `DEPLOYER_HOME` | Home directory for the deploy command | `~/.deployer` | Optional |
 
 ## Store initialization (!)
 
@@ -119,7 +119,7 @@ After creating a new key, you will see its corresponding address printed:
 qgb orchestrator keys evm add
 
 I[2023-04-13|14:16:11.387] successfully opened store                    path=/home/midnight/.orchestrator
-I[2023-04-13|14:16:11.387] please provide a passphrase for your account 
+I[2023-04-13|14:16:11.387] please provide a passphrase for your account
 I[2023-04-13|14:16:30.533] account created successfully                 address=0xaF319b70de80232539ad576f88739afD2dF44187
 I[2023-04-13|14:16:30.534] successfully closed store                    path=/home/midnight/.orchestrator
 ```
@@ -144,12 +144,12 @@ After running the command, you will be prompted to enter the passphrase for the 
 Then, you will be prompted to confirm that you want to delete that private key. Make sure to verify if you're deleting the right one because once deleted, it can no longer be recovered!
 
 ```ssh
-qgb orchestrator keys evm delete 0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 
+qgb orchestrator keys evm delete 0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7
 
 I[2023-04-13|15:01:41.308] successfully opened store                    path=/home/midnight/.orchestrator
 I[2023-04-13|15:01:41.309] deleting account                             address=0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7
-I[2023-04-13|15:01:41.309] please provide the address passphrase        
-I[2023-04-13|15:01:43.268] Are you sure you want to delete your private key? This action cannot be undone and may result in permanent loss of access to your account. 
+I[2023-04-13|15:01:41.309] please provide the address passphrase
+I[2023-04-13|15:01:43.268] Are you sure you want to delete your private key? This action cannot be undone and may result in permanent loss of access to your account.
 Please enter 'yes' or 'no' to confirm your decision: yes
 I[2023-04-13|15:01:45.532] private key has been deleted successfully    address=0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7
 I[2023-04-13|15:01:45.534] successfully closed store                    path=/home/midnight/.orchestrator
@@ -163,8 +163,8 @@ The `list` subcommand allows listing the existing keys in the keystore:
 qgb orchestrator keys evm list
 
 I[2023-04-13|16:08:45.084] successfully opened store                    path=/home/midnight/.orchestrator
-I[2023-04-13|16:08:45.084] listing accounts available in store          
-I[2023-04-13|16:08:45.084] 0x7Dd8F9CAfe6D25165249A454F2d0b72FD149Bbba   
+I[2023-04-13|16:08:45.084] listing accounts available in store
+I[2023-04-13|16:08:45.084] 0x7Dd8F9CAfe6D25165249A454F2d0b72FD149Bbba
 I[2023-04-13|16:08:45.084] successfully closed store                    path=/home/midnight/.orchestrator
 ```
 
@@ -190,8 +190,8 @@ qgb orchestrator evm update 0x7Dd8F9CAfe6D25165249A454F2d0b72FD149Bbba
 
 I[2023-04-13|16:21:17.139] successfully opened store                    path=/home/midnight/.orchestrator
 I[2023-04-13|16:21:17.140] updating account                             address=0x7Dd8F9CAfe6D25165249A454F2d0b72FD149Bbba
-I[2023-04-13|16:21:17.140] please provide the address passphrase        
-I[2023-04-13|16:21:18.134] please provide the address new passphrase    
+I[2023-04-13|16:21:17.140] please provide the address passphrase
+I[2023-04-13|16:21:18.134] please provide the address new passphrase
 I[2023-04-13|16:21:22.403] successfully updated the passphrase          address=0x7Dd8F9CAfe6D25165249A454F2d0b72FD149Bbba
 I[2023-04-13|16:21:22.420] successfully closed store                    path=/home/midnight/.orchestrator
 ```
@@ -232,8 +232,8 @@ Example:
 qgb orchestrator keys evm import ecdsa da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb7
 
 I[2023-04-13|17:00:48.617] successfully opened store                    path=/home/midnight/.orchestrator
-I[2023-04-13|17:00:48.617] importing account                            
-I[2023-04-13|17:00:48.617] please provide the address passphrase        
+I[2023-04-13|17:00:48.617] importing account
+I[2023-04-13|17:00:48.617] please provide the address passphrase
 I[2023-04-13|17:00:51.989] successfully imported file                   address=0x6B452Da14195b0aDc3C960E56a078Cf8f50448f8
 I[2023-04-13|17:00:51.990] successfully closed store                    path=/home/midnight/.orchestrator
 ```
@@ -257,9 +257,9 @@ For example, if we have a file in the current directory containing a private key
 qgb orchestrator keys evm import file UTC--2023-04-13T15-00-50.302148204Z--966e6f22781ef6a6a82bbb4db3df8e225dfd9488
 
 I[2023-04-13|17:31:53.307] successfully opened store                    path=/home/midnight/.orchestrator
-I[2023-04-13|17:31:53.307] importing account                            
-I[2023-04-13|17:31:53.308] please provide the address passphrase        
-I[2023-04-13|17:31:54.440] please provide the address new passphrase    
+I[2023-04-13|17:31:53.307] importing account
+I[2023-04-13|17:31:53.308] please provide the address passphrase
+I[2023-04-13|17:31:54.440] please provide the address new passphrase
 I[2023-04-13|17:31:58.436] successfully imported file                   address=0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488
 I[2023-04-13|17:31:58.437] successfully closed store                    path=/home/midnight/.orchestrator
 ```

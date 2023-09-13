@@ -4,6 +4,7 @@ description: A video showing how to set up a Celestia light node.
 ---
 
 # Node video tutorial
+
 <!-- markdownlint-disable MD033 -->
 
 This video will guide you through setting up a Celestia light node,

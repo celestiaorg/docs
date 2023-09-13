@@ -16,8 +16,8 @@ through the offerings in the Celestia wallet space.
 
 1. [Keplr wallet](../keplr)
 
-    1. [Ledger](../keplr) the Keplr guide will also show you how to use your Ledger
-    device to securely manage your account.
+   1. [Ledger](../keplr) the Keplr guide will also show you how to use your Ledger
+      device to securely manage your account.
 
 2. [Cosmostation wallet](../cosmostation)
 
@@ -27,9 +27,10 @@ Below are guides to assist developers navigating the Celestia wallet environment
 
 1. [Making a wallet with celestia-app](../celestia-app-wallet)
 
-    This guide shows you how to create a wallet for the consensus network.
+   This guide shows you how to create a wallet for the consensus network.
 
-    1. [Create a vesting account with celestia-app](../celestia-app-vesting)
+   1. [Create a vesting account with celestia-app](../celestia-app-vesting)
+
 2. [Create a wallet with celestia-node](../celestia-node-key)
 
-    This guide shows you how to create a wallet for the data availability network.
+   This guide shows you how to create a wallet for the data availability network.

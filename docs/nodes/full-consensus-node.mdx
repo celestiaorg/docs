@@ -17,10 +17,10 @@ Consensus Layer.
 The following hardware minimum requirements are recommended for running the
 Full Consensus Nodes:
 
-* Memory: **8 GB RAM**
-* CPU: **Quad-Core**
-* Disk: **250 GB SSD Storage**
-* Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
+- Memory: **8 GB RAM**
+- CPU: **Quad-Core**
+- Disk: **250 GB SSD Storage**
+- Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 **Note**: Running a full consensus node requires significant storage capacity to store the entire blockchain history. As of the latest recommendation, it is advisable to have at least 250 GB of SSD storage for a Celestia full consensus node if you are using pruning. If you are not using pruning, you are running an archive node, and it is recommended to have 500 GB of SSD storage. Please ensure that your storage meets this requirement to ensure smooth syncing and operation of the node.
 
@@ -47,7 +47,7 @@ rm -rf networks
 git clone https://github.com/celestiaorg/networks.git
 ```
 
-````mdx-code-block
+```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -117,7 +117,7 @@ https://github.com/celestiaorg/networks/blob/master/{constants.arabicaChainId}/p
 
 </TabItem>
 </Tabs>
-````
+```
 
 ### Configure pruning
 
@@ -188,7 +188,7 @@ Quick sync effectively downloads the entire `data` directory from a third-party 
 meaning the node has all the application and blockchain state as the node it was
 copied from.
 
-````mdx-code-block
+```mdx-code-block
 <Tabs groupId="network">
 <TabItem value="mocha" label="Mocha">
 
@@ -221,7 +221,7 @@ wget -O - https://snaps.qubelabs.io/celestia/$&#123;SNAP_NAME&#125; | tar xf - \
 
 </TabItem>
 </Tabs>
-````
+```
 
 ### Start the celestia-app
 
@@ -266,7 +266,7 @@ The options are:
 
 1. `null`
 2. `kv` (default) - the simplest possible indexer backed by key-value storage
-(defaults to levelDB; see DBBackend)
+   (defaults to levelDB; see DBBackend)
    1. when `kv` is chosen `tx.height` and `tx.hash` will always be indexed
 3. `psql` - the indexer services backed by PostgreSQL
    1. when `kv` or `psql` is chosen, `tx.height` and `tx.hash` will always be indexed

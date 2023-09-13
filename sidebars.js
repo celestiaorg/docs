@@ -121,7 +121,7 @@ const sidebars = {
               label: "Mocha testnet",
               id: "nodes/mocha-testnet"
             },
-          ]
+          ],
         },
         {
           type: "category",
@@ -337,7 +337,7 @@ const sidebars = {
               label: "Hardfork process",
               id: "nodes/hardfork-process"
             },
-          ]
+          ],
         },
       ]
     },

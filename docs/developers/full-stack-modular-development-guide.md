@@ -35,9 +35,9 @@ EVM-compatible testnet that you will run locally for this tutorial.
 - [Foundry](https://github.com/foundry-rs/foundry)
 - [Infura account](https://infura.io) (for uploading files to IPFS)
 - [A Celestia light node running](./node-tutorial.mdx) (to post PFBs from your
-rollup)
+  rollup)
 - EVM Tutorial (Coming soon!) - for
-running your own EVM rollup & deploying your smart contract
+  running your own EVM rollup & deploying your smart contract
 - [MetaMask wallet](https://metamask.io) (for connecting to your frontend)
 
 ### Project setup
@@ -57,6 +57,7 @@ Let's update the contracts to include a basic blog example. Create a new file
 in the `src` directory named `Contract.sol` with the following code:
 
 <!-- markdownlint-disable MD013 -->
+
 ```solidity title="src/Contract.sol"
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
@@ -149,6 +150,7 @@ contract Blog {
   }
 }
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 Next, let's create a test for this contract.
@@ -322,7 +324,7 @@ PRIVATE_KEY=$(ethermintd keys unsafe-export-eth-key mykey --keyring-backend test
 ```
 
 > NOTE: Here, the key name from `init.sh` is `mykey` but you can modify
-  the `init.sh` to change the name of your key.
+> the `init.sh` to change the name of your key.
 
 Now, we can start deploying the smart contract to our Ethermint chain.
 
@@ -431,75 +433,67 @@ creating a new network configuration for `Ethermint`.
 
 ```jsx title="frontend/src/main.jsx"
 import "./polyfills";
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
-import '@rainbow-me/rainbowkit/styles.css';
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import {
-  chain,
-  configureChains,
-  createClient,
-  WagmiConfig,
-} from 'wagmi';
-import { publicProvider } from 'wagmi/providers/public';
-import { injectedWallet, metaMaskWallet } from '@rainbow-me/rainbowkit/wallets';
-import { connectorsForWallets } from '@rainbow-me/rainbowkit';
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import "@rainbow-me/rainbowkit/styles.css";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { publicProvider } from "wagmi/providers/public";
+import { injectedWallet, metaMaskWallet } from "@rainbow-me/rainbowkit/wallets";
+import { connectorsForWallets } from "@rainbow-me/rainbowkit";
 
 /* create configuration for Ethermint testnet */
 const ethermint = {
   id: 9000,
-  name: 'Ethermint',
-  network: 'ethermint',
+  name: "Ethermint",
+  network: "ethermint",
   nativeCurrency: {
     decimals: 18,
-    name: 'Ethermint',
-    symbol: 'CTE',
+    name: "Ethermint",
+    symbol: "CTE",
   },
   rpcUrls: {
     default: {
-      http: ['http://localhost:8545/'],
+      http: ["http://localhost:8545/"],
     },
   },
   testnet: true,
 };
 
 // remove chain.localhost or ethermint depending on which you want to connect to
-const { chains, provider } = configureChains( 
+const { chains, provider } = configureChains(
   [chain.localhost, ethermint],
-  [publicProvider()]
+  [publicProvider()],
 );
 
 const connectors = connectorsForWallets([
   {
-    groupName: 'Recommended',
-    wallets: [
-      metaMaskWallet({ chains }),
-      injectedWallet({ chains }),
-    ],
+    groupName: "Recommended",
+    wallets: [metaMaskWallet({ chains }), injectedWallet({ chains })],
   },
 ]);
 
 const wagmiClient = createClient({
   autoConnect: true,
   connectors,
-  provider
-})
+  provider,
+});
 
 const containerStyle = {
-  width: '900px',
-  margin: '0 auto'
-}
+  width: "900px",
+  margin: "0 auto",
+};
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <WagmiConfig client={wagmiClient}>
     <RainbowKitProvider chains={chains}>
       <div style={containerStyle}>
         <App />
       </div>
     </RainbowKitProvider>
-  </WagmiConfig>
-)
+  </WagmiConfig>,
+);
 ```
 
 ### Creating and reading posts
@@ -514,208 +508,236 @@ IPFS to view the post.
 Update App.jsx with the following code:
 
 <!-- markdownlint-disable MD013 -->
+
 ```jsx title="frontend/src/App.jsx"
-import { useState, useEffect } from 'react'
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { ethers } from 'ethers'
-import { create } from 'ipfs-http-client'
-import { Buffer } from 'buffer'
-import Blog from '../Blog.json'
+import { useState, useEffect } from "react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ethers } from "ethers";
+import { create } from "ipfs-http-client";
+import { Buffer } from "buffer";
+import Blog from "../Blog.json";
 import { useAccount } from "wagmi";
 
 /* configure authorization for Infura and IPFS */
 const auth =
-    'Basic ' + Buffer.from(import.meta.env.VITE_INFURA_ID + ':' + import.meta.env.VITE_INFURA_SECRET).toString('base64');
-    
+  "Basic " +
+  Buffer.from(
+    import.meta.env.VITE_INFURA_ID + ":" + import.meta.env.VITE_INFURA_SECRET,
+  ).toString("base64");
+
 /* create an IPFS client */
 const client = create({
-  host: 'ipfs.infura.io',
+  host: "ipfs.infura.io",
   port: 5001,
-  protocol: 'https',
+  protocol: "https",
   headers: {
-      authorization: auth,
+    authorization: auth,
   },
 });
 
-const contractAddress = "your-ethermint-contract-address"
+const contractAddress = "your-ethermint-contract-address";
 
 function App() {
   useEffect(() => {
-    fetchPosts()
-  }, [])
-  const [viewState, setViewState] = useState('view-posts')
-  const [posts, setPosts] = useState([])
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
+    fetchPosts();
+  }, []);
+  const [viewState, setViewState] = useState("view-posts");
+  const [posts, setPosts] = useState([]);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const { address } = useAccount();
 
   /* when the component loads, useEffect will call this function */
   async function fetchPosts() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    const contract = new ethers.Contract(contractAddress, Blog.abi, provider)
-    let data = await contract.fetchPosts()
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const contract = new ethers.Contract(contractAddress, Blog.abi, provider);
+    let data = await contract.fetchPosts();
     /* once the data is returned from the network we map over it and */
     /* transform the data into a more readable format  */
-    data = data.map(d => ({
-      content: d['content'],
-      title: d['title'],
-      published: d['published'],
-      id: d['id'].toString(),
-    }))
+    data = data.map((d) => ({
+      content: d["content"],
+      title: d["title"],
+      published: d["published"],
+      id: d["id"].toString(),
+    }));
 
     /* we then fetch the post content from IPFS and add it to the post objects */
-    data = await Promise.all(data.map(async d => {
-      const endpoint = `https://infura-ipfs.io/ipfs/${d.content}`
-      const options = {
-        mode: 'no-cors',
-      }
-      const response = await fetch(endpoint, options)
-      const value = await response.text()
-      d.postContent = value
-      return d
-    }))
+    data = await Promise.all(
+      data.map(async (d) => {
+        const endpoint = `https://infura-ipfs.io/ipfs/${d.content}`;
+        const options = {
+          mode: "no-cors",
+        };
+        const response = await fetch(endpoint, options);
+        const value = await response.text();
+        d.postContent = value;
+        return d;
+      }),
+    );
 
-    setPosts(data)
+    setPosts(data);
   }
 
   async function createPost() {
-    const added = await client.add(content)
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    const signer = provider.getSigner()
+    const added = await client.add(content);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
 
-    const contract = new ethers.Contract(contractAddress, Blog.abi, signer)
-    const tx = await contract.createPost(title, added.path)
-    await tx.wait()
-    setViewState('view-posts')
+    const contract = new ethers.Contract(contractAddress, Blog.abi, signer);
+    const tx = await contract.createPost(title, added.path);
+    await tx.wait();
+    setViewState("view-posts");
   }
 
   function toggleView(value) {
-    setViewState(value)
-    if (value === 'view-posts') {
-      fetchPosts()
+    setViewState(value);
+    if (value === "view-posts") {
+      fetchPosts();
     }
   }
-  
+
   return (
     <div style={outerContainerStyle}>
       <div style={innerContainerStyle}>
-      <h1>Modular Rollup Blog</h1>
-      <p>This allows users to securely create and share blog posts on the blockchain without the need for a centralized server or authority.</p>
-      {!address ? (<div>
-        <h3>Getting Started</h3>
-      <p>First, you will need to connect your Ethereum wallet to Ethermint to display the posts from the smart contract and make posts.</p>
-      </div> ) : null}
-      <br />
-      <h3 style={{ justifyContent: 'right', textAlign: 'right'}}>Connect your Ethereum wallet to begin ✨</h3>
-      <div style={buttonContainerStyle}>
-      <ConnectButton />
-      </div>
-      {address ? (
-      <div style={buttonContainerStyle}>
-        <button onClick={() => toggleView('view-posts')} style={buttonStyle}>View Posts</button>
-        <button  onClick={() => toggleView('create-post')} style={buttonStyle}>Create Post</button>
-      </div>
-      ) : null}
-      {
-        viewState === 'view-posts' && address && (
+        <h1>Modular Rollup Blog</h1>
+        <p>
+          This allows users to securely create and share blog posts on the
+          blockchain without the need for a centralized server or authority.
+        </p>
+        {!address ? (
+          <div>
+            <h3>Getting Started</h3>
+            <p>
+              First, you will need to connect your Ethereum wallet to Ethermint
+              to display the posts from the smart contract and make posts.
+            </p>
+          </div>
+        ) : null}
+        <br />
+        <h3 style={{ justifyContent: "right", textAlign: "right" }}>
+          Connect your Ethereum wallet to begin ✨
+        </h3>
+        <div style={buttonContainerStyle}>
+          <ConnectButton />
+        </div>
+        {address ? (
+          <div style={buttonContainerStyle}>
+            <button
+              onClick={() => toggleView("view-posts")}
+              style={buttonStyle}
+            >
+              View Posts
+            </button>
+            <button
+              onClick={() => toggleView("create-post")}
+              style={buttonStyle}
+            >
+              Create Post
+            </button>
+          </div>
+        ) : null}
+        {viewState === "view-posts" && address && (
           <div>
             <div style={postContainerStyle}>
-            <h1>Posts</h1>
-            {
-              posts.map((post, index) => (
+              <h1>Posts</h1>
+              {posts.map((post, index) => (
                 <div key={index}>
                   <h2>{post.title}</h2>
-                  <button style={{ fontSize: '16px' }} onClick={() => window.open(`https://infura-ipfs.io/ipfs/${post.content}`)}>Read on IPFS</button>
+                  <button
+                    style={{ fontSize: "16px" }}
+                    onClick={() =>
+                      window.open(`https://infura-ipfs.io/ipfs/${post.content}`)
+                    }
+                  >
+                    Read on IPFS
+                  </button>
                   {/* <ReactMarkdown>
                     {post.postContent}
                   </ReactMarkdown> */}
                   <p style={mbidStyle}>GMID: {post.id}</p>
                 </div>
-              ))
-            }
+              ))}
+            </div>
           </div>
-          </div>
-        )
-      }
-      {
-        viewState === 'create-post' && (
+        )}
+        {viewState === "create-post" && (
           <div style={formContainerStyle}>
-              <h2>Create Post</h2>
-              <input
-                placeholder='Title'
-                onChange={e => setTitle(e.target.value)}
-                style={inputStyle}
-              />
-              <textarea
-                placeholder='Content'
-                onChange={e => setContent(e.target.value)}
-                style={inputStyle}
-              />
-              <button onClick={createPost}>Create Post</button>
+            <h2>Create Post</h2>
+            <input
+              placeholder="Title"
+              onChange={(e) => setTitle(e.target.value)}
+              style={inputStyle}
+            />
+            <textarea
+              placeholder="Content"
+              onChange={(e) => setContent(e.target.value)}
+              style={inputStyle}
+            />
+            <button onClick={createPost}>Create Post</button>
           </div>
-        )
-      }
+        )}
       </div>
     </div>
-  )
+  );
 }
 
 const outerContainerStyle = {
-  width: '90vw',
-  height: '100vh',
-  padding: '50px 0px',
-}
+  width: "90vw",
+  height: "100vh",
+  padding: "50px 0px",
+};
 
 const innerContainerStyle = {
-  width: '100%',
-  maxWidth: '800px',
-  margin: '0 auto',
-}
+  width: "100%",
+  maxWidth: "800px",
+  margin: "0 auto",
+};
 
 const formContainerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center'
-}
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+};
 
 const inputStyle = {
-  width: '400px',
-  marginBottom: '10px',
-  padding: '10px',
-  height: '40px',
-}
+  width: "400px",
+  marginBottom: "10px",
+  padding: "10px",
+  height: "40px",
+};
 
 const postContainerStyle = {
-  margin: '0 auto',
-  padding: '1em',
-  width: '90%',
-  maxWidth: '800px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'start',
-  justifyContent: 'center',
-}
+  margin: "0 auto",
+  padding: "1em",
+  width: "90%",
+  maxWidth: "800px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "start",
+  justifyContent: "center",
+};
 
 const mbidStyle = {
-  fontSize: '10px',
-  textAlign: 'start',
-}
+  fontSize: "10px",
+  textAlign: "start",
+};
 
 const buttonStyle = {
   marginTop: 15,
   marginRight: 5,
-  border: '1px solid rgba(255, 255, 255, .2)'
-}
+  border: "1px solid rgba(255, 255, 255, .2)",
+};
 
 const buttonContainerStyle = {
   marginTop: 15,
   marginRight: 5,
-  display: 'flex',
-  justifyContent: 'right',
-}
+  display: "flex",
+  justifyContent: "right",
+};
 
-export default App
+export default App;
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 ### Adding Ethermint Chain to MetaMask
@@ -762,7 +784,7 @@ deployed to Ethermint:
 
 ```jsx
 /* src/App.jsx */
-const contractAddress = "your-ethermint-contract-address"
+const contractAddress = "your-ethermint-contract-address";
 ```
 
 Next, run the React application:

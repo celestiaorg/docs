@@ -25,16 +25,17 @@ The gateway endpoints have been deprecated and will be removed in the future. If
 ## Table of contents
 
 This tutorial is broken up into the following sections:
-* [Introduction](#introduction)
-* [Hardware requirements](#hardware-requirements)
-* [Setting up dependencies](#setting-up-dependencies)
-* [Install and run Celestia Node](#celestia-node)
-* [RPC CLI guide](#rpc-cli-guide)
-    * [Setup](#setup)
-    * [Submitting data](#submitting-data)
-    * [Retrieving data](#retrieving-data)
-    * [More examples](#more-examples)
-* [Additional resources](#additional-resources)
+
+- [Introduction](#introduction)
+- [Hardware requirements](#hardware-requirements)
+- [Setting up dependencies](#setting-up-dependencies)
+- [Install and run Celestia Node](#celestia-node)
+- [RPC CLI guide](#rpc-cli-guide)
+  - [Setup](#setup)
+  - [Submitting data](#submitting-data)
+  - [Retrieving data](#retrieving-data)
+  - [More examples](#more-examples)
+- [Additional resources](#additional-resources)
 
 :::tip
 If you already have a running and funded node,
@@ -51,7 +52,7 @@ transactions to the core network. Read more about `MsgPayForBlobs`
 
 ### Namespaces
 
-Celestia partitions the block data into 
+Celestia partitions the block data into
 multiple namespaces, one for every application. This allows applications
 to only download their data, and not the data of other applications.
 Read more about Namespaced Merkle Trees (NMTs) [here](../../learn/how-celestia-works/data-availability-layer/#namespaced-merkle-trees-nmts).
@@ -536,7 +537,7 @@ go version go{constants.golangNodeArabica} darwin/amd64
 
 ### Install Celestia Node
 
-````mdx-code-block
+```mdx-code-block
 <Tabs groupId="network">
 <TabItem value="blockspacerace" label="Blockspace Race">
 
@@ -929,27 +930,27 @@ Golang version: go{constants.golangNodeArabica}<br/>
 
 </TabItem>
 </Tabs>
-````
+```
 
 ### Instantiate a Celestia light node
 
 Now, let's instantiate a Celestia Light node:
 
 > Note: RPC Endpoints are exposed in all `celestia-node` types
-  such as Light, Bridge and Full Nodes.
+> such as Light, Bridge and Full Nodes.
 
 ````mdx-code-block
 <Tabs groupId="network">
 <TabItem value="blockspacerace" label="Blockspace Race">
 
-```sh 
+```sh
 celestia light init --p2p.network blockspacerace
 ```
 
 </TabItem>
 <TabItem value="mocha" label="Mocha">
 
-```sh 
+```sh
 celestia light init
 ```
 
@@ -1253,7 +1254,7 @@ CELESTIA_CUSTOM=robusta-22 celestia light init
 export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network private --node.store $HOME/.celestia-light-robusta-22)
 ```
 
-#### Host URL 
+#### Host URL
 
 The `--host URL` flag sets the host address,
 the default is `localhost:26658` over HTTP.
@@ -1589,7 +1590,7 @@ This is an RPC call in order to get your node's account address:
 celestia rpc state AccountAddress
 ```
 
-Response: 
+Response:
 
 ```json
 {

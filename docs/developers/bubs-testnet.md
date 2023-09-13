@@ -62,11 +62,11 @@ For the Bubs Testnet, you can connect to the following RPC URLs:
 
 #### HTTPS
 
-* `https://bubs.calderachain.xyz/http`
+- `https://bubs.calderachain.xyz/http`
 
 #### WSS
 
-* `wss://bubs.calderachain.xyz/ws`
+- `wss://bubs.calderachain.xyz/ws`
 
 This URL serves as the entry point to the Bubs Testnet. You can use it
 in your applications to connect to the testnet and interact with the smart
@@ -90,7 +90,7 @@ Now that you have a better understanding of the Bubs Testnet and its
 integration of OP Stack and Celestia, you can start exploring its
 capabilities:
 
-* [Deploy a smart contract on Bubs testnet](../deploy-on-bubs)
-* [Deploy a GM Portal dapp on Bubs testnet](../gm-portal-bubs)
+- [Deploy a smart contract on Bubs testnet](../deploy-on-bubs)
+- [Deploy a GM Portal dapp on Bubs testnet](../gm-portal-bubs)
 <!-- * [Deploy a dapp with scaffold-eth](https://github.com/jcstein/scaffold-eth) -->
-* [Deploy a smart contract with Thirdweb](https://thirdweb.com/bubs-testnet)
+- [Deploy a smart contract with Thirdweb](https://thirdweb.com/bubs-testnet)

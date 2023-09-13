@@ -31,10 +31,12 @@ Now, change into the `gm-portal/contracts` directory in the same terminal and de
 the contract using Foundry:
 
 <!-- markdownlint-disable MD013 -->
+
 ```bash
 cd $HOME/gm-portal/contracts
 forge script script/GmPortal.s.sol:GmPortalScript --rpc-url $BUBS_RPC_URL --private-key $PRIVATE_KEY --broadcast
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 ![gm-contract](../img/gm/gm_contract.png)
@@ -88,12 +90,12 @@ Next, you will need to update a few things before you can interact with the
 contract on the frontend:
 
 1. Change the contract address on `gm-portal/frontend/src/App.tsx` to your
-contract address
+   contract address
 2. Match the chain info on `gm-portal/frontend/src/main.tsx` with the chain
-config of your L2
+   config of your L2
 3. If you changed the contract, update the ABI in
-`gm-portal/frontend/GmPortal.json` from
-`gm-portal/contracts/out/GmPortal.sol/GmPortal.json`. This can be done with:
+   `gm-portal/frontend/GmPortal.json` from
+   `gm-portal/contracts/out/GmPortal.sol/GmPortal.json`. This can be done with:
 
 ```bash
 cd $HOME

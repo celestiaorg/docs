@@ -50,9 +50,9 @@ qgb relayer init
 
 By default, the store will be created un `~/.relayer`. However, if you want to specify a custom location, you can use the `--home` flag. Or, you can use the following environment variable:
 
-| Variable            | Explanation                           | Default value     | Required |
-|---------------------|---------------------------------------|-------------------|----------|
-| `RELAYER_HOME`      | Home directory for the relayer        | `~/.relayer`      | Optional |
+| Variable       | Explanation                    | Default value | Required |
+| -------------- | ------------------------------ | ------------- | -------- |
+| `RELAYER_HOME` | Home directory for the relayer | `~/.relayer`  | Optional |
 
 ### Add keys
 

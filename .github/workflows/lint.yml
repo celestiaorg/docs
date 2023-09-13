@@ -17,4 +17,9 @@ jobs:
           cache: npm
       - run: yarn install --frozen-lockfile
       - run: yarn run lint
-      - run: yarn run lint-mdx
+
+      - name: Install Prettier
+        run: npm install -g prettier
+
+      - name: Lint .mdx files
+        run: yarn run lint-mdx

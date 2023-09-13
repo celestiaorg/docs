@@ -12,7 +12,7 @@ While this tutorial will go over installation process
 of `cel-key`, it is recommended that you complete
 the following prerequisites first:
 
-* [Setting Up Your Environment](../nodes/environment.mdx)
+- [Setting Up Your Environment](../nodes/environment.mdx)
 
 Once you completed the prerequisite, you can proceed with this
 tutorial.
@@ -100,7 +100,7 @@ Further flags you can use to customize your key are the following:
 * `--p2p.network`: Specifies which network you want the key for. Values
   are `arabica` and `mocha`. Please note the default network will be `mocha`.
 
-Keep in mind that your `celestia-node` will only pick up keys that 
+Keep in mind that your `celestia-node` will only pick up keys that
 are inside the `node.store` directory under `/keys` so you should make
 sure to point `cel-key` utility to the correct directory via the
 `node.store` or `p2p.network` flags if you have specified a custom
@@ -212,7 +212,7 @@ Example:
 
 - Docker installed on your machine
 - Understanding of the [guide](../nodes/docker-images.mdx)
-on how to run `celestia-node` with Docker.
+  on how to run `celestia-node` with Docker.
 
 ### Running your node
 
@@ -267,7 +267,7 @@ using an existing image called `celestia-node`. This will mount the entire
 Write a `docker-compose.yml` to accomplish this:
 
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   celestia:
     image: celestia-node

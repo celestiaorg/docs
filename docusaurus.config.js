@@ -64,7 +64,8 @@ const config = {
   ],
   plugins: [
     ["drawio", {}],
-    [ "@docusaurus/plugin-ideal-image",
+    [
+      "@docusaurus/plugin-ideal-image",
       {
         quality: 70,
         max: 500,
@@ -144,18 +145,14 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      colorMode: {
-        defaultMode: 'light',
-        respectPrefersColorScheme: true,
-      },
-      docs:{
+      docs: {
         sidebar: {
           hideable: true,
           autoCollapseCategories: true,
         },
       },
       colorMode: {
-        defaultMode: 'light',
+        defaultMode: "light",
         respectPrefersColorScheme: true,
       },
       image: "img/celestia-doc.png",
@@ -180,7 +177,7 @@ const config = {
         headTags: [],
         bodyTags: [
           {
-            tagName: 'script',
+            tagName: "script",
             innerHTML: `
               window.chatbaseConfig = {
                 chatbotId: "oeduJpy4UAtpDuOQcCuVM",
@@ -197,34 +194,34 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            docId: 'learn/how-celestia-works/introduction',
-            position: 'left',
-            label: 'Learn',
+            type: "doc",
+            docId: "learn/how-celestia-works/introduction",
+            position: "left",
+            label: "Learn",
           },
           {
-            type: 'doc',
-            docId: 'nodes/overview',
-            position: 'left',
-            label: 'Run a Node',
+            type: "doc",
+            docId: "nodes/overview",
+            position: "left",
+            label: "Run a Node",
           },
           {
-            type: 'doc',
-            docId: 'developers/overview',
-            position: 'left',
-            label: 'Developers',
+            type: "doc",
+            docId: "developers/overview",
+            position: "left",
+            label: "Developers",
           },
           {
-            type: 'doc',
-            docId: 'community/overview',
-            position: 'left',
-            label: 'Community',
+            type: "doc",
+            docId: "community/overview",
+            position: "left",
+            label: "Community",
           },
           {
             href: "https://github.com/celestiaorg/docs",
             label: "GitHub",
             position: "right",
-          }
+          },
         ],
       },
       footer: {

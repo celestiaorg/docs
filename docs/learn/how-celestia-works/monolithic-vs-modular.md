@@ -10,14 +10,14 @@ the nodes in a permissionless distributed network apply an ordered sequence
 of deterministic transactions to an initial state resulting in a common
 final state. This means blockchains require the following four functions:
 
-- __Execution__ entails executing transactions that update the state correctly.
-    Thus, execution must ensure that only valid transactions are executed, i.e.,
-    transactions that result in valid state machine transitions.
-- __Settlement__ entails an environment for execution layers to verify proofs,
-    resolve fraud disputes, and bridge between other execution layers.
-- __Consensus__ entails agreeing on the order of the transactions.
-- __Data Availability__ (DA) entails making the transaction data available.
-    Note that execution, settlement, and consensus require DA.
+- **Execution** entails executing transactions that update the state correctly.
+  Thus, execution must ensure that only valid transactions are executed, i.e.,
+  transactions that result in valid state machine transitions.
+- **Settlement** entails an environment for execution layers to verify proofs,
+  resolve fraud disputes, and bridge between other execution layers.
+- **Consensus** entails agreeing on the order of the transactions.
+- **Data Availability** (DA) entails making the transaction data available.
+  Note that execution, settlement, and consensus require DA.
 
 Traditional blockchains, i.e. _monolithic blockchains_, implement all four
 functions together in a single base consensus layer. The problem with

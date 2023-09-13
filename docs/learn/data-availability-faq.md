@@ -62,7 +62,9 @@ Want a simpler explanation? Check out [this thread](https://twitter.com/nickwh8t
 on how data availability sampling is like flipping a coin.
 
 <!-- markdownlint-disable MD013 -->
+
 ## What are some of the security assumptions that Celestia makes for data availability sampling?
+
 <!-- markdownlint-disable MD013 -->
 
 Celestia assumes that there is a minimum number of light nodes that are
@@ -155,6 +157,6 @@ Some of those include:
 ## What are some things blockchains can do to provide stronger assurances of data retrievability?
 
 - Reward nodes based on the amount of transaction data they store and requests for data
-they serve (this is the case with some data storage blockchains, like [Filecoin](https://filecoin.io)).
+  they serve (this is the case with some data storage blockchains, like [Filecoin](https://filecoin.io)).
 - Publish transaction data onto a data storage blockchain that incentives storing and
-serving requests for historical data.
+  serving requests for historical data.

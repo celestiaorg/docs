@@ -18,10 +18,10 @@ to get straight into building.
 
 With blockchains there are more or less four core functions that they do.
 
-- __Execution__: transaction execution and state update.
-- __Settlement__: finality and dispute resolution.
-- __Consensus__: agreement on transaction ordering.
-- __Data availability__: prove data was published to the network.
+- **Execution**: transaction execution and state update.
+- **Settlement**: finality and dispute resolution.
+- **Consensus**: agreement on transaction ordering.
+- **Data availability**: prove data was published to the network.
 
 Modular blockchains specialize in one or two of these functions rather
 than doing all of them like a monolithic blockchain. You probably know
@@ -42,12 +42,12 @@ a blockchain as a smart contract. There are a few unique ways that
 modular blockchains can significantly reduce the cost of deploying a
 new blockchain.
 
-1. __No validator set is required__. Rollups can deploy without sourcing
-their own set of validators or sequencers.
-2. __Inherit security from the start__. Rollups don’t need to build all
-their security from scratch.
-3. __Any part of the stack can be delegated__. Development time can be
-reduced by outsourcing functions of the rollup to external providers.
+1. **No validator set is required**. Rollups can deploy without sourcing
+   their own set of validators or sequencers.
+2. **Inherit security from the start**. Rollups don’t need to build all
+   their security from scratch.
+3. **Any part of the stack can be delegated**. Development time can be
+   reduced by outsourcing functions of the rollup to external providers.
 
 All in all, builders will be able to outsource as much of the stackas
 they need. Deploying a new blockchain will be as simple as clicking a
@@ -60,23 +60,23 @@ many more users. And modular blockchains use some new innovative
 technologies that can help us get there.
 
 - [Data availability sampling](https://celestia.org/glossary/data-availability-sampling/)
-enables modular blockchains like Celestia to scale data availability with the
-number of light nodes - that means more capacity for rollups.
-- __Fraud and validity proofs__ make rollups vastly more efficient
-to verify. Nodes only need to verify a small proof of transaction
-validity ([validity proof](https://celestia.org/glossary/validity-proof/))
-or assume transactions are valid by default
-([fraud proof](https://celestia.org/glossary/state-transition-fraud-proof/)).
-This means rollups don’t require every node in the network to re-execute
-every transaction.
+  enables modular blockchains like Celestia to scale data availability with the
+  number of light nodes - that means more capacity for rollups.
+- **Fraud and validity proofs** make rollups vastly more efficient
+  to verify. Nodes only need to verify a small proof of transaction
+  validity ([validity proof](https://celestia.org/glossary/validity-proof/))
+  or assume transactions are valid by default
+  ([fraud proof](https://celestia.org/glossary/state-transition-fraud-proof/)).
+  This means rollups don’t require every node in the network to re-execute
+  every transaction.
 
 ![image](../img/da-and-validity.png)
 
-- __Decoupling execution from consensus__ lets developers define the VM
-that best fits the scaling needs of their application.
-- __Separating applications__ across multiple rollups isolates congestion.
-If an application congests the execution capacity of one rollup, all
-other rollups remain unaffected in their execution capacity.
+- **Decoupling execution from consensus** lets developers define the VM
+  that best fits the scaling needs of their application.
+- **Separating applications** across multiple rollups isolates congestion.
+  If an application congests the execution capacity of one rollup, all
+  other rollups remain unaffected in their execution capacity.
 
 All these scaling properties combined make new types of applications
 and features possible, like onchain gaming, dynamic metadata, and

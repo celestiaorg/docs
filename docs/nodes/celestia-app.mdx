@@ -5,7 +5,7 @@ description: Learn how you can build Celestia App.
 
 import mochaVersions from "../constants/mocha_versions.js";
 import arabicaVersions from "../constants/arabica_versions.js";
-import blockspaceraceVersions  from   "../constants/blockspacerace_versions.js";
+import blockspaceraceVersions from "../constants/blockspacerace_versions.js";
 
 # Celestia App
 
@@ -19,7 +19,7 @@ The steps below will create a binary file named `celestia-appd`
 inside `$HOME/go/bin` folder which will be used later to run the node.
 Be sure to select the correct network to install the binary for.
 
-````mdx-code-block
+```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -64,7 +64,7 @@ make install<br/>
 
 </TabItem>
 </Tabs>
-````
+```
 
 To check if the binary was successfully installed you can run the binary
 using the `--help` flag:
@@ -130,8 +130,8 @@ required for P2P connections for all node types.
 
 The following ports are used by Celestia app nodes:
 
-| Port | Protocol | Address | Description | Enabled by default on node | Flag |
-| ---- | -------- | ------- | ----------- | -------------------------- | ---- |
-| 2121 | TCP/UDP | localhost | P2P | true | N/A |
-| 9090 | HTTP | 0.0.0.0 | gRPC | true | `--grpc.address string` |
-| 26657 | TCP | localhost | RPC | false (only open to localhost) | `--rpc.laddr string` |
+| Port  | Protocol | Address   | Description | Enabled by default on node     | Flag                    |
+| ----- | -------- | --------- | ----------- | ------------------------------ | ----------------------- |
+| 2121  | TCP/UDP  | localhost | P2P         | true                           | N/A                     |
+| 9090  | HTTP     | 0.0.0.0   | gRPC        | true                           | `--grpc.address string` |
+| 26657 | TCP      | localhost | RPC         | false (only open to localhost) | `--rpc.laddr string`    |

@@ -14,9 +14,17 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "lint": "markdownlint docs/",
-    "lint-mdx": "eslint docs/ --ext mdx",
+    "lint-mdx": "prettier --check docs/**/*.mdx --ignore-unknown",
     "crowdin": "crowdin",
-    "crowdin:sync": "docusaurus write-translations && crowdin upload && crowdin download --skip-untranslated-files --export-only-approved"
+    "crowdin:sync": "docusaurus write-translations && crowdin upload && crowdin download --skip-untranslated-files --export-only-approved",
+    "prepare": "husky install",
+    "lint-check": "prettier --check docs/**/*.md --ignore-unknown && prettier --check docs/**/*.mdx --ignore-unknown"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write docs/**/*.md --ignore-unknown",
+      "prettier --write docs/**/*.mdx --ignore-unknown"
+    ]
   },
   "dependencies": {
     "@crowdin/cli": "3.13.0",
@@ -55,6 +63,9 @@
   "devDependencies": {
     "eslint": "^8.47.0",
     "eslint-plugin-mdx": "^2.2.0",
-    "markdownlint-cli": "^0.31.1"
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "markdownlint-cli": "^0.31.1",
+    "prettier": "3.0.3"
   }
 }

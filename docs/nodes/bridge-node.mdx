@@ -31,30 +31,30 @@ From an implementation perspective, Bridge Nodes run two separate processes:
 1. `celestia-app` with `celestia-core`
    ([see repo](https://github.com/celestiaorg/celestia-app))
 
-    * **`celestia-app`** is the state machine where the application and the
-      proof-of-stake logic is run. `celestia-app` is built on
-      [Cosmos SDK](https://docs.cosmos.network) and also encompasses
-      **`celestia-core`**.
-    * **`celestia-core`** is the state interaction, consensus and block production
-      layer. `celestia-core` is built on [Tendermint Core](https://docs.tendermint.com),
-      modified to store data roots of erasure coded blocks among other changes
-      ([see ADRs](https://github.com/celestiaorg/celestia-core/tree/master/docs/celestia-architecture)).
+   - **`celestia-app`** is the state machine where the application and the
+     proof-of-stake logic is run. `celestia-app` is built on
+     [Cosmos SDK](https://docs.cosmos.network) and also encompasses
+     **`celestia-core`**.
+   - **`celestia-core`** is the state interaction, consensus and block production
+     layer. `celestia-core` is built on [Tendermint Core](https://docs.tendermint.com),
+     modified to store data roots of erasure coded blocks among other changes
+     ([see ADRs](https://github.com/celestiaorg/celestia-core/tree/master/docs/celestia-architecture)).
 
 2. `celestia-node` ([see repo](https://github.com/celestiaorg/celestia-node))
 
-    * **`celestia-node`** augments the above with a separate libp2p network that
-      serves data availability sampling requests. The team sometimes refers to
-      this as the “halo” network.
+   - **`celestia-node`** augments the above with a separate libp2p network that
+     serves data availability sampling requests. The team sometimes refers to
+     this as the “halo” network.
 
 ## Hardware requirements
 
 The following hardware minimum requirements are recommended for running the
 bridge node:
 
-* Memory: **32 GB RAM**
-* CPU: **6 cores**
-* Disk: **5 TB SSD Storage** (Recommended **10 TB SSD Storage**)
-* Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
+- Memory: **32 GB RAM**
+- CPU: **6 cores**
+- Disk: **5 TB SSD Storage** (Recommended **10 TB SSD Storage**)
+- Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up your bridge node
 
@@ -214,7 +214,7 @@ You can find the address by running the following command:
 You can get testnet tokens from:
 
 * [Blockspace Race](../arabica-devnet)
-  
+
 </TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
@@ -308,7 +308,7 @@ You can find the address by running the following command:
 You can get testnet tokens from:
 
 * [Arabica](../arabica-devnet)
-  
+
 </TabItem>
 </Tabs>
 ````

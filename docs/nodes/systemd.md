@@ -148,8 +148,8 @@ Now, the Celestia bridge node will start syncing headers and storing blocks
 from `celestia-app`.
 
 > Note: At startup, we can see the `multiaddress` from Celestia bridge node.
-This is **needed for future light node** connections and communication between
-Celestia Bridge Nodes
+> This is **needed for future light node** connections and communication between
+> Celestia Bridge Nodes
 
 Example:
 
@@ -165,6 +165,7 @@ You should be seeing logs coming through of the bridge node syncing.
 Start the light node as daemon process in the background
 
 <!-- markdownlint-disable MD013 -->
+
 ```sh
 sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-lightd.service
 [Unit]
@@ -182,6 +183,7 @@ LimitNOFILE=4096
 WantedBy=multi-user.target
 EOF
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 If the file was created successfully you will be able to see its content:

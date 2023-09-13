@@ -5,10 +5,10 @@ description: Set up a Celestia full storage node.
 
 # Setting up a Celestia full storage Node
 
-````mdx-code-block
+```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-````
+```
 
 This tutorial will guide you through setting up a Celestia Full Storage
 Node, which is a `celestia-node` that doesn't connect to `celestia-app`
@@ -18,7 +18,7 @@ Node, which is a `celestia-node` that doesn't connect to `celestia-app`
 
 Full Storage nodes are Celestia nodes that store all the data. Full
 Storage nodes send block shares, headers, and fraud proofs to Light Nodes.
-The Light Nodes gossip headers, fraud proofs, and sometimes block shares, between one another. 
+The Light Nodes gossip headers, fraud proofs, and sometimes block shares, between one another.
 
 ![Full storage node](../img/full-storage-node.png)
 
@@ -27,10 +27,10 @@ The Light Nodes gossip headers, fraud proofs, and sometimes block shares, betwee
 The following hardware minimum requirements are recommended for running
 the full storage node:
 
-* Memory: **32 GB RAM**
-* CPU: **6 cores**
-* Disk: **5 TB SSD Storage** (Recommended **10 TB SSD Storage**)
-* Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
+- Memory: **32 GB RAM**
+- CPU: **6 cores**
+- Disk: **5 TB SSD Storage** (Recommended **10 TB SSD Storage**)
+- Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up your full storage node
 
@@ -43,7 +43,7 @@ You can follow the tutorial for setting up your dependencies [here](./environmen
 ## Install celestia-node
 
 > Note: Make sure that you have at least 250+ Gb of free space for
-  Celestia full storage node
+> Celestia full storage node
 
 You can follow the tutorial for installing `celestia-node` [here](./celestia-node.mdx)
 
@@ -64,7 +64,7 @@ celestia full init --p2p.network blockspacerace
 </TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
-```sh 
+```sh
 celestia full init
 ```
 
@@ -146,7 +146,7 @@ section for information on which ports are
 required to be open on your machine.
 :::
 
-```sh 
+```sh
 celestia full start --core.ip <ip-address>:<port>
 ```
 
@@ -243,7 +243,7 @@ celestia full start --core.ip http://<ip-address> --keyring.accname <name-of-cus
 </TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
-```sh 
+```sh
 celestia full start --core.ip <ip-address> --keyring.accname <name-of-custom-key>
 ```
 

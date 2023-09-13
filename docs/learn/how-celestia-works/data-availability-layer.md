@@ -74,7 +74,7 @@ DA layer.
 The requirement of downloading the 4k intermediate Merkle roots is a
 consequence of using a 2-dimensional Reed-Solomon encoding scheme. Alternatively,
 DAS could be designed with a standard (i.e., 1-dimensional) Reed-Solomon encoding,
-where the original data is split into k  chunks and extended with k additional
+where the original data is split into k chunks and extended with k additional
 chunks of parity data. Since the block data commitment is the Merkle root of the
 2k resulting data chunks, light nodes no longer need to download O(n) bytes to
 validate block headers.
@@ -82,8 +82,8 @@ validate block headers.
 The downside of the standard Reed-Solomon encoding is dealing with malicious
 block producers that generate the extended data incorrectly.
 
-This is possible as __Celestia does not require a majority of the consensus
-(i.e., block producers) to be honest to guarantee data availability.__
+This is possible as **Celestia does not require a majority of the consensus
+(i.e., block producers) to be honest to guarantee data availability.**
 Thus, if the extended data is invalid, the original data might not be
 recoverable, even if the light nodes are sampling sufficient unique chunks
 (i.e., at least k for a standard encoding and k × k for a 2-dimensional encoding).
@@ -108,7 +108,7 @@ data is complete, i.e., all the data for a given namespace is returned.
 To this end, Celestia is using Namespaced Merkle Trees (NMTs).
 
 An NMT is a Merkle tree with the leafs ordered by the namespace identifiers
-and the hash function modified so that every node  in the tree includes the
+and the hash function modified so that every node in the tree includes the
 range of namespaces of all its descendants. The following figure shows an
 example of an NMT with height three (i.e., eight data chunks). The data is
 partitioned into three namespaces.

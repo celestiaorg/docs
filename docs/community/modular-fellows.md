@@ -27,24 +27,24 @@ demo-day presentation.
 - **Month 1** - Learning and Exploring (start building whenever you’re ready)
 
   In this month, you will immerse yourself in modular blockchains to come up
-with ideas of protocols, tools or applications to build during the rest
-of the program.
+  with ideas of protocols, tools or applications to build during the rest
+  of the program.
 
-  - *Milestone - present an idea that you want to pursue*
+  - _Milestone - present an idea that you want to pursue_
 
 - **Month 2** - Designing & Implementing a Basic Prototype
 
   In this month, you will design and implement a basic prototype of the
-idea that you settled on during the first month.
+  idea that you settled on during the first month.
 
-  - *Milestone - present the prototype for feedback*
+  - _Milestone - present the prototype for feedback_
 
 - **Month 3** - Build out the Prototype into a Functional Product
 
   In this month, you will expand on your prototype to build a functional
-product which you will demo and explain with a write up.
+  product which you will demo and explain with a write up.
 
-  - *Milestone - demo, write up of product*
+  - _Milestone - demo, write up of product_
 
 ## Project ideas
 
@@ -65,26 +65,26 @@ right or wrong ideas, but here are a few to get you thinking:
 
 1. **Weekly office hours**
 
-    *An optional meeting to ask questions, get help and receive feedback.*
+   _An optional meeting to ask questions, get help and receive feedback._
 
-    Wednesdays alternating at 8:00am or 6:00pm Central US time.
+   Wednesdays alternating at 8:00am or 6:00pm Central US time.
 
 2. **Lessons & tutorials**
 
-    *Presentations from Celestia Labs team members & mentors explaining key
-    concepts or giving tutorials on specific tools.*
+   _Presentations from Celestia Labs team members & mentors explaining key
+   concepts or giving tutorials on specific tools._
 
 3. **Demos from participants**
-  
-    *Presentations from fellows about what they are working on for feedback.*
+
+   _Presentations from fellows about what they are working on for feedback._
 
 4. **Communication**
 
-    *Fellows will share a Telegram group with other Modular Fellows and Modular Mentors.*
+   _Fellows will share a Telegram group with other Modular Fellows and Modular Mentors._
 
 5. **Monthly stipend**
 
-    *Fellows will receive $3,000.00 per month paid on completion of each milestone.*
+   _Fellows will receive $3,000.00 per month paid on completion of each milestone._
 
 ## Continuation
 

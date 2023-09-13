@@ -1,5 +1,5 @@
 ---
-sidebar_label: Node metrics 
+sidebar_label: Node metrics
 description: A guide on how to run metrics for your Celestia Node DA instance.
 ---
 
@@ -19,6 +19,7 @@ You can enable the `celestia-node` metric flags with the following
 command:
 
 <!-- markdownlint-disable MD013 -->
+
 ```sh
 celestia light start --core.ip <ip-address> --metrics --metrics.endpoint <ip-address:port> --p2p.network <network>
 ```

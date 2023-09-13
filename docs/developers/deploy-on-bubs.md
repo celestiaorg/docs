@@ -5,12 +5,12 @@ Bubs testnet.
 
 ## Dependencies
 
-* [Foundry](https://getfoundry.sh/) installed on your machine
-* [Node.js](https://nodejs.org/en)
-* Basic understanding of Ethereum
-* Basic understanding of Solidity and Node.js
-* Bubs ETH from the [Bubs faucet](https://bubstestnet.com)
-* A Bubs RPC URL from the [Bubs testnet page](../bubs-testnet)
+- [Foundry](https://getfoundry.sh/) installed on your machine
+- [Node.js](https://nodejs.org/en)
+- Basic understanding of Ethereum
+- Basic understanding of Solidity and Node.js
+- Bubs ETH from the [Bubs faucet](https://bubstestnet.com)
+- A Bubs RPC URL from the [Bubs testnet page](../bubs-testnet)
 
 ## Setup
 
@@ -219,9 +219,11 @@ Foundry uses `cast`, a CLI for performing Ethereum RPC calls.
 To write to the contract, we'll use the `cast send` command:
 
 <!-- markdownlint-disable MD013 -->
+
 ```bash
 cast send $CONTRACT_ADDRESS "setNumber(uint256)" 10 --rpc-url $BUBS_RPC_URL --private-key $PRIVATE_KEY
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 Your output will look similar:
