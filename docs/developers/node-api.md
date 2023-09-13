@@ -8,7 +8,7 @@ description: An overview of the Celestia Node API.
 The Celestia Node API is made for interacting with `celestia-node`.
 There are a two ways in which a user and developer can interact with
 the API, the RPC API and the Gateway API. The API's documentation
-can be found [here](/api/v0.11.0-rc12).
+can be found [here](/api/v0.11.0-rc13).
 
 ## RPC API
 
