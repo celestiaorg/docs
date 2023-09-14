@@ -146,11 +146,88 @@ celestia-appd tx bank send --help
 
 ## Governance
 
-You can vote on a governance proposal with
-the following command:
+Governance proposals on Celestia are limited as there are no text proposals,
+upgrades occur via social consensus, and some only params are not modifiable.
+However, one can submit a governance proposal to change certain parameters. More
+detailed information on this topic can be found in the [cosmos-sdk documentation
+for submitting
+proposals](https://docs.cosmos.network/v0.46/modules/gov/01_concepts.html#proposal-submission),
+the list of [parameters defaults in the
+specs](https://github.com/celestiaorg/celestia-app/blob/0012451c4dc118767dd59bc8d341878b7a7cacdf/specs/src/specs/params.md),
+and the [x/paramfilter module
+specs](https://github.com/celestiaorg/celestia-app/blob/main/x/paramfilter/README.md).
+
+Viewing the available proposals can be done with the query command:
 
 ```sh
-celestia-appd tx gov vote <proposal id> <yes or no> --from <wallet> --chain-id <chain-id>
+celestia-appd q gov proposals 
+```
+
+There are four options when voting "yes", "no", "no_with_veto" and "abstain".
+You can use those options to vote on a governance proposal with the following
+command:
+
+```sh
+celestia-appd tx gov vote <proposal id> <option> --from <wallet> --chain-id <chain-id>
+```
+
+To submit a proposal, there are two commands that can be used. The first is the
+legacy command, which is the reccomended way to submit a proposal.
+
+To change the max validators to 105, one would first save this JSON file:
+
+```json
+{
+  "title": "Staking Param Change",
+  "description": "Update max validators",
+  "changes": [
+    {
+      "subspace": "staking",
+      "key": "MaxValidators",
+      "value": 105
+    }
+  ],
+  "deposit": "1000000000utia"
+}
+```
+
+Then you can submit the proposal with:
+
+```sh
+celestia-appd tx gov submit-legacy-proposal parameter-change <path to json file> --from <wallet> --chain-id <chain-id>
+```
+
+If we want to use the newer api, we can submit a proposal by first saving the
+`sdk.Msg` proposal in the json encoded format to a json.
+
+```json
+{
+    "messages": [
+        {"@type":"/cosmos.gov.v1beta1.MsgSubmitProposal",
+        "content":{
+            "@type":"/cosmos.params.v1beta1.ParameterChangeProposal",
+            "title":"title",
+            "description":"description",
+            "changes":[{"subspace":"staking","key":"MaxValidators","value":"103"}]
+            },
+            "initial_deposit":[{"denom":"utia","amount":"1000000000"}],
+            "proposer":"celestia10d07y265gmmuvt4z0w9aw880jnsr700jtgz4v7"
+        }
+    ]
+}
+```
+
+Note that the proposer here must be the gov module
+account. That account can be found by using this command:
+
+```sh
+celestia-appd q auth module-account gov
+```
+
+Then one can submit the proposal with:
+
+```sh
+celestia-appd tx gov submit-proposal <path to json file> --from <wallet> --chain-id <chain-id>
 ```
 
 ## Claim validator rewards
