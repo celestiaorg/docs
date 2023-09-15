@@ -5,7 +5,7 @@
   "scripts": {
     "import-md": "node importMarkdown.mjs",
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
+    "start": "docusaurus start --no-open",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
