@@ -130,10 +130,6 @@ const config = {
             to: "/learn/how-celestia-works/monolithic-vs-modular",
             from: "/concepts/how-celestia-works/monolithic-vs-modular",
           },
-          {
-            to: "/learn/how-celestia-works/transaction-lifecycle",
-            from: "/concepts/how-celestia-works/transaction-lifecycle",
-          },
         ],
       },
     ],

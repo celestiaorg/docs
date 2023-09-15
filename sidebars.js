@@ -586,11 +586,6 @@ const sidebars = {
       collapsed: true,
       items: [
         {
-          type: 'doc',
-          label: "Reserved namespaces",
-          id: "learn/specifications/reserved-namespaces"
-        },
-        {
           type: "link",
           label: "Celestia App",
           href: "https://celestiaorg.github.io/celestia-app/",
