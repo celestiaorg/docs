@@ -30,4 +30,3 @@ It includes:
 - [Demos](../../developers/demos/) on Celestia
 - [Integrate with Celestia Network](../../developers/integrate-celestia/)
   for third-party service providers
-- [Frequently Asked Questions (FAQs)](../../developers/faqs/)
