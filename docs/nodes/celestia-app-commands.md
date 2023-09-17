@@ -148,9 +148,9 @@ celestia-appd tx bank send --help
 
 Governance proposals on Celestia are limited as there are no text proposals,
 upgrades occur via social consensus, and some only params are not modifiable.
-However, one can submit a governance proposal to change certain parameters. More
-detailed information on this topic can be found in the [cosmos-sdk documentation
-for submitting
+However, one can submit governance proposals to change certain parameters and
+spend community funds. More detailed information on this topic can be found in
+the [cosmos-sdk documentation for submitting
 proposals](https://docs.cosmos.network/v0.46/modules/gov/01_concepts.html#proposal-submission),
 the list of [parameters defaults in the
 specs](https://github.com/celestiaorg/celestia-app/blob/0012451c4dc118767dd59bc8d341878b7a7cacdf/specs/src/specs/params.md),
@@ -164,8 +164,10 @@ celestia-appd q gov proposals
 ```
 
 There are four options when voting "yes", "no", "no_with_veto" and "abstain".
-You can use those options to vote on a governance proposal with the following
-command:
+The "no_with_veto" vote is different from the "no" vote in that the submitter of
+the proposer's deposit will get burned, and a minority of stake (1/3) can stop a
+proposal that might otherwise pass quorum. You can use those options to vote on
+a governance proposal with the following command:
 
 ```sh
 celestia-appd tx gov vote <proposal id> <option> --from <wallet> --chain-id <chain-id>
@@ -228,6 +230,37 @@ Then one can submit the proposal with:
 
 ```sh
 celestia-appd tx gov submit-proposal <path to json file> --from <wallet> --chain-id <chain-id>
+```
+
+### Community Pool
+
+A percentage the block rewards are allocated to the community pool. Community
+members can submit governance proposals to spend the community pool funds, and
+token holders can vote on these proposals. The proposals to spend are arbitrary
+in nature in that they can only contain text and some address to send funds to.
+To view the community pool balance, use the following command:
+
+```sh
+celestia-appd q distribution community-pool
+```
+
+To submit a proposal to spend the community pool funds, first create a JSON file
+that contains the proposal.
+
+```json
+{
+  "title": "Community Pool Spend",
+  "description": "Fund an open source project.",
+  "recipient": "celestia17adsjkuecgjheugrdrwdqv9uh3qkrfmj9xzawx",
+  "amount": "100000000000utia",
+  "deposit": "1000000000utia"
+}
+```
+
+The the json file can be submitted using a similar proposal submission command as above:
+
+```sh
+celestia-appd tx gov submit-legacy-proposal community-pool-spend <path to json file> --from <wallet>
 ```
 
 ## Claim validator rewards
