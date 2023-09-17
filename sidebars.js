@@ -487,11 +487,6 @@ const sidebars = {
       label: "Integrate Celestia",
       id: "developers/integrate-celestia",
     },
-    {
-      type: "doc",
-      label: "FAQs",
-      id: "developers/faqs",
-    },
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },
