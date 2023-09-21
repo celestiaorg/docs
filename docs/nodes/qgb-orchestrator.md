@@ -87,6 +87,8 @@ To add an EVM private key, check the next section.
 
 Because EVM keys are important, we provide a keystore that will help manage them. The keystore uses a file system keystore protected by a passphrase to store and open private keys.
 
+To register an EVM address for your validator, check the section [Register EVM Address](#register-evm-address).
+
 To import your EVM private key, there is the `import` subcommand to assist you with that:
 
 ```ssh
