@@ -31,7 +31,7 @@ by the gas limit.
 
 #### Estimating PFB gas
 
-Generally, the gas used by a PFB transaction involves a static "fixed cost" and
+Generally, the gas used by a PFB transaction involves a static fixed cost and
 a dynamic cost based on the size of each blob involved in the transaction.
 
 > Note: For a general use case of a normal account submitting a PFB, the static
@@ -39,7 +39,7 @@ a dynamic cost based on the size of each blob involved in the transaction.
 > works in the Cosmos-SDK this is not always the case. Notably, if we use a
 > vesting account or the `feegrant` modules, then these static costs change.
 
-The "fixed cost" is an approximation of the gas consumed by operations outside
+The fixed cost is an approximation of the gas consumed by operations outside
 the function `GasToConsume` (for example, signature verification, tx size, read
 access to accounts), which has a default value of 65,000 gas.
 
@@ -57,6 +57,50 @@ parameter. Finally, it adds a static amount per blob.
 The `GasCostPerBlobByte` and `GasCostPerTransactionByte` are parameters that
 could potentially be adjusted through the system's governance mechanisms. Hence,
 actual costs may vary depending on the current state of these parameters.
+
+#### Gas fee calculation
+
+The total fee for a transaction is calculated as the product of the gas limit
+for the transaction and the gas price set by the user:
+
+$\text{Total Fee} = \text{Gas Limit} \times \text{Gas Price}$
+
+The gas limit for a transaction is the maximum amount of gas that a user is
+willing to spend on a transaction. It is determined by both a static
+fixed cost and a variable dynamic cost based on the size of each blob involved
+in the transaction:
+
+$\text{Gas Limit} = \text{Fixed Cost} + \sum_{i=1}^{n} \text{SparseSharesNeeded(Blob}_i) \times \text{Share Size} \times \text{Gas Cost Per Blob Byte}$
+
+Where:
+
+- $\text{Fixed Cost}$ is a static value (65,000 gas)
+- $\text{SparseSharesNeeded(Blob}_i)$ is the number of shares needed for the $i$th blob in the transaction
+- $\text{Share Size}$ is the size of each share
+- $\text{Gas Cost Per Blob Byte}$ is a parameter that could potentially be adjusted through the system's governance mechanisms.
+
+The gas fee is set by the user when they submit a transaction. The fee is often
+specified by users directly. The total cost for the transaction is then
+calculated as the product of the estimated gas limit and the gas price.
+Since the state machine does not refund users for unused gas,
+it's important for users to estimate the gas limit accurately to
+avoid overpaying.
+
+For more details on how gas is calculated per blob, refer to the
+[`PayForBlobs` function](https://github.com/celestiaorg/celestia-app/blob/32d247971386c1944d44bec1faeb000b1ff1dd51/x/blob/keeper/keeper.go#L53)
+that consumes gas based on the blob sizes. This function uses the
+[`GasToConsume` function](https://github.com/celestiaorg/celestia-app/blob/32d247971386c1944d44bec1faeb000b1ff1dd51/x/blob/types/payforblob.go#L157-L167)
+to calculate the extra gas charged to pay for a set of blobs in a `MsgPayForBlobs`
+transaction. This function calculates the total shares used by all blobs and
+multiplies it by the `ShareSize` and `gasPerByte` to get the total gas to consume.
+
+For estimating the total gas required for a set of blobs, refer to the
+[`EstimateGas` function](https://github.com/celestiaorg/celestia-app/blob/32d247971386c1944d44bec1faeb000b1ff1dd51/x/blob/types/payforblob.go#L169-L181).
+This function estimates the gas based on a linear model that is dependent on
+the governance parameters: `gasPerByte` and `txSizeCost`. It assumes other
+variables are constant, including the assumption that the `MsgPayForBlobs`
+is the only message in the transaction. The `DefaultEstimateGas` function
+runs `EstimateGas` with the system defaults.
 
 #### Estimating gas programmatically
 
@@ -113,7 +157,7 @@ celestia-appd tx blob PayForBlobs <hex encoded namespace> <hex encoded data> [fl
 Using `blob.Submit`:
 
 ```terminal
-celestia rpc blob submit <namespace in hex> <data in hex>
+celestia rpc blob submit <hex encoded namespace> <hex encoded data>
 ```
 
 Learn more in the [node tutorial](../../developers/node-tutorial).
