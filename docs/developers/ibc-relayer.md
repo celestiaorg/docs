@@ -157,7 +157,7 @@ list = [
 :::danger caution
 
 Relayer needs chain data for at least 2/3 of the unbonding period,
-so make sure to use prunning settings that keep the state for longer
+so make sure to use pruning settings that keep the state for longer
 period than the unbonding time. You can configure custom pruning in
 `app.toml` for each chain.
 
