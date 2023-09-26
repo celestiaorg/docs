@@ -77,11 +77,11 @@ Celestia is a minimal blockchain that only orders and publishes transactions
 and does not execute them. By decoupling the consensus and application
 execution layers, Celestia modularizes the blockchain technology stack
 and unlocks new possibilities for decentralized application builders.
-Lean more at [Celestia.org](https://celestia.org).
+Learn more at [Celestia.org](https://celestia.org).
 
 ## OP Stack and Celestia
 
-This category will guide you through how start your own devnet or testnet
+This category will guide you through how to start your own devnet or testnet
 with a modified version of `optimism-bedrock` that uses Celestia as a
 DA layer.
 
