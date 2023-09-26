@@ -79,7 +79,7 @@ contract Blog {
     mapping(uint => Post) private idToPost;
     mapping(string => Post) private hashToPost;
 
-    /* events facilitate communication between smart contractsand their user interfaces  */
+    /* events facilitate communication between smart contracts and their user interfaces  */
     /* i.e. we can create listeners for events in the client and also use them in The Graph  */
     event PostCreated(uint id, string title, string hash);
     event PostUpdated(uint id, string title, string hash, bool published);
@@ -222,7 +222,7 @@ forge test -vv
 Now that we've tested the contract, let's try deploying it locally using
 [Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html).
 
-To do so, update the deloyment script at `script/Contract.s.sol` with the
+To do so, update the deployment script at `script/Contract.s.sol` with the
 following code:
 
 ```solidity title="script/Contract.s.sol"
@@ -368,8 +368,8 @@ For the frontend project, we’ll be using the following libraries and framework
 [Vite](https://vitejs.dev) - Project generator / rapid development tool for
 modern web projects
 
-[Rainbowkit](https://www.rainbowkit.com) - Easy and beautifl library to connect
-a wallets
+[Rainbowkit](https://www.rainbowkit.com) - Easy and beautiful library to connect
+a wallet
 
 [WAGMI](https://github.com/wagmi-dev/wagmi) - 20+ hooks for working with
 wallets, ENS, contracts, transactions, signing, etc
@@ -498,7 +498,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ### Creating and reading posts
 
-Now that the the base configuration is set up we’ll create a view that allows
+Now that the base configuration is set up we’ll create a view that allows
 users to create and view posts.
 
 We’ll be using IPFS to upload the content of the post, then anchoring the hash
