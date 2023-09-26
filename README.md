@@ -209,32 +209,4 @@ Using the JSON RPC API, submit data using the following methods:
 Learn more in the [celestia-node API docs](/api/your-new-version).
 ```
 
-11. Lastly, update the `docs/learn/submit-data.md` to reflect the new version:
-
-Change this:
-
-```md
-### RPC to a celestia-node
-
-Using the JSON RPC API, submit data using the following methods:
-
-* [blob.Submit](/api/v0.11.0-rc8/#blob.Submit)
-* [state.SubmitPayForBlob](/api/v0.11.0-rc8/#state.SubmitPayForBlob)
-
-Learn more in the [celestia-node API docs](/api/v0.11.0-rc8).
-```
-
-To this:
-
-```md
-### RPC to a celestia-node
-
-Using the JSON RPC API, submit data using the following methods:
-
-* [blob.Submit](/api/your-new-version/#blob.Submit)
-* [state.SubmitPayForBlob](/api/your-new-version/#state.SubmitPayForBlob)
-
-Learn more in the [celestia-node API docs](/api/your-new-version).
-```
-
 12. Start your newly versioned site to reflect the latest versioning changes!
