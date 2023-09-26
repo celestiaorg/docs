@@ -176,7 +176,7 @@ celestia-appd tx gov vote <proposal id> <option> --from <wallet> --chain-id <cha
 ```
 
 To submit a proposal, there are two commands that can be used. The first is the
-legacy command, which is the reccomended way to submit a proposal.
+legacy command, which is the recommended way to submit a proposal.
 
 To change the max validators to 105, one would first save this JSON file:
 
@@ -259,7 +259,7 @@ that contains the proposal.
 }
 ```
 
-The the json file can be submitted using a similar proposal submission command as above:
+The json file can be submitted using a similar proposal submission command as above:
 
 ```sh
 celestia-appd tx gov submit-legacy-proposal community-pool-spend <path to json file> --from <wallet>

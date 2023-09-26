@@ -49,7 +49,7 @@ new blockchain.
 3. **Any part of the stack can be delegated**. Development time can be
    reduced by outsourcing functions of the rollup to external providers.
 
-All in all, builders will be able to outsource as much of the stackas
+All in all, builders will be able to outsource as much of the stack as
 they need. Deploying a new blockchain will be as simple as clicking a
 few options to initialize a production-ready rollup.
 
@@ -115,7 +115,7 @@ Here are a few options that are currently available for developers.
 ### Smart contracts
 
 [Bubs testnet](https://bubstestnet.com/) is a dedicated EVM-compatible
-rollup that developerscan use to test and deploy smart contract
+rollup that developers can use to test and deploy smart contract
 applications.
 
 ### Sovereign rollups

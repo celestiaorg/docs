@@ -25,7 +25,7 @@ the user via multiplying the gas limit by the desired gas price. This means that
 users should use an accurate gas limit value if they do not wish to over pay.
 
 Under the hood, fees are currently handled by specifying and deducting a flat
-fee. However gas price is often specifed by users instead of calculating the
+fee. However gas price is often specified by users instead of calculating the
 flat fee from the gas used and the gas price. Since the state machine does not
 refund users for unused gas, gas price is calculated by dividing the total fee
 by the gas limit.
