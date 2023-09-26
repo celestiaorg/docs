@@ -21,7 +21,7 @@ It includes:
   - [Node API docs](/api/v0.11.0-rc12)
   - How to use the [Celestia node RPC API](../../developers/node-tutorial/)
   - Learn [Celestia node API](../../developers/prompt-scavenger/) with a game
-- How to [deploy rollups with](../../category/deploy-a-rollup/)
+- How to [deploy rollups with](../../developers/rollup-overview/)
   - [Rollkit](../../developers/rollkit/)
   - [OP Stack](../../category/optimism/)
   - [Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup)

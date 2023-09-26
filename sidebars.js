@@ -361,7 +361,8 @@ const sidebars = {
       type: "category",
       label: "Deploy a Rollup",
 			link: {
-				type: "generated-index",
+        id: "developers/rollup-overview",
+				type: "doc",
 			},
 			collapsed: true,
 			items: [

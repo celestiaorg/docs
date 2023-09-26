@@ -25,7 +25,7 @@ function HomepageHeader() {
             <p className="button-heading">Celestia node</p>
             Run a node
           </Link>
-          <Link className="front-page-link" to="/category/deploy-a-rollup">
+          <Link className="front-page-link" to="/developers/rollup-overview">
             <p className="button-heading">Sovereign chain</p>
             Deploy a rollup to Celestia
           </Link>

@@ -160,7 +160,7 @@ specs](https://github.com/celestiaorg/celestia-app/blob/main/x/paramfilter/READM
 Viewing the available proposals can be done with the query command:
 
 ```sh
-celestia-appd q gov proposals 
+celestia-appd q gov proposals
 ```
 
 There are four options when voting "yes", "no", "no_with_veto" and "abstain".
@@ -204,18 +204,21 @@ If we want to use the newer api, we can submit a proposal by first saving the
 
 ```json
 {
-    "messages": [
-        {"@type":"/cosmos.gov.v1beta1.MsgSubmitProposal",
-        "content":{
-            "@type":"/cosmos.params.v1beta1.ParameterChangeProposal",
-            "title":"title",
-            "description":"description",
-            "changes":[{"subspace":"staking","key":"MaxValidators","value":"103"}]
-            },
-            "initial_deposit":[{"denom":"utia","amount":"1000000000"}],
-            "proposer":"celestia10d07y265gmmuvt4z0w9aw880jnsr700jtgz4v7"
-        }
-    ]
+  "messages": [
+    {
+      "@type": "/cosmos.gov.v1beta1.MsgSubmitProposal",
+      "content": {
+        "@type": "/cosmos.params.v1beta1.ParameterChangeProposal",
+        "title": "title",
+        "description": "description",
+        "changes": [
+          { "subspace": "staking", "key": "MaxValidators", "value": "103" }
+        ]
+      },
+      "initial_deposit": [{ "denom": "utia", "amount": "1000000000" }],
+      "proposer": "celestia10d07y265gmmuvt4z0w9aw880jnsr700jtgz4v7"
+    }
+  ]
 }
 ```
 
