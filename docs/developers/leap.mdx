@@ -12,7 +12,8 @@ import leapGif from "../img/leap/leap.gif";
 
 This guide will go over how you can add Celestia network parameters to Leap wallet.
 
-The example in this guide is for <InlineText constant={constants.mochaChainId} /> testnet, and the same workflow can be used for any Celestia network.
+The example in this guide is for the [Mocha testnet](../../nodes/mocha-testnet)
+([<InlineText constant={constants.mochaChainId} />](../../nodes/mocha-testnet#software-version-numbers)), and the same workflow can be used for any Celestia network.
 
 ## Install Leap
 
@@ -25,29 +26,37 @@ Pick the browser or mobile device that you are using on this
 [page](https://www.leapwallet.io/download).
 Follow the instructions to install Leap.
 
-## Add Celestia network parameters
+## Add Mocha Testnet
 
-Click the Cosmos logo in the top corner of Leap wallet. Scroll down and
-click "Add new chain"
+Click the Cosmos logo in the top corner of Leap wallet
+and search for and select "Mocha Testnet".
 
 <Image img={leapGif} width={400} />
+
+You'll see that you're connected to Mocha testnet. You can now
+see your balance, send, and receive transactions.
+
+## Adding a custom chain to Leap
+
+If you want to add a custom chain to Leap, you can do so by:
+
+1. Clicking the Cosmos logo in the top corner of Leap wallet
+2. Scrolling down and clicking "Add new chain"
 
 You can
 then add the following parameters:
 
-- Chain Id: <InlineText constant={constants.mochaChainId} />
-- Chain Name: `Mocha Testnet`
-- New RPC URL: `https://rpc-mocha.pops.one`
-- New REST URL: `https://api-mocha.pops.one`
+- Chain Id: <InlineText constant={constants.arabicaChainId} />
+- Chain Name: `Arabica Devnet`
+- New RPC URL: `https://consensus-full.celestia-arabica-10.com`
+- New REST URL: `https://api.consensus.celestia-arabica-10.com`
 - Address Prefix: `celestia`
 - Native Denom: `utia`
 - Coin Type: `118`
 - Decimals: `6`
-- Block explorer URL (optional): `https://testnet.mintscan.io/celestia-testnet`
+- Block explorer URL (optional): `https://explorer.celestia-arabica-10.com`
 
-Now, click `Add chain` and you will be able to view your Celestia
+Now, click `Add chain` and you will be able to view your Arabica
 account balance and transactions in Leap wallet.
 
-You'll see that you're connected to Mocha testnet.
-
-![leap-add-chain](../img/leap/leap.png)
+You'll see that you're connected to Arabica Devnet.
