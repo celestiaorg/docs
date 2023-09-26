@@ -1,4 +1,5 @@
 # Submitting data blobs to Celestia
+<!-- markdownlint-disable MD013 -->
 
 To submit data to Celestia, users submit blob transactions (`BlobTx`). Blob
 transactions contain two components, a standard Cosmos-SDK transaction called
@@ -277,3 +278,5 @@ Using the JSON RPC API, submit data using the following methods:
 - [state.SubmitPayForBlob](/api/v0.11.0-rc13/#state.SubmitPayForBlob)
 
 Learn more in the [celestia-node API docs](/api/v0.11.0-rc13).
+
+<!-- markdownlint-disable MD013 -->

@@ -146,13 +146,15 @@ celestia-appd tx bank send --help
 
 ## Governance
 
+<!-- markdownlint-disable MD013 -->
+
 Governance proposals on Celestia are limited as there are no text proposals,
-upgrades occur via social consensus, and some only params are not modifiable.
+upgrades occur via social consensus, and some params are not modifiable.
 However, one can submit governance proposals to change certain parameters and
 spend community funds. More detailed information on this topic can be found in
 the [cosmos-sdk documentation for submitting
 proposals](https://docs.cosmos.network/v0.46/modules/gov/01_concepts.html#proposal-submission),
-the list of [parameters defaults in the
+the list of [parameter defaults in the
 specs](https://github.com/celestiaorg/celestia-app/blob/0012451c4dc118767dd59bc8d341878b7a7cacdf/specs/src/specs/params.md),
 and the [x/paramfilter module
 specs](https://github.com/celestiaorg/celestia-app/blob/main/x/paramfilter/README.md).
