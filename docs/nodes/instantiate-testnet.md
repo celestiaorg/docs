@@ -166,9 +166,9 @@ celestia-appd start
 ```
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports)
-section for information on which ports are
-required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 Now you have a new Celestia Testnet to play around with!
