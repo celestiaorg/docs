@@ -41,7 +41,7 @@ Code of Conduct. Organizers will respectfully enforce this code
 throughout the event. We genuinely appreciate the cooperation of all
 participants in maintaining a safe and empowering space for everyone.
 
-- [Celestia.org Community Code of Conduct](https://docs.celestia.org/community/coc/)
+- [Celestia.org Community Code of Conduct](../../community/coc/)
 
 ### Emails
 
@@ -58,7 +58,7 @@ Your active participation is key to unlocking the full potential
 of this vibrant community. Our primary communication tool is Discord,
 providing an engaging platform to connect with fellow organizers:
 
-- [Discord link](https://discord.com/invite/je7UVpDuDu)
+- [Discord](https://discord.com/invite/je7UVpDuDu)
 
 Make sure to join the channel #meetups where we will be also giving
 you the relevant role as a Meetup Organizer.

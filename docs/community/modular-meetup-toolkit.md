@@ -13,12 +13,12 @@ help you plan and execute your meetups effectively.
 
 ## Celestia branding guidelines
 
-- [BrandKit](https://company-223625.frontify.com/d/JoSwaZS4Mjpj/guidelines)
+- [Brand kit](https://company-223625.frontify.com/d/JoSwaZS4Mjpj/guidelines)
   1. Includes logo files, color schemes, typography, icons and illustrations
 
 ## Sample “Introduction to Modularity” workshop presentation
 
-- [Link](https://docs.google.com/presentation/d/1R4bkWgU2nql1chwVwND4seREHbKzugl0-Xr88w3QdIQ/edit#slide=id.g1b629412475_0_0)
+- [Sample presentation - introduction to modularity](https://docs.google.com/presentation/d/1R4bkWgU2nql1chwVwND4seREHbKzugl0-Xr88w3QdIQ/edit#slide=id.g1b629412475_0_0)
 - Summary: This is an overview presentation on Modular blockchains and
   dives deep into Celestia core technologies.
 - The sample presentation covers:
@@ -31,7 +31,7 @@ help you plan and execute your meetups effectively.
 
 ## Sample “Run a Celestia light node” workshop presentation
 
-- [Link](https://docs.google.com/presentation/d/1fV7OYUdW4kafkZcgHwFenFWDbSIwkk0R6BnSKrAV-Hc/edit#slide=id.g20713cce7c2_1_0)
+- [Sample presentation - run a light node](https://docs.google.com/presentation/d/1fV7OYUdW4kafkZcgHwFenFWDbSIwkk0R6BnSKrAV-Hc/edit#slide=id.g20713cce7c2_1_0)
 - Summary:
   This is an overview presentation goes over running a Celestia light node.
   You can find existing video presentations for this here:
@@ -46,7 +46,7 @@ help you plan and execute your meetups effectively.
 
 ## Sample “Deploy a Sovereign Rollup” workshop presentation
 
-- [Link](https://docs.google.com/presentation/d/163yP8lQ28k-xfL3jcdX2cfO-3zg8e63AOuHeHxde3vk/edit#slide=id.g20713cce7c2_1_596)
+- [Sample presentation - deploy a sovereign rollup](https://docs.google.com/presentation/d/163yP8lQ28k-xfL3jcdX2cfO-3zg8e63AOuHeHxde3vk/edit#slide=id.g20713cce7c2_1_596)
 - Summary: This is an overview presentation on deploying a sovereign rollup
   with Rollkit on Celestia.
   You can find existing video presentations for this here:
@@ -59,7 +59,7 @@ help you plan and execute your meetups effectively.
 
 ## Sample “Modular Meetup Introduction” workshop presentation
 
-- [Link to the Presentation](https://docs.google.com/presentation/d/1HIOKwnCRylofo4sp5I93hsfY3DKWbmXxfvMdoiIk-3I/edit?usp=sharing)
+- [Sample presentation - modular meetup introduction](https://docs.google.com/presentation/d/1HIOKwnCRylofo4sp5I93hsfY3DKWbmXxfvMdoiIk-3I/edit?usp=sharing)
 - The sample presentation covers:
   1. Introduction to Celestia and modular blockchains
   2. Introduction to the Modular Meetup Program
@@ -71,7 +71,8 @@ help you plan and execute your meetups effectively.
 ## Swag logistics
 
 - Merchandise support
-  1. For merchandise support for your meetup, please email natnet@celestia.org
+  1. For merchandise support for your meetup, please email
+  [natnet@celestia.org](mailto:natnet@celestia.org)
 
 With this Modular Meetups Organizer Kit, you’ll have everything
 you need to plan and execute engaging, informative, and successful
