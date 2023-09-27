@@ -18,7 +18,7 @@ flag to your vesting transaction.
 
 ## Local devnet
 
-First, download and [install Celestia App](../../nodes/celestia-app),
+First, [download and install Celestia App](../../nodes/celestia-app),
 selecting the
 [network and corresponding version](../../nodes/participate)
 that you would like to use.
@@ -312,8 +312,8 @@ account on a local devnet. In this portion of the tutorial, we'll cover how
 to set up a consensus full node and set up a vesting account on
 [Mocha Testnet](../../nodes/mocha-testnet).
 
-First, be sure that you have installed Celestia App for the latest
-version for Mocha Testnet on this [page](../../nodes/celestia-app).
+First, be sure that you have
+[installed Celestia App for the latest version for Mocha Testnet](../../nodes/celestia-app).
 
 ### Create a wallet
 
@@ -344,13 +344,14 @@ export TO_ADDRESS=address_of_vesting_account
 
 ### Fund your account
 
-Head to the [faucet](../../nodes/mocha-testnet/#mocha-testnet-faucet),
+Head to [the faucet](../../nodes/mocha-testnet/#mocha-testnet-faucet),
 and fund your `origin` address.
 
 ### Create a vesting account on Mocha
 
 To create a vesting account on Mocha, you will need an RPC URL to send
-the transaction to. You can find an RPC [here](../../nodes/mocha-testnet/#rpc-endpoints).
+the transaction to. You can find the
+[RPC endpoints on the Mocha testnet page](../../nodes/mocha-testnet/#rpc-endpoints).
 
 Set your RPC URL:
 
@@ -381,7 +382,7 @@ celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 168674805
 Running a consensus full node or validator will prevent you from needing
 to use an RPC.
 
-You can set up a [validator](../../nodes/full-consensus-node) or [full node](../../nodes/validator-node) for the previous portion
+You can [set up a validator](../../nodes/full-consensus-node) or [full node](../../nodes/validator-node) for the previous portion
 of the tutorial.
 
 Note: this may take some time depending on how you choose to sync the
@@ -416,8 +417,8 @@ broadcast-mode = "sync"
 ## Notes
 
 Not all vesting accounts can be created with a message, some need to be
-set at genesis. Learn more
-[here](https://docs.cosmos.network/v0.46/modules/auth/05_vesting.html#note).
+set at genesis. You can
+[learn more in the Cosmos Network documentation](https://docs.cosmos.network/v0.46/modules/auth/05_vesting.html#note).
 
 ## Conclusion
 
