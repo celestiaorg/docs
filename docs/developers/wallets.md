@@ -19,7 +19,9 @@ through the offerings in the Celestia wallet space.
    1. [Ledger](../keplr) the Keplr guide will also show you how to use your Ledger
       device to securely manage your account.
 
-2. [Cosmostation wallet](../cosmostation)
+2. [Leap wallet](../leap)
+
+3. [Cosmostation wallet](../cosmostation)
 
 ## For developers
 

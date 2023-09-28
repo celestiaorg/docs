@@ -56,8 +56,8 @@ allows anyone to set a new value for the "number" variable, while the
 `increment` function increases the value of "number" by one each time it's
 called.
 
-You can learn more about Solidity and smart contract programming
-[here](https://ethereum.org/en/developers/learning-tools/).
+You can
+[learn more about Solidity and smart contract programming](https://ethereum.org/en/developers/learning-tools/).
 
 To compile the contract, run the following forge command from the
 `$HOME/counter-project/counter_contract/` directory:
@@ -177,8 +177,8 @@ src/Counter.sol:Counter
 ### Using Bubs
 
 First, set a private key from your funded Ethereum wallet and
-set the `BUBS_RPC_URL` variable with an [RPC](../bubs-testnet/#rpc-urls)
-of your choosing:
+set the `BUBS_RPC_URL` variable with an
+[RPC of your choosing](../bubs-testnet/#rpc-urls):
 
 ```bash
 export BUBS_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80

@@ -20,7 +20,7 @@ cover how to build dapps on these newer, shared platforms.
 
 If you're interested in learning more about modular blockchains, or are new
 to the Celestia ecosystem, we recommend you read the
-[Build Modular](./build-modular.md) page first.
+[Build Modular page](./build-modular.md) first.
 
 ## Getting started
 
@@ -206,8 +206,8 @@ Foundry uses [Dappsys Test](https://book.getfoundry.sh/reference/ds-test.html)
 to provide basic logging and assertion functionality. It's included in the Forge
 Standard Library.
 
-Here, we are using `assertEq` to assert equality. You can view all of the
-assertion functions available [here](https://book.getfoundry.sh/reference/ds-test.html?highlight=log_int#asserting).
+Here, we are using `assertEq` to assert equality. You can
+[view all of the assertion functions available](https://book.getfoundry.sh/reference/ds-test.html?highlight=log_int#asserting).
 
 #### Running the test
 
@@ -764,7 +764,7 @@ Now we’re ready to run the app.
 Right now, the app is configured to be using `localhost:8545` using the
 Ethermint rollup we're running with Rollkit.
 
-First, you'll need to install [MetaMask](https://metamask.io).
+First, you'll need to [install MetaMask](https://metamask.io).
 
 To use the test account, you will need to import the private key from Ethermint
 to MetaMask. First, run the following command:
@@ -804,5 +804,5 @@ balance.
 
 Now that you have your dapp running, go ahead and test out a new post
 on your Ethermint sovereign rollup. If you enjoyed this tutorial, be
-sure to share your example in our
-[Discord](https://discord.com/invite/je7UVpDuDu)!
+sure to share your example
+[in our Discord](https://discord.com/invite/je7UVpDuDu)!

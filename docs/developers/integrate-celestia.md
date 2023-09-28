@@ -40,6 +40,7 @@ minimal as possible.
 
 Celestia supports many already existing key management systems, as we rely on
 the Cosmos-SDK and Tendermint libraries for signing and verifying transactions.
+Learn more in the
 [Cosmos-SDK documentation](https://docs.cosmos.network/main/basics/accounts.html#keys-accounts-addresses-and-signatures)
 
 ### RPC and querying
@@ -51,7 +52,7 @@ data from the chain.
 
 In `celestia-node`, the Data Availability node client, there is a JSON-RPC API
 that allows you to interact directly with Celestia's Data Availability layer.
-The guide for it can be found [here](https://docs.celestia.org/developers/node-tutorial).
+Learn [how to use the API in this tutorial](../../developers/node-tutorial).
 
 ### Compatibility
 
