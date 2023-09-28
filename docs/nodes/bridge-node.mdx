@@ -62,7 +62,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-Follow the tutorial here installing the dependencies [here](./environment.mdx).
+Follow the tutorial for [installing the dependencies](./environment.mdx).
 
 ## Deploy the Celestia bridge node
 
@@ -70,7 +70,7 @@ Follow the tutorial here installing the dependencies [here](./environment.mdx).
 
 Install the `celestia-node` binary, which will be used to run the bridge node.
 
-Follow the tutorial for installing `celestia-node` [here](./celestia-node.mdx).
+Follow the tutorial for [installing `celestia-node`](./celestia-node.mdx).
 
 ### Initialize the bridge node
 
@@ -100,7 +100,7 @@ Refer to
 for information on which ports are required to be open on your machine.
 :::
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../blockspace-race)
+If you need a list of RPC endpoints to connect to, you can check the [list on the Blockspace Race page](../blockspace-race).
 
 Here is an example of initializing the bridge node:
 
@@ -130,7 +130,7 @@ Refer to
 for information on which ports are required to be open on your machine.
 :::
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check the [list on the Mocha Testnet page](../mocha-testnet#rpc-endpoints).
 
 Here is an example of initializing the bridge node:
 
@@ -160,7 +160,7 @@ Refer to
 for information on which ports are required to be open on your machine.
 :::
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../arabica-devnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check the [list on the Arabica Devnet page](../arabica-devnet#rpc-endpoints).
 
 Here is an example of initializing the bridge node:
 
@@ -196,7 +196,7 @@ Refer to
 for information on which ports are required to be open on your machine.
 :::
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../blockspace-race)
+If you need a list of RPC endpoints to connect to, you can check the [list on the Blockspace Race page](../blockspace-race).
 
 Here is an example of starting the bridge node:
 
@@ -204,7 +204,7 @@ Here is an example of starting the bridge node:
 celestia bridge start --core.ip <ip-address> --p2p.network blockspacerace
 ```
 
-You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
+You can create your key for your node by [following the `cel-key` instructions](../../developers/celestia-node-key).
 
 Once you start the bridge node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for
@@ -242,7 +242,7 @@ Refer to
 for information on which ports are required to be open on your machine.
 :::
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check the [list on the Mocha Testnet page](../mocha-testnet#rpc-endpoints).
 
 Here is an example of starting the bridge node:
 
@@ -250,7 +250,7 @@ Here is an example of starting the bridge node:
 celestia bridge start --core.ip rpc-mocha.pops.one:26657
 ```
 
-You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
+You can create your key for your node by [following the `cel-key` instructions](../../developers/celestia-node-key).
 
 Once you start the bridge node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for
@@ -292,7 +292,7 @@ Refer to
 for information on which ports are required to be open on your machine.
 :::
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can check the [list on the Mocha Testnet page](../mocha-testnet#rpc-endpoints).
 
 Here is an example of starting the bridge node:
 
@@ -300,7 +300,7 @@ Here is an example of starting the bridge node:
 celestia bridge start --core.ip consensus-validator.celestia-arabica-10.com --p2p.network arabica
 ```
 
-You can create your key for your node by following the `cel-key` instructions [here](../../developers/celestia-node-key)
+You can create your key for your node by [following the `cel-key` instructions](../../developers/celestia-node-key).
 
 Once you start the bridge node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for
@@ -355,7 +355,7 @@ celestia bridge start --core.ip <ip> --keyring.accname <name_of_custom_key> --p2
 
 ### Optional: start the bridge node with SystemD
 
-Follow the tutorial on setting up the bridge node as a background process with
-SystemD [here](./systemd.md).
+Follow the
+[tutorial on setting up the bridge node as a background process with SystemD](./systemd.md).
 
 You have successfully set up a bridge node that is syncing with the network.

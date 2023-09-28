@@ -53,7 +53,7 @@ Essentially, the design considerations here will necessitate
 running an OpenTelemetry (OTEL) collector that connects to Celestia
 light node.
 
-For an overview of OTEL, check out the guide [here](https://opentelemetry.io/docs/collector).
+For an overview of OTEL, check out [the guide](https://opentelemetry.io/docs/collector).
 
 The ADR and the OTEL docs will help you run your collector on the metrics endpoint.
 This will then allow you to process the data in the collector on a

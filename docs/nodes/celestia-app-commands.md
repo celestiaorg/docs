@@ -360,6 +360,6 @@ celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
     --evm-address=$EVM_ADDRESS \
 ```
 
-You can then share your gentx JSON file on the networks
-repo [here](https://github.com/celestiaorg/networks) in the respective
-network directory you are participating in.
+You can then share your gentx JSON file on
+[the networks repo](https://github.com/celestiaorg/networks)
+in the respective network directory you are participating in.
