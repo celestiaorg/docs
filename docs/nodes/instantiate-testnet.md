@@ -12,15 +12,18 @@ to test out new features to build as a core developer.
 
 ## Hardware requirements
 
-You can follow hardware requirements [here](../nodes/validator-node.mdx#hardware-requirements).
+You wil need to
+[follow hardware requirements](../nodes/validator-node.mdx#hardware-requirements).
 
 ## Setup dependencies
 
-You can setup dependencies by following the guide [here](./environment.mdx).
+You wil need to
+[setup dependencies by following the guide](./environment.mdx).
 
 ## celestia-app installation
 
-You can install `celestia-app` by following the guide [here](./celestia-app.mdx).
+You wil need to
+[install `celestia-app` by following the guide](./celestia-app.mdx).
 
 ## Spin up a Celestia testnet
 
