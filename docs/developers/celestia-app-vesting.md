@@ -303,17 +303,17 @@ pagination:
 ```
 
 Congratulations! You've now made your own vesting account on a local devnet.
-Next, you can learn how to create a vesting account on Mocha Testnet.
+Next, you can learn how to create a vesting account on Mocha testnet.
 
 ## Mocha
 
 In the previous section of this tutorial, we learned how to create a vesting
 account on a local devnet. In this portion of the tutorial, we'll cover how
 to set up a consensus full node and set up a vesting account on
-[Mocha Testnet](../../nodes/mocha-testnet).
+[Mocha testnet](../../nodes/mocha-testnet).
 
 First, be sure that you have
-[installed Celestia App for the latest version for Mocha Testnet](../../nodes/celestia-app).
+[installed Celestia App for the latest version for Mocha testnet](../../nodes/celestia-app).
 
 ### Create a wallet
 
@@ -423,4 +423,4 @@ set at genesis. You can
 ## Conclusion
 
 Congratulations! You've learned how to create a local devnet, create a
-vesting account on it, and how to make a vesting account on the Mocha Testnet!
+vesting account on it, and how to make a vesting account on the Mocha testnet!
