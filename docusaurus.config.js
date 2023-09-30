@@ -134,6 +134,14 @@ const config = {
             to: "/learn/how-celestia-works/transaction-lifecycle",
             from: "/concepts/how-celestia-works/transaction-lifecycle",
           },
+          {
+            to: "/nodes/consensus-node",
+            from: "/nodes/full-consensus-node",
+          },
+          {
+            to: "/nodes/consensus-node",
+            from: "/nodes/validator-node",
+          }
         ],
       },
     ],

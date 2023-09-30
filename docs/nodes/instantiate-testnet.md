@@ -13,7 +13,7 @@ to test out new features to build as a core developer.
 ## Hardware requirements
 
 You wil need to
-[follow hardware requirements](../nodes/validator-node.mdx#hardware-requirements).
+[follow hardware requirements](../nodes/consensus-node#validator-hardware-requirements).
 
 ## Setup dependencies
 

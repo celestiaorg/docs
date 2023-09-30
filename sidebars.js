@@ -106,39 +106,14 @@ const sidebars = {
         ]
       },
       {
-        type: "category",
-        label: "Consensus",
-        link: {
-          type: 'generated-index'
-        },
-        collapsed: true,
-        items: [
-          {
-            type: "category",
-            label: "Validators",
-            link: {
-              type: 'generated-index'
-            },
-            collapsed: true,
-            items: [
-              {
-                type: "doc",
-                label: "Validator node",
-                id: "nodes/validator-node",
-              },
-            ]
-          },
-          { 
-            type: "doc", 
-            label: "Full consensus node", 
-            id: "nodes/full-consensus-node" 
-          },
-          { 
-            type: "doc", 
-            label: "IBC Relayer", 
-            id: "nodes/ibc-relayer" 
-          }
-        ]
+        type: "doc",
+        label: "Consensus nodes",
+        id: "nodes/consensus-node",
+      },
+      { 
+        type: "doc", 
+        label: "IBC Relayer", 
+        id: "nodes/ibc-relayer" 
       },
       {
         type: "category",
