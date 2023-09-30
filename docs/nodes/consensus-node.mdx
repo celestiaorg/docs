@@ -6,6 +6,8 @@ description: Learn how to set up a Celestia consensus node.
 # Setting up a Celestia full consensus node
 
 import constants from "../constants/constants.js";
+import InlineText from "@site/src/components/InlineText.js";
+import SeedsLink from "@site/src/components/SeedsLink.js";
 
 Full Consensus Nodes allow you to sync blockchain history in the Celestia
 Consensus Layer.
@@ -69,18 +71,13 @@ Copy the `genesis.json` file. For mocha we are using:
 cp $HOME/networks/{constants.mochaChainId}/genesis.json $HOME/.celestia-app/config
 </code></pre>
 
-Set seeds and peers:
+<SeedsLink chainId={constants.mochaChainId} />
+
+Set seeds manually in the `$HOME/.celestia-app/config/config.toml` file:
 
 <pre><code>
-PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{constants.mochaChainId}/peers.txt | tr -d '\n')<br/>
-echo $PERSISTENT_PEERS<br/>
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml<br/>
-</code></pre>
-
-Note: You can find more peers at:
-
-<pre><code>
-https://github.com/celestiaorg/networks/blob/master/{constants.mochaChainId}/peers.txt
+# Comma separated list of seed nodes to connect to<br/>
+seeds = ""
 </code></pre>
 
 </TabItem>
@@ -109,11 +106,7 @@ echo $PERSISTENT_PEERS<br/>
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml<br/>
 </code></pre>
 
-Note: You can find more peers at:
-
-<pre><code>
-https://github.com/celestiaorg/networks/blob/master/{constants.arabicaChainId}/peers.txt
-</code></pre>
+<SeedsLink chainId={constants.arabicaChainId} />
 
 </TabItem>
 </Tabs>
@@ -122,34 +115,15 @@ https://github.com/celestiaorg/networks/blob/master/{constants.arabicaChainId}/p
 ### Configure pruning
 
 For lower disk space usage we recommend setting up pruning using the
-configurations below. You can change this to your own pruning configurations
+configurations below in `$HOME/.celestia-app/config/app.toml`.
+You can change this to your own pruning configurations
 if you want:
 
-```sh
-PRUNING="custom"
-PRUNING_KEEP_RECENT="100"
-PRUNING_INTERVAL="10"
-
-sed -i -e "s/^pruning *=.*/pruning = \"$PRUNING\"/" $HOME/.celestia-app/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \
-\"$PRUNING_KEEP_RECENT\"/" $HOME/.celestia-app/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
-\"$PRUNING_INTERVAL\"/" $HOME/.celestia-app/config/app.toml
+```bash
+pruning="custom"
+pruning-keep-recent="100"
+pruning-interval="10"
 ```
-
-### Reset network
-
-This will delete all data folders so we can start fresh:
-
-```sh
-celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
-```
-
-:::tip
-Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
-for information on which ports are required to be open on your machine.
-:::
 
 ### Syncing
 
@@ -224,7 +198,7 @@ wget -O - https://snaps.qubelabs.io/celestia/$&#123;SNAP_NAME&#125; | tar xf - \
 </Tabs>
 ```
 
-### Start the celestia-app
+### Start the consensus node
 
 In order to start your full consensus node, run the following:
 
@@ -241,44 +215,9 @@ Refer to
 for information on which ports are required to be open on your machine.
 :::
 
-### Optional: configure for RPC endpoint
-
-You can configure your full consensus node to be a public RPC endpoint
-and listen to any connections from Data Availability Nodes in order to
-serve requests for the Data Availability API.
-
-Run the following commands:
-
-```sh
-EXTERNAL_ADDRESS=$(wget -qO- eth0.me)
-sed -i.bak -e "s/^external_address = \"\"/external_address = \"$EXTERNAL_ADDRESS:26656\"/" $HOME/.celestia-app/config/config.toml
-sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' ~/.celestia-app/config/config.toml
-```
-
-Restart `celestia-appd` in the previous step to load those configs.
-
-## Transaction indexer configuration options
-
-This section will show you how to set your `config.toml` file in `celestia-app`
-to chose which transactions to index. In some
-cases, a node operator will be able to decide which transactions to index
-based on configuration set in the application.
-
-The options are:
-
-1. `null`
-2. `kv` (default) - the simplest possible indexer backed by key-value storage
-   (defaults to levelDB; see DBBackend)
-   1. when `kv` is chosen `tx.height` and `tx.hash` will always be indexed
-3. `psql` - the indexer services backed by PostgreSQL
-   1. when `kv` or `psql` is chosen, `tx.height` and `tx.hash` will always be indexed
-
 ## Optional: Setting up a validator
 
 ### Setting up a Celestia validator node
-
-import InlineText from "@site/src/components/InlineText.js";
-import PeersLink from "@site/src/components/PeersLink.js";
 
 Validator nodes allow you to participate in consensus in the Celestia network.
 
@@ -333,16 +272,7 @@ cp $HOME/networks/{constants.mochaChainId}/genesis.json $HOME/.celestia-app/conf
 </code></pre>
 ```
 
-Set seeds and peers:
-
-```bash
-SEEDS="some seeds"
-PEERS="some peers"
-sed -i -e 's|^seeds *=.*|seeds = "'$SEEDS'"|; s|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.celestia-app/config/config.toml
-sed -i -e "s/^seed_mode *=.*/seed_mode = \"$SEED_MODE\"/" $HOME/.celestia-app/config/config.toml
-```
-
-<PeersLink chainId={constants.mochaChainId} />
+<SeedsLink chainId={constants.mochaChainId} />
 
 ##### Configure pruning
 
@@ -351,15 +281,15 @@ configurations below. You can change this to your own pruning configurations
 if you want:
 
 ```bash
-PRUNING="custom"
-PRUNING_KEEP_RECENT="100"
-PRUNING_INTERVAL="10"
+# default: the last 362880 states are kept, pruning at 10 block intervals
+# nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
+# everything: 2 latest states will be kept; pruning at 10 block intervals.
+# custom: allow pruning options to be manually specified through 'pruning-keep-recent', and 'pruning-interval'
+pruning="custom"
 
-sed -i -e "s/^pruning *=.*/pruning = \"$PRUNING\"/" $HOME/.celestia-app/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \
-\"$PRUNING_KEEP_RECENT\"/" $HOME/.celestia-app/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
-\"$PRUNING_INTERVAL\"/" $HOME/.celestia-app/config/app.toml
+# These are applied if and only if the pruning strategy is custom.
+pruning-keep-recent="100"
+pruning-interval="10"
 ```
 
 ##### Syncing
@@ -663,7 +593,7 @@ tx: null
 txhash: <tx-hash>
 ```
 
-## Register your validator's EVM address
+### Register your validator's EVM address
 
 This section will cover how to register your validator's EVM address.
 This is required to run an orchestrator.
@@ -759,3 +689,68 @@ Now that the QGB will be enabled for Blockspace Race (BSR), all validators
 will need to run the QGB orchestrator to be able to sign attestations.
 To run it, please
 [refer to the documentation](https://docs.celestia.org/nodes/qgb-orchestrator/#how-to-run).
+
+## Extra resources for consensus nodes
+
+### Optional: Reset network
+
+This will delete all data folders so we can start fresh:
+
+```sh
+celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
+```
+
+### Optional: Configuring an RPC endpoint
+
+You can configure your Consensus Full Node to be a public RPC endpoint.
+This allows it to accept connections from Data Availability Nodes and
+serve requests for the Data Availability API.
+
+#### Expose RPC
+
+By default, the RPC service listens on `localhost` which means it can't
+be accessed from other machines. To make the RPC service available publicly,
+you need to bind it to a public IP or `0.0.0.0` (which means listening on all
+available network interfaces).
+
+You can do this by editing the config.toml file:
+
+```sh
+sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' ~/.celestia-app/config/config.toml
+```
+
+This command replaces the `localhost` IP address with `0.0.0.0`, making the
+RPC service listen on all available network interfaces.
+
+#### Note on `external-address`
+
+The `external-address` field in the configuration is used when your node
+is behind a NAT and you need to advertise a different address for peers
+to dial. Populating this field is not necessary for making the RPC
+endpoint public.
+
+```sh
+EXTERNAL-ADDRESS=$(wget -qO- eth0.me)
+sed -i.bak -e "s/^external-address = ""/external-address = "$EXTERNAL-ADDRESS:26656"/" $HOME/.celestia-app/config/config.toml
+```
+
+#### Restart the node
+
+After making these changes, restart `celestia-appd` to load the new
+configurations.
+
+### Optional: Transaction indexer configuration options
+
+This section will show you how to set your `config.toml` file in `celestia-app`
+to chose which transactions to index. In some
+cases, a node operator will be able to decide which transactions to index
+based on configuration set in the application.
+
+The options are:
+
+1. `null`
+2. `kv` (default) - the simplest possible indexer backed by key-value storage
+   (defaults to levelDB; see DBBackend)
+   1. when `kv` is chosen `tx.height` and `tx.hash` will always be indexed
+3. `psql` - the indexer services backed by PostgreSQL
+   1. when `kv` or `psql` is chosen, `tx.height` and `tx.hash` will always be indexed
