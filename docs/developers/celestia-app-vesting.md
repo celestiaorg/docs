@@ -129,7 +129,7 @@ Output:
 
 #### Set variables
 
-Set the keys as varibles, using the validator address as the `FROM_ADDRESS`
+Set the keys as variables, using the validator address as the `FROM_ADDRESS`
 and the vesting-key as the `TO_ADDRESS`.
 
 ```bash

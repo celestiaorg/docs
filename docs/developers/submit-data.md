@@ -1,4 +1,5 @@
 # Submitting data blobs to Celestia
+<!-- markdownlint-disable MD013 -->
 
 To submit data to Celestia, users submit blob transactions (`BlobTx`). Blob
 transactions contain two components, a standard Cosmos-SDK transaction called
@@ -24,7 +25,7 @@ the user via multiplying the gas limit by the desired gas price. This means that
 users should use an accurate gas limit value if they do not wish to over pay.
 
 Under the hood, fees are currently handled by specifying and deducting a flat
-fee. However gas price is often specifed by users instead of calculating the
+fee. However gas price is often specified by users instead of calculating the
 flat fee from the gas used and the gas price. Since the state machine does not
 refund users for unused gas, gas price is calculated by dividing the total fee
 by the gas limit.
@@ -277,3 +278,5 @@ Using the JSON RPC API, submit data using the following methods:
 - [state.SubmitPayForBlob](/api/v0.11.0-rc13/#state.SubmitPayForBlob)
 
 Learn more in the [celestia-node API docs](/api/v0.11.0-rc13).
+
+<!-- markdownlint-disable MD013 -->

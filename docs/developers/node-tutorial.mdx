@@ -1372,7 +1372,7 @@ Read more about shares in the [Celestia Specs](https://celestiaorg.github.io/cel
 Here is what an example of the format of the `get` command looks like:
 
 ```bash
-celestia rpc blob get [block height] [namespace in hex] [committment from output above]
+celestia rpc blob get [block height] [namespace in hex] [commitment from output above]
 ```
 
 Here is an example command to retrieve the data from above, on `arabica-10`:
@@ -1469,7 +1469,7 @@ higher. They are also **optional** to use with `blob.submit`.
 To set the gas fee and limit, you can use the `--fee` and `--gas.limit` flags
 respectively when submitting data using the RPC CLI.
 
-Learn more about gas fees and limits [here](../../learn/submit-data).
+Learn more about gas fees and limits [here](../../developers/submit-data).
 
 To set the fee of 10000 utia, use the `--fee 10000` flag:
 
@@ -1490,7 +1490,7 @@ To set a fee of 10000 utia and gas limit of 100000, use the
 celestia rpc blob submit 0x42690c204d39600fddd3 'gm' --fee 10000 --gas.limit 100000
 ```
 
-You will receive the height and committment of the block in which the
+You will receive the height and commitment of the block in which the
 transaction was included for these three examples:
 
 ```json
