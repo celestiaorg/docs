@@ -7,7 +7,7 @@ description: Learn how to deploy rollups on Celestia.
 
 This section covers the different options for deploying rollups on Celestia.
 
-It contains guides and tutorials on how to deploy rollups on Celestia git add the provided options.
+It contains guides and tutorials on how to deploy rollups on Celestia.
 They include:
 
 - [Rollkit](./rollkit.mdx)
@@ -31,4 +31,4 @@ They include:
   - [How to establish IBC connections using the Hermes relayer](./ibc-relayer.md)
 - Full-stack modular blockchain development
   - [How to build a full stack modular dapp with React, Vite, RainbowKit, Celestia and Foundry](./full-stack-modular-development-guide.md)
-- [Dymension](https://dymension.xyz/)
+- Build a [rollapp with Dymension's Roller](https://docs.dymension.xyz/build/roller)
