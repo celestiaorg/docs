@@ -77,6 +77,19 @@ echo $PERSISTENT_PEERS<br/>
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml<br/>
 </code></pre>
 
+> Mac users built-in `head` command does not accept negative numbers for `-c` flag.
+> Solution is to install `coreutils` package and use `ghead` command from it.
+>
+> ```
+> brew install coreutils
+> ```
+>
+> and optionally set alias from `head` to `ghead` in shell config (`~/.bashrc`, `~/.zshrc` etc):
+>
+> ```
+> alias head=ghead
+> ```
+
 Note: You can find more peers at:
 
 <pre><code>
