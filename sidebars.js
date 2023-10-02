@@ -322,6 +322,11 @@ const sidebars = {
       ]
     },
     {
+      type: "doc",
+      label: "Submitting data blobs to Celestia",
+      id: "developers/submit-data"
+    },
+    {
       type: "category",
       label: "Node API",
       link: {
@@ -523,81 +528,95 @@ const sidebars = {
     },
   ],
   learn: [
-    {
-      type: "category",
-      label: "How Celestia works",
-      link: {
-        type: 'generated-index',
+      {
+        type: "category",
+        label: "Overview of Celestia",
+        link: {
+          type: 'generated-index'
+        },
+        collapsed: true,
+        items: [
+          {
+            type: 'doc',
+            label: "Introduction",
+            id: "learn/how-celestia-works/introduction"
+          },
+          {
+            type: "doc",
+            label: "Monolithic vs. modular blockchains",
+            id: "learn/how-celestia-works/monolithic-vs-modular"
+          },
+          {
+            type: "category",
+            label: "Data availability layer",
+            collapsed: true,
+            items: [
+              {
+                type: "doc",
+                label: "Celestia’s data availability layer",
+                id: "learn/how-celestia-works/data-availability-layer"
+              },
+              {
+                type: "doc",
+                label: "The lifecycle of a Celestia app transaction",
+                id: "learn/how-celestia-works/transaction-lifecycle"
+              },
+              {
+                type: "doc",
+                label: "Data availability FAQs",
+                id: "learn/data-availability-faq"
+              }
+            ]
+          },
+          {
+            type: "category",
+            label: "Extra resources",
+            collapsed: true,
+            items: [
+              {
+                type: "link",
+                label: "Learn modular",
+                href: "https://celestia.org/learn/"
+              },
+              {
+                type: "link",
+                label: "Specifications",
+                href: "https://celestiaorg.github.io/celestia-app/"
+              },
+              {
+                type: "link",
+                label: "Glossary",
+                href: "https://celestia.org/glossary/"
+              }
+            ]
+          }
+        ]
       },
-      collapsed: true,
-      items: [
-        {
-          type: 'doc',
-          label: "Introduction",
-          id: "learn/how-celestia-works/introduction"
+      {
+        type: "category",
+        label: "TIA",
+        link: {
+          type: 'generated-index'
         },
-        {
-          type: "doc",
-          label: "Monolithic vs. modular blockchains",
-          id: "learn/how-celestia-works/monolithic-vs-modular"
-        },
-        {
-          type: "doc",
-          label: "Celestia's data availability layer",
-          id: "learn/how-celestia-works/data-availability-layer"
-        },
-        {
-          type: "doc",
-          label: "The lifecycle of a Celestia App transaction",
-          id: "learn/how-celestia-works/transaction-lifecycle"
-        }
-      ]
-    },
-    {
-      type: "doc",
-      label: "Data availability FAQ",
-        id: "learn/data-availability-faq",
-    },
-    {
-      type: "category",
-      label: "Paying for blobspace",
-      link: {
-        type: 'generated-index',
+        collapsed: true,
+        items: [
+          {
+            type: "doc",
+            label: "Overview of TIA",
+            id: "learn/tia"
+          },
+          {
+            type: "doc",
+            label: "Paying for blobspace",
+            id: "learn/paying-for-blobspace"
+          },
+          {
+            type: "doc",
+            label: "Staking, governance, & supply",
+            id: "learn/staking-governance-supply"
+          },
+        ]
       },
-      collapsed: true,
-      items: [
-        {
-          type: 'doc',
-          label: "Submitting data blobs to Celestia",
-          id: "learn/submit-data"
-        }
-      ]
-    },
-    {
-      type: "category",
-      label: "Specifications",
-      link: {
-        type: 'generated-index',
-      },
-      collapsed: true,
-      items: [
-        {
-          type: "link",
-          label: "Celestia App",
-          href: "https://celestiaorg.github.io/celestia-app/",
-        },
-      ]
-    },
-    {
-      type: "link",
-      label: "Learn modular",
-      href: "https://celestia.org/learn/"
-    },
-    {
-      type: "link",
-      label: "Glossary",
-      href: "https://celestia.org/glossary/"
-    }
   ]
 };
 

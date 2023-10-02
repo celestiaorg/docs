@@ -6,14 +6,14 @@ description: Learn what is the lifecycle of a Celestia App transaction.
 # The lifecycle of a Celestia App transaction
 
 Users request the `celestia-app` to make data available by
-sending `PayForBlob` transactions. Every such transaction consists
+sending `PayForBlobs` transactions. Every such transaction consists
 of the identity of the sender, the data to be made available, also
 referred to as the message, the data size, the namespace ID, and
-a signature. Every block producer batches multiple `PayForBlob`
+a signature. Every block producer batches multiple `PayForBlobs`
 transactions into a block.
 
 Before proposing the block though, the producer passes it to the
-state machine via ABCI++, where each `PayForBlob` transaction is
+state machine via ABCI++, where each `PayForBlobs` transaction is
 split into a namespaced message (denoted by `Msg` in the figure below),
 i.e., the data together with the namespace ID, and an executable
 transaction (denoted by `e-Tx` in the figure below) that does not
@@ -67,7 +67,7 @@ Note that although it is recommended, performing DAS is optional -- light
 nodes could just trust that the data corresponding to the commitments in
 the block headers was indeed made available by the Celestia DA layer.
 In addition, light nodes can also submit transactions to the `celestia-app`,
-i.e., `PayForBlob` transactions.
+i.e., `PayForBlobs` transactions.
 
 While performing DAS for a block header, every light node queries Celestia
 Nodes for a number of random data chunks from the extended matrix and the

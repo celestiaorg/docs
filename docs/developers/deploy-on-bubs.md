@@ -257,7 +257,7 @@ The result will look similar:
 0x000000000000000000000000000000000000000000000000000000000000000a
 ```
 
-Convert the result from hexadeximal to a base 10 value with:
+Convert the result from hexadecimal to a base 10 value with:
 
 ```bash
 echo $((0x000000000000000000000000000000000000000000000000000000000000000a))

@@ -107,16 +107,16 @@ const config = {
             from: "/category/node-api",
           },
           {
-            to: "/learn/submit-data",
+            to: "/developers/submit-data",
             from: "/concepts/submit-data",
+          },
+          {
+            to: "/developers/submit-data",
+            from: "/learn/submit-data",
           },
           {
             to: "/learn/data-availability-faq",
             from: "/concepts/data-availability-faq",
-          },
-          {
-            to: "/learn/specifications/reserved-namespaces",
-            from: "/concepts/specifications/reserved-namespaces",
           },
           {
             to: "/learn/how-celestia-works/data-availability-layer",

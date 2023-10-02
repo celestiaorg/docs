@@ -158,5 +158,5 @@ Some of those include:
 
 - Reward nodes based on the amount of transaction data they store and requests for data
   they serve (this is the case with some data storage blockchains, like [Filecoin](https://filecoin.io)).
-- Publish transaction data onto a data storage blockchain that incentives storing and
+- Publish transaction data onto a data storage blockchain that incentivizes storing and
   serving requests for historical data.
