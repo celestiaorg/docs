@@ -9,15 +9,15 @@ import constants from "../constants/constants.js";
 import InlineText from "@site/src/components/InlineText.js";
 import SeedsLink from "@site/src/components/SeedsLink.js";
 
-Full Consensus Nodes allow you to sync blockchain history in the Celestia
-Consensus Layer.
+Full consensus nodes allow you to sync blockchain history in the Celestia
+consensus layer.
 
 ![full consensus node](../img/nodes/full-consensus-node.png)
 
 ## Hardware requirements
 
 The following hardware minimum requirements are recommended for running the
-Full Consensus Nodes:
+full consensus nodes:
 
 - Memory: **8 GB RAM**
 - CPU: **Quad-Core**
@@ -238,151 +238,8 @@ validator node:
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
 
-##### Setup the dependencies
-
-Follow [the instructions on installing the dependencies](./environment.mdx).
-
-##### Install celestia-app
-
-Follow [the tutorial on installing `celestia-app`](./celestia-app.mdx).
-
-##### Setup the P2P networks
-
-Now we will setup the P2P Networks by cloning the networks repository:
-
-```bash
-cd $HOME
-rm -rf networks
-git clone https://github.com/celestiaorg/networks.git
-```
-
-To initialize the network pick a "node-name" that describes your
-node. The `--chain-id` parameter we are using here is **<InlineText constant={constants.mochaChainId} />**. Keep in
-mind that this might change if a new testnet is deployed.
-
-```mdx-code-block
-<pre><code>
-celestia-appd init "node-name" --chain-id {constants.mochaChainId}
-</code></pre>
-
-Copy the `genesis.json` file. For mocha we are using:
-
-<pre><code>
-cp $HOME/networks/{constants.mochaChainId}/genesis.json $HOME/.celestia-app/config
-</code></pre>
-```
-
-<SeedsLink chainId={constants.mochaChainId} />
-
-##### Configure pruning
-
-For lower disk space usage we recommend setting up pruning using the
-configurations below. You can change this to your own pruning configurations
-if you want:
-
-```bash
-# default: the last 362880 states are kept, pruning at 10 block intervals
-# nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
-# everything: 2 latest states will be kept; pruning at 10 block intervals.
-# custom: allow pruning options to be manually specified through 'pruning-keep-recent', and 'pruning-interval'
-pruning="custom"
-
-# These are applied if and only if the pruning strategy is custom.
-pruning-keep-recent="100"
-pruning-interval="10"
-```
-
-##### Syncing
-
-By default, a consensus node will sync using block sync; that is request, validate
-and execute every block up to the head of the blockchain. This is the most secure
-mechanism yet the slowest (taking up to days depending on the height of the blockchain).
-
-There are two alternatives for quicker syncing.
-
-##### State sync
-
-State sync uses light client verification to verify state snapshots from peers
-and then apply them. State sync relies on weak subjectivity; a trusted header
-(specifically the hash and height) must be provided. This can be found by querying
-a trusted RPC endpoint (/block). RPC endpoints are also required for retrieving
-light blocks. These can be found in the docs here under the respective networks or
-from the [chain-registry](https://github.com/cosmos/chain-registry).
-
-In `$HOME/.celestia-app/config/config.toml`, set
-
-```toml
-rpc_servers = ""
-trust_height = 0
-trust_hash = ""
-```
-
-to their respective fields. At least two different rpc endpoints should be provided.
-The more, the greater the chance of detecting any fraudulent behavior.
-
-Once setup, you should be ready to start the node as normal. In the logs, you should
-see: `Discovering snapshots`. This may take a few minutes before snapshots are found
-depending on the network topology.
-
-###### Quick sync
-
-Quick sync effectively downloads the entire `data` directory from a third-party provider
-meaning the node has all the application and blockchain state as the node it was
-copied from.
-
-````mdx-code-block
-
-<Tabs groupId="network">
-<TabItem value="mocha" label="Mocha">
-
-Run the following command to quick-sync from a snapshot for `mocha`:
-
-<pre><code>
-cd $HOME<br/>
-rm -rf ~/.celestia-app/data<br/>
-mkdir -p ~/.celestia-app/data<br/>
-SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \<br/>
-&nbsp; egrep -o ">{constants.mochaChainId}.*tar" | tr -d ">")<br/>
-wget -O - https://snaps.qubelabs.io/celestia/$&#123;SNAP_NAME&#125; | tar xf - \<br/>
-&nbsp; -C ~/.celestia-app/data/<br/>
-</code></pre>
-
-</TabItem>
-<TabItem value="blockspacerace" label="Blockspace Race">
-
-Run the following command to quick-sync from a snapshot for `blockspacerace`:
-
-```bash
-cd $HOME
-rm -rf ~/.celestia-app/data
-mkdir -p ~/.celestia-app/data
-SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-    egrep -o ">blockspacerace.*tar" | tr -d ">")
-wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
-    -C ~/.celestia-app/data/
-```
-
-</TabItem>
-</Tabs>
-````
-
-##### Start the celestia-app
-
-In order to start your validator node, run the following:
-
-:::tip
-Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
-for information on which ports are required to be open on your machine.
-:::
-
-```bash
-celestia-appd start
-```
-
-Follow
-[the tutorial on setting up `celestia-app` as a background process
-with SystemD](../systemd).
+First, set up your full consensus node by following the instructions in
+[the previous section](#setting-up-a-full-consensus-node).
 
 ##### Wallet
 
@@ -397,9 +254,8 @@ VALIDATOR_WALLET=<validator-wallet-name>
 ```
 
 If you want to delegate more stake to any validator, including your own you
-will need the `celesvaloper` address of the validator in question. You can
-either check it using the block explorer mentioned above or you can run the
-command below to get the `celesvaloper` of your local validator wallet in
+will need the `celesvaloper` address of the validator in question. You can run
+the command below to get the `celesvaloper` of your local validator wallet in
 case you want to delegate more to it:
 
 ```bash
@@ -444,7 +300,7 @@ txhash: <tx-hash>
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
 
-#### Optional: Deploy the Celestia Node
+#### Optional: Deploy the celestia-node
 
 Running a bridge node is critical to the Celestia network as it enables
 the data availability and consensus nodes to communicate with one
@@ -457,7 +313,7 @@ If you are not running a bridge node, you can skip to
 This section describes part 2 of Celestia validator node setup: running a
 Celestia bridge node daemon.
 
-##### Install Celestia Node
+##### Install celestia-node
 
 You can [follow the tutorial for installing `celestia-node`](./celestia-node.mdx)
 
@@ -531,6 +387,20 @@ environment variable before setting it.
 ````
 
 #### Run a validator node
+
+##### Start the celestia-app
+
+In order to start your validator node, run the following:
+
+:::tip
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
+:::
+
+```bash
+celestia-appd start
+```
 
 ````mdx-code-block
 <Tabs groupId="operating-systems">
@@ -702,9 +572,9 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 
 ### Optional: Configuring an RPC endpoint
 
-You can configure your Consensus Full Node to be a public RPC endpoint.
-This allows it to accept connections from Data Availability Nodes and
-serve requests for the Data Availability API.
+You can configure your consensus full node to be a public RPC endpoint.
+This allows it to accept connections from data availability nodes and
+serve requests for the data availability API.
 
 #### Expose RPC
 
