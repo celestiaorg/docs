@@ -364,7 +364,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Deploy a Rollup",
+      label: "Deploy a rollup",
 			link: {
         id: "developers/rollup-overview",
 				type: "doc",
