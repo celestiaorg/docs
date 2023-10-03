@@ -5,7 +5,8 @@ description: Learn how to deploy rollups on Celestia.
 
 # Deploy a rollup
 
-This section covers the different options for deploying rollups on Celestia.
+This section provides various guides and tutorials that cover different
+options for deploying rollups on Celestia.
 
 ## What is a rollup?
 
@@ -20,9 +21,6 @@ Over time, two primary designs emerged for rollups:
 [zk](https://celestia.org/glossary/zk-rollup) rollups.
 
 ## Section contents
-
-The rollup category contains guides and tutorials on how to deploy rollups
-on Celestia. They include:
 
 - [Rollkit](./rollkit.mdx)
   - [Build and deploy a GM World rollup](https://rollkit.dev/tutorials/gm-world)
@@ -43,6 +41,4 @@ on Celestia. They include:
   - [Create a zk-rollup and run a full node using Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup)
 - IBC relayers
   - [Establish IBC connections using the Hermes relayer](./ibc-relayer.md)
-- Full-stack modular blockchain development
-  - [Build a full stack modular dapp with React, Vite, RainbowKit, Celestia and Foundry](./full-stack-modular-development-guide.md)
 - [Build a rollapp with Dymension's Roller](https://docs.dymension.xyz/build/roller)
