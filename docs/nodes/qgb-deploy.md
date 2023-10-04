@@ -26,7 +26,7 @@ Available Commands:
 
 ### Install the QGB binary
 
-Make sure to have the QGB binary installed. Check [here](https://docs.celestia.org/nodes/qgb-binary) for more details.
+Make sure to have the QGB binary installed. Check [the QGB binary page](https://docs.celestia.org/nodes/qgb-binary) for more details.
 
 ### Add keys
 
@@ -42,7 +42,7 @@ To import your EVM private key, there is the `import` subcommand to assist you w
 qgb deploy keys evm import --help
 ```
 
-This subcommand allows you to either import a raw ECDSA private key provided as plaintext, or import it from a file. The files are JSON keystore files encrypted using a passphrase like in [here](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts).
+This subcommand allows you to either import a raw ECDSA private key provided as plaintext, or import it from a file. The files are JSON keystore files encrypted using a passphrase like in [this example](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts).
 
 After adding the key, you can check that it's added via running:
 
@@ -50,7 +50,7 @@ After adding the key, you can check that it's added via running:
 qgb deploy keys evm list
 ```
 
-For more information about the `keys` command, check the `keys` documentation in [here](https://github.com/celestiaorg/orchestrator-relayer/blob/main/docs/keys.md).
+For more information about the `keys` command, check [the `keys` documentation](https://docs.celestia.org/nodes/qgb-keys).
 
 ### Deploy the contract
 

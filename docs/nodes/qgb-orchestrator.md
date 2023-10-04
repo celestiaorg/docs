@@ -8,7 +8,7 @@ description: Learn about the QGB Orchestrator.
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD010 -->
 
-The role of the orchestrator is to sign attestations using its corresponding validator EVM private key. These attestations are generated within the QGB module of the Celestia-app state machine. To learn more about what attestations are, you can refer to this [link](https://github.com/celestiaorg/celestia-app/tree/main/x/qgb).
+The role of the orchestrator is to sign attestations using its corresponding validator EVM private key. These attestations are generated within the QGB module of the Celestia-app state machine. To learn more about what attestations are, you can refer to [the QGB overview](https://github.com/celestiaorg/celestia-app/tree/main/x/qgb).
 
 ## How it works
 
@@ -16,7 +16,7 @@ The orchestrator does the following:
 
 1. Connect to a Celestia-app full node or validator node via RPC and gRPC and wait for new attestations
 2. Once an attestation is created inside the QGB state machine, the orchestrator queries it.
-3. After getting the attestation, the orchestrator signs it using the provided EVM private key. The private key should correspond to the EVM address provided when creating the validator. More details in [here](https://docs.celestia.org/nodes/consensus-node/#setup-qgb-keys).
+3. After getting the attestation, the orchestrator signs it using the provided EVM private key. The private key should correspond to the EVM address provided when creating the validator. Read [more about QGB keys](https://docs.celestia.org/nodes/qgb-keys/).
 4. Then, the orchestrator pushes its signature to the P2P network it is connected to, via adding it as a DHT value.
 5. Listen for new attestations and go back to step 2.
 
@@ -48,7 +48,7 @@ To run an orchestrator, you will need to have access to the following:
 
 ### Install the QGB binary
 
-Make sure to have the QGB binary installed. Check [here](https://docs.celestia.org/nodes/qgb-binary) for more details.
+Make sure to have the QGB binary installed. Check [the QGB binary page](https://docs.celestia.org/nodes/qgb-binary) for more details.
 
 ### Init the store
 
@@ -95,7 +95,7 @@ To import your EVM private key, there is the `import` subcommand to assist you w
 qgb orchestrator keys evm import --help
 ```
 
-This subcommand allows you to either import a raw ECDSA private key provided as plaintext, or import it from a file. The files are JSON keystore files encrypted using a passphrase like in [here](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts).
+This subcommand allows you to either import a raw ECDSA private key provided as plaintext, or import it from a file. The files are JSON keystore files encrypted using a passphrase like in [this example](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts).
 
 After adding the key, you can check that it's added via running:
 
@@ -103,7 +103,7 @@ After adding the key, you can check that it's added via running:
 qgb orchestrator keys evm list
 ```
 
-For more information about the `keys` command, check the `keys` documentation in [here](https://github.com/celestiaorg/orchestrator-relayer/blob/main/docs/keys.md).
+For more information about the `keys` command, check [the `keys` documentation](https://docs.celestia.org/nodes/qgb-keys).
 
 ### Start the orchestrator
 
