@@ -23,12 +23,14 @@ sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-appd.service
 [Unit]
 Description=celestia-appd Cosmos daemon
 After=network-online.target
+
 [Service]
 User=$USER
 ExecStart=$(which celestia-appd) start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
+
 [Install]
 WantedBy=multi-user.target
 EOF
