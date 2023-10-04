@@ -1,9 +1,17 @@
 # Test page
 
 <script setup>
-import { myVariable } from '/.vitepress/versions/data.js'
+import { versions } from '/.vitepress/versions/data.js'
 </script>
 
-```bash-vue
-{{myVariable}}
+::: code-group
+
+```bash-vue [nice]
+{{versions.myVariable}}
 ```
+
+```bash-vue [setup]
+{{versions.myOtherVariable}}
+```
+
+:::
