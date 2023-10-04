@@ -7,11 +7,11 @@ description: Learn about the QGB Relayer.
 
 <!-- markdownlint-disable MD013 -->
 
-The role of the relayer is to gather attestations' signatures from the orchestrators, and submit them to a target EVM chain. The attestations are generated within the QGB module of the Celestia-app state machine. To learn more about what attestations are, you can refer to this [link](https://github.com/celestiaorg/celestia-app/tree/main/x/qgb).
+The role of the relayer is to gather attestations' signatures from the orchestrators, and submit them to a target EVM chain. The attestations are generated within the QGB module of the Celestia-app state machine. To learn more about what attestations are, you can refer to [the QGB overview](https://github.com/celestiaorg/celestia-app/tree/main/x/qgb).
 
-Also, while every validator in the Celestia validator set needs to run an orchestrator, we only need one entity to run the relayer, and it can be anyone. Thus, if you're a validator, most likely you want to read the orchestrator documentation [here](https://github.com/celestiaorg/orchestrator-relayer/blob/main/docs/orchestrator.md).
+Also, while every validator in the Celestia validator set needs to run an orchestrator, we only need one entity to run the relayer, and it can be anyone. Thus, if you're a validator, most likely you want to read [the orchestrator documentation](https://docs.celestia.org/nodes/qgb-orchestrator/).
 
-Every relayer needs to target a QGB smart contract. This latter can be deployed, if not already, using the `qgb deploy` command. More details in [here](https://github.com/celestiaorg/orchestrator-relayer/blob/main/docs/deploy.md).
+Every relayer needs to target a QGB smart contract. This latter can be deployed, if not already, using the `qgb deploy` command. More details in the [Deploy the QGB contract guide](https://docs.celestia.org/nodes/qgb-deploy/).
 
 ## How it works
 
@@ -38,7 +38,7 @@ I[2023-04-26|00:04:28.175] waiting for routing table to populate        targetnu
 
 ### Install the QGB binary
 
-Make sure to have the QGB binary installed. Check [here](https://docs.celestia.org/nodes/qgb-binary) for more details.
+Make sure to have the QGB binary installed. Check out the [Install the QGB binary page](https://docs.celestia.org/nodes/qgb-binary) for more details.
 
 ### Init the store
 
@@ -83,7 +83,7 @@ To import your EVM private key, there is the `import` subcommand to assist you w
 qgb relayer keys evm import --help
 ```
 
-This subcommand allows you to either import a raw ECDSA private key provided as plaintext, or import it from a file. The files are JSON keystore files encrypted using a passphrase like in [here](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts).
+This subcommand allows you to either import a raw ECDSA private key provided as plaintext, or import it from a file. The files are JSON keystore files encrypted using a passphrase like [in this example](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts).
 
 After adding the key, you can check that it's added via running:
 
@@ -91,7 +91,7 @@ After adding the key, you can check that it's added via running:
 qgb relayer keys evm list
 ```
 
-For more information about the `keys` command, check the `keys` documentation in [here](https://github.com/celestiaorg/orchestrator-relayer/blob/main/docs/keys.md).
+For more information about the `keys` command, check [the `keys` documentation](https://docs.celestia.org/nodes/qgb-keys).
 
 ### Start the relayer
 
