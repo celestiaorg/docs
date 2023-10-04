@@ -240,7 +240,7 @@ I[2023-04-13|17:00:51.990] successfully closed store                    path=/ho
 
 #### EVM: Import file
 
-For the second, it takes a JSON key file, as defined in [here](https://github.com/ethereum/eth-keyfile), and imports it to your keystore, so it can be used for signatures.
+For the second, it takes a JSON key file, as defined in [@ethereum/eth-keyfile](https://github.com/ethereum/eth-keyfile), and imports it to your keystore, so it can be used for signatures.
 
 ```ssh
 qgb orchestrator keys evm import file --help
