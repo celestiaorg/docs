@@ -228,6 +228,7 @@ function sidebarHome() {
             { text: 'Installing Celestia Node', link: '/developers/celestia-node' },
             { text: 'Node API docs', link: '/developers/node-api'},
             { text: 'Node RPC CLI tutorial', link: '/developers/node-tutorial'},
+            { text: 'Test page', link: '/developers/test-page'},
           ]
         },
       ]
