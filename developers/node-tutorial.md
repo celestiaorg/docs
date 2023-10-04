@@ -9,6 +9,7 @@ import arabicaVersions from "/.vitepress/versions/arabica_versions.js";
 import mochaVersions from "/.vitepress/versions/mocha_versions.js";
 import InlineText from '../.vitepress/components/InlineText.vue'
 import constants from '../.vitepress/versions/constants.js'
+import { versions } from '/.vitepress/versions/data.js'
 </script>
 
 In this tutorial, we will cover how to use the Celestia Node RPC API to submit and retrieve data (blobs) from the data availability layer by their namespace.
@@ -31,11 +32,6 @@ If you would like to use them anyway, you can
 
 ## Introduction
 
-:::tip
-If you already have a running and funded node,
-you can skip to the [RPC CLI guide section](#rpc-cli-guide).
-:::
-
 ### Blobs
 
 Data is posted to Celestia's DA layer by using `MsgPayForBlobs`
@@ -50,6 +46,11 @@ to only download their data, and not the data of other applications.
 Read
 [more about Namespaced Merkle Trees (NMTs)](../../learn/how-celestia-works/data-availability-layer/#namespaced-merkle-trees-nmts).
 
+:::tip
+If you already have a running and funded node,
+you can skip to the [RPC CLI guide section](#rpc-cli-guide).
+:::
+
 ## Hardware requirements
 
 The following minimum hardware requirements are recommended for running a light node:
@@ -61,7 +62,7 @@ The following minimum hardware requirements are recommended for running a light 
 
 ## Setting up dependencies
 
-First, make sure to update and upgrade the OS:
+1. Update and upgrade your OS:
 
 ::: code-group
 
@@ -75,7 +76,7 @@ sudo yum update
 
 :::
 
-These are essential packages that are necessary to execute many tasks like downloading files, compiling, and monitoring the node:
+2. Install essential packages that are necessary to execute many tasks like downloading files, compiling, and monitoring the node:
 
 ::: code-group
 
@@ -102,10 +103,25 @@ brew install wget && brew install jq
 `celestia-node` is written in Golang so we must install Golang to build
 and run our node.
 
+1. Set the version for your desired network:
+
 ::: code-group
 
-```bash [Ubuntu (AMD)]
-ver="1.21.1"
+```bash-vue [Mocha]
+ver="{{versions.golang.golangNodeMocha}}"
+```
+
+```bash-vue [Arabica]
+ver="{{versions.golang.golangNodeArabica}}"
+```
+
+:::
+
+2. Download and install Golang:
+
+::: code-group
+
+```bash-vue [Ubuntu (AMD)]
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -113,8 +129,7 @@ sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
 rm "go$ver.linux-amd64.tar.gz"
 ```
 
-```bash [Ubuntu (ARM)]
-ver="1.21.1"
+```bash-vue [Ubuntu (ARM)]
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -122,8 +137,7 @@ sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
 rm "go$ver.linux-arm64.tar.gz"
 ```
 
-```bash [Mac (Apple)]
-ver="1.21.1"
+```bash-vue [Mac (Apple)]
 cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -131,8 +145,7 @@ sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
 rm "go$ver.darwin-arm64.tar.gz"
 ```
 
-```bash [Mac (Intel)]
-ver="1.21.1"
+```bash-vue [Mac (Intel)]
 cd $HOME
 wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -142,7 +155,7 @@ rm "go$ver.darwin-amd64.tar.gz"
 
 :::
 
-Now you will need to add your `/usr/local/go/bin` directory to
+3. Add your `/usr/local/go/bin` directory to
 your `$PATH` if you have not already:
 
 ::: code-group
@@ -159,7 +172,7 @@ source $HOME/.zshrc
 
 :::
 
-To verify that the correct version of Go was installed correctly run:
+4. To verify that the correct version of Go was installed correctly run:
 
 ```bash
 go version
@@ -190,20 +203,17 @@ cd celestia-node/
 
 2. Check out to the desired version, based on the network you will use:
 
-- Mocha's `celestia-node` version is currently:  <code><InlineText :constant="mochaVersions['node-latest-tag']"/></code>
-- Arabica's `celestia-node` version is currently: <code><InlineText :constant="arabicaVersions['node-latest-tag']"/></code>
+::: code-group
 
-Set the variable yourself:
-
-```bash
-export VERSION="vX.XX.XX"
+```bash-vue [Mocha]
+git checkout tags/{{versions.nodeTag.nodeTagMocha}}
 ```
 
-Then checkout:
-
-```bash [Mocha]
-git checkout tags/$VERSION
+```bash-vue [Arabica]
+git checkout tags/{{versions.nodeTag.nodeTagArabica}}
 ```
+
+:::
 
 3. Build the `celestia` binary:
 
