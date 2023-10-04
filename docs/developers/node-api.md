@@ -6,9 +6,9 @@ description: An overview of the Celestia Node API.
 # Node API
 
 The Celestia Node API is made for interacting with `celestia-node`.
-There are a two ways in which a user and developer can interact with
-the API, the RPC API and the Gateway API. The API's documentation
-can be found [here](/api/v0.11.0-rc13).
+There are two ways in which a user and developer can interact with
+the API, the RPC API and the Gateway API. View
+[the API's documentation](/api/v0.11.0-rc13).
 
 ## RPC API
 
@@ -44,8 +44,8 @@ to get started interacting with your Celestia node.
 
 :::caution
 The gateway endpoints have been deprecated and will be removed in the future.
-If you would like to use them anyway, you can find more details
-[here](https://github.com/celestiaorg/celestia-node/pull/2360).
+If you would like to use them anyway, you can
+[find more details on GitHub](https://github.com/celestiaorg/celestia-node/pull/2360).
 :::
 
 The gateway API is a REST API which is meant to be deployed by infra
@@ -58,4 +58,5 @@ functionality.
 
 ### Gateway API tutorial
 
-The Prompt scavenger gateway API tutorial can be found [here](../prompt-scavenger/).
+Check out the [Prompt scavenger gateway API tutorial](../prompt-scavenger/)
+for more details.

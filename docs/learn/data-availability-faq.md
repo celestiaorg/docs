@@ -58,7 +58,7 @@ rounds of sampling for block data, it increases its confidence that data is
 available. Once the light node successfully reaches a predetermined confidence
 level (e.g. 99%) it will consider the block data as available.
 
-Want a simpler explanation? Check out [this thread](https://twitter.com/nickwh8te/status/1559977957195751424)
+Want a simpler explanation? [Check out this thread](https://twitter.com/nickwh8te/status/1559977957195751424)
 on how data availability sampling is like flipping a coin.
 
 <!-- markdownlint-disable MD013 -->
@@ -158,5 +158,5 @@ Some of those include:
 
 - Reward nodes based on the amount of transaction data they store and requests for data
   they serve (this is the case with some data storage blockchains, like [Filecoin](https://filecoin.io)).
-- Publish transaction data onto a data storage blockchain that incentives storing and
+- Publish transaction data onto a data storage blockchain that incentivizes storing and
   serving requests for historical data.

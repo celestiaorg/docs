@@ -31,11 +31,11 @@ instance machine.
 
 ### Setup the dependencies
 
-Follow the instructions on installing the dependencies [here](./environment.mdx).
+Follow the instructions on [installing the dependencies](./environment.mdx).
 
 ### Install celestia-app
 
-Follow the tutorial on installing `celestia-app` [here](./celestia-app.mdx).
+Follow the tutorial on [installing `celestia-app`](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -146,8 +146,9 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 ### Syncing
@@ -165,7 +166,7 @@ and then apply them. State sync relies on weak subjectivity; a trusted header
 (specifically the hash and height) must be provided. This can be found by querying
 a trusted RPC endpoint (/block). RPC endpoints are also required for retrieving
 light blocks. These can be found in the docs here under the respective networks or
-from the [chain-registry](https://github.com/cosmos/chain-registry).
+from [the chain-registry](https://github.com/cosmos/chain-registry).
 
 In `$HOME/.celestia-app/config/config.toml`, set
 
@@ -231,29 +232,53 @@ In order to start your full consensus node, run the following:
 celestia-appd start
 ```
 
-Follow the tutorial on setting up Celestia App as a background process
-with SystemD [here](./systemd.md).
+Follow the tutorial on
+[setting up Celestia App as a background process with SystemD](./systemd.md).
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
-### Optional: configure for RPC endpoint
+### Optional: Configuring an RPC endpoint
 
-You can configure your full consensus node to be a public RPC endpoint
-and listen to any connections from Data Availability Nodes in order to
-serve requests for the Data Availability API [here](../developers/node-tutorial.mdx).
+You can configure your full consensus node to be a public RPC endpoint.
+This allows it to accept connections from data availability nodes and
+serve requests for the data availability API.
 
-Run the following commands:
+#### Expose RPC
+
+By default, the RPC service listens on `localhost` which means it can't
+be accessed from other machines. To make the RPC service available publicly,
+you need to bind it to a public IP or `0.0.0.0` (which means listening on all
+available network interfaces).
+
+You can do this by editing the config.toml file:
 
 ```sh
-EXTERNAL_ADDRESS=$(wget -qO- eth0.me)
-sed -i.bak -e "s/^external_address = \"\"/external_address = \"$EXTERNAL_ADDRESS:26656\"/" $HOME/.celestia-app/config/config.toml
 sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' ~/.celestia-app/config/config.toml
 ```
 
-Restart `celestia-appd` in the previous step to load those configs.
+This command replaces the `localhost` IP address with `0.0.0.0`, making the
+RPC service listen on all available network interfaces.
+
+#### Note on `external-address`
+
+The `external-address` field in the configuration is used when your node
+is behind a NAT and you need to advertise a different address for peers
+to dial. Populating this field is not necessary for making the RPC
+endpoint public.
+
+```sh
+EXTERNAL-ADDRESS=$(wget -qO- eth0.me)
+sed -i.bak -e "s/^external-address = ""/external-address = "$EXTERNAL-ADDRESS:26656"/" $HOME/.celestia-app/config/config.toml
+```
+
+#### Restart the node
+
+After making these changes, restart `celestia-appd` to load the new
+configurations.
 
 ## Transaction indexer configuration options
 

@@ -20,7 +20,7 @@ cover how to build dapps on these newer, shared platforms.
 
 If you're interested in learning more about modular blockchains, or are new
 to the Celestia ecosystem, we recommend you read the
-[Build Modular](./build-modular.md) page first.
+[Build Modular page](./build-modular.md) first.
 
 ## Getting started
 
@@ -79,7 +79,7 @@ contract Blog {
     mapping(uint => Post) private idToPost;
     mapping(string => Post) private hashToPost;
 
-    /* events facilitate communication between smart contractsand their user interfaces  */
+    /* events facilitate communication between smart contracts and their user interfaces  */
     /* i.e. we can create listeners for events in the client and also use them in The Graph  */
     event PostCreated(uint id, string title, string hash);
     event PostUpdated(uint id, string title, string hash, bool published);
@@ -206,8 +206,8 @@ Foundry uses [Dappsys Test](https://book.getfoundry.sh/reference/ds-test.html)
 to provide basic logging and assertion functionality. It's included in the Forge
 Standard Library.
 
-Here, we are using `assertEq` to assert equality. You can view all of the
-assertion functions available [here](https://book.getfoundry.sh/reference/ds-test.html?highlight=log_int#asserting).
+Here, we are using `assertEq` to assert equality. You can
+[view all of the assertion functions available](https://book.getfoundry.sh/reference/ds-test.html?highlight=log_int#asserting).
 
 #### Running the test
 
@@ -222,7 +222,7 @@ forge test -vv
 Now that we've tested the contract, let's try deploying it locally using
 [Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html).
 
-To do so, update the deloyment script at `script/Contract.s.sol` with the
+To do so, update the deployment script at `script/Contract.s.sol` with the
 following code:
 
 ```solidity title="script/Contract.s.sol"
@@ -368,8 +368,8 @@ For the frontend project, we’ll be using the following libraries and framework
 [Vite](https://vitejs.dev) - Project generator / rapid development tool for
 modern web projects
 
-[Rainbowkit](https://www.rainbowkit.com) - Easy and beautifl library to connect
-a wallets
+[Rainbowkit](https://www.rainbowkit.com) - Easy and beautiful library to connect
+a wallet
 
 [WAGMI](https://github.com/wagmi-dev/wagmi) - 20+ hooks for working with
 wallets, ENS, contracts, transactions, signing, etc
@@ -498,7 +498,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 ### Creating and reading posts
 
-Now that the the base configuration is set up we’ll create a view that allows
+Now that the base configuration is set up we’ll create a view that allows
 users to create and view posts.
 
 We’ll be using IPFS to upload the content of the post, then anchoring the hash
@@ -764,7 +764,7 @@ Now we’re ready to run the app.
 Right now, the app is configured to be using `localhost:8545` using the
 Ethermint rollup we're running with Rollkit.
 
-First, you'll need to install [MetaMask](https://metamask.io).
+First, you'll need to [install MetaMask](https://metamask.io).
 
 To use the test account, you will need to import the private key from Ethermint
 to MetaMask. First, run the following command:
@@ -804,5 +804,5 @@ balance.
 
 Now that you have your dapp running, go ahead and test out a new post
 on your Ethermint sovereign rollup. If you enjoyed this tutorial, be
-sure to share your example in our
-[Discord](https://discord.com/invite/je7UVpDuDu)!
+sure to share your example
+[in our Discord](https://discord.com/invite/je7UVpDuDu)!

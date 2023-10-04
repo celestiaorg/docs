@@ -23,7 +23,8 @@ For this guide, we will look just at Hermes.
 
 ### Install
 
-1. Download the latest version of the binary from [Releases](https://github.com/informalsystems/hermes/releases).
+1. Download the latest version of the binary from
+[@informalsystems/hermes releases](https://github.com/informalsystems/hermes/releases).
 2. Create the directory for the binary: `mkdir -p $HOME/.hermes/bin`
 3. Extract the binary: `tar -C $HOME/.hermes/bin/ -vxzf $ARCHIVE_NAME`
 4. Update `PATH` to point to the binary, either in `.bashrc` or `.zshrc`
@@ -46,10 +47,10 @@ You can try to do this automatically by typing the command:
 hermes config auto --chains cosmoshub testnets/celestiatestnet --output $HOME/.hermes/config.toml
 ```
 
-This takes information from the [chain-registry](https://github.com/cosmos/chain-registry).
+This takes information from [the chain-registry](https://github.com/cosmos/chain-registry).
 If the information is not there, you will have to enter it
-manually by opening the `config.toml`. You can read the
-self-documented example [here](https://github.com/informalsystems/hermes/blob/v1.3.0/config.toml).
+manually by opening the `config.toml`. You can
+[read the self-documented example](https://github.com/informalsystems/hermes/blob/v1.3.0/config.toml).
 You will be required to find RPC and gRPC endpoints.
 
 ### Keys
@@ -96,7 +97,8 @@ hermes start
 As with other processes, you can use `systemd` to manage
 hermes in the background. For more information on setting
 up `clients`, `connections` and `channels`, use the `help`
-command within the cli or refer to [Hermes website](https://hermes.informal.systems).
+command within the cli or refer to
+[the Hermes website](https://hermes.informal.systems).
 
 ## Transfer
 

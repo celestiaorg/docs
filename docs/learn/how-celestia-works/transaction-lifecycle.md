@@ -27,7 +27,8 @@ executed by the Celestia state machine once the block is committed.
 ![Lifecycle of a `celestia-app` Transaction](../../img/learn/tx-lifecycle.png)
 
 Next, the block producer adds to the block header a commitment
-of the block data. As described [here](../data-availability-layer),
+of the block data. As
+[described in the "Celestia's data availability layer" page](../data-availability-layer),
 the commitment is the Merkle root of the 4k intermediate Merkle roots
 (i.e., one for each row and column of the extended matrix).
 To compute this commitment, the block producer performs the following operations:
