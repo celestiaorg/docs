@@ -69,7 +69,8 @@ You can learn more about the mechanics behind the Relayer in
 
 The following sections in this category presume you have the following setup:
 
-- A Celestia App [validator node](../validator-node) running
+- A Celestia App
+[validator node](../consensus-node#optional-setting-up-a-validator) running
 - A Celestia Node [bridge node](../bridge-node) running
 
 ## Next steps

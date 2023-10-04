@@ -16,7 +16,7 @@ The orchestrator does the following:
 
 1. Connect to a Celestia-app full node or validator node via RPC and gRPC and wait for new attestations
 2. Once an attestation is created inside the QGB state machine, the orchestrator queries it.
-3. After getting the attestation, the orchestrator signs it using the provided EVM private key. The private key should correspond to the EVM address provided when creating the validator. More details in [here](https://docs.celestia.org/nodes/validator-node/#setup-qgb-keys).
+3. After getting the attestation, the orchestrator signs it using the provided EVM private key. The private key should correspond to the EVM address provided when creating the validator. More details in [here](https://docs.celestia.org/nodes/consensus-node/#setup-qgb-keys).
 4. Then, the orchestrator pushes its signature to the P2P network it is connected to, via adding it as a DHT value.
 5. Listen for new attestations and go back to step 2.
 

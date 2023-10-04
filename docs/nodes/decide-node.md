@@ -22,7 +22,7 @@ in [this tutorial for the light node](../developers/node-tutorial.mdx).
 ## Advanced
 
 If you are looking to run a validator, please follow the
-[tutorial for running a validator](./validator-node.mdx).
+[tutorial for running a validator](../consensus-node#optional-setting-up-a-validator).
 
 Note that running a validator means you must also run a bridge node,
 which is covered in [this section](./bridge-node.mdx).
