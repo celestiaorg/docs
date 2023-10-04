@@ -67,7 +67,7 @@ Keep in mind that this might change if a new testnet is deployed.
 celestia-appd init "node-name" --chain-id {constants.mochaChainId}
 </code></pre>
 
-Copy the `genesis.json` file. For mocha we are using:
+Copy the `genesis.json` file. For Mocha we are using:
 
 <pre><code>
 cp $HOME/networks/{constants.mochaChainId}/genesis.json $HOME/.celestia-app/config
@@ -82,6 +82,15 @@ Set seeds manually in the `$HOME/.celestia-app/config/config.toml` file:
 seeds = ""
 </code></pre>
 
+Optionally, you can set peers from the networks repository with the following
+commands:
+
+<pre><code>
+PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{constants.mochaChainId}/peers.txt | head -c -1 | tr '\n' ',')<br/>
+echo $PERSISTENT_PEERS<br/>
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml<br/>
+</code></pre>
+
 </TabItem>
 <TabItem value="arabica" label="Arabica">
 
@@ -94,25 +103,48 @@ Keep in mind that this might change if a new testnet is deployed.
 celestia-appd init "node-name" --chain-id {constants.arabicaChainId}
 </code></pre>
 
-Copy the `genesis.json` file. For mocha we are using:
+Copy the `genesis.json` file. For Arabica we are using:
 
 <pre><code>
 cp $HOME/networks/{constants.arabicaChainId}/genesis.json $HOME/.celestia-app/config
 </code></pre>
 
-Set seeds and peers:
+<SeedsLink chainId={constants.arabicaChainId} />
+
+Set seeds manually in the `$HOME/.celestia-app/config/config.toml` file:
 
 <pre><code>
-PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{constants.arabicaChainId}/peers.txt | tr -d '\n')<br/>
+# Comma separated list of seed nodes to connect to<br/>
+seeds = ""
+</code></pre>
+
+Optionally, you can set peers from the networks repository with the following
+commands:
+
+<pre><code>
+PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{constants.arabicaChainId}/peers.txt | head -c -1 | tr '\n' ',')<br/>
 echo $PERSISTENT_PEERS<br/>
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml<br/>
 </code></pre>
 
-<SeedsLink chainId={constants.arabicaChainId} />
-
 </TabItem>
 </Tabs>
 ```
+
+:::tip
+Mac users built-in `head` command does not accept negative numbers for `-c` flag.
+Solution is to install `coreutils` package and use `ghead` command from it.
+
+```bash
+brew install coreutils
+```
+
+and optionally set alias from `head` to `ghead` in shell config (`~/.bashrc`, `~/.zshrc` etc):
+
+```
+alias head=ghead
+```
+:::
 
 ### Configure pruning
 
