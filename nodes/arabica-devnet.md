@@ -1,3 +1,0 @@
-# Arabica devnet
-
-gm

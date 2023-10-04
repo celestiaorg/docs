@@ -1,3 +1,0 @@
-# Quantum Gravity Bridge
-
-gm

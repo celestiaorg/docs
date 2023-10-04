@@ -1,3 +1,0 @@
-# QGB Orchestrator
-
-gm

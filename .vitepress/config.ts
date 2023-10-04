@@ -196,10 +196,7 @@ function nav() {
     {
       text: 'Get Started',
         items: [
-          { text: 'Run a Node', link: '/nodes/overview' },
           { text: 'Developers', link: '/developers/' },
-          { text: 'Academy', link: '/academy/'},
-          { text: 'Community', link: '/community/' },
       ],   
     },
   ]
@@ -208,196 +205,31 @@ function nav() {
 function sidebarHome() {
   return [
     {
-      text: 'Concepts',
-      collapsed: false,
-      items: [
-        { text: 'About Celestia', link: '/concepts/how-celestia-works/introduction' },
-        {
-          text: 'How Celestia works',
-          collapsed: true,
-          items: [
-            { text: 'Monolithic vs. modular blockchains', link: '/concepts/how-celestia-works/monolithic-vs-modular' },
-            { text: "Celestia's data availability layer", link: '/concepts/how-celestia-works/data-availability-layer' },
-            { text: 'The lifecycle of a Celestia App transaction', link: '/concepts/how-celestia-works/transaction-lifecycle' },
-          ]
-        },
-        {
-          text: 'Specifications',
-          collapsed: true,
-          items: [
-            { text: 'Reserved Namespace IDs', link: '/concepts/specifications/reserved-namespace-id' },
-            { text: 'Celestia App', link: 'https://celestiaorg.github.io/celestia-app/' },
-            { text: "Celestia Node API", link: 'https://node-rpc-docs.celestia.org' },
-          ]
-        },
-        { text: 'Data availability FAQ', link: '/concepts/data-availability-faq' },
-        { text: 'Learn modular', link: 'https://celestia.org/learn/' },
-        { text: 'Glossary', link: 'https://celestia.org/glossary/'},
-        { text: 'Resources', link: 'https://celestia.org/resources/'},
-      ]
-    },
-    {
       text: 'Run a Node',
       collapsed: true,
       items: [
-        { text: 'Overview', link: '/nodes/overview' },
         {
           text: 'Networks',
           collapsed: true,
           items: [
-            { text: 'Overview', link: '/nodes/participate' },
-            { text: 'Arabica devnet', link: '/nodes/arabica-devnet' },
-            { text: 'Mocha testnet', link: '/nodes/mocha-testnet' },
+            { text: 'Overview', link: '/developers/participate' },
           ]
         },
-        {
-          text: 'Quick start',
-          collapsed: true,
-          items: [
-            { text: 'Deciding which node to run', link: '/nodes/decide-node' },
-            { text: 'Docker images', link: '/nodes/docker-images' },
-            { text: 'Environment setup', link: '/nodes/environment' },
-            { text: 'Installing Celestia Node', link: '/nodes/celestia-node' },
-            { text: 'Installing Celestia App', link: '/nodes/celestia-app' },
-            { text: 'Node video tutorials', link: '/developers/light-node-video' },
-          ]
-        },
-        {
-          text: 'Types of nodes',
-          collapsed: true,
-          items: [
-            {
-              text: 'Data availability',
-              collapsed: true,
-              items: [
-                { text: 'Light node', link: '/nodes/light-node' },
-                { text: 'Bridge node', link: '/nodes/bridge-node' },
-                { text: 'Full storage node', link: '/nodes/full-storage-node' },
-              ]
-            },
-            {
-              text: 'Consensus',
-              collapsed: true,
-              items: [
-                {
-                  text: 'Validators',
-                  collapsed: true,
-                  items: [
-                    { text: 'Validator node', link: '/nodes/validator-node' },
-                    {
-                      text: 'QGB',
-                      collapsed: true,
-                      items: [
-                        { text: 'Quantum Gravity Bridge', link: '/nodes/qgb-intro' },
-                        { text: 'Install the QGB binary', link: '/nodes/qgb-binary' },
-                        { text: 'QGB Orchestrator', link: '/nodes/qgb-orchestrator' },
-                        { text: 'Key management', link: '/nodes/qgb-keys' },
-                        { text: 'QGB Relayer', link: '/nodes/qgb-relayer' },
-                        { text: 'Deploy the QGB contract', link: '/nodes/qgb-deploy' },
-                      ]
-                    },
-                  ]
-                },
-                { text: 'Full consensus node', link: '/nodes/full-consensus-node' },
-                { text: 'IBC Relayer', link: '/nodes/ibc-relayer' },
-              ]
-            },
-          ]
-        },
-        {
-          text: 'Resources',
-          collapsed: true,
-          items: [
-            {
-              text: 'Celestia Node',
-              collapsed: true,
-              items: [
-                { text: 'Node metrics', link: '/nodes/celestia-node-metrics' },
-                { text: 'Config.toml guide', link: '/nodes/config-toml' },
-                { text: 'Troubleshooting', link: '/nodes/celestia-node-troubleshooting' },
-              ]
-            },
-            {
-              text: 'Celestia App',
-              collapsed: true,
-              items: [
-                { text: 'Metrics, visualization, and alerts', link: '/nodes/celestia-app-metrics' },
-                { text: 'Create a Celestia testnet', link: '/nodes/instantiate-testnet' },
-                { text: 'Helpful CLI commands', link: '/nodes/celestia-app-commands' },
-              ]
-            },
-          ]
-        },
-        { text: 'SystemD', link: '/nodes/systemd' },
-        { text: 'Hardfork process', link: '/nodes/hardfork-process' },
       ]
     },
     {
       text: 'Developers',
       collapsed: true,
       items: [
-        { text: 'Overview', link: '/developers/' },
-        { text: 'Build modular', link: '/developers/build-modular'},
-        {
-          text: 'Create a Celestia wallet',
-          collapsed: true,
-          items: [
-            { text: 'Keplr Integration', link: '/developers/keplr'},
-            { text: 'Wallet with Celestia app', link: '/developers/celestia-app-wallet'},
-            { text: 'How to create a vesting account with Celestia App', link: '/developers/celestia-app-vesting'},
-            { text: 'Wallet with Celestia node', link: '/developers/celestia-node-key'}
-          ]
-        },
         {
           text: 'Node API',
           collapsed: true,
           items: [
+            { text: 'Installing Celestia Node', link: '/developers/celestia-node' },
             { text: 'Node API docs', link: '/developers/node-api'},
             { text: 'Node RPC CLI tutorial', link: '/developers/node-tutorial'},
-            {
-              text: 'Gateway API',
-              collapsed: true,
-              items: [
-                { text: 'Prompt scavenger', link: '/developers/prompt-scavenger'},    
-              ]
-            },
           ]
         },
-        {
-          text: 'Deploy a Rollup',
-          collapsed: true,
-          items: [
-            { text: 'Rollkit', link: '/developers/rollkit'},
-            {
-              text: 'Optimism',
-              collapsed: true,
-              items: [
-                { text: 'Introduction to OP Stack integration', link: '/developers/intro-to-op-stack'},
-                { text: 'Bubs testnet', link: '/developers/bubs-testnet'},
-                { text: 'Deploy a smart contract on Bubs testnet', link: '/developers/deploy-on-bubs'},
-                { text: 'Deploy a GM Portal dapp on Bubs testnet', link: '/developers/gm-portal-bubs'},
-                { text: 'Deploy an OP Stack devnet', link: '/developers/optimism-devnet'},
-                { text: 'Deploy an OP Stack testnet on Celestia', link: '/developers/optimism'},
-                { text: 'Deploy a dapp with thirdweb', link: 'https://thirdweb.com/bubs-testnet'},
-                {
-                  text: 'Rollups as a service',
-                  collapsed: true,
-                  items: [
-                    { text: 'Caldera', link: 'https://caldera.xyz'},
-                    
-                  ]
-                },
-              ]
-            },
-            { text: 'IBC relaying guide', link: '/developers/ibc-relayer'},
-            { text: 'Full-stack modular dapp with Celestia', link: '/developers/full-stack-modular-development-guide'},
-            { text: 'Hyperlane + Celestia tutorial', link: 'https://docs.hyperlane.xyz/docs/deploy/celestia-+-hyperlane'},
-            { text: 'Sovereign SDK', link: 'https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup'},
-            { text: 'Dymension', link: 'https://dymension.xyz/'},
-          ]
-        },
-        { text: 'Demos on Celestia', link: '/developers/demos'},
-        { text: 'Integrate Celestia', link: '/developers/integrate-celestia'},
       ]
     },
     {
@@ -405,33 +237,6 @@ function sidebarHome() {
       collapsed: true,
       items: [
         { text: 'Overview', link: '/academy/'},
-      ]
-    },
-    {
-      text: 'Community',
-      collapsed: true,
-      items: [
-        { text: 'Overview', link: '/community/'},
-        { text: 'Code of Conduct', link: '/community/coc'},
-        { text: 'Community calendar', link: '/community/calendar'},
-        {
-          text: 'Modular Fellows',
-          collapsed: true,
-          items: [
-            { text: 'Overview', link: '/community/modular-fellows'},
-            { text: 'Cohort one content & calendar', link: '/community/cohort-one-content'},
-          ]
-        },
-        {
-          text: 'Modular Meetup program',
-          collapsed: true,
-          items: [
-            { text: 'Celestia Modular Meetup program', link: '/community/modular-meetup-intro'},
-            { text: 'Modular Meetup toolkit', link: '/community/modular-meetup-toolkit'},
-            { text: 'Speaker list', link: '/community/speaker-list'},
-            { text: 'Meetup guide', link: '/community/modular-meetup-guide'},
-          ]
-        },
       ]
     },
   ]

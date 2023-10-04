@@ -1,3 +1,0 @@
-# Relaying with IBC
-
-gm

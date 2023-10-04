@@ -1,3 +1,0 @@
-# IBC relaying guide
-
-gm

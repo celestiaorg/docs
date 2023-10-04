@@ -1,3 +1,0 @@
-# Helpful CLI commands
-
-gm

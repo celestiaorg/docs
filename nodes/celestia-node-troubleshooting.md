@@ -1,3 +1,0 @@
-# Troubleshooting celestia-node
-
-gm

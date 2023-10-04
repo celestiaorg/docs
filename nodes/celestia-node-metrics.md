@@ -1,3 +1,0 @@
-# Celestia Node metrics
-
-gm

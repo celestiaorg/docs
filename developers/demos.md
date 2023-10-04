@@ -1,3 +1,0 @@
-# Demos on Celestia
-
-gm

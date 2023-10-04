@@ -1,3 +1,0 @@
-# Celestia hardfork process
-
-gm

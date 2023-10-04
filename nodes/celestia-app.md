@@ -1,3 +1,0 @@
-# Celestia app
-
-gm

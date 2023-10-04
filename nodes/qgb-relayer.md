@@ -1,3 +1,0 @@
-# QGB Relayer
-
-gm
