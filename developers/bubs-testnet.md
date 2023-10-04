@@ -1,0 +1,3 @@
+# Bubs testnet
+
+gm

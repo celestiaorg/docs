@@ -1,0 +1,39 @@
+name: Deploy PR previews
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build with Base URL
+        run: BASE='/pr-preview/pr-${{ github.event.number }}/' yarn docs:build
+
+      - name: Add CNAME file
+        run: mkdir -p ./.vitepress/dist && echo celestiaorg.github.io/docs-vitepress > .vitepress/dist/CNAME
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: .vitepress/dist
