@@ -23,10 +23,10 @@ Ubuntu 22.10, and a 4 core AMD CPU.
 :::
 
 :::caution
-This is a **beta integration** and we are working on resolving open
-[issues](https://github.com/celestiaorg/optimism/issues).
+This is a **beta integration** and we are working on resolving
+[open issues](https://github.com/celestiaorg/optimism/issues).
 The current testnet this setup is compatible with is the
-[Arabica](../../nodes/arabica-devnet) devnet.
+[Arabica devnet](../../nodes/arabica-devnet).
 :::
 
 [Optimism](https://www.optimism.io/) uses Ethereum as
@@ -44,9 +44,9 @@ rollup blocks and posts to Ethereum.
 
 ## Celestia and OP Stack repository
 
-Find the repository for this integration
-[here](https://github.com/celestiaorg/optimism/) or at
-`https://github.com/celestiaorg/optimism`.
+Find the
+[repository for this integration](https://github.com/celestiaorg/optimism/)
+at `https://github.com/celestiaorg/optimism`.
 
 ### What are Optimism and the OP Stack?
 
@@ -66,7 +66,7 @@ blockchain infrastructure to governance systems. This software suite aims
 to simplify L2 blockchain creation and support the Optimism ecosystem's
 growth and development.
 
-Learn more about Optimism [here](https://www.optimism.io/).
+Learn [more about Optimism](https://www.optimism.io/).
 
 ### What is Celestia?
 

@@ -46,8 +46,8 @@ sudo apt install librust-openssl-dev build-essential git
 ### Build Hermes
 
 Create a new directory and clone the Hermes repository.
-For the latest available release see Hermes
-[GitHub](https://github.com/informalsystems/hermes/tags).
+For the latest available release see
+[Hermes GitHub](https://github.com/informalsystems/hermes/tags).
 
 ```bash
 mkdir -p $HOME/hermes

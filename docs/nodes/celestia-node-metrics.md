@@ -32,8 +32,9 @@ add the port after the IP address or use the
 `--core.grpc.port` flag to specify another
 port if you prefer.
 
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 <!-- markdownlint-enable MD013 -->
@@ -52,7 +53,7 @@ Essentially, the design considerations here will necessitate
 running an OpenTelemetry (OTEL) collector that connects to Celestia
 light node.
 
-For an overview of OTEL, check out the guide [here](https://opentelemetry.io/docs/collector).
+For an overview of OTEL, check out [the guide](https://opentelemetry.io/docs/collector).
 
 The ADR and the OTEL docs will help you run your collector on the metrics endpoint.
 This will then allow you to process the data in the collector on a

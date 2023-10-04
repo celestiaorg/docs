@@ -15,11 +15,14 @@ to submit and retrieve data (blobs) from the data availability
 layer by their namespace.
 
 :::tip
-To view a video tutorial for setting up a Celestia light node, click [here](./light-node-video.md).
+View
+[a video tutorial for setting up a Celestia light node](./light-node-video.md).
 :::
 
 :::caution
-The gateway endpoints have been deprecated and will be removed in the future. If you would like to use them anyway, you can find more details [here](https://github.com/celestiaorg/celestia-node/pull/2360).
+The gateway endpoints have been deprecated and will be removed in the future.
+If you would like to use them anyway, you can
+[find more details on GitHub](https://github.com/celestiaorg/celestia-node/pull/2360).
 :::
 
 ## Table of contents
@@ -39,7 +42,7 @@ This tutorial is broken up into the following sections:
 
 :::tip
 If you already have a running and funded node,
-you can skip to the [RPC CLI guide](#rpc-cli-guide) section.
+you can skip to the [RPC CLI guide section](#rpc-cli-guide).
 :::
 
 ## Introduction
@@ -47,15 +50,16 @@ you can skip to the [RPC CLI guide](#rpc-cli-guide) section.
 ### Blobs
 
 Data is posted to Celestia's DA layer by using `MsgPayForBlobs`
-transactions to the core network. Read more about `MsgPayForBlobs`
-[here](https://github.com/celestiaorg/celestia-app/blob/main/x/blob/README.md#messages).
+transactions to the core network. Read
+[more about `MsgPayForBlobs`](https://github.com/celestiaorg/celestia-app/blob/main/x/blob/README.md#messages).
 
 ### Namespaces
 
 Celestia partitions the block data into
 multiple namespaces, one for every application. This allows applications
 to only download their data, and not the data of other applications.
-Read more about Namespaced Merkle Trees (NMTs) [here](../../learn/how-celestia-works/data-availability-layer/#namespaced-merkle-trees-nmts).
+Read
+[more about Namespaced Merkle Trees (NMTs)](../../learn/how-celestia-works/data-availability-layer/#namespaced-merkle-trees-nmts).
 
 ## Hardware requirements
 
@@ -674,7 +678,7 @@ Golang version: go{constants.golangNodeBSR}<br/>
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-Installing `celestia-node` for Mocha Testnet means installing a specific version
+Installing `celestia-node` for Mocha testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -705,7 +709,7 @@ Golang version: go{constants.golangNodeMocha}<br/>
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-Installing `celestia-node` for Mocha Testnet means installing a specific version
+Installing `celestia-node` for Mocha testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -736,7 +740,7 @@ Golang version: go{constants.golangNodeMocha}<br/>
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-Installing `celestia-node` for Mocha Testnet means installing a specific version
+Installing `celestia-node` for Mocha testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -767,7 +771,7 @@ Golang version: go{constants.golangNodeMocha}<br/>
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-Installing `celestia-node` for Mocha Testnet means installing a specific version
+Installing `celestia-node` for Mocha testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -804,7 +808,7 @@ Golang version: go{constants.golangNodeMocha}<br/>
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-Installing `celestia-node` for Arabica Devnet means installing a specific version
+Installing `celestia-node` for Arabica devnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -835,7 +839,7 @@ Golang version: go{constants.golangNodeArabica}<br/>
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-Installing `celestia-node` for Arabica Devnet means installing a specific version
+Installing `celestia-node` for Arabica devnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -866,7 +870,7 @@ Golang version: go{constants.golangNodeArabica}<br/>
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-Installing `celestia-node` for Arabica Devnet means installing a specific version
+Installing `celestia-node` for Arabica devnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -897,7 +901,7 @@ Golang version: go{constants.golangNodeArabica}<br/>
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-Installing `celestia-node` for Arabica Devnet means installing a specific version
+Installing `celestia-node` for Arabica devnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -976,7 +980,8 @@ an example public core endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](../../nodes/blockspace-race).
+  purposes. Check out the
+  [list of RPC endpoints on the Blockspace Race page](../../nodes/blockspace-race).
 
 ```sh
 celestia light start --core.ip <ip-address> --p2p.network blockspacerace
@@ -990,8 +995,9 @@ add the port after the IP address or use the
 `--core.grpc.port` flag to specify another
 port if you prefer.
 
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 </TabItem>
@@ -1002,7 +1008,8 @@ an example public core endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](../../nodes/mocha-testnet#rpc-endpoints).
+  purposes. Check out the
+  [list of RPC endpoints on the Mocha testnet page](../../nodes/mocha-testnet).
 
 ```sh
 celestia light start --core.ip <ip-address> --p2p.network mocha
@@ -1016,8 +1023,9 @@ add the port after the IP address or use the
 `--core.grpc.port` flag to specify another
 port if you prefer.
 
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 </TabItem>
@@ -1028,7 +1036,8 @@ an example public core endpoint.
 
 > Note: You are also encouraged to find a community-run API endpoint
   and there are several in the Discord. This one is used for demonstration
-  purposes. You can find a list of RPC endpoints [here](../../nodes/arabica-devnet#rpc-endpoints).
+  purposes. Check out the
+  [list of RPC endpoints on the Arabica devnet page](../../nodes/arabica-devnet).
 
 ```sh
 celestia light start --core.ip <ip-address> --p2p.network arabica
@@ -1042,8 +1051,9 @@ add the port after the IP address or use the
 `--core.grpc.port` flag to specify another
 port if you prefer.
 
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 </TabItem>
@@ -1059,8 +1069,9 @@ celestia light start --core.ip <ip-address> --p2p.network blockspacerace
 ```
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 </TabItem>
@@ -1071,8 +1082,9 @@ celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 ```
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 </TabItem>
@@ -1083,8 +1095,9 @@ celestia light start --core.ip consensus-full.celestia-arabica-10.com --p2p.netw
 ```
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 </TabItem>
@@ -1109,8 +1122,9 @@ celestia light start --core.ip <ip-address> --keyring.accname <key_name> <port> 
 ```
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 </TabItem>
@@ -1121,8 +1135,9 @@ celestia light start --core.ip <ip-address> --keyring.accname <key_name> --p2p.n
 ```
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 </TabItem>
@@ -1133,8 +1148,9 @@ celestia light start --core.ip <ip-address> --keyring.accname <key_name> --p2p.n
 ```
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 </TabItem>
@@ -1142,7 +1158,7 @@ which ports are required to be open on your machine.
 ````
 
 Once you start the Light Node, a wallet key will be generated for you.
-You will need to fund that address with Mocha Testnet or Arabica Devnet
+You will need to fund that address with Mocha testnet or Arabica devnet
 tokens to pay for `PayForBlob` transactions or `PayForBlob transactions`, respectively.
 
 You can find the address by running the following command in
@@ -1154,7 +1170,7 @@ the `celestia-node` directory:
 
 If you would like to fund your wallet with testnet tokens, head over
 to either the `#mocha-faucet` or `#arabica-faucet` channels on the
-Celestia [Discord](https://discord.gg/celestiacommunity).
+[Celestia Discord](https://discord.gg/celestiacommunity).
 
 You can request funds to your wallet address using the following command in Discord:
 
@@ -1293,7 +1309,7 @@ We use the following `namespace_id` of `0x42690c204d39600fddd3` and
 the `data` value of `0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5`.
 
 You can generate your own `namespace_id` and data values using this
-useful Golang Playground we created [here](https://go.dev/play/p/7ltvaj8lhRl).
+useful [Golang Playground we created](https://go.dev/play/p/7ltvaj8lhRl).
 
 Here is an example of the format of the `PayForBlob` transaction:
 
@@ -1469,7 +1485,7 @@ higher. They are also **optional** to use with `blob.submit`.
 To set the gas fee and limit, you can use the `--fee` and `--gas.limit` flags
 respectively when submitting data using the RPC CLI.
 
-Learn more about gas fees and limits [here](../../developers/submit-data).
+Learn [more about gas fees and limits](../../developers/submit-data).
 
 To set the fee of 10000 utia, use the `--fee 10000` flag:
 

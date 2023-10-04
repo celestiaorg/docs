@@ -10,14 +10,14 @@ to translating the documentation page, then this is the guide for you.
 
 ## Visit our Crowdin project
 
-To get started, go to the Crowdin
-project [here](https://crowdin.com/project/celestia-docs).
+To get started, visit the
+[Celestia Docs Crowdin project](https://crowdin.com/project/celestia-docs).
 
 You will have to create an account and then you will be able to join the project
 in order to begin your translation journey.
 
-If you don't see your language, feel free to ask for it on
-the `#translations` channel on Discord [here](https://discord.gg/celestiacommunity).
+If your language isn't listed, request it on the
+[`#translations` channel on our Discord server](https://discord.gg/celestiacommunity).
 
 On Crowdin you can translate, comment on translations, and also give upvotes and
 downvotes to existing translations.
@@ -30,7 +30,9 @@ Here are few tips to help you during your translation.
 
 ### Crowdin documentation
 
-Official Crowdin's documentation is available [here](https://support.crowdin.com/online-editor).
+You can reference the
+[official Crowdin documentation](https://support.crowdin.com/online-editor)
+for more detailed guidance.
 
 ### Guide
 

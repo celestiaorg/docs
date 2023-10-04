@@ -31,11 +31,11 @@ instance machine.
 
 ### Setup the dependencies
 
-Follow the instructions on installing the dependencies [here](./environment.mdx).
+Follow the instructions on [installing the dependencies](./environment.mdx).
 
 ### Install celestia-app
 
-Follow the tutorial on installing `celestia-app` [here](./celestia-app.mdx).
+Follow the tutorial on [installing `celestia-app`](./celestia-app.mdx).
 
 ### Setup the P2P networks
 
@@ -146,8 +146,9 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 ### Syncing
@@ -165,7 +166,7 @@ and then apply them. State sync relies on weak subjectivity; a trusted header
 (specifically the hash and height) must be provided. This can be found by querying
 a trusted RPC endpoint (/block). RPC endpoints are also required for retrieving
 light blocks. These can be found in the docs here under the respective networks or
-from the [chain-registry](https://github.com/cosmos/chain-registry).
+from [the chain-registry](https://github.com/cosmos/chain-registry).
 
 In `$HOME/.celestia-app/config/config.toml`, set
 
@@ -231,19 +232,20 @@ In order to start your full consensus node, run the following:
 celestia-appd start
 ```
 
-Follow the tutorial on setting up Celestia App as a background process
-with SystemD [here](./systemd.md).
+Follow the tutorial on
+[setting up Celestia App as a background process with SystemD](./systemd.md).
 
 :::tip
-Please refer to the [ports](../../nodes/celestia-node/#ports) section for information on
-which ports are required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 ### Optional: Configuring an RPC endpoint
 
-You can configure your Consensus Full Node to be a public RPC endpoint.
-This allows it to accept connections from Data Availability Nodes and
-serve requests for the Data Availability API.
+You can configure your full consensus node to be a public RPC endpoint.
+This allows it to accept connections from data availability nodes and
+serve requests for the data availability API.
 
 #### Expose RPC
 

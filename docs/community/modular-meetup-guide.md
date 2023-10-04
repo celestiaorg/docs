@@ -343,7 +343,7 @@ those who cannot attend in person and expand the reach of your event.
      after the event. This helps attendees revisit the content and allows
      those who couldn't attend to learn from the talks.
 
-### Utilizing [Meetup.com](http://Meetup.com) platform
+### Utilizing Meetup.com platform
 
 Celestia Labs is committed to supporting your meetup efforts by helping
 you with meetup.com, from setting up the group to covering organizer dues.
@@ -357,7 +357,7 @@ Below is a detailed overview of how Celestia Labs can assist you.
    - If you already have a meetup.com group but need Celestia Labs'
      assistance with organizing or covering dues, email [meetups@celestia.org](mailto:meetups@celestia.org)
      to add one of their employees as the Organizer.
-3. Setting up groups on Meetup.com
+3. Setting up groups on [Meetup.com](https://meetup.com)
    - Celestia Labs will help you set up your meetup group, including logos,
      naming, custom URLs, group description, and other essential details.
      They provide a unique logo for Celestia Modular Meetups,
