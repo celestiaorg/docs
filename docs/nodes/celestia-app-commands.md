@@ -48,7 +48,7 @@ celestia-appd config keyring-backend test
 
 Options are: `os|file|kwallet|pass|test|memory`.
 
-You can learn more on the [Cosmos documentation](https://docs.cosmos.network/main/run-node/keyring.html)
+You can learn more on the [Cosmos documentation](https://docs.cosmos.network/main/user/run-node/keyring)
 or [Go Package documentation](https://pkg.go.dev/github.com/cosmos/cosmos-sdk/crypto/keyring).
 
 ## Key management
