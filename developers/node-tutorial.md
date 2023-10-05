@@ -57,7 +57,7 @@ The following minimum hardware requirements are recommended for running a light 
 In your terminal, set up dependencies needed to install and build
 `celestia-node`.
 
-1. Update and upgrade your OS if you are on Ubuntu:
+1. If you are on Ubuntu, update and upgrade your OS:
 
 ::: code-group
 
