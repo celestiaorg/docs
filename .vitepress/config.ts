@@ -187,11 +187,11 @@ export default withMermaid({
 
 function nav() {
   return [
-    { text: 'Concepts', link: '/concepts/how-celestia-works/introduction' },
+    { text: 'Concepts', link: '/developers/celestia-node' },
     {
       text: 'Get Started',
         items: [
-          { text: 'Developers', link: '/developers/' },
+          { text: 'Developers', link: '/developers/node-tutorial' },
       ],   
     },
   ]

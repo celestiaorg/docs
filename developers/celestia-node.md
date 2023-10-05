@@ -33,24 +33,9 @@ known issues
 
 <script setup>
 import CodeGroup from '/.vitepress/components/CodeGroup.vue'
-import TestBlock from '/.vitepress/components/TestBlock.vue'
 </script>
 
 <CodeGroup />
-
-<TestBlock />
-
-<pre><code>
-    <TestBlock />
-</code></pre>
-
-<codeblock>hi</codeblock>
-
-<code>
-  function helloWorld() {
-    console.log("Hello, world!");
-  }
-</code>
 
 ## testing frontmatter variables
 
