@@ -7,7 +7,7 @@ description: An overview of the Blobstream.
 
 The Blobstream, covered previously in
 [the Celestia blog post](https://blog.celestia.org/celestiums/),
-introduces the concept of a rollup, which is an EVM L2
+introduces the concept of a layer 2 (L2), which is an EVM L2
 rollup that uses Celestia for data availability
 but settles on Ethereum (or any other EVM L1 chain).
 
@@ -25,10 +25,10 @@ The Blobstream,
 consists of two components: an [Orchestrator](../blobstream-orchestrator)
 and a [Relayer](../blobstream-relayer).
 
-In the following diagram, we show how a celestium would post the data to
+In the following diagram, we show how a layer 2 would post the data to
 Celestia. This will later be attested to by the Celestia validator set, and
 eventually posted to the target EVM chain (in this case, Ethereum). Then,
-the celestium, or any party, will be able to verify the attestations, i.e. valsets
+the layer 2, or any party, will be able to verify the attestations, i.e. valsets
 and data commitments, directly on the EVM chain on the Blobstream smart contract. You can
 reference
 [the Blobstream smart contract](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
