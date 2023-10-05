@@ -1,40 +1,28 @@
 <template>
   <div>
-    <!-- Table of Contents -->
-    <div class="toc">
-      <!-- Make "Table of Contents" a linkable header -->
-      <h2 id="table-of-contents">
-        <a href="#table-of-contents">Table of Contents</a>
-      </h2>
+    <input type="text" v-model="searchTerm" placeholder="Search the API...">
+    <div class="sidebar">
       <ul>
-        <li v-for="(methods, moduleName) in modules" :key="'toc-' + moduleName">
-          <a :href="'#' + moduleName.toLowerCase()">{{ moduleName }}</a>
+        <li v-for="(methods, moduleName) in filteredModules" :key="moduleName">
+          <a :href="'#' + moduleName.toLowerCase()" @click.prevent="scrollTo(moduleName)">{{ moduleName }}</a>
           <ul>
             <li v-for="method in methods">
-              <a :href="'#' + method.name">{{ method.name.split(".")[1] }}</a>
+              <a :href="'#' + method.name" @click.prevent="scrollTo(method.name)">{{ method.name.split(".")[1] }}</a>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-
-    <!-- Loop through the modules -->
-    <div v-for="(methods, moduleName) in modules" :key="moduleName">
-
-      <!-- Larger Heading for Module with anchor link -->
-      <h1 :id="moduleName.toLowerCase()">
-        <a :href="'#' + moduleName.toLowerCase()">{{ moduleName }}</a>
+    <div v-for="(methods, moduleName) in filteredModules" :key="moduleName">
+      <h1 :id="moduleName.toLowerCase()" @mouseover="hoveredHeader = moduleName" @mouseout="hoveredHeader = null">
+        {{ moduleName }}
+        <a v-if="hoveredHeader === moduleName" :href="'#' + moduleName.toLowerCase()" @click.prevent="copyToClipboard(moduleName)">#</a>
       </h1>
-      
-      <!-- Loop through the methods inside each module -->
       <div v-for="method in methods" :key="method.name">
-      
-        <!-- Linked Heading for Method -->
-        <h2 :id="method.name">
-          <a :href="'#' + method.name">{{ method.name.split(".")[1] }}</a>
-        </h2> 
-
-        <!-- Display method signature -->
+        <h2 :id="method.name" @mouseover="hoveredHeader = method.name" @mouseout="hoveredHeader = null">
+          {{ method.name.split(".")[1] }}
+          <a v-if="hoveredHeader === method.name" :href="'#' + method.name" @click.prevent="copyToClipboard(method.name)">#</a>
+        </h2>
         <div class="signature">
           {{ method.name }}(
           <span v-for="(param, index) in method.params" :key="param.name">
@@ -43,16 +31,12 @@
           ){{ method.result.name }}
           <div>perms: {{ method.description.split(":")[1].trim() }}</div>
         </div>
-
         <p>{{ method.summary }}</p>
-
-        <!-- Display Request and Response -->
         <div class="request-response">
           <h3>Request</h3>
-          <pre>{{ getRequestExample(method) }}</pre>
-
+          <pre v-clipboard:copy="getRequestExample(method)"><code>{{ getRequestExample(method) }}</code></pre>
           <h3>Response</h3>
-          <pre>{{ getResponseExample(method) }}</pre>
+          <pre v-clipboard:copy="getResponseExample(method)"><code>{{ getResponseExample(method) }}</code></pre>
         </div>
       </div>
     </div>
@@ -60,13 +44,30 @@
 </template>
 
 <script>
+import VueClipboard from 'vue-clipboard2';
 import openrpcData from '/.vitepress/api/openrpc.json';
 
 export default {
+  directives: {
+    clipboard: VueClipboard.directive
+  },
   data() {
     return {
+      searchTerm: '',
+      hoveredHeader: null,
       modules: this.organizeByModule(openrpcData.methods)
     };
+  },
+  computed: {
+    filteredModules() {
+      if (!this.searchTerm) return this.modules;
+      return Object.fromEntries(
+        Object.entries(this.modules).filter(([moduleName, methods]) =>
+          moduleName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          methods.some(method => method.name.toLowerCase().includes(this.searchTerm.toLowerCase()))
+        )
+      );
+    }
   },
   methods: {
     organizeByModule(methods) {
@@ -94,56 +95,44 @@ export default {
         jsonrpc: "2.0",
         result: method.result.schema.examples,
       }, null, 2);
+    },
+    scrollTo(id) {
+      this.$nextTick(() => {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+      });
+    },
+    copyToClipboard(id) {
+      navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#' + id);
     }
   }
 };
 </script>
 
 <style>
-/* Style for the ToC */
-.toc {
-  margin-bottom: 2em;
+.sidebar {
+  width: 300px;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+  position: relative;
 }
 
-.toc h3 {
-  margin-top: 0;
+@media (max-width: 996px) {
+  .sidebar {
+    display: none;
+  }
 }
 
-.toc ul {
-  list-style-type: none;
-  padding-left: 1em;
+.request-response pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  overflow: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  overflow-wrap: break-word;
 }
-
-.toc li {
-  margin-bottom: 0.5em;
-}
-
-.toc a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.toc a:hover {
-  text-decoration: underline;
-}
-
-h1 {
-  font-size: 2em;
-  margin-top: 2em;
-  margin-bottom: 1em;
-}
-
-h2 {
-  padding-top: 1em;
-}
-
-h2 a {
-    color: inherit;
-    text-decoration: none;
-}
-
-h2 a:hover {
-    text-decoration: underline;
-}
-
 </style>

@@ -94,6 +94,7 @@ export default withMermaid({
 
     sidebar: {
       '/': sidebarHome(),
+      '/developers/node-api': [],
     },
 
     editLink: {
