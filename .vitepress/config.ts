@@ -85,11 +85,6 @@ export default withMermaid({
     // https://vitepress.dev/concepts/default-theme-config
     nav: nav(),
     
-    footer: {
-      message: 'Released under the APACHE-2.0 License',
-      copyright: 'Copyright © 2023 Celestia Labs'
-    },
-    
     search: {
       provider: 'local',
       options: {
