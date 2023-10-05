@@ -1,14 +1,6 @@
----
-import InlineText from '/.vitepress/components/InlineText.vue'
----
-
 # Celestia-node RPC CLI tutorial
 
 <script setup>
-import arabicaVersions from "/.vitepress/versions/arabica_versions.js";
-import mochaVersions from "/.vitepress/versions/mocha_versions.js";
-import InlineText from '../.vitepress/components/InlineText.vue'
-import constants from '../.vitepress/versions/constants.js'
 import { versions } from '/.vitepress/versions/data.js'
 </script>
 
@@ -107,6 +99,10 @@ and run our node.
 
 ::: code-group
 
+```bash-vue [Coffee]
+ver="{{versions.golang.golangNodeCoffee}}"
+```
+
 ```bash-vue [Mocha]
 ver="{{versions.golang.golangNodeMocha}}"
 ```
@@ -184,7 +180,7 @@ The output will show the version installed.
 
 ### Install celestia-node
 
-Installing `celestia-node` for Arabica devnet or Mocha testnet
+Installing `celestia-node` for Coffee, Arabica devnet, or Mocha testnet
 means installing a specific version to be compatible with the
 network.
 
@@ -204,6 +200,10 @@ cd celestia-node/
 2. Check out to the desired version, based on the network you will use:
 
 ::: code-group
+
+```bash-vue [Coffee]
+git checkout tags/{{versions.nodeTag.nodeTagCoffee}}
+```
 
 ```bash-vue [Mocha]
 git checkout tags/{{versions.nodeTag.nodeTagMocha}}
@@ -260,8 +260,12 @@ RPC Endpoints are exposed in all celestia-node types such as light, bridge and f
 
 ::: code-group
 
-```bash [Mocha]
+```bash [Coffee]
 celestia light init
+```
+
+```bash [Mocha]
+celestia light init --p2p.network mocha
 ```
 
 ```bash [Arabica]
@@ -282,9 +286,15 @@ to an example public core endpoint.
 Note: You are also encouraged to find a community-run API endpoint
 and there are several in the Discord. This one is used for demonstration
 purposes. Check out the
-[list of RPC endpoints on the Mocha testnet page](../../nodes/mocha-testnet#rpc-endpoints).
+[list of RPC endpoints on the Coffee page](../../nodes/coffee#rpc-endpoints),
+[Mocha testnet page](../../nodes/mocha-testnet#rpc-endpoints),
+or [Arabica devnet page](../../nodes/arabica-devnet#rpc-endpoints).
 
 ::: code-group
+
+```bash [Coffee]
+celestia light start --core.ip <ip-address>
+```
 
 ```bash [Mocha]
 celestia light start --core.ip <ip-address> --p2p.network mocha
@@ -314,6 +324,10 @@ look like this:
 
 ::: code-group
 
+```bash [Coffee]
+celestia light start --core.ip coffee.pops.one
+```
+
 ```bash [Mocha]
 celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 ```
@@ -337,6 +351,10 @@ You can start your light node with the key created by running
 the following command:
 
 ::: code-group
+
+```bash [Coffee]
+celestia light start --core.ip <ip-address> --keyring.accname <key_name>
+```
 
 ```bash [Mocha]
 celestia light start --core.ip <ip-address> --keyring.accname <key_name> --p2p.network mocha

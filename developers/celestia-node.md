@@ -3,7 +3,7 @@ mochaChainId: "mocha-4"
 arabicaChainId: "arabica-10"
 ---
 
-# Celestia node
+# This is a demo page for testing
 
 ## normal code block
 

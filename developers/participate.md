@@ -1,6 +1,7 @@
 <script setup>
 import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
 import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
+import CoffeeVersionTags from '../.vitepress/components/CoffeeVersionTags.vue'
 import InlineText from '../.vitepress/components/InlineText.vue'
 import constants from '../.vitepress/versions/constants.js'
 </script>
@@ -9,14 +10,16 @@ import constants from '../.vitepress/versions/constants.js'
 
 Celestia currently has two existing testnets that you can participate in:
 
-* [Arabica devnet](./arabica-devnet.mdx): A devnet focused on developers who
+* Coffee: TBD
+  <CoffeeVersionTags/>
+* Arabica devnet: A devnet focused on developers who
   want to deploy sovereign rollups on the latest changes from Celestia's codebase.
   Arabica will be updated frequently and might be unstable at times given new updates.
   Validators won't be able to validate on Arabica as it is not designed for
   validators to participate.
   * Compatible software versions
   <ArabicaVersionTags/>
-* [Mocha testnet](./mocha-testnet.mdx): A testnet focused on enabling validators
+* Mocha testnet: A testnet focused on enabling validators
   to test out their infrastructure by running nodes connected to the network. Developers
   can also deploy sovereign rollups on Mocha, it just will always be behind Arabica
   as Mocha upgrades are slower given they need to be done via hardforks in coordination

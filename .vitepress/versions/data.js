@@ -3,7 +3,7 @@ export const versions = {
   myOtherVariable: "v0.11.0-rc14",
 
   golang: {
-    golangNodeBSR: "1.20.2",
+    golangNodeCoffee: "1.20.2",
     golangNodeMocha: "1.21.0",
     golangNodeArabica: "1.20.2",
     golangApp: "1.20.2",
@@ -14,14 +14,14 @@ export const versions = {
 
   chainId: {
     arabicaChainId: "arabica-9",
-    bsrChainId: "blockspacerace-0",
+    coffeeChainId: "coffee",
     mochaChainId: "mocha-3",
   },
 
   rollkitVersion: {
     arabicaRollkitVersion: "v0.10.2",
     mochaRollkitVersion: "v0.10.2",
-    bsrRollkitVersion: "v0.8.1",
+    coffeeRollkitVersion: "v0.8.1",
   },
 
   localCelestiaDevnetVersion: "v0.11/0-rc8",
@@ -31,10 +31,12 @@ export const versions = {
   appTag: {
     appTagArabica: "v1.0.0-rc14",
     appTagMocha: "v1.0.0-rc16",
+    appTagCoffee: "v1.0.0",
   },
 
   nodeTag: {
     nodeTagArabica: "v0.11.0-rc9",
     nodeTagMocha: "v0.11.0-rc11",
+    nodeTagCoffee: "v0.12.0",
   },
 };
