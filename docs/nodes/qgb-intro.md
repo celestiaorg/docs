@@ -5,19 +5,19 @@ description: An overview of the Quantum Gravity Bridge.
 
 # Quantum Gravity Bridge
 
-The Quantum Gravity Bridge, covered previously in the Celestia blog post
-found [here](https://blog.celestia.org/celestiums/), introduces the concept
-of a Celestium, which is an EVM L2 rollup that uses Celestia for data availability
+The Quantum Gravity Bridge, covered previously in
+[the Celestia blog post](https://blog.celestia.org/celestiums/),
+introduces the concept of a Celestium, which is an EVM L2
+rollup that uses Celestia for data availability
 but settles on Ethereum (or any other EVM L1 chain).
 
 This page and following tutorials will go over the Quantum Gravity
 Bridge and how Validators on Celestia can run it.
 
-If you're looking to learn more, you can view the
-`orchestrator-relayer` repository
-[here](https://github.com/celestiaorg/orchestrator-relayer), and
-read more about the QGB
-[here](https://github.com/celestiaorg/quantum-gravity-bridge#how-it-works).
+If you're looking to learn more, you can view
+[the `orchestrator-relayer` repository](https://github.com/celestiaorg/orchestrator-relayer)
+, and
+[read more about the QGB](https://github.com/celestiaorg/quantum-gravity-bridge#how-it-works).
 
 ## Overview
 
@@ -30,18 +30,18 @@ Celestia. This will later be attested to by the Celestia validator set, and
 eventually posted to the target EVM chain (in this case, Ethereum). Then,
 the celestium, or any party, will be able to verify the attestations, i.e. valsets
 and data commitments, directly on the EVM chain on the QGB smart contract. You can
-reference the QGB smart contract
-[here](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
+reference
+[the QGB smart contract](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
 
 ![QGB-Architecture](../img/qgb/qgb-diagram.png)
 
 The specification of the QGB `Valset`s, which track the Celestia validator set
-changes, can be found in this [ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
+changes, can be found in [ADR 002](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
 
 The QGB data commitments, which represent commitments over sets of blocks
 defined by a data commitment window, are
-discussed more in-depth in the following
-[ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
+discussed more in-depth in
+[ADR 003](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
 
 The Orchestrator is part of the validator setup and works as follows:
 
@@ -62,15 +62,16 @@ The diagram below goes over this process.
 
 ![QGB-Relayer](../img/qgb/qgb-relayer.png)
 
-You can learn more about the mechanics behind the Relayer in this
-[ADR](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-004-qgb-relayer-security.md).
+You can learn more about the mechanics behind the Relayer in
+[ADR 004](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-004-qgb-relayer-security.md).
 
 ## Setting up the QGB
 
 The following sections in this category presume you have the following setup:
 
-- A Celestia App [validator](../validator-node) running
-- A Celestia Node - [bridge node](../bridge-node) running
+- A Celestia App
+[validator node](../consensus-node#optional-setting-up-a-validator) running
+- A Celestia Node [bridge node](../bridge-node) running
 
 ## Next steps
 

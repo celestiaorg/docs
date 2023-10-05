@@ -79,6 +79,14 @@ const config = {
       {
         redirects: [
           {
+            to: "/nodes/consensus-node",
+            from: "/nodes/full-consensus-node",
+          },
+          {
+            to: "/nodes/consensus-node",
+            from: "/nodes/validator-node",
+          },
+          {
             to: "/nodes/environment",
             from: "/developers/environment",
           },

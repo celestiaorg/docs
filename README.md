@@ -96,13 +96,13 @@ const versions = ["your-new-version", "v0.11.0-rc8"];
 In `docs/developers/node-api.md`, edit line 11:
 
 ```md
-can be found [here](/api/v0.11.0-rc8).
+[the API's documentation](/api/v0.11.0-rc13).
 ```
 
 Change the above to:
 
 ```md
-can be found [here](/api/your-new-version).
+[the API's documentation](/api/your-new-version).
 ```
 
 6. In the `docs/developers/node-tutorial.mdx` page,

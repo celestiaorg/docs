@@ -19,7 +19,8 @@ This tutorial will guide you through setting up a Celestia light node, which
 will allow you to perform data availability sampling on the data
 availability (DA) network.
 
-> To view a video tutorial for setting up a Celestia light node, click [here](../developers/light-node-video.md)
+View
+[a video tutorial for setting up a Celestia light node](../developers/light-node-video.md).
 
 ## Overview of light nodes
 
@@ -41,7 +42,7 @@ a light node:
 
 - Memory: **2 GB RAM**
 - CPU: **Single Core**
-- Disk: **25 GB SSD Storage** (Recommended **50 GB SSD Storage**)
+- Disk: **50 GB SSD Storage**
 - Bandwidth: **56 Kbps for Download/56 Kbps for Upload**
 
 ## Setting up your light node
@@ -651,7 +652,7 @@ Golang version: go{constants.golangNodeBSR}<br/>
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-Installing `celestia-node` for Mocha Testnet means installing a specific version
+Installing `celestia-node` for Mocha testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -682,7 +683,7 @@ Golang version: go{constants.golangNodeMocha}<br/>
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-Installing `celestia-node` for Mocha Testnet means installing a specific version
+Installing `celestia-node` for Mocha testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -713,7 +714,7 @@ Golang version: go{constants.golangNodeMocha}<br/>
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-Installing `celestia-node` for Mocha Testnet means installing a specific version
+Installing `celestia-node` for Mocha testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -744,7 +745,7 @@ Golang version: go{constants.golangNodeMocha}<br/>
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-Installing `celestia-node` for Mocha Testnet means installing a specific version
+Installing `celestia-node` for Mocha testnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -781,7 +782,7 @@ Golang version: go{constants.golangNodeMocha}<br/>
 <Tabs groupId="operating-systems">
 <TabItem value="amd" label="Ubuntu (AMD)">
 
-Installing `celestia-node` for Arabica Devnet means installing a specific version
+Installing `celestia-node` for Arabica devnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -812,7 +813,7 @@ Golang version: go{constants.golangNodeArabica}<br/>
 </TabItem>
 <TabItem value="arm" label="Ubuntu (ARM)">
 
-Installing `celestia-node` for Arabica Devnet means installing a specific version
+Installing `celestia-node` for Arabica devnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -843,7 +844,7 @@ Golang version: go{constants.golangNodeArabica}<br/>
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-Installing `celestia-node` for Arabica Devnet means installing a specific version
+Installing `celestia-node` for Arabica devnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -874,7 +875,7 @@ Golang version: go{constants.golangNodeArabica}<br/>
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-Installing `celestia-node` for Arabica Devnet means installing a specific version
+Installing `celestia-node` for Arabica devnet means installing a specific version
 to be compatible with the network.
 
 Install the `celestia-node` binary by running the following commands:
@@ -981,9 +982,9 @@ submit `PayForBlob` transactions, or query for the
 node's account balance, a gRPC endpoint of a validator
 (core) node must be passed as directed below.
 
-Please refer to the [ports](../../nodes/celestia-node/#ports)
-section for information on which ports are
-required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 ```sh
@@ -1003,9 +1004,9 @@ submit `PayForBlob` transactions, or query for the
 node's account balance, a gRPC endpoint of a validator
 (core) node must be passed as directed below.
 
-Please refer to the [ports](../../nodes/celestia-node/#ports)
-section for information on which ports are
-required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 ```sh
@@ -1025,9 +1026,9 @@ submit `PayForBlob` transactions, or query for the
 node's account balance, a gRPC endpoint of a validator
 (core) node must be passed as directed below.
 
-Please refer to the [ports](../../nodes/celestia-node/#ports)
-section for information on which ports are
-required to be open on your machine.
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
 :::
 
 ```sh
@@ -1040,7 +1041,8 @@ celestia light start --core.ip <ip-address> --p2p.network <network>
 <Tabs groupId="network">
 {/* <TabItem value="blockspacerace" label="Blockspace Race">
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../blockspace-race)
+If you need a list of RPC endpoints to connect to, you can find the
+[list on the Blockspace Race page](../blockspace-race#rpc-endpoints).
 
 For example, your command might look something like this:
 
@@ -1051,7 +1053,8 @@ celestia light start --core.ip rpc-blockspacerace.pops.one --p2p.network blocksp
 </TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../mocha-testnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can find the
+[list on the Mocha testnet page](../mocha-testnet#rpc-endpoints).
 
 For example, your command might look something like this:
 
@@ -1062,7 +1065,8 @@ celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-If you need a list of RPC endpoints to connect to, you can check from the list [here](../arabica-devnet#rpc-endpoints)
+If you need a list of RPC endpoints to connect to, you can find the
+[list on the Arabica devnet page](../arabica-devnet#rpc-endpoints).
 
 For example, your command might look something like this:
 
@@ -1075,7 +1079,8 @@ celestia light start --core.ip consensus-validator.celestia-arabica-10.com --p2p
 
 ### Keys and wallets
 
-You can create your key for your node by running the following command with the [`cel-key`](../../developers/celestia-node-key) utility:
+You can create your key for your node by running the following command with the
+[`cel-key` utility](../../developers/celestia-node-key):
 
 ```sh
 ./cel-key add <key_name> --keyring-backend test --node.type light --p2p.network <network>
@@ -1131,15 +1136,15 @@ You can find the address by running the following command in the
 
 You have three networks to get testnet tokens from:
 
-* [Arabica](../arabica-devnet#arabica-devnet-faucet)
-* [Mocha](../mocha-testnet#mocha-testnet-faucet)
-* [Blockspace race](../blockspace-race)
+* [Arabica devnet](../arabica-devnet#arabica-devnet-faucet)
+* [Mocha testnet](../mocha-testnet#mocha-testnet-faucet)
+* [Blockspace Race testnet](../blockspace-race)
 
 > NOTE: If you are running a light node for your sovereign
   rollup, it is highly recommended to request Arabica devnet tokens
   as Arabica has the latest changes that can be used to
   test for developing your sovereign rollup. You can still use
-  Mocha Testnet as well, it is just used for validator operations.
+  Mocha testnet as well, it is just used for validator operations.
 
 You can request funds to your wallet address using the following command in Discord:
 
@@ -1185,8 +1190,9 @@ celestia light start --core.ip <ip-address> --keyring.accname <name_of_custom_ke
 
 ### Optional: start light node with SystemD
 
-Follow the tutorial on setting up the light node as a background
-process with SystemD [here](./systemd.md#celestia-light-node).
+Follow
+[the tutorial on setting up the light node as a background
+process with SystemD](./systemd.md#celestia-light-node).
 
 ## Data availability sampling (DAS)
 
@@ -1194,20 +1200,20 @@ process with SystemD [here](./systemd.md#celestia-light-node).
 <Tabs groupId="network">
 {/* <TabItem value="blockspacerace" label="Blockspace Race">
 
-With your light node running, you can check out this tutorial on
-submitting `PayForBlob` transactions [here](../../developers/node-tutorial).
+With your light node running, you can check out
+[this tutorial on submitting `PayForBlob` transactions](../../developers/node-tutorial).
 
 </TabItem> */}
 <TabItem value="mocha" label="Mocha">
 
-With your light node running, you can check out this tutorial on
-submitting `PayForBlob` transactions [here](../../developers/node-tutorial).
+With your light node running, you can check out
+[this tutorial on submitting `PayForBlob` transactions](../../developers/node-tutorial).
 
 </TabItem>
 <TabItem value="arabica" label="Arabica 🏗️">
 
-With your light node running, you can check out this tutorial on
-submitting `PayForBlob` transactions [here](../../developers/node-tutorial).
+With your light node running, you can check out
+[this tutorial on submitting `PayForBlob` transactions](../../developers/node-tutorial).
 
 </TabItem>
 </Tabs>

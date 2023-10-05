@@ -48,7 +48,7 @@ celestia-appd config keyring-backend test
 
 Options are: `os|file|kwallet|pass|test|memory`.
 
-You can learn more on the [Cosmos documentation](https://docs.cosmos.network/main/run-node/keyring.html)
+You can learn more on the [Cosmos documentation](https://docs.cosmos.network/main/user/run-node/keyring)
 or [Go Package documentation](https://pkg.go.dev/github.com/cosmos/cosmos-sdk/crypto/keyring).
 
 ## Key management
@@ -176,7 +176,7 @@ celestia-appd tx gov vote <proposal id> <option> --from <wallet> --chain-id <cha
 ```
 
 To submit a proposal, there are two commands that can be used. The first is the
-legacy command, which is the reccomended way to submit a proposal.
+legacy command, which is the recommended way to submit a proposal.
 
 To change the max validators to 105, one would first save this JSON file:
 
@@ -259,7 +259,7 @@ that contains the proposal.
 }
 ```
 
-The the json file can be submitted using a similar proposal submission command as above:
+The json file can be submitted using a similar proposal submission command as above:
 
 ```sh
 celestia-appd tx gov submit-legacy-proposal community-pool-spend <path to json file> --from <wallet>
@@ -360,6 +360,6 @@ celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
     --evm-address=$EVM_ADDRESS \
 ```
 
-You can then share your gentx JSON file on the networks
-repo [here](https://github.com/celestiaorg/networks) in the respective
-network directory you are participating in.
+You can then share your gentx JSON file on
+[the networks repo](https://github.com/celestiaorg/networks)
+in the respective network directory you are participating in.

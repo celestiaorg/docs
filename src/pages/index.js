@@ -19,13 +19,13 @@ function HomepageHeader() {
             to="/learn/how-celestia-works/introduction"
           >
             <p className="button-heading">Learn</p>
-            Learn how Celestia works
+            How Celestia works
           </Link>
           <Link className="front-page-link" to="/developers/node-tutorial">
             <p className="button-heading">Celestia node</p>
             Run a node
           </Link>
-          <Link className="front-page-link" to="/category/deploy-a-rollup">
+          <Link className="front-page-link" to="/developers/rollup-overview">
             <p className="button-heading">Sovereign chain</p>
             Deploy a rollup to Celestia
           </Link>

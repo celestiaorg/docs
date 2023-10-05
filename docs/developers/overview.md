@@ -10,23 +10,22 @@ of Celestia.
 
 It includes:
 
-- Overview of [wallets on Celestia](../../developers/wallets/)
+- [Overview of wallets on Celestia](../../developers/wallets/)
   - [Keplr](../../developers/keplr/)
   - [Leap](../../developers/leap)
   - [Cosmostation](../../developers/cosmostation/)
   - Generate a wallet with
     - [Celestia app](../../developers/celestia-app-wallet/)
     - [Celestia node](../../developers/celestia-node-key/)
-- An overview of [the Celestia node API](../../developers/node-api/)
+- [Overview of the Celestia node API](../../developers/node-api/)
   - [Node API docs](/api/v0.11.0-rc14)
-  - How to use the [Celestia node RPC API](../../developers/node-tutorial/)
+  - [How to use the Celestia node RPC API](../../developers/node-tutorial/)
   - Learn [Celestia node API](../../developers/prompt-scavenger/) with a game
-- How to [deploy rollups with](../../category/deploy-a-rollup/)
+- [Deploying rollups on Celestia](../../developers/rollup-overview/)
   - [Rollkit](../../developers/rollkit/)
   - [OP Stack](../../category/optimism/)
   - [Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup)
   - [Dymension](https://dymension.xyz/)
-- Full stack modular [blockchain development guide](../../developers/full-stack-modular-development-guide/)
-- [Demos](../../developers/demos/) on Celestia
+- [Demos on Celestia](../../developers/demos/)
 - [Integrate with Celestia Network](../../developers/integrate-celestia/)
   for third-party service providers
