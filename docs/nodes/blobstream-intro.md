@@ -1,13 +1,13 @@
 ---
-sidebar_label: Quantum Gravity Bridge
-description: An overview of the Quantum Gravity Bridge.
+sidebar_label: Blobstream
+description: An overview of the Blobstream.
 ---
 
-# Quantum Gravity Bridge
+# Blobstream
 
-The Quantum Gravity Bridge, covered previously in
+The Blobstream, covered previously in
 [the Celestia blog post](https://blog.celestia.org/celestiums/),
-introduces the concept of a Celestium, which is an EVM L2
+introduces the concept of a rollup, which is an EVM L2
 rollup that uses Celestia for data availability
 but settles on Ethereum (or any other EVM L1 chain).
 
@@ -17,28 +17,28 @@ Bridge and how Validators on Celestia can run it.
 If you're looking to learn more, you can view
 [the `orchestrator-relayer` repository](https://github.com/celestiaorg/orchestrator-relayer)
 , and
-[read more about the QGB](https://github.com/celestiaorg/quantum-gravity-bridge#how-it-works).
+[read more about the Blobstream](https://github.com/celestiaorg/quantum-gravity-bridge#how-it-works).
 
 ## Overview
 
-The Quantum Gravity Bridge (QGB),
-consists of two components: an [Orchestrator](../qgb-orchestrator)
-and a [Relayer](../qgb-relayer).
+The Blobstream,
+consists of two components: an [Orchestrator](../blobstream-orchestrator)
+and a [Relayer](../blobstream-relayer).
 
 In the following diagram, we show how a celestium would post the data to
 Celestia. This will later be attested to by the Celestia validator set, and
 eventually posted to the target EVM chain (in this case, Ethereum). Then,
 the celestium, or any party, will be able to verify the attestations, i.e. valsets
-and data commitments, directly on the EVM chain on the QGB smart contract. You can
+and data commitments, directly on the EVM chain on the Blobstream smart contract. You can
 reference
-[the QGB smart contract](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
+[the Blobstream smart contract](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
 
-![QGB-Architecture](../img/qgb/qgb-diagram.png)
+![Blobstream-Architecture](../img/blobstream/blobstream-diagram.png)
 
-The specification of the QGB `Valset`s, which track the Celestia validator set
+The specification of the Blobstream `Valset`s, which track the Celestia validator set
 changes, can be found in [ADR 002](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
 
-The QGB data commitments, which represent commitments over sets of blocks
+The Blobstream data commitments, which represent commitments over sets of blocks
 defined by a data commitment window, are
 discussed more in-depth in
 [ADR 003](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
@@ -52,20 +52,20 @@ The Orchestrator is part of the validator setup and works as follows:
 
 The diagram below goes over this process.
 
-![QGB-Orchestrator](../img/qgb/qgb-orchestrator.png)
+![Blobstream-Orchestrator](../img/blobstream/blobstream-orchestrator.png)
 
-The Relayer deploys the QGB smart contract first to the EVM L1 chain (if it is
+The Relayer deploys the Blobstream smart contract first to the EVM L1 chain (if it is
 not deployed before), and then relays the attestations from Celestia App to the
 EVM L1 Chain.
 
 The diagram below goes over this process.
 
-![QGB-Relayer](../img/qgb/qgb-relayer.png)
+![Blobstream-Relayer](../img/blobstream/blobstream-relayer.png)
 
 You can learn more about the mechanics behind the Relayer in
 [ADR 004](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-004-qgb-relayer-security.md).
 
-## Setting up the QGB
+## Setting up the Blobstream
 
 The following sections in this category presume you have the following setup:
 
@@ -75,8 +75,8 @@ The following sections in this category presume you have the following setup:
 
 ## Next steps
 
-1. [Install the binary](../qgb-binary)
-2. [QGB Orchestrator](../qgb-orchestrator)
-3. [Key management](../qgb-keys)
-4. [QGB Relayer](../qgb-relayer)
-5. [Deploy the QGB contract](../qgb-deploy)
+1. [Install the binary](../blobstream-binary)
+2. [Blobstream Orchestrator](../blobstream-orchestrator)
+3. [Key management](../blobstream-keys)
+4. [Blobstream Relayer](../blobstream-relayer)
+5. [Deploy the Blobstream contract](../blobstream-deploy)
