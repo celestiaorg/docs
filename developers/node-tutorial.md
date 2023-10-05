@@ -54,7 +54,7 @@ The following minimum hardware requirements are recommended for running a light 
 
 ## Setting up dependencies
 
-1. Update and upgrade your OS:
+1. Update and upgrade your OS if you are on Ubuntu:
 
 ::: code-group
 
@@ -81,6 +81,7 @@ sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential gi
 ```
 
 ```bash [Mac]
+# these commands are for installing Homebrew, wget and jq
 # follow the instructions from the output after running this command
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -392,7 +393,7 @@ when you created the wallet.
 
 With your wallet funded, you can move on to the next step.
 
-## RPC ClI guide
+## RPC CLI guide
 
 
 This section of the tutorial will teach you how to interact with a
