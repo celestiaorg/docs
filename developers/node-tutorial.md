@@ -54,6 +54,9 @@ The following minimum hardware requirements are recommended for running a light 
 
 ## Setting up dependencies
 
+In your terminal, set up dependencies needed to install and build
+`celestia-node`.
+
 1. Update and upgrade your OS if you are on Ubuntu:
 
 ::: code-group
@@ -394,7 +397,6 @@ when you created the wallet.
 With your wallet funded, you can move on to the next step.
 
 ## RPC CLI guide
-
 
 This section of the tutorial will teach you how to interact with a
 Celestia node's
