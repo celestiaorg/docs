@@ -94,7 +94,6 @@ export default withMermaid({
 
     sidebar: {
       '/': sidebarHome(),
-      '/developers/node-api': [],
     },
 
     editLink: {
@@ -218,11 +217,10 @@ function sidebarHome() {
       collapsed: true,
       items: [
         {
-          text: 'Node API',
+          text: 'Testing area',
           collapsed: true,
           items: [
-            { text: 'Demo page for testing', link: '/developers/celestia-node' },
-            { text: 'Node API docs', link: '/developers/node-api'},
+            { text: 'Old page for testing', link: '/developers/celestia-node' },
             { text: 'Node RPC CLI tutorial', link: '/developers/node-tutorial'},
             { text: 'Test page', link: '/developers/test-page'},
           ]
