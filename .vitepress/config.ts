@@ -217,7 +217,7 @@ function sidebarHome() {
       ]
     },
     {
-      text: 'Run a Node',
+      text: 'Run a node',
       collapsed: true,
       items: [
         {
