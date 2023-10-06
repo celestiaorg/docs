@@ -220,7 +220,8 @@ function sidebarHome() {
           text: 'Testing area',
           collapsed: true,
           items: [
-            { text: 'Old page for testing', link: '/developers/celestia-node' },
+            { text: 'Celestia-app specifications', link: 'https://celestiaorg.github.io/celestia-app/' },
+            { text: 'Celestia-node RPC API documentation', link: 'https://node-rpc-docs.celestia.org/' },
             { text: 'Node RPC CLI tutorial', link: '/developers/node-tutorial'},
             { text: 'Test page', link: '/developers/test-page'},
           ]
