@@ -191,7 +191,11 @@ function nav() {
     {
       text: 'Get Started',
         items: [
+          { text: 'Run a Node', link: '/developers/participate' },
           { text: 'Developers', link: '/developers/node-tutorial' },
+          { text: 'Modular Academy', link: '/academy/' },
+          { text: 'celestia-app specs', link: 'https://celestiaorg.github.io/celestia-app/' },
+          { text: 'celestia-node API', link: 'https://node-rpc-docs.celestia.org/' },
       ],   
     },
   ]
