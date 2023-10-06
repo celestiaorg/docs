@@ -6,9 +6,7 @@
   },
   "devDependencies": {
     "i": "^0.3.7",
-    "mermaid": "^10.3.0",
-    "vitepress": "1.0.0-rc.4",
-    "vitepress-plugin-mermaid": "^2.0.13"
+    "vitepress": "1.0.0-rc.20"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.2",

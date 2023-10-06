@@ -1,4 +1,3 @@
-import { withMermaid } from "vitepress-plugin-mermaid";
 import { HeadConfig } from "vitepress";
 
 const telegramSVG = ` <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -8,7 +7,7 @@ const telegramSVG = ` <svg width="24" height="24" viewBox="0 0 24 24" fill="none
 const { BASE: base = "/docs-vitepress/" } = process.env;
 
 // https://vitepress.dev/concepts/site-config
-export default withMermaid({
+export default ({
   lang: 'en-US',
   title: "Celestia Docs",
   description: "The first modular blockchain network.",
