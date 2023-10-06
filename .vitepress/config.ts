@@ -110,7 +110,7 @@ export default withMermaid({
     siteTitle: false,
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/celestia/docs' },
+      { icon: 'github', link: 'https://github.com/celestiaorg/docs-vitepress' },
       { icon: 'twitter', link: 'https://twitter.com/CelestiaOrg' },
       { icon: 'youtube', link: 'https://www.youtube.com/@CelestiaNetwork' },
       { icon: 'discord', link: 'https://discord.com/invite/YsnTPcSfWQ' },
