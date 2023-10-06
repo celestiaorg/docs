@@ -187,15 +187,21 @@ export default withMermaid({
 
 function nav() {
   return [
-    { text: 'Concepts', link: '/developers/celestia-node' },
+    { text: 'Learn', link: '/learn/' },
     {
-      text: 'Get Started',
+      text: 'Participate',
         items: [
-          { text: 'Run a Node', link: '/developers/participate' },
-          { text: 'Developers', link: '/developers/node-tutorial' },
+          { text: 'Run a node', link: '/developers/participate' },
+          {
+            text: 'Developers',
+            items: [
+              { text: 'Blob tutorial', link: '/developers/node-tutorial' },
+              { text: 'celestia-app specs', link: 'https://celestiaorg.github.io/celestia-app/' },
+              { text: 'celestia-node API', link: 'https://celestia-node.surge.sh/' },
+            ],
+          },
+          { text: 'Community', link: '/community/' },
           { text: 'Modular Academy', link: '/academy/' },
-          { text: 'celestia-app specs', link: 'https://celestiaorg.github.io/celestia-app/' },
-          { text: 'celestia-node API', link: 'https://node-rpc-docs.celestia.org/' },
       ],   
     },
   ]
@@ -203,6 +209,13 @@ function nav() {
 
 function sidebarHome() {
   return [
+    {
+      text: 'Learn',
+      collapsed: true,
+      items: [
+        { text: 'Overview', link: '/learn/' },
+      ]
+    },
     {
       text: 'Run a Node',
       collapsed: true,
@@ -230,6 +243,13 @@ function sidebarHome() {
             { text: 'Test page', link: '/developers/test-page'},
           ]
         },
+      ]
+    },
+    {
+      text: 'Community',
+      collapsed: true,
+      items: [
+        { text: 'Overview', link: '/community/'},
       ]
     },
     {

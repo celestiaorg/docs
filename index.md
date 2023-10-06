@@ -16,7 +16,7 @@ hero:
       link: /developers/node-tutorial
     - theme: alt
       text: Introduction
-      link: /developers/test-page
+      link: /learn/
 
 features:
   - title: Build
