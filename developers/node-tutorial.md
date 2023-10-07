@@ -1,5 +1,43 @@
 # Celestia-node RPC CLI tutorial
 
+## notes from call to implement still
+
+1. all rpc commands have basic flags
+
+- default rpc address
+- auth token* required OR node store flag
+- node store flag* required OR auth token
+
+at start of tutorial, have user set $NODE_STORE or AUTH_TOKEN and then use those
+variables in commands
+
+a) if user passes auth token, creates a client, and we're ready to go
+b) if user doesnt pass auth token, check node store flag, create token from config
+
+get help
+
+```bash
+celestia blob submit --help
+```
+
+```bash
+celestia blob get-all xx xx --node.store $HOME/.celestia-light-network
+```
+
+Set log-level when it is running
+
+```bash
+celestia node info --node.store...
+```
+
+Check your node API version:
+
+```bash
+celestia node info --node.store $HOME/.celestia-light-mocha-4/
+```
+
+## remainder of old tutorial, with some edits
+
 <script setup>
 import { versions } from '/.vitepress/versions/data.js'
 </script>
@@ -400,19 +438,19 @@ With your wallet funded, you can move on to the next step.
 
 This section of the tutorial will teach you how to interact with a
 Celestia node's
-[RPC (Remote Procedure Call) API](/api/v0.11.0-rc13).
+[RPC (Remote Procedure Call) API](https://node-rpc-docs.celestia.org/).
 
 First, you will need to [install and run `celestia-node`](#setting-up-dependencies) if
 you have not already. Open up another terminal window in order to begin querying the API.
 
-The Celestia Node CLI (Command Line Interface) has a `rpc` subcommand that
+The Celestia Node CLI (Command Line Interface)
 allows you to interact with the node's RPC API via
 your terminal.
 
-The format for the `rpc` subcommand is as follows:
+The format for RPC calls are as follows:
 
 ```bash
-celestia rpc [module] [method] [...args]
+celestia [module] [method] [...args]
 ```
 
 :::tip
@@ -424,8 +462,8 @@ its methods. The other modules use camelCase.
 
 #### Auth token 🔐
 
-In order to interact with the API using the `rpc` subcommand,
-you will need to set your authentication token.
+In order to interact with the API using RPC CLI,
+you will need to set your authentication token or node store.
 
 The `--auth TOKEN` flag sets the authentication token,
 otherwise it will read from the environment's
@@ -439,13 +477,11 @@ the type of node and `<network>`
 with the network that you are running your node on:
 
 ```bash
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia <node-type> auth admin --p2p.network <network>)
 ```
 
 Here's an example of how to set your auth token on a light node on Arabica:
 
 ```bash
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
 ```
 
 ##### Auth token on custom or private network
@@ -458,7 +494,7 @@ node store in your auth command.**
 :::
 
 ```bash
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network private --node.store $HOME/.celestia-light-private)
+--node.store $HOME/.celestia-light-private)
 ```
 
 The above is an example from the following custom network set up with:
@@ -488,7 +524,7 @@ export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network privat
 The `--host URL` flag sets the host address,
 the default is `localhost:26658` over HTTP.
 
-#### Completions
+<!-- #### Completions
 
 If you would like to turn on completions for the Celestia Node CLI `rpc`
 subcommand, you can use the following command and follow the instructions
@@ -504,7 +540,7 @@ If you'd like to see the help menu for your shell, you can then run:
 ```bash
 # pick your shell type from the array
 celestia completion [bash | fish | powershell | zsh] --help
-```
+``` -->
 
 ### Submitting data
 
@@ -527,13 +563,13 @@ useful [Golang Playground we created](https://go.dev/play/p/7ltvaj8lhRl).
 Here is an example of the format of the `PayForBlobs` transaction:
 
 ```bash
-celestia rpc blob submit [namespace in hex] [data in hex]
+celestia blob submit [namespace in hex] [data in hex] [optional: fee] [optional: gasLimit] [node store flag or auth token]
 ```
 
 We run the following to submit a blob to the network in hexadecimal format:
 
 ```bash
-celestia rpc blob submit 0x42690c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
+celestia blob submit 0x42690c204d39600fddd3 0xf1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5
 ```
 
 We get the following output:
@@ -551,13 +587,13 @@ We can also use a string of text as the data value, which will be
 converted to base64. Here is an example of the format:
 
 ```bash
-celestia rpc blob submit [namespace in hex] '[data]'
+celestia blob submit [namespace in hex] '[data]' [optional: fee] [optional: gasLimit] [node store flag or auth token]
 ```
 
 And an example to submit "gm" as the plain-text data:
 
 ```bash
-celestia rpc blob submit 0x42690c204d39600fddd3 'gm'
+celestia blob submit 0x42690c204d39600fddd3 'gm' --node.store $HOME/.celestia-light-mocha-4/
 ```
 
 Output:
@@ -601,13 +637,13 @@ Read more about shares in the [Celestia Specs](https://celestiaorg.github.io/cel
 Here is what an example of the format of the `get` command looks like:
 
 ```bash
-celestia rpc blob get [block height] [namespace in hex] [commitment from output above]
+celestia blob get [block height] [namespace in hex] [commitment from output above] [node store or auth]
 ```
 
 Here is an example command to retrieve the data from above, on `arabica-10`:
 
 ```bash
-celestia rpc blob get 219832 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E=
+celestia blob get 221302 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E= --node.store $HOME/.celestia-light-mocha-4/
 ```
 
 Will generate the following output:
@@ -628,7 +664,7 @@ The output here is base64 decoded to plain-text.
 To see the base64 response, use the `--base64` flag set to `TRUE` (`--base64=TRUE`):
 
 ```bash
-celestia rpc blob get 219832 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E= --base64=TRUE
+celestia blob get 219832 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E= --base64=TRUE
 ```
 
 The response will look similar to this:
@@ -647,7 +683,7 @@ The response will look similar to this:
 To get all blobs in the namespace at the block height, use `get-all` instead of `get`:
 
 ```bash
-celestia rpc blob get-all 219832 0x42690c204d39600fddd3
+celestia blob get-all 219832 0x42690c204d39600fddd3
 ```
 
 This will return the following:
@@ -668,7 +704,7 @@ This will return the following:
 To display the response in base64, use:
 
 ```bash
-celestia rpc blob get-all 219832 0x42690c204d39600fddd3 --base64=TRUE
+celestia blob get-all 219832 0x42690c204d39600fddd3 --base64=TRUE
 ```
 
 Which will return:
@@ -703,20 +739,20 @@ Learn [more about gas fees and limits](../../developers/submit-data).
 To set the fee of 10000 utia, use the `--fee 10000` flag:
 
 ```bash
-celestia rpc blob submit 0x42690c204d39600fddd3 'gm' --fee 10000
+celestia blob submit 0x42690c204d39600fddd3 'gm' --fee 10000
 ```
 
 To set a gas limit of 100000, use the `--gas.limit 100000` flag:
 
 ```bash
-celestia rpc blob submit 0x42690c204d39600fddd3 'gm' --gas.limit 100000
+celestia blob submit 0x42690c204d39600fddd3 'gm' --gas.limit 100000
 ```
 
 To set a fee of 10000 utia and gas limit of 100000, use the
 `--fee 10000 --gas.limit 100000` flags:
 
 ```bash
-celestia rpc blob submit 0x42690c204d39600fddd3 'gm' --fee 10000 --gas.limit 100000
+celestia blob submit 0x42690c204d39600fddd3 'gm' --fee 10000 --gas.limit 100000
 ```
 
 You will receive the height and commitment of the block in which the
@@ -740,7 +776,7 @@ Let's query our node for the balance of its default account
 key we generated above):
 
 ```bash
-celestia rpc state Balance
+celestia state balance
 ```
 
 The response will look similar to:
@@ -758,16 +794,16 @@ The response will look similar to:
 
 #### Check the balance of another address
 
-Here is an example of the format of the `BalanceForAddress` command:
+Here is an example of the format of the `balance-for-address` command:
 
 ```bash
-celestia rpc state BalanceForAddress [address]
+celestia state balance-for-address [address]
 ```
 
 Let's query our node for the balance of another address:
 
 ```bash
-celestia rpc state BalanceForAddress celestia10rtd9lhel2cuh6c659l25yncl6atcyt37umard
+celestia state balance-for-address celestia10rtd9lhel2cuh6c659l25yncl6atcyt37umard
 ```
 
 The response will be the balance of the address you queried:
@@ -788,7 +824,7 @@ The response will be the balance of the address you queried:
 This is an RPC call in order to get your node's peerId information:
 
 ```bash
-celestia rpc p2p Info
+celestia p2p Info
 ```
 
 The node ID is in the `ID` value from the response:
@@ -816,7 +852,7 @@ The node ID is in the `ID` value from the response:
 This is an RPC call in order to get your node's account address:
 
 ```bash
-celestia rpc state AccountAddress
+celestia state account-address
 ```
 
 Response:
@@ -834,7 +870,7 @@ Response:
 Here is an example of the format of the `GetByHeight` command:
 
 ```bash
-celestia rpc header GetByHeight [height]
+celestia header get-by-height [height]
 ```
 
 Now, let's get the block header information.
@@ -842,7 +878,7 @@ Now, let's get the block header information.
 Here we will get the header from Block 1:
 
 ```bash
-celestia rpc header GetByHeight 1
+celestia rpc header get-by-height 1
 ```
 
 It will output something like this:
@@ -934,16 +970,22 @@ It will output something like this:
 
 ### More examples
 
+#### Combined commands
+
+```bash
+celestia share get-by-namespace "$(celestia header get-by-height 147105 --node.store  $NODE_STORE | jq '.result.dah' -r)" 0x42690c204d39600fddd3 --node.store $NODE_STORE
+```
+
 #### Query node information:
 
 ```bash
-celestia rpc node Info
+celestia rpc node info
 ```
 
 #### Get data availability sampler stats:
 
 ```bash
-celestia rpc das SamplingStats
+celestia rpc das sampling-stats
 ```
 
 #### Transfer balance of utia to another account
@@ -957,19 +999,19 @@ export ADDRESS=celestia1c425ckmve2489atttx022qpc02gxspa29wmh0d
 Then, transfer the amount of tokens that you would like, while setting the recipient's address, gas fee, and gasLimit. This is what the format will look like:
 
 ```bash
-celestia rpc state Transfer $ADDRESS [amount in utia] [gas fee in utia] [gas fee in utia]
+celestia state transfer $ADDRESS [amount in utia] [gas fee in utia] [gas fee in utia]
 ```
 
 Here is an example, sending 0.1 TIA, with a gas fee of 0.008 TIA, and a gas limit of 0.08 TIA:
 
 ```bash
-celestia rpc state Transfer $ADDRESS 100000 8000 80000
+celestia state transfer $ADDRESS 100000 8000 80000
 ```
 
 If you'd just like to return the transaction hash, you can use jq:
 
 ```bash
-celestia rpc state Transfer $ADDRESS 100000 8000 80000 | jq .result.txhash
+celestia state transfer $ADDRESS 100000 8000 80000 | jq .result.txhash
 ```
 
 ## Additional resources
