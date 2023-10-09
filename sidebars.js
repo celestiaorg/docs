@@ -468,6 +468,11 @@ const sidebars = {
       label: "Integrate Celestia",
       id: "developers/integrate-celestia",
     },
+    {
+      type: "doc",
+      label: "Data retrievability and pruning",
+      id: "developers/retrievability",
+    },
   ],
   community: [
     { type: "doc", label: "Overview", id: "community/overview" },
