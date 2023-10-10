@@ -8,7 +8,7 @@ description: A guide on how to run metrics for your Celestia Node DA instance.
 This tutorial is for running metrics for your `celestia-node` Data
 Availability instance.
 
-This tutorial will focus on running metrics for a light-node.
+This tutorial will focus on running metrics for a light node.
 
 This tutorial assumes you have already setup your light node
 by following the tutorial in the [Node API tutorial](../developers/node-tutorial.mdx).
@@ -21,21 +21,11 @@ command:
 <!-- markdownlint-disable MD013 -->
 
 ```sh
-celestia light start --core.ip <ip-address> --metrics --metrics.endpoint <ip-address:port> --p2p.network <network>
+celestia [<node-type>] start --core.ip <ip-address> --metrics.tls=false --metrics --metrics.endpoint <ip-address:port> --p2p.network <network>
 ```
 
-:::tip
-The `--core.ip` gRPC port defaults to 9090,
-so if you do not specify it in the command
-line, it will default to that port. You can
-add the port after the IP address or use the
-`--core.grpc.port` flag to specify another
-port if you prefer.
-
-Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
-for information on which ports are required to be open on your machine.
-:::
+Add metrics flags to your node start command and restart your node to apply it.
+The metrics endpoint will gather your node's data to track your uptime.
 
 <!-- markdownlint-enable MD013 -->
 
@@ -47,7 +37,7 @@ We will go over what the endpoint will need to be in the following section.
 ## Metrics endpoint design considerations
 
 At the moment, the architecture of `celestia-node` metrics
-works as specified in the following [ADR](https://github.com/celestiaorg/celestia-node/blob/main/docs/adr/adr-010-incentivized-testnet-monitoring.md).
+works as specified in the following [ADR #010](https://github.com/celestiaorg/celestia-node/blob/main/docs/adr/adr-010-incentivized-testnet-monitoring.md).
 
 Essentially, the design considerations here will necessitate
 running an OpenTelemetry (OTEL) collector that connects to Celestia
