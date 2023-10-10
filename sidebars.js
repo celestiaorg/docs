@@ -185,6 +185,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Custom networks and values",
+              id: "nodes/celestia-node-custom-networks"
+            },
+            {
+              type: "doc",
               label: "Troubleshooting",
               id: "nodes/celestia-node-troubleshooting"
             },
