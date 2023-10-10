@@ -1205,13 +1205,13 @@ Where:
 
 - `celestia` is the main command to interact with the node.
 - `[module]` is the specific module in the node you want to interact with, such as
-[`blob`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob),
-[`state`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state),
-[`p2p`](https://node-rpc-docs.celestia.org/?version=v0.11.0#p2p), etc.
+  [`blob`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob),
+  [`state`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state),
+  [`p2p`](https://node-rpc-docs.celestia.org/?version=v0.11.0#p2p), etc.
 - `[method]` is the specific method within the module that performs the action you want, such as
-[`blob.Submit`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit),
-[`state.AccountAddress`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state.AccountAddress),
-[`p2p.Info`](https://node-rpc-docs.celestia.org/?version=v0.11.0#node.Info), etc.
+  [`blob.Submit`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit),
+  [`state.AccountAddress`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state.AccountAddress),
+  [`p2p.Info`](https://node-rpc-docs.celestia.org/?version=v0.11.0#node.Info), etc.
 - `[...args]` represents any additional arguments that the method might require.
 - `[...flags]` are optional parameters that modify the behavior of the command. They start with `--` (e.g., `--node.store`, `--token`, or `--url`).
 
@@ -1239,12 +1239,12 @@ interact with the API.
 
 These include:
 
-* `--node.store string` - the path to root/home directory of your Celestia Node store
-* `--token string` - authorization token for making requests
-* `--url string` - the address of the RPC, default is `http://localhost:26658`
+- `--node.store string` - the path to root/home directory of your Celestia Node store
+- `--token string` - authorization token for making requests
+- `--url string` - the address of the RPC, default is `http://localhost:26658`
 
 When running RPC CLI commands,
-you will need to set either the  the [authentication token](#auth-token-)
+you will need to set either the the [authentication token](#auth-token-)
 or set the [node store](#node-store), so the auth token can be retrieved
 from the store.
 
@@ -1252,7 +1252,7 @@ The RPC CLI handles these flags in the following order:
 
 1. If user passes auth token, auth token is used.
 2. If user doesn't pass auth token, check node store flag, create token from
-node store, and use auth token from node store.
+   node store, and use auth token from node store.
 
 #### Auth token 🔐
 
@@ -1288,9 +1288,9 @@ setting an authentication token directly.
 To set your node store for a light node on <InlineTextCode constant={constants.mochaChainId} />, you can use the following
 command:
 
-<pre><code>
-export NODE_STORE=$HOME/.celestia-light-{constants.mochaChainId}
-</code></pre>
+<pre>
+  <code>export NODE_STORE=$HOME/.celestia-light-{constants.mochaChainId}</code>
+</pre>
 
 Then, set the `--node.store` flag to the `$NODE_STORE` variable
 to set the auth token from your node store:
