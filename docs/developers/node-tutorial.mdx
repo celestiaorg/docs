@@ -7,6 +7,7 @@ import constants from "../constants/constants.js";
 import arabicaVersions from "../constants/arabica_versions.js";
 import mochaVersions from "../constants/mocha_versions.js";
 import blockspaceraceVersions from "../constants/blockspacerace_versions.js";
+import InlineTextCode from "@site/src/components/InlineTextCode.js";
 
 # Celestia Node RPC CLI tutorial
 
@@ -30,9 +31,9 @@ If you would like to use them anyway, you can
 This tutorial is broken up into the following sections:
 
 - [Introduction](#introduction)
-- [Hardware requirements](#hardware-requirements)
-- [Setting up dependencies](#setting-up-dependencies)
-- [Install and run Celestia Node](#celestia-node)
+  - [Hardware requirements](#hardware-requirements)
+  - [Setting up dependencies](#setting-up-dependencies)
+  - [Install and run Celestia Node](#celestia-node)
 - [RPC CLI guide](#rpc-cli-guide)
   - [Setup](#setup)
   - [Submitting data](#submitting-data)
@@ -61,7 +62,7 @@ to only download their data, and not the data of other applications.
 Read
 [more about Namespaced Merkle Trees (NMTs)](../../learn/how-celestia-works/data-availability-layer/#namespaced-merkle-trees-nmts).
 
-## Hardware requirements
+### Hardware requirements
 
 The following minimum hardware requirements are recommended for running a light node:
 
@@ -70,7 +71,7 @@ The following minimum hardware requirements are recommended for running a light 
 - Disk: **25 GB SSD Storage**
 - Bandwidth: **56 Kbps for Download/56 Kbps for Upload**
 
-## Setting up dependencies
+### Setting up dependencies
 
 First, make sure to update and upgrade the OS:
 
@@ -115,7 +116,7 @@ sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential gi
 </TabItem>
 <TabItem value="apple" label="Mac (Apple)">
 
-#### 🍺 Installing Homebrew
+##### 🍺 Installing Homebrew
 
 [Homebrew](https://brew.sh) is a package manager for macOS and Linux and will
 allow you to install your dependencies.
@@ -134,7 +135,7 @@ Be sure to run the commands in the output that are similar to:
     eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-#### 🗄 Install wget and jq
+##### 🗄 Install wget and jq
 
 Using Homebrew, in your terminal:
 
@@ -149,7 +150,7 @@ processor.
 </TabItem>
 <TabItem value="mac" label="Mac (Intel)">
 
-#### 🍺 Installing Homebrew
+##### 🍺 Installing Homebrew
 
 [Homebrew](https://brew.sh) is a package manager for macOS and Linux and will
 allow you to install your dependencies.
@@ -168,7 +169,7 @@ Be sure to run the commands in the output that are similar to:
     eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-#### 🗄 Install wget and jq
+##### 🗄 Install wget and jq
 
 Using Homebrew, in your terminal:
 
@@ -184,7 +185,7 @@ processor.
 </Tabs>
 ````
 
-### Install Golang
+#### Install Golang
 
 `celestia-app` and `celestia-node` are written in [Golang](https://go.dev)
 so we must install Golang to build and run them.
@@ -537,9 +538,9 @@ go version go{constants.golangNodeArabica} darwin/amd64
 
 ````
 
-## Celestia Node
+### Celestia Node
 
-### Install Celestia Node
+#### Install Celestia Node
 
 ```mdx-code-block
 <Tabs groupId="network">
@@ -936,7 +937,7 @@ Golang version: go{constants.golangNodeArabica}<br/>
 </Tabs>
 ```
 
-### Instantiate a Celestia light node
+#### Instantiate a Celestia light node
 
 Now, let's instantiate a Celestia Light node:
 
@@ -969,7 +970,7 @@ celestia light init --p2p.network arabica
 </Tabs>
 ````
 
-### Connect to a public core endpoint
+#### Connect to a public core endpoint
 
 ````mdx-code-block
 <Tabs groupId="network">
@@ -1185,22 +1186,51 @@ With your wallet funded, you can move on to the next step.
 
 ## RPC CLI guide
 
-This section of the tutorial will teach you how to interact with a
-Celestia node's
-[RPC (Remote Procedure Call) API](/api/v0.11.0-rc13).
+This section of the tutorial will teach you how to interact with a Celestia node's
+[remote procedure call (RPC) API](https://node-rpc-docs.celestia.org/?version=v0.11.0) using the command line interface (CLI).
 
-First, you will need to [install and run `celestia-node`](#setting-up-dependencies) if
-you have not already. Open up another terminal window in order to begin querying the API.
+You will need to
+[setup dependencies, install, and run `celestia-node`](#setting-up-dependencies)
+if you have not already.
 
-The Celestia Node CLI (Command Line Interface)
-allows you to interact with the node's RPC API via
-your terminal.
+### Command formatting
 
-The format for RPC methods is as follows:
+The format for interacting with the RPC CLI methods is as follows:
 
 ```bash
-celestia [module] [method] [...args]
+celestia [module] [method] [...args] [...flags]
 ```
+
+Where:
+
+- `celestia` is the main command to interact with the node.
+- `[module]` is the specific module in the node you want to interact with, such as
+[`blob`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob),
+[`state`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state),
+[`p2p`](https://node-rpc-docs.celestia.org/?version=v0.11.0#p2p), etc.
+- `[method]` is the specific method within the module that performs the action you want, such as
+[`blob.Submit`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit),
+[`state.AccountAddress`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state.AccountAddress),
+[`p2p.Info`](https://node-rpc-docs.celestia.org/?version=v0.11.0#node.Info), etc.
+- `[...args]` represents any additional arguments that the method might require.
+- `[...flags]` are optional parameters that modify the behavior of the command. They start with `--` (e.g., `--node.store`, `--token`, or `--url`).
+
+For example, to submit a blob to Celestia, you can use this command
+once your node store is set:
+
+```bash
+celestia blob submit 0x42690c204d39600fddd3 'gm' --node.store $NODE_STORE
+```
+
+Alternatively, you could use the `--token` flag to set your auth token:
+
+```bash
+celestia blob submit 0x42690c204d39600fddd3 'gm' --token $AUTH_TOKEN
+```
+
+Before you try that out, let's go over the basic flags that you will need to use
+when interacting with the RPC CLI. We'll also cover how to set your auth token
+and how to use the node store to set it.
 
 ### Basic flags
 
@@ -1209,63 +1239,27 @@ interact with the API.
 
 These include:
 
-* an RPC address
-* the location of your [node's store](#node-store) OR the
-[authentication token](#auth-token-) for your node
+* `--node.store string` - the path to root/home directory of your Celestia Node store
+* `--token string` - authorization token for making requests
+* `--url string` - the address of the RPC, default is `http://localhost:26658`
 
-### Setup
-
-When running `celestia [module] [method] [...args]` commands,
-you will need to set either the [node store](#node-store)
-or the [authentication token](#auth-token-).
+When running RPC CLI commands,
+you will need to set either the  the [authentication token](#auth-token-)
+or set the [node store](#node-store), so the auth token can be retrieved
+from the store.
 
 The RPC CLI handles these flags in the following order:
 
-1. If user passes auth token, use that
+1. If user passes auth token, auth token is used.
 2. If user doesn't pass auth token, check node store flag, create token from
-node store, and use that
-
-#### Help
-
-To get help and view the CLI menu, use the following command:
-
-```bash
-celestia --help
-```
-
-To view help menu for a specific method, use the following command:
-
-```bash
-celestia [module] [method] --help
-```
-
-#### Node store
-
-In order to interact with the API using RPC CLI,
-you will need to set your node store. This will
-allow you to interact with the API without having
-to set an authentication token.
-
-To set your node store for `mocha-4`, you can use the following command:
-
-```bash
-export NODE_STORE=$HOME/.celestia-light-mocha-4
-```
-
-Then, set the `--node.store` flag to the `$NODE_STORE` variable:
-
-```bash
-celestia [module] [method] [...args] --node.store $NODE_STORE
-```
+node store, and use auth token from node store.
 
 #### Auth token 🔐
 
 In order to interact with the API using RPC CLI,
-you will need to set your authentication token or node store.
-This section will show you how to set your authentication token.
+you will need to set the authentication token.
 
-The `--token string` flag sets the authentication token,
-otherwise it will read from the node's store.
+The `--token string` flag sets the authentication token.
 If a token is not found, authentication will not be set.
 And if authentication is not set, the request will fail.
 
@@ -1275,11 +1269,34 @@ the type of node and `<network>`
 with the network that you are running your node on:
 
 ```bash
+export AUTH_TOKEN=$(celestia <node-type> auth admin --p2p.network <network>)
 ```
 
 Here's an example of how to set your auth token on a light node on Arabica:
 
 ```bash
+export AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
+```
+
+#### Node store
+
+In order to interact with the API using RPC CLI,
+you can also use your node store to set your auth token. This will
+allow you to interact with the API without
+setting an authentication token directly.
+
+To set your node store for a light node on <InlineTextCode constant={constants.mochaChainId} />, you can use the following
+command:
+
+<pre><code>
+export NODE_STORE=$HOME/.celestia-light-{constants.mochaChainId}
+</code></pre>
+
+Then, set the `--node.store` flag to the `$NODE_STORE` variable
+to set the auth token from your node store:
+
+```bash
+celestia [module] [method] [...args] --node.store $NODE_STORE
 ```
 
 ##### Auth token on custom or private network
@@ -1292,7 +1309,7 @@ node store in your auth command**:
 :::
 
 ```bash
---node.store $HOME/.celestia-light-private
+export AUTH_TOKEN=$(celestia light auth admin --p2p.network private --node.store $HOME/.celestia-light-private)
 ```
 
 The above is an example from the following custom network set up with:
@@ -1314,29 +1331,8 @@ As an example, this is what a completely custom network would look like:
 CELESTIA_CUSTOM=robusta-22 celestia light init
 
 # Set auth token
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network private --node.store $HOME/.celestia-light-robusta-22)
+export AUTH_TOKEN=$(celestia light auth admin --p2p.network private --node.store $HOME/.celestia-light-robusta-22)
 ```
-
-#### Log level
-
-To set the log-level when the node is running, you can use the following command:
-
-```bash
-celestia node info --node.store $NODE_STORE
-```
-
-#### API version
-
-To query your node's API version, you can use the following command:
-
-```bash
-celestia node info --node.store $HOME/.celestia-light-mocha-4/
-```
-
-#### Host URL
-
-The `--host URL` flag sets the host address,
-the default is `localhost:26658` over HTTP.
 
 ### Submitting data
 
@@ -1765,6 +1761,36 @@ It will output something like this:
 ```
 
 ### More examples
+
+### Log level
+
+To set the log-level when the node is running, you can use the following command:
+
+```bash
+celestia node info --node.store $NODE_STORE
+```
+
+### API version
+
+To query your node's API version, you can use the following command:
+
+```bash
+celestia node info --node.store $HOME/.celestia-light-mocha-4/
+```
+
+### Help
+
+To get help and view the CLI menu, use the following command:
+
+```bash
+celestia --help
+```
+
+To view help menu for a specific method, use the following command:
+
+```bash
+celestia [module] [method] --help
+```
 
 #### Query node information:
 
