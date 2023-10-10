@@ -25,9 +25,6 @@ export default function Layout(props) {
     description,
   } = props;
 
-  // Check if the current route includes '/api/'
-  const isApiRoute = typeof window !== 'undefined' && window.location.pathname.includes('/api/');
-
   useKeyboardNavigation();
 
   return (
@@ -52,8 +49,8 @@ export default function Layout(props) {
         </ErrorBoundary>
       </div>
 
-      {/* Only render the Footer if it's not an API route */}
-      {!noFooter && !isApiRoute && <Footer />}
+      {/* Render the Footer regardless of the route */}
+      {!noFooter && <Footer />}
     </LayoutProvider>
   );
 }
