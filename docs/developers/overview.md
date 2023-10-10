@@ -18,7 +18,7 @@ It includes:
     - [Celestia app](../../developers/celestia-app-wallet/)
     - [Celestia node](../../developers/celestia-node-key/)
 - [Overview of the Celestia node API](../../developers/node-api/)
-  - [Node API docs](/api/v0.11.0-rc12)
+  - [Node API docs](https://node-rpc-docs.celestia.org/)
   - [How to use the Celestia node RPC API](../../developers/node-tutorial/)
   - Learn [Celestia node API](../../developers/prompt-scavenger/) with a game
 - [Deploying rollups on Celestia](../../developers/rollup-overview/)

@@ -11,8 +11,6 @@ import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
 import NavbarLogo from '@theme/Navbar/Logo';
 import NavbarSearch from '@theme/Navbar/Search';
 import styles from './styles.module.css';
-import {useLocation} from '@docusaurus/router';
-import CustomVersionSelector from '@site/src/components/CustomVersionSelector';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -54,8 +52,6 @@ export default function NavbarContent() {
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
   const searchBarItem = items.find((item) => item.type === 'search');
-  const location = useLocation();
-  const versions = ['v0.11.0-rc13', 'v0.11.0-rc12', 'v0.11.0-rc11', 'v0.11.0-rc8-arabica-improvements', 'v0.11.0-rc8'];
 
   return (
     <NavbarContentLayout
@@ -68,7 +64,6 @@ export default function NavbarContent() {
       }
       right={
         <>
-          {location.pathname.includes('/api/') && <CustomVersionSelector className="custom-version-selector-header" versions={versions} />}
           <NavbarItems items={rightItems} />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
           {!searchBarItem && (
