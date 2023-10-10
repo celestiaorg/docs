@@ -14,18 +14,18 @@ look something like:
 
 ```bash
 export BRIDGE="/ip4/<ip-address>/tcp/2121/p2p/<node-ID>"
-export CHAIN_ID=<chain-hash>
+export GENESIS_HASH=<genesis-hash>
 export NETWORK=<network-name>
-export CELESTIA_CUSTOM="${NETWORK}:${CHAIN_ID}:${BRIDGE}"
+export CELESTIA_CUSTOM="${NETWORK}:${GENESIS_HASH}:${BRIDGE}"
 ```
 
 These values with examples would look like:
 
 ```bash
 export BRIDGE="/ip4/151.115.14.33/tcp/2121/p2p/12D3KooWKEeRtzVMPUdxYsZo2edqps6mS67n6LT5mPdULSkPSxBQ"
-export CHAIN_ID=580B3DFF8A7C716968161D91116A1E171F486298D582874E93714E489C9E6E88
+export GENESIS_HASH=580B3DFF8A7C716968161D91116A1E171F486298D582874E93714E489C9E6E88
 export NETWORK=custom
-export CELESTIA_CUSTOM="${NETWORK}:${CHAIN_ID}:${BRIDGE}"
+export CELESTIA_CUSTOM="${NETWORK}:${GENESIS_HASH}:${BRIDGE}"
 ```
 
 Then, start your node with:
