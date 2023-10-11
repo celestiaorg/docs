@@ -4,7 +4,7 @@ sidebar_label: Data retrievability and pruning
 
 # Data retrievability and pruning
 
-The purpose of data availability layers such as Celestia is to ensure that block data is provably published to the Internet, so that applications and rollups can know what the state of their chain is, and store that data. Once the data is published, data availability layers [do not inherently guarantee that historical data will be permanently stored](https://notes.ethereum.org/@vbuterin/proto_danksharding_faq#If-data-is-deleted-after-30-days-how-would-users-access-older-blobs) and be retrievable.
+The purpose of data availability layers such as Celestia is to ensure that block data is provably published to the Internet, so that applications and rollups can know what the state of their chain is, and store that data. Once the data is published, data availability layers [do not inherently guarantee that historical data will be permanently stored](https://notes.ethereum.org/@vbuterin/proto_danksharding_faq#If-data-is-deleted-after-30-days-how-would-users-access-older-blobs) and remain retrievable.
 
 In this document, we discuss the state of data retrievability and pruning in Celestia, as well as some tips for rollup developers in order to ensure that syncing new rollup nodes is possible.
 
