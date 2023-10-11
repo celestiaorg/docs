@@ -302,11 +302,6 @@ const sidebars = {
       id: "developers/submit-data"
     },
     {
-      type: "doc",
-      label: "Data retrievability and pruning",
-      id: "developers/retrievability",
-    },
-    {
       type: "category",
       label: "Node API",
       link: {
@@ -472,6 +467,11 @@ const sidebars = {
       type: "doc",
       label: "Integrate Celestia",
       id: "developers/integrate-celestia",
+    },
+    {
+      type: "doc",
+      label: "Data retrievability and pruning",
+      id: "developers/retrievability",
     },
   ],
   community: [
