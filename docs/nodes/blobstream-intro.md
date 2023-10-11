@@ -65,6 +65,36 @@ The diagram below goes over this process.
 You can learn more about the mechanics behind the Relayer in
 [ADR 004](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-004-qgb-relayer-security.md).
 
+## Blobstream and data availability committees (DACs)
+
+### Decentralization and security
+
+Blobstream is built on Celestia, which uses a CometBFT-based proof-of-stake
+system. An incorrect data availability attestation in this system can be
+penalized, ensuring validators act in good faith. In contrast, data availability
+committees (DACs), are typically centralized or semi-centralized, relying on
+a specific set of entities or individuals to vouch for data avaiability.
+
+### Mechanism of verification
+
+Blobstream uses data availability attestations, which are Merkle roots of the
+L2 data, to confirm that the necessary data is present on Celestia. When
+Ethereum's L2 contract updates its state, it checks with Blobstream to confirm
+that data's presence on Celestia. In contrast, a DAC would rely on attestations
+or confirmations from its permissioned members.
+
+### Flexibility and scalability
+
+Blobstream offers high-throughput data availability for Ethereum L2s, striking
+a balance between scalability and security. It isn't bound by Ethereum's gas
+costs, as Celestia's resource pricing is more byte-focused rather than
+computation-centric. The scalability costs of a DAC would largely hinge on its
+specific design, but it may not achieve the same balance as Blobstream.
+
+In summary, both Blobstream and DACs aim to ensure off-chain data availability,
+but Blobstream offers a more decentralized, secure, and scalable solution
+compared to the potential centralized nature of DACs.
+
 ## Setting up the Blobstream
 
 The following sections in this category presume you have the following setup:
