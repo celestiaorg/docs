@@ -657,16 +657,55 @@ configurations.
 
 ### Optional: Transaction indexer configuration options
 
-This section will show you how to set your `config.toml` file in `celestia-app`
-to chose which transactions to index. In some
-cases, a node operator will be able to decide which transactions to index
-based on configuration set in the application.
+This section guides you on how to configure your `config.toml`
+file in `celestia-app` to select which transactions to index.
+Depending on the application's configuration, a node operator
+may decide which transactions to index.
 
-The options are:
+The available options are:
 
-1. `null`
-2. `kv` (default) - the simplest possible indexer backed by key-value storage
-   (defaults to levelDB; see DBBackend)
-   1. when `kv` is chosen `tx.height` and `tx.hash` will always be indexed
-3. `psql` - the indexer services backed by PostgreSQL
-   1. when `psql` is chosen, `tx.height` and `tx.hash` will always be indexed
+1. `null`: This option disables indexing. If you don't need to
+   query transactions, you can choose this option to save space.
+2. `kv` (default): This is the simplest indexer, backed by
+   key-value storage (defaults to levelDB; see DBBackend).
+   When `kv` is chosen, `tx.height` and `tx.hash` will always be
+   indexed. This option is suitable for basic queries on transactions.
+3. `psql`: This indexer is backed by PostgreSQL. When psql is chosen,
+   `tx.height` and `tx.hash` will always be indexed. This option is
+   suitable for complex queries on transactions.
+
+An example to set the value to `kv` in `config.toml` is:
+
+```toml
+indexer = "kv"
+```
+
+Remember to restart `celestia-appd` after making changes to the
+configuration to load the new settings.
+
+### Optional: Discard ABCI responses configuration
+
+This section will guide you on how to configure your `config.toml` file in
+`celestia-app` to manage the storage of ABCI responses. ABCI responses are
+the results of executing transactions and are used for `/block_results` RPC
+queries and to reindex events in the command-line tool.
+
+The `discard_abci_responses` option allows you to control whether these
+responses are persisted in the state store:
+
+- `false` (default): ABCI responses are stored in the state store. This
+  ensures that ABCI responses are available for `/block_results` RPC queries
+  and for reindexing events. However, it can consume a significant amount
+  of disk space.
+- `true`: ABCI responses are not stored in the state store. This can
+  save a considerable amount of disk space, but `/block_results` RPC queries
+  and event reindexing will not be available.
+
+An example to set the value to false in `config.toml` is:
+
+```toml
+discard_abci_responses = false
+```
+
+Remember to restart `celestia-appd` after making changes to the
+configuration to load the new settings.
