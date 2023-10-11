@@ -7,7 +7,6 @@ description: Learn how to set up a Celestia consensus node.
 
 import constants from "../constants/constants.js";
 import InlineText from "@site/src/components/InlineText.js";
-import SeedsLink from "@site/src/components/SeedsLink.js";
 
 Full consensus nodes allow you to sync blockchain history in the Celestia
 consensus layer.
@@ -71,23 +70,28 @@ Copy the `genesis.json` file. For Mocha we are using:
 cp $HOME/networks/{constants.mochaChainId}/genesis.json $HOME/.celestia-app/config
 </code></pre>
 
-<SeedsLink chainId={constants.mochaChainId} />
-
-Set seeds manually in the `$HOME/.celestia-app/config/config.toml` file:
+Set seeds in the `$HOME/.celestia-app/config/config.toml` file:
 
 <pre><code>
-# Comma separated list of seed nodes to connect to<br/>
-seeds = ""
+SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{constants.mochaChainId}/seeds.txt | head -c -1 | tr '\n' ',')<br/>
+echo $SEEDS<br/>
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.celestia-app/config/config.toml<br/>
 </code></pre>
 
-Optionally, you can set peers from the networks repository with the following
-commands:
+Optionally, you can set persistent peers in your `config.toml` file.
+You can get the persistent peers from the networks repository with
+the following commands:
+
+:::danger
+
+Setting persistent peers is advised only if you are running a sentry node.
 
 <pre><code>
 PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{constants.mochaChainId}/peers.txt | head -c -1 | tr '\n' ',')<br/>
 echo $PERSISTENT_PEERS<br/>
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml<br/>
 </code></pre>
+:::
 
 </TabItem>
 <TabItem value="arabica" label="Arabica">
@@ -105,8 +109,6 @@ Copy the `genesis.json` file. For Arabica we are using:
 cp $HOME/networks/{constants.arabicaChainId}/genesis.json $HOME/.celestia-app/config
 </code></pre>
 
-<SeedsLink chainId={constants.arabicaChainId} />
-
 Set seeds manually in the `$HOME/.celestia-app/config/config.toml` file:
 
 <pre><code>
@@ -114,14 +116,20 @@ Set seeds manually in the `$HOME/.celestia-app/config/config.toml` file:
 seeds = ""
 </code></pre>
 
-Optionally, you can set peers from the networks repository with the following
-commands:
+Optionally, you can set persistent peers in your `config.toml` file.
+You can get the persistent peers from the networks repository with
+the following commands:
+
+:::danger
+
+Setting persistent peers is advised only if you are running a sentry node.
 
 <pre><code>
 PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{constants.arabicaChainId}/peers.txt | head -c -1 | tr '\n' ',')<br/>
 echo $PERSISTENT_PEERS<br/>
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml<br/>
 </code></pre>
+:::
 
 </TabItem>
 </Tabs>
@@ -592,6 +600,11 @@ Now that the QGB will be enabled for Mocha, all validators
 will need to run the QGB orchestrator to be able to sign attestations.
 To run it, please
 [refer to the documentation](https://docs.celestia.org/nodes/qgb-orchestrator/#how-to-run).
+
+#### Submit your validator information
+
+After starting your node, please submit your node as a seed and peer to the
+[networks repository](https://github.com/celestiaorg/networks).
 
 ## Extra resources for consensus nodes
 
