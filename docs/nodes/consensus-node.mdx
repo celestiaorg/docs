@@ -509,7 +509,7 @@ To register your EVM address, run the following. Be sure to replace
 VALIDATOR_ADDRESS=$(celestia-appd keys show $VALIDATOR_WALLET --bech val -a)
 EVM_ADDRESS="YOUR_EVM_ADDRESS"
 
-celestia-appd tx qgb register \
+celestia-appd tx blobstream register \
     $VALIDATOR_ADDRESS \
     $EVM_ADDRESS \
     --from $VALIDATOR_WALLET \
