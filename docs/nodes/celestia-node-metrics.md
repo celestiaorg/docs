@@ -21,7 +21,7 @@ command:
 <!-- markdownlint-disable MD013 -->
 
 ```sh
-celestia [<node-type>] start --core.ip <ip-address> --metrics.tls=false --metrics --metrics.endpoint <ip-address:port> --p2p.network <network>
+celestia [<node-type>] start --core.ip <ip-address> --metrics.tls=true --metrics --metrics.endpoint <ip-address:port> --p2p.network <network>
 ```
 
 Add metrics flags to your node start command and restart your node to apply it.
