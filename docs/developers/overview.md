@@ -17,6 +17,8 @@ It includes:
   - Generate a wallet with
     - [Celestia app](../../developers/celestia-app-wallet/)
     - [Celestia node](../../developers/celestia-node-key/)
+- [Submitting data to celestia](../../developers/submit-data/)
+- [Data retrievability and pruning](../../developers/retrievability/)
 - [Overview of the Celestia node API](../../developers/node-api/)
   - [Node API docs](/api/v0.11.0-rc12)
   - [How to use the Celestia node RPC API](../../developers/node-tutorial/)
