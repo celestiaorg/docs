@@ -1,5 +1,6 @@
 ---
 sidebar_label: Data retrievability and pruning
+description: Practices and expectations for data retrievability and pruning on Celestia.
 ---
 
 # Data retrievability and pruning
