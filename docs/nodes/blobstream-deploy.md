@@ -1,45 +1,45 @@
 ---
-sidebar_label: Deploy the QGB contract
-description: Learn how to deploy the QGB smart contract.
+sidebar_label: Deploy the Blobstream contract
+description: Learn how to deploy the Blobstream smart contract.
 ---
 
-# Deploy the QGB contract
+# Deploy the Blobstream contract
 
 <!-- markdownlint-disable MD013 -->
 
-The `deploy` is a helper command that allows deploying the QGB smart contract to a new EVM chain:
+The `deploy` is a helper command that allows deploying the Blobstream smart contract to a new EVM chain:
 
 ```ssh
-qgb deploy --help
+blobstream deploy --help
 
-Deploys the QGB contract and initializes it using the provided Celestia chain
+Deploys the Blobstream contract and initializes it using the provided Celestia chain
 
 Usage:
-  qgb deploy <flags> [flags]
-  qgb deploy [command]
+  blobstream deploy <flags> [flags]
+  blobstream deploy [command]
 
 Available Commands:
-  keys        QGB keys manager
+  keys        Blobstream keys manager
 ```
 
 ## How to run
 
-### Install the QGB binary
+### Install the Blobstream binary
 
-Make sure to have the QGB binary installed. Check [the QGB binary page](https://docs.celestia.org/nodes/qgb-binary) for more details.
+Make sure to have the Blobstream binary installed. Check [the Blobstream binary page](https://docs.celestia.org/nodes/blobstream-binary) for more details.
 
 ### Add keys
 
-In order to deploy a QGB smart contract, you will need a funded EVM address and its private key. The `keys` command will help you set up this key:
+In order to deploy a Blobstream smart contract, you will need a funded EVM address and its private key. The `keys` command will help you set up this key:
 
 ```ssh
-qgb deploy keys  --help
+blobstream deploy keys  --help
 ```
 
 To import your EVM private key, there is the `import` subcommand to assist you with that:
 
 ```ssh
-qgb deploy keys evm import --help
+blobstream deploy keys evm import --help
 ```
 
 This subcommand allows you to either import a raw ECDSA private key provided as plaintext, or import it from a file. The files are JSON keystore files encrypted using a passphrase like in [this example](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts).
@@ -47,17 +47,17 @@ This subcommand allows you to either import a raw ECDSA private key provided as 
 After adding the key, you can check that it's added via running:
 
 ```ssh
-qgb deploy keys evm list
+blobstream deploy keys evm list
 ```
 
-For more information about the `keys` command, check [the `keys` documentation](https://docs.celestia.org/nodes/qgb-keys).
+For more information about the `keys` command, check [the `keys` documentation](https://docs.celestia.org/nodes/blobstream-keys).
 
 ### Deploy the contract
 
-Now, we can deploy the QGB contract to a new EVM chain:
+Now, we can deploy the Blobstream contract to a new EVM chain:
 
 ```ssh
-qgb deploy \
+blobstream deploy \
   --evm.chain-id 4 \
   --evm.contract-address 0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 \
   --core.grpc.host localhost \
@@ -68,8 +68,8 @@ qgb deploy \
 
 The `latest` can be replaced by the following:
 
-- `latest`: to deploy the QGB contract starting from the latest validator set.
-- `earliest`: to deploy the QGB contract starting from genesis.
-- `nonce`: you can provide a custom nonce on where you want the QGB to start. If the provided nonce is not a `Valset` attestation, then the one before it will be used to deploy the QGB smart contract.
+- `latest`: to deploy the Blobstream contract starting from the latest validator set.
+- `earliest`: to deploy the Blobstream contract starting from genesis.
+- `nonce`: you can provide a custom nonce on where you want Blobstream to start. If the provided nonce is not a `Valset` attestation, then the one before it will be used to deploy the Blobstream smart contract.
 
-And, now you will see the QGB smart contract address in the logs along with the transaction hash.
+And, now you will see the Blobstream smart contract address in the logs along with the transaction hash.

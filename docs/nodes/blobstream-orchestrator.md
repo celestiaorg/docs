@@ -1,22 +1,22 @@
 ---
-sidebar_label: QGB Orchestrator
-description: Learn about the QGB Orchestrator.
+sidebar_label: Blobstream Orchestrator
+description: Learn about the Blobstream Orchestrator.
 ---
 
-# QGB Orchestrator
+# Blobstream Orchestrator
 
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD010 -->
 
-The role of the orchestrator is to sign attestations using its corresponding validator EVM private key. These attestations are generated within the QGB module of the Celestia-app state machine. To learn more about what attestations are, you can refer to [the QGB overview](https://github.com/celestiaorg/celestia-app/tree/main/x/qgb).
+The role of the orchestrator is to sign attestations using its corresponding validator EVM private key. These attestations are generated within the Blobstream module of the Celestia-app state machine. To learn more about what attestations are, you can refer to [the Blobstream overview](https://github.com/celestiaorg/celestia-app/tree/main/x/blobstream).
 
 ## How it works
 
 The orchestrator does the following:
 
 1. Connect to a Celestia-app full node or validator node via RPC and gRPC and wait for new attestations
-2. Once an attestation is created inside the QGB state machine, the orchestrator queries it.
-3. After getting the attestation, the orchestrator signs it using the provided EVM private key. The private key should correspond to the EVM address provided when creating the validator. Read [more about QGB keys](https://docs.celestia.org/nodes/qgb-keys/).
+2. Once an attestation is created inside the Blobstream state machine, the orchestrator queries it.
+3. After getting the attestation, the orchestrator signs it using the provided EVM private key. The private key should correspond to the EVM address provided when creating the validator. Read [more about Blobstream keys](https://docs.celestia.org/nodes/blobstream-keys/).
 4. Then, the orchestrator pushes its signature to the P2P network it is connected to, via adding it as a DHT value.
 5. Listen for new attestations and go back to step 2.
 
@@ -24,7 +24,7 @@ The orchestrator connects to a separate P2P network than the consensus or the da
 
 Bootstrapper for the Blockspace Race is:
 
-* `/dns/bootstr-incent-1.celestia.tools/tcp/30000/p2p/12D3KooWSGZ2LXW2soQFHgU82uLfN7pNW5gMMkTnu1fhMXG43TvP`
+- `/dns/bootstr-incent-1.celestia.tools/tcp/30000/p2p/12D3KooWSGZ2LXW2soQFHgU82uLfN7pNW5gMMkTnu1fhMXG43TvP`
 
 Make sure to specify it using the `-b` flag when running the orchestrator.
 
@@ -42,34 +42,34 @@ I[2023-04-26|00:04:28.175] waiting for routing table to populate        targetnu
 
 To run an orchestrator, you will need to have access to the following:
 
-* *Access to your EVM address private key. This latter doesn't need to be funded in any network. If yours is not yet set, check the [register an EVM address](#register-evm-address) section.
-* *A list of bootstrappers for the P2P network. These will be shared by the team for every network we plan on supporting.
-* *Access to your consensus node RPC and gRPC ports.
+- Access to your EVM address private key. This latter doesn't need to be funded in any network. If yours is not yet set, check the [register an EVM address](#register-evm-address) section.
+- A list of bootstrappers for the P2P network. These will be shared by the team for every network we plan on supporting.
+- Access to your consensus node RPC and gRPC ports.
 
-### Install the QGB binary
+### Install the Blobstream binary
 
-Make sure to have the QGB binary installed. Check [the QGB binary page](https://docs.celestia.org/nodes/qgb-binary) for more details.
+Make sure to have the Blobstream binary installed. Check [the Blobstream binary page](https://docs.celestia.org/nodes/blobstream-binary) for more details.
 
 ### Init the store
 
 Before starting the orchestrator, we will need to init the store:
 
 ```ssh
-qgb orchestrator init
+blobstream orchestrator init
 ```
 
 By default, the store will be created under `~/.orchestrator`. However, if you want to specify a custom location, you can use the `--home` flag. Or, you can use the following environment variable:
 
-| Variable            | Explanation                           | Default value     | Required |
-|---------------------|---------------------------------------|-------------------|----------|
-| `ORCHESTRATOR_HOME` | Home directory for the orchestrator   | `~/.orchestrator` | Optional |
+| Variable            | Explanation                         | Default value     | Required |
+| ------------------- | ----------------------------------- | ----------------- | -------- |
+| `ORCHESTRATOR_HOME` | Home directory for the orchestrator | `~/.orchestrator` | Optional |
 
 ### Add keys
 
 In order for the orchestrator to start, it will need two private keys:
 
-* *EVM private key
-* *P2P private key
+- EVM private key
+- P2P private key
 
 The EVM private key is the most important one since it needs to correspond to the EVM address provided when creating the validator.
 
@@ -78,7 +78,7 @@ The P2P private key is optional, and a new one will be generated automatically o
 The `keys` command will help you set up these keys:
 
 ```ssh
-qgb orchestrator keys  --help
+blobstream orchestrator keys  --help
 ```
 
 To add an EVM private key, check the next section.
@@ -92,7 +92,7 @@ To register an EVM address for your validator, check the section [Register EVM A
 To import your EVM private key, there is the `import` subcommand to assist you with that:
 
 ```ssh
-qgb orchestrator keys evm import --help
+blobstream orchestrator keys evm import --help
 ```
 
 This subcommand allows you to either import a raw ECDSA private key provided as plaintext, or import it from a file. The files are JSON keystore files encrypted using a passphrase like in [this example](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts).
@@ -100,10 +100,10 @@ This subcommand allows you to either import a raw ECDSA private key provided as 
 After adding the key, you can check that it's added via running:
 
 ```ssh
-qgb orchestrator keys evm list
+blobstream orchestrator keys evm list
 ```
 
-For more information about the `keys` command, check [the `keys` documentation](https://docs.celestia.org/nodes/qgb-keys).
+For more information about the `keys` command, check [the `keys` documentation](https://docs.celestia.org/nodes/blobstream-keys).
 
 ### Start the orchestrator
 
@@ -112,18 +112,18 @@ Now that we have the store initialized, we can start the orchestrator. Make sure
 The orchestrator accepts the following flags:
 
 ```ssh
-qgb orchestrator start --help
+blobstream orchestrator start --help
 
-Starts the QGB orchestrator to sign attestations
+Starts the Blobstream orchestrator to sign attestations
 
 Usage:
-  qgb orchestrator start <flags> [flags]
+  blobstream orchestrator start <flags> [flags]
 ```
 
 To start the orchestrator in the default home directory, run the following:
 
 ```ssh
-qgb orchestrator start \
+blobstream orchestrator start \
     --core.grpc.host localhost \
     --core.grpc.port 9090 \
     --core.rpc.host localhost \
@@ -145,7 +145,7 @@ If not, then the signatures may not be available to the network and relayers wil
 
 #### Register EVM Address
 
-When creating a validator, a random EVM address corresponding to its operator is set in the QGB state. This latter will be used by the orchestrator to sign attestations. And since validators will generally not have access to its corresponding private key, that address needs to be edited with one whose private key is known to the validator operator.
+When creating a validator, a random EVM address corresponding to its operator is set in the Blobstream state. This latter will be used by the orchestrator to sign attestations. And since validators will generally not have access to its corresponding private key, that address needs to be edited with one whose private key is known to the validator operator.
 
 To edit an EVM address for a certain validator, its corresponding account needs to send a `RegisterEVMAddress` transaction with the new address.
 
@@ -160,13 +160,13 @@ This assumes that you're using the default home directory, the default keystore 
 To check which EVM address is registered for your `valoper` address, run the following:
 
 ```ssh
-celestia-appd query qgb evm <validator_valoper_address>
+celestia-appd query blobstream evm <validator_valoper_address>
 ```
 
 Then, to proceed with the edit, run the following command:
 
 ```shell
-celestia-appd tx qgb register \
+celestia-appd tx blobstream register \
     <valoper_address> \
     <new_evm_address> \
     --fees 30000utia \
@@ -244,11 +244,11 @@ logs:
 - events:
   - attributes:
     - key: action
-      value: /celestia.qgb.v1.MsgRegisterEVMAddress
+      value: /celestia.blobstream.v1.MsgRegisterEVMAddress
     type: message
   log: ""
   msg_index: 0
-raw_log: '[{"msg_index":0,"events":[{"type":"message","attributes":[{"key":"action","value":"/celestia.qgb.v1.MsgRegisterEVMAddress"}]}]}]'
+raw_log: '[{"msg_index":0,"events":[{"type":"message","attributes":[{"key":"action","value":"/celestia.blobstream.v1.MsgRegisterEVMAddress"}]}]}]'
 timestamp: ""
 tx: null
 txhash: 4199EA959A2CFEFCD4726D8D8F7B536458A46A27318D3483A4E9614F560606BC
@@ -257,7 +257,7 @@ txhash: 4199EA959A2CFEFCD4726D8D8F7B536458A46A27318D3483A4E9614F560606BC
 Now, you can verify that the EVM address has been updated using the following command:
 
 ```ssh
-celestia-appd query qgb evm <validator_valoper_address>
+celestia-appd query blobstream evm <validator_valoper_address>
 ```
 
 Now, you can restart the orchestrator, and it should start signing.
@@ -268,17 +268,17 @@ Note: A validator set change is triggered if more than 5% of the total staking p
 
 If you want to start the orchestrator as a `systemd` service, you could use the following:
 
-* *Make sure you have the store initialized and the EVM address private key imported. Check the above sections for how to do that.
-* *Put the following configuration under: `/etc/systemd/system/orchestrator.service`:
+- Make sure you have the store initialized and the EVM address private key imported. Check the above sections for how to do that.
+- Put the following configuration under: `/etc/systemd/system/orchestrator.service`:
 
 ```text
 [Unit]
-Description=QGB orchestrator service
+Description=Blobstream orchestrator service
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=<absolute_path_to_qgb_binary> orchestrator start --evm.account <evm_account> --evm.passphrase <evm_passphrase> --core.grpc.host <grpc_endpoint_host> --core.grpc.port <grpc_endpoint_port> --core.rpc.host <rpc_endpoint_host> --core.rpc.port <rpc_endpoint_port> --p2p.bootstrappers <bootstrappers_list>
+ExecStart=<absolute_path_to_blobstream_binary> orchestrator start --evm.account <evm_account> --evm.passphrase <evm_passphrase> --core.grpc.host <grpc_endpoint_host> --core.grpc.port <grpc_endpoint_port> --core.rpc.host <rpc_endpoint_host> --core.rpc.port <rpc_endpoint_port> --p2p.bootstrappers <bootstrappers_list>
 LimitNOFILE=infinity
 LimitCORE=infinity
 Restart=always
@@ -293,13 +293,13 @@ TTYPath=/dev/tty0
 WantedBy=multi-user.target
 ```
 
-* *Start the orchestrator service using:
+- Start the orchestrator service using:
 
 ```shell
 sudo systemctl start orchestrator
 ```
 
-* Follow the logs to see if everything is running correctly:
+- Follow the logs to see if everything is running correctly:
 
 ```shell
 sudo journalctl -f -u orchestrator
