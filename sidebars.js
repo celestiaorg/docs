@@ -307,6 +307,11 @@ const sidebars = {
       id: "developers/submit-data"
     },
     {
+      type: "doc",
+      label: "Data retrievability and pruning",
+      id: "developers/retrievability",
+    },
+    {
       type: "category",
       label: "Node API",
       link: {
