@@ -158,7 +158,7 @@ celestia-appd tx blob PayForBlobs <hex encoded namespace> <hex encoded data> [fl
 Using `blob.Submit`:
 
 ```terminal
-celestia rpc blob submit <hex encoded namespace> <hex encoded data>
+celestia blob submit <hex encoded namespace> <hex encoded data>
 ```
 
 Learn more in the [node tutorial](../../developers/node-tutorial).
