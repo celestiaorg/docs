@@ -18,19 +18,19 @@ This documentation site is built with [VitePress](https://vitepress.dev)
 
 We love contributions from the community! Whether you're fixing typos, improving content clarity, or adding new topics, every contribution helps.
 
-* Fork & Clone: Fork this repository and clone it to your local machine.
-* Branch: Always create a new branch for your changes. Naming it relevantly.
-* Commit Changes: Make your changes and commit them with a clear and concise commit message.
-* Push & Create PR: Push your changes to your fork and create a pull request to the main branch of this repository.
+- Fork & Clone: Fork this repository and clone it to your local machine.
+- Branch: Always create a new branch for your changes. Naming it relevantly.
+- Commit Changes: Make your changes and commit them with a clear and concise commit message.
+- Push & Create PR: Push your changes to your fork and create a pull request to the main branch of this repository.
 
 Please ensure to review the detailed Contribution Guidelines above before making a pull request.
 
 ## Directory Structure
 
-* /tutorials: Step-by-step instructions to help users build their own rollups with Celestia.
-* /reference: Technical reference materials, such as configuration options and details about the Celestia stack.
+- /tutorials: Step-by-step instructions to help users build their own rollups with Celestia.
+- /reference: Technical reference materials, such as configuration options and details about the Celestia stack.
 <!-- * /guides [WIP]: In-depth articles that cover specific topics in detail. -->
-* /public: Images, diagrams, and other media files used in the documentation.
+- /public: Images, diagrams, and other media files used in the documentation.
 
 ## Feedback & Suggestions
 

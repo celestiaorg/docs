@@ -5,8 +5,8 @@
 1. all rpc commands have basic flags
 
 - default rpc address
-- auth token* required OR node store flag
-- node store flag* required OR auth token
+- auth token\* required OR node store flag
+- node store flag\* required OR auth token
 
 at start of tutorial, have user set $NODE_STORE or AUTH_TOKEN and then use those
 variables in commands
@@ -194,7 +194,7 @@ rm "go$ver.darwin-amd64.tar.gz"
 :::
 
 3. Add your `/usr/local/go/bin` directory to
-your `$PATH` if you have not already:
+   your `$PATH` if you have not already:
 
 ::: code-group
 
@@ -230,7 +230,7 @@ Install the `celestia-node` binary by running the following
 commands:
 
 1. Remove any existing copy of `celestia-node`, clone the repository,
-and change into the directory.
+   and change into the directory.
 
 ```bash
 cd $HOME
@@ -477,11 +477,13 @@ the type of node and `<network>`
 with the network that you are running your node on:
 
 ```bash
+
 ```
 
 Here's an example of how to set your auth token on a light node on Arabica:
 
 ```bash
+
 ```
 
 ##### Auth token on custom or private network

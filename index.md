@@ -1,7 +1,7 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
-titleTemplate: ':title'
+titleTemplate: ":title"
 
 hero:
   name: "Celestia"

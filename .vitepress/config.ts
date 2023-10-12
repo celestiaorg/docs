@@ -7,256 +7,322 @@ const telegramSVG = ` <svg width="24" height="24" viewBox="0 0 24 24" fill="none
 const { BASE: base = "/docs-vitepress/" } = process.env;
 
 // https://vitepress.dev/concepts/site-config
-export default ({
-  lang: 'en-US',
+export default {
+  lang: "en-US",
   title: "Celestia Docs",
   description: "The first modular blockchain network.",
   lastUpdated: true,
   cleanUrls: true,
   ignoreDeadLinks: true,
   base: base,
-  
+
   head: [
-    ['link', { rel: 'icon', href: '/docs-vitepress/favicons/favicon.svg', type: 'image/svg+xml' }],
     [
-      'link',
+      "link",
       {
-        rel: 'icon',
-        type: 'image/svg+xml',
-        href: '/docs-vitepress/favicons/favicon-dark.svg',
-        media: '(prefers-color-scheme: dark)',
+        rel: "icon",
+        href: "/docs-vitepress/favicons/favicon.svg",
+        type: "image/svg+xml",
       },
     ],
-    ['link', { rel: 'icon', href: '/docs-vitepress/favicons/favicon.png', type: 'image/png' }],
     [
-      'link',
+      "link",
       {
-        rel: 'icon',
-        type: 'image/png',
-        href: '/docs-vitepress/favicons/favicon-dark.png',
-        media: '(prefers-color-scheme: dark)',
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/docs-vitepress/favicons/favicon-dark.svg",
+        media: "(prefers-color-scheme: dark)",
       },
     ],
-    ['link', { rel: 'shortcut icon', href: '/docs-vitepress/favicons/favicon.ico', type: 'image/x-icon' }],
     [
-      'link',
+      "link",
       {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/docs-vitepress/favicons/favicon-dark.ico',
-        media: '(prefers-color-scheme: dark)',
+        rel: "icon",
+        href: "/docs-vitepress/favicons/favicon.png",
+        type: "image/png",
       },
     ],
-    ['meta', { name: 'msapplication-TileColor', content: '#fff' }],
-    ['meta', { name: 'theme-color', content: '#fff' }],
-    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }],
+    [
+      "link",
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "/docs-vitepress/favicons/favicon-dark.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    [
+      "link",
+      {
+        rel: "shortcut icon",
+        href: "/docs-vitepress/favicons/favicon.ico",
+        type: "image/x-icon",
+      },
+    ],
+    [
+      "link",
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/docs-vitepress/favicons/favicon-dark.ico",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    ["meta", { name: "msapplication-TileColor", content: "#fff" }],
+    ["meta", { name: "theme-color", content: "#fff" }],
+    [
+      "meta",
+      {
+        name: "viewport",
+        content:
+          "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+      },
+    ],
     // ['meta', { property: 'og:title', content: 'Celestia' }],
     // ['meta', { property: 'og:description', content: 'The first modular blockchain network.' }],
-    ['meta', { property: 'description', content: 'The first modular blockchain network.' }],
-    ['meta', { httpEquiv: 'Content-Language', content: 'en' }],
-    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:image', content: '/docs-vitepress/Celestia-og.png' }],
-    ['meta', { name: 'twitter:site:domain', content: 'celestiaorg.github.io/docs-vitepress' }],
-    ['meta', { name: 'twitter:url', content: 'https://celestiaorg.github.io/docs-vitepress' }],
-    ['meta', { name: 'og:image', content: '/docs-vitepress/Celestia-og.png' }],
-    ['meta', { name: 'apple-mobile-web-app-title', content: 'Celestia' }],
     [
-      'script',
+      "meta",
+      {
+        property: "description",
+        content: "The first modular blockchain network.",
+      },
+    ],
+    ["meta", { httpEquiv: "Content-Language", content: "en" }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
+    [
+      "meta",
+      { name: "twitter:image", content: "/docs-vitepress/Celestia-og.png" },
+    ],
+    [
+      "meta",
+      {
+        name: "twitter:site:domain",
+        content: "celestiaorg.github.io/docs-vitepress",
+      },
+    ],
+    [
+      "meta",
+      {
+        name: "twitter:url",
+        content: "https://celestiaorg.github.io/docs-vitepress",
+      },
+    ],
+    ["meta", { name: "og:image", content: "/docs-vitepress/Celestia-og.png" }],
+    ["meta", { name: "apple-mobile-web-app-title", content: "Celestia" }],
+    [
+      "script",
       {},
       `
       window.chatbaseConfig = {
         chatbotId: "oeduJpy4UAtpDuOQcCuVM",
       }
-      `
+      `,
     ],
-    ['script', { src: 'https://www.chatbase.co/embed.min.js', id: 'oeduJpy4UAtpDuOQcCuVM', defer: true }],
     [
-      'script',
+      "script",
       {
-        src: 'https://plausible.celestia.org/js/plausible.js',
-        'data-domain': 'docs.celestia.org',
-        defer: 'true'
-      }
+        src: "https://www.chatbase.co/embed.min.js",
+        id: "oeduJpy4UAtpDuOQcCuVM",
+        defer: true,
+      },
+    ],
+    [
+      "script",
+      {
+        src: "https://plausible.celestia.org/js/plausible.js",
+        "data-domain": "docs.celestia.org",
+        defer: "true",
+      },
     ],
   ],
-  
+
   themeConfig: {
     // https://vitepress.dev/concepts/default-theme-config
     nav: nav(),
-    
+
     search: {
-      provider: 'local',
+      provider: "local",
       options: {
-        detailedView: true
-      }
+        detailedView: true,
+      },
     },
 
     sidebar: {
-      '/': sidebarHome(),
+      "/": sidebarHome(),
     },
 
     editLink: {
-      pattern: 'https://github.com/celestiaorg/docs-vitepress/edit/main/:path',
-      text: 'Edit this page on GitHub'
+      pattern: "https://github.com/celestiaorg/docs-vitepress/edit/main/:path",
+      text: "Edit this page on GitHub",
     },
 
     logo: {
-      alt: 'Celestia Logo',
-      light: '/logo-light.svg',
-      dark: '/logo-dark.svg'
+      alt: "Celestia Logo",
+      light: "/logo-light.svg",
+      dark: "/logo-dark.svg",
     },
 
     siteTitle: false,
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/celestiaorg/docs-vitepress' },
-      { icon: 'twitter', link: 'https://twitter.com/CelestiaOrg' },
-      { icon: 'youtube', link: 'https://www.youtube.com/@CelestiaNetwork' },
-      { icon: 'discord', link: 'https://discord.com/invite/YsnTPcSfWQ' },
-      { icon: { svg: telegramSVG }, link: 'https://t.me/CelestiaCommunity' },
+      { icon: "github", link: "https://github.com/celestiaorg/docs-vitepress" },
+      { icon: "twitter", link: "https://twitter.com/CelestiaOrg" },
+      { icon: "youtube", link: "https://www.youtube.com/@CelestiaNetwork" },
+      { icon: "discord", link: "https://discord.com/invite/YsnTPcSfWQ" },
+      { icon: { svg: telegramSVG }, link: "https://t.me/CelestiaCommunity" },
     ],
 
     transformHead(assets: string[]): HeadConfig[] {
-      const ruberoidLightFont = assets.find(file => /Ruberoid-Light\.\w+\.otf/)
-      const ruberoidRegularFont = assets.find(file => /Ruberoid-Regular\.\w+\.otf/)
-      const ruberoidBoldFont = assets.find(file => /Ruberoid-Bold\.\w+\.otf/)
-  
-      const headConfig: HeadConfig[] = []
-  
+      const ruberoidLightFont = assets.find(
+        (file) => /Ruberoid-Light\.\w+\.otf/,
+      );
+      const ruberoidRegularFont = assets.find(
+        (file) => /Ruberoid-Regular\.\w+\.otf/,
+      );
+      const ruberoidBoldFont = assets.find((file) => /Ruberoid-Bold\.\w+\.otf/);
+
+      const headConfig: HeadConfig[] = [];
+
       if (ruberoidLightFont) {
         headConfig.push([
-          'link',
+          "link",
           {
-            rel: 'preload',
+            rel: "preload",
             href: ruberoidLightFont,
-            as: 'font',
-            type: 'font/opentype',
-            crossorigin: ''
-          }
-        ])
+            as: "font",
+            type: "font/opentype",
+            crossorigin: "",
+          },
+        ]);
       }
-  
+
       if (ruberoidRegularFont) {
         headConfig.push([
-          'link',
+          "link",
           {
-            rel: 'preload',
+            rel: "preload",
             href: ruberoidRegularFont,
-            as: 'font',
-            type: 'font/opentype',
-            crossorigin: ''
-          }
-        ])
+            as: "font",
+            type: "font/opentype",
+            crossorigin: "",
+          },
+        ]);
       }
-  
+
       if (ruberoidBoldFont) {
         headConfig.push([
-          'link',
+          "link",
           {
-            rel: 'preload',
+            rel: "preload",
             href: ruberoidBoldFont,
-            as: 'font',
-            type: 'font/opentype',
-            crossorigin: ''
-          }
-        ])
+            as: "font",
+            type: "font/opentype",
+            crossorigin: "",
+          },
+        ]);
       }
-      return headConfig
-    }
+      return headConfig;
+    },
   },
   transformPageData(pageData) {
     pageData.frontmatter.head ??= [];
     pageData.frontmatter.head.push([
-      'meta',
+      "meta",
       {
-        name: 'og:title',
+        name: "og:title",
         content:
-          pageData.frontmatter.layout === 'home'
+          pageData.frontmatter.layout === "home"
             ? `Celestia Docs`
             : `${pageData.title} | Celestia Docs`,
       },
       {
-        name: 'og:description',
-        content:
-          pageData.frontmatter.layout === `${pageData.description}`,
+        name: "og:description",
+        content: pageData.frontmatter.layout === `${pageData.description}`,
       },
     ]);
   },
-})
+};
 
 function nav() {
   return [
-    { text: 'Learn', link: '/learn/' },
+    { text: "Learn", link: "/learn/" },
     {
-      text: 'Participate',
-        items: [
-          { text: 'Run a node', link: '/developers/participate' },
-          {
-            text: 'Developers',
-            items: [
-              { text: 'Blob tutorial', link: '/developers/node-tutorial' },
-              { text: 'celestia-app specs', link: 'https://celestiaorg.github.io/celestia-app/' },
-              { text: 'celestia-node API', link: 'https://celestia-node.surge.sh/' },
-            ],
-          },
-          { text: 'Community', link: '/community/' },
-          { text: 'Modular Academy', link: '/academy/' },
-      ],   
+      text: "Participate",
+      items: [
+        { text: "Run a node", link: "/developers/participate" },
+        {
+          text: "Developers",
+          items: [
+            { text: "Blob tutorial", link: "/developers/node-tutorial" },
+            {
+              text: "celestia-app specs",
+              link: "https://celestiaorg.github.io/celestia-app/",
+            },
+            {
+              text: "celestia-node API",
+              link: "https://celestia-node.surge.sh/",
+            },
+          ],
+        },
+        { text: "Community", link: "/community/" },
+        { text: "Modular Academy", link: "/academy/" },
+      ],
     },
-  ]
+  ];
 }
 
 function sidebarHome() {
   return [
     {
-      text: 'Learn',
+      text: "Learn",
       collapsed: true,
-      items: [
-        { text: 'Overview', link: '/learn/' },
-      ]
+      items: [{ text: "Overview", link: "/learn/" }],
     },
     {
-      text: 'Run a node',
+      text: "Run a node",
       collapsed: true,
       items: [
         {
-          text: 'Networks',
+          text: "Networks",
           collapsed: true,
-          items: [
-            { text: 'Overview', link: '/developers/participate' },
-          ]
+          items: [{ text: "Overview", link: "/developers/participate" }],
         },
-      ]
+      ],
     },
     {
-      text: 'Developers',
+      text: "Developers",
       collapsed: true,
       items: [
         {
-          text: 'Testing area',
+          text: "Testing area",
           collapsed: true,
           items: [
-            { text: 'Celestia-app specifications', link: 'https://celestiaorg.github.io/celestia-app/' },
-            { text: 'Celestia-node RPC API documentation', link: 'https://node-rpc-docs.celestia.org/' },
-            { text: 'Node RPC CLI tutorial', link: '/developers/node-tutorial'},
-            { text: 'Test page', link: '/developers/test-page'},
-          ]
+            {
+              text: "Celestia-app specifications",
+              link: "https://celestiaorg.github.io/celestia-app/",
+            },
+            {
+              text: "Celestia-node RPC API documentation",
+              link: "https://node-rpc-docs.celestia.org/",
+            },
+            {
+              text: "Node RPC CLI tutorial",
+              link: "/developers/node-tutorial",
+            },
+            { text: "Test page", link: "/developers/test-page" },
+          ],
         },
-      ]
+      ],
     },
     {
-      text: 'Community',
+      text: "Community",
       collapsed: true,
-      items: [
-        { text: 'Overview', link: '/community/'},
-      ]
+      items: [{ text: "Overview", link: "/community/" }],
     },
     {
-      text: 'Modular Academy',
+      text: "Modular Academy",
       collapsed: true,
-      items: [
-        { text: 'Overview', link: '/academy/'},
-      ]
+      items: [{ text: "Overview", link: "/academy/" }],
     },
-  ]
+  ];
 }
