@@ -5,6 +5,7 @@
     "docs:preview": "vitepress preview",
     "prepare": "husky install",
     "lint": "eslint --fix",
+    "lint:md": "markdownlint '**/*.md'",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,md}'"
   },
   "devDependencies": {
@@ -15,6 +16,7 @@
     "husky": "^8.0.3",
     "i": "^0.3.7",
     "lint-staged": "^14.0.1",
+    "markdownlint-cli": "^0.37.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
     "vitepress": "1.0.0-rc.20"
@@ -25,9 +27,7 @@
     "vue-clipboard2": "^0.3.3"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "yarn lint",
-      "yarn format"
-    ]
+    "*.{js,jsx,ts,tsx}": ["yarn lint", "yarn format"],
+    "*.md": ["yarn lint:md", "yarn format"]
   }
 }
