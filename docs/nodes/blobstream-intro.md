@@ -101,7 +101,6 @@ The following sections in this category presume you have the following setup:
 
 - A Celestia App
 [validator node](../consensus-node#optional-setting-up-a-validator) running
-- A Celestia Node [bridge node](../bridge-node) running
 
 ## Next steps
 
