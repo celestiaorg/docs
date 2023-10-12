@@ -1,3 +1,7 @@
+<!-- markdownlint-disable MD033 -->
+
+# Participate in the Celestia testnets
+
 <script setup>
 import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
 import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
@@ -5,8 +9,6 @@ import CoffeeVersionTags from '../.vitepress/components/CoffeeVersionTags.vue'
 import InlineText from '../.vitepress/components/InlineText.vue'
 import constants from '../.vitepress/versions/constants.js'
 </script>
-
-# Participate in the Celestia testnets
 
 Celestia currently has two existing testnets that you can participate in:
 
