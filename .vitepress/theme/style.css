@@ -7,13 +7,13 @@
  * Colors
  * -------------------------------------------------------------------------- */
 
- :root {
-  --vp-c-brand: #7B2BF9;
-  --vp-c-brand-light: #9350FA;
-  --vp-c-brand-lighter: #A970FB;
-  --vp-c-brand-lightest: #BF90FC;
-  --vp-c-brand-dark: #6902E0;
-  --vp-c-brand-darker: #5801C9;
+:root {
+  --vp-c-brand: #7b2bf9;
+  --vp-c-brand-light: #9350fa;
+  --vp-c-brand-lighter: #a970fb;
+  --vp-c-brand-lightest: #bf90fc;
+  --vp-c-brand-dark: #6902e0;
+  --vp-c-brand-darker: #5801c9;
   --vp-c-brand-dimm: rgba(123, 43, 249, 0.08);
 }
 
@@ -41,14 +41,14 @@
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(
     120deg,
-    #7B2BF9 30%,
-    #FD63D9
+    #7b2bf9 30%,
+    #fd63d9
   );
 
   --vp-home-hero-image-background-image: linear-gradient(
     -45deg,
-    #7B2BF9 50%,
-    #FD63D9 50%
+    #7b2bf9 50%,
+    #fd63d9 50%
   );
   --vp-home-hero-image-filter: blur(40px);
 }
@@ -93,13 +93,18 @@
 
 @font-face {
   font-family: "RuberoidBold";
-  src: url('/fonts/Ruberoid/Ruberoid-Bold.otf') format('opentype');
+  src: url("/fonts/Ruberoid/Ruberoid-Bold.otf") format("opentype");
 }
 
 :root {
-  --font-primary: 'RuberoidBold', sans-serif;
+  --font-primary: "RuberoidBold", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-primary);
 }

@@ -1,18 +1,21 @@
 # Celestia-node RPC CLI tutorial
 
+<!-- markdownlint-disable MD033 -->
+
 ## notes from call to implement still
 
 1. all rpc commands have basic flags
 
 - default rpc address
-- auth token* required OR node store flag
-- node store flag* required OR auth token
+- auth token\* required OR node store flag
+- node store flag\* required OR auth token
 
 at start of tutorial, have user set $NODE_STORE or AUTH_TOKEN and then use those
 variables in commands
 
 a) if user passes auth token, creates a client, and we're ready to go
-b) if user doesnt pass auth token, check node store flag, create token from config
+b) if user doesnt pass auth token, check node store flag, create token from
+config
 
 get help
 
@@ -42,7 +45,8 @@ celestia node info --node.store $HOME/.celestia-light-mocha-4/
 import { versions } from '/.vitepress/versions/data.js'
 </script>
 
-In this tutorial, we will cover how to use the Celestia Node RPC API to submit and retrieve data (blobs) from the data availability layer by their namespace.
+In this tutorial, we will cover how to use the Celestia Node RPC API to submit
+and retrieve data (blobs) from the data availability layer by their namespace.
 
 ::: details Table of contents
 
@@ -51,7 +55,8 @@ In this tutorial, we will cover how to use the Celestia Node RPC API to submit a
 :::
 
 ::: tip
-View [a video tutorial for setting up a Celestia light node](../developers/light-node-video).
+View
+[a video tutorial for setting up a Celestia light node](../developers/light-node-video).
 :::
 
 ::: warning
@@ -83,7 +88,8 @@ you can skip to the [RPC CLI guide section](#rpc-cli-guide).
 
 ## Hardware requirements
 
-The following minimum hardware requirements are recommended for running a light node:
+The following minimum hardware requirements are recommended for running a
+light node:
 
 - Memory: **2 GB RAM**
 - CPU: **Single Core**
@@ -109,16 +115,21 @@ sudo yum update
 
 :::
 
-2. Install essential packages that are necessary to execute many tasks like downloading files, compiling, and monitoring the node:
+<!-- markdownlint-disable MD029 -->
+
+2. Install essential packages that are necessary to execute many tasks like
+   downloading files, compiling, and monitoring the node:
 
 ::: code-group
 
 ```bash [APT]
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential \
+  git make ncdu -y
 ```
 
 ```bash [YUM]
-sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential git make ncdu -y
+sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential \
+  git make ncdu -y
 ```
 
 ```bash [Mac]
@@ -194,7 +205,7 @@ rm "go$ver.darwin-amd64.tar.gz"
 :::
 
 3. Add your `/usr/local/go/bin` directory to
-your `$PATH` if you have not already:
+   your `$PATH` if you have not already:
 
 ::: code-group
 
@@ -230,7 +241,7 @@ Install the `celestia-node` binary by running the following
 commands:
 
 1. Remove any existing copy of `celestia-node`, clone the repository,
-and change into the directory.
+   and change into the directory.
 
 ```bash
 cd $HOME
@@ -297,7 +308,8 @@ commit hash, build date, system version, and Golang version.
 Now, let's instantiate a Celestia Light node:
 
 ::: tip
-RPC Endpoints are exposed in all celestia-node types such as light, bridge and full nodes.
+RPC Endpoints are exposed in all celestia-node types such as light, bridge and
+full nodes.
 :::
 
 ::: code-group
@@ -375,7 +387,8 @@ celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 ```
 
 ```bash[Arabica]
-celestia light start --core.ip consensus-full.celestia-arabica-10.com --p2p.network arabica
+celestia light start --core.ip consensus-full.celestia-arabica-10.com \
+  --p2p.network arabica
 ```
 
 :::
@@ -386,7 +399,8 @@ You can create your key for your node by running the following
 command from the `celestia-node` directory:
 
 ```bash
-./cel-key add <key_name> --keyring-backend test --node.type light --p2p.network <network>
+./cel-key add <key_name> --keyring-backend test --node.type light \
+  --p2p.network <network>
 ```
 
 You can start your light node with the key created by running
@@ -399,11 +413,13 @@ celestia light start --core.ip <ip-address> --keyring.accname <key_name>
 ```
 
 ```bash [Mocha]
-celestia light start --core.ip <ip-address> --keyring.accname <key_name> --p2p.network mocha
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> \
+  --p2p.network mocha
 ```
 
 ```bash [Arabica]
-celestia light start --core.ip <ip-address> --keyring.accname <key_name> --p2p.network arabica
+celestia light start --core.ip <ip-address> --keyring.accname <key_name> \
+  --p2p.network arabica
 ```
 
 :::
@@ -423,7 +439,8 @@ If you would like to fund your wallet with testnet tokens, head over
 to either the `#mocha-faucet` or `#arabica-faucet` channels on the
 [Celestia Discord](https://discord.gg/celestiacommunity).
 
-You can request funds to your wallet address using the following command in Discord:
+You can request funds to your wallet address using the following command in
+Discord:
 
 ```discord
 $request <wallet-address>
@@ -440,8 +457,10 @@ This section of the tutorial will teach you how to interact with a
 Celestia node's
 [RPC (Remote Procedure Call) API](https://node-rpc-docs.celestia.org/).
 
-First, you will need to [install and run `celestia-node`](#setting-up-dependencies) if
-you have not already. Open up another terminal window in order to begin querying the API.
+First, you will need to
+[install and run `celestia-node`](#setting-up-dependencies) if
+you have not already. Open up another terminal window in order to begin
+querying the API.
 
 The Celestia Node CLI (Command Line Interface)
 allows you to interact with the node's RPC API via
@@ -477,11 +496,13 @@ the type of node and `<network>`
 with the network that you are running your node on:
 
 ```bash
+
 ```
 
 Here's an example of how to set your auth token on a light node on Arabica:
 
 ```bash
+
 ```
 
 ##### Auth token on custom or private network
@@ -489,8 +510,8 @@ Here's an example of how to set your auth token on a light node on Arabica:
 This section is for users who are using a `CELESTIA_CUSTOM` or private network.
 
 :::tip
-If you are using a private and custom network, you will **need to set the location of the
-node store in your auth command.**
+If you are using a private and custom network, you will **need to set
+the location of the node store in your auth command.**
 :::
 
 ```bash
@@ -516,7 +537,8 @@ As an example, this is what a completely custom network would look like:
 CELESTIA_CUSTOM=robusta-22 celestia light init
 
 # Set auth token
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network private --node.store $HOME/.celestia-light-robusta-22)
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network \
+  private --node.store $HOME/.celestia-light-robusta-22)
 ```
 
 #### Host URL
@@ -563,7 +585,8 @@ useful [Golang Playground we created](https://go.dev/play/p/7ltvaj8lhRl).
 Here is an example of the format of the `PayForBlobs` transaction:
 
 ```bash
-celestia blob submit [namespace in hex] [data in hex] [optional: fee] [optional: gasLimit] [node store flag or auth token]
+celestia blob submit [namespace in hex] [data in hex] \
+  [optional: fee] [optional: gasLimit] [node store flag or auth token]
 ```
 
 We run the following to submit a blob to the network in hexadecimal format:
@@ -587,7 +610,8 @@ We can also use a string of text as the data value, which will be
 converted to base64. Here is an example of the format:
 
 ```bash
-celestia blob submit [namespace in hex] '[data]' [optional: fee] [optional: gasLimit] [node store flag or auth token]
+celestia blob submit [namespace in hex] '[data]' \
+  [optional: fee] [optional: gasLimit] [node store flag or auth token]
 ```
 
 And an example to submit "gm" as the plain-text data:
@@ -623,24 +647,29 @@ to improve UX.
 `submit` can be done in a few ways:
 
 - The **namespace ID** can be encoded as either hex or base64
-- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal string which will be encoded to base64 (`'Hello There!'`)
+- The **blob** can be hex (`0x...`), base64 (`"..."`), or a normal
+  string which will be encoded to base64 (`'Hello There!'`)
 
 ### Retrieving data
 
 After submitting your PFB transaction, upon success, the node will return
 the block height for which the PFB transaction was included. You can then
 use that block height and the namespace ID with which you submitted your
-PFB transaction to get your message shares (data) returned to you. In this example,
-the block height we got was 219832 which we will use for the following command.
-Read more about shares in the [Celestia Specs](https://celestiaorg.github.io/celestia-app/specs/shares.html).
+PFB transaction to get your message shares (data) returned to you. In this
+example, the block height we got was 219832 which we will use for the following
+command. Read more about shares in the
+[Celestia Specs](https://celestiaorg.github.io/celestia-app/specs/shares.html).
 
 Here is what an example of the format of the `get` command looks like:
 
 ```bash
-celestia blob get [block height] [namespace in hex] [commitment from output above] [node store or auth]
+celestia blob get [block height] [namespace in hex] \
+  [commitment from output above] [node store or auth]
 ```
 
 Here is an example command to retrieve the data from above, on `arabica-10`:
+
+<!-- markdownlint-disable MD013 -->
 
 ```bash
 celestia blob get 221302 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E= --node.store $HOME/.celestia-light-mocha-4/
@@ -661,11 +690,15 @@ Will generate the following output:
 
 The output here is base64 decoded to plain-text.
 
-To see the base64 response, use the `--base64` flag set to `TRUE` (`--base64=TRUE`):
+To see the base64 response, use the `--base64` flag set to `TRUE`
+(`--base64=TRUE`):
 
 ```bash
-celestia blob get 219832 0x42690c204d39600fddd3 IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E= --base64=TRUE
+celestia blob get 219832 0x42690c204d39600fddd3 \
+  IXg+08HV5RsPF3Lle8PH+B2TUGsGUsBiseflxh6wB5E= --base64=TRUE
 ```
+
+<!-- markdownlint-enable MD013 -->
 
 The response will look similar to this:
 
@@ -680,7 +713,8 @@ The response will look similar to this:
 }
 ```
 
-To get all blobs in the namespace at the block height, use `get-all` instead of `get`:
+To get all blobs in the namespace at the block height, use `get-all` instead
+of `get`:
 
 ```bash
 celestia blob get-all 219832 0x42690c204d39600fddd3
@@ -802,9 +836,13 @@ celestia state balance-for-address [address]
 
 Let's query our node for the balance of another address:
 
+<!-- markdownlint-disable MD013 -->
+
 ```bash
 celestia state balance-for-address celestia10rtd9lhel2cuh6c659l25yncl6atcyt37umard
 ```
+
+<!-- markdownlint-enable MD013 -->
 
 The response will be the balance of the address you queried:
 
@@ -882,6 +920,8 @@ celestia rpc header get-by-height 1
 ```
 
 It will output something like this:
+
+<!-- markdownlint-disable MD013 -->
 
 ```json
 {
@@ -968,21 +1008,25 @@ It will output something like this:
 }
 ```
 
+<!-- markdownlint-enable MD013 -->
+
 ### More examples
 
 #### Combined commands
 
 ```bash
-celestia share get-by-namespace "$(celestia header get-by-height 147105 --node.store  $NODE_STORE | jq '.result.dah' -r)" 0x42690c204d39600fddd3 --node.store $NODE_STORE
+celestia share get-by-namespace "$(celestia header get-by-height 147105 \
+  --node.store  $NODE_STORE | jq '.result.dah' -r)" 0x42690c204d39600fddd3 \
+  --node.store $NODE_STORE
 ```
 
-#### Query node information:
+#### Query node information
 
 ```bash
 celestia rpc node info
 ```
 
-#### Get data availability sampler stats:
+#### Get data availability sampler stats
 
 ```bash
 celestia rpc das sampling-stats
@@ -996,13 +1040,16 @@ First, set your address as a variable:
 export ADDRESS=celestia1c425ckmve2489atttx022qpc02gxspa29wmh0d
 ```
 
-Then, transfer the amount of tokens that you would like, while setting the recipient's address, gas fee, and gasLimit. This is what the format will look like:
+Then, transfer the amount of tokens that you would like, while setting the
+recipient's address, gas fee, and gasLimit. This is what the format will look like:
 
 ```bash
-celestia state transfer $ADDRESS [amount in utia] [gas fee in utia] [gas fee in utia]
+celestia state transfer $ADDRESS [amount in utia] \
+  [gas fee in utia] [gas fee in utia]
 ```
 
-Here is an example, sending 0.1 TIA, with a gas fee of 0.008 TIA, and a gas limit of 0.08 TIA:
+Here is an example, sending 0.1 TIA, with a gas fee of 0.008 TIA, and a gas
+limit of 0.08 TIA:
 
 ```bash
 celestia state transfer $ADDRESS 100000 8000 80000
@@ -1032,9 +1079,13 @@ repo.
 
 If you encounter an error like:
 
+<!-- markdownlint-disable MD013 -->
+
 ```sh
 "rpc error: code = NotFound desc = account celestia1krkle0n547u0znz3unnln8paft2dq4z3rznv86 not found"
 ```
+
+<!-- markdownlint-enable MD013 -->
 
 It is possible that the account you are trying to submit a `PayForBlobs` from
 doesn't have testnet tokens yet. Ensure the testnet faucet has funded your

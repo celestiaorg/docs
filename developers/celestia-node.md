@@ -7,7 +7,8 @@ arabicaChainId: "arabica-10"
 
 ## normal code block
 
-Testing out variables in code blocks. This is the default code block with tabs, and no variables:
+Testing out variables in code blocks. This is the default code block with
+tabs, and no variables:
 
 ::: code-group
 
@@ -23,7 +24,8 @@ import constants from "/.potato/pancakes/constants.js";
 
 ## custom code block
 
-This is the custom cude block with tabs, and variables from the constants.js file:
+This is the custom cude block with tabs, and variables from the
+`constants.js` file:
 
 known issues
 
@@ -31,6 +33,7 @@ known issues
 - the clipboard icon moves when you scroll
 - oof. copies the html break tags when you copy multiple lines of code
 
+<!-- markdownlint-disable MD033 -->
 <script setup>
 import CodeGroup from '/.vitepress/components/CodeGroup.vue'
 </script>
@@ -39,14 +42,19 @@ import CodeGroup from '/.vitepress/components/CodeGroup.vue'
 
 ## testing frontmatter variables
 
-This is a section to test variables used in frontmatter. It is not possible to display variables in the native code blocks on Vitepress.
+This is a section to test variables used in frontmatter. It is not
+possible to display variables in the native code blocks on Vitepress.
 
 <pre><code>
 const mochaChainId = "{{ $frontmatter.mochaChainId }}";
 const arabicaChainId = "{{ $frontmatter.arabicaChainId }}";
 </code></pre>
+<!-- markdownlint-enable MD033 -->
 
-In this example, `mochaChainId` and `arabicaChainId` are variables defined in the frontmatter. They are then accessed in the JavaScript code block using `{{ $frontmatter.mochaChainId }}` and `{{ $frontmatter.arabicaChainId }}`.
+In this example, `mochaChainId` and `arabicaChainId` are variables
+defined in the frontmatter. They are then accessed in the JavaScript
+code block using `{{ $frontmatter.mochaChainId }}` and
+`{{ $frontmatter.arabicaChainId }}`.
 
 ```bash
 {{ $frontmatter.arabicaChainId }}
