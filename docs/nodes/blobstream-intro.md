@@ -1,27 +1,26 @@
 ---
 sidebar_label: Blobstream
-description: An overview of the Blobstream.
+description: An overview of Blobstream.
 ---
 
 # Blobstream
 
-The Blobstream, covered previously in
+Blobstream, covered previously in
 [the Celestia blog post](https://blog.celestia.org/celestiums/),
 introduces the concept of a layer 2 (L2), which is an EVM L2
 rollup that uses Celestia for data availability
 but settles on Ethereum (or any other EVM L1 chain).
 
-This page and following tutorials will go over the Quantum Gravity
-Bridge and how Validators on Celestia can run it.
+This page and following tutorials will go over Blobstream and how Validators on Celestia can run it.
 
 If you're looking to learn more, you can view
 [the `orchestrator-relayer` repository](https://github.com/celestiaorg/orchestrator-relayer)
 , and
-[read more about the Blobstream](https://github.com/celestiaorg/quantum-gravity-bridge#how-it-works).
+[read more about Blobstream](https://github.com/celestiaorg/quantum-gravity-bridge#how-it-works).
 
 ## Overview
 
-The Blobstream,
+Blobstream,
 consists of two components: an [Orchestrator](../blobstream-orchestrator)
 and a [Relayer](../blobstream-relayer).
 
@@ -31,14 +30,14 @@ eventually posted to the target EVM chain (in this case, Ethereum). Then,
 the layer 2, or any party, will be able to verify the attestations, i.e. valsets
 and data commitments, directly on the EVM chain on the Blobstream smart contract. You can
 reference
-[the Blobstream smart contract](https://github.com/celestiaorg/quantum-gravity-bridge/blob/master/src/QuantumGravityBridge.sol).
+[the Blobstream smart contract](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/Blobstream.sol).
 
 ![Blobstream-Architecture](../img/blobstream/blobstream-diagram.png)
 
-The specification of the Blobstream `Valset`s, which track the Celestia validator set
+The specification of Blobstream `Valset`s, which track the Celestia validator set
 changes, can be found in [ADR 002](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
 
-The Blobstream data commitments, which represent commitments over sets of blocks
+Blobstream data commitments, which represent commitments over sets of blocks
 defined by a data commitment window, are
 discussed more in-depth in
 [ADR 003](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
