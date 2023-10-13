@@ -32,7 +32,7 @@ and data commitments, directly on the EVM chain on the Blobstream smart contract
 reference
 [the Blobstream smart contract](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/Blobstream.sol).
 
-![Blobstream-Architecture](../img/blobstream/blobstream-diagram.png)
+![Blobstream-Architecture](../img/blobstream/Blobstream.png)
 
 The specification of Blobstream `Valset`s, which track the Celestia validator set
 changes, can be found in [ADR 002](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
