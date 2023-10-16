@@ -75,8 +75,8 @@ key `$KEY_NAME` to `validator` for demonstration.
 Run the following command:
 
 ```sh
-CELES_AMOUNT="10000000000000000000000000utia"
-celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT --keyring-backend test
+TIA_AMOUNT="10000000utia"
+celestia-appd add-genesis-account $KEY_NAME $TIA_AMOUNT --keyring-backend test
 ```
 
 Here `$KEY_NAME` is the same key name as before.
@@ -97,13 +97,13 @@ You can find the `genesis.json` at `$HOME/.celestia-app/config/genesis.json`
 Run the following command:
 
 ```sh
-STAKING_AMOUNT=1000000000utia
+STAKING_AMOUNT=9000000utia
 celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
   --keyring-backend test
 ```
 
 This will create the genesis transaction for your new chain.
-Here `$STAKING_AMOUNT` should be at least `1000000000utia`. If you
+Here `$STAKING_AMOUNT` should be at least `9000000utia`. If you
 provide too much or too little, you will encounter an error
 when starting your node.
 
@@ -151,13 +151,31 @@ include other participants as persistent peers:
 persistent_peers = "[validator_address]@[ip_address]:[port],[validator_address]@[ip_address]:[port]"
 ```
 
-You can find `validator_address` by running the following command:
+### Add your node as a persistent peer
+
+The following allows you to share your node as a persistent peer
+that you can share in the networks repo or with others so other
+participants can peer with you.
+
+Run the following command:
 
 ```sh
-celestia-appd tendermint show-node-id
+IP_ADDRESS=$(curl ifconfig.me)
+NODE_ID=$(celestia-appd tendermint show-node-id)
+PORT_NUMBER=26656
 ```
 
-The output will be the hex-encoded `validator_address`. The default `port` is 26656.
+Note that the default port is `26656`
+
+Now you can run the following command to output your validator node address:
+
+```sh
+PEER="$NODE_ID@$IP_ADDRESS:$PORT_NUMBER"
+echo $PEER
+```
+
+The output is your validator node address which you can share with other validators
+so they can peer with you.
 
 ### Instantiate the network
 
