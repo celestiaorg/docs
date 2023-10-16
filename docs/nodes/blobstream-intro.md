@@ -47,7 +47,7 @@ The Orchestrator is part of the validator setup and works as follows:
 - Celestia App: creates an attestation on the state machine level that needs to
   be signed
 - The Orchestrator: queries the attestation, signs it, then submits the signature
-  back to Celestia App
+  to the Blobstream P2P network
 
 The diagram below goes over this process.
 
