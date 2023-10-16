@@ -25,7 +25,7 @@ consists of two components: an [Orchestrator](../blobstream-orchestrator)
 and a [Relayer](../blobstream-relayer).
 
 In the following diagram, we show how a layer 2 would post data to
-Celestia and then verify that it was published in the target EVM chain. 
+Celestia and then verify that it was published in the target EVM chain.
 
 In fact, data will first be attested to by the Celestia validator set, i.e. signing commitments committing to the data. Then, these signatures will be relayed to the target EVM chain (in this case, Ethereum). Finally,
 the layer 2, or any party, will be able to verify that the data was published to Celestia directly on the EVM chain on the Blobstream smart contract. You can
@@ -99,7 +99,7 @@ compared to the potential centralized nature of DACs.
 The following sections in this category presume you have the following setup:
 
 - A Celestia App
-[validator node](../consensus-node#optional-setting-up-a-validator) running
+  [validator node](../consensus-node#optional-setting-up-a-validator) running
 
 ## Next steps
 
