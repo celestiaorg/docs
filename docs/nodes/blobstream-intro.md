@@ -16,7 +16,7 @@ This page and following tutorials will go over Blobstream and how validators on 
 If you're looking to learn more, you can view
 [the `orchestrator-relayer` repository](https://github.com/celestiaorg/orchestrator-relayer)
 , and
-[read more about Blobstream](https://github.com/celestiaorg/quantum-gravity-bridge#how-it-works).
+[read more about Blobstream](https://github.com/celestiaorg/blobstream-contracts#how-it-works).
 
 ## Overview
 
