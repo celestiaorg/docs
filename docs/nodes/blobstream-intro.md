@@ -76,19 +76,19 @@ a specific set of entities or individuals to vouch for data avaiability.
 
 ### Mechanism of verification
 
-Blobstream uses data availability attestations, which are Merkle roots of the
-batched L2 data, to confirm that the necessary data is present on Celestia. When
-Ethereum's L2 contract updates its state, it checks with Blobstream to confirm
-that data's presence on Celestia. In contrast, a DAC would rely on attestations
-or confirmations from its permissioned members.
+Blobstream uses data availability attestations, which are Merkle roots of the batched
+L2 data, to confirm that the necessary data is present on Celestia. The L2 contract
+on Ethereum doesn't directly check with Blobstream, but relies on the data
+availability guarantee provided by Blobstream. In contrast, a DAC would rely on
+attestations or confirmations from its permissioned members.
 
 ### Flexibility and scalability
 
-Blobstream offers high-throughput data availability for Ethereum L2s, striking
-a balance between scalability and security. It isn't bound by Ethereum's gas
-costs, as Celestia's resource pricing is more byte-focused rather than
-computation-centric. The scalability costs of a DAC would largely hinge on its
-specific design, but it may not achieve the same balance as Blobstream.
+Blobstream is designed to offer high-throughput data availability for Ethereum L2s,
+aiming to strike a balance between scalability and security. It operates
+independently of Ethereum's gas costs, as Celestia's resource pricing is more
+byte-focused rather than computation-centric. On the other hand, the scalability and
+flexibility of a DAC would depend on its specific design and implementation.
 
 In summary, both Blobstream and DACs aim to ensure off-chain data availability,
 but Blobstream offers a more decentralized, secure, and scalable solution
