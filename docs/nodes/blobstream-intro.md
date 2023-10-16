@@ -11,7 +11,7 @@ introduces the concept of a layer 2 (L2), which is an EVM L2
 rollup that uses Celestia for data availability
 but settles on Ethereum (or any other EVM L1 chain).
 
-This page and following tutorials will go over Blobstream and how Validators on Celestia can run it.
+This page and following tutorials will go over Blobstream and how validators on Celestia can run it.
 
 If you're looking to learn more, you can view
 [the `orchestrator-relayer` repository](https://github.com/celestiaorg/orchestrator-relayer)
