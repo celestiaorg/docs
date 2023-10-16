@@ -53,9 +53,9 @@ The diagram below goes over this process.
 
 ![Blobstream-Orchestrator](../img/blobstream/blobstream-orchestrator.png)
 
-The Relayer deploys the Blobstream smart contract first to the EVM L1 chain (if it is
-not deployed before), and then relays the attestations from Celestia App to the
-EVM L1 Chain.
+The relayer submits the attestations' signatures from the Blobstream P2P network to the target EVM chain.
+
+> **_NOTE:_** If the contract is still not deployed, then it needs to be deployed before its used by the relayer.
 
 The diagram below goes over this process.
 
