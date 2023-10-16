@@ -77,7 +77,7 @@ a specific set of entities or individuals to vouch for data avaiability.
 ### Mechanism of verification
 
 Blobstream uses data availability attestations, which are Merkle roots of the
-L2 data, to confirm that the necessary data is present on Celestia. When
+batched L2 data, to confirm that the necessary data is present on Celestia. When
 Ethereum's L2 contract updates its state, it checks with Blobstream to confirm
 that data's presence on Celestia. In contrast, a DAC would rely on attestations
 or confirmations from its permissioned members.
