@@ -24,11 +24,11 @@ Blobstream,
 consists of two components: an [Orchestrator](../blobstream-orchestrator)
 and a [Relayer](../blobstream-relayer).
 
-In the following diagram, we show how a layer 2 would post the data to
-Celestia. This will later be attested to by the Celestia validator set, and
-eventually posted to the target EVM chain (in this case, Ethereum). Then,
-the layer 2, or any party, will be able to verify the attestations, i.e. valsets
-and data commitments, directly on the EVM chain on the Blobstream smart contract. You can
+In the following diagram, we show how a layer 2 would post data to
+Celestia and then verify that it was published in the target EVM chain. 
+
+In fact, data will first be attested to by the Celestia validator set, i.e. signing commitments committing to the data. Then, these signatures will be relayed to the target EVM chain (in this case, Ethereum). Finally,
+the layer 2, or any party, will be able to verify that the data was published to Celestia directly on the EVM chain on the Blobstream smart contract. You can
 reference
 [the Blobstream smart contract](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/Blobstream.sol).
 
