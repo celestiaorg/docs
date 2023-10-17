@@ -72,7 +72,7 @@ Blobstream is built on Celestia, which uses a CometBFT-based proof-of-stake
 system. An incorrect data availability attestation in this system will ultimately be
 penalized (currently not implemented), ensuring validators act in good faith. Thus, Blobstream shares the same security assumptions as Celestia. In contrast, data availability
 committees (DACs), are typically centralized or semi-centralized, relying on
-a specific set of entities or individuals to vouch for data avaiability.
+a specific set of entities or individuals to vouch for data availability.
 
 ### Mechanism of verification
 
