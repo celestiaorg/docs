@@ -271,7 +271,7 @@ function nav() {
             },
           ],
         },
-        { text: "Community", link: "/community/" },
+        { text: "Community", link: "/community/overview" },
         { text: "Modular Academy", link: "/academy/" },
       ],
     },
@@ -397,7 +397,21 @@ function sidebarHome() {
     {
       text: "Community",
       collapsed: true,
-      items: [{ text: "Overview", link: "/community/" }],
+      items: [
+        { text: "Overview", link: "/community/overview" },
+        { text: "Code of Conduct", link: "/community/coc" },
+        { text: "Community calendar", link: "/community/calendar" },
+        {
+          text: "Modular Meetups",
+          collapsed: true,
+          items: [
+            { text: "Overview", link: "/community/modular-meetup-intro" },
+            { text: "Guide", link: "/community/modular-meetup-guide" },
+            { text: "Toolkit", link: "/community/modular-meetup-toolkit" },
+            { text: "Speaker list", link: "/community/speaker-list" },
+          ],
+        },
+      ],
     },
   ];
 }

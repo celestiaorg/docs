@@ -10,7 +10,7 @@ to help you make the most out of Celestia.
 To get started, clone the repository and run the following:
 
 ```bash
-yarn run docs:dev
+yarn && yarn dev
 ```
 
 This documentation site is built with [VitePress](https://vitepress.dev)

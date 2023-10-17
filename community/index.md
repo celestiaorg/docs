@@ -1,3 +1,0 @@
-# community
-
-hi hello people
