@@ -79,6 +79,10 @@ const config = {
       {
         redirects: [
           {
+            to: "/developers/ibc-relayer",
+            from: "/nodes/ibc-relayer",
+          },
+          {
             to: "/nodes/consensus-node",
             from: "/nodes/full-consensus-node",
           },
