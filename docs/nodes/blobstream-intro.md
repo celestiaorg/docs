@@ -78,8 +78,7 @@ a specific set of entities or individuals to vouch for data avaiability.
 
 Blobstream uses data availability attestations, which are Merkle roots of the batched
 L2 data, to confirm that the necessary data is present on Celestia. The L2 contract
-on Ethereum doesn't directly check with Blobstream, but relies on the data
-availability guarantee provided by Blobstream. In contrast, a DAC would rely on
+on Ethereum can check directly with Blobstream if the data is published on Celestia. Similarly, a DAC would rely on
 attestations or confirmations from its permissioned members.
 
 ### Flexibility and scalability
