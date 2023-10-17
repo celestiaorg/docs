@@ -16,7 +16,7 @@ hero:
       link: /developers/node-tutorial
     - theme: alt
       text: Introduction
-      link: /learn/
+      link: /learn/how-celestia-works/overview
 
 features:
   - title: Build

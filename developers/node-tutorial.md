@@ -2,45 +2,6 @@
 
 <!-- markdownlint-disable MD033 -->
 
-## notes from call to implement still
-
-1. all rpc commands have basic flags
-
-- default rpc address
-- auth token\* required OR node store flag
-- node store flag\* required OR auth token
-
-at start of tutorial, have user set $NODE_STORE or AUTH_TOKEN and then use those
-variables in commands
-
-a) if user passes auth token, creates a client, and we're ready to go
-b) if user doesnt pass auth token, check node store flag, create token from
-config
-
-get help
-
-```bash
-celestia blob submit --help
-```
-
-```bash
-celestia blob get-all xx xx --node.store $HOME/.celestia-light-network
-```
-
-Set log-level when it is running
-
-```bash
-celestia node info --node.store...
-```
-
-Check your node API version:
-
-```bash
-celestia node info --node.store $HOME/.celestia-light-mocha-4/
-```
-
-## remainder of old tutorial, with some edits
-
 <script setup>
 import { versions } from '/.vitepress/versions/data.js'
 </script>
