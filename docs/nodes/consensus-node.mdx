@@ -388,7 +388,7 @@ Follow
 
 You have successfully set up a bridge node that is syncing with the network.
 
-##### Setup QGB keys
+##### Setup Blobstream keys
 
 ````mdx-code-block
 <Tabs groupId="operating-systems">
@@ -517,7 +517,7 @@ To register your EVM address, run the following. Be sure to replace
 VALIDATOR_ADDRESS=$(celestia-appd keys show $VALIDATOR_WALLET --bech val -a)
 EVM_ADDRESS="YOUR_EVM_ADDRESS"
 
-celestia-appd tx qgb register \
+celestia-appd tx blobstream register \
     $VALIDATOR_ADDRESS \
     $EVM_ADDRESS \
     --from $VALIDATOR_WALLET \
@@ -594,12 +594,12 @@ txhash: <tx-hash>
 You should now be able to see your validator from
 [a block explorer](../mocha-testnet#explorers)
 
-#### Run the QGB Orchestrator
+#### Run the Blobstream Orchestrator
 
-Now that the QGB will be enabled for Mocha, all validators
-will need to run the QGB orchestrator to be able to sign attestations.
+Now that Blobstream will be enabled for Mocha, all validators
+will need to run the Blobstream orchestrator to be able to sign attestations.
 To run it, please
-[refer to the documentation](https://docs.celestia.org/nodes/qgb-orchestrator/#how-to-run).
+[refer to the documentation](https://docs.celestia.org/nodes/blobstream-orchestrator/#how-to-run).
 
 #### Submit your validator information
 

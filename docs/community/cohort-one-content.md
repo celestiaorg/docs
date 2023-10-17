@@ -137,8 +137,8 @@ description: The content and calendar of the first Modular Fellows cohort.
 
 - **Monday 21 November @ 11am EST / 4pm UTC / 5pm CEST**
   - In this lesson, Evan Forbes will teach us about the Quantum Gravity Bridge
-    (QGB) and [Celestiums](https://blog.celestia.org/celestiums). The QGB proves
-    that some data was posted on Celestia. Celestiums use the this bridge to
+    (Blobstream) and [layer 2s](https://blog.celestia.org/celestiums). Blobstream proves
+    that some data was posted on Celestia. Rollups use the this bridge to
     provide strong data availability guarantees for block data at a fraction of
     the cost of `calldata` on Ethereum.
 - [Lesson #5 - Quantum Gravity Bridge with Evan Forbes (Recording)](https://youtu.be/6eg1WTUYvr8)

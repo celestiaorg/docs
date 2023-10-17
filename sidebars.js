@@ -117,7 +117,7 @@ const sidebars = {
       },
       {
         type: "category",
-        label: "QGB",
+        label: "Blobstream",
         link: {
           type: 'generated-index'
         },
@@ -125,33 +125,33 @@ const sidebars = {
         items: [
             {
               type: "doc",
-              label: "Quantum Gravity Bridge",
-              id: "nodes/qgb-intro",
+              label: "Blobstream overview",
+              id: "nodes/blobstream-intro",
             },
             {
               type: "doc",
               label: "Install the binary",
-              id: "nodes/qgb-binary",
+              id: "nodes/blobstream-binary",
             },
             {
               type: "doc",
-              label: "QGB Orchestrator",
-              id: "nodes/qgb-orchestrator",
+              label: "Blobstream Orchestrator",
+              id: "nodes/blobstream-orchestrator",
             },
             {
               type: "doc",
               label: "Key management",
-              id: "nodes/qgb-keys",
+              id: "nodes/blobstream-keys",
             },
             {
               type: "doc",
-              label: "QGB Relayer",
-              id: "nodes/qgb-relayer",
+              label: "Blobstream Relayer",
+              id: "nodes/blobstream-relayer",
             },
             {
               type: "doc",
-              label: "Deploy the QGB contract",
-              id: "nodes/qgb-deploy",
+              label: "Deploy the Blobstream contract",
+              id: "nodes/blobstream-deploy",
             }
         ]
       },
