@@ -110,11 +110,6 @@ const sidebars = {
         label: "Consensus nodes",
         id: "nodes/consensus-node",
       },
-      { 
-        type: "doc", 
-        label: "IBC Relayer", 
-        id: "nodes/ibc-relayer" 
-      },
       {
         type: "category",
         label: "QGB",
