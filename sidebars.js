@@ -449,10 +449,6 @@ const sidebars = {
           label: "Full stack modular blockchain development guide",
           id: "developers/full-stack-modular-development-guide"
         },{
-          type: "doc",
-          label: "IBC Relaying Guide",
-          id: "developers/ibc-relayer"
-        },{
           type: "link",
           label: "Sovereign SDK",
           href: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup",
@@ -465,13 +461,18 @@ const sidebars = {
     },
     {
       type: "doc",
-      label: "Demos on Celestia",
-      id: "developers/demos",
+      label: "IBC Relaying Guide",
+      id: "developers/ibc-relayer"
     },
     {
       type: "doc",
       label: "Integrate Celestia",
       id: "developers/integrate-celestia",
+    },
+    {
+      type: "doc",
+      label: "Demos on Celestia",
+      id: "developers/demos",
     },
   ],
   community: [
