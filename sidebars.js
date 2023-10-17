@@ -479,9 +479,14 @@ const sidebars = {
       id: "developers/integrate-celestia",
     },
     {
-      type: "doc",
+      type: "category",
       label: "Integrate with Blobstream",
-      id: "developers/blobstream",
+      link: { type: "doc", id: "developers/blobstream", },
+      collapsed: true,
+      items: [
+        { type: "doc", label: "Integrate with Blobstream Contracts", id: "developers/blobstream-contracts" },
+        { type: "doc", label: "Integrate with Blobstream Client", id: "developers/blobstream-offchain" },
+      ]
     },
   ],
   community: [
