@@ -271,8 +271,6 @@ function nav() {
             },
           ],
         },
-        { text: "Community", link: "/community/overview" },
-        { text: "Modular Academy", link: "/academy/" },
       ],
     },
   ];
@@ -409,6 +407,17 @@ function sidebarHome() {
             { text: "Guide", link: "/community/modular-meetup-guide" },
             { text: "Toolkit", link: "/community/modular-meetup-toolkit" },
             { text: "Speaker list", link: "/community/speaker-list" },
+          ],
+        },
+        {
+          text: "Modular Fellows",
+          collapsed: true,
+          items: [
+            { text: "Overview", link: "/community/modular-fellows" },
+            {
+              text: "Cohort one content",
+              link: "/community/cohort-one-content",
+            },
           ],
         },
       ],
