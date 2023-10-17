@@ -399,10 +399,5 @@ function sidebarHome() {
       collapsed: true,
       items: [{ text: "Overview", link: "/community/" }],
     },
-    {
-      text: "Modular Academy",
-      collapsed: true,
-      items: [{ text: "Overview", link: "/academy/" }],
-    },
   ];
 }
