@@ -20,7 +20,7 @@ jobs:
           node-version: 16.x
           cache: npm
 
-      - run: yarn install --frozen-lockfile
+      - run: yarn install
       - run: yarn crowdin:sync
       - name: Clean Crowdin Front Matter issues
         run: bash clean.sh
