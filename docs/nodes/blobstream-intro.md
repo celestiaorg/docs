@@ -69,8 +69,8 @@ You can learn more about the mechanics behind the Relayer in
 ### Decentralization and security
 
 Blobstream is built on Celestia, which uses a CometBFT-based proof-of-stake
-system. An incorrect data availability attestation in this system can be
-penalized, ensuring validators act in good faith. Thus, Blobstream shares the same security assumptions as Celestia. In contrast, data availability
+system. An incorrect data availability attestation in this system will ultimately be
+penalized (currently not implemented), ensuring validators act in good faith. Thus, Blobstream shares the same security assumptions as Celestia. In contrast, data availability
 committees (DACs), are typically centralized or semi-centralized, relying on
 a specific set of entities or individuals to vouch for data avaiability.
 
