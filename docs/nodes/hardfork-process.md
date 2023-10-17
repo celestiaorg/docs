@@ -48,10 +48,10 @@ The new chain-id will be `mocha`.
 You can find the
 [release logs for consensus nodes on the celestia-app releases page](https://github.com/celestiaorg/celestia-app/releases).
 
-The most exciting feature included is setting the stage for QGB on Mocha.
+The most exciting feature included is setting the stage for Blobstream on Mocha.
 
-Validators will need to generate 2 new keys in order to be QGB-ready.
-Note that for the Mocha Hardfork, QGB will not launch yet so you
+Validators will need to generate 2 new keys in order to be Blobstream-ready.
+Note that for the Mocha Hardfork, Blobstream will not launch yet so you
 can swap those keys after for new ones if needed. The keys needed are:
 
 - 1 EVM key

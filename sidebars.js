@@ -1,9 +1,9 @@
 const sidebars = {
   nodes: [
-    {
-      type: "doc",
-      label: "Overview",
-      id: "nodes/overview"
+    { 
+      type: "doc", 
+      label: "Overview", 
+      id: "nodes/overview" 
     },
     {
       type: "category",
@@ -50,10 +50,10 @@ const sidebars = {
           label: "Docker images",
           id: "nodes/docker-images",
         },
-        {
-          type: "doc",
-          label: "Setting up environment",
-          id: "nodes/environment"
+        { 
+          type: "doc", 
+          label: "Setting up environment", 
+          id: "nodes/environment" 
         },
         {
           type: "doc",
@@ -72,90 +72,90 @@ const sidebars = {
         },
       ]
     },
-    {
-      type: "category",
-      label: "Types of nodes",
+    { 
+      type: "category", 
+      label: "Types of nodes", 
       link: {
         type: 'generated-index'
       },
       collapsed: true,
       items: [
-        {
-          type: "category",
-          label: "Data availability",
-          link: {
-            type: 'generated-index',
+      {
+        type: "category",
+        label: "Data availability",
+        link: {
+          type: 'generated-index',
+        },
+        collapsed: true,
+        items: [
+          { 
+            type: "doc", 
+            label: "Light node", 
+            id: "nodes/light-node" 
           },
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              label: "Light node",
-              id: "nodes/light-node"
-            },
-            {
-              type: "doc",
-              label: "Bridge node",
-              id: "nodes/bridge-node"
-            },
-            {
-              type: "doc",
-              label: "Full storage node",
-              id: "nodes/full-storage-node",
-            },
-          ]
-        },
-        {
-          type: "doc",
-          label: "Consensus nodes",
-          id: "nodes/consensus-node",
-        },
-        {
-          type: "doc",
-          label: "IBC Relayer",
-          id: "nodes/ibc-relayer"
-        },
-        {
-          type: "category",
-          label: "QGB",
-          link: {
-            type: 'generated-index'
+          { 
+            type: "doc", 
+            label: "Bridge node", 
+            id: "nodes/bridge-node" 
           },
-          collapsed: true,
-          items: [
+          {
+            type: "doc",
+            label: "Full storage node",
+            id: "nodes/full-storage-node",
+          },
+        ]
+      },
+      {
+        type: "doc",
+        label: "Consensus nodes",
+        id: "nodes/consensus-node",
+      },
+      { 
+        type: "doc", 
+        label: "IBC Relayer", 
+        id: "nodes/ibc-relayer" 
+      },
+      {
+        type: "category",
+        label: "Blobstream",
+        link: {
+          type: 'generated-index'
+        },
+        collapsed: true,
+        items: [
             {
               type: "doc",
-              label: "Quantum Gravity Bridge",
-              id: "nodes/qgb-intro",
+              label: "Blobstream overview",
+              id: "nodes/blobstream-intro",
             },
             {
               type: "doc",
               label: "Install the binary",
-              id: "nodes/qgb-binary",
+              id: "nodes/blobstream-binary",
             },
             {
               type: "doc",
-              label: "QGB Orchestrator",
-              id: "nodes/qgb-orchestrator",
+              label: "Blobstream Orchestrator",
+              id: "nodes/blobstream-orchestrator",
             },
             {
               type: "doc",
               label: "Key management",
-              id: "nodes/qgb-keys",
+              id: "nodes/blobstream-keys",
             },
             {
               type: "doc",
-              label: "QGB Relayer",
-              id: "nodes/qgb-relayer",
+              label: "Blobstream Relayer",
+              id: "nodes/blobstream-relayer",
             },
             {
               type: "doc",
-              label: "Deploy the QGB contract",
-              id: "nodes/qgb-deploy",
+              label: "Deploy the Blobstream contract",
+              id: "nodes/blobstream-deploy",
             }
-          ]
-        },
-      ]
+        ]
+      },
+    ]
     },
     {
       type: "category",
@@ -208,10 +208,10 @@ const sidebars = {
               label: "Metrics, Visualizations and Alerts",
               id: "nodes/celestia-app-metrics"
             },
-            {
-              type: "doc",
-              label: "Create a Celestia testnet",
-              id: "nodes/instantiate-testnet"
+            { 
+              type: "doc", 
+              label: "Create a Celestia testnet", 
+              id: "nodes/instantiate-testnet" 
             },
             {
               type: "doc",
@@ -227,7 +227,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "SystemD",
+         label: "SystemD",
           id: "nodes/systemd"
         },
         {
@@ -239,10 +239,10 @@ const sidebars = {
     },
   ],
   developers: [
-    {
-      type: "doc",
-      label: "Overview",
-      id: "developers/overview"
+    { 
+      type: "doc", 
+      label: "Overview", 
+      id: "developers/overview" 
     },
     {
       type: "doc",
@@ -259,19 +259,19 @@ const sidebars = {
       collapsed: true,
       items: [
         {
-          type: "doc",
-          label: "Keplr",
-          id: "developers/keplr"
+          type: "doc", 
+          label: "Keplr", 
+          id: "developers/keplr" 
         },
         {
-          type: "doc",
-          label: "Leap",
+          type: "doc", 
+          label: "Leap", 
           id: "developers/leap"
         },
         {
           type: "doc",
-          label: "Cosmostation",
-          id: "developers/cosmostation"
+          label: "Cosmostation", 
+          id: "developers/cosmostation" 
         },
         {
           type: "category",
@@ -320,10 +320,10 @@ const sidebars = {
       },
       collapsed: true,
       items: [
-        {
-          type: "doc",
-          label: "Node API tutorial",
-          id: "developers/node-tutorial"
+        { 
+          type: "doc", 
+          label: "Node API tutorial", 
+          id: "developers/node-tutorial" 
         },
         {
           "type": "link",
@@ -350,41 +350,41 @@ const sidebars = {
     {
       type: "category",
       label: "Deploy a rollup",
-      link: {
+			link: {
         id: "developers/rollup-overview",
-        type: "doc",
-      },
-      collapsed: true,
-      items: [
+				type: "doc",
+			},
+			collapsed: true,
+			items: [
         {
-          type: "doc",
-          label: "Rollkit",
-          id: "developers/rollkit"
-        }, {
-          type: "category",
-          label: "Optimism",
-          link: {
-            type: "generated-index",
-          },
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              label: "Introduction to OP Stack integration",
+      		type: "doc",
+      		label: "Rollkit",
+      		id: "developers/rollkit"
+    		},{
+      		type: "category",
+      		label: "Optimism",
+					link: {
+						type: "generated-index",
+					},
+					collapsed: true,
+					items: [
+						{
+							type: "doc",
+							label: "Introduction to OP Stack integration",
               id: "developers/intro-to-op-stack"
-            },
+						},
             {
-              type: "doc",
+							type: "doc",
               label: "Bubs testnet",
               id: "developers/bubs-testnet",
             },
-            {
-              type: "doc",
-              label: "Deploy a smart contract on Bubs testnet",
+						{
+							type: "doc",
+							label: "Deploy a smart contract on Bubs testnet",
               id: "developers/deploy-on-bubs"
-            },
+						},
             {
-              type: "doc",
+							type: "doc",
               label: "Deploy a GM Portal dapp on Bubs testnet",
               id: "developers/gm-portal-bubs",
             },
@@ -399,14 +399,14 @@ const sidebars = {
               href: "https://thirdweb.com/bubs-testnet",
             },
             {
-              type: "doc",
-              label: "Deploy an OP Stack devnet",
-              id: "developers/optimism-devnet"
+							type: "doc",
+							label: "Deploy an OP Stack devnet",
+      				id: "developers/optimism-devnet"
             },
             {
-              type: "doc",
-              label: "Deploy an OP Stack testnet on Celestia",
-              id: "developers/optimism"
+							type: "doc",
+							label: "Deploy an OP Stack testnet on Celestia",
+      				id: "developers/optimism"
             },
             // {
             //   type: "category",
@@ -448,25 +448,25 @@ const sidebars = {
                 // }
               ]
             },
-          ]
-        }, {
+					]
+    		},{
           type: "doc",
           label: "Full stack modular blockchain development guide",
           id: "developers/full-stack-modular-development-guide"
-        }, {
+        },{
           type: "doc",
           label: "IBC Relaying Guide",
           id: "developers/ibc-relayer"
-        }, {
+        },{
           type: "link",
           label: "Sovereign SDK",
           href: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup",
-        }, {
+        },{
           type: "link",
           label: "Dymension",
           href: "https://dymension.xyz/"
         }
-      ]
+			]
     },
     {
       type: "doc",
@@ -518,95 +518,95 @@ const sidebars = {
     },
   ],
   learn: [
-    {
-      type: "category",
-      label: "Overview of Celestia",
-      link: {
-        type: 'generated-index'
+      {
+        type: "category",
+        label: "Overview of Celestia",
+        link: {
+          type: 'generated-index'
+        },
+        collapsed: true,
+        items: [
+          {
+            type: 'doc',
+            label: "Introduction",
+            id: "learn/how-celestia-works/introduction"
+          },
+          {
+            type: "doc",
+            label: "Monolithic vs. modular blockchains",
+            id: "learn/how-celestia-works/monolithic-vs-modular"
+          },
+          {
+            type: "category",
+            label: "Data availability layer",
+            collapsed: true,
+            items: [
+              {
+                type: "doc",
+                label: "Celestia’s data availability layer",
+                id: "learn/how-celestia-works/data-availability-layer"
+              },
+              {
+                type: "doc",
+                label: "The lifecycle of a Celestia app transaction",
+                id: "learn/how-celestia-works/transaction-lifecycle"
+              },
+              {
+                type: "doc",
+                label: "Data availability FAQs",
+                id: "learn/data-availability-faq"
+              }
+            ]
+          },
+          {
+            type: "category",
+            label: "Extra resources",
+            collapsed: true,
+            items: [
+              {
+                type: "link",
+                label: "Learn modular",
+                href: "https://celestia.org/learn/"
+              },
+              {
+                type: "link",
+                label: "Specifications",
+                href: "https://celestiaorg.github.io/celestia-app/"
+              },
+              {
+                type: "link",
+                label: "Glossary",
+                href: "https://celestia.org/glossary/"
+              }
+            ]
+          }
+        ]
       },
-      collapsed: true,
-      items: [
-        {
-          type: 'doc',
-          label: "Introduction",
-          id: "learn/how-celestia-works/introduction"
+      {
+        type: "category",
+        label: "TIA",
+        link: {
+          type: 'generated-index'
         },
-        {
-          type: "doc",
-          label: "Monolithic vs. modular blockchains",
-          id: "learn/how-celestia-works/monolithic-vs-modular"
-        },
-        {
-          type: "category",
-          label: "Data availability layer",
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              label: "Celestia’s data availability layer",
-              id: "learn/how-celestia-works/data-availability-layer"
-            },
-            {
-              type: "doc",
-              label: "The lifecycle of a Celestia app transaction",
-              id: "learn/how-celestia-works/transaction-lifecycle"
-            },
-            {
-              type: "doc",
-              label: "Data availability FAQs",
-              id: "learn/data-availability-faq"
-            }
-          ]
-        },
-        {
-          type: "category",
-          label: "Extra resources",
-          collapsed: true,
-          items: [
-            {
-              type: "link",
-              label: "Learn modular",
-              href: "https://celestia.org/learn/"
-            },
-            {
-              type: "link",
-              label: "Specifications",
-              href: "https://celestiaorg.github.io/celestia-app/"
-            },
-            {
-              type: "link",
-              label: "Glossary",
-              href: "https://celestia.org/glossary/"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      type: "category",
-      label: "TIA",
-      link: {
-        type: 'generated-index'
+        collapsed: true,
+        items: [
+          {
+            type: "doc",
+            label: "Overview of TIA",
+            id: "learn/tia"
+          },
+          {
+            type: "doc",
+            label: "Paying for blobspace",
+            id: "learn/paying-for-blobspace"
+          },
+          {
+            type: "doc",
+            label: "Staking, governance, & supply",
+            id: "learn/staking-governance-supply"
+          },
+        ]
       },
-      collapsed: true,
-      items: [
-        {
-          type: "doc",
-          label: "Overview of TIA",
-          id: "learn/tia"
-        },
-        {
-          type: "doc",
-          label: "Paying for blobspace",
-          id: "learn/paying-for-blobspace"
-        },
-        {
-          type: "doc",
-          label: "Staking, governance, & supply",
-          id: "learn/staking-governance-supply"
-        },
-      ]
-    },
   ]
 };
 

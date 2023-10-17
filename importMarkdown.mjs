@@ -4,24 +4,24 @@ import fetch from 'node-fetch';
 const filesToImport = [
   {
     url: 'https://raw.githubusercontent.com/celestiaorg/orchestrator-relayer/main/docs/deploy.md',
-    fileName: 'qgb-deploy.md',
+    fileName: 'blobstream-deploy.md',
   },
   {
     url: 'https://raw.githubusercontent.com/celestiaorg/orchestrator-relayer/main/docs/keys.md',
-    fileName: 'qgb-keys.md',
+    fileName: 'blobstream-keys.md',
   },
   {
     url: 'https://raw.githubusercontent.com/celestiaorg/orchestrator-relayer/main/docs/orchestrator.md',
-    fileName: 'qgb-orchestrator.md',
+    fileName: 'blobstream-orchestrator.md',
   },
   {
     url: 'https://raw.githubusercontent.com/celestiaorg/orchestrator-relayer/main/docs/relayer.md',
-    fileName: 'qgb-relayer.md',
+    fileName: 'blobstream-relayer.md',
   },
-  // TODO: add introduction to QGB section
+  // TODO: add introduction to Blobstream section
   // {
   //   url: 'https://raw.githubusercontent.com/celestiaorg/orchestrator-relayer/main/README.md',
-  //   fileName: 'qgb-intro.md',
+  //   fileName: 'blobstream-intro.md',
   // },
 ];
 
