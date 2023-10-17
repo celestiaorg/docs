@@ -338,6 +338,24 @@ function sidebarHome() {
             },
           ],
         },
+        {
+          text: "TIA",
+          collapsed: true,
+          items: [
+            {
+              text: "Overview of TIA",
+              link: "/learn/tia",
+            },
+            {
+              text: "Paying for blobspace",
+              link: "/learn/paying-for-blobspace",
+            },
+            {
+              text: "Staking, governance, & supply",
+              link: "/learn/staking-governance-supply",
+            },
+          ],
+        },
       ],
     },
     {
