@@ -37,7 +37,7 @@ jobs:
             MATRIX="${MATRIX}{\"repo\": \"${element}\"},"
           done
           MATRIX="${MATRIX%?}]}"
-          echo "MATRIX=${MATRIX}" >> $GITHUB_ENV
+          echo "::set-output name=matrix::${MATRIX}"
 
   logLatestRelease:
     needs: set_matrix
@@ -60,7 +60,9 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get_latest_release
         with:
-          route: GET /repos/${{ env.owner }}/${{ matrix.repo }}/releases
+          route: GET /repos/{owner}/{repo}/releases
+          owner: ${{ env.owner }}
+          repo: ${{ matrix.repo }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Log latest tag
@@ -69,7 +71,9 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get_latest_commit
         with:
-          route: GET /repos/${{ env.owner }}/${{ matrix.repo }}/git/ref/tags/${{ fromJSON(steps.get_latest_release.outputs.data)[0].tag_name }}
+          route: GET /repos/{owner}/{repo}/git/ref/tags/${{ fromJSON(steps.get_latest_release.outputs.data)[0].tag_name }}
+          owner: ${{ env.owner }}
+          repo: ${{ matrix.repo }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Log latest sha
