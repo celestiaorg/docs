@@ -16,6 +16,9 @@ forge install celestiaorg/blobstream-contracts --no-commit
 Example minimal Solidity contract that calls the Blobstream contract to check
 that data has been posted to Celestia.
 
+Note that the minimum Solidity compiler version for using the Blobstream
+contracts is `0.8.19`.
+
 ```solidity
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.19;
@@ -60,5 +63,13 @@ contract MyRollup {
         return true;
     }
 }
-
 ```
+
+## Verifying Data Inclusion for Fraud Proofs
+
+A high-level overview of how a fraud-proof based L2 would interact with
+Blobstream can be found [here](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md).
+
+The `DAVerifier` library is available at `blobstream-contracts/lib/verifier/DAVerifier.sol`,
+and provides functions to verify the inclusion of individual shares (or
+multiple) shares against a data root.
