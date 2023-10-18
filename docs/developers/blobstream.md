@@ -20,5 +20,5 @@ which won't be covered in the following sections aimed at developers.
 
 Integrating your L2 with Blobstream requires two components: your onchain smart contract logic, and your offchain client logic.
 
-- [Integrate with Blobstream Contracts](../../developers/blobstream-contracts/)
-- [Integrate with Blobstream Client](../../developers/blobstream-offchain/)
+- [Integrate with Blobstream contracts](../../developers/blobstream-contracts/)
+- [Integrate with Blobstream client](../../developers/blobstream-offchain/)

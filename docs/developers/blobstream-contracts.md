@@ -1,19 +1,19 @@
 ---
-sidebar_label: Integrate with Blobstream Contracts
+sidebar_label: Integrate with Blobstream contracts
 description: Learn how to integrate your L2's onchain logic with Blobstream
 ---
 
-# Integrate with Blobstream Contracts
+# Integrate with Blobstream contracts
 
-## Getting Started
+## Getting started
 
 ### Prerequisites
 
-Please make sure to have the following installed:
+Make sure to have the following installed:
 
 - [Foundry](https://github.com/foundry-rs/foundry)
 
-### Installing Blobstream Contracts
+### Installing Blobstream contracts
 
 Install the Blobstream contracts repo as a dependency:
 
@@ -24,7 +24,7 @@ forge install celestiaorg/blobstream-contracts --no-commit
 Note that the minimum Solidity compiler version for using the Blobstream
 contracts is `0.8.19`.
 
-### Example Usage
+### Example usage
 
 Example minimal Solidity contract for a stub ZK rollup that leverages the
 Blobstream contract to check that data has been posted to Celestia:
@@ -76,7 +76,7 @@ contract MyRollup {
 }
 ```
 
-## Data Structures
+## Data structures
 
 Each [`DataRootTuple`](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/DataRootTuple.sol)
 is a tuple of block height and data root. It is analogous to a Celestia block
@@ -99,7 +99,7 @@ that a `DataRootTuple` is included under a specific batch (indexed by batch
 nonce). In other words, analogously it verifies that a specific block header is
 included in the canonical Celestia chain.
 
-## Verifying Data Inclusion for Fraud Proofs
+## Verifying data inclusion for fraud proofs
 
 A high-level overview of how a fraud-proof based L2 would interact with
 Blobstream can be found in the [inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md).

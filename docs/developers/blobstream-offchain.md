@@ -1,8 +1,8 @@
 ---
-sidebar_label: Integrate with Blobstream Client
+sidebar_label: Integrate with Blobstream client
 description: Learn how to integrate your L2's offchain logic with Blobstream
 ---
 
-# Integrate with Blobstream Client
+# Integrate with Blobstream client
 
-## Getting Started
+## Getting started
