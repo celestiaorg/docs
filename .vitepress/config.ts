@@ -382,6 +382,42 @@ function sidebarHome() {
       items: [
         { text: "Build modular", link: "/developers/build-modular" },
         {
+          text: "Wallets",
+          collapsed: true,
+          items: [
+            {
+              text: "Keplr",
+              collapsed: true,
+              items: [
+                { text: "Install", link: "https://www.keplr.app/download" },
+                {
+                  text: "Create an account",
+                  link: "https://www.keplr.app/onboarding/how-to-create",
+                },
+                {
+                  text: "Integrating Keplr for developers",
+                  link: "/developers/keplr",
+                },
+              ],
+            },
+            {
+              text: "Leap",
+              collapsed: true,
+              items: [
+                { text: "Install", link: "https://www.leapwallet.io/download" },
+                {
+                  text: "Integrating Leap for developers",
+                  link: "/developers/leap",
+                },
+              ],
+            },
+            {
+              text: "Integrating Cosmostation for developers",
+              link: "/developers/cosmostation",
+            },
+          ],
+        },
+        {
           text: "Testing area",
           collapsed: true,
           items: [
