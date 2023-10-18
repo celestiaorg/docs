@@ -5,6 +5,12 @@
 import { versions } from '/.vitepress/versions/data.js'
 </script>
 
+::: tip
+
+TODO UPDATE THIS
+
+:::
+
 In this tutorial, we will cover how to use the Celestia Node RPC API to submit
 and retrieve data (blobs) from the data availability layer by their namespace.
 
