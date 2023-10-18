@@ -200,6 +200,7 @@ func (s *Sequencer) ProduceBlock(txs []json.RawMessage) (Block, error) {
     header := Header{
         Height:       uint64(len(s.Blocks) + 1),
         PreviousHash: lastBlock.Header.Hash(),
+        Namespace:    s.Namespace,
         Span: span,
     }
 
