@@ -325,6 +325,13 @@ As linked above, use the
 [Celestia light node RPC](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit)
 to submit the data to Celestia.
 
+#### Querying the proof
+
+To prove PFBs, blobs or shares, we can use the Celestia consensus nodes RPC to query proofs for them:
+
+- [`data_root_inclusion_proof`](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732aec3e09018e37dc31f4bfe122d9/rpc/openapi/openapi.yaml#L1045-L1093): query data root to data root tuple root proof.
+- [`prove_shares`](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732aec3e09018e37dc31f4bfe122d9/rpc/core/tx.go#L175-L213): query a shares proof to row roots, then a row roots to data root proofs.
+
 #### Posting headers to Ethereum
 
 How headers are posted to Ethereum is entirely dependent upon how the rollup light
