@@ -513,7 +513,7 @@ you can also use your node store to set your auth token. This will
 allow you to interact with the API without
 setting an authentication token directly.
 
-To set your node store for a light node on <InlineTextCode constant={constants.mochaChainId} />, you can use the following
+To set your node store for a light node on {{versions.chainId.mochaChainId}}, you can use the following
 command:
 
 <pre>

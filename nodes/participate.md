@@ -1,19 +1,24 @@
 <!-- markdownlint-disable MD033 -->
 
-# Participate in the Celestia testnets
+# Participate in the Celestia networks
+
+## Coffee
 
 <script setup>
 import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
 import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
 import CoffeeVersionTags from '../.vitepress/components/CoffeeVersionTags.vue'
-import InlineText from '../.vitepress/components/InlineText.vue'
 import constants from '../.vitepress/constants/constants.js'
 </script>
 
+- Coffee: TBD
+  - Compatible software versions
+    <CoffeeVersionTags/>
+
+## Testnets
+
 Celestia currently has two existing testnets that you can participate in:
 
-- Coffee: TBD
-  <CoffeeVersionTags/>
 - Arabica devnet: A devnet focused on developers who
   want to deploy sovereign rollups on the latest changes from Celestia's codebase.
   Arabica will be updated frequently and might be unstable at times given new updates.
@@ -36,6 +41,6 @@ for network upgrades.
 
 ## DRAFT AREA
 
-Mocha's chain ID is currently: <InlineText :constant="constants.mochaChainId"/>
+Mocha's chain ID is currently: `{{constants.mochaChainId}}`
 
-Arabica's chain ID is currently: <InlineText :constant="constants.arabicaChainId"/>
+Arabica's chain ID is currently: `{{constants.arabicaChainId}}`

@@ -264,7 +264,7 @@ function nav() {
     {
       text: "Participate",
       items: [
-        { text: "Run a node", link: "/developers/participate" },
+        { text: "Networks", link: "/nodes/participate" },
         {
           text: "Developers",
 
@@ -371,8 +371,7 @@ function sidebarHome() {
       items: [
         {
           text: "Networks",
-          collapsed: true,
-          items: [{ text: "Overview", link: "/developers/participate" }],
+          link: "/nodes/participate",
         },
       ],
     },
