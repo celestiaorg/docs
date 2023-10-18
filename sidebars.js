@@ -480,6 +480,7 @@ const sidebars = {
         { type: "doc", label: "Integrate with Blobstream Client", id: "developers/blobstream-offchain" },
       ]
     },
+    {
       type: "doc",
       label: "Demos on Celestia",
       id: "developers/demos",
