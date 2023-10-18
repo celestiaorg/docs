@@ -10,7 +10,7 @@ const constants = Object.freeze({
   mochaChainId: "mocha-4",
   arabicaRollkitVersion: "v0.10.5",
   mochaRollkitVersion: "v0.10.5",
-  bsrRollkitVersion: "v0.8.1",
+  bsrRollkitVersion: "v0.8.2",
   localCelestiaDevnetVersion: "v0.8.2",
   golangBlobstream: "1.20.2",
   orchrelayVersion: "v0.2.0-app-v0.13.2-beta",

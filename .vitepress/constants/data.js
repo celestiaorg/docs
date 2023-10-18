@@ -21,7 +21,7 @@ export const versions = {
   rollkitVersion: {
     arabicaRollkitVersion: "v0.10.2",
     mochaRollkitVersion: "v0.10.2",
-    coffeeRollkitVersion: "v0.8.1",
+    coffeeRollkitVersion: "v0.10.5",
   },
 
   localCelestiaDevnetVersion: "v0.11/0-rc8",
