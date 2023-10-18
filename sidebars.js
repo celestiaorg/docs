@@ -466,7 +466,7 @@ const sidebars = {
     },
     {
       type: "doc",
-      label: "Integrate Celestia",
+      label: "Integrate Celestia for service providers",
       id: "developers/integrate-celestia",
     },
     {
