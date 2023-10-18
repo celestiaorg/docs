@@ -68,32 +68,36 @@ contract MyRollup {
 
 ## Data Structures
 
-Each `DataRootTuple` is a tuple of block height and data root. It is analogous
-to a Celestia block header. `DataRootTuple`s are relayed in batches, committed
-to as a `DataRootTuple`s root (i.e. a Merkle root of `DataRootTuple`s).
+Each [`DataRootTuple`](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/DataRootTuple.sol)
+is a tuple of block height and data root. It is analogous to a Celestia block
+header. `DataRootTuple`s are relayed in batches, committed to as a
+`DataRootTuple`s root (i.e. a Merkle root of `DataRootTuple`s).
 
-The `BinaryMerkleProof` is an [RFC-6962](https://www.rfc-editor.org/rfc/rfc6962.html)-compliant
-Merkle proof. Since `DataRootTuple`s are Merkleized in a binary Merkle tree,
-verifying the inclusion of a `DataRootTuple` against a `DataRootTuple`s root
-requires verifying a Merkle inclusion proof.
+The [`BinaryMerkleProof`](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/lib/tree/binary/BinaryMerkleProof.sol)
+is an [RFC-6962](https://www.rfc-editor.org/rfc/rfc6962.html)-compliant Merkle
+proof. Since `DataRootTuple`s are Merkleized in a binary Merkle tree, verifying
+the inclusion of a `DataRootTuple` against a `DataRootTuple`s root requires
+verifying a Merkle inclusion proof.
 
 ## Interface
 
-The `IDAOracle` (**D**ata **A**vailability **O**racle Interface) interface
-allows L2 contracts on Ethereum to query the Blobstream contract for relayed
-`DataRootTuple`s. The single interface method `verifyAttestation` verifies a
-Merkle inclusion proof that a `DataRootTuple` is included under a specific
-batch (indexed by batch nonce). In other words, analogously it verifies that a
-specific block header is included in the canonical Celestia chain.
+The [`IDAOracle`](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/IDAOracle.sol)
+(**D**ata **A**vailability **O**racle Interface) interface allows L2 contracts
+on Ethereum to query the Blobstream contract for relayed `DataRootTuple`s. The
+single interface method `verifyAttestation` verifies a Merkle inclusion proof
+that a `DataRootTuple` is included under a specific batch (indexed by batch
+nonce). In other words, analogously it verifies that a specific block header is
+included in the canonical Celestia chain.
 
 ## Verifying Data Inclusion for Fraud Proofs
 
 A high-level overview of how a fraud-proof based L2 would interact with
 Blobstream can be found in the [inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md).
 
-The `DAVerifier` library is available at `blobstream-contracts/lib/verifier/DAVerifier.sol`,
-and provides functions to verify the inclusion of individual (or multiple)
-shares against a `DataRootTuple`. The library is stateless, and assumes the
+The [`DAVerifier`](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/lib/verifier/DAVerifier.sol)
+library is available at `blobstream-contracts/lib/verifier/DAVerifier.sol`, and
+provides functions to verify the inclusion of individual (or multiple) shares
+against a `DataRootTuple`. The library is stateless, and assumes the
 `DataRootTuple` was previously verified as included through the Blobstream
 contract's `verifyAttestation` method.
 
