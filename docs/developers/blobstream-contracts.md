@@ -114,7 +114,7 @@ contract's `verifyAttestation` method.
 In the `DAVerifier` library, we find functions that help
 with data inclusion verification and calculating the square size of a
 Celestia block. These functions work with the Blobstream smart contract,
-using different proofs to check and confirm the data's validity. Let's
+using different proofs to check and confirm the data's availability. Let's
 take a closer look at these functions:
 
 - [`verifySharesToDataRootTupleRoot`](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/DAVerifier.sol#L80-L124):
