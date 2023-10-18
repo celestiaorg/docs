@@ -231,7 +231,7 @@ func (s *Sequencer) UpdateHeaders() error {
         return err
     }
 
-    for i := uint64(len(s.Blocks) + 1); i <= latestRollupHeight; i++ {
+    for i := latestRollupHeight; i <= uint64(len(s.Blocks)+1); i++ {
         err := s.EthereumClient.SubmitHeader(s.Blocks[i].Header)
         if err != nil {
             return err
