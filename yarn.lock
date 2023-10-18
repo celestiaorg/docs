@@ -1492,7 +1492,7 @@ fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
 
-fast-glob@^3.2.9, fast-glob@^3.3.0:
+fast-glob@^3.2.9:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.3.1.tgz#784b4e897340f3dbbef17413b3f11acf03c874c4"
   integrity sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==
@@ -1674,17 +1674,6 @@ globals@^13.19.0:
   integrity sha512-XAmF0RjlrjY23MA51q3HltdlGxUpXPvg0GioKiD9X6HD28iMjo2dKC8Vqwm7lne4GNr78+RHTfliktR6ZH09wA==
   dependencies:
     type-fest "^0.20.2"
-
-globby@13.2.2:
-  version "13.2.2"
-  resolved "https://registry.yarnpkg.com/globby/-/globby-13.2.2.tgz#63b90b1bf68619c2135475cbd4e71e66aa090592"
-  integrity sha512-Y1zNGV+pzQdh7H39l9zgB4PJqjRNqydvdYCDG4HFXM4XuvSaQQlEc91IU1yALL8gUTDomgBAfz3XJdmUS+oo0w==
-  dependencies:
-    dir-glob "^3.0.1"
-    fast-glob "^3.3.0"
-    ignore "^5.2.4"
-    merge2 "^1.4.1"
-    slash "^4.0.0"
 
 globby@^11.1.0:
   version "11.1.0"
@@ -1954,13 +1943,6 @@ jsonparse@^1.2.0:
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
   integrity sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==
 
-katex@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/katex/-/katex-0.6.0.tgz#12418e09121c05c92041b6b3b9fb6bab213cb6f3"
-  integrity sha512-rS4mY3SvHYg5LtQV6RBcK0if7ur6plyEukAOV+jGGPqFImuzu8fHL6M752iBmRGoUyF0bhZbAPoezehn7xYksA==
-  dependencies:
-    match-at "^0.1.0"
-
 keyv@^4.5.3:
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-4.5.4.tgz#a879a99e29452f942439f2a405e3af8b31d4de93"
@@ -2145,13 +2127,6 @@ mark.js@8.11.1:
   resolved "https://registry.yarnpkg.com/mark.js/-/mark.js-8.11.1.tgz#180f1f9ebef8b0e638e4166ad52db879beb2ffc5"
   integrity sha512-1I+1qpDt4idfgLQG+BNWmrqku+7/2bi5nLf4YwF8y8zXvmfiTBY3PV3ZibfrjBueCByROpuBjLLFCajqkgYoLQ==
 
-markdown-it-katex@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/markdown-it-katex/-/markdown-it-katex-2.0.3.tgz#d7b86a1aea0b9d6496fab4e7919a18fdef589c39"
-  integrity sha512-nUkkMtRWeg7OpdflamflE/Ho/pWl64Lk9wNBKOmaj33XkQdumhXAIYhI0WO03GeiycPCsxbmX536V5NEXpC3Ng==
-  dependencies:
-    katex "^0.6.0"
-
 markdown-it-mathjax@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/markdown-it-mathjax/-/markdown-it-mathjax-2.0.0.tgz#ae2b4f4c5c719a03f9e475c664f7b2685231d9e9"
@@ -2167,23 +2142,6 @@ markdown-it@13.0.1:
     linkify-it "^4.0.1"
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
-
-markdownlint-cli2-formatter-default@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/markdownlint-cli2-formatter-default/-/markdownlint-cli2-formatter-default-0.0.4.tgz#81e26b0a50409c0357c6f0d38d8246946b236fab"
-  integrity sha512-xm2rM0E+sWgjpPn1EesPXx5hIyrN2ddUnUwnbCsD/ONxYtw3PX6LydvdH6dciWAoFDpwzbHM1TO7uHfcMd6IYg==
-
-markdownlint-cli2@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/markdownlint-cli2/-/markdownlint-cli2-0.10.0.tgz#4ba94b6cc648eb62475432ebcc19557afcdd487b"
-  integrity sha512-kVxjPyKFC+eW7iqcxiNI50RDzwugpXkEX5eQlDso/0IUs9M73jXYguLFHDzgi5KatcxU/57Fu8KoGtkFft9lfA==
-  dependencies:
-    globby "13.2.2"
-    markdownlint "0.31.1"
-    markdownlint-cli2-formatter-default "0.0.4"
-    micromatch "4.0.5"
-    strip-json-comments "5.0.1"
-    yaml "2.3.2"
 
 markdownlint-cli@^0.37.0:
   version "0.37.0"
@@ -2205,18 +2163,13 @@ markdownlint-micromark@0.1.7:
   resolved "https://registry.yarnpkg.com/markdownlint-micromark/-/markdownlint-micromark-0.1.7.tgz#c465091b30d61a56027ccbfb981c80c96448c165"
   integrity sha512-BbRPTC72fl5vlSKv37v/xIENSRDYL/7X/XoFzZ740FGEbs9vZerLrIkFRY0rv7slQKxDczToYuMmqQFN61fi4Q==
 
-markdownlint@0.31.1, markdownlint@~0.31.1:
+markdownlint@~0.31.1:
   version "0.31.1"
   resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.31.1.tgz#f014ed2d3614c5dbc351b7f65641ccc0a5facdb7"
   integrity sha512-CKMR2hgcIBrYlIUccDCOvi966PZ0kJExDrUi1R+oF9PvqQmCrTqjOsgIvf2403OmJ+CWomuzDoylr6KbuMyvHA==
   dependencies:
     markdown-it "13.0.1"
     markdownlint-micromark "0.1.7"
-
-match-at@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/match-at/-/match-at-0.1.1.tgz#25d040d291777704d5e6556bbb79230ec2de0540"
-  integrity sha512-h4Yd392z9mST+dzc+yjuybOGFNOZjmXIPKWjxBd1Bb23r4SmDOsk2NYCU2BMUBGbSpZqwVsZYNq26QS3xfaT3Q==
 
 mdurl@^1.0.1:
   version "1.0.1"
@@ -2749,11 +2702,6 @@ slash@^3.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
-slash@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
-  integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
-
 slice-ansi@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/slice-ansi/-/slice-ansi-5.0.0.tgz#b73063c57aa96f9cd881654b15294d95d285c42a"
@@ -2860,11 +2808,6 @@ strip-indent@^3.0.0:
   integrity sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==
   dependencies:
     min-indent "^1.0.0"
-
-strip-json-comments@5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-5.0.1.tgz#0d8b7d01b23848ed7dbdf4baaaa31a8250d8cfa0"
-  integrity sha512-0fk9zBqO67Nq5M/m45qHCJxylV/DhBlIOVExqgOMiCCrzrhU6tCibRXNqE3jwJLftzE9SNuZtYbpzcO+i9FiKw==
 
 strip-json-comments@^3.1.1, strip-json-comments@~3.1.1:
   version "3.1.1"
@@ -3171,11 +3114,6 @@ yaml@2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.3.1.tgz#02fe0975d23cd441242aa7204e09fc28ac2ac33b"
   integrity sha512-2eHWfjaoXgTBC2jNM1LRef62VQa0umtvRiDSk6HSzW7RvS5YtkabJrwYLLEKWBc8a5U2PTSCs+dJjUTJdlHsWQ==
-
-yaml@2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.3.2.tgz#f522db4313c671a0ca963a75670f1c12ea909144"
-  integrity sha512-N/lyzTPaJasoDmfV7YTrYCI0G/3ivm/9wdG0aHuheKowWQwGTsK0Eoiw6utmzAnI6pkJa0DUVygvp3spqqEKXg==
 
 yargs-parser@^20.2.3:
   version "20.2.9"
