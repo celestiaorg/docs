@@ -5,7 +5,7 @@ description: An overview of Blobstream.
 
 # Blobstream
 
-Blobstream, covered previously in
+[Blobstream](https://blog.celestia.org/blobstream/), covered previously in
 [the Celestia blog post](https://blog.celestia.org/celestiums/),
 introduces the concept of a layer 2 (L2), which is an EVM L2
 rollup that uses Celestia for data availability
