@@ -14,9 +14,8 @@ but settles on Ethereum (or any other EVM L1 chain).
 This page and following tutorials will go over Blobstream and how validators on Celestia can run it.
 
 If you're looking to learn more, you can view
-[the `orchestrator-relayer` repository](https://github.com/celestiaorg/orchestrator-relayer)
-, and
-[read more about Blobstream](https://github.com/celestiaorg/blobstream-contracts#how-it-works).
+[the `orchestrator-relayer` repository](https://github.com/celestiaorg/orchestrator-relayer),
+and [read more about Blobstream](https://github.com/celestiaorg/blobstream-contracts#how-it-works).
 
 ## Overview
 
@@ -89,11 +88,11 @@ independently of Ethereum's gas costs, as Celestia's resource pricing is more
 byte-focused rather than computation-centric. On the other hand, the scalability and
 flexibility of a DAC would depend on its specific design and implementation.
 
-In summary, both Blobstream and DACs aim to ensure off-chain data availability,
+In summary, both Blobstream and DACs aim to ensure offchain data availability,
 but Blobstream offers a more decentralized, secure, and scalable solution
 compared to the potential centralized nature of DACs.
 
-## Setting up the Blobstream
+## Setting up Blobstream
 
 The following sections in this category presume you have the following setup:
 

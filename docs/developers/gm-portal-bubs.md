@@ -113,7 +113,7 @@ Now, login with your wallet that you funded, and post a GM on your GM portal!
 There are many possibilities of what could be built with this stack.
 These projects would be good to build on this stack:
 
-- on-chain gaming
+- onchain gaming
 - decentralized social media
 - an NFT ticketing rollup
 - Optimism on CelOPstia

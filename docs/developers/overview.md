@@ -31,3 +31,7 @@ It includes:
 - [Demos on Celestia](../../developers/demos/)
 - [Integrate with Celestia Network](../../developers/integrate-celestia/)
   for third-party service providers
+- [Integrate with Blobstream](../../developers/blobstream/)
+  for L2s
+  - [Integrate with Blobstream Contracts](../../developers/blobstream-contracts/)
+  - [Integrate with Blobstream Client](../../developers/blobstream-offchain/)

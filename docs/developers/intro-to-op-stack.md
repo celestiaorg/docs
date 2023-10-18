@@ -31,7 +31,7 @@ The current testnet this setup is compatible with is the
 
 [Optimism](https://www.optimism.io/) uses Ethereum as
 a data availability (DA) layer. Currently, settlement and DA for
-Optimism are on Ethereum, both on-chain. `op-batcher` batches up
+Optimism are on Ethereum, both onchain. `op-batcher` batches up
 rollup blocks and posts to Ethereum.
 
 ### Table of contents of the category

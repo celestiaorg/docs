@@ -14,7 +14,7 @@ and make a pull request to do so!
 ## Celestia
 
 - macOS light node client - [quazarapp.xyz](https://quazarapp.xyz)
-- RPC CLI tutorial with an on-chain SVG - [based64.xyz](https://based64.xyz)
+- RPC CLI tutorial with an onchain SVG - [based64.xyz](https://based64.xyz)
 
 ## OP Stack testnet
 

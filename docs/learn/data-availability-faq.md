@@ -36,7 +36,7 @@ Since transaction data is withheld, nodes cannot update to the latest state.
 Such an attack can have numerous consequences, from halting a chain to
 gaining the ability to steal funds. The severity of the consequences will
 depend on the type of blockchain (L1 or L2) and whether data availability
-is kept on-chain or off-chain. The data availability problem commonly
+is kept onchain or offchain. The data availability problem commonly
 arises around L2 scaling solutions like rollups and validiums.
 
 ## How do nodes verify data availability in Celestia?

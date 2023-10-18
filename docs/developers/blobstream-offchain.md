@@ -167,12 +167,12 @@ of where the data is located in the celestia block and the sequencer signs over
 that location in the header. If the sequencer commits to non-existent data or an
 invalid state root, then the invalid transaction is first proved to be included
 in the `Span` before the rest of the fraud proof process is followed. Find more
-[information on Blobstream fraud proofs](https://github.com/celestiaorg/blobstream-contracts/blob/v3.0.0/docs/inclusion-proofs.md#blobstream-fraud-proofs).
+information [in the inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/v3.0.0/docs/inclusion-proofs.md#blobstream-fraud-proofs).
 
 For zk rollups, this would involve creating an inclusion proof to the data root
 tuple root in the Blobstream contracts, and then verifying that proof in the zk
-proof used to verify state. Find more information on
-[inclusion proofs](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md#1-data-root-inclusion-proof).
+proof used to verify state. Find more information in the
+[data root inclusion proof documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md#1-data-root-inclusion-proof).
 
 Also see the documention for the
 [data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md)
