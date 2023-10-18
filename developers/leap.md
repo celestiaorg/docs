@@ -6,13 +6,13 @@ description: How you can add Celestia network parameters to Leap wallet.
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import { versions } from '/.vitepress/constants/data.js'
+import constants from '/.vitepress/constants/constants.js'
 </script>
 
 This guide will go over how you can add Celestia network parameters to Leap wallet.
 
 The example in this guide is for the [Mocha testnet](../../nodes/mocha-testnet)
-([{{ versions.chainId.mochaChainId }}.](../../nodes/mocha-testnet#software-version-numbers)),
+([{{ constants.mochaChainId }}.](../../nodes/mocha-testnet#software-version-numbers)),
 and the same workflow can be used for any Celestia network.
 
 ## Install Leap
@@ -44,7 +44,7 @@ If you want to add a custom chain to Leap, you can do so by:
 You can
 then add the following parameters:
 
-- Chain Id: `{{ versions.chainId.arabicaChainId }}`
+- Chain Id: `{{ constants.arabicaChainId }}`
 - Chain Name: `Arabica devnet`
 - New RPC URL: `https://consensus-full.celestia-arabica-10.com`
 - New REST URL: `https://api.consensus.celestia-arabica-10.com`

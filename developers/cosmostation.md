@@ -6,13 +6,13 @@ description: How you can add Celestia network parameters to Cosmostation wallet.
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import { versions } from '/.vitepress/constants/data.js'
+import constants from '/.vitepress/constants/constants.js'
 </script>
 
 This guide will go over how you can add Celestia network parameters
 to Cosmostation wallet.
 
-The example in this guide is for {{versions.chainId.mochaChainId}}
+The example in this guide is for {{constants.mochaChainId}}
 testnet, and the same workflow can be used for any Celestia network.
 
 ## Install Cosmostation

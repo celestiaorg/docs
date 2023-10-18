@@ -6,7 +6,7 @@ description: How you can add Celestia network parameters to Keplr.
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import { versions } from '/.vitepress/constants/data.js'
+import constants from '/.vitepress/constants/constants.js'
 </script>
 
 Keplr is a popular Cosmos-based wallet that allows anyone
@@ -130,7 +130,7 @@ function:
 import '@site/src/components/AddNetworkKeplr'
 
 export const MOCHA_PARAMS = {`{
-  chainId: '{{versions.chainId.mochaChainId}}',
+  chainId: '{{constants.mochaChainId}}',
   chainName: 'Mocha testnet',
   rpc: 'https://rpc-mocha.pops.one',
   rest: 'https://api-mocha.pops.one/'
@@ -143,7 +143,7 @@ export const MOCHA_PARAMS = {`{
 import '@site/src/components/AddNetworkKeplr'
 
 export const ARABICA_PARAMS = {`{
-  chainId: '{{versions.chainId.arabicaChainId}}',
+  chainId: '{{constants.arabicaChainId}}',
   chainName: 'Arabica devnet',
   rpc: 'https://consensus-full.celestia-arabica-10.com/',
   rest: 'https://api.consensus.celestia-arabica-10.com/'

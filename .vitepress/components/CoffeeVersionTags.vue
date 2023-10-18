@@ -3,54 +3,56 @@
     <li>
       Celestia Chain ID - 
       <a 
-        :href="`https://github.com/celestiaorg/networks/tree/master/${versions.chainId.coffeeChainId}`"
+        :href="`https://github.com/celestiaorg/networks/tree/master/${constants.coffeeChainId}`"
         target="_blank"
         rel="noopener noreferrer"
       >
-        {{ versions.chainId.coffeeChainId }}
+        {{ constants.coffeeChainId }}
       </a>
     </li>
     <li>
       Celestia Node - 
       <a 
-        :href="`https://github.com/celestiaorg/celestia-node/releases/tag/${versions.nodeTag.nodeTagCoffee}`"
+        :href="`https://github.com/celestiaorg/celestia-node/releases/tag/${coffeeVersions['node-latest-tag']}`"
         target="_blank"
         rel="noopener noreferrer"
       >
-        {{ versions.nodeTag.nodeTagCoffee }}
+        {{ coffeeVersions['node-latest-tag'] }}
       </a>
     </li>
     <li>
       Celestia App - 
       <a 
-        :href="`https://github.com/celestiaorg/celestia-app/releases/tag/${versions.appTag.appTagCoffee}`"
+        :href="`https://github.com/celestiaorg/celestia-app/releases/tag/${coffeeVersions['app-latest-tag']}`"
         target="_blank"
         rel="noopener noreferrer"
       >
-        {{ versions.appTag.appTagCoffee }}
+        {{ coffeeVersions['app-latest-tag'] }}
       </a>
     </li>
     <li>
       Rollkit - 
       <a 
-        :href="`https://github.com/rollkit/rollkit/releases/tag/${versions.rollkitVersion.coffeeRollkitVersion}`"
+        :href="`https://github.com/rollkit/rollkit/releases/tag/${constants.coffeeRollkitVersion}`"
         target="_blank"
         rel="noopener noreferrer"
       >
-        {{ versions.rollkitVersion.coffeeRollkitVersion }}
+        {{ constants.coffeeRollkitVersion }}
       </a>
     </li>
   </ul>
 </template>
 
 <script>
-import { versions } from "/.vitepress/constants/data.js";
+import coffeeVersions from "/.vitepress/constants/coffee_versions.js";
+import constants from "/.vitepress/constants/constants.js";
 
 export default {
-  name: 'CoffeeVersionTags',
+  name: 'coffeeVersionTags',
   data() {
     return {
-      versions
+      coffeeVersions,
+      constants
     };
   }
 }
