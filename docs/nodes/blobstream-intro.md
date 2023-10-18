@@ -88,7 +88,7 @@ independently of Ethereum's gas costs, as Celestia's resource pricing is more
 byte-focused rather than computation-centric. On the other hand, the scalability and
 flexibility of a DAC would depend on its specific design and implementation.
 
-In summary, both Blobstream and DACs aim to ensure off-chain data availability,
+In summary, both Blobstream and DACs aim to ensure offchain data availability,
 but Blobstream offers a more decentralized, secure, and scalable solution
 compared to the potential centralized nature of DACs.
 
