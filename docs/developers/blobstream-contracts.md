@@ -7,6 +7,14 @@ description: Learn how to integrate your L2's onchain logic with Blobstream
 
 ## Getting Started
 
+### Prerequisites
+
+Please make sure to have the following installed:
+
+- [Foundry](https://github.com/foundry-rs/foundry)
+
+### Installing Blobstream contracts
+
 Install the Blobstream contracts repo as a dependency:
 
 ```sh
