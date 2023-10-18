@@ -13,7 +13,7 @@ Please make sure to have the following installed:
 
 - [Foundry](https://github.com/foundry-rs/foundry)
 
-### Installing Blobstream contracts
+### Installing Blobstream Contracts
 
 Install the Blobstream contracts repo as a dependency:
 
@@ -23,6 +23,8 @@ forge install celestiaorg/blobstream-contracts --no-commit
 
 Note that the minimum Solidity compiler version for using the Blobstream
 contracts is `0.8.19`.
+
+### Example Usage
 
 Example minimal Solidity contract for a stub ZK rollup that leverages the
 Blobstream contract to check that data has been posted to Celestia:
@@ -109,5 +111,12 @@ against a `DataRootTuple`. The library is stateless, and assumes the
 `DataRootTuple` was previously verified as included through the Blobstream
 contract's `verifyAttestation` method.
 
-[`DAVerifier` tests](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/lib/verifier/test/DAVerifier.t.sol)
-demonstrate how to use the library.
+`verifySharesToDataRootTupleRoot`
+
+`verifyRowRootToDataRootTupleRoot`
+
+`verifyMultiRowRootsToDataRootTupleRoot`
+
+`computeSquareSizeFromRowProof`
+
+`computeSquareSizeFromShareProof`
