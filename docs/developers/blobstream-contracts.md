@@ -13,11 +13,11 @@ Install the Blobstream contracts repo as a dependency:
 forge install celestiaorg/blobstream-contracts --no-commit
 ```
 
-Example minimal Solidity contract that calls the Blobstream contract to check
-that data has been posted to Celestia.
-
 Note that the minimum Solidity compiler version for using the Blobstream
 contracts is `0.8.19`.
+
+Example minimal Solidity contract for a stub ZK rollup that leverages the
+Blobstream contract to check that data has been posted to Celestia:
 
 ```solidity
 // SPDX-License-Identifier: Apache-2.0
