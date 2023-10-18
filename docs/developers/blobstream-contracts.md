@@ -146,3 +146,6 @@ Celestia block square size from a shares to row/column root proof.
 It is the user's responsibility to verify that the proof is valid
 and that the shares were successfully committed to using the
 `verifySharesToDataRootTupleRoot()` method.
+
+For an overview of a demo rollup implementation, head to
+[the next section](../blobstream-offchain).
