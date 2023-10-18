@@ -37,7 +37,7 @@ jobs:
             MATRIX="${MATRIX}{\"repo\": \"${element}\"},"
           done
           MATRIX="${MATRIX%?}]}"
-          echo "::set-output name=matrix::${MATRIX}"
+          echo "MATRIX=${MATRIX}" >> $GITHUB_ENV
 
   logLatestRelease:
     needs: set_matrix
@@ -60,9 +60,7 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get_latest_release
         with:
-          route: GET /repos/{owner}/{repo}/releases
-          owner: ${{ env.owner }}
-          repo: ${{ matrix.repo }}
+          route: GET /repos/${{ env.owner }}/${{ matrix.repo }}/releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Log latest tag
@@ -71,9 +69,7 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get_latest_commit
         with:
-          route: GET /repos/{owner}/{repo}/git/ref/tags/${{ fromJSON(steps.get_latest_release.outputs.data)[0].tag_name }}
-          owner: ${{ env.owner }}
-          repo: ${{ matrix.repo }}
+          route: GET /repos/${{ env.owner }}/${{ matrix.repo }}/git/ref/tags/${{ fromJSON(steps.get_latest_release.outputs.data)[0].tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Log latest sha
@@ -81,8 +77,8 @@ jobs:
       - name: Set outputs
         id: set_outputs
         run: |
-          echo "${{matrix.repo}}_latest_tag=${{ fromJSON(steps.get_latest_release.outputs.data)[0].tag_name }}" >> $GITHUB_OUTPUT
-          echo "${{matrix.repo}}_latest_sha=${{ fromJSON(steps.get_latest_commit.outputs.data).object.sha }}" >> $GITHUB_OUTPUT
+          echo "${{matrix.repo}}_latest_tag=${{ fromJSON(steps.get_latest_release.outputs.data)[0].tag_name }}" >> $GITHUB_ENV
+          echo "${{matrix.repo}}_latest_sha=${{ fromJSON(steps.get_latest_commit.outputs.data).object.sha }}" >> $GITHUB_ENV
 
   createPR:
     needs: logLatestRelease
@@ -92,30 +88,99 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v3
-      - name: Write latest tags and commit SHAs to txt files
+      - name: Write Core Arabica
+        if: |
+          (github.event.inputs.network == 'arabica' || github.event.inputs.network == 'all') &&
+          (needs.logLatestRelease.outputs.celestia-core_latest_tag != '')
         run: |
           CONTENTS=$(cat << EOF
-          const ${{ inputs.network }}Versions = Object.freeze({
-            "app-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }}",
-            "app-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }}",
+          const celestiaCoreArabicaVersions = Object.freeze({
             "core-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }}",
             "core-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}", 
-            "node-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }}",
-            "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-node_latest_sha }}"
           });
-          export default ${{ inputs.network }}Versions;
+          export default celestiaCoreArabicaVersions;
           EOF
           )
-          echo $CONTENTS > .vitepress/constants/\${{ inputs.network }}_versions.js
+          echo $CONTENTS > .vitepress/constants/celestia-core_arabica_versions.js
+      - name: Write Core Mocha
+        if: |
+          (github.event.inputs.network == 'arabica' || github.event.inputs.network == 'all') &&
+          (needs.logLatestRelease.outputs.celestia-core_latest_tag != '')
+        run: |
+          CONTENTS=$(cat << EOF
+          const celestiaCoreMochaVersions = Object.freeze({
+            "core-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }}",
+            "core-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}", 
+          });
+          export default celestiaCoreMochaVersions;
+          EOF
+          )
+          echo $CONTENTS > .vitepress/constants/celestia-core_mocha_versions.js
+      - name: Write App Arabica
+        if: |
+          (github.event.inputs.network == 'arabica' || github.event.inputs.network == 'all') &&
+          (needs.logLatestRelease.outputs.celestia-app_latest_tag != '')
+        run: |
+          CONTENTS=$(cat << EOF
+          const celestiaAppArabicaVersions = Object.freeze({
+            "app-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }}",
+            "app-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }}", 
+          });
+          export default celestiaAppArabicaVersions;
+          EOF
+          )
+          echo $CONTENTS > .vitepress/constants/celestia-app_arabica_versions.js
+      - name: Write App Mocha
+        if: |
+          (github.event.inputs.network == 'mocha' || github.event.inputs.network == 'all') &&
+          (needs.logLatestRelease.outputs.celestia-app_latest_tag != '')
+        run: |
+          CONTENTS=$(cat << EOF
+          const celestiaAppMochaVersions = Object.freeze({
+            "app-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }}",
+            "app-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }}", 
+          });
+          export default celestiaAppMochaVersions;
+          EOF
+          )
+          echo $CONTENTS > .vitepress/constants/celestia-app_mocha_versions.js
+      - name: Write Node Arabica
+        if: |
+          (github.event.inputs.network == 'arabica' || github.event.inputs.network == 'all') &&
+          (needs.logLatestRelease.outputs.celestia-node_latest_tag != '')
+        run: |
+          CONTENTS=$(cat << EOF
+          const celestiaNodeArabicaVersions = Object.freeze({
+            "node-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }}",
+            "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-node_latest_sha }}", 
+          });
+          export default celestiaNodeArabicaVersions;
+          EOF
+          )
+          echo $CONTENTS > .vitepress/constants/celestia-node_arabica_versions.js
+      - name: Write Node Mocha
+        if: |
+          (github.event.inputs.network == 'mocha' || github.event.inputs.network == 'all') &&
+          (needs.logLatestRelease.outputs.celestia-node_latest_tag != '')
+        run: |
+          CONTENTS=$(cat << EOF
+          const celestiaNodeMochaVersions = Object.freeze({
+            "node-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }}",
+            "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-node_latest_sha }}", 
+          });
+          export default celestiaNodeMochaVersions;
+          EOF
+          )
+          echo $CONTENTS > .vitepress/constants/celestia-node_mocha_versions.js
       - name: Install Prettier
         run: |
           npm install -g prettier
       - name: Format the code with Prettier
         run: |
-          prettier .vitepress/constants/\${{ inputs.network }}_versions.js --write
+          prettier .vitepress/constants/celestia-core_arabica_versions.js --write
       - name: Open PR
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: "[automated GH action] update latest release tags & commit sha (${{ inputs.network }})"
-          title: "[GH Action] Update release tags and commit SHAs for ${{ inputs.network }}"
+          commit-message: "[automated GH action] update latest release tags & commit sha (${{ github.event.inputs.network }})"
+          title: "[GH Action] Update release tags and commit SHAs for ${{ github.event.inputs.network }}"
           token: ${{ secrets.PAT_CREATE_PR }}
