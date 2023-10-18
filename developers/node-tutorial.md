@@ -2,7 +2,10 @@
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import { versions } from '/.vitepress/constants/data.js'
+import constants from '/.vitepress/constants/constants.js'
+import arabicaVersions from '/.vitepress/constants/arabica_versions.js'
+import mochaVersions from '/.vitepress/constants/mocha_versions.js'
+import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
 </script>
 
 In this tutorial, we will cover how to use the Celestia Node RPC API to submit
@@ -114,15 +117,15 @@ and run our node.
 ::: code-group
 
 ```bash-vue [Coffee]
-ver="{{versions.golang.golangNodeCoffee}}"
+ver="{{constants.golangNodeCoffee}}"
 ```
 
 ```bash-vue [Mocha]
-ver="{{versions.golang.golangNodeMocha}}"
+ver="{{constants.golangNodeMocha}}"
 ```
 
 ```bash-vue [Arabica]
-ver="{{versions.golang.golangNodeArabica}}"
+ver="{{constants.golangNodeArabica}}"
 ```
 
 :::
@@ -216,15 +219,15 @@ cd celestia-node/
 ::: code-group
 
 ```bash-vue [Coffee]
-git checkout tags/{{versions.nodeTag.nodeTagCoffee}}
+git checkout tags/{{coffeeVersions['node-latest-tag']}}
 ```
 
 ```bash-vue [Mocha]
-git checkout tags/{{versions.nodeTag.nodeTagMocha}}
+git checkout tags/{{mochaVersions['node-latest-tag']}}
 ```
 
 ```bash-vue [Arabica]
-git checkout tags/{{versions.nodeTag.nodeTagArabica}}
+git checkout tags/{{arabicaVersions['node-latest-tag']}}
 ```
 
 :::
@@ -513,7 +516,7 @@ you can also use your node store to set your auth token. This will
 allow you to interact with the API without
 setting an authentication token directly.
 
-To set your node store for a light node on {{versions.chainId.mochaChainId}}, you can use the following
+To set your node store for a light node on {{constants.mochaChainId}}, you can use the following
 command:
 
 <pre>
@@ -653,7 +656,7 @@ celestia rpc blob get [block height] [hex-encoded namespace] \
   [commitment from output above] [node store | auth]
 ```
 
-Here is an example command to retrieve the data from above, on `{{versions.chainId.arabicaChainId}}`:
+Here is an example command to retrieve the data from above, on `{{constants.arabicaChainId}}`:
 
 <!-- markdownlint-disable MD013 -->
 
