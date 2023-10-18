@@ -88,7 +88,7 @@ specific block header is included in the canonical Celestia chain.
 ## Verifying Data Inclusion for Fraud Proofs
 
 A high-level overview of how a fraud-proof based L2 would interact with
-Blobstream can be found [here](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md).
+Blobstream can be found in the [inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md).
 
 The `DAVerifier` library is available at `blobstream-contracts/lib/verifier/DAVerifier.sol`,
 and provides functions to verify the inclusion of individual (or multiple)
