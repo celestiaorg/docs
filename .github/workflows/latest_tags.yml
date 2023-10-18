@@ -104,7 +104,7 @@ jobs:
       - name: Write latest tags and commit SHAs to txt files
         run: |
           # Define the networks and software in arrays
-          networks=("arabica" "mocha" "coffee")
+          networks=("arabica" "mocha" "mainnet")
           software=("celestia-app" "celestia-core" "celestia-node")
       
           # Loop over each network and software
