@@ -33,7 +33,6 @@ type Header struct {
     Height             uint64    `json:"height"`
     Namespace          []byte    `json:"namespace"`
     PreviousHash       []byte    `json:"previous_hash"`
-    DataRoot           []byte    `json:"data_root"`
     Span               Span      `json:"span"`
     SequencerSignature Signature `json:"sequencer_signature,omitempty"`
 }
