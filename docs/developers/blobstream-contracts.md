@@ -49,7 +49,7 @@ contract MyRollup {
         );
 
         // Verify the ZKP.
-        // _tuple.dataRoot is a private input, leaves are public inputs.
+        // _tuple.dataRoot is a public input, leaves (shares) are private inputs.
         require(verifyZKP(_zk_proof, _tuple.dataRoot));
 
         // Everything checks out, append rollup block hash to list.
