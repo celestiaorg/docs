@@ -107,9 +107,8 @@ Blobstream can be found in the [inclusion proofs documentation](https://github.c
 The [`DAVerifier`](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/lib/verifier/DAVerifier.sol)
 library is available at `blobstream-contracts/lib/verifier/DAVerifier.sol`, and
 provides functions to verify the inclusion of individual (or multiple) shares
-against a `DataRootTuple`. The library is stateless, and assumes the
-`DataRootTuple` was previously verified as included through the Blobstream
-contract's `verifyAttestation` method.
+against a `DataRootTuple`. The library is stateless, and allows to pass an
+`IDAOracle` interface as a parameter to verify inclusion against it.
 
 In the `DAVerifier` library, we find functions that help
 with data inclusion verification and calculating the square size of a
