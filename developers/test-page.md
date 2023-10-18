@@ -2,7 +2,7 @@
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import { versions } from '/.vitepress/versions/data.js'
+import { versions } from '/.vitepress/constants/data.js'
 </script>
 
 ::: code-group

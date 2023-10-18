@@ -2,7 +2,7 @@
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import { versions } from '/.vitepress/versions/data.js'
+import { versions } from '/.vitepress/constants/data.js'
 </script>
 
 In this tutorial, we will cover how to use the Celestia Node RPC API to submit
@@ -901,7 +901,7 @@ Now, let's get the block header information.
 
 Here we will get the header from Block 1:
 
-```bash
+````bash
 celestia rpc header get-by-height 1 \
   --node.store $NODE_STORE```
 
@@ -992,7 +992,7 @@ It will output something like this:
   },
   "id": 1
 }
-```
+````
 
 #### Combined commands
 

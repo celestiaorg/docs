@@ -13,7 +13,7 @@ tabs, and no variables:
 ::: code-group
 
 ```md [potato]
-import constants from "/.vitepress/versions/constants.js";
+import constants from "/.vitepress/constants/constants.js";
 ```
 
 ```md [pancakes]

@@ -6,7 +6,7 @@ description: How you can add Celestia network parameters to Keplr.
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
-import { versions } from '/.vitepress/versions/data.js'
+import { versions } from '/.vitepress/constants/data.js'
 </script>
 
 Keplr is a popular Cosmos-based wallet that allows anyone

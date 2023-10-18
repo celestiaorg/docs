@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { versions } from "/.vitepress/versions/data.js";
+import { versions } from "/.vitepress/constants/data.js";
 
 export default {
   name: 'CoffeeVersionTags',

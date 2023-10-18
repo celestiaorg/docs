@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import constants from "/.vitepress/versions/constants.js";
+import constants from "/.vitepress/constants/constants.js";
 import '@fortawesome/fontawesome-free/css/all.css'
 
 export default {

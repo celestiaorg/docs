@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import arabicaVersions from "/.vitepress/versions/arabica_versions.js";
-import constants from "/.vitepress/versions/constants.js";
+import arabicaVersions from "/.vitepress/constants/arabica_versions.js";
+import constants from "/.vitepress/constants/constants.js";
 
 export default {
   name: 'ArabicaVersionTags',

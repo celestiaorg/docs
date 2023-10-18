@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import mochaVersions from "/.vitepress/versions/mocha_versions.js";
-import constants from "/.vitepress/versions/constants.js";
+import mochaVersions from "/.vitepress/constants/mocha_versions.js";
+import constants from "/.vitepress/constants/constants.js";
 
 export default {
   name: 'MochaVersionTags',
