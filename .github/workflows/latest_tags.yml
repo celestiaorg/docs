@@ -38,6 +38,7 @@ jobs:
           done
           MATRIX="${MATRIX%?}]}"
           echo "MATRIX=${MATRIX}" >> $GITHUB_ENV
+          echo "::set-output name=matrix::${MATRIX}"
 
   logLatestRelease:
     needs: set_matrix
