@@ -28,7 +28,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build with Base URL
-        run: BASE='/pr-preview/pr-${{ github.event.number }}/' yarn docs:build
+        run: BASE='/pr-preview/pr-${{ github.event.number }}/' yarn build
 
       - name: Add CNAME file
         run: mkdir -p ./.vitepress/dist && echo celestiaorg.github.io/docs-vitepress > .vitepress/dist/CNAME

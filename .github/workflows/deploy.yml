@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: yarn install # or pnpm install / npm ci
       - name: Build with VitePress
-        run: yarn docs:build # or pnpm docs:build / npm docs:build
+        run: yarn build # or pnpm docs:build / npm docs:build
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
