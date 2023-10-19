@@ -359,6 +359,8 @@ Example response:
 }
 ```
 
+> **_NOTE:_** The values are base64 encoded. For these to be usable with the solidity smart contract, they need to be converted to `hex`.
+
 ##### prove_shares
 
 This [endpoint](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732aec3e09018e37dc31f4bfe122d9/rpc/core/tx.go#L175-L213) allows to query a shares proof to row roots, then a row roots to data root proofs. It takes a block `height`, a starting share index and an end share index which define a share range. Then, two proofs are generated:
@@ -415,6 +417,8 @@ Example response:
   }
 }
 ```
+
+> **_NOTE:_** The values are base64 encoded. For these to be usable with the solidity smart contract, they need to be converted to `hex`.
 
 The proofs generated from these endpoints can be used in the `DAVerifier` contract to prove shares inclusion to a data root tuple root. Checkout the [Blobstream integration documentation](./blobstream-contracts.md) for more information.
 
