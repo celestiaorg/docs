@@ -419,15 +419,22 @@ endpoint. An example can be found in the
 [`verify`](https://github.com/celestiaorg/celestia-app/blob/c517bd27c4e0b3d6e4521a7d2946662cb0f19f1d/x/blobstream/client/verify.go#L245-L251)
 command.
 
-## High Level Diagram
+## High-level diagrams
 
-The below two diagrams summarize how a single share is committed to in Blobstream. The share is highlighted in green. `R0`, `R1`, etc represent the repsective row and column roots, the blue and pink gradients are erasure encoded data. More details on the square layout can be found [in the data square out](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md) and [data structures](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_structures.md#erasure-coding) portion of the specs.
+The two diagrams below summarize how a single share is committed to in Blobstream.
+The share is highlighted in green. `R0`, `R1`, etc represent the repsective row and
+column roots, the blue and pink gradients are erasure encoded data. More details on
+the square layout can be found
+[in the data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md)
+and
+[data structures](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_structures.md#erasure-coding)
+portion of the specs.
 
-### The Celestia Square
+### The Celestia square
 
 ![Square](../../static/img/blobstream-square.png)
 
-### The Commitment Scheme
+### The commitment scheme
 
 ![Blobstream Commitment Diagram](../../static/img/blobstream-commitment-diagram.png)
 
