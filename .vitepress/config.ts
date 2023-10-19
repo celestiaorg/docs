@@ -381,8 +381,34 @@ function sidebarHome() {
       items: [
         { text: "Build modular", link: "/developers/build-modular" },
         {
-          text: "Celestia-app specifications",
-          link: "https://celestiaorg.github.io/celestia-app/",
+          text: "Submitting data blobs to Celestia",
+          link: "/developers/submit-data",
+        },
+        {
+          text: "Data retrievability and pruning",
+          link: "/developers/retrievability",
+        },
+        {
+          text: "Node API",
+          link: "/developers/node-api",
+          collapsed: true,
+          items: [
+            {
+              text: "Node RPC CLI tutorial",
+              link: "/developers/node-tutorial",
+            },
+            {
+              text: "Celestia-node RPC API documentation",
+              link: "https://node-rpc-docs.celestia.org/",
+            },
+            { text: "Test page", link: "/developers/test-page" },
+          ],
+        },
+        {
+          text: "Deploy a rollup",
+          link: "/developers/rollup-overview",
+          collapsed: true,
+          items: [{ text: "Rollkit", link: "/developers/rollkit" }],
         },
         {
           text: "Wallets",
@@ -390,6 +416,14 @@ function sidebarHome() {
           items: [
             { text: "Celestia-app", link: "/developers/celestia-app-wallet" },
             { text: "Celestia-node", link: "/developers/celestia-node-key" },
+            {
+              text: "Create a vesting account",
+              link: "/developers/celestia-app-vesting",
+            },
+            {
+              text: "Staking dashboards",
+              link: "/developers/staking",
+            },
             {
               text: "Keplr",
               collapsed: true,
@@ -421,44 +455,6 @@ function sidebarHome() {
               link: "/developers/cosmostation",
             },
           ],
-        },
-        {
-          text: "Submitting data blobs to Celestia",
-          link: "/developers/submit-data",
-        },
-        {
-          text: "Data retrievability and pruning",
-          link: "/developers/retrievability",
-        },
-        {
-          text: "Node API",
-          link: "/developers/node-api",
-          collapsed: true,
-          items: [
-            {
-              text: "Node RPC CLI tutorial",
-              link: "/developers/node-tutorial",
-            },
-            {
-              text: "Celestia-node RPC API documentation",
-              link: "https://node-rpc-docs.celestia.org/",
-            },
-            { text: "Test page", link: "/developers/test-page" },
-          ],
-        },
-        {
-          text: "Deploy a rollup",
-          link: "/developers/rollup-overview",
-          collapsed: true,
-          items: [{ text: "Rollkit", link: "/developers/rollkit" }],
-        },
-        {
-          text: "Create a vesting account",
-          link: "/developers/celestia-app-vesting",
-        },
-        {
-          text: "Staking dashboards",
-          link: "/developers/staking",
         },
       ],
     },
