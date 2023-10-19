@@ -99,6 +99,10 @@ that a `DataRootTuple` is included under a specific batch (indexed by batch
 nonce). In other words, analogously it verifies that a specific block header is
 included in the canonical Celestia chain.
 
+## Querying the proof
+
+To prove that the data was published to Celestia, checkout the [proof queries documentation](./blobstream-proof-query.md) to understand how to query the proofs from Celestia consensus nodes and make them usable in the Blobstream verifier contract.
+
 ## Verifying data inclusion for fraud proofs
 
 A high-level overview of how a fraud-proof based L2 would interact with
