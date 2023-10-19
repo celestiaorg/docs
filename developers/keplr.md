@@ -5,8 +5,32 @@ description: How you can add Celestia network parameters to Keplr.
 # Keplr integration with Celestia
 
 <!-- markdownlint-disable MD033 -->
-<script setup>
+<script>
 import constants from '/.vitepress/constants/constants.js'
+import AddNetworkKeplr from '/.vitepress/components/AddNetworkKeplr.vue'
+
+export default {
+  components: {
+    AddNetworkKeplr,
+  },
+  data() {
+    return {
+      constants,
+      ARABICA_PARAMS: {
+        chainId: `${constants.arabicaChainId}`,
+        chainName: 'Arabica devnet',
+        rpc: `${constants.arabicaRpcUrl}`,
+        rest: `${constants.arabicaRestUrl}`
+      },
+      MOCHA_PARAMS: {
+        chainId: `${constants.mochaChainId}`,
+        chainName: 'Mocha testnet',
+        rpc: `${constants.mochaRpcUrl}`,
+        rest: `${constants.mochaRestUrl}`
+      }
+    }
+  }
+}
 </script>
 
 Keplr is a popular Cosmos-based wallet that allows anyone
@@ -101,7 +125,7 @@ export default function AddNetworkKeplr({ params }) {
   return (
     <div className={styles.center}>
       <button className={styles.keplrButton} onClick={add}>
-        Add/Switch To {params.chainName}
+        Add/switch To {params.chainName}
       </button>
     </div>
   );
@@ -112,16 +136,20 @@ export default function AddNetworkKeplr({ params }) {
 
 This example is just for using Celestia configs.
 
-We still need to pass the Celestia network params for it.
-
-We can do it for both testnets in the following section.
+We still need to pass the Celestia network params for it and
+we will for both testnets in the following section.
 
 You can also test out the `Connect` button to add those
 params to your Keplr wallet. NOTE: You must have Keplr installed
 first.
 
+Try it out yourself:
+
+<AddNetworkKeplr :params="ARABICA_PARAMS"></AddNetworkKeplr>
+<AddNetworkKeplr :params="MOCHA_PARAMS"></AddNetworkKeplr>
+
 Behind the scenes, here are the parameters
-you will pass to the `AddNetworkKeplr`
+we are passing to the `AddNetworkKeplr`
 function:
 
 ::: code-group
@@ -132,8 +160,8 @@ import '@site/src/components/AddNetworkKeplr'
 export const MOCHA_PARAMS = {`{
   chainId: '{{constants.mochaChainId}}',
   chainName: 'Mocha testnet',
-  rpc: 'https://rpc-mocha.pops.one',
-  rest: 'https://api-mocha.pops.one/'
+  rpc: '{{constants.mochaRpcUrl}}',
+  rest: '{{constants.mochaRestUrl}}'
 }`}
 
 {<AddNetworkKeplr params={MOCHA_PARAMS}/>}
@@ -145,8 +173,8 @@ import '@site/src/components/AddNetworkKeplr'
 export const ARABICA_PARAMS = {`{
   chainId: '{{constants.arabicaChainId}}',
   chainName: 'Arabica devnet',
-  rpc: 'https://consensus-full.celestia-arabica-10.com/',
-  rest: 'https://api.consensus.celestia-arabica-10.com/'
+  rpc: '{{constants.arabicaRpcUrl}}',
+  rest: '{{constants.arabicaRestUrl}}'
 }`}
 
 {<AddNetworkKeplr params={ARABICA_PARAMS}/>}

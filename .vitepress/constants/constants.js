@@ -14,5 +14,9 @@ const constants = Object.freeze({
   localCelestiaDevnetVersion: "v0.8.2",
   golangBlobstream: "1.20.2",
   orchrelayVersion: "v0.2.0-app-v0.13.2-beta",
+  mochaRpcUrl: "https://rpc-mocha.pops.one/",
+  mochaRestUrl: "https://api-mocha.pops.one/",
+  arabicaRpcUrl: "https://consensus-full.celestia-arabica-10.com/",
+  arabicaRestUrl: "https://api.consensus.celestia-arabica-10.com/",
 });
 export default constants;
