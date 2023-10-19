@@ -329,7 +329,7 @@ to submit the data to Celestia.
 
 To prove PFBs, blobs or shares, we can use the Celestia consensus nodes RPC to query proofs for them:
 
-#### data_root_inclusion_proof
+##### data_root_inclusion_proof
 
 This [endpoint]((https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732aec3e09018e37dc31f4bfe122d9/rpc/openapi/openapi.yaml#L1045-L1093)) allows to query data root to data root tuple root proof. It takes a block `height`, a starting block and an end block, then it generates the binary merkle proof of the `DataRootTuple`, corresponding to that `height`, to the `DataRootTupleRoot` which is committed to in the Blobstream contract.
 
