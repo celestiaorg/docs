@@ -421,7 +421,7 @@ command.
 
 ## High Level Diagram
 
-The below two diagrams summarize how a single share is committed to in Blobstream. The share is highlighted in green. `R0`, `R1`, etc represent the repsective row and column roots, the blue and pink gradients are erasure encoded data. More details on the square layout can be found [in the data square out](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md) and [data structures](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_structures.md#erasure-coding) portion of the specs.
+The below two diagrams summarize how a single share is committed to in Blobstream. The share is highlighted in green. `R0`, `R1`, etc represent the repsective row and column roots, the blue and pink gradients are erasure encoded data. More details on the square layout can be found [in the data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md) and [data structures](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_structures.md#erasure-coding) portion of the specs.
 
 ### The Celestia Square
 
