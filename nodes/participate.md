@@ -2,7 +2,7 @@
 
 # Participate in the Celestia networks
 
-## Coffee
+<!-- ## Coffee -->
 
 <script setup>
 import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
@@ -11,9 +11,9 @@ import CoffeeVersionTags from '../.vitepress/components/CoffeeVersionTags.vue'
 import constants from '../.vitepress/constants/constants.js'
 </script>
 
-- Coffee: TBD
+<!-- - Coffee: TBD
   - Compatible software versions
-    <CoffeeVersionTags/>
+    <CoffeeVersionTags/> -->
 
 ## Testnets
 
@@ -38,9 +38,3 @@ Celestia currently has two existing testnets that you can participate in:
 
 Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 for network upgrades.
-
-## DRAFT AREA
-
-Mocha's chain ID is currently: `{{constants.mochaChainId}}`
-
-Arabica's chain ID is currently: `{{constants.arabicaChainId}}`

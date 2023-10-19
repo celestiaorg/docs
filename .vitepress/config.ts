@@ -260,10 +260,10 @@ export default {
 
 function nav() {
   return [
-    { text: "Learn", link: "/learn/how-celestia-works/overview" },
     {
       text: "Participate",
       items: [
+        { text: "Learn", link: "/learn/how-celestia-works/overview" },
         { text: "Networks", link: "/nodes/participate" },
         {
           text: "Developers",
@@ -369,9 +369,28 @@ function sidebarHome() {
       text: "Run a node",
       collapsed: true,
       items: [
+        { text: "Overview", link: "/nodes/overview" },
+        {
+          text: "Quick start",
+          link: "/nodes/quick-start",
+          collapsed: true,
+          items: [
+            { text: "Deciding which node to run", link: "/nodes/decide-node" },
+            { text: "Setting up environment ", link: "/nodes/environment" },
+            { text: "Install celestia-node", link: "/nodes/celestia-node" },
+            { text: "Install celestia-app", link: "nodes/celestia-app" },
+            { text: "Docker images", link: "/nodes/docker-images" },
+          ],
+        },
         {
           text: "Networks",
           link: "/nodes/participate",
+          collapsed: true,
+          items: [
+            { text: "Arabica devnet", link: "/nodes/arabica-devnet" },
+            { text: "Mocha testnet", link: "/nodes/mocha-testnet" },
+            { text: "Arabica-9 devnet ", link: "/nodes/arabica-9" },
+          ],
         },
       ],
     },
@@ -428,14 +447,14 @@ function sidebarHome() {
               text: "Keplr",
               collapsed: true,
               items: [
+                {
+                  text: "Integrating Keplr for developers",
+                  link: "/developers/keplr",
+                },
                 { text: "Install", link: "https://www.keplr.app/download" },
                 {
                   text: "Create an account",
                   link: "https://www.keplr.app/onboarding/how-to-create",
-                },
-                {
-                  text: "Integrating Keplr for developers",
-                  link: "/developers/keplr",
                 },
               ],
             },
@@ -443,16 +462,26 @@ function sidebarHome() {
               text: "Leap",
               collapsed: true,
               items: [
-                { text: "Install", link: "https://www.leapwallet.io/download" },
                 {
                   text: "Integrating Leap for developers",
                   link: "/developers/leap",
                 },
+                { text: "Install", link: "https://www.leapwallet.io/download" },
               ],
             },
             {
-              text: "Integrating Cosmostation for developers",
-              link: "/developers/cosmostation",
+              text: "Cosmostation",
+              collapsed: true,
+              items: [
+                {
+                  text: "Integrating Cosmostation for developers",
+                  link: "/developers/cosmostation",
+                },
+                {
+                  text: "Install",
+                  link: "https://cosmostation.io/",
+                },
+              ],
             },
           ],
         },

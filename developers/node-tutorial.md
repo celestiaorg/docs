@@ -61,51 +61,52 @@ light node:
 
 ## Setting up dependencies
 
+This portion of the tutorial will go over setting up your development environment
+to run Celestia software. This environment can be used for development, building
+binaries, and running nodes.
+
 In your terminal, set up dependencies needed to install and build
 `celestia-node`.
 
-1. If you are on Ubuntu, update and upgrade your OS:
+1. If you are on Ubuntu, first update and upgrade your OS:
 
-::: code-group
+   ::: code-group
 
-```bash [APT]
-sudo apt update && sudo apt upgrade -y
-```
+   ```bash [APT]
+   sudo apt update && sudo apt upgrade -y
+   ```
 
-```bash [YUM]
-sudo yum update
-```
+   ```bash [YUM]
+   sudo yum update
+   ```
 
-:::
-
-<!-- markdownlint-disable MD029 -->
-<!-- markdownlint-disable MD013 -->
+   :::
 
 2. Install essential packages that are necessary to execute many tasks like
    downloading files, compiling, and monitoring the node:
 
-::: code-group
+   ::: code-group
 
-```bash [APT]
-sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential \
-  git make ncdu -y
-```
+   ```bash [APT]
+   sudo apt install curl tar wget clang pkg-config libssl-dev jq \
+   build-essential git make ncdu -y
+   ```
 
-```bash [YUM]
-sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential \
-  git make ncdu -y
-```
+   ```bash [YUM]
+   sudo yum install curl tar wget clang pkg-config libssl-dev jq \
+   build-essential git make ncdu -y
+   ```
 
-```bash [Mac]
-# these commands are for installing Homebrew, wget and jq
-# follow the instructions from the output after running this command
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```bash [Mac]
+   # these commands are for installing Homebrew, wget and jq
+   # follow the instructions from the output after running this command
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# then install wget & jq
-brew install wget && brew install jq
-```
+   # then install wget & jq
+   brew install wget && brew install jq
+   ```
 
-:::
+   :::
 
 ## Install Golang
 
@@ -114,82 +115,82 @@ and run our node.
 
 1. Set the version for your desired network:
 
-::: code-group
+   ::: code-group
 
-```bash-vue [Coffee]
-ver="{{constants.golangNodeCoffee}}"
-```
+   ```bash-vue [Coffee]
+   ver="{{constants.golangNodeCoffee}}"
+   ```
 
-```bash-vue [Mocha]
-ver="{{constants.golangNodeMocha}}"
-```
+   ```bash-vue [Mocha]
+   ver="{{constants.golangNodeMocha}}"
+   ```
 
-```bash-vue [Arabica]
-ver="{{constants.golangNodeArabica}}"
-```
+   ```bash-vue [Arabica]
+   ver="{{constants.golangNodeArabica}}"
+   ```
 
-:::
+   :::
 
 2. Download and install Golang:
 
-::: code-group
+   ::: code-group
 
-```bash-vue [Ubuntu (AMD)]
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-```
+   ```bash-vue [Ubuntu (AMD)]
+   cd $HOME
+   wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+   sudo rm -rf /usr/local/go
+   sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+   rm "go$ver.linux-amd64.tar.gz"
+   ```
 
-```bash-vue [Ubuntu (ARM)]
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
-rm "go$ver.linux-arm64.tar.gz"
-```
+   ```bash-vue [Ubuntu (ARM)]
+   cd $HOME
+   wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
+   sudo rm -rf /usr/local/go
+   sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
+   rm "go$ver.linux-arm64.tar.gz"
+   ```
 
-```bash-vue [Mac (Apple)]
-cd $HOME
-wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
-rm "go$ver.darwin-arm64.tar.gz"
-```
+   ```bash-vue [Mac (Apple)]
+   cd $HOME
+   wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
+   sudo rm -rf /usr/local/go
+   sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
+   rm "go$ver.darwin-arm64.tar.gz"
+   ```
 
-```bash-vue [Mac (Intel)]
-cd $HOME
-wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
-rm "go$ver.darwin-amd64.tar.gz"
-```
+   ```bash-vue [Mac (Intel)]
+   cd $HOME
+   wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
+   sudo rm -rf /usr/local/go
+   sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
+   rm "go$ver.darwin-amd64.tar.gz"
+   ```
 
-:::
+   :::
 
 3. Add your `/usr/local/go/bin` directory to
    your `$PATH` if you have not already:
 
-::: code-group
+   ::: code-group
 
-```bash [bash]
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-```
+   ```bash [bash]
+   echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+   source $HOME/.bash_profile
+   ```
 
-```bash [zsh]
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
-source $HOME/.zshrc
-```
+   ```bash [zsh]
+   echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+   source $HOME/.zshrc
+   ```
 
-:::
+   :::
 
 4. To verify that the correct version of Go was installed correctly run:
 
-```bash
-go version
-```
+   ```bash
+   go version
+   ```
 
 The output will show the version installed.
 
@@ -207,62 +208,62 @@ commands:
 1. Remove any existing copy of `celestia-node`, clone the repository,
    and change into the directory.
 
-```bash
-cd $HOME
-rm -rf celestia-node
-git clone https://github.com/celestiaorg/celestia-node.git
-cd celestia-node/
-```
+   ```bash
+   cd $HOME
+   rm -rf celestia-node
+   git clone https://github.com/celestiaorg/celestia-node.git
+   cd celestia-node/
+   ```
 
 2. Check out to the desired version, based on the network you will use:
 
-::: code-group
+   ::: code-group
 
-```bash-vue [Coffee]
-git checkout tags/{{coffeeVersions['node-latest-tag']}}
-```
+   ```bash-vue [Coffee]
+   git checkout tags/{{coffeeVersions['node-latest-tag']}}
+   ```
 
-```bash-vue [Mocha]
-git checkout tags/{{mochaVersions['node-latest-tag']}}
-```
+   ```bash-vue [Mocha]
+   git checkout tags/{{mochaVersions['node-latest-tag']}}
+   ```
 
-```bash-vue [Arabica]
-git checkout tags/{{arabicaVersions['node-latest-tag']}}
-```
+   ```bash-vue [Arabica]
+   git checkout tags/{{arabicaVersions['node-latest-tag']}}
+   ```
 
-:::
+   :::
 
 3. Build the `celestia` binary:
 
-```bash
-make build
-```
+   ```bash
+   make build
+   ```
 
 4. Install the binary:
 
-::: code-group
+   ::: code-group
 
-```bash [Ubuntu]
-make install
-```
+   ```bash [Ubuntu]
+   make install
+   ```
 
-```bash [Mac]
-make go-install
-```
+   ```bash [Mac]
+   make go-install
+   ```
 
-:::
+   :::
 
 5. Build the `cel-key` utility:
 
-```bash
-make cel-key
-```
+   ```bash
+   make cel-key
+   ```
 
 6. Verify that the binary is working and check the version:
 
-```bash
-celestia version
-```
+   ```bash
+   celestia version
+   ```
 
 The output will show the semantic version of `celestia-node`,
 commit hash, build date, system version, and Golang version.
@@ -418,7 +419,8 @@ With your wallet funded, you can move on to the next step.
 ## RPC CLI guide
 
 This section of the tutorial will teach you how to interact with a Celestia node's
-[remote procedure call (RPC) API](https://node-rpc-docs.celestia.org/?version=v0.11.0) using the command line interface (CLI).
+[remote procedure call (RPC) API](https://node-rpc-docs.celestia.org/?version=v0.11.0)
+using the command line interface (CLI).
 
 You will need to
 [setup dependencies, install, and run `celestia-node`](#setting-up-dependencies)
@@ -439,12 +441,14 @@ Where:
   [`blob`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob),
   [`state`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state),
   [`p2p`](https://node-rpc-docs.celestia.org/?version=v0.11.0#p2p), etc.
-- `[method]` is the specific method within the module that performs the action you want, such as
+- `[method]` is the specific method within the module that performs
+  the action you want, such as
   [`blob.Submit`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit),
   [`state.AccountAddress`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state.AccountAddress),
   [`p2p.Info`](https://node-rpc-docs.celestia.org/?version=v0.11.0#node.Info), etc.
 - `[args...]` represents any additional arguments that the method might require.
-- `[flags...]` are parameters that modify the behavior of the command. They start with `--` (e.g., `--node.store`, `--token`, or `--url`).
+- `[flags...]` are parameters that modify the behavior of the command.
+  They start with `--` (e.g., `--node.store`, `--token`, or `--url`).
 
 For example, to submit a blob to Celestia, you can use this command
 once your node store is set:
@@ -516,8 +520,8 @@ you can also use your node store to set your auth token. This will
 allow you to interact with the API without
 setting an authentication token directly.
 
-To set your node store for a light node on {{constants.mochaChainId}}, you can use the following
-command:
+To set your node store for a light node on {{constants.mochaChainId}},
+you can use the following command:
 
 <pre>
   <code>export NODE_STORE=$HOME/.celestia-light-{constants.mochaChainId}</code>
@@ -578,7 +582,8 @@ Some things to consider:
   - The commitment will be generated by the node.
   - Share version is set by the node.
 - Namespace should be 10 bytes, prefixed by `0x` if hex; otherwise use base64
-- Data can be hex-encoded (`0x...`), base64-encoded (`"..."`), or a plaintext string which will be encoded to base64 (`'Hello There!'`)
+- Data can be hex-encoded (`0x...`), base64-encoded (`"..."`),
+  or a plaintext string which will be encoded to base64 (`'Hello There!'`)
 - Optionally, user can provide a gas fee and gas limit.
 
 We use the following `namespace` of `0x42690c204d39600fddd3` and
