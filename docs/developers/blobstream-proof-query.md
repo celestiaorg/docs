@@ -192,6 +192,7 @@ So, we can construct the `NamespaceMerkleMultiproof` with the following mapping:
 - `sideNodes` in the Solidity struct **==** `nodes` in the query response
 
 - The `NamespaceNode`, which is the type of the `sideNodes`, is defined as follows:
+
 ```solidity
 /// @notice Namespace Merkle Tree node.
 struct NamespaceNode {
