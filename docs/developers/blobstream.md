@@ -25,4 +25,4 @@ Integrating your L2 with Blobstream requires two components: your onchain smart 
 - [Integrate with Blobstream client](../../developers/blobstream-offchain/)
 
 You can interact with the Blobstream contracts today on testnet. The Blobstream Solidity smart contracts are currently deployed on the following Ethereum testnet:
-- [Sepolia](https://sepolia.etherscan.io/address/0xf148a9a767f19edcf9a7d125fe143db1b5792ad6) - To interact with it from [Arabica Devnet](../arabica-devnet.md)
+- [Sepolia](https://sepolia.etherscan.io/address/0xf148a9a767f19edcf9a7d125fe143db1b5792ad6) - Which attest to the data published on the [Arabica Devnet](../arabica-devnet.md)
