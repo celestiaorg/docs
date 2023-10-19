@@ -5,11 +5,9 @@ description: An overview of Blobstream.
 
 # Blobstream
 
-Blobstream, covered previously in
-[the Celestia blog post](https://blog.celestia.org/celestiums/),
-introduces the concept of a layer 2 (L2), which is an EVM L2
-rollup that uses Celestia for data availability
-but settles on Ethereum (or any other EVM L1 chain).
+[Blobstream](https://blog.celestia.org/blobstream/)
+allows Ethereum developers to build high-throughput L2s using Celestia,
+the first DA layer with Data Availability Sampling.
 
 This page and following tutorials will go over Blobstream and how validators on Celestia can run it.
 
