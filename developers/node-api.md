@@ -41,7 +41,7 @@ to get started interacting with your Celestia node.
 
 ## Gateway API
 
-:::caution
+::: warning
 The gateway endpoints have been deprecated and will be removed in the future.
 If you would like to use them anyway, you can
 [find more details on GitHub](https://github.com/celestiaorg/celestia-node/pull/2360).

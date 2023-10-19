@@ -117,10 +117,6 @@ and run our node.
 
    ::: code-group
 
-   ```bash-vue [Coffee]
-   ver="{{constants.golangNodeCoffee}}"
-   ```
-
    ```bash-vue [Mocha]
    ver="{{constants.golangNodeMocha}}"
    ```
@@ -198,7 +194,7 @@ The output will show the version installed.
 
 ### Install celestia-node
 
-Installing `celestia-node` for Coffee, Arabica devnet, or Mocha testnet
+Installing `celestia-node` for Arabica devnet or Mocha testnet
 means installing a specific version to be compatible with the
 network.
 
@@ -218,10 +214,6 @@ commands:
 2. Check out to the desired version, based on the network you will use:
 
    ::: code-group
-
-   ```bash-vue [Coffee]
-   git checkout tags/{{coffeeVersions['node-latest-tag']}}
-   ```
 
    ```bash-vue [Mocha]
    git checkout tags/{{mochaVersions['node-latest-tag']}}
@@ -279,10 +271,6 @@ full nodes.
 
 ::: code-group
 
-```bash [Coffee]
-celestia light init
-```
-
 ```bash [Mocha]
 celestia light init --p2p.network mocha
 ```
@@ -305,15 +293,10 @@ to an example public core endpoint.
 Note: You are also encouraged to find a community-run API endpoint
 and there are several in the Discord. This one is used for demonstration
 purposes. Check out the
-[list of RPC endpoints on the Coffee page](../../nodes/coffee#rpc-endpoints),
 [Mocha testnet page](../../nodes/mocha-testnet#rpc-endpoints),
 or [Arabica devnet page](../../nodes/arabica-devnet#rpc-endpoints).
 
 ::: code-group
-
-```bash [Coffee]
-celestia light start --core.ip <ip-address>
-```
 
 ```bash [Mocha]
 celestia light start --core.ip <ip-address> --p2p.network mocha
@@ -343,15 +326,11 @@ look like this:
 
 ::: code-group
 
-```bash [Coffee]
-celestia light start --core.ip coffee.pops.one
-```
-
 ```bash [Mocha]
 celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 ```
 
-```bash[Arabica]
+```bash [Arabica]
 celestia light start --core.ip consensus-full.celestia-arabica-10.com \
   --p2p.network arabica
 ```
@@ -372,10 +351,6 @@ You can start your light node with the key created by running
 the following command:
 
 ::: code-group
-
-```bash [Coffee]
-celestia light start --core.ip <ip-address> --keyring.accname <key_name>
-```
 
 ```bash [Mocha]
 celestia light start --core.ip <ip-address> --keyring.accname <key_name> \

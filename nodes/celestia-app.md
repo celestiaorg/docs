@@ -21,35 +21,35 @@ The steps below will create a binary file named `celestia-appd`
 inside `$HOME/go/bin` folder which will be used later to run the node.
 Be sure to select the correct network to install the binary for.
 
-1.  Remove any existing copy of `celestia-app`, clone the repository,
-    and change into the directory:
+1. Remove any existing copy of `celestia-app`, clone the repository,
+   and change into the directory:
 
-        ```bash
-        cd $HOME
-        rm -rf celestia-app
-        git clone https://github.com/celestiaorg/celestia-app.git
-        cd celestia-app
-        ```
+   ```bash
+   cd $HOME
+   rm -rf celestia-app
+   git clone https://github.com/celestiaorg/celestia-app.git
+   cd celestia-app
+   ```
 
-2.  Check out to the desired version, based on the network you will use:
+2. Check out to the desired version, based on the network you will use:
 
-    ::: code-group
+   ::: code-group
 
-    ```bash-vue [Mocha]
-    git checkout tags/{{mochaVersions['app-latest-tag']}} -b {{mochaVersions['app-latest-tag']}}
-    ```
+   ```bash-vue [Mocha]
+   git checkout tags/{{mochaVersions['app-latest-tag']}} -b {{mochaVersions['app-latest-tag']}}
+   ```
 
-    ```bash-vue [Arabica]
-    git checkout tags/{{arabicaVersions['app-latest-tag']}} -b {{arabicaVersions['app-latest-tag']}}
-    ```
+   ```bash-vue [Arabica]
+   git checkout tags/{{arabicaVersions['app-latest-tag']}} -b {{arabicaVersions['app-latest-tag']}}
+   ```
 
-    :::
+   :::
 
-3.  Build and install the binary:
+3. Build and install the `celestia-appd` binary:
 
-    ```bash
-    make install
-    ```
+   ```bash
+   make build
+   ```
 
 To check if the binary was successfully installed you can run the binary
 using the `--help` flag:

@@ -408,6 +408,10 @@ function sidebarHome() {
           link: "/developers/retrievability",
         },
         {
+          text: "IBC relaying guide",
+          link: "/developers/ibc-relayer",
+        },
+        {
           text: "Node API",
           link: "/developers/node-api",
           collapsed: true,
@@ -420,14 +424,72 @@ function sidebarHome() {
               text: "Celestia-node RPC API documentation",
               link: "https://node-rpc-docs.celestia.org/",
             },
-            { text: "Test page", link: "/developers/test-page" },
+            { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
           ],
         },
         {
           text: "Deploy a rollup",
           link: "/developers/rollup-overview",
           collapsed: true,
-          items: [{ text: "Rollkit", link: "/developers/rollkit" }],
+          items: [
+            { text: "Rollkit", link: "/developers/rollkit" },
+            {
+              text: "Optimism",
+              collapsed: true,
+              items: [
+                {
+                  text: "Intro to OP Stack integration",
+                  link: "/developers/intro-to-op-stack",
+                },
+                {
+                  text: "Bubs testnet",
+                  link: "/developers/bubs-testnet",
+                },
+                {
+                  text: "Deploy a dapp on Bubs testnet",
+                  link: "/developers/gm-portal-bubs",
+                },
+                {
+                  text: "Deploy an OP Stack devnet",
+                  link: "/developers/optimism-devnet",
+                },
+                {
+                  text: "Deploy an OP Stack testnet on Celestia",
+                  link: "/developers/optimism",
+                },
+                {
+                  text: "Deploy a dapp with thirdweb",
+                  link: "https://thirdweb.com/bubs-testnet",
+                },
+                {
+                  text: "Rollups-as-a-Service",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Caldera",
+                      link: "https://caldera.xyz/",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              text: "Full stack dapp tutorial",
+              link: "/developers/full-stack-modular-development-guide",
+            },
+            {
+              text: "Sovereign SDK",
+              link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup",
+            },
+            {
+              text: "Dymension",
+              link: "https://dymension.xyz/",
+            },
+            {
+              text: "Vistara",
+              link: "https://docs.vistara.dev/",
+            },
+          ],
         },
         {
           text: "Wallets",
@@ -484,6 +546,10 @@ function sidebarHome() {
               ],
             },
           ],
+        },
+        {
+          text: "Integrate Celestia for service providers",
+          link: "/developers/integrate-celestia",
         },
       ],
     },

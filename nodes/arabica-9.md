@@ -1,5 +1,4 @@
 ---
-sidebar_label: Arabica-9 devnet
 description: A guide to Arabica-9 devnet.
 ---
 
@@ -7,7 +6,7 @@ description: A guide to Arabica-9 devnet.
 
 ![arabica-devnet](/img/arabica-devnet.png)
 
-:::caution
+::: warning
 This page is maintained for developers still using the `arabica-9` devnet.
 
 Refer to the [Arabica devnet](../nodes/arabica-devnet) page for the latest

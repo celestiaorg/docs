@@ -40,63 +40,63 @@ Ubuntu. You can
 
 ## Quick start
 
-1.  Set [the network](../nodes/participate.md) you would like to run your node on:
+1. Set [the network](../nodes/participate.md) you would like to run your node on:
 
-    ::: code-group
+   ::: code-group
 
-    ```bash [Arabica]
-    export NETWORK=arabica
-    ```
+   ```bash [Arabica]
+   export NETWORK=arabica
+   ```
 
-    ```bash [Mocha]
-    export NETWORK=mocha
-    ```
+   ```bash [Mocha]
+   export NETWORK=mocha
+   ```
 
-    :::
+   :::
 
-2.  Set the node type
+2. Set the node type
 
-    ::: code-group
+   ::: code-group
 
-    ```bash [Light]
-    export NODE_TYPE=light
-    ```
+   ```bash [Light]
+   export NODE_TYPE=light
+   ```
 
-    ```bash [Bridge]
-    export NODE_TYPE=bridge
-    ```
+   ```bash [Bridge]
+   export NODE_TYPE=bridge
+   ```
 
-    ```bash [Full]
-    export NODE_TYPE=full
-    ```
+   ```bash [Full]
+   export NODE_TYPE=full
+   ```
 
-    :::
+   :::
 
-3.  Set an RPC endpoint for either [Arabica](./arabica-devnet.md#rpc-endpoints) or
-    [Mocha](./mocha-testnet.md#rpc-endpoints)
-    using the bare URL (without http or https):
+3. Set an RPC endpoint for either [Arabica](./arabica-devnet.md#rpc-endpoints) or
+   [Mocha](./mocha-testnet.md#rpc-endpoints)
+   using the bare URL (without http or https):
 
-        ```bash
-        export RPC_URL=this-is-an-rpc-url.com
-        ```
+   ```bash
+   export RPC_URL=this-is-an-rpc-url.com
+   ```
 
-4.  Run the image from the command line:
+4. Run the image from the command line:
 
-    ::: code-group
+   ::: code-group
 
-    ```bash-vue [Arabica]
-    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-        ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
-        celestia $NODE_TYPE start --core.ip $RPC_URL --p2p.network $NETWORK
-    ```
+   ```bash-vue [Arabica]
+   docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+       ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
+       celestia $NODE_TYPE start --core.ip $RPC_URL --p2p.network $NETWORK
+   ```
 
-    ```bash-vue [Mocha]
-    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-        ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
-        celestia $NODE_TYPE start --core.ip $RPC_URL --p2p.network $NETWORK
-    ```
+   ```bash-vue [Mocha]
+   docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+       ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
+       celestia $NODE_TYPE start --core.ip $RPC_URL --p2p.network $NETWORK
+   ```
 
-    :::
+   :::
 
 Congratulations! You now have a celestia-node running!
 
