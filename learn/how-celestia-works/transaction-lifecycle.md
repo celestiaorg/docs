@@ -1,8 +1,8 @@
 ---
-description: Learn what is the lifecycle of a Celestia App transaction.
+description: Learn what is the lifecycle of a celestia-app transaction.
 ---
 
-# The lifecycle of a Celestia App transaction
+# The lifecycle of a celestia-app transaction
 
 Users request the `celestia-app` to make data available by
 sending `PayForBlobs` transactions. Every such transaction consists

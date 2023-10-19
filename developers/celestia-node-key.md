@@ -1,8 +1,8 @@
 ---
-description: Use the cel-key utility to generate a wallet on Celestia Node.
+description: Use the cel-key utility to generate a wallet on celestia-node.
 ---
 
-# Create a wallet with Celestia Node
+# Create a wallet with celestia-node
 
 This tutorial will go over using the `cel-key` utility
 to generate a wallet on `celestia-node`.

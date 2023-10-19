@@ -1,8 +1,8 @@
 ---
-description: Learn how to generate a vesting account using Celestia App.
+description: Learn how to generate a vesting account using celestia-app.
 ---
 
-# How to create a vesting account with Celestia App
+# How to create a vesting account with celestia-app
 
 <!-- markdownlint-disable MD013 -->
 
@@ -17,7 +17,7 @@ flag to your vesting transaction.
 
 ## Local devnet
 
-First, [download and install Celestia App](../../nodes/celestia-app),
+First, [download and install celestia-app](../../nodes/celestia-app),
 selecting the
 [network and corresponding version](../../nodes/participate)
 that you would like to use.
@@ -312,7 +312,7 @@ to set up a full consensus node and set up a vesting account on
 [Mocha testnet](../../nodes/mocha-testnet).
 
 First, be sure that you have
-[installed Celestia App for the latest version for Mocha testnet](../../nodes/celestia-app).
+[installed celestia-app for the latest version for Mocha testnet](../../nodes/celestia-app).
 
 ### Create a wallet
 

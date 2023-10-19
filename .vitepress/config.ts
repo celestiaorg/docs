@@ -312,7 +312,7 @@ function sidebarHome() {
                   link: "/learn/how-celestia-works/data-availability-layer",
                 },
                 {
-                  text: "The lifecycle of a Celestia App transaction",
+                  text: "The lifecycle of a celestia-app transaction",
                   link: "/learn/how-celestia-works/transaction-lifecycle",
                 },
                 {
@@ -330,15 +330,15 @@ function sidebarHome() {
                   link: "https://celestia.org/learn/",
                 },
                 {
-                  text: "Celestia App specifications",
+                  text: "celestia-app specifications",
                   link: "https://celestiaorg.github.io/celestia-app/",
                 },
                 {
-                  text: "Celestia Node API documentation",
+                  text: "celestia-node API documentation",
                   link: "https://node-rpc-docs.celestia.org/",
                 },
                 {
-                  text: "Celestia Glossary",
+                  text: "Celestia glossary",
                   link: "https://celestia.org/glossary/",
                 },
               ],

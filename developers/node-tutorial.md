@@ -8,7 +8,7 @@ import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
 </script>
 
-In this tutorial, we will cover how to use the Celestia Node RPC API to submit
+In this tutorial, we will cover how to use the celestia-node RPC API to submit
 and retrieve data (blobs) from the data availability layer by their namespace.
 
 ::: details Table of contents
@@ -470,7 +470,7 @@ interact with the API.
 
 These include:
 
-- `--node.store string` - the path to root/home directory of your Celestia Node store
+- `--node.store string` - the path to root/home directory of your celestia-node store
 - `--token string` - authorization token for making requests
 - `--url string` - the address of the RPC, default is `http://localhost:26658`
 

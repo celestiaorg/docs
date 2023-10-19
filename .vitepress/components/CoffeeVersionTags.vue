@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li>
-      Celestia Chain ID - 
+      Celestia chain ID - 
       <a 
         :href="`https://github.com/celestiaorg/networks/tree/master/${constants.coffeeChainId}`"
         target="_blank"
@@ -11,7 +11,7 @@
       </a>
     </li>
     <li>
-      Celestia Node - 
+      celestia-node - 
       <a 
         :href="`https://github.com/celestiaorg/celestia-node/releases/tag/${coffeeVersions['node-latest-tag']}`"
         target="_blank"
@@ -21,7 +21,7 @@
       </a>
     </li>
     <li>
-      Celestia App - 
+      celestia-app - 
       <a 
         :href="`https://github.com/celestiaorg/celestia-app/releases/tag/${coffeeVersions['app-latest-tag']}`"
         target="_blank"
