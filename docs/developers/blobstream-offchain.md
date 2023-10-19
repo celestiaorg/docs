@@ -333,6 +333,32 @@ To prove PFBs, blobs or shares, we can use the Celestia consensus nodes RPC to q
 
 This [endpoint](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732aec3e09018e37dc31f4bfe122d9/rpc/openapi/openapi.yaml#L1045-L1093) allows to query data root to data root tuple root proof. It takes a block `height`, a starting block and an end block, then it generates the binary merkle proof of the `DataRootTuple`, corresponding to that `height`, to the `DataRootTupleRoot` which is committed to in the Blobstream contract.
 
+Example request: `/data_root_inclusion_proof?height=15&start=10&end=20`
+
+Which queries the proof of the height `15` to the data commitment defined by the range `[10, 20)`.
+
+Example response:
+
+```json
+{
+   "jsonrpc":"2.0",
+   "id":-1,
+   "result":{
+      "proof":{
+         "total":"10",
+         "index":"5",
+         "leaf_hash":"vkRaRg7FGtZ/ZhsJRh/Uhhb3U6dPaYJ1pJNEfrwq5HE=",
+         "aunts":[
+            "nmBWWwHpipHwagaI7MAqM/yhCDb4cz7z4lRxmVRq5f8=",
+            "nyzLbFJjnSKOfRZur8xvJiJLA+wBPtwm0KbYglILxLg=",
+            "GI/tJ9WSwcyHM0r0i8t+p3hPFtDieuYR9wSPVkL1r2s=",
+            "+SGf6MfzMmtDKz5MLlH+y7mPV9Moo2x5rLjLe3gbFQo="
+         ]
+      }
+   }
+}
+```
+
 ##### prove_shares
 
 This [endpoint](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732aec3e09018e37dc31f4bfe122d9/rpc/core/tx.go#L175-L213) allows to query a shares proof to row roots, then a row roots to data root proofs. It takes a block `height`, a starting share index and an end share index which define a share range. Then, two proofs are generated:
@@ -341,6 +367,54 @@ This [endpoint](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732a
 - A binary merkle proof of the row root to the data root
 
 > **_NOTE:_** if the share range spans multiple rows, then the proof can contain multiple NMT and binary proofs.
+
+Example request: `/prove_shares?height=15&startShare=0&endShare=1`
+
+Which queries the proof of shares `[0,1)` in block `15`.
+
+Example response:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": -1,
+  "result": {
+    "data": [
+      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAABXAAAACbaAgrOAgqgAQqdAQogL2NlbGVzdGlhLmJsb2IudjEuTXNnUGF5Rm9yQmxvYnMSeQovY2VsZXN0aWExdWc1ZWt0MmNjN250dzRkdG1zZDlsN3N0cTBzN3Z5ZTd5bTJyZHISHQAAAAAAAAAAAAAAAAAAAAAAAAASExIyQkMkMoiZGgKXAiIgrfloW1M/Y33zlD2luveDELZzr9cF92+2eTaImIWhN9pCAQASZwpQCkYKHy9jb3Ntb3MuY3J5cHRvLnNlY3AyNTZrMS5QdWJLZXkSIwohA36hewmW/AXtrw6S+QsNUzFGfeg37Da6igoP2ZQcK+04EgQKAggBGAISEwoNCgR1dGlhEgUyMTAwMBDQ6AwaQClYLQPNrFoD6H8mgmwxjFeNhwhRu39EcrVKMFkNQ8+HHuodhdOQIG/8DXEmrBwrpwj6hi+3uEsZ+0p5vrf3v8sSAQEaBElORFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    ],
+    "share_proofs": [
+      {
+        "end": 1,
+        "nodes": [
+          "AAAAAAAAAAAAAAAAAAAAAAAAABITEjJCQyQyiJkAAAAAAAAAAAAAAAAAAAAAAAAAEhMSMkJDJDKImbiwnpOdwIZBFr0UiFhPKwGy/XIIjL+gqm0fqxIw0z0o",
+          "/////////////////////////////////////////////////////////////////////////////3+fuhlzUfKJnZD8yg/JOtZla2V3g2Q7y+18iH5j0Uxk"
+        ]
+      }
+    ],
+    "namespace_id": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA==",
+    "row_proof": {
+      "row_roots": [
+        "000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000121312324243243288993946154604701154F739F3D1B5475786DDD960F06D8708D4E870DA6501C51750"
+      ],
+      "proofs": [
+        {
+          "total": "8",
+          "index": "0",
+          "leaf_hash": "300xzO8TiLwPNuREY6OJcRKzTHQ4y6yy6qH0wAuMMrc=",
+          "aunts": [
+            "ugp0sV9YNEI5pOiYR7RdOdswwlfBh2o3XiRsmMNmbKs=",
+            "3dMFZFaWZMTZVXhphF5TxlCJ+CT3EvmMFOpiXFH+ID4=",
+            "srl59GiTSiwC9LqdYASzFC6TvusyY7njX8/XThp6Xws="
+          ]
+        }
+      ],
+      "start_row": 0,
+      "end_row": 0
+    },
+    "namespace_version": 0
+  }
+}
+```
 
 The proofs generated from these endpoints can be used in the `DAVerifier` contract to prove shares inclusion to a data root tuple root. Checkout the [Blobstream integration documentation](./blobstream-contracts.md) for more information.
 
