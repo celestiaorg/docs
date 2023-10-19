@@ -1,9 +1,9 @@
 ---
-sidebar_label: Integrate Celestia
-description: Learn how you can integrate with the Celestia network.
+sidebar_label: Integrate Celestia for service providers
+description: Learn how service providers can integrate with the Celestia network.
 ---
 
-# Integrate Celestia
+# Integrate Celestia for service providers
 
 > This document is for third-party service providers, such as custodians and
 > explorers, integrating the Celestia network.
