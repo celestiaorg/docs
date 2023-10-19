@@ -157,7 +157,7 @@ type Sequencer struct {
 ### Committing to data
 
 Typical blockchains commit to the transactions included in each block using a
-merkle root. Rollups that use Blobstream for DA need to use the commitments that
+Merkle root. Rollups that use Blobstream for DA need to use the commitments that
 are relayed to the Blobstream contracts.
 
 For optimistic rollups, this could be as simple as referencing the data in the

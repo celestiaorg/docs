@@ -23,3 +23,4 @@ Integrating your L2 with Blobstream requires two components: your onchain smart 
 
 - [Integrate with Blobstream contracts](../../developers/blobstream-contracts/)
 - [Integrate with Blobstream client](../../developers/blobstream-offchain/)
+- [Querying the Blobstream proofs](../../developers/blobstream-proof-queries)
