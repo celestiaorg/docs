@@ -356,6 +356,11 @@ which comprises a `dataRoot`, i.e. the block containing the Rollup data data roo
 
 An example can be found in the [RollupInclusionProofs.t.sol](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/test/RollupInclusionProofs.t.sol#L488) test.
 
+If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
+
+- `dataRoot`: can be queried using the `/block?height=15` query (`15` in this example endpoint), and taking the `data_hash` field from the response.
+- `tupleRootNonce`: can be retried using a `gRPC` query to the app to the [`/qgb/v1/data_commitment/range/height`](https://github.com/celestiaorg/celestia-app/blob/c517bd27c4e0b3d6e4521a7d2946662cb0f19f1d/proto/celestia/qgb/v1/query.proto#L51-L56) endpoint. An example can be found in the [`verify`](https://github.com/celestiaorg/celestia-app/blob/c517bd27c4e0b3d6e4521a7d2946662cb0f19f1d/x/blobstream/client/verify.go#L245-L251) command.
+
 ## Conclusion
 
 After creating all the proofs, and verifying them:
