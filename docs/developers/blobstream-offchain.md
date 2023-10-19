@@ -157,7 +157,7 @@ type Sequencer struct {
 ### Committing to data
 
 Typical blockchains commit to the transactions included in each block using a
-merkle root. Rollups that use Blobstream for DA need to use the commitments that
+Merkle root. Rollups that use Blobstream for DA need to use the commitments that
 are relayed to the Blobstream contracts.
 
 For optimistic rollups, this could be as simple as referencing the data in the
@@ -324,25 +324,6 @@ contracts.
 As linked above, use the
 [Celestia light node RPC](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit)
 to submit the data to Celestia.
-
-#### Querying the proof
-
-To prove PFBs, blobs or shares, we can use the Celestia consensus nodes RPC to query proofs for them:
-
-##### data_root_inclusion_proof
-
-This [endpoint](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732aec3e09018e37dc31f4bfe122d9/rpc/openapi/openapi.yaml#L1045-L1093) allows to query data root to data root tuple root proof. It takes a block `height`, a starting block and an end block, then it generates the binary merkle proof of the `DataRootTuple`, corresponding to that `height`, to the `DataRootTupleRoot` which is committed to in the Blobstream contract.
-
-##### prove_shares
-
-This [endpoint](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732aec3e09018e37dc31f4bfe122d9/rpc/core/tx.go#L175-L213) allows to query a shares proof to row roots, then a row roots to data root proofs. It takes a block `height`, a starting share index and an end share index which define a share range. Then, two proofs are generated:
-
-- An NMT proof of the shares to the row roots
-- A binary merkle proof of the row root to the data root
-
-> **_NOTE:_** if the share range spans multiple rows, then the proof can contain multiple NMT and binary proofs.
-
-The proofs generated from these endpoints can be used in the `DAVerifier` contract to prove shares inclusion to a data root tuple root. Checkout the [Blobstream integration documentation](./blobstream-contracts.md) for more information.
 
 #### Posting headers to Ethereum
 

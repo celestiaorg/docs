@@ -478,6 +478,7 @@ const sidebars = {
       items: [
         { type: "doc", label: "Integrate with Blobstream Contracts", id: "developers/blobstream-contracts" },
         { type: "doc", label: "Integrate with Blobstream Client", id: "developers/blobstream-offchain" },
+        { type: "doc", label: "Blobstream proofs queries", id: "developers/blobstream-proof-queries" },
       ]
     },
     {

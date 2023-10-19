@@ -99,6 +99,13 @@ that a `DataRootTuple` is included under a specific batch (indexed by batch
 nonce). In other words, analogously it verifies that a specific block header is
 included in the canonical Celestia chain.
 
+## Querying the proof
+
+To prove that the data was published to Celestia, check out the
+[proof queries documentation](../blobstream-proof-queries)
+to understand how to query the proofs from Celestia consensus
+nodes and make them usable in the Blobstream verifier contract.
+
 ## Verifying data inclusion for fraud proofs
 
 A high-level overview of how a fraud-proof based L2 would interact with
@@ -136,7 +143,7 @@ committed to by the Blobstream smart contract and that the rows roots
 commit to the data root.
 - [`computeSquareSizeFromRowProof`](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/DAVerifier.sol#L204-L215):
 This function computes the Celestia
-block square size from a row/column root to data root binary merkle
+block square size from a row/column root to data root binary Merkle
 proof. It is the user's responsibility to verify that the proof is
 valid and was successfully committed to using the
 `verifyRowRootToDataRootTupleRoot()` method.
