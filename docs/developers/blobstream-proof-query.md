@@ -3,7 +3,7 @@ sidebar_label: Querying the Blobstream proofs
 description: Learn how to query the inclusion proofs used in Blobstream
 ---
 
-# Blobstream proofs preparation
+# Blobstream proofs queries
 
 ## Prerequisites
 
