@@ -1,8 +1,11 @@
 # Introduction
 
-Celestia is a modular blockchain network whose goal is to build a scalable
-[data availability layer](https://blog.celestia.org/celestia-a-scalable-general-purpose-data-availability-layer-for-decentralized-apps-and-trust-minimized-sidechains),
-enabling the next generation of scalable blockchain architectures -
+Celestia is a modular
+[data availability network](https://blog.celestia.org/celestia-a-scalable-general-purpose-data-availability-layer-for-decentralized-apps-and-trust-minimized-sidechains)
+that securely scales with the number of users, making it easy for anyone
+to launch their own blockchain.
+
+Celestia enables the next generation of scalable blockchain architectures -
 [modular blockchains](https://celestia.org/learn). Celestia scales by
 [decoupling execution from consensus](https://arxiv.org/abs/1905.09274) and
 introducing a new primitive,
