@@ -7,7 +7,7 @@ description: Learn how to integrate your L2 with Blobstream
 
 ![Blobstream logo](../img/blobstream/blobstream_logo.png)
 
-[Blobstream](https://blog.celestia.org/blobstream/)
+[Blobstream](https://blog.celestia.org/introducing-blobstream/)
 is the first data availability solution for Ethereum that securely
 scales with the number of users. Formerly known as the [Quantum Gravity Bridge (QGB)](https://blog.celestia.org/celestiums/),
 Blobstream relays commitments to Celestia's data root to an onchain light client
