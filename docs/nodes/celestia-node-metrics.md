@@ -6,9 +6,7 @@ description: A guide on how to run metrics for your Celestia Node DA instance.
 # Celestia Node metrics
 
 This tutorial is for running metrics for your `celestia-node` Data
-Availability instance.
-
-This tutorial will focus on running metrics for a light node.
+Availability instance. This tutorial will focus on running metrics for a light node.
 
 This tutorial assumes you have already setup your light node
 by following the tutorial in the [Node API tutorial](../developers/node-tutorial.mdx).
@@ -21,18 +19,41 @@ command:
 <!-- markdownlint-disable MD013 -->
 
 ```sh
-celestia [<node-type>] start --core.ip <ip-address> --metrics.tls=false --metrics --metrics.endpoint <ip-address:port> --p2p.network <network>
+celestia <node-type> start --metrics.tls <boolean> --metrics --metrics.endpoint <ip-address:port> --p2p.network <network> --core.ip <ip-address>
 ```
 
 Add metrics flags to your node start command and restart your node to apply it.
 The metrics endpoint will gather your node's data to track your uptime.
 
-<!-- markdownlint-enable MD013 -->
-
-Note that the `--metrics` flags enables metrics and expects
+Note that the `--metrics` flag enables metrics and expects
 an input into `--metrics.endpoint`.
 
-We will go over what the endpoint will need to be in the following section.
+We will go over what the endpoint will need to be in the
+[metrics endpoint design considerations](#metrics-endpoint-design-considerations) section.
+
+### TLS connections
+
+The `--metrics.tls` flag enables or disables a TLS connection to the
+OpenTelemetry Protocol metrics backend. You need to choose a boolean
+value (`true` or `false`) for this flag.
+
+It's also common to set this flag to `false` when spinning up a local
+collector
+to check the metrics locally.
+
+However, if the collector is hosted in the cloud as a separate entity
+(like in a DevOps environment), enabling TLS is a necessity for secure
+communication.
+
+Here are examples of how to use it:
+
+```bash
+# To enable TLS connection
+celestia <node-type> start --metrics.tls true --metrics --metrics.endpoint <ip-address:port> --p2p.network <network> --core.ip <ip-address>
+
+# To disable TLS connection
+celestia <node-type> start --metrics.tls false --metrics --metrics.endpoint <ip-address:port> --p2p.network <network> --core.ip <ip-address>
+```
 
 ## Metrics endpoint design considerations
 
