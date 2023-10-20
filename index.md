@@ -20,7 +20,7 @@ hero:
 
 features:
   - title: Learn
-    details: How Celestia allows you to deploy your own blockchain in minutes, as easily as a smart contract.
+    details: Celestia allows you to deploy your own blockchain in minutes, as easily as a smart contract.
     link: /learn/how-celestia-works/overview
     icon: 🏗️
   - title: Run a node

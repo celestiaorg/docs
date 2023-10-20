@@ -265,20 +265,14 @@ function nav() {
       items: [
         { text: "Learn", link: "/learn/how-celestia-works/overview" },
         { text: "Networks", link: "/nodes/participate" },
+        { text: "Blob tutorial", link: "/developers/node-tutorial" },
         {
-          text: "Developers",
-
-          items: [
-            { text: "Blob tutorial", link: "/developers/node-tutorial" },
-            {
-              text: "celestia-app specs",
-              link: "https://celestiaorg.github.io/celestia-app/",
-            },
-            {
-              text: "celestia-node API",
-              link: "https://celestia-node.surge.sh/",
-            },
-          ],
+          text: "celestia-app specs",
+          link: "https://celestiaorg.github.io/celestia-app/",
+        },
+        {
+          text: "celestia-node API",
+          link: "https://node-rpc-docs.celestia.org/",
         },
       ],
     },
