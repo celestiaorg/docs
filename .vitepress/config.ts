@@ -394,7 +394,6 @@ function sidebarHome() {
         },
         {
           text: "Types of nodes",
-          link: "/nodes/participate",
           collapsed: true,
           items: [
             {
@@ -408,6 +407,52 @@ function sidebarHome() {
             },
             { text: "Consensus", link: "/nodes/mocha-testnet" },
             { text: "Blobstream " },
+          ],
+        },
+        {
+          text: "Resources",
+          collapsed: true,
+          items: [
+            {
+              text: "celestia-node",
+              collapsed: true,
+              items: [
+                { text: "Metrics", link: "/nodes/celestia-node-metrics" },
+                { text: "config.toml guide", link: "/nodes/config-toml" },
+                {
+                  text: "Custom networks and values",
+                  link: "/nodes/celestia-node-custom-networks",
+                },
+                {
+                  text: "Troubleshooting",
+                  link: "/nodes/celestia-node-troubleshooting",
+                },
+              ],
+            },
+            {
+              text: "celestia-app",
+              collapsed: true,
+              items: [
+                {
+                  text: "Metrics, visualization, and alerts",
+                  link: "/nodes/celestia-app-metrics",
+                },
+                {
+                  text: "Create a Celestia testnet",
+                  link: "/nodes/instantiate-testnet",
+                },
+                {
+                  text: "Helpful CLI commands",
+                  link: "/nodes/celestia-app-commands",
+                },
+                {
+                  text: "Specifications",
+                  link: "https://celestiaorg.github.io/celestia-app/",
+                },
+              ],
+            },
+            { text: "SystemD", link: "/nodes/systemd" },
+            { text: "Hardfork process", link: "/nodes/hardfork-process" },
           ],
         },
       ],
