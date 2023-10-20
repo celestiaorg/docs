@@ -5,7 +5,7 @@ description: An overview of Blobstream.
 
 # Blobstream
 
-[Blobstream](https://blog.celestia.org/blobstream/)
+[Blobstream](https://blog.celestia.org/introducing-blobstream/)
 allows Ethereum developers to build high-throughput L2s using Celestia,
 the first DA layer with Data Availability Sampling.
 
