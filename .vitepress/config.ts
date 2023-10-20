@@ -401,11 +401,11 @@ function sidebarHome() {
               collapsed: true,
               items: [
                 { text: "Light node", link: "/nodes/light-node" },
-                { text: "Full node", link: "/nodes/full-node" },
+                { text: "Full node", link: "/nodes/full-storage-node" },
                 { text: "Bridge node", link: "/nodes/bridge-node" },
               ],
             },
-            { text: "Consensus", link: "/nodes/mocha-testnet" },
+            { text: "Consensus", link: "/nodes/consensus-node" },
             { text: "Blobstream " },
           ],
         },
