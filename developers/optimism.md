@@ -26,7 +26,7 @@ which will give you a local devnet to test things out with.
 
 If you'd like to use the `local-celestia-devnet`, you're in luck!
 This is the default for the OP Stack + Celestia repository. Head
-to the [previous page](../optimism-devnet/) to get started.
+to the [previous page](./optimism-devnet.md) to get started.
 
 ### Using a light node
 
@@ -56,7 +56,7 @@ and retrieve `PayForBlobs` to a Celestia network.
 If it is not synced, you will run into
 [errors similar to this](https://github.com/celestiaorg/celestia-node/issues/2151/).
 
-Visit the [Arabica page](../../nodes/arabica-devnet/)
+Visit the [Arabica page](../nodes/arabica-devnet.md)
 to visit the faucet.
 
 In order to mount existing data, you must have a node store that is
@@ -91,7 +91,7 @@ If you have your own setup you'd like to try, you can always edit
 ### Using a RaaS provider
 
 If you'd like to use a Rollups as a Service (RaaS) provider, you can do so
-by going to the [RaaS category](../../category/rollups-as-a-service/).
+by going to the RaaS category in the menu.
 
 ## Build the testnet
 

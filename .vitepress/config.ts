@@ -378,7 +378,7 @@ function sidebarHome() {
             { text: "Deciding which node to run", link: "/nodes/decide-node" },
             { text: "Setting up environment ", link: "/nodes/environment" },
             { text: "Install celestia-node", link: "/nodes/celestia-node" },
-            { text: "Install celestia-app", link: "nodes/celestia-app" },
+            { text: "Install celestia-app", link: "/nodes/celestia-app" },
             { text: "Docker images", link: "/nodes/docker-images" },
           ],
         },
@@ -390,6 +390,24 @@ function sidebarHome() {
             { text: "Arabica devnet", link: "/nodes/arabica-devnet" },
             { text: "Mocha testnet", link: "/nodes/mocha-testnet" },
             { text: "Arabica-9 devnet ", link: "/nodes/arabica-9" },
+          ],
+        },
+        {
+          text: "Types of nodes",
+          link: "/nodes/participate",
+          collapsed: true,
+          items: [
+            {
+              text: "Data availability",
+              collapsed: true,
+              items: [
+                { text: "Light node", link: "/nodes/light-node" },
+                { text: "Full node", link: "/nodes/full-node" },
+                { text: "Bridge node", link: "/nodes/bridge-node" },
+              ],
+            },
+            { text: "Consensus", link: "/nodes/mocha-testnet" },
+            { text: "Blobstream " },
           ],
         },
       ],
@@ -444,6 +462,10 @@ function sidebarHome() {
                 {
                   text: "Bubs testnet",
                   link: "/developers/bubs-testnet",
+                },
+                {
+                  text: "Deploy a smart contract on Bubs testnet",
+                  link: "/developers/deploy-on-bubs",
                 },
                 {
                   text: "Deploy a dapp on Bubs testnet",

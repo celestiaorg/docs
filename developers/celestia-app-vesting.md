@@ -17,9 +17,9 @@ flag to your vesting transaction.
 
 ## Local devnet
 
-First, [download and install celestia-app](../../nodes/celestia-app),
+First, [download and install celestia-app](../nodes/celestia-app.md),
 selecting the
-[network and corresponding version](../../nodes/participate)
+[network and corresponding version](../nodes/participate.md)
 that you would like to use.
 
 ### Setting up the local devnet
@@ -309,10 +309,10 @@ Next, you can learn how to create a vesting account on Mocha testnet.
 In the previous section of this tutorial, we learned how to create a vesting
 account on a local devnet. In this portion of the tutorial, we'll cover how
 to set up a full consensus node and set up a vesting account on
-[Mocha testnet](../../nodes/mocha-testnet).
+[Mocha testnet](../nodes/mocha-testnet.md).
 
 First, be sure that you have
-[installed celestia-app for the latest version for Mocha testnet](../../nodes/celestia-app).
+[installed celestia-app for the latest version for Mocha testnet](../nodes/celestia-app.md).
 
 ### Create a wallet
 
@@ -343,14 +343,14 @@ export TO_ADDRESS=address_of_vesting_account
 
 ### Fund your account
 
-Head to [the faucet](../../nodes/mocha-testnet/#mocha-testnet-faucet),
+Head to [the faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet),
 and fund your `origin` address.
 
 ### Create a vesting account on Mocha
 
 To create a vesting account on Mocha, you will need an RPC URL to send
 the transaction to. You can find the
-[RPC endpoints on the Mocha testnet page](../../nodes/mocha-testnet/#rpc-endpoints).
+[RPC endpoints on the Mocha testnet page](../nodes/mocha-testnet.md#rpc-endpoints).
 
 Set your RPC URL:
 
@@ -381,7 +381,7 @@ celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 168674805
 Running a full consensus node or validator will prevent you from needing
 to use an RPC.
 
-You can [set up a validator or full consensus node](../../nodes/consensus-node)
+You can [set up a validator or full consensus node](../nodes/consensus-node.md)
 for the previous portion of the tutorial.
 
 Note: this may take some time depending on how you choose to sync the

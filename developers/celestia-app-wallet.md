@@ -5,13 +5,13 @@ description: Learn how to generate a Celestia wallet using celestia-app.
 # Create a wallet with celestia-app
 
 For this guide, we will go over how you can generate a Celestia
-wallet using `celestia-app`.
+wallet using celestia-app.
 
 ## Prerequisites
 
-- Gone through [Quick Start and Installed `celestia-app`](../nodes/quick-start.md)
+- Gone through [quick start and Installed celestia-app](../nodes/quick-start.md)
 
-Note, you do not need to install `celestia-node` for this tutorial.
+Note, you do not need to install celestia-node for this tutorial.
 
 ## Create a wallet
 
@@ -60,6 +60,6 @@ celestia-appd query bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 :::tip
 Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+[the ports section of the celestia-node troubleshooting page](../nodes/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 :::

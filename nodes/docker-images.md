@@ -14,21 +14,21 @@ import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
 </script>
 
-This page has instructions to run `celestia-node` using Docker. If you are
-looking for instructions to run `celestia-node` using a binary, please
+This page has instructions to run celestia-node using Docker. If you are
+looking for instructions to run celestia-node using a binary, please
 refer to the [celestia-node page](./celestia-node.md).
 
-Using Docker is the easiest way to run `celestia-node` for most
-users. Docker is a containerization platform that allows you to run `celestia-node`
+Using Docker is the easiest way to run celestia-node for most
+users. Docker is a containerization platform that allows you to run celestia-node
 in an isolated environment.
 
-This means that you can run `celestia-node` on your machine without having
+This means that you can run celestia-node on your machine without having
 to worry about installing and configuring all of the dependencies required
 to run the node.
 
 If you would like to learn more about
-key management in Docker, visit the [Docker
-and `cel-key` section](../../developers/celestia-node-key/#docker-and-cel-key).
+key management in Docker, visit the
+[Docker and `cel-key` section](../developers/celestia-node-key.md#docker-and-cel-key).
 
 The easiest way to install Docker is to use the Docker Desktop installer or
 Ubuntu. You can
@@ -40,7 +40,7 @@ Ubuntu. You can
 
 ## Quick start
 
-1. Set [the network](../nodes/participate.md) you would like to run your node on:
+1. Set [the network](./participate.md) you would like to run your node on:
 
    ::: code-group
 
@@ -102,8 +102,8 @@ Congratulations! You now have a celestia-node running!
 
 If you would like to run the node with custom flags,
 you can refer to the
-[`celestia-node` tutorial](../../developers/node-tutorial#connect-to-a-public-core-endpoint) page. Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+[celestia-node tutorial](../developers/node-tutorial.md#connect-to-a-public-core-endpoint) page. Refer to
+[the ports section of the celestia-node troubleshooting page](./celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 
 ## Light node setup with persistent storage

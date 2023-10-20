@@ -5,27 +5,27 @@ description: Use the cel-key utility to generate a wallet on celestia-node.
 # Create a wallet with celestia-node
 
 This tutorial will go over using the `cel-key` utility
-to generate a wallet on `celestia-node`.
+to generate a wallet on celestia-node.
 
 While this tutorial will go over installation process
 of `cel-key`, it is recommended that you complete
 the following prerequisites first:
 
-- [Setting up your environment](../nodes/environment.mdx)
+- [Setting up your environment](../nodes/environment.md)
 
 Once you completed the prerequisite, you can proceed with this
 tutorial.
 
 ## Using the `cel-key` utility
 
-Inside the `celestia-node` repository is a utility called `cel-key` that uses
+Inside the celestia-node repository is a utility called `cel-key` that uses
 the key utility provided by Cosmos-SDK under the hood. The utility can be
 used to `add`, `delete`, and manage keys for any DA node
 type `(bridge || full || light)`, or just keys in general.
 
 ### Installation
 
-You need to first pull down the `celestia-node` repository:
+You need to first pull down the celestia-node repository:
 
 ```sh
 git clone https://github.com/celestiaorg/celestia-node.git
@@ -82,7 +82,7 @@ Further flags you can use to customize your key are the following:
 - `--p2p.network`: Specifies which network you want the key for. Values
   are `arabica` and `mocha`. Please note the default network will be `mocha`.
 
-Keep in mind that your `celestia-node` will only pick up keys that
+Keep in mind that your celestia-node will only pick up keys that
 are inside the `node.store` directory under `/keys` so you should make
 sure to point `cel-key` utility to the correct directory via the
 `node.store` or `p2p.network` flags if you have specified a custom
@@ -153,7 +153,7 @@ then enter your bip39 mnemonic:
 
 - Docker installed on your machine
 - Understanding of the
-  [guide on how to run `celestia-node` with Docker](../nodes/docker-images.mdx).
+  [guide on how to run celestia-node with Docker](../nodes/docker-images.mdx).
 
 ### Running your node
 
@@ -171,7 +171,7 @@ ghcr.io/celestiaorg/celestia-node:sha-747c9e5 celestia light start \
 
 :::tip
 Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+[the ports section of the celestia-node troubleshooting page](../nodes/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 :::
 
@@ -211,7 +211,7 @@ learn how to mount existing keys to the container.
 ### Mounting existing keys to container
 
 In this example, we'll be mounting an existing key to the container. We're also
-using an existing image called `celestia-node`. This will mount the entire
+using an existing image called celestia-node. This will mount the entire
 `/.celestia-light-<p2p_network>/keys` directory to your image.
 
 Write a `docker-compose.yml` to accomplish this:

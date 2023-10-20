@@ -48,4 +48,4 @@ governance over key parts of Celestia, such as voting on network parameters
 through governance proposals, and governing the community pool, which receives
 2% of block rewards.
 
-Learn more about [Celestia’s decentralised governance model](../staking-governance-supply#decentralised-governance).
+Learn more about [Celestia’s decentralised governance model](./staking-governance-supply.md#decentralised-governance).

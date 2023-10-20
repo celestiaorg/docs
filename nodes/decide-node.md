@@ -15,13 +15,13 @@ get started with running a Data-Availability light node.
 In order to get started, you can proceed to the
 [light node section](./light-node.md).
 
-You can also play around with the Data Availability API
-in [this tutorial for the light node](../developers/node-tutorial.md).
+You can also play around with the Data Availability API in
+[this tutorial for posting and retrieving data with a light node](../developers/node-tutorial.md).
 
 ## Advanced
 
-If you are looking to run a validator, please follow the
-[tutorial for running a validator](../consensus-node#optional-setting-up-a-validator).
+If you are looking to run a consensus node, please follow the
+[tutorial for running a consensus](./consensus-node.md).
 
 Note that running a validator means you must also run a bridge node,
 which is covered in [this section](./bridge-node.md).

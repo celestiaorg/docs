@@ -38,7 +38,7 @@ The following dependencies are needed to be installed or obtained:
 
 ### Install Celestia Node and run a light node
 
-First, [install the `celestia-node` binary](../nodes/celestia-node.md).
+First, [install the celestia-node binary](../nodes/celestia-node.md).
 
 Let’s run the following commands to get our env
 vars setup (NOTE: For `CORE_IP` you can select

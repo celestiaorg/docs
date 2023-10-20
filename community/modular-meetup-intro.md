@@ -40,7 +40,7 @@ Code of Conduct. Organizers will respectfully enforce this code
 throughout the event. We genuinely appreciate the cooperation of all
 participants in maintaining a safe and empowering space for everyone.
 
-- [Celestia.org Community Code of Conduct](../../community/coc/)
+- [Celestia.org Community Code of Conduct](./coc.md)
 
 ### Emails
 
@@ -79,7 +79,7 @@ to explore and learn.
 In order to be added to the Modular Meetup Organizer call, please
 complete the following form:
 
-- [Signup Form](https://celestia-intake.typeform.com/to/zNI5W4uI).
+- [Signup form](https://celestia-intake.typeform.com/to/zNI5W4uI)
 
 We will then send you an email and add you to next upcoming Modular
 Meetup Organizer call. Please keep in mind, this program is meant

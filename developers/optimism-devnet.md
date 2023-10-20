@@ -10,7 +10,7 @@ This guide will show you how to run your own OP Stack devnet.
 
 ### Environment setup and Golang installation
 
-First, [install dependencies](../nodes/environment.mdx).
+First, [install dependencies](../nodes/environment.md).
 
 ### Clone repository
 

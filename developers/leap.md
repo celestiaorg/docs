@@ -11,8 +11,8 @@ import constants from '/.vitepress/constants/constants.js'
 
 This guide will go over how you can add Celestia network parameters to Leap wallet.
 
-The example in this guide is for the [Mocha testnet](../../nodes/mocha-testnet)
-([{{ constants.mochaChainId }}.](../../nodes/mocha-testnet#software-version-numbers)),
+The example in this guide is for the [Mocha testnet](../nodes/mocha-testnet.md)
+([{{ constants.mochaChainId }}.](../nodes/mocha-testnet.md#software-version-numbers)),
 and the same workflow can be used for any Celestia network.
 
 ## Install Leap

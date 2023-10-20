@@ -10,7 +10,7 @@ This guide contains the relevant sections for how to connect to Mocha,
 depending on the type of node you are running. Mocha testnet is designed
 to help validators test out their infrastructure and node software.
 Developers are encouraged to deploy their
-sovereign rollups on Mocha, but we also recommend [Arabica devnet](./arabica-devnet.mdx)
+sovereign rollups on Mocha, but we also recommend [Arabica devnet](./arabica-devnet.md)
 for that as it is designed for development purposes.
 
 Mocha is a milestone in Celestia, allowing everyone to test out
@@ -24,14 +24,14 @@ participate in Mocha:
 
 Consensus:
 
-- [Validator node](../consensus-node#optional-setting-up-a-validator)
-- [Full consensus node](../consensus-node)
+- [Full consensus node](./consensus-node.md)
+- [Validator node](./consensus-node.md#optional-setting-up-a-validator)
 
 Data Availability:
 
-- [Bridge node](../bridge-node)
-- [Full storage node](../full-storage-node)
-- [Light node](../light-node)
+- [Bridge node](./bridge-node.md)
+- [Full storage node](./full-storage-node.md)
+- [Light node](./light-node.md)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
@@ -68,7 +68,7 @@ Below is a list of RPC endpoints you can use to connect to Mocha testnet:
 
 These RPC endpoints do not allow you to download full blocks from
 them. We advise that if you are running a bridge node, that you also
-run a local [full consensus node](../consensus-node) in order to download
+run a local [full consensus node](./consensus-node.md) in order to download
 full blocks from it.
 
 - `rpc.celestia-mocha.com`

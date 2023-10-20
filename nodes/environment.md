@@ -61,7 +61,7 @@ binaries, and running nodes.
 
 ## Install Golang
 
-`celestia-node` is written in Golang so we must install Golang to build
+celestia-node is written in Golang so we must install Golang to build
 and run our node.
 
 1. Set the version for your desired network:

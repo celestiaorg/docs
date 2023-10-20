@@ -4,8 +4,8 @@ description: Make your own GM Portal dapp on the OP Stack.
 
 # Deploying a dapp on Bubs testnet
 
-First, review the [Bubs testnet page](../bubs-testnet) and the
-[Deploy a smart contract to Bubs testnet](../deploy-on-bubs) tutorial.
+First, review the [Bubs testnet page](./bubs-testnet.md) and the
+[Deploy a smart contract to Bubs testnet](./deploy-on-bubs.md) tutorial.
 
 **You will need a funded account to deploy your smart contract.**
 

@@ -162,7 +162,7 @@ Using `blob.Submit`:
 celestia blob submit <hex encoded namespace> <hex encoded data>
 ```
 
-Learn more in the [node tutorial](../../developers/node-tutorial).
+Learn more in the [node tutorial](./node-tutorial.md).
 
 ### GRPC to a consensus node via the `user` package
 

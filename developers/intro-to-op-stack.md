@@ -21,12 +21,8 @@ Tested on a machine with 8GB RAM, 160 GB SSD,
 Ubuntu 22.10, and a 4 core AMD CPU.
 :::
 
-::: warning
 This is a **beta integration** and we are working on resolving
 [open issues](https://github.com/celestiaorg/optimism/issues).
-The current testnet this setup is compatible with is the
-[Arabica devnet](../../nodes/arabica-devnet).
-:::
 
 [Optimism](https://www.optimism.io/) uses Ethereum as
 a data availability (DA) layer. Currently, settlement and DA for
@@ -35,11 +31,11 @@ rollup blocks and posts to Ethereum.
 
 ### Table of contents of the category
 
-- [Bubs testnet](../bubs-testnet)
-- [Deploy a smart contract on Bubs testnet](../deploy-on-bubs)
-- [Deploy a GM Portal dapp on Bubs testnet](../gm-portal-bubs)
-- [Deploy an OP Stack devnet](../optimism-devnet)
-- [Deploy an OP Stack testnet on Celestia](../optimism)
+- [Bubs testnet](./bubs-testnet.md)
+- [Deploy a smart contract on Bubs testnet](./deploy-on-bubs.md)
+- [Deploy a GM Portal dapp on Bubs testnet](./gm-portal-bubs.md)
+- [Deploy an OP Stack devnet](./optimism-devnet.md)
+- [Deploy an OP Stack testnet on Celestia](./optimism.md)
 
 ## Celestia and OP Stack repository
 
@@ -110,6 +106,6 @@ made it easy to swap this out!
 ## Next steps
 
 Now that you understand the integration, you can start learning about the
-[Bubs testnet](../bubs-testnet), built with OP Stack and Celestia! This
+[Bubs testnet](./bubs-testnet.md), built with OP Stack and Celestia! This
 testnet is a great way to explore the possibilities of this integration
 and test your applications in a live environment.

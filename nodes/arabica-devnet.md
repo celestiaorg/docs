@@ -13,7 +13,7 @@ the latest upgrades for testing their rollups and applications.
 Arabica does not focus on validator or consensus-level testing, rather,
 that is what Mocha testnet is used for. If you are a validator, we
 recommend testing your validator operations on the
-[Mocha testnet](./mocha-testnet.mdx).
+[Mocha testnet](./mocha-testnet.md).
 
 With Arabica having the latest updates from all Celestia's products deployed
 on it, it can be subject to many changes. Therefore, as a fair warning,
@@ -47,9 +47,9 @@ participate in Arabica:
 
 Data Availability:
 
-- [Bridge node](./bridge-node.mdx)
-- [Full storage node](./full-storage-node.mdx)
-- [Light node](./light-node.mdx)
+- [Bridge node](./bridge-node.md)
+- [Full storage node](./full-storage-node.md)
+- [Light node](./light-node.md)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
@@ -74,7 +74,7 @@ Below is a list of RPC endpoints you can use to connect to Arabica devnet:
 
 These RPC endpoints do not allow you to download full blocks from
 them. We advise that if you are running a bridge node, that you also
-run a local [full consensus node](../consensus-node) in order to download
+run a local [full consensus node](./consensus-node.md) in order to download
 full blocks from it.
 
 - `rpc.consensus.celestia-arabica-10.com`

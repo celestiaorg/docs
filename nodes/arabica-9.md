@@ -9,7 +9,7 @@ description: A guide to Arabica-9 devnet.
 ::: warning
 This page is maintained for developers still using the `arabica-9` devnet.
 
-Refer to the [Arabica devnet](../nodes/arabica-devnet) page for the latest
+Refer to the [Arabica devnet](./arabica-devnet.md) page for the latest
 updates on the Arabica devnet.
 :::
 
@@ -34,9 +34,9 @@ participate in arabica-9:
 
 Data Availability:
 
-- [Bridge node](../nodes/bridge-node)
-- [Full storage node](../nodes/full-storage-node)
-- [Light node](../nodes/light-node)
+- [Bridge node](./bridge-node.md)
+- [Full storage node](./full-storage-node.md)
+- [Light node](./light-node.md)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
@@ -61,7 +61,7 @@ Below is a list of RPC endpoints you can use to connect to arabica-9 Devnet:
 
 These RPC endpoints do not allow you to download full blocks from
 them. We advise that if you are running a bridge node, that you also
-run a local [full consensus node](../nodes/consensus-node)
+run a local [full consensus node](./consensus-node.md)
 in order to download full blocks from it.
 
 - `rpc-arabica-9.consensus.celestia-arabica.com`

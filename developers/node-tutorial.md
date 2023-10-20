@@ -17,17 +17,6 @@ and retrieve data (blobs) from the data availability layer by their namespace.
 
 :::
 
-::: tip
-View
-[a video tutorial for setting up a Celestia light node](../developers/light-node-video).
-:::
-
-::: warning
-The gateway endpoints have been deprecated and will be removed in the future.
-If you would like to use them anyway, you can
-[find more details on GitHub](https://github.com/celestiaorg/celestia-node/pull/2360).
-:::
-
 ## Introduction
 
 ### Blobs
@@ -42,11 +31,17 @@ Celestia partitions the block data into
 multiple namespaces, one for every application. This allows applications
 to only download their data, and not the data of other applications.
 Read
-[more about Namespaced Merkle Trees (NMTs)](../../learn/how-celestia-works/data-availability-layer/#namespaced-merkle-trees-nmts).
+[more about Namespaced Merkle trees (NMTs)](../learn/how-celestia-works/data-availability-layer.md#namespaced-merkle-trees-nmts).
 
 :::tip
 If you already have a running and funded node,
 you can skip to the [RPC CLI guide section](#rpc-cli-guide).
+:::
+
+::: warning
+The gateway endpoints have been deprecated and will be removed in the future.
+If you would like to use them anyway, you can
+[find more details on GitHub](https://github.com/celestiaorg/celestia-node/pull/2360).
 :::
 
 ## Hardware requirements
@@ -66,7 +61,7 @@ to run Celestia software. This environment can be used for development, building
 binaries, and running nodes.
 
 In your terminal, set up dependencies needed to install and build
-`celestia-node`.
+celestia-node.
 
 1. If you are on Ubuntu, first update and upgrade your OS:
 
@@ -110,7 +105,7 @@ In your terminal, set up dependencies needed to install and build
 
 ## Install Golang
 
-`celestia-node` is written in Golang so we must install Golang to build
+celestia-node is written in Golang so we must install Golang to build
 and run our node.
 
 1. Set the version for your desired network:
@@ -194,14 +189,14 @@ The output will show the version installed.
 
 ### Install celestia-node
 
-Installing `celestia-node` for Arabica devnet or Mocha testnet
+Installing celestia-node for Arabica devnet or Mocha testnet
 means installing a specific version to be compatible with the
 network.
 
-Install the `celestia-node` binary by running the following
+Install the celestia-node binary by running the following
 commands:
 
-1. Remove any existing copy of `celestia-node`, clone the repository,
+1. Remove any existing copy of celestia-node, clone the repository,
    and change into the directory.
 
    ```bash
@@ -257,7 +252,7 @@ commands:
    celestia version
    ```
 
-The output will show the semantic version of `celestia-node`,
+The output will show the semantic version of celestia-node,
 commit hash, build date, system version, and Golang version.
 
 ### Instantiate a Celestia light node
@@ -293,8 +288,8 @@ to an example public core endpoint.
 Note: You are also encouraged to find a community-run API endpoint
 and there are several in the Discord. This one is used for demonstration
 purposes. Check out the
-[Mocha testnet page](../../nodes/mocha-testnet#rpc-endpoints),
-or [Arabica devnet page](../../nodes/arabica-devnet#rpc-endpoints).
+[Mocha testnet page](../nodes/mocha-testnet.md#rpc-endpoints),
+or [Arabica devnet page](../nodes/arabica-devnet.md#rpc-endpoints).
 
 ::: code-group
 
@@ -317,7 +312,7 @@ add the port after the IP address or use the
 port if you prefer.
 
 Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+[the ports section of the celestia-node troubleshooting page](../nodes/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 :::
 
@@ -340,7 +335,7 @@ celestia light start --core.ip consensus-full.celestia-arabica-10.com \
 ### Keys and wallets
 
 You can create your key for your node by running the following
-command from the `celestia-node` directory:
+command from the celestia-node directory:
 
 ```bash
 ./cel-key add <key_name> --keyring-backend test --node.type light \
@@ -369,7 +364,7 @@ for you. You will need to fund that address with Mocha testnet
 or Arabica devnet tokens to pay for `PayForBlobs` transactions.
 
 You can find the address by running the following command in
-the `celestia-node` directory:
+the celestia-node directory:
 
 ```bash
 ./cel-key list --node.type light --keyring-backend test --p2p.network <network>
@@ -398,7 +393,7 @@ This section of the tutorial will teach you how to interact with a Celestia node
 using the command line interface (CLI).
 
 You will need to
-[setup dependencies, install, and run `celestia-node`](#setting-up-dependencies)
+[setup dependencies, install, and run celestia-node](#setting-up-dependencies)
 if you have not already.
 
 ### Command formatting
@@ -454,7 +449,7 @@ These include:
 - `--url string` - the address of the RPC, default is `http://localhost:26658`
 
 When running RPC CLI commands,
-you will need to set either the the [authentication token](#auth-token-)
+you will need to set either the the [authentication token](#auth-token)
 or set the [node store](#node-store), so the auth token can be retrieved
 from the store.
 
@@ -464,7 +459,7 @@ The RPC CLI handles these flags in the following order:
 2. If user doesn't pass auth token, check node store flag, create token from
    node store, and use auth token from node store.
 
-#### Auth token 🔐
+#### Auth token 🔐 {#auth-token}
 
 In order to interact with the API using RPC CLI,
 you will need to set the authentication token.

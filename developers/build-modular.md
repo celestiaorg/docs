@@ -32,7 +32,7 @@ any monolithic chain. But, the data of those transactions get sent to a
 layer 1 blockchain to carry out the remaining functions.
 
 If you want to brush up on your understanding of modular blockchains,
-head over to [Learn Modular](https://celestia.org/learn/).
+head over to [learn modular](https://celestia.org/learn/).
 
 ## Ease of deploying a chain
 
@@ -129,4 +129,4 @@ on Celestia.
 
 Developers can also build rollup testnets for their applications
 using [Dymension’s Rollapps](https://docs.dymension.xyz/) or
-[Optimism’s OP Stack](https://docs.celestia.org/developers/optimism-devnet/).
+[Optimism’s OP Stack](./intro-to-op-stack.md).

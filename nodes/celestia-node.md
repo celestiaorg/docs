@@ -12,14 +12,14 @@ import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
 </script>
 
-This tutorial goes over building and installing `celestia-node`. This
+This tutorial goes over building and installing celestia-node. This
 tutorial assumes you completed the steps in
 [setting up your development environment](./environment.md).
 
-Install the `celestia-node` binary by running the following
+Install the celestia-node binary by running the following
 commands:
 
-1. Remove any existing copy of `celestia-node`, clone the repository,
+1. Remove any existing copy of celestia-node, clone the repository,
    and change into the directory:
 
    ```bash
@@ -75,7 +75,7 @@ commands:
    celestia version
    ```
 
-The output will show the semantic version of `celestia-node`,
+The output will show the semantic version of celestia-node,
 commit hash, build date, system version, and Golang version.
 
 ## Next steps
@@ -87,7 +87,7 @@ Now that you've installed Celestia Node, it's time to
 [pick your node type](./decide-node.md) and run your node!
 
 If you're planning to run a light node,
-we recommend the [node RPC CLI tutorial](../../developers/node-tutorial.md).
+we recommend the [node RPC CLI tutorial](../developers/node-tutorial.md).
 
 ## Upgrading your binary
 

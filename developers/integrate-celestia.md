@@ -14,9 +14,9 @@ When getting started Celestia, we recommend checking out these resources first:
 - [Introduction to Celestia](../learn/how-celestia-works/introduction.md)
 - [Monolithic v. Modular](../learn/how-celestia-works/monolithic-vs-modular.md)
 - [Celestia's DA Layer](../learn/how-celestia-works/data-availability-layer.md)
-- [Learn Modular](https://celestia.org/learn.md)
+- [Learn modular](https://celestia.org/learn.md)
 - [Overview to running nodes on Celestia](../nodes/overview.md)
-- [Build Moduar](../developers/build-modular.md)
+- [Build Moduar](./build-modular.md)
 
 ## Celestia service provider notes
 
@@ -44,14 +44,14 @@ Learn more in the
 
 ### RPC and querying
 
-In `celestia-app`, only the standard RPC endpoints for Tendermint and the
+In celestia-app, only the standard RPC endpoints for Tendermint and the
 Cosmos-SDK are exposed. We do not currently add or subtract any core
 functionality, but this could change in the future. The same goes for querying
 data from the chain.
 
-In `celestia-node`, the Data Availability node client, there is a JSON-RPC API
+In celestia-node, the Data Availability node client, there is a JSON-RPC API
 that allows you to interact directly with Celestia's Data Availability layer.
-Learn [how to use the API in this tutorial](../../developers/node-tutorial).
+Learn [how to use the API in this tutorial](./node-tutorial.md).
 
 ### Compatibility
 

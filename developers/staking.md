@@ -10,7 +10,7 @@ network by delegating to a validator and receive a share of its
 staking rewards.
 
 Currently, the following staking interfaces exist for the
-[Mocha testnet](../../nodes/mocha-testnet).
+[Mocha testnet](../nodes/mocha-testnet.md).
 
 Just connect your wallet to get started!
 

@@ -14,13 +14,13 @@ Both the blobs and executable payment transactions are put into the block within
 the appropriate namespace. The block data is extended using erasure coding and then
 Merkelized into a data root commitment included in the block header.
 
-![Lifecycle of a `celestia-app` Transaction](/img/learn/tx-lifecycle.png)
+![Lifecycle of a celestia-app Transaction](/img/learn/tx-lifecycle.png)
 
 See
-[the detailed life cycle of a Celestia transaction](../how-celestia-works/transaction-lifecycle).
+[the detailed life cycle of a Celestia transaction](./how-celestia-works/transaction-lifecycle.md).
 
 Learn how to
-[submit data to Celestia’s data availability layer](../../developers/submit-data).
+[submit data to Celestia’s data availability layer](../developers/submit-data.md).
 
 ## Fee market overview
 
@@ -30,4 +30,4 @@ comprised of a flat fee per transaction and then a variable fee based on the
 size of each blob in the transaction.
 
 Understand how fees are calculated on Celestia in
-[the overview on submitting PFB transactions](../../developers/submit-data/).
+[the overview on submitting PFB transactions](../developers/submit-data.md).
