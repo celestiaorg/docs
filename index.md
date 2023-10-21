@@ -12,7 +12,7 @@ hero:
     alt: Celestia
   actions:
     - theme: brand
-      text: Run a node
+      text: Post a blob
       link: /developers/node-tutorial
     - theme: alt
       text: Introduction
