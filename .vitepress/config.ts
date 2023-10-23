@@ -28,15 +28,15 @@ export default {
         type: "image/svg+xml",
       },
     ],
-    [
-      "link",
-      {
-        rel: "icon",
-        type: "image/svg+xml",
-        href: "/favicons/favicon-dark.svg",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
+    // [
+    //   "link",
+    //   {
+    //     rel: "icon",
+    //     type: "image/svg+xml",
+    //     href: "/favicons/favicon-dark.svg",
+    //     media: "(prefers-color-scheme: dark)",
+    //   },
+    // ],
     [
       "link",
       {
@@ -45,15 +45,15 @@ export default {
         type: "image/png",
       },
     ],
-    [
-      "link",
-      {
-        rel: "icon",
-        type: "image/png",
-        href: "/favicons/favicon-dark.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
+    // [
+    //   "link",
+    //   {
+    //     rel: "icon",
+    //     type: "image/png",
+    //     href: "/favicons/favicon-dark.png",
+    //     media: "(prefers-color-scheme: dark)",
+    //   },
+    // ],
     [
       "link",
       {
@@ -62,15 +62,15 @@ export default {
         type: "image/x-icon",
       },
     ],
-    [
-      "link",
-      {
-        rel: "icon",
-        type: "image/x-icon",
-        href: "/favicons/favicon-dark.ico",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
+    // [
+    //   "link",
+    //   {
+    //     rel: "icon",
+    //     type: "image/x-icon",
+    //     href: "/favicons/favicon-dark.ico",
+    //     media: "(prefers-color-scheme: dark)",
+    //   },
+    // ],
     ["meta", { name: "msapplication-TileColor", content: "#fff" }],
     ["meta", { name: "theme-color", content: "#fff" }],
     [
