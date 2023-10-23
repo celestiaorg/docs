@@ -496,6 +496,24 @@ function sidebarHome() {
           ],
         },
         {
+          text: "Integrate with Blobstream",
+          collapsed: true,
+          items: [
+            {
+              text: "Integrate with Blobstream contracts",
+              link: "/developers/blobstream-contracts",
+            },
+            {
+              text: "Integrate with Blobstream client",
+              link: "/developers/blobstream-offchain",
+            },
+            {
+              text: "Querying the Blobstream proofs",
+              link: "/developers/blobstream-proof-queries",
+            },
+          ],
+        },
+        {
           text: "Deploy a rollup",
           link: "/developers/rollup-overview",
           collapsed: true,
