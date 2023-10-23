@@ -499,9 +499,9 @@ setting an authentication token directly.
 To set your node store for a light node on {{constants.mochaChainId}},
 you can use the following command:
 
-<pre>
-  <code>export NODE_STORE=$HOME/.celestia-light-{constants.mochaChainId}</code>
-</pre>
+```bash-vue
+export NODE_STORE=$HOME/.celestia-light-{{constants.mochaChainId}}
+```
 
 Then, set the `--node.store` flag to the `$NODE_STORE` variable
 to set the auth token from your node store:
