@@ -51,12 +51,12 @@ Be sure to select the correct network to install the binary for.
    make build
    ```
 
-To check if the binary was successfully installed you can run the binary
+4. To check if the binary was successfully installed you can run the binary
 using the `--help` flag:
 
-```sh
-celestia-appd --help
-```
+   ```sh
+   celestia-appd --help
+   ```
 
 You will see an output with the menu for `celestia-appd`. Learn more
 on the [helpful CLI commands page](./celestia-app-commands.md)

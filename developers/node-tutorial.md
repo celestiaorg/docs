@@ -1,3 +1,9 @@
+---
+next:
+  text: "Prompt Scavenger"
+  link: '/developers/prompt-scavenger'
+---
+
 # Celestia-node RPC CLI tutorial
 
 <!-- markdownlint-disable MD033 -->

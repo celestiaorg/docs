@@ -1,5 +1,8 @@
 ---
 description: Learn how to setup your node as a background process with SystemD.
+prev:
+  text: "Helpful CLI commands"
+  link: '/nodes/celestia-app-commands'
 ---
 
 # Setting up your node as a background process with SystemD

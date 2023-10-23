@@ -1,5 +1,8 @@
 ---
 description: Learn how to generate a Celestia wallet using celestia-app.
+prev:
+    text: "Full stack dapp tutorial"
+    link: "/developers/full-stack-modular-development-guide"
 ---
 
 # Create a wallet with celestia-app

@@ -1,5 +1,8 @@
 ---
 description: How you can add Celestia network parameters to Keplr.
+next:
+  text: "Integrating Leap for developers"
+  link: "developers/leap"
 ---
 
 # Keplr integration with Celestia

@@ -1,5 +1,8 @@
 ---
 description: Some of the most helpful celestia-app CLI commands.
+next:
+  text: "SystemD"
+  link: '/nodes/systemd'
 ---
 
 # Helpful CLI commands
