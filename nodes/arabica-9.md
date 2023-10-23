@@ -26,7 +26,7 @@ This guide contains the relevant sections for how to connect to arabica-9,
 depending on the type of node you are running.
 
 Your best approach to participating is to first determine which node
-you would like to run. Each node's guide will link to the relevant network
+you would like to run. Each node's guide will link to the relevant networks
 in order to show you how to connect to them.
 
 You have a list of options on the type of nodes you can run in order to
