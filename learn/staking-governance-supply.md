@@ -85,7 +85,7 @@ split across five categories described in the chart and table below.
 
 Celestia’s 1 billion TIA supply at genesis will be subject to several different
 unlock schedules. All tokens, locked or unlocked, may be staked, but staking
-rewards are unlocked upon receipt.
+rewards are unlocked upon receipt and will add to the circulating supply.
 
 **Circulating supply** is defined as the amount of TIA tokens in general
 circulation without onchain transfer restrictions.
