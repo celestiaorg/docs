@@ -562,7 +562,10 @@ function sidebarHome() {
                   text: "Integrating Keplr for developers",
                   link: "/developers/keplr",
                 },
-                { text: "Install", link: "https://www.keplr.app/download" },
+                {
+                  text: "Install Keplr",
+                  link: "https://www.keplr.app/download",
+                },
                 {
                   text: "Create an account",
                   link: "https://www.keplr.app/onboarding/how-to-create",
@@ -577,7 +580,10 @@ function sidebarHome() {
                   text: "Integrating Leap for developers",
                   link: "/developers/leap",
                 },
-                { text: "Install", link: "https://www.leapwallet.io/download" },
+                {
+                  text: "Install Leap",
+                  link: "https://www.leapwallet.io/download",
+                },
               ],
             },
             {
