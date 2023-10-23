@@ -69,17 +69,17 @@ $\text{Total Fee} = \text{Gas Limit} \times \text{Gas Price}$
 
 The gas limit for a transaction is the maximum amount of gas that a user is
 willing to spend on a transaction. It is determined by both a static
-fixed cost and a variable dynamic cost based on the size of each blob involved
+fixed cost (FC) and a variable dynamic cost based on the size of each blob involved
 in the transaction:
 
-$\text{Gas Limit} = \text{Fixed Cost} + \sum_{i=1}^{n} \text{SparseSharesNeeded(Blob}_i) \times \text{Share Size} \times \text{Gas Cost Per Blob Byte}$
+$\text{Gas Limit} = FC + \sum_{i=1}^{n} SSN(B_i) \times SS \times GCPBB$
 
 Where:
 
-- $\text{Fixed Cost}$ is a static value (65,000 gas)
-- $\text{SparseSharesNeeded(Blob}_i)$ is the number of shares needed for the $i$th blob in the transaction
-- $\text{Share Size}$ is the size of each share
-- $\text{Gas Cost Per Blob Byte}$ is a parameter that could potentially be adjusted through the system's governance mechanisms.
+- $FC$ = Fixed Cost, is a static value (65,000 gas)
+- $\sum_{i=1}^{n} SSN(B_i)$ = SparseSharesNeeded for the $i$th Blob, is the number of shares needed for the $i$th blob in the transaction
+- $SS$ = Share Size, is the size of each share
+- $GCPBB$ = Gas Cost Per Blob Byte, is a parameter that could potentially be adjusted through the system's governance mechanisms.
 
 The gas fee is set by the user when they submit a transaction. The fee is often
 specified by users directly. The total cost for the transaction is then
