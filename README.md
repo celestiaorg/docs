@@ -1,64 +1,46 @@
-# Celestia Docs Page
+# Celestia Documentation Site
 
-Celestia Docs is built using [Docusaurus 2](https://docusaurus.io), a modern static website generator.
-Learn more in the
-[Docusaurus Documentation](https://docusaurus.io/docs).
+Welcome to the official documentation repository for Celestia.
 
-## Installation 🛠️
+Here you'll find comprehensive guides, tutorials, and reference materials
+to help you make the most out of Celestia.
 
-```sh
-yarn
+## Building the site
+
+To get started, clone the repository and run the following:
+
+```bash
+yarn && yarn dev
 ```
 
-## Local Development 🖥️
+This documentation site is built with [VitePress](https://vitepress.dev)
 
-```sh
-yarn start
-```
+## Contribution Guidelines
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+We love contributions from the community! Whether you're fixing typos,
+improving content clarity, or adding new topics, every contribution helps.
 
-## Build 👷‍♀️
+- Fork & Clone: Fork this repository and clone it to your local machine.
+- Branch: Always create a new branch for your changes. Naming it relevantly.
+- Commit Changes: Make your changes and commit them with a clear and concise
+  commit message.
+- Push & Create PR: Push your changes to your fork and create a pull request
+  to the main branch of this repository.
 
-```sh
-yarn build
-```
+Please ensure to review the detailed Contribution Guidelines above before
+making a pull request.
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## Directory Structure
 
-## Lint 🔎
+- /tutorials: Step-by-step instructions to help users build their own rollups
+  with Celestia.
+- /reference: Technical reference materials, such as configuration options
+and details about the Celestia stack.
+<!-- * /guides [WIP]: In-depth articles that cover specific topics in detail. -->
+- /public: Images, diagrams, and other media files used in the documentation.
 
-```sh
-yarn lint-check
-```
+## Feedback & Suggestions
 
-This command checks for wrong formatting in `.md` and `.mdx` files using Prettier.
-
-## Format 📝
-
-```sh
-npx lint-staged
-```
-
-This command will format `.md` and `.mdx` files with Prettier that are in staging area.
-
-Please note that `npx lint-staged` only works for the files that are in the
-staging area. If a file is not formatted and not in the staging area, you will
-need to add the unformatted file to the staging area first using `git add <file>`,
-then you can run `npx lint-staged`. This command will then format the files that are in the staging area.
-
-## Deployment 🚀
-
-Using SSH:
-
-```sh
-USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```sh
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+We value feedback from the community. If you have suggestions for improvements
+or find any discrepancies in the documentation, please raise an issue in this
+repository.
