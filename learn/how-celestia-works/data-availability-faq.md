@@ -2,7 +2,7 @@
 description: Frequently asked questions related to Data Availability.
 next:
   text: "Overview of TIA"
-  link: '/learn/tia'
+  link: "/learn/tia"
 ---
 
 # Data availability FAQ

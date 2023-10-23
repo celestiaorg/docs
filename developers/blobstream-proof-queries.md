@@ -413,8 +413,8 @@ and the `height` which is the `height` of that block.
 
 - `proof`: the `BinaryMerkleProof` of the data root tuple to the data root
   tuple root.
-  Constructing it is similar to constructing the row roots to data root proof in the
-  [rowProofs](#rowproofs) section.
+  Constructing it is similar to constructing the row roots to data root proof in
+  the [rowProofs](#rowproofs) section.
 
 An example can be found in the
 [RollupInclusionProofs.t.sol](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/test/RollupInclusionProofs.t.sol#L488)

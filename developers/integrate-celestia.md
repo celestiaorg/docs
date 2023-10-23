@@ -1,8 +1,8 @@
 ---
 description: Learn how service providers can integrate with the Celestia network.
 prev:
-    text: "Integrating Cosmostation for developers"
-    link: "/developers/cosmostation"
+  text: "Integrating Cosmostation for developers"
+  link: "/developers/cosmostation"
 ---
 
 # Integrate Celestia for service providers

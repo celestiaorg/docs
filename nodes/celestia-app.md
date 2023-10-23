@@ -52,7 +52,7 @@ Be sure to select the correct network to install the binary for.
    ```
 
 4. To check if the binary was successfully installed you can run the binary
-using the `--help` flag:
+   using the `--help` flag:
 
    ```sh
    celestia-appd --help

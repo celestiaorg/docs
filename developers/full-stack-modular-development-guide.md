@@ -2,7 +2,7 @@
 description: Learn to build a full stack modular dapp.
 prev:
   text: "Deploy an OP Stack testnet on Celestia"
-  link: '/developers/optimism'
+  link: "/developers/optimism"
 next:
   text: "Wallet with celestia-app"
   link: "/developers/celestia-app-wallet"

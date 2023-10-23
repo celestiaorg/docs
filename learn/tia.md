@@ -1,7 +1,7 @@
 ---
 prev:
   text: "Data availability FAQ"
-  link: '/learn/how-celestia-works/data-availability-faq'
+  link: "/learn/how-celestia-works/data-availability-faq"
 ---
 
 # Overview of TIA

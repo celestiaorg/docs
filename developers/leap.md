@@ -1,11 +1,11 @@
 ---
 description: How you can add Celestia network parameters to Leap wallet.
 prev:
-    text: "Integrating Keplr for developers"
-    link: "/developers/keplr"
+  text: "Integrating Keplr for developers"
+  link: "/developers/keplr"
 next:
-    text: "Integrating Cosmostation for developers"
-    link: "/developers/cosmostation"
+  text: "Integrating Cosmostation for developers"
+  link: "/developers/cosmostation"
 ---
 
 # Leap integration with Celestia

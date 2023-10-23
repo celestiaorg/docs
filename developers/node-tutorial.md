@@ -1,7 +1,7 @@
 ---
 next:
   text: "Prompt Scavenger"
-  link: '/developers/prompt-scavenger'
+  link: "/developers/prompt-scavenger"
 ---
 
 # Celestia-node RPC CLI tutorial

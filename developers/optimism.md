@@ -2,7 +2,7 @@
 description: Start your own testnet with a modified version of optimism-bedrock.
 next:
   text: "Full stack dapp tutorial"
-  link: '/developers/full-stack-modular-development-guide'
+  link: "/developers/full-stack-modular-development-guide"
 ---
 
 # Deploy an OP Stack testnet with Celestia

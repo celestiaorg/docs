@@ -2,7 +2,7 @@
 description: Learn how to interact with the Celestia Node API with this tutorial.
 prev:
   text: "Node RPC CLI tutorial"
-  link: '/developers/node-tutorial'
+  link: "/developers/node-tutorial"
 ---
 
 # Prompt scavenger

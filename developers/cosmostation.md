@@ -1,11 +1,11 @@
 ---
 description: How you can add Celestia network parameters to Cosmostation wallet.
 prev:
-    text: "Integrating Leap for developers"
-    link: "/developers/leap"
+  text: "Integrating Leap for developers"
+  link: "/developers/leap"
 next:
-    text: "Integrate Celestia for service providers"
-    link: "/developers/integrate-celestia"
+  text: "Integrate Celestia for service providers"
+  link: "/developers/integrate-celestia"
 ---
 
 # Cosmostation integration with Celestia
