@@ -466,7 +466,7 @@ celestia-appd tx blobstream register \
 You should now be able to see your validator from
 [a block explorer](./mocha-testnet.md#explorers)
 
-### Run a Blobstream Orchestrator
+### Run a Blobstream orchestrator
 
 Now that Blobstream will be enabled for Mocha, all validators
 will need to run a Blobstream orchestrator to be able to sign attestations.

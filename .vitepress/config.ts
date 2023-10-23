@@ -388,7 +388,30 @@ function sidebarHome() {
               ],
             },
             { text: "Consensus", link: "/nodes/consensus-node" },
-            { text: "Blobstream " },
+            {
+              text: "Blobstream ",
+              collapsed: true,
+              items: [
+                {
+                  text: "Intro to Blobstream",
+                  link: "/nodes/blobstream-intro",
+                },
+                {
+                  text: "Install the binary",
+                  link: "/nodes/blobstream-binary",
+                },
+                {
+                  text: "Orchestrator",
+                  link: "/nodes/blobstream-orchestrator",
+                },
+                { text: "Key management", link: "/nodes/blobstream-keys" },
+                { text: "Relayer", link: "/nodes/blobstream-relayer" },
+                {
+                  text: "Deploy the contract",
+                  link: "/nodes/blobstream-contract",
+                },
+              ],
+            },
           ],
         },
         {
