@@ -261,7 +261,7 @@ export default {
 function nav() {
   return [
     {
-      text: "Participate",
+      text: "Docs",
       items: [
         { text: "Learn", link: "/learn/how-celestia-works/overview" },
         { text: "Networks", link: "/nodes/participate" },
