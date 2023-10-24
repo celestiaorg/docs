@@ -40,9 +40,11 @@ running `hermes version`.
 Hermes currently doesn't support configuring the Tendermint `CompatMode` in
 chain config (see
 [hermes#3623](https://github.com/informalsystems/hermes/issues/3623)). Until
-that issue is resolved, a small
-[patch](https://github.com/informalsystems/hermes/commit/4b5b34ea27f415bcb04f2d47aa37f38e9276c065)
-is needed for Hermes to relay with celestia-app.
+that issue is resolved, please use Hermes
+[v1.7.0](https://github.com/informalsystems/hermes/releases/tag/v1.7.0)+ because
+it falls back to Tendermint `CompatMode` v0.34 (see
+[hermes#3663](https://github.com/informalsystems/hermes/pull/3663)) which is
+compatible with Celestia.
 
 :::
 
