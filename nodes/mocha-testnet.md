@@ -16,7 +16,7 @@ for that as it is designed for development purposes.
 Mocha is a milestone in Celestia, allowing everyone to test out
 core functionalities on the network. Read [the announcement](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api).
 Your best approach to participating is to first determine which node
-you would like to run. Each node guides will link to the relevant network
+you would like to run. Each node's guide will link to the relevant networks
 in order to show you how to connect to them.
 
 You have a list of options on the type of nodes you can run in order to
