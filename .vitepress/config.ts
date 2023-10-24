@@ -494,6 +494,7 @@ function sidebarHome() {
         },
         {
           text: "Integrate with Blobstream",
+          link: "/developers/blobstream",
           collapsed: true,
           items: [
             {
