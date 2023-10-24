@@ -48,7 +48,6 @@ Be sure to select the correct network to install the binary for.
 3. Build and install the `celestia-appd` binary:
 
    ```bash
-   make build
    make install
    ```
 
