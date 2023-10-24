@@ -49,6 +49,7 @@ Be sure to select the correct network to install the binary for.
 
    ```bash
    make build
+   make install
    ```
 
 4. To check if the binary was successfully installed you can run the binary
