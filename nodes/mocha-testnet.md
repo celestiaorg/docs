@@ -97,8 +97,8 @@ port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
 - [https://grpc-mocha.pops.one](https://grpc-mocha.pops.one)
-- `grpc.celestia-mocha.com:443`
-- `grpc-2.celestia-mocha.com:443`
+- `grpc-mocha-4.consensus.celestia-mocha.com:443`
+- `grpc-2-mocha-4.consensus.celestia-mocha.com`
 - `full.consensus.mocha-4.celestia-mocha.com:9090`
 - `consensus-full-mocha-4.celestia-mocha.com:9090`
 - `celestia-grpc.f5nodes.com`
