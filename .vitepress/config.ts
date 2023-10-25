@@ -249,7 +249,7 @@ export default {
 function nav() {
   return [
     {
-      text: "Docs",
+      text: "Join the network",
       items: [
         { text: "Learn", link: "/learn/how-celestia-works/overview" },
         { text: "Networks", link: "/nodes/participate" },
