@@ -36,7 +36,7 @@ cd "$TEMP_DIR"
 # Log and print a message
 echo "Working from temporary directory: $TEMP_DIR" | tee -a "$LOGFILE"
 
-# Comment out once all releases haev prebuilt binaries
+# Comment out once all releases have prebuilt binaries
 # Set the version manually, until all releases have prebuilt
 # binaries attached to them
 VERSION=v1.1.0
