@@ -7,13 +7,13 @@
 <script setup>
 import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
 import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
-import CoffeeVersionTags from '../.vitepress/components/CoffeeVersionTags.vue'
+import MainnetVersionTags from '../.vitepress/components/MainnetVersionTags.vue'
 import constants from '../.vitepress/constants/constants.js'
 </script>
 
-<!-- - Coffee: TBD
+<!-- - Mainnet Beta: TBD
   - Compatible software versions
-    <CoffeeVersionTags/> -->
+    <MainnetVersionTags/> -->
 
 ## Testnets
 
