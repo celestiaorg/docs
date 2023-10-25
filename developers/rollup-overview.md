@@ -31,6 +31,10 @@ Over time, two primary designs emerged for rollups:
   - [Deploy an OP Stack testnet on Celestia](./optimism.md)
   - [Deploy a dapp on Thirdweb](https://thirdweb.com/bubs-testnet)
   - [Rollups as a Service](https://docs.celestia.org/category/rollups-as-a-service/)
+- Astria
+  - [Explore the shared sequencer documentation](http://docs.astria.org/)
+  - [Learn about the Astria Dusknet](https://docs.astria.org/docs/dusknet/overview/)
 - Sovereign SDK
   - [Create a zk-rollup and run a full node using Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup)
+- [Deploy a rollup with Vistara](https://docs.vistara.dev/)
 - [Build a rollapp with Dymension's Roller](https://docs.dymension.xyz/build/roller)
