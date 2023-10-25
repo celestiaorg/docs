@@ -293,9 +293,9 @@ To delegate tokens to the `celestiavaloper` validator, as an
 example you can run:
 
 ```bash-vue
-celestia-appd tx staking delegate \ <br />
-celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \ <br />
---from=$VALIDATOR_WALLET --chain-id={{constants.mochaChainId}} \ <br />
+celestia-appd tx staking delegate \
+celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \
+--from=$VALIDATOR_WALLET --chain-id={{constants.mochaChainId}} \
 --fees=21000utia
 ```
 
