@@ -20,9 +20,7 @@ This tutorial will guide you through installing celestia-app, both with
 ## Installing a pre-built binary
 
 Installing a pre-built binary is the fastest way to get started with your
-Celestia consensus node. Versions containing
-[PR 2654](https://github.com/celestiaorg/celestia-app/pull/2654)
-will have these binaries available.
+Celestia consensus node. Releases after celestia-app v1.3.0 should have these binaries available.
 
 Pre-built binaries are available for:
 
