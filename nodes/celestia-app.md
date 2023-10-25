@@ -13,8 +13,45 @@ import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
 </script>
 
-This tutorial will guide you through installing celestia-app. This
-tutorial presumes you completed the steps in
+This tutorial will guide you through installing celestia-app, both with
+[a pre-built binary](#installing-a-pre-built-binaries) and
+[from source](#building-binary-from-source).
+
+## Installing a pre-built binaries
+
+Installing a pre-built binary is the fastest way to get started with your
+Celestia consensus node. Versions containing
+[PR 2654](https://github.com/celestiaorg/celestia-app/pull/2654)
+will have these binaries available.
+
+Pre-built binaries are available for:
+
+- Operating systems: Darwin (Apple), Linux
+- Architectures: x86_64 (amd64), arm64
+
+To install the latest pre-built binary you can run this command in your
+terminal:
+
+```bash
+curl -L -s https://celestiaorg.github.io/docs/pr-preview/pr-1198/celestia-app.sh | bash
+```
+
+<!-- ```bash
+curl -L -s https://docs.celestia.org/celestia-app.sh | bash
+``` -->
+
+Follow the instructions in the terminal output to run and interact
+with the binary.
+
+View [the script](https://github.com/celestiaorg/docs/tree/jcs/add-prebuild-app-binaries/public/celestia-app.sh)
+to learn more about what it is doing.
+<!-- 
+View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-app.sh)
+to learn more about what it is doing. -->
+
+## Building binary from source
+
+This section of the tutorial presumes you completed the steps in
 [setting up your own environment](./environment.md).
 
 The steps below will create a binary file named `celestia-appd`
