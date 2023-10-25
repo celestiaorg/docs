@@ -6,8 +6,6 @@ echo " _______ / /__ ___ / /_(_)__ ________ ____  ___ "
 echo "/ __/ -_) / -_|_-</ __/ / _ \`/___/ _ \`/ _ \/ _ \\"
 echo "\\__/\\__/_/\\__/___/\\__/_/\\_,_/    \\_,_/ .__/ .__/"
 echo "                                    /_/  /_/    "
-
-# Rest of your script...
 echo ""
 
 # Create a log file to capture detailed logs
@@ -32,7 +30,6 @@ touch "$LOGFILE"
 echo "Log file is located at: $LOGFILE" | tee -a "$LOGFILE"
 
 # Create a temporary directory to work from
-TEMP_DIR="$HOME/celestia-temp"
 mkdir -p "$TEMP_DIR"
 cd "$TEMP_DIR"
 
