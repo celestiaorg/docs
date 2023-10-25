@@ -418,7 +418,7 @@ First, create an Infura account and new project for IPFS.
 Create a file named `.env.local` in the `frontend/` directory and add the following
 configuration with your own credentials:
 
-```env title="frontend/.env.local"
+```txt
 VITE_INFURA_ID=your-project-api-key
 VITE_INFURA_SECRET=your-project-api-key-secret
 ```
