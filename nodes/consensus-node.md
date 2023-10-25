@@ -205,7 +205,7 @@ rm -rf ~/.celestia-app/data
 mkdir -p ~/.celestia-app/data
 SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
     egrep -o ">{{constants.mochaChainId}}.*tar" | tr -d ">")
-wget -O - https://snaps.qubelabs.io/celestia/$&#123;SNAP_NAME&#125; | tar xf - \
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
 
@@ -215,7 +215,7 @@ rm -rf ~/.celestia-app/data
 mkdir -p ~/.celestia-app/data
 SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
     egrep -o ">{{constants.arabicaChainId}}.*tar" | tr -d ">")
-wget -O - https://snaps.qubelabs.io/celestia/$&#123;SNAP_NAME&#125; | tar xf - \
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
 
