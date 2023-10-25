@@ -146,7 +146,7 @@ celestia light unsafe-reset-store --p2p.network mocha
 
 If you observe a FATAL log line like:
 
-```log
+```bash
 FATAL   header/store   store/heightsub.go:87    PLEASE FILE A BUG REPORT: headers given to the heightSub are in the wrong order"
 ```
 

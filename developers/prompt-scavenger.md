@@ -128,7 +128,7 @@ The key will be needed to communicate with OpenAI.
 
 We will first need to setup a `.env` file with the following pasted in:
 
-```.env
+```txt
 NODE_RPC_IP="http://localhost:26658"
 NODE_JWT_TOKEN=""
 OPENAI_KEY=""
