@@ -18,6 +18,9 @@ export default {
   markdown: {
     math: true,
   },
+  sitemap: {
+    hostname: "https://docs.celestia.org",
+  },
 
   head: [
     [
