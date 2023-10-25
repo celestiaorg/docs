@@ -61,6 +61,10 @@ node. Keep in mind that this might change if a new testnet is deployed.
 
 ::: code-group
 
+```bash-vue [Mainnet Beta]
+celestia-appd init "node-name" --chain-id {{constants.mainnetChainId}}
+```
+
 ```bash-vue [Mocha]
 celestia-appd init "node-name" --chain-id {{constants.mochaChainId}}
 ```
@@ -74,6 +78,11 @@ celestia-appd init "node-name" --chain-id {{constants.arabicaChainId}}
 Copy the `genesis.json` file:
 
 ::: code-group
+
+```bash-vue [Mainnet Beta]
+cp $HOME/networks/{{constants.mainnetChainId}}/genesis.json \
+    $HOME/.celestia-app/config
+```
 
 ```bash-vue [Mocha]
 cp $HOME/networks/{{constants.mochaChainId}}/genesis.json \
@@ -90,6 +99,12 @@ cp $HOME/networks/{{constants.arabicaChainId}}/genesis.json \
 Set seeds in the `$HOME/.celestia-app/config/config.toml` file:
 
 ::: code-group
+
+```bash-vue [Mainnet Beta]
+SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.mainnetChainId}}/seeds.txt | head -c -1 | tr '\n' ',')
+echo $SEEDS
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.celestia-app/config/config.toml
+```
 
 ```bash-vue [Mocha]
 SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.mochaChainId}}/seeds.txt | head -c -1 | tr '\n' ',')
@@ -113,6 +128,12 @@ the following commands:
 Setting persistent peers is advised only if you are running a sentry node.
 
 ::: code-group
+
+```bash-vue [Mainnet Beta]
+PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.mainnetChainId}}/peers.txt | head -c -1 | tr '\n' ',')
+echo $PERSISTENT_PEERS
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
+```
 
 ```bash-vue [Mocha]
 PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.mochaChainId}}/peers.txt | head -c -1 | tr '\n' ',')
@@ -199,13 +220,23 @@ Run the following command to quick-sync from a snapshot:
 
 ::: code-group
 
+```bash-vue [Mainnet Beta]
+cd $HOME
+rm -rf ~/.celestia-app/data
+mkdir -p ~/.celestia-app/data
+SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
+    egrep -o ">{{constants.mainnetChainId}}.*tar" | tr -d ">")
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
+    -C ~/.celestia-app/data/
+```
+
 ```bash-vue [Mocha]
 cd $HOME
 rm -rf ~/.celestia-app/data
 mkdir -p ~/.celestia-app/data
 SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
     egrep -o ">{{constants.mochaChainId}}.*tar" | tr -d ">")
-wget -O - https://snaps.qubelabs.io/celestia/$&#123;SNAP_NAME&#125; | tar xf - \
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
 
@@ -215,7 +246,7 @@ rm -rf ~/.celestia-app/data
 mkdir -p ~/.celestia-app/data
 SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
     egrep -o ">{{constants.arabicaChainId}}.*tar" | tr -d ">")
-wget -O - https://snaps.qubelabs.io/celestia/$&#123;SNAP_NAME&#125; | tar xf - \
+wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
     -C ~/.celestia-app/data/
 ```
 
@@ -293,9 +324,9 @@ To delegate tokens to the `celestiavaloper` validator, as an
 example you can run:
 
 ```bash-vue
-celestia-appd tx staking delegate \ <br />
-celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \ <br />
---from=$VALIDATOR_WALLET --chain-id={{constants.mochaChainId}} \ <br />
+celestia-appd tx staking delegate \
+celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \
+--from=$VALIDATOR_WALLET --chain-id={{constants.mochaChainId}} \
 --fees=21000utia
 ```
 
@@ -341,7 +372,7 @@ You can [follow the tutorial for installing `celestia-node`](./celestia-node.md)
 Run the following:
 
 ```bash
-celestia bridge init --core.ip <ip-address>
+celestia bridge init --core.ip <URI>
 ```
 
 :::tip

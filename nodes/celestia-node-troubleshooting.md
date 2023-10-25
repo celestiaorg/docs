@@ -79,7 +79,7 @@ Note: If you do not select a network, the default network will be 'Mocha'.
 
 ```sh
 celestia <node-type> init --p2p.network <network>
-celestia <node-type> start --p2p.network <network> --core.ip <address> <port>
+celestia <node-type> start --p2p.network <network> --core.ip <URI>
 ```
 
 :::tip

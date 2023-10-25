@@ -50,12 +50,16 @@ Run the following command:
 
 ::: code-group
 
-```sh [Arabica]
-celestia full init --p2p.network arabica
+```sh [Mainnet Beta]
+celestia full init
 ```
 
 ```sh [Mocha]
 celestia full init --p2p.network mocha
+```
+
+```sh [Arabica]
+celestia full init --p2p.network arabica
 ```
 
 :::
@@ -76,7 +80,7 @@ Refer to
 for information on which ports are required to be open on your machine.
 
 ```sh
-celestia full start --core.ip <ip-address>:<port>
+celestia full start --core.ip <URI>
 ```
 
 Using an RPC of your own, or one from the
@@ -117,16 +121,21 @@ In order to run a full storage node using a custom key:
 
 ::: code-group
 
-```sh [Arabica]
-celestia full start --core.ip <ip-address> \
+```sh [Mainnet Beta]
+celestia full start --core.ip <URI> \
   --keyring.accname <name-of-custom-key> \
-  --p2p.network arabica
 ```
 
 ```sh [Mocha]
-celestia full start --core.ip <ip-address> \
+celestia full start --core.ip <URI> \
   --keyring.accname <name-of-custom-key> \
   --p2p.network mocha
+```
+
+```sh [Arabica]
+celestia full start --core.ip <URI> \
+  --keyring.accname <name-of-custom-key> \
+  --p2p.network arabica
 ```
 
 :::

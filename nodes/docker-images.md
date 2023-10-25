@@ -11,7 +11,7 @@ description: Running Celestia Node using Docker.
 import constants from '/.vitepress/constants/constants.js'
 import arabicaVersions from '/.vitepress/constants/arabica_versions.js'
 import mochaVersions from '/.vitepress/constants/mocha_versions.js'
-import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
+import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 </script>
 
 This page has instructions to run celestia-node using Docker. If you are
@@ -44,12 +44,16 @@ Ubuntu. You can
 
    ::: code-group
 
-   ```bash [Arabica]
-   export NETWORK=arabica
+   ```bash [Mainnet Beta]
+   export NETWORK=celestia
    ```
 
    ```bash [Mocha]
    export NETWORK=mocha
+   ```
+
+   ```bash [Arabica]
+   export NETWORK=arabica
    ```
 
    :::
@@ -84,15 +88,21 @@ Ubuntu. You can
 
    ::: code-group
 
-   ```bash-vue [Arabica]
+   ```bash-vue [Mainnet Beta]
    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-       ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
+       ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
        celestia $NODE_TYPE start --core.ip $RPC_URL --p2p.network $NETWORK
    ```
 
    ```bash-vue [Mocha]
    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
        ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
+       celestia $NODE_TYPE start --core.ip $RPC_URL --p2p.network $NETWORK
+   ```
+
+   ```bash-vue [Arabica]
+   docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+       ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
        celestia $NODE_TYPE start --core.ip $RPC_URL --p2p.network $NETWORK
    ```
 
@@ -148,10 +158,10 @@ An example init command will look similar to below:
 
 ::: code-group
 
-```bash-vue [Arabica]
+```bash-vue [Mainnet Beta]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
-    ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
+    ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
     celestia light init --p2p.network $NETWORK
 ```
 
@@ -159,6 +169,13 @@ docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
+    celestia light init --p2p.network $NETWORK
+```
+
+```bash-vue [Arabica]
+docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+    -v $HOME/my-node-store:/home/celestia \
+    ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
     celestia light init --p2p.network $NETWORK
 ```
 
@@ -178,10 +195,10 @@ A full start command will look similar to below.
 
 ::: code-group
 
-```bash-vue [Arabica]
+```bash-vue [Mainnet Beta]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
-    ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
+    ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
     celestia light init --p2p.network $NETWORK
 ```
 
@@ -189,6 +206,13 @@ docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
+    celestia light init --p2p.network $NETWORK
+```
+
+```bash-vue [Arabica]
+docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+    -v $HOME/my-node-store:/home/celestia \
+    ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
     celestia light init --p2p.network $NETWORK
 ```
 

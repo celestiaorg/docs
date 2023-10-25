@@ -150,16 +150,16 @@ Users can currently create and submit `BlobTx`s in four ways.
 
 ### The celestia-app consensus node CLI
 
-```terminal
-celestia-appd tx blob PayForBlobs <hex encoded namespace> <hex encoded data> [flags]
+```bash
+celestia-appd tx blob PayForBlobs <hex-encoded namespace> <hex-encoded data> [flags]
 ```
 
 ### The celestia-node light node CLI
 
 Using `blob.Submit`:
 
-```terminal
-celestia blob submit <hex encoded namespace> <hex encoded data>
+```bash
+celestia blob submit <hex-encoded namespace> <hex-encoded data>
 ```
 
 Learn more in the [node tutorial](./node-tutorial.md).

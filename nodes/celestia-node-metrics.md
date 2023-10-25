@@ -18,8 +18,8 @@ command:
 
 ```sh
 celestia <node-type> start --metrics.tls <boolean> \
-    --metrics --metrics.endpoint <ip-address:port> \
-    --p2p.network <network> --core.ip <ip-address>
+    --metrics --metrics.endpoint <URI> \
+    --p2p.network <network> --core.ip <URI>
 ```
 
 Add metrics flags to your node start command and restart your node to apply it.
@@ -51,13 +51,13 @@ Here are examples of how to use it:
 ```bash
 # To enable TLS connection
 celestia <node-type> start --metrics.tls true --metrics \
-    --metrics.endpoint <ip-address:port> \
-    --p2p.network <network> --core.ip <ip-address>
+    --metrics.endpoint <URI> \
+    --p2p.network <network> --core.ip <URI>
 
 # To disable TLS connection
 celestia <node-type> start --metrics.tls false --metrics \
-    --metrics.endpoint <ip-address:port> \
-    --p2p.network <network> --core.ip <ip-address>
+    --metrics.endpoint <URI> \
+    --p2p.network <network> --core.ip <URI>
 ```
 
 ## Metrics endpoint design considerations
