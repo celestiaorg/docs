@@ -32,11 +32,12 @@ making a pull request.
 
 ## Directory Structure
 
-- /tutorials: Step-by-step instructions to help users build their own rollups
-  with Celestia.
-- /reference: Technical reference materials, such as configuration options
-and details about the Celestia stack.
+- /learn: A category for learning about Celestia.
+- /developers: A category with tutorials and guides for deploying
+rollups and interacting with Celestia nodes.
+- /nodes: Technical reference materials for all node types.
 <!-- * /guides [WIP]: In-depth articles that cover specific topics in detail. -->
+- /community: A category for the Celestia community.
 - /public: Images, diagrams, and other media files used in the documentation.
 
 ## Feedback & Suggestions
