@@ -42,12 +42,16 @@ to `false` in:
 
 ::: code-group
 
-```bash-vue [Arabica]
-$HOME/.celestia-light-{{constants.arabicaChainId}}/config.toml
+```bash-vue [Mainnet Beta]
+$HOME/.celestia-light/config.toml
 ```
 
 ```bash-vue [Mocha]
 $HOME/.celestia-light-{{constants.mochaChainId}}/config.toml
+```
+
+```bash-vue [Arabica]
+$HOME/.celestia-light-{{constants.arabicaChainId}}/config.toml
 ```
 
 :::
@@ -67,12 +71,16 @@ in this directory:
 
 ::: code-group
 
-```bash-vue [Arabica]
-$HOME/.celestia-light-{{constants.arabicaChainId}}
+```bash-vue [Mainnet Beta]
+$HOME/.celestia-light
 ```
 
 ```bash-vue [Mocha]
 $HOME/.celestia-light-{{constants.mochaChainId}}
+```
+
+```bash-vue [Arabica]
+$HOME/.celestia-light-{{constants.arabicaChainId}}
 ```
 
 :::

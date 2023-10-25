@@ -31,5 +31,5 @@ export CELESTIA_CUSTOM="${NETWORK}:${GENESIS_HASH}:${BRIDGE}"
 Then, start your node with:
 
 ```bash
-celestia [<node-type>] start [flags...]
+celestia <node-type> start [flags...]
 ```

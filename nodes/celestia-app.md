@@ -10,7 +10,7 @@ description: Learn how you can build celestia-app.
 import constants from '/.vitepress/constants/constants.js'
 import arabicaVersions from '/.vitepress/constants/arabica_versions.js'
 import mochaVersions from '/.vitepress/constants/mocha_versions.js'
-import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
+import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 </script>
 
 This tutorial will guide you through installing celestia-app, both
@@ -39,6 +39,10 @@ Be sure to select the correct network to install the binary for.
 2. Check out to the desired version, based on the network you will use:
 
    ::: code-group
+
+   ```bash-vue [Mainnet Beta]
+   git checkout tags/{{mainnetVersions['app-latest-tag']}} -b {{mainnetVersions['app-latest-tag']}}
+   ```
 
    ```bash-vue [Mocha]
    git checkout tags/{{mochaVersions['app-latest-tag']}} -b {{mochaVersions['app-latest-tag']}}

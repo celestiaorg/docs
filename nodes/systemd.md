@@ -157,7 +157,7 @@ from `celestia-app`.
 Example:
 
 ```sh
-NODE_IP=<ip-address>
+NODE_IP=<URI>]
 /ip4/$NODE_IP/tcp/2121/p2p/12D3KooWD5wCBJXKQuDjhXFjTFMrZoysGVLtVht5hMoVbSLCbV22
 ```
 
@@ -177,7 +177,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which celestia) light start --core.ip <ip-address>
+ExecStart=$(which celestia) light start --core.ip <URI>
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
