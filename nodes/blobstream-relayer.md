@@ -44,7 +44,7 @@ Make sure to have the Blobstream binary installed. Check out the [Install the Bl
 
 Before starting the relayer, we will need to init the store:
 
-```ssh
+```sh
 blobstream relayer init
 ```
 
@@ -67,7 +67,7 @@ The P2P private key is optional, and a new one will be generated automatically o
 
 The `keys` command will help you set up these keys:
 
-```ssh
+```sh
 blobstream relayer keys  --help
 ```
 
@@ -79,7 +79,7 @@ Because EVM keys are important, we provide a keystore that will help manage them
 
 To import your EVM private key, there is the `import` subcommand to assist you with that:
 
-```ssh
+```sh
 blobstream relayer keys evm import --help
 ```
 
@@ -87,7 +87,7 @@ This subcommand allows you to either import a raw ECDSA private key provided as 
 
 After adding the key, you can check that it's added via running:
 
-```ssh
+```sh
 blobstream relayer keys evm list
 ```
 
@@ -99,7 +99,7 @@ Now that we have the store initialized, and we have a target Blobstream smart co
 
 The relayer accepts the following flags:
 
-```ssh
+```sh
 blobstream relayer start --help
 
 Runs the Blobstream relayer to submit attestations to the target EVM chain
@@ -110,7 +110,7 @@ Usage:
 
 To start the relayer using the default home directory, run the following:
 
-```ssh
+```sh
 /bin/blobstream relayer start \
   --evm.contract-address=0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 \
   --core.rpc.host=localhost \

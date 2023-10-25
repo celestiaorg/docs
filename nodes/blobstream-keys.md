@@ -47,7 +47,7 @@ As specified above, aside from the difference in the default home directory, the
 
 The examples will use the orchestrator command to access the keys. However, the same behaviour applies to the other commands as well.
 
-```ssh
+```sh
 blobstream orchestrator keys --help
 
 Blobstream keys manager
@@ -71,7 +71,7 @@ The first subcommand of the `keys` command is `evm`. This latter allows managing
 
 The EVM keys are `ECDSA` keys using the `secp256k1` curve. The implementation uses `geth` file system keystore [implementation](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts). Thus, keys can be used interchangeably with any compatible software.
 
-```ssh
+```sh
 blobstream orchestrator keys evm --help
 
 Blobstream EVM keys manager
@@ -102,7 +102,7 @@ evmKs = keystore.NewKeyStore(evmKeyStorePath(path), keystore.StandardScryptN, ke
 
 The `add` subcommand allows creating a new EVM private key and storing it in the keystore:
 
-```ssh
+```sh
 blobstream orchestrator keys evm add --help
 
 create a new EVM address
@@ -115,7 +115,7 @@ The passphrase of the key encryption can be passed as a flag. But it is advised 
 
 After creating a new key, you will see its corresponding address printed:
 
-```ssh
+```sh
 blobstream orchestrator keys evm add
 
 I[2023-04-13|14:16:11.387] successfully opened store                    path=/home/midnight/.orchestrator
@@ -128,7 +128,7 @@ I[2023-04-13|14:16:30.534] successfully closed store                    path=/ho
 
 The `delete` subcommand allows deleting an EVM private key from store via providing its corresponding address:
 
-```ssh
+```sh
 blobstream orchestrator keys evm delete --help
 
 delete an EVM addresses from the key store
@@ -143,7 +143,7 @@ After running the command, you will be prompted to enter the passphrase for the 
 
 Then, you will be prompted to confirm that you want to delete that private key. Make sure to verify if you're deleting the right one because once deleted, it can no longer be recovered!
 
-```ssh
+```sh
 blobstream orchestrator keys evm delete 0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7
 
 I[2023-04-13|15:01:41.308] successfully opened store                    path=/home/midnight/.orchestrator
@@ -159,7 +159,7 @@ I[2023-04-13|15:01:45.534] successfully closed store                    path=/ho
 
 The `list` subcommand allows listing the existing keys in the keystore:
 
-```ssh
+```sh
 blobstream orchestrator keys evm list
 
 I[2023-04-13|16:08:45.084] successfully opened store                    path=/home/midnight/.orchestrator
@@ -174,7 +174,7 @@ You could specify a different home using the `--home` flag to list the keys in a
 
 The `update` subcommand allows changing the EVM private key passphrase to a new one. It takes as argument the `0x` prefixed EVM address corresponding to the private key we want to edit.
 
-```ssh
+```sh
 blobstream orchestrator evm update --help
 
 update an EVM account passphrase
@@ -185,7 +185,7 @@ Usage:
 
 Example:
 
-```ssh
+```sh
 blobstream orchestrator evm update 0x7Dd8F9CAfe6D25165249A454F2d0b72FD149Bbba
 
 I[2023-04-13|16:21:17.139] successfully opened store                    path=/home/midnight/.orchestrator
@@ -204,7 +204,7 @@ The `--home` can be specified if the store is not in the default directory.
 
 The `import` subcommand allows importing existing private keys into the keystore. It has two subcommands: `ecdsa` and `file`. The first allows importing a private key in plaintext, while the other allows importing a private key from a JSON file secured with a passphrase.
 
-```ssh
+```sh
 blobstream orchestrator keys evm import --help
 
 import evm keys to the keystore
@@ -228,7 +228,7 @@ For the first one, it takes as argument the private key in plaintext. Then, it p
 
 Example:
 
-```ssh
+```sh
 blobstream orchestrator keys evm import ecdsa da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb7
 
 I[2023-04-13|17:00:48.617] successfully opened store                    path=/home/midnight/.orchestrator
@@ -242,7 +242,7 @@ I[2023-04-13|17:00:51.990] successfully closed store                    path=/ho
 
 For the second, it takes a JSON key file, as defined in [@ethereum/eth-keyfile](https://github.com/ethereum/eth-keyfile), and imports it to your keystore, so it can be used for signatures.
 
-```ssh
+```sh
 blobstream orchestrator keys evm import file --help
 
 import an EVM address from a file
@@ -253,7 +253,7 @@ Usage:
 
 For example, if we have a file in the current directory containing a private key, we could run the following:
 
-```ssh
+```sh
 blobstream orchestrator keys evm import file UTC--2023-04-13T15-00-50.302148204Z--966e6f22781ef6a6a82bbb4db3df8e225dfd9488
 
 I[2023-04-13|17:31:53.307] successfully opened store                    path=/home/midnight/.orchestrator
@@ -272,7 +272,7 @@ Similar to the above EVM keystore, the P2P store has similar subcommands for han
 
 To access the P2P keystore, run the following:
 
-```ssh
+```sh
 blobstream orchestrator keys p2p
 
 Blobstream p2p keys manager
@@ -298,7 +298,7 @@ The `orchestrator` could be replaced by `relayer` and the only difference would 
 
 The `add` subcommand creates a new p2p key to the p2p store:
 
-```ssh
+```sh
 blobstream orchestrator keys p2p add --help
 
 create a new Ed25519 P2P address
@@ -309,7 +309,7 @@ Usage:
 
 It takes as argument an optional `<nickname>` which would be the name that we can use to reference that private key. If not specified, an incremental nickname will be assigned.
 
-```ssh
+```sh
 blobstream orchestrator keys p2p add
 
 I[2023-04-13|17:38:17.289] successfully opened store                    path=/home/midnight/.orchestrator
@@ -326,7 +326,7 @@ The nickname will be needed in case the orchestrator needs to use a specific pri
 
 The `delete` subcommand will delete a P2P private key from store referenced by its nickname:
 
-```ssh
+```sh
 blobstream orchestrator keys p2p delete --help
 
 delete an Ed25519 P2P private key from store
@@ -339,7 +339,7 @@ Usage:
 
 The `import` subcommand will import an existing Ed25519 private key to the store. It takes as argument the nickname that we wish to save the private key under, and the actual private key in hex format without `0x`:
 
-```ssh
+```sh
 blobstream orchestrator keys p2p import --help
 
 import an existing p2p private key
@@ -352,7 +352,7 @@ Usage:
 
 The `list` subcommand lists the existing P2P private keys in the store:
 
-```ssh
+```sh
 blobstream orchestrator keys p2p list --help
 
 list existing p2p addresses

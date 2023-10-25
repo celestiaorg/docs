@@ -54,7 +54,7 @@ Make sure to have the Blobstream binary installed. Check [the Blobstream binary 
 
 Before starting the orchestrator, we will need to init the store:
 
-```ssh
+```sh
 blobstream orchestrator init
 ```
 
@@ -77,7 +77,7 @@ The P2P private key is optional, and a new one will be generated automatically o
 
 The `keys` command will help you set up these keys:
 
-```ssh
+```sh
 blobstream orchestrator keys  --help
 ```
 
@@ -91,7 +91,7 @@ To register an EVM address for your validator, check the section [Register EVM A
 
 To import your EVM private key, there is the `import` subcommand to assist you with that:
 
-```ssh
+```sh
 blobstream orchestrator keys evm import --help
 ```
 
@@ -99,7 +99,7 @@ This subcommand allows you to either import a raw ECDSA private key provided as 
 
 After adding the key, you can check that it's added via running:
 
-```ssh
+```sh
 blobstream orchestrator keys evm list
 ```
 
@@ -111,7 +111,7 @@ Now that we have the store initialized, we can start the orchestrator. Make sure
 
 The orchestrator accepts the following flags:
 
-```ssh
+```sh
 blobstream orchestrator start --help
 
 Starts the Blobstream orchestrator to sign attestations
@@ -122,7 +122,7 @@ Usage:
 
 To start the orchestrator in the default home directory, run the following:
 
-```ssh
+```sh
 blobstream orchestrator start \
     --core.grpc.host localhost \
     --core.grpc.port 9090 \
@@ -151,7 +151,7 @@ To edit an EVM address for a certain validator, its corresponding account needs 
 
 First, you should get your validator `valoper` address. To do so, run the following:
 
-```ssh
+```sh
 celestia-appd keys show <validator_account> --bech val
 ```
 
@@ -159,7 +159,7 @@ This assumes that you're using the default home directory, the default keystore 
 
 To check which EVM address is registered for your `valoper` address, run the following:
 
-```ssh
+```sh
 celestia-appd query blobstream evm <validator_valoper_address>
 ```
 
@@ -176,7 +176,7 @@ celestia-appd tx blobstream register \
 
 Example command output:
 
-```ssh
+```sh
 code: 0
 codespace: ""
 data: 12300A2E2F63656C65737469612E7167622E76312E4D7367526567697374657245564D41646472657373526573706F6E7365
@@ -256,7 +256,7 @@ txhash: 4199EA959A2CFEFCD4726D8D8F7B536458A46A27318D3483A4E9614F560606BC
 
 Now, you can verify that the EVM address has been updated using the following command:
 
-```ssh
+```sh
 celestia-appd query blobstream evm <validator_valoper_address>
 ```
 
