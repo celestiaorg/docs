@@ -28,6 +28,7 @@ community include:
   and learning from the experience
 - Focusing on what is best not just for us as individuals, but for the overall
   community
+- Contributing to conversations about Celestia’s technology and ecosystem
 
 Examples of unacceptable behavior include:
 
@@ -37,6 +38,7 @@ Examples of unacceptable behavior include:
 - Public or private harassment
 - Publishing others' private information, such as a physical or email address,
   without their explicit permission
+- Focusing on the prices of digital assets or tokens, or where they can be purchased
 - Other conduct which could reasonably be considered inappropriate in a
   professional setting
 
