@@ -31,7 +31,7 @@ To install the latest pre-built binary you can run this command in your
 terminal:
 
 ```bash
-curl -L -O https://docs.celestia.org/celestia-app.sh && bash celestia-app.sh
+curl -L -O -s https://docs.celestia.org/celestia-app.sh && bash celestia-app.sh
 ```
 
 Follow the instructions in the terminal output to run and interact
