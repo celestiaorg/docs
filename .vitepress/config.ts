@@ -569,16 +569,27 @@ function sidebarHome() {
               link: "/developers/full-stack-modular-development-guide",
             },
             {
+              text: "Astria",
+              collapsed: true,
+              items: [
+                { text: "Documentation", link: "https://docs.astria.org" },
+                {
+                  text: "Deploy to Dusknet",
+                  link: "https://docs.astria.org/docs/dusknet/overview/",
+                },
+              ],
+            },
+            {
               text: "Sovereign SDK",
               link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup",
             },
             {
-              text: "Dymension",
-              link: "https://dymension.xyz/",
-            },
-            {
               text: "Vistara",
               link: "https://docs.vistara.dev/",
+            },
+            {
+              text: "Dymension",
+              link: "https://dymension.xyz/",
             },
           ],
         },
