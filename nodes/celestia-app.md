@@ -40,6 +40,20 @@ with the binary.
 View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-app.sh)
 to learn more about what it is doing.
 
+Alternatively, you can run the following command to view the script in the same
+directory you downloaded it in:
+
+```bash
+cat celestia-app.sh
+```
+
+To remove the script after installing celestia-app, run this command in the same
+location as the commands above:
+
+```bash
+rm celestia-app.sh
+```
+
 ## Building binary from source
 
 This section of the tutorial presumes you completed the steps in
