@@ -40,18 +40,6 @@ with the binary.
 View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-app.sh)
 to learn more about what it is doing.
 
-**Note**: the script above uses non-interactive mode when you curl it.
-If you would like to use interactive mode, which allows you to
-set up `celestia-appd` in your `/usr/local/bin` or to clear your
-existing `celestia-temp` directory, you can use the
-following commands:
-
-```bash
-curl -L -s -O https://docs.celestia.org/celestia-app.sh
-chmod +x celestia-app.sh
-./celestia-app.sh
-```
-
 ## Building binary from source
 
 This section of the tutorial presumes you completed the steps in

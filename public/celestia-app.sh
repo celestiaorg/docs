@@ -14,7 +14,6 @@ TEMP_DIR="$HOME/celestia-temp"
 
 # Check if the directory exists
 if [ -d "$TEMP_DIR" ]; then
-    REPLY=n
     read -p "Directory $TEMP_DIR exists. Do you want to clear it out? (y/n) " -n 1 -r
     echo    # move to a new line
     if [[ $REPLY =~ ^[Yy]$ ]]
@@ -134,8 +133,7 @@ rm "celestia-app_$PLATFORM.tar.gz"
 echo "Temporary files cleaned up." | tee -a "$LOGFILE"
 
 # Ask the user if they want to move the binary to /usr/local/bin
-REPLY=n
-read -n 1 -r -p "Do you want to move the binary to /usr/local/bin? This will require sudo access. (y/n) "
+read -p "Do you want to move the binary to /usr/local/bin? This will require sudo access. (y/n) " -n 1 -r
 echo    # move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
