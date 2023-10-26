@@ -20,7 +20,15 @@ This tutorial will guide you through installing celestia-app, both with
 ## Installing a pre-built binary
 
 Installing a pre-built binary is the fastest way to get started with your
-Celestia consensus node. Releases after celestia-app v1.3.0 should have these binaries available.
+Celestia consensus node. Releases after celestia-app v1.3.0 should have
+these binaries available.
+
+The steps below will download a binary file named `celestia-appd`.
+Depending on the setup that you choose during installation, the `celestia-appd`
+binary will be available at either:
+
+- `$HOME/celestia-temp/celestia-appd`
+- `/usr/local/bin/celestia-appd`
 
 Pre-built binaries are available for:
 
@@ -34,8 +42,8 @@ terminal:
 curl -L -O -s https://docs.celestia.org/celestia-app.sh && bash celestia-app.sh
 ```
 
-Follow the instructions in the terminal output to run and interact
-with the binary.
+Follow the instructions in the terminal output to choose your installation
+preferences.
 
 View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-app.sh)
 to learn more about what it is doing.
