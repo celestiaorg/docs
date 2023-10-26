@@ -8,7 +8,7 @@ echo "\\__/\\__/_/\\__/___/\\__/_/\\_,_/    \\_,_/ .__/ .__/"
 echo "                                    /_/  /_/    "
 echo ""
 
-# Create a log file to capture detailed logs
+# Declare a log file to capture detailed logs and a temp directory
 LOGFILE="$HOME/celestia-temp/logfile.log"
 TEMP_DIR="$HOME/celestia-temp"
 
@@ -23,27 +23,25 @@ if [ -d "$TEMP_DIR" ]; then
     fi
 fi
 
+# Create a temporary directory to work from
 mkdir -p "$TEMP_DIR"
 touch "$LOGFILE"
 
 # Log and print the log file location
 echo "Log file is located at: $LOGFILE" | tee -a "$LOGFILE"
 
-# Create a temporary directory to work from
-mkdir -p "$TEMP_DIR"
+# Change to $TEMP_DIR and print a message
 cd "$TEMP_DIR"
-
-# Log and print a message
 echo "Working from temporary directory: $TEMP_DIR" | tee -a "$LOGFILE"
 
-# Comment out once all releases have prebuilt binaries
-# Set the version manually, until all releases have prebuilt
-# binaries attached to them
-VERSION=v1.1.0
+# Fetch the latest release tag from GitHub
+VERSION=$(curl -s "https://api.github.com/repos/celestiaorg/celestia-app/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
-# # Uncomment this once all releases have prebuilt binaries
-# # Fetch the latest release tag from GitHub
-# VERSION=$(curl -s "https://api.github.com/repos/celestiaorg/celestia-app/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+# Check if VERSION is empty
+if [ -z "$VERSION" ]; then
+    echo "Failed to fetch the latest version. Exiting." | tee -a "$LOGFILE"
+    exit 1
+fi
 
 # Log and print a message
 echo "Latest version detected: $VERSION" | tee -a "$LOGFILE"
@@ -61,7 +59,7 @@ case $ARCH in
         ARCH="arm64"
         ;;
     *)
-        echo "Unsupported architecture." | tee -a "$LOGFILE"
+        echo "Unsupported architecture: $ARCH. Exiting." | tee -a "$LOGFILE"
         exit 1
         ;;
 esac
@@ -71,7 +69,7 @@ case $OS in
     Linux|Darwin)
         ;;
     *)
-        echo "Unsupported operating system." | tee -a "$LOGFILE"
+        echo "Unsupported operating system: $OS. Exiting." | tee -a "$LOGFILE"
         exit 1
         ;;
 esac
@@ -79,6 +77,12 @@ esac
 # Construct the download URL
 PLATFORM="${OS}_${ARCH}"
 URL="https://github.com/celestiaorg/celestia-app/releases/download/$VERSION/celestia-app_$PLATFORM.tar.gz"
+
+# Check if URL is valid
+if [[ ! $URL =~ ^https://github.com/celestiaorg/celestia-app/releases/download/[^/]+/celestia-app_[^/]+.tar.gz$ ]]; then
+    echo "Invalid URL: $URL. Exiting." | tee -a "$LOGFILE"
+    exit 1
+fi
 
 # Log and print a message
 echo "Downloading from: $URL" | tee -a "$LOGFILE"
@@ -107,7 +111,7 @@ EXPECTED_CHECKSUM=$(grep "celestia-app_$PLATFORM.tar.gz" checksums.txt | awk '{p
 
 # Verify the checksum
 if [ "$CALCULATED_CHECKSUM" != "$EXPECTED_CHECKSUM" ]; then
-    echo "Checksum verification failed. Exiting." | tee -a "$LOGFILE"
+    echo "Checksum verification failed. Expected: $EXPECTED_CHECKSUM, but got: $CALCULATED_CHECKSUM. Exiting." | tee -a "$LOGFILE"
     exit 1
 else
     echo "Checksum verification successful." | tee -a "$LOGFILE"
@@ -128,10 +132,29 @@ rm "celestia-app_$PLATFORM.tar.gz"
 # Log and print a message
 echo "Temporary files cleaned up." | tee -a "$LOGFILE"
 
-# Provide final instructions to the user
-echo "You can navigate to $TEMP_DIR to find and run celestia-appd." | tee -a "$LOGFILE"
-echo "To run the app and check its version, you may execute the following commands:" | tee -a "$LOGFILE"
-echo ""
-echo "cd $TEMP_DIR" | tee -a "$LOGFILE"
-echo "chmod +x celestia-appd" | tee -a "$LOGFILE"
-echo "./celestia-appd version" | tee -a "$LOGFILE"
+# Ask the user if they want to move the binary to /usr/local/bin
+read -p "Do you want to move the binary to /usr/local/bin? This will require sudo access. (y/n) " -n 1 -r
+echo    # move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    sudo mv "$TEMP_DIR/celestia-appd" /usr/local/bin/
+    echo "Binary moved to /usr/local/bin" | tee -a "$LOGFILE"
+    # Create a symbolic link in the temporary directory
+    ln -s /usr/local/bin/celestia-appd "$TEMP_DIR/celestia-appd"
+    echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
+    echo ""
+    echo "You can now run celestia-appd from anywhere." | tee -a "$LOGFILE"
+    echo ""
+    echo "To check its version, you may execute the following command:" | tee -a "$LOGFILE"
+    echo ""
+    echo "celestia-appd version" | tee -a "$LOGFILE"
+else
+    echo ""
+    echo "You can navigate to $TEMP_DIR to find and run celestia-appd." | tee -a "$LOGFILE"
+    echo ""
+    echo "To run the app and check its version, you may execute the following commands:" | tee -a "$LOGFILE"
+    echo ""
+    echo "cd $TEMP_DIR" | tee -a "$LOGFILE"
+    echo "chmod +x celestia-appd" | tee -a "$LOGFILE"
+    echo "./celestia-appd version" | tee -a "$LOGFILE"
+fi
