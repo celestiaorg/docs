@@ -250,6 +250,8 @@ function nav() {
       items: [
         { text: "Learn", link: "/learn/how-celestia-works/overview" },
         { text: "Networks", link: "/nodes/participate" },
+        { text: "Nodes", link: "/nodes/overview" },
+        { text: "Developers", link: "/developers/build-modular" },
         { text: "Blob tutorial", link: "/developers/node-tutorial" },
         {
           text: "celestia-app specs",
@@ -259,6 +261,7 @@ function nav() {
           text: "celestia-node API",
           link: "https://node-rpc-docs.celestia.org/",
         },
+        { text: "Community", link: "/community/overview" },
       ],
     },
   ];
