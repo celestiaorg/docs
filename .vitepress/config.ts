@@ -456,6 +456,10 @@ function sidebarHome() {
                 },
               ],
             },
+            {
+              text: "Transaction resubmission guielines",
+              link: "/nodes/transaction-resubmission",
+            },
             { text: "SystemD", link: "/nodes/systemd" },
             { text: "Hardfork process", link: "/nodes/hardfork-process" },
           ],

@@ -1,0 +1,29 @@
+---
+description: This is a guide on transaction resubmission on Celestia.
+---
+
+# Transaction resubmission
+
+In cases where transactions are not included within a 75-second window,
+resubmission is necessary. This is especially important during network
+congestion, as transactions with relatively low fees may not be processed
+even after the network clears up.
+
+Transactions, whether originating from celestia-app or celestia-node,
+won't be regossiped unless there's a new peer, even by nodes with longer TTLs.
+
+## Monitoring and resubmission
+
+Monitor the status of your transactions. If a transaction is not included within
+the 75-second window, it should be resubmitted. This can be done manually or
+through automated processes.
+
+Changes introduced in [celestiaorg/celestia-core#1089](https://github.com/celestiaorg/celestia-core/pull/1089)
+may affect transaction gossiping and inclusion speed.
+
+## Notes
+
+- All transactions, regardless of their origin, are subject to being sorted and
+  pruned based on fees.
+- It is the user or developer's responsibility to monitor and possibly resubumit
+  transactions if they are not included in a 75-second window.
