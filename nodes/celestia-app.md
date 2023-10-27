@@ -106,7 +106,7 @@ cat celestia-app.sh
 ```
 
 To remove the script after installing celestia-app, run this command in the same
-location as the commands above:
+location as the command above:
 
 ```bash
 rm celestia-app.sh
