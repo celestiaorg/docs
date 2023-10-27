@@ -37,9 +37,6 @@ You can follow [the tutorial for setting up your dependencies](./environment.mdx
 
 ## Install celestia-node
 
-> Note: Make sure that you have at least 250+ Gb of free space for
-> Celestia full storage node
-
 You can follow [the tutorial for installing `celestia-node`](./celestia-node.mdx)
 
 ### Run the full storage node
@@ -105,11 +102,13 @@ You can get testnet tokens from:
 - [Mocha](./mocha-testnet.md)
 - [Arabica](./arabica-devnet.md)
 
-> NOTE: If you are running a full-storage node for your sovereign
-> rollup, it is highly recommended to request Arabica devnet tokens
-> as Arabica has the latest changes that can be used to
-> test for developing your sovereign rollup. You can still use
-> Mocha testnet as well, it is just mostly used for validator operations.
+:::tip NOTE
+If you are running a full-storage node for your sovereign
+rollup, it is highly recommended to request Arabica devnet tokens
+as Arabica has the latest changes that can be used to
+test for developing your sovereign rollup. You can still use
+Mocha testnet as well, it is just mostly used for validator operations.
+:::
 
 ### Optional: run the full storage node with a custom key
 

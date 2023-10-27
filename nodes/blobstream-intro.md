@@ -54,9 +54,11 @@ The diagram below goes over this process.
 The relayer submits the attestations' signatures from the Blobstream
 P2P network to the target EVM chain.
 
-> **_NOTE:_** If the contract is still not deployed, then it needs to be
-> deployed before its used by the relayer. Check the
-> [deployment documentation](./blobstream-deploy.md) for more details.
+:::tip NOTE
+If the contract is still not deployed, then it needs to be
+deployed before its used by the relayer. Check the
+[deployment documentation](./blobstream-deploy.md) for more details.
+:::
 
 The diagram below goes over this process.
 

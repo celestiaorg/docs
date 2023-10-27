@@ -87,9 +87,11 @@ Refer to [the ports section of this page](#ports)
 for information on which ports are required to be open on your machine.
 :::
 
-> NOTE: It is advised before switching networks to reinitialize
-> your node via `init` command. This is due to an old config being present.
-> Re-initialisation will reset the config.
+:::tip NOTE
+It is advised before switching networks to reinitialize
+your node via `init` command. This is due to an old config being present.
+Re-initialisation will reset the config.
+:::
 
 ## Resetting your config
 

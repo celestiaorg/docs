@@ -56,9 +56,11 @@ Example response:
 }
 ```
 
-> **_NOTE:_** The values are base64 encoded. For these to be usable
-> with the solidity smart contract, they need to be converted to `bytes32`.
-> Check the next section for more information.
+:::tip NOTE
+The values are base64 encoded. For these to be usable
+with the solidity smart contract, they need to be converted to `bytes32`.
+Check the next section for more information.
+:::
 
 ### 2. Transaction inclusion proof
 
@@ -81,8 +83,10 @@ generated:
 - An NMT proof of the shares to the row roots
 - A binary Merkle proof of the row root to the data root
 
-> **_NOTE:_** if the share range spans multiple rows,
-> then the proof can contain multiple NMT and binary proofs.
+:::tip NOTE
+If the share range spans multiple rows,
+then the proof can contain multiple NMT and binary proofs.
+:::
 
 Example request: `/prove_shares?height=15&startShare=0&endShare=1`
 
@@ -132,9 +136,11 @@ Example response:
 }
 ```
 
-> **_NOTE:_** The values are base64 encoded. For these to be usable
-> with the solidity smart contract, they need to be converted to `bytes32`.
-> Check the next section for more information.
+:::tip NOTE
+The values are base64 encoded. For these to be usable
+with the solidity smart contract, they need to be converted to `bytes32`.
+Check the next section for more information.
+:::
 
 ## Converting the proofs to be usable in the `DAVerifier` contract
 
@@ -209,8 +215,10 @@ will use the result of the
 ],
 ```
 
-> **_NOTE:_** If any of the fields is empty, then it will not be in the response.
-> For example, if the `start` field is `0`, it will be omitted in the response.
+:::tip NOTE
+If any of the fields is empty, then it will not be in the response.
+For example, if the `start` field is `0`, it will be omitted in the response.
+:::
 
 While the `NamespaceMerkleMultiproof` being:
 
@@ -458,5 +466,7 @@ After creating all the proofs, and verifying them:
 
 We can be sure that the data was published to Celestia.
 
-> **_NOTE:_** The above proof constructions are implemented in Solidity,
-> and may require different approaches in other programming languages.
+:::tip NOTE
+The above proof constructions are implemented in Solidity,
+and may require different approaches in other programming languages.
+:::

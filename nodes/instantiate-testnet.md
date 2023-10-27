@@ -108,9 +108,11 @@ when starting your node.
 
 You will find the generated gentx JSON file inside `$HOME/.celestia-app/config/gentx/gentx-$KEY_NAME.json`
 
-> Note: If you have other validators in your network, they need to also
-> run the above command with the `genesis.json` file you shared with
-> them in the previous step.
+:::tip NOTE
+If you have other validators in your network, they need to also
+run the above command with the `genesis.json` file you shared with
+them in the previous step.
+:::
 
 ### Creating the genesis JSON file
 

@@ -36,18 +36,22 @@ by the gas limit.
 Generally, the gas used by a PFB transaction involves a static fixed cost and
 a dynamic cost based on the size of each blob involved in the transaction.
 
-> Note: For a general use case of a normal account submitting a PFB, the static
-> costs can be treated as such. However, due to the description above of how gas
-> works in the Cosmos-SDK this is not always the case. Notably, if we use a
-> vesting account or the `feegrant` modules, then these static costs change.
+:::tip NOTE
+For a general use case of a normal account submitting a PFB, the static
+costs can be treated as such. However, due to the description above of how gas
+works in the Cosmos-SDK this is not always the case. Notably, if we use a
+vesting account or the `feegrant` modules, then these static costs change.
+:::
 
 The fixed cost is an approximation of the gas consumed by operations outside
 the function `GasToConsume` (for example, signature verification, tx size, read
 access to accounts), which has a default value of 65,000 gas.
 
-> Note: the first transaction sent by an account (sequence number == 0) has an
-> additional one time gas cost of 10,000 gas. If this is the case, this
-> should be accounted for.
+:::tip NOTE
+The first transaction sent by an account (sequence number == 0) has an
+additional one time gas cost of 10,000 gas. If this is the case, this
+should be accounted for.
+:::
 
 Each blob in the PFB contributes to the total gas cost based on its size. The
 function `GasToConsume` calculates the total gas consumed by all the blobs

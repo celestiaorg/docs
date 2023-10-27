@@ -332,8 +332,10 @@ the ethermint `init.sh` script:
 PRIVATE_KEY=$(ethermintd keys unsafe-export-eth-key mykey --keyring-backend test)
 ```
 
-> NOTE: Here, the key name from `init.sh` is `mykey` but you can modify
-> the `init.sh` to change the name of your key.
+:::tip NOTE
+Here, the key name from `init.sh` is `mykey` but you can modify
+the `init.sh` to change the name of your key.
+:::
 
 Now, we can start deploying the smart contract to our Ethermint chain.
 
@@ -365,8 +367,10 @@ We can then perform read operations with `cast call`:
 cast call $CONTRACT_ADDRESS "fetchPosts()" --rpc-url http://localhost:8545
 ```
 
-> Note: you will want to redeploy the contract for your frontend, because
-> the post is not uploaded to IPFS in the CLI.
+:::tip NOTE
+You will want to redeploy the contract for your frontend, because
+the post is not uploaded to IPFS in the CLI.
+:::
 
 ### Building the frontend
 
@@ -759,10 +763,10 @@ the chains on MetaMask if we're deploying our rollup any
 3. Then "Add network manually"
 4. Enter the following details:
 
-> - Network Name: `Ethermint`
-> - New RPC URL: `http://localhost:8545` **or** `https://your.custom.ip.address:port`
-> - Chain ID: `9000`
-> - Currency symbol: `CTE`
+- Network Name: `Ethermint`
+- New RPC URL: `http://localhost:8545` **or** `https://your.custom.ip.address:port`
+- Chain ID: `9000`
+- Currency symbol: `CTE`
 
 ### Testing it out on Ethermint
 
