@@ -152,7 +152,7 @@ else
     echo ""
     echo "You can navigate to $TEMP_DIR to find and run celestia-appd." | tee -a "$LOGFILE"
     echo ""
-    echo "To run the app and check its version and see the menu, execute the following commands:" | tee -a "$LOGFILE"
+    echo "To check its version and see the menu, execute the following commands:" | tee -a "$LOGFILE"
     echo ""
     echo "cd $TEMP_DIR" | tee -a "$LOGFILE"
     echo "chmod +x celestia-appd" | tee -a "$LOGFILE"
