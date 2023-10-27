@@ -7,8 +7,8 @@ prev:
 
 # Integrate Celestia for service providers
 
-> This document is for third-party service providers, such as custodians and
-> explorers, integrating the Celestia network.
+This document is for third-party service providers, such as custodians and
+explorers, integrating the Celestia network.
 
 ## Getting started
 

@@ -148,9 +148,11 @@ You can get testnet tokens from:
 - [Mocha](./mocha-testnet.md)
 - [Arabica](./arabica-devnet.md)
 
-> NOTE: If you are running a bridge node for your validator
-> it is highly recommended to request Mocha testnet tokens
-> as this is the testnet used to test out validator operations.
+:::tip NOTE
+If you are running a bridge node for your validator
+it is highly recommended to request Mocha testnet tokens
+as this is the testnet used to test out validator operations.
+:::
 
 #### Optional: run the bridge node with a custom key
 
