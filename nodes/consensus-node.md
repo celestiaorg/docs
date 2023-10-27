@@ -144,7 +144,107 @@ alias head=ghead
 
 :::
 
-### Configure pruning
+### Storage and Pruning Configurations
+
+#### Recommendations per Node Type
+
+Here are the summarized recommendations for each node type. There are more details on what each of these settings do after the reccomendations. Understanding what these settings do will help you make the best decision for your setup.
+
+##### Validator Node
+
+The reccomendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. It is optimized to store as little data as possible.
+
+`config.toml`:
+
+```toml
+min-retain-blocks = "175000"
+indexer = "null"
+discard_abci_responses = "true"
+```
+
+`app.toml`:
+
+```toml
+pruning = "custom"
+pruning-keep-recent = "100"
+pruning-interval = "10"
+snapshot-interval = 0
+```
+
+##### RPC Node
+
+RPC nodes are optimized to be useful for querying onchain data at the cost of significantly increased storage requirements.
+
+`config.toml`:
+
+```toml
+min-retain-blocks = "0"
+indexer = "kv" # or "psql"
+discard_abci_responses = "false"
+```
+
+`app.toml`:
+
+```toml
+pruning = "default"
+snapshot-interval = 1500
+snapshot-keep-recent = 2
+```
+
+##### Archive Node
+
+Archive nodes prune nothing, retaining all data and have very large storage requirements.
+
+`config.toml`:
+
+```toml
+min-retain-blocks = "0"
+indexer = "psql" # or "kv
+discard_abci_responses = "false"
+```
+
+`app.toml`:
+
+```toml
+pruning = "nothing"
+```
+
+##### Bridge Node
+
+The reccomendations here are assuming that the consensus node is responsible for servicing a celestia-node bridge node. It is optimized to do that and minimize storage requirements.
+
+`config.toml`:
+
+```toml
+min-retain-blocks = "0"
+indexer = "kv"
+discard_abci_responses = "true"
+```
+
+`app.toml`:
+
+```toml
+pruning = "custom"
+pruning-keep-recent = "100"
+pruning-interval = "10"
+snapshot-interval = 0
+```
+
+#### Historical State
+
+Historical state can be used for state sync and for querying the state at a given height. The default values are to retain the last ~6 weeks worth of historical state.
+
+```toml
+# default: the last 362880 states are kept, pruning at 10 block intervals
+# nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
+# everything: 2 latest states will be kept; pruning at 10 block intervals.
+# custom: allow pruning options to be manually specified through 'pruning-keep-recent', and 'pruning-interval'
+pruning = "default"
+
+# These are applied if and only if the pruning strategy is custom.
+pruning-keep-recent = "0"
+pruning-interval = "0"
+```
 
 For lower disk space usage we recommend setting up pruning using the
 configurations below in `$HOME/.celestia-app/config/app.toml`.
@@ -156,6 +256,71 @@ pruning = "custom"
 pruning-keep-recent = "100"
 pruning-interval = "10"
 ```
+
+#### Minimum Height Retention
+
+The `min-retain-blocks` configuration can be used to in conjunction with the configurations above to set the pruning parameters and unbonding period to prune the state but retain the tendermint block data. For example, a node operator could set the `pruning` to `"everything"`, but set `min-retain-blocks` to something larger than the unbonding period (21 days aka ~150,000 blocks at 12s blocks) to prune all of the state but keep the last `min-retain-blocks` blocks of data. The default is currently to not prune block data, however future versions of `celestia-app` will prune values past few months by default.
+
+```toml
+# MinRetainBlocks defines the minimum block height offset from the current
+# block being committed, such that all blocks past this offset are pruned
+# from Tendermint. It is used as part of the process of determining the
+# ResponseCommit.RetainHeight value during ABCI Commit. A value of 0 indicates
+# that no blocks should be pruned.
+#
+# This configuration value is only responsible for pruning Tendermint blocks.
+# It has no bearing on application state pruning which is determined by the
+# "pruning-*" configurations.
+#
+# Note: Tendermint block pruning is dependant on this parameter in conunction
+# with the unbonding (safety threshold) period, state pruning and state sync
+# snapshot parameters to determine the correct minimum value of
+# ResponseCommit.RetainHeight.
+min-retain-blocks = 0
+```
+
+#### Transaction Index
+
+Transaction indexing adds additional references to each transaction using its hash. The current issue with this is that it at least doubles the amount of storage required since the node is storing the txs in the block data and the tx-index. The tx-indexing currently does not support pruning, so even if a transaction is pruned along with a block, the tx will remain in the index. By default, this value is set to `null`. For bridge or rpc nodes, this value should be configured to `kv`. Here is the snippet from the `config.toml` file:
+
+```toml
+[tx_index]
+
+# What indexer to use for transactions
+#
+# The application will set which txs to index. In some cases a node operator will be able
+# to decide which txs to index based on configuration set in the application.
+#
+# Options:
+#   1) "null"
+#   2) "kv" (default) - the simplest possible indexer, backed by key-value storage (defaults to levelDB; see DBBacken>
+#               - When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
+#   3) "psql" - the indexer services backed by PostgreSQL.
+# When "kv" or "psql" is chosen "tx.height" and "tx.hash" will always be indexed.
+indexer = "null"
+```
+
+#### Discard ABCI Responses
+
+ABCI responses are the results of executing transactions and are used for `/block_results` RPC queries. The `discard_abci_responses` option allows you to control whether these responses are persisted in the store. By default, this value is set to `false`. For bridge or rpc nodes, this value should be configured to `true`. Per the `config.toml` file:
+
+```toml
+# Set to true to discard ABCI responses from the state store, which can save a
+# considerable amount of disk space. Set to false to ensure ABCI responses are
+# persisted. ABCI responses are required for /block_results RPC queries, and to
+# reindex events in the command-line tool.
+discard_abci_responses = false
+```
+
+#### Compaction
+
+Often, even after pruning data, the operating system will still see the old storage space as used still. This can be remedied by forcing compaction of the data base. This can be done by running the following command:
+
+```sh
+celestia-appd experimental-compact-goleveldb
+```
+
+Note that the node should probably be shut down before running the command to force compaction. Technically, it should work even if the node is on, however this is not yet tested properly.
 
 ### Syncing
 
