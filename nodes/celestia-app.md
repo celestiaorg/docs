@@ -13,32 +13,9 @@ import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
 </script>
 
-This tutorial will guide you through installing celestia-app, both with
-[a pre-built binary](#installing-a-pre-built-binary) and
-[from source](#building-binary-from-source).
-
-## Installing a pre-built binary
-
-Installing a pre-built binary is the fastest way to get started with your
-Celestia consensus node. Releases after celestia-app v1.3.0 should have these binaries available.
-
-Pre-built binaries are available for:
-
-- Operating systems: Darwin (Apple), Linux
-- Architectures: x86_64 (amd64), arm64
-
-To install the latest pre-built binary you can run this command in your
-terminal:
-
-```bash
-curl -L -s https://docs.celestia.org/celestia-app.sh | bash
-```
-
-Follow the instructions in the terminal output to run and interact
-with the binary.
-
-View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-app.sh)
-to learn more about what it is doing.
+This tutorial will guide you through installing celestia-app, both
+[from source](#building-binary-from-source) and with
+[a pre-built binary](#installing-a-pre-built-binary)
 
 ## Building binary from source
 
@@ -88,6 +65,52 @@ Be sure to select the correct network to install the binary for.
 
 You will see an output with the menu for `celestia-appd`. Learn more
 on the [helpful CLI commands page](./celestia-app-commands.md)
+
+## Installing a pre-built binary
+
+Installing a pre-built binary is the fastest way to get started with your
+Celestia consensus node. Releases after celestia-app v1.3.0 should have
+these binaries available.
+
+The steps below will download a binary file named `celestia-appd`.
+Depending on the setup that you choose during installation, the `celestia-appd`
+binary will be available at either:
+
+- `$HOME/celestia-temp/celestia-appd`
+- `/usr/local/bin/celestia-appd`
+
+Pre-built binaries are available for:
+
+- Operating systems: Darwin (Apple), Linux
+- Architectures: x86_64 (amd64), arm64
+
+To install the latest pre-built binary you can run this command in your
+terminal:
+
+```bash
+curl -L -O -s https://docs.celestia.org/celestia-app.sh && bash celestia-app.sh
+```
+
+Follow the instructions in the terminal output to choose your installation
+preferences.
+
+You will see an output with the menu for `celestia-appd`. Learn more
+on the [helpful CLI commands page](./celestia-app-commands.md)
+
+View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-app.sh)
+to learn more about what it is doing. Alternatively, you can run the following command
+to view the script in the same directory you downloaded it in:
+
+```bash
+cat celestia-app.sh
+```
+
+To remove the script after installing celestia-app, run this command in the same
+location as the command above:
+
+```bash
+rm celestia-app.sh
+```
 
 ## Ports
 
