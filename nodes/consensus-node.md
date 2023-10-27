@@ -148,7 +148,7 @@ alias head=ghead
 
 #### Recommendations per Node Type
 
-Here are the summarized recommendations for each node type. There are more details on what each of these settings do after the reccomendations. Understanding what these settings do will help you make the best decision for your setup.
+Here are the summarized recommendations for each node type. There are more details on what each of these settings do after the reccomendations. Understanding what these settings do will help you make the best decision for your setup. Note that all of these settings can be modified in the config files directly or by using the their respective flags that use the same name.
 
 ##### Validator Node
 
@@ -199,7 +199,7 @@ Archive nodes prune nothing, retaining all data and have very large storage requ
 
 ```toml
 min-retain-blocks = "0"
-indexer = "psql" # or "kv
+indexer = "kv" # or "psql"
 discard_abci_responses = "false"
 ```
 
