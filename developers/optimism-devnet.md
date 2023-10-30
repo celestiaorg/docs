@@ -35,6 +35,8 @@ git checkout v0.1.3-OP_v1.0.6-CN_v0.11.0-rc8
 git checkout v0.1.3-OP_v1.0.6-CN_v0.11.0-rc8
 ```
 
+:::
+
 ### asdf
 
 [Install `asdf`](https://asdf-vm.com/guide/getting-started.html)
