@@ -55,7 +55,7 @@ which are small chunks of the encoded Celestia block. We use the same encoding
 here so that the commitments to the rollup block match those committed to by
 validators in the Celestia data root.
 
-The `Span` could take many forms, but in this demo we will use the following:
+The `Span` could take many forms, but in this demo, we will use the following:
 
 ```go
 // Span describes the location of the rollup block data that is posted to
@@ -92,9 +92,9 @@ writing that data to Celestia and Ethereum. The rollup full node is responsible
 for reading that data from Celestia and Ethereum and verifying that it follows
 the protocol rules of that rollup.
 
-Therefore, we can start by first defining the reading and writing interations
+Therefore, we can start by first defining the reading and writing interactions
 rollup nodes will have with both the Celestia and Ethereum networks. The actual
-implementations of these interfaces are left as excercises to the reader (🤪).
+implementations of these interfaces are left as exercises to the reader (🤪).
 Assume that those implementations of these interfaces are verifying the
 respective chain. For the connection to Celestia, this would likely mean
 connecting to a Celestia light node,
@@ -128,15 +128,15 @@ type EthereumClient interface {
 }
 ```
 
-Note that here we are waiting for the head to be posted to Ethereum, however it
-would likely be better to simply download that header from p2p network or
+Note that here we are waiting for the head to be posted to Ethereum, however, it
+would likely be better to simply download that header from the p2p network or
 directly from the sequencer instead.
 
 For the purposes of this demo, we will be using a single centralized sequencer,
-which can be defined by simply wrapping the fullnode to isolate the logic to
+which can be defined by simply wrapping the full node to isolate the logic to
 create blocks.
 
-A rollup fullnode will just consist of some representation of a blockchain along
+A rollup full node will just consist of some representation of a blockchain along
 with clients to read from with Celestia and Ethereum.
 
 ```go
@@ -162,18 +162,18 @@ are relayed to the Blobstream contracts.
 For optimistic rollups, this could be as simple as referencing the data in the
 Celestia block, not unlike using a pointer in memory. This is what is done below
 via a `Span` in the [creating blocks](#creating-blocks) section. We keep track
-of where the data is located in the celestia block and the sequencer signs over
+of where the data is located in the Celestia block and the sequencer signs over
 that location in the header. If the sequencer commits to non-existent data or an
 invalid state root, then the invalid transaction is first proved to be included
 in the `Span` before the rest of the fraud proof process is followed. Find more
 information [in the inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/v3.0.0/docs/inclusion-proofs.md#blobstream-fraud-proofs).
 
 For zk rollups, this would involve creating an inclusion proof to the data root
-tuple root in the Blobstream contracts, and then verifying that proof in the zk
+tuple root in the Blobstream contracts and then verifying that proof in the zk
 proof used to verify state. Find more information in the
 [data root inclusion proof documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md#1-data-root-inclusion-proof).
 
-Also see the documention for the
+Also, see the documentation for the
 [data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md)
 and the
 [shares](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/specs/shares.md)
@@ -185,7 +185,7 @@ The first step in creating a block is to post the block data to Celestia. Upon
 confirmation of the data being included in a block, the actual location of the
 data in Celestia can be determined. This data is used to create a `Span` which
 is included in the header and signed over by the sequencer. This `Span` can be
-used by contracts on ethereum that use the Blobstream contracts to prove some
+used by contracts on Ethereum that use the Blobstream contracts to prove some
 specific data was included.
 
 ```go
@@ -247,7 +247,7 @@ func (s *Sequencer) UpdateHeaders() error {
 }
 ```
 
-## Rollup fullnode
+## Rollup full node
 
 ### Downloading the block
 
@@ -255,7 +255,7 @@ There are a few different mechanisms that could be used to download blocks. The
 simplest solution and what is outlined above is for `Fullnodes` to wait until the
 blocks and the headers are posted to the respective chains, and then download
 each as they are posted. It would also be possible to gossip the headers ahead
-of time, and download the rollup blocks from Celestia instead of waiting for the
+of time and download the rollup blocks from Celestia instead of waiting for the
 headers to be posted to Ethereum. It's also possible to download the headers and
 the block data like a normal blockchain via a gossiping network and only fall
 back to downloading the data and headers from Celestia and Ethereum if the
@@ -270,7 +270,7 @@ func (f *Fullnode) AddBlock(b Block) error {
         return fmt.Errorf("failure to add block: expected block height %d, got %d", len(f.Blocks)+1, b.Header.Height)
     }
     // Check the sequencer's signature
-    if !b.Header.SequencerSignature.IsValid(f.SequncerAddress) {
+    if !b.Header.SequencerSignature.IsValid(f.SequencerAddress) {
         return fmt.Errorf("failure to add block: invalid sequencer signature")
     }
 
@@ -306,10 +306,10 @@ func (f *Fullnode) GetLatestBlock() error {
 <!-- markdownlint-enable MD013 -->
 
 This outline of a Blobstream rollup isn't doing execution or state transitions
-induced by the transactions, however that step would occur here. If fraud is
-detected, the fraud proof process would begin. The only difference between the
+induced by the transactions, however, that step would occur here. If fraud is
+detected, the fraud proof process will begin. The only difference between the
 fraud proof process of a normal optimistic rollup and a rollup that uses
-Blobstream for DA is that the full node would first proof the fraudulent
+Blobstream for DA is that the full node would first prove the fraudulent
 transaction was committed to by the Sequencer using the `Span` in the header and
 before proceeding with the normal process.
 
@@ -332,7 +332,7 @@ to submit the data to Celestia.
 
 How headers are posted to Ethereum is entirely dependent upon how the rollup light
 client contracts work. For examples of interacting with the Ethereum blockchain
-programatically, please see the [go-ethereum book](https://goethereumbook.org/en/transactions/)
+programmatically, please see the [go-ethereum book](https://goethereumbook.org/en/transactions/)
 or one of the many other resources for
 [submitting transactions](https://github.com/ethereumbook/ethereumbook/blob/first_edition_first_print/06transactions.asciidoc)
 or [writing contracts](https://github.com/ethereumbook/ethereumbook/blob/first_edition_first_print/07smart-contracts-solidity.asciidoc).
