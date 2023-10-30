@@ -457,7 +457,7 @@ function sidebarHome() {
               ],
             },
             {
-              text: "Transaction resubmission guielines",
+              text: "Transaction resubmission guidelines",
               link: "/nodes/transaction-resubmission",
             },
             { text: "SystemD", link: "/nodes/systemd" },
