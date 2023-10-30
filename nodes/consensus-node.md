@@ -210,7 +210,7 @@ discard_abci_responses = "false"
 pruning = "nothing"
 ```
 
-#### Consensus Node Serving a Bridge Node
+#### Consensus node serving a bridge node
 
 The reccomendations here are assuming that the consensus node is responsible for
 servicing a celestia-node bridge node. It is optimized to do that and minimize
