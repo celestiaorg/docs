@@ -411,7 +411,7 @@ function sidebarHome() {
                 { text: "Relayer", link: "/nodes/blobstream-relayer" },
                 {
                   text: "Deploy the contract",
-                  link: "/nodes/blobstream-contract",
+                  link: "/nodes/blobstream-deploy",
                 },
               ],
             },
