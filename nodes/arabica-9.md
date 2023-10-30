@@ -57,16 +57,6 @@ Below is a list of RPC endpoints you can use to connect to arabica-9 Devnet:
 - `validator.consensus-arabica-9.celestia-arabica.com`
 - `consensus-full-arabica-9.celestia-arabica.com`
 
-### Full and light nodes ONLY
-
-These RPC endpoints do not allow you to download full blocks from
-them. We advise that if you are running a bridge node, that you also
-run a local [full consensus node](./consensus-node.md)
-in order to download full blocks from it.
-
-- `rpc-arabica-9.consensus.celestia-arabica.com`
-- `rpc-2-arabica-9.consensus.celestia-arabica.com`
-
 ## API endpoints
 
 The API endpoint is to allow users to interact with the REST API in Cosmos
