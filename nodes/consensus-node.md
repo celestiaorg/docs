@@ -211,7 +211,7 @@ pruning = "nothing"
 The reccomendations here are assuming that the consensus node is responsible for
 servicing a celestia-node bridge node. It is optimized to do that and minimize
 storage requirements. This means storing all the block data by setting the
-`min-retain-blocks = 0`, but pruning past the last 10 state snapshots.
+`min-retain-blocks = 0`, but pruning all but the last 10 state snapshots.
 
 `config.toml`:
 
