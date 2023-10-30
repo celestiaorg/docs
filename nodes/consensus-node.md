@@ -152,7 +152,7 @@ Here are the summarized recommendations for each node type. There are more detai
 
 ##### Validator node
 
-The reccomendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. It is optimized to store as little data as possible.
+The recommendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. It is optimized to store as little data as possible.
 
 `config.toml`:
 
