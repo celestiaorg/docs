@@ -154,6 +154,12 @@ Here are the summarized recommendations for each node type. There are more detai
 
 The reccomendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. This means that it is not indexing transaction, storing the results of the execution of txs, and it's only storing the past two state snapshots. Note that if the validators are connected to a bridge node then the [Bridge Node](#bridge-node) configuration should be used.
 
+`config.toml`:
+
+```toml
+indexer = "null"
+```
+
 ```toml
 # by setting custom and a keep recent value of 2, the node will only 
 # keep the past two state snapshotss
