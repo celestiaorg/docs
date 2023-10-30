@@ -155,11 +155,15 @@ alias head=ghead
 
 If your consensus node is being connected to a celestia-node bridge node,
 you will need to enable transaction indexing and retain all block
-data. This can be achieved with the following settings in your `config.toml`:
+data. This can be achieved with the following settings in your `config.toml`.
+
+#### Enable transaction indexing
 
 ```toml
-indexer = "kv" # enable transaction indexing
+indexer = "kv"
 ```
+
+#### Retain all block data
 
 And in your `app.toml`, `min-retain-blocks` should remain as the default
 setting of `0`:
