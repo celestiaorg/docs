@@ -152,7 +152,7 @@ alias head=ghead
 
 ### Recommendations per node type
 
-Here are the summarized recommendations for each node type. There are more details on what each of these settings do after the reccomendations. Understanding what these settings do will help you make the best decision for your setup. Note that all of these settings can be modified in the config files directly or by using the their respective flags that use the same name.
+Here are the summarized recommendations for each node type. There are more details on what each of these settings do after the recommendations. Understanding what these settings do will help you make the best decision for your setup. Note that all of these settings can be modified in the config files directly or by using the their respective flags that use the same name.
 
 #### Validator node
 
@@ -212,7 +212,7 @@ pruning = "nothing"
 
 #### Bridge node
 
-The reccomendations here are assuming that the consensus node is responsible for
+The recommendations here are assuming that the consensus node is responsible for
 servicing a celestia-node bridge node. It is optimized to do that and minimize
 storage requirements. This means storing all the block data by setting the
 `min-retain-blocks = 0`, but pruning all but the last 10 state snapshots.
