@@ -34,7 +34,7 @@ making a pull request.
 
 - /learn: A category for learning about Celestia.
 - /developers: A category with tutorials and guides for deploying
-rollups and interacting with Celestia nodes.
+  rollups and interacting with Celestia nodes.
 - /nodes: Technical reference materials for all node types.
 <!-- * /guides [WIP]: In-depth articles that cover specific topics in detail. -->
 - /community: A category for the Celestia community.

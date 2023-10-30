@@ -189,7 +189,7 @@ indexer = "null"
 `app.toml`:
 
 ```toml
-# by setting custom and a keep recent value of 2, the node will only 
+# by setting custom and a keep recent value of 2, the node will only
 # keep the past two state snapshotss
 pruning = "custom"
 pruning-keep-recent = "2"
