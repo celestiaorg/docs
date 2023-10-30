@@ -156,7 +156,7 @@ Here are the summarized recommendations for each node type. There are more detai
 
 #### Validator node
 
-The reccomendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. This means that it is not indexing transaction, storing the results of the execution of txs, and it's only storing the past two state snapshots. Note that if the validators are connected to a bridge node then the [Bridge Node](#bridge-node) configuration should be used.
+The recommendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. This means that it is not indexing transaction, storing the results of the execution of txs, and it's only storing the past two state snapshots. Note that if the validators are connected to a bridge node then the [Bridge Node](#bridge-node) configuration should be used.
 
 `config.toml`:
 
