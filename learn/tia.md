@@ -15,6 +15,8 @@ prev:
 | Abbreviation            | TIA                                                                                              |
 | Total supply at genesis | 1,000,000,000 TIA                                                                                |
 | Inflation schedule      | 8% in the first year, decreasing 10% per year until reaching an inflation floor of 1.5% annually |
+| Decimals                | 6                                                                                                |
+| Conversion              | $\text{utia} = \text{TIA} \times 10^{-6}$                                                        |
 
 <!-- markdownlint-enable MD013 -->
 
@@ -55,3 +57,24 @@ through governance proposals, and governing the community pool, which receives
 2% of block rewards.
 
 Learn more about [Celestia’s decentralised governance model](./staking-governance-supply.md#decentralised-governance).
+
+### Denominations
+
+#### TIA: display token
+
+TIA is the [`DisplayDenom`](https://github.com/celestiaorg/celestia-app/blob/ada77509d7fdedf2a3e3400b720549365851454c/app/app.go#L110-L111)
+that you will typically see in wallets and user interfaces.
+
+#### utia: staking denomination
+
+`utia` is the [`BondDenom`](https://github.com/celestiaorg/celestia-app/blob/ada77509d7fdedf2a3e3400b720549365851454c/pkg/appconsts/global_consts.go#L75-L76)
+and stands for for "micro TIA", with 1 TIA = 1,000,000 `utia`. This is the
+native staking denomination.
+
+In staking operations or transactions, if no denomination is specified, `utia`
+is assumed.
+
+#### microtia: staking denomination alias
+
+`microtia` is the [`BondDenomAlias`](https://github.com/celestiaorg/celestia-app/blob/ada77509d7fdedf2a3e3400b720549365851454c/app/app.go#L108-L109),
+an alias for `utia`.
