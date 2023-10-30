@@ -10,10 +10,14 @@ description: Learn how to set up a Celestia consensus node.
 import constants from '/.vitepress/constants/constants.js'
 </script>
 
+This guide covers how to set up a full consensus node and validator node on
+Celestia.
 Full consensus nodes allow you to sync blockchain history in the Celestia
 consensus layer.
 
 ![full consensus node](/img/nodes/full-consensus-node.png)
+
+[[toc]]
 
 ## Hardware requirements
 
@@ -144,13 +148,13 @@ alias head=ghead
 
 :::
 
-### Storage and pruning configurations
+## Storage and pruning configurations
 
-#### Recommendations per node type
+### Recommendations per node type
 
 Here are the summarized recommendations for each node type. There are more details on what each of these settings do after the reccomendations. Understanding what these settings do will help you make the best decision for your setup. Note that all of these settings can be modified in the config files directly or by using the their respective flags that use the same name.
 
-##### Validator node
+#### Validator node
 
 The reccomendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. It is optimized to store as little data as possible.
 
@@ -171,7 +175,7 @@ pruning-interval = "10"
 snapshot-interval = 0
 ```
 
-##### RPC node
+#### RPC node
 
 RPC nodes are optimized to be useful for querying onchain data at the cost of significantly increased storage requirements.
 
@@ -191,7 +195,7 @@ snapshot-interval = 1500
 snapshot-keep-recent = 2
 ```
 
-##### Archive node
+#### Archive node
 
 Archive nodes prune nothing, retaining all data and have very large storage requirements.
 
@@ -209,7 +213,7 @@ discard_abci_responses = "false"
 pruning = "nothing"
 ```
 
-##### Bridge node
+#### Bridge node
 
 The reccomendations here are assuming that the consensus node is responsible for servicing a celestia-node bridge node. It is optimized to do that and minimize storage requirements.
 
@@ -230,7 +234,7 @@ pruning-interval = "10"
 snapshot-interval = 0
 ```
 
-#### Historical state
+### Historical state
 
 Historical state can be used for state sync and for querying the state at a given height. The default values are to retain the last ~6 weeks worth of historical state.
 
@@ -257,7 +261,7 @@ pruning-keep-recent = "100"
 pruning-interval = "10"
 ```
 
-#### Minimum height retention
+### Minimum height retention
 
 The `min-retain-blocks` configuration can be used to in conjunction with the configurations above to set the pruning parameters and unbonding period to prune the state but retain the tendermint block data. For example, a node operator could set the `pruning` to `"everything"`, but set `min-retain-blocks` to something larger than the unbonding period (21 days aka ~150,000 blocks at 12s blocks) to prune all of the state but keep the last `min-retain-blocks` blocks of data. The default is currently to not prune block data, however future versions of `celestia-app` will prune values past few months by default.
 
@@ -279,7 +283,7 @@ The `min-retain-blocks` configuration can be used to in conjunction with the con
 min-retain-blocks = 0
 ```
 
-#### Transaction index
+### Transaction index
 
 Transaction indexing adds additional references to each transaction using its hash. The current issue with this is that it at least doubles the amount of storage required since the node is storing the txs in the block data and the tx-index. The tx-indexing currently does not support pruning, so even if a transaction is pruned along with a block, the tx will remain in the index. By default, this value is set to `null`. For bridge or rpc nodes, this value should be configured to `kv`. Here is the snippet from the `config.toml` file:
 
@@ -300,7 +304,7 @@ Transaction indexing adds additional references to each transaction using its ha
 indexer = "null"
 ```
 
-#### Discard ABCI responses
+### Discard ABCI responses
 
 ABCI responses are the results of executing transactions and are used for `/block_results` RPC queries. The `discard_abci_responses` option allows you to control whether these responses are persisted in the store. By default, this value is set to `false`. For bridge or rpc nodes, this value should be configured to `true`. Per the `config.toml` file:
 
@@ -312,7 +316,7 @@ ABCI responses are the results of executing transactions and are used for `/bloc
 discard_abci_responses = false
 ```
 
-#### Compaction
+### Compaction
 
 Often, even after pruning data, the operating system will still see the old storage space as used still. This can be remedied by forcing compaction of the data base. This can be done by running the following command:
 
