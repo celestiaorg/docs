@@ -158,7 +158,13 @@ you will need to enable transaction indexing and retain all block
 data. This can be achieved with the following settings in your `config.toml`:
 
 ```toml
-tx-index = "kv" # enable transaction indexing
+indexer = "kv" # enable transaction indexing
+```
+
+And in your `app.toml`, `min-retain-blocks` should remain as the default
+setting of `0`:
+
+```toml
 min-retain-blocks = 0 # retain all block data, this is default setting
 ```
 
