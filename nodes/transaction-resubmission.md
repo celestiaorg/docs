@@ -17,7 +17,7 @@ Regardless of whether they originate from celestia-app or celestia-node, transac
 ## Monitoring and resubmission
 
 Monitor the status of your transactions. If a transaction is not included within
-the 75-second window, it should be resubmitted. This can be done manually or
+a 75-second window, it should be resubmitted. This can be done manually or
 through automated processes.
 
 Changes introduced in [celestiaorg/celestia-core#1089](https://github.com/celestiaorg/celestia-core/pull/1089)
