@@ -1,5 +1,6 @@
 ---
 description: Learn how to set up a Celestia consensus node.
+outline: deep
 ---
 
 # Setting up a Celestia full consensus node
@@ -152,7 +153,7 @@ alias head=ghead
 
 ### Recommendations per node type
 
-Here are the summarized recommendations for each node type. There are more details on what each of these settings do after the reccomendations. Understanding what these settings do will help you make the best decision for your setup. Note that all of these settings can be modified in the config files directly or by using the their respective flags that use the same name.
+Here are the summarized recommendations for each node type. There are more details on what each of these settings do after the recommendations. Understanding what these settings do will help you make the best decision for your setup. Note that all of these settings can be modified in the config files directly or by using the their respective flags that use the same name.
 
 #### Validator node
 
@@ -182,24 +183,22 @@ RPC nodes are optimized to be useful for querying onchain data at the cost of si
 `config.toml`:
 
 ```toml
-min-retain-blocks = 0
 indexer = "kv" # or "psql"
 ```
 
 `app.toml`:
 
 ```toml
-# no need to alter the default configuration
+min-retain-blocks = 0
 ```
 
 #### Archive node
 
 Archive nodes prune nothing, retaining all data and have very large storage requirements.
 
-`config.toml`:
+`config.toml`: # no need to alter the default configuration
 
 ```toml
-min-retain-blocks = 0
 indexer = "kv" # or "psql"
 discard_abci_responses = "false"
 ```
@@ -208,11 +207,12 @@ discard_abci_responses = "false"
 
 ```toml
 pruning = "nothing"
+min-retain-blocks = 0
 ```
 
 #### Bridge node
 
-The reccomendations here are assuming that the consensus node is responsible for
+The recommendations here are assuming that the consensus node is responsible for
 servicing a celestia-node bridge node. It is optimized to do that and minimize
 storage requirements. This means storing all the block data by setting the
 `min-retain-blocks = 0`, but pruning all but the last 10 state snapshots.
@@ -220,7 +220,6 @@ storage requirements. This means storing all the block data by setting the
 `config.toml`:
 
 ```toml
-min-retain-blocks = 0
 indexer = "kv"
 discard_abci_responses = "true"
 ```
@@ -228,6 +227,7 @@ discard_abci_responses = "true"
 `app.toml`:
 
 ```toml
+min-retain-blocks = 0
 pruning = "custom"
 pruning-keep-recent = "10"
 pruning-interval = "10"
@@ -262,7 +262,7 @@ pruning-interval = "10"
 
 ### Minimum height retention
 
-The `min-retain-blocks` configuration can be used to in conjunction with the configurations above to set the pruning parameters and unbonding period to prune the state but retain the tendermint block data. For example, a node operator could set the `pruning` to `"everything"`, but set `min-retain-blocks` to something larger than the unbonding period (21 days aka ~150,000 blocks at 12s blocks) to prune all of the state but keep the last `min-retain-blocks` blocks of data. The default is currently to not prune block data, however future versions of `celestia-app` will prune values past few months by default.
+The `min-retain-blocks` configuration in `app.toml` can be used to in conjunction with the configurations above to set the pruning parameters and unbonding period to prune the state but retain the tendermint block data. For example, a node operator could set the `pruning` to `"everything"`, but set `min-retain-blocks` to something larger than the unbonding period (21 days aka ~150,000 blocks at 12s blocks) to prune all of the state but keep the last `min-retain-blocks` blocks of data. The default is currently to not prune block data, however future versions of `celestia-app` will prune values past few months by default.
 
 ```toml
 # MinRetainBlocks defines the minimum block height offset from the current
