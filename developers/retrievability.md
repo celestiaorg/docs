@@ -25,7 +25,7 @@ all historical data by default, and act as **archival nodes**.
 However, support for **pruned nodes** exists in an
 [experimental feature branch](https://github.com/celestiaorg/celestia-node/pull/2738)
 that is expected to land in main soon after mainnet. The data recency window,
-during which pruned nodes will store data blobs, is currently proposed to b
+during which pruned nodes will store data blobs, is currently proposed to be
 **30 days**.
 
 Data blobs older than the recency window will be pruned by pruned nodes, but
