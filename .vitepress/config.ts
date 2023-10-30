@@ -21,9 +21,6 @@ export default {
   sitemap: {
     hostname: "https://docs.celestia.org",
   },
-  outline: {
-    level: "deep",
-  },
 
   head: [
     [
@@ -145,6 +142,9 @@ export default {
   themeConfig: {
     // https://vitepress.dev/concepts/default-theme-config
     nav: nav(),
+    outline: {
+      level: "deep",
+    },
 
     search: {
       provider: "local",
