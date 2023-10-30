@@ -310,7 +310,7 @@ The `min-retain-blocks` configuration in `app.toml` can be used to in conjunctio
 min-retain-blocks = 0
 ```
 
-### Transaction index
+### Transaction indexing
 
 Transaction indexing adds additional references to each transaction using its hash. The current issue with this is that it at least doubles the amount of storage required since the node is storing the txs in the block data and the tx-index. The tx-indexing currently does not support pruning, so even if a transaction is pruned along with a block, the tx will remain in the index. By default, this value is set to `null`. For bridge or rpc nodes, this value should be configured to `kv`. Here is the snippet from the `config.toml` file:
 
