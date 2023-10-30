@@ -12,8 +12,7 @@ resubmission is necessary. This is especially important during network
 congestion, as transactions with relatively low fees may not be processed
 even after the network clears up.
 
-Transactions, whether originating from celestia-app or celestia-node,
-won't be regossiped unless there's a new peer, even by nodes with longer TTLs.
+Regardless of whether they originate from celestia-app or celestia-node, transactions will not be re-gossiped, except in the presence of a new peer."
 
 ## Monitoring and resubmission
 
