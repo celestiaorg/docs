@@ -151,6 +151,51 @@ alias head=ghead
 
 ## Storage and pruning configurations
 
+### Questions to consider
+
+1. **Is your consensus node being connected to a celestia-node bridge node?**
+If so, you will need to enable transaction indexing and retain all block
+data. This can be achieved with the following settings in your `config.toml`:
+
+    ```toml
+    tx-index = "kv"
+    min-retain-blocks = 0
+    ```
+
+2. **Do you want to query transactions using their hash?** If so, transaction
+indexing must be turned on. Set the `indexer` to `kv` in your `config.toml`:
+
+    ```toml
+    indexer = "kv"
+    ```
+
+3. **Do you want to query the historical state?** For example, you might want
+to know the balance of a Celestia wallet at a given height in the past. If so,
+you should run an archive node with `pruning = "nothing"` in your `app.toml`.
+Note that this configuration is resource-intensive and will require
+significant storage:
+
+    ```toml
+    pruning = "nothing"
+    ```
+
+4. **Do you want to save on storage requirements?** If so, consider using
+`pruning = "everything"` in your `app.toml` to prune everything. If you
+select `"everything"` or `"default"`, but still want to keep the block data,
+you can do so by not changing the default value of
+`min-retain-blocks = 0` in your `app.toml`. A value of `0` for
+`min-retain-blocks` will keep all block data. This will prune snapshots of
+the state, but it will keep block data:
+
+    ```toml
+    pruning = "everything"
+    min-retain-blocks = 0
+    ```
+
+Remember, each validator's setup and goals are different, so these questions
+can help you figure out what configuration is right for you in the
+next section.
+
 ### Recommendations per node type
 
 Here are the summarized recommendations for each node type. There are more details on what each of these settings do after the recommendations. Understanding what these settings do will help you make the best decision for your setup. Note that all of these settings can be modified in the config files directly or by using the their respective flags that use the same name.
