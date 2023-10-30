@@ -163,9 +163,7 @@ Here are the summarized recommendations for each node type. There are more detai
 
 The recommendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. This means that it is not indexing transactions, storing the results of the execution of transactions, and it's only storing the past two state snapshots. Note that if the validators are connected to a bridge node then the [serving a bridge node](#consensus-node-serving-a-bridge-node) configuration should be used.
 
-If your consensus node being connected to a celestia-node bridge node,
-you will need to enable transaction indexing and retain all block
-data. This can be achieved with the following settings in your configurations:
+This can be achieved with the following settings in your configurations:
 
 `config.toml`:
 
@@ -234,7 +232,9 @@ min-retain-blocks = 0
 
 The recommendations here are assuming that the consensus node is responsible for
 servicing a celestia-node bridge node. It is optimized to do that and minimize
-storage requirements. This means storing all the block data by setting the
+storage requirements. If your consensus node being connected to a celestia-node
+bridge node, you will need to enable transaction indexing and retain all block
+data. This means storing all the block data by setting the
 `min-retain-blocks = 0`, but pruning all but the last 10 state snapshots.
 
 `config.toml`:
