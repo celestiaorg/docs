@@ -10,10 +10,14 @@ description: Learn how to set up a Celestia consensus node.
 import constants from '/.vitepress/constants/constants.js'
 </script>
 
+This guide covers how to set up a full consensus node or a validator node on
+Celestia.
 Full consensus nodes allow you to sync blockchain history in the Celestia
 consensus layer.
 
 ![full consensus node](/img/nodes/full-consensus-node.png)
+
+[[toc]]
 
 ## Hardware requirements
 
@@ -144,61 +148,58 @@ alias head=ghead
 
 :::
 
-### Storage and pruning configurations
+## Storage and pruning configurations
 
-#### Recommendations per node type
+### Recommendations per node type
 
 Here are the summarized recommendations for each node type. There are more details on what each of these settings do after the reccomendations. Understanding what these settings do will help you make the best decision for your setup. Note that all of these settings can be modified in the config files directly or by using the their respective flags that use the same name.
 
-##### Validator node
+#### Validator node
 
-The recommendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. It is optimized to store as little data as possible.
+The recommendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. This means that it is not indexing transaction, storing the results of the execution of txs, and it's only storing the past two state snapshots. Note that if the validators are connected to a bridge node then the [Bridge Node](#bridge-node) configuration should be used.
 
 `config.toml`:
 
 ```toml
-min-retain-blocks = "175000"
 indexer = "null"
-discard_abci_responses = "true"
 ```
 
 `app.toml`:
 
 ```toml
+# by setting custom and a keep recent value of 2, the node will only 
+# keep the past two state snapshotss
 pruning = "custom"
-pruning-keep-recent = "100"
+pruning-keep-recent = "2"
 pruning-interval = "10"
-snapshot-interval = 0
+snapshot-interval = 1500
 ```
 
-##### RPC node
+#### RPC node
 
-RPC nodes are optimized to be useful for querying onchain data at the cost of significantly increased storage requirements.
+RPC nodes are optimized to be useful for querying onchain data at the cost of significantly increased storage requirements. This means storing all block data, indexing all transactions and the results of their execution, and store the past 3 weeks of state snapshots.
 
 `config.toml`:
 
 ```toml
-min-retain-blocks = "0"
+min-retain-blocks = 0
 indexer = "kv" # or "psql"
-discard_abci_responses = "false"
 ```
 
 `app.toml`:
 
 ```toml
-pruning = "default"
-snapshot-interval = 1500
-snapshot-keep-recent = 2
+# no need to alter the default configuration
 ```
 
-##### Archive node
+#### Archive node
 
 Archive nodes prune nothing, retaining all data and have very large storage requirements.
 
 `config.toml`:
 
 ```toml
-min-retain-blocks = "0"
+min-retain-blocks = 0
 indexer = "kv" # or "psql"
 discard_abci_responses = "false"
 ```
@@ -209,14 +210,17 @@ discard_abci_responses = "false"
 pruning = "nothing"
 ```
 
-##### Bridge node
+#### Bridge node
 
-The reccomendations here are assuming that the consensus node is responsible for servicing a celestia-node bridge node. It is optimized to do that and minimize storage requirements.
+The reccomendations here are assuming that the consensus node is responsible for
+servicing a celestia-node bridge node. It is optimized to do that and minimize
+storage requirements. This means storing all the block data by setting the
+`min-retain-blocks = 0`, but pruning all but the last 10 state snapshots.
 
 `config.toml`:
 
 ```toml
-min-retain-blocks = "0"
+min-retain-blocks = 0
 indexer = "kv"
 discard_abci_responses = "true"
 ```
@@ -225,12 +229,11 @@ discard_abci_responses = "true"
 
 ```toml
 pruning = "custom"
-pruning-keep-recent = "100"
+pruning-keep-recent = "10"
 pruning-interval = "10"
-snapshot-interval = 0
 ```
 
-#### Historical state
+### Historical state
 
 Historical state can be used for state sync and for querying the state at a given height. The default values are to retain the last ~6 weeks worth of historical state.
 
@@ -257,7 +260,7 @@ pruning-keep-recent = "100"
 pruning-interval = "10"
 ```
 
-#### Minimum height retention
+### Minimum height retention
 
 The `min-retain-blocks` configuration can be used to in conjunction with the configurations above to set the pruning parameters and unbonding period to prune the state but retain the tendermint block data. For example, a node operator could set the `pruning` to `"everything"`, but set `min-retain-blocks` to something larger than the unbonding period (21 days aka ~150,000 blocks at 12s blocks) to prune all of the state but keep the last `min-retain-blocks` blocks of data. The default is currently to not prune block data, however future versions of `celestia-app` will prune values past few months by default.
 
@@ -279,7 +282,7 @@ The `min-retain-blocks` configuration can be used to in conjunction with the con
 min-retain-blocks = 0
 ```
 
-#### Transaction index
+### Transaction index
 
 Transaction indexing adds additional references to each transaction using its hash. The current issue with this is that it at least doubles the amount of storage required since the node is storing the txs in the block data and the tx-index. The tx-indexing currently does not support pruning, so even if a transaction is pruned along with a block, the tx will remain in the index. By default, this value is set to `null`. For bridge or rpc nodes, this value should be configured to `kv`. Here is the snippet from the `config.toml` file:
 
@@ -300,7 +303,7 @@ Transaction indexing adds additional references to each transaction using its ha
 indexer = "null"
 ```
 
-#### Discard ABCI responses
+### Discard ABCI responses
 
 ABCI responses are the results of executing transactions and are used for `/block_results` RPC queries. The `discard_abci_responses` option allows you to control whether these responses are persisted in the store. By default, this value is set to `false`. For bridge or rpc nodes, this value should be configured to `true`. Per the `config.toml` file:
 
@@ -312,7 +315,7 @@ ABCI responses are the results of executing transactions and are used for `/bloc
 discard_abci_responses = false
 ```
 
-#### Compaction
+### Compaction
 
 Often, even after pruning data, the operating system will still see the old storage space as used still. This can be remedied by forcing compaction of the data base. This can be done by running the following command:
 
@@ -322,7 +325,7 @@ celestia-appd experimental-compact-goleveldb
 
 Note that the node should probably be shut down before running the command to force compaction. Technically, it should work even if the node is on, however this is not yet tested properly.
 
-### Syncing
+## Syncing
 
 By default, a consensus node will sync using block sync; that is request, validate
 and execute every block up to the head of the blockchain. This is the most secure
@@ -330,7 +333,7 @@ mechanism yet the slowest (taking up to days depending on the height of the bloc
 
 There are two alternatives for quicker syncing.
 
-#### State sync
+### State sync
 
 State sync uses light client verification to verify state snapshots from peers
 and then apply them. State sync relies on weak subjectivity; a trusted header
@@ -354,7 +357,7 @@ Once setup, you should be ready to start the node as normal. In the logs, you sh
 see: `Discovering snapshots`. This may take a few minutes before snapshots are found
 depending on the network topology.
 
-#### Quick sync
+### Quick sync
 
 Quick sync effectively downloads the entire `data` directory from a third-party provider
 meaning the node has all the application and blockchain state as the node it was
@@ -386,7 +389,7 @@ wget -O - https://snaps.qubelabs.io/celestia/${SNAP_NAME} | tar xf - \
 
 :::
 
-### Start the consensus node
+## Start the consensus node
 
 In order to start your full consensus node, run the following:
 
