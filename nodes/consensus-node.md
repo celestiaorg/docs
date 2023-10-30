@@ -169,7 +169,7 @@ indexer = "null"
 
 ```toml
 # by setting custom and a keep recent value of 2, the node will only 
-# keep the past two state snapshotss
+# keep the past two state snapshots
 pruning = "custom"
 pruning-keep-recent = "2"
 pruning-interval = "10"
