@@ -160,6 +160,8 @@ The reccomendations here are assuming that the validator node is isolated from o
 indexer = "null"
 ```
 
+`app.toml`:
+
 ```toml
 # by setting custom and a keep recent value of 2, the node will only 
 # keep the past two state snapshotss
