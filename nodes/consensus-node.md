@@ -152,43 +152,32 @@ Here are the summarized recommendations for each node type. There are more detai
 
 ##### Validator node
 
-The reccomendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. It is optimized to store as little data as possible.
-
-`config.toml`:
+The reccomendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. It is optimized to store as little data as possible. This means that we're retaining the block data for the past ~3 weeks, not indexing transaction, storing the results of the execution of txs, and it's only storing the past two state snapshots. Note that if the validators are connected to a bridge node then the [Bridge Node](#bridge-node) configuration should be used.
 
 ```toml
-min-retain-blocks = "175000"
-indexer = "null"
-discard_abci_responses = "true"
-```
-
-`app.toml`:
-
-```toml
+# by setting custom and a keep recent value of 2, the node will only 
+# keep the past two state snapshotss
 pruning = "custom"
-pruning-keep-recent = "100"
+pruning-keep-recent = "2"
 pruning-interval = "10"
-snapshot-interval = 0
+snapshot-interval = 1500
 ```
 
 ##### RPC node
 
-RPC nodes are optimized to be useful for querying onchain data at the cost of significantly increased storage requirements.
+RPC nodes are optimized to be useful for querying onchain data at the cost of significantly increased storage requirements. This means storing all block data, indexing all transactions and the results of their execution, and store the past 3 weeks of state snapshots.
 
 `config.toml`:
 
 ```toml
-min-retain-blocks = "0"
+min-retain-blocks = 0
 indexer = "kv" # or "psql"
-discard_abci_responses = "false"
 ```
 
 `app.toml`:
 
 ```toml
-pruning = "default"
-snapshot-interval = 1500
-snapshot-keep-recent = 2
+# no need to alter the default configuration
 ```
 
 ##### Archive node
@@ -198,7 +187,7 @@ Archive nodes prune nothing, retaining all data and have very large storage requ
 `config.toml`:
 
 ```toml
-min-retain-blocks = "0"
+min-retain-blocks = 0
 indexer = "kv" # or "psql"
 discard_abci_responses = "false"
 ```
@@ -211,12 +200,15 @@ pruning = "nothing"
 
 ##### Bridge node
 
-The reccomendations here are assuming that the consensus node is responsible for servicing a celestia-node bridge node. It is optimized to do that and minimize storage requirements.
+The reccomendations here are assuming that the consensus node is responsible for
+servicing a celestia-node bridge node. It is optimized to do that and minimize
+storage requirements. This means storing all the block data by setting the
+`min-retain-blocks = 0`, but pruning past the last 10 state snapshots.
 
 `config.toml`:
 
 ```toml
-min-retain-blocks = "0"
+min-retain-blocks = 0
 indexer = "kv"
 discard_abci_responses = "true"
 ```
@@ -225,9 +217,8 @@ discard_abci_responses = "true"
 
 ```toml
 pruning = "custom"
-pruning-keep-recent = "100"
+pruning-keep-recent = "10"
 pruning-interval = "10"
-snapshot-interval = 0
 ```
 
 #### Historical state
