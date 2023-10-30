@@ -407,7 +407,7 @@ to either the `#mocha-faucet` or `#arabica-faucet` channels on the
 You can request funds to your wallet address using the following command in
 Discord:
 
-```discord
+```text
 $request <CELESTIA-ADDRESS>
 ```
 

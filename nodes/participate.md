@@ -11,9 +11,10 @@ import MainnetVersionTags from '../.vitepress/components/MainnetVersionTags.vue'
 import constants from '../.vitepress/constants/constants.js'
 </script>
 
-<!-- - Mainnet Beta: TBD
-  - Compatible software versions
-    <MainnetVersionTags/> -->
+## Mainnet Beta
+
+- Compatible software versions
+  <MainnetVersionTags/>
 
 ## Testnets
 
