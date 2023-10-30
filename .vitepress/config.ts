@@ -21,6 +21,9 @@ export default {
   sitemap: {
     hostname: "https://docs.celestia.org",
   },
+  outline: {
+    level: "deep",
+  },
 
   head: [
     [
