@@ -57,7 +57,8 @@ These RPC endpoints for DA nodes are to provide state access for querying the
 chain’s state and broadcasting transactions (balances, blobs, etc.) to the
 Celestia network. For users, they will need to provide a `–core.ip string`
 from a consensus node’s URL or IP that populates 2 ports for 2 types
-(RPC and gRPC) to their respective DA node.
+(RPC and gRPC, at ports 26657 and 9090, respectively) to their respective DA
+node.
 
 :::tip
 
@@ -75,11 +76,9 @@ consensus full node with no pruning for your bridge node.
 
 RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with:
 
-- new-endpoint-from-devops
-  - RPC - port 26657
-  - GRPC - port 9090
 - New endpoint for numia
 - New endpoint for newmetric
+- new endpoint for lunar oasis
 
 ### Consensus nodes
 
@@ -90,6 +89,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 
 - `public-celestia-rpc.numia.xyz`
 - `celestia-rpc.mesa.newmetric.xyz`
+- `rpc.lunaroasis.net`
 
 ### API endpoints
 
@@ -110,6 +110,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://celenium.io](https://celenium.io)
 - [https://celestiascan.com](https://celestiascan.com)
+- [https://celestia.explorers.guru](https://celestia.explorers.guru)
 
 ## Network upgrades
 
