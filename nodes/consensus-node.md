@@ -163,8 +163,8 @@ Here are the summarized recommendations for each node type. There are more detai
 
 The recommendations here are assuming that the validator node is isolated from other responsiblities other than voting and proposing. This means that it is not indexing transactions, storing the results of the execution of transactions, and it's only storing the past two state snapshots. Note that if the validators are connected to a bridge node then the [serving a bridge node](#consensus-node-serving-a-bridge-node) configuration should be used.
 
-**Is your consensus node being connected to a celestia-node bridge node?**
-If so, you will need to enable transaction indexing and retain all block
+If your consensus node being connected to a celestia-node bridge node,
+you will need to enable transaction indexing and retain all block
 data. This can be achieved with the following settings in your configurations:
 
 `config.toml`:
@@ -189,7 +189,7 @@ snapshot-interval = 1500
 
 RPC nodes are optimized to be useful for querying onchain data at the cost of significantly increased storage requirements. This means storing all block data, indexing all transactions and the results of their execution, and store the past 3 weeks of state snapshots.
 
-**Do you want to query transactions using their hash?** If so, transaction
+If you want to query transactions using their hash, transaction
 indexing must be turned on. Set the `indexer` to `"kv"` in your `config.toml`:
 
 `config.toml`:
@@ -210,8 +210,8 @@ min-retain-blocks = 0
 
 Archive nodes prune nothing, retaining all data and have very large storage requirements.
 
-**Do you want to query the historical state?** For example, you might want
-to know the balance of a Celestia wallet at a given height in the past. If so,
+If you want to query the historical state — for example, you might want
+to know the balance of a Celestia wallet at a given height in the past —
 you should run an archive node with `pruning = "nothing"` in your `app.toml`.
 Note that this configuration is resource-intensive and will require
 significant storage:
@@ -236,14 +236,6 @@ The recommendations here are assuming that the consensus node is responsible for
 servicing a celestia-node bridge node. It is optimized to do that and minimize
 storage requirements. This means storing all the block data by setting the
 `min-retain-blocks = 0`, but pruning all but the last 10 state snapshots.
-
-**Do you want to save on storage requirements?** If so, consider using
-`pruning = "everything"` in your `app.toml` to prune everything. If you
-select `"everything"` or `"default"`, but still want to keep the block data,
-you can do so by not changing the default value of
-`min-retain-blocks = 0` in your `app.toml`. A value of `0` for
-`min-retain-blocks` will keep all block data. This will prune snapshots of
-the state, but it will keep block data:
 
 `config.toml`:
 
@@ -287,6 +279,14 @@ pruning = "custom"
 pruning-keep-recent = "100"
 pruning-interval = "10"
 ```
+
+For even lower disk space usage, consider using
+`pruning = "everything"` in your `app.toml` to prune everything. If you
+select `"everything"` or `"default"`, but still want to keep the block data,
+you can do so by not changing the default value of
+`min-retain-blocks = 0` in your `app.toml`. A value of `0` for
+`min-retain-blocks` will keep all block data. This will prune snapshots of
+the state, but it will keep block data.
 
 ### Minimum height retention
 
