@@ -124,7 +124,7 @@ following command:
 
 ```sh [Mainnet Beta]
 celestia light start --keyring.accname my_celes_key \
-    --core.ip rpc.lunaroasis.net
+    consensus.lunaroasis.net
 ```
 
 ```sh [Mocha]
