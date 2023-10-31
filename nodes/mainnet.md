@@ -117,6 +117,8 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `grpc.lunaroasis.net:443`
 - `celestia-rpc.brightlystake.com:9090`
 
+You can find the status of these endpoints [here](https://celestia-tools.brightlystake.com/)
+
 ## Explorers
 
 There are multiple explorers you can use for Mainnet Beta:
