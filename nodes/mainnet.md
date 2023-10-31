@@ -79,7 +79,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `public-celestia-da.numia.xyz`
   - gRPC: port 9090
   - RPC: port 26657
-- `celestia.mesa.newmetric.xyz`
+- `celestia-consensus.mesa.newmetric.xyz`
   - gRPC: port 9090
   - RPC: port 26657
 - `consensus.lunaroasis.net`
