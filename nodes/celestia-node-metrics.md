@@ -22,6 +22,14 @@ celestia <node-type> start --metrics.tls <boolean> \
     --p2p.network <network> --core.ip <URI>
 ```
 
+Here is an example for Mainnet Beta:
+
+```sh
+celestia <node-type> start --metrics.tls true \
+    --metrics --metrics.endpoint otel.celestia.observer \
+    --p2p.network <network> --core.ip <URI>
+```
+
 Add metrics flags to your node start command and restart your node to apply it.
 The metrics endpoint will gather your node's data to track your uptime.
 
