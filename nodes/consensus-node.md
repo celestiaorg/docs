@@ -124,6 +124,8 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.celestia-app/config/con
 seeds = ""
 ```
 
+If your node doesn't sync, try removing the seed nodes.
+
 :::
 
 **Optionally**, you can set persistent peers in your `config.toml` file.
