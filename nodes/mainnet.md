@@ -85,6 +85,9 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `consensus.lunaroasis.net`
   - gRPC: port 9090
   - RPC: port 26657
+- `rpc.celestia.pops.one`
+  - gRPC: port 9090
+  - RPC: port 26657
 
 ### Consensus nodes
 
@@ -101,12 +104,14 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 
 - `public-celestia-lcd.numia.xyz`
 - `celestia-rest.mesa.newmetric.xyz`
+- `api.celestia.pops.one`
 - `api.lunaroasis.net`
 
 ### gRPC endpoints
 
 - `public-celestia-grpc.numia.xyz`
 - `celestia-grpc.mesa.newmetric.xyz`
+- `grpc.celestia.pops.one`
 - `grpc.lunaroasis.net:443`
 
 ## Explorers
