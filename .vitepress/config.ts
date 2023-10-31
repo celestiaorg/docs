@@ -376,8 +376,8 @@ function sidebarHome() {
           collapsed: true,
           items: [
             { text: "Mainnet Beta", link: "/nodes/mainnet" },
-            { text: "Arabica devnet", link: "/nodes/arabica-devnet" },
             { text: "Mocha testnet", link: "/nodes/mocha-testnet" },
+            { text: "Arabica devnet", link: "/nodes/arabica-devnet" },
             { text: "Arabica-9 devnet ", link: "/nodes/arabica-9" },
           ],
         },
