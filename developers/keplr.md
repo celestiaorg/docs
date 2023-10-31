@@ -155,8 +155,8 @@ first.
 Try it out yourself:
 
 <AddNetworkKeplr :params="MAINNET_PARAMS" />
-<AddNetworkKeplr :params="ARABICA_PARAMS"/>
 <AddNetworkKeplr :params="MOCHA_PARAMS" />
+<AddNetworkKeplr :params="ARABICA_PARAMS"/>
 
 Behind the scenes, here are the parameters
 we are passing to the `AddNetworkKeplr`
