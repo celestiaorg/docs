@@ -344,7 +344,7 @@ look like this:
 ::: code-group
 
 ```bash [Mainnet Beta]
-celestia light start --core.ip rpc.lunaroasis.net
+celestia light start --core.ip consensus.lunaroasis.net
 ```
 
 ```bash [Mocha]
