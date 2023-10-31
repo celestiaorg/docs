@@ -304,7 +304,7 @@ transactions:        [
 ]
 ```
 
-And copy the transaction hash from `transactions: [<transaction-hash]` and
+And copy the transaction hash from `transactions: <transaction-hash>` and
 set it as a variable:
 
 ```bash

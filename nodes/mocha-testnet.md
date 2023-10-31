@@ -136,10 +136,9 @@ Full node 2:
 ## Mocha testnet faucet
 
 ::: danger WARNING
-USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER
-DISTRIBUTION OF MAINNET CELESTIA TOKENS. MAINNET CELESTIA TOKENS
-DO NOT CURRENTLY EXIST AND THERE ARE NO PUBLIC SALES OR OTHER PUBLIC
-DISTRIBUTIONS OF ANY MAINNET CELESTIA TOKENS.
+USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER DISTRIBUTION OF
+MAINNET CELESTIA TOKENS. THERE ARE NO PUBLIC SALES OF ANY MAINNET CELESTIA
+TOKENS.
 :::
 
 You can request from Mocha testnet Faucet on the #mocha-faucet channel on
@@ -151,7 +150,9 @@ $request <CELESTIA-ADDRESS>
 
 Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
-> Note: Faucet has a limit of 10 tokens per week per address/Discord ID
+:::tip NOTE
+Faucet has a limit of 10 tokens per week per address/Discord ID.
+:::
 
 ## Explorers
 
@@ -159,6 +160,7 @@ There are several explorers you can use for Mocha:
 
 - [https://testnet.mintscan.io/celestia-testnet](https://testnet.mintscan.io/celestia-testnet)
 - [https://celestiascan.com](https://celestiascan.com)
+- [https://mocha.celenium.io](https://mocha.celenium.io)
 - [https://explorer.nodestake.top/celestia-testnet/](https://explorer.nodestake.top/celestia-testnet)
 
 ## Network upgrades

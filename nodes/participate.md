@@ -7,13 +7,21 @@
 <script setup>
 import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
 import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
-import CoffeeVersionTags from '../.vitepress/components/CoffeeVersionTags.vue'
+import MainnetVersionTags from '../.vitepress/components/MainnetVersionTags.vue'
 import constants from '../.vitepress/constants/constants.js'
 </script>
 
-<!-- - Coffee: TBD
-  - Compatible software versions
-    <CoffeeVersionTags/> -->
+## Mainnet Beta
+
+Celestia’s [Mainnet Beta](./mainnet.md) is the production network
+for deploying mainnet rollups and applications. This marks the
+culmination of years of development and community testing. While
+the network is stable and continues to receive updates, it remains
+experimental and users may experience occasional instability or
+reduced performance.
+
+- Compatible software versions
+  <MainnetVersionTags/>
 
 ## Testnets
 

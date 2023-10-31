@@ -10,7 +10,7 @@ description: Learn to set up your development environment to run Celestia softwa
 import constants from '/.vitepress/constants/constants.js'
 import arabicaVersions from '/.vitepress/constants/arabica_versions.js'
 import mochaVersions from '/.vitepress/constants/mocha_versions.js'
-import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
+import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 </script>
 
 This page will go over setting up your development environment
@@ -68,8 +68,8 @@ and run our node.
 
    ::: code-group
 
-   ```bash-vue [Coffee]
-   ver="{{constants.golangNodeCoffee}}"
+   ```bash-vue [Mainnet Beta]
+   ver="{{constants.golangNodeMainnet}}"
    ```
 
    ```bash-vue [Mocha]

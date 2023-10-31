@@ -37,9 +37,6 @@ You can follow [the tutorial for setting up your dependencies](./environment.mdx
 
 ## Install celestia-node
 
-> Note: Make sure that you have at least 250+ Gb of free space for
-> Celestia full storage node
-
 You can follow [the tutorial for installing `celestia-node`](./celestia-node.mdx)
 
 ### Run the full storage node
@@ -50,12 +47,16 @@ Run the following command:
 
 ::: code-group
 
-```sh [Arabica]
-celestia full init --p2p.network arabica
+```sh [Mainnet Beta]
+celestia full init
 ```
 
 ```sh [Mocha]
 celestia full init --p2p.network mocha
+```
+
+```sh [Arabica]
+celestia full init --p2p.network arabica
 ```
 
 :::
@@ -76,7 +77,7 @@ Refer to
 for information on which ports are required to be open on your machine.
 
 ```sh
-celestia full start --core.ip <ip-address>:<port>
+celestia full start --core.ip <URI>
 ```
 
 Using an RPC of your own, or one from the
@@ -101,11 +102,13 @@ You can get testnet tokens from:
 - [Mocha](./mocha-testnet.md)
 - [Arabica](./arabica-devnet.md)
 
-> NOTE: If you are running a full-storage node for your sovereign
-> rollup, it is highly recommended to request Arabica devnet tokens
-> as Arabica has the latest changes that can be used to
-> test for developing your sovereign rollup. You can still use
-> Mocha testnet as well, it is just mostly used for validator operations.
+:::tip NOTE
+If you are running a full-storage node for your sovereign
+rollup, it is highly recommended to request Arabica devnet tokens
+as Arabica has the latest changes that can be used to
+test for developing your sovereign rollup. You can still use
+Mocha testnet as well, it is just mostly used for validator operations.
+:::
 
 ### Optional: run the full storage node with a custom key
 
@@ -117,16 +120,21 @@ In order to run a full storage node using a custom key:
 
 ::: code-group
 
-```sh [Arabica]
-celestia full start --core.ip <ip-address> \
+```sh [Mainnet Beta]
+celestia full start --core.ip <URI> \
   --keyring.accname <name-of-custom-key> \
-  --p2p.network arabica
 ```
 
 ```sh [Mocha]
-celestia full start --core.ip <ip-address> \
+celestia full start --core.ip <URI> \
   --keyring.accname <name-of-custom-key> \
   --p2p.network mocha
+```
+
+```sh [Arabica]
+celestia full start --core.ip <URI> \
+  --keyring.accname <name-of-custom-key> \
+  --p2p.network arabica
 ```
 
 :::

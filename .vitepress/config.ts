@@ -252,18 +252,26 @@ export default {
 function nav() {
   return [
     {
-      text: "Docs",
+      text: "Join the network",
       items: [
         { text: "Learn", link: "/learn/how-celestia-works/overview" },
         { text: "Networks", link: "/nodes/participate" },
-        { text: "Blob tutorial", link: "/developers/node-tutorial" },
+        { text: "Nodes", link: "/nodes/overview" },
+        { text: "Developers", link: "/developers/build-modular" },
+        { text: "Community", link: "/community/overview" },
         {
-          text: "celestia-app specs",
-          link: "https://celestiaorg.github.io/celestia-app/",
-        },
-        {
-          text: "celestia-node API",
-          link: "https://node-rpc-docs.celestia.org/",
+          text: "Quick start",
+          items: [
+            { text: "Blob tutorial", link: "/developers/node-tutorial" },
+            {
+              text: "celestia-app specs",
+              link: "https://celestiaorg.github.io/celestia-app/",
+            },
+            {
+              text: "celestia-node API",
+              link: "https://node-rpc-docs.celestia.org/",
+            },
+          ],
         },
       ],
     },
@@ -372,8 +380,9 @@ function sidebarHome() {
           link: "/nodes/participate",
           collapsed: true,
           items: [
-            { text: "Arabica devnet", link: "/nodes/arabica-devnet" },
+            { text: "Mainnet Beta", link: "/nodes/mainnet" },
             { text: "Mocha testnet", link: "/nodes/mocha-testnet" },
+            { text: "Arabica devnet", link: "/nodes/arabica-devnet" },
             { text: "Arabica-9 devnet ", link: "/nodes/arabica-9" },
           ],
         },
@@ -411,7 +420,7 @@ function sidebarHome() {
                 { text: "Relayer", link: "/nodes/blobstream-relayer" },
                 {
                   text: "Deploy the contract",
-                  link: "/nodes/blobstream-contract",
+                  link: "/nodes/blobstream-deploy",
                 },
               ],
             },

@@ -11,7 +11,7 @@ next:
 import constants from '/.vitepress/constants/constants.js'
 import arabicaVersions from '/.vitepress/constants/arabica_versions.js'
 import mochaVersions from '/.vitepress/constants/mocha_versions.js'
-import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
+import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 </script>
 
 In this tutorial, we will cover how to use the celestia-node RPC API to submit
@@ -118,6 +118,10 @@ and run our node.
 
    ::: code-group
 
+   ```bash-vue [Mainnet Beta]
+   ver="{{constants.golangNodeMainnet}}"
+   ```
+
    ```bash-vue [Mocha]
    ver="{{constants.golangNodeMocha}}"
    ```
@@ -216,6 +220,10 @@ commands:
 
    ::: code-group
 
+   ```bash-vue [Mainnet Beta]
+   git checkout tags/{{mainnetVersions['node-latest-tag']}}
+   ```
+
    ```bash-vue [Mocha]
    git checkout tags/{{mochaVersions['node-latest-tag']}}
    ```
@@ -266,11 +274,15 @@ commit hash, build date, system version, and Golang version.
 Now, let's instantiate a Celestia Light node:
 
 ::: tip
-RPC Endpoints are exposed in all celestia-node types such as light, bridge and
+RPC endpoints are exposed in all celestia-node types such as light, bridge and
 full nodes.
 :::
 
 ::: code-group
+
+```bash [Mainnet Beta]
+celestia light init
+```
 
 ```bash [Mocha]
 celestia light init --p2p.network mocha
@@ -299,12 +311,16 @@ or [Arabica devnet page](../nodes/arabica-devnet.md#rpc-endpoints).
 
 ::: code-group
 
+```bash [Mainnet Beta]
+celestia light start --core.ip <URI>
+```
+
 ```bash [Mocha]
-celestia light start --core.ip <ip-address> --p2p.network mocha
+celestia light start --core.ip <URI> --p2p.network mocha
 ```
 
 ```bash [Arabica]
-celestia light start --core.ip <ip-address> --p2p.network arabica
+celestia light start --core.ip <URI> --p2p.network arabica
 ```
 
 :::
@@ -327,6 +343,10 @@ look like this:
 
 ::: code-group
 
+```bash [Mainnet Beta]
+celestia light start --core.ip rpc.lunaroasis.net
+```
+
 ```bash [Mocha]
 celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 ```
@@ -344,7 +364,7 @@ You can create your key for your node by running the following
 command from the celestia-node directory:
 
 ```bash
-./cel-key add <key_name> --keyring-backend test --node.type light \
+./cel-key add <key-name> --keyring-backend test --node.type light \
   --p2p.network <network>
 ```
 
@@ -353,13 +373,17 @@ the following command:
 
 ::: code-group
 
+```bash [Mainnet Beta]
+celestia light start --core.ip <URI> --keyring.accname <key-name>
+```
+
 ```bash [Mocha]
-celestia light start --core.ip <ip-address> --keyring.accname <key_name> \
+celestia light start --core.ip <URI> --keyring.accname <key-name> \
   --p2p.network mocha
 ```
 
 ```bash [Arabica]
-celestia light start --core.ip <ip-address> --keyring.accname <key_name> \
+celestia light start --core.ip <URI> --keyring.accname <key-name> \
   --p2p.network arabica
 ```
 
@@ -383,11 +407,11 @@ to either the `#mocha-faucet` or `#arabica-faucet` channels on the
 You can request funds to your wallet address using the following command in
 Discord:
 
-```discord
-$request <wallet-address>
+```text
+$request <CELESTIA-ADDRESS>
 ```
 
-Where `<wallet-address>` is the `celestia1******` address generated
+Where `<CELESTIA-ADDRESS>` is the `celestia1******` address generated
 when you created the wallet.
 
 With your wallet funded, you can move on to the next step.
@@ -407,17 +431,17 @@ if you have not already.
 The format for interacting with the RPC CLI methods is as follows:
 
 ```bash
-celestia [module] [method] [args...] [flags...]
+celestia <module> <method> [args...] [flags...]
 ```
 
 Where:
 
 - `celestia` is the main command to interact with the node.
-- `[module]` is the specific module in the node you want to interact with, such as
+- `<module>` is the specific module in the node you want to interact with, such as
   [`blob`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob),
   [`state`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state),
   [`p2p`](https://node-rpc-docs.celestia.org/?version=v0.11.0#p2p), etc.
-- `[method]` is the specific method within the module that performs
+- `<method>` is the specific method within the module that performs
   the action you want, such as
   [`blob.Submit`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit),
   [`state.AccountAddress`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state.AccountAddress),
@@ -507,7 +531,7 @@ Then, set the `--node.store` flag to the `$NODE_STORE` variable
 to set the auth token from your node store:
 
 ```bash
-celestia [module] [method] [args...] --node.store $NODE_STORE
+celestia <module> <method> [args...] --node.store $NODE_STORE
 ```
 
 ##### Auth token on custom or private network
@@ -568,7 +592,7 @@ the `data` value of `0x676d`.
 Here is an example of the format of the `blob.Submit` transaction:
 
 ```bash
-celestia blob submit [hex-encoded namespace] [hex-encoded data] \
+celestia blob submit <hex-encoded namespace> <hex-encoded data> \
   [optional: fee] [optional: gasLimit] [node store | auth token]
 ```
 
@@ -594,7 +618,7 @@ We can also use a string of text as the data value, which will be
 converted to base64. Here is an example of the format:
 
 ```bash
-celestia blob submit [namespace in hex] ['data'] \
+celestia blob submit <hex-encoded namespace> <'data'> \
   [optional: fee] [optional: gasLimit] [node store | auth token]
 ```
 
@@ -633,8 +657,8 @@ command. Read more about shares in the
 Here is what an example of the format of the `get` command looks like:
 
 ```bash
-celestia rpc blob get [block height] [hex-encoded namespace] \
-  [commitment from output above] [node store | auth]
+celestia blob get <block height> <hex-encoded namespace> \
+  <commitment from output above> <node store | auth>
 ```
 
 Here is an example command to retrieve the data from above, on `{{constants.arabicaChainId}}`:
@@ -734,7 +758,7 @@ Which will return:
 To set the gas fee and limit, you can use the `--fee` and `--gas.limit` flags
 respectively when submitting data using the RPC CLI.
 
-Learn [more about gas fees and limits](../../developers/submit-data).
+Learn [more about gas fees and limits](../developers/submit-data.md).
 
 To set the fee of 10000 utia, use the `--fee 10000` flag:
 
@@ -779,7 +803,7 @@ Let's query our node for the balance of its default account
 key we generated above):
 
 ```bash
-celestia rpc state balance --node.store $NODE_STORE
+celestia state balance --node.store $NODE_STORE
 ```
 
 The response will look similar to:
@@ -800,7 +824,7 @@ The response will look similar to:
 Here is an example of the format of the `balance-for-address` command:
 
 ```bash
-celestia state balance-for-address [address] \
+celestia state balance-for-address <address> \
   --node.store $NODE_STORE
 ```
 
@@ -877,7 +901,7 @@ Response:
 Here is an example of the format of the `GetByHeight` command:
 
 ```bash
-celestia header get-by-height [height] \
+celestia header get-by-height <height> \
   --node.store $NODE_STORE
 ```
 
@@ -886,7 +910,7 @@ Now, let's get the block header information.
 Here we will get the header from Block 1:
 
 ````bash
-celestia rpc header get-by-height 1 \
+celestia header get-by-height 1 \
   --node.store $NODE_STORE```
 
 It will output something like this:
@@ -1005,7 +1029,7 @@ recipient's address, gas fee, and gasLimit. This is what the format will
 look like:
 
 ```bash
-celestia state transfer $ADDRESS [amount in utia] [gas fee in utia] [gas fee in utia] \
+celestia state transfer $ADDRESS <amount in utia> <gas fee in utia> <gas fee in utia> \
   --node.store $NODE_STORE
 ```
 
@@ -1041,7 +1065,7 @@ celestia --help
 To view help menu for a specific method, use the following command:
 
 ```bash
-celestia [module] [method] --node.store $NODE_STORE --help
+celestia <module> <method> --node.store $NODE_STORE --help
 ```
 
 ### Advanced example

@@ -49,12 +49,16 @@ Run the following command:
 
 ::: code-group
 
-```sh [Arabica]
-celestia light init --p2p.network arabica
+```sh [Mainnet Beta]
+celestia light init
 ```
 
 ```sh [Mocha]
 celestia light init --p2p.network mocha
+```
+
+```sh [Arabica]
+celestia light init --p2p.network arabica
 ```
 
 :::
@@ -81,7 +85,7 @@ To start the light node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
-celestia light start --core.ip <ip-address> --p2p.network <network>
+celestia light start --core.ip <URI> --p2p.network <network>
 ```
 
 Using an RPC of your own, or one from the
@@ -109,7 +113,7 @@ You can create your key for your node by running the following command with the
 `celestia-node` directory:
 
 ```sh
-./cel-key add <key_name> --keyring-backend test \
+./cel-key add <key-name> --keyring-backend test \
     --node.type light --p2p.network <network>
 ```
 
@@ -118,15 +122,20 @@ following command:
 
 ::: code-group
 
-```sh [Arabica]
+```sh [Mainnet Beta]
 celestia light start --keyring.accname my_celes_key \
-    --core.ip consensus-validator.celestia-arabica-10.com \
-    --p2p.network arabica
+    --core.ip rpc.lunaroasis.net
 ```
 
 ```sh [Mocha]
 celestia light start --keyring.accname my_celes_key \
     --core.ip rpc-mocha.pops.one --p2p.network mocha
+```
+
+```sh [Arabica]
+celestia light start --keyring.accname my_celes_key \
+    --core.ip consensus-validator.celestia-arabica-10.com \
+    --p2p.network arabica
 ```
 
 :::
@@ -154,10 +163,10 @@ You have two networks to get testnet tokens from:
 You can request funds to your wallet address using the following command in Discord:
 
 ```console
-$request <Wallet-Address>
+$request <CELESTIA-ADDRESS>
 ```
 
-Where `<Wallet-Address>` is the `celestia1******` address generated
+Where `<CELESTIA-ADDRESS>` is the `celestia1******` address generated
 when you created the wallet.
 
 ### Optional: run the light node with a custom key
@@ -170,16 +179,21 @@ In order to run a light node using a custom key:
 
 ::: code-group
 
-```sh [Mocha]
-celestia light start --core.ip <ip-address> \
-    --keyring.accname <name_of_custom_key> \
-    --p2p.network mocha
+```sh [Mainnet Beta]
+celestia light start --core.ip <URI> \
+    --keyring.accname <name-of-custom-key> \
 ```
 
 ```sh [Arabica]
-celestia light start --core.ip <ip-address> \
-    --keyring.accname <name_of_custom_key> \
+celestia light start --core.ip <URI> \
+    --keyring.accname <name-of-custom-key> \
     --p2p.network arabica
+```
+
+```sh [Mocha]
+celestia light start --core.ip <URI> \
+    --keyring.accname <name-of-custom-key> \
+    --p2p.network mocha
 ```
 
 :::

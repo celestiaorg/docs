@@ -30,6 +30,12 @@ export default {
         chainName: 'Mocha testnet',
         rpc: `${constants.mochaRpcUrl}`,
         rest: `${constants.mochaRestUrl}`
+      },
+      MAINNET_PARAMS: {
+        chainId: `${constants.mainnetChainId}`,
+        chainName: 'Celestia',
+        rpc: `${constants.mainnetRpcUrl}`,
+        rest: `${constants.mainnetRestUrl}`
       }
     }
   }
@@ -148,14 +154,28 @@ first.
 
 Try it out yourself:
 
-<AddNetworkKeplr :params="ARABICA_PARAMS"></AddNetworkKeplr>
-<AddNetworkKeplr :params="MOCHA_PARAMS"></AddNetworkKeplr>
+<AddNetworkKeplr :params="MAINNET_PARAMS" />
+<AddNetworkKeplr :params="MOCHA_PARAMS" />
+<AddNetworkKeplr :params="ARABICA_PARAMS"/>
 
 Behind the scenes, here are the parameters
 we are passing to the `AddNetworkKeplr`
 function:
 
 ::: code-group
+
+```js-vue [Mainnet Beta]
+import '@site/src/components/AddNetworkKeplr'
+
+export const MAINNET_PARAMS = {`{
+  chainId: '{{constants.mainnetChainId}}',
+  chainName: 'Celestia',
+  rpc: '{{constants.mainnetRpcUrl}}',
+  rest: '{{constants.mainnetRestUrl}}'
+}`}
+
+{<AddNetworkKeplr params={MAINNET_PARAMS}/>}
+```
 
 ```js-vue [Mocha]
 import '@site/src/components/AddNetworkKeplr'

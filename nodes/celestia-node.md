@@ -9,7 +9,7 @@ description: Learn to build and install celestia-node.
 import constants from '/.vitepress/constants/constants.js'
 import arabicaVersions from '/.vitepress/constants/arabica_versions.js'
 import mochaVersions from '/.vitepress/constants/mocha_versions.js'
-import coffeeVersions from '/.vitepress/constants/coffee_versions.js'
+import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 </script>
 
 This tutorial goes over building and installing celestia-node. This
@@ -32,6 +32,10 @@ commands:
 2. Check out to the desired version, based on the network you will use:
 
    ::: code-group
+
+   ```bash-vue [Mainnet Beta]
+   git checkout tags/{{mainnetVersions['node-latest-tag']}}
+   ```
 
    ```bash-vue [Mocha]
    git checkout tags/{{mochaVersions['node-latest-tag']}}

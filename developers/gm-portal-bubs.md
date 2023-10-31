@@ -43,7 +43,7 @@ forge script script/GmPortal.s.sol:GmPortalScript --rpc-url $BUBS_RPC_URL --priv
 In the output of the deployment, find the contract address and set it as a variable:
 
 ```bash
-export CONTRACT_ADDRESS=<your contract address from the output above>
+export CONTRACT_ADDRESS=<your-contract-address-from-the-output-above>
 ```
 
 Next, you're ready to interact with the contract from your terminal!

@@ -79,7 +79,7 @@ Note: If you do not select a network, the default network will be 'Mocha'.
 
 ```sh
 celestia <node-type> init --p2p.network <network>
-celestia <node-type> start --p2p.network <network> --core.ip <address> <port>
+celestia <node-type> start --p2p.network <network> --core.ip <URI>
 ```
 
 :::tip
@@ -87,9 +87,11 @@ Refer to [the ports section of this page](#ports)
 for information on which ports are required to be open on your machine.
 :::
 
-> NOTE: It is advised before switching networks to reinitialize
-> your node via `init` command. This is due to an old config being present.
-> Re-initialisation will reset the config.
+:::tip NOTE
+It is advised before switching networks to reinitialize
+your node via `init` command. This is due to an old config being present.
+Re-initialisation will reset the config.
+:::
 
 ## Resetting your config
 
@@ -146,7 +148,7 @@ celestia light unsafe-reset-store --p2p.network mocha
 
 If you observe a FATAL log line like:
 
-```log
+```bash
 FATAL   header/store   store/heightsub.go:87    PLEASE FILE A BUG REPORT: headers given to the heightSub are in the wrong order"
 ```
 

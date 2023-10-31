@@ -17,6 +17,7 @@ on:
         # These are the drop down options, so we can add other networks, like
         # mainnet for instance.
         options:
+          - mainnet
           - arabica
           - mocha
 
