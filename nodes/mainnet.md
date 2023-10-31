@@ -99,6 +99,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `public-celestia-rpc.numia.xyz`
 - `celestia-rpc.mesa.newmetric.xyz`
 - `rpc.lunaroasis.net`
+- `https://celestia-rpc.brightlystake.com`
 
 ### API endpoints
 
@@ -106,6 +107,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-rest.mesa.newmetric.xyz`
 - `api.celestia.pops.one`
 - `api.lunaroasis.net`
+- `https://celestia-rpc.brightlystake.com/api`
 
 ### gRPC endpoints
 
@@ -113,6 +115,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-grpc.mesa.newmetric.xyz`
 - `grpc.celestia.pops.one`
 - `grpc.lunaroasis.net:443`
+- `celestia-rpc.brightlystake.com:9090`
 
 ## Explorers
 
