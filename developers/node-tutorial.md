@@ -657,7 +657,7 @@ command. Read more about shares in the
 Here is what an example of the format of the `get` command looks like:
 
 ```bash
-celestia rpc blob get <block height> <hex-encoded namespace> \
+celestia blob get <block height> <hex-encoded namespace> \
   <commitment from output above> <node store | auth>
 ```
 
@@ -803,7 +803,7 @@ Let's query our node for the balance of its default account
 key we generated above):
 
 ```bash
-celestia rpc state balance --node.store $NODE_STORE
+celestia state balance --node.store $NODE_STORE
 ```
 
 The response will look similar to:
@@ -910,7 +910,7 @@ Now, let's get the block header information.
 Here we will get the header from Block 1:
 
 ````bash
-celestia rpc header get-by-height 1 \
+celestia header get-by-height 1 \
   --node.store $NODE_STORE```
 
 It will output something like this:
