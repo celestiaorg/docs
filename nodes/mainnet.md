@@ -124,6 +124,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://celenium.io](https://celenium.io)
 - [https://celestiascan.com](https://celestiascan.com)
 - [https://mintscan.io/celestia](https://mintscan.io/celestia)
+- [https://celestia.explorers.guru](https://celestia.explorers.guru)
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
 
 ## Network upgrades
