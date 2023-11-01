@@ -10,7 +10,8 @@ This guide will show you how to run your own OP Stack devnet.
 
 ### Environment setup and Golang installation
 
-First, [install dependencies](../nodes/environment.md).
+First, [install dependencies for Celestia software](../nodes/environment.md)
+and for [OP Stack](https://community.optimism.io/docs/developers/build/dev-node/).
 
 ### Clone repository
 
