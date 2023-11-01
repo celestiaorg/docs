@@ -496,6 +496,10 @@ function sidebarHome() {
           link: "/developers/ibc-relayer",
         },
         {
+          text: "IBC relayers",
+          link: "https://www.mintscan.io/celestia/relayers",
+        },
+        {
           text: "Node API",
           link: "/developers/node-api",
           collapsed: true,
