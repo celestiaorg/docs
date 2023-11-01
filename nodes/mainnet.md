@@ -99,7 +99,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `public-celestia-rpc.numia.xyz`
 - `celestia-rpc.mesa.newmetric.xyz`
 - `rpc.lunaroasis.net`
-- `https://celestia-rpc.brightlystake.com`
+- `celestia-rpc.brightlystake.com`
 
 ### API endpoints
 
