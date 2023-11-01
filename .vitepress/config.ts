@@ -619,6 +619,10 @@ function sidebarHome() {
               text: "Create a vesting account",
               link: "/developers/celestia-app-vesting",
             },
+           {
+              text: "How to stake TIA",
+              link: "/developers/how-to-stake-tia",
+            },
             {
               text: "Staking dashboards",
               link: "/developers/staking",
