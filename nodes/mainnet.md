@@ -118,10 +118,10 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 
 There are multiple explorers you can use for Mainnet Beta:
 
-- [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://celenium.io](https://celenium.io)
-- [https://explorer.modular.cloud/celestia-mainnet](https://explorer.modular.cloud/celestia-mainnet)
 - [https://celestia.explorers.guru](https://celestia.explorers.guru)
+- [https://explorer.modular.cloud/celestia-mainnet](https://explorer.modular.cloud/celestia-mainnet)
+- [https://mintscan.io/celestia](https://mintscan.io/celestia)
 
 ## Network upgrades
 
