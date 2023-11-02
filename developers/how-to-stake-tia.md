@@ -40,7 +40,7 @@ In the Keplr dashboard, select the `Celestia` network and pick a validator of yo
 ![Keplr1](/img/keplr/keplr2.gif)
 
 ### :three: Stake your TIA tokens
-On the following screen enter amount of TIA tokens and select `Stake`
+On the following screen enter amount of TIA tokens and select `Stake`.
 
 A Keplr popup will appear, requesting your approval for the transaction. Select `Approve`.
 
