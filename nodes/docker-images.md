@@ -199,21 +199,21 @@ A full start command will look similar to below.
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
-    celestia light init --p2p.network $NETWORK
+    celestia light start --core.ip $RPC_URL
 ```
 
 ```bash-vue [Mocha]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
-    celestia light init --p2p.network $NETWORK
+    celestia light start --core.ip $RPC_URL
 ```
 
 ```bash-vue [Arabica]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
-    celestia light init --p2p.network $NETWORK
+    celestia light start --core.ip $RPC_URL
 ```
 
 :::
