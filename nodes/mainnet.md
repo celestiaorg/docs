@@ -117,7 +117,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-grpc.mesa.newmetric.xyz`
 - `grpc.celestia.pops.one`
 - `grpc.lunaroasis.net:443`
-- - `grpc.celestia.nodestake.top`
+- `grpc.celestia.nodestake.top`
 - `celestia-rpc.brightlystake.com:9090`
 
 You can find the status of these endpoints [here](https://celestia-tools.brightlystake.com/)
