@@ -150,7 +150,7 @@ using the variables we set in the [quick start](#quick-start) section:
 
 ```bash
 # --volume == -v [local path]:[container path]
-docker run [args...] -v $HOME/my-node-store:/home/celestia \
+docker run [args...] -v $HOME/my-node-store:/celestia \
     celestia $NODE_TYPE init [args...]
 ```
 
@@ -160,21 +160,21 @@ An example init command will look similar to below:
 
 ```bash-vue [Mainnet Beta]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
+    -v $HOME/my-node-store:/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
     celestia light init --p2p.network $NETWORK
 ```
 
 ```bash-vue [Mocha]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
+    -v $HOME/my-node-store:/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
     celestia light init --p2p.network $NETWORK
 ```
 
 ```bash-vue [Arabica]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
+    -v $HOME/my-node-store:/celestia \
     ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
     celestia light init --p2p.network $NETWORK
 ```
@@ -187,7 +187,7 @@ Run the following command to start the node:
 
 ```bash
 # --volume == -v [local path]:[container path]
-docker run [...args] -v $HOME/my-node-store:/home/celestia \
+docker run [...args] -v $HOME/my-node-store:/celestia \
     celestia <node-type> start [...args]
 ```
 
@@ -197,21 +197,21 @@ A full start command will look similar to below.
 
 ```bash-vue [Mainnet Beta]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
+    -v $HOME/my-node-store:/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
     celestia light start --core.ip $RPC_URL
 ```
 
 ```bash-vue [Mocha]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
+    -v $HOME/my-node-store:/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
     celestia light start --core.ip $RPC_URL
 ```
 
 ```bash-vue [Arabica]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
+    -v $HOME/my-node-store:/celestia \
     ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
     celestia light start --core.ip $RPC_URL
 ```
