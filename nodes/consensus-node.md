@@ -550,9 +550,9 @@ You should now be able to see your validator from
 
 ### Run a Blobstream orchestrator
 
-Now that Blobstream will be enabled for Mocha, all validators
+Soon, Blobstream will be enabled for Mocha, all validators
 will need to run a Blobstream orchestrator to be able to sign attestations.
-To run it, please
+When the time comes, to run it, please
 [refer to the documentation](https://docs.celestia.org/nodes/blobstream-orchestrator/#how-to-run).
 
 ### Submit your validator information
