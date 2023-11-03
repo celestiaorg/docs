@@ -1,5 +1,7 @@
 ---
 description: These Terms govern your ability to participate in the Incentivized Testnet Award Program.
+lastUpdated: false
+editLink: false
 ---
 
 # SUPPLEMENTAL INCENTIVIZED TESTNET TERMS
