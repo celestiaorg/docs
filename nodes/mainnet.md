@@ -126,7 +126,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-grpc.spidey.services`
 - `grpc-celestia.contributiondao.com`
 
-You can find the status of these endpoints [here](https://celestia-tools.brightlystake.com/)
+You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
 ## Explorers
 
