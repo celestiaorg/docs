@@ -100,6 +100,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-rpc.mesa.newmetric.xyz`
 - `rpc.lunaroasis.net`
 - `rpc.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com`
 - `celestia-rpc.spidey.services`
 
 ### API endpoints
@@ -109,6 +110,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `api.celestia.pops.one`
 - `api.lunaroasis.net`
 - `api.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com/api`
 - `celestia-api.spidey.services`
 
 ### gRPC endpoints
@@ -118,16 +120,19 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `grpc.celestia.pops.one`
 - `grpc.lunaroasis.net:443`
 - `grpc.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com:9090`
 - `celestia-grpc.spidey.services`
+
+You can find the status of these endpoints [here](https://celestia-tools.brightlystake.com/)
 
 ## Explorers
 
 There are multiple explorers you can use for Mainnet Beta:
 
 - [https://celenium.io](https://celenium.io)
-- [https://celestiascan.com](https://celestiascan.com)
-- [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://celestia.explorers.guru](https://celestia.explorers.guru)
+- [https://explorer.modular.cloud/celestia-mainnet](https://explorer.modular.cloud/celestia-mainnet)
+- [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
 
 ## Network upgrades
