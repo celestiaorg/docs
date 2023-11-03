@@ -623,7 +623,7 @@ function sidebarHome() {
               text: "Create a vesting account",
               link: "/developers/celestia-app-vesting",
             },
-           {
+            {
               text: "How to stake TIA",
               link: "/developers/how-to-stake-tia",
             },
@@ -713,6 +713,7 @@ function sidebarHome() {
             },
           ],
         },
+        { text: "Incentivized testnet TOS", link: "/community/itn-tos" },
       ],
     },
   ];
