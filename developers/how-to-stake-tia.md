@@ -16,6 +16,7 @@ In this tutorial, you will learn how to stake TIA tokens via
 wallets.
 
 ## Select your preferred wallet
+
 <!-- markdownlint-disable MD033 -->
 <div style="display: inline-block;">
     <a href="#stake-tia-with-keplr-wallet">
