@@ -17,7 +17,7 @@ import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 In this tutorial, we will cover how to use the celestia-node RPC API to submit
 and retrieve data (blobs) from the data availability layer by their namespace.
 
-::: details Table of contents
+:::details Table of contents
 
 [[toc]]
 
@@ -44,7 +44,7 @@ If you already have a running and funded node,
 you can skip to the [RPC CLI guide section](#rpc-cli-guide).
 :::
 
-::: warning
+:::warning
 The gateway endpoints have been deprecated and will be removed in the future.
 If you would like to use them anyway, you can
 [find more details on GitHub](https://github.com/celestiaorg/celestia-node/pull/2360).
@@ -273,7 +273,7 @@ commit hash, build date, system version, and Golang version.
 
 Now, let's instantiate a Celestia Light node:
 
-::: tip
+:::tip
 RPC endpoints are exposed in all celestia-node types such as light, bridge and
 full nodes.
 :::

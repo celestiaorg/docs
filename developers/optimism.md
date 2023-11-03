@@ -88,7 +88,7 @@ $HOME/.celestia-light-{{constants.arabicaChainId}}
 This is the default location of the node store
 when you initialize and run a new Celestia node.
 
-::: warning
+:::warning
 The user in the `docker-compose-testnet.yml` is the `root` user,
 but this is not meant to be used in production.
 :::
