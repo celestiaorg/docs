@@ -109,7 +109,6 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `api.celestia.pops.one`
 - `api.lunaroasis.net`
 - `api.celestia.nodestake.top`
-- `celestia-api.spidey.services`
 
 ### gRPC endpoints
 
@@ -118,7 +117,6 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `grpc.celestia.pops.one`
 - `grpc.lunaroasis.net:443`
 - `grpc.celestia.nodestake.top`
-- `celestia-grpc.spidey.services`
 
 ## Explorers
 
