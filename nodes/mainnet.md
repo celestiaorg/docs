@@ -101,6 +101,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `rpc.lunaroasis.net`
 - `rpc.celestia.nodestake.top`
 - `celestia-rpc.brightlystake.com`
+- `celestia-rpc.spidey.services`
 
 ### API endpoints
 
@@ -110,6 +111,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `api.lunaroasis.net`
 - `api.celestia.nodestake.top`
 - `celestia-rpc.brightlystake.com/api`
+- `celestia-api.spidey.services`
 
 ### gRPC endpoints
 
@@ -119,6 +121,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `grpc.lunaroasis.net:443`
 - `grpc.celestia.nodestake.top`
 - `celestia-rpc.brightlystake.com:9090`
+- `celestia-grpc.spidey.services`
 
 You can find the status of these endpoints [here](https://celestia-tools.brightlystake.com/)
 
