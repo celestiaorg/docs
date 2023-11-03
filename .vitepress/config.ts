@@ -713,7 +713,10 @@ function sidebarHome() {
             },
           ],
         },
-        { text: "Incentivized testnet TOS", link: "/community/itn-tos" },
+        {
+          text: "Incentivized testnet supplemental terms",
+          link: "/community/itn-tos",
+        },
       ],
     },
   ];
