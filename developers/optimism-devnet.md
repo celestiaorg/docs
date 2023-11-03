@@ -38,134 +38,6 @@ git checkout v0.1.3-OP_v1.0.6-CN_v0.11.0-rc8
 
 :::
 
-### asdf
-
-[Install `asdf`](https://asdf-vm.com/guide/getting-started.html)
-to allow us to install a specific version of node easily.
-
-Here is an example for Ubuntu using bash:
-
-```bash
-cd $HOME
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
-echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
-echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
-```
-
-Set the path from the asdf documentation based on your operating
-system and shell type.
-
-Here is an example for Ubuntu using bash:
-
-```bash
-export PATH=$PATH:~/.asdf/bin/
-```
-
-Check that it was installed:
-
-```bash
-asdf
-```
-
-### Node.js
-
-Install `nodejs 16.16.0`:
-
-```bash
-asdf plugin add nodejs
-asdf install nodejs 16.16.0
-asdf local nodejs 16.16.0
-source ~/.bashrc
-```
-
-Install [NPM](https://www.npmjs.com/):
-
-```bash
-apt install npm
-```
-
-Update NPM to v9.6.5:
-
-```bash
-npm install -g npm@9.6.5
-```
-
-If using NVM, install NPM v9.6.5:
-
-```bash
-nvm install v9.6.5
-```
-
-Then set the version:
-
-```bash
-nvm use v9.6.5
-```
-
-### python
-
-Install python 3.10.7:
-
-```bash
-asdf plugin-add python
-asdf install python 3.10.7
-asdf local python 3.10.7
-source ~/.bashrc
-```
-
-### Foundry
-
-Download the Foundry script execute it to set up environment:
-
-```bash
-curl -L https://foundry.paradigm.xyz/ | bash
-```
-
-Set path:
-
-```bash
-source /root/.bashrc
-```
-
-Run foundryup to install Foundry (`forge`, `cast`, `anvil`, `chisel`):
-
-```bash
-foundryup
-```
-
-### Yarn
-
-Install yarn:
-
-```bash
-npm install -g yarn
-```
-
-Depending on the version installed,
-you may need to update your version of NPM.
-
-### Docker compose
-
-Install docker-compose:
-
-```bash
-apt install docker-compose
-```
-
-### gcc & libusb
-
-```bash
-apt install gcc libusb-1.0-0-dev
-```
-
-### macOS only: set up python
-
-```bash
-brew install python3
-npm config set python /usr/local/bin/python3
-npm cache clean --force
-```
-
 ## Build devnet
 
 Build TypeScript definitions for TS dependencies:
@@ -173,7 +45,7 @@ Build TypeScript definitions for TS dependencies:
 ```bash
 cd $HOME
 cd optimism
-yarn && make build-ts
+pnpm install && make
 ```
 
 Set environment variables to start network:
@@ -205,29 +77,6 @@ make devnet-logs
 ```
 
 :::tip optional
-
-#### lazydocker
-
-You can install [lazydocker](https://github.com/jesseduffield/lazydocker)
-to view all of the components of your stack in one TUI by running:
-
-```bash
-asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
-asdf list all lazydocker
-asdf install lazydocker 0.12
-asdf global lazydocker 0.12
-```
-
-And run the command:
-
-```bash
-lazydocker
-```
-
-If you do this, you can skip the [viewing containers](#viewing-containers)
-section and [find a transaction](#find-a-transaction).
-
-:::
 
 ### Stop devnet
 
