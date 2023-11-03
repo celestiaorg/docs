@@ -92,7 +92,7 @@ To install the latest pre-built binary you can run this command in your
 terminal:
 
 ```bash
-curl -L -O -s https://docs.celestia.org/celestia-app.sh && bash celestia-app.sh
+bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)"
 ```
 
 Follow the instructions in the terminal output to choose your installation
@@ -102,19 +102,7 @@ You will see an output with the menu for `celestia-appd`. Learn more
 on the [helpful CLI commands page](./celestia-app-commands.md)
 
 View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-app.sh)
-to learn more about what it is doing. Alternatively, you can run the following command
-to view the script in the same directory you downloaded it in:
-
-```bash
-cat celestia-app.sh
-```
-
-To remove the script after installing celestia-app, run this command in the same
-location as the command above:
-
-```bash
-rm celestia-app.sh
-```
+to learn more about what it is doing.
 
 ## Ports
 
