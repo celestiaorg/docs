@@ -363,6 +363,11 @@ celestia light start --core.ip consensus-full.celestia-arabica-10.com \
 You can create your key for your node by running the following
 command from the celestia-node directory:
 
+:::tip
+You do not need to declare a network for Mainnet Beta. Refer to
+[the chain ID section on the troubleshooting page for more information](../nodes/celestia-node-troubleshooting.md)
+:::
+
 ```bash
 ./cel-key add <key-name> --keyring-backend test --node.type light \
   --p2p.network <network>

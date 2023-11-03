@@ -10,7 +10,27 @@ description: A guide to troubleshooting common issues with Celestia Node.
 import constants from '/.vitepress/constants/constants.js'
 </script>
 
-## Chain ID
+## Network selection
+
+Note: If you do not select a network, the default network will be Mainnet Beta.
+
+```sh
+celestia <node-type> init --p2p.network <network>
+celestia <node-type> start --p2p.network <network> --core.ip <URI>
+```
+
+:::tip
+Refer to [the ports section of this page](#ports)
+for information on which ports are required to be open on your machine.
+:::
+
+:::tip NOTE
+It is advised before switching networks to reinitialize
+your node via `init` command. This is due to an old config being present.
+Re-initialisation will reset the config.
+:::
+
+### Chain ID
 
 When interacting with celestia-node, it is important to take into account
 the different chain IDs for different networks. For Mainnet Beta, there is
@@ -89,26 +109,6 @@ To show the keys you should add `--keyring-dir` like this example:
 ./cel-key list --p2p.network mocha --node.type full \
     --keyring-dir /home/user/celestia-<node-type>-location/keys/
 ```
-
-## Network selection
-
-Note: If you do not select a network, the default network will be 'Mocha'.
-
-```sh
-celestia <node-type> init --p2p.network <network>
-celestia <node-type> start --p2p.network <network> --core.ip <URI>
-```
-
-:::tip
-Refer to [the ports section of this page](#ports)
-for information on which ports are required to be open on your machine.
-:::
-
-:::tip NOTE
-It is advised before switching networks to reinitialize
-your node via `init` command. This is due to an old config being present.
-Re-initialisation will reset the config.
-:::
 
 ## Resetting your config
 

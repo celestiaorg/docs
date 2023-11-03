@@ -97,6 +97,11 @@ You can find the address by running the following command:
 ./cel-key list --node.type full --keyring-backend test --p2p.network <network>
 ```
 
+:::tip
+You do not need to declare a network for Mainnet Beta. Refer to
+[the chain ID section on the troubleshooting page for more information](./celestia-node-troubleshooting.md)
+:::
+
 You can get testnet tokens from:
 
 - [Mocha](./mocha-testnet.md)

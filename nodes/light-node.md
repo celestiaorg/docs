@@ -88,6 +88,11 @@ To start the light node with a connection to a validator node's gRPC endpoint
 celestia light start --core.ip <URI> --p2p.network <network>
 ```
 
+:::tip
+You do not need to declare a network for Mainnet Beta. Refer to
+[the chain ID section on the troubleshooting page for more information](./celestia-node-troubleshooting.md)
+:::
+
 Using an RPC of your own, or one from the
 [list on the Mocha testnet page](../mocha-testnet#rpc-endpoints) or
 [list on the Arabica devnet page](../arabica-devnet#rpc-endpoints),
