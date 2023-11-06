@@ -153,7 +153,7 @@ then enter your bip39 mnemonic:
 
 - Docker installed on your machine
 - Understanding of the
-  [guide on how to run celestia-node with Docker](../nodes/docker-images.mdx).
+  [guide on how to run celestia-node with Docker](../nodes/docker-images.md).
 
 ### Running your node
 

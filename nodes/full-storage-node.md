@@ -33,11 +33,11 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-You can follow [the tutorial for setting up your dependencies](./environment.mdx)
+You can follow [the tutorial for setting up your dependencies](./environment.md)
 
 ## Install celestia-node
 
-You can follow [the tutorial for installing `celestia-node`](./celestia-node.mdx)
+You can follow [the tutorial for installing `celestia-node`](./celestia-node.md)
 
 ### Run the full storage node
 
