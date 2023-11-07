@@ -24,7 +24,7 @@ the full storage node:
 
 - Memory: **32 GB RAM**
 - CPU: **6 cores**
-- Disk: **10 TB SSD Storage**
+- Disk: **500 GB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up your full storage node
