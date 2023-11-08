@@ -105,6 +105,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `rpc-celestia.contributiondao.com`
 - `celestia.rpc.stakin-nodes.com`
 - `celestia.cumulo.org.es`
+- `rpc-celestia.mzonder.com`
 
 ### API endpoints
 
@@ -118,6 +119,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `api-celestia.contributiondao.com`
 - `celestia.rest.stakin-nodes.com`
 - `celestia.api.cumulo.org.es`
+- `api-celestia.mzonder.com`
 
 ### gRPC endpoints
 
@@ -131,6 +133,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `grpc-celestia.contributiondao.com`
 - `celestia.grpc.stakin-nodes.com:443`
 - `celestia.grpc.cumulo.org.es:443`
+- `grpc-celestia.mzonder.com:443`
 
 You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
