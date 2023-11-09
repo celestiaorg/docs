@@ -122,11 +122,13 @@ If you delete a container that you started above, all data will be lost.
 To avoid this, you can mount a volume to the container.
 This will allow you to persist data even after the container is deleted.
 
-For security purposes Celestia expects to interact with the your node's keys in a read-only manner.
-This is enforced using linux style permissions on the filesystem.
-Windows NTFS does not support these types of permissions.
-As a result the recommended path for Windows users to mount a persisted volume is to do so within WSL.
-You can find [instructions for installing WSL here](https://learn.microsoft.com/en-us/windows/wsl/install).
+For security purposes Celestia expects to interact with the your node's
+keys in a read-only manner. This is enforced using linux style permissions
+on the filesystem. Windows NTFS does not support these types of permissions.
+As a result the recommended path for Windows users to mount a persisted
+volume is to do so within WSL.
+You can find
+[instructions for installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
 
 First, you will need to create a directory on your host machine.
 This directory will be used to store the data for the container.
