@@ -241,3 +241,13 @@ Congratulations! You now have a node running with persistent storage.
     allowfullscreen
   ></iframe>
 </div>
+
+## Troubleshooting
+
+For security purposes Celestia expects to interact with the your node's
+keys in a read-only manner. This is enforced using linux style permissions
+on the filesystem. Windows NTFS does not support these types of permissions.
+As a result the recommended path for Windows users to mount a persisted
+volume is to do so within WSL.
+You can find
+[instructions for installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
