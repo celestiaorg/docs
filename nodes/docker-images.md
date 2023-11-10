@@ -36,7 +36,7 @@ Ubuntu. You can
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker) and basic understanding of Docker
+- [Docker Desktop](https://docs.docker.com/get-docker) and basic understanding of Docker
 
 ## Quick start
 
@@ -139,7 +139,7 @@ the user on the host machine by running:
 
 ::: code-group
 
-```bash [Linux]
+```bash [Docker Engine on Linux]
 sudo chown 10001:10001 $HOME/my-node-store
 ```
 
