@@ -36,7 +36,10 @@ Ubuntu. You can
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker) and basic understanding of Docker
+- [Docker Desktop for Mac or Windows](https://docs.docker.com/get-docker) and a basic
+understanding of Docker
+- [Docker Engine for Linux](https://docs.docker.com/engine/install/) and a
+basic understanding of Docker
 
 ## Quick start
 
@@ -76,8 +79,9 @@ Ubuntu. You can
 
    :::
 
-3. Set an RPC endpoint for either [Arabica](./arabica-devnet.md#rpc-endpoints) or
-   [Mocha](./mocha-testnet.md#rpc-endpoints)
+3. Set an RPC endpoint for either [Mainnet Beta](./mainnet.md#da-rpc-endpoints),
+   [Mocha](./mocha-testnet.md#rpc-endpoints), or
+   [Arabica](./arabica-devnet.md#rpc-endpoints)
    using the bare URL (without http or https):
 
    ```bash
@@ -136,9 +140,17 @@ Now, you can mount this directory to the container.
 Before mounting a volume, you _may_ need to set permissions for
 the user on the host machine by running:
 
-```bash
+::: code-group
+
+```bash [Docker Engine on Linux]
 sudo chown 10001:10001 $HOME/my-node-store
 ```
+
+```bash [Docker Desktop on Mac]
+# you're good to go 😎
+```
+
+:::
 
 ### Initialize the node store and key
 
@@ -199,21 +211,21 @@ A full start command will look similar to below.
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
-    celestia light init --p2p.network $NETWORK
+    celestia light start --core.ip $RPC_URL
 ```
 
 ```bash-vue [Mocha]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
-    celestia light init --p2p.network $NETWORK
+    celestia light start --core.ip $RPC_URL
 ```
 
 ```bash-vue [Arabica]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
-    celestia light init --p2p.network $NETWORK
+    celestia light start --core.ip $RPC_URL
 ```
 
 :::
