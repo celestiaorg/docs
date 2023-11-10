@@ -23,17 +23,19 @@ git clone https://github.com/celestiaorg/optimism
 cd optimism
 ```
 
-Check out to the version for either the devnet (this page) or
-[testnet](./optimism.md) tutorial:
+Check out to the version for either the stable version or upstream version:
 
 ::: code-group
 
-```bash-vue [Devnet]
-git checkout v0.1.3-OP_v1.0.6-CN_v0.11.0-rc8
+```bash-vue [v1.2.0 stable]
+git checkout tux/rebase-v.1.2.0
 ```
 
-```bash-vue [Testnet]
-git checkout v0.1.3-OP_v1.0.6-CN_v0.11.0-rc8
+```bash-vue [rebase upstream]
+git checkout tux/rebase-upstream
+cd packages/contracts-bedrock/lib/forge-std/
+git submodule init && git submodule update
+cd ../../../../
 ```
 
 :::
@@ -45,7 +47,7 @@ Build TypeScript definitions for TS dependencies:
 ```bash
 cd $HOME
 cd optimism
-pnpm install && make
+make
 ```
 
 Set environment variables to start network:
@@ -119,6 +121,8 @@ docker logs -f <container-id>
 You can do the same for other containers as you
 explore the stack.
 
+:::
+
 ## Find a transaction
 
 Now, we'll check for a recent transaction on the L1 with:
@@ -130,27 +134,30 @@ cast block latest --rpc-url localhost:8545
 Output of a block that contains a transaction will look like this:
 
 ```console
-baseFeePerGas        7
+
+
+baseFeePerGas        40625627
 difficulty           2
-extraData            0xd883010a16846765746888676f312e31382e35856c696e75780000000000000001749030eb8e51903cf49e2c8c21e7ff98aaa7d45e3ecd51b8594440c5c66e9931b70b18d1a629212074f3ef9188bd0a9079e094e414d287f73d40ea8392349600
+extraData            0xd883010d04846765746888676f312e32312e33856c696e7578000000000000007d898fcc82b7d08f3d887f78733b405b5858673651ad7998c35adb2ddd8bc79926f73d3fad68c221a575c9c30db0f668d64165d15f3a3b1a3512559cc7455d2a01
 gasLimit             30000000
-gasUsed              21072
-hash                 0x9d764f5e3e2ccf5a334ae4fbe3827e7b80750f39aa671c958b5c09a9b67d9dfc
-logsBloom            0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+gasUsed              88935
+hash                 0xeac4a2bf8416e2d92119d46fa6994cf47d78e09e2bd55c478800df2401140f33
+logsBloom            0x00000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000041000000000000000000000000000000000200000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000400000000000004000000000800000000000020400200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000020000000000000000000000000000000000000000000000000000000
 miner                0x0000000000000000000000000000000000000000
 mixHash              0x0000000000000000000000000000000000000000000000000000000000000000
 nonce                0x0000000000000000
-number               1569
-parentHash           0x1a5100654617b565bf2a117c7487a57c54d0c61b99d94592518fbc07b3fec45d
-receiptsRoot         0xa981da57b00630bb01a6eb02629212ea8b0c89281a07295ace6bb78c81193e68
+number               24
+parentHash           0x786fa3c21f4656d649b3e6ebbd7e3b05d5416c278f830e6a5614f29d57e7910a
+receiptsRoot         0x6bd378c672b14f976707253f44ff1bbeeef8595a60e40a4c9f987a4450779e04
 sealFields           []
 sha3Uncles           0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347
-size                 740
-stateRoot            0x9d1e02cbf556997123676f47749a043b5bd9bebe629f5dbd3f256a7d5e37b665
-timestamp            1677272382
-totalDifficulty      3139
+size                 863
+stateRoot            0xec2528a95cbff5e88ceb5c4afa2ae64cb844b74be730dbf084cc53c0fe1795eb
+timestamp            1699634999
+withdrawalsRoot
+totalDifficulty      49
 transactions:        [
-    0x40b79afe3dc05ff398c2142ab47eb94ac3759a03dd1322b2d97bcdc2d1c34934
+  0xb0afa070d660458bde0baebcfe4ac9974e919898027715ae4301fc087a5c7ec8
 ]
 ```
 
@@ -158,7 +165,7 @@ And copy the transaction hash from `transactions: <transaction-hash>` and
 set it as a variable:
 
 ```bash
-export TX_HASH=0xb8869dfecf9a5a0e26df6b13e64071b859f2cc0587b97cb4387abf9ddb2ff9a0
+export TX_HASH=0xb0afa070d660458bde0baebcfe4ac9974e919898027715ae4301fc087a5c7ec8
 ```
 
 ## Read the transaction call data
@@ -172,20 +179,21 @@ cast tx $TX_HASH --rpc-url localhost:8545
 The output will look similar to below:
 
 ```console
-blockHash            0xce5691878b61e3b5bbae66317512365ef6bb1f597b4dfc11e585abf470cdf4dd
-blockNumber          1164
-from                 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
-gas                  21072
-gasPrice             1000000007
-hash                 0xb8869dfecf9a5a0e26df6b13e64071b859f2cc0587b97cb4387abf9ddb2ff9a0
-input                0x0000000000000c2a00000000
-nonce                318
-r                    0x9a32da65f4dabf0e1c6d2a86d52c7d6f868997cfc1183fc28c5f0a0615a5e678
-s                    0x4ce385cc70a178b86d95de05428763805183276a6fd418c44e346a3838a70144
-to                   0xfF00000000000000000000000000000000000000
+blockHash            0xeac4a2bf8416e2d92119d46fa6994cf47d78e09e2bd55c478800df2401140f33
+blockNumber          24
+from                 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+gas                  89877
+gasPrice             1040625627
+hash                 0xb0afa070d660458bde0baebcfe4ac9974e919898027715ae4301fc087a5c7ec8
+input                0x9aaab6489022631e8a3a34c3a47fc3b793a1705c6c94bca329a4897284e5fadc393bcbf60000000000000000000000000000000000000000000000000000000000000014ccee9445a193e93747916cca8678ab75527c6bd63e028e8a31978cc040b005c80000000000000000000000000000000000000000000000000000000000000015
+nonce                1
+r                    0x87c8d52153d5d905cf9e4ca903825898dcbda5c6926f84d1e817aba182fe2a82
+s                    0x3e761aa91fe1f46c822be7eb5b7743014c271d0d7f41e39df638ef826bc14962
+to                   0xBf5FA562ed49AbdC496eFd501C93d3b7E7F14b41
 transactionIndex     0
-v                    0
+v                    1
 value                0
+yParity              1
 ```
 
 Now set the `input` as the `INPUT` variable, removing the `0x` from the beginning:
@@ -202,8 +210,16 @@ Remember to remove the `0x`!
 
 Now navigate to `optimism/op-celestia` and run:
 
+<!-- markdownlint-disable MD013 -->
+
 ```bash
-go run main.go $INPUT
+# set your auth token
+export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -q) celestia bridge --node.store /home/celestia/bridge/ auth admin)
+
+# set namespace
+export NAMESPACE=000008e5f679bf7116cb
+
+go run main.go $NAMESPACE $INPUT $CELESTIA_NODE_AUTH_TOKEN
 ```
 
 Your result will look similar to the below!
