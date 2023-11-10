@@ -137,9 +137,17 @@ Now, you can mount this directory to the container.
 Before mounting a volume, you _may_ need to set permissions for
 the user on the host machine by running:
 
-```bash
+::: code-group
+
+```bash [Linux]
 sudo chown 10001:10001 $HOME/my-node-store
 ```
+
+```bash [Mac]
+# you're good to go 😎
+```
+
+:::
 
 ### Initialize the node store and key
 
