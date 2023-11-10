@@ -76,16 +76,10 @@ consensus full node with no pruning for your bridge node.
 
 RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with:
 
-- `public-celestia-da.numia.xyz`
-  - gRPC: port 9090
-  - RPC: port 26657
-- `celestia-consensus.mesa.newmetric.xyz`
+- `rpc.celestia.pops.one`
   - gRPC: port 9090
   - RPC: port 26657
 - `consensus.lunaroasis.net`
-  - gRPC: port 9090
-  - RPC: port 26657
-- `rpc.celestia.pops.one`
   - gRPC: port 9090
   - RPC: port 26657
 
