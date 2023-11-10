@@ -30,6 +30,6 @@ You can interact with the Blobstream contracts today on testnet. The Blobstream 
 smart contracts are currently deployed on the following Ethereum testnet:
 
 - [Blobstream on Sepolia](https://sepolia.etherscan.io/address/0xf148a9a767f19edcf9a7d125fe143db1b5792ad6)
-  - Which attests to the data published on the Arabica devnet
+  - Which attests to the data published on the Mocha testnet
 - [Blobstream X on Goerli](https://goerli.etherscan.io/address/0x67ea962864cdad3f2202118dc6f65ff510f7bb4d)
   - Which attests to the data published on the Mocha testnet
