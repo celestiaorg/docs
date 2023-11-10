@@ -36,7 +36,10 @@ Ubuntu. You can
 
 ## Prerequisites
 
-- [Docker Desktop](https://docs.docker.com/get-docker) and basic understanding of Docker
+- [Docker Desktop for Mac or Windows](https://docs.docker.com/get-docker) and a basic
+understanding of Docker
+- [Docker Engine for Linux](https://docs.docker.com/engine/install/) and a
+basic understanding of Docker
 
 ## Quick start
 
@@ -143,7 +146,7 @@ the user on the host machine by running:
 sudo chown 10001:10001 $HOME/my-node-store
 ```
 
-```bash [Mac]
+```bash [Docker Desktop on Mac]
 # you're good to go 😎
 ```
 
