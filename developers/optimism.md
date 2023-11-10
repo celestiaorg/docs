@@ -7,6 +7,10 @@ next:
 
 # Deploy an OP Stack testnet with Celestia
 
+:::danger NOTE
+This deployment guide is a work in progress and is not up to date.
+:::
+
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import constants from '/.vitepress/constants/constants.js'
