@@ -28,7 +28,7 @@ Check out to the version for either the stable version or upstream version:
 ::: code-group
 
 ```bash-vue [v1.2.0 stable]
-git checkout tux/rebase-v.1.2.0
+git checkout tux/rebase-v1.2.0
 ```
 
 ```bash-vue [rebase upstream]
