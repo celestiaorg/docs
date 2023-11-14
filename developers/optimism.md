@@ -131,28 +131,30 @@ but this is not meant to be used in production.
 :::
 
 <!-- markdownlint-disable MD013 -->
+
 ```yaml
 da:
-    user: root
-    platform: "${PLATFORM}"
-    image: "ghcr.io/celestiaorg/celestia-node:v0.12.0"
-    command: celestia light start --core.ip rpc.celestia.pops.one --p2p.network celestia --log.level debug --gateway
-    environment:
-      - NODE_TYPE=light
-      - P2P_NETWORK=mocha
-    ports:
-      - "26657:26657"
-      - "26658:26658"
-      - "26659:26659"
-    volumes:
-      - $HOME/.celestia-light/:/home/celestia/.celestia-light/
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
+  user: root
+  platform: "${PLATFORM}"
+  image: "ghcr.io/celestiaorg/celestia-node:v0.12.0"
+  command: celestia light start --core.ip rpc.celestia.pops.one --p2p.network celestia --log.level debug --gateway
+  environment:
+    - NODE_TYPE=light
+    - P2P_NETWORK=mocha
+  ports:
+    - "26657:26657"
+    - "26658:26658"
+    - "26659:26659"
+  volumes:
+    - $HOME/.celestia-light/:/home/celestia/.celestia-light/
+  healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
+    interval: 10s
+    timeout: 5s
+    retries: 5
+    start_period: 30s
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 And in `bedrock-devnet/devnet__init__.py`
