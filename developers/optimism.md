@@ -187,3 +187,8 @@ To remove all data from the devnet, run the following command:
 ```bash
 make devnet-clean
 ```
+
+## Deploying to an L1 (or L2)
+
+If you'd like to deploy to an EVM L1 or L2,
+reference the [OP stack deployment guide](https://community.optimism.io/docs/developers/bedrock/node-operator-guide/).
