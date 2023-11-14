@@ -565,7 +565,7 @@ function sidebarHome() {
                   link: "/developers/optimism-devnet",
                 },
                 {
-                  text: "Deploy an OP Stack testnet on Celestia",
+                  text: "Deploy an OP Stack devnet on Celestia",
                   link: "/developers/optimism",
                 },
                 {
