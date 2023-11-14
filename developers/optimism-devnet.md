@@ -28,14 +28,13 @@ Check out to the version for either the stable version or upstream version:
 ::: code-group
 
 ```bash-vue [v1.2.0 stable]
-git checkout tux/rebase-v1.2.0
+git checkout tags/v0.2.0-OP_v1.2.0-CN_v0.12.0
+git submodule update --init --recursive
 ```
 
 ```bash-vue [rebase upstream]
 git checkout tux/rebase-upstream
-cd packages/contracts-bedrock/lib/forge-std/
-git submodule init && git submodule update
-cd ../../../../
+git submodule update --init --recursive
 ```
 
 :::
