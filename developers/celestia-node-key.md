@@ -53,20 +53,28 @@ For the purpose of this guide, we will use the `make cel-key` command.
 To generate a key for a Celestia node, select
 the tab for your node type:
 
+:::tip
+You do not need to declare a network for Mainnet Beta. Refer to
+[the chain ID section on the troubleshooting page for more information](../nodes/celestia-node-troubleshooting.md)
+:::
+
 ::: code-group
 
 <!-- markdownlint-disable MD013 -->
 
 ```bash-vue [Bridge]
-./cel-key add <key-name> --keyring-backend test --node.type bridge --p2p.network <network>
+./cel-key add <key-name> --keyring-backend test --node.type bridge \
+  --p2p.network <network>
 ```
 
 ```bash-vue [Full]
-./cel-key add <key-name> --keyring-backend test --node.type full --p2p.network <network>
+./cel-key add <key-name> --keyring-backend test --node.type full \
+  --p2p.network <network>
 ```
 
 ```bash-vue [Light]
-./cel-key add <key-name> --keyring-backend test --node.type light --p2p.network <network>
+./cel-key add <key-name> --keyring-backend test --node.type light \
+  --p2p.network <network>
 ```
 
 <!-- markdownlint-enable MD013 -->
@@ -101,15 +109,18 @@ ASCII-armored format.
 <!-- markdownlint-disable MD013 -->
 
 ```bash-vue [Bridge]
-./cel-key export <key-name> --keyring-backend test --node.type bridge --p2p.network <network>
+./cel-key export <key-name> --keyring-backend test --node.type bridge \
+  --p2p.network <network>
 ```
 
 ```bash-vue [Full]
-./cel-key export <key-name> --keyring-backend test --node.type full --p2p.network <network>
+./cel-key export <key-name> --keyring-backend test --node.type full \
+  --p2p.network <network>
 ```
 
 ```bash-vue [Light]
-./cel-key export <key-name> --keyring-backend test --node.type light --p2p.network <network>
+./cel-key export <key-name> --keyring-backend test --node.type light \
+  --p2p.network <network>
 ```
 
 <!-- markdownlint-enable MD013 -->
@@ -126,15 +137,18 @@ then enter your bip39 mnemonic:
 <!-- markdownlint-disable MD013 -->
 
 ```bash-vue [Bridge]
-./cel-key add <key-name> --recover --keyring-backend test --node.type bridge --p2p.network <network>
+./cel-key add <key-name> --recover --keyring-backend test \
+  --node.type bridge --p2p.network <network>
 ```
 
 ```bash-vue [Full]
-./cel-key add <key-name> --recover --keyring-backend test --node.type full --p2p.network <network>
+./cel-key add <key-name> --recover --keyring-backend test \
+  --node.type full --p2p.network <network>
 ```
 
 ```bash-vue [Light]
-./cel-key add <key-name> --recover --keyring-backend test --node.type light --p2p.network <network>
+./cel-key add <key-name> --recover --keyring-backend test \
+  --node.type light --p2p.network <network>
 ```
 
 <!-- markdownlint-enable MD013 -->
@@ -153,17 +167,22 @@ then enter your bip39 mnemonic:
 
 - Docker installed on your machine
 - Understanding of the
-  [guide on how to run celestia-node with Docker](../nodes/docker-images.mdx).
+  [guide on how to run celestia-node with Docker](../nodes/docker-images.md).
 
 ### Running your node
 
-Run the Docker image (in this example, we are using a light node):
+Run the Docker image (in this example, we are using a light node on Mocha
+testnet):
 
 <!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import mochaVersions from "/.vitepress/constants/mocha_versions.js";
+</script>
 
-```bash
+```bash-vue
 docker run --name celestia-node -e NODE_TYPE=light -e P2P_NETWORK=mocha -p 26659:26659 \
-ghcr.io/celestiaorg/celestia-node:sha-747c9e5 celestia light start \
+ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} celestia light start \
 --core.ip rpc-mocha.pops.one --p2p.network mocha
 ```
 
@@ -173,6 +192,9 @@ ghcr.io/celestiaorg/celestia-node:sha-747c9e5 celestia light start \
 Refer to
 [the ports section of the celestia-node troubleshooting page](../nodes/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
+
+You do not need to declare a network for Mainnet Beta. Refer to
+[the chain ID section on the troubleshooting page for more information](../nodes/celestia-node-troubleshooting.md)
 :::
 
 List active containers in another window with:

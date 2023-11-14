@@ -496,6 +496,10 @@ function sidebarHome() {
           link: "/developers/ibc-relayer",
         },
         {
+          text: "IBC relayers",
+          link: "https://www.mintscan.io/celestia/relayers",
+        },
+        {
           text: "Node API",
           link: "/developers/node-api",
           collapsed: true,
@@ -620,6 +624,10 @@ function sidebarHome() {
               link: "/developers/celestia-app-vesting",
             },
             {
+              text: "How to stake TIA",
+              link: "/developers/how-to-stake-tia",
+            },
+            {
               text: "Staking dashboards",
               link: "/developers/staking",
             },
@@ -704,6 +712,10 @@ function sidebarHome() {
               link: "/community/cohort-one-content",
             },
           ],
+        },
+        {
+          text: "Incentivized testnet supplemental terms",
+          link: "/community/itn-tos",
         },
       ],
     },

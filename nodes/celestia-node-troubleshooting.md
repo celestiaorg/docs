@@ -5,6 +5,43 @@ description: A guide to troubleshooting common issues with Celestia Node.
 # Troubleshooting
 
 <!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+</script>
+
+## Network selection
+
+Note: If you do not select a network, the default network will be Mainnet Beta.
+
+```sh
+celestia <node-type> init --p2p.network <network>
+celestia <node-type> start --p2p.network <network> --core.ip <URI>
+```
+
+:::tip
+Refer to [the ports section of this page](#ports)
+for information on which ports are required to be open on your machine.
+:::
+
+:::tip NOTE
+It is advised before switching networks to reinitialize
+your node via `init` command. This is due to an old config being present.
+Re-initialisation will reset the config.
+:::
+
+### Chain ID
+
+When interacting with celestia-node, it is important to take into account
+the different chain IDs for different networks. For Mainnet Beta, there is
+no need to declare a chain ID, as the default is {{ constants.mainnetChainId }},
+_i.e._ no `--p2p.network string` flag is required for Mainnet Beta.
+
+| Network | Chain ID | `--p2p.network string` |
+|---------|----------|------------------------|
+| Mainnet Beta | {{ constants.mainnetChainId }} | not required (`--p2p.network celestia`) |
+| Mocha | {{ constants.mochaChainId }} | `--p2p.network mocha` |
+| Arabica | {{ constants.arabicaChainId }} | `--p2p.network arabica` |
 
 ## Ports
 
@@ -30,7 +67,7 @@ The following ports are used by Celestia nodes:
 | 26658 | HTTP     | localhost | RPC          | true                       | `--rpc.port string`     |
 | 26659 | HTTP     | localhost | REST Gateway | false                      | `--gateway.port string` |
 
-:::caution
+:::warning
 The gateway endpoints have been deprecated and will be removed in the future.
 If you would like to use them anyway, you can
 [find more details on GitHub](https://github.com/celestiaorg/celestia-node/pull/2360).
@@ -72,26 +109,6 @@ To show the keys you should add `--keyring-dir` like this example:
 ./cel-key list --p2p.network mocha --node.type full \
     --keyring-dir /home/user/celestia-<node-type>-location/keys/
 ```
-
-## Network selection
-
-Note: If you do not select a network, the default network will be 'Mocha'.
-
-```sh
-celestia <node-type> init --p2p.network <network>
-celestia <node-type> start --p2p.network <network> --core.ip <URI>
-```
-
-:::tip
-Refer to [the ports section of this page](#ports)
-for information on which ports are required to be open on your machine.
-:::
-
-:::tip NOTE
-It is advised before switching networks to reinitialize
-your node via `init` command. This is due to an old config being present.
-Re-initialisation will reset the config.
-:::
 
 ## Resetting your config
 

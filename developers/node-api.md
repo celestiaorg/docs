@@ -35,13 +35,13 @@ signing + providing RPC-level DOS protection.
 
 ### RPC API tutorial
 
-The [node tutorial](../node-tutorial/), which uses the RPC CLI, is the
+The [node tutorial](./node-tutorial.md), which uses the RPC CLI, is the
 recommended way
 to get started interacting with your Celestia node.
 
 ## Gateway API
 
-::: warning
+:::warning
 The gateway endpoints have been deprecated and will be removed in the future.
 If you would like to use them anyway, you can
 [find more details on GitHub](https://github.com/celestiaorg/celestia-node/pull/2360).
@@ -57,5 +57,5 @@ functionality.
 
 ### Gateway API tutorial
 
-Check out the [Prompt scavenger gateway API tutorial](../prompt-scavenger/)
+Check out the [Prompt scavenger gateway API tutorial](./prompt-scavenger.md)
 for more details.

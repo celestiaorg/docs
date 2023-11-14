@@ -76,16 +76,13 @@ consensus full node with no pruning for your bridge node.
 
 RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with:
 
-- `public-celestia-da.numia.xyz`
-  - gRPC: port 9090
-  - RPC: port 26657
 - `celestia-consensus.mesa.newmetric.xyz`
   - gRPC: port 9090
   - RPC: port 26657
-- `consensus.lunaroasis.net`
+- `rpc.celestia.pops.one`
   - gRPC: port 9090
   - RPC: port 26657
-- `rpc.celestia.pops.one`
+- `consensus.lunaroasis.net`
   - gRPC: port 9090
   - RPC: port 26657
 
@@ -99,6 +96,13 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `public-celestia-rpc.numia.xyz`
 - `celestia-rpc.mesa.newmetric.xyz`
 - `rpc.lunaroasis.net`
+- `rpc.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com`
+- `celestia-rpc.spidey.services`
+- `rpc-celestia.contributiondao.com`
+- `celestia.rpc.stakin-nodes.com`
+- `celestia.cumulo.org.es`
+- `rpc-celestia.mzonder.com`
 
 ### API endpoints
 
@@ -106,6 +110,13 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-rest.mesa.newmetric.xyz`
 - `api.celestia.pops.one`
 - `api.lunaroasis.net`
+- `api.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com/api`
+- `celestia-api.spidey.services`
+- `api-celestia.contributiondao.com`
+- `celestia.rest.stakin-nodes.com`
+- `celestia.api.cumulo.org.es`
+- `api-celestia.mzonder.com`
 
 ### gRPC endpoints
 
@@ -113,15 +124,25 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-grpc.mesa.newmetric.xyz`
 - `grpc.celestia.pops.one`
 - `grpc.lunaroasis.net:443`
+- `grpc.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com:9090`
+- `celestia-grpc.spidey.services`
+- `grpc-celestia.contributiondao.com`
+- `celestia.grpc.stakin-nodes.com:443`
+- `celestia.grpc.cumulo.org.es:443`
+- `grpc-celestia.mzonder.com:443`
+
+You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
 ## Explorers
 
 There are multiple explorers you can use for Mainnet Beta:
 
 - [https://celenium.io](https://celenium.io)
-- [https://celestiascan.com](https://celestiascan.com)
-- [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://celestia.explorers.guru](https://celestia.explorers.guru)
+- [https://explorer.modular.cloud/celestia-mainnet](https://explorer.modular.cloud/celestia-mainnet)
+- [https://mintscan.io/celestia](https://mintscan.io/celestia)
+- [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
 
 ## Network upgrades
 
