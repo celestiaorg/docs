@@ -1,15 +1,11 @@
 ---
-description: Start your own testnet with a modified version of optimism-bedrock.
+description: Start your own devnet with a modified version of optimism-bedrock.
 next:
   text: "Full stack dapp tutorial"
   link: "/developers/full-stack-modular-development-guide"
 ---
 
-# Deploy an OP Stack testnet with Celestia
-
-:::danger NOTE
-This deployment guide is a work in progress and is not up to date.
-:::
+# Deploy an OP Stack devnet to Celestia
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
@@ -17,7 +13,7 @@ import constants from '/.vitepress/constants/constants.js'
 
 </script>
 
-In order to deploy a testnet with Celestia, you will need to have a modified
+In order to deploy a devnet to Celestia, you will need to have a modified
 version of `optimism-bedrock`.
 Refer to the
 [steps to install dependencies and the modified version of OP Stack](./optimism-devnet.md)
@@ -27,7 +23,7 @@ for your environment setup.
 
 Using Celestia and OP stack, you have the option to either
 run a light node of your own or a `local-celestia-devnet`,
-which will give you a local devnet to test things out with.
+both of which will give you a local devnet to test things out with.
 
 ### Using a local devnet
 
@@ -67,8 +63,9 @@ and retrieve `PayForBlobs` to a Celestia network.
 If it is not synced, you will run into
 [errors similar to this](https://github.com/celestiaorg/celestia-node/issues/2151/).
 
-Visit the [Arabica page](../nodes/arabica-devnet.md)
-to visit the faucet.
+Visit the [Arabica](../nodes/arabica-devnet.md)
+or [Mocha](../nodes/mocha-testnet.md) pages to
+to visit their faucets.
 
 In order to mount existing data, you must have a node store that is
 in this directory:
@@ -92,23 +89,18 @@ $HOME/.celestia-light-{{constants.arabicaChainId}}
 This is the default location of the node store
 when you initialize and run a new Celestia node.
 
-::: warning
-The user in the `docker-compose-testnet.yml` is the `root` user,
-but this is not meant to be used in production.
-:::
-
 By default, the node will run with the account named
 `my_celes_key`.
 
 If you have your own setup you'd like to try, you can always edit
-`optimism/ops-bedrock/docker-compose-testnet.yml` to work with your setup.
+`optimism/ops-bedrock/docker-compose.yml` to work with your setup.
 
 ### Using a RaaS provider
 
 If you'd like to use a Rollups as a Service (RaaS) provider, you can do so
 by going to the RaaS category in the menu.
 
-## Build the testnet
+## Build the devnet
 
 Build TypeScript definitions for TS dependencies:
 
@@ -125,37 +117,73 @@ export SEQUENCER_BATCH_INBOX_ADDRESS=0xff00000000000000000000000000000000000000
 export L2OO_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 ```
 
-## Start the testnet
+## Start the devnet
 
 First, make sure your light node is synced and funded.
 
-Next, you can start up the testnet with the following command:
+This example is for Mainnet Beta.
+You can modify the `da:` section of your `docker-compose.yml`
+for your specific use, simiarly to the example below:
 
-```bash
-make testnet-up
+::: warning
+The user in the `docker-compose.yml` is the `root` user,
+but this is not meant to be used in production.
+:::
+
+<!-- markdownlint-disable MD013 -->
+```yaml
+da:
+    user: root
+    platform: "${PLATFORM}"
+    image: "ghcr.io/celestiaorg/celestia-node:v0.12.0"
+    command: celestia light start --core.ip rpc.celestia.pops.one --p2p.network celestia --log.level debug --gateway
+    environment:
+      - NODE_TYPE=light
+      - P2P_NETWORK=mocha
+    ports:
+      - "26657:26657"
+      - "26658:26658"
+      - "26659:26659"
+    volumes:
+      - $HOME/.celestia-light/:/home/celestia/.celestia-light/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+```
+<!-- markdownlint-enable MD013 -->
+
+And in `bedrock-devnet/devnet__init__.py`
+
+```py
+    result = run_command(["celestia", "light", "auth", "admin"],
+        cwd=paths.ops_bedrock_dir, capture_output=True,
+    )
 ```
 
-## View the logs of the testnet
+## View the logs of the devnet
 
-If you'd like to view the logs of the testnet, run the following command
+If you'd like to view the logs of the devnet, run the following command
 from the root of the Optimism directory:
 
 ```bash
-make testnet-logs
+make devnet-logs
 ```
 
-## Stop the testnet
+## Stop the devnet
 
-To safely stop the testnet, run the following command:
+To safely stop the devnet, run the following command:
 
 ```bash
-make testnet-down
+make devnet-down
 ```
 
-## Clean the testnet
+## Clean the devnet
 
-To remove all data from the testnet, run the following command:
+To remove all data from the devnet, run the following command:
 
 ```bash
-make testnet-clean
+make devnet-clean
 ```
