@@ -98,7 +98,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 
 #### Consensus RPC endpoints
 
-- `public-celestia-da.numia.xyz`
+- `public-celestia-rpc.numia.xyz`
 - `celestia-rpc.mesa.newmetric.xyz`
 - `rpc.lunaroasis.net`
 - `rpc.celestia.nodestake.top`
