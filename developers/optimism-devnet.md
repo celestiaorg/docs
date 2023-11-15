@@ -77,7 +77,7 @@ from the root of the Optimism directory:
 make devnet-logs
 ```
 
-:::tip optional
+:::tip Optional
 
 ### Stop devnet
 
