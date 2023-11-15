@@ -70,8 +70,10 @@ celestia <da_type> start –core.ip <url> –core.rpc.port <port> \
 :::
 
 :::tip Bridge nodes
-These RPC endpoints do not guarantee the full block history. Run your own
-consensus full node with no pruning for your bridge node.
+Not all of the RPC endpoints do not guarantee the full block history.
+Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
+or run your own consensus full node with no pruning for
+your bridge node.
 :::
 
 RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with:
