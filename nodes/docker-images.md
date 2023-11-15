@@ -37,9 +37,9 @@ Ubuntu. You can
 ## Prerequisites
 
 - [Docker Desktop for Mac or Windows](https://docs.docker.com/get-docker) and a basic
-understanding of Docker
+  understanding of Docker
 - [Docker Engine for Linux](https://docs.docker.com/engine/install/) and a
-basic understanding of Docker
+  basic understanding of Docker
 
 ## Quick start
 

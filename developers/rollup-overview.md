@@ -28,7 +28,7 @@ Over time, two primary designs emerged for rollups:
   - [Deploy a smart contract on Bubs testnet](./deploy-on-bubs.md)
   - [Deploy a dapp on Bubs testnet](./gm-portal-bubs.md)
   - [Deploy an OP Stack devnet](./optimism-devnet.md)
-  - [Deploy an OP Stack testnet on Celestia](./optimism.md)
+  - [Deploy an OP Stack devnet on Celestia](./optimism.md)
   - [Deploy a dapp on Thirdweb](https://thirdweb.com/bubs-testnet)
   - [Rollups as a Service](https://docs.celestia.org/category/rollups-as-a-service/)
 - Astria

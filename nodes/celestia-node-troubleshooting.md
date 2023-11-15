@@ -37,11 +37,11 @@ the different chain IDs for different networks. For Mainnet Beta, there is
 no need to declare a chain ID, as the default is {{ constants.mainnetChainId }},
 _i.e._ no `--p2p.network string` flag is required for Mainnet Beta.
 
-| Network | Chain ID | `--p2p.network string` |
-|---------|----------|------------------------|
+| Network      | Chain ID                       | `--p2p.network string`                  |
+| ------------ | ------------------------------ | --------------------------------------- |
 | Mainnet Beta | {{ constants.mainnetChainId }} | not required (`--p2p.network celestia`) |
-| Mocha | {{ constants.mochaChainId }} | `--p2p.network mocha` |
-| Arabica | {{ constants.arabicaChainId }} | `--p2p.network arabica` |
+| Mocha        | {{ constants.mochaChainId }}   | `--p2p.network mocha`                   |
+| Arabica      | {{ constants.arabicaChainId }} | `--p2p.network arabica`                 |
 
 ## Ports
 
