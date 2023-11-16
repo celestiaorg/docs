@@ -123,7 +123,7 @@ First, make sure your light node is synced and funded.
 
 This example is for Mainnet Beta.
 You can modify the `da:` section of your `$HOME/optimism/ops-bedrock/docker-compose.yml`
-for your specific use, simiarly to the example below:
+for your specific use, similarly to the example below:
 
 ::: warning
 The user in the `docker-compose.yml` is the `root` user,
