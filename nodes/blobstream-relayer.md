@@ -1,9 +1,9 @@
 ---
-sidebar_label: Blobstream relayer
-description: Learn about the Blobstream relayer.
+sidebar_label: Blobstream Relayer
+description: Learn about the Blobstream Relayer.
 ---
 
-# Blobstream relayer
+# Blobstream Relayer
 
 <!-- markdownlint-disable MD013 -->
 
@@ -108,20 +108,16 @@ Usage:
   blobstream relayer start <flags> [flags]
 ```
 
+Also, you can set the necessary configuration in the relayers's TOML config file. You can find the latter in the relayer's home directory under `config/config.toml`.
+
+> **_NOTE:_** The CLI flags take precedence over the config files for the same parameters.
+
 To start the relayer using the default home directory, run the following:
 
 ```sh
-/bin/blobstream relayer start \
-  --evm.contract-address=0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 \
-  --core.rpc.host=localhost \
-  --core.rpc.port=26657 \
-  --core.grpc.host=localhost \
-  --core.grpc.port=9090 \
-  --evm.chain-id=4 \
-  --evm.rpc=http://localhost:8545 \
-  --evm.account=0x35a1F8CE94187E4b043f4D57548EF2348Ed556c8 \
-  --p2p.bootstrappers=/ip4/127.0.0.1/tcp/30001/p2p/12D3KooWFFHahpcZcuqnUhpBoX5fJ68Qm5Hc8dxiBcX1oo46fLxh \
-  --p2p.listen-addr=/ip4/0.0.0.0/tcp/30001
+/bin/blobstream relayer start --evm.account=0x35a1F8CE94187E4b043f4D57548EF2348Ed556c8
 ```
 
-And, you will be prompted to enter your EVM key passphrase for the EVM address passed using the `-d` flag, so that the relayer can use it to send transactions to the target Blobstream smart contract. Make sure that it's funded.
+> **_NOTE:_** The above command assumes that the necessary configuration is specified in the  `<relayer_home>/config/config.toml` file.
+
+Then, you will be prompted to enter your EVM key passphrase for the EVM address passed using the `--evm.account` flag, so that the relayer can use it to send transactions to the target Blobstream smart contract. Make sure that it's funded.
