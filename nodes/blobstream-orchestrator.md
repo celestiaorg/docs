@@ -95,7 +95,7 @@ To import your EVM private key, there is the `import` subcommand to assist you w
 blobstream orchestrator keys evm import --help
 ```
 
-This subcommand allows you to either import a raw ECDSA private key provided as plaintext, or import it from a file. The files are JSON keystore files encrypted using a passphrase like in [this example](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts).
+This subcommand allows you to either import a raw ECDSA private key provided as plaintext, import it from a file, or use a BIP39 mnemonic and derive a private key from it. The files are JSON keystore files encrypted using a passphrase like in [this example](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts).
 
 After adding the key, you can check that it's added via running:
 
@@ -132,9 +132,9 @@ blobstream orchestrator start --evm.account 0x966e6f22781EF6a6A82BBB4DB3df8E225D
 
 > **_NOTE:_** The above command assumes that the necessary configuration is specified in the  `<orchestrator_home>/config/config.toml` file.
 
-Then, you will be prompted to enter your EVM key passphrase so that the orchestrator can use it to sign attestations. Make sure that it's the EVM address that was provided when creating the validator. If not, then the orchestrator will not sign, and you will keep seeing a "validator not part of valset" warning message. If you see such message, first verify that your validator is part of the active validator set. If so, then probably the EVM address provided to the orchestrator is not the right one, and you should check which EVM address is registered to your validator. Check the next section for more information.
+Then, you will be prompted to enter your EVM key passphrase so that the orchestrator can use it to sign attestations. Make sure that it's the EVM address that was provided when creating the validator. If not, then the orchestrator will not sign, and you will keep seeing a "validator not part of valset" warning message. If you see such message, first verify that your validator is part of the active validator set. If so, then probably the EVM address provided to the orchestrator is not the right one, and you should check which EVM address is registered to your validator. Check the [Register EVM Address](#register-evm-address) section for more information.
 
-If you no longer have access to your EVM address, you could always edit your validator with a new EVM address. This can be done through the `edit-validator` command. Check the next section.
+If you no longer have access to your EVM address, you could always edit your validator with a new EVM address. This can be done through the `edit-validator` command. Check the [Register EVM Address](#register-evm-address) section.
 
 ### Open the P2P port
 
@@ -142,7 +142,23 @@ In order for the signature propagation to be successful, you will need to expose
 
 If not, then the signatures may not be available to the network and relayers will not be able to query them.
 
-#### Register EVM Address
+### Known issues
+
+#### `transport: authentication handshake failed`
+
+```text
+rpc error: code = Unavailable desc = connection error: desc = "transport: authentication handshake failed: tls: first record does not look like a TLS handshake" 
+```
+
+Seeing this error means that the orchestrator/relayer is trying to connect to a gRPC endpoint that is not secure. To bypass this, use the `--grpc.insecure` flag. However, we recommend using secure gRPC connections.
+
+#### `failed to query last valset before nonce (most likely pruned)`
+
+This warning shows that an attestation, that is needed by the orchestrator/relayer, has been pruned from the state machine. However, it's not an issue since we implemented fallback mechanisms that will use the P2P network to get it. And if that doesn't work, connecting the orchestrator/relayer to an archive node will get that attestation.
+
+So, seeing that warning is not a problem.
+
+### Register EVM Address
 
 When creating a validator, a random EVM address corresponding to its operator is set in the Blobstream state. This latter will be used by the orchestrator to sign attestations. And since validators will generally not have access to its corresponding private key, that address needs to be edited with one whose private key is known to the validator operator.
 
@@ -159,13 +175,13 @@ This assumes that you're using the default home directory, the default keystore 
 To check which EVM address is registered for your `valoper` address, run the following:
 
 ```sh
-celestia-appd query blobstream evm <validator_valoper_address>
+celestia-appd query qgb evm <validator_valoper_address>
 ```
 
 Then, to proceed with the edit, run the following command:
 
 ```shell
-celestia-appd tx blobstream register \
+celestia-appd tx qgb register \
     <valoper_address> \
     <new_evm_address> \
     --fees 30000utia \
@@ -256,7 +272,7 @@ txhash: 4199EA959A2CFEFCD4726D8D8F7B536458A46A27318D3483A4E9614F560606BC
 Now, you can verify that the EVM address has been updated using the following command:
 
 ```sh
-celestia-appd query blobstream evm <validator_valoper_address>
+celestia-appd query qgb evm <validator_valoper_address>
 ```
 
 Now, you can restart the orchestrator, and it should start signing.
