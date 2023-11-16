@@ -107,7 +107,7 @@ Build TypeScript definitions for TS dependencies:
 ```bash
 cd $HOME
 cd optimism
-make build-ts
+make
 ```
 
 Set environment variables to start network:
@@ -122,7 +122,7 @@ export L2OO_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 First, make sure your light node is synced and funded.
 
 This example is for Mainnet Beta.
-You can modify the `da:` section of your `docker-compose.yml`
+You can modify the `da:` section of your `$HOME/optimism/ops-bedrock/docker-compose.yml`
 for your specific use, simiarly to the example below:
 
 ::: warning
@@ -134,19 +134,21 @@ but this is not meant to be used in production.
 
 ```yaml
 da:
-  user: root
-  platform: "${PLATFORM}"
-  image: "ghcr.io/celestiaorg/celestia-node:v0.12.0"
-  command: celestia light start --core.ip rpc.celestia.pops.one --p2p.network celestia --log.level debug --gateway
-  environment:
-    - NODE_TYPE=light
-    - P2P_NETWORK=mocha
+  user: root // [!code ++]
+  platform: "${PLATFORM}" // [!code --]
+  platform: linux/x86_64 // [!code ++]
+  image: "ghcr.io/rollkit/local-celestia-devnet:v0.12.1" // [!code --]
+  image: "ghcr.io/celestiaorg/celestia-node:v0.12.0" // [!code ++]
+  command: celestia light start --core.ip rpc.celestia.pops.one --p2p.network celestia --log.level debug --gateway // [!code ++]
+  environment: // [!code ++]
+    - NODE_TYPE=light // [!code ++]
+    - P2P_NETWORK=mocha // [!code ++]
   ports:
     - "26657:26657"
     - "26658:26658"
     - "26659:26659"
-  volumes:
-    - $HOME/.celestia-light/:/home/celestia/.celestia-light/
+  volumes: // [!code ++]
+    - $HOME/.celestia-light/:/home/celestia/.celestia-light/ // [!code ++]
   healthcheck:
     test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
     interval: 10s
@@ -155,12 +157,11 @@ da:
     start_period: 30s
 ```
 
-<!-- markdownlint-enable MD013 -->
-
-And in `bedrock-devnet/devnet__init__.py`
+And in `$HOME/optimism/bedrock-devnet/devnet__init__.py`
 
 ```py
-    result = run_command(["celestia", "light", "auth", "admin"],
+    result = run_command(["docker", "exec", "ops-bedrock-da-1", "celestia", "bridge", "auth", "admin", "--node.store", "/home/celestia/bridge"], // [!code --]
+    result = run_command(["celestia", "light", "auth", "admin"], // [!code ++]
         cwd=paths.ops_bedrock_dir, capture_output=True,
     )
 ```
