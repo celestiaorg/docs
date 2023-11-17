@@ -60,16 +60,16 @@ Now, we can deploy the Blobstream contract to a new EVM chain:
 blobstream deploy \
   --evm.chain-id 4 \
   --evm.contract-address 0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 \
-  --core.grpc.host localhost \
-  --core.grpc.port 9090 \
+  --core.grpc localhost:9090 \
+  --core.rpc localhost:26657 \
   --starting-nonce latest \
   --evm.rpc http://localhost:8545
 ```
 
-The `latest` can be replaced by the following:
+The `--starting-nonce` can have the following values:
 
 - `latest`: to deploy the Blobstream contract starting from the latest validator set.
 - `earliest`: to deploy the Blobstream contract starting from genesis.
-- `nonce`: you can provide a custom nonce on where you want Blobstream to start. If the provided nonce is not a `Valset` attestation, then the one before it will be used to deploy the Blobstream smart contract.
+- `nonce`: you can provide a custom nonce on where you want Blobstream to start. If the provided nonce is not a `Valset` attestation, then the valset before it will be used to deploy the Blobstream smart contract.
 
 And, now you will see the Blobstream smart contract address in the logs along with the transaction hash.

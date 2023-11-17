@@ -51,16 +51,16 @@ validator of your choice.
 
 On the following screen enter amount of TIA tokens and select `Stake`.
 
-A Keplr popup will appear, requesting your approval for the transaction. Select
-`Approve`.
+A Keplr popup will appear, requesting your approval for the
+transaction. Select `Approve`.
 
 ![Keplr1](/img/keplr/keplr3.gif)
 
 ### :four: Confirm and manage your TIA
 
-After the transaction is confirmed, you will see the following overview
-dashboard where you can claim rewards, unstake, redelegate, or stake
-additional tokens.
+After the transaction is confirmed, you will see the following
+overview dashboard where you can claim rewards, unstake, redelegate,
+or stake additional tokens.
 
 ![Keplr1](/img/keplr/keplr4.gif)
 
@@ -76,18 +76,18 @@ Similarly to previous step, select the `+Stake` button.
 
 ### :two: Select a validator and stake TIA
 
-On the following screen choose a validator of your choice, enter the desired
-amount, and click `Review`.
+On the following screen choose a validator of your choice, enter
+the desired amount, and click `Review`.
 
-Following that, review the transaction details and select `Stake`, then wait
-for the transaction to finalize.
+Following that, review the transaction details and select `Stake`,
+then wait for the transaction to finalize.
 
 ![Keplr1](/img/leap/leap2.gif)
 
 ### :three: Confirm and manage your TIA
 
-After the transaction is confirmed, you will see the following overview
-dashboard where you can claim rewards, unstake, redelegate, or stake additional
-tokens.
+After the transaction is confirmed, you will see the following
+overview dashboard where you can claim rewards, unstake, redelegate,
+or stake additional tokens.
 
 ![Keplr1](/img/leap/leap3.gif)

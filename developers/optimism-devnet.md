@@ -10,7 +10,8 @@ This guide will show you how to run your own OP Stack devnet.
 
 ### Environment setup and Golang installation
 
-First, [install dependencies](../nodes/environment.md).
+First, [install dependencies for Celestia software](../nodes/environment.md)
+and for [OP Stack](https://community.optimism.io/docs/developers/build/dev-node/).
 
 ### Clone repository
 
@@ -22,148 +23,21 @@ git clone https://github.com/celestiaorg/optimism
 cd optimism
 ```
 
-Check out to the version for either the devnet (this page) or
-[testnet](./optimism.md) tutorial:
+Check out to the version for either the stable version or upstream version:
 
 ::: code-group
 
-```bash-vue [Devnet]
-git checkout v0.1.3-OP_v1.0.6-CN_v0.11.0-rc8
+```bash-vue [v1.2.0 stable]
+git checkout tags/v0.2.0-OP_v1.2.0-CN_v0.12.0
+git submodule update --init --recursive
 ```
 
-```bash-vue [Testnet]
-git checkout v0.1.3-OP_v1.0.6-CN_v0.11.0-rc8
+```bash-vue [celestia-develop]
+git checkout celestia-develop
+git submodule update --init --recursive
 ```
 
 :::
-
-### asdf
-
-[Install `asdf`](https://asdf-vm.com/guide/getting-started.html)
-to allow us to install a specific version of node easily.
-
-Here is an example for Ubuntu using bash:
-
-```bash
-cd $HOME
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
-echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
-echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
-```
-
-Set the path from the asdf documentation based on your operating
-system and shell type.
-
-Here is an example for Ubuntu using bash:
-
-```bash
-export PATH=$PATH:~/.asdf/bin/
-```
-
-Check that it was installed:
-
-```bash
-asdf
-```
-
-### Node.js
-
-Install `nodejs 16.16.0`:
-
-```bash
-asdf plugin add nodejs
-asdf install nodejs 16.16.0
-asdf local nodejs 16.16.0
-source ~/.bashrc
-```
-
-Install [NPM](https://www.npmjs.com/):
-
-```bash
-apt install npm
-```
-
-Update NPM to v9.6.5:
-
-```bash
-npm install -g npm@9.6.5
-```
-
-If using NVM, install NPM v9.6.5:
-
-```bash
-nvm install v9.6.5
-```
-
-Then set the version:
-
-```bash
-nvm use v9.6.5
-```
-
-### python
-
-Install python 3.10.7:
-
-```bash
-asdf plugin-add python
-asdf install python 3.10.7
-asdf local python 3.10.7
-source ~/.bashrc
-```
-
-### Foundry
-
-Download the Foundry script execute it to set up environment:
-
-```bash
-curl -L https://foundry.paradigm.xyz/ | bash
-```
-
-Set path:
-
-```bash
-source /root/.bashrc
-```
-
-Run foundryup to install Foundry (`forge`, `cast`, `anvil`, `chisel`):
-
-```bash
-foundryup
-```
-
-### Yarn
-
-Install yarn:
-
-```bash
-npm install -g yarn
-```
-
-Depending on the version installed,
-you may need to update your version of NPM.
-
-### Docker compose
-
-Install docker-compose:
-
-```bash
-apt install docker-compose
-```
-
-### gcc & libusb
-
-```bash
-apt install gcc libusb-1.0-0-dev
-```
-
-### macOS only: set up python
-
-```bash
-brew install python3
-npm config set python /usr/local/bin/python3
-npm cache clean --force
-```
 
 ## Build devnet
 
@@ -172,7 +46,7 @@ Build TypeScript definitions for TS dependencies:
 ```bash
 cd $HOME
 cd optimism
-yarn && make build-ts
+make
 ```
 
 Set environment variables to start network:
@@ -203,30 +77,7 @@ from the root of the Optimism directory:
 make devnet-logs
 ```
 
-:::tip optional
-
-#### lazydocker
-
-You can install [lazydocker](https://github.com/jesseduffield/lazydocker)
-to view all of the components of your stack in one TUI by running:
-
-```bash
-asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
-asdf list all lazydocker
-asdf install lazydocker 0.12
-asdf global lazydocker 0.12
-```
-
-And run the command:
-
-```bash
-lazydocker
-```
-
-If you do this, you can skip the [viewing containers](#viewing-containers)
-section and [find a transaction](#find-a-transaction).
-
-:::
+:::tip Optional
 
 ### Stop devnet
 
@@ -269,6 +120,8 @@ docker logs -f <container-id>
 You can do the same for other containers as you
 explore the stack.
 
+:::
+
 ## Find a transaction
 
 Now, we'll check for a recent transaction on the L1 with:
@@ -282,33 +135,34 @@ Output of a block that contains a transaction will look like this:
 ```console
 baseFeePerGas        7
 difficulty           2
-extraData            0xd883010a16846765746888676f312e31382e35856c696e75780000000000000001749030eb8e51903cf49e2c8c21e7ff98aaa7d45e3ecd51b8594440c5c66e9931b70b18d1a629212074f3ef9188bd0a9079e094e414d287f73d40ea8392349600
+extraData            0xd883010d04846765746888676f312e32312e33856c696e7578000000000000006b3afa42dce1f87f1f07a1ef569c4d43e41738ef93c865098bfa1458645f384e2e4498bcfe4ad9353ff1913a2e16162f496fafe5b0939a6c78fb5b503248d6da01
 gasLimit             30000000
-gasUsed              21072
-hash                 0x9d764f5e3e2ccf5a334ae4fbe3827e7b80750f39aa671c958b5c09a9b67d9dfc
+gasUsed              21568
+hash                 0x1cb54d2369752ef73511c202ff9cdfd0eadf3a77b7aef0092bea63f2b5d57659
 logsBloom            0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 miner                0x0000000000000000000000000000000000000000
 mixHash              0x0000000000000000000000000000000000000000000000000000000000000000
 nonce                0x0000000000000000
-number               1569
-parentHash           0x1a5100654617b565bf2a117c7487a57c54d0c61b99d94592518fbc07b3fec45d
-receiptsRoot         0xa981da57b00630bb01a6eb02629212ea8b0c89281a07295ace6bb78c81193e68
+number               1141
+parentHash           0x664bf4bb4a57dd5768a0a98991d77c58fb7a4e164c2581c79fb33ce9c3d4c250
+receiptsRoot         0xaf8ff6af1180c8be9e4e8f3a5f882b3b227233f4abbefa479836d3721682a389
 sealFields           []
 sha3Uncles           0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347
-size                 740
-stateRoot            0x9d1e02cbf556997123676f47749a043b5bd9bebe629f5dbd3f256a7d5e37b665
-timestamp            1677272382
-totalDifficulty      3139
+size                 767
+stateRoot            0xd4b998a35d20d98ed3488221f0c161a0a9572d3de66399482553c8e3d2fae751
+timestamp            1699638350
+withdrawalsRoot
+totalDifficulty      2283
 transactions:        [
-    0x40b79afe3dc05ff398c2142ab47eb94ac3759a03dd1322b2d97bcdc2d1c34934
+  0x79a0a7a1b4936aafe7a37dbfb07a6a9e55c145a4ed6fd54f962649b4b7db8de7
 ]
 ```
 
-And copy the transaction hash from `transactions: <transaction-hash>` and
+Copy the transaction hash from `transactions: <transaction-hash>` and
 set it as a variable:
 
 ```bash
-export TX_HASH=0xb8869dfecf9a5a0e26df6b13e64071b859f2cc0587b97cb4387abf9ddb2ff9a0
+export TX_HASH=0x79a0a7a1b4936aafe7a37dbfb07a6a9e55c145a4ed6fd54f962649b4b7db8de7
 ```
 
 ## Read the transaction call data
@@ -322,26 +176,27 @@ cast tx $TX_HASH --rpc-url localhost:8545
 The output will look similar to below:
 
 ```console
-blockHash            0xce5691878b61e3b5bbae66317512365ef6bb1f597b4dfc11e585abf470cdf4dd
-blockNumber          1164
+blockHash            0x1cb54d2369752ef73511c202ff9cdfd0eadf3a77b7aef0092bea63f2b5d57659
+blockNumber          1141
 from                 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
-gas                  21072
+gas                  33996
 gasPrice             1000000007
-hash                 0xb8869dfecf9a5a0e26df6b13e64071b859f2cc0587b97cb4387abf9ddb2ff9a0
-input                0x0000000000000c2a00000000
-nonce                318
-r                    0x9a32da65f4dabf0e1c6d2a86d52c7d6f868997cfc1183fc28c5f0a0615a5e678
-s                    0x4ce385cc70a178b86d95de05428763805183276a6fd418c44e346a3838a70144
-to                   0xfF00000000000000000000000000000000000000
+hash                 0x79a0a7a1b4936aafe7a37dbfb07a6a9e55c145a4ed6fd54f962649b4b7db8de7
+input                0x3501000000000000b67f8dcfdc9125b76d4184ca1686d971aafec1a5a87398a060f31c533502d5c7
+nonce                153
+r                    0x3561ffc7c87fb7ceabd0e4b670b4ebe0c3b352e3a1f439dd44352dde7cd4cf6e
+s                    0x6630ff8044936856a459c3fab2bc5d509b5c2f8f75ce7b90e651ef5238608c8c
+to                   0xFf00000000000000000000000000000000000901
 transactionIndex     0
 v                    0
 value                0
+yParity              0
 ```
 
 Now set the `input` as the `INPUT` variable, removing the `0x` from the beginning:
 
 ```bash
-export INPUT=0000000000000c2a00000000
+export INPUT=3501000000000000b67f8dcfdc9125b76d4184ca1686d971aafec1a5a87398a060f31c533502d5c7
 ```
 
 :::tip
@@ -350,16 +205,24 @@ Remember to remove the `0x`!
 
 ## Find the data on Celestia
 
-Now navigate to `optimism/op-celestia` and run:
+Now, from `optimism` run:
+
+<!-- markdownlint-disable MD013 -->
 
 ```bash
-go run main.go $INPUT
+# set your auth token
+export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -q --filter name=da) celestia bridge --node.store /home/celestia/bridge/ auth admin)
+
+# set namespace
+export NAMESPACE=000008e5f679bf7116cb
+
+go run ./op-celestia/main.go $NAMESPACE $INPUT $CELESTIA_NODE_AUTH_TOKEN
 ```
 
 Your result will look similar to the below!
 
 ```console
-celestia block height: 3114; tx index: 0
+celestia block height: 309; tx index: [182 127 141 207 220 145 37 183 109 65 132 202 22 134 217 113 170 254 193 165 168 115 152 160 96 243 28 83 53 2 213 199]
 -----------------------------------------
-optimism block data on celestia: [00191cef8fb52cf322b77694ff5a92149800000000020b78dadae1c7f0c37b015fdd84970dfbe3ff4ab7abe8b9083c94aebe7df77e705bba47f8e72b762fadcecd6b62695920e9eee3e5369b3fd265726ebcfbfcbf3f5fcde3bd6960f53b7da1c147ae4fefe689b724ff54c83a0031ef93479f5a75f08e6a9bbd0b755c220e4ed8b3fd5c9cfc1b9ed0ca69dcabbf5cbd274aac793950f38ef6bd59e551e56d77fcf7aabd9287abd8af7b9de39cb3235732c58be7034774bf54134beb828c19b15f3553a74b64ffbd3a2fe0e8cbb77b0217dccb4f68de9774fbac5efaed040190797950f3e22bafc9d7884cf616d87db6a46ace99b277252dd36f9c7d5ebabfd46d5a71bec9872696b605173ccc153d4a7befbd69f64f6db25cc7dd59f86d5de586b457f7d759f73fe57fde0c32af006a5eebdcfb85d385b3ef3d158fbccaf263cb8b35cb2a58cc0f083f5cf3b742d555f3fe2362cd2b829a37c9c9446fedbf8d911f3f86cc79c335e960f26d5eef25e735f7dd9b926019dcf1ed5b134bfb02416e36be3b277635b757f36f2bff9260ddcf1f20132e5071afe8bcdd9ccdcffda440e69540cddbb548ecdd73863673ab122e2d36d69dfc8bd71be61dbae235cf63e3a9a0121141b726968e051d2b7ef076b11f3c9964b4fee0acfb93777fbd37d94dfdecfdd6836af39ebaaff58c07995706352fdf9259b773cfd42e0ed168914542c54ca28147969b18b7987ef233fcd41c1cde44ac79150700010000fffff649400701]
+optimism block data on celestia: 00947558eacae3195fd579e20c359929a700000000031b78dadae1c7f0c37b81ecf47299820f3f1619d717af10afef9c5cf3e7de678f03b60573d55cd97deb3b5f34b1242dd0dae4bf76e3490b76c769a756583027357f7bb723f69af2b5cf9f37475eaa29fe35bd25d52f47e200c4bc2be5254565b3c58b7fb9879d59a2f0e147f0bb6bd3ab3257cf955be391fff8f0f1bfc49a270535af8e7dd1cda66b6f1e7de397ec7bfb7042f4118609cf2e3f2f750daf37fb7ee2fec7a62696e4055c323befca9dca66d3fba42e5dde70ff7fdedd8ca7878cd6f2a686fcea5eebf9e616c83c19a879c2af5d6608b6ffd05fec9899bee797e3442d8bbda7cd1dcf78336cfa303d8f8be34a134bca82b7a7d8fd447df71dbd1e1fc911275a98e6f5e091c15293651baf7835e8063efe6408324f0e6ade3d81f7ab7725ed4ea95ec7bdfcd40fffcd0f6a13f35334e4cd0c65529b9f7fb8e644ac790a50f3d20e944f71babcb7f4d3d2ec8366aa773f7aefb5f5b8f45cd4f2e0724fbfbcc5caf24d2ca90b8a351e2e4990383d75a9adb3f48a72e5d78a13263e5defd39b63b05d9dc768be9b20c83c25a879965cf3e7d724f7572d59aa14dea85a73a8bde4920ebffb9b600e0da9b78c66ea364d2c690b7cfcd3eca6cf3f185d7ec762cb49ae9e9f4571d1c92eba13f6dc9d7ee59c9d77520ac83c15a879bebdeb77ccfaffe6bcd6899f06d74e046a7d12bddca4775df1885bfbf9c317d5ce3c20d63c35a8798f9f6a054fd9ddebb7dcbd256e430fc31dd345ebffaa2e14fecdb963755a6cb1e1e12696f40597747fbf5abfeac09e4d998c423fb4351fae350b2dbd32ed7ce0c64f8cfe8f56f2d980ccd3809ab7c8f648b872e4eb3e55ee17518e2eced73e4af92d6fd6f4bcb435f763bb5e9a4842134bc682e5fee73ccbbede55d9ad7dc97891f64cad3b2c57f4a333e65c940cfb5d66f4eea231c83c2da879c7cba664bf58fecdd3e0d5751671e7d77b1833b695a91598ec989aa73e75d15ea1adc49aa70335efedf7dc27737758e568f7db4ffaa777f142f32f0f91fd5bcf9b9f4938f7c55bfdaa72134be682459de247558fa5945b3a72f75c5cf4e0cf26e3c5b3eb52fb2bebe51eec5875faef3a90797a0700010000ffff6518dd6101
 ```
