@@ -401,13 +401,9 @@ function sidebarHome() {
             },
             { text: "Consensus", link: "/nodes/consensus-node" },
             {
-              text: "Blobstream ",
+              text: "Blobstream for validators",
               collapsed: true,
               items: [
-                {
-                  text: "Intro to Blobstream",
-                  link: "/nodes/blobstream-intro",
-                },
                 {
                   text: "Install the binary",
                   link: "/nodes/blobstream-binary",
