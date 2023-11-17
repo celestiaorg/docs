@@ -677,6 +677,10 @@ function sidebarHome() {
                 },
               ],
             },
+            {
+              text: "Slashing Mechanics",
+              link: "/developers/slashing",
+            },
           ],
         },
         {
