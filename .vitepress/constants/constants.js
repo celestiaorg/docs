@@ -12,7 +12,7 @@ const constants = Object.freeze({
   mochaRollkitVersion: "v0.10.5",
   mainnetRollkitVersion: "v0.10.5",
   localCelestiaDevnetVersion: "v0.8.2",
-  golangBlobstream: "1.20.2",
+  golangBlobstream: "1.21.4",
   orchrelayVersion: "v1.0.0-rc7",
   mochaRpcUrl: "https://rpc-mocha.pops.one/",
   mochaRestUrl: "https://api-mocha.pops.one/",

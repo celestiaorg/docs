@@ -11,7 +11,7 @@ The role of the relayer is to gather attestations' signatures from the orchestra
 
 Also, while every validator in the Celestia validator set needs to run an orchestrator, we only need one entity to run the relayer, and it can be anyone. Thus, if you're a validator, most likely you want to read [the orchestrator documentation](https://docs.celestia.org/nodes/blobstream-orchestrator/).
 
-Every relayer needs to target a Blobstream smart contract. This latter can be deployed, if not already, using the `blobstream deploy` command. More details in the [Deploy the Blobstream contract guide](https://docs.celestia.org/nodes/blobstream-deploy/).
+Every relayer needs to target a Blobstream smart contract. This contract can be deployed, if not already, using the `blobstream deploy` command. More details in the [Deploy the Blobstream contract guide](https://docs.celestia.org/nodes/blobstream-deploy/).
 
 ## How it works
 
@@ -24,7 +24,7 @@ The relayer works as follows:
 5. Once the relayer finds more than 2/3s signatures, it submits them to the target Blobstream smart contract where they get validated.
 6. Listen for new attestations and go back to step 2.
 
-The relayer connects to a separate P2P network than the consensus or the data availability one. So, we will provide bootstrappers for that one.
+The relayer connects to a separate P2P network from the consensus or the data availability one. So, we will provide bootstrappers for that one.
 
 This means that even if the consensus node is already connected to the consensus network, if the relayer doesn't start with a list of bootstrapper to its specific network, then, it will not work and will output the following logs:
 
@@ -108,7 +108,7 @@ Usage:
   blobstream relayer start <flags> [flags]
 ```
 
-Also, you can set the necessary configuration in the relayers's TOML config file. You can find the latter in the relayer's home directory under `config/config.toml`.
+Also, you can set the necessary configuration in the relayers's TOML config file. You can find the orchestrator's TOML config file in the relayer's home directory under `config/config.toml`.
 
 > **_NOTE:_** The CLI flags take precedence over the config files for the same parameters.
 
