@@ -418,6 +418,10 @@ function sidebarHome() {
                   text: "Deploy the contract",
                   link: "/nodes/blobstream-deploy",
                 },
+                {
+                  text: "Bootstrapper",
+                  link: "/nodes/blobstream-bootstrapper",
+                },
               ],
             },
           ],

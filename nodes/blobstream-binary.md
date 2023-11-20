@@ -67,6 +67,7 @@ blobstream --help
    [the Blobstream relayer page](./blobstream-relayer.md) for
    relayer docs and [the Blobstream deployment page](./blobstream-deploy.md) for
    how to deploy a new Blobstream contract.
+4. Optional: [Learn how to run a Blobstream bootstrapper node](./blobstream-bootstrapper.md)
 
 :::tip
 The Blobstream P2P network is a separate network than the consensus or
