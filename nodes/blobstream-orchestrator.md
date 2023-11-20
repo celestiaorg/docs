@@ -20,7 +20,7 @@ The orchestrator does the following:
 4. Then, the orchestrator pushes its signature to the P2P network it is connected to, via adding it as a DHT value.
 5. Listen for new attestations and go back to step 2.
 
-The orchestrator connects to a separate P2P network than the consensus or the data availability networks.
+The orchestrator connects to a separate P2P network from the consensus or the data availability networks.
 
 The bootstrapper node for the Mocha testnet is:
 
