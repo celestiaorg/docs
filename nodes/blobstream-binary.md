@@ -6,7 +6,7 @@ description: This guide shows you how to install the Blobstream binary.
 
 [Blobstream](https://blog.celestia.org/introducing-blobstream/)
 allows Ethereum developers to build high-throughput L2s using Celestia,
-the first data availability layer with Data Availability Sampling.
+the first data availability layer with data availability sampling.
 
 This page and following tutorials will go over Blobstream and how validators
 on Celestia can run it.

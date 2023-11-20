@@ -49,7 +49,7 @@ P2P network to the target EVM chain.
 
 :::tip NOTE
 If the contract is still not deployed, then it needs to be
-deployed before its used by the relayer. Check the
+deployed before it is used by the relayer. See the
 [deployment documentation](../nodes/blobstream-deploy.md) for more details.
 :::
 
@@ -61,7 +61,7 @@ assets such as fungible or non-fungible tokens directly, and cannot send
 messages from the EVM chain back to Celestia.
 
 It works by relying on a set of signers to attest to some event on Celestia:
-the Celestia validator set. Blobstream contract keeps track of the
+the Celestia validator set. The Blobstream contract keeps track of the
 Celestia validator set by updating its view of the validator set with
 `updateValidatorSet()`. More than 2/3 of the voting power of the current
 view of the validator set must sign off on new relayed events, submitted with

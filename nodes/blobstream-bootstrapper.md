@@ -20,7 +20,7 @@ Before starting the bootstrapper, we will need to init the store:
 blobstream bootstrapper init
 ```
 
-By default, the store will be created un `~/.bootstrapper`. However,
+By default, the store will be created in `~/.bootstrapper`. However,
 if you want to specify a custom location, you can use the `--home` flag.
 Or, you can use the following environment variable:
 
@@ -33,7 +33,7 @@ Or, you can use the following environment variable:
 ### Add keys
 
 The P2P private key is optional, and a new one will be generated automatically
-on the start if none is provided.
+on start up if none is provided.
 
 The `p2p` sub-command will help you set up this key if you want to use a specific
 one:
