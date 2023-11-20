@@ -22,6 +22,10 @@ The orchestrator does the following:
 
 The orchestrator connects to a separate P2P network than the consensus or the data availability networks.
 
+The bootstrapper node for the Mocha testnet is:
+
+- `/dns/bootstr-0-mocha-blobstream.celestia-mocha.com/tcp/30000/p2p/12D3KooWLrw6EQgDwvgqrqT8wLNJoQYN3SDAzaAxJgyiTa2xowyF`
+
 Make sure to specify the bootstrapper using the `--p2p.bootstrappers` flag when running the orchestrator or set it in the `<orchestrator_home>/config/config.toml` config file.
 
 This means that even if the consensus node is already connected to the consensus network, if the orchestrator doesn't start with a list of bootstrapper to its specific network, then, it will not work and will output the following logs:
