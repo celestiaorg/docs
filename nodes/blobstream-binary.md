@@ -23,8 +23,8 @@ import constants from '/.vitepress/constants/constants.js'
 </script>
 
 The [orchestrator](./blobstream-orchestrator.md) is the software that signs the
-Blobstream attestations, and the [relayer](./blobstream-relayer.md) is the one that
-relays them to the target EVM chain.
+Blobstream attestations, and the [relayer](./blobstream-relayer.md) is the
+software that relays them to the target EVM chain.
 
 The following sections in this category presume you have the following setup:
 
@@ -61,7 +61,7 @@ blobstream --help
 1. If you are a Celestia validator, all you need to do is run the
    orchestrator. Check out
    [the Blobstream orchestrator page](./blobstream-orchestrator.md) for more details.
-2. [Key management](./blobstream-keys.md)
+2. [Learn about key management](./blobstream-keys.md)
 3. Optional: If you want to post commitments on an EVM chain, you will need to deploy
    a new Blobstream contract and run a relayer. Check out
    [the Blobstream relayer page](./blobstream-relayer.md) for
@@ -76,7 +76,7 @@ bootstrappers to be able to connect to it.
 
 ### Useful links
 
-The smart contract implementation is in [blobstream](https://github.com/celestiaorg/blobstream-contracts/).
+The smart contract implementation is in [blobstream-contracts](https://github.com/celestiaorg/blobstream-contracts/).
 
 The state machine implementation is in [x/blobstream](https://github.com/celestiaorg/celestia-app/tree/main/x/blobstream).
 
