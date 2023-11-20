@@ -24,7 +24,7 @@ The relayer works as follows:
 5. Once the relayer finds more than 2/3s signatures, it submits them to the target Blobstream smart contract where they get validated.
 6. Listen for new attestations and go back to step 2.
 
-The relayer connects to a separate P2P network than the consensus or the data availability one. So, we will provide bootstrappers for that one.
+The relayer connects to a separate P2P network from the consensus or the data availability one. So, we will provide bootstrappers for that one.
 
 This means that even if the consensus node is already connected to the consensus network, if the relayer doesn't start with a list of bootstrapper to its specific network, then, it will not work and will output the following logs:
 

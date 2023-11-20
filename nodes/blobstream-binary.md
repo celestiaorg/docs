@@ -63,7 +63,8 @@ blobstream --help
    [the Blobstream orchestrator page](./blobstream-orchestrator.md) for more details.
 2. [Learn about key management](./blobstream-keys.md)
 3. Optional: If you want to post commitments on an EVM chain, you will need to deploy
-   a new Blobstream contract and run a relayer, or run a relayer for an already deployed Blobstream contract. Check out
+   a new Blobstream contract and run a relayer,
+   or run a relayer for an already deployed Blobstream contract. Check out
    [the Blobstream relayer page](./blobstream-relayer.md) for
    relayer docs and [the Blobstream deployment page](./blobstream-deploy.md) for
    how to deploy a new Blobstream contract.
