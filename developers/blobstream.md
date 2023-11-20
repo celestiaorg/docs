@@ -39,9 +39,9 @@ reference [the Blobstream smart contract](https://github.com/celestiaorg/blobstr
 
 The **orchestrator** is part of the validator setup and works as follows:
 
-- celestia-app: creates an attestation on the state machine level that needs to
+- celestia-app creates an attestation on the state machine level that needs to
   be signed
-- The orchestrator: queries the attestation, signs it, then submits the signature
+- The orchestrator queries the attestation, signs it, then submits the signature
   to the Blobstream P2P network
 
 The **relayer** submits the attestations' signatures from the Blobstream
@@ -52,26 +52,6 @@ If the contract is still not deployed, then it needs to be
 deployed before its used by the relayer. Check the
 [deployment documentation](../nodes/blobstream-deploy.md) for more details.
 :::
-
-## How to integrate
-
-Integrating your L2 with Blobstream requires two components: your onchain smart
-contract logic, and your offchain client logic. The next three sections cover these
-topics:
-
-- [Integrate with Blobstream contracts](./blobstream-contracts.md)
-- [Integrate with Blobstream client](./blobstream-offchain.md)
-- [Querying the Blobstream proofs](./blobstream-proof-queries.md)
-
-### Deployed contracts
-
-You can interact with the Blobstream contracts today on testnet. The Blobstream Solidity
-smart contracts are currently deployed on the following Ethereum testnet:
-
-- [Blobstream on Sepolia](https://sepolia.etherscan.io/address/0xf148a9a767f19edcf9a7d125fe143db1b5792ad6)
-  - Which attests to the data published on the Mocha testnet
-- [Blobstream X on Goerli](https://goerli.etherscan.io/address/0x67ea962864cdad3f2202118dc6f65ff510f7bb4d)
-  - Which attests to the data published on the Mocha testnet
 
 ## How Blobstream works
 
@@ -100,6 +80,26 @@ This results in an execution of the `updateValidatorSet` function.
 **Batches**:
 The relayer informs the Blobstream contract of new data root tuple roots.
 This results in an execution of the `submitDataRootTupleRoot` function.
+
+## How to integrate
+
+Integrating your L2 with Blobstream requires two components: your onchain smart
+contract logic, and your offchain client logic. The next three sections cover these
+topics:
+
+- [Integrate with Blobstream contracts](./blobstream-contracts.md)
+- [Integrate with Blobstream client](./blobstream-offchain.md)
+- [Querying the Blobstream proofs](./blobstream-proof-queries.md)
+
+### Deployed contracts
+
+You can interact with the Blobstream contracts today on testnet. The Blobstream Solidity
+smart contracts are currently deployed on the following Ethereum testnet:
+
+- [Blobstream on Sepolia](https://sepolia.etherscan.io/address/0xf148a9a767f19edcf9a7d125fe143db1b5792ad6)
+  - Which attests to the data published on the Mocha testnet
+- [Blobstream X on Goerli](https://goerli.etherscan.io/address/0x67ea962864cdad3f2202118dc6f65ff510f7bb4d)
+  - Which attests to the data published on the Mocha testnet
 
 ## Blobstream vs. data availability committees (DACs)
 
