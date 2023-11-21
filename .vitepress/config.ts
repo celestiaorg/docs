@@ -586,7 +586,7 @@ function sidebarHome() {
             },
             {
               text: "Full stack dapp tutorial",
-              link: "/developers/full-stack-modular-development-guide",
+              link: "https://rollkit.dev/tutorials/polaris-evm",
             },
             {
               text: "Astria",
