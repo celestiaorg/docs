@@ -24,7 +24,9 @@ The orchestrator connects to a separate P2P network from the consensus or the da
 
 The bootstrapper node for the Mocha testnet is:
 
-- `/dns/bootstr-0-mocha-blobstream.celestia-mocha.com/tcp/30000/p2p/12D3KooWLrw6EQgDwvgqrqT8wLNJoQYN3SDAzaAxJgyiTa2xowyF`
+```sh
+/dns/bootstr-0-mocha-blobstream.celestia-mocha.com/tcp/30000/p2p/12D3KooWLrw6EQgDwvgqrqT8wLNJoQYN3SDAzaAxJgyiTa2xowyF
+```
 
 Make sure to specify the bootstrapper using the `--p2p.bootstrappers` flag when running the orchestrator or set it in the `<orchestrator_home>/config/config.toml` config file.
 
