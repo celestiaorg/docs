@@ -20,13 +20,13 @@ The orchestrator does the following:
 4. Then, the orchestrator pushes its signature to the P2P network it is connected to, via adding it as a DHT value.
 5. Listen for new attestations and go back to step 2.
 
-The orchestrator connects to a separate P2P network than the consensus or the data availability one. So, we will provide bootstrappers for that one.
+The orchestrator connects to a separate P2P network from the consensus or the data availability networks.
 
-Bootstrapper for the Blockspace Race is:
+The bootstrapper node for the Mocha testnet is:
 
-- `/dns/bootstr-incent-1.celestia.tools/tcp/30000/p2p/12D3KooWSGZ2LXW2soQFHgU82uLfN7pNW5gMMkTnu1fhMXG43TvP`
+- `/dns/bootstr-0-mocha-blobstream.celestia-mocha.com/tcp/30000/p2p/12D3KooWLrw6EQgDwvgqrqT8wLNJoQYN3SDAzaAxJgyiTa2xowyF`
 
-Make sure to specify it using the `-b` flag when running the orchestrator.
+Make sure to specify the bootstrapper using the `--p2p.bootstrappers` flag when running the orchestrator or set it in the `<orchestrator_home>/config/config.toml` config file.
 
 This means that even if the consensus node is already connected to the consensus network, if the orchestrator doesn't start with a list of bootstrapper to its specific network, then, it will not work and will output the following logs:
 
@@ -42,8 +42,8 @@ I[2023-04-26|00:04:28.175] waiting for routing table to populate        targetnu
 
 To run an orchestrator, you will need to have access to the following:
 
-- Access to your EVM address private key. This latter doesn't need to be funded in any network. If yours is not yet set, check the [register an EVM address](#register-evm-address) section.
-- A list of bootstrappers for the P2P network. These will be shared by the team for every network we plan on supporting.
+- Access to your EVM address private key. This address doesn't need to be funded in any network. If yours is not yet set, check the [register an EVM address](#register-evm-address) section.
+- A list of bootstrappers for the P2P network.
 - Access to your consensus node RPC and gRPC ports.
 
 ### Install the Blobstream binary
@@ -87,8 +87,6 @@ To add an EVM private key, check the next section.
 
 Because EVM keys are important, we provide a keystore that will help manage them. The keystore uses a file system keystore protected by a passphrase to store and open private keys.
 
-To register an EVM address for your validator, check the section [Register EVM Address](#register-evm-address).
-
 To import your EVM private key, there is the `import` subcommand to assist you with that:
 
 ```sh
@@ -105,6 +103,14 @@ blobstream orchestrator keys evm list
 
 For more information about the `keys` command, check [the `keys` documentation](https://docs.celestia.org/nodes/blobstream-keys).
 
+Then, you will need to register the EVM address for your validator as specified in the [Register EVM Address](#register-evm-address) section.
+
+### Open the P2P port
+
+In order for the signature propagation to be successful, you will need to expose the P2P port, which is by default `30000`.
+
+If not, then the signatures may not be available to the network and relayers will not be able to query them.
+
 ### Start the orchestrator
 
 Now that we have the store initialized, we can start the orchestrator. Make sure you have your Celestia-app node RPC and gRPC accessible, and able to connect to the P2P network bootstrappers.
@@ -118,9 +124,23 @@ Starts the Blobstream orchestrator to sign attestations
 
 Usage:
   blobstream orchestrator start <flags> [flags]
+
+Flags:
+      --core.grpc string           Specify the celestia app grpc address (default "localhost:9090")
+      --core.rpc string            Specify the celestia app rest rpc address (default "tcp://localhost:26657")
+      --evm.account string         Specify the EVM account address to use for signing (Note: the private key should be in the keystore)
+      --evm.passphrase string      the evm account passphrase (if not specified as a flag, it will be asked interactively)
+      --grpc.insecure              allow gRPC over insecure channels, if not TLS the server must use TLS
+  -h, --help                       help for start
+      --home string                The Blobstream orchestrator home directory (default "/Users/joshstein/.orchestrator")
+      --log.format string          The logging format (json|plain) (default "plain")
+      --log.level string           The logging level (trace|debug|info|warn|error|fatal|panic) (default "info")
+      --p2p.bootstrappers string   Comma-separated multiaddresses of p2p peers to connect to
+      --p2p.listen-addr string     MultiAddr for the p2p peer to listen on (default "/ip4/0.0.0.0/tcp/30000")
+      --p2p.nickname string        Nickname of the p2p private key to use (if not provided, an existing one from the p2p store or a newly generated one will be used)
 ```
 
-Also, you can set the necessary configuration in the orchestrator's TOML config file. You can find the latter in the orchestrator's home directory under `config/config.toml`.
+Also, you can set the necessary configuration in the orchestrator's TOML config file. You can find the orchestrator's TOML config file in the orchestrator's home directory under `config/config.toml`. This would save you from setting all the flags in the command.
 
 > **_NOTE:_** The CLI flags take precedence over the config files for the same parameters.
 
@@ -135,12 +155,6 @@ blobstream orchestrator start --evm.account 0x966e6f22781EF6a6A82BBB4DB3df8E225D
 Then, you will be prompted to enter your EVM key passphrase so that the orchestrator can use it to sign attestations. Make sure that it's the EVM address that was provided when creating the validator. If not, then the orchestrator will not sign, and you will keep seeing a "validator not part of valset" warning message. If you see such message, first verify that your validator is part of the active validator set. If so, then probably the EVM address provided to the orchestrator is not the right one, and you should check which EVM address is registered to your validator. Check the [Register EVM Address](#register-evm-address) section for more information.
 
 If you no longer have access to your EVM address, you could always edit your validator with a new EVM address. This can be done through the `edit-validator` command. Check the [Register EVM Address](#register-evm-address) section.
-
-### Open the P2P port
-
-In order for the signature propagation to be successful, you will need to expose the P2P port, which is by default `30000`.
-
-If not, then the signatures may not be available to the network and relayers will not be able to query them.
 
 ### Known issues
 
@@ -160,9 +174,11 @@ So, seeing that warning is not a problem.
 
 ### Register EVM Address
 
-When creating a validator, a random EVM address corresponding to its operator is set in the Blobstream state. This latter will be used by the orchestrator to sign attestations. And since validators will generally not have access to its corresponding private key, that address needs to be edited with one whose private key is known to the validator operator.
+When creating a validator, a random EVM address corresponding to its operator is set in the Blobstream state. This address will be used by the orchestrator to sign attestations. And since validators will generally not have access to its corresponding private key, that address needs to be edited with one whose private key is known to the validator operator.
 
-To edit an EVM address for a certain validator, its corresponding account needs to send a `RegisterEVMAddress` transaction with the new address.
+> **_NOTE:_** When a validator wants to start an orchestrator for a Celestia network for the first time, they will need to generate an EVM address offchain, either using the [EVM keystore](#evm-key) methods or a third party software that allows generating Ethereum addresses and provide you with a private key or a BIP39 mnemonic.
+
+So, to edit an EVM address for a certain validator, its corresponding account needs to send a `RegisterEVMAddress` transaction with the new address.
 
 First, you should get your validator `valoper` address. To do so, run the following:
 
@@ -186,7 +202,8 @@ celestia-appd tx qgb register \
     <new_evm_address> \
     --fees 30000utia \
     --broadcast-mode block \
-    --yes
+    --yes \
+    --from your_wallet
 ```
 
 Example command output:
@@ -277,7 +294,7 @@ celestia-appd query qgb evm <validator_valoper_address>
 
 Now, you can restart the orchestrator, and it should start signing.
 
-Note: A validator set change is triggered if more than 5% of the total staking power of the network changes (0.5% for BSR). This means that even if you change your EVM address, and you don't see your orchestrator signing, it's alright. Just wait until the validator set changes, and then your orchestrator will automatically start signing.
+Note: A validator set change is triggered if more than 5% of the total staking power of the network changes. This means that even if you change your EVM address, and you don't see your orchestrator signing, it's alright. Just wait until the validator set changes, and then your orchestrator will automatically start signing.
 
 #### Systemd service
 

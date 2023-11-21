@@ -18,6 +18,10 @@ const filesToImport = [
     url: 'https://raw.githubusercontent.com/celestiaorg/orchestrator-relayer/main/docs/relayer.md',
     fileName: 'blobstream-relayer.md',
   },
+  {
+    url: 'https://raw.githubusercontent.com/celestiaorg/orchestrator-relayer/main/docs/bootstrapper.md',
+    fileName: 'blobstream-bootstrapper.md',
+  }
 ];
 
 async function importMarkdown(file) {
