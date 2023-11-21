@@ -202,7 +202,8 @@ celestia-appd tx qgb register \
     <new_evm_address> \
     --fees 30000utia \
     --broadcast-mode block \
-    --yes
+    --yes \
+    --from your_wallet
 ```
 
 Example command output:
