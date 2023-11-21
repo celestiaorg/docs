@@ -601,7 +601,7 @@ function sidebarHome() {
             },
             {
               text: "Sovereign SDK",
-              link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup",
+              link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",
             },
             {
               text: "Vistara",
