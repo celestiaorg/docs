@@ -409,17 +409,20 @@ function sidebarHome() {
                   link: "/nodes/blobstream-binary",
                 },
                 {
-                  text: "Orchestrator",
+                  text: "Blobstream Orchestrator",
                   link: "/nodes/blobstream-orchestrator",
                 },
                 { text: "Key management", link: "/nodes/blobstream-keys" },
-                { text: "Relayer", link: "/nodes/blobstream-relayer" },
+                {
+                  text: "Blobstream Relayer",
+                  link: "/nodes/blobstream-relayer",
+                },
                 {
                   text: "Deploy the contract",
                   link: "/nodes/blobstream-deploy",
                 },
                 {
-                  text: "Bootstrapper",
+                  text: "Blobstream Bootstrapper",
                   link: "/nodes/blobstream-bootstrapper",
                 },
               ],
