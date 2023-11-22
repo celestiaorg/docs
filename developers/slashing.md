@@ -30,3 +30,7 @@ The following are the conditions for a validator to get slashed:
    will not have the ability to unjail. Delegators bonded to that validator will
    automatically enter the unbonding period for 21 days, and can delegate to another
    validator after they have been unbonded.
+
+For more details on the slashing parameters, refer to the
+[Celestia App Specifications](https://celestiaorg.github.io/celestia-app/specs/params.html#module-parameters)
+page.
