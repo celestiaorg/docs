@@ -41,9 +41,9 @@ The [@celestiaorg/nitro](https://github.com/celestiaorg/nitro) integration
 ## OP Stack
 
 The ETH fallback mechanism is set up in the
-[celestiaorg/optimism integration](https://github.com/celestiaorg/optimism).
+[celestiaorg/optimism integration](https://github.com/celestiaorg/optimism/tree/tux/rebase-frame-ref-version).
 
-The `driver.go` and `calldata_source.go` files are part of the ETH fallback
+The `op-batcher/batcher/driver.go` and `op-node/rollup/derive/calldata_source.go` files are part of the ETH fallback
 mechanism in the op-batcher and op-node respectively.
 
 In [`driver.go`, the `sendTransaction` function is responsible for the write path](https://github.com/celestiaorg/optimism/blob/1215c15fda540a1f19b81588de98e2e7b546e517/op-batcher/batcher/driver.go#L351-L395)
@@ -69,7 +69,7 @@ In `calldata_source.go`,
 [the `DataFromEVMTransactions` function defines the read path](https://github.com/celestiaorg/optimism/blob/1215c15fda540a1f19b81588de98e2e7b546e517/op-node/rollup/derive/calldata_source.go#L131-L180)
 of the ETH fallback. This function filters all of the transactions and returns
 the calldata from transactions that are sent to the batch inbox address from
-the batch sender address. It checks the type of the frame and retrieves the
+the batch sender address. It checks the type of the frame by reading the version prefix and retrieves the
 data accordingly. If the frame is `FrameCelestiaLegacy` or `FrameCelestiaStd`,
 it requests the data from Celestia. If the frame is `FrameEthereumStd`, it
 directly uses the calldata from the frame.
