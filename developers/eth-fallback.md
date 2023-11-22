@@ -60,11 +60,11 @@ That the transaction data includes a version prefix, which determines how
 the data will be parsed.
 
 <!-- markdownlint-disable MD013 -->
-| Version prefix | Frame type            | Description                                                                                     |
-|----------------|-----------------------|-------------------------------------------------------------------------------------------------|
-| v0             | `FrameCelestiaLegacyRef`| version prefix 0x00: legacy celestia - 8 bytes block height, 4 bytes tx index                   |
-| v1             | `FrameEthereumStdRef`   | version prefix 0x01: eth calldata fallback - all remaining bytes are interpreted as Frame       |
-| v2             | `FrameCelestiaStdRef`   | version prefix 0x02: standard celestia - 8 bytes block height, 32 byte tx commitment            |
+| Version | Prefix | Frame type            | Description                                                                                     |
+|---------|--------|-----------------------|-------------------------------------------------------------------------------------------------|
+| v0      | 0x00   | `FrameCelestiaLegacyRef`| Legacy celestia - 8 bytes block height, 4 bytes tx index                   |
+| v1      | 0x01   | `FrameEthereumStdRef`   | Eth calldata fallback - all remaining bytes are interpreted as Frame       |
+| v2      | 0x02   | `FrameCelestiaStdRef`   | Standard celestia - 8 bytes block height, 32 byte tx commitment            |
 <!-- markdownlint-enable MD013 -->
 
 In other words, the first byte of the calldata is interpreted as
