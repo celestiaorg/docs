@@ -121,7 +121,7 @@ applications.
 
 Developers can build applications on a sovereign rollup testnet
 on Celestia. [Rollkit](https://rollkit.dev/) and
-[Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup)
+[Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup)
 provide frameworks for deploying sovereign rollup testnets
 on Celestia.
 

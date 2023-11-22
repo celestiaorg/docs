@@ -20,6 +20,7 @@ or [read more about how Blobstream works](../developers/blobstream.md#overview).
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import constants from '/.vitepress/constants/constants.js'
+import OrchRelayerVersion from '../.vitepress/components/OrchRelayerVersion.vue'
 </script>
 
 The [orchestrator](./blobstream-orchestrator.md) is the software that signs the
@@ -42,6 +43,9 @@ The following sections in this category presume you have the following setup:
    cd orchestrator-relayer
    git checkout {{constants.orchrelayVersion}}
    ```
+
+   These commands check you out to: <OrchRelayerVersion/>
+   of @celestiaorg/orchestrator-relayer
 
 3. Install the Blobstream CLI
 

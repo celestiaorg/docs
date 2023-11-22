@@ -586,7 +586,7 @@ function sidebarHome() {
             },
             {
               text: "Full stack dapp tutorial",
-              link: "/developers/full-stack-modular-development-guide",
+              link: "https://rollkit.dev/tutorials/polaris-evm",
             },
             {
               text: "Astria",
@@ -601,7 +601,7 @@ function sidebarHome() {
             },
             {
               text: "Sovereign SDK",
-              link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/main/examples/demo-rollup#demo-rollup",
+              link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",
             },
             {
               text: "Vistara",
