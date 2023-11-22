@@ -1,3 +1,7 @@
+---
+description: The DA fallback mechanism to Ethereum for rollups.
+---
+
 # ETH fallback
 
 ETH fallback is
