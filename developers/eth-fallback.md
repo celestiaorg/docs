@@ -43,8 +43,9 @@ The [@celestiaorg/nitro](https://github.com/celestiaorg/nitro) integration
 The ETH fallback mechanism is set up in the
 [celestiaorg/optimism integration](https://github.com/celestiaorg/optimism/tree/tux/rebase-frame-ref-version).
 
-The `op-batcher/batcher/driver.go` and `op-node/rollup/derive/calldata_source.go` files are part of the ETH fallback
-mechanism in the op-batcher and op-node respectively.
+The `op-batcher/batcher/driver.go` and
+`op-node/rollup/derive/calldata_source.go` files are part of the ETH
+fallback mechanism in the op-batcher and op-noderespectively.
 
 In [`driver.go`, the `sendTransaction` function is responsible for the write path](https://github.com/celestiaorg/optimism/blob/1215c15fda540a1f19b81588de98e2e7b546e517/op-batcher/batcher/driver.go#L351-L395)
 of the ETH fallback. This function creates and submits a transaction to the
@@ -54,6 +55,20 @@ can be published to Celestia, it creates a `FrameCelestiaStdRef` and sends
 the transaction with this data. If it cannot be published to Celestia, it
 falls back to Ethereum by creating a `FrameEthereumStdRef` and sends the
 transaction with this data.
+
+That the transaction data includes a version prefix, which determines how
+the data will be parsed.
+
+<!-- markdownlint-disable MD013 -->
+| Version prefix | Frame type            | Description                                                                                     |
+|----------------|-----------------------|-------------------------------------------------------------------------------------------------|
+| v0             | `FrameCelestiaLegacyRef`| version prefix 0x00: legacy celestia - 8 bytes block height, 4 bytes tx index                   |
+| v1             | `FrameEthereumStdRef`   | version prefix 0x01: eth calldata fallback - all remaining bytes are interpreted as Frame       |
+| v2             | `FrameCelestiaStdRef`   | version prefix 0x02: standard celestia - 8 bytes block height, 32 byte tx commitment            |
+<!-- markdownlint-enable MD013 -->
+
+In other words, the first byte of the calldata is interpreted as
+the version prefix which determines how to parse the remaining data.
 
 ```go
 func (l *BatchSubmitter) sendTransaction(
@@ -69,10 +84,10 @@ In `calldata_source.go`,
 [the `DataFromEVMTransactions` function defines the read path](https://github.com/celestiaorg/optimism/blob/1215c15fda540a1f19b81588de98e2e7b546e517/op-node/rollup/derive/calldata_source.go#L131-L180)
 of the ETH fallback. This function filters all of the transactions and returns
 the calldata from transactions that are sent to the batch inbox address from
-the batch sender address. It checks the type of the frame by reading the version prefix and retrieves the
-data accordingly. If the frame is `FrameCelestiaLegacy` or `FrameCelestiaStd`,
-it requests the data from Celestia. If the frame is `FrameEthereumStd`, it
-directly uses the calldata from the frame.
+the batch sender address. It checks the type of the frame by reading the version
+prefix and retrieves the data accordingly. If the frame is `FrameCelestiaLegacy`
+or `FrameCelestiaStd`, it requests the data from Celestia. If the frame is
+`FrameEthereumStd`, it directly uses the calldata from the frame.
 
 ```go
 func DataFromEVMTransactions(
