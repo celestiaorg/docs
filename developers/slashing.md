@@ -32,5 +32,5 @@ The following are the conditions for a validator to get slashed:
    validator after they have been unbonded.
 
 For more details on the slashing parameters, refer to the
-[Celestia App Specifications](https://celestiaorg.github.io/celestia-app/specs/params.html#module-parameters)
+[Celestia App governance specifications](https://celestiaorg.github.io/celestia-app/specs/params.html#module-parameters)
 page.
