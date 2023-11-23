@@ -59,7 +59,6 @@ Now, we can deploy the Blobstream contract to a new EVM chain:
 ```sh
 blobstream deploy \
   --evm.chain-id 4 \
-  --evm.contract-address 0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 \
   --core.grpc localhost:9090 \
   --core.rpc localhost:26657 \
   --starting-nonce latest \
