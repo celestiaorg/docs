@@ -544,6 +544,10 @@ function sidebarHome() {
           items: [
             { text: "Rollkit", link: "/developers/rollkit" },
             {
+              text: "ETH fallback mechanism",
+              link: "/developers/eth-fallback",
+            },
+            {
               text: "Optimism",
               collapsed: true,
               items: [
