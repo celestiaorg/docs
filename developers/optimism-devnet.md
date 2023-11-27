@@ -27,8 +27,8 @@ Check out to the version for either the stable version or upstream version:
 
 ::: code-group
 
-```bash-vue [v1.2.0 stable]
-git checkout tags/v0.2.0-OP_v1.2.0-CN_v0.12.0
+```bash-vue [TODO: NEW stable]
+git checkout tags/v TODO: NEW STABLE
 git submodule update --init --recursive
 ```
 
@@ -77,7 +77,7 @@ from the root of the Optimism directory:
 make devnet-logs
 ```
 
-:::tip Optional
+::: details Optional: Docker tips
 
 ### Stop devnet
 
@@ -193,36 +193,45 @@ value                0
 yParity              0
 ```
 
-Now set the `input` as the `INPUT` variable, removing the `0x` from the beginning:
+::: tip
+You are looking for a batcher transaction to the address
+`0xFf00000000000000000000000000000000000901`.
+:::
+
+Now set the `input` as the `INPUT` variable and encode it as
+base64:
 
 ```bash
-export INPUT=3501000000000000b67f8dcfdc9125b76d4184ca1686d971aafec1a5a87398a060f31c533502d5c7
+export INPUT=0x3501000000000000b67f8dcfdc9125b76d4184ca1686d971aafec1a5a87398a060f31c533502d5c7
+export ENCODED_INPUT=$(echo "$INPUT" | xxd -r -p | base64)
 ```
-
-:::tip
-Remember to remove the `0x`!
-:::
 
 ## Find the data on Celestia
 
-Now, from `optimism` run:
+Clone the `go-da` repository:
+
+```bash
+cd $HOME
+git clone https://github.com/rollkit/go-da.git
+cd go-da/proto/da
+```
+
+Now, from `go-da/proto/da` run:
 
 <!-- markdownlint-disable MD013 -->
 
 ```bash
-# set your auth token
-export CELESTIA_NODE_AUTH_TOKEN=$(docker exec $(docker ps -q --filter name=da) celestia bridge --node.store /home/celestia/bridge/ auth admin)
-
-# set namespace
-export NAMESPACE=000008e5f679bf7116cb
-
-go run ./op-celestia/main.go $NAMESPACE $INPUT $CELESTIA_NODE_AUTH_TOKEN
+grpcurl -proto da.proto -plaintext -d "{\"ids\": [{\"value\": \"$ENCODED_INPUT\"}]}" 127.0.0.1:26650 da.DAService.Get
 ```
 
 Your result will look similar to the below!
 
 ```console
-celestia block height: 309; tx index: [182 127 141 207 220 145 37 183 109 65 132 202 22 134 217 113 170 254 193 165 168 115 152 160 96 243 28 83 53 2 213 199]
------------------------------------------
-optimism block data on celestia: 00947558eacae3195fd579e20c359929a700000000031b78dadae1c7f0c37b81ecf47299820f3f1619d717af10afef9c5cf3e7de678f03b60573d55cd97deb3b5f34b1242dd0dae4bf76e3490b76c769a756583027357f7bb723f69af2b5cf9f37475eaa29fe35bd25d52f47e200c4bc2be5254565b3c58b7fb9879d59a2f0e147f0bb6bd3ab3257cf955be391fff8f0f1bfc49a270535af8e7dd1cda66b6f1e7de397ec7bfb7042f4118609cf2e3f2f750daf37fb7ee2fec7a62696e4055c323befca9dca66d3fba42e5dde70ff7fdedd8ca7878cd6f2a686fcea5eebf9e616c83c19a879c2af5d6608b6ffd05fec9899bee797e3442d8bbda7cd1dcf78336cfa303d8f8be34a134bca82b7a7d8fd447df71dbd1e1fc911275a98e6f5e091c15293651baf7835e8063efe6408324f0e6ade3d81f7ab7725ed4ea95ec7bdfcd40fffcd0f6a13f35334e4cd0c65529b9f7fb8e644ac790a50f3d20e944f71babcb7f4d3d2ec8366aa773f7aefb5f5b8f45cd4f2e0724fbfbcc5caf24d2ca90b8a351e2e4990383d75a9adb3f48a72e5d78a13263e5defd39b63b05d9dc768be9b20c83c25a879965cf3e7d724f7572d59aa14dea85a73a8bde4920ebffb9b600e0da9b78c66ea364d2c690b7cfcd3eca6cf3f185d7ec762cb49ae9e9f4571d1c92eba13f6dc9d7ee59c9d77520ac83c15a879bebdeb77ccfaffe6bcd6899f06d74e046a7d12bddca4775df1885bfbf9c317d5ce3c20d63c35a8798f9f6a054fd9ddebb7dcbd256e430fc31dd345ebffaa2e14fecdb963755a6cb1e1e12696f40597747fbf5abfeac09e4d998c423fb4351fae350b2dbd32ed7ce0c64f8cfe8f56f2d980ccd3809ab7c8f648b872e4eb3e55ee17518e2eced73e4af92d6fd6f4bcb435f763bb5e9a4842134bc682e5fee73ccbbede55d9ad7dc97891f64cad3b2c57f4a333e65c940cfb5d66f4eea231c83c2da879c7cba664bf58fecdd3e0d5751671e7d77b1833b695a91598ec989aa73e75d15ea1adc49aa70335efedf7dc27737758e568f7db4ffaa777f142f32f0f91fd5bcf9b9f4938f7c55bfdaa72134be682459de247558fa5945b3a72f75c5cf4e0cf26e3c5b3eb52fb2bebe51eec5875faef3a90797a0700010000ffff6518dd6101
+{
+  "blobs": [
+    {
+      "value": "AOZF2LtNNZAdOq0WdCoxGbcAAAAAAZh42trhx/DDe0FOTQH/XesNVpoyhXev7F5ndCYwwlzddZmJ5aS7sxhP6G5sYhJZ0Dvt3oeXi0ruufLM+LXUwP7i6zlBugnVLo25DVcYTdR+P2xJTfm85gDEPMUtfQESiSs9Nr18t+Rii6/Fr5DVK+78PN3F+D/v5KXk6NvEmrcOap7xNksFJ65jIc+SJzu/vnmlce7K+QxMvHYJj5Qb77yZdl6liUl0wauPBtL9DXPCmyeWfbwTb9el0fF+If8pn7clpQrCbtXs4SDzNkDNe6NXpcDFkPg97gKru4Js2/33P9IYP5Rk2WwXWL7CTGy5eROT2IIvGZc2GfMd+j6ZVzd5ovpDw8ZNa1+wPA5/6D6nhk2S60cCyLxNUPNOu6rtXhO/VNwj1OLDlAmiSS/Np0xKsM9+9Iq9MZv9+GcbYs3bAjVPVuO6zOO/Waf2lHFcb9ryb+vn3He/z65PqD6+52BKeVZkVxOT+AK7q9euTnsVX7N7qRTX5mcbpyQxTNH1fnw9xtHjnF74B2YzkHnbDgACAAD//60o8CoB"
+    }
+  ]
+}
 ```
