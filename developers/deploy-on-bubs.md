@@ -221,7 +221,7 @@ To write to the contract, we'll use the `cast send` command:
 <!-- markdownlint-disable MD013 -->
 
 ```bash
-cast send $CONTRACT_ADDRESS "setNumber(uint256)" 10 --rpc-url $BUBS_RPC_URL --private-key $PRIVATE_KEY
+cast send $CONTRACT_ADDRESS "setNumber(uint256)" 10 --rpc-url $BUBS_RPC_URL --private-key $BUBS_PRIVATE_KEY
 ```
 
 <!-- markdownlint-enable MD013 -->
