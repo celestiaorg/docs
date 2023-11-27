@@ -94,12 +94,15 @@ topics:
 ### Deployed contracts
 
 You can interact with the Blobstream contracts today on testnet. The Blobstream Solidity
-smart contracts are currently deployed on the following Ethereum testnet:
+smart contracts are currently deployed on the following Ethereum testnets:
 
-- [Blobstream on Sepolia](https://sepolia.etherscan.io/address/0xf148a9a767f19edcf9a7d125fe143db1b5792ad6)
-  - Which attests to the data published on the Mocha testnet
-- [Blobstream X on Goerli](https://goerli.etherscan.io/address/0x67ea962864cdad3f2202118dc6f65ff510f7bb4d)
-  - Which attests to the data published on the Mocha testnet
+<!-- markdownlint-disable MD013 -->
+| Contract | EVM network | Contract address | Attested data |
+| --- | --- | --- | --- |
+| Blobstream | Sepolia | [`0x3a5cbB6EF4756DA0b3f6DAE7aB6430fD8c46d247`](https://sepolia.etherscan.io/address/0x3a5cbB6EF4756DA0b3f6DAE7aB6430fD8c46d247) | Mocha testnet |
+| Blobstream | Arbitrum Sepolia | [`0x040769edbca5218e616c8eb16e4faea49ced5e33`](https://sepolia.arbiscan.io/address/0x040769edbca5218e616c8eb16e4faea49ced5e33) | Mocha testnet |
+| Blobstream X | Goerli | [`0x67ea962864cdad3f2202118dc6f65ff510f7bb4d`](https://goerli.etherscan.io/address/0x67ea962864cdad3f2202118dc6f65ff510f7bb4d) | Mocha testnet |
+<!-- markdownlint-enable MD013 -->
 
 ## Blobstream vs. data availability committees (DACs)
 
