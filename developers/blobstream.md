@@ -70,6 +70,8 @@ each tuple representing a single
 [data root (i.e. block header)](https://celestiaorg.github.io/celestia-app/specs/data_structures.html#header).
 Relayed tuples are in the same order as Celestia block headers.
 
+![Blobstream attestation flow](/img/blobstream/Celestia_Blobstream_attestation_flow.jpg)
+
 ### Events and messages relayed
 
 **Validator sets**:
