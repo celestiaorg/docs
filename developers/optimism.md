@@ -137,6 +137,7 @@ da:
   image: ghcr.io/rollkit/celestia-da:v0.12.1-rc0 // [!code ++]
   command: > // [!code ++]
     celestia-da light start // [!code ++]
+    --p2p.network=$P2P_NETWORK // [!code ++]
     --da.grpc.namespace=000008e5f679bf7116cb // [!code ++]
     --da.grpc.listen=0.0.0.0:26650 // [!code ++]
     --core.ip rpc.celestia.pops.one // [!code ++]
