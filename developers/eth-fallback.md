@@ -6,22 +6,26 @@ description: The DA fallback mechanism to Ethereum for rollups.
 
 ETH fallback is
 [a fallback mechanism](https://github.com/celestiaorg/optimism/commit/1215c15fda540a1f19b81588de98e2e7b546e517)
-that enables the Arbitrum and OP Stack integrations to "fall back" to Ethereum
-for data availability in the event of downtime on Celestia.
+that enables Ethereum L2s (or L3s) to “fall back” to posting Ethereum
+calldata for data availability in the event of downtime on Celestia
+Mainnet Beta. This feature is currently supported by Celestia integrations
+with:
 
-It provides a way to fallback to the default calldata on Ethereum
-instead of of posting a blob to Celestia for data availability. This
-mechanism ensures the smooth operation of transactions and prevents
-disruptions caused by any temporary unavailability of Celestia. By
-leveraging ETH fallback, users can continue to transact securely
-and seamlessly even during periods of downtime on Celestia.
+- [OP Stack](optimism-devnet.md#eth-fallback)
+- Arbitrum Nitro
 
-The fallback is triggered whenever there is an error sending the
-`PayForBlobs` transaction on Celestia. This could be due to a
-congested mempool or nonce error and can be simulated with an
-error such as low balance or incorrect sequence.
+In the case of Celestia downtime or temporary unavailability, L2s can
+fallback to posting transactions as calldata on Ethereum or another DA
+layer for data availability instead of posting to Celestia. This
+mechanism ensures users can continue to transact securely and seamlessly,
+preventing disruptions and helping to ensure user funds to not get stuck
+in the L2's bridge on Ethereum.
 
-The fallback could also be in the event Blobstream stops relaying.
+Ethereum fallback is triggered whenever the sequencer has an error
+sending the PayForBlobs transaction on Celestia. Fallback can be
+triggered due to a congested mempool or nonce error and can be simulated
+with an error such as low balance or incorrect sequence. Fallback
+can also be triggered in the event Blobstream stops relaying attestations.
 
 The integration is still a work in progress, and the
 [most up-to-date version can be found on the `tux/frame-ref-version` branch](https://github.com/celestiaorg/optimism/tree/tux/frame-ref-version).
