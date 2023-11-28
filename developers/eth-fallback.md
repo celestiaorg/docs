@@ -22,7 +22,7 @@ preventing disruptions and helping to ensure user funds to not get stuck
 in the L2's bridge on Ethereum.
 
 Ethereum fallback is triggered whenever the sequencer has an error
-sending the PayForBlobs transaction on Celestia. Fallback can be
+sending the `PayForBlobs` transaction on Celestia. Fallback can be
 triggered due to a congested mempool or nonce error and can be simulated
 with an error such as low balance or incorrect sequence. Fallback
 can also be triggered in the event Blobstream stops relaying attestations.
