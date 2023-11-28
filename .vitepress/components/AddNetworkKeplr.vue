@@ -45,9 +45,9 @@ export default {
                   coinDecimals: 6,
                   coinGeckoId: "celestia",
                   gasPriceStep: {
-                    low: 0.1,
-                    average: 0.2,
-                    high: 0.4,
+                    low: 0.01,
+                    average: 0.02,
+                    high: 0.1,
                   },
                 },
               ],
