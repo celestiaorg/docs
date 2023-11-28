@@ -176,16 +176,16 @@ cast tx $TX_HASH --rpc-url localhost:8545
 The output will look similar to below:
 
 ```console
-blockHash            0x1cb54d2369752ef73511c202ff9cdfd0eadf3a77b7aef0092bea63f2b5d57659
-blockNumber          1141
+blockHash            0x9f4dfae061b5ddd86f95a81be5daa0d7fe32e7f7f770f86dc375e0007d249bd2
+blockNumber          24
 from                 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
-gas                  33996
-gasPrice             1000000007
-hash                 0x79a0a7a1b4936aafe7a37dbfb07a6a9e55c145a4ed6fd54f962649b4b7db8de7
-input                0x3501000000000000b67f8dcfdc9125b76d4184ca1686d971aafec1a5a87398a060f31c533502d5c7
-nonce                153
-r                    0x3561ffc7c87fb7ceabd0e4b670b4ebe0c3b352e3a1f439dd44352dde7cd4cf6e
-s                    0x6630ff8044936856a459c3fab2bc5d509b5c2f8f75ce7b90e651ef5238608c8c
+gas                  21572
+gasPrice             1040676758
+hash                 0xadd3a5dc0b8c605aeac891098e87cbaff43bb642896ebbf74f964c0690e46df2
+input                0xce3500000000000000769074a923011bdda721eacc34c8a77c69c10f2b6c8e659f987e82f217a5340f
+nonce                4
+r                    0xaf5c1505c7dfcebca94d9a6a8c0caf99b6c87a8ed6d6c0b3161c9026f270a84f
+s                    0x383ed2debf9f9055920cd7340418dda7e2bca6b989eb6992d83d123d4e322f2a
 to                   0xFf00000000000000000000000000000000000901
 transactionIndex     0
 v                    0
@@ -198,13 +198,18 @@ You are looking for a batcher transaction to the address
 `0xFf00000000000000000000000000000000000901`.
 :::
 
-Now set the `input` as the `INPUT` variable and encode it as
+First, remove the prefix `0xce`.
+Now, set the `input` as the `INPUT` variable and encode it as
 base64:
 
 ```bash
-export INPUT=0x3501000000000000b67f8dcfdc9125b76d4184ca1686d971aafec1a5a87398a060f31c533502d5c7
+export INPUT=ce3500000000000000769074a923011bdda721eacc34c8a77c69c10f2b6c8e659f987e82f217a5340f
 export ENCODED_INPUT=$(echo "$INPUT" | xxd -r -p | base64)
 ```
+
+:::tip
+Remember to remove the `0xce` prefix!
+:::
 
 ## Find the data on Celestia
 
@@ -230,8 +235,29 @@ Your result will look similar to the below!
 {
   "blobs": [
     {
-      "value": "AOZF2LtNNZAdOq0WdCoxGbcAAAAAAZh42trhx/DDe0FOTQH/XesNVpoyhXev7F5ndCYwwlzddZmJ5aS7sxhP6G5sYhJZ0Dvt3oeXi0ruufLM+LXUwP7i6zlBugnVLo25DVcYTdR+P2xJTfm85gDEPMUtfQESiSs9Nr18t+Rii6/Fr5DVK+78PN3F+D/v5KXk6NvEmrcOap7xNksFJ65jIc+SJzu/vnmlce7K+QxMvHYJj5Qb77yZdl6liUl0wauPBtL9DXPCmyeWfbwTb9el0fF+If8pn7clpQrCbtXs4SDzNkDNe6NXpcDFkPg97gKru4Js2/33P9IYP5Rk2WwXWL7CTGy5eROT2IIvGZc2GfMd+j6ZVzd5ovpDw8ZNa1+wPA5/6D6nhk2S60cCyLxNUPNOu6rtXhO/VNwj1OLDlAmiSS/Np0xKsM9+9Iq9MZv9+GcbYs3bAjVPVuO6zOO/Waf2lHFcb9ryb+vn3He/z65PqD6+52BKeVZkVxOT+AK7q9euTnsVX7N7qRTX5mcbpyQxTNH1fnw9xtHjnF74B2YzkHnbDgACAAD//60o8CoB"
+      "value": "AKUumhJ8FnuyVrBs38FDKEIAAAAAAZB42trhw/DDc4GFAlv4klkv5Zh4E16mmO5fpNOS1f5wzpds8YK3S0Rvs4ULLJj13euw+Ovdv6Q23zuV1ShROEvk5aptIT7bGmZunvc1OiKwJTXVbN0BiGm6k2zNWq78cNsT2ez3+nzQq84Ds28or/aKz/o1w4NpV7w4caZtgJomX71w96m63+xzYnarXLu7WWvRrwbeb6cW8R93YHXt1r4+TXCBGVe76obzf5JLTNu22gksD2cL+83D8DGjX0FKcwZD0VofkGmboKY1uTddu8704s2MwgNNe09s1bzw+n9Fq6fKFw7pvwJL200eCS0oFJ3HfPAEywnlgyyGQc89dh+98GD5TrdU4aNql9afmW+sDzJtC9S0fzLWYROOS0bvK3W7EvNpmWXe5qrdzKlBmv1LZi4ofrrxLHGmbYOaJhHsEn+B81lGUh33HDet8K9nVKKSF2+W3Xul6uPSxydPBwsv2GHskR+yfUlDbvyl1ROTvtS1zXlpEPz0M1e/RIIt57fVj0Gm7TgACAAA//+Qdel2AQ=="
     }
   ]
 }
 ```
+
+## ETH fallback
+
+The [ETH fallback mechanism](eth-fallback.md) allows rollups to "fall back" to
+Ethereum or another EVM chain in the case of downtime or errors submitting
+data to Celestia.
+
+Testing out the ETH fallback mechanism can be done
+with the `go-da` tool. Triggering a simultaneous blob transaction will
+cause the `op-batcher` blob transaction to fail, with an `incorrect account
+sequence` error, which triggers a fallback to Ethereum.
+
+To trigger the transaction, send this command from the same `go/proto/da` directory:
+
+```bash
+grpcurl -proto da.proto -plaintext -d '{"blobs": [{"value": "SGVsbG8gd28ybGQh"}]}' 127.0.0.1:26650 da.DAService.Submit
+```
+
+Alternatively, you can shut off the `local-celestia-devnet` and see that
+the OP Stack devnet logs show that the rollup has fallen back to the L1,
+in this case Ethereum, for posting data.
