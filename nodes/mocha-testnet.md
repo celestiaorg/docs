@@ -64,6 +64,7 @@ Below is a list of RPC endpoints you can use to connect to Mocha testnet:
 - `celestia-testnet.brightlystake.com`
 - `rpc-celestia-mocha.architectnodes.com`
 - `rpc-celestia-mocha.testnet-pride.com`
+- `rpc-celestia-testnet-01.stakeflow.io`
 
 ### Full and light nodes ONLY
 
@@ -90,6 +91,7 @@ The default port is 1317.
 - [https://celestia-testnet.brightlystake.com/api](https://celestia-testnet.brightlystake.com/api)
 - [https://rest-celestia-mocha.architectnodes.com](https://rest-celestia-mocha.architectnodes.com)
 - [https://api-celestia-mocha.testnet-pride.com/](https://api-celestia-mocha.testnet-pride.com/)
+- [https://api-celestia-testnet-01.stakeflow.io/](https://api-celestia-testnet-01.stakeflow.io/)
 
 ## gRPC endpoints
 
@@ -107,6 +109,7 @@ broadcast transactions.
 - `celestia-testnet.brightlystake.com:9390`
 - `grpc-celestia-mocha.architectnodes.com:1443`
 - `grpc-celestia-mocha.testnet-pride.com:9099`
+- `grpc-celestia-testnet-01.stakeflow.io:16002`
 
 ## Bridge and full node endpoints
 
@@ -162,6 +165,7 @@ There are several explorers you can use for Mocha:
 - [https://celestiascan.com](https://celestiascan.com)
 - [https://mocha.celenium.io](https://mocha.celenium.io)
 - [https://explorer.nodestake.top/celestia-testnet/](https://explorer.nodestake.top/celestia-testnet)
+- [https://stakeflow.io/celestia-testnet](https://stakeflow.io/celestia-testnet)
 
 ## Network upgrades
 

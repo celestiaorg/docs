@@ -108,6 +108,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia.rpc.stakin-nodes.com`
 - `celestia.cumulo.org.es`
 - `rpc-celestia.mzonder.com`
+- `rpc-celestia-01.stakeflow.io`
 
 ### API endpoints
 
@@ -122,6 +123,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia.rest.stakin-nodes.com`
 - `celestia.api.cumulo.org.es`
 - `api-celestia.mzonder.com`
+- `api-celestia-01.stakeflow.io`
 
 ### gRPC endpoints
 
@@ -136,6 +138,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia.grpc.stakin-nodes.com:443`
 - `celestia.grpc.cumulo.org.es:443`
 - `grpc-celestia.mzonder.com:443`
+- `grpc-celestia-01.stakeflow.io:15002`
 
 You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
@@ -148,6 +151,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://explorer.modular.cloud/celestia-mainnet](https://explorer.modular.cloud/celestia-mainnet)
 - [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
+- [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
 
 ## Network upgrades
 
