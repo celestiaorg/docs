@@ -542,59 +542,61 @@ function sidebarHome() {
           link: "/developers/rollup-overview",
           collapsed: true,
           items: [
-            { text: "Rollkit", link: "/developers/rollkit" },
             {
-              text: "ETH fallback mechanism",
-              link: "/developers/eth-fallback",
-            },
-            {
-              text: "Optimism",
+              text: "Ethereum L2s",
               collapsed: true,
               items: [
                 {
-                  text: "Intro to OP Stack integration",
-                  link: "/developers/intro-to-op-stack",
+                  text: "ETH fallback mechanism",
+                  link: "/developers/eth-fallback",
                 },
                 {
-                  text: "Bubs testnet",
-                  link: "/developers/bubs-testnet",
-                },
-                {
-                  text: "Deploy a smart contract on Bubs testnet",
-                  link: "/developers/deploy-on-bubs",
-                },
-                {
-                  text: "Deploy a dapp on Bubs testnet",
-                  link: "/developers/gm-portal-bubs",
-                },
-                {
-                  text: "Deploy an OP Stack devnet",
-                  link: "/developers/optimism-devnet",
-                },
-                {
-                  text: "Deploy an OP Stack devnet on Celestia",
-                  link: "/developers/optimism",
-                },
-                {
-                  text: "Deploy a dapp with thirdweb",
-                  link: "https://thirdweb.com/bubs-testnet",
-                },
-                {
-                  text: "Rollups-as-a-Service",
+                  text: "Optimism",
                   collapsed: true,
                   items: [
                     {
-                      text: "Caldera",
-                      link: "https://caldera.xyz/",
+                      text: "Intro to OP Stack integration",
+                      link: "/developers/intro-to-op-stack",
+                    },
+                    {
+                      text: "Bubs testnet",
+                      link: "/developers/bubs-testnet",
+                    },
+                    {
+                      text: "Deploy a smart contract on Bubs testnet",
+                      link: "/developers/deploy-on-bubs",
+                    },
+                    {
+                      text: "Deploy a dapp on Bubs testnet",
+                      link: "/developers/gm-portal-bubs",
+                    },
+                    {
+                      text: "Deploy an OP Stack devnet",
+                      link: "/developers/optimism-devnet",
+                    },
+                    {
+                      text: "Deploy an OP Stack devnet on Celestia",
+                      link: "/developers/optimism",
+                    },
+                    {
+                      text: "Deploy a dapp with thirdweb",
+                      link: "https://thirdweb.com/bubs-testnet",
+                    },
+                    {
+                      text: "Rollups-as-a-Service",
+                      collapsed: true,
+                      items: [
+                        {
+                          text: "Caldera",
+                          link: "https://caldera.xyz/",
+                        },
+                      ],
                     },
                   ],
                 },
               ],
             },
-            {
-              text: "Full stack dapp tutorial",
-              link: "https://rollkit.dev/tutorials/polaris-evm",
-            },
+            { text: "Rollkit", link: "/developers/rollkit" },
             {
               text: "Astria",
               collapsed: true,
