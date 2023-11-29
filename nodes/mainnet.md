@@ -149,6 +149,12 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
 
+## Analytics 
+
+The following websites provide analytics for Celestia:
+
+- [https://analytics.smartstake.io/celestia](https://analytics.smartstake.io/celestia)
+
 ## Network upgrades
 
 Join the
