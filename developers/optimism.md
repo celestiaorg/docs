@@ -119,36 +119,41 @@ export L2OO_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 
 ## Start the devnet
 
-First, make sure your light node is synced and funded.
+First, make sure your light node is synced and funded. It must
+not be running for this example to work.
 
 This example is for Mainnet Beta.
 You can modify the `da:` section of your `$HOME/optimism/ops-bedrock/docker-compose.yml`
 for your specific use, similarly to the example below:
 
-::: warning
-The user in the `docker-compose.yml` is the `root` user,
-but this is not meant to be used in production.
-:::
+This setup will use `celestia-da`, which is `celestia-node` with
+a DA server on port 26650.
+
+For the `P2P_NETWORK` variable, you'll need to supply the network of choice, either
+`celestia`, `mocha`, or `arabica`. Using `celestia`, the volume path will be just
+`.celestia-light` instead of `.celestia-light-<network>`.
 
 <!-- markdownlint-disable MD013 -->
-
 ```yaml
 da:
-  user: root // [!code ++]
-  platform: "${PLATFORM}" // [!code --]
-  platform: linux/x86_64 // [!code ++]
-  image: "ghcr.io/rollkit/local-celestia-devnet:v0.12.1" // [!code --]
-  image: "ghcr.io/celestiaorg/celestia-node:v0.12.0" // [!code ++]
-  command: celestia light start --core.ip rpc.celestia.pops.one --p2p.network celestia --log.level debug --gateway // [!code ++]
+  image: ghcr.io/rollkit/local-celestia-devnet:v0.12.1 // [!code --]
+  image: ghcr.io/rollkit/celestia-da:v0.12.1-rc0 // [!code ++]
+  command: > // [!code ++]
+    celestia-da light start // [!code ++]
+    --p2p.network=$P2P_NETWORK // [!code ++]
+    --da.grpc.namespace=000008e5f679bf7116cb // [!code ++]
+    --da.grpc.listen=0.0.0.0:26650 // [!code ++]
+    --core.ip rpc.celestia.pops.one // [!code ++]
+    --gateway // [!code ++]
   environment: // [!code ++]
-    - NODE_TYPE=light // [!code ++]
-    - P2P_NETWORK=mocha // [!code ++]
+      - NODE_TYPE=light // [!code ++]
+      - P2P_NETWORK=<network> // [!code ++]
   ports:
-    - "26657:26657"
+    - "26650:26650" // [!code --]
     - "26658:26658"
     - "26659:26659"
   volumes: // [!code ++]
-    - $HOME/.celestia-light/:/home/celestia/.celestia-light/ // [!code ++]
+    - $HOME/.celestia-light-<network>/:/home/celestia/.celestia-light.<network>/ // [!code ++]
   healthcheck:
     test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
     interval: 10s
@@ -157,13 +162,10 @@ da:
     start_period: 30s
 ```
 
-And in `$HOME/optimism/bedrock-devnet/devnet__init__.py`
+Now start the devnet:
 
-```py
-    result = run_command(["docker", "exec", "ops-bedrock-da-1", "celestia", "bridge", "auth", "admin", "--node.store", "/home/celestia/bridge"], // [!code --]
-    result = run_command(["celestia", "light", "auth", "admin"], // [!code ++]
-        cwd=paths.ops_bedrock_dir, capture_output=True,
-    )
+```bash
+make devnet-up
 ```
 
 ## View the logs of the devnet
