@@ -551,7 +551,7 @@ You should now be able to see your validator from
 ### Run a Blobstream orchestrator
 
 For validators, running a Blobstream orchestrator is **incredibly important** for both
-Mocha and Mainnet. Blobstream orchestrator enables validators to sign
+Mocha and Mainnet (when announced). Blobstream orchestrator enables validators to sign
 attestations.
 [Refer to the documentation](https://docs.celestia.org/nodes/blobstream-orchestrator/#how-to-run)
 to run an orchestrator.
