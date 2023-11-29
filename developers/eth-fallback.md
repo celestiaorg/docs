@@ -30,6 +30,9 @@ can also be triggered in the event Blobstream stops relaying attestations.
 The integration is still a work in progress, and the
 [most up-to-date version can be found on the `tux/frame-ref-version` branch](https://github.com/celestiaorg/optimism/tree/tux/frame-ref-version).
 
+![ETH fallback](/img/Celestia_ETH-fallback.jpg
+)
+
 ## Arbitrum
 
 In [Arbitrum Nitro](https://github.com/OffchainLabs/nitro)

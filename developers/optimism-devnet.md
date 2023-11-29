@@ -27,8 +27,8 @@ Check out to the version for either the stable version or upstream version:
 
 ::: code-group
 
-```bash-vue [TODO: NEW stable]
-git checkout tags/v TODO: NEW STABLE
+```bash-vue [v1.0.0-OP_v1.2.0-CN_v0.12.0]
+git checkout tags/v1.0.0-OP_v1.2.0-CN_v0.12.0
 git submodule update --init --recursive
 ```
 

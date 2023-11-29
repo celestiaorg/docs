@@ -129,8 +129,11 @@ for your specific use, similarly to the example below:
 This setup will use `celestia-da`, which is `celestia-node` with
 a DA server on port 26650.
 
-<!-- markdownlint-disable MD013 -->
+For the `P2P_NETWORK` variable, you'll need to supply the network of choice, either
+`celestia`, `mocha`, or `arabica`. Using `celestia`, the volume path will be just
+`.celestia-light` instead of `.celestia-light-<network>`.
 
+<!-- markdownlint-disable MD013 -->
 ```yaml
 da:
   image: ghcr.io/rollkit/local-celestia-devnet:v0.12.1 // [!code --]
@@ -144,13 +147,13 @@ da:
     --gateway // [!code ++]
   environment: // [!code ++]
       - NODE_TYPE=light // [!code ++]
-      - P2P_NETWORK=celestia // [!code ++]
+      - P2P_NETWORK=<network> // [!code ++]
   ports:
-    - "26650:26650"
+    - "26650:26650" // [!code --]
     - "26658:26658"
     - "26659:26659"
   volumes: // [!code ++]
-    - $HOME/.celestia-light/:/home/celestia/.celestia-light/ // [!code ++]
+    - $HOME/.celestia-light-<network>/:/home/celestia/.celestia-light.<network>/ // [!code ++]
   healthcheck:
     test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
     interval: 10s
