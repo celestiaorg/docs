@@ -547,7 +547,7 @@ function sidebarHome() {
               collapsed: true,
               items: [
                 {
-                  text: "ETH fallback mechanism",
+                  text: "Ethereum fallback mechanism",
                   link: "/developers/eth-fallback",
                 },
                 {
