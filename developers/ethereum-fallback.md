@@ -18,7 +18,7 @@ In the case of Celestia downtime or temporary unavailability, L2s can
 fallback to posting transactions as calldata on Ethereum or another DA
 layer for data availability instead of posting to Celestia. This
 mechanism ensures users can continue to transact securely and seamlessly,
-preventing disruptions and helping to ensure user funds to not get stuck
+preventing disruptions and helping to ensure user funds do not get stuck
 in the L2's bridge on Ethereum.
 
 Ethereum fallback is triggered whenever the sequencer has an error
@@ -28,18 +28,6 @@ with an error such as low balance or incorrect sequence. Fallback
 can also be triggered in the event Blobstream stops relaying attestations.
 
 ![Ethereum fallback](/img/Celestia_ethereum-fallback.jpg)
-
-## Arbitrum
-
-In [Arbitrum Nitro](https://github.com/OffchainLabs/nitro)
-("Nitro goes vroom and fixes everything"), the
-[Ethereum fallback mechanism in the `BatchPoster` function](https://github.com/OffchainLabs/nitro/blob/master/arbnode/batch_poster.go#L989-L1001)
-is handling the process of storing data, with a fallback mechanism
-to store data onchain if the primary data availability storage
-fails.
-
-The [@celestiaorg/nitro](https://github.com/celestiaorg/nitro) integration
-[uses the same fallback mechanism](https://github.com/celestiaorg/nitro/blob/f01968eb3d4e19329e9c92b050e98a8e5772f1f2/arbnode/batch_poster.go#L845-L857).
 
 ## OP Stack
 
@@ -107,3 +95,14 @@ These two functions work together to ensure that the Ethereum
 fallback mechanism operates correctly, allowing the rollup
 to continue functioning even during periods of downtime on
 Celestia.
+
+## Arbitrum
+
+In [Arbitrum Nitro](https://github.com/OffchainLabs/nitro), the
+[Ethereum fallback mechanism in the `BatchPoster` function](https://github.com/OffchainLabs/nitro/blob/master/arbnode/batch_poster.go#L989-L1001)
+is handling the process of storing data, with a fallback mechanism
+to store data onchain if the primary data availability storage
+fails.
+
+The [@celestiaorg/nitro](https://github.com/celestiaorg/nitro) integration
+[uses the same fallback mechanism](https://github.com/celestiaorg/nitro/blob/f01968eb3d4e19329e9c92b050e98a8e5772f1f2/arbnode/batch_poster.go#L845-L857).
