@@ -548,7 +548,7 @@ function sidebarHome() {
               items: [
                 {
                   text: "Ethereum fallback mechanism",
-                  link: "/developers/eth-fallback",
+                  link: "/developers/ethereum-fallback",
                 },
                 {
                   text: "Optimism",

@@ -2,9 +2,9 @@
 description: The DA fallback mechanism to Ethereum for rollups.
 ---
 
-# ETH fallback
+# Ethereum fallback
 
-ETH fallback is
+Ethereum fallback is
 [a fallback mechanism](https://github.com/celestiaorg/optimism/pull/266)
 that enables Ethereum L2s (or L3s) to “fall back” to using Ethereum
 calldata for data availability in the event of downtime on Celestia
@@ -27,14 +27,13 @@ triggered due to a congested mempool or nonce error and can be simulated
 with an error such as low balance or incorrect sequence. Fallback
 can also be triggered in the event Blobstream stops relaying attestations.
 
-![ETH fallback](/img/Celestia_ETH-fallback.jpg
-)
+![Ethereum fallback](/img/Celestia_ethereum-fallback.jpg)
 
 ## Arbitrum
 
 In [Arbitrum Nitro](https://github.com/OffchainLabs/nitro)
 ("Nitro goes vroom and fixes everything"), the
-[ETH fallback mechanism in the `BatchPoster` function](https://github.com/OffchainLabs/nitro/blob/master/arbnode/batch_poster.go#L989-L1001)
+[Ethereum fallback mechanism in the `BatchPoster` function](https://github.com/OffchainLabs/nitro/blob/master/arbnode/batch_poster.go#L989-L1001)
 is handling the process of storing data, with a fallback mechanism
 to store data onchain if the primary data availability storage
 fails.
@@ -44,15 +43,15 @@ The [@celestiaorg/nitro](https://github.com/celestiaorg/nitro) integration
 
 ## OP Stack
 
-The ETH fallback mechanism is implemented in the
+The Ethereum fallback mechanism is implemented in the
 [celestiaorg/optimism](https://github.com/celestiaorg/optimism/tree/release-v1.0.0) v1.0.0 release.
 
 The `op-batcher/batcher/driver.go` and
-`op-node/rollup/derive/calldata_source.go` files are part of the ETH
+`op-node/rollup/derive/calldata_source.go` files are part of the Ethereum
 fallback mechanism in the `op-batcher` and `op-node` respectively.
 
 In [`driver.go`, the `sendTransaction` function is responsible for the write path](https://github.com/celestiaorg/optimism/blob/release-v1.0.0/op-batcher/batcher/driver.go#L400-L406)
-of the ETH fallback. This function creates and submits a transaction to the
+of the Ethereum fallback. This function creates and submits a transaction to the
 batch inbox address with the given data. It uses the underlying `txmgr` to
 handle transaction sending and gas price management.
 
@@ -84,7 +83,7 @@ func (l *BatchSubmitter) sendTransaction(
 
 In `calldata_source.go`,
 [the `DataFromEVMTransactions` function defines the read path](https://github.com/celestiaorg/optimism/blob/release-v1.0.0/op-node/rollup/derive/calldata_source.go#L138-L163)
-of the ETH fallback. This function filters all of the transactions
+of the Ethereum fallback. This function filters all of the transactions
 and returns the calldata from transactions that are sent to the batch
 inbox address from the batch sender address.
 
@@ -104,7 +103,7 @@ func DataFromEVMTransactions(
 }
 ```
 
-These two functions work together to ensure that the ETH
+These two functions work together to ensure that the Ethereum
 fallback mechanism operates correctly, allowing the rollup
 to continue functioning even during periods of downtime on
 Celestia.
