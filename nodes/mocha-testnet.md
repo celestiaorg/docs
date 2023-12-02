@@ -64,6 +64,7 @@ Below is a list of RPC endpoints you can use to connect to Mocha testnet:
 - `celestia-testnet.brightlystake.com`
 - `rpc-celestia-mocha.architectnodes.com`
 - `rpc-celestia-mocha.testnet-pride.com`
+- `rpc-mocha-4.spidey.services`
 
 ### Full and light nodes ONLY
 
@@ -90,6 +91,7 @@ The default port is 1317.
 - [https://celestia-testnet.brightlystake.com/api](https://celestia-testnet.brightlystake.com/api)
 - [https://rest-celestia-mocha.architectnodes.com](https://rest-celestia-mocha.architectnodes.com)
 - [https://api-celestia-mocha.testnet-pride.com/](https://api-celestia-mocha.testnet-pride.com/)
+- [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
 
 ## gRPC endpoints
 
@@ -107,6 +109,7 @@ broadcast transactions.
 - `celestia-testnet.brightlystake.com:9390`
 - `grpc-celestia-mocha.architectnodes.com:1443`
 - `grpc-celestia-mocha.testnet-pride.com:9099`
+- `grpc-mocha-4.spidey.services`
 
 ## Bridge and full node endpoints
 
