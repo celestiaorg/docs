@@ -67,7 +67,7 @@ Use "blobstream orchestrator keys [command] --help" for more information about a
 
 ### EVM keystore
 
-The first subcommand of the `keys` command is `evm`. This latter allows managing EVM keys.
+The first subcommand of the `keys` command is `evm`. This command allows managing EVM keys.
 
 The EVM keys are `ECDSA` keys using the `secp256k1` curve. The implementation uses `geth` file system keystore [implementation](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts). Thus, keys can be used interchangeably with any compatible software.
 

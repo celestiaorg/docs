@@ -10,7 +10,8 @@ This guide will show you how to run your own OP Stack devnet.
 
 ### Environment setup and Golang installation
 
-First, [install dependencies](../nodes/environment.md).
+First, [install dependencies for Celestia software](../nodes/environment.md)
+and for [OP Stack](https://community.optimism.io/docs/developers/build/dev-node/).
 
 ### Clone repository
 
@@ -22,148 +23,21 @@ git clone https://github.com/celestiaorg/optimism
 cd optimism
 ```
 
-Check out to the version for either the devnet (this page) or
-[testnet](./optimism.md) tutorial:
+Check out to the version for either the stable version or upstream version:
 
 ::: code-group
 
-```bash-vue [Devnet]
-git checkout v0.1.3-OP_v1.0.6-CN_v0.11.0-rc8
+```bash-vue [v1.0.0-OP_v1.2.0-CN_v0.12.0]
+git checkout tags/v1.0.0-OP_v1.2.0-CN_v0.12.0
+git submodule update --init --recursive
 ```
 
-```bash-vue [Testnet]
-git checkout v0.1.3-OP_v1.0.6-CN_v0.11.0-rc8
+```bash-vue [celestia-develop]
+git checkout celestia-develop
+git submodule update --init --recursive
 ```
 
 :::
-
-### asdf
-
-[Install `asdf`](https://asdf-vm.com/guide/getting-started.html)
-to allow us to install a specific version of node easily.
-
-Here is an example for Ubuntu using bash:
-
-```bash
-cd $HOME
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
-echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
-echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
-```
-
-Set the path from the asdf documentation based on your operating
-system and shell type.
-
-Here is an example for Ubuntu using bash:
-
-```bash
-export PATH=$PATH:~/.asdf/bin/
-```
-
-Check that it was installed:
-
-```bash
-asdf
-```
-
-### Node.js
-
-Install `nodejs 16.16.0`:
-
-```bash
-asdf plugin add nodejs
-asdf install nodejs 16.16.0
-asdf local nodejs 16.16.0
-source ~/.bashrc
-```
-
-Install [NPM](https://www.npmjs.com/):
-
-```bash
-apt install npm
-```
-
-Update NPM to v9.6.5:
-
-```bash
-npm install -g npm@9.6.5
-```
-
-If using NVM, install NPM v9.6.5:
-
-```bash
-nvm install v9.6.5
-```
-
-Then set the version:
-
-```bash
-nvm use v9.6.5
-```
-
-### python
-
-Install python 3.10.7:
-
-```bash
-asdf plugin-add python
-asdf install python 3.10.7
-asdf local python 3.10.7
-source ~/.bashrc
-```
-
-### Foundry
-
-Download the Foundry script execute it to set up environment:
-
-```bash
-curl -L https://foundry.paradigm.xyz/ | bash
-```
-
-Set path:
-
-```bash
-source /root/.bashrc
-```
-
-Run foundryup to install Foundry (`forge`, `cast`, `anvil`, `chisel`):
-
-```bash
-foundryup
-```
-
-### Yarn
-
-Install yarn:
-
-```bash
-npm install -g yarn
-```
-
-Depending on the version installed,
-you may need to update your version of NPM.
-
-### Docker compose
-
-Install docker-compose:
-
-```bash
-apt install docker-compose
-```
-
-### gcc & libusb
-
-```bash
-apt install gcc libusb-1.0-0-dev
-```
-
-### macOS only: set up python
-
-```bash
-brew install python3
-npm config set python /usr/local/bin/python3
-npm cache clean --force
-```
 
 ## Build devnet
 
@@ -172,7 +46,7 @@ Build TypeScript definitions for TS dependencies:
 ```bash
 cd $HOME
 cd optimism
-yarn && make build-ts
+make
 ```
 
 Set environment variables to start network:
@@ -203,30 +77,7 @@ from the root of the Optimism directory:
 make devnet-logs
 ```
 
-:::tip optional
-
-#### lazydocker
-
-You can install [lazydocker](https://github.com/jesseduffield/lazydocker)
-to view all of the components of your stack in one TUI by running:
-
-```bash
-asdf plugin add lazydocker https://github.com/comdotlinux/asdf-lazydocker.git
-asdf list all lazydocker
-asdf install lazydocker 0.12
-asdf global lazydocker 0.12
-```
-
-And run the command:
-
-```bash
-lazydocker
-```
-
-If you do this, you can skip the [viewing containers](#viewing-containers)
-section and [find a transaction](#find-a-transaction).
-
-:::
+::: details Optional: Docker tips
 
 ### Stop devnet
 
@@ -269,6 +120,8 @@ docker logs -f <container-id>
 You can do the same for other containers as you
 explore the stack.
 
+:::
+
 ## Find a transaction
 
 Now, we'll check for a recent transaction on the L1 with:
@@ -282,33 +135,34 @@ Output of a block that contains a transaction will look like this:
 ```console
 baseFeePerGas        7
 difficulty           2
-extraData            0xd883010a16846765746888676f312e31382e35856c696e75780000000000000001749030eb8e51903cf49e2c8c21e7ff98aaa7d45e3ecd51b8594440c5c66e9931b70b18d1a629212074f3ef9188bd0a9079e094e414d287f73d40ea8392349600
+extraData            0xd883010d04846765746888676f312e32312e33856c696e7578000000000000006b3afa42dce1f87f1f07a1ef569c4d43e41738ef93c865098bfa1458645f384e2e4498bcfe4ad9353ff1913a2e16162f496fafe5b0939a6c78fb5b503248d6da01
 gasLimit             30000000
-gasUsed              21072
-hash                 0x9d764f5e3e2ccf5a334ae4fbe3827e7b80750f39aa671c958b5c09a9b67d9dfc
+gasUsed              21568
+hash                 0x1cb54d2369752ef73511c202ff9cdfd0eadf3a77b7aef0092bea63f2b5d57659
 logsBloom            0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 miner                0x0000000000000000000000000000000000000000
 mixHash              0x0000000000000000000000000000000000000000000000000000000000000000
 nonce                0x0000000000000000
-number               1569
-parentHash           0x1a5100654617b565bf2a117c7487a57c54d0c61b99d94592518fbc07b3fec45d
-receiptsRoot         0xa981da57b00630bb01a6eb02629212ea8b0c89281a07295ace6bb78c81193e68
+number               1141
+parentHash           0x664bf4bb4a57dd5768a0a98991d77c58fb7a4e164c2581c79fb33ce9c3d4c250
+receiptsRoot         0xaf8ff6af1180c8be9e4e8f3a5f882b3b227233f4abbefa479836d3721682a389
 sealFields           []
 sha3Uncles           0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347
-size                 740
-stateRoot            0x9d1e02cbf556997123676f47749a043b5bd9bebe629f5dbd3f256a7d5e37b665
-timestamp            1677272382
-totalDifficulty      3139
+size                 767
+stateRoot            0xd4b998a35d20d98ed3488221f0c161a0a9572d3de66399482553c8e3d2fae751
+timestamp            1699638350
+withdrawalsRoot
+totalDifficulty      2283
 transactions:        [
-    0x40b79afe3dc05ff398c2142ab47eb94ac3759a03dd1322b2d97bcdc2d1c34934
+  0x79a0a7a1b4936aafe7a37dbfb07a6a9e55c145a4ed6fd54f962649b4b7db8de7
 ]
 ```
 
-And copy the transaction hash from `transactions: <transaction-hash>` and
+Copy the transaction hash from `transactions: <transaction-hash>` and
 set it as a variable:
 
 ```bash
-export TX_HASH=0xb8869dfecf9a5a0e26df6b13e64071b859f2cc0587b97cb4387abf9ddb2ff9a0
+export TX_HASH=0x79a0a7a1b4936aafe7a37dbfb07a6a9e55c145a4ed6fd54f962649b4b7db8de7
 ```
 
 ## Read the transaction call data
@@ -322,44 +176,88 @@ cast tx $TX_HASH --rpc-url localhost:8545
 The output will look similar to below:
 
 ```console
-blockHash            0xce5691878b61e3b5bbae66317512365ef6bb1f597b4dfc11e585abf470cdf4dd
-blockNumber          1164
+blockHash            0x9f4dfae061b5ddd86f95a81be5daa0d7fe32e7f7f770f86dc375e0007d249bd2
+blockNumber          24
 from                 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
-gas                  21072
-gasPrice             1000000007
-hash                 0xb8869dfecf9a5a0e26df6b13e64071b859f2cc0587b97cb4387abf9ddb2ff9a0
-input                0x0000000000000c2a00000000
-nonce                318
-r                    0x9a32da65f4dabf0e1c6d2a86d52c7d6f868997cfc1183fc28c5f0a0615a5e678
-s                    0x4ce385cc70a178b86d95de05428763805183276a6fd418c44e346a3838a70144
-to                   0xfF00000000000000000000000000000000000000
+gas                  21572
+gasPrice             1040676758
+hash                 0xadd3a5dc0b8c605aeac891098e87cbaff43bb642896ebbf74f964c0690e46df2
+input                0xce3500000000000000769074a923011bdda721eacc34c8a77c69c10f2b6c8e659f987e82f217a5340f
+nonce                4
+r                    0xaf5c1505c7dfcebca94d9a6a8c0caf99b6c87a8ed6d6c0b3161c9026f270a84f
+s                    0x383ed2debf9f9055920cd7340418dda7e2bca6b989eb6992d83d123d4e322f2a
+to                   0xFf00000000000000000000000000000000000901
 transactionIndex     0
 v                    0
 value                0
+yParity              0
 ```
 
-Now set the `input` as the `INPUT` variable, removing the `0x` from the beginning:
+::: tip
+You are looking for a batcher transaction to the address
+`0xFf00000000000000000000000000000000000901`.
+:::
+
+First, remove the prefix `0xce`.
+Now, set the `input` as the `INPUT` variable and encode it as
+base64:
 
 ```bash
-export INPUT=0000000000000c2a00000000
+export INPUT=ce3500000000000000769074a923011bdda721eacc34c8a77c69c10f2b6c8e659f987e82f217a5340f
+export ENCODED_INPUT=$(echo "$INPUT" | xxd -r -p | base64)
 ```
 
 :::tip
-Remember to remove the `0x`!
+Remember to remove the `0xce` prefix!
 :::
 
 ## Find the data on Celestia
 
-Now navigate to `optimism/op-celestia` and run:
+Clone the `go-da` repository:
 
 ```bash
-go run main.go $INPUT
+cd $HOME
+git clone https://github.com/rollkit/go-da.git
+cd go-da/proto/da
+```
+
+Now, from `go-da/proto/da` run:
+
+<!-- markdownlint-disable MD013 -->
+
+```bash
+grpcurl -proto da.proto -plaintext -d "{\"ids\": [{\"value\": \"$ENCODED_INPUT\"}]}" 127.0.0.1:26650 da.DAService.Get
 ```
 
 Your result will look similar to the below!
 
 ```console
-celestia block height: 3114; tx index: 0
------------------------------------------
-optimism block data on celestia: [00191cef8fb52cf322b77694ff5a92149800000000020b78dadae1c7f0c37b015fdd84970dfbe3ff4ab7abe8b9083c94aebe7df77e705bba47f8e72b762fadcecd6b62695920e9eee3e5369b3fd265726ebcfbfcbf3f5fcde3bd6960f53b7da1c147ae4fefe689b724ff54c83a0031ef93479f5a75f08e6a9bbd0b755c220e4ed8b3fd5c9cfc1b9ed0ca69dcabbf5cbd274aac793950f38ef6bd59e551e56d77fcf7aabd9287abd8af7b9de39cb3235732c58be7034774bf54134beb828c19b15f3553a74b64ffbd3a2fe0e8cbb77b0217dccb4f68de9774fbac5efaed040190797950f3e22bafc9d7884cf616d87db6a46ace99b277252dd36f9c7d5ebabfd46d5a71bec9872696b605173ccc153d4a7befbd69f64f6db25cc7dd59f86d5de586b457f7d759f73fe57fde0c32af006a5eebdcfb85d385b3ef3d158fbccaf263cb8b35cb2a58cc0f083f5cf3b742d555f3fe2362cd2b829a37c9c9446fedbf8d911f3f86cc79c335e960f26d5eef25e735f7dd9b926019dcf1ed5b134bfb02416e36be3b277635b757f36f2bff9260ddcf1f20132e5071afe8bcdd9ccdcffda440e69540cddbb548ecdd73863673ab122e2d36d69dfc8bd71be61dbae235cf63e3a9a0121141b726968e051d2b7ef076b11f3c9964b4fee0acfb93777fbd37d94dfdecfdd6836af39ebaaff58c07995706352fdf9259b773cfd42e0ed168914542c54ca28147969b18b7987ef233fcd41c1cde44ac79150700010000fffff649400701]
+{
+  "blobs": [
+    {
+      "value": "AKUumhJ8FnuyVrBs38FDKEIAAAAAAZB42trhw/DDc4GFAlv4klkv5Zh4E16mmO5fpNOS1f5wzpds8YK3S0Rvs4ULLJj13euw+Ovdv6Q23zuV1ShROEvk5aptIT7bGmZunvc1OiKwJTXVbN0BiGm6k2zNWq78cNsT2ez3+nzQq84Ds28or/aKz/o1w4NpV7w4caZtgJomX71w96m63+xzYnarXLu7WWvRrwbeb6cW8R93YHXt1r4+TXCBGVe76obzf5JLTNu22gksD2cL+83D8DGjX0FKcwZD0VofkGmboKY1uTddu8704s2MwgNNe09s1bzw+n9Fq6fKFw7pvwJL200eCS0oFJ3HfPAEywnlgyyGQc89dh+98GD5TrdU4aNql9afmW+sDzJtC9S0fzLWYROOS0bvK3W7EvNpmWXe5qrdzKlBmv1LZi4ofrrxLHGmbYOaJhHsEn+B81lGUh33HDet8K9nVKKSF2+W3Xul6uPSxydPBwsv2GHskR+yfUlDbvyl1ROTvtS1zXlpEPz0M1e/RIIt57fVj0Gm7TgACAAA//+Qdel2AQ=="
+    }
+  ]
+}
 ```
+
+## ETH fallback
+
+The [ETH fallback mechanism](eth-fallback.md) allows rollups to "fall back" to
+Ethereum or another EVM chain in the case of downtime or errors submitting
+data to Celestia.
+
+Testing out the ETH fallback mechanism can be done
+with the `go-da` tool. Triggering a simultaneous blob transaction will
+cause the `op-batcher` blob transaction to fail, with an `incorrect account
+sequence` error, which triggers a fallback to Ethereum.
+
+To trigger the transaction, send this command from the same `go/proto/da` directory:
+
+```bash
+grpcurl -proto da.proto -plaintext -d '{"blobs": [{"value": "SGVsbG8gd28ybGQh"}]}' 127.0.0.1:26650 da.DAService.Submit
+```
+
+Alternatively, you can shut off the `local-celestia-devnet` and see that
+the OP Stack devnet logs show that the rollup has fallen back to the L1,
+in this case Ethereum, for posting data.

@@ -17,9 +17,17 @@ You can enable the `celestia-node` metric flags with the following
 command:
 
 ```sh
-celestia <node-type> start --metrics.tls <boolean> \
+celestia <node-type> start --metrics.tls=<boolean> \
     --metrics --metrics.endpoint <URI> \
     --p2p.network <network> --core.ip <URI>
+```
+
+Here is an example for Mainnet Beta:
+
+```sh
+celestia <node-type> start --metrics.tls=true \
+    --metrics --metrics.endpoint otel.celestia.observer \
+    --core.ip <URI>
 ```
 
 Add metrics flags to your node start command and restart your node to apply it.
@@ -50,12 +58,12 @@ Here are examples of how to use it:
 
 ```bash
 # To enable TLS connection
-celestia <node-type> start --metrics.tls true --metrics \
+celestia <node-type> start --metrics.tls=true --metrics \
     --metrics.endpoint <URI> \
     --p2p.network <network> --core.ip <URI>
 
 # To disable TLS connection
-celestia <node-type> start --metrics.tls false --metrics \
+celestia <node-type> start --metrics.tls=false --metrics \
     --metrics.endpoint <URI> \
     --p2p.network <network> --core.ip <URI>
 ```

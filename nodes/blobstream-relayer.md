@@ -1,9 +1,9 @@
 ---
-sidebar_label: Blobstream relayer
-description: Learn about the Blobstream relayer.
+sidebar_label: Blobstream Relayer
+description: Learn about the Blobstream Relayer.
 ---
 
-# Blobstream relayer
+# Blobstream Relayer
 
 <!-- markdownlint-disable MD013 -->
 
@@ -11,7 +11,7 @@ The role of the relayer is to gather attestations' signatures from the orchestra
 
 Also, while every validator in the Celestia validator set needs to run an orchestrator, we only need one entity to run the relayer, and it can be anyone. Thus, if you're a validator, most likely you want to read [the orchestrator documentation](https://docs.celestia.org/nodes/blobstream-orchestrator/).
 
-Every relayer needs to target a Blobstream smart contract. This latter can be deployed, if not already, using the `blobstream deploy` command. More details in the [Deploy the Blobstream contract guide](https://docs.celestia.org/nodes/blobstream-deploy/).
+Every relayer needs to target a Blobstream smart contract. This contract can be deployed, if not already, using the `blobstream deploy` command. More details in the [Deploy the Blobstream contract guide](https://docs.celestia.org/nodes/blobstream-deploy/).
 
 ## How it works
 
@@ -24,7 +24,7 @@ The relayer works as follows:
 5. Once the relayer finds more than 2/3s signatures, it submits them to the target Blobstream smart contract where they get validated.
 6. Listen for new attestations and go back to step 2.
 
-The relayer connects to a separate P2P network than the consensus or the data availability one. So, we will provide bootstrappers for that one.
+The relayer connects to a separate P2P network from the consensus or the data availability one. So, we will provide bootstrappers for that one.
 
 This means that even if the consensus node is already connected to the consensus network, if the relayer doesn't start with a list of bootstrapper to its specific network, then, it will not work and will output the following logs:
 
@@ -108,20 +108,16 @@ Usage:
   blobstream relayer start <flags> [flags]
 ```
 
+Also, you can set the necessary configuration in the relayers's TOML config file. You can find the orchestrator's TOML config file in the relayer's home directory under `config/config.toml`.
+
+> **_NOTE:_** The CLI flags take precedence over the config files for the same parameters.
+
 To start the relayer using the default home directory, run the following:
 
 ```sh
-/bin/blobstream relayer start \
-  --evm.contract-address=0x27a1F8CE94187E4b043f4D57548EF2348Ed556c7 \
-  --core.rpc.host=localhost \
-  --core.rpc.port=26657 \
-  --core.grpc.host=localhost \
-  --core.grpc.port=9090 \
-  --evm.chain-id=4 \
-  --evm.rpc=http://localhost:8545 \
-  --evm.account=0x35a1F8CE94187E4b043f4D57548EF2348Ed556c8 \
-  --p2p.bootstrappers=/ip4/127.0.0.1/tcp/30001/p2p/12D3KooWFFHahpcZcuqnUhpBoX5fJ68Qm5Hc8dxiBcX1oo46fLxh \
-  --p2p.listen-addr=/ip4/0.0.0.0/tcp/30001
+/bin/blobstream relayer start --evm.account=0x35a1F8CE94187E4b043f4D57548EF2348Ed556c8
 ```
 
-And, you will be prompted to enter your EVM key passphrase for the EVM address passed using the `-d` flag, so that the relayer can use it to send transactions to the target Blobstream smart contract. Make sure that it's funded.
+> **_NOTE:_** The above command assumes that the necessary configuration is specified in the  `<relayer_home>/config/config.toml` file.
+
+Then, you will be prompted to enter your EVM key passphrase for the EVM address passed using the `--evm.account` flag, so that the relayer can use it to send transactions to the target Blobstream smart contract. Make sure that it's funded.

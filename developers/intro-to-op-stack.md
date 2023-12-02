@@ -35,7 +35,7 @@ rollup blocks and posts to Ethereum.
 - [Deploy a smart contract on Bubs testnet](./deploy-on-bubs.md)
 - [Deploy a GM Portal dapp on Bubs testnet](./gm-portal-bubs.md)
 - [Deploy an OP Stack devnet](./optimism-devnet.md)
-- [Deploy an OP Stack testnet on Celestia](./optimism.md)
+- [Deploy an OP Stack devnet on Celestia](./optimism.md)
 
 ## Celestia and OP Stack repository
 
@@ -76,7 +76,7 @@ Learn more at [Celestia.org](https://celestia.org).
 
 ## OP Stack and Celestia
 
-This category will guide you through how to start your own devnet or testnet
+This category will guide you through how to start your own devnet
 with a modified version of `optimism-bedrock` that uses Celestia as a
 DA layer.
 

@@ -42,4 +42,4 @@ You can get started with the following tutorials:
 - [Recipe Book rollup](https://rollkit.dev/tutorials/recipe-book)
 - [Wordle app](https://rollkit.dev/tutorials/wordle)
 - [CosmWasm rollup](https://rollkit.dev/tutorials/cosmwasm)
-- EVM rollup - Coming soon!
+- [Polaris EVM rollup](https://rollkit.dev/tutorials/polaris-evm)

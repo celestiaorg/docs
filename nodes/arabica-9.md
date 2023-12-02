@@ -6,7 +6,7 @@ description: A guide to Arabica-9 devnet.
 
 ![arabica-devnet](/img/arabica-devnet.png)
 
-::: warning
+:::warning
 This page is maintained for developers still using the `arabica-9` devnet.
 
 Refer to the [Arabica devnet](./arabica-devnet.md) page for the latest
@@ -92,7 +92,7 @@ broadcast transactions.
 
 ## Arabica devnet faucet
 
-::: danger WARNING
+:::danger WARNING
 USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER DISTRIBUTION OF
 MAINNET CELESTIA TOKENS. THERE ARE NO PUBLIC SALES OF ANY MAINNET CELESTIA
 TOKENS.

@@ -1,8 +1,8 @@
 ---
 description: Learn how to generate a Celestia wallet using celestia-app.
 prev:
-  text: "Full stack dapp tutorial"
-  link: "/developers/full-stack-modular-development-guide"
+  text: "Deploy an OP Stack devnet to Celestia"
+  link: "/developers/optimism"
 ---
 
 # Create a wallet with celestia-app

@@ -70,22 +70,24 @@ celestia <da_type> start –core.ip <url> –core.rpc.port <port> \
 :::
 
 :::tip Bridge nodes
-These RPC endpoints do not guarantee the full block history. Run your own
-consensus full node with no pruning for your bridge node.
+Not all of the RPC endpoints do not guarantee the full block history.
+Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
+or run your own consensus full node with no pruning for
+your bridge node.
 :::
 
 RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with:
 
-- `public-celestia-da.numia.xyz`
+- `public-celestia-consensus.numia.xyz`
   - gRPC: port 9090
   - RPC: port 26657
 - `celestia-consensus.mesa.newmetric.xyz`
   - gRPC: port 9090
   - RPC: port 26657
-- `consensus.lunaroasis.net`
+- `rpc.celestia.pops.one`
   - gRPC: port 9090
   - RPC: port 26657
-- `rpc.celestia.pops.one`
+- `consensus.lunaroasis.net`
   - gRPC: port 9090
   - RPC: port 26657
 
@@ -100,7 +102,13 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-rpc.mesa.newmetric.xyz`
 - `rpc.lunaroasis.net`
 - `rpc.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com`
 - `celestia-rpc.spidey.services`
+- `rpc-celestia.contributiondao.com`
+- `celestia.rpc.stakin-nodes.com`
+- `celestia.cumulo.org.es`
+- `rpc-celestia.mzonder.com`
+- `rpc-celestia-01.stakeflow.io`
 
 ### API endpoints
 
@@ -109,7 +117,13 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `api.celestia.pops.one`
 - `api.lunaroasis.net`
 - `api.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com/api`
 - `celestia-api.spidey.services`
+- `api-celestia.contributiondao.com`
+- `celestia.rest.stakin-nodes.com`
+- `celestia.api.cumulo.org.es`
+- `api-celestia.mzonder.com`
+- `api-celestia-01.stakeflow.io`
 
 ### gRPC endpoints
 
@@ -118,17 +132,32 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `grpc.celestia.pops.one`
 - `grpc.lunaroasis.net:443`
 - `grpc.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com:9090`
 - `celestia-grpc.spidey.services`
+- `grpc-celestia.contributiondao.com`
+- `celestia.grpc.stakin-nodes.com:443`
+- `celestia.grpc.cumulo.org.es:443`
+- `grpc-celestia.mzonder.com:443`
+- `grpc-celestia-01.stakeflow.io:15002`
+
+You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
 ## Explorers
 
 There are multiple explorers you can use for Mainnet Beta:
 
 - [https://celenium.io](https://celenium.io)
-- [https://celestiascan.com](https://celestiascan.com)
-- [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://celestia.explorers.guru](https://celestia.explorers.guru)
+- [https://explorer.modular.cloud/celestia-mainnet](https://explorer.modular.cloud/celestia-mainnet)
+- [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
+- [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
+
+## Analytics 
+
+The following websites provide analytics for Celestia:
+
+- [https://analytics.smartstake.io/celestia](https://analytics.smartstake.io/celestia)
 
 ## Network upgrades
 
