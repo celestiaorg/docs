@@ -112,7 +112,7 @@ broadcast transactions.
 - `grpc-celestia-mocha.architectnodes.com:1443`
 - `grpc-celestia-mocha.testnet-pride.com:9099`
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
-- `mocha.grpc.cumulo.me`
+- `mocha.grpc.cumulo.me:443`
 
 ## Bridge and full node endpoints
 
