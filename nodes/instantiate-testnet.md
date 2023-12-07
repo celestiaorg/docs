@@ -11,17 +11,17 @@ or if you want to test out new features to build as a core developer.
 
 ## Hardware requirements
 
-You wil need to
+You will need to
 [follow hardware requirements](./consensus-node.md#validator-hardware-requirements).
 
 ## Setup dependencies
 
-You wil need to
+You will need to
 [setup dependencies by following the guide](./environment.md).
 
 ## celestia-app installation
 
-You wil need to
+You will need to
 [install `celestia-app` by following the guide](./celestia-app.md).
 
 ## Spin up a Celestia testnet
