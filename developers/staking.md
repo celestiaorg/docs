@@ -26,5 +26,6 @@ Currently, the following staking interfaces exist for the
 
 Just connect your wallet to get started!
 
+- [https://alphab.ai/s/t/celestia-mocha-4/](https://alphab.ai/s/t/celestia-mocha-4/)
 - [https://explorer.kjnodes.com/celestia-testnet](https://explorer.kjnodes.com/celestia-testnet)
 - [https://testnet.keplr.app/chains/celestia-mocha-testnet](https://testnet.keplr.app/chains/celestia-mocha-testnet)
