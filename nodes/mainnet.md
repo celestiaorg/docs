@@ -109,6 +109,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia.cumulo.org.es`
 - `rpc-celestia.mzonder.com`
 - `rpc-celestia-01.stakeflow.io`
+- `rpc-celestia-full.avril14th.org`
 
 ### API endpoints
 
@@ -124,6 +125,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia.api.cumulo.org.es`
 - `api-celestia.mzonder.com`
 - `api-celestia-01.stakeflow.io`
+- `api-celestia-full.avril14th.org`
 
 ### gRPC endpoints
 
@@ -139,6 +141,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia.grpc.cumulo.org.es:443`
 - `grpc-celestia.mzonder.com:443`
 - `grpc-celestia-01.stakeflow.io:15002`
+- `grpc-celestia-full.avril14th.org`
 
 You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
