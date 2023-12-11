@@ -931,7 +931,7 @@ It will output something like this:
         "block": "11",
         "app": "1"
       },
-      "chain_id": "arabica-10",
+      "chain_id": "arabica-11",
       "height": "1",
       "time": "2023-06-27T13:02:39.741743Z",
       "last_block_id": {
