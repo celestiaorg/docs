@@ -18,6 +18,7 @@ Just connect your wallet to get started!
 
 - [https://wallet.keplr.app/chains/celestia?tab=staking](https://wallet.keplr.app/chains/celestia?tab=staking)
 - [https://cosmos.leapwallet.io/transact/stake/plain?chain=celestia](https://cosmos.leapwallet.io/transact/stake/plain?chain=celestia)
+- [https://alphab.ai/s/m/celestia/](https://alphab.ai/s/m/celestia/)
 
 ## Mocha testnet
 
@@ -26,6 +27,6 @@ Currently, the following staking interfaces exist for the
 
 Just connect your wallet to get started!
 
+- [https://alphab.ai/s/t/celestia-mocha-4/](https://alphab.ai/s/t/celestia-mocha-4/)
 - [https://explorer.kjnodes.com/celestia-testnet](https://explorer.kjnodes.com/celestia-testnet)
-- [https://test.anode.team/celestia](https://test.anode.team/celestia)
 - [https://testnet.keplr.app/chains/celestia-mocha-testnet](https://testnet.keplr.app/chains/celestia-mocha-testnet)

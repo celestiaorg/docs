@@ -90,6 +90,9 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `consensus.lunaroasis.net`
   - gRPC: port 9090
   - RPC: port 26657
+- `rpc-celestia.alphab.ai`
+  - gRPC: port 9090
+  - RPC: port 26657
 
 ### Consensus nodes
 
@@ -109,6 +112,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia.cumulo.org.es`
 - `rpc-celestia.mzonder.com`
 - `rpc-celestia-01.stakeflow.io`
+- `rpc-celestia.alphab.ai`
 - `rpc-celestia-full.avril14th.org`
 
 ### API endpoints
@@ -125,6 +129,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia.api.cumulo.org.es`
 - `api-celestia.mzonder.com`
 - `api-celestia-01.stakeflow.io`
+- `api-celestia.alphab.ai`
 - `api-celestia-full.avril14th.org`
 
 ### gRPC endpoints
@@ -141,6 +146,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia.grpc.cumulo.org.es:443`
 - `grpc-celestia.mzonder.com:443`
 - `grpc-celestia-01.stakeflow.io:15002`
+- `rpc-celestia.alphab.ai:9090`
 - `grpc-celestia-full.avril14th.org`
 
 You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
@@ -161,6 +167,7 @@ There are multiple explorers you can use for Mainnet Beta:
 The following websites provide analytics for Celestia:
 
 - [https://analytics.smartstake.io/celestia](https://analytics.smartstake.io/celestia)
+- [https://alphab.ai/s/m/celestia/](https://alphab.ai/s/m/celestia/)
 
 ## Network upgrades
 
