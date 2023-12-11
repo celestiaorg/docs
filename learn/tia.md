@@ -68,7 +68,7 @@ that you will typically see in wallets and user interfaces.
 #### utia: staking denomination
 
 `utia` is the [`BondDenom`](https://github.com/celestiaorg/celestia-app/blob/ada77509d7fdedf2a3e3400b720549365851454c/pkg/appconsts/global_consts.go#L75-L76)
-and stands for for "micro TIA", with 1 TIA = 1,000,000 `utia`. This is the
+and stands for "micro TIA", with 1 TIA = 1,000,000 `utia`. This is the
 native staking denomination.
 
 In staking operations or transactions, if no denomination is specified, `utia`
