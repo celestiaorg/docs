@@ -241,13 +241,13 @@ Your result will look similar to the below!
 }
 ```
 
-## ETH fallback
+## Ethereum fallback
 
-The [ETH fallback mechanism](eth-fallback.md) allows rollups to "fall back" to
-Ethereum or another EVM chain in the case of downtime or errors submitting
-data to Celestia.
+The [Ethereum fallback mechanism](ethereum-fallback.md) allows rollups to
+"fall back" to Ethereum or another EVM chain in the case of downtime or
+errors submitting data to Celestia.
 
-Testing out the ETH fallback mechanism can be done
+Testing out the Ethereum fallback mechanism can be done
 with the `go-da` tool. Triggering a simultaneous blob transaction will
 cause the `op-batcher` blob transaction to fail, with an `incorrect account
 sequence` error, which triggers a fallback to Ethereum.
