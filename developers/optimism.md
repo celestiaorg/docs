@@ -149,7 +149,7 @@ da:
       - NODE_TYPE=light // [!code ++]
       - P2P_NETWORK=<network> // [!code ++]
   ports:
-    - "26650:26650" // [!code --]
+    - "26650:26650"
     - "26658:26658"
     - "26659:26659"
   volumes: // [!code ++]
