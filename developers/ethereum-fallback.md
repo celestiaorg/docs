@@ -32,7 +32,8 @@ can also be triggered in the event Blobstream stops relaying attestations.
 ## OP Stack
 
 The Ethereum fallback mechanism is implemented in the
-[celestiaorg/optimism](https://github.com/celestiaorg/optimism/tree/release-v1.0.0) v1.0.0 release.
+[celestiaorg/optimism](https://github.com/celestiaorg/optimism/tree/release-v1.0.0)
+v1.0.0 release.
 
 The `op-batcher/batcher/driver.go` and
 `op-node/rollup/derive/calldata_source.go` files are part of the Ethereum
@@ -55,10 +56,13 @@ Blob Commitment (32 bytes). The combination of these can later be used to
 retrieve the original calldata from Celestia.
 
 <!-- markdownlint-disable MD013 -->
-| Prefix | 8 bytes       | 32 bytes        |
-|--------|---------------|-----------------|
-| 0xce   | Block Height  | Blob Commitment |
+
+| Prefix | 8 bytes      | 32 bytes        |
+| ------ | ------------ | --------------- |
+| 0xce   | Block Height | Blob Commitment |
+
 <!-- markdownlint-enable MD013 -->
+
 ```go
 func (l *BatchSubmitter) sendTransaction(
     txdata txData,
