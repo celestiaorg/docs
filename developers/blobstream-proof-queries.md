@@ -441,7 +441,7 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 ## High-level diagrams
 
 The two diagrams below summarize how a single share is committed to in Blobstream.
-The share is highlighted in green. `R0`, `R1`, etc represent the repsective row and
+The share is highlighted in green. `R0`, `R1`, etc represent the respective row and
 column roots, the blue and pink gradients are erasure encoded data. More details
 on the square layout can be found
 [in the data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md)

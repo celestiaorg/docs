@@ -11,17 +11,17 @@ or if you want to test out new features to build as a core developer.
 
 ## Hardware requirements
 
-You wil need to
+You will need to
 [follow hardware requirements](./consensus-node.md#validator-hardware-requirements).
 
 ## Setup dependencies
 
-You wil need to
+You will need to
 [setup dependencies by following the guide](./environment.md).
 
 ## celestia-app installation
 
-You wil need to
+You will need to
 [install `celestia-app` by following the guide](./celestia-app.md).
 
 ## Spin up a Celestia testnet
@@ -121,7 +121,7 @@ you will pull all those gentx files inside the following directory:
 `$HOME/.celestia-appd/config/gentx` and use them to create the final
 `genesis.json` file.
 
-Once you added the gentx files of all the particpants, run the following command:
+Once you added the gentx files of all the participants, run the following command:
 
 ```sh
 celestia-appd collect-gentxs
@@ -135,7 +135,7 @@ It will update the `genesis.json` file after in this location
 of other participants.
 
 You should then share this final `genesis.json` file with all the
-other particpants who must add it to their `$HOME/.celestia-app/config` directory.
+other participants who must add it to their `$HOME/.celestia-app/config` directory.
 
 Everyone must ensure that they replace their existing `genesis.json` file with
 this new one created.
