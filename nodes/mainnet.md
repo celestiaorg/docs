@@ -162,7 +162,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
 - [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
 
-## Analytics 
+## Analytics
 
 The following websites provide analytics for Celestia:
 

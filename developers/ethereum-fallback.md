@@ -32,7 +32,8 @@ can also be triggered in the event Blobstream stops relaying attestations.
 ## OP Stack
 
 The Ethereum fallback mechanism is implemented in the
-[celestiaorg/optimism](https://github.com/celestiaorg/optimism/tree/release-v1.0.0) v1.0.0 release.
+[celestiaorg/optimism](https://github.com/celestiaorg/optimism/tree/release-v1.0.0)
+v1.0.0 release.
 
 The `op-batcher/batcher/driver.go` and
 `op-node/rollup/derive/calldata_source.go` files are part of the Ethereum
