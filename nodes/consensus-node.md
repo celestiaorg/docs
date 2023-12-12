@@ -536,7 +536,7 @@ To register your EVM address, run the following. Be sure to replace
 VALIDATOR_ADDRESS=$(celestia-appd keys show $VALIDATOR_WALLET --bech val -a)
 EVM_ADDRESS="YOUR_EVM_ADDRESS"
 
-celestia-appd tx blobstream register \
+celestia-appd tx qgb register \
     $VALIDATOR_ADDRESS \
     $EVM_ADDRESS \
     --from $VALIDATOR_WALLET \
@@ -550,10 +550,11 @@ You should now be able to see your validator from
 
 ### Run a Blobstream orchestrator
 
-Soon, Blobstream will be enabled for Mocha, all validators
-will need to run a Blobstream orchestrator to be able to sign attestations.
-When the time comes, to run it, please
-[refer to the documentation](https://docs.celestia.org/nodes/blobstream-orchestrator/#how-to-run).
+For validators, running a Blobstream orchestrator is **incredibly important**
+for both Mocha and Mainnet (when announced). Blobstream orchestrator enables
+validators to sign attestations.
+[Refer to the documentation](https://docs.celestia.org/nodes/blobstream-orchestrator/#how-to-run)
+to run an orchestrator.
 
 ### Submit your validator information
 

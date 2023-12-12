@@ -205,7 +205,7 @@ need to import the wallets that will be used for relaying. Please
 note that both wallets need to be funded with the native tokens of
 each chain.
 
-You can get testnet tokenss from faucets for bot testnets via Discord:
+You can get testnet tokens from faucets for bot testnets via Discord:
 
 - Celestia: [https://discord.gg/celestiacommunity](https://discord.gg/celestiacommunity)
 - Cosmos Hub: [https://discord.gg/cosmosnetwork](https://discord.gg/cosmosnetwork)

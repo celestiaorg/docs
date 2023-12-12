@@ -245,7 +245,7 @@ celestia-appd tx gov submit-proposal <path to json file> \
 
 ### Community Pool
 
-A percentage the block rewards are allocated to the community pool. Community
+A percentage of the block rewards are allocated to the community pool. Community
 members can submit governance proposals to spend the community pool funds, and
 token holders can vote on these proposals. The proposals to spend are arbitrary
 in nature in that they can only contain text and some address to send funds to.

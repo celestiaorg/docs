@@ -31,6 +31,10 @@ The following sections in this category presume you have the following setup:
 
 - A celestia-app
   [validator node](./consensus-node.md#optional-setting-up-a-validator) running
+- The following hardware minimum requirements for running the orchestrator:
+  - Memory: **2 GB RAM**
+  - CPU: **1 core**
+  - Disk: **10 GB SSD Storage**
 
 ### Install
 

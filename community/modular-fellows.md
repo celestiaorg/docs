@@ -93,7 +93,7 @@ support in the following ways.
 - **Grants & Funding -** We will assist you in fundraising or in applying for a
   grant so that you can continue building your project.
 - **Alumni Network** - You will be inducted into the Modular Fellows alumni network
-  where where you can keep in touch with other past and future Modular Fellows.
+  where you can keep in touch with other past and future Modular Fellows.
 
 ### Modular Mentors
 

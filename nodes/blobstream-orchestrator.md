@@ -10,6 +10,9 @@ description: Learn about the Blobstream Orchestrator.
 
 The role of the orchestrator is to sign attestations using its corresponding validator EVM private key. These attestations are generated within the Blobstream module of the Celestia-app state machine. To learn more about what attestations are, you can refer to [the Blobstream overview](https://github.com/celestiaorg/celestia-app/tree/main/x/blobstream).
 
+> **_NOTE:_**
+> Running a Blobstream orchestrator is an incredibly important aspect of running a validator. The signatures created there will be used to commit to block data in the exact way as the signatures included in the commit. Not running an orchestrator potentially has the same consequences (enforced by social slashing and eventually the protocol itself) as not signing a block.
+
 ## How it works
 
 The orchestrator does the following:
