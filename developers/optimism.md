@@ -140,7 +140,7 @@ da:
   image: ghcr.io/rollkit/celestia-da:v0.12.1-rc0 // [!code ++]
   command: > // [!code ++]
     celestia-da light start // [!code ++]
-    --p2p.network=$P2P_NETWORK // [!code ++]
+    --p2p.network=<network> // [!code ++]
     --da.grpc.namespace=000008e5f679bf7116cb // [!code ++]
     --da.grpc.listen=0.0.0.0:26650 // [!code ++]
     --core.ip rpc.celestia.pops.one // [!code ++]
@@ -149,11 +149,11 @@ da:
       - NODE_TYPE=light // [!code ++]
       - P2P_NETWORK=<network> // [!code ++]
   ports:
-    - "26650:26650" // [!code --]
+    - "26650:26650"
     - "26658:26658"
     - "26659:26659"
   volumes: // [!code ++]
-    - $HOME/.celestia-light-<network>/:/home/celestia/.celestia-light.<network>/ // [!code ++]
+    - $HOME/.celestia-light-<network>/:/home/celestia/.celestia-light-<network>/ // [!code ++]
   healthcheck:
     test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
     interval: 10s
