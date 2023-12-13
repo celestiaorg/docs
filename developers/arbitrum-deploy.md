@@ -91,5 +91,13 @@ cd nitro-testnode && ./test-node.bash --init --dev
 Congratulations! You have an Arbitrum Orbit rollup running with Nitro on
 your machine.
 
+### Validating with WASM
+
+If you want to run a validator that will validate all blocks in WASM,
+add the flag `--validate` to nitro-testnode when starting with
+`./test-node.bash --init --dev --validate`.
+
+## Next steps
+
 In the next page we will cover
 [deploying a smart contract to your rollup](./arbitrum-smart-contract.md).
