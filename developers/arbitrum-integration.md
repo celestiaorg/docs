@@ -4,7 +4,17 @@ description: An overview of the integration of Arbitrum Orbit and Nitro with Cel
 
 # Introduction to Arbitrum rollups with Celestia as DA
 
+![Celestia_Arbitrum](/img/Celestia_Arbitrum.jpeg)
+
 ## Overview
+
+The
+[integration of Celestia with Arbitrum Orbit](https://blog.celestia.org/celestia-is-first-modular-data-availability-network-to-integrate-with-arbitrum-orbit/)
+and the Nitro tech stack marks the first external contribution to the Arbitrum
+Orbit protocol layer, offering developers an additional option for selecting
+a data availability layer alongside Arbitrum AnyTrust. The integration allows
+developers to deploy an Arbitrum Rollup that uses Celestia for data
+availability and settles on Ethereum.
 
 [Arbitrum Orbit](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
 is a framework that enables the creation of customized, self-managed
@@ -26,14 +36,6 @@ include:
 5. **Versatility and interoperability**: Orbit chains can be used for a range
    of purposes, from hosting a single dApp to an ecosystem of dApps, with the
    capability to communicate with other Orbit chains.
-
-The
-[integration of Celestia with Arbitrum Orbit](https://blog.celestia.org/celestia-is-first-modular-data-availability-network-to-integrate-with-arbitrum-orbit/)
-and the Nitro tech stack marks the first external contribution to the Arbitrum
-Orbit protocol layer, offering developers an additional option for selecting
-a data availability layer alongside Arbitrum AnyTrust. The integration allows
-developers to deploy an Arbitrum Rollup that uses Celestia for data
-availability and settles on Ethereum.
 
 ### Blobstream
 
