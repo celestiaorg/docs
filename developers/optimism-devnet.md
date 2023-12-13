@@ -274,10 +274,13 @@ Blob Commitment (32 bytes). The combination of these can later be used to
 retrieve the original calldata from Celestia.
 
 <!-- markdownlint-disable MD013 -->
-| Prefix | 8 bytes       | 32 bytes        |
-|--------|---------------|-----------------|
-| 0xce   | Block Height  | Blob Commitment |
+
+| Prefix | 8 bytes      | 32 bytes        |
+| ------ | ------------ | --------------- |
+| 0xce   | Block Height | Blob Commitment |
+
 <!-- markdownlint-enable MD013 -->
+
 ```go
 func (l *BatchSubmitter) sendTransaction(
     txdata txData,
@@ -323,11 +326,15 @@ cause the `op-batcher` blob transaction to fail, with an `incorrect account
 sequence` error, which triggers a fallback to Ethereum.
 
 To trigger the transaction, send this command from the same `go/proto/da` directory:
+
 <!-- markdownlint-disable MD013 -->
+
 ```bash
 grpcurl -proto da.proto -plaintext -d '{"blobs": [{"value": "SGVsbG8gd28ybGQh"}]}' 127.0.0.1:26650 da.DAService.Submit
 ```
+
 <!-- markdownlint-enable MD013 -->
+
 Alternatively, you can shut off the `local-celestia-devnet` and see that
 the OP Stack devnet logs show that the rollup has fallen back to the L1,
 in this case Ethereum, for posting data.
