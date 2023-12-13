@@ -73,9 +73,6 @@ providing an engaging platform to connect with fellow organizers:
 
 - [Discord](https://discord.com/invite/je7UVpDuDu)
 
-Join the channel #modular-meetups where we will be also giving
-you the relevant role as a Meetup Organizer.
-
 ### Materials
 
 As a meetup organizer, you'll gain access to the Celestia Modular Meetup
