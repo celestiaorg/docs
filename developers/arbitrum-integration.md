@@ -38,7 +38,7 @@ availability and settles on Ethereum.
 ### Blobstream
 
 The Celestia and Arbitrum integration also
-[includes Blobstream](https://docs.celestia.org/developers/blobstream),
+[includes Blobstream](./blobstream.md),
 which relays commitments to Celestia’s data root to an onchain light client
 on Ethereum. This allows L2 solutions that settle on Ethereum to benefit
 from the scalability Celestia’s data availability layer can provide.
@@ -46,7 +46,7 @@ from the scalability Celestia’s data availability layer can provide.
 ### Ethereum fallback mechanism in Nitro
 
 Another feature of this integration is the
-[Ethereum fallback mechanism](https://docs.celestia.org/developers/ethereum-fallback),
+[Ethereum fallback mechanism](./ethereum-fallback.md),
 which enables Ethereum L2s (or L3s) to “fall back” to using Ethereum
 calldata for data availability in the event of downtime on Celestia Mainnet
 Beta.
@@ -57,7 +57,7 @@ layer for data availability instead of posting to Celestia. This mechanism
 ensures users can continue to transact securely and seamlessly, preventing
 disruptions and helping to ensure user funds do not get stuck in the L2's
 bridge on Ethereum. This feature is available for the
-[Arbitrum Orbit integration](https://docs.celestia.org/developers/ethereum-fallback#arbitrum).
+[Arbitrum Orbit integration](./ethereum-fallback.md#arbitrum).
 
 By default in [Arbitrum Nitro](https://github.com/OffchainLabs/nitro), the
 [Ethereum fallback mechanism in the `BatchPoster` function](https://github.com/OffchainLabs/nitro/blob/master/arbnode/batch_poster.go#L989-L1001)
