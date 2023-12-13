@@ -131,7 +131,8 @@ a DA server on port 26650.
 
 For the `P2P_NETWORK` variable, you'll need to supply the network of choice, either
 `celestia`, `mocha`, or `arabica`. Using `celestia`, the volume path will be just
-`.celestia-light` instead of `.celestia-light-<network>`.
+`.celestia-light` instead of `.celestia-light-<network>`. You will also need
+to provide a core.ip RPC URL for the network you are using.
 
 <!-- markdownlint-disable MD013 -->
 ```yaml
@@ -143,7 +144,7 @@ da:
     --p2p.network=<network> // [!code ++]
     --da.grpc.namespace=000008e5f679bf7116cb // [!code ++]
     --da.grpc.listen=0.0.0.0:26650 // [!code ++]
-    --core.ip rpc.celestia.pops.one // [!code ++]
+    --core.ip <rpc-url> // [!code ++]
     --gateway // [!code ++]
   environment: // [!code ++]
       - NODE_TYPE=light // [!code ++]
