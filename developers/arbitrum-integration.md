@@ -1,3 +1,7 @@
+---
+description: An overview of the integration of Arbitrum Orbit and Nitro with Celestia, detailing the key features and benefits, including the Ethereum fallback mechanism.
+---
+
 # Introduction to Arbitrum rollups with Celestia as DA
 
 ## Overview
@@ -8,20 +12,20 @@ Arbitrum Rollup and AnyTrust chains. Key highlights of Arbitrum Orbit
 include:
 
 1. **Creation of custom chains**: Orbit allows the creation of dedicated chains
-that settle to Arbitrum's Layer 2 chains (Arbitrum One, Nova, Goerli, Sepolia),
-with customizable features like throughput, privacy, gas token, and governance.
+   that settle to Arbitrum's Layer 2 chains (Arbitrum One, Nova, Goerli, Sepolia),
+   with customizable features like throughput, privacy, gas token, and governance.
 2. **Solving Ethereum's scalability**: Orbit addresses Ethereum's congestion
-and high demand for block space by enabling the creation of personal rollups,
-which offer scalable, secure alternatives to Ethereum's public chains.
+   and high demand for block space by enabling the creation of personal rollups,
+   which offer scalable, secure alternatives to Ethereum's public chains.
 3. **Decentralized application development**: Orbit chains provide dedicated
-throughput, EVM+ compatibility, independent roadmaps, and reliable gas prices
- enhancing the development and operation of decentralized apps.
+   throughput, EVM+ compatibility, independent roadmaps, and reliable gas prices
+   enhancing the development and operation of decentralized apps.
 4. **Benefits to the Ethereum ecosystem**: Orbit contributes to a multi-chain
-future for Ethereum, enhancing scalability, offering flexible security models,
-and enabling experimentation with execution environments and governance models.
+   future for Ethereum, enhancing scalability, offering flexible security models,
+   and enabling experimentation with execution environments and governance models.
 5. **Versatility and interoperability**: Orbit chains can be used for a range
-of purposes, from hosting a single dApp to an ecosystem of dApps, with the
-capability to communicate with other Orbit chains.
+   of purposes, from hosting a single dApp to an ecosystem of dApps, with the
+   capability to communicate with other Orbit chains.
 
 The
 [integration of Celestia with Arbitrum Orbit](https://blog.celestia.org/celestia-is-first-modular-data-availability-network-to-integrate-with-arbitrum-orbit/)
@@ -64,89 +68,7 @@ fails.
 The [@celestiaorg/nitro](https://github.com/celestiaorg/nitro) integration
 [uses the same fallback mechanism](https://github.com/celestiaorg/nitro/blob/f01968eb3d4e19329e9c92b050e98a8e5772f1f2/arbnode/batch_poster.go#L845-L857).
 
-## Getting Started
+## Next steps
 
-We will go over installation of Arbitrum Nitro and deploying an instance on an
-Ubuntu AMD machine. This section covers all necessary dependencies needed to be
-installed.
-
-### Dependencies
-
-- [Docker](https://docs.docker.com/engine/install/ubuntu/)
-running on your machine
-- [Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
-- At least 8 GB RAM
-
-#### General
-<!-- markdownlint-disable MD013 -->
-```bash
-sudo apt update && sudo apt upgrade -y
-sudo apt install curl tar wget clang pkg-config libssl-dev cmake jq build-essential git make ncdu -y
-```
-
-#### Rust
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source "$HOME/.cargo/env"
-```
-
-#### Golang
-
-```bash
-ver="1.20"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-go version
-```
-
-#### Node
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-nvm install 16.20.0
-nvm use 16.20.0
-node --version
-npm install --global yarn
-yarn --version
-```
-<!-- markdownlint-enable MD013 -->
-#### Other Dependencies
-
-```bash
-cargo install --force cbindgen
-rustup target add wasm32-unknown-unknown
-```
-
-### Clone the repository
-
-```bash
-git clone https://github.com/celestiaorg/nitro.git && cd nitro/
-git fetch --all
-git checkout celestia-development
-git submodule update --init
-git submodule update --init --recursive
-```
-
-## Installing Nitro from Source
-
-Now you can install Nitro from source. After the `make` command completes,
-you can run the bash script that installs the containers via docker-compose.
-
-```bash
-make build-node-deps
-cd nitro-testnode && ./test-node.bash --init --dev
-```
-
-Congratulations! You have an Arbitrum Orbit rollup running with Nitro on
-your machine.
-
-In the next page we will cover
-[deploying a smart contract to your rollup](./arbitrum-smart-contract.md).
+In the next page,
+[learn how to deploy an Arbitrum rollup devnet using Celestia as DA](./arbitrum-deploy.md).

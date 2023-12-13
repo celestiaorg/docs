@@ -1,3 +1,7 @@
+---
+description: A tutorial that guides you through the process of deploying a smart contract to your Arbitrum rollup using a L2 Nitro devnet, including setting up the environment, creating and testing the smart contract, and interacting with the deployed contract.
+---
+
 # Deploying a smart contract to your Arbitrum rollup
 
 ## Overview
@@ -9,7 +13,7 @@ devnet and the provided public and private keys for testing purposes.
 ## Prerequisites
 
 - [Nitro rollup devnet](https://www.notion.so/Introduction-to-Arbitrum-rollups-with-Celestia-as-DA-5759ddff9c0545799c7ebcfa5fb63dd1?pvs=21)
-running
+  running
 - [Foundry](https://getfoundry.sh/) installed on your machine
 - [Node.js](https://nodejs.org/en)
 - Basic understanding of Ethereum
@@ -159,11 +163,11 @@ Your L2 Nitro devnet will have a
 - On the L2 Nitro devnet
   - Public key: `0x683642c22feDE752415D4793832Ab75EFdF6223c`
   - Private key:
-  `0xe887f7d17d07cc7b8004053fb8826f6657084e88904bb61590e498ca04704cf2`
+    `0xe887f7d17d07cc7b8004053fb8826f6657084e88904bb61590e498ca04704cf2`
 - On both L1 and L2
   - Public key: `0x3f1Eae7D46d88F08fc2F8ed27FCb2AB183EB2d0E`
   - Private key:
-  `0xb6b15c8cb491557369f3c7d2c287b053eb229daa9c22138887752191c9520659`
+    `0xb6b15c8cb491557369f3c7d2c287b053eb229daa9c22138887752191c9520659`
 
 Alternatively, you can
 [fund other addresses by using the scripts `send-l1` and `send-l2`](https://docs.arbitrum.io/node-running/how-tos/local-dev-node#helper-scripts).
@@ -214,7 +218,9 @@ export CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
 Foundry uses `cast`, a CLI for performing Ethereum RPC calls.
 
 To write to the contract, we'll use the `cast send` command:
+
 <!-- markdownlint-disable MD013 -->
+
 ```bash
 cast send $CONTRACT_ADDRESS "setNumber(uint256)" 10 \
   --rpc-url $ARB_RPC_URL --private-key $L2_PRIVATE_KEY
@@ -237,7 +243,9 @@ transactionHash         0x8f15d6004598f0662dd673a9898dceef77be8cc28408cecc284b28
 transactionIndex        0
 type                    2
 ```
+
 <!-- markdownlint-enable MD013 -->
+
 Now, we can make a read call to view the state of the number variable,
 using the `cast call` command:
 
