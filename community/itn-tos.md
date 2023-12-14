@@ -119,7 +119,7 @@ to your participation, and (c) you are not relying on the Company for any tax ad
 
 We may collect information to help us determine the reliability or uptime of your activities
 within the Program, including through the use of telemetry or metrics endpoints to collect
-and analyse such information, and link this information to a unique identifier to represent
+and analyze such information, and link this information to a unique identifier to represent
 your activities within the Program. We may display all of the foregoing information on a
 public dashboard.
 
