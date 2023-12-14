@@ -163,7 +163,7 @@ for organizing successful Modular Meetups for Celestia.
      meetup group or speaking at other events before launching a
      new group. This approach will help spread the word about your
      planned Modular Meetup and gauge interest. Speakers are covered
-     in the following section with a reference to Speaker List offered
+     in the following section with a reference to the Speaker List offered
      by the Modular Meetup program.
 3. Establish connections with other user groups:
    - Forge relationships with other tech-focused meetup groups to
@@ -238,7 +238,7 @@ costs related to venue and refreshments.
      co-sponsors to help cover costs and create a more sustainable event.
 2. Offer value to your sponsors:
    - Show potential sponsors how partnering with your
-     event will benefit them. Include their logo on event
+     event will benefit them. Include their logo on the event
      banners, mention them in the event description, and
      give them a shoutout at the beginning of the event.
      If they desire, allow them to place a rollup banner
