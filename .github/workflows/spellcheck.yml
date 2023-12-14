@@ -1,0 +1,18 @@
+name: Spell Check
+
+on: [push, pull_request]
+
+jobs:
+  spell_check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install codespell
+      run: pip install codespell
+    - name: Run spell check
+      run: codespell --ignore-words=codespell.txt --skip="*.png,*.jpg,*.gif,*.ico,*.min.js,*.min.css,*.woff,*.woff2,*.puml" -I .codespell-ignorewords-list --quiet-level=2 || exit 1
+      
