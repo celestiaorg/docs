@@ -12,7 +12,7 @@ devnet and the provided public and private keys for testing purposes.
 
 ## Prerequisites
 
-- [Nitro rollup devnet](https://www.notion.so/Introduction-to-Arbitrum-rollups-with-Celestia-as-DA-5759ddff9c0545799c7ebcfa5fb63dd1?pvs=21)
+- [Nitro rollup devnet](./arbitrum-deploy.md)
   running
 - [Foundry](https://getfoundry.sh/) installed on your machine
 - [Node.js](https://nodejs.org/en)
@@ -158,12 +158,8 @@ Test result: ok. 2 passed; 0 failed; finished in 8.96ms
 ### Funded accounts
 
 Your L2 Nitro devnet will have a
-[public and private key funded as a faucet to use for testing](https://www.notion.so/Deploying-a-smart-contract-to-your-Arbitrum-rollup-331a4ee669c04a99be63e3ccb0cb40c2?pvs=21):
+[public and private key funded as a faucet to use for testing](https://docs.arbitrum.io/node-running/how-tos/local-dev-node#default-endpoints-and-addresses):
 
-- On the L2 Nitro devnet
-  - Public key: `0x683642c22feDE752415D4793832Ab75EFdF6223c`
-  - Private key:
-    `0xe887f7d17d07cc7b8004053fb8826f6657084e88904bb61590e498ca04704cf2`
 - On both L1 and L2
   - Public key: `0x3f1Eae7D46d88F08fc2F8ed27FCb2AB183EB2d0E`
   - Private key:
@@ -190,9 +186,9 @@ export ARB_RPC_URL=http://localhost:8547
 Now, deploy the contract:
 
 ```bash
-forge create --rpc-url $ARB_RPC_URL \\
---private-key $L2_PRIVATE_KEY \\
-src/Counter.sol:Counter
+forge create --rpc-url $ARB_RPC_URL \
+  --private-key $L2_PRIVATE_KEY \
+  src/Counter.sol:Counter
 ```
 
 A successful deployment will return output similar to below:
