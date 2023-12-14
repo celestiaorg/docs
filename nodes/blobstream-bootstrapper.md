@@ -20,7 +20,7 @@ Before starting the bootstrapper, we will need to init the store:
 blobstream bootstrapper init
 ```
 
-By default, the store will be created un `~/.bootstrapper`. However,
+By default, the store will be created in `~/.bootstrapper`. However,
 if you want to specify a custom location, you can use the `--home` flag.
 Or, you can use the following environment variable:
 
