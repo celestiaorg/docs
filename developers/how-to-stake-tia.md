@@ -68,7 +68,7 @@ or stake additional tokens.
 
 ### :one: Open your Leap browser extension
 
-In top right select `Celestia` network and navigate to `Stake`.
+In the top right select `Celestia` network and navigate to `Stake`.
 
 Similarly to previous step, select the `+Stake` button.
 
