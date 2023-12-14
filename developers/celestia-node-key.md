@@ -35,7 +35,7 @@ cd celestia-node/
 It can be built using either of the following commands:
 
 ```sh
-# dumps binary in current working directory, accessible via `./cel-key`
+# dumps binary in the current working directory, accessible via `./cel-key`
 make cel-key
 ```
 
