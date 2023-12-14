@@ -7,7 +7,7 @@ description: Learn how to establish IBC connections and relay packets.
 Celestia uses [IBC](https://ibcprotocol.dev/)
 (Inter-Blockchain Communication protocol) to enable cross-chain
 transfer of tokens. To support this capability it relies on
-relayers, processes that can be run by anyone which constantly
+relayers, processes that can be run by anyone who constantly
 scan for outbound packets on one chain and submits these packets
 alongside corresponding proofs on the destination chain. This
 section describes how one can setup a relayer and create new
