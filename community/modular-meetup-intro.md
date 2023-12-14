@@ -42,6 +42,20 @@ participants in maintaining a safe and empowering space for everyone.
 
 - [Celestia.org Community Code of Conduct](./coc.md)
 
+### Signup form
+
+To become part of the program, please
+[complete the registration form](https://docs.google.com/forms/d/1ImYv2sOScgOb0GtWwXSv-ge8uVgO7aFYK42xutJcVtA/edit?usp=sharing_eil_m&ts=6572b6a4).
+
+Following the review and approval of your submission, you will receive
+an email confirmation and an invitation to participate in the upcoming
+Modular Meetup call. Furthermore, you will be granted access to the
+exclusive Discord channel labeled "#modular-meetup" on our Discord server.
+Please take note that [joining our Discord](https://discord.com/invite/YsnTPcSfWQ/)
+is a prerequisite for channel access. It's essential to recognize that
+this program is tailored for dedicated organizers with a genuine interest
+in nurturing their local modular ecosystem community.
+
 ### Emails
 
 As a participant in the Celestia Modular Meetup Program, you
@@ -59,10 +73,7 @@ providing an engaging platform to connect with fellow organizers:
 
 - [Discord](https://discord.com/invite/je7UVpDuDu)
 
-Make sure to join the channel #meetups where we will be also giving
-you the relevant role as a Meetup Organizer.
-
-## Materials
+### Materials
 
 As a meetup organizer, you'll gain access to the Celestia Modular Meetup
 Program's list of resources. This collection should become your trusted
@@ -73,15 +84,3 @@ to explore and learn.
 - [Modular Meetup Toolkit](./modular-meetup-toolkit.md)
 - [Speaker List](./speaker-list.md)
 - [Meetup Guide](./modular-meetup-guide.md)
-
-## Signup form
-
-In order to be added to the Modular Meetup Organizer call, please
-complete the following form:
-
-- [Signup form](https://celestia-intake.typeform.com/to/zNI5W4uI)
-
-We will then send you an email and add you to next upcoming Modular
-Meetup Organizer call. Please keep in mind, this program is meant
-for serious meetup organizers who want to build their local community
-for the modular ecosystem.
