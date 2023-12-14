@@ -282,7 +282,7 @@ func (f *Fullnode) GetLatestBlock() error {
     nextHeight := uint64(len(f.Blocks) + 1)
 
     // Download the next header from etheruem before we download the block data
-    // from Celestia. Note that we could alternatievely download the header
+    // from Celestia. Note that we could alternatively download the header
     // directly from the sequencer instead of waiting.
     header, err := f.EthereumClient.GetHeader(nextHeight)
     if err != nil {
