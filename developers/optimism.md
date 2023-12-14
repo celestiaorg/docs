@@ -134,7 +134,6 @@ For the `P2P_NETWORK` variable, you'll need to supply the network of choice, eit
 `.celestia-light` instead of `.celestia-light-<network>`.
 
 <!-- markdownlint-disable MD013 -->
-
 ```yaml
 da:
   image: ghcr.io/rollkit/local-celestia-devnet:v0.12.1 // [!code --]
