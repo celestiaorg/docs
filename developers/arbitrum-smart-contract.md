@@ -266,4 +266,5 @@ echo $((0x000000000000000000000000000000000000000000000000000000000000000a))
 Congratulations! You've learned how to deploy a smart contract to your Arbitrum
 rollup devnet.
 
-What will you build next?
+What will you build next? In our next tutorial, we will be going over how to
+deploy a dapp to your Arbitrum rollup.
