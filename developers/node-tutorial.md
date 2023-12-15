@@ -236,12 +236,26 @@ commands:
 
 3. Build the `celestia` binary:
 
-   ```bash
+   a. Standard build
+
+      ```bash
+      make build
+      ```
+
+   b. Experimental build
+
+   :::tip OPTIONAL
+   If you're a node operator comfortable with experimental features and
+   seeking optimal performance with minimal RAM usage, this option is
+   recommended for you.
+
+    ```bash
    make build-jemalloc
    ```
 
-   ::: tip NOTE
-   This build option enables CGO. [Learn more about the build command](https://github.com/celestiaorg/celestia-node/releases/tag/v0.12.1#:~:text=%F0%9F%8F%97%EF%B8%8F-,New%20build%20option,-%3A%20Makefile%20now%20has).
+   This build option enables CGO, and downloads and installs
+   [jemalloc](https://jemalloc.net/).
+   [Learn more about the build command](https://github.com/celestiaorg/celestia-node/releases/tag/v0.12.1#:~:text=%F0%9F%8F%97%EF%B8%8F-,New%20build%20option,-%3A%20Makefile%20now%20has).
    :::
 
 4. Install the binary:
