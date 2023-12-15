@@ -56,10 +56,13 @@ Blob Commitment (32 bytes). The combination of these can later be used to
 retrieve the original calldata from Celestia.
 
 <!-- markdownlint-disable MD013 -->
-| Prefix | 8 bytes       | 32 bytes        |
-|--------|---------------|-----------------|
-| 0xce   | Block Height  | Blob Commitment |
+
+| Prefix | 8 bytes      | 32 bytes        |
+| ------ | ------------ | --------------- |
+| 0xce   | Block Height | Blob Commitment |
+
 <!-- markdownlint-enable MD013 -->
+
 ```go
 func (l *BatchSubmitter) sendTransaction(
     txdata txData,

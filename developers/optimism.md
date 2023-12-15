@@ -135,6 +135,7 @@ For the `P2P_NETWORK` variable, you'll need to supply the network of choice, eit
 to provide a core.ip RPC URL for the network you are using.
 
 <!-- markdownlint-disable MD013 -->
+
 ```yaml
 da:
   image: ghcr.io/rollkit/local-celestia-devnet:v0.12.1 // [!code --]
