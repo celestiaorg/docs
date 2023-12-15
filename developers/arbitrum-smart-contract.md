@@ -2,7 +2,7 @@
 description: A tutorial that guides you through the process of deploying a smart contract to your Arbitrum rollup using a L2 Nitro devnet, including setting up the environment, creating and testing the smart contract, and interacting with the deployed contract.
 ---
 
-# Deploying a smart contract to your Arbitrum rollup
+# Deploy a smart contract to your Arbitrum rollup
 
 ## Overview
 

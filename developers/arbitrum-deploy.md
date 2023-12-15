@@ -2,7 +2,7 @@
 description: A guide on how to install Arbitrum Nitro and deploy an instance on an Ubuntu AMD machine, including the installation of necessary dependencies, cloning the repository, and installing Nitro from source.
 ---
 
-# Deploying an Arbitrum rollup devnet
+# Deploy an Arbitrum rollup devnet
 
 We will go over installation of Arbitrum Nitro and deploying an instance on an
 Ubuntu AMD machine. This section covers all necessary dependencies needed to be

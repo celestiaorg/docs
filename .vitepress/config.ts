@@ -566,6 +566,10 @@ function sidebarHome() {
                       text: "Deploy a smart contract on Arbitrum rollup",
                       link: "/developers/arbitrum-smart-contract",
                     },
+                    {
+                      text: "Deploy a dapp on your Arbitrum rollup devnet",
+                      link: "/developers/arbitrum-dapp-deploy",
+                    },
                   ],
                 },
                 {
