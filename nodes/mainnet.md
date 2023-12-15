@@ -94,6 +94,11 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
   - gRPC: port 9090
   - RPC: port 26657
 
+DA full and light nodes might have troubles connecting to the networks, so you
+can checkout this
+[Grafana dashboard](https://celestia.grafana.net/public-dashboards/a10eff0043bb4bf0839004e2746e2bc6)
+to see health/uptime status of DA bootstrappers (now `celestia` network only).
+
 ### Consensus nodes
 
 - [Full consensus node](./consensus-node.md)

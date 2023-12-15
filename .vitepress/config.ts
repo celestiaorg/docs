@@ -466,6 +466,10 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-commands",
                 },
                 {
+                  text: "Upgrade Monitor",
+                  link: "/nodes/celestia-app-upgrade-monitor",
+                },
+                {
                   text: "Specifications",
                   link: "https://celestiaorg.github.io/celestia-app/",
                 },
