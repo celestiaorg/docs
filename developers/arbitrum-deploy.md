@@ -69,10 +69,13 @@ rustup target add wasm32-unknown-unknown
 
 ## Clone the repository
 
+<!-- TODO: change git checkout to celestia-development or release. It is locked
+to this version so that the tutorial works for anyone using it ATM. -->
+
 ```bash
 git clone https://github.com/celestiaorg/nitro.git && cd nitro/
 git fetch --all
-git checkout celestia-development
+git checkout 66a159f
 git submodule update --init
 git submodule update --init --recursive
 ```
@@ -87,6 +90,23 @@ docker-compose.
 make build-node-deps
 cd nitro-testnode && ./test-node.bash --init --dev
 ```
+
+::: tip
+
+When running on the commit above, there is a small issue with the naming
+of a Docker container that results in an error. To fix this,
+go to `nitro/nitro-testnode/test-node.bash` and make
+the following change:
+<!-- markdownlint-disable MD013 -->
+```bash
+export CELESTIA_NODE_AUTH_TOKEN="$(docker exec nitro-testnode-da-1 celestia bridge auth admin --node.store  ${NODE_PATH})" // [!code --]
+export CELESTIA_NODE_AUTH_TOKEN="$(docker exec nitro-testnode_da_1 celestia bridge auth admin --node.store  ${NODE_PATH})" // [!code ++]
+```
+<!-- markdownlint-enable MD013 -->
+
+The difference is just `nitro-testnode-da-1` being changed to
+`nitro-testnode_da_1` 😎
+:::
 
 Congratulations! You have an Arbitrum Orbit rollup running with Nitro on
 your machine.

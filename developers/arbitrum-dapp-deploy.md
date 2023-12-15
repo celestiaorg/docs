@@ -16,7 +16,7 @@ pages.
 
 ## Setup and contract deployment
 
-1.  Clone the `gm-portal` from Github and start the frontend:
+1. Clone the `gm-portal` from Github and start the frontend:
 
     ```bash
     cd $HOME
@@ -25,25 +25,25 @@ pages.
     cd frontend && yarn && yarn dev
     ```
 
-2.  In a new terminal instance, set your private key for the
+2. In a new terminal instance, set your private key for the
     faucet as a variable and the RPC URL you're using:
 
-        ```bash
-        export PRIVATE_KEY=0xb6b15c8cb491557369f3c7d2c287b053eb229daa9c22138887752191c9520659
-        export ARB_RPC_URL=http://localhost:8547
-        ```
+    ```bash
+    export PRIVATE_KEY=0xb6b15c8cb491557369f3c7d2c287b053eb229daa9c22138887752191c9520659
+    export ARB_RPC_URL=http://localhost:8547
+    ```
 
-3.  Change into the `gm-portal/contracts` directory in the same terminal and deploy
+3. Change into the `gm-portal/contracts` directory in the same terminal and deploy
     the contract using Foundry:
 
-        <!-- markdownlint-disable MD013 -->
-        ```bash
-        cd $HOME/gm-portal/contracts
-        forge script script/GmPortal.s.sol:GmPortalScript --rpc-url $ARB_RPC_URL --private-key $PRIVATE_KEY --broadcast
-        ```
-        <!-- markdownlint-enable MD013 -->
+    <!-- markdownlint-disable MD013 -->
+    ```bash
+    cd $HOME/gm-portal/contracts
+    forge script script/GmPortal.s.sol:GmPortalScript --rpc-url $ARB_RPC_URL --private-key $PRIVATE_KEY --broadcast
+    ```
+    <!-- markdownlint-enable MD013 -->
 
-4.  In the output of the deployment, find the contract address and set it as a variable:
+4. In the output of the deployment, find the contract address and set it as a variable:
 
     ```bash
     export CONTRACT_ADDRESS=<your-contract-address-from-the-output-above>
@@ -53,7 +53,7 @@ pages.
 
 Next, you're ready to interact with the contract from your terminal!
 
-1.  Send a "gm" to the contract:
+1. Send a "gm" to the contract:
 
     ```bash
     cast send $CONTRACT_ADDRESS \
@@ -62,33 +62,33 @@ Next, you're ready to interact with the contract from your terminal!
     --rpc-url $ARB_RPC_URL
     ```
 
-2.  Now that you've posted to the contract, you can read all "gms" (GMs) from the
+2. Now that you've posted to the contract, you can read all "gms" (GMs) from the
     contract with
     this command:
 
-        ```bash
-        cast call $CONTRACT_ADDRESS "getAllGms()" --rpc-url $ARB_RPC_URL
-        ```
+    ```bash
+    cast call $CONTRACT_ADDRESS "getAllGms()" --rpc-url $ARB_RPC_URL
+    ```
 
-3.  Next, query the total number of gms, which will be returned as a hex value:
+3. Next, query the total number of gms, which will be returned as a hex value:
 
     ```bash
     cast call $CONTRACT_ADDRESS "getTotalGms()" --rpc-url $ARB_RPC_URL
     ```
 
-4.  (Optional) In order to interact with the contract on the frontend, you'll
+4. (Optional) In order to interact with the contract on the frontend, you'll
     need to fund an account that you have in your Ethereum wallet. Transfer to an
     external account with this command:
 
-        ```bash
-        export RECEIVER=<receiver ETH address>
-        cast send --private-key $PRIVATE_KEY $RECEIVER --value 1ether --rpc-url $ARB_RPC_URL
-        ```
+    ```bash
+    export RECEIVER=<receiver ETH address>
+    cast send --private-key $PRIVATE_KEY $RECEIVER --value 1ether --rpc-url $ARB_RPC_URL
+    ```
 
-        :::tip
-        If you are in a different terminal than the one you set the private key in, you
-        may need to set it again.
-        :::
+    :::tip
+    If you are in a different terminal than the one you set the
+    private key in, you may need to set it again.
+    :::
 
 ## Update the frontend
 
