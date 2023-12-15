@@ -45,6 +45,30 @@ which relays commitments to Celestia’s data root to an onchain light client
 on Ethereum. This allows L2 solutions that settle on Ethereum to benefit
 from the scalability Celestia’s data availability layer can provide.
 
+As part of this integration, Blobstream has been incorporated into the
+Arbitrum `SequencerInbox.sol` contract.
+
+In the `SequencerInbox.sol` contract, the `validateBatchData`
+modifier has been designed to authenticate that the data root is
+on Celestia when reading a batch of data. This is achieved by the
+[following code by @Ferret-san](https://gist.github.com/Ferret-san/3d3fc1b5738ee8d77ad112c0eb8bbe5f):
+
+Note that the data above is the bytes serialized version of this struct in Go:
+
+```go
+type BlobPointer struct {
+   BlockHeight    uint64
+   Start          uint64
+   SharesLength   uint64
+   Key            uint64
+   NumLeaves      uint64
+   TupleRootNonce uint64
+   TxCommitment [32]byte
+   DataRoot     [32]byte
+   SideNodes    [][32]byte
+}
+```
+
 ### Ethereum fallback mechanism in Nitro
 
 Another feature of this integration is the
@@ -69,6 +93,13 @@ fails.
 
 The [@celestiaorg/nitro](https://github.com/celestiaorg/nitro) integration
 [uses the same fallback mechanism](https://github.com/celestiaorg/nitro/blob/f01968eb3d4e19329e9c92b050e98a8e5772f1f2/arbnode/batch_poster.go#L845-L857).
+
+The fallback logic for Celestia DA is configurable, providing an alternative
+to the previous default fallback mechanism. Additionally, a method has been
+added to the Arbitrum node software. This method allows the sequencer to call
+`VerifyAttestation` to check if a data root has been posted on Blobstream or
+not, before it sends the sequencer message (data pointer) to the underlying
+chain.
 
 ## Next steps
 
