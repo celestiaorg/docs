@@ -218,61 +218,7 @@ code: 0
 codespace: ""
 data: 12300A2E2F63656C65737469612E7167622E76312E4D7367526567697374657245564D41646472657373526573706F6E7365
 events:
-- attributes:
-  - index: true
-    key: c3BlbmRlcg==
-    value: Y2VsZXN0aWExcDkzcmd6Mnl5MG5hMnN5OWc3a3NzanY2MDY2dWxqcWV3cGpwZ2c=
-  - index: true
-    key: YW1vdW50
-    value: MzAwMDB1dGlh
-  type: coin_spent
-- attributes:
-  - index: true
-    key: cmVjZWl2ZXI=
-    value: Y2VsZXN0aWExN3hwZnZha20yYW1nOTYyeWxzNmY4NHoza2VsbDhjNWxwbmpzM3M=
-  - index: true
-    key: YW1vdW50
-    value: MzAwMDB1dGlh
-  type: coin_received
-- attributes:
-  - index: true
-    key: cmVjaXBpZW50
-    value: Y2VsZXN0aWExN3hwZnZha20yYW1nOTYyeWxzNmY4NHoza2VsbDhjNWxwbmpzM3M=
-  - index: true
-    key: c2VuZGVy
-    value: Y2VsZXN0aWExcDkzcmd6Mnl5MG5hMnN5OWc3a3NzanY2MDY2dWxqcWV3cGpwZ2c=
-  - index: true
-    key: YW1vdW50
-    value: MzAwMDB1dGlh
-  type: transfer
-- attributes:
-  - index: true
-    key: c2VuZGVy
-    value: Y2VsZXN0aWExcDkzcmd6Mnl5MG5hMnN5OWc3a3NzanY2MDY2dWxqcWV3cGpwZ2c=
-  type: message
-- attributes:
-  - index: true
-    key: ZmVl
-    value: MzAwMDB1dGlh
-  - index: true
-    key: ZmVlX3BheWVy
-    value: Y2VsZXN0aWExcDkzcmd6Mnl5MG5hMnN5OWc3a3NzanY2MDY2dWxqcWV3cGpwZ2c=
-  type: tx
-- attributes:
-  - index: true
-    key: YWNjX3NlcQ==
-    value: Y2VsZXN0aWExcDkzcmd6Mnl5MG5hMnN5OWc3a3NzanY2MDY2dWxqcWV3cGpwZ2cvMQ==
-  type: tx
-- attributes:
-  - index: true
-    key: c2lnbmF0dXJl
-    value: cE5ZS0pqWEZlOFVTaEZUdDdzRHVETWZNWW55YjZTT01iZnlBSkZGYnZpVk45bGJ2L2tUeXhEWWxHK2VjRE94bFlSajJIMmlWNGJLWVhMNDBQM1F4TUE9PQ==
-  type: tx
-- attributes:
-  - index: true
-    key: YWN0aW9u
-    value: L2NlbGVzdGlhLnFnYi52MS5Nc2dSZWdpc3RlckVWTUFkZHJlc3M=
-  type: message
+...
 gas_used: "66959"
 gas_wanted: "210000"
 height: "3"
@@ -300,6 +246,14 @@ celestia-appd query qgb evm <validator_valoper_address>
 Now, you can restart the orchestrator, and it should start signing.
 
 Note: A validator set change is triggered if more than 5% of the total staking power of the network changes. This means that even if you change your EVM address, and you don't see your orchestrator signing, it's alright. Just wait until the validator set changes, and then your orchestrator will automatically start signing.
+
+### Updating the EVM address if its corresponding private key is lost
+
+If, for some reason, the private key, corresponding to the EVM account that was registered above, was lost, or some validator wants to change it for some reason, then they can re-register another EVM address for their validator using the same above command using the new EVM address.
+
+If the validator still has access to the previously running orchestrator, it would be safer to keep it running in a separate process, initialize a new orchestrator in a new home directory, and run it using the new EVM address. Then, once the new orchestrator starts signing, the old one can be stopped.
+
+Running a second orchestrator in the same machine would require using different P2P listening ports, i.e. changing the `listen-addr` value in the `<orchestrator_home>/config/config.toml` file and using different ports between the two instances.
 
 #### Systemd service
 
