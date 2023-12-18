@@ -39,6 +39,11 @@ include:
 
 ### Blobstream
 
+:::warning DRAFT
+The Blobstream section is a draft, the integration with Blobstream
+is a work in progress.
+:::
+
 The Celestia and Arbitrum integration also
 [includes Blobstream](./blobstream.md),
 which relays commitments to Celestia’s data root to an onchain light client
