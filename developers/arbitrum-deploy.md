@@ -88,12 +88,7 @@ Now you can install Nitro from source. After the `make` command completes,
 you can run the bash script that installs and runs the containers via
 docker-compose.
 
-```bash
-make build-node-deps
-cd nitro-testnode && ./test-node.bash --init --dev
-```
-
-::: tip
+::: tip HOTFIX 🫡
 
 When running on the commit above, there is a small issue with the naming
 of a Docker container that results in an error. To fix this,
@@ -109,6 +104,11 @@ export CELESTIA_NODE_AUTH_TOKEN="$(docker exec nitro-testnode_da_1 celestia brid
 The difference is just `nitro-testnode-da-1` being changed to
 `nitro-testnode_da_1` 😎
 :::
+
+```bash
+make build-node-deps
+cd nitro-testnode && ./test-node.bash --init --dev
+```
 
 Congratulations! You have an Arbitrum Orbit rollup running with Nitro on
 your machine.
