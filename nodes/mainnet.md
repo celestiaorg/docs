@@ -100,8 +100,6 @@ to participate in Mainnet Beta:
 - `rpc-celestia.alphab.ai:9090`
 - `grpc-celestia-full.avril14th.org`
 
-You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
-
 ### Data availability nodes
 
 - [Light node](./light-node.md)
@@ -155,6 +153,8 @@ DA full and light nodes might have troubles connecting to the networks, so you
 can checkout this
 [Grafana dashboard](https://celestia.grafana.net/public-dashboards/a10eff0043bb4bf0839004e2746e2bc6)
 to see health/uptime status of DA bootstrappers (now `celestia` network only).
+
+You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
 ## Explorers
 
