@@ -97,7 +97,6 @@ The default port is 1317.
 - [https://mocha.api.cumulo.me/](https://mocha.api.cumulo.me/)
 - [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
 
-
 ## gRPC endpoints
 
 The gRPC endpoint is to allow users to interact with a Celestia Node using
