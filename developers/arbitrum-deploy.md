@@ -78,6 +78,8 @@ git fetch --all
 git checkout 66a159f
 git submodule update --init
 git submodule update --init --recursive
+cd nitro-testnode && git checkout 1bbccf5
+cd ..
 ```
 
 ## Installing Nitro from Source
