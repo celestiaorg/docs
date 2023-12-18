@@ -75,11 +75,9 @@ to this version so that the tutorial works for anyone using it ATM. -->
 ```bash
 git clone https://github.com/celestiaorg/nitro.git && cd nitro/
 git fetch --all
-git checkout 66a159f
+git checkout c6f5ac2
 git submodule update --init
 git submodule update --init --recursive
-cd nitro-testnode && git checkout e4e5acd
-cd ..
 ```
 
 ## Installing Nitro from Source
