@@ -555,6 +555,28 @@ function sidebarHome() {
                   link: "/developers/ethereum-fallback",
                 },
                 {
+                  text: "Arbitrum",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Introduction to Arbitrum rollups with Celestia as DA",
+                      link: "/developers/arbitrum-integration",
+                    },
+                    {
+                      text: "Deploy an Arbitrum rollup devnet",
+                      link: "/developers/arbitrum-deploy",
+                    },
+                    {
+                      text: "Deploy a smart contract on Arbitrum rollup",
+                      link: "/developers/arbitrum-smart-contract",
+                    },
+                    {
+                      text: "Deploy a dapp on your Arbitrum rollup devnet",
+                      link: "/developers/arbitrum-dapp-deploy",
+                    },
+                  ],
+                },
+                {
                   text: "Optimism",
                   collapsed: true,
                   items: [
