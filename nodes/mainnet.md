@@ -45,6 +45,63 @@ to connect to them. Learn about the different endpoint types
 Here is a list of options of the type of nodes you can run in order
 to participate in Mainnet Beta:
 
+### Consensus nodes
+
+- [Full consensus node](./consensus-node.md)
+- [Validator node](./consensus-node.md#optional-setting-up-a-validator)
+
+#### Consensus RPC endpoints
+
+- `public-celestia-rpc.numia.xyz`
+- `celestia-rpc.mesa.newmetric.xyz`
+- `rpc.lunaroasis.net`
+- `rpc.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com`
+- `celestia-rpc.spidey.services`
+- `rpc-celestia.contributiondao.com`
+- `celestia.rpc.stakin-nodes.com`
+- `celestia.cumulo.org.es`
+- `rpc-celestia.mzonder.com`
+- `rpc-celestia-01.stakeflow.io`
+- `rpc-celestia.alphab.ai`
+- `rpc-celestia-full.avril14th.org`
+
+#### API endpoints
+
+- `public-celestia-lcd.numia.xyz`
+- `celestia-rest.mesa.newmetric.xyz`
+- `api.celestia.pops.one`
+- `api.lunaroasis.net`
+- `api.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com/api`
+- `celestia-api.spidey.services`
+- `api-celestia.contributiondao.com`
+- `celestia.rest.stakin-nodes.com`
+- `celestia.api.cumulo.org.es`
+- `api-celestia.mzonder.com`
+- `api-celestia-01.stakeflow.io`
+- `api-celestia.alphab.ai`
+- `api-celestia-full.avril14th.org`
+
+#### gRPC endpoints
+
+- `public-celestia-grpc.numia.xyz`
+- `celestia-grpc.mesa.newmetric.xyz`
+- `grpc.celestia.pops.one`
+- `grpc.lunaroasis.net:443`
+- `grpc.celestia.nodestake.top`
+- `celestia-rpc.brightlystake.com:9090`
+- `celestia-grpc.spidey.services`
+- `grpc-celestia.contributiondao.com`
+- `celestia.grpc.stakin-nodes.com:443`
+- `celestia.grpc.cumulo.org.es:443`
+- `grpc-celestia.mzonder.com:443`
+- `grpc-celestia-01.stakeflow.io:15002`
+- `rpc-celestia.alphab.ai:9090`
+- `grpc-celestia-full.avril14th.org`
+
+You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
+
 ### Data availability nodes
 
 - [Light node](./light-node.md)
@@ -98,63 +155,6 @@ DA full and light nodes might have troubles connecting to the networks, so you
 can checkout this
 [Grafana dashboard](https://celestia.grafana.net/public-dashboards/a10eff0043bb4bf0839004e2746e2bc6)
 to see health/uptime status of DA bootstrappers (now `celestia` network only).
-
-### Consensus nodes
-
-- [Full consensus node](./consensus-node.md)
-- [Validator node](./consensus-node.md#optional-setting-up-a-validator)
-
-#### Consensus RPC endpoints
-
-- `public-celestia-rpc.numia.xyz`
-- `celestia-rpc.mesa.newmetric.xyz`
-- `rpc.lunaroasis.net`
-- `rpc.celestia.nodestake.top`
-- `celestia-rpc.brightlystake.com`
-- `celestia-rpc.spidey.services`
-- `rpc-celestia.contributiondao.com`
-- `celestia.rpc.stakin-nodes.com`
-- `celestia.cumulo.org.es`
-- `rpc-celestia.mzonder.com`
-- `rpc-celestia-01.stakeflow.io`
-- `rpc-celestia.alphab.ai`
-- `rpc-celestia-full.avril14th.org`
-
-### API endpoints
-
-- `public-celestia-lcd.numia.xyz`
-- `celestia-rest.mesa.newmetric.xyz`
-- `api.celestia.pops.one`
-- `api.lunaroasis.net`
-- `api.celestia.nodestake.top`
-- `celestia-rpc.brightlystake.com/api`
-- `celestia-api.spidey.services`
-- `api-celestia.contributiondao.com`
-- `celestia.rest.stakin-nodes.com`
-- `celestia.api.cumulo.org.es`
-- `api-celestia.mzonder.com`
-- `api-celestia-01.stakeflow.io`
-- `api-celestia.alphab.ai`
-- `api-celestia-full.avril14th.org`
-
-### gRPC endpoints
-
-- `public-celestia-grpc.numia.xyz`
-- `celestia-grpc.mesa.newmetric.xyz`
-- `grpc.celestia.pops.one`
-- `grpc.lunaroasis.net:443`
-- `grpc.celestia.nodestake.top`
-- `celestia-rpc.brightlystake.com:9090`
-- `celestia-grpc.spidey.services`
-- `grpc-celestia.contributiondao.com`
-- `celestia.grpc.stakin-nodes.com:443`
-- `celestia.grpc.cumulo.org.es:443`
-- `grpc-celestia.mzonder.com:443`
-- `grpc-celestia-01.stakeflow.io:15002`
-- `rpc-celestia.alphab.ai:9090`
-- `grpc-celestia-full.avril14th.org`
-
-You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
 ## Explorers
 
