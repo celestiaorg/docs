@@ -78,7 +78,7 @@ git fetch --all
 git checkout 66a159f
 git submodule update --init
 git submodule update --init --recursive
-cd nitro-testnode && git checkout 1bbccf5
+cd nitro-testnode && git checkout e4e5acd
 cd ..
 ```
 
@@ -87,23 +87,6 @@ cd ..
 Now you can install Nitro from source. After the `make` command completes,
 you can run the bash script that installs and runs the containers via
 docker-compose.
-
-::: tip HOTFIX 🫡
-
-When running on the commit above, there is a small issue with the naming
-of a Docker container that results in an error. To fix this,
-go to `nitro/nitro-testnode/test-node.bash` and make
-the following change:
-<!-- markdownlint-disable MD013 -->
-```bash
-export CELESTIA_NODE_AUTH_TOKEN="$(docker exec nitro-testnode-da-1 celestia bridge auth admin --node.store  ${NODE_PATH})" // [!code --]
-export CELESTIA_NODE_AUTH_TOKEN="$(docker exec nitro-testnode_da_1 celestia bridge auth admin --node.store  ${NODE_PATH})" // [!code ++]
-```
-<!-- markdownlint-enable MD013 -->
-
-The difference is just `nitro-testnode-da-1` being changed to
-`nitro-testnode_da_1` 😎
-:::
 
 ```bash
 make build-node-deps
