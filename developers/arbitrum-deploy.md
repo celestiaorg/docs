@@ -97,8 +97,11 @@ your machine.
 ### Validating with WASM
 
 If you want to run a validator that will validate all blocks in WASM,
-add the flag `--validate` to nitro-testnode when starting with
-`./test-node.bash --init --dev --validate`.
+add the flag `--validate` to nitro-testnode when starting with:
+
+```bash
+./test-node.bash --init --dev --validate
+```
 
 ## Next steps
 
