@@ -103,8 +103,19 @@ add the flag `--validate` to nitro-testnode when starting with:
 ./test-node.bash --init --dev --validate
 ```
 
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD013 -->
+<div class="youtube-wrapper">
+  <iframe
+    class="youtube-video"
+    title="Arbitrum Nitro Rollup with Celestia as DA, validating blocks with WASM"
+    src="https://youtube.com/embed/xihXA3wkuLI"
+    allowfullscreen
+  ></iframe>
+</div>
+
 :::tip
-You may need significantly more RAM to validate all blocks with WASM.
+You may need significantly more RAM and CPU to validate all blocks with WASM.
 This was tested on a machine with 64GB of RAM.
 :::
 
