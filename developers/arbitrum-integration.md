@@ -39,9 +39,10 @@ include:
 
 ### Blobstream
 
-:::warning DRAFT
-The Blobstream section is a draft, the integration with Blobstream
-is a work in progress.
+:::warning UPCOMING INTEGRATION
+The Blobstream section is currently under development. Please note that
+the integration with Blobstream is not yet finalized, but it is planned
+for implementation in the near future.
 :::
 
 The Celestia and Arbitrum integration also
