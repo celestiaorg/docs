@@ -4,7 +4,7 @@ description: An overview of the integration of Arbitrum Orbit and Nitro with Cel
 
 # Introduction to Arbitrum rollups with Celestia as DA
 
-![Celestia_Arbitrum](/img/Celestia_Arbitrum.jpeg)
+![Celestia_Arbitrum](/img/Celestia-Arbitrum.png)
 
 ## Overview
 
