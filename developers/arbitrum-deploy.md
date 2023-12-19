@@ -103,6 +103,11 @@ add the flag `--validate` to nitro-testnode when starting with:
 ./test-node.bash --init --dev --validate
 ```
 
+:::tip
+You may need significantly more RAM to validate all blocks with WASM.
+This was tested on a machine with 64GB of RAM.
+:::
+
 ## Next steps
 
 In the next page we will cover
