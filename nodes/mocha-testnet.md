@@ -66,6 +66,7 @@ Below is a list of RPC endpoints you can use to connect to Mocha testnet:
 - `rpc-celestia-mocha.testnet-pride.com`
 - `rpc-celestia-testnet-01.stakeflow.io`
 - `mocha.celestia.rpc.cumulo.me`
+- `rpc-mocha-4.spidey.services`
 
 ### Full and light nodes ONLY
 
@@ -94,6 +95,7 @@ The default port is 1317.
 - [https://api-celestia-mocha.testnet-pride.com/](https://api-celestia-mocha.testnet-pride.com/)
 - [https://api-celestia-testnet-01.stakeflow.io/](https://api-celestia-testnet-01.stakeflow.io/)
 - [https://mocha.api.cumulo.me/](https://mocha.api.cumulo.me/)
+- [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
 
 ## gRPC endpoints
 
@@ -113,6 +115,7 @@ broadcast transactions.
 - `grpc-celestia-mocha.testnet-pride.com:9099`
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
 - `mocha.grpc.cumulo.me:443`
+- `grpc-mocha-4.spidey.services`
 
 ## Bridge and full node endpoints
 

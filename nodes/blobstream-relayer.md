@@ -118,6 +118,6 @@ To start the relayer using the default home directory, run the following:
 /bin/blobstream relayer start --evm.account=0x35a1F8CE94187E4b043f4D57548EF2348Ed556c8
 ```
 
-> **_NOTE:_** The above command assumes that the necessary configuration is specified in the  `<relayer_home>/config/config.toml` file.
+> **_NOTE:_** The above command assumes that the necessary configuration is specified in the `<relayer_home>/config/config.toml` file.
 
 Then, you will be prompted to enter your EVM key passphrase for the EVM address passed using the `--evm.account` flag, so that the relayer can use it to send transactions to the target Blobstream smart contract. Make sure that it's funded.

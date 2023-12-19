@@ -466,6 +466,10 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-commands",
                 },
                 {
+                  text: "Upgrade Monitor",
+                  link: "/nodes/celestia-app-upgrade-monitor",
+                },
+                {
                   text: "Specifications",
                   link: "https://celestiaorg.github.io/celestia-app/",
                 },
@@ -549,6 +553,28 @@ function sidebarHome() {
                 {
                   text: "Ethereum fallback mechanism",
                   link: "/developers/ethereum-fallback",
+                },
+                {
+                  text: "Arbitrum",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Introduction to Arbitrum rollups with Celestia as DA",
+                      link: "/developers/arbitrum-integration",
+                    },
+                    {
+                      text: "Deploy an Arbitrum rollup devnet",
+                      link: "/developers/arbitrum-deploy",
+                    },
+                    {
+                      text: "Deploy a smart contract on Arbitrum rollup",
+                      link: "/developers/arbitrum-smart-contract",
+                    },
+                    {
+                      text: "Deploy a dapp on your Arbitrum rollup devnet",
+                      link: "/developers/arbitrum-dapp-deploy",
+                    },
+                  ],
                 },
                 {
                   text: "Optimism",

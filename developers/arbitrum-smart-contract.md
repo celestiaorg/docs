@@ -1,16 +1,23 @@
-# Deploy a smart contract on Bubs testnet
+---
+description: A tutorial that guides you through the process of deploying a smart contract to your Arbitrum rollup using a L2 Nitro devnet, including setting up the environment, creating and testing the smart contract, and interacting with the deployed contract.
+---
 
-In this tutorial, we will deploy a smart contract to the
-Bubs testnet.
+# Deploy a smart contract to your Arbitrum rollup
 
-## Dependencies
+## Overview
 
+Welcome to the guide on deploying a smart contract to your Arbitrum rollup. In
+this tutorial, you will learn how to deploy a smart contract using the L2 Nitro
+devnet and the provided public and private keys for testing purposes.
+
+## Prerequisites
+
+- [Nitro rollup devnet](./arbitrum-deploy.md)
+  running
 - [Foundry](https://getfoundry.sh/) installed on your machine
 - [Node.js](https://nodejs.org/en)
 - Basic understanding of Ethereum
 - Basic understanding of Solidity and Node.js
-- Bubs ETH from the [Bubs faucet](https://bubstestnet.com)
-- A Bubs RPC URL from the [Bubs testnet page](./bubs-testnet.md)
 
 ## Setup
 
@@ -148,50 +155,40 @@ Test result: ok. 2 passed; 0 failed; finished in 8.96ms
 
 ## Deploying your smart contract
 
-### Using Anvil
+### Funded accounts
 
-First, we'll test out our contract on a local devnet called "anvil". To start
-the local server, run:
+Your L2 Nitro devnet will have a
+[public and private key funded as a faucet to use for testing](https://docs.arbitrum.io/node-running/how-tos/local-dev-node#default-endpoints-and-addresses):
 
-```bash
-anvil
-```
+- On both L1 and L2
+  - Public key: `0x3f1Eae7D46d88F08fc2F8ed27FCb2AB183EB2d0E`
+  - Private key:
+    `0xb6b15c8cb491557369f3c7d2c287b053eb229daa9c22138887752191c9520659`
 
-You'll see a local RPC endpoint (`127.0.0.1:8545`) and accounts to test with.
+Alternatively, you can
+[fund other addresses by using the scripts `send-l1` and `send-l2`](https://docs.arbitrum.io/node-running/how-tos/local-dev-node#helper-scripts).
+
+The L1 Geth devnet will be running at `http://localhost:8545` and the L2 Nitro
+devnet will be on `http://localhost:8547` and `ws://localhost:8548`.
+
+### Using our Arbitrum devnet
+
+We will use the local RPC endpoint (`http://localhost:8547`) and accounts
+above to test with.
 
 Let's deploy the contract now. First, set a private key from anvil:
 
 ```bash
-export PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-export ANVIL_RPC_URL=http://localhost:8545
+export L2_PRIVATE_KEY=0xe887f7d17d07cc7b8004053fb8826f6657084e88904bb61590e498ca04704cf2
+export ARB_RPC_URL=http://localhost:8547
 ```
 
 Now, deploy the contract:
 
 ```bash
-forge create --rpc-url $ANVIL_RPC_URL \
---private-key $PRIVATE_KEY \
-src/Counter.sol:Counter
-```
-
-### Using Bubs
-
-First, set a private key from your funded Ethereum wallet and
-set the `BUBS_RPC_URL` variable with an
-[RPC of your choosing](./bubs-testnet.md#rpc-urls):
-
-```bash
-export BUBS_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-export BUBS_RPC_URL=https://bubs.calderachain.xyz/http
-```
-
-Now that we're ready to deploy the smart contract onto Bubs, we will run
-the `forge create` command.
-
-```bash
-forge create --rpc-url $BUBS_RPC_URL \
---private-key $BUBS_PRIVATE_KEY \
-src/Counter.sol:Counter
+forge create --rpc-url $ARB_RPC_URL \
+  --private-key $L2_PRIVATE_KEY \
+  src/Counter.sol:Counter
 ```
 
 A successful deployment will return output similar to below:
@@ -221,10 +218,9 @@ To write to the contract, we'll use the `cast send` command:
 <!-- markdownlint-disable MD013 -->
 
 ```bash
-cast send $CONTRACT_ADDRESS "setNumber(uint256)" 10 --rpc-url $BUBS_RPC_URL --private-key $BUBS_PRIVATE_KEY
+cast send $CONTRACT_ADDRESS "setNumber(uint256)" 10 \
+  --rpc-url $ARB_RPC_URL --private-key $L2_PRIVATE_KEY
 ```
-
-<!-- markdownlint-enable MD013 -->
 
 Your output will look similar:
 
@@ -244,11 +240,13 @@ transactionIndex        0
 type                    2
 ```
 
+<!-- markdownlint-enable MD013 -->
+
 Now, we can make a read call to view the state of the number variable,
 using the `cast call` command:
 
 ```bash
-cast call $CONTRACT_ADDRESS "number()" --rpc-url $BUBS_RPC_URL
+cast call $CONTRACT_ADDRESS "number()" --rpc-url $ARB_RPC_URL
 ```
 
 The result will look similar:
@@ -265,7 +263,8 @@ echo $((0x000000000000000000000000000000000000000000000000000000000000000a))
 
 ## Next steps
 
-Congratulations! You've learned how to deploy a smart contract to Bubs testnet.
+Congratulations! You've learned how to deploy a smart contract to your Arbitrum
+rollup devnet.
 
-What will you build next? Now, you're ready to check out the
-[GM Portal tutorial](./gm-portal-bubs.md).
+What will you build next? In our next tutorial, we will be going over how to
+deploy a dapp to your Arbitrum rollup.
