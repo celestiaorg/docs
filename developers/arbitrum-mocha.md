@@ -23,13 +23,13 @@ This guide covers deploying an Arbitrum Nitro rollup to
 
 <!-- markdownlint-disable MD013 -->
 
-1.  Fully sync and fund a light node on Mocha testnet using the binary.
+1. Fully sync and fund a light node on Mocha testnet using the binary.
     This will use default node store of `$HOME/.celestia-light-{{constants.mochaChainId}}`.
     This is what the docker-compose setup for the testnode will pick up
     as a node store. If you choose to use another node store, you will need
     to make changes yourself to reflect this.
 
-2.  Change the following in
+2. Change the following in
     [`nitro-testnode/docker-compose.yaml`](https://github.com/celestiaorg/nitro-testnode/blob/e4e5acd36890e650c581188ef746a7b02202583a/docker-compose.yaml#L3-L15):
 
         ```bash-vue
@@ -66,7 +66,7 @@ This guide covers deploying an Arbitrum Nitro rollup to
         It is not advised to run with `user: root` permissions in production.
         :::
 
-3.  In [`nitro-testnode/test-node.bash`](https://github.com/celestiaorg/nitro-testnode/blob/e4e5acd36890e650c581188ef746a7b02202583a/test-node.bash#L7-L287)
+3. In [`nitro-testnode/test-node.bash`](https://github.com/celestiaorg/nitro-testnode/blob/e4e5acd36890e650c581188ef746a7b02202583a/test-node.bash#L7-L287)
     make the following changes:
 
         ```bash-vue
@@ -79,7 +79,7 @@ This guide covers deploying an Arbitrum Nitro rollup to
         export CELESTIA_NODE_AUTH_TOKEN="$(docker exec nitro-testnode_da_1 celestia light auth admin --node.store  ${NODE_PATH})" // [!code ++]
         ```
 
-4.  Pick a namespace, `<your-10bytenamespace>` that is 10 bytes in hexadecimal.
+4. Pick a namespace, `<your-10bytenamespace>` that is 10 bytes in hexadecimal.
     In [`nitro-testnode/scripts/config.ts`](https://github.com/celestiaorg/nitro-testnode/blob/e4e5acd36890e650c581188ef746a7b02202583a/scripts/config.ts#L223-L224)
     make the following changes:
 
@@ -94,15 +94,15 @@ This guide covers deploying an Arbitrum Nitro rollup to
 
 1. Start your rollup:
 
-   ```bash
-   ./test-node.bash --init --dev
-   ```
+        ```bash
+        ./test-node.bash --init --dev
+        ```
 
 2. Send a transaction:
 
-   ```bash
-   ./test-node.bash script send-l2 --to address_0x1111222233334444555566667777888899990000
-   ```
+        ```bash
+        ./test-node.bash script send-l2 --to address_0x1111222233334444555566667777888899990000
+        ```
 
 3. Find [the batch transaction on mocha](https://mocha.celenium.io/tx/ab5a97ddcf310417cabd57915d0f15f1071b941b902989e974f4025391c71512)
    in the namespace you used. In this demonstration, I used

@@ -1,5 +1,5 @@
 ---
-description: An overview of the integration of Arbitrum Orbit and Nitro with Celestia, detailing the key features and benefits, including the Ethereum fallback mechanism.
+description: An overview of the integration of Arbitrum Nitro with Celestia, detailing the key features and benefits, including the Ethereum fallback mechanism.
 ---
 
 # Introduction to Arbitrum rollups with Celestia as DA

@@ -116,7 +116,6 @@ add the flag `--validate` to nitro-testnode when starting with:
 
 :::tip
 You may need significantly more RAM and CPU to validate all blocks with WASM.
-This was tested on a machine with 64GB of RAM.
 :::
 
 ## Next steps
