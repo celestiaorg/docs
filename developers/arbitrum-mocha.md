@@ -4,7 +4,7 @@ description: An overview of the deploying Arbitrum Nitro and Celestia rollup to 
 
 # Deploy an Arbitrum rollup to Mocha testnet
 
-![abstract-image](/img/nitro-vroom.png)
+![nitro-vroom](/img/nitro-vroom.png)
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
