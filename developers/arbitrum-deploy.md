@@ -123,4 +123,4 @@ You may need significantly more RAM and CPU to validate all blocks with WASM.
 ## Next steps
 
 In the next page we will cover
-[deploying a smart contract to your rollup](./arbitrum-smart-contract.md).
+[deploying your devnet to Mocha testnet](./arbitrum-mocha.md).
