@@ -91,6 +91,10 @@ This guide covers deploying an Arbitrum Nitro rollup to
       "namespace-id": "<your-10bytenamespace>", // [!code ++]
       ```
 
+[See an example diff of the setup](https://github.com/celestiaorg/nitro/pull/4/files),
+specifically
+[the updates to nitro-testnode](https://github.com/celestiaorg/nitro-testnode/pull/6/files).
+
 ## Run your Nitro rollup on Mocha
 
 1. Start your rollup:
