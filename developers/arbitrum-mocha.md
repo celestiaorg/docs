@@ -36,6 +36,7 @@ This guide covers deploying an Arbitrum Nitro rollup to
 
       ```bash-vue
       da:
+          container_name: 'celestia-da'
           user: root // [!code ++]
           platform: linux/x86_64
           image: "ghcr.io/rollkit/local-celestia-devnet:v0.12.1" // [!code --]
@@ -75,8 +76,8 @@ This guide covers deploying an Arbitrum Nitro rollup to
       NODE_PATH="/home/celestia/.celestia-light-{{constants.mochaChainId}}/" // [!code ++]
 
       # Line 287
-      export CELESTIA_NODE_AUTH_TOKEN="$(docker exec nitro-testnode_da_1 celestia bridge auth admin --node.store  ${NODE_PATH})" // [!code --]
-      export CELESTIA_NODE_AUTH_TOKEN="$(docker exec nitro-testnode_da_1 celestia light auth admin --node.store  ${NODE_PATH})" // [!code ++]
+      export CELESTIA_NODE_AUTH_TOKEN="$(docker exec celestia-da celestia bridge auth admin --node.store  ${NODE_PATH})" // [!code --]
+      export CELESTIA_NODE_AUTH_TOKEN="$(docker exec celestia-da celestia light auth admin --node.store  ${NODE_PATH})" // [!code ++]
       ```
 
 4. Pick a namespace, `<your-10bytenamespace>` that is 10 bytes in hexadecimal.
