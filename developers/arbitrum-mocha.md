@@ -45,8 +45,6 @@ This guide covers deploying an Arbitrum Nitro rollup to
                   --core.ip rpc-mocha.pops.one // [!code ++]
                   --p2p.network mocha // [!code ++]
                   --log.level debug --gateway // [!code ++]
-                  --gateway.addr 0.0.0.0 // [!code ++]
-                  --rpc.addr 0.0.0.0 // [!code ++]
           environment: // [!code ++]
             - NODE_TYPE=light // [!code ++]
             - P2P_NETWORK=mocha // [!code ++]
