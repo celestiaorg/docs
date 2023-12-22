@@ -571,6 +571,10 @@ function sidebarHome() {
                       link: "/developers/arbitrum-mocha",
                     },
                     {
+                      text: "Nitrogen testnet",
+                      link: "/developers/nitrogen-testnet",
+                    },
+                    {
                       text: "Deploy a smart contract on Arbitrum rollup",
                       link: "/developers/arbitrum-smart-contract",
                     },
