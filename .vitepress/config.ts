@@ -572,7 +572,7 @@ function sidebarHome() {
                     },
                     {
                       text: "Nitrogen testnet",
-                      link: "/developers/nitrogen-testnet",
+                      link: "/developers/nitrogen",
                     },
                     {
                       text: "Deploy a smart contract on Arbitrum rollup",
