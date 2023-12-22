@@ -238,9 +238,9 @@ commands:
 
    a. Standard build
 
-      ```bash
-      make build
-      ```
+   ```bash
+   make build
+   ```
 
    b. Experimental build
 
@@ -249,7 +249,7 @@ commands:
    seeking optimal performance with minimal RAM usage, this option is
    recommended for you.
 
-    ```bash
+   ```bash
    make build-jemalloc
    ```
 
