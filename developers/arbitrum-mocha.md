@@ -36,7 +36,7 @@ This guide covers deploying an Arbitrum Nitro rollup to
 
       ```bash-vue
       da:
-          container_name: 'celestia-da'
+          container_name: 'celestia-da' // [!code ++]
           user: root // [!code ++]
           platform: linux/x86_64
           image: "ghcr.io/rollkit/local-celestia-devnet:v0.12.1" // [!code --]
@@ -76,6 +76,8 @@ This guide covers deploying an Arbitrum Nitro rollup to
       NODE_PATH="/home/celestia/.celestia-light-{{constants.mochaChainId}}/" // [!code ++]
 
       # Line 287
+      # NOTE: depending on the version you're using, you may have a different
+      # container name to start. Change yours accordingly to `celestia-da`.
       export CELESTIA_NODE_AUTH_TOKEN="$(docker exec celestia-da celestia bridge auth admin --node.store  ${NODE_PATH})" // [!code --]
       export CELESTIA_NODE_AUTH_TOKEN="$(docker exec celestia-da celestia light auth admin --node.store  ${NODE_PATH})" // [!code ++]
       ```
