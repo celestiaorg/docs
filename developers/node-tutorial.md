@@ -55,7 +55,7 @@ If you would like to use them anyway, you can
 The following minimum hardware requirements are recommended for running a
 light node:
 
-- Memory: **2 GB RAM**
+- Memory: **500 MB RAM (minimum)**
 - CPU: **Single Core**
 - Disk: **50 GB SSD Storage**
 - Bandwidth: **56 Kbps for Download/56 Kbps for Upload**
@@ -236,9 +236,27 @@ commands:
 
 3. Build the `celestia` binary:
 
+   a. Standard build
+
    ```bash
    make build
    ```
+
+   b. Experimental build
+
+   :::tip OPTIONAL
+   If you're a node operator comfortable with experimental features and
+   seeking optimal performance with minimal RAM usage, this option is
+   recommended for you.
+
+   ```bash
+   make build-jemalloc
+   ```
+
+   This build option enables CGO, and downloads and installs
+   [jemalloc](https://jemalloc.net/).
+   [Learn more about the build command](https://github.com/celestiaorg/celestia-node/releases/tag/v0.12.1#:~:text=%F0%9F%8F%97%EF%B8%8F-,New%20build%20option,-%3A%20Makefile%20now%20has).
+   :::
 
 4. Install the binary:
 

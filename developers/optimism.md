@@ -131,29 +131,31 @@ a DA server on port 26650.
 
 For the `P2P_NETWORK` variable, you'll need to supply the network of choice, either
 `celestia`, `mocha`, or `arabica`. Using `celestia`, the volume path will be just
-`.celestia-light` instead of `.celestia-light-<network>`.
+`.celestia-light` instead of `.celestia-light-<network>`. You will also need
+to provide a core.ip RPC URL for the network you are using.
 
 <!-- markdownlint-disable MD013 -->
+
 ```yaml
 da:
   image: ghcr.io/rollkit/local-celestia-devnet:v0.12.1 // [!code --]
   image: ghcr.io/rollkit/celestia-da:v0.12.1-rc0 // [!code ++]
   command: > // [!code ++]
     celestia-da light start // [!code ++]
-    --p2p.network=$P2P_NETWORK // [!code ++]
+    --p2p.network=<network> // [!code ++]
     --da.grpc.namespace=000008e5f679bf7116cb // [!code ++]
     --da.grpc.listen=0.0.0.0:26650 // [!code ++]
-    --core.ip rpc.celestia.pops.one // [!code ++]
+    --core.ip <rpc-url> // [!code ++]
     --gateway // [!code ++]
   environment: // [!code ++]
       - NODE_TYPE=light // [!code ++]
       - P2P_NETWORK=<network> // [!code ++]
   ports:
-    - "26650:26650" // [!code --]
+    - "26650:26650"
     - "26658:26658"
     - "26659:26659"
   volumes: // [!code ++]
-    - $HOME/.celestia-light-<network>/:/home/celestia/.celestia-light.<network>/ // [!code ++]
+    - $HOME/.celestia-light-<network>/:/home/celestia/.celestia-light-<network>/ // [!code ++]
   healthcheck:
     test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
     interval: 10s

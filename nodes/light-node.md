@@ -27,7 +27,7 @@ Light nodes have the following behavior:
 The following minimum hardware requirements are recommended for running
 a light node:
 
-- Memory: **2 GB RAM**
+- Memory: **500 MB RAM (minimum)**
 - CPU: **Single Core**
 - Disk: **50 GB SSD Storage**
 - Bandwidth: **56 Kbps for Download/56 Kbps for Upload**
