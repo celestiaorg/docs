@@ -6,7 +6,7 @@ description: A guide to Arabica devnet.
 
 ![arabica-devnet](/img/arabica-devnet.png)
 
-Arabica devnet is a new testnet from Celestia Labs that is focused
+Arabica devnet is a testnet from Celestia Labs that is focused
 exclusively on providing developers with enhanced performance and
 the latest upgrades for testing their rollups and applications.
 
@@ -15,9 +15,11 @@ that is what Mocha testnet is used for. If you are a validator, we
 recommend testing your validator operations on the
 [Mocha testnet](./mocha-testnet.md).
 
-With Arabica having the latest updates from all Celestia's products deployed
+## Network stability and upgrades
+
+Arabica has the latest updates from all Celestia's products deployed
 on it, it can be subject to many changes. Therefore, as a fair warning,
-Arabica can break unexpectedly but given it will be continuously updated,
+Arabica can break unexpectedly, but given it will be continuously updated,
 it is a useful way to keep testing the latest changes in the software.
 
 Developers can still deploy on Mocha testnet their sovereign rollups if they
@@ -35,73 +37,88 @@ import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
 
 ## Integrations
 
-This guide contains the relevant sections for how to connect to Arabica,
-depending on the type of node you are running.
+This guide contains the relevant sections for how to connect to Arabica
+devnet, depending on the type of node you are running. Your best
+approach to participating is to first determine which node you would
+like to run. Each node’s guide will link to the relevant network in
+order to show you how to connect to them. Learn about the different
+endpoint types [in the Cosmos SDK documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest).
 
-Your best approach to participating is to first determine which node
-you would like to run. Each node's guide will link to the relevant networks
-in order to show you how to connect to them.
+Here is a list of options of the type of nodes you can run
+in order to participate in Arabica devnet:
 
-You have a list of options on the type of nodes you can run in order to
-participate in Arabica:
+### Consensus nodes
 
-Data Availability:
+- [Full consensus node](../nodes/consensus-node.md)
+
+#### Consensus RPC endpoints
+
+- `rpc.validator-1.celestia-arabica-11.com`
+- `rpc.validator-2.celestia-arabica-11.com`
+- `rpc.validator-3.celestia-arabica-11.com`
+- `rpc.validator-4.celestia-arabica-11.com`
+
+#### API endpoints
+
+- `api.validator-1.celestia-arabica-11.com`
+- `api.validator-2.celestia-arabica-11.com`
+- `api.validator-3.celestia-arabica-11.com`
+- `api.validator-4.celestia-arabica-11.com`
+
+#### gRPC endpoints
+
+- `grpc.validator-1.celestia-arabica-11.com`
+- `grpc.validator-2.celestia-arabica-11.com`
+- `grpc.validator-3.celestia-arabica-11.com`
+- `grpc.validator-4.celestia-arabica-11.com`
+
+### Data availability nodes
 
 - [Bridge node](./bridge-node.md)
 - [Full storage node](./full-storage-node.md)
 - [Light node](./light-node.md)
 
-Select the type of node you would like to run and follow the instructions
-on each respective page. Whenever you are asked to select the type of network
-you want to connect to in those guides, select `Arabica` in order to refer
-to the correct instructions on this page on how to connect to Arabica.
+#### DA RPC endpoints
 
-## RPC endpoints
+These RPC endpoints for DA nodes are to provide state access for querying the
+chain’s state and broadcasting transactions (balances, blobs, etc.) to the
+Celestia network. For users, they will need to provide a `–core.ip string`
+from a consensus node’s URL or IP that populates 2 ports for 2 types
+(RPC and gRPC, at ports 26657 and 9090, respectively) to their respective DA
+node.
 
-The RPC endpoint is to allow users to interact with Celestia's nodes by
-querying the node's state and broadcasting transactions on the
-Celestia network. The default port is 26657.
+:::tip
 
-Below is a list of RPC endpoints you can use to connect to Arabica devnet:
+```bash
+celestia <da_type> start –core.ip <url> –core.rpc.port <port> \
+    –core.grpc.port <port>
+```
 
-### Bridge, full, and light nodes
+:::
 
-- `consensus-validator.celestia-arabica-10.com`
-- `validator.consensus.celestia-arabica-10.com`
-- `consensus-full.celestia-arabica-10.com`
+:::tip Bridge nodes
+Not all of the RPC endpoints do not guarantee the full block history.
+Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
+or run your own consensus full node with no pruning for
+your bridge node.
+:::
 
-### Full and light nodes ONLY
+RPCs for DA nodes to initialise or start your celestia-node to Arabica devnet with:
 
-These RPC endpoints do not allow you to download full blocks from
-them. We advise that if you are running a bridge node, that you also
-run a local [full consensus node](./consensus-node.md) in order to download
-full blocks from it.
+- `validator-1.celestia-arabica-11.com`
+  - gRPC: port 9090
+  - RPC: port 26657
+- `validator-2.celestia-arabica-11.com`
+  - gRPC: port 9090
+  - RPC: port 26657
+- `validator-3.celestia-arabica-11.com`
+  - gRPC: port 9090
+  - RPC: port 26657
+- `validator-4.celestia-arabica-11.com`
+  - gRPC: port 9090
+  - RPC: port 26657
 
-- `rpc.consensus.celestia-arabica-10.com`
-- `rpc-2.consensus.celestia-arabica-10.com`
-
-## API endpoints
-
-The API endpoint is to allow users to interact with the REST API in Cosmos
-SDK which is implemented using gRPC-gateway, which exposes gRPC endpoints
-as REST endpoints. This allows for communication with the node using REST
-calls, which can be useful if the client does not support gRPC or HTTP2.
-The default port is 1317.
-
-- [https://api.consensus.celestia-arabica-10.com/](https://api.consensus.celestia-arabica-10.com/)
-- [https://api-2.consensus.celestia-arabica-10.com/](https://api-2.consensus.celestia-arabica-10.com/)
-
-## gRPC endpoints
-
-The gRPC endpoint is to allow users to interact with a Celestia Node using
-gRPC, a modern open-source and high-performance RPC framework. The default
-port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
-broadcast transactions.
-
-- `grpc.consensus.celestia-arabica-10.com:443`
-- `grpc-2.consensus.celestia-arabica-10.com:443`
-- `validator.consensus.celestia-arabica-10.com:9090`
-- `consensus-validator.celestia-arabica-10.com:9090`
+You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
 ## Arabica devnet faucet
 
@@ -128,13 +145,13 @@ Faucet has a limit of 10 tokens per week per address/Discord ID.
 
 ### Web
 
-The web faucet is available at [https://faucet.celestia-arabica-10.com/](https://faucet.celestia-arabica-10.com/).
+The web faucet is available at [https://faucet.celestia-arabica-11.com/](https://faucet.celestia-arabica-11.com/).
 
 ## Explorers
 
 There are multiple explorers you can use for Arabica:
 
-- [https://explorer.celestia-arabica-10.com](https://explorer.celestia-arabica-10.com)
+- [https://explorer.celestia-arabica-11.com](https://explorer.celestia-arabica-11.com)
 - [https://celestiascan.com](https://celestiascan.com)
 
 ## Network upgrades
