@@ -19,7 +19,7 @@ This guide covers deploying an Arbitrum Nitro rollup to
 - [Introduction to Arbitrum rollups with Celestia as DA](./arbitrum-integration.md)
 - [Deploy an Arbitrum rollup devnet](./arbitrum-deploy.md)
 - A fully synced and funded Mocha testnet [light node](../nodes/light-node.md)
-  - [Mocha testnet faucet](../nodes/mocha-testnet#mocha-testnet-faucet)
+  - [Mocha testnet faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet)
 
 ## Setting up your light node
 

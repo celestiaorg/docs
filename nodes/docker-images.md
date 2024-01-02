@@ -81,7 +81,7 @@ Ubuntu. You can
 
 3. Set an RPC endpoint for either [Mainnet Beta](./mainnet.md#da-rpc-endpoints),
    [Mocha](./mocha-testnet.md#rpc-endpoints), or
-   [Arabica](./arabica-devnet.md#rpc-endpoints)
+   [Arabica](./arabica-devnet.md#da-rpc-endpoints)
    using the bare URL (without http or https):
 
    ```bash
