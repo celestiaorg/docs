@@ -50,7 +50,9 @@ like to run. Each node’s guide will link to the relevant network in
 order to show you how to connect to them. Learn about the different
 endpoint types [in the Cosmos SDK documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest).
 
-Here is a list of options of the type of nodes you can run
+### RPC endpoints
+
+RPC endpoints and types of nodes you can run
 in order to participate in Arabica devnet:
 
 <!-- markdownlint-disable MD013 -->
@@ -59,8 +61,16 @@ in order to participate in Arabica devnet:
 | **Consensus nodes** ([full](../nodes/consensus-node.md)) | Consensus RPC | `https://rpc.celestia-arabica-11.com` |
 |  | API | `https://api.celestia-arabica-11.com` |
 |  | gRPC | `grpc.celestia-arabica-11.com:443` |
-|  | Direct endpoints with open ports | Open ports: 26656 (p2p), 26657 (RPC), 1317 (API), 9090 (GRPC)<br>`validator-1.celestia-arabica-11.com`<br>`validator-2.celestia-arabica-11.com`<br>`validator-3.celestia-arabica-11.com`<br>`validator-4.celestia-arabica-11.com` |
-| **Data availability nodes** ([light](./light-node.md), [bridge](./bridge-node.md), [full](./full-storage-node.md)) | DA Bridge Node Endpoints | `/dns4/da-bridge-1.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWGqwzdEqM54Dce6LXzfFr97Bnhvm6rN7KM7MFwdomfm4S`<br>`/dns4/da-bridge-2.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWCMGM5eZWVfCN9ZLAViGfLUWAfXP5pCm78NFKb9jpBtua`<br>`/dns4/da-bridge-3.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWEWuqrjULANpukDFGVoHW3RoeUU53Ec9t9v5cwW3MkVdQ`<br>`/dns4/da-bridge-4.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWLT1ysSrD7XWSBjh7tU1HQanF5M64dHV6AuM6cYEJxMPk` |
+|  | Direct endpoints with open ports | Open ports: 26656 (p2p), 26657 (RPC), 1317 (API), 9090 (GRPC) |
+|  |   | `validator-1.celestia-arabica-11.com` |
+|  |   | `validator-2.celestia-arabica-11.com` |
+|  |   | `validator-3.celestia-arabica-11.com` |
+|  |   | `validator-4.celestia-arabica-11.com` |
+|  |   |   |
+| **Data availability nodes** | DA Bridge Node Endpoints | `/dns4/da-bridge-1.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWGqwzdEqM54Dce6LXzfFr97Bnhvm6rN7KM7MFwdomfm4S` |
+| ([light](./light-node.md), [bridge](./bridge-node.md), [full](./full-storage-node.md)) | | `/dns4/da-bridge-2.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWCMGM5eZWVfCN9ZLAViGfLUWAfXP5pCm78NFKb9jpBtua` |
+|  | | `/dns4/da-bridge-3.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWEWuqrjULANpukDFGVoHW3RoeUU53Ec9t9v5cwW3MkVdQ` |
+|  | | `/dns4/da-bridge-4.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWLT1ysSrD7XWSBjh7tU1HQanF5M64dHV6AuM6cYEJxMPk` |
 |  | `--core.ip string` endpoints | Refer to "Direct endpoints with open ports" above |
 <!-- markdownlint-enable MD013 -->
 You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).

@@ -89,7 +89,7 @@ for information on which ports are required to be open on your machine.
 
 Using an RPC of your own, or one from the
 [list on the Mocha testnet page](./mocha-testnet.md#rpc-endpoints) or
-[list on the Arabica devnet page](./arabica-devnet.md#da-rpc-endpoints),
+[list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints),
 start your node.
 
 Here is an example of initializing the bridge node:
