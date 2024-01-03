@@ -1,16 +1,6 @@
 <template>
   <ul>
     <li>
-      Celestia chain ID - 
-      <a 
-        :href="`https://github.com/celestiaorg/networks/tree/master/${constants.arabicaChainId}`"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {{ constants.arabicaChainId }}
-      </a>
-    </li>
-    <li>
       celestia-node - 
       <a 
         :href="`https://github.com/celestiaorg/celestia-node/releases/tag/${arabicaVersions['node-latest-tag']}`"

@@ -26,12 +26,17 @@ Developers can still deploy on Mocha testnet their sovereign rollups if they
 chose to do so, it just will always lag behind Arabica devnet until Mocha
 undergoes Hardfork Upgrades in coordination with Validators.
 
-## Software version numbers
-
+## Network details
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
+import ArabicaDevnetDetails from '../.vitepress/components/ArabicaDevnetDetails.vue'
+import constants from "/.vitepress/constants/constants.js";
 </script>
+
+<ArabicaDevnetDetails />
+
+## Software version numbers
 
 <ArabicaVersionTags/>
 
