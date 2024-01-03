@@ -20,16 +20,6 @@
         {{ arabicaVersions['app-latest-tag'] }}
       </a>
     </li>
-    <li>
-      Rollkit - 
-      <a 
-        :href="`https://github.com/rollkit/rollkit/releases/tag/${constants.arabicaRollkitVersion}`"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {{ constants.arabicaRollkitVersion }}
-      </a>
-    </li>
   </ul>
 </template>
 
