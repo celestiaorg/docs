@@ -13,7 +13,7 @@
       <td><code>27122593765E07329BC348E8D16E92DCB4C75B34CCCB35C640FD7A4484D4C711</code></td>
     </tr>
     <tr>
-      <td>Genesis File</td>
+      <td>Genesis file</td>
       <td>
         <a 
           :href="`https://github.com/celestiaorg/networks/blob/master/${constants.arabicaChainId}/genesis.json`"
@@ -25,7 +25,7 @@
       </td>
     </tr>
     <tr>
-      <td>Peers File</td>
+      <td>Peers file</td>
       <td>
         <a 
           :href="`https://github.com/celestiaorg/networks/blob/master/${constants.arabicaChainId}/peers.txt`"
