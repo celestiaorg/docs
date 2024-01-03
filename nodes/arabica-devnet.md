@@ -27,6 +27,7 @@ chose to do so, it just will always lag behind Arabica devnet until Mocha
 undergoes Hardfork Upgrades in coordination with Validators.
 
 ## Network details
+
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
@@ -36,7 +37,7 @@ import constants from "/.vitepress/constants/constants.js";
 
 <ArabicaDevnetDetails />
 
-## Software version numbers
+### Software version numbers
 
 <ArabicaVersionTags/>
 
@@ -58,24 +59,26 @@ in order to participate in Arabica devnet:
 
 #### Consensus RPC endpoints
 
-- `rpc.validator-1.celestia-arabica-11.com`
-- `rpc.validator-2.celestia-arabica-11.com`
-- `rpc.validator-3.celestia-arabica-11.com`
-- `rpc.validator-4.celestia-arabica-11.com`
+- `https://rpc.celestia-arabica-11.com`
 
 #### API endpoints
 
-- `api.validator-1.celestia-arabica-11.com`
-- `api.validator-2.celestia-arabica-11.com`
-- `api.validator-3.celestia-arabica-11.com`
-- `api.validator-4.celestia-arabica-11.com`
+- `https://api.celestia-arabica-11.com`
 
 #### gRPC endpoints
 
-- `grpc.validator-1.celestia-arabica-11.com`
-- `grpc.validator-2.celestia-arabica-11.com`
-- `grpc.validator-3.celestia-arabica-11.com`
-- `grpc.validator-4.celestia-arabica-11.com`
+- `grpc.celestia-arabica-11.com:443`
+
+#### Direct endpoints with open ports
+
+Open ports: 26656 (p2p), 26657 (RPC), 1317 (API), 9090 (GRPC)
+
+- `validator-1.celestia-arabica-11.com`
+- `validator-2.celestia-arabica-11.com`
+- `validator-3.celestia-arabica-11.com`
+- `validator-4.celestia-arabica-11.com`
+
+You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
 ### Data availability nodes
 
@@ -85,45 +88,48 @@ in order to participate in Arabica devnet:
 
 #### DA RPC endpoints
 
-These RPC endpoints for DA nodes are to provide state access for querying the
-chain’s state and broadcasting transactions (balances, blobs, etc.) to the
-Celestia network. For users, they will need to provide a `–core.ip string`
-from a consensus node’s URL or IP that populates 2 ports for 2 types
-(RPC and gRPC, at ports 26657 and 9090, respectively) to their respective DA
-node.
+Consensus RPC endpoints are used to provide DA nodes with state access for
+querying the chain’s state and broadcasting transactions (balances, blobs,
+etc.) to the Celestia network. For users, they will need to provide a
+`–core.ip string` from a consensus node’s URI or an IP that populates
+2 ports for 2 types (RPC and gRPC, at ports 26657 and 9090, respectively)
+to their respective DA node.
 
 :::tip
 
 ```bash
 celestia <da_type> start –core.ip <url> –core.rpc.port <port> \
-    –core.grpc.port <port>
+    –core.grpc.port <port> \
 ```
 
 :::
 
-:::tip Bridge nodes
+RPCs for DA nodes to initialise or start your celestia-node to
+Arabica devnet with can be found in the
+[direct endpoints with open ports](#direct-endpoints-with-open-ports)
+section above.
+
+As an example, this command will work to start a light node with
+state access, using default ports:
+
+```bash
+celestia light start --p2p.netowrk arabica \
+  --core.ip validator-1.celestia-arabica-11.com
+```
+
+:::tip Bridge node runners
 Not all of the RPC endpoints do not guarantee the full block history.
 Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
 or run your own consensus full node with no pruning for
 your bridge node.
 :::
 
-RPCs for DA nodes to initialise or start your celestia-node to Arabica devnet with:
+##### DA bridge node endpoints
 
-- `validator-1.celestia-arabica-11.com`
-  - gRPC: port 9090
-  - RPC: port 26657
-- `validator-2.celestia-arabica-11.com`
-  - gRPC: port 9090
-  - RPC: port 26657
-- `validator-3.celestia-arabica-11.com`
-  - gRPC: port 9090
-  - RPC: port 26657
-- `validator-4.celestia-arabica-11.com`
-  - gRPC: port 9090
-  - RPC: port 26657
-
-You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
+- `/dns4/da-bridge-1.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWGqwzdEqM54Dce6LXzfFr97Bnhvm6rN7KM7MFwdomfm4S`
+- `/dns4/da-bridge-2.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWCMGM5eZWVfCN9ZLAViGfLUWAfXP5pCm78NFKb9jpBtua`
+- `/dns4/da-bridge-3.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWEWuqrjULANpukDFGVoHW3RoeUU53Ec9t9v5cwW3MkVdQ`
+- `/dns4/da-bridge-4.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWLT1ysSrD7XWSBjh7tU1HQanF5M64dHV6AuM6cYEJxMPk`
 
 ## Arabica devnet faucet
 

@@ -36,6 +36,12 @@
         </a>
       </td>
     </tr>
+      <tr>
+      <td>Validators</td>
+      <td>
+        4
+      </td>
+    </tr>
   </table>
 </template>
 
