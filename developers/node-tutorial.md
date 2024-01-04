@@ -17,12 +17,6 @@ import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 In this tutorial, we will cover how to use the celestia-node RPC API to submit
 and retrieve data (blobs) from the data availability layer by their namespace.
 
-:::details Table of contents
-
-[[toc]]
-
-:::
-
 ## Introduction
 
 ### Blobs
@@ -667,6 +661,11 @@ If you notice from the above output, it returns a `result` of
 corresponds to the height of the block in which the transaction
 was included.
 
+#### Optional: Submit with curl
+
+Refer to the [submitting a blob using curl](#submitting-a-blob-using-curl)
+section.
+
 ### Retrieving data
 
 After submitting your PFB transaction, upon success, the node will return
@@ -1104,6 +1103,55 @@ celestia share get-by-namespace \
 ```
 
 ## Additional resources
+
+### Submitting a blob using curl
+
+In order to post a blob using curl, you will need a light node running
+with the `--core.ip string` flag, providing access to a consensus
+endpoint.
+The flag indicates node to connect to the given core consensus node.
+Examples: `127.0.0.1` or `subdomain.domain.tld`.
+Using either IP or DNS assumes RPC port 26657 and gRPC port 9090
+as default unless otherwise specified.
+
+1. In your terminal, set the auth token for the desired network. In this
+example, we will use Mainnet Beta.
+
+    ```bash
+    export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network celestia)
+    ```
+
+2. Post your blob with:
+
+    ```bash
+    curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" -X POST --data '{"id": 1,
+      "jsonrpc": "2.0",
+      "method": "blob.Submit",
+      "params": [
+        [
+          {
+            "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAAECAwQFBgcICRA=",
+            "data": "VGhpcyBpcyBhbiBleGFtcGxlIG9mIHNvbWUgYmxvYiBkYXRh",
+            "share_version": 0,
+            "commitment": "AD5EzbG0/EMvpw0p8NIjMVnoCP4Bv6K+V6gjmwdXUKU="
+          }
+        ],
+        {
+          "Fee": 10000,
+          "GasLimit": 100000
+        }
+      ]
+    }' 127.0.0.1:26658
+    ```
+
+3. Upon successful blob submission, the result will show the block height:
+
+```bash
+{"jsonrpc":"2.0","result":362101,"id":1}
+```
+
+The example transaction can be
+[found on Celenium](https://celenium.io/tx/08af4b0934843f083300e682f1f8894c6b2871b6d0adbc3bbef1739431484cfd).
 
 ### Post an SVG as a PFB
 
