@@ -65,6 +65,7 @@ to participate in Mainnet Beta:
 - `rpc-celestia-01.stakeflow.io`
 - `rpc-celestia.alphab.ai`
 - `rpc-celestia-full.avril14th.org`
+- `celestia-rpc.easy2stake.com`
 
 #### API endpoints
 
@@ -82,6 +83,7 @@ to participate in Mainnet Beta:
 - `api-celestia-01.stakeflow.io`
 - `api-celestia.alphab.ai`
 - `api-celestia-full.avril14th.org`
+- `celestia-lcd.easy2stake.com`
 
 #### gRPC endpoints
 
