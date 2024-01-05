@@ -33,6 +33,49 @@ functional, users may encounter occasional instability or reduced performance.
 
 <MainnetVersionTags/>
 
+## Network parameters
+
+Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/23d13d4de41631dc3c52f7d94fc214e44d03962d/specs/src/specs/params.md?plain=1#L30),
+can be found in the
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/specs/params.html)
+or from `max_bytes` in
+[Mainnet Beta validator's consensus parameters](https://rpc.lunaroasis.net/consensus_params).
+
+[CIP-13](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-13.md)
+has been drafted to create a living document for these parameters
+as a part of the CIP process.
+
+### Maximum bytes
+
+There is a hard limit on the total blob size in a transaction, which is
+determined by the effective maximum square size. Given that the current
+governance maximum square size is 64, the total blob size in a transaction
+must be slightly less than ~2 MiB, or 1,973,786 bytes to be exact.
+
+The following provides an approximation of the maximum block size:
+
+- The maximum square size is 64x64, which gives us 4096 shares.
+- One share is reserved for the PFB transaction, leaving us with 4095 shares.
+- The first sparse share has 478 bytes available, and the remaining sparse
+shares have 482 bytes each.
+
+This can be calculated as follows:
+
+<!-- markdownlint-disable MD013 -->
+$\text{Total Bytes} = (1 \times 478 \, \text{bytes}) + (4094 \times 482 \, \text{bytes}) = 1,973,786 \, \text{bytes}$
+<!-- markdownlint-enable MD013 -->
+
+Please note that there isn't a precise upper bound on the maximum total
+blob size. It depends on several factors:
+
+- The maximum square size, which is determined by a governance parameter
+and a versioned constant.
+- The maximum bytes in a block, which is influenced by a governance parameter
+and a hard-coded constant in CometBFT.
+- The amount of shares occupied by the PFB transaction share.
+
+These factors can cause the maximum total blob size to vary.
+
 ## Integrations
 
 This guide contains the relevant sections for how to connect to Mainnet Beta,
