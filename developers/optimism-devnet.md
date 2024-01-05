@@ -27,8 +27,8 @@ Check out to the version for either the stable version or upstream version:
 
 ::: code-group
 
-```bash-vue [v1.0.0-OP_v1.2.0-CN_v0.12.0]
-git checkout tags/v1.0.0-OP_v1.2.0-CN_v0.12.0
+```bash-vue [v1.0.0-OP_op-node/v1.4.0-CN_v0.12.1]
+git checkout tags/v1.0.0-OP_op-node/v1.4.0-CN_v0.12.1
 git submodule update --init --recursive
 ```
 
@@ -338,3 +338,14 @@ grpcurl -proto da.proto -plaintext -d '{"blobs": [{"value": "SGVsbG8gd28ybGQh"}]
 Alternatively, you can shut off the `local-celestia-devnet` and see that
 the OP Stack devnet logs show that the rollup has fallen back to the L1,
 in this case Ethereum, for posting data.
+
+## Span batches
+
+Span batches can be enabled by setting `OP_BATCHER_BATCH_TYPE: 1`
+in your `docker-compose.yml` file.
+
+Note that this requires the Delta activation time to be configured.
+For your devnet, you should set `"l2GenesisDeltaTimeOffset": "0x0",`
+in `devnetL1-template.json`. This will enable span batches and can be tested
+by grepping `docker compose logs -f | grep batch_type` which should include
+`batch_type=SpanBatch` and `batch_type=1`.
