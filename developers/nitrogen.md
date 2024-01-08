@@ -11,7 +11,8 @@ hosted by [AltLayer](https://altlayer.io/).
 
 Find [chain information, RPCs, contract addresses, bridging information,
 blob poster address, and more](https://rollup-info.altlayer.io/public/nitrogen)
-on AltLayer's Nitrogen testnet page.
+on AltLayer's Nitrogen testnet page
+(`https://rollup-info.altlayer.io/public/nitrogen`).
 
 ### Nitrogen tokens
 
