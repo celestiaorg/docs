@@ -37,9 +37,7 @@ functional, users may encounter occasional instability or reduced performance.
 
 Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/23d13d4de41631dc3c52f7d94fc214e44d03962d/specs/src/specs/params.md?plain=1#L30),
 can be found in the
-[celestia-app specifications](https://celestiaorg.github.io/celestia-app/specs/params.html)
-or from `max_bytes` in
-[Mainnet Beta validator's consensus parameters](https://rpc.lunaroasis.net/consensus_params).
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/specs/params.html).
 
 [CIP-13](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-13.md)
 has been drafted to create a living document for these parameters
@@ -70,11 +68,11 @@ blob size. It depends on several factors:
 
 - The maximum square size, which is determined by a governance parameter
 and a versioned constant.
-- The maximum bytes in a block, which is influenced by a governance parameter
+- The maximum bytes in a block, which is determined by a governance parameter
 and a hard-coded constant in CometBFT.
 - The amount of shares occupied by the PFB transaction share.
 
-These factors can cause the maximum total blob size to vary.
+These factors can cause the maximum total blob size that can be included in one block to vary.
 
 ## Integrations
 
