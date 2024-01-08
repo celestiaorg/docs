@@ -72,7 +72,8 @@ and a versioned constant.
 and a hard-coded constant in CometBFT.
 - The amount of shares occupied by the PFB transaction share.
 
-These factors can cause the maximum total blob size that can be included in one block to vary.
+These factors can cause the maximum total blob size that can be included in one
+block to vary.
 
 ## Integrations
 
