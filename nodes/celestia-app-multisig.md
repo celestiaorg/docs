@@ -66,6 +66,7 @@ celestia-appd tx multisign unsignedTx.json multisig \
 
 ## Resources
 
+- <https://docs.cosmos.network/main/user/run-node/multisig-guide#step-by-step-guide-to-multisig-transactions>
 - <https://figment.io/insights/how-to-multi-sig-on-cosmos/>
 - <https://github.com/aura-nw/Aura-Safe>
 - <https://github.com/informalsystems/multisig>
