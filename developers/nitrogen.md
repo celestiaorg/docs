@@ -7,6 +7,9 @@ is the first testnet and L3 made with
 [Celestia's Arbitrum Nitro integration](./arbitrum-integration.md)
 hosted by [AltLayer](https://altlayer.io/).
 
+Learn more in
+[Altlayer's documentation](https://docs.altlayer.io/altlayer-documentation/external-integrations/nitrogen-orbit-+-celestia-testnet).
+
 ## Getting Started with Nitrogen
 
 Find [chain information, RPCs, contract addresses, bridging information,
