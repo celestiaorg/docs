@@ -470,6 +470,10 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-upgrade-monitor",
                 },
                 {
+                  text: "Multisig",
+                  link: "/nodes/celestia-app-multisig",
+                },
+                {
                   text: "Specifications",
                   link: "https://celestiaorg.github.io/celestia-app/",
                 },
