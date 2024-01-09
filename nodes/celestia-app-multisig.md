@@ -1,6 +1,6 @@
 # Multisig
 
-Celestia inherits support for Multisig accounts from the Cosmos SDK. Multisig
+Celestia inherits support for multisig accounts from the Cosmos SDK. Multisig
 accounts behave similarly to regular accounts with the added requirement that
 a threshold of signatures is needed to authorize a transaction.
 
