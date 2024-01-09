@@ -16,7 +16,10 @@ on AltLayer's Nitrogen testnet page
 
 ### Nitrogen tokens
 
-To use the test network, you will need to
+The easiest way to obtain Nitrogen tokens is to
+[visit the faucet](https://rollup-info.altlayer.io/public/nitrogen).
+
+Alternatively, you can
 [use the Arbitrum bridge](https://bridge.arbitrum.io)
 to bridge from:
 
