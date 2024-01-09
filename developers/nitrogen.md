@@ -21,6 +21,7 @@ on AltLayer's Nitrogen testnet page
 
 The easiest way to obtain Nitrogen tokens is to
 [visit the faucet](https://rollup-info.altlayer.io/public/nitrogen).
+Learn more in [Altlayer's documentation](https://docs.altlayer.io/altlayer-documentation/external-integrations/nitrogen-orbit-+-celestia-testnet#short-guide).
 
 Alternatively, you can
 [use the Arbitrum bridge](https://bridge.arbitrum.io)
@@ -29,5 +30,5 @@ to bridge from:
 1. Arbitrum Sepolia (L2) to Nitrogen (L3)
 2. Sepolia (L1) to Arbitrum Sepolia (L2) to Nitrogen (L3)
 
-Details for how to use the bridge to Nitrogen can be
+Details for how to use the bridge to Nitrogen can also be
 [found on the Nitrogen page](https://rollup-info.altlayer.io/public/nitrogen).
