@@ -18,8 +18,9 @@ on AltLayer's Nitrogen testnet page
 ### Nitrogen tokens
 
 The easiest way to obtain Nitrogen tokens is to
-[visit the faucet](https://rollup-info.altlayer.io/public/nitrogen).
-Learn more in [Altlayer's documentation](https://docs.altlayer.io/altlayer-documentation/external-integrations/nitrogen-orbit-+-celestia-testnet#short-guide).
+[visit the faucet and select Nitrogen](https://www.l2faucet.com/).
+Find a guide with more details in
+[Altlayer's documentation](https://docs.altlayer.io/altlayer-documentation/external-integrations/nitrogen-orbit-+-celestia-testnet#short-guide).
 
 Alternatively, you can
 [use the Arbitrum bridge](https://bridge.arbitrum.io)
