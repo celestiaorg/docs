@@ -1,7 +1,5 @@
 # Nitrogen testnet
 
-![nitrogen](/img/nitrogen.png)
-
 [Nitrogen](https://rollup-info.altlayer.io/public/nitrogen)
 is the first testnet and L3 made with
 [Celestia's Arbitrum Nitro integration](./arbitrum-integration.md)
