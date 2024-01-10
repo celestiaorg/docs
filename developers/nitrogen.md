@@ -1,5 +1,7 @@
 # Nitrogen testnet
 
+![nitrogen-testnet](/img/nitrogen-testnet.jpg)
+
 [Nitrogen](https://rollup-info.altlayer.io/public/nitrogen)
 is the first testnet and L3 made with
 [Celestia's Arbitrum Nitro integration](./arbitrum-integration.md)
@@ -10,17 +12,20 @@ Learn more in
 
 ## Getting Started with Nitrogen
 
-Find [chain information, RPCs, contract addresses, bridging information,
-blob poster address, and more](https://rollup-info.altlayer.io/public/nitrogen)
-on AltLayer's Nitrogen testnet page
+[Find chain information, RPCs, contract addresses, bridging information,
+blob poster address, and more on AltLayer's Nitrogen testnet page](https://rollup-info.altlayer.io/public/nitrogen)
+
 (`https://rollup-info.altlayer.io/public/nitrogen`).
 
-### Nitrogen tokens
+## Nitrogen tokens
 
 The easiest way to obtain Nitrogen tokens is to
-[visit the faucet and select Nitrogen](https://www.l2faucet.com/).
-Find a guide with more details in
+[visit the faucet and select "Nitrogen Testnet (Arbitrum Orbit + Celestia"](https://www.l2faucet.com/).
+
+You can also find a guide with more details in
 [Altlayer's documentation](https://docs.altlayer.io/altlayer-documentation/external-integrations/nitrogen-orbit-+-celestia-testnet#short-guide).
+
+### Optional: Bridging tokens
 
 Alternatively, you can
 [use the Arbitrum bridge](https://bridge.arbitrum.io)
