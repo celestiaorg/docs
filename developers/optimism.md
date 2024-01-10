@@ -139,7 +139,7 @@ to provide a core.ip RPC URL for the network you are using.
 ```yaml
 da:
   image: ghcr.io/rollkit/local-celestia-devnet:v0.12.1 // [!code --]
-  image: ghcr.io/rollkit/celestia-da:v0.12.1-rc0 // [!code ++]
+  image: ghcr.io/rollkit/celestia-da:v0.12.4-rc1 // [!code ++]
   command: > // [!code ++]
     celestia-da light start // [!code ++]
     --p2p.network=<network> // [!code ++]
