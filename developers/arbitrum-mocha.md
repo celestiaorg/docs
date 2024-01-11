@@ -95,6 +95,8 @@ This guide covers deploying an Arbitrum Nitro rollup to
    "namespace-id": "<your-10bytenamespace>", // [!code ++]
    ```
 
+5. TODO ADD CHANGES FOR BLOBSTREAM
+
 ## Run your Nitro rollup on Mocha
 
 1. Start your rollup:
