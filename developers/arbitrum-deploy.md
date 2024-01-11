@@ -75,6 +75,7 @@ to this version so that the tutorial works for anyone using it ATM. -->
 ```bash
 git clone https://github.com/celestiaorg/nitro.git && cd nitro/
 git fetch --all
+# checkout to the stable commit on the blobstream-develop branch
 git checkout aceffa8
 git submodule update --init
 git submodule update --init --recursive
@@ -82,7 +83,34 @@ git submodule update --init --recursive
 
 ## Installing Nitro from Source
 
-Now you can install Nitro from source. After the `make` command completes,
+Before installing Nitro, you'll need to build a local version of
+a Celestia local devnet. Follow these commands to do so:
+
+```bash
+# clone the repo
+git clone https://github.com/rollkit/local-celestia-devnet.git
+cd local-celestia-devnet
+
+# checkout to the stable commit on the blobstream-develop branch
+git checkout 997edce
+
+# build the image
+docker build . -t celestia-local-devnet
+```
+
+:::tip
+If you're on a Mac, you'll need comment out the platform in
+`docker-compose.yml`:
+
+```yaml-vue
+  da:
+    container_name: 'da-celestia'
+    # platform: linux/x86_64 // [!code focus]
+```
+
+:::
+
+Now, you can install Nitro from source. After the `make` command completes,
 you can run the bash script that installs and runs the containers via
 docker-compose.
 

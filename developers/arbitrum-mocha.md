@@ -9,6 +9,10 @@ description: An overview of the deploying Arbitrum Nitro and Celestia rollup to 
 import constants from '/.vitepress/constants/constants.js'
 </script>
 
+:::warning
+This tutorial is under construction. 🏗️
+:::
+
 This guide covers deploying an Arbitrum Nitro rollup to
 [Mocha testnet](../nodes/mocha-testnet.md) using Celestia as DA.
 
