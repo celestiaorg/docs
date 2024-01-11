@@ -4,8 +4,6 @@ description: An overview of the deploying Arbitrum Nitro and Celestia rollup to 
 
 # Deploy an Arbitrum rollup to Mocha testnet
 
-![nitro-vroom](/img/nitro-vroom.png)
-
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import constants from '/.vitepress/constants/constants.js'
@@ -40,7 +38,7 @@ This guide covers deploying an Arbitrum Nitro rollup to
        user: root // [!code ++]
        platform: linux/x86_64
        image: "ghcr.io/rollkit/local-celestia-devnet:v0.12.1" // [!code --]
-       image: "ghcr.io/celestiaorg/celestia-node:v0.12.1" // [!code ++]
+       image: "ghcr.io/celestiaorg/celestia-node:v0.12.3" // [!code ++]
        command: > // [!code ++]
                celestia light start // [!code ++]
                --core.ip rpc-mocha.pops.one // [!code ++]
@@ -92,10 +90,6 @@ This guide covers deploying an Arbitrum Nitro rollup to
    "namespace-id": "000008e5f679bf7116cb", // [!code --]
    "namespace-id": "<your-10bytenamespace>", // [!code ++]
    ```
-
-[See an example diff of the setup](https://github.com/celestiaorg/nitro/pull/4/files),
-specifically
-[the updates to nitro-testnode](https://github.com/celestiaorg/nitro-testnode/pull/6/files).
 
 ## Run your Nitro rollup on Mocha
 
