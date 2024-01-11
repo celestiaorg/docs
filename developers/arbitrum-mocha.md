@@ -38,7 +38,7 @@ This guide covers deploying an Arbitrum Nitro rollup to
 
    ```bash-vue
    da:
-       container_name: 'celestia-da' // [!code ++]
+       container_name: 'da-celestia'
        user: root // [!code ++]
        platform: linux/x86_64
        image: "ghcr.io/rollkit/local-celestia-devnet:v0.12.1" // [!code --]
