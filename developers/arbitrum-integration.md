@@ -39,14 +39,8 @@ include:
 
 ### Blobstream
 
-:::warning UPCOMING INTEGRATION
-The Blobstream section is currently under development. Please note that
-the integration with Blobstream is not yet finalized, but it is planned
-for implementation in the near future.
-:::
-
-The Celestia and Arbitrum integration also
-[includes Blobstream](./blobstream.md),
+The Celestia and Arbitrum integration also includes
+[Blobstream](./blobstream.md),
 which relays commitments to Celestia’s data root to an onchain light client
 on Ethereum. This allows L2 solutions that settle on Ethereum to benefit
 from the scalability Celestia’s data availability layer can provide.
