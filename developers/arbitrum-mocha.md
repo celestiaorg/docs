@@ -76,6 +76,12 @@ This guide covers deploying an Arbitrum Nitro rollup to
    # Line 7
    NODE_PATH="/home/celestia/bridge/" // [!code --]
    NODE_PATH="/home/celestia/.celestia-light-{{constants.mochaChainId}}/" // [!code ++]
+
+   # Line 287
+   # NOTE: depending on the version you're using, you may have a different
+   # container name to start. Change yours accordingly to `da-celestia`.
+   export CELESTIA_NODE_AUTH_TOKEN="$(docker exec nitro-testnode-da-1 celestia bridge auth admin --node.store  ${NODE_PATH})" // [!code --]
+   export CELESTIA_NODE_AUTH_TOKEN="$(docker exec da-celestia celestia light auth admin --node.store  ${NODE_PATH})" // [!code ++]
    ```
 
 4. Pick a namespace, `<your-10bytenamespace>` that is 10 bytes in hexadecimal.
