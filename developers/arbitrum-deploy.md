@@ -76,7 +76,7 @@ to this version so that the tutorial works for anyone using it ATM. -->
 git clone https://github.com/celestiaorg/nitro.git && cd nitro/
 git fetch --all
 # checkout to the stable commit on the blobstream-develop branch
-git checkout aceffa8
+git checkout 52323cc
 git submodule update --init
 git submodule update --init --recursive
 ```
