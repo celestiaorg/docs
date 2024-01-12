@@ -16,8 +16,8 @@ const constants = Object.freeze({
   orchrelayVersion: "v1.0.1",
   mochaRpcUrl: "https://rpc-mocha.pops.one/",
   mochaRestUrl: "https://api-mocha.pops.one/",
-  arabicaRpcUrl: "https://consensus-full.celestia-arabica-10.com/",
-  arabicaRestUrl: "https://api.consensus.celestia-arabica-10.com/",
+  arabicaRpcUrl: "https://rpc.celestia-arabica-11.com/",
+  arabicaRestUrl: "https://api.celestia-arabica-11.com",
   mainnetRpcUrl: "https://rpc.lunaroasis.net/",
   mainnetRestUrl: "https://api.lunaroasis.net/",
 });
