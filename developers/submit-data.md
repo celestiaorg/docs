@@ -60,7 +60,9 @@ how many shares are needed to store the blob size. Then, it computes the product
 of the number of shares, the number of bytes per share, and the `gasPerByte`
 parameter. Finally, it adds a static amount per blob.
 
-The `GasCostPerBlobByte` and `GasCostPerTransactionByte` are parameters that
+The [`blob.GasPerBlobByte`](https://github.com/celestiaorg/celestia-app/blob/ad91a5b2ca2d562f0b8c9c2e1ed6b4d3098a2e8e/specs/src/specs/params.md?plain=1#L27)
+and [`auth.TxSizeCostPerByte`](https://github.com/celestiaorg/celestia-app/blob/ad91a5b2ca2d562f0b8c9c2e1ed6b4d3098a2e8e/specs/src/specs/params.md?plain=1#L25C11-L25C11)
+are parameters that
 could potentially be adjusted through the system's governance mechanisms. Hence,
 actual costs may vary depending on the current state of these parameters.
 
