@@ -5,9 +5,9 @@ description: Running Celestia App using Docker.
 
 # 🐳 Docker setup
 
-This documentation provides a step by step guide on how to start up a celestia app using a docker image. Docker provides a seamless setup of the celestia app in an isolated environment on your machine. With Docker, you do not have to worry about configuring the required dependencies, which can be a pain.
+This documentation provides a step by step guide on how to start up a celestia app using a docker image. Docker provides a seamless setup for the celestia app in an isolated environment on your machine. With Docker, you do not have to worry about the manual configuration of the required dependencies, which can be a pain.
 
-# Overview of Celestia app txsim
+# Overview of celestia app txsim
 The Celestia app txsim binary is a tool that can be used to simulate transactions on the Celestia network. The txsim Docker image is designed to run the txsim binary with a variety of configurable options. 
 
 ## Prerequisites
