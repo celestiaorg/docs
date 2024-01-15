@@ -39,7 +39,8 @@ The Celestia app txsim binary is a tool that can be used to simulate transaction
 ### Congratulations !!! You have successfuly set up the celestia app 😎
 
 ## Flag Breakdown
-The below provides a brief explanation of the flags used in the docker run command above
+
+The table below provides a brief explanation of the flags used in the docker run command above
 
 | FLAG | DESCRIPTION | DEFAULT | OPTION |
 |------|-------------|-----------------|:--------:|
