@@ -43,20 +43,20 @@ The below provides a brief explanation of the flags used in the docker run comma
 
 | FLAG | DESCRIPTION | DEFAULT | OPTION |
 |------|-------------|-----------------|:--------:|
-| -k | Whether a new key should be created | 0 | 1 for yes, 0 for no |
-| -p | The path to the keyring for the prefunded account | - | - |
-| -g | The gRPC endpoint for the `txsim` binary | consensus-validator-robusta-rc6.celestia-robusta.com:9090 | - |
-| -t | The poll time for the `txsim` binary | 10s | enter desired time value in seconds |
-| -b | The number of blob sequences to run | 10 | any integer value (1,2,3,...) |
-| -a | The range of blobs to send per PFB in a sequence | - | - |
-| -s | The range of blob sizes to send | - | - |
-| -m | The mnemonic for the keyring | - | - |
-| -d | The seed for the random number generator | 100 | any integer value (1,2,3,...) |
-| -e | The number of send sequences to run | 10 | any integer value (1,2,3,...) |
-| -i | The amount to send from one account to another | - | any integer value (1,2,3,...) |
-| -v | The number of send iterations to run per sequence | - | any integer value (1,2,3,...) |
-| -u | The number of stake sequences to run | - | any integer value (1,2,3,...) |
-| -w | The amount of initial stake per sequence | - | any integer value (1,2,3,...) |
+| `-k` | Whether a new key should be created | 0 | 1 for yes, 0 for no |
+| `-p` | The path to the keyring for the prefunded account | - | - |
+| `-g` | The gRPC endpoint for the `txsim` binary | consensus-validator-robusta-rc6.celestia-robusta.com:9090 | - |
+| `-t` | The poll time for the `txsim` binary | 10s | enter desired time value in seconds |
+| `-b` | The number of blob sequences to run | 10 | any integer value (1,2,3,...) |
+| `-a` | The range of blobs to send per PFB in a sequence | - | - |
+| `-s` | The range of blob sizes to send | - | - |
+| `-m` | The mnemonic for the keyring | - | - |
+| `-d` | The seed for the random number generator | 100 | any integer value (1,2,3,...) |
+| `-e` | The number of send sequences to run | 10 | any integer value (1,2,3,...) |
+| `-i` | The amount to send from one account to another | - | any integer value (1,2,3,...) |
+| `-v` | The number of send iterations to run per sequence | - | any integer value (1,2,3,...) |
+| `-u` | The number of stake sequences to run | - | any integer value (1,2,3,...) |
+| `-w` | The amount of initial stake per sequence | - | any integer value (1,2,3,...) |
 
 
 Please replace the placeholders in the example docker run command with the actual values you want to use.
