@@ -319,15 +319,22 @@ Refer to
 for information on which ports are required to be open on your machine.
 :::
 
-## Optional: Setting up a validator
+## Optional: Set up a validator
 
-### Setting up a Celestia validator node
+Validator nodes allow you to participate in consensus in the Celestia network. Validators have multiple responsibilities, including:
 
-Validator nodes allow you to participate in consensus in the Celestia network.
+1. Running the latest recommended version of software
+1. Maintaining high uptime
+1. Participating in on-chain governance
+
+Validators are recommended (but not required) to run additional software to support Celestia:
+
+1. A bridge node
+1. A Blobstream orchestrator
 
 ![validator node](/img/nodes/validator.png)
 
-#### Validator hardware requirements
+### Validator hardware requirements
 
 The following hardware minimum requirements are recommended for running a
 validator node:
@@ -340,14 +347,12 @@ validator node:
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
 
-First, set up your full consensus node by following the instructions in
-[the previous section](#setting-up-a-full-consensus-node).
+### Prerequisites
 
-#### Wallet
+1. Set up a full consensus node by following the instructions in [the previous section](#setting-up-a-full-consensus-node).
+1. [Create a wallet with celestia-app](../developers/celestia-app-wallet.md)
 
-Follow [the tutorial on creating a wallet](../developers/celestia-app-wallet.md).
-
-#### Delegate stake to a validator
+### Delegate stake to a validator
 
 Create an environment variable for the address:
 
@@ -400,62 +405,6 @@ txhash: <tx-hash>
 
 You can check if the TX hash went through using the block explorer by
 inputting the `txhash` ID that was returned.
-
-### Optional: Deploy the celestia-node
-
-Running a bridge node is critical to the Celestia network as it enables
-the data availability and consensus nodes to communicate with one
-another. It is recommended to support the data availability network,
-but is not required for `celestia-app`.
-
-If you are not running a bridge node, you can skip to
-[run a validator node](#run-the-validator-node).
-
-This section describes part 2 of Celestia validator node setup: running a
-Celestia bridge node daemon.
-
-#### Install celestia-node
-
-You can [follow the tutorial for installing `celestia-node`](./celestia-node.md)
-
-#### Initialize the bridge node
-
-Run the following:
-
-```bash
-celestia bridge init --core.ip <URI>
-```
-
-:::tip
-Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
-for information on which ports are required to be open on your machine.
-:::
-
-If you need a list of RPC endpoints to connect to, you can find the
-[list on the Mocha testnet page](./mocha-testnet.md#rpc-endpoints) or
-[list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints).
-
-#### Run the bridge node
-
-Run the following:
-
-```bash
-celestia bridge start
-```
-
-#### Optional: start the bridge node with SystemD
-
-Follow
-[the tutorial on setting up the bridge node as a background process with SystemD](../systemd).
-
-You have successfully set up a bridge node that is syncing with the network.
-
-#### Setup Blobstream keys
-
-First, prepare an EVM address with a private key that you have
-access to. We will use it to register your validator's EVM address
-[later in this page](#register-your-validators-evm-address).
 
 ### Run the validator node
 
@@ -524,7 +473,69 @@ tx: null
 txhash: <tx-hash>
 ```
 
-### Register your validator's EVM address {#register-your-validators-evm-address}
+### Submit your validator information
+
+After starting your node, please submit your node as a seed and peer to the
+[networks repository](https://github.com/celestiaorg/networks).
+
+### Optional: Run a bridge node
+
+Bridge nodes are critical to the Celestia network because they enable
+the data availability and consensus nodes to communicate with one
+another.
+
+Validators are recommended (but not required) to run a bridge node. This section
+describes how to run a bridge node.
+
+#### Install celestia-node
+
+You can [follow the tutorial for installing `celestia-node`](./celestia-node.md)
+
+#### Initialize the bridge node
+
+Run the following:
+
+```bash
+celestia bridge init --core.ip <URI>
+```
+
+:::tip
+Refer to
+[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+for information on which ports are required to be open on your machine.
+:::
+
+If you need a list of RPC endpoints to connect to, you can find the
+[list on the Mocha testnet page](./mocha-testnet.md#rpc-endpoints) or
+[list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints).
+
+#### Run the bridge node
+
+Run the following:
+
+```bash
+celestia bridge start
+```
+
+You have successfully set up a bridge node that is syncing with the network.
+
+Optional: if you'd like to run the bridge node as a background process, see the [SystemD tutorial](../systemd).
+
+### Optional: Run a Blobstream orchestrator
+
+The Blobstream orchestrator enables validators to sign attestations.
+Validators are recommended (but not required) to run a Blobstream orchestrator for both Mocha and Mainnet (when announced).
+
+Refer to the Blobstream orchestrator [docs](https://docs.celestia.org/nodes/blobstream-orchestrator/#how-to-run)
+to run one.
+
+#### Set up Blobstream keys
+
+First, prepare an EVM address with a private key that you have
+access to. We will use it to register your validator's EVM address
+[later in this page](#register-your-validators-evm-address).
+
+#### Register your validator's EVM address {#register-your-validators-evm-address}
 
 This section will cover how to register your validator's EVM address.
 This is required to run an orchestrator.
@@ -547,19 +558,6 @@ celestia-appd tx qgb register \
 
 You should now be able to see your validator from
 [a block explorer](./mocha-testnet.md#explorers)
-
-### Run a Blobstream orchestrator
-
-For validators, running a Blobstream orchestrator is **incredibly important**
-for both Mocha and Mainnet (when announced). Blobstream orchestrator enables
-validators to sign attestations.
-[Refer to the documentation](https://docs.celestia.org/nodes/blobstream-orchestrator/#how-to-run)
-to run an orchestrator.
-
-### Submit your validator information
-
-After starting your node, please submit your node as a seed and peer to the
-[networks repository](https://github.com/celestiaorg/networks).
 
 ## Extra resources for consensus nodes
 
