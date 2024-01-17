@@ -292,7 +292,7 @@ func (l *BatchSubmitter) sendTransaction(
 ```
 
 In `calldata_source.go`,
-[the `DataFromEVMTransactions` function defines the read path](https://github.com/celestiaorg/optimism/blob/9c6a1db78bc1da08b1e36548ebedf3d9a97e6dcc/op-node/rollup/derive/calldata_source.go#L138-L185)
+[the `DataFromEVMTransactions` function defines the read path](https://github.com/celestiaorg/optimism/blob/release-v1.1.0/op-node/rollup/derive/calldata_source.go#L102-L139)
 of the Ethereum fallback. This function filters all of the transactions
 and returns the calldata from transactions that are sent to the batch
 inbox address from the batch sender address.
