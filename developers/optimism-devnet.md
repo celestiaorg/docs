@@ -257,7 +257,7 @@ The `op-batcher/batcher/driver.go` and
 `op-node/rollup/derive/calldata_source.go` files are part of the Ethereum
 fallback mechanism in the `op-batcher` and `op-node` respectively.
 
-In [`driver.go`, the `sendTransaction` function is responsible for the write path](https://github.com/celestiaorg/optimism/blob/9c6a1db78bc1da08b1e36548ebedf3d9a97e6dcc/op-batcher/batcher/driver.go#L359-L389)
+In [`driver.go`, the `calldataTxCandidate` function is responsible for the write path](https://github.com/celestiaorg/optimism/blob/release-v1.1.0/op-batcher/batcher/driver.go#L405-L419)
 of the Ethereum fallback. This function creates and submits a transaction to the
 batch inbox address with the given data. It uses the underlying `txmgr` to
 handle transaction sending and gas price management.
