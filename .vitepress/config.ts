@@ -617,6 +617,10 @@ function sidebarHome() {
                       link: "/developers/optimism",
                     },
                     {
+                      text: "Audit",
+                      link: "https://docs.celestia.org/Celestia_OP_Stack_Audit.pdf",
+                    },
+                    {
                       text: "Deploy a dapp with thirdweb",
                       link: "https://thirdweb.com/bubs-testnet",
                     },
