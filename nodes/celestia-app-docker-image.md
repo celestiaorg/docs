@@ -1,21 +1,18 @@
 ---
-sidebar_label: Docker images
-description: Running Celestia App using Docker.
+Sidebar_label: Docker images
+Description: Running Celestia-App using Docker.
 ---
 
 # 🐳 Docker setup
 
-This documentation provides a step by step guide on how to start up a celestia app using a docker image. Docker provides a seamless setup for the celestia app in an isolated environment on your machine. With Docker, you do not have to worry about the manual configuration of the required dependencies, which can be a pain.
+This documentation provides a step by step guide on how to start up a celestia app using a docker image. Docker provides a seamless setup for celestia-app in an isolated environment on your machine. With Docker, you do not have to worry about the manual configuration of the required dependencies, which can be a pain.
 
-# Overview of celestia app txsim
-The Celestia app txsim binary is a tool that can be used to simulate transactions on the Celestia network. The txsim Docker image is designed to run the txsim binary with a variety of configurable options. 
+# Overview of celestia-app txsim
+The celestia-app txsim binary is a tool that can be used to simulate transactions on the Celestia network. The txsim Docker image is designed to run the txsim binary with a variety of configurable options. 
 
 ## Prerequisites
-- [Docker Desktop for Mac or Windows](https://docs.docker.com/get-docker) and a basic
-  understanding of Docker
-- [Docker Engine for Linux](https://docs.docker.com/engine/install/) and a
-  basic understanding of Docker
-- A prefunded account set up with the keyring stored in a file to be accessed by an instance of the docker image.
+- [Docker Desktop for Mac or Windows](https://docs.docker.com/get-docker) or [Docker Engine for Linux](https://docs.docker.com/engine/install/) and a basic understanding of Docker.
+- A prefunded account set up with the keyring stored in a file, to be accessed by an instance of the docker image.
 
 ## Quick Start
 1. In your local machine, navigate to the home directory
@@ -40,7 +37,7 @@ Congratulations! You have successfuly set up celestia-app in Docker 😎
 
 ## Flag Breakdown
 
-The table below provides a brief explanation of the flags used in the docker run command above
+The table below provides a brief explanation of the flags used in the docker run command in step 5 of the quick start instructions.
 
 | FLAG | DESCRIPTION | DEFAULT | OPTION |
 |------|-------------|-----------------|:--------:|
