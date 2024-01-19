@@ -57,4 +57,4 @@ The table below provides a brief explanation of the flags used in the docker run
 | `-w` | The amount of initial stake per sequence | - | any integer value (1,2,3,...) |
 
 
-Please replace the placeholders in the example docker run command with the actual values you want to use.
+Please replace the placeholders in the example docker run command in step 5 of the quick start instructions, with the actual values you want to use.
