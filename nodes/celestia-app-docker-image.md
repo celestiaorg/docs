@@ -28,15 +28,15 @@ The Celestia app txsim binary is a tool that can be used to simulate transaction
    ```
 3. Using a suitable text editor of your choice, open the .celestial-app file and paste the keyring of the prefunded account.
    
-5. We recommend that you set the necessary file permission for the .celestial-app file. A simple read access is all that is required for the docker container to access the content of the file.
+4. We recommend that you set the necessary file permission for the .celestial-app file. A simple read access is all that is required for the docker container to access the content of the file.
    
-7. You can run the txsim Docker image using the docker run command below.
+5. You can run the txsim Docker image using the docker run command below.
    ```bash [linux or unix OS}
    docker run -it -v $HOME/.celestia-app:/home/celestia ghcr.io/celestiaorg/txsim -k 0 -r http://consensus-validator-robusta-rc6.celestia-robusta.com:26657,http://consensus-full-robusta-rc6.celestia-robusta.com:26657 -g consensus-validator-robusta-rc6.celestia-robusta.com:9090 -t 10s -b 10 -d 100 -e 10
    ```
-8. In this command, the -v option is used to mount the $HOME/.celestia-app directory from the host to the /home/celestia directory in the Docker container. This allows the txsim binary to access the keyring for the prefunded account.
+6. In this command, the -v option is used to mount the $HOME/.celestia-app directory from the host to the /home/celestia directory in the Docker container. This allows the txsim binary to access the keyring for the prefunded account.
 
-### Congratulations !!! You have successfuly set up the celestia app 😎
+Congratulations! You have successfuly set up celestia-app in Docker 😎
 
 ## Flag Breakdown
 
