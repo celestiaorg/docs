@@ -27,8 +27,8 @@ Check out to the version for either the stable version or upstream version:
 
 ::: code-group
 
-```bash-vue [v1.1.0-OP_op-batcher/v1.4.2-CN_v0.12.3]
-git checkout tags/v1.1.0-OP_op-batcher/v1.4.2-CN_v0.12.3
+```bash-vue [v1.1.0-OP_op-batcher/v1.4.2-CN_v0.12.4]
+git checkout tags/v1.1.0-OP_op-batcher/v1.4.2-CN_v0.12.4
 git submodule update --init --recursive
 ```
 
