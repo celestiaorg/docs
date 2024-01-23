@@ -1,5 +1,5 @@
 ---
-description: Learn how to query the inclusion proofs used in Blobstream
+description: Learn how to query the inclusion proofs used in BlobstreamX
 ---
 
 # Blobstream proofs queries
@@ -15,6 +15,22 @@ description: Learn how to query the inclusion proofs used in Blobstream
 To prove PFBs, blobs or shares, we can use the Celestia consensus node's RPC to
 query proofs for them:
 
+:::tip NOTE
+For the go client snippets, make sure to have the following replaces in your `go.mod`:
+
+```go
+replace (
+    github.com/cosmos/cosmos-sdk => github.com/celestiaorg/cosmos-sdk v1.18.3-sdk-v0.46.14
+    github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
+	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
+    github.com/tendermint/tendermint => github.com/celestiaorg/celestia-core v1.32.0-tm-v0.34.29
+)
+```
+
+Make sure to update the versions to match the latest `github.com/celestiaorg/cosmos-sdk` and
+`github.com/celestiaorg/celestia-core` versions.
+:::
+
 ### 1. Data root inclusion proof
 
 To prove the data root is committed to by the Blobstream smart contract, we will
@@ -28,6 +44,43 @@ allows querying a data root to data root tuple root proof. It takes a block
 `height`, a starting block, and an end block, then it generates the binary
 Merkle proof of the `DataRootTuple`, corresponding to that `height`,
 to the `DataRootTupleRoot` which is committed to in the Blobstream contract.
+
+#### Golang client
+
+The endpoint can be queried using the golang client:
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/tendermint/tendermint/rpc/client/http"
+	"os"
+)
+
+func main() {
+	ctx := context.Background()
+	trpc, err := http.New("tcp://localhost:26657", "/websocket")
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	err = trpc.Start()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	dcProof, err := trpc.DataRootInclusionProof(ctx, 15, 10, 20)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	fmt.Println(dcProof.Proof.String())
+}
+```
+
+#### HTTP request
 
 Example request: `/data_root_inclusion_proof?height=15&start=10&end=20`
 
@@ -62,6 +115,180 @@ with the solidity smart contract, they need to be converted to `bytes32`.
 Check the next section for more information.
 :::
 
+### Full example of proving that data was committed to by BlobstreamX contract
+
+```
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/celestiaorg/celestia-app/pkg/square"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	ethcmn "github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/ethclient"
+	blobstreamxwrapper "github.com/succinctlabs/blobstreamx/bindings"
+	"github.com/tendermint/tendermint/crypto/merkle"
+	"github.com/tendermint/tendermint/rpc/client/http"
+	"math/big"
+	"os"
+)
+
+func main() {
+	err := verify()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+}
+
+func verify() error {
+	ctx := context.Background()
+
+	// start the tendermint RPC client
+	trpc, err := http.New("tcp://localhost:26657", "/websocket")
+	if err != nil {
+		return err
+	}
+	err = trpc.Start()
+	if err != nil {
+		return err
+	}
+
+	// get the PayForBlob transaction that contains the published blob
+	tx, err := trpc.Tx(ctx, []byte("tx_hash"), true)
+	if err != nil {
+		return err
+	}
+
+	// get the block containing the PayForBlob transaction
+	blockRes, err := trpc.Block(ctx, &tx.Height)
+	if err != nil {
+		return err
+	}
+
+	// get the share range of the blob inside the block
+	blobShareRange, err := square.BlobShareRange(blockRes.Block.Txs.ToSliceOfBytes(), int(tx.Index), 0, blockRes.Block.Header.Version.App)
+	if err != nil {
+		return err
+	}
+
+	// get the nonce corresponding to the block height that contains the PayForBlob transaction
+	// since BlobstreamX emits events when new batches are submitted, we will query the events
+	// and look for the range committing to the blob
+	// first, connect to an EVM RPC endpoint
+	ethClient, err := ethclient.Dial("evm_rpc_endpoint")
+	if err != nil {
+		return err
+	}
+	defer ethClient.Close()
+
+	// use the BlobstreamX contract binding
+	wrapper, err := blobstreamxwrapper.NewBlobstreamX(ethcmn.HexToAddress("contract_Address"), ethClient)
+	if err != nil {
+		return err
+	}
+
+	LatestBlockNumber, err := ethClient.BlockNumber(context.Background())
+	if err != nil {
+		return err
+	}
+
+	eventsIterator, err := wrapper.FilterDataCommitmentStored(
+		&bind.FilterOpts{
+			Context: ctx,
+			Start: LatestBlockNumber - 90000,
+			End: &LatestBlockNumber,
+		},
+		nil,
+		nil,
+		nil,
+	)
+	if err != nil {
+		return err
+	}
+
+	var event *blobstreamxwrapper.BlobstreamXDataCommitmentStored
+	for eventsIterator.Next() {
+		e := eventsIterator.Event
+		if int64(e.StartBlock) <= tx.Height && tx.Height < int64(e.EndBlock) {
+			event = &blobstreamxwrapper.BlobstreamXDataCommitmentStored{
+				ProofNonce:     e.ProofNonce,
+				StartBlock:     e.StartBlock,
+				EndBlock:       e.EndBlock,
+				DataCommitment: e.DataCommitment,
+			}
+			break
+		}
+	}
+	if err := eventsIterator.Error(); err != nil {
+		return err
+	}
+	err = eventsIterator.Close()
+	if err != nil {
+		return err
+	}
+	if event == nil {
+		return fmt.Errorf("couldn't find range containing the transaction height")
+	}
+
+	// get the block data root inclusion proof to the data root tuple root
+	dcProof, err := trpc.DataRootInclusionProof(ctx, uint64(tx.Height), event.StartBlock, event.EndBlock)
+	if err != nil {
+		return err
+	}
+
+	// verify that the data root was committed to by the BlobstreamX contract
+	committed, err := VerifyDataRootInclusion(ctx, wrapper, event.ProofNonce.Uint64(), uint64(tx.Height), blockRes.Block.DataHash, dcProof.Proof)
+	if err != nil {
+		return err
+	}
+	if committed {
+		fmt.Println("data root was committed to by the BlobstreamX contract")
+	} else {
+		fmt.Println("data root was not committed to by the BlobstreamX contract")
+		return nil
+	}
+    return nil
+}
+
+
+func VerifyDataRootInclusion(
+	_ context.Context,
+	blobstreamXwrapper *blobstreamxwrapper.BlobstreamX,
+	nonce uint64,
+	height uint64,
+	dataRoot []byte,
+	proof merkle.Proof,
+) (bool, error) {
+	tuple := blobstreamxwrapper.DataRootTuple{
+		Height:   big.NewInt(int64(height)),
+		DataRoot: *(*[32]byte)(dataRoot),
+	}
+
+	sideNodes := make([][32]byte, len(proof.Aunts))
+	for i, aunt := range proof.Aunts {
+		sideNodes[i] = *(*[32]byte)(aunt)
+	}
+	wrappedProof := blobstreamxwrapper.BinaryMerkleProof{
+		SideNodes: sideNodes,
+		Key:       big.NewInt(proof.Index),
+		NumLeaves: big.NewInt(proof.Total),
+	}
+
+	valid, err := blobstreamXwrapper.VerifyAttestation(
+		&bind.CallOpts{},
+		big.NewInt(int64(nonce)),
+		tuple,
+		wrappedProof,
+	)
+	if err != nil {
+		return false, err
+	}
+	return valid, nil
+}
+```
+
 ### 2. Transaction inclusion proof
 
 To prove that a rollup transaction is part of the data root, we will need to
@@ -87,6 +314,19 @@ generated:
 If the share range spans multiple rows,
 then the proof can contain multiple NMT and binary proofs.
 :::
+
+#### Golang client
+
+The endpoint can be queried using the golang client:
+
+```go
+	sharesProof, err := trpc.ProveShares(ctx, 15, 0, 1)
+	if err != nil {
+		...
+	}
+```
+
+#### HTTP
 
 Example request: `/prove_shares?height=15&startShare=0&endShare=1`
 
@@ -432,13 +672,72 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 
 - `dataRoot`: can be queried using the `/block?height=15` query (`15` in this
   example endpoint), and taking the `data_hash` field from the response.
-- `tupleRootNonce`: can be retried using a `gRPC` query to the app to the
-  [`/qgb/v1/data_commitment/range/height`](https://github.com/celestiaorg/celestia-app/blob/c517bd27c4e0b3d6e4521a7d2946662cb0f19f1d/proto/celestia/qgb/v1/query.proto#L51-L56)
-  endpoint. An example can be found in the
-  [`verify`](https://github.com/celestiaorg/celestia-app/blob/c517bd27c4e0b3d6e4521a7d2946662cb0f19f1d/x/blobstream/client/verify.go#L245-L251)
-  command.
+- `tupleRootNonce`: can be retried via querying the `BlobstreamXDataCommitmentStored`
+  events from the BlobstreamX contract and looking for the nonce attesting to the
+  corresponding data. An example:
 
-## High-level diagrams
+```go
+	// get the nonce corresponding to the block height that contains the PayForBlob transaction
+	// since BlobstreamX emits events when new batches are submitted, we will query the events
+	// and look for the range committing to the blob
+	// first, connect to an EVM RPC endpoint
+	ethClient, err := ethclient.Dial("evm_rpc_endpoint")
+	if err != nil {
+		return err
+	}
+	defer ethClient.Close()
+
+	// use the BlobstreamX contract binding
+	wrapper, err := blobstreamxwrapper.NewBlobstreamX(ethcmn.HexToAddress("contract_Address"), ethClient)
+	if err != nil {
+		return err
+	}
+
+	LatestBlockNumber, err := ethClient.BlockNumber(ctx)
+	if err != nil {
+		return err
+	}
+
+	eventsIterator, err := wrapper.FilterDataCommitmentStored(
+		&bind.FilterOpts{
+			Context: ctx,
+			Start: LatestBlockNumber - 90000, // 90000 can be replaced with the range of EVM blocks to look for the events in
+			End: &LatestBlockNumber,
+		},
+		nil,
+		nil,
+		nil,
+	)
+	if err != nil {
+		return err
+	}
+	
+	var event *blobstreamxwrapper.BlobstreamXDataCommitmentStored
+	for eventsIterator.Next() {
+		e := eventsIterator.Event
+		if int64(e.StartBlock) <= tx.Height && tx.Height < int64(e.EndBlock) {
+			event = &blobstreamxwrapper.BlobstreamXDataCommitmentStored{
+				ProofNonce:     e.ProofNonce,
+				StartBlock:     e.StartBlock,
+				EndBlock:       e.EndBlock,
+				DataCommitment: e.DataCommitment,
+			}
+			break
+		}
+	}
+	if err := eventsIterator.Error(); err != nil {
+		return err
+	}
+	err = eventsIterator.Close()
+	if err != nil {
+		return err
+	}
+	if event == nil {
+		return fmt.Errorf("couldn't find range containing the block height")
+	}
+```
+
+## High-level diagrams (TBD)
 
 The two diagrams below summarize how a single share is committed to in Blobstream.
 The share is highlighted in green. `R0`, `R1`, etc represent the respective row and

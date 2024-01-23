@@ -451,12 +451,6 @@ Follow
 
 You have successfully set up a bridge node that is syncing with the network.
 
-#### Setup Blobstream keys
-
-First, prepare an EVM address with a private key that you have
-access to. We will use it to register your validator's EVM address
-[later in this page](#register-your-validators-evm-address).
-
 ### Run the validator node
 
 In order to start your validator node, run the following:
@@ -524,37 +518,8 @@ tx: null
 txhash: <tx-hash>
 ```
 
-### Register your validator's EVM address {#register-your-validators-evm-address}
-
-This section will cover how to register your validator's EVM address.
-This is required to run an orchestrator.
-
-To register your EVM address, run the following. Be sure to replace
-`YOUR_EVM_ADDRESS` with your EVM address:
-
-```bash
-VALIDATOR_ADDRESS=$(celestia-appd keys show $VALIDATOR_WALLET --bech val -a)
-EVM_ADDRESS="YOUR_EVM_ADDRESS"
-
-celestia-appd tx qgb register \
-    $VALIDATOR_ADDRESS \
-    $EVM_ADDRESS \
-    --from $VALIDATOR_WALLET \
-    --fees 30000utia \
-    -b block \
-    -y &
-```
-
 You should now be able to see your validator from
 [a block explorer](./mocha-testnet.md#explorers)
-
-### Run a Blobstream orchestrator
-
-For validators, running a Blobstream orchestrator is **incredibly important**
-for both Mocha and Mainnet (when announced). Blobstream orchestrator enables
-validators to sign attestations.
-[Refer to the documentation](https://docs.celestia.org/nodes/blobstream-orchestrator/#how-to-run)
-to run an orchestrator.
 
 ### Submit your validator information
 
