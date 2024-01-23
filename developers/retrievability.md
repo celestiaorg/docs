@@ -6,7 +6,7 @@ description: Practices and expectations for data retrievability and pruning on C
 # Data retrievability and pruning
 
 The purpose of data availability layers such as Celestia is to ensure
-that block data is provably published to the Internet, so that applications
+that block data is provably published, so that applications
 and rollups can know what the state of their chain is, and store that data.
 Once the data is published, data availability layers
 [do not inherently guarantee that historical data will be permanently stored](https://notes.ethereum.org/@vbuterin/proto_danksharding_faq#If-data-is-deleted-after-30-days-how-would-users-access-older-blobs)
