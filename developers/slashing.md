@@ -4,13 +4,13 @@ description: This section covers the slashing mechanics for validators in Celest
 
 # Slashing on Celestia
 
-Slashing is mechanism employed in PoS blockchains that is used to deter
+Slashing is a mechanism employed in Proof of Stake (PoS) blockchains that is used to deter
 and punish malicious behavior. It functions by removing a percentage
-of a validators stake each time they act harmfully towards the network.
+of a validator's stake each time they act harmfully towards the network.
 
-Celestia is built with the Cosmos-SDK and implements the module `x/slashing`.
+Celestia is built with the Cosmos SDK and uses the `x/slashing` module.
 
-If a Validator gets slashed, delegators bonded to that validator will also
+If a validator gets slashed, delegators bonded to that validator will also
 have the same percentage of their delegated funds slashed.
 
 The following are the conditions for a validator to get slashed:
@@ -32,5 +32,5 @@ The following are the conditions for a validator to get slashed:
    validator after they have been unbonded.
 
 For more details on the slashing parameters, refer to the
-[Celestia App governance specifications](https://celestiaorg.github.io/celestia-app/specs/params.html#module-parameters)
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/specs/params.html#module-parameters)
 page.
