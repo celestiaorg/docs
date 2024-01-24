@@ -45,8 +45,6 @@ allows querying a data root to data root tuple root proof. It takes a block
 Merkle proof of the `DataRootTuple`, corresponding to that `height`,
 to the `DataRootTupleRoot` which is committed to in the Blobstream contract.
 
-#### Golang client
-
 The endpoint can be queried using the golang client:
 
 ```go
@@ -80,44 +78,9 @@ func main() {
 }
 ```
 
-#### HTTP request
+### Full example of proving that a Celestia block was committed to by BlobstreamX contract
 
-Example request: `/data_root_inclusion_proof?height=15&start=10&end=20`
-
-Which queries the proof of the height `15` to the data commitment defined
-by the range `[10, 20)`.
-
-Example response:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": -1,
-  "result": {
-    "proof": {
-      "total": "10",
-      "index": "5",
-      "leaf_hash": "vkRaRg7FGtZ/ZhsJRh/Uhhb3U6dPaYJ1pJNEfrwq5HE=",
-      "aunts": [
-        "nmBWWwHpipHwagaI7MAqM/yhCDb4cz7z4lRxmVRq5f8=",
-        "nyzLbFJjnSKOfRZur8xvJiJLA+wBPtwm0KbYglILxLg=",
-        "GI/tJ9WSwcyHM0r0i8t+p3hPFtDieuYR9wSPVkL1r2s=",
-        "+SGf6MfzMmtDKz5MLlH+y7mPV9Moo2x5rLjLe3gbFQo="
-      ]
-    }
-  }
-}
-```
-
-:::tip NOTE
-The values are base64 encoded. For these to be usable
-with the solidity smart contract, they need to be converted to `bytes32`.
-Check the next section for more information.
-:::
-
-### Full example of proving that data was committed to by BlobstreamX contract
-
-```
+```go
 package main
 
 import (
@@ -163,12 +126,6 @@ func verify() error {
 
 	// get the block containing the PayForBlob transaction
 	blockRes, err := trpc.Block(ctx, &tx.Height)
-	if err != nil {
-		return err
-	}
-
-	// get the share range of the blob inside the block
-	blobShareRange, err := square.BlobShareRange(blockRes.Block.Txs.ToSliceOfBytes(), int(tx.Index), 0, blockRes.Block.Header.Version.App)
 	if err != nil {
 		return err
 	}
@@ -252,7 +209,6 @@ func verify() error {
     return nil
 }
 
-
 func VerifyDataRootInclusion(
 	_ context.Context,
 	blobstreamXwrapper *blobstreamxwrapper.BlobstreamX,
@@ -292,9 +248,9 @@ func VerifyDataRootInclusion(
 ### 2. Transaction inclusion proof
 
 To prove that a rollup transaction is part of the data root, we will need to
-provide two proofs: (1) a namespace Merkle proof of the transaction to (2)
+provide two proofs: (1) a namespace Merkle proof of the transaction to
 a row root. This could be done via proving the shares that contain the
-transaction to the row root using a namespace Merkle proof. And, a
+transaction to the row root using a namespace Merkle proof. (2) And, a
 binary Merkle proof of the row root to the data root.
 
 These proofs can be generated using the
@@ -315,8 +271,6 @@ If the share range spans multiple rows,
 then the proof can contain multiple NMT and binary proofs.
 :::
 
-#### Golang client
-
 The endpoint can be queried using the golang client:
 
 ```go
@@ -325,62 +279,6 @@ The endpoint can be queried using the golang client:
 		...
 	}
 ```
-
-#### HTTP
-
-Example request: `/prove_shares?height=15&startShare=0&endShare=1`
-
-Which queries the proof of shares `[0,1)` in block `15`.
-
-Example response:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": -1,
-  "result": {
-    "data": [
-      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAABXAAAACbaAgrOAgqgAQqdAQogL2NlbGVzdGlhLmJsb2IudjEuTXNnUGF5Rm9yQmxvYnMSeQovY2VsZXN0aWExdWc1ZWt0MmNjN250dzRkdG1zZDlsN3N0cTBzN3Z5ZTd5bTJyZHISHQAAAAAAAAAAAAAAAAAAAAAAAAASExIyQkMkMoiZGgKXAiIgrfloW1M/Y33zlD2luveDELZzr9cF92+2eTaImIWhN9pCAQASZwpQCkYKHy9jb3Ntb3MuY3J5cHRvLnNlY3AyNTZrMS5QdWJLZXkSIwohA36hewmW/AXtrw6S+QsNUzFGfeg37Da6igoP2ZQcK+04EgQKAggBGAISEwoNCgR1dGlhEgUyMTAwMBDQ6AwaQClYLQPNrFoD6H8mgmwxjFeNhwhRu39EcrVKMFkNQ8+HHuodhdOQIG/8DXEmrBwrpwj6hi+3uEsZ+0p5vrf3v8sSAQEaBElORFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-    ],
-    "share_proofs": [
-      {
-        "end": 1,
-        "nodes": [
-          "AAAAAAAAAAAAAAAAAAAAAAAAABITEjJCQyQyiJkAAAAAAAAAAAAAAAAAAAAAAAAAEhMSMkJDJDKImbiwnpOdwIZBFr0UiFhPKwGy/XIIjL+gqm0fqxIw0z0o",
-          "/////////////////////////////////////////////////////////////////////////////3+fuhlzUfKJnZD8yg/JOtZla2V3g2Q7y+18iH5j0Uxk"
-        ]
-      }
-    ],
-    "namespace_id": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA==",
-    "row_proof": {
-      "row_roots": [
-        "000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000121312324243243288993946154604701154F739F3D1B5475786DDD960F06D8708D4E870DA6501C51750"
-      ],
-      "proofs": [
-        {
-          "total": "8",
-          "index": "0",
-          "leaf_hash": "300xzO8TiLwPNuREY6OJcRKzTHQ4y6yy6qH0wAuMMrc=",
-          "aunts": [
-            "ugp0sV9YNEI5pOiYR7RdOdswwlfBh2o3XiRsmMNmbKs=",
-            "3dMFZFaWZMTZVXhphF5TxlCJ+CT3EvmMFOpiXFH+ID4=",
-            "srl59GiTSiwC9LqdYASzFC6TvusyY7njX8/XThp6Xws="
-          ]
-        }
-      ],
-      "start_row": 0,
-      "end_row": 0
-    },
-    "namespace_version": 0
-  }
-}
-```
-
-:::tip NOTE
-The values are base64 encoded. For these to be usable
-with the solidity smart contract, they need to be converted to `bytes32`.
-Check the next section for more information.
-:::
 
 ## Converting the proofs to be usable in the `DAVerifier` contract
 
@@ -432,28 +330,14 @@ we can convert it to bytes using the `abi.encode(...)` as done for
 [this variable](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/test/RollupInclusionProofs.t.sol#L384-L402).
 This can be gotten from the above result of the
 [transaction inclusion proof](#2-transaction-inclusion-proof)
-query in the field `data`, which is in `base64` encoded then be
-converted to hex to be used as described.
+query in the field `data`.
 
 ### `shareProofs`
 
 This is the shares proof to the row roots. These can contain multiple proofs if
 the shares containing the blob span across multiple rows. To construct them, we
 will use the result of the
-[transaction inclusion proof](#2-transaction-inclusion-proof) section:
-
-```json
-"share_proofs": [
-  {
-    "start": ...,
-    "end": ...,
-    "nodes": [
-      "...",
-      "..."
-    ]
-  }
-],
-```
+[transaction inclusion proof](#2-transaction-inclusion-proof) section.
 
 :::tip NOTE
 If any of the fields is empty, then it will not be in the response.
@@ -524,6 +408,66 @@ An example of doing this can be found in the
 [RollupInclusionProofs.t.sol](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/test/RollupInclusionProofs.t.sol#L465-L477)
 test.
 
+A golang helper that can be used to make this conversion is as follows:
+
+```go
+func toNamespaceMerkleMultiProofs(proofs []*tmproto.NMTProof) []client.NamespaceMerkleMultiproof {
+	shareProofs := make([]client.NamespaceMerkleMultiproof, len(proofs))
+	for i, proof := range proofs {
+		sideNodes := make([]client.NamespaceNode, len(proof.Nodes))
+		for j, node := range proof.Nodes {
+			sideNodes[j] = *toNamespaceNode(node)
+		}
+		shareProofs[i] = client.NamespaceMerkleMultiproof{
+			BeginKey:  big.NewInt(int64(proof.Start)),
+			EndKey:    big.NewInt(int64(proof.End)),
+			SideNodes: sideNodes,
+		}
+	}
+	return shareProofs
+}
+
+func minNamespace(innerNode []byte) *client.Namespace {
+	version := innerNode[0]
+	var id [28]byte
+	for i, b := range innerNode[1:28] {
+		id[i] = b
+	}
+	return &client.Namespace{
+		Version: [1]byte{version},
+		Id:      id,
+	}
+}
+
+func maxNamespace(innerNode []byte) *client.Namespace {
+	version := innerNode[29]
+	var id [28]byte
+	for i, b := range innerNode[30:57] {
+		id[i] = b
+	}
+	return &client.Namespace{
+		Version: [1]byte{version},
+		Id:      id,
+	}
+}
+
+func toNamespaceNode(node []byte) *client.NamespaceNode {
+	minNs := minNamespace(node)
+	maxNs := maxNamespace(node)
+	var digest [32]byte
+	for i, b := range node[58:] {
+		digest[i] = b
+	}
+	return &client.NamespaceNode{
+		Min:    *minNs,
+		Max:    *maxNs,
+		Digest: digest,
+	}
+}
+```
+
+with `proofs` being `sharesProof.ShareProofs`.
+
 ### `namespace`
 
 Which is the namespace used by the rollup when submitting data to Celestia.
@@ -550,25 +494,43 @@ An example can be found in the
 [RollupInclusionProofs.t.sol](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/test/RollupInclusionProofs.t.sol#L488)
 test.
 
+A method to convert to namespace, provided that the namespace
+size is 29, is as follows:
+
+```go
+func namespace(namespaceID []byte) *client.Namespace {
+	version := namespaceID[0]
+	var id [28]byte
+	for i, b := range namespaceID[1:] {
+		id[i] = b
+	}
+	return &client.Namespace{
+		Version: [1]byte{version},
+		Id:      id,
+	}
+}
+```
+
+with `namespace` being `sharesProof.NamespaceID`.
+
 ### `rowRoots`
 
 Which are the roots of the rows where the shares containing the Rollup data are
-localised. These can be taken from the `prove_shares` query response:
+localised.
 
-```json
-"row_proof":
-{
-    "row_roots":
-    [
-        "..."
-    ],
-},
+In golang, the proof can be converted as follows:
+
+```go
+func toRowRoots(roots []bytes.HexBytes) []client.NamespaceNode {
+	rowRoots := make([]client.NamespaceNode, len(roots))
+	for i, root := range roots {
+		rowRoots[i] = *toNamespaceNode(root.Bytes())
+	}
+	return rowRoots
+}
 ```
 
-The values inside the `row_roots` are already in hex, and the Solidity type
-of the `rowRoots` is `NamespaceNode`. So, we will construct them similar to the
-`sideNodes` of the [`shareProofs`](#shareproofs). Except that no base64
-conversion is needed.
+with `roots` being `sharesProof.RowProof.RowRoots`.
 
 ### `rowProofs`
 
@@ -586,38 +548,43 @@ struct BinaryMerkleProof {
 }
 ```
 
-To construct them, we take the response of the `prove_shares` query:
-
-```json
-"row_proof": {
-      "row_roots": [
-        "..."
-      ],
-      "proofs": [
-        {
-          "total": "...",
-          "index": "...",
-          "leaf_hash": "...",
-          "aunts": [
-            "...",
-            "..."
-          ]
-        }
-      ],
-```
-
+To construct them, we take the response of the `prove_shares` query,
 and do the following mapping:
 
 - `key` in the Solidity struct **==** `index` in the query response
 - `numLeaves` in the Solidity struct **==** `total` in the query response
 - `sideNodes` in the Solidity struct **==** `aunts` in the query response
 
-The type of the `sideNodes` is a `bytes32`. So, we take the values in the query
-response, we convert them from base64 to hex, then we create the values.
+The type of the `sideNodes` is a `bytes32`.
 
 An example can be found in the
 [RollupInclusionProofs.t.sol](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/test/RollupInclusionProofs.t.sol#L479-L484)
 test.
+
+A golang helper to convert the row proofs is as follows:
+
+```go
+func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
+	rowProofs := make([]client.BinaryMerkleProof, len(proofs))
+	for i, proof := range proofs {
+		sideNodes := make( [][32]byte, len(proof.Aunts))
+		for j, sideNode :=  range proof.Aunts {
+			var bzSideNode [32]byte
+			for k, b := range sideNode {
+				bzSideNode[k] = b
+			}
+			sideNodes[j] = bzSideNode
+		}
+ 		rowProofs[i] = client.BinaryMerkleProof{
+			SideNodes: sideNodes,
+			Key:       big.NewInt(proof.Index),
+			NumLeaves: big.NewInt(proof.Total),
+		}
+	}
+}
+```
+
+with `proofs` being `sharesProof.RowProof.Proofs`.
 
 ### `attestationProof`
 
@@ -667,6 +634,46 @@ and the `height` which is the `height` of that block.
 An example can be found in the
 [RollupInclusionProofs.t.sol](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/test/RollupInclusionProofs.t.sol#L488)
 test.
+
+A golang helper to create an attestation proof:
+
+```go
+func toAttestationProof(
+	nonce uint64,
+	height uint64,
+	blockDataRoot [32]byte,
+	dataRootInclusionProof merkle.Proof,
+) client.AttestationProof {
+	sideNodes := make( [][32]byte, len(dataRootInclusionProof.Aunts))
+	for i, sideNode :=  range dataRootInclusionProof.Aunts {
+		var bzSideNode [32]byte
+		for k, b := range sideNode {
+			bzSideNode[k] = b
+		}
+		sideNodes[i] = bzSideNode
+	}
+
+	return client.AttestationProof{
+		TupleRootNonce: big.NewInt(int64(nonce)),
+		Tuple:          client.DataRootTuple{
+			Height:   big.NewInt(int64(height)),
+			DataRoot: blockDataRoot,
+		},
+		Proof:          client.BinaryMerkleProof{
+			SideNodes: sideNodes,
+			Key:       big.NewInt(dataRootInclusionProof.Index),
+			NumLeaves: big.NewInt(dataRootInclusionProof.Total),
+		},
+	}
+}
+```
+
+with the `nonce` being the attestation nonce, which can be retrieved using `BlobstreamX`
+contract events. Check below for an example. And `height` being the Celestia
+Block height that contains the rollup data, along with the `blockDataRoot` being 
+the data root of the block height. Finally, `dataRootInclusionProof` is the
+Celestia block data root inclusion proof to the data root tuple root that
+was queried in the begining of this page.
 
 If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 
@@ -736,6 +743,273 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 		return fmt.Errorf("couldn't find range containing the block height")
 	}
 ```
+
+### Example rollup that uses the DAVerifier
+
+An example rollup that uses the DAVerifier can be as simple as:
+
+```solidity
+pragma solidity ^0.8.22;
+
+import {DAVerifier} from "@blobstream/lib/verifier/DAVerifier.sol";
+import {IDAOracle} from "@blobstream/IDAOracle.sol";
+
+contract SimpleRollup {
+    IDAOracle bridge;
+    ...
+    function submitFraudProof(SharesProof memory _sharesProof, bytes32 _root) public {
+        // (1) verify that the data is committed to by BlobstreamX contract
+        (bool committedTo, DAVerifier.ErrorCodes err) = DAVerifier.verifySharesToDataRootTupleRoot(bridge, _sharesProof, _root);
+        if (!committedTo) {
+            revert("the data was not committed to by Blobstream");
+        }
+        // (2) verify that the data is part of the rollup block
+        // (3) parse the data
+        // (4) verify invalid state transition
+        // (5) effects
+    }
+}
+```
+
+Then, you can submit the fraud proof using golang as follows:
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/celestiaorg/celestia-app/pkg/square"
+	"github.com/celestiaorg/celestia-app/x/qgb/client"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	ethcmn "github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/ethclient"
+	blobstreamxwrapper "github.com/succinctlabs/blobstreamx/bindings"
+	"github.com/tendermint/tendermint/crypto/merkle"
+	"github.com/tendermint/tendermint/libs/bytes"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+	"github.com/tendermint/tendermint/rpc/client/http"
+	"github.com/tendermint/tendermint/types"
+	"math/big"
+	"os"
+)
+
+func main() {
+	err := verify()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+}
+
+func verify() error {
+	ctx := context.Background()
+
+	
+	// ...
+	// check the first section for this part of the implementation
+
+	// get the nonce corresponding to the block height that contains the PayForBlob transaction
+	// since BlobstreamX emits events when new batches are submitted, we will query the events
+	// and look for the range committing to the blob
+	// first, connect to an EVM RPC endpoint
+	ethClient, err := ethclient.Dial("evm_rpc_endpoint")
+	if err != nil {
+		return err
+	}
+	defer ethClient.Close()
+
+    // ...
+    // check the first section for this part of the implementation
+
+	// now we will create the shares proof to be verified by the SimpleRollup
+	// contract that uses the DAVerifier library
+	
+	// get the proof of the shares containing the blob to the data root
+	sharesProof, err := trpc.ProveShares(ctx, 16, uint64(blobShareRange.Start), uint64(blobShareRange.End))
+	if err != nil {
+		return err
+	}
+
+	// use the SimpleRollup contract binding to submit to it a fraud proof
+	simpleRollupWrapper, err := client.NewWrappers(ethcmn.HexToAddress("contract_Address"), ethClient)
+	if err != nil {
+		return err
+	}
+
+	// submit the fraud proof containing the share data that had the invalid state transition for example
+	// along with its proof
+	err = submitFraudProof(
+		ctx,
+		simpleRollupWrapper,
+		sharesProof,
+		event.ProofNonce.Uint64(),
+		uint64(tx.Height),
+		dcProof.Proof,
+		blockRes.Block.DataHash,
+	)
+
+	return nil
+}
+
+func submitFraudProof(
+	ctx context.Context,
+	simpleRollup *client.Wrappers,
+	sharesProof types.ShareProof,
+	nonce uint64,
+	height uint64,
+	dataRootInclusionProof merkle.Proof,
+	dataRoot []byte,
+) error {
+	var blockDataRoot [32]byte
+	for i, b := range dataRoot[58:] {
+		blockDataRoot[i] = b
+	}
+	tx, err := simpleRollup.SubmitFraudProof(
+		&bind.TransactOpts{
+			Context: ctx,
+		},
+		client.SharesProof{
+			Data:             sharesProof.Data,
+			ShareProofs:      toNamespaceMerkleMultiProofs(sharesProof.ShareProofs),
+			Namespace:        *namespace(sharesProof.NamespaceID),
+			RowRoots:         toRowRoots(sharesProof.RowProof.RowRoots),
+			RowProofs:        toRowProofs(sharesProof.RowProof.Proofs),
+			AttestationProof: toAttestationProof(nonce, height, blockDataRoot, dataRootInclusionProof),
+		},
+		blockDataRoot,
+	)
+	if err != nil {
+		return err
+	}
+	// wait for transaction
+}
+
+func toAttestationProof(
+	nonce uint64,
+	height uint64,
+	blockDataRoot [32]byte,
+	dataRootInclusionProof merkle.Proof,
+) client.AttestationProof {
+	sideNodes := make( [][32]byte, len(dataRootInclusionProof.Aunts))
+	for i, sideNode :=  range dataRootInclusionProof.Aunts {
+		var bzSideNode [32]byte
+		for k, b := range sideNode {
+			bzSideNode[k] = b
+		}
+		sideNodes[i] = bzSideNode
+	}
+
+	return client.AttestationProof{
+		TupleRootNonce: big.NewInt(int64(nonce)),
+		Tuple:          client.DataRootTuple{
+			Height:   big.NewInt(int64(height)),
+			DataRoot: blockDataRoot,
+		},
+		Proof:          client.BinaryMerkleProof{
+			SideNodes: sideNodes,
+			Key:       big.NewInt(dataRootInclusionProof.Index),
+			NumLeaves: big.NewInt(dataRootInclusionProof.Total),
+		},
+	}
+}
+
+func toRowRoots(roots []bytes.HexBytes) []client.NamespaceNode {
+	rowRoots := make([]client.NamespaceNode, len(roots))
+	for i, root := range roots {
+		rowRoots[i] = *toNamespaceNode(root.Bytes())
+	}
+	return rowRoots
+}
+
+func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
+	rowProofs := make([]client.BinaryMerkleProof, len(proofs))
+	for i, proof := range proofs {
+		sideNodes := make( [][32]byte, len(proof.Aunts))
+		for j, sideNode :=  range proof.Aunts {
+			var bzSideNode [32]byte
+			for k, b := range sideNode {
+				bzSideNode[k] = b
+			}
+			sideNodes[j] = bzSideNode
+		}
+ 		rowProofs[i] = client.BinaryMerkleProof{
+			SideNodes: sideNodes,
+			Key:       big.NewInt(proof.Index),
+			NumLeaves: big.NewInt(proof.Total),
+		}
+	}
+}
+
+func toNamespaceMerkleMultiProofs(proofs []*tmproto.NMTProof) []client.NamespaceMerkleMultiproof {
+	shareProofs := make([]client.NamespaceMerkleMultiproof, len(proofs))
+	for i, proof := range proofs {
+		sideNodes := make([]client.NamespaceNode, len(proof.Nodes))
+		for j, node := range proof.Nodes {
+			sideNodes[j] = *toNamespaceNode(node)
+		}
+		shareProofs[i] = client.NamespaceMerkleMultiproof{
+			BeginKey:  big.NewInt(int64(proof.Start)),
+			EndKey:    big.NewInt(int64(proof.End)),
+			SideNodes: sideNodes,
+		}
+	}
+	return shareProofs
+}
+
+func minNamespace(innerNode []byte) *client.Namespace {
+	version := innerNode[0]
+	var id [28]byte
+	for i, b := range innerNode[1:28] {
+		id[i] = b
+	}
+	return &client.Namespace{
+		Version: [1]byte{version},
+		Id:      id,
+	}
+}
+
+func maxNamespace(innerNode []byte) *client.Namespace {
+	version := innerNode[29]
+	var id [28]byte
+	for i, b := range innerNode[30:57] {
+		id[i] = b
+	}
+	return &client.Namespace{
+		Version: [1]byte{version},
+		Id:      id,
+	}
+}
+
+func toNamespaceNode(node []byte) *client.NamespaceNode {
+	minNs := minNamespace(node)
+	maxNs := maxNamespace(node)
+	var digest [32]byte
+	for i, b := range node[58:] {
+		digest[i] = b
+	}
+	return &client.NamespaceNode{
+		Min:    *minNs,
+		Max:    *maxNs,
+		Digest: digest,
+	}
+}
+
+func namespace(namespaceID []byte) *client.Namespace {
+	version := namespaceID[0]
+	var id [28]byte
+	for i, b := range namespaceID[1:] {
+		id[i] = b
+	}
+	return &client.Namespace{
+		Version: [1]byte{version},
+		Id:      id,
+	}
+}
+```
+
+For the step (2), check the [rollup inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md)
+for more information.
 
 ## High-level diagrams (TBD)
 
