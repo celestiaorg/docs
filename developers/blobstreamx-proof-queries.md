@@ -2,7 +2,7 @@
 description: Learn how to query the inclusion proofs used in BlobstreamX
 ---
 
-# Blobstream proofs queries
+# BlobstreamX proofs queries
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ Make sure to update the versions to match the latest `github.com/celestiaorg/cos
 
 ### 1. Data root inclusion proof
 
-To prove the data root is committed to by the Blobstream smart contract, we will
+To prove the data root is committed to by the BlobstreamX smart contract, we will
 need to provide a Merkle proof of the data root tuple to a data root tuple root.
 This can be created using the
 [`data_root_inclusion_proof`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L492-L511)
@@ -43,7 +43,7 @@ This [endpoint](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732a
 allows querying a data root to data root tuple root proof. It takes a block
 `height`, a starting block, and an end block, then it generates the binary
 Merkle proof of the `DataRootTuple`, corresponding to that `height`,
-to the `DataRootTupleRoot` which is committed to in the Blobstream contract.
+to the `DataRootTupleRoot` which is committed to in the BlobstreamX contract.
 
 The endpoint can be queried using the golang client:
 
@@ -288,7 +288,7 @@ The `DAVerifier` smart contract takes the following proof format:
 
 ```solidity
 /// @notice Contains the necessary parameters to prove that some shares, which were posted to
-/// the Celestia network, were committed to by the Blobstream smart contract.
+/// the Celestia network, were committed to by the BlobstreamX smart contract.
 struct SharesProof {
     // The shares that were committed to.
     bytes[] data;
@@ -300,12 +300,12 @@ struct SharesProof {
     NamespaceNode[] rowRoots;
     // The proofs of the rowRoots to the data root.
     BinaryMerkleProof[] rowProofs;
-    // The proof of the data root tuple to the data root tuple root that was posted to the Blobstream contract.
+    // The proof of the data root tuple to the data root tuple root that was posted to the BlobstreamX contract.
     AttestationProof attestationProof;
 }
 
 /// @notice Contains the necessary parameters needed to verify that a data root tuple
-/// was committed to, by the Blobstream smart contract, at some specif nonce.
+/// was committed to, by the BlobstreamX smart contract, at some specif nonce.
 struct AttestationProof {
     // the attestation nonce that commits to the data root tuple.
     uint256 tupleRootNonce;
@@ -589,11 +589,11 @@ with `proofs` being `sharesProof.RowProof.Proofs`.
 ### `attestationProof`
 
 This is the proof of the data root to the data root tuple root, which is committed
-to in the Blobstream contract:
+to in the BlobstreamX contract:
 
 ```solidity
 /// @notice Contains the necessary parameters needed to verify that a data root tuple
-/// was committed to, by the Blobstream smart contract, at some specif nonce.
+/// was committed to, by the BlobstreamX smart contract, at some specif nonce.
 struct AttestationProof {
     // the attestation nonce that commits to the data root tuple.
     uint256 tupleRootNonce;
@@ -604,7 +604,7 @@ struct AttestationProof {
 }
 ```
 
-- `tupleRootNonce`: the nonce at which Blobstream committed to the batch containing
+- `tupleRootNonce`: the nonce at which BlobstreamX committed to the batch containing
   the block containing the data.
 - `tuple`: the `DataRootTuple` of the block:
 
@@ -1035,7 +1035,7 @@ portion of the specs.
 After creating all the proofs, and verifying them:
 
 1. Verify inclusion proof of the transaction to Celestia data root
-2. Prove that the data root tuple is committed to by the Blobstream smart contract
+2. Prove that the data root tuple is committed to by the BlobstreamX smart contract
 
 We can be sure that the data was published to Celestia.
 
