@@ -403,29 +403,7 @@ function sidebarHome() {
             {
               text: "Blobstream for validators",
               collapsed: true,
-              items: [
-                {
-                  text: "Install the binary",
-                  link: "/nodes/blobstream-binary",
-                },
-                {
-                  text: "Blobstream Orchestrator",
-                  link: "/nodes/blobstream-orchestrator",
-                },
-                { text: "Key management", link: "/nodes/blobstream-keys" },
-                {
-                  text: "Blobstream Relayer",
-                  link: "/nodes/blobstream-relayer",
-                },
-                {
-                  text: "Deploy the contract",
-                  link: "/nodes/blobstream-deploy",
-                },
-                {
-                  text: "Blobstream Bootstrapper",
-                  link: "/nodes/blobstream-bootstrapper",
-                },
-              ],
+              items: [],
             },
           ],
         },
@@ -533,15 +511,15 @@ function sidebarHome() {
           items: [
             {
               text: "Integrate with Blobstream contracts",
-              link: "/developers/blobstream-contracts",
+              link: "/developers/blobstreamx-contracts",
             },
             {
               text: "Integrate with Blobstream client",
-              link: "/developers/blobstream-offchain",
+              link: "/developers/blobstreamx-offchain",
             },
             {
               text: "Querying the Blobstream proofs",
-              link: "/developers/blobstream-proof-queries",
+              link: "/developers/blobstreamx-proof-queries",
             },
           ],
         },
