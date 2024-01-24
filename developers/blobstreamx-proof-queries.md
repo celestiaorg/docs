@@ -282,7 +282,7 @@ The endpoint can be queried using the golang client:
 
 ## Converting the proofs to be usable in the `DAVerifier` library
 
-The `DAVerifier` smart contract takes the following proof format:
+Smart contracts that use the `DAVerifier` library takes the following proof format:
 
 <!-- markdownlint-disable MD013 -->
 
