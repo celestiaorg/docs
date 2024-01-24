@@ -819,8 +819,8 @@ func verify() error {
 	}
 	defer ethClient.Close()
 
-    // ...
-    // check the first section for this part of the implementation
+	// ...
+	// check the first section for this part of the implementation
 
 	// now we will create the shares proof to be verified by the SimpleRollup
 	// contract that uses the DAVerifier library
