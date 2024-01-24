@@ -470,6 +470,10 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-upgrade-monitor",
                 },
                 {
+                  text: "Multisig",
+                  link: "/nodes/celestia-app-multisig",
+                },
+                {
                   text: "Specifications",
                   link: "https://celestiaorg.github.io/celestia-app/",
                 },
@@ -567,6 +571,14 @@ function sidebarHome() {
                       link: "/developers/arbitrum-deploy",
                     },
                     {
+                      text: "Deploy an Arbitrum rollup to Mocha testnet",
+                      link: "/developers/arbitrum-mocha",
+                    },
+                    {
+                      text: "Nitrogen testnet",
+                      link: "/developers/nitrogen",
+                    },
+                    {
                       text: "Deploy a smart contract on Arbitrum rollup",
                       link: "/developers/arbitrum-smart-contract",
                     },
@@ -603,6 +615,10 @@ function sidebarHome() {
                     {
                       text: "Deploy an OP Stack devnet on Celestia",
                       link: "/developers/optimism",
+                    },
+                    {
+                      text: "Audit",
+                      link: "https://docs.celestia.org/Celestia_OP_Stack_Audit.pdf",
                     },
                     {
                       text: "Deploy a dapp with thirdweb",

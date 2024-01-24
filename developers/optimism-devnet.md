@@ -27,8 +27,8 @@ Check out to the version for either the stable version or upstream version:
 
 ::: code-group
 
-```bash-vue [v1.0.0-OP_v1.2.0-CN_v0.12.0]
-git checkout tags/v1.0.0-OP_v1.2.0-CN_v0.12.0
+```bash-vue [v1.1.0-OP_op-batcher/v1.4.2-CN_v0.12.4]
+git checkout tags/v1.1.0-OP_op-batcher/v1.4.2-CN_v0.12.4
 git submodule update --init --recursive
 ```
 
@@ -250,14 +250,14 @@ errors submitting data to Celestia.
 ### Implementation of fallback
 
 The Ethereum fallback mechanism is implemented in the
-[celestiaorg/optimism](https://github.com/celestiaorg/optimism/tree/release-v1.0.0)
-v1.0.0 release.
+[celestiaorg/optimism](https://github.com/celestiaorg/optimism/tree/release-v1.1.0)
+v1.1.0 release.
 
 The `op-batcher/batcher/driver.go` and
 `op-node/rollup/derive/calldata_source.go` files are part of the Ethereum
 fallback mechanism in the `op-batcher` and `op-node` respectively.
 
-In [`driver.go`, the `sendTransaction` function is responsible for the write path](https://github.com/celestiaorg/optimism/blob/release-v1.0.0/op-batcher/batcher/driver.go#L400-L406)
+In [`driver.go`, the `calldataTxCandidate` function is responsible for the write path](https://github.com/celestiaorg/optimism/blob/release-v1.1.0/op-batcher/batcher/driver.go#L405-L419)
 of the Ethereum fallback. This function creates and submits a transaction to the
 batch inbox address with the given data. It uses the underlying `txmgr` to
 handle transaction sending and gas price management.
@@ -274,10 +274,13 @@ Blob Commitment (32 bytes). The combination of these can later be used to
 retrieve the original calldata from Celestia.
 
 <!-- markdownlint-disable MD013 -->
-| Prefix | 8 bytes       | 32 bytes        |
-|--------|---------------|-----------------|
-| 0xce   | Block Height  | Blob Commitment |
+
+| Prefix | 8 bytes      | 32 bytes        |
+| ------ | ------------ | --------------- |
+| 0xce   | Block Height | Blob Commitment |
+
 <!-- markdownlint-enable MD013 -->
+
 ```go
 func (l *BatchSubmitter) sendTransaction(
     txdata txData,
@@ -289,7 +292,7 @@ func (l *BatchSubmitter) sendTransaction(
 ```
 
 In `calldata_source.go`,
-[the `DataFromEVMTransactions` function defines the read path](https://github.com/celestiaorg/optimism/blob/release-v1.0.0/op-node/rollup/derive/calldata_source.go#L138-L163)
+[the `DataFromEVMTransactions` function defines the read path](https://github.com/celestiaorg/optimism/blob/release-v1.1.0/op-node/rollup/derive/calldata_source.go#L102-L139)
 of the Ethereum fallback. This function filters all of the transactions
 and returns the calldata from transactions that are sent to the batch
 inbox address from the batch sender address.
@@ -323,11 +326,26 @@ cause the `op-batcher` blob transaction to fail, with an `incorrect account
 sequence` error, which triggers a fallback to Ethereum.
 
 To trigger the transaction, send this command from the same `go/proto/da` directory:
+
 <!-- markdownlint-disable MD013 -->
+
 ```bash
 grpcurl -proto da.proto -plaintext -d '{"blobs": [{"value": "SGVsbG8gd28ybGQh"}]}' 127.0.0.1:26650 da.DAService.Submit
 ```
+
 <!-- markdownlint-enable MD013 -->
+
 Alternatively, you can shut off the `local-celestia-devnet` and see that
 the OP Stack devnet logs show that the rollup has fallen back to the L1,
 in this case Ethereum, for posting data.
+
+## Span batches
+
+Span batches can be enabled by setting `OP_BATCHER_BATCH_TYPE: 1`
+in your `docker-compose.yml` file.
+
+Note that this requires the Delta activation time to be configured.
+For your devnet, you should set `"l2GenesisDeltaTimeOffset": "0x0",`
+in `devnetL1-template.json`. This will enable span batches and can be tested
+by grepping `docker compose logs -f | grep batch_type` which should include
+`batch_type=SpanBatch` and `batch_type=1`.

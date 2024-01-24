@@ -4,6 +4,8 @@ description: A guide on how to install Arbitrum Nitro and deploy an instance on 
 
 # Deploy an Arbitrum rollup devnet
 
+![nitro-vroom](/img/nitro-vroom-devnet.png)
+
 We will go over installation of Arbitrum Nitro and deploying an instance on an
 Ubuntu AMD machine. This section covers all necessary dependencies needed to be
 installed.
@@ -97,10 +99,28 @@ your machine.
 ### Validating with WASM
 
 If you want to run a validator that will validate all blocks in WASM,
-add the flag `--validate` to nitro-testnode when starting with
-`./test-node.bash --init --dev --validate`.
+add the flag `--validate` to nitro-testnode when starting with:
+
+```bash
+./test-node.bash --init --dev --validate
+```
+
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD013 -->
+<div class="youtube-wrapper">
+  <iframe
+    class="youtube-video"
+    title="Arbitrum Nitro Rollup with Celestia as DA, validating blocks with WASM"
+    src="https://youtube.com/embed/xihXA3wkuLI"
+    allowfullscreen
+  ></iframe>
+</div>
+
+:::tip
+You may need significantly more RAM and CPU to validate all blocks with WASM.
+:::
 
 ## Next steps
 
 In the next page we will cover
-[deploying a smart contract to your rollup](./arbitrum-smart-contract.md).
+[deploying your devnet to Mocha testnet](./arbitrum-mocha.md).

@@ -94,8 +94,8 @@ You do not need to declare a network for Mainnet Beta. Refer to
 :::
 
 Using an RPC of your own, or one from the
-[list on the Mocha testnet page](../mocha-testnet#rpc-endpoints) or
-[list on the Arabica devnet page](../arabica-devnet#rpc-endpoints),
+[list on the Mocha testnet page](mocha-testnet.md#rpc-endpoints) or
+[list on the Arabica devnet page](arabica-devnet.md#rpc-endpoints),
 start your node.
 
 For example, your command might look something like this for Mocha:

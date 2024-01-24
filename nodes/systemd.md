@@ -88,7 +88,7 @@ User=$USER
 ExecStart=$(which celestia) full start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target
@@ -126,7 +126,7 @@ User=$USER
 ExecStart=$(which celestia) bridge start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target

@@ -117,23 +117,23 @@ This file performs unit testing on the contract we created in the previous
 section. Here's what the test is doing:
 
 - The contract includes a public "Counter" type variable called "counter".
-In the `setUp` function, it initializes a new instance of the "Counter"
-contract and sets the "number" variable to 0.
+  In the `setUp` function, it initializes a new instance of the "Counter"
+  contract and sets the "number" variable to 0.
 
 - There are two test functions in the contract: `testIncrement` and
-`testSetNumber`.
+  `testSetNumber`.
 
 - The `testIncrement` function tests the "increment" function of the
-"Counter" contract by calling it and then asserting that the "number" in
-the "Counter" contract is 1. It verifies if the increment operation
-correctly increases the number by one.
+  "Counter" contract by calling it and then asserting that the "number" in
+  the "Counter" contract is 1. It verifies if the increment operation
+  correctly increases the number by one.
 
 - The `testSetNumber` function is more generic. It takes an unsigned integer
-argument 'x' and tests the "setNumber" function of the "Counter" contract.
-After calling the "setNumber" function with 'x', it asserts that the
-"number" in the "Counter" contract is equal to 'x'. This verifies that the
-"setNumber" function correctly updates the "number" in the "Counter"
-contract.
+  argument 'x' and tests the "setNumber" function of the "Counter" contract.
+  After calling the "setNumber" function with 'x', it asserts that the
+  "number" in the "Counter" contract is equal to 'x'. This verifies that the
+  "setNumber" function correctly updates the "number" in the "Counter"
+  contract.
 
 Now, to test your code, run the following:
 
