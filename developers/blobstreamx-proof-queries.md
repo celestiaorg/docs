@@ -10,10 +10,73 @@ description: Learn how to query the inclusion proofs used in BlobstreamX
   RPC endpoint (or full node). The node doesn't need to be a
   validating node in order for the proofs to be queried. A full node is enough.
 
-## Querying the proofs
+## Overview of the proof queries
 
-To prove PFBs, blobs or shares, we can use the Celestia consensus node's RPC to
-query proofs for them:
+To prove the inclusion of PayForBlob (PFB) transactions, blobs or shares, committed to in a 
+Celestia block, we use the Celestia consensus node's RPC to
+query for proofs that can be verified in a Rollup settlement contract via BlobstreamX.
+In fact, when a PFB transaction is included in a block, it gets
+separated into a PFB transaction (without the blob), and the actual data blob that it carries.
+These two are split into shares, which are the low level constructs of a Celestia block, and
+saved to the corresponding Celestia block. Learn more about shares in the 
+[shares specs](https://celestiaorg.github.io/celestia-app/specs/shares.html).
+
+The two diagrams below summarize how a single share, which can contain a PFD transaction,
+or a part of the rollup data that was posted using a PFB, is committed to in BlobstreamX.
+
+The share is highlighted in green. `R0`, `R1` etc, represent the respective row and
+column roots, the blue and pink gradients are erasure encoded data. More details
+on the square layout can be found
+[in the data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md)
+and
+[data structures](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_structures.md#erasure-coding)
+portion of the specs.
+
+### The Celestia square
+
+![Square](/img/blobstream/blobstream-square.png)
+
+### The commitment scheme
+
+![Blobstream Commitment Diagram](/img/blobstream/blobstream-commitment-diagram.png)
+
+So to prove inclusion of a share to a Celestia block, we use BlobstreamX as a source of truth,
+more information on BlobstreamX can be found in [TODO add link](). In a nutshell, BlobstreamX
+attests to the data posted to Celestia in the BlobstreamX contract via verifying a zk-proof
+of the headers of a batch of Celestia blocks. Then, it keeps reference of that batch of blocks
+using the merkleized commitment of their `(dataRoot, height)` resulting in a 
+`data root tuple root`. Check the above diagram which shows:
+
+- 0: those are the shares, that when unified, contain the PFB or the rollup
+data blob.
+- 1: the row and column roots are the namespace merkle tree roots over 
+the shares. More information on the NMT in the 
+[nmt specs](https://celestiaorg.github.io/celestia-app/specs/data_structures.html?highlight=namespace%20merkle#namespace-merkle-tree).
+These commit to the rows and columns containing the above shares.
+- 2: the data roots: which are the binary merkle tree commitment over 
+the row and column roots. This means that if you can prove that a share
+is part of a row, using a namespace merkle proof. Then prove that this 
+row is committed to by the data root. Then you can be sure that that share
+was published to the corresponding block.
+- 3: in order to batch multiple blocks into the same commitment, we create
+a commitment over the `(dataRoot, height)` tuple for a batch of blocks, 
+which results in a data root tuple root. It's this commitment that gets
+stored in the BlobstreamX smart contract.
+
+So, if we're able to prove that a share is part of a row, then that row is
+committed to by a data root. Then, prove that that data root along with its height
+is committed to by the data root tuple root, which gets saved to the BlobstreamX 
+contract, we can be sure that that share was committed to in the corresponding
+Celestia block.
+
+In this document, we will provide details on how to query the above proofs, and
+how to adapt them to be sent to a rollup contract for verification. 
+
+## Hands-on lab
+
+This part will provide the details of proof generation, and the way to
+make the results of the proofs queries ready to be consumed by the 
+target rollup contract.
 
 :::tip NOTE
 For the go client snippets, make sure to have the following replaces in your `go.mod`:
@@ -27,7 +90,7 @@ replace (
 )
 ```
 
-Make sure to update the versions to match the latest `github.com/celestiaorg/cosmos-sdk` and
+Also, make sure to update the versions to match the latest `github.com/celestiaorg/cosmos-sdk` and
 `github.com/celestiaorg/celestia-core` versions.
 :::
 
@@ -1011,25 +1074,6 @@ func namespace(namespaceID []byte) *client.Namespace {
 For the step (2), check the [rollup inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md)
 for more information.
 
-## High-level diagrams (TBD)
-
-The two diagrams below summarize how a single share is committed to in Blobstream.
-The share is highlighted in green. `R0`, `R1`, etc represent the respective row and
-column roots, the blue and pink gradients are erasure encoded data. More details
-on the square layout can be found
-[in the data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md)
-and
-[data structures](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_structures.md#erasure-coding)
-portion of the specs.
-
-### The Celestia square
-
-![Square](/img/blobstream/blobstream-square.png)
-
-### The commitment scheme
-
-![Blobstream Commitment Diagram](/img/blobstream/blobstream-commitment-diagram.png)
-
 ## Conclusion
 
 After creating all the proofs, and verifying them:
@@ -1037,7 +1081,8 @@ After creating all the proofs, and verifying them:
 1. Verify inclusion proof of the transaction to Celestia data root
 2. Prove that the data root tuple is committed to by the BlobstreamX smart contract
 
-We can be sure that the data was published to Celestia.
+We can be sure that the data was published to Celestia, and then rollups can proceed
+with their normal fraud proving mechanism.
 
 :::tip NOTE
 The above proof constructions are implemented in Solidity,
