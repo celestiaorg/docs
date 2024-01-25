@@ -402,11 +402,6 @@ the shares containing the blob span across multiple rows. To construct them, we
 will use the result of the
 [transaction inclusion proof](#2-transaction-inclusion-proof) section.
 
-:::tip NOTE
-If any of the fields is empty, then it will not be in the response.
-For example, if the `start` field is `0`, it will be omitted in the response.
-:::
-
 While the `NamespaceMerkleMultiproof` being:
 
 ```solidity
