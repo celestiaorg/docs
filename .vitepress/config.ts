@@ -383,7 +383,6 @@ function sidebarHome() {
             { text: "Mainnet Beta", link: "/nodes/mainnet" },
             { text: "Mocha testnet", link: "/nodes/mocha-testnet" },
             { text: "Arabica devnet", link: "/nodes/arabica-devnet" },
-            { text: "Arabica-9 devnet ", link: "/nodes/arabica-9" },
           ],
         },
         {
