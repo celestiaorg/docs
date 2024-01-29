@@ -4,7 +4,7 @@ description: Learn how to connect to the Mocha network.
 
 # Mocha testnet
 
-![mocha-testnet](/img/mocha.jpg)
+![mocha-testnet](/public/img/mocha.jpg)
 
 This guide contains the relevant sections for how to connect to Mocha,
 depending on the type of node you are running. Mocha testnet is designed

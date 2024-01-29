@@ -4,7 +4,7 @@ description: The first testnet built with OP Stack and Celestia.
 
 # Bubs testnet
 
-![Bubs testnet](/img/Celestia_Bubs_Testnet.jpg)
+![Bubs testnet](/public/img/Celestia_Bubs_Testnet.jpg)
 
 [Bubs Testnet](https://bubstestnet.com) is a fresh offering from
 [Caldera](https://caldera.xyz) with support from Celestia Labs,

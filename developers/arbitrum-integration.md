@@ -4,7 +4,7 @@ description: An overview of the integration of Arbitrum Nitro with Celestia, det
 
 # Introduction to Arbitrum rollups with Celestia as DA
 
-![Celestia_Arbitrum](/img/Celestia-Arbitrum.png)
+![Celestia_Arbitrum](/public/img/Celestia-Arbitrum.png)
 
 ## Overview
 

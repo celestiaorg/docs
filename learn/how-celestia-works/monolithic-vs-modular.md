@@ -34,7 +34,7 @@ monolithic blockchains is that the consensus layer must perform a lot of
 different tasks and it cannot be optimized for only one of these functions.
 As a result, the monolithic paradigm limits the throughput of the system.
 
-![Modular VS Monolithic](/img/learn/monolithic-modular.png)
+![Modular VS Monolithic](/public/img/learn/monolithic-modular.png)
 
 As a solution, modular blockchains decouple these functions among
 multiple specialized layers as part of a modular stack. Due to the

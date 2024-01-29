@@ -69,7 +69,7 @@ technologies that can help us get there.
   This means rollups don’t require every node in the network to re-execute
   every transaction.
 
-![image](/img/da-and-validity.png)
+![image](/public/img/da-and-validity.png)
 
 - **Decoupling execution from consensus** lets developers define the VM
   that best fits the scaling needs of their application.

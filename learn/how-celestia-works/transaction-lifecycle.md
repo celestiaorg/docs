@@ -23,7 +23,7 @@ Thus, the block data consists of data partitioned into namespaces
 and executable transactions. Note that only these transactions are
 executed by the Celestia state machine once the block is committed.
 
-![Lifecycle of a celestia-app Transaction](/img/learn/tx-lifecycle.png)
+![Lifecycle of a celestia-app Transaction](/public/img/learn/tx-lifecycle.png)
 
 Next, the block producer adds to the block header a commitment
 of the block data. As
@@ -52,7 +52,7 @@ one for every row and column of the extended matrix.
 
 ## Checking data availability
 
-![DA network](/img/learn/consensus-da.png)
+![DA network](/public/img/learn/consensus-da.png)
 
 To enhance connectivity, the celestia-node augments the celestia-app
 with a separate libp2p network, _i.e._, the so-called _DA network_,
