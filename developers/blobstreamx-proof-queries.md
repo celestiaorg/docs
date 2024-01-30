@@ -802,6 +802,53 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 	}
 ```
 
+### Listening for new data commitments
+
+For listening for new `BlobstreamXDataCommitmentStored` events, sequencers can use 
+the `WatchDataCommitmentStored` as follows:
+
+```go
+    ethClient, err := ethclient.Dial("evm_rpc")
+    if err != nil {
+	    return err
+    }
+    defer ethClient.Close()
+    blobstreamWrapper, err := blobstreamxwrapper.NewBlobstreamXFilterer(ethcmn.HexToAddress("contract_address"), ethClient)
+    if err != nil {
+	    return err
+    }
+	
+    eventsChan := make(chan *blobstreamxwrapper.BlobstreamXDataCommitmentStored, 100)
+    subscription, err := blobstreamWrapper.WatchDataCommitmentStored(
+	    &bind.WatchOpts{
+			Context: ctx,
+        },
+	    eventsChan,
+	    nil,
+	    nil,
+	    nil, 
+	)
+    if err != nil {
+	    return err
+    }
+    defer subscription.Unsubscribe()
+
+    for {
+	    select {
+	    case <-ctx.Done():
+		    return ctx.Err()
+		case err := <-subscription.Err():
+			return err
+		case event := <-eventsChan:
+			// process the event
+		    fmt.Println(event)
+	    }
+    }
+```
+
+Then, new proofs can be created as documented above using the new 
+data commitments contained in the received events.
+
 ### Example rollup that uses the DAVerifier
 
 An example rollup that uses the DAVerifier can be as simple as:
