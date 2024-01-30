@@ -31,12 +31,12 @@ to be accessed by an instance of the docker image.
 
 1. In your local machine, navigate to the home directory
 
-   ```bash [linux or unix OS]
+   ```bash
    cd $HOME
    ```
 
 2. Create a file in which the keyring would be stored.
-The file will be mounted as a volume into the docker container.
+The file would be mounted as a volume into the docker container.
 
    ```bash
    touch .celestia-app
