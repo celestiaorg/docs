@@ -383,7 +383,6 @@ function sidebarHome() {
             { text: "Mainnet Beta", link: "/nodes/mainnet" },
             { text: "Mocha testnet", link: "/nodes/mocha-testnet" },
             { text: "Arabica devnet", link: "/nodes/arabica-devnet" },
-            { text: "Arabica-9 devnet ", link: "/nodes/arabica-9" },
           ],
         },
         {
@@ -615,6 +614,10 @@ function sidebarHome() {
                     {
                       text: "Deploy an OP Stack devnet on Celestia",
                       link: "/developers/optimism",
+                    },
+                    {
+                      text: "Audit",
+                      link: "https://docs.celestia.org/Celestia_OP_Stack_Audit.pdf",
                     },
                     {
                       text: "Deploy a dapp with thirdweb",
