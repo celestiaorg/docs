@@ -1114,14 +1114,16 @@ Examples: `127.0.0.1` or `subdomain.domain.tld`.
 Using either IP or DNS assumes RPC port 26657 and gRPC port 9090
 as default unless otherwise specified.
 
-1. In your terminal, set the auth token for the desired network. In this
-example, we will use Mainnet Beta.
+<!-- markdownlint-disable MD046 -->
 
-    ```bash
-    export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network celestia)
-    ```
+1.  In your terminal, set the auth token for the desired network. In this
+    example, we will use Mainnet Beta.
 
-2. Post your blob with:
+        ```bash
+        export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network celestia)
+        ```
+
+2.  Post your blob with:
 
     ```bash
     curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" -X POST --data '{"id": 1,
@@ -1144,7 +1146,7 @@ example, we will use Mainnet Beta.
     }' 127.0.0.1:26658
     ```
 
-3. Upon successful blob submission, the result will show the block height:
+3.  Upon successful blob submission, the result will show the block height:
 
 ```bash
 {"jsonrpc":"2.0","result":362101,"id":1}

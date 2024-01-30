@@ -1,11 +1,8 @@
 ---
-description: How you can add Celestia network parameters to Keplr.
-next:
-  text: "Integrating Leap for developers"
-  link: "developers/leap"
+description: How you can add Celestia network parameters to wallets.
 ---
 
-# Keplr integration with Celestia
+# Wallet integration with Celestia
 
 <!-- markdownlint-disable MD033 -->
 <script>
@@ -42,16 +39,10 @@ export default {
 }
 </script>
 
-Keplr is a popular Cosmos-based wallet that allows anyone
-to connect to Tendermint chains from their browser.
+This page covers how developers can integrate Celestia chains
+with existing wallets.
 
-In this tutorial, we will have an example that goes over how
-you can add Celestia network parameters to Keplr in a React app.
-
-Most of the overview of this integration are found on
-[Keplr's website](https://docs.keplr.app/api).
-
-## Add Celestia network to Keplr
+## Add Celestia network
 
 Before we demonstrate how to export the specific parameters for
 Celestia's testnets, we need to create a ReactJS component
@@ -62,9 +53,11 @@ In the following code, we show how you can export a component
 that detects whether Keplr is installed and sets the network
 params for it:
 
+::: code-group
+
 <!-- markdownlint-disable MD013 -->
 
-```jsx
+```jsx [Keplr]
 import React from "react";
 import styles from "./Keplr.module.css";
 
@@ -141,6 +134,8 @@ export default function AddNetworkKeplr({ params }) {
 }
 ```
 
+:::
+
 <!-- markdownlint-enable MD013 -->
 
 This example is just for using Celestia configs.
@@ -151,12 +146,6 @@ we will for both testnets in the following section.
 You can also test out the `Connect` button to add those
 params to your Keplr wallet. NOTE: You must have Keplr installed
 first.
-
-Try it out yourself:
-
-<AddNetworkKeplr :params="MAINNET_PARAMS" />
-<AddNetworkKeplr :params="MOCHA_PARAMS" />
-<AddNetworkKeplr :params="ARABICA_PARAMS"/>
 
 Behind the scenes, here are the parameters
 we are passing to the `AddNetworkKeplr`

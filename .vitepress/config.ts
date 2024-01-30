@@ -309,6 +309,10 @@ function sidebarHome() {
                   link: "/learn/how-celestia-works/transaction-lifecycle",
                 },
                 {
+                  text: "Data retrievability and pruning",
+                  link: "/learn/retrievability",
+                },
+                {
                   text: "Data availability FAQ",
                   link: "/learn/how-celestia-works/data-availability-faq",
                 },
@@ -353,6 +357,14 @@ function sidebarHome() {
             {
               text: "Staking, governance, & supply",
               link: "/learn/staking-governance-supply",
+            },
+            {
+              text: "How to stake TIA",
+              link: "/learn/how-to-stake-tia",
+            },
+            {
+              text: "Staking dashboards",
+              link: "/learn/staking",
             },
           ],
         },
@@ -426,6 +438,20 @@ function sidebarHome() {
                 },
               ],
             },
+            {
+              text: "IBC relayers",
+              collapsed: true,
+              items: [
+                {
+                  text: "IBC relaying guide",
+                  link: "/developers/ibc-relayer",
+                },
+                {
+                  text: "IBC relayers",
+                  link: "https://www.mintscan.io/celestia/relayers",
+                },
+              ],
+            },
           ],
         },
         {
@@ -452,6 +478,7 @@ function sidebarHome() {
               text: "celestia-app",
               collapsed: true,
               items: [
+                { text: "Celestia-app", link: "/nodes/celestia-app-wallet" },
                 {
                   text: "Metrics, visualization, and alerts",
                   link: "/nodes/celestia-app-metrics",
@@ -476,6 +503,10 @@ function sidebarHome() {
                   text: "Specifications",
                   link: "https://celestiaorg.github.io/celestia-app/",
                 },
+                {
+                  text: "Create a vesting account",
+                  link: "/nodes/celestia-app-vesting",
+                },
               ],
             },
             {
@@ -496,18 +527,6 @@ function sidebarHome() {
         {
           text: "Submitting data blobs to Celestia",
           link: "/developers/submit-data",
-        },
-        {
-          text: "Data retrievability and pruning",
-          link: "/developers/retrievability",
-        },
-        {
-          text: "IBC relaying guide",
-          link: "/developers/ibc-relayer",
-        },
-        {
-          text: "IBC relayers",
-          link: "https://www.mintscan.io/celestia/relayers",
         },
         {
           text: "Node API",
@@ -667,35 +686,14 @@ function sidebarHome() {
           text: "Wallets",
           collapsed: true,
           items: [
-            { text: "Celestia-app", link: "/developers/celestia-app-wallet" },
             { text: "Celestia-node", link: "/developers/celestia-node-key" },
-            {
-              text: "Create a vesting account",
-              link: "/developers/celestia-app-vesting",
-            },
-            {
-              text: "How to stake TIA",
-              link: "/developers/how-to-stake-tia",
-            },
-            {
-              text: "Staking dashboards",
-              link: "/developers/staking",
-            },
             {
               text: "Keplr",
               collapsed: true,
               items: [
                 {
-                  text: "Integrating Keplr for developers",
-                  link: "/developers/keplr",
-                },
-                {
-                  text: "Install Keplr",
-                  link: "https://www.keplr.app/download",
-                },
-                {
-                  text: "Create an account",
-                  link: "https://www.keplr.app/onboarding/how-to-create",
+                  text: "Integrating Wallets for developers",
+                  link: "/developers/wallets",
                 },
               ],
             },
@@ -707,10 +705,6 @@ function sidebarHome() {
                   text: "Integrating Leap for developers",
                   link: "/developers/leap",
                 },
-                {
-                  text: "Install Leap",
-                  link: "https://www.leapwallet.io/download",
-                },
               ],
             },
             {
@@ -720,10 +714,6 @@ function sidebarHome() {
                 {
                   text: "Integrating Cosmostation for developers",
                   link: "/developers/cosmostation",
-                },
-                {
-                  text: "Install",
-                  link: "https://cosmostation.io/",
                 },
               ],
             },
