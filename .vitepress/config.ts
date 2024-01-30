@@ -473,6 +473,10 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-multisig",
                 },
                 {
+                  text: "Slashing Mechanics",
+                  link: "/nodes/celestia-app-slashing",
+                },
+                {
                   text: "Specifications",
                   link: "https://celestiaorg.github.io/celestia-app/",
                 },
@@ -726,10 +730,6 @@ function sidebarHome() {
                   link: "https://cosmostation.io/",
                 },
               ],
-            },
-            {
-              text: "Slashing Mechanics",
-              link: "/developers/slashing",
             },
           ],
         },
