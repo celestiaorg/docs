@@ -4,7 +4,7 @@ description: The ultimate guide for Modular Meetup organizers!
 
 # Celestia Modular Meetup program
 
-![Modular Meetup Banner](/public/img/Celestia_Modular_meetup2.jpg)
+![Modular Meetup Banner](https://github.com/celestiaorg/docs/raw/main/public/img/Celestia_Modular_meetup2.jpg)
 
 Welcome to the ultimate guide for Modular Meetup organizers!
 This collection of resources is designed for those enthusiastic

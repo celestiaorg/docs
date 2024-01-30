@@ -4,7 +4,7 @@ description: Learn how to integrate your L2 with Blobstream
 
 # Integrate with Blobstream
 
-![Blobstream logo](/public/img/blobstream/blobstream_logo.png)
+![Blobstream logo](https://github.com/celestiaorg/docs/raw/main/public/img/blobstream/blobstream_logo.png)
 
 [Blobstream](https://blog.celestia.org/introducing-blobstream/)
 is the first data availability solution for Ethereum that securely
@@ -28,7 +28,7 @@ and a [relayer](../nodes/blobstream-relayer.md).
 In the following diagram, we show how a layer 2 (L2) would post data to
 Celestia and then verify that it was published in the target EVM chain.
 
-![Blobstream-Architecture](/public/img/blobstream/Blobstream.png)
+![Blobstream-Architecture](https://github.com/celestiaorg/docs/raw/main/public/img/blobstream/Blobstream.png)
 
 Data will first be attested to by the Celestia validator set, _i.e._
 signing commitments committing to the data. Then, these signatures will be
@@ -70,7 +70,7 @@ each tuple representing a single
 [data root (i.e. block header)](https://celestiaorg.github.io/celestia-app/specs/data_structures.html#header).
 Relayed tuples are in the same order as Celestia block headers.
 
-![Blobstream attestation flow](/public/img/blobstream/Celestia_Blobstream_attestation_flow.jpg)
+![Blobstream attestation flow](https://github.com/celestiaorg/docs/raw/main/public/img/blobstream/Celestia_Blobstream_attestation_flow.jpg)
 
 ### Events and messages relayed
 

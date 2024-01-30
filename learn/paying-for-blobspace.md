@@ -14,7 +14,7 @@ Both the blobs and executable payment transactions are put into the block within
 the appropriate namespace. The block data is extended using erasure coding and then
 Merkelized into a data root commitment included in the block header.
 
-![Lifecycle of a celestia-app Transaction](/public/img/learn/tx-lifecycle.png)
+![Lifecycle of a celestia-app Transaction](https://github.com/celestiaorg/docs/raw/main/public/img/learn/tx-lifecycle.png)
 
 See
 [the detailed life cycle of a Celestia transaction](./how-celestia-works/transaction-lifecycle.md).

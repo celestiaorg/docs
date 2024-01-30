@@ -4,7 +4,7 @@ description: A guide on how to install Arbitrum Nitro and deploy an instance on 
 
 # Deploy an Arbitrum rollup devnet
 
-![nitro-vroom](/public/img/nitro-vroom-devnet.png)
+![nitro-vroom](https://github.com/celestiaorg/docs/raw/main/public/img/nitro-vroom-devnet.png)
 
 We will go over installation of Arbitrum Nitro and deploying an instance on an
 Ubuntu AMD machine. This section covers all necessary dependencies needed to be

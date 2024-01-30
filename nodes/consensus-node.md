@@ -16,7 +16,7 @@ Celestia.
 Full consensus nodes allow you to sync blockchain history in the Celestia
 consensus layer.
 
-![full consensus node](/public/img/nodes/full-consensus-node.png)
+![full consensus node](https://github.com/celestiaorg/docs/raw/main/public/img/nodes/full-consensus-node.png)
 
 [[toc]]
 
@@ -325,7 +325,7 @@ for information on which ports are required to be open on your machine.
 
 Validator nodes allow you to participate in consensus in the Celestia network.
 
-![validator node](/public/img/nodes/validator.png)
+![validator node](https://github.com/celestiaorg/docs/raw/main/public/img/nodes/validator.png)
 
 #### Validator hardware requirements
 

@@ -1,6 +1,6 @@
 # Nitrogen testnet
 
-![nitrogen-testnet](/public/img/nitrogen-testnet.jpg)
+![nitrogen-testnet](https://github.com/celestiaorg/docs/raw/main/public/img/nitrogen-testnet.jpg)
 
 [Nitrogen](https://rollup-info.altlayer.io/public/nitrogen)
 is the first testnet and L3 made with

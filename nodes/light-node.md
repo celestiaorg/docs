@@ -14,7 +14,7 @@ availability (DA) network.
 Light nodes ensure data availability. This is the most common
 way to interact with Celestia networks.
 
-![light-node](/public/img/nodes/LightNodes.png)
+![light-node](https://github.com/celestiaorg/docs/raw/main/public/img/nodes/LightNodes.png)
 
 Light nodes have the following behavior:
 

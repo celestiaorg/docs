@@ -27,4 +27,4 @@ triggered due to a congested mempool or nonce error and can be simulated
 with an error such as low balance or incorrect sequence. Fallback
 can also be triggered in the event Blobstream stops relaying attestations.
 
-![Ethereum fallback](/public/img/Celestia_ethereum-fallback.jpg)
+![Ethereum fallback](https://github.com/celestiaorg/docs/raw/main/public/img/Celestia_ethereum-fallback.jpg)
