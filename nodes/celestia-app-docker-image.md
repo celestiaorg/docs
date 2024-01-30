@@ -75,29 +75,20 @@ flags used in the docker run command in step 5 of the quick start instructions.
 
 | FLAG | DESCRIPTION | DEFAULT | OPTION |
 | ---- | ---- | ---- | :----: |
-| `-k` | Whether a new key should be created | 0 | 1 for yes, 0 for no |
-| `-p` | The path to the keyring for the prefunded account | - | - |
-| `-g` | The gRPC endpoint for the `txsim` binary | consensus-validator
--robusta-rc6.celestia-robusta.com:9090 | - |
-| `-t` | The poll time for the `txsim` binary | 10s |
-1s,2s,3s,4s,... |
-| `-b` | The number of blob sequences to run | 10 | any integer value
-(1,2,3,...) |
-| `-a` | The range of blobs to send per PFB in a sequence | - | - |
-| `-s` | The range of blob sizes to send | - | - |
-| `-m` | The mnemonic for the keyring | - | - |
-| `-d` | The seed for the random number generator | 100 |
-any integer value (1,2,3,...) |
-| `-e` | The number of send sequences to run | 10 |
-any integer value (1,2,3,...) |
-| `-i` | The amount to send from one account to another | - |
-any integer value (1,2,3,...) |
-| `-v` | The number of send iterations to run per sequence | - |
-any integer value (1,2,3,...) |
-| `-u` | The number of stake sequences to run | - |
-any integer value (1,2,3,...) |
-| `-w` | The amount of initial stake per sequence | - |
-any integer value (1,2,3,...) |
+|`-k`|Whether a new key should be created|0|1 for yes, 0 for no|
+|`-p`|Path to keyring for prefunded account|-|-|
+|`-g`|gRPC endpoint|consensus-validator-robusta-rc6.celestia-robusta.com:9090||
+|`-t`|Poll time for the `txsim` binary|10s|1s,2s,3s,4s,...|
+|`-b`|Number of blob sequences to run|10|any integer value(1,2,3,...)|
+|`-a`|Range of blobs to send per PFB in a sequence|-|-|
+|`-s`|Range of blob sizes to send|-|-|
+|`-m`|Mnemonic for the keyring |-|-|
+|`-d`|Seed for the random number generator|100|any integer value (1,2,3,...)|
+|`-e`|Number of send sequences to run|10|any integer value (1,2,3,...)|
+|`-i`|Amount to send from one account to another|-|any integer value (1,2,3,...)|
+|`-v`|Number of send iterations to run per sequence|-|any integer value (1,2,3,...)|
+|`-u`|Number of stake sequences to run|-|any integer value (1,2,3,...)|
+|`-w`|Amount of initial stake per sequence|-|any integer value (1,2,3,...)|
 
 Please replace the placeholders in the example docker run
 command in step 5 of the quick start instructions,
