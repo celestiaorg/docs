@@ -52,10 +52,12 @@ docker container to access the content of the file.
 5. You can run the txsim Docker image using the docker run command below.
 
    ```bash
-   docker run -it -v $HOME/.celestia-app:/home/celestia ghcr.io/celestiaorg/
-   txsim -k 0 -r http://consensus-validator-robusta-rc6.celestia-robusta.com:
-   26657,http://consensus-full-robusta-rc6.celestia-robusta.com:26657
-   -g consensus-validator-robusta-rc6.celestia-robusta.com:9090
+   docker run -it \
+   -v $HOME/.celestia-app:/home/celestia ghcr.io/celestiaorg/txsim \
+   -k 0 \
+   -r http://consensus-validator-robusta-rc6.celestia-robusta.com:26657, \
+   http://consensus-full-robusta-rc6.celestia-robusta.com:26657 \
+   -g consensus-validator-robusta-rc6.celestia-robusta.com: \
    -t 10s -b 10 -d 100 -e 10
    ```
 
