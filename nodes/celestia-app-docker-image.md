@@ -38,20 +38,20 @@ to be accessed by an instance of the docker image.
 2. Create a file in which the keyring would be stored.
 The file will be mounted as a volume into the docker container.
 
-   ```bash [linux or unix OS]
-   Home/ touch .celestia-app
+   ```bash
+   touch .celestia-app
    ```
 
 3. Using a suitable text editor of your choice, open the
-.celestial-app file and paste the keyring of the prefunded account.
+.celestia-app file and paste the keyring of the prefunded account.
 
 4. We recommend that you set the necessary file permission for the
-.celestial-app file. A simple read access is all that is required for the
+.celestia-app file. A simple read access is all that is required for the
 docker container to access the content of the file.
 
 5. You can run the txsim Docker image using the docker run command below.
 
-   ```bash [linux or unix OS}
+   ```bash
    docker run -it -v $HOME/.celestia-app:/home/celestia ghcr.io/celestiaorg/
    txsim -k 0 -r http://consensus-validator-robusta-rc6.celestia-robusta.com:
    26657,http://consensus-full-robusta-rc6.celestia-robusta.com:26657
@@ -76,9 +76,9 @@ flags used in the docker run command in step 5 of the quick start instructions.
 | `-k` | Whether a new key should be created | 0 | 1 for yes, 0 for no |
 | `-p` | The path to the keyring for the prefunded account | - | - |
 | `-g` | The gRPC endpoint for the `txsim` binary | consensus-validator
--robusta-rc6.celestia-robusta.com:9090| - |
+-robusta-rc6.celestia-robusta.com:9090 | - |
 | `-t` | The poll time for the `txsim` binary | 10s |
-enter desired time value in seconds |
+1s,2s,3s,4s,... |
 | `-b` | The number of blob sequences to run | 10 | any integer value
 (1,2,3,...) |
 | `-a` | The range of blobs to send per PFB in a sequence | - | - |
