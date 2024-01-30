@@ -75,7 +75,7 @@ This guide covers deploying an Arbitrum Nitro rollup to
    NODE_PATH="/home/celestia/bridge/" // [!code --]
    NODE_PATH="/home/celestia/.celestia-light-{{constants.mochaChainId}}/" // [!code ++]
 
-   # Line 287
+   # Line 322
    # NOTE: depending on the version you're using, you may have a different
    # container name to start. Change yours accordingly to `celestia-da`.
    export CELESTIA_NODE_AUTH_TOKEN="$(docker exec nitro-testnode-da-1 celestia bridge auth admin --node.store  ${NODE_PATH})" // [!code --]
