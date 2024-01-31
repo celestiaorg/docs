@@ -478,7 +478,10 @@ function sidebarHome() {
               text: "celestia-app",
               collapsed: true,
               items: [
-                { text: "Celestia-app", link: "/nodes/celestia-app-wallet" },
+                {
+                  text: "Wallets in celestia-app",
+                  link: "/nodes/celestia-app-wallet",
+                },
                 {
                   text: "Metrics, visualization, and alerts",
                   link: "/nodes/celestia-app-metrics",

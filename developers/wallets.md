@@ -7,37 +7,6 @@ description: How you can add Celestia network parameters to wallets.
 <!-- markdownlint-disable MD033 -->
 <script>
 import constants from '/.vitepress/constants/constants.js'
-import AddNetworkKeplr from '/.vitepress/components/AddNetworkKeplr.vue'
-
-export default {
-  components: {
-    AddNetworkKeplr,
-  },
-  data() {
-    return {
-      constants,
-      ARABICA_PARAMS: {
-        chainId: `${constants.arabicaChainId}`,
-        chainName: 'Arabica devnet',
-        rpc: `${constants.arabicaRpcUrl}`,
-        rest: `${constants.arabicaRestUrl}`
-      },
-      MOCHA_PARAMS: {
-        chainId: `${constants.mochaChainId}`,
-        chainName: 'Mocha testnet',
-        rpc: `${constants.mochaRpcUrl}`,
-        rest: `${constants.mochaRestUrl}`
-      },
-      MAINNET_PARAMS: {
-        chainId: `${constants.mainnetChainId}`,
-        chainName: 'Celestia',
-        rpc: `${constants.mainnetRpcUrl}`,
-        rest: `${constants.mainnetRestUrl}`
-      }
-    }
-  }
-}
-</script>
 
 This page covers how developers can integrate Celestia chains
 with existing wallets.
