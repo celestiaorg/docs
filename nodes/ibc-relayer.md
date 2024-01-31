@@ -1,5 +1,8 @@
 ---
 description: Learn how to establish IBC connections and relay packets.
+next:
+  text: "Metrics"
+  link: "/nodes/celestia-node-metrics"
 ---
 
 # IBC relaying guide

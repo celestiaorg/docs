@@ -1,5 +1,8 @@
 ---
 description: A guide on how to monitor the health and performance of your system.
+prev:
+  text: "Troubleshooting"
+  link: "/nodes/celestia-node-troubleshooting"
 ---
 
 # Metrics

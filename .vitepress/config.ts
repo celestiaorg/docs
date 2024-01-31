@@ -444,7 +444,7 @@ function sidebarHome() {
               items: [
                 {
                   text: "IBC relaying guide",
-                  link: "/developers/ibc-relayer",
+                  link: "/nodes/ibc-relayer",
                 },
                 {
                   text: "IBC relayers",
