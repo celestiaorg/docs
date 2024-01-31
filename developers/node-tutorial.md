@@ -1116,14 +1116,14 @@ as default unless otherwise specified.
 
 <!-- markdownlint-disable MD046 -->
 
-1.  In your terminal, set the auth token for the desired network. In this
-    example, we will use Mainnet Beta.
+1. In your terminal, set the auth token for the desired network. In this
+example, we will use Mainnet Beta.
 
-        ```bash
-        export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network celestia)
-        ```
+    ```bash
+    export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network celestia)
+    ```
 
-2.  Post your blob with:
+2. Post your blob with:
 
     ```bash
     curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" -X POST --data '{"id": 1,
@@ -1146,11 +1146,11 @@ as default unless otherwise specified.
     }' 127.0.0.1:26658
     ```
 
-3.  Upon successful blob submission, the result will show the block height:
+3. Upon successful blob submission, the result will show the block height:
 
-```bash
-{"jsonrpc":"2.0","result":362101,"id":1}
-```
+    ```bash
+    {"jsonrpc":"2.0","result":362101,"id":1}
+    ```
 
 The example transaction can be
 [found on Celenium](https://celenium.io/tx/08af4b0934843f083300e682f1f8894c6b2871b6d0adbc3bbef1739431484cfd).
