@@ -1,5 +1,5 @@
 ---
-description: How you can add Celestia network parameters to wallets.
+description: How you can add Celestia network parameters to wallets such as Keplr, Leap, and Cosmostation.
 ---
 
 # Wallet integrations with Celestia
