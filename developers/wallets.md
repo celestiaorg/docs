@@ -7,12 +7,20 @@ description: How you can add Celestia network parameters to wallets.
 <!-- markdownlint-disable MD033 -->
 <script>
 import constants from '/.vitepress/constants/constants.js'
+
+export default {
+  data() {
+    return {
+      constants,
+    }
+  }
+}
 </script>
 
 This page covers how developers can integrate Celestia chains
 with existing wallets.
 
-## Add Celestia network
+## Add Celestia network parameters to Keplr with React
 
 Before we demonstrate how to export the specific parameters for
 Celestia's testnets, we need to create a ReactJS component
@@ -28,6 +36,8 @@ params for it:
 <!-- markdownlint-disable MD013 -->
 
 ```jsx [Keplr]
+
+// @site/src/components/AddNetworkKeplr.js
 import React from "react";
 import styles from "./Keplr.module.css";
 
@@ -108,18 +118,8 @@ export default function AddNetworkKeplr({ params }) {
 
 <!-- markdownlint-enable MD013 -->
 
-This example is just for using Celestia configs.
-
-We still need to pass the Celestia network params for it and
-we will for both testnets in the following section.
-
-You can also test out the `Connect` button to add those
-params to your Keplr wallet. NOTE: You must have Keplr installed
-first.
-
-Behind the scenes, here are the parameters
-we are passing to the `AddNetworkKeplr`
-function:
+We still need to pass the Celestia network parameters to
+the `AddNetworkKeplr` function:
 
 ::: code-group
 
@@ -132,6 +132,8 @@ export const MAINNET_PARAMS = {`{
   rpc: '{{constants.mainnetRpcUrl}}',
   rest: '{{constants.mainnetRestUrl}}'
 }`}
+
+{<AddNetworkKeplr params={MAINNET_PARAMS}/>}
 ```
 
 ```js-vue [Mocha]
@@ -143,6 +145,8 @@ export const MOCHA_PARAMS = {`{
   rpc: '{{constants.mochaRpcUrl}}',
   rest: '{{constants.mochaRestUrl}}'
 }`}
+
+{<AddNetworkKeplr params={MOCHA_PARAMS}/>}
 ```
 
 ```js-vue [Arabica]
@@ -154,6 +158,8 @@ export const ARABICA_PARAMS = {`{
   rpc: '{{constants.arabicaRpcUrl}}',
   rest: '{{constants.arabicaRestUrl}}'
 }`}
+
+{<AddNetworkKeplr params={ARABICA_PARAMS}/>}
 ```
 
 :::
