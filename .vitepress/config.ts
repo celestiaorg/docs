@@ -473,6 +473,10 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-multisig",
                 },
                 {
+                  text: "Slashing mechanics",
+                  link: "/nodes/celestia-app-slashing",
+                },
+                {
                   text: "Specifications",
                   link: "https://celestiaorg.github.io/celestia-app/",
                 },
