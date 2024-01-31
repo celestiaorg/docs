@@ -473,7 +473,7 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-multisig",
                 },
                 {
-                  text: "Slashing Mechanics",
+                  text: "Slashing mechanics",
                   link: "/nodes/celestia-app-slashing",
                 },
                 {

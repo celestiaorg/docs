@@ -4,7 +4,7 @@ description: This section covers the slashing mechanics for validators in Celest
 
 # Slashing on Celestia
 
-Slashing is a mechanism employed in Proof of Stake (PoS) blockchains
+Slashing is a mechanism employed in proof of stake blockchains
 that is used to deter and punish malicious behavior.
 It functions by removing a percentage of a validator's stake
 each time they act harmfully towards the network.
