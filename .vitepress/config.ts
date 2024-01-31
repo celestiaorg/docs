@@ -691,34 +691,8 @@ function sidebarHome() {
           items: [
             { text: "Celestia-node", link: "/developers/celestia-node-key" },
             {
-              text: "Keplr",
-              collapsed: true,
-              items: [
-                {
-                  text: "Integrating Wallets for developers",
-                  link: "/developers/wallets",
-                },
-              ],
-            },
-            {
-              text: "Leap",
-              collapsed: true,
-              items: [
-                {
-                  text: "Integrating Leap for developers",
-                  link: "/developers/leap",
-                },
-              ],
-            },
-            {
-              text: "Cosmostation",
-              collapsed: true,
-              items: [
-                {
-                  text: "Integrating Cosmostation for developers",
-                  link: "/developers/cosmostation",
-                },
-              ],
+              text: "Integrating Wallets for developers",
+              link: "/developers/wallets",
             },
           ],
         },
