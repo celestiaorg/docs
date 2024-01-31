@@ -487,6 +487,10 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-metrics",
                 },
                 {
+                  text: "Slashing mechanics",
+                  link: "/nodes/celestia-app-slashing",
+                },
+                {
                   text: "Create a Celestia testnet",
                   link: "/nodes/instantiate-testnet",
                 },
@@ -509,6 +513,10 @@ function sidebarHome() {
                 {
                   text: "Create a vesting account",
                   link: "/nodes/celestia-app-vesting",
+                },
+                {
+                  text: "Specifications",
+                  link: "https://celestiaorg.github.io/celestia-app/",
                 },
               ],
             },
