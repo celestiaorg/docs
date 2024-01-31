@@ -57,7 +57,7 @@ Arbitrum `SequencerInbox.sol` contract.
 In the `SequencerInbox.sol` contract, the `validateBatchData`
 modifier has been designed to authenticate that the data root is
 on Celestia when reading a batch of data. This is achieved by the
-[following code in `arbnode/sequencer_inbox.go`](https://github.com/celestiaorg/nitro/blob/v2.2.2-no-blobstream/arbnode/sequencer_inbox.go):
+[following code in `arbnode/sequencer_inbox.go`](https://github.com/celestiaorg/nitro-contracts/blob/celestia/blobstream/src/bridge/SequencerInbox.sol#L334-L360):
 
 Note that the data above is the bytes serialized version of this struct in Go:
 
