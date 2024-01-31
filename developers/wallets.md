@@ -7,6 +7,7 @@ description: How you can add Celestia network parameters to wallets.
 <!-- markdownlint-disable MD033 -->
 <script>
 import constants from '/.vitepress/constants/constants.js'
+</script>
 
 This page covers how developers can integrate Celestia chains
 with existing wallets.
@@ -131,8 +132,6 @@ export const MAINNET_PARAMS = {`{
   rpc: '{{constants.mainnetRpcUrl}}',
   rest: '{{constants.mainnetRestUrl}}'
 }`}
-
-{<AddNetworkKeplr params={MAINNET_PARAMS}/>}
 ```
 
 ```js-vue [Mocha]
@@ -144,8 +143,6 @@ export const MOCHA_PARAMS = {`{
   rpc: '{{constants.mochaRpcUrl}}',
   rest: '{{constants.mochaRestUrl}}'
 }`}
-
-{<AddNetworkKeplr params={MOCHA_PARAMS}/>}
 ```
 
 ```js-vue [Arabica]
@@ -157,8 +154,60 @@ export const ARABICA_PARAMS = {`{
   rpc: '{{constants.arabicaRpcUrl}}',
   rest: '{{constants.arabicaRestUrl}}'
 }`}
-
-{<AddNetworkKeplr params={ARABICA_PARAMS}/>}
 ```
 
 :::
+
+## Adding a custom chain to Leap
+
+If you want to add a custom chain to Leap, you can do so by:
+
+1. Clicking the Cosmos logo in the top corner of Leap wallet
+2. Scrolling down and clicking "Add new chain"
+
+You can
+then add the following parameters:
+
+- Chain Id: `{{ constants.arabicaChainId }}`
+- Chain Name: `Arabica devnet`
+- New RPC URL: `https://consensus-full.celestia-arabica-10.com`
+- New REST URL: `https://api.consensus.celestia-arabica-10.com`
+- Address Prefix: `celestia`
+- Native Denom: `utia`
+- Coin Type: `118`
+- Decimals: `6`
+- Block explorer URL (optional): `https://explorer.celestia-arabica-10.com`
+
+Now, click `Add chain` and you will be able to view your Arabica
+account balance and transactions in Leap wallet.
+
+You'll see that you're connected to Arabica Devnet.
+
+## Addding a custom chain to Cosmostation
+
+Click the hamburger menu icon in the top corner of Cosmostation
+wallet. Scroll down and click "Add Custom Chain"
+
+You can
+then add the following parameters:
+
+- Custom Chain name: `Mocha testnet`
+- Rest URL: `https://api-mocha.pops.one`
+- New RPC URL: `https://rpc-mocha.pops.one`
+- Currency symbol: `TIA`
+- Address prefix: `celestia`
+- Demon: `utia`
+- Symbol image URL (optional):
+  `https://raw.githubusercontent.com/cosmos/chain-registry/master/testnets/celestiatestnet/images/celestia.svg`
+- Explorer URL (optional): `https://testnet.mintscan.io/celestia-testnet`
+- Coin Type: `118`
+- Decimals: `6`
+- Gas rate Tiny: `0.1`
+- Gas rate Low: `0.25`
+- Gas rate Average: `0.5`
+
+Now, click `Add a custom chain` and you will be able to view your Celestia
+account balance and transactions in Cosmostation wallet.
+
+Switch chains to "Mocha testnet" and you'll see that you're connected
+to Celestia's Mocha testnet!
