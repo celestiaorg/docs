@@ -6,7 +6,7 @@
 import MainnetVersionTags from '../.vitepress/components/MainnetVersionTags.vue'
 </script>
 
-![Mainnet Beta](https://github.com/celestiaorg/docs/raw/main/public/img/Mainnet-Beta.png)
+![Mainnet Beta](/public/img/Mainnet-Beta.png)
 
 Welcome to the guide for Celestia’s Mainnet Beta, the production
 network that marks the pinnacle of Celestia’s evolution since its

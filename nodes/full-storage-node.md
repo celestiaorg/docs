@@ -15,7 +15,7 @@ storage nodes send block shares, headers, and fraud proofs to light nodes.
 The light nodes gossip headers, fraud proofs, and sometimes block shares,
 between one another.
 
-![Full storage node](https://github.com/celestiaorg/docs/raw/main/public/img/nodes/full-storage-node.png)
+![Full storage node](/public/img/nodes/full-storage-node.png)
 
 ## Hardware requirements
 

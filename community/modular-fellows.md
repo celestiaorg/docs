@@ -4,7 +4,7 @@ description: A program designed to support the future of scalable and sovereign 
 
 # Modular Fellows
 
-![Modular Fellows](https://github.com/celestiaorg/docs/raw/main/public/img/modular_fellows.jpg)
+![Modular Fellows](/public/img/modular_fellows.jpg)
 
 Modular Fellows is a program designed to empower modular builders with the
 right resources to build the future of scalable and sovereign blockchain networks.

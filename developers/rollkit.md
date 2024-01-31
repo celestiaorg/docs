@@ -6,7 +6,7 @@ description: Learn how to build Cosmos-SDK applications that connect to Celestia
 
 Validator nodes allow you to participate in consensus in the Celestia network.
 
-![rollkit](https://github.com/celestiaorg/docs/raw/main/public/img/rollkit.png)
+![rollkit](/public/img/rollkit.png)
 
 [Rollkit](https://rollkit.dev) is an ABCI
 (Application Blockchain Interface) implementation for sovereign

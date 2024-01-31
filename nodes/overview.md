@@ -29,7 +29,7 @@ Data Availability:
 You can learn more about how to setup each different node by going through
 each tutorial guide.
 
-![Banner](https://github.com/celestiaorg/docs/raw/main/public/img/node-requirements.jpg)
+![Banner](/public/img/node-requirements.jpg)
 
 Please provide any feedback on the tutorials and guides. If you notice
 a bug or issue, feel free to make a pull request or write up a Github

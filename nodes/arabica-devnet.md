@@ -4,7 +4,7 @@ description: A guide to Arabica devnet.
 
 # Arabica devnet
 
-![arabica-devnet](https://github.com/celestiaorg/docs/raw/main/public/img/arabica-devnet.png)
+![arabica-devnet](/public/img/arabica-devnet.png)
 
 Arabica devnet is a testnet from Celestia Labs that is focused
 exclusively on providing developers with enhanced performance and

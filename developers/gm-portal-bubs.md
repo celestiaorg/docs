@@ -38,7 +38,7 @@ forge script script/GmPortal.s.sol:GmPortalScript --rpc-url $BUBS_RPC_URL --priv
 
 <!-- markdownlint-enable MD013 -->
 
-![gm-contract](https://github.com/celestiaorg/docs/raw/main/public/img/gm_contract.png)
+![gm-contract](/public/img/gm_contract.png)
 
 In the output of the deployment, find the contract address and set it as a variable:
 
@@ -105,7 +105,7 @@ cp dev/gm-portal/contracts/out/GmPortal.sol/GmPortal.json dev/gm-portal/frontend
 
 Now, login with your wallet that you funded, and post a GM on your GM portal!
 
-![gm-bubs](https://github.com/celestiaorg/docs/raw/main/public/img/gm_bubs.png)
+![gm-bubs](/public/img/gm_bubs.png)
 
 ## Next steps
 

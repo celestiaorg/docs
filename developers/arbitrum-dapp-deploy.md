@@ -114,4 +114,4 @@ cp dev/gm-portal/contracts/out/GmPortal.sol/GmPortal.json dev/gm-portal/frontend
 
 Now, login with your wallet that you funded, and post a GM on your GM portal!
 
-![gm-arb](https://github.com/celestiaorg/docs/raw/main/public/img/gm-arb.png)
+![gm-arb](/public/img/gm-arb.png)

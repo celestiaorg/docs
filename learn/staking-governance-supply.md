@@ -35,7 +35,7 @@ TIA inflation starts at 8% annually and decreases by 10% every year until it
 reaches the long term issuance rate of 1.5%. Exact annual inflation rates can be
 found in the diagram below.
 
-![inflation diagram](https://github.com/celestiaorg/docs/raw/main/public/img/learn/Celestia_TIA_Inflation.png)
+![inflation diagram](/public/img/learn/Celestia_TIA_Inflation.png)
 
 The annual provisions for inflation are calculated based on the total supply of
 TIA at the beginning of each year. To calculate how many TIA to issue per block,
@@ -71,7 +71,7 @@ Learn how to
 Celestia will have a total supply of 1,000,000,000 TIA at genesis,
 split across five categories described in the chart and table below.
 
-![allocation diagram](https://github.com/celestiaorg/docs/raw/main/public/img/learn/Celestia_TIA_Allocation_at_Genesis.png)
+![allocation diagram](/public/img/learn/Celestia_TIA_Allocation_at_Genesis.png)
 
 | Category                  | Description                                                                                                                                                                                                                                   | %     |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
@@ -98,7 +98,7 @@ of the R&D & Ecosystem tokens and the tokens set aside for future initiatives.
 _The definitions for circulating and available supply were adapted from
 [Optimism’s definitions](https://community.optimism.io/docs/governance/allocations/#token-distribution-details)._
 
-![supply diagram](https://github.com/celestiaorg/docs/raw/main/public/img/learn/Celestia_TIA_Available_Supply.png)
+![supply diagram](/public/img/learn/Celestia_TIA_Available_Supply.png)
 
 Unlock schedule by category is described in the table below.
 

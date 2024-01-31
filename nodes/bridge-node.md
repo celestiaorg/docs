@@ -20,7 +20,7 @@ A Celestia bridge node has the following properties:
 2. Validate and erasure code the “raw” blocks
 3. Supply block shares with data availability headers to light nodes in the DA network.
 
-![bridge-node-diagram](https://github.com/celestiaorg/docs/raw/main/public/img/nodes/BridgeNodes.png)
+![bridge-node-diagram](/public/img/nodes/BridgeNodes.png)
 
 From an implementation perspective, Bridge nodes run two separate processes:
 

@@ -115,7 +115,7 @@ range of namespaces of all its descendants. The following figure shows an
 example of an NMT with height three (_i.e._, eight data chunks). The data is
 partitioned into three namespaces.
 
-![Namespaced Merkle Tree](https://github.com/celestiaorg/docs/raw/main/public/img/learn/nmt.png)
+![Namespaced Merkle Tree](/public/img/learn/nmt.png)
 
 When an application requests the data for namespace 2, the DA layer must
 provide the data chunks `D3`, `D4`, `D5`, and `D6` and the nodes `N2`, `N8`
@@ -142,7 +142,7 @@ an application that provides transactions to facilitate the DA layer and is buil
 using [Cosmos SDK](https://docs.cosmos.network/main). The following figure
 shows the main components of celestia-app.
 
-![Main components of celestia-app](https://github.com/celestiaorg/docs/raw/main/public/img/learn/celestia-app.png)
+![Main components of celestia-app](/public/img/learn/celestia-app.png)
 
 celestia-app is built on top of [celestia-core](https://github.com/celestiaorg/celestia-core),
 a modified version of the [Tendermint consensus algorithm](https://arxiv.org/abs/1807.04938).
