@@ -1,8 +1,5 @@
 ---
 description: This is a guide on transaction resubmission on Celestia.
-prev:
-  text: "Helpful CLI commands"
-  link: "/nodes/celestia-app-commands"
 ---
 
 # Transaction resubmission

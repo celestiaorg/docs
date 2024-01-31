@@ -1,8 +1,5 @@
 ---
 description: Learn how to generate a Celestia wallet using celestia-app.
-prev:
-  text: "Deploy an OP Stack devnet to Celestia"
-  link: "/developers/optimism"
 ---
 
 # Create a wallet with celestia-app

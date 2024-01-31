@@ -1,8 +1,5 @@
 ---
 description: Start your own devnet with a modified version of optimism-bedrock.
-next:
-  text: "Wallet with celestia-app"
-  link: "/developers/celestia-app-wallet"
 ---
 
 # Deploy an OP Stack devnet to Celestia

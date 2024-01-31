@@ -512,10 +512,6 @@ function sidebarHome() {
                 },
               ],
             },
-            {
-              text: "Transaction resubmission guidelines",
-              link: "/nodes/transaction-resubmission",
-            },
             { text: "SystemD", link: "/nodes/systemd" },
             { text: "Hardfork process", link: "/nodes/hardfork-process" },
           ],
@@ -530,6 +526,10 @@ function sidebarHome() {
         {
           text: "Submitting data blobs to Celestia",
           link: "/developers/submit-data",
+        },
+        {
+          text: "Transaction resubmission guidelines",
+          link: "/developers/transaction-resubmission",
         },
         {
           text: "Node API",
