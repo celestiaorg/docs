@@ -1118,7 +1118,7 @@ as default unless otherwise specified.
 <!-- markdownlint-disable MD029 -->
 
 1. In your terminal, set the auth token for the desired network. In this
-example, we will use Mainnet Beta.
+   example, we will use Mainnet Beta.
 
 ```bash
 export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network celestia)

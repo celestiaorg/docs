@@ -2,7 +2,7 @@
 description: How you can add Celestia network parameters to wallets.
 ---
 
-# Wallet integration with Celestia
+# Wallet integrations with Celestia
 
 <!-- markdownlint-disable MD033 -->
 <script>
@@ -36,7 +36,6 @@ params for it:
 <!-- markdownlint-disable MD013 -->
 
 ```jsx [Keplr]
-
 // @site/src/components/AddNetworkKeplr.js
 import React from "react";
 import styles from "./Keplr.module.css";
