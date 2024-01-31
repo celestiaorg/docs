@@ -479,8 +479,8 @@ function sidebarHome() {
               collapsed: true,
               items: [
                 {
-                  text: "Wallets in celestia-app",
-                  link: "/nodes/celestia-app-wallet",
+                  text: "Specifications",
+                  link: "https://celestiaorg.github.io/celestia-app/",
                 },
                 {
                   text: "Metrics, visualization, and alerts",
@@ -499,12 +499,12 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-upgrade-monitor",
                 },
                 {
-                  text: "Multisig",
-                  link: "/nodes/celestia-app-multisig",
+                  text: "Wallets in celestia-app",
+                  link: "/nodes/celestia-app-wallet",
                 },
                 {
-                  text: "Specifications",
-                  link: "https://celestiaorg.github.io/celestia-app/",
+                  text: "Multisig",
+                  link: "/nodes/celestia-app-multisig",
                 },
                 {
                   text: "Create a vesting account",
