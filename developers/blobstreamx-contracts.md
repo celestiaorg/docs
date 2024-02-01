@@ -1,5 +1,5 @@
 ---
-sidebar_label: Integrate with BlobstreamX contracts
+sidebar_label: Integrate with Blobstream X contracts
 description: Learn how to integrate your L2's onchain logic with Blobstream
 ---
 
@@ -13,9 +13,9 @@ Make sure to have the following installed:
 
 - [Foundry](https://github.com/foundry-rs/foundry)
 
-### Installing BlobstreamX contracts
+### Installing Blobstream X contracts
 
-Install the BlobstreamX contracts repo as a dependency:
+Install the Blobstream X contracts repo as a dependency:
 
 ```sh
 forge install TBD --no-commit
@@ -27,7 +27,7 @@ contracts is `0.8.19`.
 ### Example usage
 
 Example minimal Solidity contract for a stub ZK rollup that leverages the
-BlobstreamX contract to check that data has been posted to Celestia:
+`BlobstreamX.sol` contract to check that data has been posted to Celestia:
 
 ```solidity
 // SPDX-License-Identifier: Apache-2.0
@@ -94,18 +94,18 @@ verifying a Merkle inclusion proof.
 
 The [`IDAOracle`](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/IDAOracle.sol)
 (**D**ata **A**vailability **O**racle Interface) interface allows L2 contracts
-on Ethereum to query the BlobstreamX contract for relayed `DataRootTuple`s. The
-single interface method `verifyAttestation` verifies a Merkle inclusion proof
-that a `DataRootTuple` is included under a specific batch (indexed by batch
-nonce). In other words, analogously it verifies that a specific block header is
-included in the canonical Celestia chain.
+on Ethereum to query the `BlobstreamX.sol` contract for relayed `DataRootTuple`s.
+The single interface method `verifyAttestation` verifies a Merkle inclusion
+proof that a `DataRootTuple` is included under a specific batch (indexed by
+batch nonce). In other words, analogously it verifies that a specific block
+header is included in the canonical Celestia chain.
 
 ## Querying the proof
 
 To prove that the data was published to Celestia, check out the
 [proof queries documentation](./blobstreamx-proof-queries.md)
 to understand how to query the proofs from Celestia consensus
-nodes and make them usable in the BlobstreamX verifier contract.
+nodes and make them usable in the Blobstream X verifier contract.
 
 ## Verifying data inclusion for fraud proofs
 
@@ -120,27 +120,27 @@ against a `DataRootTuple`. The library is stateless, and allows to pass an
 
 In the `DAVerifier` library, we find functions that help
 with data inclusion verification and calculating the square size of a
-Celestia block. These functions work with the BlobstreamX smart contract,
+Celestia block. These functions work with the Blobstream X smart contract,
 using different proofs to check and confirm the data's availability. Let's
 take a closer look at these functions:
 
 - [`verifySharesToDataRootTupleRoot`](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/DAVerifier.sol#L80-L124):
   This function verifies that the
-  shares, which were posted to Celestia, were committed to by the BlobstreamX
+  shares, which were posted to Celestia, were committed to by the Blobstream X
   smart contract. It checks that the data root was committed to by the
-  BlobstreamX smart contract and that the shares were committed to by the
+  Blobstream X smart contract and that the shares were committed to by the
   rows roots.
 - [`verifyRowRootToDataRootTupleRoot`](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/DAVerifier.sol#L133-L155):
   This function verifies that a
   row/column root, from a Celestia block, was committed to by the
-  BlobstreamX smart contract. It checks that the data root was committed
-  to by the BlobstreamX smart contract and that the row root commits to
+  Blobstream X smart contract. It checks that the data root was committed
+  to by the Blobstream X smart contract and that the row root commits to
   the data root.
 - [`verifyMultiRowRootsToDataRootTupleRoot`](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/DAVerifier.sol#L164-L194):
   This function verifies
   that a set of rows/columns, from a Celestia block, were committed
-  to by the BlobstreamX smart contract. It checks that the data root was
-  committed to by the BlobstreamX smart contract and that the rows roots
+  to by the Blobstream X smart contract. It checks that the data root was
+  committed to by the Blobstream X smart contract and that the rows roots
   commit to the data root.
 - [`computeSquareSizeFromRowProof`](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/DAVerifier.sol#L204-L215):
   This function computes the Celestia

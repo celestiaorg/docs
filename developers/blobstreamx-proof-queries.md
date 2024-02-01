@@ -1,8 +1,8 @@
 ---
-description: Learn how to query the inclusion proofs used in BlobstreamX
+description: Learn how to query the inclusion proofs used in Blobstream X
 ---
 
-# BlobstreamX proofs queries
+# Blobstream X proofs queries
 
 <!-- markdownlint-disable MD010 -->
 
@@ -17,7 +17,7 @@ description: Learn how to query the inclusion proofs used in BlobstreamX
 To prove the inclusion of PayForBlob (PFB) transactions, blobs or shares,
 committed to in a Celestia block, we use the Celestia consensus node's RPC to
 query for proofs that can be verified in a Rollup settlement contract via
-BlobstreamX. In fact, when a PFB transaction is included in a block, it
+Blobstream X. In fact, when a PFB transaction is included in a block, it
 gets separated into a PFB transaction (without the blob), and the actual
 data blob that it carries. These two are split into shares, which are the
 low level constructs of a Celestia block, and saved to the corresponding
@@ -45,7 +45,7 @@ portion of the specs.
 ![Blobstream Commitment Diagram](/img/blobstream/blobstream-commitment-diagram.png)
 
 So to prove inclusion of a share to a Celestia block, we use Blobstream X
-as a source of truth, more information on BlobstreamX can be found in
+as a source of truth, more information on Blobstream X can be found in
 [the overview](./blobstream.md#blobstream-x). In a nutshell, Blobstream X
 attests to the data posted to Celestia in the Blobstream X contract via
 verifying a zk-proof of the headers of a batch of Celestia blocks. Then, it
@@ -67,7 +67,7 @@ Check the above diagram which shows:
 - 3: in order to batch multiple blocks into the same commitment, we create
   a commitment over the `(dataRoot, height)` tuple for a batch of blocks,
   which results in a data root tuple root. It's this commitment that gets
-  stored in the BlobstreamX smart contract.
+  stored in the Blobstream X smart contract.
 
 So, if we're able to prove that a share is part of a row, then that row is
 committed to by a data root. Then, prove that that data root along with its
@@ -108,7 +108,7 @@ Also, make sure to update the versions to match the latest
 
 ### 1. Data root inclusion proof
 
-To prove the data root is committed to by the BlobstreamX smart
+To prove the data root is committed to by the Blobstream X smart
 contract, we will need to provide a Merkle proof of the data root
 tuple to a data root tuple root. This can be created using the
 [`data_root_inclusion_proof`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L492-L511)
@@ -118,7 +118,7 @@ This [endpoint](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732a
 allows querying a data root to data root tuple root proof. It takes a block
 `height`, a starting block, and an end block, then it generates the binary
 Merkle proof of the `DataRootTuple`, corresponding to that `height`,
-to the `DataRootTupleRoot` which is committed to in the BlobstreamX contract.
+to the `DataRootTupleRoot` which is committed to in the Blobstream X contract.
 
 The endpoint can be queried using the golang client:
 
@@ -155,7 +155,7 @@ func main() {
 
 <!-- markdownlint-disable MD013 -->
 
-### Full example of proving that a Celestia block was committed to by BlobstreamX contract
+### Full example of proving that a Celestia block was committed to by Blobstream X contract
 
 ```go
 package main
@@ -944,7 +944,7 @@ func verify() error {
 	// check the first section for this part of the implementation
 
 	// get the nonce corresponding to the block height that contains the PayForBlob transaction
-	// since BlobstreamX emits events when new batches are submitted, we will query the events
+	// since Blobstream X emits events when new batches are submitted, we will query the events
 	// and look for the range committing to the blob
 	// first, connect to an EVM RPC endpoint
 	ethClient, err := ethclient.Dial("evm_rpc_endpoint")
@@ -1150,7 +1150,7 @@ for more information.
 After creating all the proofs, and verifying them:
 
 1. Verify inclusion proof of the transaction to Celestia data root
-2. Prove that the data root tuple is committed to by the BlobstreamX smart
+2. Prove that the data root tuple is committed to by the Blobstream X smart
    contract
 
 We can be sure that the data was published to Celestia, and then rollups can

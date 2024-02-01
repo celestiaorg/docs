@@ -14,16 +14,14 @@ on Ethereum, for integration by developers into L2 contracts. This enables Ether
 developers to build high-throughput L2s using Celestia's optimised DA layer,
 the first with Data Availability Sampling (DAS).
 
-A new and improved version of Blobstream, BlobstreamX, is out and will
+A new and improved version of Blobstream, Blobstream X, is out and will
 replace Blobstream. This latter proves Celestia block headers on the
 target EVM chain using zk-proofs which allows inheriting all the security
 guarantees of Celestia.
 
 ## Blobstream X
 
-![blobstream x](/img/blobstream/blobstream_x.png)
-
-BlobstreamX is a ZK light client that bridges Celestia’s modular DA layer to
+Blobstream X is a ZK light client that bridges Celestia’s modular DA layer to
 Ethereum to allow high-throughput rollups to use Celestia’s DA while settling
 on Ethereum.
 
@@ -48,18 +46,37 @@ in the block range from the previous update to the current update, making
 accessible all Celestia data roots (verifiable with a Merkle inclusion proof
 against the stored Merkle root) to rollups.
 
-TODO: GRAPHIC HERE
-
 Blobstream X is built and deployed with
 [Succinct’s unified proving stack](https://succinct.xyz/).
 
-## Integrate with BlobstreamX
+![blobstream x draft diagram](/img/blobstream/blobstream_x_draft_diagram.png)
 
-The following docs go over how developers can integrate BlobstreamX.
+## Integrate with Blobstream X
 
-## Overview
+The following docs go over how developers can integrate Blobstream X.
 
-TBD
+### Overview
+
+You can [find the repository for Blobstream X](https://github.com/succinctlabs/blobstreamx)
+along with code for:
+
+- The Blobstream X smart contract - [`BlobstreamX.sol`](https://github.com/succinctlabs/blobstreamx/blob/main/contracts/src/BlobstreamX.sol)
+- [The Blobstream X circuits](https://alpha.succinct.xyz/celestia/blobstreamx)
+
+Canonical deployments of Blobstream X will be maintained on the
+following chains: Arbitrum One, Base and Ethereum Mainnet. Every 4
+hours, Succinct will post an update to the Blobstream X contract
+that will include a new data commitment range that covers a 4-hour
+block range from the `latestBlock` in the Blobstream X contract.
+
+As shown in the diagram below, the entrypoint for updates to the Blobstream
+X contract is through the `SuccinctGateway` smart contract, which is a
+simple entrypoint contract that verifies proofs (against a deployed
+onchain verifier for the Blobstream X circuit) and then calls the
+`BlobstreamX.sol` contract to update it. More information about the
+`SuccinctGateway` can be found here: [TODO].
+
+![blobstream x overview diagram draft](/img/blobstream/blobstream_x_overview_diagram_draft.png)
 
 <!-- markdownlint-disable MD042 -->
 
@@ -69,19 +86,19 @@ deployed before it is used by the prover/relayer. See the
 [deployment documentation (TBD)]() for more details.
 :::
 
-## How BlobstreamX works
+## How Blobstream X works
 
-TBD
+### Proving data attestations with Blobstream X
 
 ## How to integrate
 
-Integrating your L2 with BlobstreamX requires two components: your onchain smart
+Integrating your L2 with Blobstream X requires two components: your onchain smart
 contract logic, and your offchain client logic. The next three sections cover these
 topics:
 
-- [Integrate with BlobstreamX contracts](./blobstreamx-contracts.md)
-- [Integrate with BlobstreamX client](./blobstreamx-offchain.md)
-- [Querying the BlobstreamX proofs](./blobstreamx-proof-queries.md)
+- [Integrate with Blobstream X contracts](./blobstreamx-contracts.md)
+- [Integrate with Blobstream X client](./blobstreamx-offchain.md)
+- [Querying the Blobstream X proofs](./blobstreamx-proof-queries.md)
 
 ### Deployed contracts
 
@@ -101,32 +118,32 @@ TBD (Add: Sepolia, Arbitrum Sepolia, and eventually the others).
 
 <!-- markdownlint-enable MD013 -->
 
-## BlobstreamX vs. data availability committees (DACs)
+## Blobstream X vs. data availability committees (DACs)
 
 ### Decentralization and security
 
 BlobstreamX is built on Celestia, which uses a CometBFT-based proof-of-stake
-system. BlobstreamX shares the same security assumptions
+system. Blobstream X shares the same security assumptions
 as Celestia. In contrast, data availability committees (DACs), are typically
 centralized or semi-centralized, relying on a specific set of entities or
 individuals to vouch for data availability.
 
 ### Mechanism of verification
 
-BlobstreamX uses data availability attestations, which are Merkle roots of
+Blobstream X uses data availability attestations, which are Merkle roots of
 the batched L2 data, to confirm that the necessary data is present on Celestia.
-The L2 contract on Ethereum can check directly with BlobstreamX if the data
+The L2 contract on Ethereum can check directly with Blobstream X if the data
 is published on Celestia. Similarly, a DAC would rely on
 attestations or confirmations from its permissioned members.
 
 ### Flexibility and scalability
 
-BlobstreamX is designed to offer high-throughput data availability for Ethereum L2s,
-aiming to strike a balance between scalability and security. It operates
+Blobstream X is designed to offer high-throughput data availability for Ethereum
+L2s, aiming to strike a balance between scalability and security. It operates
 independently of Ethereum's gas costs, as Celestia's resource pricing is more
 byte-focused rather than computation-centric. On the other hand, the scalability
 and flexibility of a DAC would depend on its specific design and implementation.
 
-In summary, both BlobstreamX and DACs aim to ensure offchain data availability,
-but BlobstreamX offers a more decentralized, secure, and scalable solution
+In summary, both Blobstream X and DACs aim to ensure offchain data availability,
+but Blobstream X offers a more decentralized, secure, and scalable solution
 compared to the potential centralized nature of DACs.
