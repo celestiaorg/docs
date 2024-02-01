@@ -77,6 +77,7 @@ to this version so that the tutorial works for anyone using it ATM. -->
 ```bash
 git clone https://github.com/celestiaorg/nitro.git && cd nitro/
 git fetch --all
+# This is using a stable commit on https://github.com/celestiaorg/nitro/tree/celestia-development
 git checkout c6f5ac2
 git submodule update --init
 git submodule update --init --recursive
