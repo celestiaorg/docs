@@ -69,6 +69,8 @@ hours, Succinct will post an update to the Blobstream X contract
 that will include a new data commitment range that covers a 4-hour
 block range from the `latestBlock` in the Blobstream X contract.
 
+### How Blobstream X works
+
 As shown in the diagram below, the entrypoint for updates to the Blobstream
 X contract is through the `SuccinctGateway` smart contract, which is a
 simple entrypoint contract that verifies proofs (against a deployed
@@ -85,10 +87,6 @@ If the contract is still not deployed, then it needs to be
 deployed before it is used by the prover/relayer. See the
 [deployment documentation (TBD)]() for more details.
 :::
-
-## How Blobstream X works
-
-### Proving data attestations with Blobstream X
 
 ## How to integrate
 
