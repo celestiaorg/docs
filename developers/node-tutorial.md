@@ -1115,7 +1115,7 @@ Using either IP or DNS assumes RPC port 26657 and gRPC port 9090
 as default unless otherwise specified.
 
 1. In your terminal, set the auth token for the desired network. In this
-example, we will use Mainnet Beta.
+    example, we will use Mainnet Beta.
 
     ```bash
     export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network celestia)

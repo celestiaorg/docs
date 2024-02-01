@@ -8,7 +8,7 @@ description: Learn how to integrate your L2's offchain logic with BlobstreamX
 
 Rollups can use the BlobstreamX for DA by posting their data to Celestia and then
 proving that it was posted on Ethereum. This is done identically to how any
-rollup or user would post data to Celestia, and then a zk-proof of the Celestia 
+rollup or user would post data to Celestia, and then a zk-proof of the Celestia
 block headers is created then relayed to Ethereum via a light client relay
 (aka BlobstreamX!). This demo will outline (note outline is not an
 implementation! please do not expect to copy and paste this code 🙂) a very

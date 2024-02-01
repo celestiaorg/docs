@@ -4,6 +4,8 @@ description: Learn how to query the inclusion proofs used in BlobstreamX
 
 # BlobstreamX proofs queries
 
+<!-- markdownlint-disable MD010 -->
+
 ## Prerequisites
 
 - Access to a Celestia [consensus full node](../nodes/consensus-node.md)
@@ -12,21 +14,23 @@ description: Learn how to query the inclusion proofs used in BlobstreamX
 
 ## Overview of the proof queries
 
-To prove the inclusion of PayForBlob (PFB) transactions, blobs or shares, committed to in a 
-Celestia block, we use the Celestia consensus node's RPC to
-query for proofs that can be verified in a Rollup settlement contract via BlobstreamX.
-In fact, when a PFB transaction is included in a block, it gets
-separated into a PFB transaction (without the blob), and the actual data blob that it carries.
-These two are split into shares, which are the low level constructs of a Celestia block, and
-saved to the corresponding Celestia block. Learn more about shares in the 
+To prove the inclusion of PayForBlob (PFB) transactions, blobs or shares,
+committed to in a Celestia block, we use the Celestia consensus node's RPC to
+query for proofs that can be verified in a Rollup settlement contract via
+BlobstreamX. In fact, when a PFB transaction is included in a block, it
+gets separated into a PFB transaction (without the blob), and the actual
+data blob that it carries. These two are split into shares, which are the
+low level constructs of a Celestia block, and saved to the corresponding
+Celestia block. Learn more about shares in the
 [shares specs](https://celestiaorg.github.io/celestia-app/specs/shares.html).
 
-The two diagrams below summarize how a single share, which can contain a PFD transaction,
-or a part of the rollup data that was posted using a PFB, is committed to in BlobstreamX.
+The two diagrams below summarize how a single share, which can contain a
+PFB transaction, or a part of the rollup data that was posted using a PFB,
+is committed to in Blobstream X.
 
-The share is highlighted in green. `R0`, `R1` etc, represent the respective row and
-column roots, the blue and pink gradients are erasure encoded data. More details
-on the square layout can be found
+The share is highlighted in green. `R0`, `R1` etc, represent the respective
+row and column roots, the blue and pink gradients are erasure encoded data.
+More details on the square layout can be found
 [in the data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md)
 and
 [data structures](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_structures.md#erasure-coding)
@@ -40,65 +44,73 @@ portion of the specs.
 
 ![Blobstream Commitment Diagram](/img/blobstream/blobstream-commitment-diagram.png)
 
-So to prove inclusion of a share to a Celestia block, we use BlobstreamX as a source of truth,
-more information on BlobstreamX can be found in [TODO add link](). In a nutshell, BlobstreamX
-attests to the data posted to Celestia in the BlobstreamX contract via verifying a zk-proof
-of the headers of a batch of Celestia blocks. Then, it keeps reference of that batch of blocks
-using the merkleized commitment of their `(dataRoot, height)` resulting in a 
-`data root tuple root`. Check the above diagram which shows:
+So to prove inclusion of a share to a Celestia block, we use Blobstream X
+as a source of truth, more information on BlobstreamX can be found in
+[the overview](./blobstream.md#blobstream-x). In a nutshell, Blobstream X
+attests to the data posted to Celestia in the Blobstream X contract via
+verifying a zk-proof of the headers of a batch of Celestia blocks. Then, it
+keeps reference of that batch of blocks using the merkleized commitment
+of their `(dataRoot, height)` resulting in a `data root tuple root`.
+Check the above diagram which shows:
 
 - 0: those are the shares, that when unified, contain the PFB or the rollup
-data blob.
-- 1: the row and column roots are the namespace merkle tree roots over 
-the shares. More information on the NMT in the 
-[nmt specs](https://celestiaorg.github.io/celestia-app/specs/data_structures.html?highlight=namespace%20merkle#namespace-merkle-tree).
-These commit to the rows and columns containing the above shares.
-- 2: the data roots: which are the binary merkle tree commitment over 
-the row and column roots. This means that if you can prove that a share
-is part of a row, using a namespace merkle proof. Then prove that this 
-row is committed to by the data root. Then you can be sure that that share
-was published to the corresponding block.
+  data blob.
+- 1: the row and column roots are the namespace merkle tree roots over
+  the shares. More information on the NMT in the
+  [nmt specs](https://celestiaorg.github.io/celestia-app/specs/data_structures.html?highlight=namespace%20merkle#namespace-merkle-tree).
+  These commit to the rows and columns containing the above shares.
+- 2: the data roots: which are the binary merkle tree commitment over
+  the row and column roots. This means that if you can prove that a share
+  is part of a row, using a namespace merkle proof. Then prove that this
+  row is committed to by the data root. Then you can be sure that that share
+  was published to the corresponding block.
 - 3: in order to batch multiple blocks into the same commitment, we create
-a commitment over the `(dataRoot, height)` tuple for a batch of blocks, 
-which results in a data root tuple root. It's this commitment that gets
-stored in the BlobstreamX smart contract.
+  a commitment over the `(dataRoot, height)` tuple for a batch of blocks,
+  which results in a data root tuple root. It's this commitment that gets
+  stored in the BlobstreamX smart contract.
 
 So, if we're able to prove that a share is part of a row, then that row is
-committed to by a data root. Then, prove that that data root along with its height
-is committed to by the data root tuple root, which gets saved to the BlobstreamX 
-contract, we can be sure that that share was committed to in the corresponding
-Celestia block.
+committed to by a data root. Then, prove that that data root along with its
+height is committed to by the data root tuple root, which gets saved to the
+Blobstream X contract, we can be sure that that share was committed to in
+the corresponding Celestia block.
 
-In this document, we will provide details on how to query the above proofs, and
-how to adapt them to be sent to a rollup contract for verification. 
+In this document, we will provide details on how to query the above proofs,
+and how to adapt them to be sent to a rollup contract for verification.
 
 ## Hands-on lab
 
 This part will provide the details of proof generation, and the way to
-make the results of the proofs queries ready to be consumed by the 
+make the results of the proofs queries ready to be consumed by the
 target rollup contract.
 
 :::tip NOTE
-For the go client snippets, make sure to have the following replaces in your `go.mod`:
+For the go client snippets, make sure to have the following replaces in
+your `go.mod`:
 
+<!-- markdownlint-disable MD013 -->
 ```go
-replace (
+// go.mod
     github.com/cosmos/cosmos-sdk => github.com/celestiaorg/cosmos-sdk v1.18.3-sdk-v0.46.14
     github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
-	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
+    github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
     github.com/tendermint/tendermint => github.com/celestiaorg/celestia-core v1.32.0-tm-v0.34.29
+
 )
 ```
 
-Also, make sure to update the versions to match the latest `github.com/celestiaorg/cosmos-sdk` and
+<!-- markdownlint-enable MD013 -->
+
+Also, make sure to update the versions to match the latest
+`github.com/celestiaorg/cosmos-sdk` and
 `github.com/celestiaorg/celestia-core` versions.
 :::
 
 ### 1. Data root inclusion proof
 
-To prove the data root is committed to by the BlobstreamX smart contract, we will
-need to provide a Merkle proof of the data root tuple to a data root tuple root.
-This can be created using the
+To prove the data root is committed to by the BlobstreamX smart
+contract, we will need to provide a Merkle proof of the data root
+tuple to a data root tuple root. This can be created using the
 [`data_root_inclusion_proof`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L492-L511)
 query.
 
@@ -139,7 +151,9 @@ func main() {
 	}
 	fmt.Println(dcProof.Proof.String())
 }
-```
+````
+
+<!-- markdownlint-disable MD013 -->
 
 ### Full example of proving that a Celestia block was committed to by BlobstreamX contract
 
@@ -193,8 +207,10 @@ func verify() error {
 		return err
 	}
 
-	// get the nonce corresponding to the block height that contains the PayForBlob transaction
-	// since BlobstreamX emits events when new batches are submitted, we will query the events
+	// get the nonce corresponding to the block height that contains
+	// the PayForBlob transaction
+	// since BlobstreamX emits events when new batches are submitted,
+	// we will query the events
 	// and look for the range committing to the blob
 	// first, connect to an EVM RPC endpoint
 	ethClient, err := ethclient.Dial("evm_rpc_endpoint")
@@ -308,6 +324,8 @@ func VerifyDataRootInclusion(
 }
 ```
 
+<!-- markdownlint-enable MD013 -->
+
 ### 2. Transaction inclusion proof
 
 To prove that a rollup transaction is part of the data root, we will need to
@@ -345,7 +363,8 @@ The endpoint can be queried using the golang client:
 
 ## Converting the proofs to be usable in the `DAVerifier` library
 
-Smart contracts that use the `DAVerifier` library takes the following proof format:
+Smart contracts that use the `DAVerifier` library takes the following proof
+format:
 
 <!-- markdownlint-disable MD013 -->
 
@@ -422,7 +441,8 @@ So, we can construct the `NamespaceMerkleMultiproof` with the following mapping:
 - `endKey` in the Solidity struct **==** `end` in the query response
 - `sideNodes` in the Solidity struct **==** `nodes` in the query response
 
-- The `NamespaceNode`, which is the type of the `sideNodes`, is defined as follows:
+- The `NamespaceNode`, which is the type of the `sideNodes`, is defined as
+  follows:
 
 ```solidity
 /// @notice Namespace Merkle Tree node.
@@ -468,6 +488,7 @@ test.
 
 A golang helper that can be used to make this conversion is as follows:
 
+<!-- markdownlint-disable MD013 -->
 ```go
 func toNamespaceMerkleMultiProofs(proofs []*tmproto.NMTProof) []client.NamespaceMerkleMultiproof {
 	shareProofs := make([]client.NamespaceMerkleMultiproof, len(proofs))
@@ -728,18 +749,22 @@ func toAttestationProof(
 
 with the `nonce` being the attestation nonce, which can be retrieved using `BlobstreamX`
 contract events. Check below for an example. And `height` being the Celestia
-Block height that contains the rollup data, along with the `blockDataRoot` being 
+Block height that contains the rollup data, along with the `blockDataRoot` being
 the data root of the block height. Finally, `dataRootInclusionProof` is the
 Celestia block data root inclusion proof to the data root tuple root that
 was queried in the begining of this page.
 
 If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 
-- `dataRoot`: can be queried using the `/block?height=15` query (`15` in this
-  example endpoint), and taking the `data_hash` field from the response.
-- `tupleRootNonce`: can be retried via querying the `BlobstreamXDataCommitmentStored`
-  events from the BlobstreamX contract and looking for the nonce attesting to the
+- `dataRoot`: can be queried using the `/block?height=15` query
+  (`15` in this example endpoint), and taking the `data_hash`
+  field from the response.
+- `tupleRootNonce`: can be retried via querying the
+  `BlobstreamXDataCommitmentStored` events from the BlobstreamX
+  contract and looking for the nonce attesting to the
   corresponding data. An example:
+
+<!-- markdownlint-disable MD013 -->
 
 ```go
 	// get the nonce corresponding to the block height that contains the PayForBlob transaction
@@ -776,7 +801,7 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 	if err != nil {
 		return err
 	}
-	
+
 	var event *blobstreamxwrapper.BlobstreamXDataCommitmentStored
 	for eventsIterator.Next() {
 		e := eventsIterator.Event
@@ -804,8 +829,8 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 
 ### Listening for new data commitments
 
-For listening for new `BlobstreamXDataCommitmentStored` events, sequencers can use 
-the `WatchDataCommitmentStored` as follows:
+For listening for new `BlobstreamXDataCommitmentStored` events, sequencers can
+use the `WatchDataCommitmentStored` as follows:
 
 ```go
     ethClient, err := ethclient.Dial("evm_rpc")
@@ -817,7 +842,7 @@ the `WatchDataCommitmentStored` as follows:
     if err != nil {
 	    return err
     }
-	
+
     eventsChan := make(chan *blobstreamxwrapper.BlobstreamXDataCommitmentStored, 100)
     subscription, err := blobstreamWrapper.WatchDataCommitmentStored(
 	    &bind.WatchOpts{
@@ -826,7 +851,7 @@ the `WatchDataCommitmentStored` as follows:
 	    eventsChan,
 	    nil,
 	    nil,
-	    nil, 
+	    nil,
 	)
     if err != nil {
 	    return err
@@ -846,12 +871,16 @@ the `WatchDataCommitmentStored` as follows:
     }
 ```
 
-Then, new proofs can be created as documented above using the new 
+<!-- markdownlint-enable MD013 -->
+
+Then, new proofs can be created as documented above using the new
 data commitments contained in the received events.
 
 ### Example rollup that uses the DAVerifier
 
 An example rollup that uses the DAVerifier can be as simple as:
+
+<!-- markdownlint-disable MD013 -->
 
 ```solidity
 pragma solidity ^0.8.22;
@@ -910,7 +939,7 @@ func main() {
 func verify() error {
 	ctx := context.Background()
 
-	
+
 	// ...
 	// check the first section for this part of the implementation
 
@@ -929,7 +958,7 @@ func verify() error {
 
 	// now we will create the shares proof to be verified by the SimpleRollup
 	// contract that uses the DAVerifier library
-	
+
 	// get the proof of the shares containing the blob to the data root
 	sharesProof, err := trpc.ProveShares(ctx, 16, uint64(blobShareRange.Start), uint64(blobShareRange.End))
 	if err != nil {
@@ -1121,10 +1150,11 @@ for more information.
 After creating all the proofs, and verifying them:
 
 1. Verify inclusion proof of the transaction to Celestia data root
-2. Prove that the data root tuple is committed to by the BlobstreamX smart contract
+2. Prove that the data root tuple is committed to by the BlobstreamX smart
+   contract
 
-We can be sure that the data was published to Celestia, and then rollups can proceed
-with their normal fraud proving mechanism.
+We can be sure that the data was published to Celestia, and then rollups can
+proceed with their normal fraud proving mechanism.
 
 :::tip NOTE
 The above proof constructions are implemented in Solidity,

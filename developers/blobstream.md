@@ -2,7 +2,7 @@
 description: Learn how to integrate your L2 with Blobstream
 ---
 
-# Integrate with Blobstream
+# Blobstream: Streaming modular DA to Ethereum
 
 ![Blobstream logo](/img/blobstream/blobstream_logo.png)
 
@@ -19,13 +19,49 @@ replace Blobstream. This latter proves Celestia block headers on the
 target EVM chain using zk-proofs which allows inheriting all the security
 guarantees of Celestia.
 
-# Integrate with BlobstreamX
+## Blobstream X
+
+![blobstream x](/img/blobstream/blobstream_x.png)
+
+BlobstreamX is a ZK light client that bridges Celestia’s modular DA layer to
+Ethereum to allow high-throughput rollups to use Celestia’s DA while settling
+on Ethereum.
+
+Optimistic or ZK rollups that settle on Ethereum but wish to use Celestia for
+DA require a mechanism for _bridging_ Celestia’s data root to Ethereum as part
+of the settlement process. This data root is used during validity proofs to
+prove that particular rollup transactions were included and made available in
+the Celestia network.
+
+Bridging Celestia’s data root to Ethereum requires running a Celestia
+_light client_ as a smart contract on Ethereum, to make the latest state
+of the Celestia chain known on Ethereum and available to rollups. Blobstream
+X utilizes the latest advances in zero-knowledge proofs to generate a
+_succinct proof_ that enough Celestia validators have come to consensus
+(according to the Tendermint consensus protocol) on a block header, and
+verifies this proof in the Blobstream X Ethereum smart contract to update
+it with the latest Celestia header.
+
+The Blobstream X zero-knowledge proof not only verifies the consensus of
+Celestia validators, but it also merkelizes and hashes all the data roots
+in the block range from the previous update to the current update, making
+accessible all Celestia data roots (verifiable with a Merkle inclusion proof
+against the stored Merkle root) to rollups.
+
+TODO: GRAPHIC HERE
+
+Blobstream X is built and deployed with
+[Succinct’s unified proving stack](https://succinct.xyz/).
+
+## Integrate with BlobstreamX
 
 The following docs go over how developers can integrate BlobstreamX.
 
 ## Overview
 
 TBD
+
+<!-- markdownlint-disable MD042 -->
 
 :::tip NOTE
 If the contract is still not deployed, then it needs to be
@@ -49,8 +85,9 @@ topics:
 
 ### Deployed contracts
 
-You can interact with the BlobstreamX contracts today on testnet. The BlobstreamX Solidity
-smart contracts are currently deployed on the following Ethereum testnets:
+You can interact with the Blobstream X contracts today on testnet. The
+Blobstream X Solidity smart contracts are currently deployed on
+the following Ethereum testnets:
 
 <!-- markdownlint-disable MD013 -->
 

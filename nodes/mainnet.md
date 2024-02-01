@@ -55,21 +55,23 @@ The following provides an approximation of the maximum block size:
 - The maximum square size is 64x64, which gives us 4096 shares.
 - One share is reserved for the PFB transaction, leaving us with 4095 shares.
 - The first sparse share has 478 bytes available, and the remaining sparse
-shares have 482 bytes each.
+  shares have 482 bytes each.
 
 This can be calculated as follows:
 
 <!-- markdownlint-disable MD013 -->
+
 $\text{Total Bytes} = (1 \times 478 \, \text{bytes}) + (4094 \times 482 \, \text{bytes}) = 1,973,786 \, \text{bytes}$
+
 <!-- markdownlint-enable MD013 -->
 
 Please note that there isn't a precise upper bound on the maximum total
 blob size. It depends on several factors:
 
 - The maximum square size, which is determined by a governance parameter
-and a versioned constant.
+  and a versioned constant.
 - The maximum bytes in a block, which is determined by a governance parameter
-and a hard-coded constant in CometBFT.
+  and a hard-coded constant in CometBFT.
 - The amount of shares occupied by the PFB transaction share.
 
 These factors can cause the maximum total blob size that can be included in one
