@@ -40,7 +40,7 @@ This guide covers deploying an Arbitrum Nitro rollup to
        user: root // [!code ++]
        platform: linux/x86_64
        image: "ghcr.io/rollkit/local-celestia-devnet:v0.12.1" // [!code --]
-       image: "ghcr.io/celestiaorg/celestia-node:v0.12.1" // [!code ++]
+       image: "ghcr.io/celestiaorg/celestia-node:v0.12.4" // [!code ++]
        command: > // [!code ++]
                celestia light start // [!code ++]
                --core.ip rpc-mocha.pops.one // [!code ++]
