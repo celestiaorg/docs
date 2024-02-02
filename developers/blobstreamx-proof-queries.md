@@ -89,6 +89,7 @@ For the go client snippets, make sure to have the following replaces in
 your `go.mod`:
 
 <!-- markdownlint-disable MD013 -->
+
 ```go
 // go.mod
     github.com/cosmos/cosmos-sdk => github.com/celestiaorg/cosmos-sdk v1.18.3-sdk-v0.46.14
@@ -151,7 +152,7 @@ func main() {
 	}
 	fmt.Println(dcProof.Proof.String())
 }
-````
+```
 
 <!-- markdownlint-disable MD013 -->
 
@@ -489,6 +490,7 @@ test.
 A golang helper that can be used to make this conversion is as follows:
 
 <!-- markdownlint-disable MD013 -->
+
 ```go
 func toNamespaceMerkleMultiProofs(proofs []*tmproto.NMTProof) []client.NamespaceMerkleMultiproof {
 	shareProofs := make([]client.NamespaceMerkleMultiproof, len(proofs))

@@ -522,9 +522,12 @@ function sidebarHome() {
               items: [
                 {
                   text: "Requesting data commitment ranges",
-                  link: "/nodes/consensus-node",
+                  link: "/developers/requesting-data-commitment-ranges",
                 },
-                { text: "Consensus", link: "/nodes/consensus-node" },
+                {
+                  text: "Non-canonical Blobstream X deployments",
+                  link: "/developers/blobstream-x-deploy",
+                },
               ],
             },
           ],
