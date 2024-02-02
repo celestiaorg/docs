@@ -205,7 +205,7 @@ then add the following parameters:
 - New RPC URL: `https://rpc-mocha.pops.one`
 - Currency symbol: `TIA`
 - Address prefix: `celestia`
-- Demon: `utia`
+- Denom: `utia`
 - Symbol image URL (optional):
   `https://raw.githubusercontent.com/cosmos/chain-registry/master/testnets/celestiatestnet/images/celestia.svg`
 - Explorer URL (optional): `https://testnet.mintscan.io/celestia-testnet`
