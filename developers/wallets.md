@@ -17,15 +17,16 @@ export default {
 }
 </script>
 
-This page covers how developers can integrate Celestia chains
-with existing wallets.
+This page covers how developers can use Keplr and React to
+add Celestia network parameters to wallets, and how to
+add custom networks to Leap and Cosmostation.
 
 ## Add Celestia network parameters to Keplr with React
 
 Before we demonstrate how to export the specific parameters for
 Celestia's testnets, we need to create a ReactJS component
 that allows us to connect directly to Keplr and pass it the network
-params.
+parameters.
 
 In the following code, we show how you can export a component
 that detects whether Keplr is installed and sets the network
@@ -162,6 +163,9 @@ export const ARABICA_PARAMS = {`{
 ```
 
 :::
+
+Now, we can connect to the network that you would like to use
+in Keplr wallet.
 
 ## Adding a custom chain to Leap
 
