@@ -400,11 +400,6 @@ function sidebarHome() {
               ],
             },
             { text: "Consensus", link: "/nodes/consensus-node" },
-            {
-              text: "Blobstream for validators",
-              collapsed: true,
-              items: [],
-            },
           ],
         },
         {
@@ -510,16 +505,27 @@ function sidebarHome() {
           collapsed: true,
           items: [
             {
-              text: "Integrate with Blobstream contracts",
+              text: "Integrate with Blobstream X contracts",
               link: "/developers/blobstreamx-contracts",
             },
             {
-              text: "Integrate with Blobstream client",
+              text: "Integrate with Blobstream X client",
               link: "/developers/blobstreamx-offchain",
             },
             {
-              text: "Querying the Blobstream proofs",
+              text: "Querying the Blobstream X proofs",
               link: "/developers/blobstreamx-proof-queries",
+            },
+            {
+              text: "Local Blobstream X operators",
+              collapsed: true,
+              items: [
+                {
+                  text: "Requesting data commitment ranges",
+                  link: "/nodes/consensus-node",
+                },
+                { text: "Consensus", link: "/nodes/consensus-node" },
+              ],
             },
           ],
         },

@@ -19,9 +19,10 @@ replace Blobstream. This latter proves Celestia block headers on the
 target EVM chain using zk-proofs which allows inheriting all the security
 guarantees of Celestia.
 
-## Blobstream X
+## What is Blobstream X?
 
-Blobstream X is a ZK light client that bridges Celestia’s modular DA layer to
+Blobstream X is an implementation of Blobstream with a
+ZK light client that bridges Celestia’s modular DA layer to
 Ethereum to allow high-throughput rollups to use Celestia’s DA while settling
 on Ethereum.
 
@@ -55,8 +56,6 @@ Blobstream X is built and deployed with
 
 The following docs go over how developers can integrate Blobstream X.
 
-### Overview
-
 You can [find the repository for Blobstream X](https://github.com/succinctlabs/blobstreamx)
 along with code for:
 
@@ -88,7 +87,7 @@ deployed before it is used by the prover/relayer. See the
 [deployment documentation (TBD)]() for more details.
 :::
 
-## How to integrate
+### How to integrate with Blobstream X
 
 Integrating your L2 with Blobstream X requires two components: your onchain smart
 contract logic, and your offchain client logic. The next three sections cover these
