@@ -670,7 +670,7 @@ with `proofs` being `sharesProof.RowProof.Proofs`.
 ### `attestationProof`
 
 This is the proof of the data root to the data root tuple root, which is committed
-to in the BlobstreamX contract:
+to in the Blobstream X contract:
 
 ```solidity
 /// @notice Contains the necessary parameters needed to verify that a data root tuple
@@ -685,7 +685,7 @@ struct AttestationProof {
 }
 ```
 
-- `tupleRootNonce`: the nonce at which BlobstreamX committed to the batch containing
+- `tupleRootNonce`: the nonce at which Blobstream X committed to the batch containing
   the block containing the data.
 - `tuple`: the `DataRootTuple` of the block:
 

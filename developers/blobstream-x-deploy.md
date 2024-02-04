@@ -23,9 +23,12 @@ need to do the following.
                 GUARDIAN_11155111=0xDEd0000E32f8F40414d3ab3a830f735a3553E18e
 
                 RPC_11155111=https://ethereum-sepolia.publicnode.com
-                ETHERSCAN_API_KEY_11155111=S26KHEB7PVMD65DAU36P4TB16F6EQ4R5BU
+                ETHERSCAN_API_KEY_11155111=
                 ```
-
+        TODO(@Succinct): Document the following:
+            - Where to get the timelock and guardian
+            - The env variables names contain the chainID, we should mention
+            that different chains will require different variables.
     4.  Deploy the `SuccinctGateway` contract.
 
         Ex. Deploying `SuccinctGateway` on Sepolia

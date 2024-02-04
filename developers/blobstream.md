@@ -14,10 +14,11 @@ on Ethereum, for integration by developers into L2 contracts. This enables Ether
 developers to build high-throughput L2s using Celestia's optimised DA layer,
 the first with Data Availability Sampling (DAS).
 
-A new and improved version of Blobstream, Blobstream X, is out and will
-replace Blobstream. This latter proves Celestia block headers on the
-target EVM chain using zk-proofs which allows inheriting all the security
-guarantees of Celestia.
+An implementation of Blobstream, by [Succinct](https://succinct.xyz/), called
+[Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
+and will be used in our canonical deployments. This latter proves Celestia 
+block headers on the target EVM chain using zk-proofs which allows
+inheriting all the security guarantees of Celestia.
 
 ## What is Blobstream X?
 
@@ -28,7 +29,7 @@ on Ethereum.
 
 Optimistic or ZK rollups that settle on Ethereum but wish to use Celestia for
 DA require a mechanism for _bridging_ Celestia’s data root to Ethereum as part
-of the settlement process. This data root is used during validity proofs to
+of the settlement process. This data root is used during inclusion proofs to
 prove that particular rollup transactions were included and made available in
 the Celestia network.
 
@@ -61,12 +62,28 @@ along with code for:
 
 - The Blobstream X smart contract - [`BlobstreamX.sol`](https://github.com/succinctlabs/blobstreamx/blob/main/contracts/src/BlobstreamX.sol)
 - [The Blobstream X circuits](https://alpha.succinct.xyz/celestia/blobstreamx)
+- [The Blobstream X contract Golang bindings](https://github.com/succinctlabs/blobstreamx/blob/main/bindings/BlobstreamX.go)
 
 Canonical deployments of Blobstream X will be maintained on the
-following chains: Arbitrum One, Base and Ethereum Mainnet. Every 4
-hours, Succinct will post an update to the Blobstream X contract
-that will include a new data commitment range that covers a 4-hour
+following chains: Arbitrum One, Base and Ethereum Mainnet. Every 1
+hour, Succinct will post an update to the Blobstream X contract
+that will include a new data commitment range that covers a 1-hour
 block range from the `latestBlock` in the Blobstream X contract.
+
+:::tip NOTE
+Custom ranges can be requested using the `BlobstreamX` contract
+to create proofs for specific Celestia block batches. These ranges
+can be constructed as `[latestBlock, customTargetBlock)`, with
+`latestBlock` is the latest block height that was committed to by the
+`BlobstreamX` contract, and `latestBlock > customTargetBlock`,
+and `customTargetBlock - latestBlock <= DATA_COMMITMENT_MAX`.
+
+Block ranges that are before the contract's `latestBlock` can't be
+proven a second time in different batches.
+
+More information can be found in [`requestHeaderRange(...)`](https://github.com/succinctlabs/blobstreamx/blob/364d3dc8c8dc9fd44b6f9f049cfb18479e56cec4/contracts/src/BlobstreamX.sol#L78-L101)
+method.
+:::
 
 ### How Blobstream X works
 
@@ -119,7 +136,7 @@ TBD (Add: Sepolia, Arbitrum Sepolia, and eventually the others).
 
 ### Decentralization and security
 
-BlobstreamX is built on Celestia, which uses a CometBFT-based proof-of-stake
+Blobstream X is built on Celestia, which uses a CometBFT-based proof-of-stake
 system. Blobstream X shares the same security assumptions
 as Celestia. In contrast, data availability committees (DACs), are typically
 centralized or semi-centralized, relying on a specific set of entities or
