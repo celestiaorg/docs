@@ -514,10 +514,6 @@ function sidebarHome() {
                   text: "Create a vesting account",
                   link: "/nodes/celestia-app-vesting",
                 },
-                {
-                  text: "Specifications",
-                  link: "https://celestiaorg.github.io/celestia-app/",
-                },
               ],
             },
             { text: "SystemD", link: "/nodes/systemd" },
