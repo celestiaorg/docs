@@ -757,17 +757,6 @@ function sidebarHome() {
           ],
         },
         {
-          text: "Modular Fellows",
-          collapsed: true,
-          items: [
-            { text: "Overview", link: "/community/modular-fellows" },
-            {
-              text: "Cohort one content",
-              link: "/community/cohort-one-content",
-            },
-          ],
-        },
-        {
           text: "Incentivized testnet supplemental terms",
           link: "/community/itn-tos",
         },
