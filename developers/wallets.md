@@ -179,8 +179,8 @@ then add the following parameters:
 
 - Chain Id: `{{ constants.arabicaChainId }}`
 - Chain Name: `Arabica devnet`
-- New RPC URL: `https://consensus-full.celestia-arabica-10.com`
-- New REST URL: `https://api.consensus.celestia-arabica-10.com`
+- New RPC URL: `https://rpc.celestia-arabica-11.com/`
+- New REST URL: `https://api.celestia-arabica-11.com`
 - Address Prefix: `celestia`
 - Native Denom: `utia`
 - Coin Type: `118`
