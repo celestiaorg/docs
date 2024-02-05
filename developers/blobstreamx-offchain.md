@@ -4,9 +4,9 @@ description: Learn how to integrate your L2's offchain logic with Blobstream X
 
 # Integrate with Blobstream X client
 
-## BlobstreamX demo rollup
+## Blobstream X demo rollup
 
-Rollups can use the Blobstream X for DA by posting their data to Celestia and then
+Rollups can use Blobstream X for DA by posting their data to Celestia and then
 proving that it was posted on Ethereum. This is done identically to how any
 rollup or user would post data to Celestia, and then a zk-proof of the Celestia
 block headers is created then relayed to Ethereum via a light client relay

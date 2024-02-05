@@ -16,9 +16,10 @@ the first with Data Availability Sampling (DAS).
 
 An implementation of Blobstream, by [Succinct](https://succinct.xyz/), called
 [Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
-and will be used in our canonical deployments. This latter proves Celestia 
-block headers on the target EVM chain using zk-proofs which allows
-inheriting all the security guarantees of Celestia.
+and will be used in our canonical deployments. This implementation proves the 
+validity of Celestia block headers on a target EVM chain using zero-knowledge
+proofs which allows (ZKPs), which allow inheriting all the security
+guarantees of Celestia.
 
 ## What is Blobstream X?
 
@@ -48,8 +49,7 @@ in the block range from the previous update to the current update, making
 accessible all Celestia data roots (verifiable with a Merkle inclusion proof
 against the stored Merkle root) to rollups.
 
-Blobstream X is built and deployed with
-[Succinct’s unified proving stack](https://succinct.xyz/).
+Blobstream X is built and deployed with [Succinct's protocol](docs.succinct.xyz).
 
 ![blobstream x draft diagram](/img/blobstream/blobstream_x_draft_diagram.png)
 
@@ -99,8 +99,8 @@ onchain verifier for the Blobstream X circuit) and then calls the
 <!-- markdownlint-disable MD042 -->
 
 :::tip NOTE
-If the contract is still not deployed, then it needs to be
-deployed before it is used by the prover/relayer. See the
+If the Blobstream X contract is not deployed on a desired chain,
+it needs to be deployed before it can be used by your rollup. See the
 [deployment documentation (TBD)]() for more details.
 :::
 
