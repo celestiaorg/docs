@@ -1,5 +1,8 @@
 ---
 description: A guide to troubleshooting common issues with Celestia Node.
+next:
+  text: "Metrics, visualization, and alerts"
+  link: "nodes/celestia-app-metrics"
 ---
 
 # Troubleshooting

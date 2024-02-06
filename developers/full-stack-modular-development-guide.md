@@ -1,11 +1,5 @@
 ---
 description: Learn to build a full stack modular dapp.
-prev:
-  text: "Deploy an OP Stack devnet on Celestia"
-  link: "/developers/optimism"
-next:
-  text: "Wallet with celestia-app"
-  link: "/developers/celestia-app-wallet"
 ---
 
 # Full stack modular blockchain development guide

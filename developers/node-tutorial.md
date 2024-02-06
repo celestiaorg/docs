@@ -1114,35 +1114,38 @@ Examples: `127.0.0.1` or `subdomain.domain.tld`.
 Using either IP or DNS assumes RPC port 26657 and gRPC port 9090
 as default unless otherwise specified.
 
+<!-- markdownlint-disable MD046 -->
+<!-- markdownlint-disable MD029 -->
+
 1. In your terminal, set the auth token for the desired network. In this
    example, we will use Mainnet Beta.
 
-   ```bash
-   export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network celestia)
-   ```
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network celestia)
+```
 
 2. Post your blob with:
 
-   ```bash
-   curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" -X POST --data '{"id": 1,
-     "jsonrpc": "2.0",
-     "method": "blob.Submit",
-     "params": [
-       [
-         {
-           "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAAECAwQFBgcICRA=",
-           "data": "VGhpcyBpcyBhbiBleGFtcGxlIG9mIHNvbWUgYmxvYiBkYXRh",
-           "share_version": 0,
-           "commitment": "AD5EzbG0/EMvpw0p8NIjMVnoCP4Bv6K+V6gjmwdXUKU="
-         }
-       ],
-       {
-         "Fee": 10000,
-         "GasLimit": 100000
-       }
-     ]
-   }' 127.0.0.1:26658
-   ```
+```bash
+curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" -X POST --data '{"id": 1,
+  "jsonrpc": "2.0",
+  "method": "blob.Submit",
+  "params": [
+    [
+      {
+        "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAAECAwQFBgcICRA=",
+        "data": "VGhpcyBpcyBhbiBleGFtcGxlIG9mIHNvbWUgYmxvYiBkYXRh",
+        "share_version": 0,
+        "commitment": "AD5EzbG0/EMvpw0p8NIjMVnoCP4Bv6K+V6gjmwdXUKU="
+      }
+    ],
+    {
+      "Fee": 10000,
+      "GasLimit": 100000
+    }
+  ]
+}' 127.0.0.1:26658
+```
 
 3. Upon successful blob submission, the result will show the block height:
 
