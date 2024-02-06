@@ -68,13 +68,6 @@ full blocks from it.
 - `full.consensus.mocha-4.celestia-mocha.com`
 - `consensus-full-mocha-4.celestia-mocha.com`
 - `rpc-mocha.pops.one`
-- `celestia-rpc.f5nodes.com`
-- `celestia-testnet.brightlystake.com`
-- `rpc-celestia-mocha.architectnodes.com`
-- `rpc-celestia-mocha.testnet-pride.com`
-- `rpc-celestia-testnet-01.stakeflow.io`
-- `mocha.celestia.rpc.cumulo.me`
-- `rpc-mocha-4.spidey.services`
 
 ## RPC endpoints
 
@@ -84,6 +77,13 @@ Celestia network. The default port is 26657.
 
 - `rpc.celestia-mocha.com`
 - `rpc-2.celestia-mocha.com`
+- `celestia-rpc.f5nodes.com`
+- `celestia-testnet.brightlystake.com`
+- `rpc-celestia-mocha.architectnodes.com`
+- `rpc-celestia-mocha.testnet-pride.com`
+- `rpc-celestia-testnet-01.stakeflow.io`
+- `mocha.celestia.rpc.cumulo.me`
+- `rpc-mocha-4.spidey.services`
 
 ## API endpoints
 
