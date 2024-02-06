@@ -49,7 +49,7 @@ import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
 
 Below is a list of RPC endpoints you can use to connect to Mocha testnet:
 
-## RPC For DA Bridge, full, and light nodes
+## RPC for DA bridge, full, and light nodes
 
 These RPC endpoints for DA nodes are to provide state access for querying the
 chain’s state and broadcasting transactions (balances, blobs, etc.) to the
