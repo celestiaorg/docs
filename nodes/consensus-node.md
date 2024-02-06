@@ -345,7 +345,7 @@ First, set up your full consensus node by following the instructions in
 
 #### Wallet
 
-Follow [the tutorial on creating a wallet](../developers/celestia-app-wallet.md).
+Follow [the tutorial on creating a wallet](../celestia-app-wallet.md).
 
 #### Delegate stake to a validator
 
