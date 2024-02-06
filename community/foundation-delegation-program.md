@@ -46,7 +46,7 @@ During this period, so long as the validator maintains high uptime and does not 
 The minimum requirements for participation in the program are as follows:
 
 * Run an active mainnet validator **or** an active Mocha testnet validator for at least 1 month before application deadline
-* Run a bridge node (on mainnet if you are already an active mainnet validator or on Mocha testnet if not) that is connected and reporting to the Celestia Labs [OTEL collector](https://docs.celestia.org/nodes/celestia-node-metrics) (for new applicants - on testnet, so that we can evaluate performance)
+* Run a bridge node (on mainnet if you are already an active mainnet validator or on Mocha testnet if not) that is connected and reporting to the Celestia Labs [OTEL collector](../nodes/celestia-node-metrics) (for new applicants - on testnet, so that we can evaluate performance)
 * Not jailed or slashed in the 6 months before application deadline
 * Not associated with an exchange or custodian
 * Not in the top 10 validators by delegation power, unless it enters the top 10 as a result of the Foundation’s delegation under this program 
@@ -70,7 +70,7 @@ Other optional but important criteria:
 
 * Getting slashed/tombstoned (cannot apply for 1 year afterwards)
 * Getting jailed more than once during the cohort’s applicable delegation period
-* Violating the [Celestia.org Community Code of Conduct](https://docs.celestia.org/community/coc/) or engaging in harmful activities towards the network
+* Violating the [Celestia.org Community Code of Conduct](../community/coc/) or engaging in harmful activities towards the network
 * Failing to upgrade your node in a timely manner (24 hours or less)
 * If necessary to protect or secure Mainnet Beta or to comply with applicable law
 * For any other reason, in the Celestia Foundation’s sole discretion
