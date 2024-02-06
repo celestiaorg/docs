@@ -16,7 +16,7 @@ the first with Data Availability Sampling (DAS).
 
 An implementation of Blobstream, by [Succinct](https://succinct.xyz/), called
 [Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
-and will be used in our canonical deployments. This implementation proves the 
+and will be used in our canonical deployments. This implementation proves the
 validity of Celestia block headers on a target EVM chain using zero-knowledge
 proofs which allows (ZKPs), which allow inheriting all the security
 guarantees of Celestia.

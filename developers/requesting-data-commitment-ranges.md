@@ -20,15 +20,15 @@ proof requests at a specified cadence.
 Here are example values for the `.env` file:
 
 1. `TENDERMINT_RPC_URL` from
-[the public Celestia list](https://docs.celestia.org/nodes/mainnet#consensus-nodes).
+   [the public Celestia list](https://docs.celestia.org/nodes/mainnet#consensus-nodes).
 2. `SUCCINCT_RPC_URL` = `https://alpha.succinct.xyz/api`
 3. Request for `SUCCINCT_API_KEY` from
-[the Succinct team](https://alpha.succinct.xyz/partner).
+   [the Succinct team](https://alpha.succinct.xyz/partner).
 4. `CHAIN_ID` is the chain ID of the deployed Blobstream X contract.
 5. `CONTRACT_ADDRESS`: Blobstream X proxy contract address.
 6. `NEXT_HEADER_FUNCTION_ID` & `HEADER_RANGE_FUNCTION_ID`: Get the
-`functionId`'s from the Blobstream X contract by using the
-`nextHeaderFunctionId` and `headerRangeFunctionId` respectively,
+   `functionId`'s from the Blobstream X contract by using the
+   `nextHeaderFunctionId` and `headerRangeFunctionId` respectively,
    which are public storage variables.
 
 ## Local proving
@@ -47,10 +47,10 @@ Directly request a proof via the Blobstream X contract interface.
 Unlike the Blobstream X operator which handles requests off-chain,
 requesting on-chain requires gas, but the proof will be generated
 and relayed by the Succinct platform.
-1. Call `requestHeaderRange(uint64 _targetBlock)` with the end
-of the range you want a commitment for.
-   1. A `DataCommitmentStored(uint256, uint64, uint64, bytes32)`
-   will be emitted for the requested range when it is stored in the
-   contract. Listen to this event to know that the proof has been
-   generated successfully.
 
+1. Call `requestHeaderRange(uint64 _targetBlock)` with the end
+   of the range you want a commitment for.
+   1. A `DataCommitmentStored(uint256, uint64, uint64, bytes32)`
+      will be emitted for the requested range when it is stored in the
+      contract. Listen to this event to know that the proof has been
+      generated successfully.
