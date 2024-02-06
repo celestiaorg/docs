@@ -49,7 +49,8 @@ in the block range from the previous update to the current update, making
 accessible all Celestia data roots (verifiable with a Merkle inclusion proof
 against the stored Merkle root) to rollups.
 
-Blobstream X is built and deployed with [Succinct's protocol](docs.succinct.xyz).
+Blobstream X is built and deployed with
+[Succinct's protocol](https://docs.succinct.xyz).
 
 ![blobstream x draft diagram](/img/blobstream/blobstream_x_draft_diagram.png)
 
@@ -69,6 +70,8 @@ following chains: Arbitrum One, Base and Ethereum Mainnet. Every 1
 hour, Succinct will post an update to the Blobstream X contract
 that will include a new data commitment range that covers a 1-hour
 block range from the `latestBlock` in the Blobstream X contract.
+On Ethereum Mainnet, the Blobstream X contract will be updated
+every 4 hours.
 
 :::tip NOTE
 Custom ranges can be requested using the `BlobstreamX` contract

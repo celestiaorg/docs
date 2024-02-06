@@ -1,5 +1,11 @@
 # Requesting data commitment ranges
 
+By default, the Succinct team will be maintaining canonical Blobstream X
+deployments on Ethereum, updating every 4 hours, and on Arbitrum One
+and Base, updating every 1 hour. If you wish for the Blobstream X contract
+to be updated at a different cadence, then you have several different
+options for how to update the smart contract.
+
 To request proofs to be submitted to the Blobstream X contract at a
 different cadence, you can do one of the following:
 
