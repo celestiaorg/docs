@@ -94,8 +94,8 @@ Before applying, be ready to share the following:
   * Which networks you validate on mainnet + links to your validators
   * A personal statement why you should receive delegation from the Foundation (max 1500 characters)
 * Infrastructure
-  * Validator address and bridge node ID on MAINNET (MANDATORY FOR ALL APPLICANTS even if not active on mainnet yet)
-  * If you don't run an active mainnet validator, please provide us with validator address, bridge node ID and blobstream address on Mocha-4
+  * Validator address and bridge node ID on MAINNET
+  * If you don't run an active mainnet validator, please provide us with validator address and bridge node ID on Mocha-4
   * Have you been slashed or jailed in the last 6 months on Celestia or other chains you validated on.
   * Hosting provider and Data Center location (mainnet and testnet if applicable)
   * Setup of the 2 components (validator and bridge) 
