@@ -746,6 +746,9 @@ function sidebarHome() {
         { text: "Overview", link: "/community/overview" },
         { text: "Code of Conduct", link: "/community/coc" },
         { text: "Community calendar", link: "/community/calendar" },
+	{ text: "Celestia Foundation Delegation Program", 
+	  link: "/community/foundation-delegation-program"
+	},
         {
           text: "Modular Meetups",
           collapsed: true,
