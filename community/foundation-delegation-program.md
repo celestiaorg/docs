@@ -138,8 +138,7 @@ Before applying, be ready to share the following:
   * A personal statement why you should receive delegation from the
   Foundation (max 1500 characters)
 * Infrastructure
-  * Validator address and bridge node ID on MAINNET (MANDATORY FOR ALL
-  APPLICANTS even if not active on mainnet yet)
+  * Validator address and bridge node ID on MAINNET
   * If you don't run an active mainnet validator, please provide us with
   validator address, bridge node ID and blobstream address on Mocha-4
   * Have you been slashed or jailed in the last 6 months on Celestia or
