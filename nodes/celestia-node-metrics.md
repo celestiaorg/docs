@@ -22,14 +22,6 @@ celestia <node-type> start --metrics.tls=<boolean> \
     --p2p.network <network> --core.ip <URI>
 ```
 
-Here is an example for Mainnet Beta:
-
-```sh
-celestia <node-type> start --metrics.tls=true \
-    --metrics --metrics.endpoint otel.celestia.observer \
-    --core.ip <URI>
-```
-
 Add metrics flags to your node start command and restart your node to apply it.
 The metrics endpoint will gather your node's data to track your uptime.
 
@@ -39,6 +31,26 @@ an input into `--metrics.endpoint`.
 We will go over what the endpoint will need to be in the
 [metrics endpoint design considerations](#metrics-endpoint-design-considerations)
 section.
+
+### Mainnet Beta
+
+Here is an example for Mainnet Beta:
+
+```sh
+celestia <node-type> start --metrics.tls=true \
+    --metrics --metrics.endpoint otel.celestia.observer \
+    --core.ip <URI>
+```
+
+### Mocha testnet
+
+Here is an example for Mocha testnet:
+
+```sh
+celestia <node-type> start --metrics.tls=true \
+    --metrics --metrics.endpoint mocha.otel.celestia.observer \
+    --core.ip <URI> --p2p.network mocha
+```
 
 ### TLS connections
 
