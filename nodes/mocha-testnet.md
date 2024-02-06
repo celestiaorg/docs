@@ -47,15 +47,23 @@ import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
 
 <MochaVersionTags/>
 
-## RPC endpoints
-
-The RPC endpoint is to allow users to interact with Celestia's nodes by
-querying the node's state and broadcasting transactions on the
-Celestia network. The default port is 26657.
-
 Below is a list of RPC endpoints you can use to connect to Mocha testnet:
 
-### Bridge, full, and light nodes
+## RPC For DA Bridge, full, and light nodes
+
+These RPC endpoints for DA nodes are to provide state access for querying the
+chain’s state and broadcasting transactions (balances, blobs, etc.) to the
+Celestia network. For users, they will need to provide a `–core.ip string`
+from a consensus node’s URL or IP that populates 2 ports for 2 types
+(RPC and gRPC, at ports 26657 and 9090, respectively) to their respective DA
+node.
+
+:::tip Bridge nodes
+Mentioned below RPC endpoints do not guarantee you the download of full blocks from
+them. We advise that if you are running a bridge node, that you also
+run a local [full consensus node](./consensus-node.md) in order to download
+full blocks from it.
+:::
 
 - `full.consensus.mocha-4.celestia-mocha.com`
 - `consensus-full-mocha-4.celestia-mocha.com`
@@ -68,12 +76,11 @@ Below is a list of RPC endpoints you can use to connect to Mocha testnet:
 - `mocha.celestia.rpc.cumulo.me`
 - `rpc-mocha-4.spidey.services`
 
-### Full and light nodes ONLY
+## RPC endpoints
 
-These RPC endpoints do not allow you to download full blocks from
-them. We advise that if you are running a bridge node, that you also
-run a local [full consensus node](./consensus-node.md) in order to download
-full blocks from it.
+The RPC endpoint is to allow users to interact with Celestia's nodes by
+querying the node's state and broadcasting transactions on the
+Celestia network. The default port is 26657.
 
 - `rpc.celestia-mocha.com`
 - `rpc-2.celestia-mocha.com`
