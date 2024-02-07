@@ -110,6 +110,7 @@ to participate in Mainnet Beta:
 - `rpc-celestia.alphab.ai`
 - `rpc-celestia-full.avril14th.org`
 - `celestia-rpc.easy2stake.com`
+- `celestia.rpc.kjnodes.com`
 
 #### API endpoints
 
@@ -128,6 +129,7 @@ to participate in Mainnet Beta:
 - `api-celestia.alphab.ai`
 - `api-celestia-full.avril14th.org`
 - `celestia-lcd.easy2stake.com`
+- `celestia.api.kjnodes.com`
 
 #### gRPC endpoints
 
@@ -145,6 +147,7 @@ to participate in Mainnet Beta:
 - `grpc-celestia-01.stakeflow.io:15002`
 - `rpc-celestia.alphab.ai:9090`
 - `grpc-celestia-full.avril14th.org`
+- `celestia.grpc.kjnodes.com:443`
 
 ### Data availability nodes
 
@@ -220,6 +223,7 @@ The following websites provide analytics for Celestia:
 
 - [https://analytics.smartstake.io/celestia](https://analytics.smartstake.io/celestia)
 - [https://alphab.ai/s/m/celestia/](https://alphab.ai/s/m/celestia/)
+- [https://services.kjnodes.com/mainnet/celestia/slashboard](https://services.kjnodes.com/mainnet/celestia/slashboard)
 
 ## Network upgrades
 
