@@ -31,7 +31,7 @@ Deploy a new `SuccinctGateway` contract to the new chain.
     GUARDIAN_11155111=0xDEd0000E32f8F40414d3ab3a830f735a3553E18e
 
     RPC_11155111=https://ethereum-sepolia.publicnode.com
-    ETHERSCAN_API_KEY_11155111=
+    ETHERSCAN_API_KEY_11155111=<YOUR_API_KEY>
     ```
 
     TODO(@Succinct): Document the following: - Where to get the timelock
