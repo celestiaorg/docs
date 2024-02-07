@@ -212,6 +212,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
 - [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
+- [https://celestia.exploreme.pro/](https://celestia.exploreme.pro/)
 
 ## Analytics
 
