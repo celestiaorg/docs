@@ -127,11 +127,9 @@ the following Ethereum testnets:
 
 | Contract     | EVM network      | Contract address                                                                                                                | Attested data |
 | ------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| Blobstream   | Sepolia          | [`0x3a5cbB6EF4756DA0b3f6DAE7aB6430fD8c46d247`](https://sepolia.etherscan.io/address/0x3a5cbB6EF4756DA0b3f6DAE7aB6430fD8c46d247) | Mocha testnet |
-| Blobstream   | Arbitrum Sepolia | [`0x040769edbca5218e616c8eb16e4faea49ced5e33`](https://sepolia.arbiscan.io/address/0x040769edbca5218e616c8eb16e4faea49ced5e33)  | Mocha testnet |
-| Blobstream X | Goerli           | [`0x67ea962864cdad3f2202118dc6f65ff510f7bb4d`](https://goerli.etherscan.io/address/0x67ea962864cdad3f2202118dc6f65ff510f7bb4d)  | Mocha testnet |
-
-TBD (Add: Sepolia, Arbitrum Sepolia, and eventually the others).
+| Blobstream X  | Ethereum Mainnet          | [`0xTBD TODO`](https://sepolia.etherscan.io/address/0xTODO) | Mainnet Beta |
+| Blobstream X | Arbitrum One | [`0xTBD TODO`](https://sepolia.arbiscan.io/address/0xTODO)  | Mainnet Beta |
+| Blobstream X | Base           | [`0xTBD TODO`](https://goerli.etherscan.io/address/0xTODO)  | Mainnet Beta |
 
 <!-- markdownlint-enable MD013 -->
 
