@@ -52,7 +52,7 @@ against the stored Merkle root) to rollups.
 Blobstream X is built and deployed with
 [Succinct's protocol](https://docs.succinct.xyz).
 
-![blobstream x draft diagram](/img/blobstream/blobstream_x_draft_diagram.png)
+![blobstream x draft diagram](/img/blobstream/Celestia_Blobstream_X1a.png)
 
 ## Integrate with Blobstream X
 
@@ -97,7 +97,7 @@ onchain verifier for the Blobstream X circuit) and then calls the
 `BlobstreamX.sol` contract to update it. More information about the
 `SuccinctGateway` can be found here: [TODO].
 
-![blobstream x overview diagram draft](/img/blobstream/blobstream_x_overview_diagram_draft.png)
+![blobstream x overview diagram draft](/img/blobstream/Celestia_Blobstream_X2a.png)
 
 <!-- markdownlint-disable MD042 -->
 
