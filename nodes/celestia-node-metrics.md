@@ -48,7 +48,7 @@ Here is an example for Mocha testnet:
 
 ```sh
 celestia <node-type> start --metrics.tls=true \
-    --metrics --metrics.endpoint mocha.otel.celestia.observer \
+    --metrics --metrics.endpoint <your-mocha-metrics-endpoint> \
     --core.ip <URI> --p2p.network mocha
 ```
 
