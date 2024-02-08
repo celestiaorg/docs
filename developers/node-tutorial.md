@@ -788,7 +788,7 @@ is passed.
 
 Learn [more about gas fees and limits](../developers/submit-data.md).
 
-To set a higher gas price of 0.004 utia, use the `--gas-price 0.002` flag:
+To set a higher gas price of 0.004 utia, use the `--gas-price 0.004` flag:
 
 ```bash
 celestia blob submit 0x42690c204d39600fddd3 'gm' --gas-price 0.004 \
