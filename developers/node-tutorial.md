@@ -775,32 +775,23 @@ Which will return:
 }
 ```
 
-### Setting the gas fee and limit
+### Setting the gas price
 
-To set the gas fee and limit, you can use the `--fee` and `--gas.limit` flags
-respectively when submitting data using the RPC CLI.
+The `--gas-price` flag allows you to specify the gas price for the
+submission. If not specified, a default gas price will be used. The
+gas limit is automatically calculated based on the size of the blob
+being submitted.
+
+To set the gas price, you can use the `--gas-price` flag.
+The gas price will be set to default (0.002) if no value
+is passed.
 
 Learn [more about gas fees and limits](../developers/submit-data.md).
 
-To set the fee of 10000 utia, use the `--fee 10000` flag:
+To set a higher gas price of 0.004 utia, use the `--gas-price 0.002` flag:
 
 ```bash
-celestia blob submit 0x42690c204d39600fddd3 'gm' --fee 10000 \
-  --node.store $NODE_STORE
-```
-
-To set a gas limit of 100000, use the `--gas.limit 100000` flag:
-
-```bash
-celestia blob submit 0x42690c204d39600fddd3 'gm' --gas.limit 100000 \
-  --node.store $NODE_STORE
-```
-
-To set a fee of 10000 utia and gas limit of 100000, use the
-`--fee 10000 --gas.limit 100000` flags:
-
-```bash
-celestia blob submit 0x42690c204d39600fddd3 'gm' --fee 10000 --gas.limit 100000 \
+celestia blob submit 0x42690c204d39600fddd3 'gm' --gas-price 0.004 \
   --node.store $NODE_STORE
 ```
 
