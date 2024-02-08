@@ -777,21 +777,21 @@ Which will return:
 
 ### Setting the gas price
 
-The `--gas-price` flag allows you to specify the gas price for the
+The `--gas.price` flag allows you to specify the gas price for the
 submission. If not specified, a default gas price will be used. The
 gas limit is automatically calculated based on the size of the blob
 being submitted.
 
-To set the gas price, you can use the `--gas-price` flag.
+To set the gas price, you can use the `--gas.price` flag.
 The gas price will be set to default (0.002) if no value
 is passed.
 
 Learn [more about gas fees and limits](../developers/submit-data.md).
 
-To set a higher gas price of 0.004 utia, use the `--gas-price 0.004` flag:
+To set a higher gas price of 0.004 utia, use the `--gas.price 0.004` flag:
 
 ```bash
-celestia blob submit 0x42690c204d39600fddd3 'gm' --gas-price 0.004 \
+celestia blob submit 0x42690c204d39600fddd3 'gm' --gas.price 0.004 \
   --node.store $NODE_STORE
 ```
 
