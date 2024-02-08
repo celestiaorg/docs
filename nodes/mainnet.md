@@ -111,6 +111,7 @@ to participate in Mainnet Beta:
 - `rpc-celestia-full.avril14th.org`
 - `celestia-rpc.easy2stake.com`
 - `celestia.rpc.kjnodes.com`
+- `celestia-rpc.0xcryptovestor.com`
 
 #### API endpoints
 
