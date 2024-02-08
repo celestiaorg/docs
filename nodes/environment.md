@@ -39,12 +39,12 @@ binaries, and running nodes.
    ::: code-group
 
    ```bash [APT]
-   sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential \
+   sudo apt install curl tar wget aria2 clang pkg-config libssl-dev jq build-essential \
    git make ncdu -y
    ```
 
    ```bash [YUM]
-   sudo yum install curl tar wget clang pkg-config libssl-dev jq build-essential \
+   sudo yum install curl tar wget aria2 clang pkg-config libssl-dev jq build-essential \
    git make ncdu -y
    ```
 
