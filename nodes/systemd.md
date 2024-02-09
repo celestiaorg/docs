@@ -30,7 +30,7 @@ User=$USER
 ExecStart=$(which celestia-appd) start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=16384
+LimitNOFILE=65535
 
 [Install]
 WantedBy=multi-user.target
