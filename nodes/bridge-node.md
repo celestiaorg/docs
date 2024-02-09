@@ -128,7 +128,7 @@ celestia bridge start --core.ip rpc-mocha.pops.one:26657
 And on Arabica:
 
 ```sh
-celestia bridge start --core.ip consensus-validator.celestia-arabica-10.com \
+celestia bridge start --core.ip validator-1.celestia-arabica-11.com \
   --p2p.network arabica
 ```
 

@@ -364,7 +364,7 @@ celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 ```
 
 ```bash [Arabica]
-celestia light start --core.ip consensus-full.celestia-arabica-10.com \
+celestia light start --core.ip validator-1.celestia-arabica-11.com \
   --p2p.network arabica
 ```
 
