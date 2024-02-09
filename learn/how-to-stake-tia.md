@@ -1,6 +1,6 @@
 ---
 sidebar_label: How to stake TIA
-description: This tutorial covers how to stake TIA with Keplr or Leap wallet
+description: This tutorial covers how to stake TIA with Keplr, Leap, or Gem wallet
 ---
 
 # How to stake TIA
@@ -12,7 +12,7 @@ This means that you can stake the native token TIA and vote on governance
 proposals.
 
 In this tutorial, you will learn how to stake TIA tokens via
-[Keplr](https://www.keplr.app/) and [Leap](https://www.leapwallet.io/)
+[Keplr](https://www.keplr.app/), [Leap](https://www.leapwallet.io/) and [Gem](https://gemwallet.com/)
 wallets.
 
 ## Select your preferred wallet
@@ -27,6 +27,12 @@ wallets.
 <div style="display: inline-block;">
     <a href="#stake-tia-with-leap-wallet">
     <img src="/img/leap.png" alt="Leap">
+    </a>
+</div>
+
+<div style="display: inline-block;">
+    <a href="#stake-tia-with-gem-wallet">
+    <img src="/img/gem.png" alt="Gem Wallet">
     </a>
 </div>
 
@@ -91,3 +97,29 @@ overview dashboard where you can claim rewards, unstake, redelegate,
 or stake additional tokens.
 
 ![Keplr1](/img/leap/leap3.gif)
+
+## Stake TIA with Gem wallet
+
+### :one: Open your Gem Wallet app
+
+Navigate to `Celestia` and select `Stake`.
+
+![Gem1](/img/gem/gem1.gif)
+
+### :two: Choose the amount of Celestia and search for a validator.
+
+Select the amount of Celestia tokens and choose a validator from the list.
+
+![Gem2](/img/gem/gem2.gif)
+
+### :three: Stake your TIA tokens
+
+Review the network terms and commission, then press `Confirm` to proceed.
+
+![Gem3](/img/gem/gem3.gif)
+
+### :four: Manage your TIA
+
+After your transaction is confirmed, you will have access to a control panel where you can claim rewards, unstake, redelegate, or stake additional tokens.
+
+![Gem4](/img/gem/gem4.gif)
