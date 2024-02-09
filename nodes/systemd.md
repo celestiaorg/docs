@@ -30,7 +30,7 @@ User=$USER
 ExecStart=$(which celestia-appd) start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=16384
 
 [Install]
 WantedBy=multi-user.target
@@ -88,7 +88,7 @@ User=$USER
 ExecStart=$(which celestia) full start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=65536
+LimitNOFILE=1400000
 
 [Install]
 WantedBy=multi-user.target
@@ -126,7 +126,7 @@ User=$USER
 ExecStart=$(which celestia) bridge start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=65536
+LimitNOFILE=1400000
 
 [Install]
 WantedBy=multi-user.target
@@ -182,7 +182,7 @@ User=$USER
 ExecStart=$(which celestia) light start --core.ip <URI>
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=4096
+LimitNOFILE=1400000
 
 [Install]
 WantedBy=multi-user.target
