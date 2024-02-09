@@ -14,7 +14,7 @@ on Ethereum, for integration by developers into L2 contracts. This enables Ether
 developers to build high-throughput L2s using Celestia's optimised DA layer,
 the first with Data Availability Sampling (DAS).
 
-An implementation of Blobstream, by [Succinct](https://succinct.xyz/), called
+An implementation of Blobstream, by [Succinct](https://docs.succinct.xyz/), called
 [Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
 and will be used in our canonical deployments. This implementation proves the
 validity of Celestia block headers on a target EVM chain using zero-knowledge
