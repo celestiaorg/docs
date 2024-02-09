@@ -551,7 +551,7 @@ function sidebarHome() {
                 },
                 {
                   text: "Non-canonical Blobstream X deployments",
-                  link: "/developers/blobstream-x-deploy",
+                  link: "https://docs.succinct.xyz/platform/onchain-integration#gateway-deployment",
                 },
               ],
             },
