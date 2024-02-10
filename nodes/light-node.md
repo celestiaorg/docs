@@ -107,7 +107,7 @@ celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 Or for Arabica:
 
 ```sh
-celestia light start --core.ip consensus-validator.celestia-arabica-10.com \
+celestia light start --core.ip validator-1.celestia-arabica-11.com \
     --p2p.network arabica
 ```
 
@@ -139,7 +139,7 @@ celestia light start --keyring.accname my_celes_key \
 
 ```sh [Arabica]
 celestia light start --keyring.accname my_celes_key \
-    --core.ip consensus-validator.celestia-arabica-10.com \
+    --core.ip validator-1.celestia-arabica-11.com \
     --p2p.network arabica
 ```
 
