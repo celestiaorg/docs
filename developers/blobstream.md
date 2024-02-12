@@ -126,13 +126,13 @@ the following Ethereum testnets:
 
 <!-- markdownlint-disable MD013 -->
 
-| Contract     | EVM network      | Contract address                                                                                                                | Attested data |
+| Contract     | EVM network      | Contract address                                                                                                                | Attested data on Celestia |
 | ------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| Blobstream X  | Ethereum Mainnet          | [`Not yet deployed`](https://etherscan.io/address/0xTODO) | Mainnet Beta |
-| Blobstream X | Arbitrum One | [`Not yet deployed`](https://arbiscan.io/address/0xTODO)  | Mainnet Beta |
-| Blobstream X | Base           | [`Not yet deployed`](https://goerli.etherscan.io/address/0xTODO)  | Mainnet Beta |
-| Blobstream X | Ethereum Sepolia           | [`Not yet deployed`](https://sepolia.etherscan.io/address/0xTODO)  | Mocha Testnet |
-| Blobstream X | Arbitrum Sepolia           | [`Not yet deployed`](https://sepolia.arbiscan.io/address/0xTODO)  | Mocha Testnet |
+| Blobstream X  | Ethereum Mainnet          | [`Not yet deployed`](https://etherscan.io/address/0xTODO) | [Mainnet Beta](../nodes/mainnet.md) |
+| Blobstream X | Arbitrum One | [`Not yet deployed`](https://arbiscan.io/address/0xTODO)  | [Mainnet Beta](../nodes/mainnet.md) |
+| Blobstream X | Base           | [`Not yet deployed`](https://goerli.etherscan.io/address/0xTODO)  | [Mainnet Beta](../nodes/mainnet.md) |
+| Blobstream X | Ethereum Sepolia           | [`Not yet deployed`](https://sepolia.etherscan.io/address/0xTODO)  | [Mocha testnet](../nodes/mocha-testnet.md) |
+| Blobstream X | Arbitrum Sepolia           | [`Not yet deployed`](https://sepolia.arbiscan.io/address/0xTODO)  | [Mocha testnet](../nodes/mocha-testnet.md) |
 
 <!-- markdownlint-enable MD013 -->
 
