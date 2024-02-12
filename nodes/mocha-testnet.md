@@ -80,7 +80,7 @@ Celestia network. The default port is 26657.
 - `celestia-rpc.f5nodes.com`
 - `celestia-testnet.brightlystake.com`
 - `rpc-celestia-mocha.architectnodes.com`
-- `rpc-celestia-mocha.testnet-pride.com`
+- `rpc-celestia-mocha.trusted-point.com`
 - `rpc-celestia-testnet-01.stakeflow.io`
 - `mocha.celestia.rpc.cumulo.me`
 - `rpc-mocha-4.spidey.services`
@@ -99,7 +99,7 @@ The default port is 1317.
 - [https://celestia-api.f5nodes.com](https://celestia-api.f5nodes.com)
 - [https://celestia-testnet.brightlystake.com/api](https://celestia-testnet.brightlystake.com/api)
 - [https://rest-celestia-mocha.architectnodes.com](https://rest-celestia-mocha.architectnodes.com)
-- [https://api-celestia-mocha.testnet-pride.com/](https://api-celestia-mocha.testnet-pride.com/)
+- [https://api-celestia-mocha.trusted-point.com](https://api-celestia-mocha.trusted-point.com)
 - [https://api-celestia-testnet-01.stakeflow.io/](https://api-celestia-testnet-01.stakeflow.io/)
 - [https://mocha.api.cumulo.me/](https://mocha.api.cumulo.me/)
 - [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
@@ -119,7 +119,7 @@ broadcast transactions.
 - `celestia-grpc.f5nodes.com`
 - `celestia-testnet.brightlystake.com:9390`
 - `grpc-celestia-mocha.architectnodes.com:1443`
-- `grpc-celestia-mocha.testnet-pride.com:9099`
+- `grpc-celestia-mocha.trusted-point.com:9099`
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
 - `mocha.grpc.cumulo.me:443`
 - `grpc-mocha-4.spidey.services`
