@@ -94,8 +94,8 @@ As shown in the diagram below, the entrypoint for updates to the Blobstream
 X contract is through the `SuccinctGateway` smart contract, which is a
 simple entrypoint contract that verifies proofs (against a deployed
 onchain verifier for the Blobstream X circuit) and then calls the
-`BlobstreamX.sol` contract to update it. More information about the
-`SuccinctGateway` can be found here: [TODO].
+`BlobstreamX.sol` contract to update it.
+[Find more information about the `SuccinctGateway`](https://docs.succinct.xyz/platform/onchain-integration#succinct-gateway).
 
 ![blobstream x overview diagram draft](/img/blobstream/Celestia_Blobstream_X2a.png)
 
@@ -128,11 +128,11 @@ the following Ethereum testnets:
 
 | Contract     | EVM network      | Contract address                                                                                                                | Attested data |
 | ------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| Blobstream X  | Ethereum Mainnet          | [`0xTBD TODO`](https://etherscan.io/address/0xTODO) | Mainnet Beta |
-| Blobstream X | Arbitrum One | [`0xTBD TODO`](https://arbiscan.io/address/0xTODO)  | Mainnet Beta |
-| Blobstream X | Base           | [`0xTBD TODO`](https://goerli.etherscan.io/address/0xTODO)  | Mainnet Beta |
-| Blobstream X | Ethereum Sepolia           | [`0xTBD TODO`](https://sepolia.etherscan.io/address/0xTODO)  | Mocha Testnet |
-| Blobstream X | Arbitrum Sepolia           | [`0xTBD TODO`](https://sepolia.arbiscan.io/address/0xTODO)  | Mocha Testnet |
+| Blobstream X  | Ethereum Mainnet          | [`Not yet deployed`](https://etherscan.io/address/0xTODO) | Mainnet Beta |
+| Blobstream X | Arbitrum One | [`Not yet deployed`](https://arbiscan.io/address/0xTODO)  | Mainnet Beta |
+| Blobstream X | Base           | [`Not yet deployed`](https://goerli.etherscan.io/address/0xTODO)  | Mainnet Beta |
+| Blobstream X | Ethereum Sepolia           | [`Not yet deployed`](https://sepolia.etherscan.io/address/0xTODO)  | Mocha Testnet |
+| Blobstream X | Arbitrum Sepolia           | [`Not yet deployed`](https://sepolia.arbiscan.io/address/0xTODO)  | Mocha Testnet |
 
 <!-- markdownlint-enable MD013 -->
 
