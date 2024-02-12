@@ -104,7 +104,8 @@ onchain verifier for the Blobstream X circuit) and then calls the
 :::tip NOTE
 If the Blobstream X contract is not deployed on a desired chain,
 it needs to be deployed before it can be used by your rollup. See the
-[deployment documentation (TBD)]() for more details.
+[deployment documentation](https://docs.succinct.xyz/platform/onchain-integration#gateway-deployment)
+for more details.
 :::
 
 ### How to integrate with Blobstream X
@@ -127,9 +128,11 @@ the following Ethereum testnets:
 
 | Contract     | EVM network      | Contract address                                                                                                                | Attested data |
 | ------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| Blobstream X  | Ethereum Mainnet          | [`0xTBD TODO`](https://sepolia.etherscan.io/address/0xTODO) | Mainnet Beta |
-| Blobstream X | Arbitrum One | [`0xTBD TODO`](https://sepolia.arbiscan.io/address/0xTODO)  | Mainnet Beta |
+| Blobstream X  | Ethereum Mainnet          | [`0xTBD TODO`](https://etherscan.io/address/0xTODO) | Mainnet Beta |
+| Blobstream X | Arbitrum One | [`0xTBD TODO`](https://arbiscan.io/address/0xTODO)  | Mainnet Beta |
 | Blobstream X | Base           | [`0xTBD TODO`](https://goerli.etherscan.io/address/0xTODO)  | Mainnet Beta |
+| Blobstream X | Ethereum Sepolia           | [`0xTBD TODO`](https://sepolia.etherscan.io/address/0xTODO)  | Mocha Testnet |
+| Blobstream X | Arbitrum Sepolia           | [`0xTBD TODO`](https://sepolia.arbiscan.io/address/0xTODO)  | Mocha Testnet |
 
 <!-- markdownlint-enable MD013 -->
 
