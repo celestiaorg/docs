@@ -526,9 +526,12 @@ function sidebarHome() {
         },
         {
           text: "Integrate with Blobstream",
-          link: "/developers/blobstream",
           collapsed: true,
           items: [
+            {
+              text: "Overview of Blobstream",
+              link: "/developers/blobstream",
+            },
             {
               text: "Integrate with Blobstream X contracts",
               link: "/developers/blobstreamx-contracts",
