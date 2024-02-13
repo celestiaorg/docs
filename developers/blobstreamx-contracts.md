@@ -59,7 +59,7 @@ contract MyRollup {
             blobstreamX.verifyAttestation(_blobstreamX_nonce, _tuple, _proof)
         );
 
-        // Verify the ZKP.
+        // Verify the ZKP (zero-knowledge proof).
         // _tuple.dataRoot is a public input, leaves (shares) are private inputs.
         require(verifyZKP(_rollup_block_hash, _zk_proof, _tuple.dataRoot));
 

@@ -20,7 +20,7 @@ An implementation of Blobstream, by [Succinct](https://docs.succinct.xyz/), call
 [Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
 and will be used in our canonical deployments. This implementation proves the
 validity of Celestia block headers on a target EVM chain using zero-knowledge
-proofs which allows (ZKPs), which allow inheriting all the security
+proofs which allows, which allow inheriting all the security
 guarantees of Celestia.
 
 ## What is Blobstream X?
@@ -54,7 +54,7 @@ against the stored Merkle root) to rollups.
 Blobstream X is built and deployed with
 [Succinct's protocol](https://docs.succinct.xyz).
 
-![blobstream x draft diagram](/img/blobstream/Celestia_Blobstream_X1a.png)
+![blobstream x draft diagram](/img/blobstream/Celestia_Blobstream_X1b.png)
 
 ## Integrate with Blobstream X
 
@@ -99,7 +99,7 @@ onchain verifier for the Blobstream X circuit) and then calls the
 `BlobstreamX.sol` contract to update it.
 [Find more information about the `SuccinctGateway`](https://docs.succinct.xyz/platform/onchain-integration#succinct-gateway).
 
-![blobstream x overview diagram draft](/img/blobstream/Celestia_Blobstream_X2a.png)
+![blobstream x overview diagram draft](/img/blobstream/Celestia_Blobstream_X2b.png)
 
 <!-- markdownlint-disable MD042 -->
 

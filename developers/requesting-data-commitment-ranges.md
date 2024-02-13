@@ -50,7 +50,8 @@ and relayed by the Succinct platform.
 
 1. Call `requestHeaderRange(uint64 _targetBlock)` with the end
    of the range you want a commitment for.
-   1. A `DataCommitmentStored(uint256, uint64, uint64, bytes32)`
-      will be emitted for the requested range when it is stored in the
-      contract. Listen to this event to know that the proof has been
-      generated successfully.
+
+2. A `DataCommitmentStored(uint256, uint64, uint64, bytes32)`
+   will be emitted for the requested range when it is stored in the
+   contract. Listen to this event to know that the proof has been
+   generated successfully.
