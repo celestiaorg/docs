@@ -182,7 +182,6 @@ User=$USER
 ExecStart=$(which celestia) light start --core.ip <URI>
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=1400000
 
 [Install]
 WantedBy=multi-user.target
