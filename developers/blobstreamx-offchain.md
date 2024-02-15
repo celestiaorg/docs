@@ -1,12 +1,12 @@
 ---
-description: Learn how to integrate your L2's offchain logic with Blobstream X
+description: Learn how to integrate your L2's offchain logic with Blobstream
 ---
 
-# Integrate with Blobstream X client
+# Integrate with Blobstream client
 
-## Blobstream X demo rollup
+## Blobstream demo rollup
 
-Rollups can use Blobstream X for DA by posting their data to Celestia and then
+Rollups can use Blobstream for DA by posting their data to Celestia and then
 proving that it was posted on Ethereum. This is done identically to how any
 rollup or user would post data to Celestia. Then, a zero-knowledge proof that
 Celestia validators have come to consensus on Celestia block headers is
@@ -15,7 +15,7 @@ contract.
 
 This demo rollup will outline (note outline is not an
 implementation! please do not expect to copy and paste this code 🙂) a very
-simple Blobstream X rollup to illustrate at a high level what this could look
+simple Blobstream rollup to illustrate at a high level what this could look
 like.
 
 ## Defining a chain
@@ -48,9 +48,9 @@ type Header struct {
 ```
 
 Note the Celestia-specific structures in the header such as the `Namespace` and
-the Blobstream X-specific structure called the `Span`. The goal of these
+the Blobstream-specific structure called the `Span`. The goal of these
 structures are to locate the data in the Celestia block so that we can prove
-that data's inclusion via Blobstream X if needed. Read more in the
+that data's inclusion via Blobstream if needed. Read more in the
 [namespace specifications](https://celestiaorg.github.io/celestia-app/specs/namespace.html),
 and you can think of this like a chain ID. Learn more
 [information about `shares`](https://celestiaorg.github.io/celestia-app/specs/shares.html),
@@ -110,7 +110,7 @@ Additionally, if you need more information on how to run a light node, you can
 
 ```go
 // CelestiaLightNodeClient summarizes the actions that a rollup that uses
-// Blobstream X for DA would need from a Celestia light node. Note that the actual
+// Blobstream for DA would need from a Celestia light node. Note that the actual
 // connection to this light node is arbitrary, but would likely involve an RPC
 // connection to a Celestia light node.
 type CelestiaLightNodeClient interface {
@@ -118,7 +118,7 @@ type CelestiaLightNodeClient interface {
     SubmitBlockData(Data) (Span, error)
 }
 
-// EthereumClient summarizes the actions that a rollup that uses Blobstream X for
+// EthereumClient summarizes the actions that a rollup that uses Blobstream for
 // DA would need from an Ethereum client.
 type EthereumClient interface {
     // GetLatestRollupHeight returns the height of the latest rollup block by
@@ -159,8 +159,8 @@ type Sequencer struct {
 ### Committing to data
 
 Typical blockchains commit to the transactions included in each block using a
-Merkle root. Rollups that use Blobstream X for DA need to use the commitments that
-are relayed to the Blobstream X contracts.
+Merkle root. Rollups that use Blobstream for DA need to use the commitments that
+are relayed to the Blobstream contracts.
 
 For optimistic rollups, this could be as simple as referencing the data in the
 Celestia block, not unlike using a pointer in memory. This is what is done below
@@ -172,7 +172,7 @@ in the `Span` before the rest of the fraud proof process is followed. Find more
 information [in the inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/v3.0.0/docs/inclusion-proofs.md#blobstream-fraud-proofs).
 
 For zk rollups, this would involve creating an inclusion proof to the data root
-tuple root in the Blobstream X contracts and then verifying that proof in the zk
+tuple root in the Blobstream contracts and then verifying that proof in the zk
 proof used to verify state. Find more information in the
 [data root inclusion proof documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md#1-data-root-inclusion-proof).
 
@@ -308,17 +308,17 @@ func (f *Fullnode) GetLatestBlock() error {
 
 <!-- markdownlint-enable MD013 -->
 
-This outline of a Blobstream X rollup isn't doing execution or state transitions
+This outline of a Blobstream rollup isn't doing execution or state transitions
 induced by the transactions, however, that step would occur here. If fraud is
 detected, the fraud proof process will begin. The only difference between the
 fraud proof process of a normal optimistic rollup and a rollup that uses
-Blobstream X for DA is that the full node would first prove the fraudulent
+Blobstream for DA is that the full node would first prove the fraudulent
 transaction was committed to by the Sequencer using the `Span` in the header and
 before proceeding with the normal process.
 
 ### More documentation
 
-#### Proving inclusion via Blobstream X
+#### Proving inclusion via Blobstream
 
 [Blobstream inclusion proof docs](https://github.com/celestiaorg/blobstream-contracts/blob/v3.0.0/docs/inclusion-proofs.md)
 and the

@@ -20,7 +20,7 @@ An implementation of Blobstream, by [Succinct](https://docs.succinct.xyz/), call
 [Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
 and will be used in our canonical deployments. This implementation proves the
 validity of Celestia block headers on a target EVM chain using zero-knowledge
-proofs which allows, which allow inheriting all the security
+proofs, which allow inheriting all the security
 guarantees of Celestia.
 
 ## What is Blobstream X?
@@ -138,32 +138,32 @@ the following Ethereum testnets:
 
 <!-- markdownlint-enable MD013 -->
 
-## Blobstream X vs. data availability committees (DACs)
+## Blobstream vs. data availability committees (DACs)
 
 ### Decentralization and security
 
-Blobstream X is built on Celestia, which uses a CometBFT-based proof-of-stake
-system. Blobstream X shares the same security assumptions
+Blobstream is built on Celestia, which uses a CometBFT-based proof-of-stake
+system. Blobstream shares the same security assumptions
 as Celestia. In contrast, data availability committees (DACs), are typically
 centralized or semi-centralized, relying on a specific set of entities or
 individuals to vouch for data availability.
 
 ### Mechanism of verification
 
-Blobstream X uses data availability attestations, which are Merkle roots of
+Blobstream uses data availability attestations, which are Merkle roots of
 the batched L2 data, to confirm that the necessary data is present on Celestia.
-The L2 contract on Ethereum can check directly with Blobstream X if the data
+The L2 contract on Ethereum can check directly with Blobstream if the data
 is published on Celestia. Similarly, a DAC would rely on
 attestations or confirmations from its permissioned members.
 
 ### Flexibility and scalability
 
-Blobstream X is designed to offer high-throughput data availability for Ethereum
+Blobstream is designed to offer high-throughput data availability for Ethereum
 L2s, aiming to strike a balance between scalability and security. It operates
 independently of Ethereum's gas costs, as Celestia's resource pricing is more
 byte-focused rather than computation-centric. On the other hand, the scalability
 and flexibility of a DAC would depend on its specific design and implementation.
 
-In summary, both Blobstream X and DACs aim to ensure offchain data availability,
-but Blobstream X offers a more decentralized, secure, and scalable solution
+In summary, both Blobstream and DACs aim to ensure offchain data availability,
+but Blobstream offers a more decentralized, secure, and scalable solution
 compared to the potential centralized nature of DACs.

@@ -10,4 +10,4 @@ need to do the following.
 
 ## Deploy a `BlobstreamX` contract to the new chain
 
-[Follow the guide to use your deployed `SuccinctGateway` to deploy new Blobstream X contract](https://github.com/succinctlabs/blobstreamx?tab=readme-ov-file#deploy-blobstream-x-contract).
+[Follow the guide to use your deployed `SuccinctGateway` to deploy a new Blobstream X contract](https://github.com/succinctlabs/blobstreamx?tab=readme-ov-file#deploy-blobstream-x-contract).

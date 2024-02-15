@@ -1,5 +1,5 @@
 ---
-sidebar_label: Integrate with Blobstream X contracts
+sidebar_label: Integrate with Blobstream contracts
 description: Learn how to integrate your L2's onchain logic with Blobstream
 ---
 
