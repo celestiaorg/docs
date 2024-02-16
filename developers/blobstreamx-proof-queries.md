@@ -1,8 +1,8 @@
 ---
-description: Learn how to query the inclusion proofs used in Blobstream X
+description: Learn how to query the inclusion proofs used in Blobstream
 ---
 
-# Blobstream X proofs queries
+# Blobstream proofs queries
 
 <!-- markdownlint-disable MD010 -->
 
@@ -17,7 +17,7 @@ description: Learn how to query the inclusion proofs used in Blobstream X
 To prove the inclusion of PayForBlob (PFB) transactions, blobs or shares,
 committed to in a Celestia block, we use the Celestia consensus node's RPC to
 query for proofs that can be verified in a Rollup settlement contract via
-Blobstream X. In fact, when a PFB transaction is included in a block, it
+Blobstream. In fact, when a PFB transaction is included in a block, it
 gets separated into a PFB transaction (without the blob), and the actual
 data blob that it carries. These two are split into shares, which are the
 low level constructs of a Celestia block, and saved to the corresponding
@@ -26,7 +26,7 @@ Celestia block. Learn more about shares in the
 
 The two diagrams below summarize how a single share, which can contain a
 PFB transaction, or a part of the rollup data that was posted using a PFB,
-is committed to in Blobstream X.
+is committed to in Blobstream.
 
 The share is highlighted in green. `R0`, `R1` etc, represent the respective
 row and column roots, the blue and pink gradients are erasure encoded data.
@@ -44,8 +44,9 @@ portion of the specs.
 
 ![Blobstream Commitment Diagram](/img/blobstream/blobstream-commitment-diagram.png)
 
-So to prove inclusion of a share to a Celestia block, we use Blobstream X
-as a source of truth, more information on Blobstream X can be found in
+So to prove inclusion of a share to a Celestia block, we use Blobstream
+as a source of truth. Currently, we will be using the Blobstream X implementation 
+of Blobstream, more information on Blobstream X can be found in
 [the overview](./blobstream.md#blobstream-x). In a nutshell, Blobstream X
 attests to the data posted to Celestia in the Blobstream X contract via
 verifying a zk-proof of the headers of a batch of Celestia blocks. Then, it
