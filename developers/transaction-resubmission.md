@@ -25,5 +25,5 @@ may affect transaction gossiping and inclusion speed.
 
 - All transactions, regardless of their origin, are subject to being sorted and
   pruned based on fees.
-- It is the user or developer's responsibility to monitor and possibly resubumit
+- It is the user or developer's responsibility to monitor and possibly resubmit
   transactions if they are not included in a 75-second window.
