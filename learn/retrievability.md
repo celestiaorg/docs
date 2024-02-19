@@ -29,7 +29,7 @@ marking a significant update in how data retrievability and
 storage are managed within the network
 ([v0.13.0 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.0)).
 
-Data blobs older than the recency window are pruned by pruned nodes, but
+Data blobs older than the recency window are pruned by default on light nodes, but
 will continue to be stored by archival nodes that do not prune data. Light
 nodes will be able to query historic blob data in namespaces from archival
 nodes, as long as archival nodes exist on the public network.
