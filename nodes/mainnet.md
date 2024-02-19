@@ -98,6 +98,7 @@ to participate in Mainnet Beta:
 
 - `public-celestia-rpc.numia.xyz`
 - `celestia-rpc.mesa.newmetric.xyz`
+- `rpc.celestia.pops.one`
 - `rpc.lunaroasis.net`
 - `rpc.celestia.nodestake.top`
 - `celestia-rpc.brightlystake.com`
