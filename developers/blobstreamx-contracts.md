@@ -15,6 +15,9 @@ Make sure to have the following installed:
 
 ### Installing Blobstream X contracts
 
+We will be using the Blobstream X implementation of
+Blobstream, so we can install its repo as a dependency:
+
 Install the Blobstream X contracts repo as a dependency:
 
 ```sh
