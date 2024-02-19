@@ -112,13 +112,15 @@ for more details.
 
 ### How to integrate with Blobstream X
 
-Integrating your L2 with Blobstream X requires two components: your onchain smart
-contract logic, and your offchain client logic. The next three sections cover these
+Integrating your L2 with Blobstream X requires two components: your
+[onchain smart contract logic](./blobstream-x-contracts.md),
+and your [offchain client logic for your rollup](./blobstream-x-offchain.md).
+The next three sections cover these
 topics:
 
-- [Integrate with Blobstream X contracts](./blobstreamx-contracts.md)
-- [Integrate with Blobstream X client](./blobstreamx-offchain.md)
-- [Querying the Blobstream X proofs](./blobstreamx-proof-queries.md)
+- [Integrate with Blobstream contracts](./blobstream-contracts.md)
+- [Integrate with Blobstream client](./blobstream-offchain.md)
+- [Querying the Blobstream proofs](./blobstream-proof-queries.md)
 
 ### Deployed contracts
 

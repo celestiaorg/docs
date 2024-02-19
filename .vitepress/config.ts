@@ -533,16 +533,16 @@ function sidebarHome() {
               link: "/developers/blobstream",
             },
             {
-              text: "Integrate with Blobstream X contracts",
-              link: "/developers/blobstreamx-contracts",
+              text: "Integrate with Blobstream contracts",
+              link: "/developers/blobstream-contracts",
             },
             {
-              text: "Integrate with Blobstream X client",
-              link: "/developers/blobstreamx-offchain",
+              text: "Integrate with Blobstream client",
+              link: "/developers/blobstream-offchain",
             },
             {
-              text: "Querying the Blobstream X proofs",
-              link: "/developers/blobstreamx-proof-queries",
+              text: "Querying the Blobstream proofs",
+              link: "/developers/blobstream-proof-queries",
             },
             {
               text: "Local Blobstream X operators",
