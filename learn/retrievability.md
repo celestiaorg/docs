@@ -21,7 +21,8 @@ order to ensure that syncing new rollup nodes is possible.
 As of version v0.13.0, celestia-node has implemented a light node
 sampling window of 30 days, as specified in
 [CIP-4](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-4.md).
-This means that light nodes will now only sample blocks within a 30-day
+This means that once pruning is implemented,
+light nodes will now only sample blocks within a 30-day
 window instead of sampling all blocks from genesis. This change
 introduces the concept of pruning to celestia-node, where data
 outside of the 30-day window may not be stored by light nodes,
@@ -29,12 +30,12 @@ marking a significant update in how data retrievability and
 storage are managed within the network
 ([v0.13.0 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.0)).
 
-Data blobs older than the recency window are pruned by default on light nodes, but
-will continue to be stored by archival nodes that do not prune data. Light
+Data blobs older than the recency window will be pruned by default on light nodes, after pruning is implemented,
+but will continue to be stored by archival nodes that do not prune data. Light
 nodes will be able to query historic blob data in namespaces from archival
 nodes, as long as archival nodes exist on the public network.
 
-Light nodes will only perform data
+Once pruning is implemented, light nodes will only perform data
 availability sampling for blocks within the data recency window of 30 days.
 
 ## Suggested practices for rollups
