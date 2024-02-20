@@ -114,6 +114,7 @@ to participate in Mainnet Beta:
 - `celestia.rpc.kjnodes.com`
 - `celestia-rpc.0xcryptovestor.com`
 - `rpc-celestia-mainnet.trusted-point.com`
+- `celestia.rpc.archives.validao.xyz`
 
 #### API endpoints
 
@@ -134,6 +135,7 @@ to participate in Mainnet Beta:
 - `celestia-lcd.easy2stake.com`
 - `celestia.api.kjnodes.com`
 - `api-celestia-mainnet.trusted-point.com`
+- `celestia.rest.archives.validao.xyz`
 
 #### gRPC endpoints
 
@@ -153,6 +155,7 @@ to participate in Mainnet Beta:
 - `grpc-celestia-full.avril14th.org`
 - `celestia.grpc.kjnodes.com:443`
 - `grpc-celestia-mainnet.trusted-point.com:9095`
+- `celestia.grpc.archives.validao.xyz:9090`
 
 ### Data availability nodes
 
