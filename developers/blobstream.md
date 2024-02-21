@@ -18,8 +18,8 @@ the first with Data Availability Sampling (DAS).
 
 An implementation of Blobstream, by [Succinct](https://docs.succinct.xyz/), called
 [Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
-and will be used in our canonical deployments. This implementation proves the
-validity of Celestia block headers on a target EVM chain using zero-knowledge
+and will be used in the canonical deployments. This implementation proves the
+validity of Celestia block headers on a target EVM chain using zero-knowledge (ZK)
 proofs, which allow inheriting all the security
 guarantees of Celestia.
 
@@ -30,8 +30,8 @@ ZK light client that bridges Celestia’s modular DA layer to
 Ethereum to allow high-throughput rollups to use Celestia’s DA while settling
 on Ethereum.
 
-Optimistic or ZK rollups that settle on Ethereum but wish to use Celestia for
-DA require a mechanism for _bridging_ Celestia’s data root to Ethereum as part
+Optimistic or ZK rollups that settle on Ethereum, but wish to use Celestia for
+DA, require a mechanism for _bridging_ Celestia’s data root to Ethereum as part
 of the settlement process. This data root is used during inclusion proofs to
 prove that particular rollup transactions were included and made available in
 the Celestia network.
@@ -39,13 +39,13 @@ the Celestia network.
 Bridging Celestia’s data root to Ethereum requires running a Celestia
 _light client_ as a smart contract on Ethereum, to make the latest state
 of the Celestia chain known on Ethereum and available to rollups. Blobstream
-X utilizes the latest advances in zero-knowledge proofs to generate a
+X utilizes the latest advances in ZK proofs to generate a
 _succinct proof_ that enough Celestia validators have come to consensus
 (according to the Tendermint consensus protocol) on a block header, and
 verifies this proof in the Blobstream X Ethereum smart contract to update
 it with the latest Celestia header.
 
-The Blobstream X zero-knowledge proof not only verifies the consensus of
+The Blobstream X ZK proof not only verifies the consensus of
 Celestia validators, but it also merkelizes and hashes all the data roots
 in the block range from the previous update to the current update, making
 accessible all Celestia data roots (verifiable with a Merkle inclusion proof
@@ -63,7 +63,7 @@ The following docs go over how developers can integrate Blobstream X.
 You can [find the repository for Blobstream X](https://github.com/succinctlabs/blobstreamx)
 along with code for:
 
-- The Blobstream X smart contract - [`BlobstreamX.sol`](https://github.com/succinctlabs/blobstreamx/blob/main/contracts/src/BlobstreamX.sol)
+- [The Blobstream X smart contract - `BlobstreamX.sol`](https://github.com/succinctlabs/blobstreamx/blob/main/contracts/src/BlobstreamX.sol)
 - [The Blobstream X circuits](https://alpha.succinct.xyz/celestia/blobstreamx)
 - [The Blobstream X contract Golang bindings](https://github.com/succinctlabs/blobstreamx/blob/main/bindings/BlobstreamX.go)
 
@@ -86,7 +86,7 @@ and `customTargetBlock - latestBlock <= DATA_COMMITMENT_MAX`.
 Block ranges that are before the contract's `latestBlock` can't be
 proven a second time in different batches.
 
-More information can be found in [`requestHeaderRange(...)`](https://github.com/succinctlabs/blobstreamx/blob/364d3dc8c8dc9fd44b6f9f049cfb18479e56cec4/contracts/src/BlobstreamX.sol#L78-L101)
+More information can be found in the [`requestHeaderRange(...)`](https://github.com/succinctlabs/blobstreamx/blob/364d3dc8c8dc9fd44b6f9f049cfb18479e56cec4/contracts/src/BlobstreamX.sol#L78-L101)
 method.
 :::
 
