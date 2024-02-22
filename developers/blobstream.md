@@ -41,7 +41,7 @@ _light client_ as a smart contract on Ethereum, to make the latest state
 of the Celestia chain known on Ethereum and available to rollups. Blobstream
 X utilizes the latest advances in ZK proofs to generate a
 _succinct proof_ that enough Celestia validators have come to consensus
-(according to the Tendermint consensus protocol) on a block header, and
+(according to the CometBFT consensus protocol) on a block header, and
 verifies this proof in the Blobstream X Ethereum smart contract to update
 it with the latest Celestia header.
 

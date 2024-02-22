@@ -13,7 +13,7 @@ Celestia validators have come to consensus on Celestia block headers is
 generated, and subsequently relayed to Ethereum to the Blobstream X smart
 contract.
 
-This demo rollup will outline (note outline is not an
+This demo rollup will outline (the outline is not an
 implementation! please do not expect to copy and paste this code 🙂) a very
 simple Blobstream rollup to illustrate at a high level what this could look
 like.

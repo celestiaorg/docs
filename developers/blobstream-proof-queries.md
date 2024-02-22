@@ -14,9 +14,9 @@ description: Learn how to query the inclusion proofs used in Blobstream
 
 ## Overview of the proof queries
 
-To prove the inclusion of PayForBlob (PFB) transactions, blobs or shares,
+To prove the inclusion of PayForBlobs (PFB) transactions, blobs or shares,
 committed to in a Celestia block, we use the Celestia consensus node's RPC to
-query for proofs that can be verified in a Rollup settlement contract via
+query for proofs that can be verified in a rollup settlement contract via
 Blobstream. In fact, when a PFB transaction is included in a block, it
 gets separated into a PFB transaction (without the blob), and the actual
 data blob that it carries. These two are split into shares, which are the
@@ -58,7 +58,7 @@ Check the above diagram which shows:
   data blob.
 - 1: the row and column roots are the namespace merkle tree roots over
   the shares. More information on the NMT in the
-  [nmt specs](https://celestiaorg.github.io/celestia-app/specs/data_structures.html?highlight=namespace%20merkle#namespace-merkle-tree).
+  [NMT specs](https://celestiaorg.github.io/celestia-app/specs/data_structures.html?highlight=namespace%20merkle#namespace-merkle-tree).
   These commit to the rows and columns containing the above shares.
 - 2: the data roots: which are the binary merkle tree commitment over
   the row and column roots. This means that if you can prove that a share
@@ -79,7 +79,7 @@ the corresponding Celestia block.
 In this document, we will provide details on how to query the above proofs,
 and how to adapt them to be sent to a rollup contract for verification.
 
-## Hands-on lab
+## Hands-on demonstration
 
 This part will provide the details of proof generation, and the way to
 make the results of the proofs queries ready to be consumed by the
