@@ -7,7 +7,7 @@ description: Make your own GM Portal dapp on your Arbitrum rollup.
 First, review the [Arbitrum integration](./arbitrum-integration.md),
 [Deploy an Arbitrum rollup devnet](./arbitrum-deploy.md), and
 [Deploy a smart contract to your Arbitrum rollup](./arbitrum-smart-contract.md)
-pages.
+pages. Testing out new CI.
 
 ## Dependencies
 
