@@ -84,6 +84,7 @@ Celestia network. The default port is 26657.
 - `rpc-celestia-testnet-01.stakeflow.io`
 - `mocha.celestia.rpc.cumulo.me`
 - `rpc-mocha-4.spidey.services`
+- `rpc-mocha-full.avril14th.org`
 
 ## API endpoints
 
@@ -103,6 +104,7 @@ The default port is 1317.
 - [https://api-celestia-testnet-01.stakeflow.io/](https://api-celestia-testnet-01.stakeflow.io/)
 - [https://mocha.api.cumulo.me/](https://mocha.api.cumulo.me/)
 - [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
+- [https://api-mocha-full.avril14th.org](https://api-mocha-full.avril14th.org)
 
 ## gRPC endpoints
 
@@ -123,6 +125,7 @@ broadcast transactions.
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
 - `mocha.grpc.cumulo.me:443`
 - `grpc-mocha-4.spidey.services`
+- `grpc-mocha-full.avril14th.org`
 
 ## Bridge and full node endpoints
 
