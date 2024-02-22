@@ -39,3 +39,4 @@ jobs:
           source-dir: .vitepress/dist
           deploy-repository: celestiaorg/docs-preview
           token: ${{ secrets.PREVIEW_DEPLOY }}
+          preview-branch: main
