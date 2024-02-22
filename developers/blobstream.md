@@ -2,9 +2,11 @@
 description: Learn how to integrate your L2 with Blobstream
 ---
 
-# Integrate with Blobstream
+# Blobstream: Streaming modular DA to Ethereum
 
 ![Blobstream logo](/img/blobstream/blobstream_logo.png)
+
+## What is Blobstream?
 
 [Blobstream](https://blog.celestia.org/introducing-blobstream/)
 is the first data availability solution for Ethereum that securely
@@ -14,79 +16,106 @@ on Ethereum, for integration by developers into L2 contracts. This enables Ether
 developers to build high-throughput L2s using Celestia's optimised DA layer,
 the first with Data Availability Sampling (DAS).
 
-The following docs go over how developers can integrate Blobstream.
-There are also docs on how to run a [Blobstream orchestrator](../nodes/blobstream-binary.md)
-as a Celestia validator which won't be covered in the following sections
-aimed at developers.
+An implementation of Blobstream, by [Succinct](https://docs.succinct.xyz/), called
+[Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
+and will be used in the canonical deployments. This implementation proves the
+validity of Celestia block headers on a target EVM chain using zero-knowledge (ZK)
+proofs, which allow inheriting all the security
+guarantees of Celestia.
 
-## Overview
+## What is Blobstream X?
 
-Blobstream,
-consists of two components: an [orchestrator](../nodes/blobstream-orchestrator.md)
-and a [relayer](../nodes/blobstream-relayer.md).
+Blobstream X is an implementation of Blobstream with a
+ZK light client that bridges Celestia’s modular DA layer to
+Ethereum to allow high-throughput rollups to use Celestia’s DA while settling
+on Ethereum.
 
-In the following diagram, we show how a layer 2 (L2) would post data to
-Celestia and then verify that it was published in the target EVM chain.
+Optimistic or ZK rollups that settle on Ethereum, but wish to use Celestia for
+DA, require a mechanism for _bridging_ Celestia’s data root to Ethereum as part
+of the settlement process. This data root is used during inclusion proofs to
+prove that particular rollup transactions were included and made available in
+the Celestia network.
 
-![Blobstream-Architecture](/img/blobstream/Blobstream.png)
+Bridging Celestia’s data root to Ethereum requires running a Celestia
+_light client_ as a smart contract on Ethereum, to make the latest state
+of the Celestia chain known on Ethereum and available to rollups. Blobstream
+X utilizes the latest advances in ZK proofs to generate a
+_succinct proof_ that enough Celestia validators have come to consensus
+(according to the CometBFT consensus protocol) on a block header, and
+verifies this proof in the Blobstream X Ethereum smart contract to update
+it with the latest Celestia header.
 
-Data will first be attested to by the Celestia validator set, _i.e._
-signing commitments committing to the data. Then, these signatures will be
-relayed to the target EVM chain (in this case, Ethereum). Finally,
-the L2, or any party, will be able to verify that the data was published
-to Celestia directly on the EVM chain on the Blobstream smart contract. You can
-reference [the Blobstream smart contract](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/Blobstream.sol).
+The Blobstream X ZK proof not only verifies the consensus of
+Celestia validators, but it also merkelizes and hashes all the data roots
+in the block range from the previous update to the current update, making
+accessible all Celestia data roots (verifiable with a Merkle inclusion proof
+against the stored Merkle root) to rollups.
 
-The **orchestrator** is part of the validator setup and works as follows:
+Blobstream X is built and deployed with
+[Succinct's protocol](https://docs.succinct.xyz).
 
-- celestia-app creates an attestation on the state machine level that needs to
-  be signed
-- The orchestrator queries the attestation, signs it, then submits the signature
-  to the Blobstream P2P network
+![blobstream x draft diagram](/img/blobstream/Celestia_Blobstream_X1b.png)
 
-The **relayer** submits the attestations' signatures from the Blobstream
-P2P network to the target EVM chain.
+## Integrate with Blobstream X
+
+The following docs go over how developers can integrate Blobstream X.
+
+You can [find the repository for Blobstream X](https://github.com/succinctlabs/blobstreamx)
+along with code for:
+
+- [The Blobstream X smart contract - `BlobstreamX.sol`](https://github.com/succinctlabs/blobstreamx/blob/main/contracts/src/BlobstreamX.sol)
+- [The Blobstream X circuits](https://alpha.succinct.xyz/celestia/blobstreamx)
+- [The Blobstream X contract Golang bindings](https://github.com/succinctlabs/blobstreamx/blob/main/bindings/BlobstreamX.go)
+
+Canonical deployments of Blobstream X will be maintained on the
+following chains: Arbitrum One, Base and Ethereum Mainnet. Every 1
+hour, Succinct will post an update to the Blobstream X contract
+that will include a new data commitment range that covers a 1-hour
+block range from the `latestBlock` in the Blobstream X contract.
+On Ethereum Mainnet, the Blobstream X contract will be updated
+every 4 hours.
 
 :::tip NOTE
-If the contract is still not deployed, then it needs to be
-deployed before it is used by the relayer. See the
-[deployment documentation](../nodes/blobstream-deploy.md) for more details.
+Custom ranges can be requested using the `BlobstreamX` contract
+to create proofs for specific Celestia block batches. These ranges
+can be constructed as `[latestBlock, customTargetBlock)`, with
+`latestBlock` is the latest block height that was committed to by the
+`BlobstreamX` contract, and `latestBlock > customTargetBlock`,
+and `customTargetBlock - latestBlock <= DATA_COMMITMENT_MAX`.
+
+Block ranges that are before the contract's `latestBlock` can't be
+proven a second time in different batches.
+
+More information can be found in the [`requestHeaderRange(...)`](https://github.com/succinctlabs/blobstreamx/blob/364d3dc8c8dc9fd44b6f9f049cfb18479e56cec4/contracts/src/BlobstreamX.sol#L78-L101)
+method.
 :::
 
-## How Blobstream works
+### How Blobstream X works
 
-Blobstream allows Celestia block header data roots to be relayed in one
-direction, from Celestia to an EVM chain. It does not support bridging
-assets such as fungible or non-fungible tokens directly, and cannot send
-messages from the EVM chain back to Celestia.
+As shown in the diagram below, the entrypoint for updates to the Blobstream
+X contract is through the `SuccinctGateway` smart contract, which is a
+simple entrypoint contract that verifies proofs (against a deployed
+onchain verifier for the Blobstream X circuit) and then calls the
+`BlobstreamX.sol` contract to update it.
+[Find more information about the `SuccinctGateway`](https://docs.succinct.xyz/platform/onchain-integration#succinct-gateway).
 
-It works by relying on a set of signers to attest to some event on Celestia:
-the Celestia validator set. The Blobstream contract keeps track of the
-Celestia validator set by updating its view of the validator set with
-`updateValidatorSet()`. More than 2/3 of the voting power of the current
-view of the validator set must sign off on new relayed events, submitted with
-`submitDataRootTupleRoot()`. Each event is a batch of `DataRootTuple`s, with
-each tuple representing a single
-[data root (i.e. block header)](https://celestiaorg.github.io/celestia-app/specs/data_structures.html#header).
-Relayed tuples are in the same order as Celestia block headers.
+![blobstream x overview diagram draft](/img/blobstream/Celestia_Blobstream_X2b.png)
 
-![Blobstream attestation flow](/img/blobstream/Celestia_Blobstream_attestation_flow.jpg)
+<!-- markdownlint-disable MD042 -->
 
-### Events and messages relayed
+:::tip NOTE
+If the Blobstream X contract is not deployed on a desired chain,
+it needs to be deployed before it can be used by your rollup. See the
+[deployment documentation](https://docs.succinct.xyz/platform/onchain-integration#gateway-deployment)
+for more details.
+:::
 
-**Validator sets**:
-The relayer informs the Blobstream contract who are the current
-validators and their power.
-This results in an execution of the `updateValidatorSet` function.
+### How to integrate with Blobstream X
 
-**Batches**:
-The relayer informs the Blobstream contract of new data root tuple roots.
-This results in an execution of the `submitDataRootTupleRoot` function.
-
-## How to integrate
-
-Integrating your L2 with Blobstream requires two components: your onchain smart
-contract logic, and your offchain client logic. The next three sections cover these
+Integrating your L2 with Blobstream X requires two components: your
+[onchain smart contract logic](./blobstream-x-contracts.md),
+and your [offchain client logic for your rollup](./blobstream-x-offchain.md).
+The next three sections cover these
 topics:
 
 - [Integrate with Blobstream contracts](./blobstream-contracts.md)
@@ -95,16 +124,19 @@ topics:
 
 ### Deployed contracts
 
-You can interact with the Blobstream contracts today on testnet. The Blobstream Solidity
-smart contracts are currently deployed on the following Ethereum testnets:
+You can interact with the Blobstream X contracts today on testnet. The
+Blobstream X Solidity smart contracts are currently deployed on
+the following Ethereum testnets:
 
 <!-- markdownlint-disable MD013 -->
 
-| Contract     | EVM network      | Contract address                                                                                                                | Attested data |
+| Contract     | EVM network      | Contract address                                                                                                                | Attested data on Celestia |
 | ------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| Blobstream   | Sepolia          | [`0x3a5cbB6EF4756DA0b3f6DAE7aB6430fD8c46d247`](https://sepolia.etherscan.io/address/0x3a5cbB6EF4756DA0b3f6DAE7aB6430fD8c46d247) | Mocha testnet |
-| Blobstream   | Arbitrum Sepolia | [`0x040769edbca5218e616c8eb16e4faea49ced5e33`](https://sepolia.arbiscan.io/address/0x040769edbca5218e616c8eb16e4faea49ced5e33)  | Mocha testnet |
-| Blobstream X | Goerli           | [`0x67ea962864cdad3f2202118dc6f65ff510f7bb4d`](https://goerli.etherscan.io/address/0x67ea962864cdad3f2202118dc6f65ff510f7bb4d)  | Mocha testnet |
+| Blobstream X  | Ethereum Mainnet          | [`Not yet deployed`](https://etherscan.io/address/0xTODO) | [Mainnet Beta](../nodes/mainnet.md) |
+| Blobstream X | Arbitrum One | [`Not yet deployed`](https://arbiscan.io/address/0xTODO)  | [Mainnet Beta](../nodes/mainnet.md) |
+| Blobstream X | Base           | [`Not yet deployed`](https://goerli.etherscan.io/address/0xTODO)  | [Mainnet Beta](../nodes/mainnet.md) |
+| Blobstream X | Ethereum Sepolia           | [`Not yet deployed`](https://sepolia.etherscan.io/address/0x48B257EC1610d04191cC2c528d0c940AdbE1E439)  | [Mainnet Beta](../nodes/mainnet.md) |
+| Blobstream X | Arbitrum Sepolia           | [`Not yet deployed`](https://sepolia.arbiscan.io/address/0xTODO)  | [Mocha testnet](../nodes/mocha-testnet.md) |
 
 <!-- markdownlint-enable MD013 -->
 
@@ -113,9 +145,7 @@ smart contracts are currently deployed on the following Ethereum testnets:
 ### Decentralization and security
 
 Blobstream is built on Celestia, which uses a CometBFT-based proof-of-stake
-system. An incorrect data availability attestation in this system will
-ultimately be penalized (currently not implemented), ensuring validators
-act in good faith. Thus, Blobstream shares the same security assumptions
+system. Blobstream shares the same security assumptions
 as Celestia. In contrast, data availability committees (DACs), are typically
 centralized or semi-centralized, relying on a specific set of entities or
 individuals to vouch for data availability.
@@ -130,8 +160,8 @@ attestations or confirmations from its permissioned members.
 
 ### Flexibility and scalability
 
-Blobstream is designed to offer high-throughput data availability for Ethereum L2s,
-aiming to strike a balance between scalability and security. It operates
+Blobstream is designed to offer high-throughput data availability for Ethereum
+L2s, aiming to strike a balance between scalability and security. It operates
 independently of Ethereum's gas costs, as Celestia's resource pricing is more
 byte-focused rather than computation-centric. On the other hand, the scalability
 and flexibility of a DAC would depend on its specific design and implementation.

@@ -412,33 +412,6 @@ function sidebarHome() {
             },
             { text: "Consensus", link: "/nodes/consensus-node" },
             {
-              text: "Blobstream for validators",
-              collapsed: true,
-              items: [
-                {
-                  text: "Install the binary",
-                  link: "/nodes/blobstream-binary",
-                },
-                {
-                  text: "Blobstream Orchestrator",
-                  link: "/nodes/blobstream-orchestrator",
-                },
-                { text: "Key management", link: "/nodes/blobstream-keys" },
-                {
-                  text: "Blobstream Relayer",
-                  link: "/nodes/blobstream-relayer",
-                },
-                {
-                  text: "Deploy the contract",
-                  link: "/nodes/blobstream-deploy",
-                },
-                {
-                  text: "Blobstream Bootstrapper",
-                  link: "/nodes/blobstream-bootstrapper",
-                },
-              ],
-            },
-            {
               text: "IBC relayers",
               collapsed: true,
               items: [
@@ -553,9 +526,12 @@ function sidebarHome() {
         },
         {
           text: "Integrate with Blobstream",
-          link: "/developers/blobstream",
           collapsed: true,
           items: [
+            {
+              text: "Overview of Blobstream",
+              link: "/developers/blobstream",
+            },
             {
               text: "Integrate with Blobstream contracts",
               link: "/developers/blobstream-contracts",
@@ -567,6 +543,20 @@ function sidebarHome() {
             {
               text: "Querying the Blobstream proofs",
               link: "/developers/blobstream-proof-queries",
+            },
+            {
+              text: "Local Blobstream X operators",
+              collapsed: true,
+              items: [
+                {
+                  text: "Requesting data commitment ranges",
+                  link: "/developers/requesting-data-commitment-ranges",
+                },
+                {
+                  text: "Non-canonical Blobstream X deployments",
+                  link: "/developers/blobstream-x-deploy",
+                },
+              ],
             },
           ],
         },

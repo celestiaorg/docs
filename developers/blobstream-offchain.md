@@ -6,11 +6,14 @@ description: Learn how to integrate your L2's offchain logic with Blobstream
 
 ## Blobstream demo rollup
 
-Rollups can use the Blobstream for DA by posting their data to Celestia and then
+Rollups can use Blobstream for DA by posting their data to Celestia and then
 proving that it was posted on Ethereum. This is done identically to how any
-rollup or user would post data to Celestia, and then the validators sign over
-additional commitments that are relayed to Ethereum via a light client relay
-(aka Blobstream!). This demo will outline (note outline is not an
+rollup or user would post data to Celestia. Then, a zero-knowledge proof that
+Celestia validators have come to consensus on Celestia block headers is
+generated, and subsequently relayed to Ethereum to the Blobstream X smart
+contract.
+
+This demo rollup will outline (the outline is not an
 implementation! please do not expect to copy and paste this code 🙂) a very
 simple Blobstream rollup to illustrate at a high level what this could look
 like.
