@@ -28,7 +28,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build with Base URL
-        run: BASE='/pr-preview/pr-${{ github.event.number }}/' yarn build
+        run: BASE='/docs-preview/pr-${{ github.event.number }}/' yarn build
 
       - name: Add CNAME file
         run: mkdir -p ./.vitepress/dist && echo docs.celestia.org > .vitepress/dist/CNAME
@@ -37,3 +37,7 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: .vitepress/dist
+          deploy-repository: celestiaorg/docs-preview
+          token: ${{ secrets.PREVIEW_DEPLOY }}
+          preview-branch: main
+          umbrella-dir: .
