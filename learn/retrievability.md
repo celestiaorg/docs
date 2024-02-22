@@ -36,7 +36,7 @@ but will continue to be stored by archival nodes that do not prune data. Light
 nodes will be able to query historic blob data in namespaces from archival
 nodes, as long as archival nodes exist on the public network.
 
-Once pruning is implemented, light nodes will only perform data
+Once pruning is fully implemented, light nodes will only perform data
 availability sampling for blocks within the data recency window of 30 days.
 
 ## Suggested practices for rollups
