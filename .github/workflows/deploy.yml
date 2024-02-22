@@ -46,7 +46,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./.vitepress/dist
-          keep_files: ${{ github.event_name != 'workflow_dispatch' }}
           force_orphan: true
           # The following lines assign commit authorship to the official
           # GH-Actions bot for deploys to `gh-pages` branch:
