@@ -135,7 +135,7 @@ the following Ethereum testnets:
 | Blobstream X  | Ethereum Mainnet          | [`Not yet deployed`](https://etherscan.io/address/0xTODO) | [Mainnet Beta](../nodes/mainnet.md) |
 | Blobstream X | Arbitrum One | [`Not yet deployed`](https://arbiscan.io/address/0xTODO)  | [Mainnet Beta](../nodes/mainnet.md) |
 | Blobstream X | Base           | [`Not yet deployed`](https://goerli.etherscan.io/address/0xTODO)  | [Mainnet Beta](../nodes/mainnet.md) |
-| Blobstream X | Ethereum Sepolia           | [`Not yet deployed`](https://sepolia.etherscan.io/address/0x48B257EC1610d04191cC2c528d0c940AdbE1E439)  | [Mainnet Beta](../nodes/mainnet.md) |
+| Blobstream X | Ethereum Sepolia           | [`0x48B257EC1610d04191cC2c528d0c940AdbE1E439`](https://sepolia.etherscan.io/address/0x48B257EC1610d04191cC2c528d0c940AdbE1E439)  | [Mainnet Beta](../nodes/mainnet.md) |
 | Blobstream X | Arbitrum Sepolia           | [`Not yet deployed`](https://sepolia.arbiscan.io/address/0xTODO)  | [Mocha testnet](../nodes/mocha-testnet.md) |
 
 <!-- markdownlint-enable MD013 -->
