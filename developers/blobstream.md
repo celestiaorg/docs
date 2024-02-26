@@ -113,8 +113,8 @@ for more details.
 ### How to integrate with Blobstream X
 
 Integrating your L2 with Blobstream X requires two components: your
-[onchain smart contract logic](./blobstream-x-contracts.md),
-and your [offchain client logic for your rollup](./blobstream-x-offchain.md).
+[onchain smart contract logic](./blobstream-contracts.md),
+and your [offchain client logic for your rollup](./blobstream-offchain.md).
 The next three sections cover these
 topics:
 
