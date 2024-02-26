@@ -85,6 +85,7 @@ Celestia network. The default port is 26657.
 - `mocha.celestia.rpc.cumulo.me`
 - `rpc-mocha-4.spidey.services`
 - `rpc-mocha-full.avril14th.org`
+- `rpc.mocha.bitszn.com`
 
 ## API endpoints
 
@@ -105,6 +106,7 @@ The default port is 1317.
 - [https://mocha.api.cumulo.me/](https://mocha.api.cumulo.me/)
 - [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
 - [https://api-mocha-full.avril14th.org](https://api-mocha-full.avril14th.org)
+- [https://api.mocha.bitszn.com ](https://api.mocha.bitszn.com)
 
 ## gRPC endpoints
 
@@ -126,6 +128,7 @@ broadcast transactions.
 - `mocha.grpc.cumulo.me:443`
 - `grpc-mocha-4.spidey.services`
 - `grpc-mocha-full.avril14th.org`
+- `grpc.mocha.bitszn.com`
 
 ## Bridge and full node endpoints
 
