@@ -65,8 +65,7 @@ run a local [full consensus node](./consensus-node.md) in order to download
 full blocks from it.
 :::
 
-- `full.consensus.mocha-4.celestia-mocha.com`
-- `consensus-full-mocha-4.celestia-mocha.com`
+- `rpc.celestia-mocha.com/`
 - `rpc-mocha.pops.one`
 
 ## RPC endpoints
