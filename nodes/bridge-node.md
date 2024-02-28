@@ -122,7 +122,7 @@ celestia bridge start --core.ip <URI>
 Here is an example of starting the bridge node on Mocha:
 
 ```sh
-celestia bridge start --core.ip rpc-mocha.pops.one:26657
+celestia bridge start --core.ip rpc-mocha.pops.one:26657 --p2p.network mocha
 ```
 
 And on Arabica:
