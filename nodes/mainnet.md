@@ -216,6 +216,13 @@ to see health/uptime status of DA bootstrappers (now `celestia` network only).
 
 You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
 
+### DA full archival nodes
+
+The following RPC endpoints are DA full storage nodes that have full,
+archival history of the DA network.
+
+- new.rpc.com
+
 ## Explorers
 
 There are multiple explorers you can use for Mainnet Beta:
