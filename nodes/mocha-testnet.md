@@ -77,7 +77,7 @@ Celestia network. The default port is 26657.
 
 - `rpc.celestia-mocha.com`
 - `rpc-2.celestia-mocha.com`
-- `celestia-rpc.f5nodes.com`
+- `celestia-testnet-rpc.f5nodes.com`
 - `celestia-testnet.brightlystake.com`
 - `rpc-celestia-mocha.architectnodes.com`
 - `rpc-celestia-mocha.trusted-point.com`
@@ -98,7 +98,7 @@ The default port is 1317.
 - [https://api-mocha.pops.one](https://api-mocha.pops.one)
 - [https://api.celestia-mocha.com/](https://api.celestia-mocha.com/)
 - [https://api-2.celestia-mocha.com/](https://api-2.celestia-mocha.com/)
-- [https://celestia-api.f5nodes.com](https://celestia-api.f5nodes.com)
+- [https://celestia-testnet-api.f5nodes.com](https://celestia-testnet-api.f5nodes.com)
 - [https://celestia-testnet.brightlystake.com/api](https://celestia-testnet.brightlystake.com/api)
 - [https://rest-celestia-mocha.architectnodes.com](https://rest-celestia-mocha.architectnodes.com)
 - [https://api-celestia-mocha.trusted-point.com](https://api-celestia-mocha.trusted-point.com)
@@ -120,7 +120,7 @@ broadcast transactions.
 - `grpc-2.celestia-mocha.com:443`
 - `full.consensus.mocha-4.celestia-mocha.com:9090`
 - `consensus-full-mocha-4.celestia-mocha.com:9090`
-- `celestia-grpc.f5nodes.com`
+- `celestia-testnet-grpc.f5nodes.com`
 - `celestia-testnet.brightlystake.com:9390`
 - `grpc-celestia-mocha.architectnodes.com:1443`
 - `grpc-celestia-mocha.trusted-point.com:9099`
