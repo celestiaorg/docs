@@ -187,13 +187,17 @@ celestia bridge init --p2p.network private
 
 ## Error: "too many open files"
 
-When running a Celestia Bridge node, you may encounter an error in the logs similar to this:
+When running a Celestia bridge node, you may encounter an error in the
+logs similar to this:
 
 ```bash
 Error while creating log file in valueLog.open error: while opening file: /opt/celestia/.celestia-bridge/data/003442.vlog error: open /opt/celestia/.celestia-bridge/data/003442.vlog: too many open files
 ```
 
-This error indicates that the Celestia application is trying to open more files than the operating system's limit allows. To fix this, you will need to edit the Celestia Bridge service file to increase the number of file descriptors that the service can open.
+This error indicates that the Celestia application is trying to open more
+files than the operating system's limit allows. To fix this, you will need
+to edit the Celestia bridge service file to increase the number of file
+descriptors that the service can open.
 
 1. Open the service file for editing:
 
@@ -203,7 +207,8 @@ nano /etc/systemd/system/celestia-bridge.service
 
 2. Modify the `LimitNOFILE` parameter:
 
-In the service file, find the `LimitNOFILE` parameter under the [Service] section and set its value to `1400000`. It should look like this:
+In the service file, find the `LimitNOFILE` parameter under the
+`[Service]` section and set its value to `1400000`. It should look like this:
 
 ```ini
 [Service]
@@ -213,10 +218,12 @@ LimitNOFILE=1400000
 ```
 
 :::tip NOTE
-Be cautious when increasing file descriptor limits. Setting this value too high might affect system performance. Ensure the value is appropriate for your system's capabilities.
+Be cautious when increasing file descriptor limits. Setting this value too
+high might affect system performance. Ensure the value is appropriate
+for your system's capabilities.
 :::
 
-3. Reload daemon and restart Bridge service:
+3. Reload daemon and restart bridge service:
 
 ```bash
 sudo systemctl daemon-reload
