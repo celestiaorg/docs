@@ -117,6 +117,7 @@ to participate in Mainnet Beta:
 - `celestia.rpc.archives.validao.xyz`
 - `rpc-archive.celestia.bitszn.com`
 - `celestia-rpc.f5nodes.com`
+- `celestia-rpc.chainode.tech:33373`
 
 #### API endpoints
 
@@ -140,6 +141,7 @@ to participate in Mainnet Beta:
 - `celestia.rest.archives.validao.xyz`
 - `api-archive.celestia.bitszn.com`
 - `celestia-api.f5nodes.com`
+- `celestia-api.chainode.tech`
 
 #### gRPC endpoints
 
@@ -162,6 +164,7 @@ to participate in Mainnet Beta:
 - `celestia.grpc.archives.validao.xyz:9090`
 - `gprc-archive.celestia.bitszn.com`
 - `celestia-grpc.f5nodes.com`
+- `celestia-grpc.chainode.tech:443`
 
 ### Data availability nodes
 
