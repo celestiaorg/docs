@@ -116,6 +116,7 @@ to participate in Mainnet Beta:
 - `rpc-celestia-mainnet.trusted-point.com`
 - `celestia.rpc.archives.validao.xyz`
 - `rpc-archive.celestia.bitszn.com`
+- `celestia-rpc.f5nodes.com`
 
 #### API endpoints
 
@@ -138,6 +139,7 @@ to participate in Mainnet Beta:
 - `api-celestia-mainnet.trusted-point.com`
 - `celestia.rest.archives.validao.xyz`
 - `api-archive.celestia.bitszn.com`
+- `celestia-api.f5nodes.com`
 
 #### gRPC endpoints
 
@@ -159,6 +161,7 @@ to participate in Mainnet Beta:
 - `grpc-celestia-mainnet.trusted-point.com:9095`
 - `celestia.grpc.archives.validao.xyz:9090`
 - `gprc-archive.celestia.bitszn.com`
+- `celestia-grpc.f5nodes.com`
 
 ### Data availability nodes
 
