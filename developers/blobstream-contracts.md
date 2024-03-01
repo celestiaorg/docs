@@ -21,7 +21,15 @@ Blobstream, so we can install its repo as a dependency:
 Install the Blobstream X contracts repo as a dependency:
 
 ```sh
-forge install celestiaorg/blobstream-contracts --no-commit
+forge install succinctlabs/blobstreamx --no-commit
+```
+
+Make sure that the directory you're running this command
+from is an initialized git repository. If not, just
+initialize the repo using: 
+
+```sh
+git init
 ```
 
 Note that the minimum Solidity compiler version for using the Blobstream
