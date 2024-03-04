@@ -166,6 +166,10 @@ to participate in Mainnet Beta:
 - `celestia-grpc.f5nodes.com`
 - `celestia-grpc.chainode.tech:443`
 
+#### WebSocket endpoints
+
+- `wss://celestia-ws.chainode.tech:33373/websocket`
+
 ### Data availability nodes
 
 - [Light node](./light-node.md)
