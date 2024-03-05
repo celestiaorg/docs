@@ -18,7 +18,7 @@ similar to [reducing consensus to atomic broadcast](https://en.wikipedia.org/wik
 The latter provides an efficient solution to the
 [data availability problem](https://coinmarketcap.com/alexandria/article/what-is-data-availability)
 by only requiring resource-limited light nodes to sample a
-small number of random chunks from each block to verify data availability.
+small number of random shares from each block to verify data availability.
 
 Interestingly, more light nodes that participate in sampling
 increases the amount of data that the network can safely handle,

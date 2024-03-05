@@ -24,7 +24,7 @@ commitments (_i.e._, Merkle roots) of the block data (_i.e._, the list of trans
 
 To make DAS possible, Celestia uses a 2-dimensional Reed-Solomon
 encoding scheme to encode the block data: every block data is split
-into $k \times k$ chunks, arranged in a $k \times k$ matrix, and extended with parity
+into $k \times k$ shares, arranged in a $k \times k$ matrix, and extended with parity
 data into a $2k \times 2k$ extended matrix by applying multiple
 times Reed-Solomon encoding.
 
@@ -35,19 +35,19 @@ as the block data commitment in the block header.
 ![2D Reed-Soloman (RS) Encoding](/img/learn/reed-solomon-encoding.png)
 
 To verify that the data is available, Celestia light nodes are sampling
-the $2k \times 2k$ data chunks.
+the $2k \times 2k$ data shares.
 
 Every light node randomly chooses a set of unique coordinates in the
-extended matrix and queries full nodes for the data chunks and the
+extended matrix and queries full nodes for the data shares and the
 corresponding Merkle proofs at those coordinates. If light nodes
 receive a valid response for each sampling query, then there is a
 [high probability guarantee](https://github.com/celestiaorg/celestia-node/issues/805#issuecomment-1150081075)
 that the whole block's data is available.
 
-Additionally, every received data chunk with a correct Merkle proof
+Additionally, every received data share with a correct Merkle proof
 is gossiped to the network. As a result, as long as the Celestia light
-nodes are sampling together enough data chunks (_i.e._, at least
-$k \times k$ unique chunks),
+nodes are sampling together enough data shares (_i.e._, at least
+$k \times k$ unique shares),
 the full block can be recovered by honest full nodes.
 
 For more details on DAS, take a look at the [original paper](https://arxiv.org/abs/1809.09044).
@@ -75,9 +75,9 @@ DA layer.
 The requirement of downloading the $4k$ intermediate Merkle roots is a
 consequence of using a 2-dimensional Reed-Solomon encoding scheme. Alternatively,
 DAS could be designed with a standard (_i.e._, 1-dimensional) Reed-Solomon encoding,
-where the original data is split into $k$ chunks and extended with $k$ additional
-chunks of parity data. Since the block data commitment is the Merkle root of the
-$2k$ resulting data chunks, light nodes no longer need to download $O(n)$ bytes to
+where the original data is split into $k$ shares and extended with $k$ additional
+shares of parity data. Since the block data commitment is the Merkle root of the
+$2k$ resulting data shares, light nodes no longer need to download $O(n)$ bytes to
 validate block headers.
 
 The downside of the standard Reed-Solomon encoding is dealing with malicious
@@ -86,7 +86,7 @@ block producers that generate the extended data incorrectly.
 This is possible as **Celestia does not require a majority of the consensus
 (_i.e._, block producers) to be honest to guarantee data availability.**
 Thus, if the extended data is invalid, the original data might not be
-recoverable, even if the light nodes are sampling sufficient unique chunks
+recoverable, even if the light nodes are sampling sufficient unique shares
 (_i.e._, at least $k$ for a standard encoding and $k \times k$ for a
 2-dimensional encoding).
 
@@ -112,20 +112,20 @@ To this end, Celestia is using Namespaced Merkle trees (NMTs).
 An NMT is a Merkle tree with the leafs ordered by the namespace identifiers
 and the hash function modified so that every node in the tree includes the
 range of namespaces of all its descendants. The following figure shows an
-example of an NMT with height three (_i.e._, eight data chunks). The data is
+example of an NMT with height three (_i.e._, eight data shares). The data is
 partitioned into three namespaces.
 
 ![Namespaced Merkle Tree](/img/learn/nmt.png)
 
 When an application requests the data for namespace 2, the DA layer must
-provide the data chunks `D3`, `D4`, `D5`, and `D6` and the nodes `N2`, `N8`
+provide the data shares `D3`, `D4`, `D5`, and `D6` and the nodes `N2`, `N8`
 and `N7` as proof (note that the application already has the root `N14` from
 the block header).
 
 As a result, the application is able to check that the provided data is part
 of the block data. Furthermore, the application can verify that all the data
 for namespace 2 was provided. If the DA layer provides for example only the
-data chunks `D4` and `D5`, it must also provide nodes `N12` and `N11` as proofs.
+data shares `D4` and `D5`, it must also provide nodes `N12` and `N11` as proofs.
 However, the application can identify that the data is incomplete by checking
 the namespace range of the two nodes, _i.e._, both `N12` and `N11` have descendants
 part of namespace 2.
