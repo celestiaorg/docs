@@ -4,6 +4,7 @@
 
 <script setup>
 import MainnetVersionTags from '../.vitepress/components/MainnetVersionTags.vue'
+import MainnetBetaDetails from '../.vitepress/components/MainnetBetaDetails.vue'
 </script>
 
 ![Mainnet Beta](/img/Mainnet-Beta.png)
@@ -28,6 +29,10 @@ As we step into unexplored territories with groundbreaking technologies
 like data availability sampling, it's crucial to remember that Mainnet
 Beta remains experimental at this stage. While the network is live and
 functional, users may encounter occasional instability or reduced performance.
+
+## Network details
+
+<MainnetBetaDetails/>
 
 ## Software version numbers
 

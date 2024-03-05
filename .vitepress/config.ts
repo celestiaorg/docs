@@ -389,9 +389,9 @@ function sidebarHome() {
         },
         {
           text: "Networks",
-          link: "/nodes/participate",
           collapsed: true,
           items: [
+            { text: "Networks overview", link: "/nodes/participate"},
             { text: "Mainnet Beta", link: "/nodes/mainnet" },
             { text: "Mocha testnet", link: "/nodes/mocha-testnet" },
             { text: "Arabica devnet", link: "/nodes/arabica-devnet" },
