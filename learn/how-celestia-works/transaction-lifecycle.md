@@ -61,7 +61,7 @@ that serves DAS requests.
 Light nodes connect to a celestia-node in the DA network, listen to
 extended block headers (i.e., the block headers together with the
 relevant DA metadata, such as the $4k$ intermediate Merkle roots), and
-perform DAS on the received headers (i.e., ask for random data chunks).
+perform DAS on the received headers (i.e., ask for random data shares).
 
 Note that although it is recommended, performing DAS is optional -- light
 nodes could just trust that the data corresponding to the commitments in
@@ -70,11 +70,11 @@ In addition, light nodes can also submit transactions to the celestia-app,
 i.e., `PayForBlobs` transactions.
 
 While performing DAS for a block header, every light node queries Celestia
-Nodes for a number of random data chunks from the extended matrix and the
+Nodes for a number of random data shares from the extended matrix and the
 corresponding Merkle proofs. If all the queries are successful, then the
 light node accepts the block header as valid (from a DA perspective).
 
-If at least one of the queries fails (i.e., either the data chunk is not
+If at least one of the queries fails (i.e., either the data share is not
 received or the Merkle proof is invalid), then the light node rejects the
 block header and tries again later. The retrial is necessary to deal with
 false negatives, i.e., block headers being rejected although the block
@@ -87,6 +87,6 @@ then at least one honest full node will eventually have the entire block data)
 is probabilistically guaranteed (for more details, take a look at the
 [original paper](https://arxiv.org/abs/1809.09044)).
 
-By fine tuning Celestia's parameters (e.g., the number of data chunks sampled
+By fine tuning Celestia's parameters (e.g., the number of data shares sampled
 by each light node) the likelihood of false positives can be sufficiently
 reduced such that block producers have no incentive to withhold the block data.

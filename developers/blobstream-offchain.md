@@ -54,7 +54,7 @@ that data's inclusion via Blobstream if needed. Read more in the
 [namespace specifications](https://celestiaorg.github.io/celestia-app/specs/namespace.html),
 and you can think of this like a chain ID. Learn more
 [information about `shares`](https://celestiaorg.github.io/celestia-app/specs/shares.html),
-which are small chunks of the encoded Celestia block. We use the same encoding
+which are small pieces of the encoded Celestia block. We use the same encoding
 here so that the commitments to the rollup block match those committed to by
 validators in the Celestia data root.
 
