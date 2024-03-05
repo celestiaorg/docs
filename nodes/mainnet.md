@@ -141,7 +141,7 @@ to participate in Mainnet Beta:
 - `celestia.rest.archives.validao.xyz`
 - `api-archive.celestia.bitszn.com`
 - `celestia-api.f5nodes.com`
-- `celestia-api.chainode.tech`
+`https://celestia-api.chainode.tech`
 
 #### gRPC endpoints
 
