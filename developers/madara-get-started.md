@@ -73,8 +73,8 @@ We first need to make sure you have everything needed to complete this tutorial.
 
 We will spin up a Cairo Rollup from the Madara Stack source code. You could also
 use docker images, but this way we get to keep the option to modify component
-behavior if we need to do so. The Madara stack source code is a mono repo
-which can be found [here](https://github.com/keep-starknet-strange/madara)
+behavior if we need to do so. The Madara stack source code is a
+[mono repo](https://github.com/keep-starknet-strange/madara)
 
 ```bash
 cd ~
