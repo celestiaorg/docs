@@ -109,7 +109,7 @@ on Ethereum to query the `BlobstreamX.sol` contract for relayed `DataRootTuple`s
 The single interface method `verifyAttestation` verifies a Merkle inclusion
 proof that a `DataRootTuple` is included under a specific batch (indexed by
 batch nonce). In other words, analogously it verifies that a specific block
-header is included in the canonical Celestia chain.
+header is included in the Celestia chain.
 
 ## Querying the proof
 

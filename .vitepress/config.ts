@@ -553,7 +553,7 @@ function sidebarHome() {
                   link: "/developers/requesting-data-commitment-ranges",
                 },
                 {
-                  text: "Non-canonical Blobstream X deployments",
+                  text: "New Blobstream X deployments",
                   link: "/developers/blobstream-x-deploy",
                 },
               ],

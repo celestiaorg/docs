@@ -18,7 +18,7 @@ the first with Data Availability Sampling (DAS).
 
 An implementation of Blobstream, by [Succinct](https://docs.succinct.xyz/), called
 [Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
-and will be used in the canonical deployments. This implementation proves the
+and will be used in the upcoming deployments. This implementation proves the
 validity of Celestia block headers on a target EVM chain using zero-knowledge (ZK)
 proofs, which allow inheriting all the security
 guarantees of Celestia.
@@ -97,9 +97,9 @@ along with code for:
 - [The Blobstream X circuits](https://alpha.succinct.xyz/celestia/blobstreamx)
 - [The Blobstream X contract Golang bindings](https://github.com/succinctlabs/blobstreamx/blob/main/bindings/BlobstreamX.go)
 
-Canonical deployments of Blobstream X will be maintained on the
+The first deployments of Blobstream X will be maintained on the
 following chains: Arbitrum One, Base and Ethereum Mainnet. Every 1
-hour, Succinct will post an update to the Blobstream X contract
+hour, the prover/relayer will post an update to the Blobstream X contract
 that will include a new data commitment range that covers a 1-hour
 block range from the `latestBlock` in the Blobstream X contract.
 On Ethereum Mainnet, the Blobstream X contract will be updated

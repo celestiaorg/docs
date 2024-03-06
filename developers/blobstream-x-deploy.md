@@ -1,8 +1,7 @@
-# Non-canonical Blobstream X deployments
+# New Blobstream X deployments
 
-If you want to deploy Blobstream X to a new chain, where a
-canonical Succinct Gateway contract does not exist, you
-need to do the following.
+If you want to deploy Blobstream X to a new chain, where a Gateway 
+contract does not exist, you need to do the following.
 
 If Succint Gateway already exists on this chain, you can skip
 this step.
