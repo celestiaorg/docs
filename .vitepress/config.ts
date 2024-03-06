@@ -566,6 +566,21 @@ function sidebarHome() {
           collapsed: true,
           items: [
             {
+              text: "Astria",
+              collapsed: true,
+              items: [
+                { text: "Documentation", link: "https://docs.astria.org" },
+                {
+                  text: "Deploy to Dusknet",
+                  link: "https://docs.astria.org/docs/dusknet/overview/",
+                },
+              ],
+            },
+            {
+              text: "Dymension",
+              link: "https://dymension.xyz/",
+            },
+            {
               text: "Ethereum L2s",
               collapsed: true,
               items: [
@@ -691,27 +706,12 @@ function sidebarHome() {
             },
             { text: "Rollkit", link: "/developers/rollkit" },
             {
-              text: "Astria",
-              collapsed: true,
-              items: [
-                { text: "Documentation", link: "https://docs.astria.org" },
-                {
-                  text: "Deploy to Dusknet",
-                  link: "https://docs.astria.org/docs/dusknet/overview/",
-                },
-              ],
-            },
-            {
               text: "Sovereign SDK",
               link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",
             },
             {
               text: "Vistara",
               link: "https://docs.vistara.dev/",
-            },
-            {
-              text: "Dymension",
-              link: "https://dymension.xyz/",
             },
           ],
         },
