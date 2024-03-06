@@ -81,6 +81,6 @@ companion in organizing events. Drawing upon the wisdom of seasoned event
 organizers, this resource is available for you and your co-organizers
 to explore and learn.
 
+- [Meetup Guide](./modular-meetup-guide.md)
 - [Modular Meetup Toolkit](./modular-meetup-toolkit.md)
 - [Speaker List](./speaker-list.md)
-- [Meetup Guide](./modular-meetup-guide.md)
