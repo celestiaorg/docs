@@ -80,23 +80,20 @@ celestia-appd init "node-name" --chain-id {{constants.arabicaChainId}}
 
 :::
 
-Copy the `genesis.json` file:
+Download the `genesis.json` file:
 
 ::: code-group
 
 ```bash-vue [Mainnet Beta]
-cp $HOME/networks/{{constants.mainnetChainId}}/genesis.json \
-    $HOME/.celestia-app/config
+celestia-appd download-genesis {{constants.mainnetChainId}}
 ```
 
 ```bash-vue [Mocha]
-cp $HOME/networks/{{constants.mochaChainId}}/genesis.json \
-    $HOME/.celestia-app/config
+celestia-appd download-genesis {{constants.mochaChainId}}
 ```
 
 ```bash-vue [Arabica]
-cp $HOME/networks/{{constants.arabicaChainId}}/genesis.json \
-    $HOME/.celestia-app/config
+celestia-appd download-genesis {{constants.arabicaChainId}}
 ```
 
 :::
