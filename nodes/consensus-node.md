@@ -132,6 +132,22 @@ the following commands:
 
 Setting persistent peers is advised only if you are running a sentry node.
 
+:::tip
+Mac users' built-in `head` command does not accept negative numbers for `-c` flag.
+Solution is to install `coreutils` package and use `ghead` command from it.
+
+```bash
+brew install coreutils
+```
+
+and optionally set alias from `head` to `ghead` in shell config (`~/.bashrc`, `~/.zshrc` etc):
+
+```sh
+alias head=ghead
+```
+
+:::
+
 ::: code-group
 
 ```bash-vue [Mainnet Beta]
@@ -150,22 +166,6 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"
 PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.arabicaChainId}}/peers.txt | head -c -1 | tr '\n' ',')
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
-```
-
-:::
-
-:::tip
-Mac users' built-in `head` command does not accept negative numbers for `-c` flag.
-Solution is to install `coreutils` package and use `ghead` command from it.
-
-```bash
-brew install coreutils
-```
-
-and optionally set alias from `head` to `ghead` in shell config (`~/.bashrc`, `~/.zshrc` etc):
-
-```sh
-alias head=ghead
 ```
 
 :::
