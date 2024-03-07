@@ -77,7 +77,7 @@ blob size. It depends on several factors:
   and a versioned constant.
 - The maximum bytes in a block, which is determined by a governance parameter
   and a hard-coded constant in CometBFT.
-- The amount of shares occupied by the PFB transaction share.
+- The number of shares occupied by the PFB transaction share.
 
 These factors can cause the maximum total blob size that can be included in one
 block to vary.
@@ -91,7 +91,7 @@ node’s guide will link to the relevant network in order to show you how
 to connect to them. Learn about the different endpoint types
 [in the Cosmos SDK documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest).
 
-Here is a list of options of the type of nodes you can run in order
+Here is a list of options of the types of nodes you can run in order
 to participate in Mainnet Beta:
 
 ### Consensus nodes
@@ -186,14 +186,14 @@ node.
 :::tip
 
 ```bash
-celestia <da_type> start –core.ip <url> –core.rpc.port <port> \
+celestia <da_type> start --core.ip <url> –core.rpc.port <port> \
     –core.grpc.port <port>
 ```
 
 :::
 
 :::tip Bridge nodes
-Not all of the RPC endpoints do not guarantee the full block history.
+Not all RPC endpoints guarantee the full block history.
 Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
 or run your own consensus full node with no pruning for
 your bridge node.
@@ -218,7 +218,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
   - RPC: port 26657
 
 DA full and light nodes might have troubles connecting to the networks, so you
-can checkout this
+can check out this
 [Grafana dashboard](https://celestia.grafana.net/public-dashboards/a10eff0043bb4bf0839004e2746e2bc6)
 to see health/uptime status of DA bootstrappers (now `celestia` network only).
 
