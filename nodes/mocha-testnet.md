@@ -75,6 +75,7 @@ The RPC endpoint is to allow users to interact with Celestia's nodes by
 querying the node's state and broadcasting transactions on the
 Celestia network. The default port is 26657.
 
+- `public-celestia-mocha4-consensus.numia.xyz:26657`
 - `rpc.celestia-mocha.com`
 - `rpc-2.celestia-mocha.com`
 - `celestia-testnet-rpc.f5nodes.com`
@@ -115,6 +116,7 @@ gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
+- `public-celestia-mocha4-consensus.numia.xyz:9090`
 - `grpc-mocha.pops.one`
 - `grpc.celestia-mocha.com:443`
 - `grpc-2.celestia-mocha.com:443`
