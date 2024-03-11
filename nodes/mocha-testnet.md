@@ -16,10 +16,10 @@ for that as it is designed for development purposes.
 Mocha is a milestone in Celestia, allowing everyone to test out
 core functionalities on the network. Read [the announcement](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api).
 Your best approach to participating is to first determine which node
-you would like to run. Each node's guide will link to the relevant networks
-in order to show you how to connect to them.
+you would like to run. Each node's guide will link to the relevant networks,
+to show you how to connect to them.
 
-You have a list of options on the type of nodes you can run in order to
+You have a list of options on the types of nodes you can run to
 participate in Mocha:
 
 Consensus:
@@ -35,7 +35,7 @@ Data Availability:
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
-you want to connect to in those guides, select `Mocha` in order to refer
+you want to connect to in those guides, select `Mocha` to refer
 to the correct instructions on this page on how to connect to Mocha.
 
 ## Software version numbers
@@ -65,6 +65,7 @@ run a local [full consensus node](./consensus-node.md) in order to download
 full blocks from it.
 :::
 
+- `public-celestia-mocha4-consensus.numia.xyz`
 - `full.consensus.mocha-4.celestia-mocha.com`
 - `consensus-full-mocha-4.celestia-mocha.com`
 - `rpc-mocha.pops.one`
@@ -75,6 +76,7 @@ The RPC endpoint is to allow users to interact with Celestia's nodes by
 querying the node's state and broadcasting transactions on the
 Celestia network. The default port is 26657.
 
+- `public-celestia-mocha4-consensus.numia.xyz:26657`
 - `rpc.celestia-mocha.com`
 - `rpc-2.celestia-mocha.com`
 - `celestia-testnet-rpc.f5nodes.com`
@@ -115,6 +117,7 @@ gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
+- `public-celestia-mocha4-consensus.numia.xyz:9090`
 - `grpc-mocha.pops.one`
 - `grpc.celestia-mocha.com:443`
 - `grpc-2.celestia-mocha.com:443`
