@@ -38,16 +38,19 @@ on each respective page. Whenever you are asked to select the type of network
 you want to connect to in those guides, select `Mocha` to refer
 to the correct instructions on this page on how to connect to Mocha.
 
-## Software version numbers
-
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
+import MochaTestnetDetails from '../.vitepress/components/MochaTestnetDetails.vue'
 </script>
 
-<MochaVersionTags/>
+## Network details
 
-Below is a list of RPC endpoints you can use to connect to Mocha testnet:
+<MochaTestnetDetails/>
+
+## Software version numbers
+
+<MochaVersionTags/>
 
 ## RPC for DA bridge, full, and light nodes
 
