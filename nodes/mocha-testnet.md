@@ -16,7 +16,7 @@ for that as it is designed for development purposes.
 Mocha is a milestone in Celestia, allowing everyone to test out
 core functionalities on the network. Read [the announcement](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api).
 Your best approach to participating is to first determine which node
-you would like to run. Each node's guide will link to the relevant networks
+you would like to run. Each node's guide will link to the relevant networks,
 to show you how to connect to them.
 
 You have a list of options on the types of nodes you can run to
@@ -35,7 +35,7 @@ Data Availability:
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
-you want to connect to in those guides, select `Mocha` in order to refer
+you want to connect to in those guides, select `Mocha` to refer
 to the correct instructions on this page on how to connect to Mocha.
 
 ## Software version numbers
