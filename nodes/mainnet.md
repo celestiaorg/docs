@@ -168,7 +168,7 @@ to participate in Mainnet Beta:
 - `grpc-celestia-mainnet.trusted-point.com:9095`
 - `celestia.grpc.archives.validao.xyz:9090`
 - `gprc-archive.celestia.bitszn.com`
-- `celestia-grpc.f5nodes.com`
+- `celestia-grpc.f5nodes.com:9390`
 - `celestia-grpc.chainode.tech:443`
 
 #### WebSocket endpoints
