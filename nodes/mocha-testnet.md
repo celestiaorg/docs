@@ -24,8 +24,8 @@ participate in Mocha:
 
 Consensus:
 
-- [Full consensus node](./consensus-node.md)
-- [Validator node](./consensus-node.md#optional-setting-up-a-validator)
+- [Full consensus node](./full-consensus-node)
+- [Validator node](./validator-node)
 
 Data Availability:
 
@@ -64,7 +64,7 @@ node.
 :::tip Bridge nodes
 Mentioned below RPC endpoints do not guarantee you the download of full blocks from
 them. We advise that if you are running a bridge node, that you also
-run a local [full consensus node](./consensus-node.md) in order to download
+run a local [full consensus node](./full-consensus-node.md) in order to download
 full blocks from it.
 :::
 

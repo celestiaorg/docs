@@ -96,8 +96,8 @@ to participate in Mainnet Beta:
 
 ### Consensus nodes
 
-- [Full consensus node](./consensus-node.md)
-- [Validator node](./consensus-node.md#optional-setting-up-a-validator)
+- [Full consensus node](./full-consensus-node)
+- [Validator node](./validator-node)
 
 #### Consensus RPC endpoints
 
