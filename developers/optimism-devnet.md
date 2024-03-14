@@ -27,13 +27,13 @@ Check out to the version for either the stable version or upstream version:
 
 ::: code-group
 
-```bash-vue [v1.1.0-OP_v1.5.0-CN_v0.12.4]
-git checkout tags/v1.1.0-OP_v1.5.0-CN_v0.12.4
+```bash-vue [v1.2.0-OP_v1.7.0-CN_v0.12.4]
+git checkout tags/v1.2.0-OP_v1.7.0-CN_v0.12.4
 git submodule update --init --recursive
 ```
 
-```bash-vue [celestia-develop]
-git checkout celestia-develop
+```bash-vue [rebase-upstream]
+git checkout rebase-upstream
 git submodule update --init --recursive
 ```
 
