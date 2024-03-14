@@ -123,6 +123,7 @@ to participate in Mainnet Beta:
 - `rpc-archive.celestia.bitszn.com`
 - `celestia-rpc.f5nodes.com`
 - `celestia-rpc.chainode.tech:33373`
+- `https://rpc-celestia.staker.space/`
 
 #### API endpoints
 
@@ -146,7 +147,8 @@ to participate in Mainnet Beta:
 - `celestia.rest.archives.validao.xyz`
 - `api-archive.celestia.bitszn.com`
 - `celestia-api.f5nodes.com`
-`https://celestia-api.chainode.tech`
+- `https://celestia-api.chainode.tech`
+- `https://api-celestia.staker.space/`
 
 #### gRPC endpoints
 
@@ -170,6 +172,7 @@ to participate in Mainnet Beta:
 - `gprc-archive.celestia.bitszn.com`
 - `celestia-grpc.f5nodes.com:9390`
 - `celestia-grpc.chainode.tech:443`
+- `https://grpc-celestia.staker.space/`
 
 #### WebSocket endpoints
 
