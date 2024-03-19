@@ -32,8 +32,8 @@ git checkout tags/v1.2.0-OP_v1.7.0-CN_v0.12.4
 git submodule update --init --recursive
 ```
 
-```bash-vue [rebase-upstream]
-git checkout rebase-upstream
+```bash-vue [celestia-develop]
+git checkout celestia-develop
 git submodule update --init --recursive
 ```
 
