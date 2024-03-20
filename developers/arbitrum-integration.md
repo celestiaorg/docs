@@ -16,36 +16,17 @@ a data availability layer alongside Arbitrum AnyTrust. The integration allows
 developers to deploy an Orbit Chain that uses Celestia for data availability and
 settles on Arbitrum One, Ethereum, or other EVM chains.
 
-[Arbitrum Orbit](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
-is a framework that enables the creation of customized, self-managed
-Arbitrum Rollup and AnyTrust chains. Key highlights of Arbitrum Orbit
-include:
-
-1. **Creation of custom chains**: Orbit allows the creation of dedicated chains
-   that settle to Arbitrum's Layer 2 chains (Arbitrum One, Nova, Goerli, Sepolia),
-   with customizable features like throughput, privacy, gas token, and governance.
-2. **Solving Ethereum's scalability**: Orbit addresses Ethereum's congestion
-   and high demand for block space by enabling the creation of personal rollups,
-   which offer scalable, secure alternatives to Ethereum's public chains.
-3. **Decentralized application development**: Orbit chains provide dedicated
-   throughput, EVM+ compatibility, independent roadmaps, and reliable gas prices
-   enhancing the development and operation of decentralized apps.
-4. **Benefits to the Ethereum ecosystem**: Orbit contributes to a multi-chain
-   future for Ethereum, enhancing scalability, offering flexible security models,
-   and enabling experimentation with execution environments and governance models.
-5. **Versatility and interoperability**: Orbit chains can be used for a range
-   of purposes, from hosting a single dApp to an ecosystem of dApps, with the
-   capability to communicate with other Orbit chains.
-
 ## Key components
 
-The integration of Celestia with Arbitrum orbit is possible thanks to 3 components:
+The integration of Celestia with Arbitrum orbit is possible thanks to 3 key components:
 
-- DA Provider Implementation
-- Preimage Oracle
-- Blobstream
+- [DA Provider implementation](#da-provider-implementation)
+- [Preimage Oracle implemntation](#preimage-oracle-implementation)
+- [Blobstream X implementation](#blobstream-x-implementation)
 
-## DA provider implementation
+Additionally, the [Ethereum fallback mechanism](#ethereum-fallback-mechanism-in-nitro) is a feature of the integration.
+
+### DA provider implementation
 
 The Arbitrum Nitro code has a `DataAvailabilityProvider` interface that is used across the codebase to store and retrieve data from a specific provider (eip4844 blobs, Anytrust, and now Celestia).
 
@@ -65,7 +46,7 @@ The following represents a non-exhaustive list of considerations when running a 
 - The message header flag for Celestia batches is `0x0c`.
 - You will need to know the namespace for the chain that you are trying to connect to, but don't worry if you don't find it, as the information in the BlobPointer can be used to identify where a batch of data is in the Celestia Data Square for a given height, and thus can be used to find out the namespace as well!
 
-## Preimage Oracle Implementation
+### Preimage Oracle Implementation
 
 In order to support fraud proofs, this integration has the necessary code for a Nitro validator to pupolate its preimage mapping with Celestia hashes that then get "unpealed" in order to reveal the full data for a Blob. You can read more about the "Hash Oracle Trick" [here.](https://docs.arbitrum.io/inside-arbitrum-nitro/#readpreimage-and-the-hash-oracle-trick)
 
@@ -75,8 +56,7 @@ You can see where the preimage oracle gets used in the fraud proof replay binary
 
 Something important to note is that the preimage oracle only keeps track of hashes for the rows in the Celestia data square in which a blob resides in, this way each Orbit chain with Celestia underneath does not need validators to recompute an entire Celestia Data Square, but instead, only have to compute the row roots for the rows in which it's data lives in, and the header data root, which is the binary merkle tree hash built using the row roots and column roots fetched from a Celestia node. Because only data roots that can be confirmed on Blobstream get accepted into the sequencer inbox, one can have a high degree of certainty that the canonical data root being unpealed as well as the row roots are in fact correct.
 
-## Blobstream X implementation
-
+### Blobstream X implementation
 
 Finally, the integration only accepts batches with information that can be confirmed on BlobstreamX, which gives us a high certainty that data was made available on Celestia.
 
@@ -87,24 +67,6 @@ The Celestia and Arbitrum integration also
 which relays commitments to Celestia’s data root to an onchain light client
 on Ethereum. This allows L2 solutions that settle on Ethereum to benefit
 from the scalability Celestia’s data availability layer can provide.
-
-## Old infos
-
-Note that the data above is the bytes serialized version of this struct in Go:
-
-```go
-type BlobPointer struct {
-   BlockHeight    uint64
-   Start          uint64
-   SharesLength   uint64
-   Key            uint64
-   NumLeaves      uint64
-   TupleRootNonce uint64
-   TxCommitment [32]byte
-   DataRoot     [32]byte
-   SideNodes    [][32]byte
-}
-```
 
 ### Ethereum fallback mechanism in Nitro
 
