@@ -585,14 +585,6 @@ function sidebarHome() {
                       text: "Deploy an Arbitrum rollup devnet",
                       link: "/developers/arbitrum-deploy",
                     },
-                    // {
-                    //   text: "Deploy an Arbitrum rollup to Mocha testnet",
-                    //   link: "/developers/arbitrum-mocha",
-                    // },
-                    {
-                      text: "Nitrogen testnet",
-                      link: "/developers/nitrogen",
-                    },
                     {
                       text: "Deploy a smart contract on Arbitrum rollup",
                       link: "/developers/arbitrum-smart-contract",
