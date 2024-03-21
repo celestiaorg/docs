@@ -16,6 +16,8 @@ a data availability layer alongside Arbitrum AnyTrust. The integration allows
 developers to deploy an Orbit Chain that uses Celestia for data availability and
 settles on Arbitrum One, Ethereum, or other EVM chains.
 
+[Learn more about Orbit in Arbitrum's introduction.](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
+
 ## Key components
 
 The integration of Celestia with Arbitrum orbit is possible thanks to 3 key components:
@@ -24,7 +26,7 @@ The integration of Celestia with Arbitrum orbit is possible thanks to 3 key comp
 - [Preimage Oracle implemntation](#preimage-oracle-implementation)
 - [Blobstream X implementation](#blobstream-x-implementation)
 
-Additionally, the [Ethereum fallback mechanism](#ethereum-fallback-mechanism-in-nitro) is a feature of the integration.
+Additionally, the [Ethereum fallback mechanism](#ethereum-fallback-mechanism-in-nitro) is a feature of the integration, which is native in Nitro.
 
 ### DA provider implementation
 
@@ -70,20 +72,6 @@ from the scalability Celestia’s data availability layer can provide.
 
 ### Ethereum fallback mechanism in Nitro
 
-Another feature of this integration is the
-[Ethereum fallback mechanism](./ethereum-fallback.md),
-which enables Ethereum L2s (or L3s) to “fall back” to using Ethereum
-calldata for data availability in the event of downtime on Celestia Mainnet
-Beta.
-
-In the case of Celestia downtime or temporary unavailability, L2s can
-fallback to posting transactions as calldata on Ethereum or another DA
-layer for data availability instead of posting to Celestia. This mechanism
-ensures users can continue to transact securely and seamlessly, preventing
-disruptions and helping to ensure user funds do not get stuck in the L2's
-bridge on Ethereum. This feature is available for the
-[Arbitrum Orbit integration](./ethereum-fallback.md#arbitrum).
-
 By default in [Arbitrum Nitro](https://github.com/OffchainLabs/nitro), the
 [Ethereum fallback mechanism in the `BatchPoster` function](https://github.com/OffchainLabs/nitro/blob/master/arbnode/batch_poster.go#L989-L1001)
 is handling the process of storing data, with a fallback mechanism
@@ -92,6 +80,12 @@ fails.
 
 The [@celestiaorg/nitro](https://github.com/celestiaorg/nitro) integration
 [uses the same fallback mechanism](https://github.com/celestiaorg/nitro/blob/f01968eb3d4e19329e9c92b050e98a8e5772f1f2/arbnode/batch_poster.go#L845-L857).
+
+[More information can be found on the
+Ethereum fallback mechanism](./ethereum-fallback.md),
+which enables Ethereum L2s (or L3s) to “fall back” to using Ethereum
+calldata for data availability in the event of downtime on Celestia Mainnet
+Beta.
 
 The fallback logic for Celestia DA is configurable, providing an alternative
 to the previous default fallback mechanism. Additionally, an ability has been
