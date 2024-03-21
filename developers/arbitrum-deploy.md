@@ -5,44 +5,18 @@ description: A guide on how to install Arbitrum Nitro and deploy an instance on 
 # Deploy an Arbitrum rollup devnet
 
 We will go over installation of Arbitrum Nitro and deploying an instance on an
-Ubuntu AMD machine. This section covers all necessary dependencies needed to be
-installed.
-
-## Compatibility matrix
-
-| Component | Version | Details |
-|-----------|---------|---------|
-| Nitro | [v2.3.1](https://github.com/celestiaorg/nitro/releases/tag/v2.3.1) | Includes the replay binary for the WASM root `0xa17295e3918d39e4026503302f1d627608101a52d4341647ebf7ad18edbe31a3`. [Docs on overall changes](https://github.com/celestiaorg/nitro/blob/celestia-v2.3.1/docs/celestia/docs.md). |
-| Contracts | [v1.2.1-celestia](https://github.com/celestiaorg/nitro-contracts/releases/tag/v1.2.1-celestia) | Integrates Blobstream X functionality into nitro-contracts v1.2.1 |
-| Orbit SDK | [v0.8.2 Orbit SDK for Celestia DA](https://github.com/celestiaorg/arbitrum-orbit-sdk/releases/tag/v0.8.2) | This is not compatible with Orbit SDK v0.8.2 or with the latest changes to nitro-contracts for the Atlas upgrade. The Orbit SDK itself is in Alpha. |
-| celestia-node | [v0.13.1](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.1) | This integration has only been tested with celestia-node 0.13.1 and only works with said version, and with future versions after that. Under the hood, the Nitro node uses [this commit](https://github.com/celestiaorg/celestia-openrpc/commit/64f04840aa97d4deb821b654b1fb59167d242bd1) of celestia-openrpc. |
+Ubuntu AMD machine.
 
 ## Dependencies
+
+This section covers all necessary dependencies.
 
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
   running on your machine
 - [Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
-- At least 8 GB RAM
-
-### Blobstream X contract deployments
-
-The Orbit contracts depend on the following BlobstreamX deployments. The current deployments, which can be found at `0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2` in both chains, relays headers from the **Mocha-4** testnet to the chains below:
-  - Arbitrum Sepolia
-  - Base Sepolia
-
-#### Arbitrum Sepolia
-
-- RollupCreator: `0x79751B011BCc20F413a2c4E3AF019b6E2a9738B9`
-- TokenBridgeCreator: `0xaAe3A04931345Df5AC6e784bB6bDeb29B1fF0286`
-- TokenBridgeRetryableSender: `0x22a6580faECA49cF86Cbb2F18f2B7f98031FC6Ad`
-- [Find additional Arbitrum Sepolia deployments in the appendix](#arbitrum-sepolia-additional-deployments)
-
-#### Base Sepolia
-
-- RollupCreator: `0x1Bb8ADd5e878b12Fa37756392642eB94C53A1Cf4`
-- TokenBridgeCreator: `0xAa3b8B63cCCa3c98b948FD1d6eD875d378dE2C6c`
-- TokenBridgeRetryableSender: `0x4270889AdcB82338C5FF5e64B45c0A3d31CFd08C`
-- [Find additional Base Sepolia deployments in the appendix](#base-sepolia-additional-deployments)
+- **[TODO: check against Orbit docs](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart)**
+- A fully synced and funded Mocha testnet [light node](../nodes/light-node.md) on **v0.13.1**
+  - [Mocha testnet faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet)
 
 ### General
 
@@ -109,7 +83,9 @@ git submodule update --init
 git submodule update --init --recursive
 ```
 
-## Installing Nitro from Source
+[See the compatibility matrix in the appendix to verify you're using the right version.](#compatibility-matrix)
+
+<!-- ## Installing Nitro from Source
 
 Now you can install Nitro from source. After the `make` command completes,
 you can run the bash script that installs and runs the containers via
@@ -121,20 +97,20 @@ cd nitro-testnode && ./test-node.bash --init --dev
 ```
 
 Congratulations! You have an Arbitrum Orbit rollup running with Nitro on
-your machine.
+your machine. -->
 
-### Validating with WASM
+<!-- ### Validating with WASM
 
 If you want to run a validator that will validate all blocks in WASM,
 add the flag `--validate` to nitro-testnode when starting with:
 
 ```bash
 ./test-node.bash --init --dev --validate
-```
+``` -->
 
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD013 -->
-<div class="youtube-wrapper">
+<!-- <div class="youtube-wrapper">
   <iframe
     class="youtube-video"
     title="Arbitrum Nitro Rollup with Celestia as DA, validating blocks with WASM"
@@ -147,7 +123,7 @@ add the flag `--validate` to nitro-testnode when starting with:
 You may need significantly more RAM and CPU to validate all blocks with WASM. You'll also need
 to send transactions to generate new batches to
 be posted to Celestia!
-:::
+::: -->
 
 ## Deploy an Arbitrum rollup to Mocha testnet
 
@@ -159,13 +135,6 @@ import constants from '/.vitepress/constants/constants.js'
 This section covers deploying an Arbitrum Nitro rollup to
 [Mocha testnet](../nodes/mocha-testnet.md) using Celestia as DA.
 
-### Dependencies
-
-- The first section of this page
-- A fully synced and funded Mocha testnet [light node](../nodes/light-node.md) on **v0.13.1**
-  - [Mocha testnet faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet)
-
-
 ### Configuration
 
 Since the contracts deployed through the factories above are already configured to communicate with Blobstream, you now only have to configure your node accordingly,  so lets walk through [an example found in nitro-testnode](https://github.com/celestiaorg/nitro-testnode/blob/celestia-v2.3.1/scripts/config.ts#L223-L233).
@@ -174,18 +143,22 @@ First of all, you will need to enable Celestia DA in your Arbitrum chain params,
 
 For the configuration, use the following:
 
+:::warning
+The Orbit contracts depend on [the existing Blobstream X deployments](#blobstream-x-contract-deployments). Before using these addresses, **please verify the contract addresses** on the official source below to avoid any issues due to incorrect addresses. This is crucial to protect against potential misuse by copy-paste errors.
+:::
+
 ```ts
 "celestia-cfg": {
-              "enable": true,
-                "rpc": "http://host.docker.internal:26658",
-                "tendermint-rpc": "http://consensus-full-mocha-4.celestia-mocha.com:26657",
-                "namespace-id": "000008e5f679bf7116cb",
-                "auth-token": "",
-                "is-poster": true,
-                "gas-price": 0.3,
-                "event-channel-size": 100,
-                "blobstreamx-address": "0xa8973BDEf20fe4112C920582938EF2F022C911f5",
-                }
+  "enable": true,
+    "rpc": "http://host.docker.internal:26658",
+    "tendermint-rpc": "http://consensus-full-mocha-4.celestia-mocha.com:26657",
+    "namespace-id": "000008e5f679bf7116cb",
+    "auth-token": "",
+    "is-poster": true,
+    "gas-price": 0.3,
+    "event-channel-size": 100,
+    "blobstreamx-address": "0xa8973BDEf20fe4112C920582938EF2F022C911f5",
+    }
 ```
 
 - **`enable`:** self explanatory, set it to true if you are using Celestia DA 😁
@@ -199,7 +172,7 @@ For the configuration, use the following:
 - **`blobstreamx-address`:** address of the BlobstreamX contract on the base chain.
     - Note that the `SequencerInbox` contract for each chain has a constant address for the `BlobstreamX` contract, thus make sure that the blobstream address in the `SequencerInbox` being used for the templates in `RollupCreator` matches the one in your config.
 
-### Run your Nitro rollup on Mocha
+<!-- ### Run your Nitro rollup on Mocha
 
 1. Start your rollup:
 
@@ -218,9 +191,39 @@ For the configuration, use the following:
    [the `nitrovroom` namespace](https://mocha.celenium.io/namespace/0000000000000000000000000000000000006e6974726f76726f6f6d).
 
 Congratulations! Your Arbitrum Nitro rollup testnet is now posting
-to Mocha testnet for data availability. 🏎️
+to Mocha testnet for data availability. 🏎️ -->
 
 ## Appendix
+
+### Compatibility matrix
+
+| Component | Version | Details |
+|-----------|---------|---------|
+| Nitro | [v2.3.1](https://github.com/celestiaorg/nitro/releases/tag/v2.3.1) | Includes the replay binary for the WASM root `0xa17295e3918d39e4026503302f1d627608101a52d4341647ebf7ad18edbe31a3`. [Read the overview for overall changes](../developers/arbitrum-integration.md). |
+| Contracts | [v1.2.1-celestia](https://github.com/celestiaorg/nitro-contracts/releases/tag/v1.2.1-celestia) | Integrates Blobstream X functionality into nitro-contracts v1.2.1 |
+| Orbit SDK | [v0.8.2 Orbit SDK for Celestia DA](https://github.com/celestiaorg/arbitrum-orbit-sdk/releases/tag/v0.8.2) | This is not compatible with Orbit SDK v0.8.2 or with the latest changes to nitro-contracts for the Atlas upgrade. The Orbit SDK itself is in Alpha. |
+| celestia-node | [v0.13.1](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.1) | This integration has only been tested with celestia-node 0.13.1 and only works with said version, and with future versions after that. Under the hood, the Nitro node uses [this commit](https://github.com/celestiaorg/celestia-openrpc/commit/64f04840aa97d4deb821b654b1fb59167d242bd1) of celestia-openrpc. |
+
+
+### Blobstream X contract deployments
+
+The Orbit contracts depend on the following BlobstreamX deployments. The current deployments, which can be found at `0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2` in both chains, relays headers from the **Mocha-4** testnet to the chains below:
+  - Arbitrum Sepolia
+  - Base Sepolia
+
+#### Arbitrum Sepolia
+
+- RollupCreator: `0x79751B011BCc20F413a2c4E3AF019b6E2a9738B9`
+- TokenBridgeCreator: `0xaAe3A04931345Df5AC6e784bB6bDeb29B1fF0286`
+- TokenBridgeRetryableSender: `0x22a6580faECA49cF86Cbb2F18f2B7f98031FC6Ad`
+- [Find additional Arbitrum Sepolia deployments below](#arbitrum-sepolia-additional-deployments)
+
+#### Base Sepolia
+
+- RollupCreator: `0x1Bb8ADd5e878b12Fa37756392642eB94C53A1Cf4`
+- TokenBridgeCreator: `0xAa3b8B63cCCa3c98b948FD1d6eD875d378dE2C6c`
+- TokenBridgeRetryableSender: `0x4270889AdcB82338C5FF5e64B45c0A3d31CFd08C`
+- [Find additional Base Sepolia deployments below](#base-sepolia-additional-deployments)
 
 ### Arbitrum Sepolia additional deployments
 
