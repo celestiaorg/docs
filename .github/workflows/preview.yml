@@ -30,9 +30,6 @@ jobs:
       - name: Build with Base URL
         run: BASE='/docs-preview/pr-${{ github.event.number }}/' yarn build
 
-      - name: Add CNAME file
-        run: mkdir -p ./.vitepress/dist && echo docs.celestia.org > .vitepress/dist/CNAME
-
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
