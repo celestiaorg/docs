@@ -46,7 +46,7 @@ So, when posting to the settlement contract, the rollup data in Celestia can be 
 So, when submitting the headers to the rollup settlement contract, the settlement contract will need to verify the following:
 
 - Zk-proof of the state transitions, as traditional zk-rollups do.
-- Zk-proof of the rollup data to the data root tuple root. The verification process of this should accept a commitment as input so that the contract makes sure it's the correct one that's being saved.
+- Zk-proof of the rollup data to the data root tuple root. The verification process of this should accept a commitment as input so that the contract makes sure it's the correct value that's being saved.
 - Verify that the sequence of spans is valid, i.e., is part of the Celestia block referenced by its height.
 
 Once these are valid, the settlement contract can be sure that the state transitions are valid, and the data was posted to Celestia.
