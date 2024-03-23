@@ -2,73 +2,43 @@
 description: A guide on how to install Arbitrum Nitro and deploy an instance on an Ubuntu AMD machine, including the installation of necessary dependencies, cloning the repository, installing Nitro from source, and deploying the rollup to Mocha testnet.
 ---
 
-# Deploy an Arbitrum rollup devnet
+# Deploy an Arbitrum local rollup devnet
 
-We will go over installation of Arbitrum Nitro and deploying an instance on an
-Ubuntu AMD machine.
+We will go over installation of Arbitrum Nitro and deploying a rollup instance using the Celestia Orbit chain deployment portal. After completing this tutorial,
+you'll have a local devnet chain that can host EVM-compatible smart contracts. Your
+chain will process transactions locally while settling to the public Arbitrum Sepolia
+testnet.
+
+If you're looking to learn more about the integration of Celestia and Orbit,
+read the [Arbitrum integration overview](./arbitrum-integration.md).
 
 ## Dependencies
 
 This section covers all necessary dependencies.
 
+- Familiarity with Ethereum, Ethereum's testnets, Arbitrum, and Celestia
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
   running on your machine
 - [Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
-- **[TODO: check against Orbit docs](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart)**
+- [A gentle introduction: Orbit chains](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
 - A fully synced and funded Mocha testnet [light node](../nodes/light-node.md) on **v0.13.1**
   - [Mocha testnet faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet)
+- **[TODO: check against Orbit docs](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart)**
 
-### General
+## Setup
 
-<!-- markdownlint-disable MD013 -->
+This is a WIP, copied from [Arbitrum's Orbit quickstart](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart).
 
-```bash
-sudo apt update && sudo apt upgrade -y
-sudo apt install curl tar wget clang pkg-config libssl-dev cmake jq build-essential git make ncdu -y
-```
-
-### Rust
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source "$HOME/.cargo/env"
-```
-
-### Golang
-
-```bash
-ver="1.20"
-cd $HOME
-wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-rm "go$ver.linux-amd64.tar.gz"
-echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-go version
-```
-
-### Node
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-nvm install 16.20.0
-nvm use 16.20.0
-node --version
-npm install --global yarn
-yarn --version
-```
-
-<!-- markdownlint-enable MD013 -->
-
-### Other Dependencies
-
-```bash
-cargo install --force cbindgen
-rustup target add wasm32-unknown-unknown
-```
+- Step 1: Acquire Arbitrum Testnet $ETH (and the native token for Orbit chains with custom gas tokens)
+- Step 2: Choose your chain type: Rollup
+- Step 3: Configure your Orbit chain's deployment
+- Step 4: Configure your chain's validator(s)
+- Step 5: Configure your chain's batch poster
+- Step 6: Review & Deploy your Orbit chain
+- Step 7: Download your chain's configuration files and launch your chain
+- Step 8: Clone the setup script repository and add your configuration files
+- Step 9: Run your chain's node and block explorer
+- Step 10: Finish setting up your chain
 
 ## Clone the repository
 
@@ -84,46 +54,6 @@ git submodule update --init --recursive
 ```
 
 [See the compatibility matrix in the appendix to verify you're using the right version.](#compatibility-matrix)
-
-<!-- ## Installing Nitro from Source
-
-Now you can install Nitro from source. After the `make` command completes,
-you can run the bash script that installs and runs the containers via
-docker-compose.
-
-```bash
-make build-node-deps
-cd nitro-testnode && ./test-node.bash --init --dev
-```
-
-Congratulations! You have an Arbitrum Orbit rollup running with Nitro on
-your machine. -->
-
-<!-- ### Validating with WASM
-
-If you want to run a validator that will validate all blocks in WASM,
-add the flag `--validate` to nitro-testnode when starting with:
-
-```bash
-./test-node.bash --init --dev --validate
-``` -->
-
-<!-- markdownlint-disable MD033 -->
-<!-- markdownlint-disable MD013 -->
-<!-- <div class="youtube-wrapper">
-  <iframe
-    class="youtube-video"
-    title="Arbitrum Nitro Rollup with Celestia as DA, validating blocks with WASM"
-    src="https://youtube.com/embed/xihXA3wkuLI"
-    allowfullscreen
-  ></iframe>
-</div>
-
-:::tip
-You may need significantly more RAM and CPU to validate all blocks with WASM. You'll also need
-to send transactions to generate new batches to
-be posted to Celestia!
-::: -->
 
 ## Deploy an Arbitrum rollup to Mocha testnet
 
@@ -172,27 +102,6 @@ The Orbit contracts depend on [the existing Blobstream X deployments](#blobstrea
 - **`blobstreamx-address`:** address of the BlobstreamX contract on the base chain.
     - Note that the `SequencerInbox` contract for each chain has a constant address for the `BlobstreamX` contract, thus make sure that the blobstream address in the `SequencerInbox` being used for the templates in `RollupCreator` matches the one in your config.
 
-<!-- ### Run your Nitro rollup on Mocha
-
-1. Start your rollup:
-
-   ```bash
-   ./test-node.bash --init --dev
-   ```
-
-2. Send a transaction:
-
-   ```bash
-   ./test-node.bash script send-l2 --to address_0x1111222233334444555566667777888899990000
-   ```
-
-3. Find [the batch transaction on mocha](https://mocha.celenium.io/tx/ab5a97ddcf310417cabd57915d0f15f1071b941b902989e974f4025391c71512)
-   in the namespace you used. In this demonstration, I used
-   [the `nitrovroom` namespace](https://mocha.celenium.io/namespace/0000000000000000000000000000000000006e6974726f76726f6f6d).
-
-Congratulations! Your Arbitrum Nitro rollup testnet is now posting
-to Mocha testnet for data availability. 🏎️ -->
-
 ## Appendix
 
 ### Compatibility matrix
@@ -203,7 +112,6 @@ to Mocha testnet for data availability. 🏎️ -->
 | Contracts | [v1.2.1-celestia](https://github.com/celestiaorg/nitro-contracts/releases/tag/v1.2.1-celestia) | Integrates Blobstream X functionality into nitro-contracts v1.2.1 |
 | Orbit SDK | [v0.8.2 Orbit SDK for Celestia DA](https://github.com/celestiaorg/arbitrum-orbit-sdk/releases/tag/v0.8.2) | This is not compatible with Orbit SDK v0.8.2 or with the latest changes to nitro-contracts for the Atlas upgrade. The Orbit SDK itself is in Alpha. |
 | celestia-node | [v0.13.1](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.1) | This integration has only been tested with celestia-node 0.13.1 and only works with said version, and with future versions after that. Under the hood, the Nitro node uses [this commit](https://github.com/celestiaorg/celestia-openrpc/commit/64f04840aa97d4deb821b654b1fb59167d242bd1) of celestia-openrpc. |
-
 
 ### Blobstream X contract deployments
 
