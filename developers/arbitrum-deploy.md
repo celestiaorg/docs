@@ -10,11 +10,10 @@ chain will process transactions locally while settling to the public Arbitrum Se
 testnet.
 
 If you're looking to learn more about the integration of Celestia and Orbit,
-read the [Arbitrum integration overview](./arbitrum-integration.md).
+read the [Arbitrum integration overview](./arbitrum-integration.md). If you're
+looking to learn more about Orbit, read [A gentle introduction: Orbit chains](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction).
 
-## Dependencies
-
-This section covers all necessary dependencies.
+## Prerequisites
 
 - Familiarity with Ethereum, Ethereum's testnets, Arbitrum, and Celestia
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
@@ -24,21 +23,37 @@ This section covers all necessary dependencies.
 - A fully synced and funded Mocha testnet [light node](../nodes/light-node.md) on **v0.13.1**
   - [Mocha testnet faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet)
 - **[TODO: check against Orbit docs](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart)**
+- A browser-based Ethereum wallet (like [MetaMask](https://metamask.io))
+- At least 1 Arbitrum Sepolia testnet ETH (for custom gas token chains, 0.6 ETH and 0.4 native tokens)
 
 ## Setup
 
 This is a WIP, copied from [Arbitrum's Orbit quickstart](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart).
 
-- Step 1: Acquire Arbitrum Testnet $ETH (and the native token for Orbit chains with custom gas tokens)
+- Step 1: Acquire Arbitrum Testnet ETH (and the native token for Orbit chains with custom gas tokens)
+  - tl;dr acquire testnet ETH
 - Step 2: Choose your chain type: Rollup
 - Step 3: Configure your Orbit chain's deployment
+  - tl;dr use the Celestia Orbit chain deployment portal to deploy the chain. Add Arbitrum Sepolia to walle tif not already. TODO: add screenshot of the portal. TODO: add table of description of parameters.
 - Step 4: Configure your chain's validator(s)
+  - tl;dr TODO: add configure validator screenshot. TODO: describe fields in setup.
 - Step 5: Configure your chain's batch poster
+  - tl;dr TODO: screenshot of batch poster section. TODO: describe batch poster.
 - Step 6: Review & Deploy your Orbit chain
+  - tl;dr TODO: Click Deploy and explain what is happening.
 - Step 7: Download your chain's configuration files and launch your chain
+  - tl;dr TODO: Download the chain config files with Rollup Config and L3 Config. Download these from the UI. Explain what happens.
 - Step 8: Clone the setup script repository and add your configuration files
+  - tl;dr TODO: Clone the Orbit Celestia setup script repo and config steps.
 - Step 9: Run your chain's node and block explorer
+  - tl;dr TODO: Start Docker. Start node from orbit-setup-script repo. Visit block explorer.
 - Step 10: Finish setting up your chain
+  - tl;dr TODO: Fund batch-poster and validator on the L2 chain (Arbitrum Sepolia). Deposit ETH into the account using the newly deployed bridge. Deploy Token Bridge contracts on the L2 and local Orbit chains. Configure params. TODO: Run the script.
+
+Extras:
+- Logging: TODO: show how to view logs
+- Depositing ETH/native token: TODO: Show how to deposit more ETH or native tokens to the Orbit chain account.
+- Troubleshooting: `error getting latest batch count` safe to ignore.
 
 ## Clone the repository
 
