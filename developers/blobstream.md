@@ -14,7 +14,8 @@ scales with the number of users. Formerly known as the [Quantum Gravity Bridge (
 Blobstream relays commitments to Celestia's data root to an onchain light client
 on Ethereum, for integration by developers into L2 contracts. This enables Ethereum
 developers to build high-throughput L2s using Celestia's optimised DA layer,
-the first with Data Availability Sampling (DAS).
+the first with Data Availability Sampling (DAS). Any ecosystem can deploy a
+Blobstream light client onchain to allow L2s and L3s to access DA from Celestia.
 
 An implementation of Blobstream, by [Succinct](https://docs.succinct.xyz/), called
 [Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
@@ -22,6 +23,9 @@ and will be used in the upcoming deployments. This implementation proves the
 validity of Celestia block headers on a target EVM chain using zero-knowledge (ZK)
 proofs, which allow inheriting all the security
 guarantees of Celestia.
+
+Please note: Blobstream remains early-stage, experimental software and
+users should use Blobstream at their own risk.
 
 ## Blobstream vs. data availability committees (DACs)
 
