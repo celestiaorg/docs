@@ -6,7 +6,7 @@ description: The first testnet built with OP Stack and Celestia.
 
 ![Bubs testnet](/img/Celestia_Bubs_Testnet.jpg)
 
-[Bubs Testnet](https://bubstestnet.com) is a fresh offering from
+[Bubs Testnet](https://bubs-sepolia.hub.caldera.xyz/) is a fresh offering from
 [Caldera](https://caldera.xyz) with support from Celestia Labs,
 built with OP Stack and Celestia, and is dedicated to providing developers with
 an EVM-compatible execution layer to deploy their EVM applications on.
@@ -48,7 +48,7 @@ execution layer, making it an ideal platform for developers looking to
 build and test applications in a setting that closely mirrors an OP Stack
 rollup on Celestia.
 
-Learn more at [bubstestnet.com](https://bubstestnet.com).
+Learn more at [https://bubs-sepolia.hub.caldera.xyz/](https://bubs-sepolia.hub.caldera.xyz/).
 
 ### RPC URLs
 
@@ -61,11 +61,11 @@ For the Bubs Testnet, you can connect to the following RPC URLs:
 
 #### HTTPS
 
-- `https://bubs.calderachain.xyz/http`
+- `https://bubs-sepolia.rpc.caldera.xyz/http`
 
 #### WSS
 
-- `wss://bubs.calderachain.xyz/ws`
+- `wss://bubs-sepolia.rpc.caldera.xyz/ws`
 
 This URL serves as the entry point to the Bubs Testnet. You can use it
 in your applications to connect to the testnet and interact with the smart
@@ -76,12 +76,13 @@ Remember, Bubs Testnet is a testing environment!
 ### Faucet
 
 To visit the Bubs testnet faucet, go to
-[`https://bubstestnet.com`](https://bubstestnet.com).
+[`https://bubs-sepolia.hub.caldera.xyz/`](https://bubs-sepolia.hub.caldera.xyz/)
+and click the "Faucet" tab.
 
 ### Explorer
 
 To visit the explorer, go to
-[`https://explorer.bubstestnet.com/`](https://explorer.bubstestnet.com/).
+[`https://bubs-sepolia.explorer.caldera.xyz/`](https://bubs-sepolia.explorer.caldera.xyz/).
 
 ## Next steps
 
