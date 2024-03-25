@@ -76,8 +76,11 @@ Remember, Bubs Testnet is a testing environment!
 
 ### Bridge
 
-To bridge from Ethereum Sepolia to Bubs Testnet, visit the
-[Bubs Testnet bridge](https://bubs-sepolia.bridge.caldera.xyz/).
+Bridging is a process that enables the transfer of assets between
+different blockchains.
+
+To bridge between Ethereum Sepolia and Bubs Testnet,
+visit the [Bubs Testnet bridge](https://bubs-sepolia.bridge.caldera.xyz/).
 
 ### Faucet
 
