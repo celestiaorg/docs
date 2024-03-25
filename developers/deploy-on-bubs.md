@@ -9,7 +9,8 @@ Bubs testnet.
 - [Node.js](https://nodejs.org/en)
 - Basic understanding of Ethereum
 - Basic understanding of Solidity and Node.js
-- Bubs ETH from the [Bubs faucet](https://bubstestnet.com)
+- Bubs ETH from the [Bubs faucet](https://bubs-sepolia.hub.caldera.xyz/) or
+[Bubs bridge](https://bubs-sepolia.bridge.caldera.xyz/)
 - A Bubs RPC URL from the [Bubs testnet page](./bubs-testnet.md)
 
 ## Setup
@@ -182,7 +183,7 @@ set the `BUBS_RPC_URL` variable with an
 
 ```bash
 export BUBS_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-export BUBS_RPC_URL=https://bubs.calderachain.xyz/http
+export BUBS_RPC_URL=https://bubs-sepolia.rpc.caldera.xyz/http
 ```
 
 Now that we're ready to deploy the smart contract onto Bubs, we will run
