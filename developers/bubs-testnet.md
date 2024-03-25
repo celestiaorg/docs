@@ -102,4 +102,4 @@ capabilities:
 
 - [Deploy a smart contract on Bubs testnet](./deploy-on-bubs.md)
 - [Deploy a GM Portal dapp on Bubs testnet](./gm-portal-bubs.md)
-- [Deploy a smart contract with Thirdweb](https://thirdweb.com/bubs-testnet)
+<!-- - [Deploy a smart contract with Thirdweb](https://thirdweb.com/bubs-testnet) -->
