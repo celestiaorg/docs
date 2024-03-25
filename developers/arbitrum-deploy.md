@@ -49,39 +49,57 @@ to acquire some testnet ETH on an L1 testnet.
 2. Bridge your L1 testnet ETH to Arbitrum L2 using the
 [Arbitrum bridge](https://bridge.arbitrum.io/).
 
-### Step 2: Configure your Orbit chain's deployment
+### Step 2: Pick your deployment type
 
 To deploy our Orbit rollup, we will be using the
-[Celestia Orbit chain deployment portal](https://arbitrum-orbit-deployment-ui.vercel.app/).
-This process creates an Arbitrum Rollup, a type of Optimistic Rollup protocol
-that operates without requiring trust in intermediaries. It achieves this
-by posting all transaction data to Ethereum's Layer 1 (L1), leveraging
-Ethereum's security guarantees. This ensures that the data is available
-for anyone to validate the chain's integrity and correctness.
+[Celestia Orbit chain deployment portal](https://arbitrum-orbit-deployment-ui.vercel.app/). This portal offers the following:
 
-The Arbitrum Rollup protocol settles transactions on Ethereum, ensuring robust
-security by inheriting Ethereum's decentralized and tamper-proof
-characteristics. Additionally, it utilizes Celestia for data availability,
-posting data to this layer specifically designed for scalable and efficient
-data storage. This dual-layer approach allows the Arbitrum Rollup to offer
-both the security of Ethereum and the scalability benefits of Celestia, making
-it an ideal platform for deploying EVM-compatible smart contracts and applications
-that require high throughput without compromising on security.
+1. **Celestia Rollup: Transaction data is posted to Celestia**
+2. Rollup: Transaction data is posted to Ethereum
+3. AnyTrust: Transaction data is posted by a Data Availability Committee
 
-By deploying through the Celestia Orbit chain deployment portal, developers can
-create a decentralized network that is both scalable and secure, suitable for
-a wide range of applications from DeFi to gaming.
+In this guide, we will select "Celestia ✨" and deploy a rollup
+which posts data to Celestia.
 
-#### Deployment configuration
+![Choose Celestia for DA](/public/arbitrum/choose_da.png)
 
-Visit the [Celestia Orbit chain deployment portal](https://arbitrum-orbit-deployment-ui.vercel.app/).
+### Step 3: Configure your chain's deployment
 
-- Step 3: Configure your Orbit chain's deployment
-  - tl;dr use the Celestia Orbit chain deployment portal to deploy the chain. Add Arbitrum Sepolia to walle tif not already. TODO: add screenshot of the portal. TODO: add table of description of parameters.
-- Step 4: Configure your chain's validator(s)
-  - tl;dr TODO: add configure validator screenshot. TODO: describe fields in setup.
-- Step 5: Configure your chain's batch poster
-  - tl;dr TODO: screenshot of batch poster section. TODO: describe batch poster.
+Connect your wallet to the deployment portal. You may be prompted to
+add the Arbitrum Sepolia network to your wallet and/or switch to your
+wallet to this network; approve this.
+
+The deployment portal will then display a form that looks like this:
+
+![configuration](/public/arbitrum/configuration.png)
+
+The below table provides a brief description of each of these configuration
+parameters. 
+
+Parameter descriptions can be found in the table below (more in-depth
+descriptions can be found in the deployment UI). We recommend sticking
+to the defaults; to learn more about customizing your Orbit chain's
+deployment configuration, visit **TODO**: How (and when) to customize your
+Orbit chain's deployment config:
+
+| Parameter              | Description                                                                                                                                                                                                       |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CHAIN ID**           | This is a unique integer identifier for your chain's network, primarily used on chain indexes like [Chainlist.org](https://chainlist.org). It's not crucial for development networks, but in production, you'll need to choose a unique ID.|
+| **CHAIN NAME**         | The name you assign to your Orbit chain, which helps users and developers distinguish it from other chains. It should be memorable and recognizable.                                                            |
+| **CHALLENGE PERIOD BLOCKS** | Determines the time frame within which validators can dispute the state of the chain posted to the base chain. It's measured in blocks on the underlying L1 chain. A longer period allows more time for disputes but also delays withdrawals.  |
+| **STAKE TOKEN**        | Specifies the token that validators must stake to participate in the validation process, using the token's contract address on the base chain. This can be ETH or another token, defined by its address.         |
+| **BASE STAKE**         | The minimum amount of stake token required for validators to post state assertions. A lower base stake lowers the barrier to entry but increases vulnerability to attacks, whereas a higher stake encourages honest participation but raises the entry barrier.|
+| **OWNER**              | The account address that has the authority to deploy, own, and update the base contracts of your Orbit chain on its base chain. In production, this is usually a high-stakes address controlled by a DAO or a multisig setup. For development chains, it's a lower-stakes administrative account.|
+| **GAS TOKEN**          | The token used for gas payments on the network, which must be natively deployed on the parent chain. There are specific requirements for custom gas tokens, such as having 18 decimals and not being a rebasing or fee-on-transfer token. This feature is primarily for Orbit AnyTrust chains.|
+| **VALIDATORS**         | This is the number of validators for your chain, including their addresses. The first validator is auto-generated and immutable. Validators are crucial for maintaining the integrity of the chain and posting state assertions to the base chain.|
+| **BATCH POSTER**       | Responsible for posting transaction batches from your Orbit chain to the base chain. An address for this role is automatically generated, with the private key stored in a configuration file.
+
+In the "**Configure Validators**" section, you specify the number of validators and their addresses for your chain. The initial validator's address is pre-generated and immutable, with its key stored in a JSON file. Validators ensure transaction integrity and state assertions on the base chain. They're added to an allow-list for validation and staking. "Base contracts" refer to your Orbit chain's L2 contracts, and "base chain" to the L2 chain they're deployed on.
+
+In the "**Configure Batch Poster**" section, a batch poster address is auto-generated for posting transaction batches to the base contracts on the base chain. The address and its private key are also stored in a JSON configuration file. After configuring, proceed to review and deploy your Orbit chain.
+
+After configuring your batch poster, proceed to the next step: review and deploy your Orbit chain.
+
 - Step 6: Review & Deploy your Orbit chain
   - tl;dr TODO: Click Deploy and explain what is happening.
 - Step 7: Download your chain's configuration files and launch your chain
