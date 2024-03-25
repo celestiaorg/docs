@@ -22,12 +22,13 @@ who makes it easy to launch rollups with no code required.
 
 In this setup, data handling is accomplished in two ways. Firstly, data is
 written to the DA layer, in this case, Celestia
-(on the [Arabica devnet](../nodes/arabica-devnet.md)). Then, the data
+(on the [Mocha testnet](../nodes/mocha-testnet.md)). Then, the data
 commitment is written to the `op-batcher`. When reading, the `op-node`
 retrieves the data back from the DA layer by first reading the data commitment
 from the `op-batcher`, then reading the data from the DA layer using the data
 commitment. Hence, while previously `op-node` was reading from `calldata` on
 Ethereum, it now reads data from Celestia.
+[View the namespace for Bubs on Celestia's Mocha testnet](https://mocha-4.celenium.io/namespace/000000000000000000000000000000000000ca1de12ad45362e77e87).
 
 The tools involved in the data handling process include `op-batcher`,
 which batches up rollup blocks and posts them to Ethereum, `op-geth`
