@@ -63,7 +63,8 @@ Then, fraud proofs will need to prove the following:
 Once these are valid, the rollup contract can proceed to parse the share and verify the contested claim.
 
 Note: **Generating/verifying share commitment proofs is still not supported.
-It still needs tooling to generate the proofs on the node side, and verifying them on the Solidity side.
+It still needs tooling to generate the proofs on the node side,
+and verifying them on the Solidity side which will be built in the upcoming months.
 Thus, the [sequence of spans](#optimistic-rollups-that-uses-a-sequence-of-spans) approach is preferable at the moment.**
 
 ## Zk-Rollups
