@@ -36,9 +36,46 @@ This section was written with guidance from [Arbitrum's Orbit quickstart](https:
 
 ### Step 1: Acquite Arbitrum Sepolia ETH
 
-- Step 1: Acquire Arbitrum Sepolia ETH (and the native token for Orbit chains with custom gas tokens)
-  - tl;dr acquire testnet ETH
-- Step 2: Choose your chain type: Rollup
+In order to deploy your rollup, you will need to deploy
+contracts on Arbitrum Sepolia. You'll need 1 ETH for a regular Orbit rollup
+or 0.6 ETH plus 0.4 of your desired native token for Orbit chains
+with a custom gas token. The funds will cover the cost of deploying the
+base contracts to the base chain, in this case, Arbitrum Sepolia.
+
+The simplest way to do this is to:
+
+1. Use an L1 testnet ETH faucet like [sepoliafaucet.com](https://sepoliafaucet.com/)
+to acquire some testnet ETH on an L1 testnet.
+2. Bridge your L1 testnet ETH to Arbitrum L2 using the
+[Arbitrum bridge](https://bridge.arbitrum.io/).
+
+### Step 2: Configure your Orbit chain's deployment
+
+To deploy our Orbit rollup, we will be using the
+[Celestia Orbit chain deployment portal](https://arbitrum-orbit-deployment-ui.vercel.app/).
+This process creates an Arbitrum Rollup, a type of Optimistic Rollup protocol
+that operates without requiring trust in intermediaries. It achieves this
+by posting all transaction data to Ethereum's Layer 1 (L1), leveraging
+Ethereum's security guarantees. This ensures that the data is available
+for anyone to validate the chain's integrity and correctness.
+
+The Arbitrum Rollup protocol settles transactions on Ethereum, ensuring robust
+security by inheriting Ethereum's decentralized and tamper-proof
+characteristics. Additionally, it utilizes Celestia for data availability,
+posting data to this layer specifically designed for scalable and efficient
+data storage. This dual-layer approach allows the Arbitrum Rollup to offer
+both the security of Ethereum and the scalability benefits of Celestia, making
+it an ideal platform for deploying EVM-compatible smart contracts and applications
+that require high throughput without compromising on security.
+
+By deploying through the Celestia Orbit chain deployment portal, developers can
+create a decentralized network that is both scalable and secure, suitable for
+a wide range of applications from DeFi to gaming.
+
+#### Deployment configuration
+
+Visit the [Celestia Orbit chain deployment portal](https://arbitrum-orbit-deployment-ui.vercel.app/).
+
 - Step 3: Configure your Orbit chain's deployment
   - tl;dr use the Celestia Orbit chain deployment portal to deploy the chain. Add Arbitrum Sepolia to walle tif not already. TODO: add screenshot of the portal. TODO: add table of description of parameters.
 - Step 4: Configure your chain's validator(s)
