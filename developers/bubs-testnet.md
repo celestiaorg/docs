@@ -73,6 +73,11 @@ contracts you deploy there.
 
 Remember, Bubs Testnet is a testing environment!
 
+### Bridge
+
+To bridge from Ethereum Sepolia to Bubs Testnet, visit the
+[Bubs Testnet bridge](https://bubs-sepolia.bridge.caldera.xyz/).
+
 ### Faucet
 
 To visit the Bubs testnet faucet, go to
@@ -83,6 +88,11 @@ and click the "Faucet" tab.
 
 To visit the explorer, go to
 [`https://bubs-sepolia.explorer.caldera.xyz/`](https://bubs-sepolia.explorer.caldera.xyz/).
+
+### Status
+
+To see the status and uptime information for Bubs,
+[visit the status page](https://bubs-sepolia.betteruptime.com/).
 
 ## Next steps
 
