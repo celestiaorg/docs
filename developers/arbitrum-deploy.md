@@ -4,7 +4,7 @@ description: A guide on how to install Arbitrum Nitro and deploy an instance on 
 
 # Deploy an Arbitrum local rollup devnet
 
-We will go over installation of Arbitrum Nitro and deploying a rollup instance using the Celestia Orbit chain deployment portal. After completing this tutorial,
+This guide covers deploying a rollup instance using the Celestia Orbit chain deployment portal. After completing this tutorial,
 you'll have a local devnet chain that can host EVM-compatible smart contracts. Your
 chain will process transactions locally while settling to the public Arbitrum Sepolia
 testnet.
@@ -13,24 +13,30 @@ If you're looking to learn more about the integration of Celestia and Orbit,
 read the [Arbitrum integration overview](./arbitrum-integration.md). If you're
 looking to learn more about Orbit, read [A gentle introduction: Orbit chains](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction).
 
+:::info Thank you, Offchain Labs!
+This guide was made possible with the support and information provided by the [Offchain Labs team](https://www.offchainlabs.com/), the creators of Arbitrum. For more detailed information and support, visit [Arbitrum documentation](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart) and
+[the original deployment guide](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart).
+:::
+
 ## Prerequisites
 
 - Familiarity with Ethereum, Ethereum's testnets, Arbitrum, and Celestia
+- [A gentle introduction: Orbit chains](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
   running on your machine
 - [Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
-- [A gentle introduction: Orbit chains](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
 - A fully synced and funded Mocha testnet [light node](../nodes/light-node.md) on **v0.13.1**
   - [Mocha testnet faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet)
-- **[TODO: check against Orbit docs](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart)**
 - A browser-based Ethereum wallet (like [MetaMask](https://metamask.io))
 - At least 1 Arbitrum Sepolia testnet ETH (for custom gas token chains, 0.6 ETH and 0.4 native tokens)
 
 ## Setup
 
-This is a WIP, copied from [Arbitrum's Orbit quickstart](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart).
+This section was written with guidance from [Arbitrum's Orbit quickstart](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart).
 
-- Step 1: Acquire Arbitrum Testnet ETH (and the native token for Orbit chains with custom gas tokens)
+### Step 1: Acquite Arbitrum Sepolia ETH
+
+- Step 1: Acquire Arbitrum Sepolia ETH (and the native token for Orbit chains with custom gas tokens)
   - tl;dr acquire testnet ETH
 - Step 2: Choose your chain type: Rollup
 - Step 3: Configure your Orbit chain's deployment
