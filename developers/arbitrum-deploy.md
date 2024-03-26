@@ -2,146 +2,205 @@
 description: A guide on how to install Arbitrum Nitro and deploy an instance on an Ubuntu AMD machine, including the installation of necessary dependencies, cloning the repository, installing Nitro from source, and deploying the rollup to Mocha testnet.
 ---
 
-# Deploy an Arbitrum local rollup devnet
+# Quickstart: Deploy an Orbit rollup
 
-This guide covers deploying a rollup instance using the Celestia Orbit chain deployment portal. After completing this tutorial,
-you'll have a local devnet chain that can host EVM-compatible smart contracts. Your
-chain will process transactions locally while settling to the public Arbitrum Sepolia
-testnet.
+This guide covers deploying a rollup using the
+[Celestia Orbit chain deployment portal](https://arbitrum-orbit-deployment-ui.vercel.app/).
+
+After completing this tutorial, you'll have a local devnet
+rollup that can host EVM-compatible smart contracts. Your chain will process
+transactions locally while settling to the public Arbitrum Sepolia
+testnet and posting data to Celestia's Mocha testnet.
 
 If you're looking to learn more about the integration of Celestia and Orbit,
-read the [Arbitrum integration overview](./arbitrum-integration.md). If you're
-looking to learn more about Orbit, read [A gentle introduction: Orbit chains](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction).
+read the [Arbitrum Orbit integration overview](./arbitrum-integration.md). If you're
+looking to learn more about Orbit, read
+[A gentle introduction: Orbit chains](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction).
 
 :::info Thank you, Offchain Labs!
-This guide was made possible with the support and information provided by the [Offchain Labs team](https://www.offchainlabs.com/), the creators of Arbitrum. For more detailed information and support, visit [Arbitrum documentation](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart) and
-[the original deployment guide](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart).
+This guide was made possible with the support and information provided by the
+[Offchain Labs team](https://www.offchainlabs.com/), the creators of Arbitrum.
+For more detailed information and support, visit
+[Arbitrum documentation](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart)
+and [the original deployment guide](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart).
 :::
 
 ## Prerequisites
 
 - Familiarity with Ethereum, Ethereum's testnets, Arbitrum, and Celestia
 - [A gentle introduction: Orbit chains](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
+- [Arbitrum Orbit integration overview](./arbitrum-integration.md)
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
   running on your machine
 - [Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
-- A fully synced and funded Mocha testnet [light node](../nodes/light-node.md) on **v0.13.1**
+- A fully synced and funded Mocha testnet [light node](../nodes/light-node.md)
+on **v0.13.1**
   - [Mocha testnet faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet)
 - A browser-based Ethereum wallet (like [MetaMask](https://metamask.io))
-- At least 1 Arbitrum Sepolia testnet ETH (for custom gas token chains, 0.6 ETH and 0.4 native tokens)
+- At least 1 Arbitrum Sepolia testnet ETH (for custom gas token chains,
+0.6 ETH and 0.4 native tokens)
 
 ## Setup
 
-This section was written with guidance from [Arbitrum's Orbit quickstart](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart).
+This section was adapted from
+[Arbitrum's Orbit quickstart](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart).
 
-### Step 1: Acquite Arbitrum Sepolia ETH
+### Step 1: Acquire Arbitrum Sepolia ETH
 
-In order to deploy your rollup, you will need to deploy
-contracts on Arbitrum Sepolia. You'll need 1 ETH for a regular Orbit rollup
-or 0.6 ETH plus 0.4 of your desired native token for Orbit chains
+You'll need at least 1 testnet ETH for a regular Orbit rollup
+or 0.6 ETH plus 0.4 of your desired native token for Orbit rollups
 with a custom gas token. The funds will cover the cost of deploying the
 base contracts to the base chain, in this case, Arbitrum Sepolia.
 
 The simplest way to do this is to:
 
 1. Use an L1 testnet ETH faucet like [sepoliafaucet.com](https://sepoliafaucet.com/)
-to acquire some testnet ETH on an L1 testnet.
-2. Bridge your L1 testnet ETH to Arbitrum L2 using the
+to acquire some testnet ETH on Ethereum Sepolia testnet.
+2. Bridge your L1 testnet ETH to L2 Arbitrum Sepolia using the
 [Arbitrum bridge](https://bridge.arbitrum.io/).
 
 ### Step 2: Pick your deployment type
 
-To deploy our Orbit rollup, we will be using the
-[Celestia Orbit chain deployment portal](https://arbitrum-orbit-deployment-ui.vercel.app/). This portal offers the following:
+Visit the
+[Celestia Orbit chain deployment portal](https://arbitrum-orbit-deployment-ui.vercel.app/).
+This portal offers the following options:
 
 1. **Celestia Rollup: Transaction data is posted to Celestia**
 2. Rollup: Transaction data is posted to Ethereum
 3. AnyTrust: Transaction data is posted by a Data Availability Committee
 
-In this guide, we will select "Celestia ✨" and deploy a rollup
-which posts data to Celestia.
-
-![Choose Celestia for DA](/public/arbitrum/choose_da.png)
-
-### Step 3: Configure your chain's deployment
-
 Connect your wallet to the deployment portal. You may be prompted to
 add the Arbitrum Sepolia network to your wallet and/or switch to your
 wallet to this network; approve this.
+
+In this guide, we will select **Celestia ✨** and deploy a rollup
+which posts data to Celestia (1 above).
+
+![Choose Celestia for DA](/public/arbitrum/choose_da.png)
+
+Click **Next**. In the next step we will configure the deployment.
+
+### Step 3: Configure your Orbit chain's deployment
 
 The deployment portal will then display a form that looks like this:
 
 ![configuration](/public/arbitrum/configuration.png)
 
-The below table provides a brief description of each of these configuration
-parameters. 
-
 Parameter descriptions can be found in the table below (more in-depth
 descriptions can be found in the deployment UI). We recommend sticking
 to the defaults; to learn more about customizing your Orbit chain's
-deployment configuration, visit **TODO**: How (and when) to customize your
-Orbit chain's deployment config:
+deployment configuration, visit [**TODO**: How (and when) to customize your Orbit chain's deployment config](/):
 
-| Parameter              | Description                                                                                                                                                                                                       |
-|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **CHAIN ID**           | This is a unique integer identifier for your chain's network, primarily used on chain indexes like [Chainlist.org](https://chainlist.org). It's not crucial for development networks, but in production, you'll need to choose a unique ID.|
-| **CHAIN NAME**         | The name you assign to your Orbit chain, which helps users and developers distinguish it from other chains. It should be memorable and recognizable.                                                            |
-| **CHALLENGE PERIOD BLOCKS** | Determines the time frame within which validators can dispute the state of the chain posted to the base chain. It's measured in blocks on the underlying L1 chain. A longer period allows more time for disputes but also delays withdrawals.  |
-| **STAKE TOKEN**        | Specifies the token that validators must stake to participate in the validation process, using the token's contract address on the base chain. This can be ETH or another token, defined by its address.         |
-| **BASE STAKE**         | The minimum amount of stake token required for validators to post state assertions. A lower base stake lowers the barrier to entry but increases vulnerability to attacks, whereas a higher stake encourages honest participation but raises the entry barrier.|
-| **OWNER**              | The account address that has the authority to deploy, own, and update the base contracts of your Orbit chain on its base chain. In production, this is usually a high-stakes address controlled by a DAO or a multisig setup. For development chains, it's a lower-stakes administrative account.|
-| **GAS TOKEN**          | The token used for gas payments on the network, which must be natively deployed on the parent chain. There are specific requirements for custom gas tokens, such as having 18 decimals and not being a rebasing or fee-on-transfer token. This feature is primarily for Orbit AnyTrust chains.|
-| **VALIDATORS**         | This is the number of validators for your chain, including their addresses. The first validator is auto-generated and immutable. Validators are crucial for maintaining the integrity of the chain and posting state assertions to the base chain.|
-| **BATCH POSTER**       | Responsible for posting transaction batches from your Orbit chain to the base chain. An address for this role is automatically generated, with the private key stored in a configuration file.
+<!-- markdownlint-disable MD013 -->
+| Parameter | Description |
+|-|-|
+| **Chain ID**           | This is a unique integer identifier for your chain's network, primarily used on chain indexes like [Chainlist.org](https://chainlist.org). It's not crucial for development networks, but in production, you'll need to choose a unique ID.|
+| **Chain Name**         | The name you assign to your Orbit chain, which helps users and developers distinguish it from other chains. It should be memorable and recognizable.                                                            |
+| **Challenge Period Blocks** | Determines the time frame within which validators can dispute the state of the chain posted to the base chain. It's measured in blocks on the underlying L1 chain. A longer period allows more time for disputes but also delays withdrawals.  |
+| **Stake Token**        | Specifies the token that validators must stake to participate in the validation process, using the token's contract address on the base chain. This can be ETH or another token, defined by its address.         |
+| **Base Stake**         | The minimum amount of stake token required for validators to post state assertions. A lower base stake lowers the barrier to entry but increases vulnerability to attacks, whereas a higher stake encourages honest participation but raises the entry barrier.|
+| **Owner**              | The account address that has the authority to deploy, own, and update the base contracts of your Orbit chain on its base chain. In production, this is usually a high-stakes address controlled by a DAO or a multisig setup. For development chains, it's a lower-stakes administrative account.|
+| **Gas Token**          | The token used for gas payments on the network, which must be natively deployed on the parent chain. There are specific requirements for custom gas tokens, such as having 18 decimals and not being a rebasing or fee-on-transfer token. This feature is primarily for Orbit AnyTrust chains.|
+| **Validators**         | This is the number of validators for your chain, including their addresses. The first validator is auto-generated and immutable. Validators are crucial for maintaining the integrity of the chain and posting state assertions to the base chain.|
+| **Batch Poster**       | Responsible for posting transaction batches from your Orbit chain to the base chain. An address for this role is automatically generated, with the private key stored in a configuration file.
+<!-- markdownlint-enable MD013 -->
 
-In the "**Configure Validators**" section, you specify the number of validators and their addresses for your chain. The initial validator's address is pre-generated and immutable, with its key stored in a JSON file. Validators ensure transaction integrity and state assertions on the base chain. They're added to an allow-list for validation and staking. "Base contracts" refer to your Orbit chain's L2 contracts, and "base chain" to the L2 chain they're deployed on.
+In the **Configure Validators** section, specify the number of validators
+and their addresses for your chain. The initial validator's address is
+pre-generated and immutable, with its key stored in a JSON file.
+Validators ensure transaction integrity and state assertions on the base
+chain. They're added to an allow-list for validation and staking.
+**Base contracts** refer to your Orbit chain's L2 contracts, and **base chain**
+to the L2 chain they're deployed on.
 
-In the "**Configure Batch Poster**" section, a batch poster address is auto-generated for posting transaction batches to the base contracts on the base chain. The address and its private key are also stored in a JSON configuration file. After configuring, proceed to review and deploy your Orbit chain.
+In the **Configure Batch Poster** section, a batch poster address is
+auto-generated for posting transaction batches to the base contracts
+on the base chain. The address and its private key are also stored in
+a JSON configuration file. After configuring, proceed to review and
+deploy your Orbit chain.
 
-After configuring your batch poster, proceed to the next step: review and deploy your Orbit chain.
+After configuring your batch poster, proceed to the next step.
 
-- Step 6: Review & Deploy your Orbit chain
-  - tl;dr TODO: Click Deploy and explain what is happening.
-- Step 7: Download your chain's configuration files and launch your chain
-  - tl;dr TODO: Download the chain config files with Rollup Config and L3 Config. Download these from the UI. Explain what happens.
-- Step 8: Clone the setup script repository and add your configuration files
-  - tl;dr TODO: Clone the Orbit Celestia setup script repo and config steps.
-- Step 9: Run your chain's node and block explorer
-  - tl;dr TODO: Start Docker. Start node from orbit-setup-script repo. Visit block explorer.
-- Step 10: Finish setting up your chain
-  - tl;dr TODO: Fund batch-poster and validator on the L2 chain (Arbitrum Sepolia). Deposit ETH into the account using the newly deployed bridge. Deploy Token Bridge contracts on the L2 and local Orbit chains. Configure params. TODO: Run the script.
+### Step 3: Review & Deploy your Orbit chain
 
-Extras:
-- Logging: TODO: show how to view logs
-- Depositing ETH/native token: TODO: Show how to deposit more ETH or native tokens to the Orbit chain account.
-- Troubleshooting: `error getting latest batch count` safe to ignore.
+Now, deploy your chain's base contracts to Arbitrum Sepolia!
 
-## Clone the repository
+Click the **Deploy** button on the **Review & Deploy** page.
+Your wallet should prompt you to submit a transaction to the
+Arbitrum testnet. You'll have to pay a little gas; your wallet
+may denominate this in ETH; as long as you see your chosen
+Arbitrum testnet in the transaction details, this gas fee will
+be paid in testnet ETH.
 
-<!-- TODO: change git checkout to celestia-development or release. It is locked
-to this version so that the tutorial works for anyone using it ATM. -->
+Before proceeding, let's briefly review what just happened:
 
-```bash
-git clone https://github.com/celestiaorg/nitro.git && cd nitro/
-git fetch --all
-git checkout tags/v2.3.1
-git submodule update --init
-git submodule update --init --recursive
-```
+1. You submitted a deployment transaction to an Orbit "factory"
+smart contract on the Arbitrum testnet, the public L2 chain
+that your local Orbit chain will settle transactions to.
+2. This Orbit smart contract then initialized your Orbit
+chain's base contracts with the values that you specified in
+the previous step, and deployed these base contracts to the
+Arbitrum testnet.
 
-[See the compatibility matrix in the appendix to verify you're using the right version.](#compatibility-matrix)
+Your Orbit chain's base contracts are responsible for
+facilitating the exchange of information between your chain's
+node(s) and its base chain's nodes. This includes the batch
+posting of transactions from your Orbit chain to its base
+chain, the staking of tokens by your Orbit chain's validators
+the challenge mechanism, bridging mechanisms, and more.
 
-## Deploy an Arbitrum rollup to Mocha testnet
+Once your transaction is complete, continue to Step 4 to
+download your chain's configuration files and launch your chain.
+
+### Step 4: Download your chain's configuration files and launch your chain
+
+After configuring your chain, you will need to download the necessary configuration files to launch your chain. Click the **Download zip files** button to download both the Rollup Config and L3 Config in a single ZIP file.
+
+- **Rollup Config**: This is the `nodeConfig.json` file, encapsulating your chain's node configuration. It is crucial as it contains the private keys for your validator and batch poster, essential for signing transactions for RBlocks and batch postings to your chain's base contracts on the L2 chain.
+
+- **L3 Config**: This is the `orbitSetupScriptConfig.json` file, which holds your chain's configuration, including configurations needed for your Token Bridge contracts.
+
+Ensure to securely store these downloaded files as they contain sensitive information crucial for your chain's operation.
+
+![download config](/public/arbitrum/download-config.png)
+
+### Step 5: Clone the setup script repository and add your configuration files
+
+1. Clone the [orbit-setup-script](https://github.com/celestiaorg/orbit-setup-script/tree/main)
+repository:
+
+    ```bash
+    git clone https://github.com/celestiaorg/orbit-setup-script.git
+    ```
+
+2. Move the `nodeConfig.json` and `orbitSetupScriptConfig.json`
+files that you downloaded into the `config` directory in the
+root of your cloned `orbit-setup-script` repository.
+
+3. Install dependencies by running `yarn install` from the root of the `orbit-setup-script` repository.
+
+### Step 6: Run your chain's node and block explorer
+
+Start Docker, then run `docker-compose up -d` from the root of
+the `orbit-setup-script` repository.
+
+A Nitro node and BlockScout explorer instance will be started. Visit
+http://localhost/ to access your BlockScout explorer instance -
+this will allow you to view your chain's transactions and
+blocks, which can be useful for debugging.
+
+![blockscout](/public/arbitrum/blockscout.png)
+
+### Step 7: Finalize deployment to Mocha testnet
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import constants from '/.vitepress/constants/constants.js'
 </script>
 
-This section covers deploying an Arbitrum Nitro rollup to
-[Mocha testnet](../nodes/mocha-testnet.md) using Celestia as DA.
-
-### Configuration
+:::warning
+**This section is a WIP.**
+:::
 
 Since the contracts deployed through the factories above are already configured to communicate with Blobstream, you now only have to configure your node accordingly,  so lets walk through [an example found in nitro-testnode](https://github.com/celestiaorg/nitro-testnode/blob/celestia-v2.3.1/scripts/config.ts#L223-L233).
 
@@ -178,7 +237,60 @@ The Orbit contracts depend on [the existing Blobstream X deployments](#blobstrea
 - **`blobstreamx-address`:** address of the BlobstreamX contract on the base chain.
     - Note that the `SequencerInbox` contract for each chain has a constant address for the `BlobstreamX` contract, thus make sure that the blobstream address in the `SequencerInbox` being used for the templates in `RollupCreator` matches the one in your config.
 
+[See the compatibility matrix in the appendix to verify you're using the right versions.](#compatibility-matrix)
+
+### Step 8: Finish setting up your chain
+
+The Offchain Labs team has provided a Hardhat script that
+handles the following tasks:
+
+1. Fund the **batch-poster** and **validator** (staker) accounts on your underlying L2 chain.
+2. Deposit ETH into your account on the chain using your chain's newly deployed bridge.
+3. Deploy your Token Bridge contracts on both L2 and local Orbit chains.
+4. Configure parameters on the chain.
+
+To run this script, issue the following command from the root
+of the `orbit-setup-script` repository, replacing
+`YourPrivateKey` with the private key of the `Owner` account you
+used to deploy your chain's contracts, and replacing `http://localhost:8449` with the RPC URL of your chain's node.
+
+First, export your private key as a variable:
+
+```bash
+PRIVATE_KEY="YourPrivateKey" \
+  L2_RPC_URL="https://sepolia-rollup.arbitrum.io/rpc" \
+  L3_RPC_URL="http://localhost:8449" yarn run setup
+```
+
+Successful logs will appear similar to:
+
+<!-- markdownlint-disable MD013 -->
+```log
+Funding batch-poster accounts on parent chain with 0.3 ETH
+Transaction hash on parent chain: 0x2049f87e8ef2ab098cdd70e6b132eacbbd3de40d4ac9baafbec6a22460bfbbc8
+Transaction was mined in block 27032755 on parent chain
+Funding staker accounts on parent chain with 0.3 ETH
+Transaction hash on parent chain: 0xabcbcc1683cb73be35f58b4c3e15f2c7c66e80d270f672c408b2395bef706c84
+Transaction was mined in block 27032778 on parent chain
+Running Orbit Chain Native token deposit to Deposit ETH or native ERC20 token from parent chain to your account on Orbit chain ... 💰💰💰💰💰💰
+```
+<!-- markdownlint-enable MD013 -->
+
+### Congratulations with Celestia underneath
+
+Your local Orbit rollup is now running. You'll see an `outputInfo.json`
+file in the
+main directory of your script folder - this contains more information
+about your chain,
+including the addresses of your chain's base contracts.
+
 ## Appendix
+
+TODO: Using Arbitrum Sepolia:
+Extras:
+- Logging: TODO: show how to view logs
+- Depositing ETH/native token: TODO: Show how to deposit more ETH or native tokens to the Orbit chain account.
+- TODO: Troubleshooting: `error getting latest batch count` safe to ignore.
 
 ### Compatibility matrix
 
