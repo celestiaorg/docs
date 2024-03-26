@@ -326,7 +326,6 @@ including the addresses of your chain's base contracts.
 
 ## Appendix
 
-TODO: update contract addresses https://celestiaorg.notion.site/Running-Nitro-x-Celestia-on-Testnet-40fa49a5cdd943db9462e9d6a9b4a4c9
 TODO: Using Arbitrum Sepolia:
 Extras:
 - Logging: TODO: show how to view logs
@@ -366,16 +365,16 @@ The Orbit contracts depend on the following BlobstreamX deployments. The current
 
 | Contract                | Address                                    |
 |-------------------------|--------------------------------------------|
-| Bridge                  | `0xBaabdD650B8cbb87B82Bc2E820B6Ca3e43eD1bDB` |
-| SequencerInbox          | `0xA6F190545D71dC878C716302385a1E9C9548F211` |
-| Inbox                   | `0x9aea22b874E88F1518c4cFB118c4bb5712E0B8C9` |
-| RollupEventInbox        | `0xb7e1fCe320b550F031ddd61173A44447b812875B` |
-| Outbox                  | `0x08122dF5dB980Aeb9fE0Bb7794C67cB887f8CB92` |
-| ERC20Bridge             | `0xf4407e920973707a887BC80e08A36B059138Db35` |
-| SequencerInbox          | `0x7Ef18e7fE88a838BDE0AFaFf883672fC976c5F8F` |
-| ERC20Inbox              | `0x3D792da1EcA88D7f460eaDbAb95d50d2064b41eA` |
-| ERC20RollupEventInbox   | `0x7709d8E56d5A9926386075C04Dac7063FEe032FB` |
-| ERC20Outbox             | `0x9bC852F319afbCac2De7fe04C9E940e83304Df78` |
+| Bridge                  | `0x95FEA00e689e8D1CBa909836E1Ef1b941D5f21b1` |
+| SequencerInbox          | `0x95CBDa89325db5529eAF1813E181f66B83A7d65a` |
+| Inbox                   | `0x3681Cbb0E95AB50b63F2FC524FbBcC78adEfBd33` |
+| RollupEventInbox        | `0x61e154128b6a1400ea8090B4431B4aA1DBb80Cc4` |
+| Outbox                  | `0x5187a92539bB4A2befe1fc078745c84AB6d37171` |
+| ERC20Bridge             | `0xD0a6699Fc7519966685181c80BF98D35aFa1fC95` |
+| SequencerInbox          | `0x2588867F19E2DE51f90F0aB852C7Ad11228e3d83` |
+| ERC20Inbox              | `0x6cB49605f10831749c6090AD09918bC61439bacE` |
+| ERC20RollupEventInbox   | `0x7fC4D9A24949680faD666FeEe7cD6a100E39C4F0` |
+| ERC20Outbox             | `0xA773e19DC9e822933A7e72Df9c87eD1578701D29` |
 | BridgeCreator           | `0x3Bc040EAca40b91FA06cf55Ea91842FaC88b1AF4` |
 | OneStepProver0          | `0x5810F0916BAE1067Ca1efcc00AaaF30301af001c` |
 | OneStepProverMemory     | `0xaC3427E621C6F10dC2ABdAB00188D92690503914` |
@@ -394,16 +393,16 @@ The Orbit contracts depend on the following BlobstreamX deployments. The current
 
 | Contract                | Address                                    |
 |-------------------------|--------------------------------------------|
-| Bridge                  | `0xF51A45Faac5838560cBa318E489947672B30992a` |
-| SequencerInbox          | `0x692363a48fc3CCa86EFc70b12Bc2D4FA6a4e106B` |
-| Inbox                   | `0xaDfdDb5FEED40C8507652479458b023B545c7C08` |
-| RollupEventInbox        | `0x0A4E8d82662b1aAD01F136CACE479bDabf24C2C9` |
-| Outbox                  | `0x1825F410562e8B67CD5a717a8E8E8E1Cb65d9A07` |
-| ERC20Bridge             | `0x6e0F72d93ECEff59861DaA4980447A2B2E64D1e3` |
-| SequencerInbox          | `0x1cFc40470AF5Aac39C8F8a63a2EEab8ce69D12f6` |
-| ERC20Inbox              | `0x974440C340502FfF93793b25b95DB462240D8C8E` |
-| ERC20RollupEventInbox   | `0x4435FC82d8ced74Bb752b63FFC8e03dfD67C571c` |
-| ERC20Outbox             | `0xbe2876170971Ed84685d18BC910F891E2B9Adf02` |
+| Bridge                  | `0xb6052122545AACD2BDda0Ca9FA56416bD968cDbc` |
+| SequencerInbox          | `0xcd9FCa5015b5ce2B06a2266e4a5dd54D9ca39F1a` |
+| Inbox                   | `0x44B412b291fEf00398501B2cA353EA912AD0fe13` |
+| RollupEventInbox        | `0x51D196e07a27DBA0F4461Dd6CC26108424F196f7` |
+| Outbox                  | `0x5A48aDf22f526eBD06e3e8856cFEa2490923CC55` |
+| ERC20Bridge             | `0x9abC41fEfAe7E7543a01FA837AeC909F96147280` |
+| SequencerInbox          | `0x8f97Cb7c643Acd7f79f3B13841b24a243dA51242` |
+| ERC20Inbox              | `0x40f8c63e0a20B399bCd9631A22E57BB988a9400e` |
+| ERC20RollupEventInbox   | `0x3B6e845fb9f0c8Ee4E9F6D44781f6547d9c6359a` |
+| ERC20Outbox             | `0xc99eEA0B8e67D5b2226AB6D37882DAAf6dd7593b` |
 | BridgeCreator           | `0xC7535F078CB3880a0FD5E54FA7A3B4EAf09b3924` |
 | OneStepProver0          | `0xf889a3174Fddd9f78E6cd250Ebf4c16F1bDd1b6a` |
 | OneStepProverMemory     | `0x61254e43e5c1e9E801F9C56B47a9ac3EADF6d1E9` |
