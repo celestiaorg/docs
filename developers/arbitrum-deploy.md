@@ -179,20 +179,11 @@ root of your cloned `orbit-setup-script` repository.
 
 3. Install dependencies by running `yarn install` from the root of the `orbit-setup-script` repository.
 
-### Step 6: Run your chain's node and block explorer
-
-Start Docker, then run `docker-compose up -d` from the root of
-the `orbit-setup-script` repository.
-
-A Nitro node and BlockScout explorer instance will be started. Visit
-http://localhost/ to access your BlockScout explorer instance -
-this will allow you to view your chain's transactions and
-blocks, which can be useful for debugging.
-
-![blockscout](/public/arbitrum/blockscout.png)
-
 ### Step 7: Finalize deployment to Mocha testnet
 
+TODO: node runs outside of docker
+remove nitro-testnode example
+show auth token as variable needed
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import constants from '/.vitepress/constants/constants.js'
@@ -218,7 +209,7 @@ The Orbit contracts depend on [the existing Blobstream X deployments](#blobstrea
     "rpc": "http://host.docker.internal:26658",
     "tendermint-rpc": "http://consensus-full-mocha-4.celestia-mocha.com:26657",
     "namespace-id": "000008e5f679bf7116cb",
-    "auth-token": "",
+    "auth-token": "<YOUR_PRIVATE_KEY>",
     "is-poster": true,
     "gas-price": 0.3,
     "event-channel-size": 100,
@@ -238,6 +229,18 @@ The Orbit contracts depend on [the existing Blobstream X deployments](#blobstrea
     - Note that the `SequencerInbox` contract for each chain has a constant address for the `BlobstreamX` contract, thus make sure that the blobstream address in the `SequencerInbox` being used for the templates in `RollupCreator` matches the one in your config.
 
 [See the compatibility matrix in the appendix to verify you're using the right versions.](#compatibility-matrix)
+
+### Step 6: Run your chain's node and block explorer
+
+Start Docker, then run `docker-compose up -d` from the root of
+the `orbit-setup-script` repository.
+
+A Nitro node and BlockScout explorer instance will be started. Visit
+http://localhost/ to access your BlockScout explorer instance -
+this will allow you to view your chain's transactions and
+blocks, which can be useful for debugging.
+
+![blockscout](/public/arbitrum/blockscout.png)
 
 ### Step 8: Finish setting up your chain
 
@@ -273,8 +276,45 @@ Funding staker accounts on parent chain with 0.3 ETH
 Transaction hash on parent chain: 0xabcbcc1683cb73be35f58b4c3e15f2c7c66e80d270f672c408b2395bef706c84
 Transaction was mined in block 27032778 on parent chain
 Running Orbit Chain Native token deposit to Deposit ETH or native ERC20 token from parent chain to your account on Orbit chain ... 💰💰💰💰💰💰
+Transaction hash on parent chain:  0xb6ce3ee2057a8771737d1ef62cada50d3ec978ccd80d62f48fc3f22d5d9f33ea
+0.4 ETHs are deposited to your account
+Balance not changed yet. Waiting for another 30 seconds ⏰⏰⏰⏰⏰⏰
+Balance of your account on Orbit chain increased by the native token you have just sent.
+Running tokenBridgeDeployment or erc20TokenBridge script to deploy token bridge contracts on parent chain and your Orbit chain 🌉🌉🌉🌉🌉
+Creating token bridge for rollup 0x3C772C571E53d249A08A4B9A71f59Fe4f9eD0136
+Token bridge deployed in transaction 0x2f589ad049cdc5a4ab7acfe92fb20685596da9ce19cb6b850c0b884bc1f93162
+Waiting for retryables...
+Retryable #1: 0x2933002528f745512537e8c3d1bbb7429edfaef7a116c18185f804c922c88812
+Retryable #2: 0xb7b439bf0124697d6cdc086cdebd22778a6bac05528e7e1722f47957926e306b
+Done!
+Weth gateway set in tx 0x6cb889f96dc8f48208fc62855fab14a58ec4f9a04c7eee0ef35c82ba69df9c13
+Waiting for retryables...
+Retryable #1: 0x76808e5357cfd696ea52387273124cc80072ae4485d3a269abb5ad35084d8984
+Done!
+network.json updated
+Done!
+Running l3Configuration script to configure your Orbit chain 📝📝📝📝📝
+Setting the Minimum Base Fee for the Orbit chain
+Minimum Base Fee is set on the block number 14 on the Orbit chain
+Setting the  network fee receiver for the Orbit chain
+network fee receiver is set on the block number 15 on the Orbit chain
+Setting the infrastructure fee collector address for the Orbit chain
+infrastructure fee collector address is set on the block number 16 on the Orbit chain
+Getting L1 base fee estimate
+L1 Base Fee estimate on L2 is 1716315047
+Setting L1 base fee estimate on L3 to 1816315047
+L1 base fee estimate is set on the block number 17 on the Orbit chain
+All things done! Enjoy your Orbit chain. LFG 🚀🚀🚀🚀
+Transferring ownership on L3, from rollup owner to upgrade executor 🔃🔃🔃
+Adding Upgrade Executor contract to the chain owners
+Executor has been added to chain owners on TX: 0xbe4dd1a390b13bb8d69af4311dafda097e24815042fdae569cbb5190fdb3c0df
+Executing removeChainOwner through the UpgradeExecutor contract
+Transaction complete, rollup owner removed from chain owners on TX: 0xac954dd1e43fc1632b7666fb3417a6d7ace5dc1dc7fbcf00f57147d160f557ea
+✨  Done in 110.68s.
 ```
 <!-- markdownlint-enable MD013 -->
+
+TODO: find your pfb on celenium https://mocha.celenium.io/tx/63e902dd25e7919d4f32f6ae193acc8437dad754b549a15af7ae68e6969c1d0f
 
 ### Congratulations with Celestia underneath
 
@@ -286,6 +326,7 @@ including the addresses of your chain's base contracts.
 
 ## Appendix
 
+TODO: update contract addresses https://celestiaorg.notion.site/Running-Nitro-x-Celestia-on-Testnet-40fa49a5cdd943db9462e9d6a9b4a4c9
 TODO: Using Arbitrum Sepolia:
 Extras:
 - Logging: TODO: show how to view logs
