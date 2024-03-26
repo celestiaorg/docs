@@ -566,6 +566,21 @@ function sidebarHome() {
           collapsed: true,
           items: [
             {
+              text: "Astria",
+              collapsed: true,
+              items: [
+                { text: "Documentation", link: "https://docs.astria.org" },
+                {
+                  text: "Deploy to Dusknet",
+                  link: "https://docs.astria.org/docs/dusknet/overview/",
+                },
+              ],
+            },
+            {
+              text: "Dymension",
+              link: "https://dymension.xyz/",
+            },
+            {
               text: "Ethereum L2s",
               collapsed: true,
               items: [
@@ -651,20 +666,45 @@ function sidebarHome() {
                     },
                   ],
                 },
-              ],
-            },
-            { text: "Rollkit", link: "/developers/rollkit" },
-            {
-              text: "Astria",
-              collapsed: true,
-              items: [
-                { text: "Documentation", link: "https://docs.astria.org" },
                 {
-                  text: "Deploy to Dusknet",
-                  link: "https://docs.astria.org/docs/dusknet/overview/",
+                  text: "Starknet",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Madara & Starknet",
+                      link: "/developers/madara-starknet",
+                    },
+                    {
+                      text: "Getting started with Madara",
+                      link: "/developers/madara-get-started",
+                    },
+                    {
+                      text: "Integrating Celestia with Madara",
+                      link: "/developers/madara-integration",
+                    },
+                    {
+                      text: "Why Cairo",
+                      link: "https://docs.madara.build/cairo",
+                    },
+                    {
+                      text: "Deploy a dApp with Madara",
+                      link: "https://docs.madara.build/tutorial",
+                    },
+                    {
+                      text: "Rollups-as-a-Service",
+                      collapsed: true,
+                      items: [
+                        {
+                          text: "Karnot",
+                          link: "https://karnot.xyz/",
+                        },
+                      ],
+                    },
+                  ],
                 },
               ],
             },
+            { text: "Rollkit", link: "/developers/rollkit" },
             {
               text: "Sovereign SDK",
               link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",
@@ -672,10 +712,6 @@ function sidebarHome() {
             {
               text: "Vistara",
               link: "https://docs.vistara.dev/",
-            },
-            {
-              text: "Dymension",
-              link: "https://dymension.xyz/",
             },
           ],
         },
@@ -703,9 +739,10 @@ function sidebarHome() {
         { text: "Overview", link: "/community/overview" },
         { text: "Code of Conduct", link: "/community/coc" },
         { text: "Community calendar", link: "/community/calendar" },
-	{ text: "Celestia Foundation Delegation Program", 
-	  link: "/community/foundation-delegation-program"
-	},
+        {
+          text: "Celestia Foundation Delegation Program",
+          link: "/community/foundation-delegation-program",
+        },
         {
           text: "Modular Meetups",
           collapsed: true,
