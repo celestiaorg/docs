@@ -242,7 +242,7 @@ This is crucial to protect against potential misuse by copy-paste errors.
     "is-poster": true,
     "gas-price": 0.3,
     "event-channel-size": 100,
-    "blobstreamx-address": "0xa8973BDEf20fe4112C920582938EF2F022C911f5",
+    "blobstreamx-address": "0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2",
     }
 ```
 
