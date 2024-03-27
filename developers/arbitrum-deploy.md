@@ -260,6 +260,10 @@ blocks, which can be useful for debugging.
 
 ![blockscout](/arbitrum/blockscout.png)
 
+After you have some activity on your rollup, it will look more like this:
+
+![explorer-view](/arbitrum/explorer-view.png)
+
 ### Step 8: Finish setting up your chain
 
 The Offchain Labs team has provided a Hardhat script that
@@ -344,8 +348,8 @@ main directory of your script folder - this contains more information
 about your chain,
 including the addresses of your chain's base contracts.
 
-TODO: WIP: To use the [bridge](https://bridge.arbitrum.io), go to **Settings**
-and then add your custom Orbit chain to use the bridge UI.
+In the next guide, learn how to
+[bridge in and out of your rollup](./arbitrum-bridge.md).
 
 ## Appendix
 
