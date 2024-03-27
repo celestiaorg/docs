@@ -586,6 +586,10 @@ function sidebarHome() {
                       link: "/developers/arbitrum-deploy",
                     },
                     {
+                      text: "How to customize your Orbit chain's deployment configuration",
+                      link: "https://docs.arbitrum.io/launch-orbit-chain/how-tos/customize-deployment-configuration",
+                    },
+                    {
                       text: "Deploy a smart contract on Arbitrum rollup",
                       link: "/developers/arbitrum-smart-contract",
                     },
