@@ -5,12 +5,12 @@ description: A guide on how to bridge in and out of your Arbitrum Orbit rollup.
 # Bridging in and out of your Orbit rollup
 
 This guide covers how to [bridge in (deposit)](#bridge-in-deposit-to-your-rollup)
-and bridge out (withdrawal)
+and [bridge out (withdrawal)](#bridge-out-withdrawal-from-your-rollup)
 from your Arbitrum Orbit L3 rollup.
 
 This guide will cover bridging in and out of your Orbit rollup.
 
-Below are two example transactions, one to deposit and one to withdrawal:
+Below are two example transactions, one of a deposit and one of a withdrawal:
 
 ![bridge-overview-deposit-and-withdrawal-l3](/arbitrum/bridge-overview-deposit-and-withdrawal-l3.png)
 
