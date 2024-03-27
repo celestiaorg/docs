@@ -199,11 +199,30 @@ celestia light auth admin --p2p.network mocha
 
 Since the contracts deployed through the factories above are already configured
 to communicate with Blobstream, you now only have to configure your node
-accordingly.
+accordingly. First understand the different variables that will be set in the config:
 
-Enable Celestia DA in your Arbitrum chain params in `config/nodeConfig.json`.
-If you'd like to use your own namespace, use a custom 10 byte value or
-random value using `openssl rand -hex 10` for `namespace-id`:
+- **`enable`:** self explanatory, set it to true if you are using Celestia DA 😁
+- **`rpc`:** rpc endpoint for **celestia-node**
+- **`tendermint-rpc`:** a celestia-core endpoint from a full node
+(**NOTE:** only needed for a batch poster node
+- **`namespace-id`:** namespace being used to post data to Celestia
+- **`auth-token`:** auth token for your Celestia Node
+- **`is-poster`:** is the node with Celestia DA the batch poster, set to true if so.
+- **`gas-price`:** how much to pay for gas (in uTIA)
+- **`event-channel-size`:** size of the events channel used by the batch poster
+to wait for a range of headers that contains the header for the block in which
+it posted a blob, before posting the batch to the base layer for verification
+on Blobstream X.
+- **`blobstreamx-address`:** address of the Blobstream X contract on the base chain.
+    - Note that the `SequencerInbox` contract for each chain has a constant
+    address for the `BlobstreamX` contract, thus make sure that the Blobstream X
+    address in the `SequencerInbox` being used for the templates in
+    `RollupCreator` matches the one in your config.
+
+Now enable Celestia DA in your Arbitrum chain params in
+`config/nodeConfig.json`. If you'd like to use your own namespace,
+use a custom 10 byte value or random value using
+`openssl rand -hex 10` for `namespace-id`:
 
 :::warning
 The Orbit contracts depend on
@@ -226,17 +245,6 @@ This is crucial to protect against potential misuse by copy-paste errors.
     "blobstreamx-address": "0xa8973BDEf20fe4112C920582938EF2F022C911f5",
     }
 ```
-
-- **`enable`:** self explanatory, set it to true if you are using Celestia DA 😁
-- **`rpc`:** rpc endpoint for **celestia-node**
-- **`tendermint-rpc`:** a celestia-core endpoint from a full node (**NOTE:** only needed for a batch poster node
-- **`namespace-id`:** namespace being used to post data to Celestia
-- **`auth-token`:** auth token for your Celestia Node
-- **`is-poster`:** is the node with Celestia DA the batch poster, set to true if so.
-- **`gas-price`:** how much to pay for gas (in uTIA)
-- **`event-channel-size`:** size of the events channel used by the batch poster to wait for a range of headers that contains the header for the block in which it posted a blob, before posting the batch to the base layer for verification on Blobstream.
-- **`blobstreamx-address`:** address of the BlobstreamX contract on the base chain.
-    - Note that the `SequencerInbox` contract for each chain has a constant address for the `BlobstreamX` contract, thus make sure that the blobstream address in the `SequencerInbox` being used for the templates in `RollupCreator` matches the one in your config.
 
 [See the compatibility matrix in the appendix to verify you're using the right versions.](#compatibility-matrix)
 
