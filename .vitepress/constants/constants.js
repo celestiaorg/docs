@@ -1,9 +1,9 @@
 const constants = Object.freeze({
   golangNodeMainnet: "1.21.1",
-  golangNodeMocha: "1.21.1",
-  golangNodeArabica: "1.21.1",
-  golangApp: "1.21.1",
-  golangCore: "1.21.1",
+  golangNodeMocha: "1.22.0",
+  golangNodeArabica: "1.22.0",
+  golangApp: "1.22.0",
+  golangCore: "1.22.0",
   golang: "1.21.1",
   arabicaChainId: "arabica-11",
   mainnetChainId: "celestia",
