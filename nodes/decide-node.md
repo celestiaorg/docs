@@ -21,7 +21,7 @@ You can also play around with the Data Availability API in
 ## Advanced
 
 If you are looking to run a consensus node, please follow the
-[tutorial for running a consensus node](./consensus-node.md).
+[tutorial for running a consensus node](./full-consensus-node.md).
 
 Note that running a validator means you must also run a bridge node,
 which is covered in [this section](./bridge-node.md).

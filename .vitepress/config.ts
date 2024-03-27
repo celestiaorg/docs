@@ -410,7 +410,14 @@ function sidebarHome() {
                 { text: "Bridge node", link: "/nodes/bridge-node" },
               ],
             },
-            { text: "Consensus", link: "/nodes/consensus-node" },
+            { 
+              text: "Consensus",
+              collapsed: true,
+              items: [
+                { text: "Full consensus node", link: "/nodes/full-consensus-node" },
+                { text: "Validator node", link: "/nodes/validator-node" },
+              ],
+            },
             {
               text: "IBC relayers",
               collapsed: true,
