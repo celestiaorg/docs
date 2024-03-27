@@ -365,6 +365,8 @@ Extra resources in Arbitrum documentation:
 
 ### Blobstream X contract deployments
 
+TODO: double-check with diego that this and the one in the config are different
+
 The Orbit contracts depend on the following BlobstreamX deployments. The current deployments, which can be found at `0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2` in both chains, relays headers from the **Mocha-4** testnet to the chains below:
   - Arbitrum Sepolia
   - Base Sepolia
