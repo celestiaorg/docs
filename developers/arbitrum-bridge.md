@@ -69,20 +69,20 @@ for your rollup:
 
 ### Step 1: Choose an amount to withdraw from your rollup
 
-In the [Arbitrum Bridge UI](https://bridge.arbitrum.io/),
+**(1a)** In the [Arbitrum Bridge UI](https://bridge.arbitrum.io/),
 chooose your origin chain to your **Arbitrum L3 Rollup** and
 the destination chain as **Arbitrum Sepolia**.
 
 ![bridge-out-small-screenshot](/arbitrum/bridge-out-small-screenshot.png)
 
-Click **Move funds to Arbitrum Sepolia** and read the
+**(1b)** Click **Move funds to Arbitrum Sepolia** and read the
 disclaimer, check the boxes, and click **Continue**.
 
 ![bridge-out-begin](/arbitrum/bridge-out-begin.png)
 
-Optionally, set a reminder on your calendar so you don't forget.
+**(1c)** Optionally, set a reminder on your calendar so you don't forget.
 
-After approving the transaction in your wallet, you'll be
+**(1d)** After approving the transaction in your wallet, you'll be
 able to see the transaction in the **Pending transactions** tab:
 
 ![bridge-out-pending](/arbitrum/bridge-out-pending.png)
@@ -90,15 +90,15 @@ able to see the transaction in the **Pending transactions** tab:
 After approximately two hours, you will be able to proceed to
 Step 2: Claim your withdrawal.
 
-Click **See details** to see an overview of your withdrawal:
+**(1e)** Click **See details** to see an overview of your withdrawal:
 
 ![bridge-out-begin-overview](/arbitrum/bridge-out-begin-overview.png)
 
-Optionally, view the transaction on your local explorer.
+**(1f)** Optionally, view the transaction on your local explorer.
 
 ![bridge-out-tx-details](/arbitrum/bridge-out-rollup-tx-details.png)
 
-To learn more about what is going on, click the **Logs** tab:
+**(1g)** To learn more about what is going on, click the **Logs** tab:
 
 ![bridge-out-logs-details-1](/arbitrum/bridge-out-logs-details-1.png)
 
@@ -109,15 +109,15 @@ To learn more about what is going on, click the **Logs** tab:
 After approximately 2 hours, you will be able to claim your
 withdrawal.
 
-Head back to the bridge UI and you will have a notification
+**(2a)** Head back to the bridge UI and you will have a notification
 to claim your withdrawal. Click **Claim** in the details
 of the transaction:
 
 ![bridge-out-claim-withdrawal](/arbitrum/bridge-out-claim-withdrawal.png)
 
-Approve the transaction in your wallet.
+**(2b)** Approve the transaction in your wallet.
 
-After your transaction goes through, you can see the details
+**(2c)** After your transaction goes through, you can see the details
 in the bridge UI under **Settled transctions**:
 
 ![bridge-out-claim-success-withdrawal](/arbitrum/bridge-out-claim-success-withdrawal.png)
