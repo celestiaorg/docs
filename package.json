@@ -19,6 +19,7 @@
     "husky": "^8.0.3",
     "i": "^0.3.7",
     "lint-staged": "^14.0.1",
+    "markdownlint": "^0.34.0",
     "markdownlint-cli": "^0.37.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
