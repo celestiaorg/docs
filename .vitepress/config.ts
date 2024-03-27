@@ -593,6 +593,10 @@ function sidebarHome() {
                       link: "/developers/arbitrum-deploy",
                     },
                     {
+                      text: "Bridging in and out of your Orbit rollup",
+                      link: "/developers/arbitrum-bridge",
+                    },
+                    {
                       text: "How to customize your Orbit chain's deployment configuration",
                       link: "https://docs.arbitrum.io/launch-orbit-chain/how-tos/customize-deployment-configuration",
                     },
