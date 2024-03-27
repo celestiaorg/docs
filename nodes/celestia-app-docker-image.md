@@ -81,6 +81,6 @@ flags used in the docker run command in step 5 of the quick start instructions.
 |`-u`|Number of stake sequences to run|-|any integer value (1,2,3,...)|
 |`-w`|Amount of initial stake per sequence|-|any integer value (1,2,3,...)|
 
-Please replace the placeholders in the example docker run
+Kindly replace the placeholders in the example docker run
 command in step 5 of the quick start instructions,
 with the actual values you want to use.
