@@ -76,7 +76,7 @@ wallet to this network; approve this.
 In this guide, we will select **Celestia ✨** and deploy a rollup
 which posts data to Celestia (1 above).
 
-![Choose Celestia for DA](/public/arbitrum/choose_da.png)
+![Choose Celestia for DA](/arbitrum/choose_da.png)
 
 Click **Next**. In the next step we will configure the deployment.
 
@@ -84,7 +84,7 @@ Click **Next**. In the next step we will configure the deployment.
 
 The deployment portal will then display a form that looks like this:
 
-![configuration](/public/arbitrum/configuration.png)
+![configuration](/arbitrum/configuration.png)
 
 Parameter descriptions can be found in the table below (more in-depth
 descriptions can be found in the deployment UI). We recommend sticking
@@ -163,7 +163,7 @@ After configuring your chain, you will need to download the necessary configurat
 
 Ensure to securely store these downloaded files as they contain sensitive information crucial for your chain's operation.
 
-![download config](/public/arbitrum/download-config.png)
+![download config](/arbitrum/download-config.png)
 
 ### Step 5: Clone the setup script repository and add your configuration files
 
@@ -258,7 +258,7 @@ http://localhost/ to access your BlockScout explorer instance -
 this will allow you to view your chain's transactions and
 blocks, which can be useful for debugging.
 
-![blockscout](/public/arbitrum/blockscout.png)
+![blockscout](/arbitrum/blockscout.png)
 
 ### Step 8: Finish setting up your chain
 
@@ -286,7 +286,7 @@ PRIVATE_KEY="YourPrivateKey" \
 Successful logs will appear similar to:
 
 <!-- markdownlint-disable MD013 -->
-```log
+```bash
 Funding batch-poster accounts on parent chain with 0.3 ETH
 Transaction hash on parent chain: 0x2049f87e8ef2ab098cdd70e6b132eacbbd3de40d4ac9baafbec6a22460bfbbc8
 Transaction was mined in block 27032755 on parent chain
