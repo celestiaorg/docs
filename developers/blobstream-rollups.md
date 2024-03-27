@@ -68,7 +68,7 @@ and verifying them on the Solidity side which will be built in the upcoming mont
 Thus, the [sequence of spans](#optimistic-rollups-that-uses-a-sequence-of-spans) approach is preferable at the moment.
 Also, the gas cost of verifying all the above proofs needs to be investigated.**
 
-#### Protobuf deserialization contract
+#### Protobuf deserialization in Solidity
 
 Another alternative when using the share commitment to reference the rollup data is to parse the PFB,
 i.e., the protobuf serialized PayForBlob transaction,
