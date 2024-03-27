@@ -89,7 +89,8 @@ The deployment portal will then display a form that looks like this:
 Parameter descriptions can be found in the table below (more in-depth
 descriptions can be found in the deployment UI). We recommend sticking
 to the defaults; to learn more about customizing your Orbit chain's
-deployment configuration, visit [**TODO**: How (and when) to customize your Orbit chain's deployment config](/):
+deployment configuration, visit
+[How to customize your Orbit chain's deployment configuration](https://docs.arbitrum.io/launch-orbit-chain/how-tos/customize-deployment-configuration):
 
 <!-- markdownlint-disable MD013 -->
 | Parameter | Description |
@@ -179,28 +180,37 @@ root of your cloned `orbit-setup-script` repository.
 
 3. Install dependencies by running `yarn install` from the root of the `orbit-setup-script` repository.
 
-### Step 7: Finalize deployment to Mocha testnet
+### Step 6: Finalize deployment to Mocha testnet
 
-TODO: node runs outside of docker
-remove nitro-testnode example
-show auth token as variable needed
+First, be sure that your light node is running, using a command similar to:
+
+```bash
+celestia light start --p2p.network mocha --core.ip <RPC_URL>
+```
+
+To set your light node's auth token, you will use the auth
+token that returns when you run:
+
+```bash
+celestia light auth admin --p2p.network mocha
+```
+
 <!-- markdownlint-disable MD033 -->
-<script setup>
-import constants from '/.vitepress/constants/constants.js'
-</script>
+
+Since the contracts deployed through the factories above are already configured
+to communicate with Blobstream, you now only have to configure your node
+accordingly.
+
+Enable Celestia DA in your Arbitrum chain params in `config/nodeConfig.json`.
+If you'd like to use your own namespace, use a custom 10 byte value or
+random value using `openssl rand -hex 10` for `namespace-id`:
 
 :::warning
-**This section is a WIP.**
-:::
-
-Since the contracts deployed through the factories above are already configured to communicate with Blobstream, you now only have to configure your node accordingly,  so lets walk through [an example found in nitro-testnode](https://github.com/celestiaorg/nitro-testnode/blob/celestia-v2.3.1/scripts/config.ts#L223-L233).
-
-First of all, you will need to enable Celestia DA in your Arbitrum chain params, which [you can see an example of](https://github.com/celestiaorg/nitro-testnode/blob/celestia-v2.3.1/scripts/config.ts#L358).
-
-For the configuration, use the following:
-
-:::warning
-The Orbit contracts depend on [the existing Blobstream X deployments](#blobstream-x-contract-deployments). Before using these addresses, **please verify the contract addresses** on the official source below to avoid any issues due to incorrect addresses. This is crucial to protect against potential misuse by copy-paste errors.
+The Orbit contracts depend on
+[the existing Blobstream X deployments](#blobstream-x-contract-deployments).
+Before using these addresses, **please verify the contract addresses** on
+the official source below to avoid any issues due to incorrect addresses.
+This is crucial to protect against potential misuse by copy-paste errors.
 :::
 
 ```ts
@@ -230,7 +240,7 @@ The Orbit contracts depend on [the existing Blobstream X deployments](#blobstrea
 
 [See the compatibility matrix in the appendix to verify you're using the right versions.](#compatibility-matrix)
 
-### Step 6: Run your chain's node and block explorer
+### Step 7: Run your chain's node and block explorer
 
 Start Docker, then run `docker-compose up -d` from the root of
 the `orbit-setup-script` repository.
@@ -314,7 +324,9 @@ Transaction complete, rollup owner removed from chain owners on TX: 0xac954dd1e4
 ```
 <!-- markdownlint-enable MD013 -->
 
-TODO: find your pfb on celenium https://mocha.celenium.io/tx/63e902dd25e7919d4f32f6ae193acc8437dad754b549a15af7ae68e6969c1d0f
+Find your PFB on Celenium by looking at the namespace or account you psted from.
+
+See an [example blob that was posted while making this guide](https://mocha.celenium.io/tx/63e902dd25e7919d4f32f6ae193acc8437dad754b549a15af7ae68e6969c1d0f).
 
 ### Congratulations with Celestia underneath
 
@@ -324,13 +336,15 @@ main directory of your script folder - this contains more information
 about your chain,
 including the addresses of your chain's base contracts.
 
+TODO: WIP: To use the [bridge](https://bridge.arbitrum.io), go to **Settings**
+and then add your custom Orbit chain to use the bridge UI.
+
 ## Appendix
 
-TODO: Using Arbitrum Sepolia:
-Extras:
-- Logging: TODO: show how to view logs
-- Depositing ETH/native token: TODO: Show how to deposit more ETH or native tokens to the Orbit chain account.
-- TODO: Troubleshooting: `error getting latest batch count` safe to ignore.
+Extra resources in Arbitrum documentation:
+- [Logging](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart#appendix-a-logging)
+- [Depositing ETH/native token](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart#appendix-b-depositing-ethnative-token)
+- [Troubleshooting: `error getting latest batch count`](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart#appendix-c-troubleshooting)
 
 ### Compatibility matrix
 
