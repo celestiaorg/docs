@@ -35,9 +35,9 @@ Now that this information is saved in the rollup header/settlement contract,
 and users/rollup full nodes will be able to query for the rollup data from Celestia and verify that it's valid.
 And if it's not, fraud proofs can be generated.
 
-The fraud proofs in this setup are discussed in the [inclusion proofs](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md) documentation.
+The proofs in this setup are discussed in the [inclusion proofs](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md) documentation.
 
-### Optimistic rollups that use the data commitment
+### Optimistic rollups that use share commitments
 
 Another way to build a rollup is to replace the sequence of spans with a `height` and a `share commitment`.
 Then, users/rollup full nodes will be able to query that data, and in case of a dispute, they can create a fraud proof.
@@ -65,7 +65,20 @@ Once these are valid, the rollup contract can proceed to parse the share and ver
 Note: **Generating/verifying share commitment proofs is still not supported.
 It still needs tooling to generate the proofs on the node side,
 and verifying them on the Solidity side which will be built in the upcoming months.
-Thus, the [sequence of spans](#optimistic-rollups-that-uses-a-sequence-of-spans) approach is preferable at the moment.**
+Thus, the [sequence of spans](#optimistic-rollups-that-uses-a-sequence-of-spans) approach is preferable at the moment.
+Also, the gas cost of verifying all the above proofs needs to be investigated.**
+
+#### Protobuf deserialization contract
+
+Another alternative when using the share commitment to reference the rollup data is to parse the PFB,
+i.e., the protobuf serialized PayForBlob transaction,
+inside the rollup settlement contract and verify that the parsed share commitment is the same.
+Then, proving the inclusion of the PFB to the data root tuple root.
+More details on this can be found in [ADR-011](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-011-optimistic-blob-size-independent-inclusion-proofs-and-pfb-fraud-proofs.md). 
+
+The issue with this approach is needing a library to parse the protobuf in solidity and the gas cost that comes with it.
+Otherwise, proving the PFB to the data root tuple root is cheaper than proving the blob,
+because it needs only proving two shares.
 
 ## Zk-Rollups
 
@@ -75,26 +88,36 @@ since there are no fraud proofs, and everything should be verified when submitti
 
 So, when posting to the settlement contract,
 the rollup data in Celestia can be referenced either using a `share commitment` or a `sequence of spans`,
-and a `height`, similar to the above constructions.
+and a `height`, similar to the previous constructions.
 
-However, as explained above, the share commitment proofs generation/verification is still not supported.
-Thus, we will focus on the case where we use a `sequence of spans`.
-Check the [Optimistic rollups
-that uses a sequence of spans](#optimistic-rollups-that-uses-a-sequence-of-spans) for more information.
+### Zk-rollups that uses a sequence of spans
 
 So, when submitting the headers to the rollup settlement contract,
 the settlement contract will need to verify the following:
 
 - Zk-proof of the state transitions, as traditional zk-rollups do.
-- Verify that the `sequence of spans` is valid, i.e., is part of the Celestia block referenced by its height,
+- Verify that the `sequence of spans` is [valid](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md),
+  i.e., is part of the Celestia block referenced by its height,
   as described in the previous section.
-- Zk-proof of the rollup data to the data root tuple root.
+- Zk-proof of the rollup data to the data root.
   The verification process of this should accept a commitment as input
   so that the contract makes sure it's the correct value that's being saved.
-  The commitment can be the data root
-  so that when the rollup data is proven inside the circuit, to the data root tuple root,
+  The commitment can be the data root and the sequence of spans.
+  And, when the rollup data is proven inside the circuit to the data root,
   the used data root is asserted to be the input one.
-  Then, this same data root is used as part of the `sequence of spans` verification.
+  Similarly, the data's location is asserted to be the same as the input sequence of spans.
+  While these same arguments are the ones used as part of the `sequence of spans` verification above.
 
 Once these are valid, the settlement contract can be sure that the state transitions are valid,
 and the data was posted to Celestia.
+
+### Zk-rollups that use share commitments
+
+As explained above, the share commitment proofs generation/verification is still not supported.
+However, if the team has access to protobuf deserialization inside a zk-circuit,
+then a similar construction to the [protobuf deserialization contract](#protobuf-deserialization-contract) can be done.
+The zk-proof verifier would take as argument the data root and the share commitment, then inside the circuit,
+the PFB data will be deserialized, and assert that the deserialized share commitment is the same as the input one.
+Then, the circuit will prove the inclusion of the PFB to the data root and assert that it's the same as the input one.
+If this proof is valid,
+then the rollup settlement contract can be sure that the rollup data was posted to Celestia and is correctly referenced.
