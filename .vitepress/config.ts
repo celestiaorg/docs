@@ -509,6 +509,10 @@ function sidebarHome() {
           link: "/developers/transaction-resubmission",
         },
         {
+          text: "FeeGrant module for blobs submission",
+          link: "/developers/feegrant-for-blobs",
+        },
+        {
           text: "Node API",
           link: "/developers/node-api",
           collapsed: true,
