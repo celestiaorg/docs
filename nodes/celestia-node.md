@@ -73,17 +73,9 @@ commands:
 
 4. Install the binary:
 
-   ::: code-group
-
-   ```bash [Ubuntu]
+   ```bash
    make install
    ```
-
-   ```bash [Mac]
-   make go-install
-   ```
-
-   :::
 
 5. Build the `cel-key` utility:
 
