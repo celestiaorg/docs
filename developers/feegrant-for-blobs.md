@@ -32,8 +32,8 @@ account, use the following command:
 
 ```bash
 celestia-appd tx feegrant grant \
-  [grantee_address] [granter_address] \
-  --home [path_to_grantee] \
+  [granter_address] [grantee_address] \
+  --home [path_to_granter] \
   --node [rpc_endpoint] \
   --spend-limit 1000000utia \
   --allowed-messages "/cosmos.bank.v1beta1.MsgSend,/celestia.blob.v1.MsgPayForBlobs" \
