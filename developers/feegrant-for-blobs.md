@@ -101,7 +101,7 @@ celestia-appd tx bank send [granter_address] [grantee_address] 10000utia \
 To submit a blob, utilize the following command:
 <!-- markdownlint-disable MD013 -->
 ```bash
-celestia blob submit 0x6B656B 'nice' --node.store $NODE_STORE
+celestia blob submit --input-file blob.json --node.store ~/.celestia-light-mocha-4/
 ```
 <!-- markdownlint-enable MD013 -->
 
