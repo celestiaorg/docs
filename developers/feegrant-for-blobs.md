@@ -51,8 +51,8 @@ Example:
 
 Before diving into the specifics of verifying balances and transactions,
 it's important to note that currently, it's necessary to fund the light node
-in order for its transactions to be included in the state of the chain. We recognize
-this step as an extra layer of complexity and are actively working on improving
+for its transactions to be included in the state of the chain.
+This step adds an extra layer of complexity and are actively working on improving
 the user experience. Future updates to the nodes implementations will aim to
 make this step non-mandatory for the FeeGrant module to function effectively,
 streamlining the process for developers and users alike.
