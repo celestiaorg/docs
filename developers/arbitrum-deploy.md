@@ -180,7 +180,7 @@ root of your cloned `orbit-setup-script` repository.
 
 3. Install dependencies by running `yarn install` from the root of the `orbit-setup-script` repository.
 
-### Step 6: Finalize deployment to Mocha testnet
+### Step 6: Run your light node for Mocha testnet
 
 First, be sure that your light node is running, using a command similar to:
 
@@ -202,9 +202,9 @@ to communicate with Blobstream, you now only have to configure your node
 accordingly. First understand the different variables that will be set in the config:
 
 - **`enable`:** self explanatory, set it to true if you are using Celestia DA 😁
-- **`rpc`:** rpc endpoint for **celestia-node**
+- **`rpc`:** RPC endpoint for **celestia-node**
 - **`tendermint-rpc`:** a celestia-core endpoint from a full node
-(**NOTE:** only needed for a batch poster node
+(**NOTE:** only needed for a batch poster node)
 - **`namespace-id`:** namespace being used to post data to Celestia
 - **`auth-token`:** auth token for your Celestia Node
 - **`is-poster`:** is the node with Celestia DA the batch poster, set to true if so.
@@ -228,7 +228,8 @@ use a custom 10 byte value or random value using
 The Orbit contracts depend on
 [the existing Blobstream X deployments](#blobstream-x-contract-deployments).
 Before using these addresses, **please verify the contract addresses** on
-the official source below to avoid any issues due to incorrect addresses.
+[the official source below](#blobstream-x-contract-deployments)
+to avoid any issues due to incorrect addresses.
 This is crucial to protect against potential misuse by copy-paste errors.
 :::
 
@@ -238,7 +239,7 @@ This is crucial to protect against potential misuse by copy-paste errors.
     "rpc": "http://host.docker.internal:26658",
     "tendermint-rpc": "http://consensus-full-mocha-4.celestia-mocha.com:26657",
     "namespace-id": "000008e5f679bf7116cb",
-    "auth-token": "<YOUR_PRIVATE_KEY>",
+    "auth-token": "<YOUR_AUTH_TOKEN>",
     "is-poster": true,
     "gas-price": 0.3,
     "event-channel-size": 100,
@@ -248,7 +249,38 @@ This is crucial to protect against potential misuse by copy-paste errors.
 
 [See the compatibility matrix in the appendix to verify you're using the right versions.](#compatibility-matrix)
 
-### Step 7: Run your chain's node and block explorer
+### Step 7: Pick an L1 RPC URL
+
+To establish a WebSocket connection for your rollup to Arbitrum Sepolia,
+it's recommended to
+[find an RPC provider with WSS connections from Arbitrum's docs](https://docs.arbitrum.io/build-decentralized-apps/reference/node-providers).
+For this example, we will make an account on Alchemy.
+WebSocket (WSS) URLs which are essential for real-time data fetching and
+interaction with the Arbitrum Sepolia network. Follow these steps to set up your
+account and obtain a WSS URL using Alchemy:
+
+1. Visit [Alchemy's website](https://www.alchemy.com/) and sign up for an
+account.
+2. Once logged in, create a new app by selecting the Arbitrum network,
+specifically targeting the Arbitrum Sepolia testnet.
+3. After creating your app, navigate to the "API key" section to find
+your WebSocket (WSS) URL.
+4. Use this WSS URL in your `nodeConfig.json` under the `parent-chain`
+object to ensure your node can establish a WebSocket connection to the
+Arbitrum Sepolia network.
+
+This WSS connection is crucial for efficient and real-time interaction
+with the Arbitrum network for your rollup chain.
+
+```json
+  "parent-chain": {
+    "connection": {
+      "url": "wss://arb-sepolia.g.alchemy.com/v2/<YOUR_ALCHEMY_API_KEY>"
+    }
+  },
+```
+
+### Step 8: Run your chain's node and block explorer
 
 Start Docker, then run `docker-compose up -d` from the root of
 the `orbit-setup-script` repository.
@@ -264,7 +296,7 @@ After you have some activity on your rollup, it will look more like this:
 
 ![explorer-view](/arbitrum/explorer-view.png)
 
-### Step 8: Finish setting up your chain
+### Step 9: Finish setting up your chain
 
 The Offchain Labs team has provided a Hardhat script that
 handles the following tasks:
