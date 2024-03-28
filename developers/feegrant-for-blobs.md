@@ -18,12 +18,11 @@ funding it, enabling a third-party account to cover the transaction fees.
 ## Introduction
 
 Each DA node contains a Celestia account that is used to pay for blobs
-submissions. In order to unify the fee payment process, the FeeGrant module
+submissions. To unify the fee payment process, the FeeGrant module
 allows a third-party account to pay for the fees incurred by the DA node's
-account. This module is useful for projects that require a third-party to
-cover the fees for the DA node's account. You will need one account that will
-contain the funds and another account that will be in the DA node. You will
-see the DA node's account once you initialise the node.
+account. You will need one account that will contain the funds and another
+account that will be in the DA node. You will see the DA node's account
+once you initialize the node.
 
 ## Granting fee allowances
 
@@ -45,7 +44,7 @@ celestia-appd tx feegrant grant \
   --yes
 ```
 
-Example transaction:
+Example:
 [FeeGrant transaction on Mocha](https://mocha.celenium.io/tx/802a17777fbeab416f6fa2c25f0c56dd9cc8a92afc2a96293d114ac7c22efb5c)
 
 ## Verifying balances and transactions
@@ -53,7 +52,7 @@ Example transaction:
 Before diving into the specifics of verifying balances and transactions,
 it's important to note that currently, it's necessary to fund the light node
 in order for its transactions to be included in the state of the chain. We recognize
-this step as a extra layer of complexity and are actively working on improving
+this step as an extra layer of complexity and are actively working on improving
 the user experience. Future updates to the nodes implementations will aim to
 make this step non-mandatory for the FeeGrant module to function effectively,
 streamlining the process for developers and users alike.
