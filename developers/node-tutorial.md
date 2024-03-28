@@ -1122,10 +1122,7 @@ curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NOD
         "commitment": "AD5EzbG0/EMvpw0p8NIjMVnoCP4Bv6K+V6gjmwdXUKU="
       }
     ],
-    {
-      "Fee": 10000,
-      "GasLimit": 100000
-    }
+    0.002
   ]
 }' 127.0.0.1:26658
 ```
