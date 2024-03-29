@@ -1,4 +1,3 @@
-d
 # 🐳 Docker setup
 
 This guide provides instructions on how to use the Celestia `txsim` Docker image.
