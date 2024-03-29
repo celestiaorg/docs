@@ -26,7 +26,7 @@ Data Availability:
 - [Light node](./light-node.md): Light clients conduct data availability
   sampling on the Data Availability network.
 
-You can learn more about how to setup each different node by going through
+You can learn more about how to set up each different node by going through
 each tutorial guide.
 
 ![Banner](/img/node-requirements.jpg)

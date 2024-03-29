@@ -39,7 +39,7 @@ the node.
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
 
-### Setup the dependencies
+### Set up the dependencies
 
 Follow the instructions on [installing dependencies](./environment.md).
 
@@ -47,7 +47,7 @@ Follow the instructions on [installing dependencies](./environment.md).
 
 Follow the tutorial on [installing `celestia-app`](./celestia-app.md).
 
-### Setup the P2P networks
+### Set up the P2P networks
 
 Now we will setup the P2P Networks by cloning the networks repository:
 
