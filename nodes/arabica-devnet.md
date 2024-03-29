@@ -59,7 +59,7 @@ in order to participate in Arabica devnet:
 
 | Node type                                                                              | Endpoint type                    | Endpoint                                                                                                      |
 | -------------------------------------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Consensus nodes** ([full](../nodes/consensus-node.md))                               | Consensus RPC                    | `https://rpc.celestia-arabica-11.com`                                                                         |
+| **Consensus nodes** ([full](../nodes/full-consensus-node.md))                               | Consensus RPC                    | `https://rpc.celestia-arabica-11.com`                                                                         |
 |                                                                                        | API                              | `https://api.celestia-arabica-11.com`                                                                         |
 |                                                                                        | gRPC                             | `grpc.celestia-arabica-11.com:443`                                                                            |
 |                                                                                        | Direct endpoints with open ports | Open ports: 26656 (p2p), 26657 (RPC), 1317 (API), 9090 (GRPC)                                                 |
@@ -113,7 +113,7 @@ celestia light start --p2p.netowrk arabica \
 :::tip Bridge node runners
 Not all of the RPC endpoints do not guarantee the full block history.
 Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
-or run your own consensus full node with no pruning for
+or run your own full consensus node with no pruning for
 your bridge node.
 :::
 
