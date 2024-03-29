@@ -49,7 +49,7 @@ Follow the tutorial on [installing `celestia-app`](./celestia-app.md).
 
 ### Set up the P2P networks
 
-Now we will setup the P2P Networks by cloning the networks repository:
+Now we will set up the P2P Networks by cloning the networks repository:
 
 ```sh
 cd $HOME
