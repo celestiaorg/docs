@@ -12,7 +12,8 @@ import constants from '/.vitepress/constants/constants.js'
 </script>
 
 This guide covers how to set up a full consensus node on Celestia.
-Full consensus nodes allow you to sync blockchain history in the Celestia consensus layer.
+Full consensus nodes allow you to sync blockchain history in the Celestia
+consensus layer.
 
 ![full consensus node](/img/nodes/full-consensus-node.png)
 

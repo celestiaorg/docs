@@ -220,3 +220,8 @@ After starting your node, please submit your node as a seed and peer to the
 Follow the instructions under 
 [transaction indexer configuration options](/nodes/full-consensus-node#optional-transaction-indexer-configuration-options)
 to configure your `config.toml` file to select which transactions to index.
+
+## Additional resources
+
+For additional resources, refer to
+[the extra resources for consensus nodessection of the full consensus node page ](./full-consensus-node.md#extra-resources-for-consensus-nodes).
