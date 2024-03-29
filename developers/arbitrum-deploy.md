@@ -263,7 +263,7 @@ This is crucial to protect against potential misuse by copy-paste errors.
 
 [See the compatibility matrix in the appendix to verify you're using the right versions.](#compatibility-matrix)
 
-### Step 7: Pick an L1 RPC URL
+### Step 7: Pick an L2 RPC URL
 
 To establish a WebSocket connection for your rollup to Arbitrum Sepolia,
 it's recommended to
