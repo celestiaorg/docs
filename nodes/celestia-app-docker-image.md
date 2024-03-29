@@ -1,4 +1,4 @@
-
+d
 # 🐳 Docker setup
 
 This guide provides instructions on how to use the Celestia `txsim` Docker image.
@@ -57,7 +57,7 @@ $HOME/.celestia-app directory from the host to the /home/celestia
 directory in the Docker container.
 This allows the txsim binary to access the keyring for the prefunded account.
 
-Congratulations! You have successfuly set up celestia-app in Docker 😎
+Congratulations! You have successfully set up celestia-app in Docker 😎
 
 ## Flag Breakdown
 
