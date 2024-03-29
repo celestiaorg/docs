@@ -86,7 +86,7 @@ Given these limitations, an alternative design will be discussed in the next sec
 
 ### Sequence of spans
 
-An alternative,
+An alternative 
 way of referencing rollup data in the rollup settlement contract is using a sequence of spans.
 
 A sequence of spans is a data pointer
