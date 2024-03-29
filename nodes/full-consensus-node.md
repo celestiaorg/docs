@@ -57,7 +57,7 @@ rm -rf networks
 git clone https://github.com/celestiaorg/networks.git
 ```
 
-To initialize the network pick a "node-name" that describes your
+To initialize the network, pick a "node-name" that describes your
 node. Keep in mind that this might change if a new testnet is deployed.
 
 ::: code-group
@@ -172,7 +172,7 @@ min-retain-blocks = 0 # retain all block data, this is default setting
 
 ### Querying transactions by hash
 
-If you want to query transactions using their hash, transaction
+To query transactions using their hash, transaction
 indexing must be turned on. Set the `indexer` to `"kv"` in your `config.toml`:
 
 ```toml
@@ -231,7 +231,7 @@ trust_height = 0
 trust_hash = ""
 ```
 
-to their respective fields. At least two different rpc endpoints should be provided.
+To their respective fields. At least two different rpc endpoints should be provided.
 The more, the greater the chance of detecting any fraudulent behavior.
 
 Once setup, you should be ready to start the node as normal. In the logs, you should
