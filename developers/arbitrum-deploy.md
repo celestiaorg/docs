@@ -184,6 +184,20 @@ root of your cloned `orbit-setup-script` repository.
 
 First, be sure that your light node is running, using a command similar to:
 
+:::tip
+If you are on Linux (or are not using Docker desktop), you may need to add the extra flags:
+`--rpc.addr 0.0.0.0` and `--rpc.port 26658` to your start command
+for your light node.
+
+Additionally, you will need to add `host.docker.internal` as
+a host in your `docker-compose.yml`:
+
+```yaml
+extra_hosts:
+      - "host.docker.internal:host-gateway"
+```
+:::
+
 ```bash
 celestia light start --p2p.network mocha --core.ip <RPC_URL>
 ```
