@@ -338,47 +338,47 @@ Successful logs will appear similar to:
 <!-- markdownlint-disable MD013 -->
 ```bash
 Funding batch-poster accounts on parent chain with 0.3 ETH
-Transaction hash on parent chain: 0x2049f87e8ef2ab098cdd70e6b132eacbbd3de40d4ac9baafbec6a22460bfbbc8
-Transaction was mined in block 27032755 on parent chain
+Transaction hash on parent chain: 0x6c7360a96165c570dcb7ce609d748d612c5fa5b76e229cd81ba5f5c93c00f805
+Transaction was mined in block 28217647 on parent chain
 Funding staker accounts on parent chain with 0.3 ETH
-Transaction hash on parent chain: 0xabcbcc1683cb73be35f58b4c3e15f2c7c66e80d270f672c408b2395bef706c84
-Transaction was mined in block 27032778 on parent chain
+Transaction hash on parent chain: 0x59d2db6c5095b9e329c80211b7a761d20064379e3382d156b69e5cf3b5fe2fc7
+Transaction was mined in block 28217653 on parent chain
 Running Orbit Chain Native token deposit to Deposit ETH or native ERC20 token from parent chain to your account on Orbit chain ... 💰💰💰💰💰💰
-Transaction hash on parent chain:  0xb6ce3ee2057a8771737d1ef62cada50d3ec978ccd80d62f48fc3f22d5d9f33ea
+Transaction hash on parent chain:  0x8dee6e88d3b62b258c1574cbb7005e1c3cf193b60a99b5c2fcfae00819b7ed82
 0.4 ETHs are deposited to your account
 Balance not changed yet. Waiting for another 30 seconds ⏰⏰⏰⏰⏰⏰
 Balance of your account on Orbit chain increased by the native token you have just sent.
 Running tokenBridgeDeployment or erc20TokenBridge script to deploy token bridge contracts on parent chain and your Orbit chain 🌉🌉🌉🌉🌉
-Creating token bridge for rollup 0x3C772C571E53d249A08A4B9A71f59Fe4f9eD0136
-Token bridge deployed in transaction 0x2f589ad049cdc5a4ab7acfe92fb20685596da9ce19cb6b850c0b884bc1f93162
+Creating token bridge for rollup 0x7fbEB5BC73a11b438891022786feb2C624f275F0
+Token bridge deployed in transaction 0x4888fdf44251d456bbfca92bfc6e180cfe0b096ffbea2f6da2a203a16902214f
 Waiting for retryables...
-Retryable #1: 0x2933002528f745512537e8c3d1bbb7429edfaef7a116c18185f804c922c88812
-Retryable #2: 0xb7b439bf0124697d6cdc086cdebd22778a6bac05528e7e1722f47957926e306b
+Retryable #1: 0xc61382d5609ab0ece36b2776349c8bdceeafdd13dde9624cdf3d746fb4cf7d79
+Retryable #2: 0xf31fd34f8a9d9057198d8b13e755e583766bd528459733d948d9ffbc980c9506
 Done!
-Weth gateway set in tx 0x6cb889f96dc8f48208fc62855fab14a58ec4f9a04c7eee0ef35c82ba69df9c13
+Weth gateway set in tx 0xf2ddc2dad90e7e2b20a772bf89f989224165659d50824b98d7340e12265abf01
 Waiting for retryables...
-Retryable #1: 0x76808e5357cfd696ea52387273124cc80072ae4485d3a269abb5ad35084d8984
+Retryable #1: 0xf47dc66514fd78e4666e35abd12df7d1ae2c79f69f7dfedb8d98e4106142ab7c
 Done!
 network.json updated
 Done!
 Running l3Configuration script to configure your Orbit chain 📝📝📝📝📝
 Setting the Minimum Base Fee for the Orbit chain
-Minimum Base Fee is set on the block number 14 on the Orbit chain
+Minimum Base Fee is set on the block number 13 on the Orbit chain
 Setting the  network fee receiver for the Orbit chain
-network fee receiver is set on the block number 15 on the Orbit chain
+network fee receiver is set on the block number 14 on the Orbit chain
 Setting the infrastructure fee collector address for the Orbit chain
-infrastructure fee collector address is set on the block number 16 on the Orbit chain
+infrastructure fee collector address is set on the block number 15 on the Orbit chain
 Getting L1 base fee estimate
-L1 Base Fee estimate on L2 is 1716315047
-Setting L1 base fee estimate on L3 to 1816315047
-L1 base fee estimate is set on the block number 17 on the Orbit chain
+L1 Base Fee estimate on L2 is 4989526079
+Setting L1 base fee estimate on L3 to 5158076079
+L1 base fee estimate is set on the block number 16 on the Orbit chain
 All things done! Enjoy your Orbit chain. LFG 🚀🚀🚀🚀
 Transferring ownership on L3, from rollup owner to upgrade executor 🔃🔃🔃
 Adding Upgrade Executor contract to the chain owners
-Executor has been added to chain owners on TX: 0xbe4dd1a390b13bb8d69af4311dafda097e24815042fdae569cbb5190fdb3c0df
+Executor has been added to chain owners on TX: 0x97b50f60b60d0e658fdbf185969db0a0327bd0ae9e57cd65af2a7f9be0eeb5b0
 Executing removeChainOwner through the UpgradeExecutor contract
-Transaction complete, rollup owner removed from chain owners on TX: 0xac954dd1e43fc1632b7666fb3417a6d7ace5dc1dc7fbcf00f57147d160f557ea
-✨  Done in 110.68s.
+Transaction complete, rollup owner removed from chain owners on TX: 0x019850732270d8c436585c7921219252422228b5d0f559da0da219f0fa2b7216
+✨  Done in 58.49s.
 ```
 <!-- markdownlint-enable MD013 -->
 
