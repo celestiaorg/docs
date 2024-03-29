@@ -38,7 +38,7 @@ the following proofs need to be verified:
   - data root tuple proof to the data root tuple: to prove that that Celestia block,
     referenced by its height and data root, was committed to by Blobstream.
 
-More details on the share commitment inclusion proof can be found in the [commitment scheme docs](https://docs.celestia.org/developers/blobstream-proof-queries#the-commitment-scheme).
+More details on the share commitment inclusion proof can be found in the [commitment scheme docs](https://docs.celestia.org/developers/blobstream-proof-queries#the-commitment-scheme) and also the [data square layout](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/specs/data_square_layout.md#blob-share-commitment-rules).
 
 If all of these proofs are valid,
 then you successfully managed to prove that the data corresponding to that share commitment has been posted to Celestia.
@@ -86,7 +86,7 @@ Given these limitations, an alternative design will be discussed in the next sec
 
 ### Sequence of spans
 
-An alternative, yet preferred,
+An alternative,
 way of referencing rollup data in the rollup settlement contract is using a sequence of spans.
 
 A sequence of spans is a data pointer
@@ -161,7 +161,7 @@ To prove the data root is committed to by the Blobstream smart contract,
 we will need to provide a Merkle proof of the data root tuple to a data root tuple root.
 This can be created
 using the [`data_root_inclusion_proof`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L492-L511) query.
-More on this can be found [maybe add link TODO, also in the above proofs]
+More on this can be found in the [data root inclusion proofs documentation](https://docs.celestia.org/developers/blobstream-proof-queries#_1-data-root-inclusion-proof).
 
 2. Verify inclusion proof of the data to Celestia data root:
 
