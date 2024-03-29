@@ -34,7 +34,7 @@ and [the original deployment guide](https://docs.arbitrum.io/launch-orbit-chain/
   running on your machine
 - [Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
 - A fully synced and funded Mocha testnet [light node](../nodes/light-node.md)
-on **v0.13.1**
+on **v0.13.2**
   - [Mocha testnet faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet)
 - A browser-based Ethereum wallet (like [MetaMask](https://metamask.io))
 - At least 1 Arbitrum Sepolia testnet ETH (for custom gas token chains,
