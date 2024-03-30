@@ -25,6 +25,12 @@ description: Running Celestia App & Celestia Node using Docker.
 
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD013 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+import arabicaVersions from '/.vitepress/constants/arabica_versions.js'
+import mochaVersions from '/.vitepress/constants/mocha_versions.js'
+import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
+</script>
 
 ## Introduction
 
