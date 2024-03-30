@@ -1,12 +1,13 @@
 ---
 sidebar_label: Docker images
-description: Running Celestia Node using Docker.
+description: Running Celestia App & Celestia Node using Docker.
 ---
 
 # 🐳 Docker setup
 
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD013 -->
+
 <script setup>
 import constants from '/.vitepress/constants/constants.js'
 import arabicaVersions from '/.vitepress/constants/arabica_versions.js'
