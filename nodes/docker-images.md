@@ -1,9 +1,9 @@
 ---
-sidebar_label: Docker images
-description: Running Celestia App & Celestia Node using Docker.
+Sidebar_Label: Docker images
+Description: Celestia Docker Setup Guide.
 ---
 
-# Celestia-app and Celestia-node Setup With Docker 🐳 
+# Celestia-App and Celestia-Node Setup With Docker 🐳
 
 ## Table of Contents
 
@@ -16,10 +16,10 @@ description: Running Celestia App & Celestia Node using Docker.
     - [Flag Breakdown](#flag-breakdown)
 4. [Celestia-node Setup With Docker](#celestia-node-setup-with-docker)
     - [Celestia-node Quick start](#celestia-node-quick-start)
-    - [Light node setup with persistent storage](#lightnode-setup-with-persistent-storage)
-    - [Initialize the node store and key](#initialize-node-store)
-    - [Start the node](#start-node)
-5. [ Video walkthrough](#video-walkthrough)
+    - [Light node setup with persistent storage](#light-node-setup-with-persistent-storage)
+    - [Initialize the node store and key](#initialize-the-node-store-and-key)
+    - [Start the node](#start-the-node)
+5. [Video walkthrough](#video-walkthrough)
 6. [Troubleshooting](#troubleshooting)
 
 <!-- markdownlint-disable MD033 -->
@@ -33,18 +33,18 @@ import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 
 ## Introduction
 
-This page provides instructions on how to both the Celestia-app and 
-the Celestia-node using Docker. 
+This page provides instructions on how to both the Celestia-app and
+the Celestia-node using Docker.
 see [celestia-node page](./celestia-node.md). for instructions to run
 celestia-node using Docker.
 
-Docker is a container technology that offers a seamless method 
-for running applications in isolated environments on any 
-operating system. 
+Docker is a container technology that offers a seamless method
+for running applications in isolated environments on any
+operating system.
 
-This means that you can run Celestia-app & celestia-node 
-on your machine without having to worry about installing 
-and configuring all of the required dependencies.
+This means that you can run Celestia-app & celestia-node
+on your machine without having to worry about installing
+and configuring all the dependencies required.
 
 If you would like to learn more about
 key management in Docker, visit the
@@ -54,9 +54,11 @@ key management in Docker, visit the
 
 To install Docker on your machine, see the links below for instructions
 on your specific OS.
-- [Docker Desktop for Mac or Windows](https://docs.docker.com/get-docker) and a basic
-  understanding of Docker
-- [Docker Engine for Linux](https://docs.docker.com/engine/install/) and a
+
+- [Docker Desktop for Mac or Windows](https://docs.docker.com/get-docker) or
+
+  [Docker Engine for Linux](https://docs.docker.com/engine/install/) and a
+  
   basic understanding of Docker
 
 ## Celestia-app Setup With Docker
@@ -68,14 +70,15 @@ This guide provides instructions on how to use the Celestia `txsim` Docker image
 The celestia-app txsim binary is a tool that can be
 used to simulate transactions on the Celestia network.
 It can be used to test the performance of the Celestia network.
-The txsim Docker image is designed to run the txsim binary with a
-variety of configurable options.
+The txsim Docker image runs the `txsim` binary with multiple configurable options.
 
 ### Prequisites to run celestia-app on Docker
 
-- Docker and a basic understanding of docker 
+- Docker and a basic understanding of docker
 - A prefunded account set up with the keyring stored in a file,
 to be accessed by an instance of the docker image.
+For more information on setting up a prefunded account,
+refer to [link to documentation].
 
 ### Celestia-app Quick-Start
 
@@ -89,7 +92,7 @@ to be accessed by an instance of the docker image.
 The file would be mounted as a volume into the docker container.
 
    ```bash
-   touch .celestia-app
+   touch $HOME/.celestia-app
    ```
 
 3. Using a suitable text editor of your choice, open the
@@ -142,7 +145,7 @@ Kindly replace the placeholders in the example docker run
 command in step 5 of the quick start instructions,
 with the actual values you want to use.
 
-## Celestia-node Setup With Docker 
+## Celestia-node Setup With Docker
 
 This guide provides instructions on how to setup Celestia-node using Docker.
 
@@ -259,11 +262,11 @@ sudo chown 10001:10001 $HOME/my-node-store
 
 ### Initialize the node store and key
 
-In order to mount a volume to the container, you need to specify
-the path to the volume. When you run your container, you can specify
-the path to the volume using the `--volume` (or `-v` for short) flag.
+To mount a volume to the container, specify the path to the
+volume when you run your container using the
+`--volume` (or `-v` for short) flag.
 In this command, we'll create our key and initialize the node store,
-using the variables we set in the [quick start](#quick-start) section:
+using the variables we set in the [Celestia-app Quick-Start](#celestia-app-quick-start) section:
 
 ```bash
 # --volume == -v [local path]:[container path]
@@ -361,8 +364,7 @@ Congratulations! You now have a node running with persistent storage 😎.
 
 ## Troubleshooting
 
-For security purposes Celestia expects to interact with the your node's
-keys in a read-only manner. This is enforced using linux style permissions
+For security purposes, Celestia expects to interact with your node's keys in a read-only manner.. This is enforced using linux style permissions
 on the filesystem. Windows NTFS does not support these types of permissions.
 As a result the recommended path for Windows users to mount a persisted
 volume is to do so within WSL.
