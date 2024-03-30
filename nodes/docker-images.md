@@ -78,7 +78,7 @@ The txsim Docker image runs the `txsim` binary with multiple configurable option
 - A prefunded account set up with the keyring stored in a file,
 to be accessed by an instance of the docker image.
 For more information on setting up a prefunded account,
-refer to [link to documentation].
+refer to [key management](https://docs.celestia.org/nodes/celestia-app-commands).
 
 ### Celestia-app Quick-Start
 
@@ -342,25 +342,29 @@ Congratulations! You now have a node running with persistent storage 😎.
 
 ## Video walkthrough
 
-<div class="youtube-wrapper">
+- [Running a Celestia light node](https://youtube.com/embed/WFubhQc8tGk)
+
+<!-- <div class="youtube-wrapper">
   <iframe
     class="youtube-video"
     title="Running a Celestia light node"
     src="https://youtube.com/embed/WFubhQc8tGk"
     allowfullscreen
   ></iframe>
-</div>
+</div> -->
 
 ### 2.5 minute version
 
-<div class="youtube-wrapper">
+- [Running a Celestia light node YouTube Video](https://youtube.com/embed/ROZv871Q7RM)
+
+<!-- <div class="youtube-wrapper">
   <iframe
     class="youtube-video"
     title="Running a Celestia light node"
     src="https://youtube.com/embed/ROZv871Q7RM"
     allowfullscreen
   ></iframe>
-</div>
+</div> -->
 
 ## Troubleshooting
 
