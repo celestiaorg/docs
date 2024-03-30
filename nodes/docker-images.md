@@ -61,18 +61,18 @@ on your specific OS.
   
   basic understanding of Docker
 
-## Celestia-app Setup With Docker
+## Celestia-App Setup With Docker
 
 This guide provides instructions on how to use the Celestia `txsim` Docker image.
 
-### Overview of celestia-app txsim
+### Overview of Celestia-App `txsim`
 
-The celestia-app txsim binary is a tool that can be
+The Celestia-App `txsim` binary is a tool that can be
 used to simulate transactions on the Celestia network.
 It can be used to test the performance of the Celestia network.
 The txsim Docker image runs the `txsim` binary with multiple configurable options.
 
-### Prequisites to run celestia-app on Docker
+### Prequisites to run Celestia-App on Docker
 
 - Docker and a basic understanding of docker
 - A prefunded account set up with the keyring stored in a file,
@@ -80,7 +80,7 @@ to be accessed by an instance of the docker image.
 For more information on setting up a prefunded account,
 refer to [key management](https://docs.celestia.org/nodes/celestia-app-commands).
 
-### Celestia-app Quick-Start
+### Celestia-App Quick-Start
 
 1. In your local machine, navigate to the home directory
 
@@ -117,7 +117,7 @@ $HOME/.celestia-app directory from the host to the /home/celestia
 directory in the Docker container.
 This allows the txsim binary to access the keyring for the prefunded account.
 
-Congratulations! You have successfully set up celestia-app in Docker 😎
+Congratulations! You have successfully set up Celestia-App in Docker 😎
 
 ### Flag Breakdown
 
@@ -145,11 +145,11 @@ Kindly replace the placeholders in the example docker run
 command in step 5 of the quick start instructions,
 with the actual values you want to use.
 
-## Celestia-node Setup With Docker
+## Celestia-Node Setup With Docker
 
 This guide provides instructions on how to setup Celestia-node using Docker.
 
-### Celestia-node Quick start
+### Celestia-Node Quick start
 
 1. Set [the network](./participate.md) you would like to run your node on:
 
@@ -220,7 +220,7 @@ This guide provides instructions on how to setup Celestia-node using Docker.
 
    :::
 
-Congratulations! You now have a celestia-node running 😎
+Congratulations! You now have a Celestia-Node running 😎
 
 If you would like to run the node with custom flags,
 you can refer to the
