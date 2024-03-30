@@ -663,6 +663,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 			NumLeaves: big.NewInt(proof.Total),
 		}
 	}
+	return rowProofs
 }
 ```
 
