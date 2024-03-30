@@ -61,7 +61,7 @@ on your specific OS.
   
 - Ensure you have a basic understanding of Docker to proceed.
 
-## Celestia-App Setup With Docker
+## Celestia-App Setup with Docker
 
 This guide provides instructions on how to use the Celestia `txsim` Docker image.
 
