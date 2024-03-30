@@ -355,7 +355,7 @@ Congratulations! You now have a node running with persistent storage 😎.
 
 ### 2.5 minute version
 
-- [Running a Celestia light node YouTube Video](https://youtube.com/embed/ROZv871Q7RM)
+- [Running a Celestia light node YouTube video](https://youtube.com/embed/ROZv871Q7RM)
 
 <!-- <div class="youtube-wrapper">
   <iframe
