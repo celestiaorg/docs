@@ -48,5 +48,5 @@ settlement and execution are moved on top in their own layers. As a result,
 every layer can be specialized to optimally perform only its function and thus,
 increase the throughput of the system. Furthermore, this modular paradigm
 enables multiple execution layers, _i.e._,
-[rollups](https://vitalik.ca/general/2021/01/05/rollup.html), to use the
+[rollups](https://vitalik.eth.limo/general/2021/01/05/rollup.html), to use the
 same settlement and DA layers.
