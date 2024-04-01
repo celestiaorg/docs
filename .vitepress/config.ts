@@ -586,6 +586,10 @@ function sidebarHome() {
                       link: "/developers/arbitrum-deploy",
                     },
                     {
+                      text: "How to run a full Orbit rollup node and validator",
+                      link: "/developers/arbitrum-full-node",
+                    },
+                    {
                       text: "Bridging in and out of your Orbit rollup",
                       link: "/developers/arbitrum-bridge",
                     },
