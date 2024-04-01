@@ -663,6 +663,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 			NumLeaves: big.NewInt(proof.Total),
 		}
 	}
+	return rowProofs
 }
 ```
 
@@ -999,9 +1000,7 @@ func submitFraudProof(
 	dataRoot []byte,
 ) error {
 	var blockDataRoot [32]byte
-	for i, b := range dataRoot[58:] {
-		blockDataRoot[i] = b
-	}
+	copy(blockDataRoot[:], dataRoot)
 	tx, err := simpleRollup.SubmitFraudProof(
 		&bind.TransactOpts{
 			Context: ctx,
@@ -1076,6 +1075,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 			NumLeaves: big.NewInt(proof.Total),
 		}
 	}
+	return rowProofs
 }
 
 func toNamespaceMerkleMultiProofs(proofs []*tmproto.NMTProof) []client.NamespaceMerkleMultiproof {
