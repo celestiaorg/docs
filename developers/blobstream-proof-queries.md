@@ -512,9 +512,7 @@ func toNamespaceMerkleMultiProofs(proofs []*tmproto.NMTProof) []client.Namespace
 func minNamespace(innerNode []byte) *client.Namespace {
 	version := innerNode[0]
 	var id [28]byte
-	for i, b := range innerNode[1:28] {
-		id[i] = b
-	}
+	copy(id[:], innerNode[1:29])
 	return &client.Namespace{
 		Version: [1]byte{version},
 		Id:      id,
@@ -524,9 +522,7 @@ func minNamespace(innerNode []byte) *client.Namespace {
 func maxNamespace(innerNode []byte) *client.Namespace {
 	version := innerNode[29]
 	var id [28]byte
-	for i, b := range innerNode[30:57] {
-		id[i] = b
-	}
+	copy(id[:], innerNode[30:58])
 	return &client.Namespace{
 		Version: [1]byte{version},
 		Id:      id,
@@ -537,9 +533,7 @@ func toNamespaceNode(node []byte) *client.NamespaceNode {
 	minNs := minNamespace(node)
 	maxNs := maxNamespace(node)
 	var digest [32]byte
-	for i, b := range node[58:] {
-		digest[i] = b
-	}
+	copy(digest[:], node[58:])
 	return &client.NamespaceNode{
 		Min:    *minNs,
 		Max:    *maxNs,
@@ -580,12 +574,9 @@ A method to convert to namespace, provided that the namespace
 size is 29, is as follows:
 
 ```go
-func namespace(namespaceID []byte) *client.Namespace {
-	version := namespaceID[0]
+func namespace(namespaceID []byte, version uint8) *client.Namespace {
 	var id [28]byte
-	for i, b := range namespaceID[1:] {
-		id[i] = b
-	}
+	copy(id[:], namespaceID)
 	return &client.Namespace{
 		Version: [1]byte{version},
 		Id:      id,
@@ -652,9 +643,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 		sideNodes := make( [][32]byte, len(proof.Aunts))
 		for j, sideNode :=  range proof.Aunts {
 			var bzSideNode [32]byte
-			for k, b := range sideNode {
-				bzSideNode[k] = b
-			}
+			copy(bzSideNode[:], sideNode)
 			sideNodes[j] = bzSideNode
 		}
  		rowProofs[i] = client.BinaryMerkleProof{
@@ -730,9 +719,7 @@ func toAttestationProof(
 	sideNodes := make( [][32]byte, len(dataRootInclusionProof.Aunts))
 	for i, sideNode :=  range dataRootInclusionProof.Aunts {
 		var bzSideNode [32]byte
-		for k, b := range sideNode {
-			bzSideNode[k] = b
-		}
+		copy(bzSideNode[:], sideNode)
 		sideNodes[i] = bzSideNode
 	}
 
