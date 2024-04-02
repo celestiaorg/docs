@@ -589,16 +589,20 @@ function sidebarHome() {
                       link: "/developers/arbitrum-integration",
                     },
                     {
-                      text: "Deploy an Arbitrum rollup devnet",
+                      text: "Quickstart: Deploy an Arbitrum Orbit rollup",
                       link: "/developers/arbitrum-deploy",
                     },
-                    // {
-                    //   text: "Deploy an Arbitrum rollup to Mocha testnet",
-                    //   link: "/developers/arbitrum-mocha",
-                    // },
                     {
-                      text: "Nitrogen testnet",
-                      link: "/developers/nitrogen",
+                      text: "How to run a full Orbit rollup node and validator",
+                      link: "/developers/arbitrum-full-node",
+                    },
+                    {
+                      text: "Bridging in and out of your Orbit rollup",
+                      link: "/developers/arbitrum-bridge",
+                    },
+                    {
+                      text: "How to customize your Orbit chain's deployment configuration",
+                      link: "https://docs.arbitrum.io/launch-orbit-chain/how-tos/customize-deployment-configuration",
                     },
                     {
                       text: "Deploy a smart contract on Arbitrum rollup",
