@@ -186,7 +186,7 @@ root of your cloned `orbit-setup-script` repository.
 In order for the Batch Poster, which is responsible for posting batches of data, to
 subscribe to Blobstream's smart contract events, the node most use a websocket
 connection, since an http one will not support subscriptions. This RPC url is different
-from the `"parent-chain.url" used in the node config, and is not necessary when running
+from the `"parent-chain.url"` used in the node config, and is not necessary when running
 a full node.
 
 To establish a WebSocket connection for your rollup to Arbitrum Sepolia, it's
@@ -207,6 +207,8 @@ and thus successfully subscribe to Blobstream events.
 
 Without a WSS connection, the Batch Poster won't be able to subscribe to Blobstream
 events, and thus will fallback to posting data to parent chain.
+
+We'll use this WSS URL in the next step.
 
 ### Step 7: Run your light node for Mocha testnet
 
