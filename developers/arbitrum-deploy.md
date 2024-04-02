@@ -7,10 +7,11 @@ description: A guide on how to deploy an Arbitrum Orbit rollup using the Arbitru
 This guide covers deploying a rollup using the
 [Celestia Orbit chain deployment portal](https://arbitrum-orbit-deployment-ui.vercel.app/).
 
-After completing this tutorial, you'll have a local devnet
-rollup that can host EVM-compatible smart contracts. Your chain will process
-transactions locally while settling to the public Arbitrum Sepolia
-testnet and posting data to Celestia's Mocha testnet.
+After completing this tutorial, you will have a local development network rollup
+capable of hosting EVM-compatible smart contracts. This rollup will process
+transactions locally, settle on the public Arbitrum Sepolia testnet, and post data to
+Celestia's Mocha testnet.
+
 
 If you're looking to learn more about the integration of Celestia and Orbit,
 read the [Arbitrum Orbit integration overview](./arbitrum-integration.md). If you're
@@ -95,15 +96,15 @@ deployment configuration, visit
 <!-- markdownlint-disable MD013 -->
 | Parameter | Description |
 |-|-|
-| **Chain ID**           | This is a unique integer identifier for your chain's network, primarily used on chain indexes like [Chainlist.org](https://chainlist.org). It's not crucial for development networks, but in production, you'll need to choose a unique ID.|
-| **Chain Name**         | The name you assign to your Orbit chain, which helps users and developers distinguish it from other chains. It should be memorable and recognizable.                                                            |
+| **Chain ID** | This is a unique integer identifier for your chain's network, primarily used on chain indexes like [Chainlist.org](https://chainlist.org). It's not crucial for development networks, but in production, you'll need to choose a unique ID.|
+| **Chain Name** | The name you assign to your Orbit chain, which helps users and developers distinguish it from other chains. It should be memorable and recognizable.                                                            |
 | **Challenge Period Blocks** | Determines the time frame within which validators can dispute the state of the chain posted to the base chain. It's measured in blocks on the underlying L1 chain. A longer period allows more time for disputes but also delays withdrawals.  |
-| **Stake Token**        | Specifies the token that validators must stake to participate in the validation process, using the token's contract address on the base chain. This can be ETH or another token, defined by its address.         |
-| **Base Stake**         | The minimum amount of stake token required for validators to post state assertions. A lower base stake lowers the barrier to entry but increases vulnerability to attacks, whereas a higher stake encourages honest participation but raises the entry barrier.|
-| **Owner**              | The account address that has the authority to deploy, own, and update the base contracts of your Orbit chain on its base chain. In production, this is usually a high-stakes address controlled by a DAO or a multisig setup. For development chains, it's a lower-stakes administrative account.|
-| **Gas Token**          | The token used for gas payments on the network, which must be natively deployed on the parent chain. There are specific requirements for custom gas tokens, such as having 18 decimals and not being a rebasing or fee-on-transfer token. This feature is primarily for Orbit AnyTrust chains.|
-| **Validators**         | This is the number of validators for your chain, including their addresses. The first validator is auto-generated and immutable. Validators are crucial for maintaining the integrity of the chain and posting state assertions to the base chain.|
-| **Batch Poster**       | Responsible for posting transaction batches from your Orbit chain to the base chain. An address for this role is automatically generated, with the private key stored in a configuration file.
+| **Stake Token** | Specifies the token that validators must stake to participate in the validation process, using the token's contract address on the base chain. This can be ETH or another token, defined by its address.         |
+| **Base Stake** | The minimum amount of stake token required for validators to post state assertions. A lower base stake lowers the barrier to entry but increases vulnerability to attacks, whereas a higher stake encourages honest participation but raises the entry barrier.|
+| **Owner** | The account address that has the authority to deploy, own, and update the base contracts of your Orbit chain on its base chain. In production, this is usually a high-stakes address controlled by a DAO or a multisig setup. For development chains, it's a lower-stakes administrative account.|
+| **Gas Token** | The token used for gas payments on the network, which must be natively deployed on the parent chain. There are specific requirements for custom gas tokens, such as having 18 decimals and not being a rebasing or fee-on-transfer token. This feature is primarily for Orbit AnyTrust chains.|
+| **Validators** | This is the number of validators for your chain, including their addresses. The first validator is auto-generated and immutable. Validators are crucial for maintaining the integrity of the chain and posting state assertions to the base chain.|
+| **Batch Poster** | Responsible for posting transaction batches from your Orbit chain to the base chain. An address for this role is automatically generated, with the private key stored in a configuration file.
 <!-- markdownlint-enable MD013 -->
 
 In the **Configure Validators** section, specify the number of validators
