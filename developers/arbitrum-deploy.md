@@ -397,8 +397,9 @@ main directory of your script folder - this contains more information
 about your chain,
 including the addresses of your chain's base contracts.
 
-In the next guide, learn how to
-[bridge in and out of your rollup](./arbitrum-bridge.md).
+In the next guides, learn how to
+[run a full and validating full node](./arbitrum-full-node.md)
+or [bridge in and out of your rollup](./arbitrum-bridge.md).
 
 ## Appendix
 
