@@ -219,6 +219,7 @@ accordingly. First understand the different variables that will be set in the co
 - **`rpc`:** RPC endpoint for **celestia-node**
 - **`tendermint-rpc`:** a celestia-core endpoint from a full node
 (**NOTE:** only needed for a batch poster node)
+- **`eth-rpc`:** Ethereum Client RPC endpoint, only used when the node is a batch poster
 - **`namespace-id`:** namespace being used to post data to Celestia
 - **`auth-token`:** auth token for your Celestia Node
 - **`is-poster`:** is the node with Celestia DA the batch poster, set to true if so.
@@ -252,6 +253,7 @@ This is crucial to protect against potential misuse by copy-paste errors.
   "enable": true,
     "rpc": "http://host.docker.internal:26658",
     "tendermint-rpc": "http://consensus-full-mocha-4.celestia-mocha.com:26657",
+    "eth-rpc": "<YOUR_ETH_RPC>",
     "namespace-id": "000008e5f679bf7116cb",
     "auth-token": "<YOUR_AUTH_TOKEN>",
     "is-poster": true,
