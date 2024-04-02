@@ -184,31 +184,31 @@ root of your cloned `orbit-setup-script` repository.
 ### Step 6: Pick an L2 RPC URL for the Batch Poster
 
 In order for the Batch Poster, which is responsible for posting batches of data, to
-subscribe to Blobstream's smart contract events, the node most use a websocket
-connection, since an http one will not support subscriptions. This RPC url is different
-from the `"parent-chain.url"` used in the node config, and is not necessary when running
-a full node.
+subscribe to Blobstream's smart contract events, the node most use a WebSocket
+connection, since an HTTP one will not support subscriptions. This RPC URL is different
+from the `parent-chain.connection.url` object used in the node config, and is
+not necessary when running a full node. WebSocket (WSS) URLs which are
+essential for real-time data fetching and interaction with the
+Arbitrum Sepolia network. 
 
 To establish a WebSocket connection for your rollup to Arbitrum Sepolia, it's
 recommended to
 [find an RPC provider with WSS connections from Arbitrum's docs](https://docs.arbitrum.io/build-decentralized-apps/reference/node-providers).
-For this example, we will make an account on Alchemy. WebSocket (WSS) URLs which are
-essential for real-time data fetching and interaction with the Arbitrum Sepolia
-network. Follow these steps to set up your account and obtain a WSS URL using Alchemy:
+
+For this example, we will make an account on Alchemy. Follow these steps to set up your account and obtain a WSS URL using Alchemy: 
 
 1. Visit [Alchemy's website](https://www.alchemy.com/) and sign up for an account.
 2. Once logged in, create a new app by selecting the Arbitrum network, specifically
 targeting the Arbitrum Sepolia testnet.
 3. After creating your app, navigate to the "API key" section to find your WebSocket
 (WSS) URL.
-4. Use this WSS URL in your nodeConfig.json under the celestia-cfg.eth-rpc object to
-ensure your node can establish a WebSocket connection to the Arbitrum Sepolia network
-and thus successfully subscribe to Blobstream events. 
+4. In the next step, use this WSS URL in your `nodeConfig.json` under the
+`celestia-cfg.eth-rpc` object to ensure your node can establish a
+WebSocket connection to the Arbitrum Sepolia network
+and successfully subscribe to Blobstream events. 
 
 Without a WSS connection, the Batch Poster won't be able to subscribe to Blobstream
 events, and thus will fallback to posting data to parent chain.
-
-We'll use this WSS URL in the next step.
 
 ### Step 7: Run your light node for Mocha testnet
 
@@ -283,16 +283,16 @@ This is crucial to protect against potential misuse by copy-paste errors.
 ```ts
 "celestia-cfg": {
   "enable": true,
-    "rpc": "http://host.docker.internal:26658",
-    "tendermint-rpc": "http://consensus-full-mocha-4.celestia-mocha.com:26657",
-    "eth-rpc": "wss://<YOUR_ETH_RPC_WSS_URL>",
-    "namespace-id": "000008e5f679bf7116cb",
-    "auth-token": "<YOUR_AUTH_TOKEN>",
-    "is-poster": true,
-    "gas-price": 0.3,
-    "event-channel-size": 100,
-    "blobstreamx-address": "0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2",
-    }
+  "rpc": "http://host.docker.internal:26658",
+  "tendermint-rpc": "http://consensus-full-mocha-4.celestia-mocha.com:26657",
+  "eth-rpc": "wss://<YOUR_ETH_RPC_WSS_URL>",
+  "namespace-id": "<YOUR_10_BYTE_NAMESPACE>",
+  "auth-token": "<YOUR_AUTH_TOKEN>",
+  "is-poster": true,
+  "gas-price": 0.3,
+  "event-channel-size": 100,
+  "blobstreamx-address": "0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2",
+}
 ```
 
 [See the compatibility matrix in the appendix to verify you're using the right versions.](#compatibility-matrix)
