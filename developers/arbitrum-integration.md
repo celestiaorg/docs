@@ -23,7 +23,7 @@ settles on Arbitrum One, Ethereum, or other EVM chains.
 The integration of Celestia with Arbitrum orbit is possible thanks to 3 key components:
 
 - [DA Provider implementation](#da-provider-implementation)
-- [Preimage Oracle implemntation](#preimage-oracle-implementation)
+- [Preimage Oracle implementation](#preimage-oracle-implementation)
 - [Blobstream X implementation](#blobstream-x-implementation)
 
 Additionally, the [Ethereum fallback mechanism](#ethereum-fallback-mechanism-in-nitro) is a feature of the integration, which is native in Nitro.

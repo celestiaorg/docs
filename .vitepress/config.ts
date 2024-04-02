@@ -582,7 +582,7 @@ function sidebarHome() {
                       link: "/developers/arbitrum-integration",
                     },
                     {
-                      text: "Quickstart: Deploy an Orbit rollup",
+                      text: "Quickstart: Deploy an Arbitrum Orbit rollup",
                       link: "/developers/arbitrum-deploy",
                     },
                     {
