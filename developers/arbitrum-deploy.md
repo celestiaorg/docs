@@ -246,7 +246,9 @@ accordingly. First understand the different variables that will be set in the co
 - **`rpc`:** RPC endpoint for **celestia-node**
 - **`tendermint-rpc`:** a celestia-core endpoint from a full node
 (**NOTE:** only needed for a batch poster node)
-- **`eth-rpc`:** Ethereum Client WSS RPC endpoint, only used when the node is a batch poster
+- **`eth-rpc`:** Ethereum Client WSS RPC endpoint, only used when the node is a batch
+poster. The eth-rpc must be WSS. Otherwise, it won't be able to subscribe to events
+for Blobstream.
 - **`namespace-id`:** namespace being used to post data to Celestia
 - **`auth-token`:** auth token for your Celestia Node
 - **`is-poster`:** is the node with Celestia DA the batch poster, set to true if so.
