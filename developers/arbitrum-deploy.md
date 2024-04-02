@@ -1,8 +1,8 @@
 ---
-description: A guide on how to install Arbitrum Nitro and deploy an instance on an Ubuntu AMD machine, including the installation of necessary dependencies, cloning the repository, installing Nitro from source, and deploying the rollup to Mocha testnet.
+description: A guide on how to deploy an Arbitrum Orbit rollup using the Arbitrum Orbit deployment UI and deploying the rollup to Mocha testnet.
 ---
 
-# Quickstart: Deploy an Orbit rollup
+# Quickstart: Deploy an Arbitrum Orbit rollup
 
 This guide covers deploying a rollup using the
 [Celestia Orbit chain deployment portal](https://arbitrum-orbit-deployment-ui.vercel.app/).
@@ -417,8 +417,6 @@ Extra resources in Arbitrum documentation:
 <!-- markdownlint-enable MD013 -->
 
 ### Blobstream X contract deployments
-
-TODO: double-check with diego that this and the one in the config are different
 
 The Orbit contracts depend on the following Blobstream X deployments.
 The current deployments, which can be found at

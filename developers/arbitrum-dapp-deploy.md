@@ -5,7 +5,7 @@ description: Make your own GM Portal dapp on your Arbitrum rollup.
 # Deploy a dapp on your Arbitrum rollup devnet
 
 First, review the [Arbitrum integration](./arbitrum-integration.md),
-[Quickstart: Deploy an Orbit rollup](./arbitrum-deploy.md), and
+[Quickstart: Deploy an Arbitrum Orbit rollup](./arbitrum-deploy.md), and
 [Deploy a smart contract to your Arbitrum rollup](./arbitrum-smart-contract.md)
 pages.
 
@@ -16,7 +16,7 @@ pages.
 
 ## Setup and contract deployment
 
-1. Clone the `gm-portal` from Github and start the frontend:
+1. Clone the `gm-portal` from GitHub and start the frontend:
 
    ```bash
    cd $HOME
