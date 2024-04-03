@@ -5,7 +5,7 @@ description: A guide on how to deploy an Arbitrum Orbit rollup using the Arbitru
 # Quickstart: Deploy an Arbitrum Orbit rollup
 
 This guide covers deploying a rollup using the
-[Celestia Orbit chain deployment portal](https://celestia-orbit.vercel.app/).
+[Celestia Orbit chain deployment portal](https://orbit.celestia.org).
 
 After completing this tutorial, you will have a local development network rollup
 capable of hosting EVM-compatible smart contracts. This rollup will process
@@ -63,7 +63,7 @@ to acquire some testnet ETH on Ethereum Sepolia testnet.
 ### Step 2: Pick your deployment type
 
 Visit the
-[Celestia Orbit chain deployment portal](https://celestia-orbit.vercel.app/).
+[Celestia Orbit chain deployment portal](https://orbit.celestia.org).
 This portal offers the following options:
 
 1. **Celestia Rollup: Transaction data is posted to Celestia**
