@@ -627,6 +627,10 @@ function sidebarHome() {
                       link: "/developers/bubs-testnet",
                     },
                     {
+                      text: "Raspberry testnet",
+                      link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
+                    },
+                    {
                       text: "Deploy a smart contract on Bubs testnet",
                       link: "/developers/deploy-on-bubs",
                     },
