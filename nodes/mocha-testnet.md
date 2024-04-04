@@ -69,6 +69,7 @@ full blocks from it.
 :::
 
 - `public-celestia-mocha4-consensus.numia.xyz`
+- `mocha-4-consensus.mesa.newmetric.xyz`
 - `full.consensus.mocha-4.celestia-mocha.com`
 - `consensus-full-mocha-4.celestia-mocha.com`
 - `rpc-mocha.pops.one`
@@ -80,6 +81,7 @@ querying the node's state and broadcasting transactions on the
 Celestia network. The default port is 26657.
 
 - `public-celestia-mocha4-consensus.numia.xyz:26657`
+- `mocha-4-consensus.mesa.newmetric.xyz:26657`
 - `rpc.celestia-mocha.com`
 - `rpc-2.celestia-mocha.com`
 - `celestia-testnet-rpc.f5nodes.com`
@@ -121,6 +123,7 @@ port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
 - `public-celestia-mocha4-consensus.numia.xyz:9090`
+- `mocha-4-consensus.mesa.newmetric.xyz:9090`
 - `grpc-mocha.pops.one`
 - `grpc.celestia-mocha.com:443`
 - `grpc-2.celestia-mocha.com:443`
