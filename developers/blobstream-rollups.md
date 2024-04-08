@@ -20,14 +20,14 @@ This commitment allows proving that the corresponding data exists on Celestia [e
 
 To prove that the data corresponding to a share commitment was posted to Celestia using Blobstream, the following proofs need to be verified:
 
-1. share inclusion proof to the share commitment: meaning creating two merkle proofs:
+1. [share inclusion proof to the share commitment](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#share-to-share-commitment-inclusion): meaning creating two merkle proofs:
    1. share merkle proof up to the [subtree root](https://celestiaorg.github.io/celestia-app/specs/data_square_layout.html#blob-share-commitment-rules) corresponding to that share 
    2. subtree root merkle proof to the [share commitment](https://celestiaorg.github.io/celestia-app/specs/data_square_layout.html#blob-share-commitment-rules)
-2. share commitment inclusion proof to the data root tuple root: meaning four merkle proofs:
-   1. subtree roots merkle proofs to the share commitment: to make sure the subtree roots are valid 
-   2. subtree roots merkle proofs up to the row roots: to prove that the subtree roots belong to a set of rows in the Celestia block 
-   3. row roots proofs to the data root: to prove that those rows belong to the Celestia Block 
-   4. data root tuple proof to the data root tuple: to prove that that Celestia block, referenced by its height and data root, was committed to by Blobstream.
+2. [share commitment inclusion proof to the data root tuple root](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#prove-share-commitment-inclusion-to-data-root): meaning four merkle proofs:
+   1. [subtree roots merkle proofs to the share commitment](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#subtree-roots-inclusion-proof-to-the-share-commitment): to make sure the subtree roots are valid 
+   2. [subtree roots merkle proofs up to the row roots](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#subtree-roots-inclusion-proof-to-the-data-root): to prove that the subtree roots belong to a set of rows in the Celestia block 
+   3. [row roots proofs to the data root](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#row-root-to-data-root-inclusion-proof): to prove that those rows belong to the Celestia Block 
+   4. [data root tuple proof to the data root tuple](https://docs.celestia.org/developers/blobstream-proof-queries#the-commitment-scheme): to prove that the Celestia block referenced by its height and data root, was committed to by Blobstream.
 
 More details on the share commitment inclusion proof can be found in the [commitment scheme docs](https://docs.celestia.org/developers/blobstream-proof-queries#the-commitment-scheme) and also the [data square layout](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/specs/data_square_layout.md#blob-share-commitment-rules).
 
