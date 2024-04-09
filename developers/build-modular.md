@@ -13,6 +13,44 @@ blockchains and their benefits for developers like you.
 If you already know all this, [skip to the end](#building-on-celestia)
 to get straight into building.
 
+## Building on Celestia
+
+<script setup>
+import UrlImageButton from '../.vitepress/components/UrlImageButton.vue';
+</script>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
+  <UrlImageButton url="/developers/intro-to-op-stack" imageSrc="/opstack.webp" text="OP Stack" target="_self"/>
+  <UrlImageButton url="/developers/arbitrum-integration" imageSrc="/arbitrum.webp" text="Arbitrum Orbit" target="_self"/>
+  <UrlImageButton url="/developers/optimism" imageSrc="/polygon.webp" text="Polygon CDK" target="_self"/>
+  <UrlImageButton url="/developers/optimism" imageSrc="/sovereign.webp" text="Sovereign SDK" target="_self"/>
+  <UrlImageButton url="/developers/optimism" imageSrc="/dymension.webp" text="Dymension" target="_self"/>
+  <UrlImageButton url="/developers/optimism" imageSrc="/rollkit.webp" text="Rollkit" target="_self"/>
+</div>
+
+So, you’re ready to start experimenting and building on Celestia?
+Here are a few options that are currently available for developers.
+
+### Smart contracts
+
+[Bubs testnet](https://bubstestnet.com/) is a dedicated EVM-compatible
+rollup that developers can use to test and deploy smart contract
+applications.
+
+### Sovereign rollups
+
+Developers can build applications on a sovereign rollup testnet
+on Celestia. [Rollkit](https://rollkit.dev/) and
+[Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup)
+provide frameworks for deploying sovereign rollup testnets
+on Celestia.
+
+### Rollups
+
+Developers can also build rollup testnets for their applications
+using [Dymension’s Rollapps](https://docs.dymension.xyz/) or
+[Optimism’s OP Stack](./intro-to-op-stack.md).
+
 ## What is a modular blockchain?
 
 With blockchains there are more or less four core functions that they do.
@@ -105,28 +143,3 @@ custom precompiles, changing transaction processing from sequential
 to parallel, or adding support for private smart contracts.
 
 All of this only scratches the surface.
-
-## Building on Celestia
-
-So, you’re ready to start experimenting and building on Celestia?
-Here are a few options that are currently available for developers.
-
-### Smart contracts
-
-[Bubs testnet](https://bubstestnet.com/) is a dedicated EVM-compatible
-rollup that developers can use to test and deploy smart contract
-applications.
-
-### Sovereign rollups
-
-Developers can build applications on a sovereign rollup testnet
-on Celestia. [Rollkit](https://rollkit.dev/) and
-[Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup)
-provide frameworks for deploying sovereign rollup testnets
-on Celestia.
-
-### Rollups
-
-Developers can also build rollup testnets for their applications
-using [Dymension’s Rollapps](https://docs.dymension.xyz/) or
-[Optimism’s OP Stack](./intro-to-op-stack.md).
