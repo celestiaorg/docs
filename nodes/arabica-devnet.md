@@ -106,7 +106,7 @@ As an example, this command will work to start a light node with
 state access, using default ports:
 
 ```bash
-celestia light start --p2p.netowrk arabica \
+celestia light start --p2p.network arabica \
   --core.ip validator-1.celestia-arabica-11.com
 ```
 
