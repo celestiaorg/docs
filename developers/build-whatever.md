@@ -28,9 +28,11 @@ Here are a few options that are currently available for developers.
   <UrlImageButton url="https://rollkit.dev" imageSrc="/build/rollkit.webp" text="Rollkit" notes="Sovereign"/>
 </div>
 
-### Rollups-as-a-service
+### Rollups-as-a-Service
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; padding-top: 20px">
+Deploy your rollup with a RaaS provider.
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
   <UrlImageButton url="https://altlayer.io/raas/" imageSrc="/build/altlayer.webp" text="AltLayer" notes="Orbit, OP Stack, Polygon CDK"/>
   <UrlImageButton url="https://www.astria.org/" imageSrc="/build/astria.webp" text="Astria"/>
   <UrlImageButton url="https://www.caldera.xyz/" imageSrc="/build/caldera.webp" text="Caldera" notes="Orbit, OP Stack"/>
@@ -48,7 +50,7 @@ Here are a few options that are currently available for developers.
 
 Deploy your smart contracts on dedicated EVM-compatible rollups.
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; padding-top: 20px">
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
   <UrlImageButton url="https://bubstestnet.com/" imageSrc="/build/caldera.webp" text="Bubs testnet" notes="OP Stack"/>
   <UrlImageButton url="https://raas.gelato.network/rollups/details/public/opcelestia-raspberry" imageSrc="/build/gelato.webp" text="Raspberry testnet" notes="OP Stack"/>
 </div>
