@@ -12,8 +12,8 @@ hero:
     alt: Celestia
   actions:
     - theme: brand
-      text: Post a blob
-      link: /developers/node-tutorial
+      text: Build whatever
+      link: /developers/build-whatever
     - theme: alt
       text: Introduction
       link: /learn/how-celestia-works/overview

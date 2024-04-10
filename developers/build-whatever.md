@@ -8,6 +8,17 @@ If you're a developer and want to know what the benefits of modular blockchains
 are for you, you’ve come to the right place. This page will give you the rundown on modular
 blockchains and their benefits for developers like you.
 
+This section provides various guides and tutorials that cover different
+options for deploying rollups on Celestia.
+
+## What is a rollup?
+
+A rollup is a type of blockchain that offloads some work to a layer 1, like
+Celestia. Rollups host applications and process user transactions. Once
+those transactions get processed, they are then published to layer 1.
+It’s layer 1s job to order those transactions and check that they are
+available, at minimum.
+
 ## Quickstart - Building on Celestia
 
 ### Choose a framework

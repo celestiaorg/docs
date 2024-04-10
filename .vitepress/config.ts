@@ -506,80 +506,15 @@ function sidebarHome() {
       text: "Developers",
       collapsed: true,
       items: [
-        { text: "Build whatever", link: "/developers/build-whatever" },
-        {
-          text: "Submitting data blobs to Celestia",
-          link: "/developers/submit-data",
-        },
-        {
-          text: "Transaction resubmission guidelines",
-          link: "/developers/transaction-resubmission",
-        },
-        {
-          text: "Node API",
-          link: "/developers/node-api",
+        { 
+          text: "Build whatever",
+          link: "/developers/build-whatever",
           collapsed: true,
           items: [
             {
-              text: "Node RPC CLI tutorial",
-              link: "/developers/node-tutorial",
-            },
-            {
-              text: "Celestia-node RPC API documentation",
-              link: "https://node-rpc-docs.celestia.org/",
-            },
-            { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
-          ],
-        },
-        {
-          text: "Integrate with Blobstream",
-          collapsed: true,
-          items: [
-            {
-              text: "Overview of Blobstream",
-              link: "/developers/blobstream",
-            },
-            {
-              text: "Integrate with Blobstream contracts",
-              link: "/developers/blobstream-contracts",
-            },
-            {
-              text: "Integrate with Blobstream client",
-              link: "/developers/blobstream-offchain",
-            },
-            {
-              text: "Querying the Blobstream proofs",
-              link: "/developers/blobstream-proof-queries",
-            },
-            {
-              text: "Local Blobstream X operators",
+              text: "EVM",
               collapsed: true,
               items: [
-                {
-                  text: "Requesting data commitment ranges",
-                  link: "/developers/requesting-data-commitment-ranges",
-                },
-                {
-                  text: "New Blobstream X deployments",
-                  link: "/developers/blobstream-x-deploy",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          text: "Deploy a rollup",
-          link: "/developers/rollup-overview",
-          collapsed: true,
-          items: [
-            {
-              text: "Ethereum L2s",
-              collapsed: true,
-              items: [
-                {
-                  text: "Ethereum fallback mechanism",
-                  link: "/developers/ethereum-fallback",
-                },
                 {
                   text: "Arbitrum",
                   collapsed: true,
@@ -611,6 +546,17 @@ function sidebarHome() {
                     {
                       text: "Deploy a dapp on your Arbitrum rollup devnet",
                       link: "/developers/arbitrum-dapp-deploy",
+                    },
+                  ],
+                },
+                {
+                  text: "Astria",
+                  collapsed: true,
+                  items: [
+                    { text: "Documentation", link: "https://docs.astria.org" },
+                    {
+                      text: "Deploy to Dusknet",
+                      link: "https://docs.astria.org/docs/local-rollup/introduction/",
                     },
                   ],
                 },
@@ -664,33 +610,99 @@ function sidebarHome() {
                         },
                       ],
                     },
+                    
                   ],
                 },
-              ],
-            },
-            { text: "Rollkit", link: "/developers/rollkit" },
-            {
-              text: "Astria",
-              collapsed: true,
-              items: [
-                { text: "Documentation", link: "https://docs.astria.org" },
                 {
-                  text: "Deploy to Dusknet",
-                  link: "https://docs.astria.org/docs/dusknet/overview/",
+                  text: "Ethereum fallback mechanism",
+                  link: "/developers/ethereum-fallback",
                 },
               ],
             },
             {
-              text: "Sovereign SDK",
-              link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",
+              text: "Sovereign",
+              collapsed: true,
+              items: [
+              {
+                text: "Dymension",
+                link: "https://dymension.xyz/",
+              },
+              { text: "Rollkit", link: "https://rollkit.dev" },
+              {
+                text: "Sovereign SDK",
+                link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",
+              },
+              {
+                text: "Vistara",
+                link: "https://docs.vistara.dev/",
+              },
+            ],
+            }
+          ],
+        },
+        {
+          text: "Posting data to Celestia",
+          collapsed: true,
+          items: [
+            {
+              text: "Submitting data blobs to Celestia",
+              link: "/developers/submit-data",
             },
             {
-              text: "Vistara",
-              link: "https://docs.vistara.dev/",
+              text: "Transaction resubmission guidelines",
+              link: "/developers/transaction-resubmission",
             },
             {
-              text: "Dymension",
-              link: "https://dymension.xyz/",
+              text: "Node API",
+              link: "/developers/node-api",
+              collapsed: true,
+              items: [
+                {
+                  text: "Node RPC CLI tutorial",
+                  link: "/developers/node-tutorial",
+                },
+                {
+                  text: "Celestia-node RPC API documentation",
+                  link: "https://node-rpc-docs.celestia.org/",
+                },
+                { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
+              ],
+            },
+          ]
+        },
+        {
+          text: "Integrate with Blobstream",
+          collapsed: true,
+          items: [
+            {
+              text: "Overview of Blobstream",
+              link: "/developers/blobstream",
+            },
+            {
+              text: "Integrate with Blobstream contracts",
+              link: "/developers/blobstream-contracts",
+            },
+            {
+              text: "Integrate with Blobstream client",
+              link: "/developers/blobstream-offchain",
+            },
+            {
+              text: "Querying the Blobstream proofs",
+              link: "/developers/blobstream-proof-queries",
+            },
+            {
+              text: "Local Blobstream X operators",
+              collapsed: true,
+              items: [
+                {
+                  text: "Requesting data commitment ranges",
+                  link: "/developers/requesting-data-commitment-ranges",
+                },
+                {
+                  text: "New Blobstream X deployments",
+                  link: "/developers/blobstream-x-deploy",
+                },
+              ],
             },
           ],
         },
