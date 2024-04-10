@@ -10,10 +10,7 @@ are for me!”
 You’ve come to the right place. This page will give you the rundown on modular
 blockchains and their benefits for developers like you.
 
-If you already know all this, [skip to the end](#building-on-celestia)
-to get straight into building.
-
-## Building on Celestia
+## Quickstart - Building on Celestia
 
 <script setup>
 import UrlImageButton from '../.vitepress/components/UrlImageButton.vue';

@@ -32,14 +32,14 @@ export default {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
-  background-color: var(--background-color);
+  background-color: var(--vp-c-brand-dimm);
   color: var(--text-color);
   width: 200px;
   height: 225px;
 }
 
 .url-image-button:hover {
-  box-shadow: 0 6px 14px rgba(256, 256, 256, 0.1);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
