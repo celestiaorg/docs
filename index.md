@@ -29,7 +29,7 @@ features:
     icon: 📈
   - title: Developers
     details: Create applications using your favorite VM or define your own. Build sovereign rollups, a new type of self-governing blockchain with minimal platform risk.
-    link: /developers/build-modular
+    link: /developers/build-whatever
     icon: ⚙️
   - title: Community
     details: Join the Celestia community to connect, collaborate, and contribute to the future of modular blockchains.

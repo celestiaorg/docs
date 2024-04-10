@@ -257,7 +257,7 @@ function nav() {
         { text: "Learn", link: "/learn/how-celestia-works/overview" },
         { text: "Networks", link: "/nodes/participate" },
         { text: "Nodes", link: "/nodes/overview" },
-        { text: "Developers", link: "/developers/build-modular" },
+        { text: "Developers", link: "/developers/build-whatever" },
         { text: "Community", link: "/community/overview" },
         {
           text: "Quick start",
@@ -506,7 +506,7 @@ function sidebarHome() {
       text: "Developers",
       collapsed: true,
       items: [
-        { text: "Build modular", link: "/developers/build-modular" },
+        { text: "Build whatever", link: "/developers/build-whatever" },
         {
           text: "Submitting data blobs to Celestia",
           link: "/developers/submit-data",

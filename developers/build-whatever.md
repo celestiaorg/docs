@@ -2,51 +2,56 @@
 description: Advantages of building on modular blockchains like Celestia.
 ---
 
-# Build modular
+# Build whatever
 
-“I’m a developer, and I want to know what the benefits of modular blockchains
-are for me!”
-
-You’ve come to the right place. This page will give you the rundown on modular
+If you're a developer and want to know what the benefits of modular blockchains
+are for you, you’ve come to the right place. This page will give you the rundown on modular
 blockchains and their benefits for developers like you.
 
 ## Quickstart - Building on Celestia
+
+### Choose a framework
 
 <script setup>
 import UrlImageButton from '../.vitepress/components/UrlImageButton.vue';
 </script>
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
-  <UrlImageButton url="/developers/intro-to-op-stack" imageSrc="/opstack.webp" text="OP Stack" target="_self"/>
-  <UrlImageButton url="/developers/arbitrum-integration" imageSrc="/arbitrum.webp" text="Arbitrum Orbit" target="_self"/>
-  <UrlImageButton url="/developers/build-modular" imageSrc="/polygon.webp" text="Polygon CDK" target="_self" notes="Coming soon"/>
-  <UrlImageButton url="https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup" imageSrc="/sovereign.webp" text="Sovereign SDK" target="_self"/>
-  <UrlImageButton url="https://dymension.xyz/" imageSrc="/dymension.webp" text="Dymension" target="_self"/>
-  <UrlImageButton url="https://rollkit.dev" imageSrc="/rollkit.webp" text="Rollkit" target="_self"/>
-</div>
-
 So, you’re ready to start experimenting and building on Celestia?
 Here are a few options that are currently available for developers.
 
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
+  <UrlImageButton url="/developers/intro-to-op-stack" imageSrc="/build/opstack.webp" text="OP Stack" notes="EVM" target="_self"/>
+  <UrlImageButton url="/developers/arbitrum-integration" imageSrc="/build/arbitrum.webp" text="Arbitrum Orbit" notes="EVM" target="_self"/>
+  <UrlImageButton url="/developers/build-whatever" imageSrc="/build/polygon.webp" text="Polygon CDK" target="_self" notes="EVM: Coming soon"/>
+  <UrlImageButton url="https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup" imageSrc="/build/sovereign.webp" text="Sovereign SDK" notes="Sovereign"/>
+  <UrlImageButton url="https://dymension.xyz/" imageSrc="/build/dymension.webp" text="Dymension"/>
+  <UrlImageButton url="https://rollkit.dev" imageSrc="/build/rollkit.webp" text="Rollkit" notes="Sovereign"/>
+</div>
+
+### Rollups-as-a-service
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; padding-top: 20px">
+  <UrlImageButton url="https://altlayer.io/raas/" imageSrc="/build/altlayer.webp" text="AltLayer" notes="Orbit, OP Stack, Polygon CDK"/>
+  <UrlImageButton url="https://www.astria.org/" imageSrc="/build/astria.webp" text="Astria"/>
+  <UrlImageButton url="https://www.caldera.xyz/" imageSrc="/build/caldera.webp" text="Caldera" notes="Orbit, OP Stack"/>
+  <UrlImageButton url="https://conduit.xyz/" imageSrc="/build/conduit.webp" text="Conduit" notes="Orbit, OP Stack"/>
+  <UrlImageButton url="https://gateway.fm/" imageSrc="/build/gateway.webp" text="Gateway" notes="Polygon CDK"/>
+  <UrlImageButton url="https://www.gelato.network/" imageSrc="/build/gelato.webp" text="Gelato" notes="Orbit, OP Stack, Polygon CDK"/>
+  <UrlImageButton url="https://www.karnot.xyz/" imageSrc="/build/karnot.webp" text="Karnot" notes="Starknet"/>
+  <UrlImageButton url="https://lumoz.org/" imageSrc="/build/lumoz.webp" text="Lumoz" notes="Polygon CDK"/>
+  <UrlImageButton url="https://snapchain.dev/" imageSrc="/build/snapchain.webp" text="Snapchain" notes="Polygon CDK"/>
+  <UrlImageButton url="https://docs.vistara.dev/" imageSrc="/build/vistara.webp" text="Vistara"/>
+  <UrlImageButton url="https://www.zeeve.io/" imageSrc="/build/zeeve.webp" text="Zeeve" notes="Orbit, OP Stack, Polygon CDK"/>
+</div>
+
 ### Smart contracts
 
-[Bubs testnet](https://bubstestnet.com/) is a dedicated EVM-compatible
-rollup that developers can use to test and deploy smart contract
-applications.
+Deploy your smart contracts on dedicated EVM-compatible rollups.
 
-### Sovereign rollups
-
-Developers can build applications on a sovereign rollup testnet
-on Celestia. [Rollkit](https://rollkit.dev/) and
-[Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup)
-provide frameworks for deploying sovereign rollup testnets
-on Celestia.
-
-### Rollups
-
-Developers can also build rollup testnets for their applications
-using [Dymension’s Rollapps](https://docs.dymension.xyz/) or
-[Optimism’s OP Stack](./intro-to-op-stack.md).
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; padding-top: 20px">
+  <UrlImageButton url="https://bubstestnet.com/" imageSrc="/build/caldera.webp" text="Bubs testnet" notes="OP Stack"/>
+  <UrlImageButton url="https://raas.gelato.network/rollups/details/public/opcelestia-raspberry" imageSrc="/build/gelato.webp" text="Raspberry testnet" notes="OP Stack"/>
+</div>
 
 ## What is a modular blockchain?
 
@@ -69,7 +74,9 @@ layer 1 blockchain to carry out the remaining functions.
 If you want to brush up on your understanding of modular blockchains,
 head over to [learn modular](https://celestia.org/learn/).
 
-## Ease of deploying a chain
+## Benefits of modular blockchains
+
+### Ease of deploying a chain
 
 One of the goals of modular blockchains is to make it as easy to deploy
 a blockchain as a smart contract. There are a few unique ways that
@@ -87,7 +94,7 @@ All in all, builders will be able to outsource as much of the stack as
 they need. Deploying a new blockchain will be as simple as clicking a
 few options to initialize a production-ready rollup.
 
-## Scaling
+### Scaling
 
 Of course, a much higher scale is necessary if we want to support
 many more users. And modular blockchains use some new innovative
@@ -116,7 +123,7 @@ All these scaling properties combined make new types of applications
 and features possible, like onchain gaming, dynamic metadata, and
 ephemeral rollups, to name a few.
 
-## Customizability
+### Customizability
 
 By design, modular blockchains don’t lock in any feature set.
 They promote experimentation and customization.
