@@ -3,6 +3,7 @@
     <button class="url-image-button">
       <img :src="imageSrc" alt="" class="button-icon" />
       <span class="button-text">{{ text }}</span>
+      <span class="notes-text" v-if="notes">{{ notes }}</span>
     </button>
   </a>
 </template>
@@ -14,6 +15,10 @@ export default {
     url: String,
     imageSrc: String,
     text: String,
+    notes: {
+      type: String,
+      default: ''
+    },
   },
 };
 </script>
@@ -52,4 +57,17 @@ export default {
   font-weight: 600;
   text-align: center;
 }
+
+.notes-text {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--text-color-secondary);
+}
+
+.button-link {
+  text-decoration: none;
+}
+
 </style>

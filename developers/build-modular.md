@@ -19,10 +19,10 @@ import UrlImageButton from '../.vitepress/components/UrlImageButton.vue';
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
   <UrlImageButton url="/developers/intro-to-op-stack" imageSrc="/opstack.webp" text="OP Stack" target="_self"/>
   <UrlImageButton url="/developers/arbitrum-integration" imageSrc="/arbitrum.webp" text="Arbitrum Orbit" target="_self"/>
-  <UrlImageButton url="/developers/optimism" imageSrc="/polygon.webp" text="Polygon CDK" target="_self"/>
-  <UrlImageButton url="/developers/optimism" imageSrc="/sovereign.webp" text="Sovereign SDK" target="_self"/>
-  <UrlImageButton url="/developers/optimism" imageSrc="/dymension.webp" text="Dymension" target="_self"/>
-  <UrlImageButton url="/developers/optimism" imageSrc="/rollkit.webp" text="Rollkit" target="_self"/>
+  <UrlImageButton url="/developers/build-modular" imageSrc="/polygon.webp" text="Polygon CDK" target="_self" notes="Coming soon"/>
+  <UrlImageButton url="https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup" imageSrc="/sovereign.webp" text="Sovereign SDK" target="_self"/>
+  <UrlImageButton url="https://dymension.xyz/" imageSrc="/dymension.webp" text="Dymension" target="_self"/>
+  <UrlImageButton url="https://rollkit.dev" imageSrc="/rollkit.webp" text="Rollkit" target="_self"/>
 </div>
 
 So, you’re ready to start experimenting and building on Celestia?
