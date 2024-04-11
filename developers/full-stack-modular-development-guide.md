@@ -23,7 +23,7 @@ cover how to build dapps on these newer, shared platforms.
 
 If you're interested in learning more about modular blockchains, or are new
 to the Celestia ecosystem, we recommend you read the
-[Build Modular page](./build-modular.md) first.
+[build whatever page](./build-whatever.md) first.
 
 ## Getting started
 
