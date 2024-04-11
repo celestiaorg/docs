@@ -636,7 +636,7 @@ function sidebarHome() {
               items: [
                 {
                   text: "Dymension",
-                  link: "https://dymension.xyz/",
+                  link: "https://docs.dymension.xyz/build/overview/",
                 },
               ]
             }
