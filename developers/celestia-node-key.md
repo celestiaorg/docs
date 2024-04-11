@@ -1,4 +1,5 @@
 ---
+
 description: Use the cel-key utility to generate a wallet on celestia-node.
 prev:
   text: "Rollkit"
