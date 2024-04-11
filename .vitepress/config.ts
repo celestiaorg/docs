@@ -594,7 +594,7 @@ function sidebarHome() {
                     },
                     {
                       text: "Audit",
-                      link: "https://docs.celestia.org/Celestia_OP_Stack_Audit.pdf",
+                      link: "https://docs.celestia.org/audits/Celestia_OP_Stack_Audit.pdf",
                     },
                     {
                       text: "Deploy a dapp with thirdweb",
@@ -695,7 +695,7 @@ function sidebarHome() {
               collapsed: true,
               items: [
                 {
-                  text: "Requesting data commitment ranges",
+                    text: "Requesting data commitment ranges",
                   link: "/developers/requesting-data-commitment-ranges",
                 },
                 {
@@ -704,6 +704,28 @@ function sidebarHome() {
                 },
               ],
             },
+            {
+              text: "Blobstream X audits",
+              collapsed: true,
+              items: [
+                {
+                  text: "Informal Systems",
+                  link: "https://docs.celestia.org/audits/Blobstream_X-Informal_Systems_Audit.pdf",
+                },
+                {
+                  text: "OtterSec",
+                  link: "https://docs.celestia.org/audits/Blobstream_X-OtterSec_Audit.pdf",
+                },
+                {
+                  text: "Veridise",
+                  link: "https://docs.celestia.org/audits/Blobstream_X-Veridise_Audit.pdf",
+                },
+                {
+                  text: "Zellic",
+                  link: "https://docs.celestia.org/audits/Blobstream_X-Zellic_Audit.pdf",
+                }
+              ],
+            }
           ],
         },
         {
