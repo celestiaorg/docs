@@ -53,7 +53,6 @@ Deploy your rollup with a RaaS provider.
   <UrlImageButton url="https://www.karnot.xyz/" imageSrc="/build/karnot.webp" text="Karnot" notes="Starknet"/>
   <UrlImageButton url="https://lumoz.org/" imageSrc="/build/lumoz.webp" text="Lumoz" notes="Polygon CDK"/>
   <UrlImageButton url="https://snapchain.dev/" imageSrc="/build/snapchain.webp" text="Snapchain" notes="Polygon CDK"/>
-  <UrlImageButton url="https://docs.vistara.dev/" imageSrc="/build/vistara.webp" text="Vistara"/>
   <UrlImageButton url="https://www.zeeve.io/" imageSrc="/build/zeeve.webp" text="Zeeve" notes="Orbit, OP Stack, Polygon CDK"/>
 </div>
 

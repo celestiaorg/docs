@@ -622,21 +622,23 @@ function sidebarHome() {
             {
               text: "Sovereign",
               collapsed: true,
+                items: [
+                { text: "Rollkit", link: "https://rollkit.dev" },
+                {
+                  text: "Sovereign SDK",
+                  link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",
+                },
+              ],
+            },
+            {
+              text: "Other",
+              collapsed: true,
               items: [
-              {
-                text: "Dymension",
-                link: "https://dymension.xyz/",
-              },
-              { text: "Rollkit", link: "https://rollkit.dev" },
-              {
-                text: "Sovereign SDK",
-                link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",
-              },
-              {
-                text: "Vistara",
-                link: "https://docs.vistara.dev/",
-              },
-            ],
+                {
+                  text: "Dymension",
+                  link: "https://dymension.xyz/",
+                },
+              ]
             }
           ],
         },
