@@ -37,4 +37,4 @@ Over time, two primary designs emerged for rollups:
 - Sovereign SDK
   - [Create a zk-rollup and run a full node using Sovereign SDK](https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup)
 - [Deploy a rollup with Vistara](https://docs.vistara.dev/)
-- [Build a rollapp with Dymension's Roller](https://docs.dymension.xyz/build/roller)
+- [Build a rollapp with Dymension's Roller](https://docs.dymension.xyz/build/overview/)
