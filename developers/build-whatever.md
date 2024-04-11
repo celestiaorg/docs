@@ -11,14 +11,6 @@ blockchains and their benefits for developers like you.
 This section provides various guides and tutorials that cover different
 options for deploying rollups on Celestia.
 
-## What is a rollup?
-
-A rollup is a type of blockchain that offloads some work to a layer 1, like
-Celestia. Rollups host applications and process user transactions. Once
-those transactions get processed, they are then published to layer 1.
-It’s layer 1s job to order those transactions and check that they are
-available, at minimum.
-
 ## Quickstart - Building on Celestia
 
 ### Choose a framework
@@ -65,6 +57,14 @@ Deploy your smart contracts on dedicated EVM-compatible rollups.
   <UrlImageButton url="https://bubstestnet.com/" imageSrc="/build/caldera.webp" text="Bubs testnet" notes="OP Stack" alt="Caldera logo" aria-label="Caldera Bubs testnet"/>
   <UrlImageButton url="https://raas.gelato.network/rollups/details/public/opcelestia-raspberry" imageSrc="/build/gelato.webp" text="Raspberry testnet" notes="OP Stack" alt="Gelato logo" aria-label="Gelato Raspberry testnet"/>
 </div>
+
+## What is a rollup?
+
+A rollup is a type of blockchain that offloads some work to a layer 1, like
+Celestia. Rollups host applications and process user transactions. Once
+those transactions get processed, they are then published to layer 1.
+It’s layer 1s job to order those transactions and check that they are
+available, at minimum.
 
 ## What is a modular blockchain?
 
