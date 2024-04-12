@@ -235,6 +235,13 @@ You can [find the status of these endpoints](https://celestia-tools.brightlystak
 
 #### Archival DA RPC endpoints
 
+By default, light nodes prune recent data to save on storage space. Archival
+Data Availability (DA) nodes store the entire history of the chain without
+pruning any data so all data available data is retrievable. You can read more
+about light vs archival nodes [here](../learn/retrievability.md).
+
+##### Grove Archival Endpoints
+
 You can [provision your own Celestia Archival endpoint on Grove](https://grove.city).
 [Learn more about Celestia on Grove](https://docs.grove.city/celestia-api/intro),
 or find [the fully supported spec](https://docs.grove.city/celestia-api/endpoints/celestia-archival).
