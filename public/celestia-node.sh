@@ -1,16 +1,15 @@
 #!/bin/bash
 
 # ASCII art
-echo "          __        __  _                       "
-echo " _______ / /__ ___ / /_(_)__ ________ ____  ___ "
-echo "/ __/ -_) / -_|_-</ __/ / _ \`/___/ _ \`/ _ \/ _ \\"
-echo "\\__/\\__/_/\\__/___/\\__/_/\\_,_/    \\_,_/ .__/ .__/"
-echo "                                    /_/  /_/    "
-echo ""
+echo "        _        _   _                       _     "
+echo " __ ___| |___ __| |_(_)__ _ ___ _ _  ___  __| |___ "
+echo "/ _/ -_) / -_|_-<  _| / _\` |___| ' \\/ _ \\/ _\` / -_)"
+echo "\\__\\___|_\\___/__/\__|_\\__,_|   |_||_\\___/\\__,_\\___|"
+echo "                                                    "
 
-# Declare a log file to capture detailed logs and a temp directory
-LOGFILE="$HOME/celestia-app-temp/logfile.log"
-TEMP_DIR="$HOME/celestia-app-temp"
+# Declare a log file and a temp directory
+LOGFILE="$HOME/celestia-node-temp/logfile.log"
+TEMP_DIR="$HOME/celestia-node-temp"
 
 # Check if the directory exists
 if [ -d "$TEMP_DIR" ]; then
@@ -35,7 +34,7 @@ cd "$TEMP_DIR"
 echo "Working from temporary directory: $TEMP_DIR" | tee -a "$LOGFILE"
 
 # Fetch the latest release tag from GitHub
-VERSION=$(curl -s "https://api.github.com/repos/celestiaorg/celestia-app/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+VERSION=$(curl -s "https://api.github.com/repos/celestiaorg/celestia-node/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
 # Check if VERSION is empty
 if [ -z "$VERSION" ]; then
@@ -76,10 +75,10 @@ esac
 
 # Construct the download URL
 PLATFORM="${OS}_${ARCH}"
-URL="https://github.com/celestiaorg/celestia-app/releases/download/$VERSION/celestia-app_$PLATFORM.tar.gz"
+URL="https://github.com/celestiaorg/celestia-node/releases/download/$VERSION/celestia-node_$PLATFORM.tar.gz"
 
 # Check if URL is valid
-if [[ ! $URL =~ ^https://github.com/celestiaorg/celestia-app/releases/download/[^/]+/celestia-app_[^/]+.tar.gz$ ]]; then
+if [[ ! $URL =~ ^https://github.com/celestiaorg/celestia-node/releases/download/[^/]+/celestia-node_[^/]+.tar.gz$ ]]; then
     echo "Invalid URL: $URL. Exiting." | tee -a "$LOGFILE"
     exit 1
 fi
@@ -95,19 +94,19 @@ fi
 
 # Detect if running on macOS and use appropriate command for checksum
 if [ "$OS" = "Darwin" ]; then
-    CALCULATED_CHECKSUM=$(shasum -a 256 "celestia-app_$PLATFORM.tar.gz" | awk '{print $1}')
+    CALCULATED_CHECKSUM=$(shasum -a 256 "celestia-node_$PLATFORM.tar.gz" | awk '{print $1}')
 else
-    CALCULATED_CHECKSUM=$(sha256sum "celestia-app_$PLATFORM.tar.gz" | awk '{print $1}')
+    CALCULATED_CHECKSUM=$(sha256sum "celestia-node_$PLATFORM.tar.gz" | awk '{print $1}')
 fi
 
 # Download checksums.txt
-if ! wget "https://github.com/celestiaorg/celestia-app/releases/download/$VERSION/checksums.txt" >> "$LOGFILE" 2>&1; then
+if ! wget "https://github.com/celestiaorg/celestia-node/releases/download/$VERSION/checksums.txt" >> "$LOGFILE" 2>&1; then
     echo "Failed to download checksums. Exiting." | tee -a "$LOGFILE"
     exit 1
 fi
 
 # Find the expected checksum in checksums.txt
-EXPECTED_CHECKSUM=$(grep "celestia-app_$PLATFORM.tar.gz" checksums.txt | awk '{print $1}')
+EXPECTED_CHECKSUM=$(grep "celestia-node_$PLATFORM.tar.gz" checksums.txt | awk '{print $1}')
 
 # Verify the checksum
 if [ "$CALCULATED_CHECKSUM" != "$EXPECTED_CHECKSUM" ]; then
@@ -118,7 +117,7 @@ else
 fi
 
 # Extract the tarball to the temporary directory
-if ! tar -xzf "celestia-app_$PLATFORM.tar.gz" >> "$LOGFILE" 2>&1; then
+if ! tar -xzf "celestia-node_$PLATFORM.tar.gz" >> "$LOGFILE" 2>&1; then
     echo "Extraction failed. Exiting." | tee -a "$LOGFILE"
     exit 1
 fi
@@ -127,7 +126,7 @@ fi
 echo "Binary extracted to: $TEMP_DIR" | tee -a "$LOGFILE"
 
 # Remove the tarball to clean up
-rm "celestia-app_$PLATFORM.tar.gz"
+rm "celestia-node_$PLATFORM.tar.gz"
 
 # Log and print a message
 echo "Temporary files cleaned up." | tee -a "$LOGFILE"
@@ -137,24 +136,24 @@ read -p "Do you want to move the binary to /usr/local/bin? This will require sud
 echo    # move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    sudo mv "$TEMP_DIR/celestia-appd" /usr/local/bin/
+    sudo mv "$TEMP_DIR/celestia" /usr/local/bin/
     echo "Binary moved to /usr/local/bin" | tee -a "$LOGFILE"
     # Create a symbolic link in the temporary directory
-    ln -s /usr/local/bin/celestia-appd "$TEMP_DIR/celestia-appd"
+    ln -s /usr/local/bin/celestia "$TEMP_DIR/celestia"
     echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
     echo ""
-    echo "You can now run celestia-appd from anywhere." | tee -a "$LOGFILE"
+    echo "You can now run celestia from anywhere." | tee -a "$LOGFILE"
     echo ""
     echo "To check its version and see the menu, execute the following command:" | tee -a "$LOGFILE"
     echo ""
-    echo "celestia-appd version && celestia-appd --help" | tee -a "$LOGFILE"
+    echo "celestia version && celestia --help" | tee -a "$LOGFILE"
 else
     echo ""
-    echo "You can navigate to $TEMP_DIR to find and run celestia-appd." | tee -a "$LOGFILE"
+    echo "You can navigate to $TEMP_DIR to find and run celestia." | tee -a "$LOGFILE"
     echo ""
     echo "To check its version and see the menu, execute the following commands:" | tee -a "$LOGFILE"
     echo ""
     echo "cd $TEMP_DIR" | tee -a "$LOGFILE"
-    echo "chmod +x celestia-appd" | tee -a "$LOGFILE"
-    echo "./celestia-appd version && ./celestia-appd --help" | tee -a "$LOGFILE"
+    echo "chmod +x celestia" | tee -a "$LOGFILE"
+    echo "./celestia version && ./celestia --help" | tee -a "$LOGFILE"
 fi
