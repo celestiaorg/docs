@@ -1,26 +1,26 @@
 <!-- markdownlint-disable MD033 -->
 
-# Mainnet
+# Mainnet Beta
 
 <script setup>
 import MainnetVersionTags from '../.vitepress/components/MainnetVersionTags.vue'
 import MainnetBetaDetails from '../.vitepress/components/MainnetBetaDetails.vue'
 </script>
 
-![Mainnet](/img/Mainnet-Beta.png)
+![Mainnet Beta](/img/Mainnet-Beta.png)
 
-Welcome to the guide for Celestia’s Mainnet, the production
+Welcome to the guide for Celestia’s Mainnet Beta, the production
 network that marks the pinnacle of Celestia’s evolution since its
 inception in 2019. This network is where all components of the
 Celestia ecosystem come to life in a real-world environment.
 
-Mainnet is the culmination of rigorous community testing,
+Mainnet Beta is the culmination of rigorous community testing,
 upgrades, and feedback. It serves as the platform for deploying
 mainnet rollups and applications.
 
 ## Network stability and upgrades
 
-Mainnet is a stable network, but will still receive updates and
+Mainnet Beta is a stable network, but will still receive updates and
 improvements. Any changes or upgrades will be coordinated with node
 operators and the broader Celestia community to ensure seamless
 integration and minimal service interruptions.
@@ -84,7 +84,7 @@ block to vary.
 
 ## Integrations
 
-This guide contains the relevant sections for how to connect to Mainnet,
+This guide contains the relevant sections for how to connect to Mainnet Beta,
 depending on the type of node you are running. Your best approach to
 participating is to first determine which node you would like to run. Each
 node’s guide will link to the relevant network in order to show you how
@@ -92,7 +92,7 @@ to connect to them. Learn about the different endpoint types
 [in the Cosmos SDK documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest).
 
 Here is a list of options of the types of nodes you can run in order
-to participate in Mainnet:
+to participate in Mainnet Beta:
 
 ### Consensus nodes
 
@@ -208,7 +208,7 @@ Find [an archive endpoint on the community dashboard](https://celestia-tools.bri
 or run your own full consensus node with no pruning for your bridge node.
 :::
 
-RPCs for DA nodes to initialise or start your celestia-node to Mainnet with:
+RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with:
 
 - `public-celestia-consensus.numia.xyz`
   - gRPC: port 9090
@@ -235,17 +235,17 @@ You can [find the status of these endpoints](https://celestia-tools.brightlystak
 
 #### Archival DA RPC endpoints
 
-You can provision your own Celestia Archival endpoint on [Grove](https://grove.city).
-Learn more about Celestia on Grove [here](https://docs.grove.city/celestia-api/intro),
-or find the fully supported spec [here](https://docs.grove.city/celestia-api/endpoints/celestia-archival).
+You can [provision your own Celestia Archival endpoint on Grove](https://grove.city).
+[Learn more about Celestia on Grove](https://docs.grove.city/celestia-api/intro),
+or find [the fully supported spec](https://docs.grove.city/celestia-api/endpoints/celestia-archival).
 
-There is a sandbox you can leverage fo testing straight in your browser:
+There is a sandbox you can leverage for testing straight in your browser:
 
 <img src="https://github.com/celestiaorg/docs/assets/1892194/f6933aba-1fb2-4e02-a3c8-af02d7db3f21" width="600" height="600" alt="sandbox">
 
 ## Explorers
 
-There are multiple explorers you can use for Mainnet:
+There are multiple explorers you can use for Mainnet Beta:
 
 - [https://celenium.io](https://celenium.io)
 - [https://celestia.explorers.guru](https://celestia.explorers.guru)
