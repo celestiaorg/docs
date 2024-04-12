@@ -31,7 +31,7 @@ touch "$LOGFILE"
 echo "Log file is located at: $LOGFILE" | tee -a "$LOGFILE"
 
 # Change to $TEMP_DIR and print a message
-cd "$TEMP_DIR"
+cd "$TEMP_DIR" || exit 1
 echo "Working from temporary directory: $TEMP_DIR" | tee -a "$LOGFILE"
 
 # Fetch the latest release tag from GitHub
