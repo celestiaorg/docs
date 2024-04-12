@@ -14,7 +14,7 @@ import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 
 ## Installing from source
 
-This tutorial goes over building and installing celestia-node. This
+This section goes over building and installing celestia-node. This
 tutorial assumes you completed the steps in
 [setting up your development environment](./environment.md).
 
