@@ -241,7 +241,10 @@ or find [the fully supported spec](https://docs.grove.city/celestia-api/endpoint
 
 There is a sandbox you can leverage for testing straight in your browser:
 
-<img src="https://github.com/celestiaorg/docs/assets/1892194/f6933aba-1fb2-4e02-a3c8-af02d7db3f21" width="600" height="600" alt="sandbox">
+<img src="https://github.com/celestiaorg/docs/assets/1892194/f6933aba-1fb2-4e02-a3c8-af02d7db3f21"
+     width="600"
+     height="600"
+     alt="sandbox">
 
 ## Explorers
 
