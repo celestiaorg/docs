@@ -743,7 +743,7 @@ contract events. Check below for an example. And `height` being the Celestia
 Block height that contains the rollup data, along with the `blockDataRoot` being
 the data root of the block height. Finally, `dataRootInclusionProof` is the
 Celestia block data root inclusion proof to the data root tuple root that
-was queried in the begining of this page.
+was queried at the beginning of this page.
 
 If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 
