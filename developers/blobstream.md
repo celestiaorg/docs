@@ -113,7 +113,7 @@ every 4 hours.
 Custom ranges can be requested using the `BlobstreamX` contract
 to create proofs for specific Celestia block batches. These ranges
 can be constructed as `[latestBlock, customTargetBlock)`, with
-`latestBlock` is the latest block height that was committed to by the
+`latestBlock` as the latest block height that was committed to by the
 `BlobstreamX` contract, and `latestBlock > customTargetBlock`,
 and `customTargetBlock - latestBlock <= DATA_COMMITMENT_MAX`.
 

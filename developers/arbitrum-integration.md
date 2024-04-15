@@ -34,7 +34,7 @@ The Arbitrum Nitro code has a `DataAvailabilityProvider` interface that is used 
 
 This integration implements the [`DataAvailabilityProvider` interface for Celestia DA](https://github.com/celestiaorg/nitro/blob/966e631f1a03b49d49f25bea67a92b275d3bacb9/arbstate/inbox.go#L366-L477)
 
-Additionally, this integrations comes with
+Additionally, this integration comes with
 [the necessary code for a Nitro chain node to post and retrieve data from Celestia](https://github.com/celestiaorg/nitro/tree/v2.3.1-rc.1/das/celestia).
 
 The core logic behind posting and retrieving data happens in [celestia.go](https://github.com/celestiaorg/nitro/blob/v2.3.1-rc.1/das/celestia/celestia.go) where data is stored on Celestia and serialized into a small batch of data that gets published once the necessary range of headers (data roots) has been relayed to the [BlobstreamX contract](https://github.com/succinctlabs/blobstreamx).
@@ -51,7 +51,7 @@ The following represents a non-exhaustive list of considerations when running a 
 
 ### Preimage Oracle Implementation
 
-In order to support fraud proofs, this integration has the necessary code for a Nitro validator to pupolate its preimage mapping with Celestia hashes that then get "unpealed" in order to reveal the full data for a Blob. You can
+In order to support fraud proofs, this integration has the necessary code for a Nitro validator to populate its preimage mapping with Celestia hashes that then get "unpealed" in order to reveal the full data for a Blob. You can
 [read more about the "Hash Oracle Trick"](https://docs.arbitrum.io/inside-arbitrum-nitro/#readpreimage-and-the-hash-oracle-trick).
 
 The data structures and hashing functions for this can be found in the [`nitro/das/celestia/tree` folder](https://github.com/celestiaorg/nitro/tree/v2.3.1-rc.1/das/celestia/tree)

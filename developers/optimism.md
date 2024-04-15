@@ -65,7 +65,7 @@ If it is not synced, you will run into
 
 Visit the [Arabica](../nodes/arabica-devnet.md)
 or [Mocha](../nodes/mocha-testnet.md) pages to
-to visit their faucets.
+visit their faucets.
 
 In order to mount existing data, you must have a node store that is
 in this directory:

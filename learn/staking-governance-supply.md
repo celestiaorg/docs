@@ -63,8 +63,7 @@ receives 2% of all Celestia block rewards. TIA stakers may vote to fund
 ecosystem initiatives as in many other Cosmos SDK chains.
 
 Learn how to
-[submit a governance proposal to spend community pool funds](../nodes/celestia-app-commands.md#community-pool)
-.
+[submit a governance proposal to spend community pool funds](../nodes/celestia-app-commands.md#community-pool).
 
 ## TIA allocation at genesis
 

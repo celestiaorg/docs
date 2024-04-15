@@ -104,7 +104,7 @@ script and running it where the light node is in your localhost.
 
 ### Node API authentication key
 
-In the same machine as where you Celestia light node is running, run the following:
+On the same machine where your Celestia light node is running, run the following:
 
 ```sh
 export AUTH_TOKEN=$(celestia $NODETYPE auth $AUTHTYPE)
@@ -121,7 +121,7 @@ This will be used for the env var file we setup later.
 ### OpenAI key
 
 Make sure to [go over to OpenAI](https://openai.com/) in
-order to sign up to an account and generate an OpenAI API key.
+order to sign up for an account and generate an OpenAI API key.
 The key will be needed to communicate with OpenAI.
 
 ## Building the Prompt Scavenger

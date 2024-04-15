@@ -70,7 +70,7 @@ for your rollup:
 ### Step 1: Choose an amount to withdraw from your rollup
 
 **(1a)** In the [Arbitrum Bridge UI](https://bridge.arbitrum.io/),
-chooose your origin chain to your **Arbitrum L3 Rollup** and
+choose your origin chain to your **Arbitrum L3 Rollup** and
 the destination chain as **Arbitrum Sepolia**.
 
 ![bridge-out-small-screenshot](/arbitrum/bridge-out-small-screenshot.png)
@@ -118,6 +118,6 @@ of the transaction:
 **(2b)** Approve the transaction in your wallet.
 
 **(2c)** After your transaction goes through, you can see the details
-in the bridge UI under **Settled transctions**:
+in the bridge UI under **Settled transactions**:
 
 ![bridge-out-claim-success-withdrawal](/arbitrum/bridge-out-claim-success-withdrawal.png)
