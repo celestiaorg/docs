@@ -115,7 +115,7 @@ The default port is 1317.
 - [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
 - [https://api-mocha-full.avril14th.org](https://api-mocha-full.avril14th.org)
 - [https://api.mocha.bitszn.com ](https://api.mocha.bitszn.com)
-- [https:/celestia-t-api.noders.services](https://celestia-t-api.noders.services)
+- [https://celestia-t-api.noders.services](https://celestia-t-api.noders.services)
 
 ## gRPC endpoints
 
