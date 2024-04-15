@@ -71,7 +71,7 @@ This portal offers the following options:
 3. AnyTrust: Transaction data is posted by a Data Availability Committee
 
 Connect your wallet to the deployment portal. You may be prompted to
-add the Arbitrum Sepolia network to your wallet and/or switch to your
+add the Arbitrum Sepolia network to your wallet and/or switch your
 wallet to this network; approve this.
 
 In this guide, we will select **Celestia ✨** and deploy a rollup
@@ -385,7 +385,7 @@ Transaction complete, rollup owner removed from chain owners on TX: 0x0198507322
 ```
 <!-- markdownlint-enable MD013 -->
 
-Find your PFB on Celenium by looking at the namespace or account you psted from.
+Find your PFB on Celenium by looking at the namespace or account you posted from.
 
 See an [example blob that was posted while making this guide](https://mocha.celenium.io/tx/63e902dd25e7919d4f32f6ae193acc8437dad754b549a15af7ae68e6969c1d0f).
 

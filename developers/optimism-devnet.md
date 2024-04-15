@@ -267,7 +267,7 @@ it replaces the calldata with a blob identifier and sends the
 transaction with this data. If it cannot be published to Celestia,
 it falls back to Ethereum without any change to the transaction.
 
-The blob identifier starts with the special prefix `0xce`, which was chosen a
+The blob identifier starts with the special prefix `0xce`, which was chosen as a
 mnemonic for Celestia, and indicates that the remaining data has to
 interpreted as a little-endian encoded Block Height (8 bytes) and
 Blob Commitment (32 bytes). The combination of these can later be used to
