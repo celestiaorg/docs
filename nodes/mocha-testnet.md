@@ -93,7 +93,7 @@ Celestia network. The default port is 26657.
 - `rpc-mocha-4.spidey.services`
 - `rpc-mocha-full.avril14th.org`
 - `rpc.mocha.bitszn.com`
-- `https://celestia-t-rpc.noders.services/`
+- `celestia-t-rpc.noders.services/`
 
 ## API endpoints
 
