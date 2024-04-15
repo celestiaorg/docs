@@ -237,8 +237,8 @@ You can [find the status of these endpoints](https://celestia-tools.brightlystak
 
 By default, light nodes prune recent data to save on storage space. Archival
 data availability (DA) nodes store the entire history of the chain without
-pruning any data so all data available data is retrievable. You can read more
-about light vs archival nodes [here](../learn/retrievability.md).
+pruning any data so all data available data is retrievable. You can
+[read more about light vs archival nodes](../learn/retrievability.md).
 
 ##### Grove archival endpoints
 
