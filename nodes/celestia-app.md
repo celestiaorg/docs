@@ -80,7 +80,7 @@ The steps below will download a binary file named `celestia-appd`.
 Depending on the setup that you choose during installation, the `celestia-appd`
 binary will be available at either:
 
-- `$HOME/celestia-temp/celestia-appd`
+- `$HOME/celestia-app-temp/celestia-appd`
 - `/usr/local/bin/celestia-appd`
 
 Pre-built binaries are available for:

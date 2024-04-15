@@ -12,7 +12,9 @@ import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 </script>
 
-This tutorial goes over building and installing celestia-node. This
+## Installing from source
+
+This section goes over building and installing celestia-node. This
 tutorial assumes you completed the steps in
 [setting up your development environment](./environment.md).
 
@@ -91,6 +93,39 @@ commands:
 
 The output will show the semantic version of celestia-node,
 commit hash, build date, system version, and Golang version.
+
+## Installing a pre-built binary
+
+Installing a pre-built binary is the fastest way to get started with your
+Celestia data availability node. Releases after celestia-node v0.13.3 should have
+these binaries available.
+
+The steps below will download a binary file named `celestia`.
+Depending on the setup that you choose during installation, the `celestia`
+binary will be available at either:
+
+- `$HOME/celestia-node-temp/celestia`
+- `/usr/local/bin/celestia`
+
+Pre-built binaries are available for:
+
+- Operating systems: Darwin (Apple), Linux
+- Architectures: x86_64 (amd64), arm64
+
+To install the latest pre-built binary you can run this command in your
+terminal:
+
+```bash
+bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)"
+```
+
+Follow the instructions in the terminal output to choose your installation
+preferences.
+
+You will see an output with the menu for `celestia`.
+
+View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-node.sh)
+to learn more about what it is doing.
 
 ## Next steps
 
