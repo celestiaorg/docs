@@ -124,6 +124,7 @@ to participate in Mainnet Beta:
 - `celestia-rpc.f5nodes.com`
 - `celestia-rpc.chainode.tech:33373`
 - `https://rpc-celestia.staker.space/`
+- `https://celestia-rpc.noders.services/`
 
 #### API endpoints
 
@@ -149,6 +150,7 @@ to participate in Mainnet Beta:
 - `celestia-api.f5nodes.com`
 - `https://celestia-api.chainode.tech`
 - `https://api-celestia.staker.space/`
+- `https://celestia-api.noders.services/`
 
 #### gRPC endpoints
 
@@ -173,6 +175,7 @@ to participate in Mainnet Beta:
 - `celestia-grpc.f5nodes.com:9390`
 - `celestia-grpc.chainode.tech:443`
 - `https://grpc-celestia.staker.space/`
+- `celestia-grpc.noders.services:11090`
 
 #### WebSocket endpoints
 
