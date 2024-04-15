@@ -248,7 +248,7 @@ or find [the fully supported spec](https://docs.grove.city/celestia-api/endpoint
 
 There is a sandbox you can leverage for testing straight in your browser:
 
-![grove-sandbox](../public/grove/grove-sandbox.png)
+![grove-sandbox](/grove/grove-sandbox.png)
 
 ## Explorers
 
