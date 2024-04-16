@@ -307,10 +307,12 @@ won't be a way to prove they're invalid.
 
 The second difference is the proof types.
 In the case of a fraud proof, the proofs outlined in the
-[proofs details](#proof-details) section would need to be verified to be sure
+[proofs details of share commitment](#proof-details-of-share-commitment)
+section would need to be verified to be sure
 that the share containing the invalid state transition is part of the rollup data.
 Alternatively, the rollup settlement contract would need to have a library to
-parse protobuf encoded PFBs, as explained in the [compact proofs](#compact-proofs)
+parse protobuf encoded PFBs, as explained in the
+[compact proofs of share commitment](#compact-proofs-of-share-commitment)
 section, to have less expensive proofs.
 The cost of parsing the protobuf is not included in this analysis and needs to be
 investigated separately.
@@ -347,7 +349,7 @@ will need to verify the following:
 2. Verify that the sequence of spans is
 [valid](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md),
 i.e., is part of the Celestia block referenced by its height, as described in
-the [proof details](#proof-details-1) section.
+the [proof details](#proof-details-of-sequence-of-spans) section.
 3. Zk-proof of the rollup data to the data root.
    The verification process of this should accept a commitment as input so that
    the settlement contract makes sure it's the correct value that's being saved.
@@ -386,7 +388,7 @@ And the verification would proceed as follows:
 
 1. Zk-proof of the state transitions, which is left to the rollup team to define.
 2. Verify that the share commitment is valid using the proofs laid out in the
-[share commitment proof details](#proof-details) section.
+[proof details of share commitment](#proof-details-of-share-commitment) section.
 3. The zk-proof verifier would take as argument the data root and the share commitment.
    Then, inside the circuit, the protobuf encoded PFB transaction will be
    deserialized and then verify the following:
@@ -408,23 +410,24 @@ None
 which is not straightforward to have.
   Also, the relative costs will need to be investigated.
 
-#### Heavy merkle proofs usage
+### Heavy merkle proofs usage
 
 Similar to [Protobuf deserialization inside a zk-circuit](#protobuf-deserialization-inside-a-zk-circuit),
 the zk-circuit will proceed to the verification of the availability of the data.
 The difference is that instead of parsing the encoded protobuf, the proofs
-defined under the [share commitment proof details](#proof-details)
+defined under the [share commitment proof details](#proof-details-of-share-commitment)
 section will need to be verified inside the zk-circuit as follows:
 
 1. Zk-proof of the state transitions, which is left to the rollup team to define.
 2. Verify that the share commitment is valid using the proofs laid out in the
-[share commitment proof details](#proof-details) section.
+[share commitment proof details](#proof-details-of-share-commitment) section.
 3. The zk-proof verifier would take as argument the data root and the share commitment.
    Then, inside the circuit:
 
 - It will verify that the input share commitment corresponds to the rollup data.
 - Verify that the input data root commits to that share commitment.
-    Check the [share commitment proof details](#proof-details) for more details
+    Check the [share commitment proof details](#proof-details-of-share-commitment)
+    for more details
 
 Once these proofs are valid, the rollup settlement contract can be sure that the
 rollup data was posted to Celestia and is correctly referenced.
