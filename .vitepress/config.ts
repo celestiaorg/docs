@@ -631,6 +631,10 @@ function sidebarHome() {
               ],
             },
             {
+              text: "Blobstream rollups",
+              link: "/developers/blobstream-rollups",
+            },
+            {
               text: "Other",
               collapsed: true,
               items: [
