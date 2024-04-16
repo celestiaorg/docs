@@ -23,7 +23,7 @@ is a commitment over the data contained in the
 This commitment allows
 [proving that the corresponding data exists on Celestia efficiently](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-011-optimistic-blob-size-independent-inclusion-proofs-and-pfb-fraud-proofs.md).
 
-#### Proof details
+#### Proof details of share commitment
 
 To prove that the data corresponding to a share commitment was posted to
 Celestia using Blobstream, the following proofs need to be verified:
@@ -59,7 +59,7 @@ It still needs tooling to generate the proofs on the node side, and verifying
 them on the Solidity side which will be built in the upcoming months.
 :::
 
-#### Compact proofs
+#### Compact proofs of share commitment
 
 There is a way to have compact proofs, when using share commitments,
 unlike the ones defined above; that allow less costly inclusion proofs.
@@ -80,7 +80,7 @@ These proofs will work as follows:
 More details on compact proofs can be found in
 [ADR-011](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-011-optimistic-blob-size-independent-inclusion-proofs-and-pfb-fraud-proofs.md).
 
-#### Pros
+#### Pros of share commitment
 
 The pros of referencing rollup data using a share commitment:
 
@@ -89,7 +89,7 @@ another way of referencing the rollup data.
 - If the team has access to protobuf parsing, it allows for compact proof,
 but the parsing costs need to be investigated.
 
-#### Cons
+#### Cons of share commitment
 
 - Large/expensive proofs in the case of having no way to parse the protobuf
 PFB encoding.
@@ -129,7 +129,7 @@ For simplicity, we will stick with the data only submitted to a single
 Celestia block.
 :::
 
-#### Proof details
+#### Proof details of sequence of spans
 
 Using sequence of spans is different from using the share commitment
 because we're referencing a location in the square, and not actual data
@@ -184,55 +184,55 @@ In fact, proving that a share is part of the sequence of spans, i.e.,
 part of the rollup data is done as follows:
 
 1. Prove that the data root tuple is committed to by the Blobstream
-smart contract:
+    smart contract:
 
-To prove the data root is committed to by the Blobstream smart contract,
-we will need to provide a Merkle proof of the data root tuple to a data
-root tuple root. This can be created using the
-[`data_root_inclusion_proof`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L492-L511) query.
-More on this can be found in the
-[data root inclusion proofs documentation](https://docs.celestia.org/developers/blobstream-proof-queries#_1-data-root-inclusion-proof).
+    To prove the data root is committed to by the Blobstream smart contract,
+    we will need to provide a Merkle proof of the data root tuple to a data
+    root tuple root. This can be created using the
+    [`data_root_inclusion_proof`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L492-L511)
+    query. More on this can be found in the
+    [data root inclusion proofs documentation](https://docs.celestia.org/developers/blobstream-proof-queries#_1-data-root-inclusion-proof).
 
 2. Verify inclusion proof of the data to Celestia data root:
 
-To prove that the data is part of the data root, we will need to provide
-two proofs: a namespace Merkle proof of the data to a row root.
-This could be done via proving the shares that contain the data to the
-row root using a namespace Merkle proof.
-And, a binary Merkle proof of the row root to the data root.
+    To prove that the data is part of the data root, we will need to provide
+    two proofs: a namespace Merkle proof of the data to a row root.
+    This could be done via proving the shares that contain the data to the
+    row root using a namespace Merkle proof.
+    And, a binary Merkle proof of the row root to the data root.
 
-These proofs can be generated using the
-[`ProveShares`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L526-L543)
-query.
+    These proofs can be generated using the
+    [`ProveShares`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L526-L543)
+    query.
 
-More details on these proofs can be found in the transaction inclusion proof
-[documentation](https://docs.celestia.org/developers/blobstream-proof-queries#_2-transaction-inclusion-proof).
+    More details on these proofs can be found in the transaction inclusion proof
+    [documentation](https://docs.celestia.org/developers/blobstream-proof-queries#_2-transaction-inclusion-proof).
 
 3. Prove that the data is in the sequence spans:
 
-To prove that the data is part of the rollup sequence of spans, we take
-the authenticated share proofs in step (2) and use the shares begin/end
-key to define the shares' positions in the row.
+    To prove that the data is part of the rollup sequence of spans, we take
+    the authenticated share proofs in step (2) and use the shares begin/end
+    key to define the shares' positions in the row.
 
-Then, we use the row proof to get the row index in the extended Celestia
-square and get the index of the share in row major order:
+    Then, we use the row proof to get the row index in the extended Celestia
+    square and get the index of the share in row major order:
 
-<!-- markdownlint-disable MD013 -->
-```solidity
-uint256 shareIndexInRow = shareProof.shareProofs[0].beginKey;
-uint256 shareIndexInRowMajorOrder = shareIndexInRow + shareProof.rowProofs[0].numLeaves * shareProof.rowProofs[0].key;
-```
-<!-- markdownlint-enable MD013 -->
+    <!-- markdownlint-disable MD013 -->
+    ```solidity
+    uint256 shareIndexInRow = shareProof.shareProofs[0].beginKey;
+    uint256 shareIndexInRowMajorOrder = shareIndexInRow + shareProof.rowProofs[0].numLeaves * shareProof.rowProofs[0].key;
+    ```
+    <!-- markdownlint-enable MD013 -->
 
 Finally, we can compare the computed index with the sequence of
 spans, and be sure that the data/shares is part of the rollup data.
 
-#### Pros
+#### Pros of sequence of spans
 
 - Using a sequence of spans instead of the share commitment allows for
 simpler proofs
 
-#### Cons
+#### Cons of sequence of spans
 
 None
 
@@ -267,7 +267,7 @@ to define), goes back to the following cases:
   - Parsing that data and verifying the invalid state transition: this is the
   rollup logic fraud proofs, and it's left to the rollup to define.
 
-#### Pros
+#### Pros of optimistic rollups
 
 - Not needing to verify anything at the moment of submitting the commitments to
 the rollup settlement contracts
@@ -276,7 +276,7 @@ example, a single transaction in the rollup data that was posted to Celestia is
 faulty, only the shares containing that transaction, which can be as minimal as
 a single share, need to be proven on chain and verified.
 
-#### Cons
+#### Cons of optimistic rollups
 
 None
 
@@ -315,12 +315,12 @@ section, to have less expensive proofs.
 The cost of parsing the protobuf is not included in this analysis and needs to be
 investigated separately.
 
-#### Pros
+#### Pros of optimistic rollups that use share commitments
 
 - Using the same share commitment as the one saved in Celestia which gives
 access to existing tooling
 
-#### Cons
+#### Cons of optimistic rollups that use share commitments
 
 - The proofs are expensive in the base case.
   And if the settlement contract is able to parse the PFBs, thorough
@@ -361,14 +361,14 @@ the [proof details](#proof-details-1) section.
 Once these are valid, the settlement contract can be sure that the rollup data
 was posted to Celestia, and the sequence of spans references it correctly.
 
-#### Pros
+#### Pros of zk-rollups
 
 - The inclusion proof inside the zk-circuit is a simple proof that uses
 traditional merkle tree.
   In the case of using share commitment, as will be explained below, additional
   libraries that can be expensive to prove are required.
 
-#### Cons
+#### Cons of zk-rollups
 
 None
 
@@ -398,11 +398,11 @@ that the data root is the same as the one provided as input.
 If the above conditions are valid, the rollup settlement contract can be sure
 that the rollup data was posted to Celestia and is correctly referenced.
 
-#### Pros
+#### Pros of zk-rollups that use share commitments
 
 None
 
-#### Cons
+#### Cons of zk-rollups that use share commitments
 
 - This approach requires having access to a protobuf decoder inside a zk-circuit
 which is not straightforward to have.
@@ -429,11 +429,11 @@ section will need to be verified inside the zk-circuit as follows:
 Once these proofs are valid, the rollup settlement contract can be sure that the
 rollup data was posted to Celestia and is correctly referenced.
 
-#### Pros
+#### Pros of heavy merkle proofs usage
 
 None
 
-#### Cons
+#### Cons of heavy merkle proofs usage
 
 - More heavy usage of merkle proofs inside and outside the zk-circuit.
 
