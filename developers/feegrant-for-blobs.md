@@ -24,17 +24,27 @@ account. You will need one account that will contain the funds and another
 account that will be in the DA node. You will see the DA node's account
 once you initialize the node.
 
-## Granting fee allowances
+## Granting fee allowances using celestia-appd
 
 To grant fee allowances, allowing a third-party (granter) account to pay
 for the fees incurred by a Celestia data availability node (grantee)
-account, use the following command:
+account, use the following commands.
+
+Set your account addresses for grantee and granter, and
+the RPC URL:
+
+```bash
+export GRANTER_ADDRESS=<your-granter-account-address>
+export GRANTEE_ADDRESS=<your-grantee-account-address>
+export RPC_URL=https://rpc.celestia-mocha.com:443
+```
+
+Then, send the feegrant transaction:
 
 ```bash
 celestia-appd tx feegrant grant \
-  [granter_address] [grantee_address] \
-  --home [path_to_granter] \
-  --node [rpc_endpoint] \
+  $GRANTER_ADDRESS $GRANTEE_ADDRESS \
+  --node $RPC_URL \
   --spend-limit 1000000utia \
   --allowed-messages "/cosmos.bank.v1beta1.MsgSend,/celestia.blob.v1.MsgPayForBlobs" \
   --chain-id mocha-4 \
@@ -46,6 +56,47 @@ celestia-appd tx feegrant grant \
 
 Example:
 [FeeGrant transaction on Mocha](https://mocha.celenium.io/tx/802a17777fbeab416f6fa2c25f0c56dd9cc8a92afc2a96293d114ac7c22efb5c)
+
+## Granting fee allowances using celestia-node
+
+**WIP**
+
+Notes
+
+- using node you now can easily give permission for other nodes to submit transactions on
+your behalf(I mean your node will pay fees for these txs)
+- you can revoke the grant as well
+- The node that receives the grant has to run a node with
+`--granter.address=celestia1v96seg23ehfhfjwk0wcy3s5y0krptt284vh236` to use
+granting functionality.
+
+The granter address will be stored until the next run of your local node.
+So, in case the granter revokes permission, you will have to restart the
+node without this flag. I guess, important to know that such transactions
+(with granter) will consume more gas than the regular ones.
+
+This PR also added a `gasMultiplier`, for the transactions with the Options.
+Not sure if is it relevant for docs or not.
+I’ve also added a specific error for the case when you run your node as a
+grantee, but the granter revokes his permission. In this case, your tx will
+be failed with an error:
+granter has revoked the grant . This will mean that you have to restart the
+node w/o a flag.
+
+```bash
+# to grant permission, you’ll have to execute:
+celestia state grant-fee celestia12psg90lwvxdktnqerr2p5mxuw2v3je497uv6tj 2000 1000000
+```
+
+```bash
+# revoke
+celestia state revoke-grant-fee celestia12psg90lwvxdktnqerr2p5mxuw2v3je497uv6tj 2000 1000000
+```
+
+```bash
+# run in grantee mode
+celestia full start --core.ip full.consensus.mocha-4.celestia-mocha.com --p2p.network=mocha --granter.address=celestia1v96seg23ehfhfjwk0wcy3s5y0krptt284vh236
+```
 
 ## Verifying balances and transactions
 
@@ -60,11 +111,10 @@ streamlining the process for developers and users alike.
 ### Check balance of the new DA light node
 
 To check the balance of a new light node, use the following command:
-<!-- markdownlint-disable MD013 -->
+
 ```bash
-celestia state balance --node.store ~/.celestia-light-mocha-4/
+celestia state balance
 ```
-<!-- markdownlint-enable MD013 -->
 
 Example response when the account balance does not exist:
 
@@ -86,8 +136,8 @@ state, you must initially fund the light node with the least amount
 of funds using the following command:
 
 ```bash
-celestia-appd tx bank send [granter_address] [grantee_address] 10000utia \
-  --node https://rpc.celestia-mocha.com:443 \
+celestia-appd tx bank send $GRANTER_ADDRESS $GRANTEE_ADDRESS 10000utia \
+  --node $RPC_URL \
   --chain-id mocha-4 \
   --keyring-backend test \
   --fees 20000utia \
@@ -101,7 +151,7 @@ celestia-appd tx bank send [granter_address] [grantee_address] 10000utia \
 To submit a blob, utilize the following command:
 <!-- markdownlint-disable MD013 -->
 ```bash
-celestia blob submit --input-file blob.json --node.store ~/.celestia-light-mocha-4/
+celestia blob submit --input-file blob.json
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -112,7 +162,7 @@ After submitting a blob, you can check the light node account's balance
 to verify that the fees have been deducted:
 <!-- markdownlint-disable MD013 -->
 ```bash
-celestia state balance --node.store ~/.celestia-light-mocha-4/
+celestia state balance
 ```
 <!-- markdownlint-enable MD013 -->
 
@@ -127,13 +177,13 @@ Example output showing fees are not deducted:
 }
 ```
 
-### Third-party account:
+### Third-party account
 
 To confirm that the fees have been deducted from the third-party account that
 granted the fee allowance, run:
 
 ```bash
-celestia-appd query bank balances [granter_address] \
+celestia-appd query bank balances $GRANTER_ADDRESS \
 --node https://rpc.celestia-mocha.com:443 --denom utia
 ```
 
