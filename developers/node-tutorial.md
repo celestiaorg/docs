@@ -464,7 +464,7 @@ once your node store is set:
 
 :::note
 Previously, the `node.store` flag had to be specified manually for each
-request. This has changed in v0.14.xx+ and you can
+request. This has changed in v0.14.0+ and you can
 [read more about the implementation in celestia-node troubleshooting](../nodes/celestia-node-troubleshooting.md#changing-the-location-of-your-node-store).
 :::
 

@@ -80,7 +80,7 @@ If you would like to use them anyway, you can
 
 ### Background
 
-An [enhancement has been made in v0.14.0](https://github.com/celestiaorg/celestia-node/pull/3246)
+An [enhancement has been made in v0.14.0+](https://github.com/celestiaorg/celestia-node/pull/3246)
 to automate the detection of the running node, eliminating the need to
 manually specify the `--node.store` flag for each RPC request.
 
