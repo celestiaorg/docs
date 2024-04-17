@@ -140,6 +140,56 @@ To show the keys you should add `--keyring-dir` like this example:
     --keyring-dir /home/user/celestia-<node-type>-location/keys/
 ```
 
+### Examples
+
+#### Mainnet Beta full and Mocha light
+
+This example uses a Mainnet Beta full node and a Mocha light node. When
+making the request:
+
+```bash
+❯ celestia blob get 1318129 0x42690c204d39600fddd3 0MFhYKQUi2BU+U1jxPzG7QY2BVV1lb3kiU+zAK7nUiY=
+{
+ "result": "RPC client error: sendRequest failed: http status 401 Unauthorized unmarshaling response: EOF"
+}
+```
+
+The request will go to the Mainnet Beta node, and 401 will show in this node's
+logs.
+
+#### Mocha full and Arabica light
+
+This example uses a Mocha full node and an Arabica light node. When
+making the request:
+
+```bash
+❯ celestia blob get 1318129 0x42690c204d39600fddd3 0MFhYKQUi2BU+U1jxPzG7QY2BVV1lb3kiU+zAK7nUiY=
+{
+  "result": {
+    "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
+    "data": "0x676d",
+    "share_version": 0,
+    "commitment": "0MFhYKQUi2BU+U1jxPzG7QY2BVV1lb3kiU+zAK7nUiY=",
+    "index": 23
+  }
+}
+```
+
+The request will go to the Mocha full node, and result shown as expected.
+
+#### Using a custom rpc.config address
+
+When using a custom RPC config address `0.0.0.1` and port `25231`,
+the CLI accurately routes to the custom address and port, where no
+node is running. It fails as expected:
+
+```bash
+❯ celestia blob get 1318129 0x42690c204d39600fddd3 0MFhYKQUi2BU+U1jxPzG7QY2BVV1lb3kiU+zAK7nUiY=
+{
+  "result": "RPC client error: sendRequest failed: Post \"http://0.0.0.1:25231\": dial tcp 0.0.0.1:25231: connect: no route to host"
+}
+```
+
 ## Resetting your config
 
 If you an encounter an error, it is likely that an old config file is present:
