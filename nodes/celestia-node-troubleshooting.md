@@ -78,6 +78,21 @@ If you would like to use them anyway, you can
 
 ## Changing the location of your node store
 
+In the latest commit, an enhancement has been made to automate the detection of the running node, eliminating the need to manually specify the node.store flag for each RPC request.
+
+**Assumptions:**
+-  The presence of a lock signifies a running node.
+-  Networks are ordered as mainnet, mocha, arabica, private, custom.
+-  Node types include bridge, full, and light.
+-  Each network has only one running node type.
+-  Multiple nodes of the same network and type are prohibited (resulting in an Error: node: store is in use).
+
+**Key Points:**
+-  Authentication token and other flags maintain their previous behavior and take precedence.
+-  Address and port details are fetched from the configuration.
+-  skipAuth allows bypassing authentication for trusted setups and follows Unix daemon conventions.
+-  Non-default node store and cel-key configurations still require specific flags in the configuration settings.
+
 In this section, we'll guide you through starting your node using a
 node store in a different location than you originally started with.
 

@@ -90,6 +90,8 @@ Further flags you can use to customize your key are the following:
 
 - `--node.store`: Specifies a different directory you can use to
   save your node data and configurations. Expects a path to a directory.
+  The defaults are `$HOME/.celestia-<node-type>` for Mainnet Beta
+  and `$HOME/.celestia-<node-type>-<chain-id>` for Mocha and Arabica.
 - `--p2p.network`: Specifies which network you want the key for. Values
   are `arabica` and `mocha`. Please note the default network will be `mocha`.
 
