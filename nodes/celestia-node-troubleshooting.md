@@ -78,6 +78,8 @@ If you would like to use them anyway, you can
 
 ## Changing the location of your node store
 
+### Background
+
 An [enhancement has been made in v0.14.0](https://github.com/celestiaorg/celestia-node/pull/3246)
 to automate the detection of the running node, eliminating the need to
 manually specify the `--node.store` flag for each RPC request.
@@ -85,7 +87,7 @@ manually specify the `--node.store` flag for each RPC request.
 **Assumptions:**
 
 - The presence of a lock signifies a running node.
-- Networks are ordered as mainnet, mocha, arabica, private, custom.
+- Networks are ordered as Mainnet, Mocha, Arabica, private, custom.
 - Node types include bridge, full, and light.
 - Each network has only one running node type.
 - Multiple nodes of the same network and type are prohibited
@@ -100,6 +102,8 @@ and take precedence.
 Unix daemon conventions.
 - Non-default node store and cel-key configurations still require specific
 flags in the configuration settings.
+
+### Demonstration
 
 In this section, we'll guide you through starting your node using a
 node store in a different location than you originally started with.
