@@ -23,7 +23,7 @@ from a user or gossiped from another node, into its mempool.
 As of version v1.0.0 of the application (celestia-app), gas is not refunded.
 Instead, transaction fees are deducted by a flat fee, originally specified by
 the user in their tx (where fees = gasLimit \* gasPrice). This means that
-users should use an accurate gas limit value if they do not wish to over pay.
+users should use an accurate gas limit value if they do not wish to overpay.
 
 Under the hood, fees are currently handled by specifying and deducting a flat
 fee. However gas price is often specified by users instead of calculating the

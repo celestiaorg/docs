@@ -24,8 +24,8 @@ participate in Mocha:
 
 Consensus:
 
-- [Full consensus node](./consensus-node.md)
-- [Validator node](./consensus-node.md#optional-setting-up-a-validator)
+- [Full consensus node](./full-consensus-node)
+- [Validator node](./validator-node)
 
 Data Availability:
 
@@ -64,11 +64,12 @@ node.
 :::tip Bridge nodes
 Mentioned below RPC endpoints do not guarantee you the download of full blocks from
 them. We advise that if you are running a bridge node, that you also
-run a local [full consensus node](./consensus-node.md) in order to download
+run a local [full consensus node](./full-consensus-node.md) in order to download
 full blocks from it.
 :::
 
 - `public-celestia-mocha4-consensus.numia.xyz`
+- `mocha-4-consensus.mesa.newmetric.xyz`
 - `full.consensus.mocha-4.celestia-mocha.com`
 - `consensus-full-mocha-4.celestia-mocha.com`
 - `rpc-mocha.pops.one`
@@ -80,6 +81,7 @@ querying the node's state and broadcasting transactions on the
 Celestia network. The default port is 26657.
 
 - `public-celestia-mocha4-consensus.numia.xyz:26657`
+- `mocha-4-consensus.mesa.newmetric.xyz:26657`
 - `rpc.celestia-mocha.com`
 - `rpc-2.celestia-mocha.com`
 - `celestia-testnet-rpc.f5nodes.com`
@@ -91,6 +93,7 @@ Celestia network. The default port is 26657.
 - `rpc-mocha-4.spidey.services`
 - `rpc-mocha-full.avril14th.org`
 - `rpc.mocha.bitszn.com`
+- `celestia-t-rpc.noders.services/`
 
 ## API endpoints
 
@@ -112,6 +115,7 @@ The default port is 1317.
 - [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
 - [https://api-mocha-full.avril14th.org](https://api-mocha-full.avril14th.org)
 - [https://api.mocha.bitszn.com ](https://api.mocha.bitszn.com)
+- [https://celestia-t-api.noders.services](https://celestia-t-api.noders.services)
 
 ## gRPC endpoints
 
@@ -121,6 +125,7 @@ port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
 - `public-celestia-mocha4-consensus.numia.xyz:9090`
+- `mocha-4-consensus.mesa.newmetric.xyz:9090`
 - `grpc-mocha.pops.one`
 - `grpc.celestia-mocha.com:443`
 - `grpc-2.celestia-mocha.com:443`
@@ -135,6 +140,7 @@ broadcast transactions.
 - `grpc-mocha-4.spidey.services`
 - `grpc-mocha-full.avril14th.org`
 - `grpc.mocha.bitszn.com`
+- `celestia-grpc.noders.services:21090`
 
 ## Bridge and full node endpoints
 

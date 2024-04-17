@@ -30,8 +30,8 @@ require the following four functions:
 
 Traditional blockchains, _i.e._ _monolithic blockchains_, implement all four
 functions together in a single base consensus layer. The problem with
-monolithic blockchains is that the consensus layer must perform a lot of
-different tasks and it cannot be optimized for only one of these functions.
+monolithic blockchains is that the consensus layer must perform numerous
+different tasks, and it cannot be optimized for only one of these functions.
 As a result, the monolithic paradigm limits the throughput of the system.
 
 ![Modular VS Monolithic](/img/learn/monolithic-modular.png)
@@ -45,8 +45,8 @@ is the separation of the four functions into three specialized layers.
 The base layer consists of DA and consensus and thus, is referred to
 as the Consensus and DA layer (or for brevity, the DA layer), while both
 settlement and execution are moved on top in their own layers. As a result,
-every layer can be specialized to optimally perform only its function and thus,
+every layer can be specialized to optimally perform only its function, and thus,
 increase the throughput of the system. Furthermore, this modular paradigm
 enables multiple execution layers, _i.e._,
-[rollups](https://vitalik.ca/general/2021/01/05/rollup.html), to use the
+[rollups](https://vitalik.eth.limo/general/2021/01/05/rollup.html), to use the
 same settlement and DA layers.

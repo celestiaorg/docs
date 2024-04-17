@@ -257,7 +257,7 @@ function nav() {
         { text: "Learn", link: "/learn/how-celestia-works/overview" },
         { text: "Networks", link: "/nodes/participate" },
         { text: "Nodes", link: "/nodes/overview" },
-        { text: "Developers", link: "/developers/build-modular" },
+        { text: "Developers", link: "/developers/build-whatever" },
         { text: "Community", link: "/community/overview" },
         {
           text: "Quick start",
@@ -410,7 +410,14 @@ function sidebarHome() {
                 { text: "Bridge node", link: "/nodes/bridge-node" },
               ],
             },
-            { text: "Consensus", link: "/nodes/consensus-node" },
+            { 
+              text: "Consensus",
+              collapsed: true,
+              items: [
+                { text: "Full consensus node", link: "/nodes/full-consensus-node" },
+                { text: "Validator node", link: "/nodes/validator-node" },
+              ],
+            },
             {
               text: "IBC relayers",
               collapsed: true,
@@ -499,34 +506,175 @@ function sidebarHome() {
       text: "Developers",
       collapsed: true,
       items: [
-        { text: "Build modular", link: "/developers/build-modular" },
-        {
-          text: "Submitting data blobs to Celestia",
-          link: "/developers/submit-data",
-        },
-        {
-          text: "Transaction resubmission guidelines",
-          link: "/developers/transaction-resubmission",
-        },
-        {
-          text: "FeeGrant module for blobs submission",
-          link: "/developers/feegrant-for-blobs",
-        },
-        {
-          text: "Node API",
-          link: "/developers/node-api",
+        { 
+          text: "Build whatever",
+          link: "/developers/build-whatever",
           collapsed: true,
           items: [
             {
-              text: "Node RPC CLI tutorial",
-              link: "/developers/node-tutorial",
+              text: "EVM",
+              collapsed: true,
+              items: [
+                {
+                  text: "Arbitrum",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Introduction to Arbitrum rollups with Celestia as DA",
+                      link: "/developers/arbitrum-integration",
+                    },
+                    {
+                      text: "Quickstart: Deploy an Arbitrum Orbit rollup",
+                      link: "/developers/arbitrum-deploy",
+                    },
+                    {
+                      text: "How to run a full Orbit rollup node and validator",
+                      link: "/developers/arbitrum-full-node",
+                    },
+                    {
+                      text: "Bridging in and out of your Orbit rollup",
+                      link: "/developers/arbitrum-bridge",
+                    },
+                    {
+                      text: "How to customize your Orbit chain's deployment configuration",
+                      link: "https://docs.arbitrum.io/launch-orbit-chain/how-tos/customize-deployment-configuration",
+                    },
+                    {
+                      text: "Deploy a smart contract on Arbitrum rollup",
+                      link: "/developers/arbitrum-smart-contract",
+                    },
+                    {
+                      text: "Deploy a dapp on your Arbitrum rollup devnet",
+                      link: "/developers/arbitrum-dapp-deploy",
+                    },
+                  ],
+                },
+                {
+                  text: "Astria",
+                  collapsed: true,
+                  items: [
+                    { text: "Documentation", link: "https://docs.astria.org" },
+                    {
+                      text: "Deploy to Dusknet",
+                      link: "https://docs.astria.org/docs/local-rollup/introduction/",
+                    },
+                  ],
+                },
+                {
+                  text: "Optimism",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Intro to OP Stack integration",
+                      link: "/developers/intro-to-op-stack",
+                    },
+                    {
+                      text: "Bubs testnet",
+                      link: "/developers/bubs-testnet",
+                    },
+                    {
+                      text: "Raspberry testnet",
+                      link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
+                    },
+                    {
+                      text: "Deploy a smart contract on Bubs testnet",
+                      link: "/developers/deploy-on-bubs",
+                    },
+                    {
+                      text: "Deploy a dapp on Bubs testnet",
+                      link: "/developers/gm-portal-bubs",
+                    },
+                    {
+                      text: "Deploy an OP Stack devnet",
+                      link: "/developers/optimism-devnet",
+                    },
+                    {
+                      text: "Deploy an OP Stack devnet on Celestia",
+                      link: "/developers/optimism",
+                    },
+                    {
+                      text: "Audit",
+                      link: "https://docs.celestia.org/audits/Celestia_OP_Stack_Audit.pdf",
+                    },
+                    {
+                      text: "Deploy a dapp with thirdweb",
+                      link: "https://thirdweb.com/bubs-testnet",
+                    },
+                    {
+                      text: "Rollups-as-a-Service",
+                      collapsed: true,
+                      items: [
+                        {
+                          text: "Caldera",
+                          link: "https://caldera.xyz/",
+                        },
+                      ],
+                    },
+                    
+                  ],
+                },
+                {
+                  text: "Ethereum fallback mechanism",
+                  link: "/developers/ethereum-fallback",
+                },
+              ],
             },
             {
-              text: "Celestia-node RPC API documentation",
-              link: "https://node-rpc-docs.celestia.org/",
+              text: "Sovereign",
+              collapsed: true,
+                items: [
+                { text: "Rollkit", link: "https://rollkit.dev" },
+                {
+                  text: "Sovereign SDK",
+                  link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",
+                },
+              ],
             },
-            { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
+            {
+              text: "Other",
+              collapsed: true,
+              items: [
+                {
+                  text: "Dymension",
+                  link: "https://docs.dymension.xyz/build/overview/",
+                },
+              ]
+            }
           ],
+        },
+        {
+          text: "Posting data to Celestia",
+          collapsed: true,
+          items: [
+            {
+              text: "Submitting data blobs to Celestia",
+              link: "/developers/submit-data",
+            },
+            {
+              text: "FeeGrant module for blobs submission",
+              link: "/developers/feegrant-for-blobs",
+            },
+            {
+              text: "Transaction resubmission guidelines",
+              link: "/developers/transaction-resubmission",
+            },
+            {
+              text: "Node API",
+              link: "/developers/node-api",
+              collapsed: true,
+              items: [
+                {
+                  text: "Node RPC CLI tutorial",
+                  link: "/developers/node-tutorial",
+                },
+                {
+                  text: "Celestia-node RPC API documentation",
+                  link: "https://node-rpc-docs.celestia.org/",
+                },
+                { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
+              ],
+            },
+          ]
         },
         {
           text: "Integrate with Blobstream",
@@ -553,7 +701,7 @@ function sidebarHome() {
               collapsed: true,
               items: [
                 {
-                  text: "Requesting data commitment ranges",
+                    text: "Requesting data commitment ranges",
                   link: "/developers/requesting-data-commitment-ranges",
                 },
                 {
@@ -562,125 +710,28 @@ function sidebarHome() {
                 },
               ],
             },
-          ],
-        },
-        {
-          text: "Deploy a rollup",
-          link: "/developers/rollup-overview",
-          collapsed: true,
-          items: [
             {
-              text: "Ethereum L2s",
+              text: "Blobstream X audits",
               collapsed: true,
               items: [
                 {
-                  text: "Ethereum fallback mechanism",
-                  link: "/developers/ethereum-fallback",
+                  text: "Informal Systems",
+                  link: "https://docs.celestia.org/audits/Blobstream_X-Informal_Systems_Audit.pdf",
                 },
                 {
-                  text: "Arbitrum",
-                  collapsed: true,
-                  items: [
-                    {
-                      text: "Introduction to Arbitrum rollups with Celestia as DA",
-                      link: "/developers/arbitrum-integration",
-                    },
-                    {
-                      text: "Deploy an Arbitrum rollup devnet",
-                      link: "/developers/arbitrum-deploy",
-                    },
-                    // {
-                    //   text: "Deploy an Arbitrum rollup to Mocha testnet",
-                    //   link: "/developers/arbitrum-mocha",
-                    // },
-                    {
-                      text: "Nitrogen testnet",
-                      link: "/developers/nitrogen",
-                    },
-                    {
-                      text: "Deploy a smart contract on Arbitrum rollup",
-                      link: "/developers/arbitrum-smart-contract",
-                    },
-                    {
-                      text: "Deploy a dapp on your Arbitrum rollup devnet",
-                      link: "/developers/arbitrum-dapp-deploy",
-                    },
-                  ],
+                  text: "OtterSec",
+                  link: "https://docs.celestia.org/audits/Blobstream_X-OtterSec_Audit.pdf",
                 },
                 {
-                  text: "Optimism",
-                  collapsed: true,
-                  items: [
-                    {
-                      text: "Intro to OP Stack integration",
-                      link: "/developers/intro-to-op-stack",
-                    },
-                    {
-                      text: "Bubs testnet",
-                      link: "/developers/bubs-testnet",
-                    },
-                    {
-                      text: "Deploy a smart contract on Bubs testnet",
-                      link: "/developers/deploy-on-bubs",
-                    },
-                    {
-                      text: "Deploy a dapp on Bubs testnet",
-                      link: "/developers/gm-portal-bubs",
-                    },
-                    {
-                      text: "Deploy an OP Stack devnet",
-                      link: "/developers/optimism-devnet",
-                    },
-                    {
-                      text: "Deploy an OP Stack devnet on Celestia",
-                      link: "/developers/optimism",
-                    },
-                    {
-                      text: "Audit",
-                      link: "https://docs.celestia.org/Celestia_OP_Stack_Audit.pdf",
-                    },
-                    {
-                      text: "Deploy a dapp with thirdweb",
-                      link: "https://thirdweb.com/bubs-testnet",
-                    },
-                    {
-                      text: "Rollups-as-a-Service",
-                      collapsed: true,
-                      items: [
-                        {
-                          text: "Caldera",
-                          link: "https://caldera.xyz/",
-                        },
-                      ],
-                    },
-                  ],
+                  text: "Veridise",
+                  link: "https://docs.celestia.org/audits/Blobstream_X-Veridise_Audit.pdf",
                 },
+                {
+                  text: "Zellic",
+                  link: "https://docs.celestia.org/audits/Blobstream_X-Zellic_Audit.pdf",
+                }
               ],
-            },
-            { text: "Rollkit", link: "/developers/rollkit" },
-            {
-              text: "Astria",
-              collapsed: true,
-              items: [
-                { text: "Documentation", link: "https://docs.astria.org" },
-                {
-                  text: "Deploy to Dusknet",
-                  link: "https://docs.astria.org/docs/dusknet/overview/",
-                },
-              ],
-            },
-            {
-              text: "Sovereign SDK",
-              link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",
-            },
-            {
-              text: "Vistara",
-              link: "https://docs.vistara.dev/",
-            },
-            {
-              text: "Dymension",
-              link: "https://dymension.xyz/",
-            },
+            }
           ],
         },
         {

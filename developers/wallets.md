@@ -192,7 +192,7 @@ account balance and transactions in Leap wallet.
 
 You'll see that you're connected to Arabica Devnet.
 
-## Addding a custom chain to Cosmostation
+## Adding a custom chain to Cosmostation
 
 Click the hamburger menu icon in the top corner of Cosmostation
 wallet. Scroll down and click "Add Custom Chain"

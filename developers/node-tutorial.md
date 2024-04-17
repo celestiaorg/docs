@@ -254,17 +254,9 @@ commands:
 
 4. Install the binary:
 
-   ::: code-group
-
-   ```bash [Ubuntu]
+   ```bash
    make install
    ```
-
-   ```bash [Mac]
-   make go-install
-   ```
-
-   :::
 
 5. Build the `cel-key` utility:
 
@@ -496,7 +488,7 @@ These include:
 - `--url string` - the address of the RPC, default is `http://localhost:26658`
 
 When running RPC CLI commands,
-you will need to set either the the [authentication token](#auth-token)
+you will need to set either the [authentication token](#auth-token)
 or set the [node store](#node-store), so the auth token can be retrieved
 from the store.
 
@@ -1130,10 +1122,7 @@ curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NOD
         "commitment": "AD5EzbG0/EMvpw0p8NIjMVnoCP4Bv6K+V6gjmwdXUKU="
       }
     ],
-    {
-      "Fee": 10000,
-      "GasLimit": 100000
-    }
+    0.002
   ]
 }' 127.0.0.1:26658
 ```

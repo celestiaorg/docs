@@ -8,7 +8,7 @@ description: Learn how to query the inclusion proofs used in Blobstream
 
 ## Prerequisites
 
-- Access to a Celestia [consensus full node](../nodes/consensus-node.md)
+- Access to a Celestia [full consensus node](../nodes/full-consensus-node.md)
   RPC endpoint (or full node). The node doesn't need to be a
   validating node in order for the proofs to be queried. A full node is enough.
 
@@ -512,9 +512,7 @@ func toNamespaceMerkleMultiProofs(proofs []*tmproto.NMTProof) []client.Namespace
 func minNamespace(innerNode []byte) *client.Namespace {
 	version := innerNode[0]
 	var id [28]byte
-	for i, b := range innerNode[1:28] {
-		id[i] = b
-	}
+	copy(id[:], innerNode[1:29])
 	return &client.Namespace{
 		Version: [1]byte{version},
 		Id:      id,
@@ -524,9 +522,7 @@ func minNamespace(innerNode []byte) *client.Namespace {
 func maxNamespace(innerNode []byte) *client.Namespace {
 	version := innerNode[29]
 	var id [28]byte
-	for i, b := range innerNode[30:57] {
-		id[i] = b
-	}
+	copy(id[:], innerNode[30:58])
 	return &client.Namespace{
 		Version: [1]byte{version},
 		Id:      id,
@@ -537,9 +533,7 @@ func toNamespaceNode(node []byte) *client.NamespaceNode {
 	minNs := minNamespace(node)
 	maxNs := maxNamespace(node)
 	var digest [32]byte
-	for i, b := range node[58:] {
-		digest[i] = b
-	}
+	copy(digest[:], node[58:])
 	return &client.NamespaceNode{
 		Min:    *minNs,
 		Max:    *maxNs,
@@ -580,12 +574,9 @@ A method to convert to namespace, provided that the namespace
 size is 29, is as follows:
 
 ```go
-func namespace(namespaceID []byte) *client.Namespace {
-	version := namespaceID[0]
+func namespace(namespaceID []byte, version uint8) *client.Namespace {
 	var id [28]byte
-	for i, b := range namespaceID[1:] {
-		id[i] = b
-	}
+	copy(id[:], namespaceID)
 	return &client.Namespace{
 		Version: [1]byte{version},
 		Id:      id,
@@ -652,9 +643,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 		sideNodes := make( [][32]byte, len(proof.Aunts))
 		for j, sideNode :=  range proof.Aunts {
 			var bzSideNode [32]byte
-			for k, b := range sideNode {
-				bzSideNode[k] = b
-			}
+			copy(bzSideNode[:], sideNode)
 			sideNodes[j] = bzSideNode
 		}
  		rowProofs[i] = client.BinaryMerkleProof{
@@ -663,6 +652,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 			NumLeaves: big.NewInt(proof.Total),
 		}
 	}
+	return rowProofs
 }
 ```
 
@@ -729,9 +719,7 @@ func toAttestationProof(
 	sideNodes := make( [][32]byte, len(dataRootInclusionProof.Aunts))
 	for i, sideNode :=  range dataRootInclusionProof.Aunts {
 		var bzSideNode [32]byte
-		for k, b := range sideNode {
-			bzSideNode[k] = b
-		}
+		copy(bzSideNode[:], sideNode)
 		sideNodes[i] = bzSideNode
 	}
 
@@ -755,7 +743,7 @@ contract events. Check below for an example. And `height` being the Celestia
 Block height that contains the rollup data, along with the `blockDataRoot` being
 the data root of the block height. Finally, `dataRootInclusionProof` is the
 Celestia block data root inclusion proof to the data root tuple root that
-was queried in the begining of this page.
+was queried at the beginning of this page.
 
 If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 
@@ -999,9 +987,7 @@ func submitFraudProof(
 	dataRoot []byte,
 ) error {
 	var blockDataRoot [32]byte
-	for i, b := range dataRoot[58:] {
-		blockDataRoot[i] = b
-	}
+	copy(blockDataRoot[:], dataRoot)
 	tx, err := simpleRollup.SubmitFraudProof(
 		&bind.TransactOpts{
 			Context: ctx,
@@ -1076,6 +1062,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 			NumLeaves: big.NewInt(proof.Total),
 		}
 	}
+	return rowProofs
 }
 
 func toNamespaceMerkleMultiProofs(proofs []*tmproto.NMTProof) []client.NamespaceMerkleMultiproof {

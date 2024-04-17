@@ -14,7 +14,7 @@ generated, and subsequently relayed to Ethereum to the Blobstream X smart
 contract.
 
 This demo rollup will outline (the outline is not an
-implementation! please do not expect to copy and paste this code 🙂) a very
+implementation! Please do not expect to copy and paste this code 🙂) a very
 simple Blobstream rollup to illustrate at a high level what this could look
 like.
 
@@ -49,7 +49,7 @@ type Header struct {
 
 Note the Celestia-specific structures in the header such as the `Namespace` and
 the Blobstream-specific structure called the `Span`. The goal of these
-structures are to locate the data in the Celestia block so that we can prove
+structures is to locate the data in the Celestia block so that we can prove
 that data's inclusion via Blobstream if needed. Read more in the
 [namespace specifications](https://celestiaorg.github.io/celestia-app/specs/namespace.html),
 and you can think of this like a chain ID. Learn more
@@ -284,8 +284,8 @@ func (f *Fullnode) AddBlock(b Block) error {
 func (f *Fullnode) GetLatestBlock() error {
     nextHeight := uint64(len(f.Blocks) + 1)
 
-    // Download the next header from etheruem before we download the block data
-    // from Celestia. Note that we could alternatievely download the header
+    // Download the next header from ethereum before we download the block data
+    // from Celestia. Note that we could alternatively download the header
     // directly from the sequencer instead of waiting.
     header, err := f.EthereumClient.GetHeader(nextHeight)
     if err != nil {

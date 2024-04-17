@@ -96,8 +96,8 @@ to participate in Mainnet Beta:
 
 ### Consensus nodes
 
-- [Full consensus node](./consensus-node.md)
-- [Validator node](./consensus-node.md#optional-setting-up-a-validator)
+- [Full consensus node](./full-consensus-node)
+- [Validator node](./validator-node)
 
 #### Consensus RPC endpoints
 
@@ -124,6 +124,7 @@ to participate in Mainnet Beta:
 - `celestia-rpc.f5nodes.com`
 - `celestia-rpc.chainode.tech:33373`
 - `https://rpc-celestia.staker.space/`
+- `https://celestia-rpc.noders.services/`
 
 #### API endpoints
 
@@ -149,6 +150,7 @@ to participate in Mainnet Beta:
 - `celestia-api.f5nodes.com`
 - `https://celestia-api.chainode.tech`
 - `https://api-celestia.staker.space/`
+- `https://celestia-api.noders.services/`
 
 #### gRPC endpoints
 
@@ -173,6 +175,7 @@ to participate in Mainnet Beta:
 - `celestia-grpc.f5nodes.com:9390`
 - `celestia-grpc.chainode.tech:443`
 - `https://grpc-celestia.staker.space/`
+- `celestia-grpc.noders.services:11090`
 
 #### WebSocket endpoints
 
@@ -184,7 +187,7 @@ to participate in Mainnet Beta:
 - [Bridge node](./bridge-node.md)
 - [Full storage node](./full-storage-node.md)
 
-#### DA RPC endpoints
+#### Data availability (DA) RPC endpoints
 
 These RPC endpoints for DA nodes are to provide state access for querying the
 chain’s state and broadcasting transactions (balances, blobs, etc.) to the
@@ -205,8 +208,7 @@ celestia <da_type> start --core.ip <url> –core.rpc.port <port> \
 :::tip Bridge nodes
 Not all RPC endpoints guarantee the full block history.
 Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
-or run your own consensus full node with no pruning for
-your bridge node.
+or run your own full consensus node with no pruning for your bridge node.
 :::
 
 RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with:
@@ -233,6 +235,23 @@ can check out this
 to see health/uptime status of DA bootstrappers (now `celestia` network only).
 
 You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
+
+#### Archival DA RPC endpoints
+
+By default, light nodes prune recent data to save on storage space. Archival
+data availability (DA) nodes store the entire history of the chain without
+pruning any data so all data available data is retrievable. You can
+[read more about light vs archival nodes](../learn/retrievability.md).
+
+##### Grove archival endpoints
+
+You can [provision your own Celestia Archival endpoint on Grove](https://grove.city).
+[Learn more about Celestia on Grove](https://docs.grove.city/celestia-api/intro),
+or find [the fully supported spec](https://docs.grove.city/celestia-api/endpoints/celestia-archival).
+
+There is a sandbox you can leverage for testing straight in your browser:
+
+![grove-sandbox](/grove/grove-sandbox.png)
 
 ## Explorers
 

@@ -9,8 +9,8 @@ echo "                                    /_/  /_/    "
 echo ""
 
 # Declare a log file to capture detailed logs and a temp directory
-LOGFILE="$HOME/celestia-temp/logfile.log"
-TEMP_DIR="$HOME/celestia-temp"
+LOGFILE="$HOME/celestia-app-temp/logfile.log"
+TEMP_DIR="$HOME/celestia-app-temp"
 
 # Check if the directory exists
 if [ -d "$TEMP_DIR" ]; then
@@ -31,7 +31,7 @@ touch "$LOGFILE"
 echo "Log file is located at: $LOGFILE" | tee -a "$LOGFILE"
 
 # Change to $TEMP_DIR and print a message
-cd "$TEMP_DIR"
+cd "$TEMP_DIR" || exit 1
 echo "Working from temporary directory: $TEMP_DIR" | tee -a "$LOGFILE"
 
 # Fetch the latest release tag from GitHub

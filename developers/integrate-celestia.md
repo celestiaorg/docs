@@ -19,7 +19,7 @@ When getting started Celestia, we recommend checking out these resources first:
 - [Celestia's DA Layer](../learn/how-celestia-works/data-availability-layer.md)
 - [Learn modular](https://celestia.org/learn.md)
 - [Overview to running nodes on Celestia](../nodes/overview.md)
-- [Build Moduar](./build-modular.md)
+- [Build whatever](./build-whatever.md)
 
 ## Celestia service provider notes
 
