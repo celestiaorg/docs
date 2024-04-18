@@ -174,3 +174,7 @@ the following Ethereum testnets:
 | Blobstream X | Base Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.basescan.org/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](../nodes/mocha-testnet.md) |
 
 <!-- markdownlint-enable MD013 -->
+
+### Blobstream rollups
+
+More on the different ways to build a blobstream rollups can be found in the [blobstream rollups](../developers/blobstream-rollups.md) documentation.
