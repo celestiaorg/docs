@@ -697,7 +697,7 @@ function sidebarHome() {
               link: "/developers/blobstream-proof-queries",
             },
             {
-              text: "Example implementation of Blobstream by CryptoKass",
+              text: "Example implementation of Blobstream proofs by CryptoKass",
               link: "https://github.com/CryptoKass/blobstreamx-example",
             },
             {
