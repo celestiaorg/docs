@@ -177,4 +177,5 @@ the following Ethereum testnets:
 
 ### Blobstream rollups
 
-More on the different ways to build a blobstream rollups can be found in the [blobstream rollups](../developers/blobstream-rollups.md) documentation.
+More on the different ways to build a blobstream rollups can be found in the
+[blobstream rollups](./blobstream-rollups.md) documentation.
