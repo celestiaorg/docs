@@ -225,7 +225,7 @@ func DemoSubmitData(grpcAddr string, kr keyring.Keyring) error {
 
     ns := namespace.MustNewV0([]byte("1234567890"))
 
-    fmt.Println("namepace", len(ns.Bytes()))
+    fmt.Println("namespace", len(ns.Bytes()))
 
     blob, err := blobtypes.NewBlob(ns, []byte("some data"), appconsts.ShareVersionZero)
     if err != nil {
