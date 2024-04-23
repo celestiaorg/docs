@@ -15,27 +15,31 @@ availability.
 
 ## Concepts
 
-### Share commitment
+This section will go over two constructs that can be used in building Blobstream rollups. Each with its pros and cons and the rollup developer can choose which one suits their needs better.
 
-The [share commitment](https://celestiaorg.github.io/celestia-app/specs/data_square_layout.html#blob-share-commitment-rules)
+Note: Only the [sequence of spans](#sequence-of-spans) method can be used currently to build Blobstream rollups. The [blob share commitment](#blob-share-commitment) way still requires some tooling that will be built in the upcoming months.
+
+### Blob share commitment
+
+The [blob share commitment](https://celestiaorg.github.io/celestia-app/specs/data_square_layout.html#blob-share-commitment-rules)
 is a commitment over the data contained in the
 [MsgPayForBlobs transaction](https://github.com/celestiaorg/celestia-app/blob/v1.0.0-rc2/proto/celestia/blob/v1/tx.proto#L16-L31).
 This commitment allows
 [proving that the corresponding data exists on Celestia efficiently](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-011-optimistic-blob-size-independent-inclusion-proofs-and-pfb-fraud-proofs.md).
 
-#### Share commitment: Proof details
+#### Blob share commitment: Proof details
 
-To prove that the data corresponding to a share commitment was posted to
+To prove that the data corresponding to a blob share commitment was posted to
 Celestia using Blobstream, the following proofs need to be verified:
 
-1. [share inclusion proof to the share commitment](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#share-to-share-commitment-inclusion):
+1. [share inclusion proof to the blob share commitment](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#share-to-share-commitment-inclusion):
 meaning creating two merkle proofs:
    1. share merkle proof up to the [subtree root](https://celestiaorg.github.io/celestia-app/specs/data_square_layout.html#blob-share-commitment-rules)
    corresponding to that share
-   2. subtree root merkle proof to the [share commitment](https://celestiaorg.github.io/celestia-app/specs/data_square_layout.html#blob-share-commitment-rules)
-2. [share commitment inclusion proof to the data root tuple root](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#prove-share-commitment-inclusion-to-data-root):
+   2. subtree root merkle proof to the [blob share commitment](https://celestiaorg.github.io/celestia-app/specs/data_square_layout.html#blob-share-commitment-rules)
+2. [blob share commitment inclusion proof to the data root tuple root](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#prove-share-commitment-inclusion-to-data-root):
 meaning four merkle proofs:
-   1. [subtree roots merkle proofs to the share commitment](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#subtree-roots-inclusion-proof-to-the-share-commitment):
+   1. [subtree roots merkle proofs to the blob share commitment](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#subtree-roots-inclusion-proof-to-the-share-commitment):
    to make sure the subtree roots are valid
    2. [subtree roots merkle proofs up to the row roots](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#subtree-roots-inclusion-proof-to-the-data-root):
    to prove that the subtree roots belong to a set of rows in the Celestia block
@@ -45,23 +49,23 @@ meaning four merkle proofs:
    to prove that the Celestia block referenced by its height and data root,
    was committed to by Blobstream.
 
-More details on the share commitment inclusion proof can be found in the
+More details on the blob share commitment inclusion proof can be found in the
 [commitment scheme docs](https://docs.celestia.org/developers/blobstream-proof-queries#the-commitment-scheme)
 and also the
 [data square layout](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/specs/data_square_layout.md#blob-share-commitment-rules).
 
 If all of these proofs are valid, then you successfully managed to prove that
-the data corresponding to that share commitment has been posted to Celestia.
+the data corresponding to that blob share commitment has been posted to Celestia.
 
 :::tip NOTE
-Generating/verifying share commitment proofs is still not supported.
+Generating/verifying blob share commitment proofs is still not supported.
 It still needs tooling to generate the proofs on the node side, and verifying
 them on the Solidity side which will be built in the upcoming months.
 :::
 
-#### Share commitment: Compact proofs
+#### Blob share commitment: Compact proofs
 
-There is a way to have compact proofs, when using share commitments,
+There is a way to have compact proofs, when using blob share commitments,
 unlike the ones defined above; that allow less costly inclusion proofs.
 These require the ability to parse the protobuf encoded PFBs.
 
@@ -71,7 +75,7 @@ compact proofs of the rollup data.
 
 These proofs will work as follows:
 
-- Parsing the PFB and taking out the share commitment
+- Parsing the PFB and taking out the blob share commitment
 - Comparing the PFB commitment to the one saved in the rollup contract
 - Proving inclusion of the PFB to the data root tuple root.
   This will be a compact proof since we will only be proving two shares
@@ -80,16 +84,16 @@ These proofs will work as follows:
 More details on compact proofs can be found in
 [ADR-011](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-011-optimistic-blob-size-independent-inclusion-proofs-and-pfb-fraud-proofs.md).
 
-#### Share commitment: Pros
+#### Blob share commitment: Pros
 
-The pros of referencing rollup data using a share commitment:
+The pros of referencing rollup data using a blob share commitment:
 
 - Using the same commitment that exists on the PFB, without having to find
 another way of referencing the rollup data.
 - If the team has access to protobuf parsing, it allows for compact proof,
 but the parsing costs need to be investigated.
 
-#### Share commitment: Cons
+#### Blob share commitment: Cons
 
 - Large/expensive proofs in the case of having no way to parse the protobuf
 PFB encoding.
@@ -131,7 +135,7 @@ Celestia block.
 
 #### Sequence of spans: Proof details
 
-Using sequence of spans is different from using the share commitment
+Using sequence of spans is different from using the blob share commitment
 because we're referencing a location in the square, and not actual data
 commitment. So, the proof types and their generation are different.
 
@@ -172,9 +176,9 @@ More on this in the
 
 #### Sequence of spans: Proving inclusion of some data
 
-The difference between using a share commitment and a sequence of spans
-is that when using a share commitment, an extra merkle proof is needed
-to prove inclusion of the share to the share commitment.
+The difference between using a blob share commitment and a sequence of spans
+is that when using a blob share commitment, an extra merkle proof is needed
+to prove inclusion of the share to the blob share commitment.
 However, in the case of a sequence of spans, only the usual inclusion
 proof of a share to the data root tuple root is needed.
 The inclusion of the share to the sequence of spans is gotten using
@@ -229,7 +233,7 @@ spans, and be sure that the data/shares is part of the rollup data.
 
 #### Sequence of spans: Pros
 
-- Using a sequence of spans instead of the share commitment allows for
+- Using a sequence of spans instead of the blob share commitment allows for
 simpler proofs
 
 #### Sequence of spans: Cons
@@ -290,39 +294,39 @@ shows how to verify them.
 Also, more details on querying these kinds of proofs can be found in the
 [proof queries](https://docs.celestia.org/developers/blobstream-proof-queries) documentation.
 
-### Optimistic rollups that use share commitments
+### Optimistic rollups that use blob share commitments
 
 Another way to build a rollup is to replace the sequence of spans with a height
-and a share commitment.
+and a blob share commitment.
 Then, users/rollup full nodes will be able to query that data and validate it.
 If the rollup data is not valid, they can create a fraud proof.
 
 The first difference between the sequence of spans construction and the share
-commitment construction is having to verify that the provided share commitment
+commitment construction is having to verify that the provided blob share commitment
 is part of the Celestia block, referenced by its height in the moment of
 submitting the rollup commitments to the settlement contract.
 This is necessary to make sure that the commitment is part of Celestia.
-Otherwise, rollup sequencers can commit to random share commitments and there
+Otherwise, rollup sequencers can commit to random blob share commitments and there
 won't be a way to prove they're invalid.
 
 The second difference is the proof types.
 In the case of a fraud proof, the proofs outlined in the
-[proofs details of share commitment](#share-commitment-proof-details)
+[proofs details of blob share commitment](#blob-share-commitment-proof-details)
 section would need to be verified to be sure
 that the share containing the invalid state transition is part of the rollup data.
 Alternatively, the rollup settlement contract would need to have a library to
 parse protobuf encoded PFBs, as explained in the
-[compact proofs of share commitment](#share-commitment-compact-proofs)
+[compact proofs of blob share commitment](#blob-share-commitment-compact-proofs)
 section, to have less expensive proofs.
 The cost of parsing the protobuf is not included in this analysis and needs to be
 investigated separately.
 
-#### Optimistic rollups that use share commitments: Pros
+#### Optimistic rollups that use blob share commitments: Pros
 
-- Using the same share commitment as the one saved in Celestia which gives
+- Using the same blob share commitment as the one saved in Celestia which gives
 access to existing tooling
 
-#### Optimistic rollups that use share commitments: Cons
+#### Optimistic rollups that use blob share commitments: Cons
 
 - The proofs are expensive in the base case.
   And if the settlement contract is able to parse the PFBs, thorough
@@ -337,7 +341,7 @@ there are no fraud proofs, and everything should be verified when submitting
 the commitment to the settlement contract.
 
 Similar to the optimistic case, the rollup settlement contract can reference the
-rollup data using either the sequence of spans approach or the share commitments.
+rollup data using either the sequence of spans approach or the blob share commitments.
 We will discuss both in this section.
 
 ### Zk-rollups that use sequence of spans
@@ -367,44 +371,44 @@ was posted to Celestia, and the sequence of spans references it correctly.
 
 - The inclusion proof inside the zk-circuit is a simple proof that uses
 traditional merkle tree.
-  In the case of using share commitment, as will be explained below, additional
+  In the case of using blob share commitment, as will be explained below, additional
   libraries that can be expensive to prove are required.
 
 #### Zk-rollups that use sequence of spans: Cons
 
 None
 
-### Zk-rollups that use share commitments
+### Zk-rollups that use blob share commitments
 
-To use share commitments to reference rollup data in the zk-rollup settlement
+To use blob share commitments to reference rollup data in the zk-rollup settlement
 contract, the zk-circuits need to be able to deserialize protobuf encoded messages.
 Alternatively, more involved merkle proofs will need to be verified.
 
 #### Protobuf deserialization inside a zk-circuit
 
-One way of using the share commitment to reference the rollup data in zk-rollups
+One way of using the blob share commitment to reference the rollup data in zk-rollups
 is via using a protobuf deserialization library inside the zk-circuit.
 And the verification would proceed as follows:
 
 1. Zk-proof of the state transitions, which is left to the rollup team to define.
-2. Verify that the share commitment is valid using the proofs laid out in the
-[proof details of share commitment](#share-commitment-proof-details) section.
-3. The zk-proof verifier would take as argument the data root and the share commitment.
+2. Verify that the blob share commitment is valid using the proofs laid out in the
+[proof details of blob share commitment](#blob-share-commitment-proof-details) section.
+3. The zk-proof verifier would take as argument the data root and the blob share commitment.
    Then, inside the circuit, the protobuf encoded PFB transaction will be
    deserialized and then verify the following:
 
-- The deserialized share commitment is the same as the one provided as input
+- The deserialized blob share commitment is the same as the one provided as input
 - The circuit will prove the inclusion of the PFB to the data root, then assert
 that the data root is the same as the one provided as input.
 
 If the above conditions are valid, the rollup settlement contract can be sure
 that the rollup data was posted to Celestia and is correctly referenced.
 
-#### Zk-rollups that use share commitments: Pros
+#### Zk-rollups that use blob share commitments: Pros
 
 None
 
-#### Zk-rollups that use share commitments: Cons
+#### Zk-rollups that use blob share commitments: Cons
 
 - This approach requires having access to a protobuf decoder inside a zk-circuit
 which is not straightforward to have.
@@ -415,18 +419,18 @@ which is not straightforward to have.
 Similar to [Protobuf deserialization inside a zk-circuit](#protobuf-deserialization-inside-a-zk-circuit),
 the zk-circuit will proceed to the verification of the availability of the data.
 The difference is that instead of parsing the encoded protobuf, the proofs
-defined under the [share commitment proof details](#share-commitment-proof-details)
+defined under the [blob share commitment proof details](#blob-share-commitment-proof-details)
 section will need to be verified inside the zk-circuit as follows:
 
 1. Zk-proof of the state transitions, which is left to the rollup team to define.
-2. Verify that the share commitment is valid using the proofs laid out in the
-[share commitment proof details](#share-commitment-proof-details) section.
-3. The zk-proof verifier would take as argument the data root and the share commitment.
+2. Verify that the blob share commitment is valid using the proofs laid out in the
+[blob share commitment proof details](#blob-share-commitment-proof-details) section.
+3. The zk-proof verifier would take as argument the data root and the blob share commitment.
    Then, inside the circuit:
 
-- It will verify that the input share commitment corresponds to the rollup data.
-- Verify that the input data root commits to that share commitment.
-    Check the [share commitment proof details](#share-commitment-proof-details)
+- It will verify that the input blob share commitment corresponds to the rollup data.
+- Verify that the input data root commits to that blob share commitment.
+    Check the [blob share commitment proof details](#blob-share-commitment-proof-details)
     for more details
 
 Once these proofs are valid, the rollup settlement contract can be sure that the
