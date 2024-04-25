@@ -158,9 +158,9 @@ topics:
 
 ### Deployed contracts
 
-You can interact with the Blobstream X contracts today on testnet. The
+You can interact with the Blobstream X contracts today. The
 Blobstream X Solidity smart contracts are currently deployed on
-the following Ethereum testnets:
+the following chains:
 
 <!-- markdownlint-disable MD013 -->
 
