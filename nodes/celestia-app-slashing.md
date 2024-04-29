@@ -1,8 +1,8 @@
 ---
-description: This section covers the slashing mechanics for validators in Celestia.
+description: This section covers the jailing and slashing mechanics for validators in Celestia.
 ---
 
-# Slashing on Celestia
+# Jailing and Slashing on Celestia
 
 Slashing is a mechanism employed in proof of stake blockchains
 that is used to deter and punish malicious behavior.
@@ -14,7 +14,7 @@ Celestia is built with the Cosmos SDK and uses the `x/slashing` module.
 If a validator gets slashed, delegators bonded to that validator will also
 have the same percentage of their delegated funds slashed.
 
-The following are the conditions for a validator to get slashed:
+The following are the conditions for a validator to get jailed or slashed:
 
 1. **Downtime**: If a validator is offline for more than 25% of a rolling window
    of the last 5,000 blocks, they will be jailed for 1 minute.
@@ -23,8 +23,8 @@ The following are the conditions for a validator to get slashed:
    After the jail period, the validator can send an unjail request to
    rejoin the validator set.
 
-2. **Double signing**: This is a more severe offense and results in a larger
-   percentage loss. If a validator engages in double signing, the validator
+2. **Double signing**: This is a more severe offense and results in getting slashed.
+   If a validator engages in double signing, the validator
    will lose 2% of their stake and the remainder of their stake
    will be returned to them. The validator will be permanently removed
    from the validator set and will not have the ability to unjail.
