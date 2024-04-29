@@ -32,6 +32,6 @@ The following are the conditions for a validator to get jailed or slashed:
    period for 21 days, and can delegate to another validator after
    they have been unbonded.
 
-For more details on the slashing parameters, refer to the
+For more details on the jailing and slashing parameters, refer to the
 [celestia-app specifications](https://celestiaorg.github.io/celestia-app/specs/params.html#module-parameters)
 page.

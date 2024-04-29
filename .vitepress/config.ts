@@ -467,7 +467,7 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-metrics",
                 },
                 {
-                  text: "Slashing mechanics",
+                  text: "Jailing and Slashing mechanics",
                   link: "/nodes/celestia-app-slashing",
                 },
                 {
