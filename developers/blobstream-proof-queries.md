@@ -131,6 +131,8 @@ by the range `[10, 20)`.
 
 Example response:
 
+<div style="overflow-y: auto; max-height: 400px;">
+
 ```json
 {
   "jsonrpc": "2.0",
@@ -150,6 +152,7 @@ Example response:
   }
 }
 ```
+</div>
 
 > **_NOTE:_** These values are base64 encoded. For these to be usable
 > with the solidity smart contract, they need to be converted to `bytes32`.
@@ -158,6 +161,8 @@ Example response:
 #### Golang query
 
 The endpoint can also be queried using the golang client:
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
 package main
@@ -189,12 +194,13 @@ func main() {
 	fmt.Println(dcProof.Proof.String())
 }
 ```
+</div>
 
 <!-- markdownlint-disable MD013 -->
 
 ### Full example of proving that a Celestia block was committed to by Blobstream X contract
 
-<div style="overflow-y: auto; max-height: 200px;">
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
 package main
@@ -408,6 +414,8 @@ format:
 
 <!-- markdownlint-disable MD013 -->
 
+<div style="overflow-y: auto; max-height: 400px;">
+
 ```solidity
 /// @notice Contains the necessary parameters to prove that some shares, which were posted to
 /// the Celestia network, were committed to by the BlobstreamX smart contract.
@@ -437,6 +445,7 @@ struct AttestationProof {
     BinaryMerkleProof proof;
 }
 ```
+</div>
 
 <!-- markdownlint-enable MD013 -->
 
@@ -530,6 +539,8 @@ A golang helper that can be used to make this conversion is as follows:
 
 <!-- markdownlint-disable MD013 -->
 
+<div style="overflow-y: auto; max-height: 400px;">
+
 ```go
 func toNamespaceMerkleMultiProofs(proofs []*tmproto.NMTProof) []client.NamespaceMerkleMultiproof {
 	shareProofs := make([]client.NamespaceMerkleMultiproof, len(proofs))
@@ -579,6 +590,7 @@ func toNamespaceNode(node []byte) *client.NamespaceNode {
 	}
 }
 ```
+</div>
 
 with `proofs` being `sharesProof.ShareProofs`.
 
@@ -674,6 +686,8 @@ test.
 
 A golang helper to convert the row proofs is as follows:
 
+<div style="overflow-y: auto; max-height: 400px;">
+
 ```go
 func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 	rowProofs := make([]client.BinaryMerkleProof, len(proofs))
@@ -693,6 +707,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 	return rowProofs
 }
 ```
+</div>
 
 with `proofs` being `sharesProof.RowProof.Proofs`.
 
@@ -747,6 +762,8 @@ test.
 
 A golang helper to create an attestation proof:
 
+<div style="overflow-y: auto; max-height: 400px;">
+
 ```go
 func toAttestationProof(
 	nonce uint64,
@@ -775,6 +792,7 @@ func toAttestationProof(
 	}
 }
 ```
+</div>
 
 with the `nonce` being the attestation nonce, which can be retrieved using `BlobstreamX`
 contract events. Check below for an example. And `height` being the Celestia
@@ -794,6 +812,8 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
   corresponding data. An example:
 
 <!-- markdownlint-disable MD013 -->
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
 	// get the nonce corresponding to the block height that contains the PayForBlob transaction
@@ -855,11 +875,14 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 		return fmt.Errorf("couldn't find range containing the block height")
 	}
 ```
+</div>
 
 ### Listening for new data commitments
 
 For listening for new `BlobstreamXDataCommitmentStored` events, sequencers can
 use the `WatchDataCommitmentStored` as follows:
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
     ethClient, err := ethclient.Dial("evm_rpc")
@@ -899,6 +922,7 @@ use the `WatchDataCommitmentStored` as follows:
 	    }
     }
 ```
+</div>
 
 <!-- markdownlint-enable MD013 -->
 
@@ -910,6 +934,8 @@ data commitments contained in the received events.
 An example rollup that uses the DAVerifier can be as simple as:
 
 <!-- markdownlint-disable MD013 -->
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```solidity
 pragma solidity ^0.8.22;
@@ -933,8 +959,11 @@ contract SimpleRollup {
     }
 }
 ```
+</div>
 
 Then, you can submit the fraud proof using golang as follows:
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
 package main
@@ -1169,6 +1198,7 @@ func namespace(namespaceID []byte) *client.Namespace {
 	}
 }
 ```
+</div>
 
 For the step (2), check the [rollup inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md)
 for more information.
