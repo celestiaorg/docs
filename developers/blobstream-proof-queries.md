@@ -122,7 +122,42 @@ allows querying a data root to data root tuple root proof. It takes a block
 Merkle proof of the `DataRootTuple`, corresponding to that `height`,
 to the `DataRootTupleRoot` which is committed to in the Blobstream X contract.
 
-The endpoint can be queried using the golang client:
+#### HTTP query
+
+Example HTTP request: `<tendermint_rpc_endpoint>/data_root_inclusion_proof?height=15&start=10&end=20`
+
+Which queries the proof of the height `15` to the data commitment defined
+by the range `[10, 20)`.
+
+Example response:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": -1,
+  "result": {
+    "proof": {
+      "total": "10",
+      "index": "5",
+      "leaf_hash": "vkRaRg7FGtZ/ZhsJRh/Uhhb3U6dPaYJ1pJNEfrwq5HE=",
+      "aunts": [
+        "nmBWWwHpipHwagaI7MAqM/yhCDb4cz7z4lRxmVRq5f8=",
+        "nyzLbFJjnSKOfRZur8xvJiJLA+wBPtwm0KbYglILxLg=",
+        "GI/tJ9WSwcyHM0r0i8t+p3hPFtDieuYR9wSPVkL1r2s=",
+        "+SGf6MfzMmtDKz5MLlH+y7mPV9Moo2x5rLjLe3gbFQo="
+      ]
+    }
+  }
+}
+```
+
+> **_NOTE:_** These values are base64 encoded. For these to be usable
+> with the solidity smart contract, they need to be converted to `bytes32`.
+> Check the next section for more information.
+
+#### Golang query
+
+The endpoint can also be queried using the golang client:
 
 ```go
 package main
@@ -158,6 +193,8 @@ func main() {
 <!-- markdownlint-disable MD013 -->
 
 ### Full example of proving that a Celestia block was committed to by Blobstream X contract
+
+<div style="overflow-y: auto; max-height: 200px;">
 
 ```go
 package main
@@ -325,6 +362,7 @@ func VerifyDataRootInclusion(
 	return valid, nil
 }
 ```
+</div>
 
 <!-- markdownlint-enable MD013 -->
 
