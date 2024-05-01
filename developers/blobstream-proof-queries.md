@@ -1469,6 +1469,10 @@ func namespace(namespaceID []byte) *client.Namespace {
 For the step (2), check the [rollup inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md)
 for more information.
 
+For an example project that uses the above proof queries, checkout the 
+[blobstreamx-example](https://github.com/CryptoKass/blobstreamx-example)
+sample project.
+
 ## Conclusion
 
 After creating all the proofs, and verifying them:
