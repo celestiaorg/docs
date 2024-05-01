@@ -12,6 +12,37 @@ description: Learn how to query the inclusion proofs used in Blobstream
   RPC endpoint (or full node). The node doesn't need to be a
   validating node in order for the proofs to be queried. A full node is enough.
 
+For golang snippets, the tendermint RPC client, referred to as `trpc`, will be
+used for the queries. It can be initialized using:
+
+```go
+    trpc, err := http.New("<rpc_endpoint>", "/websocket")
+	if err != nil {
+		...
+	}
+	err = trpc.Start()
+	if err != nil {
+		return err
+	}
+	defer func(trpc *http.HTTP) {
+		err := trpc.Stop()
+		if err != nil {
+			...
+		}
+	}(trpc)
+```
+
+The `<rpc_endpoint>` can be retrieved from [mainnet](../nodes/mainnet.md) for 
+Celestia mainnet beta, and [mocha](../nodes/mocha-testnet.md) for the Mocha testnet.
+
+In case the reader wants to interact with an on-chain contract that can be used to verify
+that data was posted to Celestia, the bindings of that contract are needed.
+
+For Blobstream, the golang bindings can be found in the [Blobstream X](https://github.com/succinctlabs/blobstreamx/blob/main/bindings/BlobstreamX.go)
+repository. For other languages, the corresponding smart contract bindings should
+be generated. Refer to [abigen](https://geth.ethereum.org/docs/tools/abigen) for
+more information.
+
 ## Overview of the proof queries
 
 To prove the inclusion of PayForBlobs (PFB) transactions, blobs or shares,
@@ -122,7 +153,47 @@ allows querying a data root to data root tuple root proof. It takes a block
 Merkle proof of the `DataRootTuple`, corresponding to that `height`,
 to the `DataRootTupleRoot` which is committed to in the Blobstream X contract.
 
-The endpoint can be queried using the golang client:
+#### HTTP query
+
+Example HTTP request: `<tendermint_rpc_endpoint>/data_root_inclusion_proof?height=15&start=10&end=20`
+
+Which queries the proof of the height `15` to the data commitment defined
+by the range `[10, 20)`.
+
+Example response:
+
+<div style="overflow-y: auto; max-height: 400px;">
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": -1,
+  "result": {
+    "proof": {
+      "total": "10",
+      "index": "5",
+      "leaf_hash": "vkRaRg7FGtZ/ZhsJRh/Uhhb3U6dPaYJ1pJNEfrwq5HE=",
+      "aunts": [
+        "nmBWWwHpipHwagaI7MAqM/yhCDb4cz7z4lRxmVRq5f8=",
+        "nyzLbFJjnSKOfRZur8xvJiJLA+wBPtwm0KbYglILxLg=",
+        "GI/tJ9WSwcyHM0r0i8t+p3hPFtDieuYR9wSPVkL1r2s=",
+        "+SGf6MfzMmtDKz5MLlH+y7mPV9Moo2x5rLjLe3gbFQo="
+      ]
+    }
+  }
+}
+```
+</div>
+
+> **_NOTE:_** These values are base64 encoded. For these to be usable
+> with the solidity smart contract, they need to be converted to `bytes32`.
+> Check the next section for more information.
+
+#### Golang client
+
+The endpoint can also be queried using the golang client:
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
 package main
@@ -154,10 +225,13 @@ func main() {
 	fmt.Println(dcProof.Proof.String())
 }
 ```
+</div>
 
 <!-- markdownlint-disable MD013 -->
 
 ### Full example of proving that a Celestia block was committed to by Blobstream X contract
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
 package main
@@ -325,6 +399,7 @@ func VerifyDataRootInclusion(
 	return valid, nil
 }
 ```
+</div>
 
 <!-- markdownlint-enable MD013 -->
 
@@ -333,12 +408,186 @@ func VerifyDataRootInclusion(
 To prove that a rollup transaction is part of the data root, we will need to
 provide two proofs: (1) a namespace Merkle proof of the transaction to
 a row root. This could be done via proving the shares that contain the
-transaction to the row root using a namespace Merkle proof. (2) And, a
+transaction to the row root using a namespace Merkle proof. (2) And a
 binary Merkle proof of the row root to the data root.
 
-These proofs can be generated using the
-[`ProveShares`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L526-L543)
-query.
+### Transaction inclusion proof using the transaction hash
+
+Given a transaction hash, the transaction inclusion proof can be queried from
+the transaction query. 
+
+#### HTTP request
+
+Example request: `<tendermint_rpc_endpoint>/tx?hash=0xEF9F50BFB39F11B022A6CD7026574ECCDC6D596689BDCCC7B2C482A1B26B26B8&prove=true`
+
+Which queries the transaction whose hash is `EF9F50BFB39F11B022A6CD7026574ECCDC6D596689BDCCC7B2C482A1B26B26B8`
+and sets the `prove` parameter as true to also get its inclusion proof.
+
+Example response:
+
+<div style="overflow-y: auto; max-height: 400px;">
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": -1,
+  "result": {
+    "hash": "EF9F50BFB39F11B022A6CD7026574ECCDC6D596689BDCCC7B2C482A1B26B26B8",
+    "height": "1350632",
+    "index": 4,
+    "tx_result": {
+      "code": 0,
+      "data": "EioKKC9jZWxlc3RpYS5ibG9iLnYxLk1zZ1BheUZvckJsb2JzUmVzcG9uc2U=",
+      "log": "[{\"msg_index\":0,\"events\":[{\"type\":\"celestia.blob.v1.EventPayForBlobs\",\"attributes\":[{\"key\":\"blob_sizes\",\"value\":\"[120000]\"},{\"key\":\"namespaces\",\"value\":\"[\\\"AAAAAAAAAAAAAAAAAAAAAAAAAAAABYTLU4hLOUU=\\\"]\"},{\"key\":\"signer\",\"value\":\"\\\"celestia1vdjkcetnw35kzvtk8pjhxcm4xan82wtvwcurwwtt0f6n2at9va6k2atjw3cn2umhxe58xmfndejs40vqs9\\\"\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"action\",\"value\":\"/celestia.blob.v1.MsgPayForBlobs\"}]}]}]",
+      "info": "",
+      "gas_wanted": "1095604",
+      "gas_used": "1080694",
+      "events": [
+        ...
+      ],
+      "codespace": ""
+    },
+    "tx": "CqEBCp4BCiAvY2VsZXN0aWEuYmxvYi52MS5Nc2dQYXlGb3JCbG9icxJ6Ci9jZWxlc3RpYTF2OGVzY3U3ZnU5bHY4NzlrenU1dWVndWV1cnRxNXN3NmhzbTNuZRIdAAAAAAAAAAAAAAAAAAAAAAAAAAAABYTLU4hLOUUaA8CpByIgsVXWya9toI+AyTu3JJA2wkI5ZLkm72/gklCGFLCSrm9CAQASaApSCkYKHy9jb3Ntb3MuY3J5cHRvLnNlY3AyNTZrMS5QdWJLZXkSIwohAqdvBVUpglaNDGTlOcGSoHERBAFsFBB5l0WdvBJjEsEHEgQKAggBGJjCARISCgwKBHV0aWESBDIxOTIQtO9CGkCJRjcOYijj81bttfb2GUdG7o8AuAwf0bscBhW9PPD99xpQ1slpemfyq0y1joJ/aRFgE6QNxuiZ18VLGlGEwtW/",
+    "proof": {
+      "data": [
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAACugAAACbaAgrNAgqfAQqcAQogL2NlbGVzdGlhLmJsb2IudjEuTXNnUGF5Rm9yQmxvYnMSeAovY2VsZXN0aWExYWxwNGZwbHF5d21jNmN1aDl5MzVlY2xycHF5cWF4MjN2Z3ZrczUSHQAAAAAAAAAAAAAAAAAAAAAAAAAAAAgICAgICAgIGgFeIiAzlOEQsGxg3rOw7SR1rkQ7dVJYGp3aXkaqy4oG6HYc0EIBABJnClIKRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiECA4ief8FZEaBQLVc2wOceFs+LhAK0mDnmPnsxYLkqv7QSBAoCCAEY5PEBEhEKCwoEdXRpYRIDMTYwELTvBBpA7XBbSGYFrwTZcFHq3va1vHtbRiCzYd0ELkAJo6kLSDooEQCwoVaGuwTdP55V8Btf3WC7/FEK44BOESwEwecTExICgQIaBElORFjcAgrQAgqhAQqeAQogL2NlbGVzdGlhLmJsb2IudjEuTXNnUGF5Rm9yQmxvYnMSegovY2VsZXN0aWExdjhlc2N1N2Z1OWx2ODc5a3p1NXVlZ3VldXJ0cTVzdzZoc20zbmUSHQAAAAAAAAAAAAAAAAAAAAAAAAAAAAWEy1OISzk=",
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEUaA8CpByIgsVXWya9toI+AyTu3JJA2wkI5ZLkm72/gklCGFLCSrm9CAQASaApSCkYKHy9jb3Ntb3MuY3J5cHRvLnNlY3AyNTZrMS5QdWJLZXkSIwohAqdvBVUpglaNDGTlOcGSoHERBAFsFBB5l0WdvBJjEsEHEgQKAggBGJjCARISCgwKBHV0aWESBDIxOTIQtO9CGkCJRjcOYijj81bttfb2GUdG7o8AuAwf0bscBhW9PPD99xpQ1slpemfyq0y1joJ/aRFgE6QNxuiZ18VLGlGEwtW/EgEIGgRJTkRYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+      ],
+      "share_proofs": [
+        {
+          "start": 5,
+          "end": 7,
+          "nodes": [
+            "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQs98k+8wQ2iX2BdcTfoHjtRQbqybtPdB1BUFY/D7WRs",
+            "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZz5Aj1MiJjrOWJdCifYJkr0pCrOIu2jigmd9BzuhZrO",
+            "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/y91DA3ZRyFzmc7L/ZXrxJ96/2ZDIr/JH0tyRmtrDtHA",
+            "AAAAAAAAAAAAAAAAAAAAAAAAAAAABYTLU4hLOUUAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhMtTiEs5RU6k2enIm7ThjQyCL82hSxpinyCELhed9QK+p9ZbNIDe",
+            "AAAAAAAAAAAAAAAAAAAAAAAAAAAABYTLU4hLOUUAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhMtTiEs5RT0T52LWq3L0FNM6KqQKA7NrxFNM8zC/kQKHkPJXMibY",
+            "/////////////////////////////////////////////////////////////////////////////76AU8rJ4VSYVAsPH5LGqQ2KG/oKPajw+kyhnQkq5Vch"
+          ]
+        }
+      ],
+      "namespace_id": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA==",
+      "row_proof": {
+        "row_roots": [
+          "00000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000584CB53884B394593052DF4039E58C7D51F0E45CACE7DD584125F62F9261B7900AC1EEEF5E82349"
+        ],
+        "proofs": [
+          {
+            "total": "128",
+            "index": "0",
+            "leaf_hash": "Qm/3wL9cWxS8rQbDDgUPU9p8jCfJ+Jc77zsSWdcF6PM=",
+            "aunts": [
+              "+mHKrh9boRgjN3oqt/Np5Wre24w+E79/hzFY/eouJY0=",
+              "8woyobNJs3MT1dKFRQID8VC75oJa2jNF3Wn/1USGfT4=",
+              "MTgbZqhrQoL61oKKZMhRfYq5bk6gOkLgWrVPArPYXvE=",
+              "plW1GXaBNavHWwurqsWB0xH25zv9xhiELqtVld0XQC4=",
+              "K/yH2ZDYNE9u/UT8sJtGuH+akiMNQTKUUu/uhlbGdgo=",
+              "J2pYcLT4KHpIQvh7b6Wp9KCdMgHLCT9eDfYDr7ZAQ9o=",
+              "grZxooejIhch93+g3MLdiBq6fF+nrOAKRBgupfu8mUo="
+            ]
+          }
+        ],
+        "start_row": 0,
+        "end_row": 0
+      },
+      "namespace_version": 0
+    }
+  }
+}
+```
+</div>
+
+The `proof` field contains the transaction inclusion proof to the data root.
+
+Also, the share range where this transaction spans is the end exclusive range defined
+by `proof.share_proofs[0].start` and `proof.share_proofs[0].end`.
+
+> > **_NOTE:_** The values are base64 encoded. For these to be usable
+> with the solidity smart contract, they need to be converted to `bytes32`.
+> Check the next section for more information.
+
+#### Golang client
+
+Using the golang client:
+
+```go
+    txHash, err := hex.DecodeString("<transaction_hash>")
+    if err != nil {
+		...
+	}
+    tx, err := trpc.Tx(cmd.Context(), txHash, true)
+    if err != nil {
+		...
+    }
+```
+
+Then, the proof is under `tx.Proof`.
+
+### Blob inclusion proof using the corresponding PFB transaction hash
+
+Currently, querying the proof of a blob using its corresponding PFB transaction hash
+is possible only using the golang client. Otherwise, the corresponding 
+share range is required so that the [`ProveShares`](#specific-share-range-inclusion-proof) 
+endpoint can be used.
+
+#### Golang client
+
+Using the golang client:
+
+<div style="overflow-y: auto; max-height: 400px;">
+
+```go
+import (
+	"context"
+	"encoding/hex"
+	"github.com/celestiaorg/celestia-app/v2/pkg/appconsts"
+	"github.com/celestiaorg/go-square/square"
+	"github.com/tendermint/tendermint/rpc/client/http"
+)
+
+func queryShareRange() error {
+	txHash, err := hex.DecodeString("<transaction_hash>")
+	if err != nil {
+		return err
+	}
+	tx, err := trpc.Tx(context.Background(), txHash, true)
+	if err != nil {
+		return err
+	}
+	
+	blockRes, err := trpc.Block(context.Background(), &tx.Height)
+	if err != nil {
+		return err
+	}
+
+	version := blockRes.Block.Header.Version.App
+	maxSquareSize := appconsts.SquareSizeUpperBound(version)
+	subtreeRootThreshold := appconsts.SubtreeRootThreshold(version)
+	blobShareRange, err := square.BlobShareRange(
+		blockRes.Block.Txs.ToSliceOfBytes(),
+		int(tx.Index),
+		<blob_index>,
+		maxSquareSize,
+		subtreeRootThreshold,
+	)
+	if err != nil {
+		return err
+	}
+}
+```
+</div>
+
+with the `<transaction_hash>` being the transaction hash of the PFB containing the blob
+and, the `<blob_index>` being the index of the blob. In fact, [PayForBlob](https://github.com/celestiaorg/celestia-app/blob/67f0c789e468a9c2d98e4d638aaca227567a1d74/proto/celestia/blob/v1/tx.proto#L16-L34)
+transactions can contain multiple blobs. So, the `<blob_index>` is the index of the blob
+in the PFB.
+
+### Specific share range inclusion proof
+
+To retrieve the inclusion proof of a set of shares for whom the share range is already known,
+the [`ProveShares`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L526-L543)
+query can be used to query it.
 
 This [endpoint](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732aec3e09018e37dc31f4bfe122d9/rpc/core/tx.go#L175-L213)
 allows querying a shares proof to row roots, then a row roots to data
@@ -354,6 +603,65 @@ If the share range spans multiple rows,
 then the proof can contain multiple NMT and binary proofs.
 :::
 
+#### HTTP request
+
+Example request: `<tendermint_rpc_endpoint>/prove_shares?height=15&startShare=0&endShare=1`
+
+Which queries the proof of shares `[0,1)` in block `15`.
+
+Example response:
+
+<div style="overflow-y: auto; max-height: 400px;">
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": -1,
+  "result": {
+    "data": [
+      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAABXAAAACbaAgrOAgqgAQqdAQogL2NlbGVzdGlhLmJsb2IudjEuTXNnUGF5Rm9yQmxvYnMSeQovY2VsZXN0aWExdWc1ZWt0MmNjN250dzRkdG1zZDlsN3N0cTBzN3Z5ZTd5bTJyZHISHQAAAAAAAAAAAAAAAAAAAAAAAAASExIyQkMkMoiZGgKXAiIgrfloW1M/Y33zlD2luveDELZzr9cF92+2eTaImIWhN9pCAQASZwpQCkYKHy9jb3Ntb3MuY3J5cHRvLnNlY3AyNTZrMS5QdWJLZXkSIwohA36hewmW/AXtrw6S+QsNUzFGfeg37Da6igoP2ZQcK+04EgQKAggBGAISEwoNCgR1dGlhEgUyMTAwMBDQ6AwaQClYLQPNrFoD6H8mgmwxjFeNhwhRu39EcrVKMFkNQ8+HHuodhdOQIG/8DXEmrBwrpwj6hi+3uEsZ+0p5vrf3v8sSAQEaBElORFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    ],
+    "share_proofs": [
+      {
+        "end": 1,
+        "nodes": [
+          "AAAAAAAAAAAAAAAAAAAAAAAAABITEjJCQyQyiJkAAAAAAAAAAAAAAAAAAAAAAAAAEhMSMkJDJDKImbiwnpOdwIZBFr0UiFhPKwGy/XIIjL+gqm0fqxIw0z0o",
+          "/////////////////////////////////////////////////////////////////////////////3+fuhlzUfKJnZD8yg/JOtZla2V3g2Q7y+18iH5j0Uxk"
+        ]
+      }
+    ],
+    "namespace_id": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA==",
+    "row_proof": {
+      "row_roots": [
+        "000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000121312324243243288993946154604701154F739F3D1B5475786DDD960F06D8708D4E870DA6501C51750"
+      ],
+      "proofs": [
+        {
+          "total": "8",
+          "index": "0",
+          "leaf_hash": "300xzO8TiLwPNuREY6OJcRKzTHQ4y6yy6qH0wAuMMrc=",
+          "aunts": [
+            "ugp0sV9YNEI5pOiYR7RdOdswwlfBh2o3XiRsmMNmbKs=",
+            "3dMFZFaWZMTZVXhphF5TxlCJ+CT3EvmMFOpiXFH+ID4=",
+            "srl59GiTSiwC9LqdYASzFC6TvusyY7njX8/XThp6Xws="
+          ]
+        }
+      ],
+      "start_row": 0,
+      "end_row": 0
+    },
+    "namespace_version": 0
+  }
+}
+```
+</div>
+
+> > **_NOTE:_** The values are base64 encoded. For these to be usable
+> with the solidity smart contract, they need to be converted to `bytes32`.
+> Check the next section for more information.
+
+#### Golang client
+
 The endpoint can be queried using the golang client:
 
 ```go
@@ -365,10 +673,12 @@ The endpoint can be queried using the golang client:
 
 ## Converting the proofs to be usable in the `DAVerifier` library
 
-Smart contracts that use the `DAVerifier` library takes the following proof
+Smart contracts that use the `DAVerifier` library take the following proof
 format:
 
 <!-- markdownlint-disable MD013 -->
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```solidity
 /// @notice Contains the necessary parameters to prove that some shares, which were posted to
@@ -399,11 +709,11 @@ struct AttestationProof {
     BinaryMerkleProof proof;
 }
 ```
+</div>
 
 <!-- markdownlint-enable MD013 -->
 
-To construct the `SharesProof`, we will need the proof that we queried above,
-and it goes as follows:
+To construct the `SharesProof`, we will adapt the queried response above as follows.
 
 ### `data`
 
@@ -415,6 +725,9 @@ we can convert it to bytes using the `abi.encode(...)` as done for
 This can be gotten from the above result of the
 [transaction inclusion proof](#2-transaction-inclusion-proof)
 query in the field `data`.
+
+If the data field is retrieved from an HTTP request,
+it should be converted to hex before using `abi.encode(...)`.
 
 ### `shareProofs`
 
@@ -459,8 +772,8 @@ struct NamespaceNode {
 ```
 
 So, we construct a `NamespaceNode` via taking the values from the `nodes` field
-in the query response, we convert them from base64 to `hex`, then we use the
-following mapping:
+in the query response, we convert them from base64 to `hex` in case of an HTTP request,
+then we use the following mapping:
 
 - `min` == the first 29 bytes in the decoded value
 - `max` == the second 29 bytes in the decoded value
@@ -491,6 +804,8 @@ test.
 A golang helper that can be used to make this conversion is as follows:
 
 <!-- markdownlint-disable MD013 -->
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
 func toNamespaceMerkleMultiProofs(proofs []*tmproto.NMTProof) []client.NamespaceMerkleMultiproof {
@@ -541,6 +856,7 @@ func toNamespaceNode(node []byte) *client.NamespaceNode {
 	}
 }
 ```
+</div>
 
 with `proofs` being `sharesProof.ShareProofs`.
 
@@ -589,7 +905,7 @@ with `namespace` being `sharesProof.NamespaceID`.
 ### `rowRoots`
 
 Which are the roots of the rows where the shares containing the Rollup data are
-localised.
+localized.
 
 In golang, the proof can be converted as follows:
 
@@ -636,6 +952,8 @@ test.
 
 A golang helper to convert the row proofs is as follows:
 
+<div style="overflow-y: auto; max-height: 400px;">
+
 ```go
 func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 	rowProofs := make([]client.BinaryMerkleProof, len(proofs))
@@ -655,6 +973,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 	return rowProofs
 }
 ```
+</div>
 
 with `proofs` being `sharesProof.RowProof.Proofs`.
 
@@ -709,6 +1028,8 @@ test.
 
 A golang helper to create an attestation proof:
 
+<div style="overflow-y: auto; max-height: 400px;">
+
 ```go
 func toAttestationProof(
 	nonce uint64,
@@ -737,8 +1058,9 @@ func toAttestationProof(
 	}
 }
 ```
+</div>
 
-with the `nonce` being the attestation nonce, which can be retrieved using `BlobstreamX`
+With the `nonce` being the attestation nonce, which can be retrieved using `BlobstreamX`
 contract events. Check below for an example. And `height` being the Celestia
 Block height that contains the rollup data, along with the `blockDataRoot` being
 the data root of the block height. Finally, `dataRootInclusionProof` is the
@@ -756,6 +1078,8 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
   corresponding data. An example:
 
 <!-- markdownlint-disable MD013 -->
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
 	// get the nonce corresponding to the block height that contains the PayForBlob transaction
@@ -817,11 +1141,14 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 		return fmt.Errorf("couldn't find range containing the block height")
 	}
 ```
+</div>
 
 ### Listening for new data commitments
 
 For listening for new `BlobstreamXDataCommitmentStored` events, sequencers can
 use the `WatchDataCommitmentStored` as follows:
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
     ethClient, err := ethclient.Dial("evm_rpc")
@@ -861,6 +1188,7 @@ use the `WatchDataCommitmentStored` as follows:
 	    }
     }
 ```
+</div>
 
 <!-- markdownlint-enable MD013 -->
 
@@ -872,6 +1200,8 @@ data commitments contained in the received events.
 An example rollup that uses the DAVerifier can be as simple as:
 
 <!-- markdownlint-disable MD013 -->
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```solidity
 pragma solidity ^0.8.22;
@@ -895,8 +1225,11 @@ contract SimpleRollup {
     }
 }
 ```
+</div>
 
 Then, you can submit the fraud proof using golang as follows:
+
+<div style="overflow-y: auto; max-height: 400px;">
 
 ```go
 package main
@@ -1131,9 +1464,14 @@ func namespace(namespaceID []byte) *client.Namespace {
 	}
 }
 ```
+</div>
 
 For the step (2), check the [rollup inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md)
 for more information.
+
+For an example project that uses the above proof queries, checkout the 
+[blobstreamx-example](https://github.com/CryptoKass/blobstreamx-example)
+sample project.
 
 ## Conclusion
 
