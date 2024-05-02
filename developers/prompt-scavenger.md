@@ -85,7 +85,7 @@ Next, we will start our node:
 celestia light start --core.ip $CORE_IP --p2p.network $NETWORK --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --keyring.accname $KEYNAME
 ```
 
-Connecting to a public core endpoint with `--core.ip string`
+Connecting to a core endpoint with `--core.ip string`
 provides the light node with access to state queries (reading balances, submitting
 transactions, and other state-related queries).
 

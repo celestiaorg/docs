@@ -116,7 +116,7 @@ Congratulations! You now have a celestia-node running!
 
 If you would like to run the node with custom flags,
 you can refer to the
-[celestia-node tutorial](../developers/node-tutorial.md#connect-to-a-public-core-endpoint) page. Refer to
+[celestia-node tutorial](../developers/node-tutorial.md#connect-to-a-core-endpoint) page. Refer to
 [the ports section of the celestia-node troubleshooting page](./celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 
