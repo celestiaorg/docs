@@ -80,19 +80,18 @@ You can [find the status of these endpoints](https://celestia-tools.brightlystak
 
 ### Using consensus endpoints with DA nodes
 
-Consensus RPC endpoints are used to provide DA nodes with state access for
+A consensus gRPC endpoint is used to provide DA nodes with state access for
 querying the chain’s state and broadcasting transactions (balances, blobs,
 etc.) to the Celestia network.
 
 Developers will need to provide a
 `–core.ip string` from a consensus node’s URI or an IP that populates
-2 ports for 2 types (RPC and gRPC, at ports 26657 and 9090, respectively)
-to their respective DA node.
+a port for gRPC at 9090 to their respective DA node.
 
 :::tip EXAMPLE
 
 ```bash
-celestia <da_type> start –core.ip <url> –core.rpc.port <port> \
+celestia <da_type> start –core.ip <url> \
     –core.grpc.port <port> \
 ```
 
