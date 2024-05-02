@@ -92,6 +92,10 @@ Using an RPC of your own, or one from the
 [list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints),
 start your node.
 
+Connecting to a public core endpoint with `--core.ip string`
+provides the light node with access to state queries (reading balances, submitting
+transactions, and other state-related queries).
+
 Here is an example of initializing the bridge node:
 
 ::: code-group
