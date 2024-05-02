@@ -305,9 +305,9 @@ your keys will be stored.
 ### Connect to a public core endpoint
 
 Let's now run the Celestia Light node with a gRPC connection
-to an example public core endpoint. Connecting to a public core endpoint 
-provides the light node with access to state queries (reading balances, submitting 
-transactions, and other state-related queries). 
+to an example public core endpoint. Connecting to a public core endpoint
+provides the light node with access to state queries (reading balances, submitting
+transactions, and other state-related queries).
 
 Note: You are also encouraged to find a community-run API endpoint
 and there are several in the Discord. This one is used for demonstration
