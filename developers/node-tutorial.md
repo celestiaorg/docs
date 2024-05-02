@@ -425,6 +425,169 @@ when you created the wallet.
 
 With your wallet funded, you can move on to the next step.
 
+## Golang Client Library Guide {#golang-client-library}
+
+This section tutorial will guide you through using the most common RPC endpoints with the golang client library.
+
+You will need to
+[setup dependencies, install, and run celestia-node](#setting-up-dependencies)
+if you have not already.
+
+### Project Setup
+
+<!---
+NOTE: This section can be removed once we release celestia-openrpc. It is extremely cumbersome and gross to have the user set replaces in their go.mod. I will actually try to get this done before this PR is merged.
+-->
+
+In order to import `celestia-node` into your project, you will need to add the replaces found at the bottom of the upstream `go.mod` file to your project's `go.mod` file:
+
+```go
+replace (
+	github.com/cosmos/cosmos-sdk => github.com/celestiaorg/cosmos-sdk v1.20.1-sdk-v0.46.16
+	github.com/filecoin-project/dagstore => github.com/celestiaorg/dagstore v0.0.0-20230824094345-537c012aa403
+	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
+	// broken goleveldb needs to be replaced for the cosmos-sdk and celestia-app
+	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
+	github.com/tendermint/tendermint => github.com/celestiaorg/celestia-core v1.35.0-tm-v0.34.29
+)
+```
+
+After adding the replaces, you can add celestia-node as a dependency to your project.
+
+```bash
+go get github.com/celestiaorg/celestia-node
+```
+
+To use the following methods, you will need the node URL and your auth token. To get your auth token, see this [guide](#auth-token).
+
+### Submitting and Retrieving Blobs
+
+The [blob.Submit](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit) method takes a slice of blobs and a gas price, returning the height the blob was successfully posted at.
+
+- The namespace can be generated with `share.NewBlobNamespaceV0`.
+- The blobs can be generated with `blob.NewBlobV0`.
+- You can use `blob.DefaultGasPrice()` to have the node automatically determine an appropriate gas price.
+
+The [blob.GetAll](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.GetAll) method takes a height and slice of namespaces, returning the slice of blobs found in the given namespaces.
+
+```go
+import (
+	"context"
+	"fmt"
+	"time"
+
+	"github.com/celestiaorg/celestia-node/api/rpc/client"
+	"github.com/celestiaorg/celestia-node/blob"
+	"github.com/celestiaorg/celestia-node/share"
+)
+
+/// SubmitBlob submits a blob containing "Hello, World!" to the 0xDEADBEEF namespace. It uses the default signer on the running node.
+func SubmitBlob(ctx context.Context, url string, token string) error {
+	client, err := client.NewClient(ctx, url, token)
+	if err != nil {
+		return err
+	}
+
+	// let's post to 0xDEADBEEF namespace
+	namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+	if err != nil {
+		return err
+	}
+
+	// create a blob
+	helloWorldBlob, err := blob.NewBlobV0(namespace, []byte("Hello, World!"))
+	if err != nil {
+		return err
+	}
+
+	// submit the blob to the network
+	height, err := client.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, blob.DefaultGasPrice())
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Blob was included at height %d", height)
+
+	// fetch the blob back from the network
+	retrievedBlobs, err := client.Blob.GetAll(ctx, height, []share.Namespace{namespace})
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Blobs are equal? %v": bytes.Equal(helloWorldBlob.Commitment, retrievedBlob[0].Commitment))
+}
+```
+
+### Subscribing to new headers
+
+<!---
+Yet another thing: There is a argument rn that GetAll should return an error if no blobs are found. I do not agree with this argument, as it is not intuitive to the user, as seen in this example. I will try to resolve this before this PR is merged.
+--->
+
+You can subscribe to new headers using the [header.Subscribe](https://node-rpc-docs.celestia.org/?version=v0.11.0#header.Subscribe) method. This method returns a channel that will receive new headers as they are produced. In this example, we will fetch all blobs at the height of the new header in the `0xDEADBEEF` namespace.
+
+```go
+func SubscribeHeaders(ctx context.Context, url string, token string) error {
+	client, err := client.NewClient(ctx, url, token)
+	if err != nil {
+		return err
+	}
+
+	// create a namespace to filter blobs with
+	namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+	if err != nil {
+		return err
+	}
+
+	// subscribe to new headers using a <-chan *header.ExtendedHeader channel
+	headerChan, err := client.Header.Subscribe(ctx)
+	if err != nil {
+		return err
+	}
+
+	for {
+		select {
+		case header := <-headerChan:
+			// fetch all blobs at the height of the new header
+			blobs, err := client.Blob.GetAll(context.TODO(), header.Height(), []share.Namespace{namespace})
+			if err != nil {
+				fmt.Println("Error fetching blobs: %v", err)
+			}
+
+			fmt.Println("Found %d blobs at height %d in 0xDEADBEEF namespace", len(blobs), header.Height())
+		case <-ctx.Done():
+			return
+		}
+	}
+}
+```
+
+### Fetching an Extended Data Square (EDS)
+
+You can fetch an [Extended Data Square (EDS)](https://celestiaorg.github.io/celestia-app/specs/data_structures.html#erasure-coding) using the [share.GetEDS](https://node-rpc-docs.celestia.org/?version=v0.11.0#share.GetEDS) method. This method takes a header and returns the EDS at the given height.
+
+```go
+func GetEDS(ctx context.Context, url string, token string, height uint64) (*rsmt2d.ExtendedDataSquare, error) {
+	client, err := client.NewClient(ctx, url, token)
+	if err != nil {
+		return nil, err
+	}
+
+	// First get the header of the block you want to fetch the EDS from
+	header, err := client.Header.GetByHeight(ctx, height)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fetch the EDS
+	return client.Share.GetEDS(ctx, header)
+}
+```
+
+### Balances and Transfers
+
+TODO
+
 ## RPC CLI guide
 
 This section of the tutorial will teach you how to interact with a Celestia node's
@@ -1140,13 +1303,6 @@ The example transaction can be
 
 If you'd like to create your own SVG, post it to Celestia, and retrieve it,
 you can check out the [Base64 SVG Tutorial](https://based64.xyz/).
-
-### Golang guide
-
-If you're interested in interacting with the node's API in Go
-([`client.go`](https://github.com/celestiaorg/celestia-node/blob/main/api/rpc/client/client.go)),
-you can use the [da-rpc-client-tutorial](https://github.com/renaynay/da-rpc-client-tutorial)
-repo.
 
 ### Troubleshooting
 
