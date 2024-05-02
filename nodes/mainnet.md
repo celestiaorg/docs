@@ -187,13 +187,15 @@ to participate in Mainnet Beta:
 - [Bridge node](./bridge-node.md)
 - [Full storage node](./full-storage-node.md)
 
-#### Data availability (DA) RPC endpoints for Bridge Node sync
-These RPC endpoints allow Bridge nodes to sync blocks from the Celestia network.
+#### Data availability (DA) RPC endpoints for bridge node sync
+
+These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
 For users, they will need to provide a `–core.ip string`
 from a consensus node’s URL or IP that populates a default RPC port at 26657
 to their respective DA node.
 
 #### Data availability (DA) gRPC endpoints for state access
+
 These gRPC endpoints for DA nodes provide state access for querying the
 chain’s state and broadcasting transactions (balances, blobs, etc.) to the
 Celestia network. For users, they will need to provide a `–core.ip string`
@@ -203,8 +205,7 @@ to their respective DA node.
 :::tip
 
 ```bash
-celestia <da_type> start --core.ip <url> \
-    –core.grpc.port <port>
+celestia <da_type> start --core.ip <url> -–core.grpc.port <port>
 ```
 
 :::
