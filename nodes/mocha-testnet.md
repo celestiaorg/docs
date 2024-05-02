@@ -54,12 +54,20 @@ import MochaTestnetDetails from '../.vitepress/components/MochaTestnetDetails.vu
 
 ## RPC for DA bridge, full, and light nodes
 
-These RPC endpoints for DA nodes are to provide state access for querying the
+### Data availability (DA) RPC endpoints for bridge node sync
+
+These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
+For users, they will need to provide a `–core.ip string`
+from a consensus node’s URL or IP that populates a default RPC port at 26657
+to their respective DA node.
+
+### Data availability (DA) gRPC endpoints for state access
+
+These gRPC endpoints for DA nodes provide state access for querying the
 chain’s state and broadcasting transactions (balances, blobs, etc.) to the
 Celestia network. For users, they will need to provide a `–core.ip string`
-from a consensus node’s URL or IP that populates 2 ports for 2 types
-(RPC and gRPC, at ports 26657 and 9090, respectively) to their respective DA
-node.
+from a consensus node’s URL or IP that populates a default gRPC port at 9090
+to their respective DA node.
 
 :::tip Bridge nodes
 Mentioned below RPC endpoints do not guarantee you the download of full blocks from
