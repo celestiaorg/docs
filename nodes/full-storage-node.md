@@ -85,6 +85,10 @@ Using an RPC of your own, or one from the
 [list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints),
 start your node.
 
+Connecting to a core endpoint with `--core.ip string`
+provides the light node with access to state queries (reading balances, submitting
+transactions, and other state-related queries).
+
 You can create your key for your node by following
 [the `cel-key` instructions](../../developers/celestia-node-key)
 

@@ -302,10 +302,12 @@ Instantiating (or initializing) the node means setting up
 a node store on your machine. This is where the data and
 your keys will be stored.
 
-### Connect to a public core endpoint
+### Connect to a core endpoint
 
 Let's now run the Celestia Light node with a gRPC connection
-to an example public core endpoint.
+to an example core endpoint. Connecting to a core endpoint
+provides the light node with access to state queries (reading balances, submitting
+transactions, and other state-related queries).
 
 Note: You are also encouraged to find a community-run API endpoint
 and there are several in the Discord. This one is used for demonstration
