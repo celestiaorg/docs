@@ -435,30 +435,15 @@ if you have not already.
 
 ### Project Setup
 
-<!---
-NOTE: This section can be removed once we release celestia-openrpc. It is extremely cumbersome and gross to have the user set replaces in their go.mod. I will actually try to get this done before this PR is merged.
--->
-
-In order to import `celestia-node` into your project, you will need to add the replaces found at the bottom of the upstream `go.mod` file to your project's `go.mod` file:
-
-```go
-replace (
-	github.com/cosmos/cosmos-sdk => github.com/celestiaorg/cosmos-sdk v1.20.1-sdk-v0.46.16
-	github.com/filecoin-project/dagstore => github.com/celestiaorg/dagstore v0.0.0-20230824094345-537c012aa403
-	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
-	// broken goleveldb needs to be replaced for the cosmos-sdk and celestia-app
-	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
-	github.com/tendermint/tendermint => github.com/celestiaorg/celestia-core v1.35.0-tm-v0.34.29
-)
-```
-
-After adding the replaces, you can add celestia-node as a dependency to your project.
+To start, add celestia-openrpc as a dependency to your project:
 
 ```bash
-go get github.com/celestiaorg/celestia-node
+go get github.com/celestiaorg/celestia-openrpc
 ```
 
-To use the following methods, you will need the node URL and your auth token. To get your auth token, see this [guide](#auth-token).
+To use the following methods, you will need the node URL and your auth token. To get your auth token, see this [guide](#auth-token). To run your node without an auth token, you can use the `--rpc.skip-auth` flag when starting your node. This allows you to pass an empty string as your auth token.
+
+The default URL is `http://localhost:26658`. If you would like to use subscription methods, such as `SubscribeHeaders` below, you must use the `ws` protocol in place of `http`: `ws://localhost:26658`.
 
 ### Submitting and Retrieving Blobs
 
@@ -466,22 +451,22 @@ The [blob.Submit](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submi
 
 - The namespace can be generated with `share.NewBlobNamespaceV0`.
 - The blobs can be generated with `blob.NewBlobV0`.
-- You can use `blob.DefaultGasPrice()` to have the node automatically determine an appropriate gas price.
+- You can set `blob.DefaultGasPrice()` as the gas price to have celestia-node automatically determine an appropriate gas price.
 
 The [blob.GetAll](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.GetAll) method takes a height and slice of namespaces, returning the slice of blobs found in the given namespaces.
 
 ```go
 import (
+	"bytes"
 	"context"
 	"fmt"
-	"time"
 
-	"github.com/celestiaorg/celestia-node/api/rpc/client"
-	"github.com/celestiaorg/celestia-node/blob"
-	"github.com/celestiaorg/celestia-node/share"
+	client "github.com/celestiaorg/celestia-openrpc"
+	"github.com/celestiaorg/celestia-openrpc/types/blob"
+	"github.com/celestiaorg/celestia-openrpc/types/share"
 )
 
-/// SubmitBlob submits a blob containing "Hello, World!" to the 0xDEADBEEF namespace. It uses the default signer on the running node.
+// SubmitBlob submits a blob containing "Hello, World!" to the 0xDEADBEEF namespace. It uses the default signer on the running node.
 func SubmitBlob(ctx context.Context, url string, token string) error {
 	client, err := client.NewClient(ctx, url, token)
 	if err != nil {
@@ -506,7 +491,7 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
 		return err
 	}
 
-	fmt.Println("Blob was included at height %d", height)
+	fmt.Printf("Blob was included at height %d\n", height)
 
 	// fetch the blob back from the network
 	retrievedBlobs, err := client.Blob.GetAll(ctx, height, []share.Namespace{namespace})
@@ -514,7 +499,8 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
 		return err
 	}
 
-	fmt.Println("Blobs are equal? %v": bytes.Equal(helloWorldBlob.Commitment, retrievedBlob[0].Commitment))
+	fmt.Printf("Blobs are equal? %v\n", bytes.Equal(helloWorldBlob.Commitment, retrievedBlobs[0].Commitment))
+	return nil
 }
 ```
 
@@ -527,6 +513,7 @@ Yet another thing: There is a argument rn that GetAll should return an error if 
 You can subscribe to new headers using the [header.Subscribe](https://node-rpc-docs.celestia.org/?version=v0.11.0#header.Subscribe) method. This method returns a channel that will receive new headers as they are produced. In this example, we will fetch all blobs at the height of the new header in the `0xDEADBEEF` namespace.
 
 ```go
+// SubscribeHeaders subscribes to new headers and fetches all blobs at the height of the new header in the 0xDEADBEEF namespace.
 func SubscribeHeaders(ctx context.Context, url string, token string) error {
 	client, err := client.NewClient(ctx, url, token)
 	if err != nil {
@@ -551,12 +538,12 @@ func SubscribeHeaders(ctx context.Context, url string, token string) error {
 			// fetch all blobs at the height of the new header
 			blobs, err := client.Blob.GetAll(context.TODO(), header.Height(), []share.Namespace{namespace})
 			if err != nil {
-				fmt.Println("Error fetching blobs: %v", err)
+				fmt.Printf("Error fetching blobs: %v\n", err)
 			}
 
-			fmt.Println("Found %d blobs at height %d in 0xDEADBEEF namespace", len(blobs), header.Height())
+			fmt.Printf("Found %d blobs at height %d in 0xDEADBEEF namespace\n", len(blobs), header.Height())
 		case <-ctx.Done():
-			return
+			return nil
 		}
 	}
 }
@@ -567,6 +554,7 @@ func SubscribeHeaders(ctx context.Context, url string, token string) error {
 You can fetch an [Extended Data Square (EDS)](https://celestiaorg.github.io/celestia-app/specs/data_structures.html#erasure-coding) using the [share.GetEDS](https://node-rpc-docs.celestia.org/?version=v0.11.0#share.GetEDS) method. This method takes a header and returns the EDS at the given height.
 
 ```go
+// GetEDS fetches the EDS at the given height.
 func GetEDS(ctx context.Context, url string, token string, height uint64) (*rsmt2d.ExtendedDataSquare, error) {
 	client, err := client.NewClient(ctx, url, token)
 	if err != nil {
