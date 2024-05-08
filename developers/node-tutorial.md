@@ -1,7 +1,7 @@
 ---
 next:
-  text: "Prompt Scavenger"
-  link: "/developers/prompt-scavenger"
+  text: "Golang Client Guide"
+  link: "/developers/golang-client-tutorial"
 ---
 
 # Celestia-node RPC CLI tutorial
