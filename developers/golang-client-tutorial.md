@@ -145,6 +145,6 @@ func GetEDS(ctx context.Context, url string, token string, height uint64) (*rsmt
 }
 ```
 
-## Balances and Transfers
+## API Documentation
 
-TODO
+To see the full list of available methods, see the [API documentation](https://node-rpc-docs.celestia.org/?version=v0.11.0).
