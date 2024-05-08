@@ -170,22 +170,24 @@ celestia blob submit <hex-encoded namespace> <hex-encoded data>
 
 Learn more in the [node tutorial](./node-tutorial.md).
 
-### The celestia-node API client
+### The celestia-node API golang client
+
+For more celestia-node API golang examples, refer to the [golang client tutorial](./golang-client-tutorial.md).
 
 ```go
 import (
+	"bytes"
 	"context"
 	"fmt"
-	"time"
 
-	"github.com/celestiaorg/celestia-node/api/rpc/client"
-	"github.com/celestiaorg/celestia-node/blob"
-	"github.com/celestiaorg/celestia-node/share"
+	client "github.com/celestiaorg/celestia-openrpc"
+	"github.com/celestiaorg/celestia-openrpc/types/blob"
+	"github.com/celestiaorg/celestia-openrpc/types/share"
 )
 
-/// SubmitBlob submits a blob containing "Hello, World!" to the 0xDEADBEEF namespace. It uses the default signer on the running node.
-func SubmitBlob(url string, token string) error {
-	client, err := client.NewClient(context.Background(), url, token)
+// SubmitBlob submits a blob containing "Hello, World!" to the 0xDEADBEEF namespace. It uses the default signer on the running node.
+func SubmitBlob(ctx context.Context, url string, token string) error {
+	client, err := client.NewClient(ctx, url, token)
 	if err != nil {
 		return err
 	}
@@ -202,25 +204,23 @@ func SubmitBlob(url string, token string) error {
 		return err
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-	defer cancel()
-
 	// submit the blob to the network
 	height, err := client.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, blob.DefaultGasPrice())
 	if err != nil {
 		return err
 	}
 
-	fmt.Println("Blob was included at height %d", height)
+	fmt.Printf("Blob was included at height %d\n", height)
 
-	// BONUS: Get the blob back from the network
+	// bonus: fetch the blob back from the network
 	retrievedBlobs, err := client.Blob.GetAll(ctx, height, []share.Namespace{namespace})
 	if err != nil {
 		return err
 	}
 
-	fmt.Println("Blobs are equal? %v": bytes.Equal(helloWorldBlob.Commitment, retrievedBlob[0].Commitment))
-}
+	fmt.Printf("Blobs are equal? %v\n", bytes.Equal(helloWorldBlob.Commitment, retrievedBlobs[0].Commitment))
+	return nil
+}}
 ```
 
 ### GRPC to a consensus node via the `user` package
