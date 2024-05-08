@@ -1,7 +1,7 @@
 ---
 description: Learn how to build Cosmos-SDK applications that connect to Celestia's Data Availability Layer via Rollkit.
 prev:
-  text: "Deploy an OP Stack devnet to Celestia"
+  text: "Run an OP Stack devnet posting to Celestia testnet"
   link: "/developers/optimism"
 next:
   text: "Create a wallet with celestia-node"

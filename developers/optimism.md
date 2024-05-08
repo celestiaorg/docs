@@ -5,7 +5,7 @@ next:
   link: "/developers/ethereum-fallback"
 ---
 
-# Deploy an OP Stack devnet to Celestia
+# Run an OP Stack devnet posting to Celestia testnet
 
 <!-- markdownlint-disable MD033 -->
 <script setup>

@@ -2,7 +2,7 @@
 description: Start your own devnet with a modified version of optimism-bedrock.
 ---
 
-# Deploy an OP Stack devnet
+# Run an OP Stack devnet
 
 This guide will show you how to run your own OP Stack devnet.
 
