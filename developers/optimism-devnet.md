@@ -4,11 +4,11 @@ description: Start your own devnet with a modified version of optimism-bedrock.
 
 # Run an OP Stack devnet
 
-This guide will show you how to run your own OP Stack devnet.
+This guide will show you how to run your own OP Stack devnet locally.
 
 ## Dependency setup
 
-### Environment setup and Golang installation
+### Environment setup
 
 First, [install dependencies for Celestia software](../nodes/environment.md)
 and for [OP Stack](https://community.optimism.io/docs/developers/build/dev-node/).
@@ -23,12 +23,14 @@ git clone https://github.com/celestiaorg/optimism
 cd optimism
 ```
 
-Check out to the version for either the stable version or upstream version:
+Check out to the version for either the
+[stable version](https://github.com/celestiaorg/optimism/releases) or
+[upstream version](https://github.com/celestiaorg/optimism/tree/celestia-develop):
 
 ::: code-group
 
-```bash-vue [v1.2.0-OP_v1.7.0-CN_v0.12.4]
-git checkout tags/v1.2.0-OP_v1.7.0-CN_v0.12.4
+```bash-vue [v1.2.0-OP_op-node/v1.7.5-CN_v0.13.2]
+git checkout tags/v1.2.0-OP_op-node/v1.7.5-CN_v0.13.2
 git submodule update --init --recursive
 ```
 
@@ -44,8 +46,6 @@ git submodule update --init --recursive
 Build TypeScript definitions for TS dependencies:
 
 ```bash
-cd $HOME
-cd optimism
 make
 ```
 
@@ -54,6 +54,12 @@ Set environment variables to start network:
 ```bash
 export SEQUENCER_BATCH_INBOX_ADDRESS=0xff00000000000000000000000000000000000000
 export L2OO_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+```
+
+Set your Celestia node auth token:
+
+```bash
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth write --p2p.network <network>)
 ```
 
 ### Start devnet
@@ -77,9 +83,7 @@ from the root of the Optimism directory:
 make devnet-logs
 ```
 
-::: details Optional: Docker tips
-
-### Stop devnet
+### Optional: Stop devnet
 
 If you'd like to start the network over, use the following command
 to safely shut down all of the containers:
@@ -93,34 +97,6 @@ Then clean out the old config:
 ```bash
 make devnet-clean
 ```
-
-### Viewing containers
-
-To view the containers running, send:
-
-```bash
-docker ps
-```
-
-Find the container ID of the `ops-bedrock_op-batcher_1`
-and run the following to follow the logs:
-
-```bash
-docker logs -f <container-id>
-```
-
-In a new terminal, find the container ID of the
-`ghcr.io/celestiaorg/local-celestia-devnet:main`
-and run the following to follow the logs:
-
-```bash
-docker logs -f <container-id>
-```
-
-You can do the same for other containers as you
-explore the stack.
-
-:::
 
 ## Find a transaction
 
@@ -203,7 +179,7 @@ Now, set the `input` as the `INPUT` variable and encode it as
 base64:
 
 ```bash
-export INPUT=ce3500000000000000769074a923011bdda721eacc34c8a77c69c10f2b6c8e659f987e82f217a5340f
+export INPUT=3500000000000000769074a923011bdda721eacc34c8a77c69c10f2b6c8e659f987e82f217a5340f
 export ENCODED_INPUT=$(echo "$INPUT" | xxd -r -p | base64)
 ```
 
@@ -212,6 +188,8 @@ Remember to remove the `0xce` prefix!
 :::
 
 ## Find the data on Celestia
+
+<!-- TODO: update or remove this section -->
 
 Clone the `go-da` repository:
 
