@@ -16,9 +16,6 @@ post data to Celestia and settle on Ethereum.
 
 ## About the integration
 
-This is a **beta integration** and we are working on resolving
-[open issues](https://github.com/celestiaorg/optimism/issues).
-
 [Optimism](https://www.optimism.io/) uses Ethereum as
 a DA layer. Currently, settlement and DA for
 Optimism are on Ethereum, both onchain. `op-batcher` batches up
@@ -34,9 +31,8 @@ to the data availability (DA) layer i.e. in this case Celestia, then the
 data commitment is written to the `op-batcher`. When reading `op-node`
 simply reads the data back from the DA layer by reading the
 data commitment from the `op-batcher` first, then reading the
-data from the DA layer using the data commitment. Hence, while
-previously `op-node` was reading from `calldata` on Ethereum,
-but now it reads data from Celestia.
+data from the DA layer using the data commitment. While
+previously `op-node` was reading from `calldata` on Ethereum, it now reads data from Celestia.
 
 There are a few tools involved in the data handling process. `op-batcher`
 batches up rollup blocks and posts them to Ethereum. `op-geth` handles
@@ -54,6 +50,11 @@ the traditional method of posting this data as `calldata` on monolithic chains.
 Find the
 [repository for this integration](https://github.com/celestiaorg/optimism/)
 at `https://github.com/celestiaorg/optimism`.
+
+:::warning
+This is a **beta integration** and we are working on resolving
+[open issues](https://github.com/celestiaorg/optimism/issues).
+:::
 
 ## Category contents
 
