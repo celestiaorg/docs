@@ -1,3 +1,9 @@
+---
+prev:
+   text: "Querying the Blobstream proofs"
+   link: "/developers/blobstream-proof-queries"
+---
+
 # Requesting data commitment ranges
 
 By default, the Blobstream X deployments on Ethereum will be

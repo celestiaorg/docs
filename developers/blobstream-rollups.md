@@ -1,5 +1,11 @@
 ---
 description: Learn how to build rollups that use Blobstream.
+prev:
+  text: "Ethereum fallback mechanism"
+  link: "/developers/ethereum-fallback"
+next:
+  text: "Submitting data blobs to Celestia"
+  link: "/developers/submit-data"
 ---
 
 # Introduction to Blobstream rollups

@@ -1,5 +1,8 @@
 ---
 description: The DA fallback mechanism to Ethereum for rollups.
+next:
+  text: "Blobstream rollups"
+  link: "/developers/blobstream-rollups"
 ---
 
 # Ethereum fallback

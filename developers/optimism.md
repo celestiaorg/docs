@@ -1,8 +1,8 @@
 ---
 description: Start your own devnet with a modified version of optimism-bedrock.
 next:
-  text: "Rollkit"
-  link: "/developers/rollkit"
+  text: "Ethereum fallback mechanism"
+  link: "/developers/ethereum-fallback"
 ---
 
 # Deploy an OP Stack devnet to Celestia
