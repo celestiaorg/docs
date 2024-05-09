@@ -66,9 +66,7 @@ export SEQUENCER_BATCH_INBOX_ADDRESS=0xff00000000000000000000000000000000000000
 export L2OO_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 ```
 
-## Using a light node
-
-<!-- TODO: update or remove this section -->
+## Setting up your light node
 
 In order to allow your light node to post
 and retrieve data without errors, you will need to change `UseShareExchange`
@@ -211,15 +209,15 @@ da:
 ::: code-group
 
 ```bash-vue [Mainnet Beta]
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth write)
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin)
 ```
 
 ```bash-vue [Mocha testnet]
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth write --p2p.network mocha)
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network mocha)
 ```
 
 ```bash-vue [Arabica devnet]
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth write --p2p.network arabica)
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network arabica)
 ```
 
 :::
@@ -237,19 +235,6 @@ make devnet-up
 This starts up the layer 1 (ETH), layer 2 (`op-geth`), data availability
 layer (Celestia), the sequencer (`op-node`), batch submitter (`op-batcher`),
 state commitment service (`op-proposer`).
-
-:::tip
-You'll see logs related to blank variables, it is safe to ignore these.
-
-```bash
-WARN[0000] The "CELESTIA_NODE_AUTH_TOKEN" variable is not set. Defaulting to a blank string.
-WARN[0000] The "DGF_ADDRESS" variable is not set. Defaulting to a blank string.
-WARN[0000] The "L2OO_ADDRESS" variable is not set. Defaulting to a blank string.
-WARN[0000] The "DG_TYPE" variable is not set. Defaulting to a blank string.
-WARN[0000] The "PROPOSAL_INTERVAL" variable is not set. Defaulting to a blank string.
-```
-
-:::
 
 ### View the logs of the devnet
 
@@ -371,34 +356,16 @@ Remember to remove the `0xce` prefix!
 
 ## Find the data on Celestia
 
-<!-- TODO: update or remove this section -->
-
-Clone the `go-da` repository:
-
-```bash
-cd $HOME
-git clone https://github.com/rollkit/go-da.git
-cd go-da/proto/da
-```
-
-Now, from `go-da/proto/da` run:
-
 <!-- markdownlint-disable MD013 -->
 
 ```bash
-grpcurl -proto da.proto -plaintext -d "{\"ids\": [{\"value\": \"$ENCODED_INPUT\"}]}" 127.0.0.1:26650 da.DAService.Get
+curl -s -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" -d '{ "id": 1, "jsonrpc": "2.0", "method": "da.Get", "params": [["3wAAAAAAAABmGvJUORYLqY8wVdjgp6/0oSh6brQqG3ZGr/cfUMuElg=="], "AAAAAAAAAAAAAAAAAAAAAAAAAAECAwQFBgcICRA="]}' http://127.0.0.1:26658
 ```
 
 Your result will look similar to the below!
 
 ```console
-{
-  "blobs": [
-    {
-      "value": "AKUumhJ8FnuyVrBs38FDKEIAAAAAAZB42trhw/DDc4GFAlv4klkv5Zh4E16mmO5fpNOS1f5wzpds8YK3S0Rvs4ULLJj13euw+Ovdv6Q23zuV1ShROEvk5aptIT7bGmZunvc1OiKwJTXVbN0BiGm6k2zNWq78cNsT2ez3+nzQq84Ds28or/aKz/o1w4NpV7w4caZtgJomX71w96m63+xzYnarXLu7WWvRrwbeb6cW8R93YHXt1r4+TXCBGVe76obzf5JLTNu22gksD2cL+83D8DGjX0FKcwZD0VofkGmboKY1uTddu8704s2MwgNNe09s1bzw+n9Fq6fKFw7pvwJL200eCS0oFJ3HfPAEywnlgyyGQc89dh+98GD5TrdU4aNql9afmW+sDzJtC9S0fzLWYROOS0bvK3W7EvNpmWXe5qrdzKlBmv1LZi4ofrrxLHGmbYOaJhHsEn+B81lGUh33HDet8K9nVKKSF2+W3Xul6uPSxydPBwsv2GHskR+yfUlDbvyl1ROTvtS1zXlpEPz0M1e/RIIt57fVj0Gm7TgACAAA//+Qdel2AQ=="
-    }
-  ]
-}
+{"jsonrpc":"2.0","result":["SGVsbG8gd28ybGQh"],"id":1}
 ```
 
 ## Ethereum fallback mechanism in OP Stack
@@ -480,24 +447,26 @@ Celestia.
 
 ### Testing the fallback
 
-<!-- TODO: update or remove this section -->
-
 Testing out the Ethereum fallback mechanism can be done
 with the `go-da` tool. Triggering a simultaneous blob transaction will
 cause the `op-batcher` blob transaction to fail, with an `incorrect account
 sequence` error, which triggers a fallback to Ethereum.
 
-To trigger the transaction, send this command from the same `go/proto/da` directory:
-
 <!-- markdownlint-disable MD013 -->
 
 ```bash
-grpcurl -proto da.proto -plaintext -d '{"blobs": [{"value": "SGVsbG8gd28ybGQh"}]}' 127.0.0.1:26650 da.DAService.Submit
+curl -s -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" -d '{ "id": 1, "jsonrpc": "2.0", "method": "da.Submit", "params": [["SGVsbG8gd28ybGQh"], -1, "AAAAAAAAAAAAAAAAAAAAAAAAAAECAwQFBgcICRA="]}' http://127.0.0.1:26658
+```
+
+Which should return:
+
+```bash
+{"jsonrpc":"2.0","result":["9QEAAAAAAABmGvJUORYLqY8wVdjgp6/0oSh6brQqG3ZGr/cfUMuElg=="],"id":1}
 ```
 
 <!-- markdownlint-enable MD013 -->
 
-Alternatively, you can shut off the `local-celestia-devnet` and see that
+Alternatively, you can shut off the light node and see that
 the OP Stack devnet logs show that the rollup has fallen back to the L1,
 in this case Ethereum, for posting data.
 
