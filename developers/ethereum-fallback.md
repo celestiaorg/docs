@@ -4,7 +4,7 @@ next:
   text: "Blobstream rollups"
   link: "/developers/blobstream-rollups"
 prev:
-  text: "Run an OP Stack devnet posting to Celestia testnet"
+  text: "Run an OP Stack devnet posting Celestia"
   link: "/developers/optimism"
 ---
 

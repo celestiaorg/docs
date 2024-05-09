@@ -5,14 +5,14 @@ next:
   link: "/developers/ethereum-fallback"
 ---
 
-# Run an OP Stack devnet posting to Celestia testnet
+# Run an OP Stack devnet posting Celestia
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
 import constants from '/.vitepress/constants/constants.js'
 </script>
 
-This guide will show you how to run your own OP Stack devnet locally.
+This guide will show you how to run your own OP Stack devnet locally that posts to a Celestia network.
 
 If you'd like to use a Rollups as a Service (RaaS) provider, you can visit the RaaS category in the menu.
 
@@ -142,8 +142,8 @@ This example is for Mainnet Beta.
 You can modify the `da:` section of your `$HOME/optimism/ops-bedrock/docker-compose.yml`
 for your specific use, similarly to the example below:
 
-This setup will use `celestia-da`, which is `celestia-node` with
-a DA server on port 26650.
+This setup will use `celestia-node` with
+a DA server on port 26658.
 
 For the `P2P_NETWORK` variable, you'll need to supply the network of choice, either
 `celestia`, `mocha`, or `arabica`. Using `celestia`, the volume path will be just
@@ -152,26 +152,22 @@ to provide a core.ip RPC URL for the network you are using.
 
 <!-- markdownlint-disable MD013 -->
 
-```yaml
+::: code-group
+
+```yaml-vue [Mainnet Beta]
 da:
-  image: ghcr.io/rollkit/local-celestia-devnet:v0.12.1 // [!code --]
-  image: ghcr.io/rollkit/celestia-da:v0.12.9 // [!code ++]
-  command: > // [!code ++]
-    celestia-da light start // [!code ++]
-    --p2p.network=<network> // [!code ++]
-    --da.grpc.namespace=000008e5f679bf7116cb // [!code ++]
-    --da.grpc.listen=0.0.0.0:26650 // [!code ++]
-    --core.ip <rpc-url> // [!code ++]
-    --gateway // [!code ++]
-  environment: // [!code ++]
-      - NODE_TYPE=light // [!code ++]
-      - P2P_NETWORK=<network> // [!code ++]
+  image: ghcr.io/rollkit/local-celestia-devnet:v0.13.1 // [!code --]
+  image: ghcr.io/celestiaorg/celestia-node:v0.13.2 // [!code ++]
+  command: celestia light start --p2p.network {{constants.mainnetChainId}} --core.ip rpc.celestia.pops.one --gateway// [!code ++]
   ports:
-    - "26650:26650"
     - "26658:26658"
-    - "26659:26659"
+    - "26659:26659" // [!code ++]
   volumes: // [!code ++]
-    - $HOME/.celestia-light-<network>/:/home/celestia/.celestia-light-<network>/ // [!code ++]
+    - $HOME/.celestia-light/:/home/celestia/.celestia-light/ // [!code ++]
+  environment: // [!code ++]
+    NODE_TYPE: "light" // [!code ++]
+    P2P_NETWORK: "{{constants.mainnetChainId}}" // [!code ++]
+  user: root // [!code ++]
   healthcheck:
     test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
     interval: 10s
@@ -180,11 +176,53 @@ da:
     start_period: 30s
 ```
 
-Now start the devnet:
-
-```bash
-make devnet-up
+```yaml-vue [Mocha testnet]
+da:
+  image: ghcr.io/rollkit/local-celestia-devnet:v0.13.1 // [!code --]
+  image: ghcr.io/celestiaorg/celestia-node:v0.13.2 // [!code ++]
+  command: celestia light start --p2p.network {{constants.mochaChainId}} --core.ip consensus-full-mocha-4.celestia-mocha.com --gateway// [!code ++]
+  ports:
+    - "26658:26658"
+    - "26659:26659" // [!code ++]
+  volumes: // [!code ++]
+    - $HOME/.celestia-light-{{constants.mochaChainId}}/:/home/celestia/.celestia-light-{{constants.mochaChainId}}/ // [!code ++]
+  environment: // [!code ++]
+    NODE_TYPE: "light" // [!code ++]
+    P2P_NETWORK: "{{constants.mochaChainId}}" // [!code ++]
+  user: root // [!code ++]
+  healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
+    interval: 10s
+    timeout: 5s
+    retries: 5
+    start_period: 30s
 ```
+
+```yaml-vue [Arabica devnet]
+da:
+  image: ghcr.io/rollkit/local-celestia-devnet:v0.13.1 // [!code --]
+  image: ghcr.io/celestiaorg/celestia-node:v0.13.2 // [!code ++]
+  command: celestia light start --p2p.network {{constants.arabicaChainId}} --core.ip validator-1.celestia-arabica-11.com --gateway// [!code ++]
+  ports:
+    - "26658:26658"
+    - "26659:26659" // [!code ++]
+  volumes: // [!code ++]
+    - $HOME/.celestia-light-{{constants.arabicaChainId}}/:/home/celestia/.celestia-light-{{constants.arabicaChainId}}/ // [!code ++]
+  environment: // [!code ++]
+    NODE_TYPE: "light" // [!code ++]
+    P2P_NETWORK: "{{constants.arabicaChainId}}" // [!code ++]
+  user: root // [!code ++]
+  healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
+    interval: 10s
+    timeout: 5s
+    retries: 5
+    start_period: 30s
+```
+
+:::
+
+Now you're ready to start your devnet.
 
 ## Start devnet
 
