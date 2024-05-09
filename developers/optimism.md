@@ -68,6 +68,8 @@ export L2OO_ADDRESS=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 
 ## Using a light node
 
+<!-- TODO: update or remove this section -->
+
 In order to allow your light node to post
 and retrieve data without errors, you will need to change `UseShareExchange`
 to `false` in:
@@ -91,16 +93,13 @@ $HOME/.celestia-light-{{constants.arabicaChainId}}/config.toml
 If you choose to use your own node store, the light node
 must be **fully synced** and **funded** for you to be able to submit
 and retrieve `PayForBlobs` to a Celestia network.
-
-If it is not synced, you will run into
-[errors similar to this](https://github.com/celestiaorg/celestia-node/issues/2151/).
-
 Visit the [Arabica](../nodes/arabica-devnet.md)
 or [Mocha](../nodes/mocha-testnet.md) pages to
-visit their faucets.
+visit their faucets. If it is not synced, you will run into
+[errors similar to this](https://github.com/celestiaorg/celestia-node/issues/2151/).
 
 In order to mount existing data, you must have a node store that is
-in this directory:
+in the default directory:
 
 ::: code-group
 
@@ -118,37 +117,22 @@ $HOME/.celestia-light-{{constants.arabicaChainId}}
 
 :::
 
-This is the default location of the node store
-when you initialize and run a new Celestia node.
-
 By default, the node will run with the account named
 `my_celes_key`.
-
 If you have your own setup you'd like to try, you can always edit
 `optimism/ops-bedrock/docker-compose.yml` to work with your setup.
 
-Set your Celestia node auth token:
-
-```bash
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth write --p2p.network <network>)
-```
-
 ### Docker changes
 
-First, make sure your light node is synced and funded. It must
-not be running for this example to work.
-
-This example is for Mainnet Beta.
-You can modify the `da:` section of your `$HOME/optimism/ops-bedrock/docker-compose.yml`
-for your specific use, similarly to the example below:
-
+You will need to modify the `da:` section of your `$HOME/optimism/ops-bedrock/docker-compose.yml`
+for your specific use, similarly to the example below.
 This setup will use `celestia-node` with
 a DA server on port 26658.
 
 For the `P2P_NETWORK` variable, you'll need to supply the network of choice, either
 `celestia`, `mocha`, or `arabica`. Using `celestia`, the volume path will be just
 `.celestia-light` instead of `.celestia-light-<network>`. You will also need
-to provide a core.ip RPC URL for the network you are using.
+to provide a `--core.ip <RPC_URL>` for the network you are using.
 
 <!-- markdownlint-disable MD013 -->
 
@@ -218,6 +202,24 @@ da:
     timeout: 5s
     retries: 5
     start_period: 30s
+```
+
+:::
+
+### Set your Celestia node auth token
+
+::: code-group
+
+```bash-vue [Mainnet Beta]
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth write)
+```
+
+```bash-vue [Mocha testnet]
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth write --p2p.network mocha)
+```
+
+```bash-vue [Arabica devnet]
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth write --p2p.network arabica)
 ```
 
 :::
@@ -477,6 +479,8 @@ to continue functioning even during periods of downtime on
 Celestia.
 
 ### Testing the fallback
+
+<!-- TODO: update or remove this section -->
 
 Testing out the Ethereum fallback mechanism can be done
 with the `go-da` tool. Triggering a simultaneous blob transaction will
