@@ -585,10 +585,6 @@ function sidebarHome() {
                       link: "/developers/gm-portal-bubs",
                     },
                     {
-                      text: "Run an OP Stack devnet",
-                      link: "/developers/optimism-devnet",
-                    },
-                    {
                       text: "Run an OP Stack devnet posting to Celestia testnet",
                       link: "/developers/optimism",
                     },

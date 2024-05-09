@@ -3,6 +3,9 @@ description: The DA fallback mechanism to Ethereum for rollups.
 next:
   text: "Blobstream rollups"
   link: "/developers/blobstream-rollups"
+prev:
+  text: "Run an OP Stack devnet posting to Celestia testnet"
+  link: "/developers/optimism"
 ---
 
 # Ethereum fallback

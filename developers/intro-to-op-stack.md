@@ -70,7 +70,6 @@ like the OP Stack with Celestia in this category._
 the first testnet made with OP Stack with Celestia underneath
 - [Deploy a smart contract on Bubs testnet](./deploy-on-bubs.md)
 - [Deploy a GM Portal dapp on Bubs testnet](./gm-portal-bubs.md)
-- [Run an OP Stack devnet](./optimism-devnet.md)
 - [Run an OP Stack devnet posting to Celestia testnet](./optimism.md)
 
 <!-- ### What are Optimism and the OP Stack?
