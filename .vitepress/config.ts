@@ -597,7 +597,7 @@ function sidebarHome() {
                       link: "https://thirdweb.com/bubs-testnet",
                     },
                     {
-                      text: "Rollups-as-a-Service",
+                      text: "Rollups as a Service",
                       collapsed: true,
                       items: [
                         {

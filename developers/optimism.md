@@ -14,6 +14,8 @@ import constants from '/.vitepress/constants/constants.js'
 
 This guide will show you how to run your own OP Stack devnet locally.
 
+If you'd like to use a Rollups as a Service (RaaS) provider, you can visit the RaaS category in the menu.
+
 ## Dependency setup
 
 ### Environment setup
@@ -130,11 +132,6 @@ Set your Celestia node auth token:
 ```bash
 export CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth write --p2p.network <network>)
 ```
-
-### Using a RaaS provider
-
-If you'd like to use a Rollups as a Service (RaaS) provider, you can do so
-by going to the RaaS category in the menu.
 
 ### Docker changes
 
