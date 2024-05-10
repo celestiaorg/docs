@@ -29,7 +29,7 @@ a light node:
 
 - Memory: **500 MB RAM (minimum)**
 - CPU: **Single Core**
-- Disk: **50 GB SSD Storage**
+- Disk: **100 GB SSD Storage**
 - Bandwidth: **56 Kbps for Download/56 Kbps for Upload**
 
 ## Setting up your light node
@@ -97,6 +97,10 @@ Using an RPC of your own, or one from the
 [list on the Mocha testnet page](mocha-testnet.md#rpc-endpoints) or
 [list on the Arabica devnet page](arabica-devnet.md#rpc-endpoints),
 start your node.
+
+Connecting to a core endpoint with `--core.ip string`
+provides the light node with access to state queries (reading balances, submitting
+transactions, and other state-related queries).
 
 For example, your command might look something like this for Mocha:
 

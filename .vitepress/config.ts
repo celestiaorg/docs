@@ -467,7 +467,7 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-metrics",
                 },
                 {
-                  text: "Slashing mechanics",
+                  text: "Jailing and Slashing mechanics",
                   link: "/nodes/celestia-app-slashing",
                 },
                 {
@@ -710,7 +710,7 @@ function sidebarHome() {
               items: [
                 {
                     text: "Requesting data commitment ranges",
-                  link: "/developers/requesting-data-commitment-ranges",
+                  link: "/developers/blobstream-x-requesting-data-commitment-ranges",
                 },
                 {
                   text: "New Blobstream X deployments",
