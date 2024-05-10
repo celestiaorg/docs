@@ -1,9 +1,3 @@
----
-next:
-  text: "Prompt Scavenger"
-  link: "/developers/prompt-scavenger"
----
-
 # Celestia-node RPC CLI tutorial
 
 <!-- markdownlint-disable MD033 -->
@@ -1142,13 +1136,6 @@ The example transaction can be
 
 If you'd like to create your own SVG, post it to Celestia, and retrieve it,
 you can check out the [Base64 SVG Tutorial](https://based64.xyz/).
-
-### Golang guide
-
-If you're interested in interacting with the node's API in Go
-([`client.go`](https://github.com/celestiaorg/celestia-node/blob/main/api/rpc/client/client.go)),
-you can use the [da-rpc-client-tutorial](https://github.com/renaynay/da-rpc-client-tutorial)
-repo.
 
 ### Troubleshooting
 
