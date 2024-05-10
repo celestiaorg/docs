@@ -1,12 +1,12 @@
-# Golang Client Library Guide {#golang-client-library}
+# Golang client library guide {#golang-client-library}
 
 This section tutorial will guide you through using the most common RPC endpoints with the golang client library.
 
 You will need to
-[setup dependencies, install, and run celestia-node](#./node-tutorial.md#setting-up-dependencies)
+[setup dependencies, install, and run celestia-node](./node-tutorial.md#setting-up-dependencies)
 if you have not already.
 
-## Project Setup
+## Project setup
 
 To start, add celestia-openrpc as a dependency to your project:
 
@@ -18,7 +18,7 @@ To use the following methods, you will need the node URL and your auth token. To
 
 The default URL is `http://localhost:26658`. If you would like to use subscription methods, such as `SubscribeHeaders` below, you must use the `ws` protocol in place of `http`: `ws://localhost:26658`.
 
-## Submitting and Retrieving Blobs
+## Submitting and retrieving blobs
 
 The [blob.Submit](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit) method takes a slice of blobs and a gas price, returning the height the blob was successfully posted at.
 
@@ -145,6 +145,6 @@ func GetEDS(ctx context.Context, url string, token string, height uint64) (*rsmt
 }
 ```
 
-## API Documentation
+## API documentation
 
 To see the full list of available methods, see the [API documentation](https://node-rpc-docs.celestia.org/?version=v0.11.0).
