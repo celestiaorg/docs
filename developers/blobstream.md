@@ -162,6 +162,10 @@ You can interact with the Blobstream X contracts today. The
 Blobstream X Solidity smart contracts are currently deployed on
 the following chains:
 
+::: warning
+Blobstream X is in beta and slashing is not enabled yet.
+:::
+
 <!-- markdownlint-disable MD013 -->
 
 | Contract     | EVM network      | Contract address                                                                                                                | Attested data on Celestia |
