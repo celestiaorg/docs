@@ -158,7 +158,7 @@ topics:
 
 ### Blobstream rollups
 
-More on the different ways to build a blobstream rollups can be found in the
+More on the different ways to build a blobstream rollup can be found in the
 [blobstream rollups](./blobstream-rollups.md) documentation.
 
 ### Deployed contracts
