@@ -1,9 +1,3 @@
----
-next:
-  text: "Golang Client Guide"
-  link: "/developers/golang-client-tutorial"
----
-
 # Celestia-node RPC CLI tutorial
 
 <!-- markdownlint-disable MD033 -->
