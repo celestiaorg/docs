@@ -156,6 +156,11 @@ topics:
 - [Integrate with Blobstream client](./blobstream-offchain.md)
 - [Querying the Blobstream proofs](./blobstream-proof-queries.md)
 
+### Blobstream rollups
+
+More on the different ways to build a blobstream rollups can be found in the
+[blobstream rollups](./blobstream-rollups.md) documentation.
+
 ### Deployed contracts
 
 You can interact with the Blobstream X contracts today. The
@@ -175,7 +180,12 @@ the following chains:
 
 <!-- markdownlint-enable MD013 -->
 
-### Blobstream rollups
+## Deploy Blobstream X
 
-More on the different ways to build a blobstream rollups can be found in the
-[blobstream rollups](./blobstream-rollups.md) documentation.
+If your target chain is still not supported by Blobstream, it is possible to deploy and maintain a Blobstream x instance and have the same security guarantees.
+
+First, you will need to create a multisig that governs the Blobstream X contract and also the function identifiers. The function identifiers can be registered in the [succinct gateway](./blobstream-x-deploy.md#deploy-a-new-succinctgateway-contract).
+
+Then, check the [deployment](./blobstream-x-deploy.md) documentation for how to deploy the contract.
+
+Then, you will need to run a relayer, which will generate the proofs and relay them to your deployed Blobstream X contract. Check the [local proving documentation](./requesting-data-commitment-ranges.md#local-proving) for more information.
