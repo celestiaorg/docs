@@ -26,7 +26,7 @@ allows rollup operators to reduce overhead that is associated with posting
 data as `calldata` on Ethereum. Instead, `op-batcher` batches up
 rollup blocks and posts them to Celestia's DA network.
 
-The handling of data is accomplished in two ways. First, data is written
+Data is managed in two ways. First, data is written
 to the data availability (DA) layer i.e. in this case Celestia, then the
 data commitment is written to the `op-batcher`. When reading `op-node`
 simply reads the data back from the DA layer by reading the
@@ -62,9 +62,6 @@ This category will guide you through interacting with existing OP Stack rollups
 with Celestia underneath, then how to start your own devnet
 with a modified version of `optimism-bedrock` that uses Celestia as a
 DA layer.
-
-_Discover how to integrate existing blockchain frameworks
-like the OP Stack with Celestia in this category._
 
 - [Bubs testnet](./bubs-testnet.md): learn about
 the first testnet made with OP Stack with Celestia underneath

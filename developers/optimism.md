@@ -140,7 +140,7 @@ to provide a `--core.ip <RPC_URL>` for the network you are using.
 da:
   image: ghcr.io/rollkit/local-celestia-devnet:v0.13.1 // [!code --]
   image: ghcr.io/celestiaorg/celestia-node:v0.13.2 // [!code ++]
-  command: celestia light start --p2p.network {{constants.mainnetChainId}} --core.ip rpc.celestia.pops.one --gateway// [!code ++]
+  command: celestia light start --p2p.network celestia --core.ip rpc.celestia.pops.one --gateway// [!code ++]
   ports:
     - "26658:26658"
     - "26659:26659" // [!code ++]
@@ -148,7 +148,7 @@ da:
     - $HOME/.celestia-light/:/home/celestia/.celestia-light/ // [!code ++]
   environment: // [!code ++]
     NODE_TYPE: "light" // [!code ++]
-    P2P_NETWORK: "{{constants.mainnetChainId}}" // [!code ++]
+    P2P_NETWORK: "celestia" // [!code ++]
   user: root // [!code ++]
   healthcheck:
     test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
@@ -162,7 +162,7 @@ da:
 da:
   image: ghcr.io/rollkit/local-celestia-devnet:v0.13.1 // [!code --]
   image: ghcr.io/celestiaorg/celestia-node:v0.13.2 // [!code ++]
-  command: celestia light start --p2p.network {{constants.mochaChainId}} --core.ip consensus-full-mocha-4.celestia-mocha.com --gateway// [!code ++]
+  command: celestia light start --p2p.network mocha --core.ip consensus-full-mocha-4.celestia-mocha.com --gateway// [!code ++]
   ports:
     - "26658:26658"
     - "26659:26659" // [!code ++]
@@ -170,7 +170,7 @@ da:
     - $HOME/.celestia-light-{{constants.mochaChainId}}/:/home/celestia/.celestia-light-{{constants.mochaChainId}}/ // [!code ++]
   environment: // [!code ++]
     NODE_TYPE: "light" // [!code ++]
-    P2P_NETWORK: "{{constants.mochaChainId}}" // [!code ++]
+    P2P_NETWORK: "mocha" // [!code ++]
   user: root // [!code ++]
   healthcheck:
     test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
@@ -184,7 +184,7 @@ da:
 da:
   image: ghcr.io/rollkit/local-celestia-devnet:v0.13.1 // [!code --]
   image: ghcr.io/celestiaorg/celestia-node:v0.13.2 // [!code ++]
-  command: celestia light start --p2p.network {{constants.arabicaChainId}} --core.ip validator-1.celestia-arabica-11.com --gateway// [!code ++]
+  command: celestia light start --p2p.network arabica --core.ip validator-1.celestia-arabica-11.com --gateway// [!code ++]
   ports:
     - "26658:26658"
     - "26659:26659" // [!code ++]
@@ -192,7 +192,7 @@ da:
     - $HOME/.celestia-light-{{constants.arabicaChainId}}/:/home/celestia/.celestia-light-{{constants.arabicaChainId}}/ // [!code ++]
   environment: // [!code ++]
     NODE_TYPE: "light" // [!code ++]
-    P2P_NETWORK: "{{constants.arabicaChainId}}" // [!code ++]
+    P2P_NETWORK: "arabica" // [!code ++]
   user: root // [!code ++]
   healthcheck:
     test: ["CMD", "curl", "-f", "http://localhost:26659/header/1"]
