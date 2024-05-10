@@ -182,7 +182,7 @@ the following chains:
 
 ## Deploy Blobstream X
 
-If your target chain is still not supported by Blobstream, it is possible to deploy and maintain a Blobstream x instance and have the same security guarantees.
+If your target chain is [still not supported](#deployed-contracts), it is possible to deploy and maintain a Blobstream x instance and have the same security guarantees.
 
 First, you will need to create a multisig that governs the Blobstream X contract and also the function identifiers. The function identifiers can be registered in the [succinct gateway](https://docs.succinct.xyz/platform/onchain-integration#gateway-deployment).
 
