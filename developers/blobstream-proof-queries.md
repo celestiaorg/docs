@@ -405,7 +405,8 @@ func VerifyDataRootInclusion(
 
 ### 2. Transaction inclusion proof
 
-To prove that a rollup transaction is part of the data root, we will need to
+To prove that a rollup transaction, the PFB transaction and not the blob containing the 
+Rollup blocks data, is part of the data root, we will need to
 provide two proofs: (1) a namespace Merkle proof of the transaction to
 a row root. This could be done via proving the shares that contain the
 transaction to the row root using a namespace Merkle proof. (2) And a
@@ -526,10 +527,10 @@ Then, the proof is under `tx.Proof`.
 
 ### Blob inclusion proof using the corresponding PFB transaction hash
 
-Currently, querying the proof of a blob using its corresponding PFB transaction hash
-is possible only using the golang client. Otherwise, the corresponding 
-share range is required so that the [`ProveShares`](#specific-share-range-inclusion-proof) 
-endpoint can be used.
+Currently, querying the proof of a blob, which contains the Rollup block data,
+using its corresponding PFB transaction hash is possible only using the golang client.
+Otherwise, the corresponding share range is required so that the 
+[`ProveShares`](#specific-share-range-inclusion-proof) endpoint can be used.
 
 #### Golang client
 
@@ -578,7 +579,7 @@ func queryShareRange() error {
 ```
 </div>
 
-with the `<transaction_hash>` being the transaction hash of the PFB containing the blob
+With the `<transaction_hash>` being the transaction hash of the PFB containing the blob
 and, the `<blob_index>` being the index of the blob. In fact, [PayForBlob](https://github.com/celestiaorg/celestia-app/blob/67f0c789e468a9c2d98e4d638aaca227567a1d74/proto/celestia/blob/v1/tx.proto#L16-L34)
 transactions can contain multiple blobs. So, the `<blob_index>` is the index of the blob
 in the PFB.
@@ -600,7 +601,8 @@ generated:
 
 :::tip NOTE
 If the share range spans multiple rows,
-then the proof can contain multiple NMT and binary proofs.
+then the proof can contain multiple share to row root NMT proofs and
+multiple row root to data root binary proofs.
 :::
 
 #### HTTP request
@@ -660,6 +662,14 @@ Example response:
 > with the solidity smart contract, they need to be converted to `bytes32`.
 > Check the next section for more information.
 
+:::tip WARNING
+As of Celestia-app [v1.10.0](https://github.com/celestiaorg/celestia-app/releases/tag/v1.10.0), the
+[`prove_shares`](https://github.com/celestiaorg/celestia-core/blob/624c43d4484a785ec855f5fb93ea571c1e728fda/rpc/openapi/openapi.yaml#L1005-L1046)
+endpoint is being deprecated in favor of
+[`prove_shares_v2`](https://github.com/celestiaorg/celestia-core/blob/624c43d4484a785ec855f5fb93ea571c1e728fda/rpc/openapi/openapi.yaml#L1048-L1089).
+Please use the new endpoint for the queries as the old one will be removed in upcoming releases.
+:::
+
 #### Golang client
 
 The endpoint can be queried using the golang client:
@@ -670,6 +680,14 @@ The endpoint can be queried using the golang client:
 		...
 	}
 ```
+
+:::tip WARNING
+As of Celestia-app [v1.10.0](https://github.com/celestiaorg/celestia-app/releases/tag/v1.10.0), the
+[`ProveShares`](https://github.com/celestiaorg/celestia-core/blob/624c43d4484a785ec855f5fb93ea571c1e728fda/rpc/client/interface.go#L88)
+method is being deprecated in favor of
+[`ProveSharesV2`](https://github.com/celestiaorg/celestia-core/blob/624c43d4484a785ec855f5fb93ea571c1e728fda/rpc/client/interface.go#L89).
+Please use the new method for the queries as the old one will be removed in upcoming releases.
+:::
 
 ## Converting the proofs to be usable in the `DAVerifier` library
 
@@ -1284,6 +1302,8 @@ func verify() error {
 	// contract that uses the DAVerifier library
 
 	// get the proof of the shares containing the blob to the data root
+	// Note: if you're using Celestia-app v1.10.0 onwards, please switch
+	// to `trpc.ProveSharesV2` as `trpc.ProveShars` is deprecated.
 	sharesProof, err := trpc.ProveShares(ctx, 16, uint64(blobShareRange.Start), uint64(blobShareRange.End))
 	if err != nil {
 		return err
