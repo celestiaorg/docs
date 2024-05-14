@@ -660,6 +660,14 @@ Example response:
 > with the solidity smart contract, they need to be converted to `bytes32`.
 > Check the next section for more information.
 
+:::tip Warning
+As of Celestia-app [v1.10.0](https://github.com/celestiaorg/celestia-app/releases/tag/v1.10.0), the
+[`prove_shares`](https://github.com/celestiaorg/celestia-core/blob/624c43d4484a785ec855f5fb93ea571c1e728fda/rpc/openapi/openapi.yaml#L1005-L1046)
+endpoint is being deprecated in favor of
+[`prove_shares_v2`](https://github.com/celestiaorg/celestia-core/blob/624c43d4484a785ec855f5fb93ea571c1e728fda/rpc/openapi/openapi.yaml#L1048-L1089).
+Please use the new endpoint for the queries as the old one will be removed in upcoming releases.
+:::
+
 #### Golang client
 
 The endpoint can be queried using the golang client:
@@ -670,6 +678,15 @@ The endpoint can be queried using the golang client:
 		...
 	}
 ```
+
+:::tip Warning
+As of Celestia-app [v1.10.0](https://github.com/celestiaorg/celestia-app/releases/tag/v1.10.0), the
+[`ProveShares`](https://github.com/celestiaorg/celestia-core/blob/624c43d4484a785ec855f5fb93ea571c1e728fda/rpc/client/interface.go#L88)
+method is being deprecated in favor of
+[`ProveSharesV2`](https://github.com/celestiaorg/celestia-core/blob/624c43d4484a785ec855f5fb93ea571c1e728fda/rpc/client/interface.go#L89).
+Please use the new method for the queries as the old one will be removed in upcoming releases.
+:::
+
 
 ## Converting the proofs to be usable in the `DAVerifier` library
 
@@ -1284,6 +1301,8 @@ func verify() error {
 	// contract that uses the DAVerifier library
 
 	// get the proof of the shares containing the blob to the data root
+	// Note: if you're using Celestia-app v1.10.0 onwards, please switch
+	// to `trpc.ProveSharesV2` as `trpc.ProveShars` is deprecated.
 	sharesProof, err := trpc.ProveShares(ctx, 16, uint64(blobShareRange.Start), uint64(blobShareRange.End))
 	if err != nil {
 		return err
