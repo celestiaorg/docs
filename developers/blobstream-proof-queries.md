@@ -1097,7 +1097,6 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 
 ### Querying the proof's `tupleRootNonce`
 
-
 <!-- markdownlint-disable MD013 -->
 
 <div style="overflow-y: auto; max-height: 400px;">
