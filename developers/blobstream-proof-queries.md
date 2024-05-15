@@ -1095,7 +1095,8 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
   contract and looking for the nonce attesting to the
   corresponding data. An example:
 
-#### Querying the proof's `tupleRootNonce`
+### Querying the proof's `tupleRootNonce`
+
 
 <!-- markdownlint-disable MD013 -->
 
