@@ -448,7 +448,7 @@ Celestia.
 ### Testing the fallback
 
 Testing out the Ethereum fallback mechanism can be done
-with the `go-da` tool. Triggering a simultaneous blob transaction will
+with a curl command. Triggering a simultaneous blob transaction will
 cause the `op-batcher` blob transaction to fail, with an `incorrect account
 sequence` error, which triggers a fallback to Ethereum.
 
