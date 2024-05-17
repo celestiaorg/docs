@@ -1,3 +1,9 @@
+---
+prev:
+  text: "Bubs testnet"
+  link: "/developers/bubs-testnet"
+---
+
 # Deploy a smart contract on Bubs testnet
 
 In this tutorial, we will deploy a smart contract to the

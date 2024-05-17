@@ -32,7 +32,7 @@ Here are a few options that are currently available for developers.
   <UrlImageButton url="https://rollkit.dev" imageSrc="/build/rollkit.webp" text="Rollkit" notes="Sovereign" alt="Rollkit logo" aria-label="Rollkit"/>
 </div>
 
-### Rollups-as-a-Service
+### Rollups as a Service
 
 Deploy your rollup with a RaaS provider.
 

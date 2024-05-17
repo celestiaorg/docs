@@ -585,11 +585,7 @@ function sidebarHome() {
                       link: "/developers/gm-portal-bubs",
                     },
                     {
-                      text: "Deploy an OP Stack devnet",
-                      link: "/developers/optimism-devnet",
-                    },
-                    {
-                      text: "Deploy an OP Stack devnet on Celestia",
+                      text: "Run an OP Stack devnet posting Celestia",
                       link: "/developers/optimism",
                     },
                     {
@@ -601,7 +597,7 @@ function sidebarHome() {
                       link: "https://thirdweb.com/bubs-testnet",
                     },
                     {
-                      text: "Rollups-as-a-Service",
+                      text: "Rollups as a Service",
                       collapsed: true,
                       items: [
                         {

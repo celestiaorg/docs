@@ -1,14 +1,17 @@
 ---
 description: The first testnet built with OP Stack and Celestia.
+next:
+  text: "Deploy a smart contract on Bubs testnet"
+  link: "/developers/deploy-on-bubs"
 ---
 
 # Bubs testnet
 
 ![Bubs testnet](/img/Celestia_Bubs_Testnet.jpg)
 
-[Bubs Testnet](https://bubs-sepolia.hub.caldera.xyz/) is a fresh offering from
-[Caldera](https://caldera.xyz) with support from Celestia Labs,
-built with OP Stack and Celestia, and is dedicated to providing developers with
+[Bubs Testnet](https://bubs-sepolia.hub.caldera.xyz/) is a the first
+OP Stack testnet with Celestia underneath hosted by
+[Caldera](https://caldera.xyz) with support from Celestia Labs. Bubs is dedicated to providing developers with
 an EVM-compatible execution layer to deploy their EVM applications on.
 
 ## Built with the OP Stack and Celestia
@@ -19,27 +22,12 @@ layer. This integration can be found in the
 [@celestiaorg/optimism repository](https://github.com/celestiaorg/optimism).
 The testnet is hosted by [Caldera](https://caldera.xyz),
 who makes it easy to launch rollups with no code required.
-
-In this setup, data handling is accomplished in two ways. Firstly, data is
-written to the DA layer, in this case, Celestia
-(on the [Mocha testnet](../nodes/mocha-testnet.md)). Then, the data
-commitment is written to the `op-batcher`. When reading, the `op-node`
-retrieves the data back from the DA layer by first reading the data commitment
-from the `op-batcher`, then reading the data from the DA layer using the data
-commitment. Hence, while previously `op-node` was reading from `calldata` on
-Ethereum, it now reads data from Celestia.
+Bubs' data is posted to Celestia
+on the [Mocha testnet](../nodes/mocha-testnet.md).
 [View the namespace for Bubs on Celestia's Mocha testnet](https://mocha-4.celenium.io/namespace/000000000000000000000000000000000000ca1de12ad45362e77e87).
 
-The tools involved in the data handling process include `op-batcher`,
-which batches up rollup blocks and posts them to Ethereum, `op-geth`
-that handles execution, and `op-proposer` responsible for state commitment
-submission.
-
-By using Celestia as a DA layer, existing L2s can switch from posting their
-data as `calldata` on Ethereum to posting to Celestia. The commitment to the
-block is posted on Celestia, which is purpose-built for data availability.
-This is more scalable than the traditional method of posting this data as
-`calldata` on monolithic chains.
+[Learn more about the setup of the integration in
+the introduction](./intro-to-op-stack.md#about-the-integration).
 
 ## Building on Bubs
 
@@ -102,8 +90,4 @@ To see the status and uptime information for Bubs,
 
 Now that you have a better understanding of the Bubs Testnet and its
 integration of OP Stack and Celestia, you can start exploring its
-capabilities:
-
-- [Deploy a smart contract on Bubs testnet](./deploy-on-bubs.md)
-- [Deploy a GM Portal dapp on Bubs testnet](./gm-portal-bubs.md)
-<!-- - [Deploy a smart contract with Thirdweb](https://thirdweb.com/bubs-testnet) -->
+capabilities.

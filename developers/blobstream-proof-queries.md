@@ -1,5 +1,8 @@
 ---
 description: Learn how to query the inclusion proofs used in Blobstream
+next:
+  text: "Requesting data commitment ranges"
+  link: "/developers/requesting-data-commitment-ranges"
 ---
 
 # Blobstream proofs queries
