@@ -160,7 +160,6 @@ da:
 
 ```yaml-vue [Mocha testnet]
 da:
-  image: ghcr.io/rollkit/local-celestia-devnet:v0.13.1 // [!code --]
   image: ghcr.io/celestiaorg/celestia-node:v0.13.2 // [!code ++]
   command: celestia light start --p2p.network mocha --core.ip consensus-full-mocha-4.celestia-mocha.com --gateway// [!code ++]
   ports:
