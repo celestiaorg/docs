@@ -166,7 +166,12 @@ in the active validator set.
 The Foundation will report each cohort’s composition and the duration of
 their respective delegations.
 
+* [Cohort 1](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit#gid=0): 50 Validator Seats
+* Cohort 2: 15 Validator Seats (Applications open June 1, 2024)
+* Cohort 3: 15 Validator Seats (Applications open October 1, 2024)
+* Cohort 4: 20 Validator Seats (Applications open February 1, 2025)
+
 ## Feedback process
 
-Validators in the program will receive a feedback form every quarter so
+Validators in the program will receive a feedback form every quarter, so
 the program can be continually improved.

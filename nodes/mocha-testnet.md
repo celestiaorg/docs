@@ -91,7 +91,6 @@ Celestia network. The default port is 26657.
 - `public-celestia-mocha4-consensus.numia.xyz:26657`
 - `mocha-4-consensus.mesa.newmetric.xyz:26657`
 - `rpc.celestia-mocha.com`
-- `rpc-2.celestia-mocha.com`
 - `celestia-testnet-rpc.f5nodes.com`
 - `celestia-testnet.brightlystake.com`
 - `rpc-celestia-mocha.architectnodes.com`
@@ -113,7 +112,6 @@ The default port is 1317.
 
 - [https://api-mocha.pops.one](https://api-mocha.pops.one)
 - [https://api.celestia-mocha.com/](https://api.celestia-mocha.com/)
-- [https://api-2.celestia-mocha.com/](https://api-2.celestia-mocha.com/)
 - [https://celestia-testnet-api.f5nodes.com](https://celestia-testnet-api.f5nodes.com)
 - [https://celestia-testnet.brightlystake.com/api](https://celestia-testnet.brightlystake.com/api)
 - [https://rest-celestia-mocha.architectnodes.com](https://rest-celestia-mocha.architectnodes.com)
@@ -136,7 +134,6 @@ broadcast transactions.
 - `mocha-4-consensus.mesa.newmetric.xyz:9090`
 - `grpc-mocha.pops.one`
 - `grpc.celestia-mocha.com:443`
-- `grpc-2.celestia-mocha.com:443`
 - `full.consensus.mocha-4.celestia-mocha.com:9090`
 - `consensus-full-mocha-4.celestia-mocha.com:9090`
 - `celestia-testnet-grpc.f5nodes.com`

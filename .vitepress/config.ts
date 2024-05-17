@@ -467,7 +467,7 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-metrics",
                 },
                 {
-                  text: "Slashing mechanics",
+                  text: "Jailing and Slashing mechanics",
                   link: "/nodes/celestia-app-slashing",
                 },
                 {
@@ -664,6 +664,10 @@ function sidebarHome() {
                   link: "/developers/node-tutorial",
                 },
                 {
+                  text: "Golang client tutorial",
+                  link: "/developers/golang-client-tutorial",
+                },
+                {
                   text: "Celestia-node RPC API documentation",
                   link: "https://node-rpc-docs.celestia.org/",
                 },
@@ -702,7 +706,7 @@ function sidebarHome() {
               items: [
                 {
                     text: "Requesting data commitment ranges",
-                  link: "/developers/requesting-data-commitment-ranges",
+                  link: "/developers/blobstream-x-requesting-data-commitment-ranges",
                 },
                 {
                   text: "New Blobstream X deployments",
