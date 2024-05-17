@@ -359,7 +359,7 @@ Remember to remove the `0xce` prefix!
 <!-- markdownlint-disable MD013 -->
 
 ```bash
-curl -s -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" -d '{ "id": 1, "jsonrpc": "2.0", "method": "da.Get", "params": [["3wAAAAAAAABmGvJUORYLqY8wVdjgp6/0oSh6brQqG3ZGr/cfUMuElg=="], "AAAAAAAAAAAAAAAAAAAAAAAAAAECAwQFBgcICRA="]}' http://127.0.0.1:26658
+curl -s -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" -d '{ "id": 1, "jsonrpc": "2.0", "method": "da.Get", "params": [["$ENCODED_INPUT"], "AAAAAAAAAAAAAAAAAAAAAAAAAAECAwQFBgcICRA="]}' http://127.0.0.1:26658
 ```
 
 Your result will look similar to the below!
