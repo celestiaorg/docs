@@ -361,6 +361,8 @@ Remember to remove the `0xce` prefix!
 curl -s -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" -d '{ "id": 1, "jsonrpc": "2.0", "method": "da.Get", "params": [["$ENCODED_INPUT"], "AAAAAAAAAAAAAAAAAAAAAAAAAAECAwQFBgcICRA="]}' http://127.0.0.1:26658
 ```
 
+The params are `[]blobs, namespace`, base64-encoded.
+
 Your result will look similar to the below!
 
 ```console
