@@ -39,8 +39,8 @@ Check out to the version for either the
 
 ::: code-group
 
-```bash-vue [v1.2.0-OP_op-node/v1.7.5-CN_v0.13.2]
-git checkout tags/v1.2.0-OP_op-node/v1.7.5-CN_v0.13.2
+```bash-vue [v1.3.0-OP_op-node/v1.7.5-CN_v0.13.2]
+git checkout tags/v1.3.0-OP_op-node/v1.7.5-CN_v0.13.2
 git submodule update --init --recursive
 ```
 
