@@ -66,7 +66,7 @@ celestia light init --p2p.network arabica
 The output in your terminal will show the location of your node store and
 config. It will also show confirmation that the node store has been initialized.
 
-### Start the light node
+## Start the light node
 
 Start the light node with a connection to a validator node's gRPC endpoint (which
 is usually exposed on port 9090):
