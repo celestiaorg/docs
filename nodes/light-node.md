@@ -81,35 +81,23 @@ Refer to
 [the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
 for information on which ports are required to be open on your machine.
 
-To start the light node with a connection to a validator node's gRPC endpoint
-(which is usually exposed on port 9090):
+::: code-group
 
-```sh
-celestia light start --core.ip <URI> --p2p.network <network>
+```sh [Mainnet Beta]
+celestia light start --core.ip rpc.celestia.pops.one --p2p.network celestia
 ```
 
-:::tip
-You do not need to declare a network for Mainnet Beta. Refer to
-[the chain ID section on the troubleshooting page for more information](./celestia-node-troubleshooting.md)
-:::
-
-Using an RPC of your own, or one from the
-[list on the Mocha testnet page](mocha-testnet.md#rpc-endpoints) or
-[list on the Arabica devnet page](arabica-devnet.md#rpc-endpoints),
-start your node.
-
-For example, your command might look something like this for Mocha:
-
-```sh
+```sh [Mocha]
 celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
 ```
 
-Or for Arabica:
-
-```sh
-celestia light start --core.ip validator-1.celestia-arabica-11.com \
-    --p2p.network arabica
+```sh [Arabica]
+celestia light start --core.ip validator-1.celestia-arabica-11.com --p2p.network arabica
 ```
+
+:::
+
+Tip: you can replace the core.ip with a consensus node RPC endpoint from [mainnet](mainnet.md#consensus-rpc-endpoints), [mocha](mocha-testnet.md#rpc-endpoints), or [arabica](arabica-devnet.md#rpc-endpoints).
 
 ### Keys and wallets
 
