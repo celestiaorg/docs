@@ -29,7 +29,7 @@ a light node:
 
 - Memory: **500 MB RAM (minimum)**
 - CPU: **Single Core**
-- Disk: **50 GB SSD Storage**
+- Disk: **100 GB SSD Storage**
 - Bandwidth: **56 Kbps for Download/56 Kbps for Upload**
 
 ## Setting up your light node

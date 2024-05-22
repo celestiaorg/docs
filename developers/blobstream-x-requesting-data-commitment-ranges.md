@@ -1,3 +1,9 @@
+---
+prev:
+   text: "Querying the Blobstream proofs"
+   link: "/developers/blobstream-proof-queries"
+---
+
 # Requesting data commitment ranges
 
 By default, the Blobstream X deployments on Ethereum will be
@@ -33,7 +39,7 @@ Here are example values for the `.env` file:
 
 ## Local proving
 
-[Run the Blobstream X operator with local proving](https://github.com/succinctlabs/blobstreamx?tab=readme-ov-file#local-proving--relaying).
+To run the Blobstream X operator with local proving, follow this [guide](https://hackmd.io/@succinctlabs/HJE7XRrup).
 
 :::tip
 Note: Requires a large cloud machine to run in a reasonable

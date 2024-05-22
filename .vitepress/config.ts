@@ -467,7 +467,7 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-metrics",
                 },
                 {
-                  text: "Slashing mechanics",
+                  text: "Jailing and Slashing mechanics",
                   link: "/nodes/celestia-app-slashing",
                 },
                 {
@@ -585,11 +585,7 @@ function sidebarHome() {
                       link: "/developers/gm-portal-bubs",
                     },
                     {
-                      text: "Deploy an OP Stack devnet",
-                      link: "/developers/optimism-devnet",
-                    },
-                    {
-                      text: "Deploy an OP Stack devnet on Celestia",
+                      text: "Run an OP Stack devnet posting Celestia",
                       link: "/developers/optimism",
                     },
                     {
@@ -601,7 +597,7 @@ function sidebarHome() {
                       link: "https://thirdweb.com/bubs-testnet",
                     },
                     {
-                      text: "Rollups-as-a-Service",
+                      text: "Rollups as a Service",
                       collapsed: true,
                       items: [
                         {
@@ -668,6 +664,10 @@ function sidebarHome() {
                   link: "/developers/node-tutorial",
                 },
                 {
+                  text: "Golang client tutorial",
+                  link: "/developers/golang-client-tutorial",
+                },
+                {
                   text: "Celestia-node RPC API documentation",
                   link: "https://node-rpc-docs.celestia.org/",
                 },
@@ -697,12 +697,16 @@ function sidebarHome() {
               link: "/developers/blobstream-proof-queries",
             },
             {
+              text: "Example implementation of Blobstream proofs by CryptoKass",
+              link: "https://github.com/CryptoKass/blobstreamx-example",
+            },
+            {
               text: "Local Blobstream X operators",
               collapsed: true,
               items: [
                 {
                     text: "Requesting data commitment ranges",
-                  link: "/developers/requesting-data-commitment-ranges",
+                  link: "/developers/blobstream-x-requesting-data-commitment-ranges",
                 },
                 {
                   text: "New Blobstream X deployments",

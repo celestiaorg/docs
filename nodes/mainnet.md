@@ -123,8 +123,8 @@ to participate in Mainnet Beta:
 - `rpc-archive.celestia.bitszn.com`
 - `celestia-rpc.f5nodes.com`
 - `celestia-rpc.chainode.tech:33373`
-- `https://rpc-celestia.staker.space/`
-- `https://celestia-rpc.noders.services/`
+- `rpc-celestia.staker.space`
+- `celestia-rpc.noders.services`
 
 #### API endpoints
 
@@ -148,9 +148,9 @@ to participate in Mainnet Beta:
 - `celestia.rest.archives.validao.xyz`
 - `api-archive.celestia.bitszn.com`
 - `celestia-api.f5nodes.com`
-- `https://celestia-api.chainode.tech`
-- `https://api-celestia.staker.space/`
-- `https://celestia-api.noders.services/`
+- `celestia-api.chainode.tech`
+- `api-celestia.staker.space`
+- `celestia-api.noders.services`
 
 #### gRPC endpoints
 
@@ -174,7 +174,7 @@ to participate in Mainnet Beta:
 - `gprc-archive.celestia.bitszn.com`
 - `celestia-grpc.f5nodes.com:9390`
 - `celestia-grpc.chainode.tech:443`
-- `https://grpc-celestia.staker.space/`
+- `grpc-celestia.staker.space`
 - `celestia-grpc.noders.services:11090`
 
 #### WebSocket endpoints
@@ -187,20 +187,25 @@ to participate in Mainnet Beta:
 - [Bridge node](./bridge-node.md)
 - [Full storage node](./full-storage-node.md)
 
-#### Data availability (DA) RPC endpoints
+#### Data availability (DA) RPC endpoints for bridge node sync
 
-These RPC endpoints for DA nodes are to provide state access for querying the
+These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
+For users, they will need to provide a `–core.ip string`
+from a consensus node’s URL or IP that populates a default RPC port at 26657
+to their respective DA node.
+
+#### Data availability (DA) gRPC endpoints for state access
+
+These gRPC endpoints for DA nodes provide state access for querying the
 chain’s state and broadcasting transactions (balances, blobs, etc.) to the
 Celestia network. For users, they will need to provide a `–core.ip string`
-from a consensus node’s URL or IP that populates 2 ports for 2 types
-(RPC and gRPC, at ports 26657 and 9090, respectively) to their respective DA
-node.
+from a consensus node’s URL or IP that populates a default gRPC port at 9090
+to their respective DA node.
 
 :::tip
 
 ```bash
-celestia <da_type> start --core.ip <url> –core.rpc.port <port> \
-    –core.grpc.port <port>
+celestia <da_type> start --core.ip <url> -–core.grpc.port <port>
 ```
 
 :::

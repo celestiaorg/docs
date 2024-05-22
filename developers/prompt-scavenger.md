@@ -1,8 +1,8 @@
 ---
 description: Learn how to interact with the Celestia Node API with this tutorial.
 prev:
-  text: "Node RPC CLI tutorial"
-  link: "/developers/node-tutorial"
+  text: "Golang client tutorial"
+  link: "/developers/golang-client-tutorial"
 ---
 
 # Prompt scavenger
@@ -84,6 +84,10 @@ Next, we will start our node:
 ```sh
 celestia light start --core.ip $CORE_IP --p2p.network $NETWORK --gateway.deprecated-endpoints --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --keyring.accname $KEYNAME
 ```
+
+Connecting to a core endpoint with `--core.ip string`
+provides the light node with access to state queries (reading balances, submitting
+transactions, and other state-related queries).
 
 :::tip
 The `--core.ip` gRPC port defaults to 9090,
