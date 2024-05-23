@@ -1,7 +1,7 @@
 ---
 next:
-  text: "Prompt Scavenger"
-  link: "/developers/prompt-scavenger"
+  text: "Rust Client Library Tutorial"
+  link: "/developers/rust-client-tutorial"
 ---
 
 # Golang client library tutorial {#golang-client-library}
