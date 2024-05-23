@@ -74,12 +74,12 @@ celestia state balance
 ```
 
 :::tip
-Make sure you run this command in a different terminal window, because the node has to be running for it to work.
+Make sure you run this command in a different terminal window because the node has to be running for it to work.
 :::
 
 ### OpenAI key
 
-Make sure to [go over to OpenAI](https://platform.openai.com/) in
+Visit [OpenAI](https://platform.openai.com/) to sign up for an account and generate an API key.
 order to sign up for an account and generate an OpenAI API key.
 The key will be needed to communicate with OpenAI.
 
@@ -136,7 +136,7 @@ func main() {
 }
 ```
 
-Here we setup all required libraries we need to use plus the `main`
+Here we set up all required libraries we need to use plus the `main` function that we will use for our program.
 function that we will use for our program.
 
 :::tip
