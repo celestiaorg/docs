@@ -4,7 +4,7 @@ next:
   link: "/developers/prompt-scavenger"
 ---
 
-# Golang client library tutorial {#golang-client-library}
+# Golang Client Library Guide {#golang-client-library}
 
 This section tutorial will guide you through using the most common RPC endpoints with the golang client library.
 
