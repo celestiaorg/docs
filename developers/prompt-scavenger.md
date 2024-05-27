@@ -67,7 +67,7 @@ You should now have a running light node on your machine.
 The rest of the tutorial will assume you will be building the
 script and running it where the light node is in your localhost.
 
-We can now check if your account has been successfully funded by running the following command. If your balance is still 0, wait a few minutes and try again.
+We can now check if your account has been successfully funded by running the following command. If your balance is still 0, wait a few seconds and try again.
 
 ```sh
 celestia state balance
@@ -91,7 +91,7 @@ export OPENAI_KEY=sk-proj-xxxxxxxxxxxxxxxxxxxxxxxx
 
 ## Building the Prompt Scavenger
 
-### Initialize Your Go Project
+### Initialize your Go project
 
 To initialize your go project, run the following commands:
 
