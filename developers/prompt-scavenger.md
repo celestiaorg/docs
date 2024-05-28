@@ -70,7 +70,7 @@ script and running it where the light node is in your localhost.
 We can now check if your account has been successfully funded by running the following command. If your balance is still 0, wait a few seconds and try again.
 
 ```sh
-celestia state balance
+celestia state balance --node.store ~/.celestia-light-arabica-11
 ```
 
 :::tip
