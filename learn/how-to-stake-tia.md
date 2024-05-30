@@ -12,7 +12,7 @@ This means that you can stake the native token TIA and vote on governance
 proposals.
 
 In this tutorial, you will learn how to stake TIA tokens via
-[Keplr](https://www.keplr.app/), [Leap](https://www.leapwallet.io/) and [Gem](https://gemwallet.com/)
+[Keplr](https://www.keplr.app/), [Leap](https://www.leapwallet.io/), and [Gem](https://gemwallet.com/)
 wallets.
 
 ## Select your preferred wallet
