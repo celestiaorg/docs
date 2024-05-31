@@ -125,6 +125,7 @@ to participate in Mainnet Beta:
 - `celestia-rpc.chainode.tech:33373`
 - `rpc-celestia.staker.space`
 - `celestia-rpc.noders.services`
+- `celestia.moonli.me`
 
 #### API endpoints
 
@@ -151,6 +152,7 @@ to participate in Mainnet Beta:
 - `celestia-api.chainode.tech`
 - `api-celestia.staker.space`
 - `celestia-api.noders.services`
+- `celestia.moonli.me/api`
 
 #### gRPC endpoints
 
