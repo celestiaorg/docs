@@ -101,6 +101,8 @@ Celestia network. The default port is 26657.
 - `rpc-mocha-full.avril14th.org`
 - `rpc.mocha.bitszn.com`
 - `celestia-t-rpc.noders.services/`
+- `rpc-1.testnet.celestia.nodes.guru`
+- `rpc-2.testnet.celestia.nodes.guru`
 
 ## API endpoints
 
@@ -122,6 +124,8 @@ The default port is 1317.
 - [https://api-mocha-full.avril14th.org](https://api-mocha-full.avril14th.org)
 - [https://api.mocha.bitszn.com ](https://api.mocha.bitszn.com)
 - [https://celestia-t-api.noders.services](https://celestia-t-api.noders.services)
+- [https://api-1.testnet.celestia.nodes.guru](https://api-1.testnet.celestia.nodes.guru)
+- [https://api-2.testnet.celestia.nodes.guru](https://api-2.testnet.celestia.nodes.guru)
 
 ## gRPC endpoints
 
@@ -146,6 +150,8 @@ broadcast transactions.
 - `grpc-mocha-full.avril14th.org`
 - `grpc.mocha.bitszn.com`
 - `celestia-grpc.noders.services:21090`
+- `grpc-1.testnet.celestia.nodes.guru:10790`
+- `grpc-2.testnet.celestia.nodes.guru:10790`
 
 ## Bridge and full node endpoints
 
@@ -202,6 +208,7 @@ There are several explorers you can use for Mocha:
 - [https://mocha.celenium.io](https://mocha.celenium.io)
 - [https://explorer.nodestake.top/celestia-testnet/](https://explorer.nodestake.top/celestia-testnet)
 - [https://stakeflow.io/celestia-testnet](https://stakeflow.io/celestia-testnet)
+- [https://testnet.celestia.explorers.guru](https://testnet.celestia.explorers.guru)
 
 ## Network upgrades
 
