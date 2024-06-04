@@ -547,6 +547,10 @@ function sidebarHome() {
                       text: "Deploy a dapp on your Arbitrum rollup devnet",
                       link: "/developers/arbitrum-dapp-deploy",
                     },
+                    {
+                      text: "Audit",
+                      link: "https://github.com/celestiaorg/nitro/blob/celestia-v2.3.3/audits/celestia/arbitrum_nitro_celestia_audit_report.pdf",
+                    }
                   ],
                 },
                 {
