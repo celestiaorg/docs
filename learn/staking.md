@@ -19,6 +19,7 @@ Just connect your wallet to get started!
 - [https://wallet.keplr.app/chains/celestia?tab=staking](https://wallet.keplr.app/chains/celestia?tab=staking)
 - [https://cosmos.leapwallet.io/transact/stake/plain?chain=celestia](https://cosmos.leapwallet.io/transact/stake/plain?chain=celestia)
 - [https://alphab.ai/s/m/celestia/](https://alphab.ai/s/m/celestia/)
+- [https://www.staking.xyz/stake?network=celestia&currency=TIA](https://www.staking.xyz/stake?network=celestia&currency=TIA)
 
 ## Mocha testnet
 
@@ -30,3 +31,4 @@ Just connect your wallet to get started!
 - [https://alphab.ai/s/t/celestia-mocha-4/](https://alphab.ai/s/t/celestia-mocha-4/)
 - [https://explorer.kjnodes.com/celestia-testnet](https://explorer.kjnodes.com/celestia-testnet)
 - [https://testnet.keplr.app/chains/celestia-mocha-testnet](https://testnet.keplr.app/chains/celestia-mocha-testnet)
+- [https://www.staking.xyz/stake?network=celestiatestnet&currency=TIA](https://www.staking.xyz/stake?network=celestiatestnet&currency=TIA)
