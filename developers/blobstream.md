@@ -175,7 +175,7 @@ Blobstream X is in beta and slashing is not enabled yet.
 
 | Contract     | EVM network      | Contract address                                                                                                                | Attested data on Celestia | Link to Celenium |
 | ------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------- |
-| Blobstream X  | Ethereum Mainnet          | [`Not yet deployed`](https://etherscan.io/address/0xTODO) | [Mainnet Beta](../nodes/mainnet.md) | Coming soon |
+| Blobstream X  | Ethereum Mainnet          | [`0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe`](https://etherscan.io/address/0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe#events) | [Mainnet Beta](../nodes/mainnet.md) | Coming soon |
 | Blobstream X | Arbitrum One | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://arbiscan.io/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=arbitrum&page=1) |
 | Blobstream X | Base           | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://basescan.org/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=base&page=1) |
 | Blobstream X  | Sepolia          | [`0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e`](https://sepolia.etherscan.io/address/0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e#events) | [Mocha testnet](../nodes/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=ethereum&page=1) |
