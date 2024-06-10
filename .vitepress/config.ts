@@ -551,6 +551,10 @@ function sidebarHome() {
                       text: "Deploy a dapp on your Arbitrum rollup devnet",
                       link: "/developers/arbitrum-dapp-deploy",
                     },
+                    {
+                      text: "Audit",
+                      link: "https://github.com/celestiaorg/nitro/blob/celestia-v2.3.3/audits/celestia/arbitrum_nitro_celestia_audit_report.pdf",
+                    }
                   ],
                 },
                 {
@@ -589,11 +593,7 @@ function sidebarHome() {
                       link: "/developers/gm-portal-bubs",
                     },
                     {
-                      text: "Deploy an OP Stack devnet",
-                      link: "/developers/optimism-devnet",
-                    },
-                    {
-                      text: "Deploy an OP Stack devnet on Celestia",
+                      text: "Run an OP Stack devnet posting Celestia",
                       link: "/developers/optimism",
                     },
                     {
@@ -605,7 +605,7 @@ function sidebarHome() {
                       link: "https://thirdweb.com/bubs-testnet",
                     },
                     {
-                      text: "Rollups-as-a-Service",
+                      text: "Rollups as a Service",
                       collapsed: true,
                       items: [
                         {

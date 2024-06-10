@@ -1,5 +1,8 @@
 ---
 description: Make your own GM Portal dapp on your Arbitrum rollup.
+next:
+  text: "Intro to OP Stack integration"
+  link: "/developers/intro-to-op-stack"
 ---
 
 # Deploy a dapp on your Arbitrum rollup devnet

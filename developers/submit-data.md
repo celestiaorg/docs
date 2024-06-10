@@ -1,3 +1,9 @@
+---
+prev:
+  text: "Blobstream rollups"
+  link: "/developers/blobstream-rollups"
+---
+
 # Submitting data blobs to Celestia
 
 <!-- markdownlint-disable MD013 -->

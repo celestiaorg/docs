@@ -1,3 +1,9 @@
+---
+next:
+    text: "Celestia-node key"
+    link: "/developers/celestia-node-key"
+---
+
 # New Blobstream X deployments
 
 If you want to deploy Blobstream X to a new chain, where a Gateway 
