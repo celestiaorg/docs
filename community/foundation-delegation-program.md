@@ -82,6 +82,7 @@ or within any other prohibited jurisdiction, and successfully complete a
 compliance screen
 * Dedicated email address so that the Foundation can reach you in the event
 of emergency upgrades and fixes
+* Maintain a fully archival (non pruned) bridge node for both Mainnet Beta and Mocha if selected for the program
 
 Not adhering to any of the criteria above will automatically disqualify your
 application, and violating any of the criteria after you have received
@@ -170,6 +171,8 @@ their respective delegations.
 * Cohort 2: 15 Validator Seats (Applications open June 1, 2024)
 * Cohort 3: 15 Validator Seats (Applications open October 1, 2024)
 * Cohort 4: 20 Validator Seats (Applications open February 1, 2025)
+
+IMPORTANT: Each validator selected for the program has to maintain a fully archival (non pruned) bridge node for both Mainnet Beta and Mocha.
 
 ## Feedback process
 
