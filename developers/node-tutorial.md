@@ -485,7 +485,7 @@ and how to use the node store to set it.
 ### Basic flags
 
 All RPC CLI commands have basic flags that can be used to
-interact with the API, however, none are necessary using
+interact with the API; however, none are necessary using
 default configurations.
 
 These include:
@@ -1064,7 +1064,7 @@ To get help and view the CLI menu, use the following command:
 celestia --help
 ```
 
-To view help menu for a specific method, use the following command:
+To view the help menu for a specific method, use the following command:
 
 ```bash
 celestia <module> <method> --help
