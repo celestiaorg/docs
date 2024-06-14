@@ -12,7 +12,6 @@ capable of hosting EVM-compatible smart contracts. This rollup will process
 transactions locally, settle on the public Arbitrum Sepolia testnet, and post data to
 Celestia's Mocha testnet.
 
-
 If you're looking to learn more about the integration of Celestia and Orbit,
 read the [Arbitrum Orbit integration overview](./arbitrum-integration.md). If you're
 looking to learn more about Orbit, read
@@ -226,6 +225,7 @@ a host in your `docker-compose.yml`:
 extra_hosts:
       - "host.docker.internal:host-gateway"
 ```
+
 :::
 
 ```bash
@@ -404,6 +404,7 @@ or [bridge in and out of your rollup](./arbitrum-bridge.md).
 ## Appendix
 
 Extra resources in Arbitrum documentation:
+
 - [Logging](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart#appendix-a-logging)
 - [Depositing ETH/native token](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart#appendix-b-depositing-ethnative-token)
 - [Troubleshooting: `error getting latest batch count`](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart#appendix-c-troubleshooting)
@@ -412,7 +413,7 @@ Extra resources in Arbitrum documentation:
 <!-- markdownlint-disable MD013 -->
 | Component | Version | Details |
 |-----------|---------|---------|
-| Nitro | [v2.3.1-rc.1](https://github.com/celestiaorg/nitro/releases/tag/v2.3.1-rc.1) | Includes the replay binary for the WASM root `0x10c65b27d5031ce2351c719072e58f3153228887f027f9f6d65300d2b5b30152`. [Read the overview for overall changes](../developers/arbitrum-integration.md). |
+| Nitro | [v2.3.3](https://github.com/celestiaorg/nitro/releases/tag/v2.3.3) | Includes the replay binary for the WASM root `0x9286b47ebb3f668fbba011c0e541655a7ecc833032154bba0d8d5ce4f2411f2a`. [Read the overview for overall changes](../developers/arbitrum-integration.md). |
 | Contracts | [v1.2.1-celestia](https://github.com/celestiaorg/nitro-contracts/releases/tag/v1.2.1-celestia) | Integrates Blobstream X functionality into nitro-contracts v1.2.1 |
 | Orbit SDK | [v0.8.2 Orbit SDK for Celestia DA](https://github.com/celestiaorg/arbitrum-orbit-sdk/releases/tag/v0.8.2) | This is not compatible with Orbit SDK v0.8.2 or with the latest changes to nitro-contracts for the Atlas upgrade. The Orbit SDK itself is in Alpha. |
 | celestia-node | [v0.13.1](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.1) | This integration has only been tested with celestia-node 0.13.1 and only works with said version, and with future versions after that. Under the hood, the Nitro node uses [this commit](https://github.com/celestiaorg/celestia-openrpc/commit/64f04840aa97d4deb821b654b1fb59167d242bd1) of celestia-openrpc. |
