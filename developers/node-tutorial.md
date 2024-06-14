@@ -462,6 +462,10 @@ once your node store is set:
 celestia blob submit 0x42690c204d39600fddd3 'gm' --node.store $NODE_STORE
 ```
 
+:::tip
+[Learn more about maximum blob size](submit-data.md).
+:::
+
 Alternatively, you could use the `--token` flag to set your auth token:
 
 ```bash
