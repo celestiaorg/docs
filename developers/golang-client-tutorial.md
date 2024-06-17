@@ -1,9 +1,3 @@
----
-next:
-  text: "Rust Client Library Tutorial"
-  link: "/developers/rust-client-tutorial"
----
-
 # Golang client library tutorial {#golang-client-library}
 
 This section tutorial will guide you through using the most common RPC endpoints with the golang client library.
