@@ -1,5 +1,8 @@
 ---
 description: Learn about the integration of OP Stack with Celestia.
+prev:
+  text: "Deploy a dapp on your Arbitrum rollup devnet"
+  link: "/developers/arbitrum-dapp-deploy"
 ---
 
 # Introduction to OP Stack integration

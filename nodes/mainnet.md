@@ -125,6 +125,8 @@ to participate in Mainnet Beta:
 - `celestia-rpc.chainode.tech:33373`
 - `rpc-celestia.staker.space`
 - `celestia-rpc.noders.services`
+- `celestia.moonli.me`
+- `celestia-mainnet-rpc.itrocket.net:443`
 
 #### API endpoints
 
@@ -151,6 +153,8 @@ to participate in Mainnet Beta:
 - `celestia-api.chainode.tech`
 - `api-celestia.staker.space`
 - `celestia-api.noders.services`
+- `celestia.moonli.me/api`
+- `celestia-mainnet-api.itrocket.net:443`
 
 #### gRPC endpoints
 
@@ -176,10 +180,12 @@ to participate in Mainnet Beta:
 - `celestia-grpc.chainode.tech:443`
 - `grpc-celestia.staker.space`
 - `celestia-grpc.noders.services:11090`
+- `celestia-mainnet-grpc.itrocket.net:443`
 
 #### WebSocket endpoints
 
 - `wss://celestia-ws.chainode.tech:33373/websocket`
+- `wss://celestia-mainnet-ws.itrocket.net:443/websocket`
 
 ### Data availability nodes
 
@@ -233,6 +239,9 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `rpc-celestia.alphab.ai`
   - gRPC: port 9090
   - RPC: port 26657
+- `celestia-mainnet-consensus.itrocket.net`
+  - gRPC: port 9090
+  - RPC: port 26657
 
 DA full and light nodes might have troubles connecting to the networks, so you
 can check out this
@@ -269,6 +278,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
 - [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
 - [https://celestia.exploreme.pro/](https://celestia.exploreme.pro/)
+- [https://mainnet.itrocket.net/celestia/](https://mainnet.itrocket.net/celestia/)
 
 ## Analytics
 
@@ -277,6 +287,7 @@ The following websites provide analytics for Celestia:
 - [https://analytics.smartstake.io/celestia](https://analytics.smartstake.io/celestia)
 - [https://alphab.ai/s/m/celestia/](https://alphab.ai/s/m/celestia/)
 - [https://services.kjnodes.com/mainnet/celestia/slashboard](https://services.kjnodes.com/mainnet/celestia/slashboard)
+- [https://itrocket.net/services/mainnet/celestia/decentralization/](https://itrocket.net/services/mainnet/celestia/decentralization/)
 
 ## Network upgrades
 
