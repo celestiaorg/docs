@@ -4,7 +4,7 @@ next:
   link: "/developers/prompt-scavenger"
 ---
 
-# Rust client library tutorial {#golang-client-library}
+# Rust client library tutorial {#rust-client-library}
 
 This section tutorial will guide you through using the most common RPC endpoints with [Lumina](https://github.com/eigerco/lumina/tree/main/rpc)'s rust client library.
 
