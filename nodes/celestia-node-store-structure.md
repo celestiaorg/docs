@@ -1,5 +1,5 @@
 ---
-description: This section contains information on the celestia-node datastore and it's contents.
+description: This section contains information on the celestia-node datastore and its contents.
 ---
 
 # celestia-node store
@@ -12,7 +12,7 @@ configuration, and other information relevant to the node.
 Below are the directories contained in the node's store:
 
 - `/blocks`: This directory stores blocks. Each file contained in this directory
-represents a block on Celestia and contains it's associated data.
+represents a block on Celestia and contains its associated data.
 
 - `/data`: This directory contains the block header files.
 
@@ -26,7 +26,7 @@ It contains the following configuration files:
 - `config.toml`: This is the node's primary configuration file.
 It defines the node's core settings such as the network parameters and the node's identity.
 
-- `inverted_index`: This file stores indexed data that can be used make blockchain queries.
+- `inverted_index`: This file stores indexed data that can be used to make blockchain queries.
 
 - `/keys`: This directory stores the cryptographic key pair that is used to operate the node.
 
