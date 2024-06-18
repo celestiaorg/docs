@@ -28,7 +28,7 @@ It defines the node's core settings such as the network parameters and the node'
 
 - `inverted_index`: This file stores indexed data that can be used to make blockchain queries.
 
-- `/keys`: This directory stores the cryptographic key pair that is used to operate the node.
+- `/keys`: This directory stores the cryptographic key pairs that are used to operate the node.
 
 - `/transients`: This directory stores temporary data such as cache files
 that are used while the node is operating, but are not a part of the permanent blockchain state.
