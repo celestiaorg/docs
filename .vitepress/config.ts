@@ -678,7 +678,7 @@ function sidebarHome() {
               link: "/developers/rust-client-tutorial",
             },
             {
-              text: "RPC documentation",
+              text: "RPC documentation and playground",
               link: "https://node-rpc-docs.celestia.org/",
             },
             { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
