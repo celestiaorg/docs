@@ -2,10 +2,6 @@
 description: Learn how to integrate your L2's offchain logic with Blobstream
 ---
 
-<script setup>
-import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
-</script>
-
 # Integrate with Blobstream client
 
 ## Blobstream demo rollup
@@ -108,7 +104,7 @@ connecting to a Celestia light node,
 which can detect faults in consensus such as hidden data. For the connection
 to Ethereum, this would likely mean running and connecting to a full node.
 More information on the RPC that is exposed by a Celestia light node can be found
-[in the RPC documentation](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}).
+[in the RPC documentation](https://node-rpc-docs.celestia.org/).
 Additionally, if you need more information on how to run a light node, you can
 [check out the documentation](../nodes/light-node.md).
 
@@ -332,7 +328,7 @@ contracts.
 #### Submitting block data to Celestia via light node
 
 As linked above, use the
-[Celestia light node RPC](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#blob.Submit)
+[Celestia light node RPC](https://node-rpc-docs.celestia.org/#blob.Submit)
 to submit the data to Celestia.
 
 #### Posting headers to Ethereum

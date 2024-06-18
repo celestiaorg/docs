@@ -4,10 +4,6 @@ next:
   link: "/developers/prompt-scavenger"
 ---
 
-<script setup>
-import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
-</script>
-
 # Rust client library tutorial {#rust-client-library}
 
 This section tutorial will guide you through using the most common RPC endpoints with [Lumina](https://github.com/eigerco/lumina/tree/main/rpc)'s rust client library.
@@ -30,13 +26,13 @@ The default URL is `http://localhost:26658`. If you would like to use subscripti
 
 ## Submitting and retrieving blobs
 
-The [blob.Submit](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#blob.Submit) method takes an array of blobs and a gas price, returning the height the blob was successfully posted at.
+The [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit) method takes an array of blobs and a gas price, returning the height the blob was successfully posted at.
 
 - The namespace can be generated with `Namespace::new_v0`.
 - The blobs can be generated with `Blob::new`.
 - You can set `GasPrice::default()` as the gas price to have celestia-node automatically determine an appropriate gas price.
 
-The [blob.GetAll](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#blob.GetAll) method takes a height and array of namespaces, returning the array of blobs found in the given namespaces.
+The [blob.GetAll](https://node-rpc-docs.celestia.org/#blob.GetAll) method takes a height and array of namespaces, returning the array of blobs found in the given namespaces.
 
 ```rust
 use celestia_rpc::{BlobClient, Client, HeaderClient, ShareClient};
@@ -76,7 +72,7 @@ async fn submit_blob(url: &str, token: &str) {
 
 ## Subscribing to new headers
 
-You can subscribe to new headers using the [header.Subscribe](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#header.Subscribe) method. This method returns a `Subscription` that will receive new headers as they are produced. In this example, we will fetch all blobs at the height of the new header in the `0xDEADBEEF` namespace.
+You can subscribe to new headers using the [header.Subscribe](https://node-rpc-docs.celestia.org/#header.Subscribe) method. This method returns a `Subscription` that will receive new headers as they are produced. In this example, we will fetch all blobs at the height of the new header in the `0xDEADBEEF` namespace.
 
 ```rust
 async fn subscribe_headers(url: &str, token: &str) {
@@ -123,7 +119,7 @@ async fn subscribe_headers(url: &str, token: &str) {
 
 ## Fetching an Extended Data Square (EDS)
 
-You can fetch an [Extended Data Square (EDS)](https://celestiaorg.github.io/celestia-app/specs/data_structures.html#erasure-coding) using the [share.GetEDS](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#share.GetEDS) method. This method takes a header and returns the EDS at the given height.
+You can fetch an [Extended Data Square (EDS)](https://celestiaorg.github.io/celestia-app/specs/data_structures.html#erasure-coding) using the [share.GetEDS](https://node-rpc-docs.celestia.org/#share.GetEDS) method. This method takes a header and returns the EDS at the given height.
 
 ```rust
 async fn get_eds(url: &str, token: &str) -> ExtendedDataSquare {
@@ -146,4 +142,4 @@ async fn get_eds(url: &str, token: &str) -> ExtendedDataSquare {
 
 ## API documentation
 
-To see the full list of available methods, see the [API documentation](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}).
+To see the full list of available methods, see the [API documentation](https://node-rpc-docs.celestia.org/).
