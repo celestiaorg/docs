@@ -424,7 +424,7 @@ With your wallet funded, you can move on to the next step.
 ## RPC CLI guide
 
 This section of the tutorial will teach you how to interact with a Celestia node's
-[remote procedure call (RPC) API](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}})
+[remote procedure call (RPC) API](https://node-rpc-docs.celestia.org/)
 using the command line interface (CLI).
 
 You will need to
@@ -443,14 +443,14 @@ Where:
 
 - `celestia` is the main command to interact with the node.
 - `<module>` is the specific module in the node you want to interact with, such as
-  [`blob`](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#blob),
-  [`state`](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#state),
-  [`p2p`](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#p2p), etc.
+  [`blob`](https://node-rpc-docs.celestia.org/#blob),
+  [`state`](https://node-rpc-docs.celestia.org/#state),
+  [`p2p`](https://node-rpc-docs.celestia.org/#p2p), etc.
 - `<method>` is the specific method within the module that performs
   the action you want, such as
-  [`blob.Submit`](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#blob.Submit),
-  [`state.AccountAddress`](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#state.AccountAddress),
-  [`p2p.Info`](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#node.Info), etc.
+  [`blob.Submit`](https://node-rpc-docs.celestia.org/#blob.Submit),
+  [`state.AccountAddress`](https://node-rpc-docs.celestia.org/#state.AccountAddress),
+  [`p2p.Info`](https://node-rpc-docs.celestia.org/#node.Info), etc.
 - `[args...]` represents any additional arguments that the method might require.
 - `[flags...]` are parameters that modify the behavior of the command.
   They start with `--` (e.g., `--node.store`, `--token`, or `--url`).
@@ -578,7 +578,7 @@ export AUTH_TOKEN=$(celestia light auth admin --p2p.network private \
 ### Submitting data
 
 In this example, we will be submitting a blob to the network with a
-[blob.Submit](https://node-rpc-docs.celestia.org/?version={{mainnetVersions['node-latest-tag']}}#blob.Submit)
+[blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit)
 transaction with our light node.
 
 Some things to consider:
