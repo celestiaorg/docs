@@ -24,9 +24,13 @@ The [blob.Submit](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submi
 
 - The namespace can be generated with `share.NewBlobNamespaceV0`.
 - The blobs can be generated with `blob.NewBlobV0`.
-- You can set `blob.DefaultGasPrice()` as the gas price to have celestia-node automatically determine an appropriate gas price.
+- You can use `options.DefaultTxOptions()` to have celestia-node automatically determine an appropriate gas price and gas amount. You can also specify your own gas price and gas amount via the returned `TxOptions` struct.
 
-The [blob.GetAll](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.GetAll) method takes a height and slice of namespaces, returning the slice of blobs found in the given namespaces.
+The [blob.GetAll](https://node-rpc-docs.celestia.org/?version=v0.13.7#blob.GetAll) method takes a height and slice of namespaces, returning the slice of blobs found in the given namespaces.
+
+::: tip
+If you would like to receive the transaction hash of the blob submission, you can use `state.SubmitPayForBlob` instead of `blob.Submit`. This method will return a `TxResponse` struct containing the transaction hash.
+:::
 
 ```go
 import (
@@ -36,6 +40,7 @@ import (
 
 	client "github.com/celestiaorg/celestia-openrpc"
 	"github.com/celestiaorg/celestia-openrpc/types/blob"
+	"github.com/celestiaorg/celestia-openrpc/types/options"
 	"github.com/celestiaorg/celestia-openrpc/types/share"
 )
 
@@ -59,7 +64,7 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
 	}
 
 	// submit the blob to the network
-	height, err := client.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, blob.DefaultGasPrice())
+	height, err := client.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, options.DefaultTxOptions())
 	if err != nil {
 		return err
 	}
