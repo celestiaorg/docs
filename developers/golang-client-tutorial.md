@@ -2,9 +2,9 @@
 
 This section tutorial will guide you through using the most common RPC endpoints with the golang client library.
 
-You will need to
-[setup dependencies, install, and run celestia-node](./node-tutorial.md#setting-up-dependencies)
-if you have not already.
+Install [dependencies](../nodes/environment.md) and
+[celestia-node](../nodes/celestia-node.md) if you have
+not already.
 
 ## Project setup
 
