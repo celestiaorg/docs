@@ -672,6 +672,10 @@ function sidebarHome() {
                   link: "/developers/golang-client-tutorial",
                 },
                 {
+                  text: "Rust client tutorial",
+                  link: "/developers/rust-client-tutorial",
+                },
+                {
                   text: "Celestia-node RPC API documentation",
                   link: "https://node-rpc-docs.celestia.org/",
                 },
