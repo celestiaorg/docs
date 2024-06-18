@@ -34,7 +34,7 @@ and [the original deployment guide](https://docs.arbitrum.io/launch-orbit-chain/
   running on your machine
 - [Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
 - A fully synced and funded Mocha testnet [light node](../nodes/light-node.md)
-on **v0.13.2**
+on **v0.13.7**
   - [Mocha testnet faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet)
 - A browser-based Ethereum wallet (like [MetaMask](https://metamask.io))
 - At least 1 Arbitrum Sepolia testnet ETH (for custom gas token chains,
@@ -180,36 +180,7 @@ root of your cloned `orbit-setup-script` repository.
 
 3. Install dependencies by running `yarn install` from the root of the `orbit-setup-script` repository.
 
-### Step 6: Pick an L2 RPC URL for the Batch Poster
-
-In order for the Batch Poster, which is responsible for posting batches of data, to
-subscribe to Blobstream's smart contract events, the node most use a WebSocket
-connection, since an HTTP one will not support subscriptions. This RPC URL is different
-from the `parent-chain.connection.url` object used in the node config, and is
-not necessary when running a full node. WebSocket (WSS) URLs which are
-essential for real-time data fetching and interaction with the
-Arbitrum Sepolia network. 
-
-To establish a WebSocket connection for your rollup to Arbitrum Sepolia, it's
-recommended to
-[find an RPC provider with WSS connections from Arbitrum's docs](https://docs.arbitrum.io/build-decentralized-apps/reference/node-providers).
-
-For this example, we will make an account on Alchemy. Follow these steps to set up your account and obtain a WSS URL using Alchemy: 
-
-1. Visit [Alchemy's website](https://www.alchemy.com/) and sign up for an account.
-2. Once logged in, create a new app by selecting the Arbitrum network, specifically
-targeting the Arbitrum Sepolia testnet.
-3. After creating your app, navigate to the "API key" section to find your WebSocket
-(WSS) URL.
-4. In the next step, use this WSS URL in your `nodeConfig.json` under the
-`celestia-cfg.eth-rpc` object to ensure your node can establish a
-WebSocket connection to the Arbitrum Sepolia network
-and successfully subscribe to Blobstream events. 
-
-Without a WSS connection, the Batch Poster won't be able to subscribe to Blobstream
-events, and thus will fall back to posting data to parent chain.
-
-### Step 7: Run your light node for Mocha testnet
+### Step 6: Run your light node for Mocha testnet
 
 First, be sure that your light node is running, using a command similar to:
 
@@ -246,25 +217,16 @@ to communicate with Blobstream, you now only have to configure your node
 accordingly. First understand the different variables that will be set in the config:
 
 - **`enable`:** set it to true if you are using Celestia DA 😁
+- **`gas-price`:** how much to pay for gas (in uTIA)
+- **`gas-multiplier`:** will increase the gas price linearly based on the number
+you provide. 1.01 increases the gas by 1%.
 - **`rpc`:** RPC endpoint for **celestia-node**
-- **`tendermint-rpc`:** a celestia-core endpoint from a full node
-(**NOTE:** only needed for a batch poster node)
-- **`eth-rpc`:** Ethereum Client WSS RPC endpoint, only used when the node is a batch
-poster. The eth-rpc must be WSS. Otherwise, it won't be able to subscribe to events
-for Blobstream.
 - **`namespace-id`:** namespace being used to post data to Celestia
 - **`auth-token`:** auth token for your Celestia Node
-- **`is-poster`:** is the node with Celestia DA the batch poster, set to true if so.
-- **`gas-price`:** how much to pay for gas (in uTIA)
-- **`event-channel-size`:** size of the events channel used by the batch poster
-to wait for a range of headers that contains the header for the block in which
-it posted a blob, before posting the batch to the base layer for verification
-on Blobstream X.
-- **`blobstreamx-address`:** address of the Blobstream X contract on the base chain.
-    - Note that the `SequencerInbox` contract for each chain has a constant
-    address for the `BlobstreamX` contract, thus make sure that the Blobstream X
-    address in the `SequencerInbox` being used for the templates in
-    `RollupCreator` matches the one in your config.
+- **`noop-writer`:** setting this to true allows you to force fallbacks by
+disabling storing posting data to Celestia
+- **`validator-config` (optional):** optional validator configuration as
+described on [Running a full node and/or validator](./arbitrum-full-node.md)
 
 Now enable Celestia DA in your Arbitrum chain params in
 `config/nodeConfig.json`. If you'd like to use your own namespace,
@@ -283,21 +245,18 @@ This is crucial to protect against potential misuse by copy-paste errors.
 ```ts
 "celestia-cfg": {
   "enable": true,
+  "gas-price": 0.01,
+  "gas-multiplier", 1.01,
   "rpc": "http://host.docker.internal:26658",
-  "tendermint-rpc": "http://consensus-full-mocha-4.celestia-mocha.com:26657",
-  "eth-rpc": "wss://<YOUR_ETH_RPC_WSS_URL>",
   "namespace-id": "<YOUR_10_BYTE_NAMESPACE>",
   "auth-token": "<YOUR_AUTH_TOKEN>",
-  "is-poster": true,
-  "gas-price": 0.3,
-  "event-channel-size": 100,
-  "blobstreamx-address": "0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2",
+  "noop-writer": false,
 }
 ```
 
 [See the compatibility matrix in the appendix to verify you're using the right versions.](#compatibility-matrix)
 
-### Step 8: Run your chain's node and block explorer
+### Step 7: Run your chain's node and block explorer
 
 Start Docker, then run `docker-compose up -d` from the root of
 the `orbit-setup-script` repository.
@@ -313,7 +272,7 @@ After you have some activity on your rollup, it will look more like this:
 
 ![explorer-view](/arbitrum/explorer-view.png)
 
-### Step 9: Finish setting up your chain
+### Step 8: Finish setting up your chain
 
 The Offchain Labs team has provided a Hardhat script that
 handles the following tasks:
@@ -416,14 +375,14 @@ Extra resources in Arbitrum documentation:
 | Nitro | [v2.3.3](https://github.com/celestiaorg/nitro/releases/tag/v2.3.3) | Includes the replay binary for the WASM root `0x9286b47ebb3f668fbba011c0e541655a7ecc833032154bba0d8d5ce4f2411f2a`. [Read the overview for overall changes](../developers/arbitrum-integration.md). |
 | Contracts | [v1.2.1-celestia](https://github.com/celestiaorg/nitro-contracts/releases/tag/v1.2.1-celestia) | Integrates Blobstream X functionality into nitro-contracts v1.2.1 |
 | Orbit SDK | [v0.8.2 Orbit SDK for Celestia DA](https://github.com/celestiaorg/arbitrum-orbit-sdk/releases/tag/v0.8.2) | This is not compatible with Orbit SDK v0.8.2 or with the latest changes to nitro-contracts for the Atlas upgrade. The Orbit SDK itself is in Alpha. |
-| celestia-node | [v0.13.1](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.1) | This integration has only been tested with celestia-node 0.13.1 and only works with said version, and with future versions after that. Under the hood, the Nitro node uses [this commit](https://github.com/celestiaorg/celestia-openrpc/commit/64f04840aa97d4deb821b654b1fb59167d242bd1) of celestia-openrpc. |
+| celestia-node | [v0.13.7](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.7) | This integration has only been tested with celestia-node 0.13.7 and only works with said version, and with future versions after that. Under the hood, the Nitro node uses [this commit](https://github.com/celestiaorg/celestia-openrpc/commit/64f04840aa97d4deb821b654b1fb59167d242bd1) of celestia-openrpc. |
 <!-- markdownlint-enable MD013 -->
 
 ### Blobstream X contract deployments
 
 The Orbit contracts depend on the following Blobstream X deployments.
-The current deployments, which can be found at
-`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2` in both chains, relays
+The current deployments, which can be
+[found on the Blobstream page](../developers/blobstream#deployed-contracts), relays
 headers from the **Mocha-4** testnet to the chains below:
 
 - Ethereum Sepolia
