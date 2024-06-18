@@ -6,17 +6,17 @@ next:
 
 # New Blobstream X deployments
 
-If you want to deploy Blobstream X to a new chain, where a Gateway 
+If you want to deploy Blobstream X to a new chain, where a Gateway
 contract does not exist, you need to do the following.
 
 If Succinct Gateway already exists on this chain, you can skip
 this step.
-You can check the list of deployed `SuccinctGateway` contracts in this [list](https://docs.succinct.xyz/platform/onchain-integration#succinctgateway).
+You can check the list of deployed `SuccinctGateway` contracts in this [list](https://platform-docs.succinct.xyz/platform/onchain-integration#succinctgateway).
 
 ## Deploy a new `SuccinctGateway` contract
 
-To Deploy a new `SuccinctGateway` contract to the new chain, follow 
-the [succinct documentation](https://docs.succinct.xyz/platform/onchain-integration#gateway-deployment).
+To Deploy a new `SuccinctGateway` contract to the new chain, follow
+the [Succinct documentation](https://platform-docs.succinct.xyz/platform/onchain-integration#non-canonical-chain-contract-deployment).
 
 ## Deploy a `BlobstreamX` contract to the new chain
 
