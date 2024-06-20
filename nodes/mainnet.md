@@ -94,12 +94,31 @@ to connect to them. Learn about the different endpoint types
 Here is a list of options of the types of nodes you can run in order
 to participate in Mainnet Beta:
 
+### Production RPC endpoints
+
+<!-- markdownlint-disable MD009 -->
+<!-- markdownlint-disable MD034 -->
+
+These RPC providers are meant to be used in production environments.
+
+| Provider | URL |
+|--------|--------|
+| NewMetric | https://app.newmetric.xyz/start | 
+| Numia | For rpc access: https://docs.numia.xyz/overview/rpc-api-access |
+| Numia | For data warehouse access: https://docs.numia.xyz/overview/sql-access/chains/celestia |
+
 ### Consensus nodes
 
 - [Full consensus node](./full-consensus-node)
 - [Validator node](./validator-node)
 
-#### Consensus RPC endpoints
+#### Community consensus RPC endpoints
+
+:::warning
+Do not rely on the free community endpoints listed below
+for production deployments. Production deployments should rely
+on [service providers with SLAs](#production-rpc-endpoints).
+:::
 
 - `public-celestia-rpc.numia.xyz`
 - `celestia-rpc.mesa.newmetric.xyz`
@@ -128,7 +147,7 @@ to participate in Mainnet Beta:
 - `celestia.moonli.me`
 - `celestia-mainnet-rpc.itrocket.net:443`
 
-#### API endpoints
+#### Community API endpoints
 
 - `public-celestia-lcd.numia.xyz`
 - `celestia-rest.mesa.newmetric.xyz`
@@ -156,7 +175,7 @@ to participate in Mainnet Beta:
 - `celestia.moonli.me/api`
 - `celestia-mainnet-api.itrocket.net:443`
 
-#### gRPC endpoints
+#### Community gRPC endpoints
 
 - `public-celestia-grpc.numia.xyz`
 - `celestia-grpc.mesa.newmetric.xyz`
@@ -182,7 +201,7 @@ to participate in Mainnet Beta:
 - `celestia-grpc.noders.services:11090`
 - `celestia-mainnet-grpc.itrocket.net:443`
 
-#### WebSocket endpoints
+#### Community WebSocket endpoints
 
 - `wss://celestia-ws.chainode.tech:33373/websocket`
 - `wss://celestia-mainnet-ws.itrocket.net:443/websocket`
@@ -193,14 +212,14 @@ to participate in Mainnet Beta:
 - [Bridge node](./bridge-node.md)
 - [Full storage node](./full-storage-node.md)
 
-#### Data availability (DA) RPC endpoints for bridge node sync
+#### Community Data availability (DA) RPC endpoints for bridge node sync
 
 These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
 For users, they will need to provide a `–core.ip string`
 from a consensus node’s URL or IP that populates a default RPC port at 26657
 to their respective DA node.
 
-#### Data availability (DA) gRPC endpoints for state access
+#### Community Data availability (DA) gRPC endpoints for state access
 
 These gRPC endpoints for DA nodes provide state access for querying the
 chain’s state and broadcasting transactions (balances, blobs, etc.) to the

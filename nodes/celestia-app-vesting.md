@@ -350,7 +350,7 @@ and fund your `origin` address.
 
 To create a vesting account on Mocha, you will need an RPC URL to send
 the transaction to. You can find the
-[RPC endpoints on the Mocha testnet page](../nodes/mocha-testnet.md#rpc-endpoints).
+[RPC endpoints on the Mocha testnet page](../nodes/mocha-testnet.md#community-rpc-endpoints).
 
 Set your RPC URL:
 

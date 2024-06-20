@@ -50,9 +50,27 @@ like to run. Each node’s guide will link to the relevant network in
 order to show you how to connect to them. Learn about the different
 endpoint types [in the Cosmos SDK documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest).
 
-### RPC endpoints
+### Production RPC endpoints
 
-RPC endpoints and types of nodes you can run
+<!-- markdownlint-disable MD009 -->
+<!-- markdownlint-disable MD034 -->
+
+These RPC providers are meant to be used in production environments.
+
+| Provider | URL |
+|--------|--------|
+| NewMetric | https://app.newmetric.xyz/start | 
+| Numia | For rpc access: https://docs.numia.xyz/overview/rpc-api-access |
+| Numia | For data warehouse access: https://docs.numia.xyz/overview/sql-access/chains/celestia |
+
+### Community RPC endpoints
+
+:::warning
+Do not rely on the free community endpoints listed below
+for production deployments. Production deployments should rely
+on [service providers with SLAs](#production-rpc-endpoints).
+:::
+
 in order to participate in Arabica devnet:
 
 <!-- markdownlint-disable MD013 -->
