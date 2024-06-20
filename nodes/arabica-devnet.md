@@ -52,15 +52,15 @@ endpoint types [in the Cosmos SDK documentation](https://docs.cosmos.network/v0.
 
 ### Production RPC endpoints
 
-<!-- markdownlint-disable MD009 -->
+<!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD034 -->
 
 These RPC providers are meant to be used in production environments.
 
 | Provider | URL |
 |--------|--------|
-| NewMetric | https://app.newmetric.xyz/start | 
-| Numia | For rpc access: https://docs.numia.xyz/overview/rpc-api-access |
+| NewMetric | https://app.newmetric.xyz/start |
+| Numia | For RPC access: https://docs.numia.xyz/overview/rpc-api-access |
 | Numia | For data warehouse access: https://docs.numia.xyz/overview/sql-access/chains/celestia |
 
 ### Community RPC endpoints
