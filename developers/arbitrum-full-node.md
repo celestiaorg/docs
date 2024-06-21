@@ -26,7 +26,7 @@ for them to run it, which would look something like this:
 
 ```json
 docker run --rm -v "$HOME/Documents/configs/nodeConfig.json:/config.json:ro" \
-  --network host celestia-nitro:v2.3.3 --conf.file /config.json
+  --network host celestia-nitro:v3.0.0 --conf.file /config.json
 ```
 
 ## Running a full node with validation
