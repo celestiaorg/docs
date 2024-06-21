@@ -60,7 +60,7 @@ An example configuration with `validator-config` can be found below:
 "celestia-cfg": {
   "enable": true,
   "gas-price": 0.01,
-  "gas-multiplier", 1.01,
+  "gas-multiplier": 1.01,
   "rpc": "http://host.docker.internal:26658",
   "namespace-id": "<YOUR_10_BYTE_NAMESPACE>",
   "auth-token": "<YOUR_AUTH_TOKEN>",
