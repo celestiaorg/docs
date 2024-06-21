@@ -39,9 +39,9 @@ The Arbitrum Nitro code has a `DataAvailabilityProvider` interface that is used 
 This integration implements the [`DataAvailabilityProvider` interface for Celestia DA](https://github.com/celestiaorg/nitro/blob/966e631f1a03b49d49f25bea67a92b275d3bacb9/arbstate/inbox.go#L366-L477)
 
 Additionally, this integration comes with
-[the necessary code for a Nitro chain node to post and retrieve data from Celestia](https://github.com/celestiaorg/nitro/tree/v2.3.1-rc.1/das/celestia).
+[the necessary code for a Nitro chain node to post and retrieve data from Celestia](https://github.com/celestiaorg/nitro/tree/celestia-v3.0.0/das/celestia).
 
-The core logic behind posting and retrieving data happens in [celestia.go](https://github.com/celestiaorg/nitro/blob/v2.3.1-rc.1/das/celestia/celestia.go) where data is stored on Celestia and serialized into a small batch of data that gets published in the sequencer inbox contract.
+The core logic behind posting and retrieving data happens in [celestia.go](https://github.com/celestiaorg/nitro/blob/celestia-v3.0.0/das/celestia/celestia.go) where data is stored on Celestia and serialized into a small batch of data that gets published in the sequencer inbox contract.
 Then the `Read` logic takes care of taking the deserialized Blob Pointer struct and consuming it in order to fetch the data from Celestia and additionally inform the fetcher about the position of the data on Celestia (we'll get back to this in the next section).
 
 The following represents a non-exhaustive list of considerations when running a Nitro node for a chain with Celestia underneath:

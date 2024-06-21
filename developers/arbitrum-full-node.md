@@ -20,7 +20,7 @@ with the difference being that you will use this image:
 in the Arbitrum docs.
 
 Note that you can either use the flags in the nitro binary + the flags
-[found in the celestia package](https://github.com/celestiaorg/nitro/blob/v2.3.3/das/celestia/celestia.go#L53-L65),
+[found in the celestia package](https://github.com/celestiaorg/nitro/blob/fbf5bba3ed76ed30f3c1f5d545d17f1d741940bf/das/celestia/celestia.go#L31-L46),
 or you can just provide a node `config.json` file with the `celestia-cfg`
 for them to run it, which would look something like this:
 
@@ -49,10 +49,10 @@ Configuration options for validating full nodes include:
 poster. The eth-rpc must be WSS. Otherwise, it won't be able to subscribe to events
 for Blobstream.
 - **`blobstream`:** address of the Blobstream X contract on the base chain.
-    - Note that the `SequencerInbox` contract for each chain has a constant
-    address for the `BlobstreamX` contract, thus make sure that the Blobstream X
-    address in the `SequencerInbox` being used for the templates in
-    `RollupCreator` matches the one in your config.
+  - Note that the `SequencerInbox` contract for each chain has a constant
+  address for the `BlobstreamX` contract, thus make sure that the Blobstream X
+  address in the `SequencerInbox` being used for the templates in
+  `RollupCreator` matches the one in your config.
 
 An example configuration with `validator-config` can be found below:
 
