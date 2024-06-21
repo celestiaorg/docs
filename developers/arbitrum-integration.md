@@ -16,7 +16,11 @@ a data availability layer alongside Arbitrum AnyTrust. The integration allows
 developers to deploy an Orbit Chain that uses Celestia for data availability and
 settles on Arbitrum One, Ethereum, or other EVM chains.
 
-[Learn more about Orbit in Arbitrum's introduction.](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
+Version 3.0.0 of the integration enables Arbitrum Stylus,
+allowing developers to write smart contracts in Rust.
+
+[Learn more about Orbit in Arbitrum's introduction](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
+and about [Stylus](https://arbitrum.io/stylus).
 
 ## Key components
 
