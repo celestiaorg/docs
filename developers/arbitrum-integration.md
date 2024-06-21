@@ -73,6 +73,10 @@ which relays commitments to Celestia’s data root to an onchain light client
 on Ethereum. This allows L2 solutions that settle on Ethereum to benefit
 from the scalability Celestia’s data availability layer can provide.
 
+This component of the integration is used when there is a fraud proof. If there
+is fraud, whoever submitted the fraud proof has to submit another proof
+that contains proof that the batch data was committed to by Blobstream X.
+
 ### DA fallback mechanism in Nitro
 
 By default in [Arbitrum Nitro](https://github.com/OffchainLabs/nitro), the
