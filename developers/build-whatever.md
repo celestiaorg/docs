@@ -15,6 +15,7 @@ options for deploying rollups on Celestia.
 
 ### Choose a framework
 
+<!-- markdownlint-disable MD033 -->
 <script setup>
 import UrlImageButton from '../.vitepress/components/UrlImageButton.vue';
 </script>
@@ -25,28 +26,28 @@ Here are a few options that are currently available for developers.
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
   <UrlImageButton url="/developers/intro-to-op-stack" imageSrc="/build/opstack.webp" text="OP Stack" notes="EVM" target="_self" alt="OP Stack logo" aria-label="OP Stack"/>
   <UrlImageButton url="/developers/arbitrum-integration" imageSrc="/build/arbitrum.webp" text="Arbitrum Orbit" notes="EVM" target="_self" alt="Arbitrum logo" aria-label="Arbitrum"/>
-  <UrlImageButton url="/developers/build-whatever" imageSrc="/build/polygon.webp" text="Polygon CDK" target="_self" notes="EVM: Coming soon" alt="Polygon logo" aria-label="Polygon"/>
+  <!-- <UrlImageButton url="/developers/build-whatever" imageSrc="/build/polygon.webp" text="Polygon CDK" target="_self" notes="EVM: Coming soon" alt="Polygon logo" aria-label="Polygon"/> -->
   <UrlImageButton url="https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup" imageSrc="/build/sovereign.webp" text="Sovereign SDK" notes="Sovereign" alt="Sovereign logo" aria-label="Sovereign"/>
   <UrlImageButton url="https://docs.dymension.xyz/build/overview/" imageSrc="/build/dymension.webp" text="Dymension" alt="Dymension logo" aria-label="Dymension"/>
   <UrlImageButton url="https://rollkit.dev" imageSrc="/build/rollkit.webp" text="Rollkit" notes="Sovereign" alt="Rollkit logo" aria-label="Rollkit"/>
 </div>
 
-### Rollups-as-a-Service
+### Rollups as a Service
 
 Deploy your rollup with a RaaS provider.
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
-  <UrlImageButton url="https://altlayer.io/raas/" imageSrc="/build/altlayer.webp" text="AltLayer" notes="Orbit, OP Stack, Polygon CDK" alt="AltLayer logo" aria-label="AltLayer"/>
+  <UrlImageButton url="https://altlayer.io/raas/" imageSrc="/build/altlayer.webp" text="AltLayer" notes="Orbit, OP Stack" alt="AltLayer logo" aria-label="AltLayer"/>
   <UrlImageButton url="https://www.astria.org/" imageSrc="/build/astria.webp" text="Astria" alt="Astria logo" aria-label="Astria"/>
   <UrlImageButton url="https://www.caldera.xyz/" imageSrc="/build/caldera.webp" text="Caldera" notes="Orbit, OP Stack" alt="Caldera logo" aria-label="Caldera"/>
   <UrlImageButton url="https://conduit.xyz/" imageSrc="/build/conduit.webp" text="Conduit" notes="Orbit, OP Stack" alt="Conduit logo" aria-label="Conduit"/>
-  <UrlImageButton url="https://gateway.fm/" imageSrc="/build/gateway.webp" text="Gateway" notes="Polygon CDK" alt="Gateway logo" aria-label="Gateway"/>
-  <UrlImageButton url="https://www.gelato.network/" imageSrc="/build/gelato.webp" text="Gelato" notes="Orbit, OP Stack, Polygon CDK" alt="Gelato logo" aria-label="Gelato"/>
+  <!-- <UrlImageButton url="https://gateway.fm/" imageSrc="/build/gateway.webp" text="Gateway" notes="Polygon CDK" alt="Gateway logo" aria-label="Gateway"/> -->
+  <UrlImageButton url="https://www.gelato.network/" imageSrc="/build/gelato.webp" text="Gelato" notes="Orbit, OP Stack" alt="Gelato logo" aria-label="Gelato"/>
   <UrlImageButton url="https://www.karnot.xyz/" imageSrc="/build/karnot.webp" text="Karnot" notes="Starknet" alt="Karnot logo" aria-label="Karnot"/>
-  <UrlImageButton url="https://lumoz.org/" imageSrc="/build/lumoz.webp" text="Lumoz" notes="Polygon CDK" alt="Lumoz logo" aria-label="Lumoz"/>
-  <UrlImageButton url="https://snapchain.dev/" imageSrc="/build/snapchain.webp" text="Snapchain" notes="Polygon CDK" alt="Snapchain logo" aria-label="Snapchain"/>
+  <!-- <UrlImageButton url="https://lumoz.org/" imageSrc="/build/lumoz.webp" text="Lumoz" notes="Polygon CDK" alt="Lumoz logo" aria-label="Lumoz"/> -->
+  <!-- <UrlImageButton url="https://snapchain.dev/" imageSrc="/build/snapchain.webp" text="Snapchain" notes="Polygon CDK" alt="Snapchain logo" aria-label="Snapchain"/> -->
   <UrlImageButton url="https://docs.vistara.dev/" imageSrc="/build/vistara.webp" text="Vistara" alt="Vistara logo" aria-label="Vistara"/>
-  <UrlImageButton url="https://www.zeeve.io/" imageSrc="/build/zeeve.webp" text="Zeeve" notes="Orbit, OP Stack, Polygon CDK" alt="Zeeve logo" aria-label="Zeeve"/>
+  <UrlImageButton url="https://www.zeeve.io/" imageSrc="/build/zeeve.webp" text="Zeeve" notes="Orbit, OP Stack" alt="Zeeve logo" aria-label="Zeeve"/>
 </div>
 
 ### Smart contracts

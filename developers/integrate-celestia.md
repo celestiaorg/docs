@@ -14,10 +14,10 @@ explorers, integrating the Celestia network.
 
 When getting started Celestia, we recommend checking out these resources first:
 
-- [Introduction to Celestia](../learn/how-celestia-works/introduction.md)
+- [Introduction to Celestia](../learn/how-celestia-works/overview.md)
 - [Monolithic v. Modular](../learn/how-celestia-works/monolithic-vs-modular.md)
 - [Celestia's DA Layer](../learn/how-celestia-works/data-availability-layer.md)
-- [Learn modular](https://celestia.org/learn.md)
+- [Learn modular](https://celestia.org/learn)
 - [Overview to running nodes on Celestia](../nodes/overview.md)
 - [Build whatever](./build-whatever.md)
 
@@ -43,7 +43,7 @@ minimal as possible.
 Celestia supports many already existing key management systems, as we rely on
 the Cosmos-SDK and Tendermint libraries for signing and verifying transactions.
 Learn more in the
-[Cosmos-SDK documentation](https://docs.cosmos.network/main/basics/accounts.html#keys-accounts-addresses-and-signatures)
+[Cosmos-SDK documentation](https://docs.cosmos.network/main/learn/beginner/accounts#keys-accounts-addresses-and-signatures)
 
 ### RPC and querying
 

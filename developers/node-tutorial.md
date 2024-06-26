@@ -1,9 +1,3 @@
----
-next:
-  text: "Prompt Scavenger"
-  link: "/developers/prompt-scavenger"
----
-
 # Celestia-node RPC CLI tutorial
 
 <!-- markdownlint-disable MD033 -->
@@ -56,222 +50,9 @@ light node:
 
 ## Setting up dependencies
 
-This portion of the tutorial will go over setting up your development environment
-to run Celestia software. This environment can be used for development, building
-binaries, and running nodes.
-
-In your terminal, set up dependencies needed to install and build
-celestia-node.
-
-1. If you are on Ubuntu, first update and upgrade your OS:
-
-   ::: code-group
-
-   ```bash [APT]
-   sudo apt update && sudo apt upgrade -y
-   ```
-
-   ```bash [YUM]
-   sudo yum update
-   ```
-
-   :::
-
-2. Install essential packages that are necessary to execute many tasks like
-   downloading files, compiling, and monitoring the node:
-
-   ::: code-group
-
-   ```bash [APT]
-   sudo apt install curl tar wget clang pkg-config libssl-dev jq \
-   build-essential git make ncdu -y
-   ```
-
-   ```bash [YUM]
-   sudo yum install curl tar wget clang pkg-config libssl-dev jq \
-   build-essential git make ncdu -y
-   ```
-
-   ```bash [Mac]
-   # these commands are for installing Homebrew, wget and jq
-   # follow the instructions from the output after running this command
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-   # then install wget & jq
-   brew install wget && brew install jq
-   ```
-
-   :::
-
-## Install Golang
-
-celestia-node is written in Golang so we must install Golang to build
-and run our node.
-
-1. Set the version for your desired network:
-
-   ::: code-group
-
-   ```bash-vue [Mainnet Beta]
-   ver="{{constants.golangNodeMainnet}}"
-   ```
-
-   ```bash-vue [Mocha]
-   ver="{{constants.golangNodeMocha}}"
-   ```
-
-   ```bash-vue [Arabica]
-   ver="{{constants.golangNodeArabica}}"
-   ```
-
-   :::
-
-2. Download and install Golang:
-
-   ::: code-group
-
-   ```bash-vue [Ubuntu (AMD)]
-   cd $HOME
-   wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-   sudo rm -rf /usr/local/go
-   sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-   rm "go$ver.linux-amd64.tar.gz"
-   ```
-
-   ```bash-vue [Ubuntu (ARM)]
-   cd $HOME
-   wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
-   sudo rm -rf /usr/local/go
-   sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
-   rm "go$ver.linux-arm64.tar.gz"
-   ```
-
-   ```bash-vue [Mac (Apple)]
-   cd $HOME
-   wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
-   sudo rm -rf /usr/local/go
-   sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
-   rm "go$ver.darwin-arm64.tar.gz"
-   ```
-
-   ```bash-vue [Mac (Intel)]
-   cd $HOME
-   wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
-   sudo rm -rf /usr/local/go
-   sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
-   rm "go$ver.darwin-amd64.tar.gz"
-   ```
-
-   :::
-
-3. Add your `/usr/local/go/bin` directory to
-   your `$PATH` if you have not already:
-
-   ::: code-group
-
-   ```bash [bash]
-   echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-   source $HOME/.bash_profile
-   ```
-
-   ```bash [zsh]
-   echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
-   source $HOME/.zshrc
-   ```
-
-   :::
-
-4. To verify that the correct version of Go was installed correctly run:
-
-   ```bash
-   go version
-   ```
-
-The output will show the version installed.
-
-## Celestia-node
-
-### Install celestia-node
-
-Installing celestia-node for Arabica devnet or Mocha testnet
-means installing a specific version to be compatible with the
-network.
-
-Install the celestia-node binary by running the following
-commands:
-
-1. Remove any existing copy of celestia-node, clone the repository,
-   and change into the directory.
-
-   ```bash
-   cd $HOME
-   rm -rf celestia-node
-   git clone https://github.com/celestiaorg/celestia-node.git
-   cd celestia-node/
-   ```
-
-2. Check out to the desired version, based on the network you will use:
-
-   ::: code-group
-
-   ```bash-vue [Mainnet Beta]
-   git checkout tags/{{mainnetVersions['node-latest-tag']}}
-   ```
-
-   ```bash-vue [Mocha]
-   git checkout tags/{{mochaVersions['node-latest-tag']}}
-   ```
-
-   ```bash-vue [Arabica]
-   git checkout tags/{{arabicaVersions['node-latest-tag']}}
-   ```
-
-   :::
-
-3. Build the `celestia` binary:
-
-   a. Standard build
-
-   ```bash
-   make build
-   ```
-
-   b. Experimental build
-
-   :::tip OPTIONAL
-   If you're a node operator comfortable with experimental features and
-   seeking optimal performance with minimal RAM usage, this option is
-   recommended for you.
-
-   ```bash
-   make build-jemalloc
-   ```
-
-   This build option enables CGO, and downloads and installs
-   [jemalloc](https://jemalloc.net/).
-   [Learn more about the build command](https://github.com/celestiaorg/celestia-node/releases/tag/v0.12.1#:~:text=%F0%9F%8F%97%EF%B8%8F-,New%20build%20option,-%3A%20Makefile%20now%20has).
-   :::
-
-4. Install the binary:
-
-   ```bash
-   make install
-   ```
-
-5. Build the `cel-key` utility:
-
-   ```bash
-   make cel-key
-   ```
-
-6. Verify that the binary is working and check the version:
-
-   ```bash
-   celestia version
-   ```
-
-The output will show the semantic version of celestia-node,
-commit hash, build date, system version, and Golang version.
+Install [dependencies](../nodes/environment.md) and
+[celestia-node](../nodes/celestia-node.md) if you have
+not already.
 
 ### Instantiate a Celestia light node
 
@@ -302,10 +83,12 @@ Instantiating (or initializing) the node means setting up
 a node store on your machine. This is where the data and
 your keys will be stored.
 
-### Connect to a public core endpoint
+### Connect to a core endpoint
 
 Let's now run the Celestia Light node with a gRPC connection
-to an example public core endpoint.
+to an example core endpoint. Connecting to a core endpoint
+provides the light node with access to state queries (reading balances, submitting
+transactions, and other state-related queries).
 
 Note: You are also encouraged to find a community-run API endpoint
 and there are several in the Discord. This one is used for demonstration
@@ -428,7 +211,7 @@ With your wallet funded, you can move on to the next step.
 ## RPC CLI guide
 
 This section of the tutorial will teach you how to interact with a Celestia node's
-[remote procedure call (RPC) API](https://node-rpc-docs.celestia.org/?version=v0.11.0)
+[remote procedure call (RPC) API](https://node-rpc-docs.celestia.org/)
 using the command line interface (CLI).
 
 You will need to
@@ -447,14 +230,14 @@ Where:
 
 - `celestia` is the main command to interact with the node.
 - `<module>` is the specific module in the node you want to interact with, such as
-  [`blob`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob),
-  [`state`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state),
-  [`p2p`](https://node-rpc-docs.celestia.org/?version=v0.11.0#p2p), etc.
+  [`blob`](https://node-rpc-docs.celestia.org/#blob),
+  [`state`](https://node-rpc-docs.celestia.org/#state),
+  [`p2p`](https://node-rpc-docs.celestia.org/#p2p), etc.
 - `<method>` is the specific method within the module that performs
   the action you want, such as
-  [`blob.Submit`](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit),
-  [`state.AccountAddress`](https://node-rpc-docs.celestia.org/?version=v0.11.0#state.AccountAddress),
-  [`p2p.Info`](https://node-rpc-docs.celestia.org/?version=v0.11.0#node.Info), etc.
+  [`blob.Submit`](https://node-rpc-docs.celestia.org/#blob.Submit),
+  [`state.AccountAddress`](https://node-rpc-docs.celestia.org/#state.AccountAddress),
+  [`p2p.Info`](https://node-rpc-docs.celestia.org/#node.Info), etc.
 - `[args...]` represents any additional arguments that the method might require.
 - `[flags...]` are parameters that modify the behavior of the command.
   They start with `--` (e.g., `--node.store`, `--token`, or `--url`).
@@ -590,7 +373,7 @@ export AUTH_TOKEN=$(celestia light auth admin --p2p.network private \
 ### Submitting data
 
 In this example, we will be submitting a blob to the network with a
-[blob.Submit](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit)
+[blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit)
 transaction with our light node.
 
 Some things to consider:
@@ -1137,13 +920,6 @@ The example transaction can be
 
 If you'd like to create your own SVG, post it to Celestia, and retrieve it,
 you can check out the [Base64 SVG Tutorial](https://based64.xyz/).
-
-### Golang guide
-
-If you're interested in interacting with the node's API in Go
-([`client.go`](https://github.com/celestiaorg/celestia-node/blob/main/api/rpc/client/client.go)),
-you can use the [da-rpc-client-tutorial](https://github.com/renaynay/da-rpc-client-tutorial)
-repo.
 
 ### Troubleshooting
 

@@ -1,8 +1,8 @@
 ---
 description: Use the cel-key utility to generate a wallet on celestia-node.
 prev:
-  text: "Rollkit"
-  link: "/developers/rollkit"
+  text: "New Blobstream X deployments"
+  link: "/developers/blobstream-x-deploy"
 ---
 
 # Create a wallet with celestia-node
@@ -88,21 +88,17 @@ This will load the key `<key-name>` into the directory of the node.
 
 Further flags you can use to customize your key are the following:
 
-- `--node.store`: Specifies a different directory you can use to
-  save your node data and configurations. Expects a path to a directory.
-  The defaults are `$HOME/.celestia-<node-type>` for Mainnet Beta
-  and `$HOME/.celestia-<node-type>-<chain-id>` for Mocha and Arabica.
 - `--p2p.network`: Specifies which network you want the key for. Values
   are `arabica` and `mocha`. Please note the default network will be `mocha`.
 
 Keep in mind that your celestia-node will only pick up keys that
-are inside the `node.store` directory under `/keys` so you should make
+are inside the default directory under `/keys` so you should make
 sure to point `cel-key` utility to the correct directory via the
-`node.store` or `p2p.network` flags if you have specified a custom
-directory or network other than Mocha.
+`p2p.network` or `home` flags if you have specified a custom
+directory or network other than Arabica, Mocha, or Mainnet Beta.
 
 Also keep in mind that if you do not specify a network with `--p2p.network`,
-the default one will always be `mocha`.
+the default one will always be `celestia` (Mainnet Beta).
 
 ### Steps for exporting node keys
 

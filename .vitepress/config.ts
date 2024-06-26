@@ -467,7 +467,7 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-metrics",
                 },
                 {
-                  text: "Slashing mechanics",
+                  text: "Jailing and Slashing mechanics",
                   link: "/nodes/celestia-app-slashing",
                 },
                 {
@@ -547,6 +547,10 @@ function sidebarHome() {
                       text: "Deploy a dapp on your Arbitrum rollup devnet",
                       link: "/developers/arbitrum-dapp-deploy",
                     },
+                    {
+                      text: "Audit",
+                      link: "https://github.com/celestiaorg/nitro/blob/celestia-v2.3.3/audits/celestia/arbitrum_nitro_celestia_audit_report.pdf",
+                    }
                   ],
                 },
                 {
@@ -585,11 +589,7 @@ function sidebarHome() {
                       link: "/developers/gm-portal-bubs",
                     },
                     {
-                      text: "Deploy an OP Stack devnet",
-                      link: "/developers/optimism-devnet",
-                    },
-                    {
-                      text: "Deploy an OP Stack devnet on Celestia",
+                      text: "Run an OP Stack devnet posting Celestia",
                       link: "/developers/optimism",
                     },
                     {
@@ -601,7 +601,7 @@ function sidebarHome() {
                       link: "https://thirdweb.com/bubs-testnet",
                     },
                     {
-                      text: "Rollups-as-a-Service",
+                      text: "Rollups as a Service",
                       collapsed: true,
                       items: [
                         {
@@ -631,6 +631,10 @@ function sidebarHome() {
               ],
             },
             {
+              text: "Blobstream rollups",
+              link: "/developers/blobstream-rollups",
+            },
+            {
               text: "Other",
               collapsed: true,
               items: [
@@ -651,26 +655,38 @@ function sidebarHome() {
               link: "/developers/submit-data",
             },
             {
+              text: "FeeGrant module for blobs submission",
+              link: "/developers/feegrant-for-blobs",
+            },
+            {
               text: "Transaction resubmission guidelines",
               link: "/developers/transaction-resubmission",
             },
-            {
-              text: "Node API",
-              link: "/developers/node-api",
-              collapsed: true,
-              items: [
-                {
-                  text: "Node RPC CLI tutorial",
-                  link: "/developers/node-tutorial",
-                },
-                {
-                  text: "Celestia-node RPC API documentation",
-                  link: "https://node-rpc-docs.celestia.org/",
-                },
-                { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
-              ],
-            },
           ]
+        },
+        {
+          text: "Node API",
+          link: "/developers/node-api",
+          collapsed: true,
+          items: [
+            {
+              text: "CLI tutorial",
+              link: "/developers/node-tutorial",
+            },
+            {
+              text: "Golang client tutorial",
+              link: "/developers/golang-client-tutorial",
+            },
+            {
+              text: "Rust client tutorial",
+              link: "/developers/rust-client-tutorial",
+            },
+            {
+              text: "RPC documentation & playground",
+              link: "https://node-rpc-docs.celestia.org/",
+            },
+            { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
+          ],
         },
         {
           text: "Integrate with Blobstream",
@@ -693,12 +709,16 @@ function sidebarHome() {
               link: "/developers/blobstream-proof-queries",
             },
             {
+              text: "Example implementation of Blobstream proofs by CryptoKass",
+              link: "https://github.com/CryptoKass/blobstreamx-example",
+            },
+            {
               text: "Local Blobstream X operators",
               collapsed: true,
               items: [
                 {
                     text: "Requesting data commitment ranges",
-                  link: "/developers/requesting-data-commitment-ranges",
+                  link: "/developers/blobstream-x-requesting-data-commitment-ranges",
                 },
                 {
                   text: "New Blobstream X deployments",

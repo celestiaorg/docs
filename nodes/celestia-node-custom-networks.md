@@ -4,7 +4,7 @@ description: Learn about custom networks and values on celestia-node.
 
 # Custom networks and values
 
-This section will cover importing boostrapper IDs, chain ID,
+This section will cover importing bootstrapper IDs, chain ID,
 and network ID. This will allow you to import custom values
 for a chain that is not in the default configuration.
 

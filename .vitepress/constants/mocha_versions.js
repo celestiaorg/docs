@@ -1,9 +1,9 @@
 const mochaVersions = Object.freeze({
-  "app-latest-tag": "v1.7.0",
-  "app-latest-sha": "915847191e80d836f862eea2664949d9a240abea",
-  "core-latest-tag": "v1.35.0-tm-v0.34.29",
-  "core-latest-sha": "f95a434e674610b3a2c5e7d26bd87da69ccaa213",
-  "node-latest-tag": "v0.13.3",
-  "node-latest-sha": "05238b3e087eb9ecd3b9684cd0125f2400f6f0c7",
+  "app-latest-tag": "v1.11.0",
+  "app-latest-sha": "21b5bc747c8500e4888474df7d828e66c33f332d",
+  "core-latest-tag": "v1.36.1-tm-v0.34.29",
+  "core-latest-sha": "624c43d4484a785ec855f5fb93ea571c1e728fda",
+  "node-latest-tag": "v0.14.0",
+  "node-latest-sha": "13439ccfebca67cc973cb7fa69570060e4540c13",
 });
 export default mochaVersions;

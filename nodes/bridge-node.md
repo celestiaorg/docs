@@ -47,7 +47,7 @@ From an implementation perspective, Bridge nodes run two separate processes:
 The following hardware minimum requirements are recommended for running the
 bridge node:
 
-- Memory: **4 GB RAM (minimum)**
+- Memory: **16 GB RAM (minimum)**
 - CPU: **6 cores**
 - Disk: **10 TB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
@@ -91,6 +91,10 @@ Using an RPC of your own, or one from the
 [list on the Mocha testnet page](./mocha-testnet.md#rpc-endpoints) or
 [list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints),
 start your node.
+
+Connecting to a core endpoint with `--core.ip string`
+provides the light node with access to state queries (reading balances, submitting
+transactions, and other state-related queries).
 
 Here is an example of initializing the bridge node:
 

@@ -167,4 +167,4 @@ take a closer look at these functions:
   `verifySharesToDataRootTupleRoot()` method.
 
 For an overview of a demo rollup implementation, head to
-[the next section](./blobstreamx-offchain.md).
+[the next section](./blobstream-offchain.md).

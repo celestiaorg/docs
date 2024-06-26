@@ -79,7 +79,7 @@ Ubuntu. You can
 
    :::
 
-3. Set an RPC endpoint for either [Mainnet Beta](./mainnet.md#da-rpc-endpoints),
+3. Set an RPC endpoint for either [Mainnet Beta](./mainnet.md#data-availability-da-grpc-endpoints-for-state-access),
    [Mocha](./mocha-testnet.md#rpc-endpoints), or
    [Arabica](./arabica-devnet.md#rpc-endpoints)
    using the bare URL (without http or https):
@@ -116,7 +116,7 @@ Congratulations! You now have a celestia-node running!
 
 If you would like to run the node with custom flags,
 you can refer to the
-[celestia-node tutorial](../developers/node-tutorial.md#connect-to-a-public-core-endpoint) page. Refer to
+[celestia-node tutorial](../developers/node-tutorial.md#connect-to-a-core-endpoint) page. Refer to
 [the ports section of the celestia-node troubleshooting page](./celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 

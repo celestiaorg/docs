@@ -1,5 +1,8 @@
 ---
 description: Learn about the integration of OP Stack with Celestia.
+prev:
+  text: "Deploy a dapp on your Arbitrum rollup devnet"
+  link: "/developers/arbitrum-dapp-deploy"
 ---
 
 # Introduction to OP Stack integration
@@ -7,43 +10,69 @@ description: Learn about the integration of OP Stack with Celestia.
 [Optimism](https://optimism.io) is a low-cost and lightning-fast Ethereum
 L2 blockchain, built with [the OP Stack](https://stack.optimism.io/).
 
-[Celestia](https://celestia.org) is a modular consensus and data network,
+[Celestia](https://celestia.org) is a modular consensus and data availability (DA) network,
 built to enable anyone to easily deploy their own blockchain with
 minimal overhead.
 
+Together, they allow developers to create rollups that
+post data to Celestia and settle on Ethereum.
+
 ## About the integration
 
-_Discover how to integrate existing blockchain frameworks
-like the OP Stack with Celestia in this category._
-
-:::tip
-Tested on a machine with 8GB RAM, 160 GB SSD,
-Ubuntu 22.10, and a 4 core AMD CPU.
-:::
-
-This is a **beta integration** and we are working on resolving
-[open issues](https://github.com/celestiaorg/optimism/issues).
-
 [Optimism](https://www.optimism.io/) uses Ethereum as
-a data availability (DA) layer. Currently, settlement and DA for
+a DA layer. Currently, settlement and DA for
 Optimism are on Ethereum, both onchain. `op-batcher` batches up
 rollup blocks and posts to Ethereum.
 
-### Table of contents of the category
+The integration of OP Stack with Celestia underneath for DA
+allows rollup operators to reduce overhead that is associated with posting
+data as `calldata` on Ethereum. Instead, `op-batcher` batches up
+rollup blocks and posts them to Celestia's DA network.
 
-- [Bubs testnet](./bubs-testnet.md)
-- [Deploy a smart contract on Bubs testnet](./deploy-on-bubs.md)
-- [Deploy a GM Portal dapp on Bubs testnet](./gm-portal-bubs.md)
-- [Deploy an OP Stack devnet](./optimism-devnet.md)
-- [Deploy an OP Stack devnet on Celestia](./optimism.md)
+Data is managed in two ways. First, data is written
+to the data availability (DA) layer i.e. in this case Celestia, then the
+data commitment is written to the `op-batcher`. When reading `op-node`
+simply reads the data back from the DA layer by reading the
+data commitment from the `op-batcher` first, then reading the
+data from the DA layer using the data commitment. While
+previously `op-node` was reading from `calldata` on Ethereum, it now reads data from Celestia.
 
-## Celestia and OP Stack repository
+There are a few tools involved in the data handling process. `op-batcher`
+batches up rollup blocks and posts them to Ethereum. `op-geth` handles
+execution, while `op-proposer` is responsible for state commitment
+submission.
+
+By using Celestia as a DA layer, existing L2s can switch from posting
+their data as `calldata` on Ethereum, to posting to Celestia.
+The commitment to the block is posted on Celestia, which is
+purpose-built for data availability. This is a more scalable than
+the traditional method of posting this data as `calldata` on monolithic chains.
+
+### GitHub repository
 
 Find the
 [repository for this integration](https://github.com/celestiaorg/optimism/)
 at `https://github.com/celestiaorg/optimism`.
 
-### What are Optimism and the OP Stack?
+:::warning
+This is a **beta integration** and we are working on resolving
+[open issues](https://github.com/celestiaorg/optimism/issues).
+:::
+
+## Category contents
+
+This category will guide you through interacting with existing OP Stack rollups
+with Celestia underneath, then how to start your own devnet
+with a modified version of `optimism-bedrock` that uses Celestia as a
+DA layer.
+
+- [Bubs testnet](./bubs-testnet.md): learn about
+the first testnet made with OP Stack with Celestia underneath
+- [Deploy a smart contract on Bubs testnet](./deploy-on-bubs.md)
+- [Deploy a GM Portal dapp on Bubs testnet](./gm-portal-bubs.md)
+- [Run an OP Stack devnet posting Celestia](./optimism.md)
+
+<!-- ### What are Optimism and the OP Stack?
 
 Optimism, an Ethereum L2 blockchain, is powered by the OP Stack,
 which is also the foundation for the
@@ -61,47 +90,7 @@ blockchain infrastructure to governance systems. This software suite aims
 to simplify L2 blockchain creation and support the Optimism ecosystem's
 growth and development.
 
-Learn [more about Optimism](https://www.optimism.io/).
-
-### What is Celestia?
-
-Celestia is a modular consensus and data network, built to enable anyone to
-easily deploy their own blockchain with minimal overhead.
-
-Celestia is a minimal blockchain that only orders and publishes transactions
-and does not execute them. By decoupling the consensus and application
-execution layers, Celestia modularizes the blockchain technology stack
-and unlocks new possibilities for decentralized application builders.
-Learn more at [Celestia.org](https://celestia.org).
-
-## OP Stack and Celestia
-
-This category will guide you through how to start your own devnet
-with a modified version of `optimism-bedrock` that uses Celestia as a
-DA layer.
-
-The handling of data is accomplished in two ways. First, data is written
-to the data availability (DA) layer i.e. in this case Celestia, then the
-data commitment is written to the `op-batcher`. When reading `op-node`
-simply reads the data back from the DA layer by reading the
-data commitment from the `op-batcher` first, then reading the
-data from the DA layer using the data commitment. Hence, while
-previously `op-node` was reading from calldata on Ethereum,
-but now it reads data from Celestia.
-
-There are a few tools involved in the data handling process. `op-batcher`
-batches up rollup blocks and posts them to Ethereum. `op-geth` handles
-execution, while `op-proposer` is responsible for state commitment
-submission.
-
-By using Celestia as a DA layer, existing L2s can switch from posting
-their data as `calldata` on Ethereum, to posting to Celestia.
-The commitment to the block is posted on Celestia, which is
-purpose-built for data availability. This is a more scalable than
-the traditional method of posting this data as `calldata` on monolithic chains.
-
-If you'd like to go modular, bedrock has
-made it easy to swap this out!
+Learn [more about Optimism](https://www.optimism.io/). -->
 
 ## Next steps
 
