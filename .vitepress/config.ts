@@ -655,6 +655,10 @@ function sidebarHome() {
               link: "/developers/submit-data",
             },
             {
+              text: "FeeGrant module for blobs submission",
+              link: "/developers/feegrant-for-blobs",
+            },
+            {
               text: "Transaction resubmission guidelines",
               link: "/developers/transaction-resubmission",
             },
