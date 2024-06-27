@@ -213,6 +213,12 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 Faucet has a limit of 10 tokens per week per address/Discord ID.
 :::
 
+## Analytics
+
+The following websites provide analytics for Celestia:
+
+- [https://cosmoslist.co/testnet/celestia](https://cosmoslist.co/testnet/celestia)
+
 ## Explorers
 
 There are several explorers you can use for Mocha:
