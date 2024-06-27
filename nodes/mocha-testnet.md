@@ -86,6 +86,9 @@ full blocks from it.
   - gRPC port: 9090
 - `rpc-celestia-testnet.cryptech.com.ua`
   - gRPC: grpc-celestia-testnet.cryptech.com.ua:443
+- `celestia-consensus-testnet.noders.services`
+  - RPC port: 26357
+  - gRPC port: 9070
 
 ## RPC endpoints
 
