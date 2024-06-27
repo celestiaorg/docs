@@ -291,6 +291,7 @@ The following websites provide analytics for Celestia:
 - [https://alphab.ai/s/m/celestia/](https://alphab.ai/s/m/celestia/)
 - [https://services.kjnodes.com/mainnet/celestia/slashboard](https://services.kjnodes.com/mainnet/celestia/slashboard)
 - [https://itrocket.net/services/mainnet/celestia/decentralization/](https://itrocket.net/services/mainnet/celestia/decentralization/)
+- [https://cosmoslist.co/mainnet/celestia](https://cosmoslist.co/mainnet/celestia)
 
 ## Network upgrades
 
