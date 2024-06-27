@@ -242,6 +242,9 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-mainnet-consensus.itrocket.net`
   - gRPC: port 9090
   - RPC: port 26657
+- `celestia-consensus-mainnet.noders.services`
+  - gRPC: port 9080
+  - RPC: port 26557
 
 DA full and light nodes might have troubles connecting to the networks, so you
 can check out this
