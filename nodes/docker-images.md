@@ -79,9 +79,9 @@ Ubuntu. You can
 
    :::
 
-3. Set an RPC endpoint for either [Mainnet Beta](./mainnet.md#data-availability-da-grpc-endpoints-for-state-access),
-   [Mocha](./mocha-testnet.md#rpc-endpoints), or
-   [Arabica](./arabica-devnet.md#rpc-endpoints)
+3. Set an RPC endpoint for either [Mainnet Beta](./mainnet.md#community-data-availability-da-grpc-endpoints-for-state-access),
+   [Mocha](./mocha-testnet.md#community-rpc-endpoints), or
+   [Arabica](./arabica-devnet.md#community-rpc-endpoints)
    using the bare URL (without http or https):
 
    ```bash

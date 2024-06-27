@@ -122,8 +122,8 @@ for information on which ports are required to be open on your machine.
 :::
 
 If you need a list of RPC endpoints to connect to, you can find the
-[list on the Mocha testnet page](./mocha-testnet.md#rpc-endpoints) or
-[list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints).
+[list on the Mocha testnet page](./mocha-testnet.md#community-rpc-endpoints) or
+[list on the Arabica devnet page](./arabica-devnet.md#community-rpc-endpoints).
 
 ### Run the bridge node
 

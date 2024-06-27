@@ -97,7 +97,7 @@ celestia light start --core.ip validator-1.celestia-arabica-11.com --p2p.network
 
 :::
 
-Tip: you can replace the core.ip with a consensus node RPC endpoint from [mainnet](mainnet.md#consensus-rpc-endpoints), [mocha](mocha-testnet.md#rpc-endpoints), or [arabica](arabica-devnet.md#rpc-endpoints).
+Tip: you can replace the core.ip with a consensus node RPC endpoint from [mainnet](mainnet.md#community-consensus-rpc-endpoints), [mocha](mocha-testnet.md#community-rpc-endpoints), or [arabica](arabica-devnet.md#community-rpc-endpoints).
 
 ### Keys and wallets
 
