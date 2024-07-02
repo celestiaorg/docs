@@ -431,3 +431,12 @@ If you encounter an error like:
 ```
 
 then it is likely that the network has upgraded to a new app version but your consensus node was not prepared for the upgrade. To fix this, you'll need to update your binary to the latest version and restart your node with the relevant `--v2-upgrade-height` for the network you're running on. If your node still can't sync to the tip of the chain after the above steps, consider a `celestia-appd tendermint unsafe-reset-all` to reset your node and start syncing from the genesis block.
+
+### Lemongrass hardfork
+
+What is the Lemongrass hardfork and how can I be prepared for it?
+
+The Lemongrass hardfork is the first consensus layer breaking change since Celestia's genesis. The Lemongrass hardfork includes all of the CIPs listed in [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-17.md). The Lemongrass hardfork will be executed on Arabica, then Mocha, then Mainnet Beta. The hardfork will take place at an "upgrade height" that will be coordinated offline on a per-network basis. The upgrade heights will be announced in advance (follow Telegram and Discord) to give node operators time to download and start a compatible binary prior to the upgrade height.
+
+- If you are a full consensus node or validator operator: you will need to download and run a celestia-app v2.x.x binary prior to the `--v2-upgrade-height` to remain on the canonical chain.
+- If you are a DA node operator, you will need to download and run a compatible celestia-node binary (likely v0.16.0) prior to the upgrade height.
