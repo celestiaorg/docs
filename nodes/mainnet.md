@@ -127,6 +127,7 @@ to participate in Mainnet Beta:
 - `celestia-rpc.noders.services`
 - `celestia.moonli.me`
 - `celestia-mainnet-rpc.itrocket.net:443`
+- `celestia-rpc.openbitlab.com`
 
 #### API endpoints
 
@@ -155,6 +156,7 @@ to participate in Mainnet Beta:
 - `celestia-api.noders.services`
 - `celestia.moonli.me/api`
 - `celestia-mainnet-api.itrocket.net:443`
+- `celestia-api.openbitlab.com`
 
 #### gRPC endpoints
 
@@ -181,6 +183,7 @@ to participate in Mainnet Beta:
 - `grpc-celestia.staker.space`
 - `celestia-grpc.noders.services:11090`
 - `celestia-mainnet-grpc.itrocket.net:443`
+- `celestia-grpc.openbitlab.com:443`
 
 #### WebSocket endpoints
 
