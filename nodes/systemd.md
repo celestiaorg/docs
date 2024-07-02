@@ -126,12 +126,13 @@ User=$USER
 ExecStart=$(which celestia) bridge start
 Restart=on-failure
 RestartSec=3
-LimitNOFILE=1400000
+LimitNOFILE=65535
 
 [Install]
 WantedBy=multi-user.target
 EOF
 ```
+Note: Be cautious when increasing file descriptor limits. Setting this value too high might affect system performance. Ensure the value is appropriate for your system's capabilities. https://docs.celestia.org/nodes/celestia-node-troubleshooting#error-too-many-open-files
 
 If the file was created successfully you will be able to see its content:
 
