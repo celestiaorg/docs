@@ -249,6 +249,9 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `rpc.celestia.mainnet.dteam.tech`
   - gRPC: port 28090
   - RPC: 28657
+- `celestia-consensus-mainnet.noders.services`
+  - gRPC: port 9080
+  - RPC: port 26557
 
 DA full and light nodes might have troubles connecting to the networks, so you
 can check out this
@@ -296,6 +299,7 @@ The following websites provide analytics for Celestia:
 - [https://alphab.ai/s/m/celestia/](https://alphab.ai/s/m/celestia/)
 - [https://services.kjnodes.com/mainnet/celestia/slashboard](https://services.kjnodes.com/mainnet/celestia/slashboard)
 - [https://itrocket.net/services/mainnet/celestia/decentralization/](https://itrocket.net/services/mainnet/celestia/decentralization/)
+- [https://cosmoslist.co/mainnet/celestia](https://cosmoslist.co/mainnet/celestia)
 
 ## Network upgrades
 

@@ -88,6 +88,9 @@ full blocks from it.
   - gRPC: grpc-celestia-testnet.cryptech.com.ua:443
 - `rpc.celestia.testnet.dteam.tech:443`
   - gRPC: grpc.celestia.testnet.dteam.tech:27090
+- `celestia-consensus-testnet.noders.services`
+  - RPC port: 26357
+  - gRPC port: 9070
 
 ## RPC endpoints
 
@@ -214,6 +217,12 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 :::tip NOTE
 Faucet has a limit of 10 tokens per week per address/Discord ID.
 :::
+
+## Analytics
+
+The following websites provide analytics for Mocha Testnet:
+
+- [https://cosmoslist.co/testnet/celestia](https://cosmoslist.co/testnet/celestia)
 
 ## Explorers
 
