@@ -283,11 +283,29 @@ tar xf celestia-snap.tar -C ~/.celestia-app/data/
 
 ## Start the consensus node
 
-In order to start your full consensus node, run the following:
+If you are running celestia-app v1.x.x:
 
 ```sh
 celestia-appd start
 ```
+
+If you are running celestia-app >= v2.0.0: then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network.
+
+::: code-group
+
+```sh-vue [Mainnet Beta]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+```sh-vue [Mocha]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+```sh-vue [Arabica]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+:::
 
 Optional: If you would like celestia-app to run as a background process, you can follow the [SystemD tutorial](./systemd.md).
 
