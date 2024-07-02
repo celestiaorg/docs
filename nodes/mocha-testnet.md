@@ -215,7 +215,7 @@ Faucet has a limit of 10 tokens per week per address/Discord ID.
 
 ## Analytics
 
-The following websites provide analytics for Celestia:
+The following websites provide analytics for Mocha Testnet:
 
 - [https://cosmoslist.co/testnet/celestia](https://cosmoslist.co/testnet/celestia)
 
