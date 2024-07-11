@@ -659,30 +659,38 @@ function sidebarHome() {
               link: "/developers/submit-data",
             },
             {
+              text: "FeeGrant module for blobs submission",
+              link: "/developers/feegrant-for-blobs",
+            },
+            {
               text: "Transaction resubmission guidelines",
               link: "/developers/transaction-resubmission",
             },
-            {
-              text: "Node API",
-              link: "/developers/node-api",
-              collapsed: true,
-              items: [
-                {
-                  text: "Node RPC CLI tutorial",
-                  link: "/developers/node-tutorial",
-                },
-                {
-                  text: "Golang client tutorial",
-                  link: "/developers/golang-client-tutorial",
-                },
-                {
-                  text: "Celestia-node RPC API documentation",
-                  link: "https://node-rpc-docs.celestia.org/",
-                },
-                { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
-              ],
-            },
           ]
+        },
+        {
+          text: "Node API",
+          link: "/developers/node-api",
+          collapsed: true,
+          items: [
+            {
+              text: "CLI tutorial",
+              link: "/developers/node-tutorial",
+            },
+            {
+              text: "Golang client tutorial",
+              link: "/developers/golang-client-tutorial",
+            },
+            {
+              text: "Rust client tutorial",
+              link: "/developers/rust-client-tutorial",
+            },
+            {
+              text: "RPC documentation & playground",
+              link: "https://node-rpc-docs.celestia.org/",
+            },
+            { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
+          ],
         },
         {
           text: "Integrate with Blobstream",

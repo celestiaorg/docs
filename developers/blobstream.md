@@ -17,7 +17,7 @@ developers to build high-throughput L2s using Celestia's optimised DA layer,
 the first with Data Availability Sampling (DAS). Any ecosystem can deploy a
 Blobstream light client onchain to allow L2s and L3s to access DA from Celestia.
 
-An implementation of Blobstream, by [Succinct](https://docs.succinct.xyz/), called
+An implementation of Blobstream, by [Succinct](https://platform-docs.succinct.xyz/), called
 [Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
 and will be used in the upcoming deployments. This implementation proves the
 validity of Celestia block headers on a target EVM chain using zero-knowledge (ZK)
@@ -86,7 +86,7 @@ accessible all Celestia data roots (verifiable with a Merkle inclusion proof
 against the stored Merkle root) to rollups.
 
 Blobstream X is built and deployed with
-[Succinct's protocol](https://docs.succinct.xyz).
+[Succinct's protocol](https://platform-docs.succinct.xyz).
 
 ![blobstream x draft diagram](/img/blobstream/Celestia_Blobstream_X1b.png)
 
@@ -131,7 +131,7 @@ X contract is through the `SuccinctGateway` smart contract, which is a
 simple entrypoint contract that verifies proofs (against a deployed
 onchain verifier for the Blobstream X circuit) and then calls the
 `BlobstreamX.sol` contract to update it.
-[Find more information about the `SuccinctGateway`](https://docs.succinct.xyz/platform/onchain-integration#succinct-gateway).
+[Find more information about the `SuccinctGateway`](https://platform-docs.succinct.xyz/platform/onchain-integration#succinct-gateway).
 
 ![blobstream x overview diagram draft](/img/blobstream/Celestia_Blobstream_X2b.png)
 
@@ -140,7 +140,7 @@ onchain verifier for the Blobstream X circuit) and then calls the
 :::tip NOTE
 If the Blobstream X contract is not deployed on a desired chain,
 it needs to be deployed before it can be used by your rollup. See the
-[deployment documentation](https://docs.succinct.xyz/platform/onchain-integration#gateway-deployment)
+[deployment documentation](https://platform-docs.succinct.xyz/platform/onchain-integration#non-canonical-chain-contract-deployment)
 for more details.
 :::
 
@@ -175,20 +175,18 @@ Blobstream X is in beta and slashing is not enabled yet.
 
 | Contract     | EVM network      | Contract address                                                                                                                | Attested data on Celestia | Link to Celenium |
 | ------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------- |
-| Blobstream X  | Ethereum Mainnet          | [`0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe`](https://etherscan.io/address/0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe#events) | [Mainnet Beta](../nodes/mainnet.md) | Coming soon |
+| Blobstream X  | Ethereum Mainnet          | [`0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe`](https://etherscan.io/address/0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe#events) | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=ethereum&page=1) |
 | Blobstream X | Arbitrum One | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://arbiscan.io/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=arbitrum&page=1) |
 | Blobstream X | Base           | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://basescan.org/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=base&page=1) |
 | Blobstream X  | Sepolia          | [`0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e`](https://sepolia.etherscan.io/address/0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e#events) | [Mocha testnet](../nodes/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=ethereum&page=1) |
 | Blobstream X | Arbitrum Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.arbiscan.io/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](../nodes/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=arbitrum&page=1) |
 | Blobstream X | Base Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.basescan.org/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](../nodes/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=base&page=1) |
 
-<!-- markdownlint-enable MD013 -->
-
 ## Deploy Blobstream X
 
 If your target chain is [still not supported](#deployed-contracts), it is possible to deploy and maintain a Blobstream x instance and have the same security guarantees.
 
-First, you will need to create a multisig that governs the Blobstream X contract and also the function identifiers. The function identifiers can be registered in the [succinct gateway](https://docs.succinct.xyz/platform/onchain-integration#gateway-deployment).
+First, you will need to create a multisig that governs the Blobstream X contract and also the function identifiers. The function identifiers can be registered in the [Succinct gateway](https://platform-docs.succinct.xyz/platform/onchain-integration#register-circuits-with-your-deployed-succinct-gateway).
 
 Then, check the [deployment](https://github.com/succinctlabs/blobstreamx/blob/main/README.md#blobstreamx-contract-overview) documentation for how to deploy the contract.
 

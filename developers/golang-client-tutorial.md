@@ -1,16 +1,10 @@
----
-next:
-  text: "Prompt Scavenger"
-  link: "/developers/prompt-scavenger"
----
-
-# Golang client library guide {#golang-client-library}
+# Golang client library tutorial {#golang-client-library}
 
 This section tutorial will guide you through using the most common RPC endpoints with the golang client library.
 
-You will need to
-[setup dependencies, install, and run celestia-node](./node-tutorial.md#setting-up-dependencies)
-if you have not already.
+Install [dependencies](../nodes/environment.md) and
+[celestia-node](../nodes/celestia-node.md) if you have
+not already.
 
 ## Project setup
 
@@ -26,13 +20,13 @@ The default URL is `http://localhost:26658`. If you would like to use subscripti
 
 ## Submitting and retrieving blobs
 
-The [blob.Submit](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.Submit) method takes a slice of blobs and a gas price, returning the height the blob was successfully posted at.
+The [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit) method takes a slice of blobs and a gas price, returning the height the blob was successfully posted at.
 
 - The namespace can be generated with `share.NewBlobNamespaceV0`.
 - The blobs can be generated with `blob.NewBlobV0`.
 - You can set `blob.DefaultGasPrice()` as the gas price to have celestia-node automatically determine an appropriate gas price.
 
-The [blob.GetAll](https://node-rpc-docs.celestia.org/?version=v0.11.0#blob.GetAll) method takes a height and slice of namespaces, returning the slice of blobs found in the given namespaces.
+The [blob.GetAll](https://node-rpc-docs.celestia.org/#blob.GetAll) method takes a height and slice of namespaces, returning the slice of blobs found in the given namespaces.
 
 ```go
 import (
@@ -89,7 +83,7 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
 Yet another thing: There is a argument rn that GetAll should return an error if no blobs are found. I do not agree with this argument, as it is not intuitive to the user, as seen in this example. I will try to resolve this before this PR is merged.
 --->
 
-You can subscribe to new headers using the [header.Subscribe](https://node-rpc-docs.celestia.org/?version=v0.11.0#header.Subscribe) method. This method returns a channel that will receive new headers as they are produced. In this example, we will fetch all blobs at the height of the new header in the `0xDEADBEEF` namespace.
+You can subscribe to new headers using the [header.Subscribe](https://node-rpc-docs.celestia.org/#header.Subscribe) method. This method returns a channel that will receive new headers as they are produced. In this example, we will fetch all blobs at the height of the new header in the `0xDEADBEEF` namespace.
 
 ```go
 // SubscribeHeaders subscribes to new headers and fetches all blobs at the height of the new header in the 0xDEADBEEF namespace.
@@ -130,7 +124,7 @@ func SubscribeHeaders(ctx context.Context, url string, token string) error {
 
 ## Fetching an Extended Data Square (EDS)
 
-You can fetch an [Extended Data Square (EDS)](https://celestiaorg.github.io/celestia-app/specs/data_structures.html#erasure-coding) using the [share.GetEDS](https://node-rpc-docs.celestia.org/?version=v0.11.0#share.GetEDS) method. This method takes a header and returns the EDS at the given height.
+You can fetch an [Extended Data Square (EDS)](https://celestiaorg.github.io/celestia-app/specs/data_structures.html#erasure-coding) using the [share.GetEDS](https://node-rpc-docs.celestia.org/#share.GetEDS) method. This method takes a header and returns the EDS at the given height.
 
 ```go
 // GetEDS fetches the EDS at the given height.
@@ -153,4 +147,4 @@ func GetEDS(ctx context.Context, url string, token string, height uint64) (*rsmt
 
 ## API documentation
 
-To see the full list of available methods, see the [API documentation](https://node-rpc-docs.celestia.org/?version=v0.11.0).
+To see the full list of available methods, see the [API documentation](https://node-rpc-docs.celestia.org/).

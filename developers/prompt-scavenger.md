@@ -1,8 +1,8 @@
 ---
 description: Learn how to interact with the Celestia Node API with this tutorial.
 prev:
-  text: "Golang client tutorial"
-  link: "/developers/golang-client-tutorial"
+  text: "Rust client tutorial"
+  link: "/developers/rust-client-tutorial"
 ---
 
 # Prompt scavenger
