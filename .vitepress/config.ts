@@ -765,6 +765,16 @@ function sidebarHome() {
           text: "Integrate Celestia for service providers",
           link: "/developers/integrate-celestia",
         },
+        {
+          text: "Integrate with ZK Accounts",
+          collapsed: true,
+          items: [
+            {
+              text: "Overview of ZK Accounts",
+              link: "/developers/zk_accounts_overview",
+            },
+          ]
+        },
       ],
     },
     {
