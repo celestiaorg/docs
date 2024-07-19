@@ -255,6 +255,10 @@ request. This has changed in v0.14.0+ and you can
 celestia blob submit 0x42690c204d39600fddd3 'gm'
 ```
 
+:::tip
+[Learn more about maximum blob size](submit-data.md).
+:::
+
 Alternatively, you could use the `--token` flag to set your auth token:
 
 ```bash

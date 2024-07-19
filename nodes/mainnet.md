@@ -82,6 +82,10 @@ blob size. It depends on several factors:
 These factors can cause the maximum total blob size that can be included in one
 block to vary.
 
+See the code in
+[celestia-app](https://github.com/celestiaorg/celestia-app/blob/2e49d665b3275e769dfe0371b1ca41e39dc3f5f5/pkg/appconsts/initial_consts.go#L14)
+and [celestia-node](https://github.com/celestiaorg/celestia-node/blob/540192259c144ccbd24e45e34616a41389232a51/blob/blob.go#L93).
+
 ## Integrations
 
 This guide contains the relevant sections for how to connect to Mainnet Beta,
