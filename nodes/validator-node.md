@@ -142,12 +142,29 @@ You have successfully set up a bridge node that is syncing with the network.
 
 ## Run the validator node
 
-In order to start your validator node, run the following:
+If you are running celestia-app v1.x.x:
 
-```bash
+```sh
 celestia-appd start
 ```
 
+If you are running celestia-app >= v2.0.0: then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
+
+::: code-group
+
+```sh-vue [Mainnet Beta]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+```sh-vue [Mocha]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+```sh-vue [Arabica]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+:::
 After completing all the necessary steps, you are now ready to run a validator!
 In order to create your validator onchain, follow the instructions below.
 Keep in mind that these steps are necessary ONLY if you want to participate
