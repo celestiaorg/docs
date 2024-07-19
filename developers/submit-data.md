@@ -22,6 +22,12 @@ With one share for the PFB transaction, 4095 shares remain:
 This is subject to change based on governance parameters.
 Learn more on [the Mainnet Beta page under "Maximum bytes"](../nodes/mainnet.md#maximum-bytes).
 
+It is advisable to submit transactions where the total blob size is significantly
+smaller than 1.8 MiB (e.g. 500 KiB) in order for your transaction to get included
+in a block quickly. If a tx contains blobs approaching 1.8 MiB then there will
+be no room for any other transactions. This means that your transaction will
+only be included in a block if it has a higher gas price than every other
+transaction in the mempool.
 ## Fee market and mempool
 
 Celestia makes use of a standard gas-priced prioritized mempool. By default,
