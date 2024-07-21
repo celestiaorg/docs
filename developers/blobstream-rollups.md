@@ -460,3 +460,29 @@ and
 The proof sizes are small and allow for greater flexibility.
 However, if the rollup team has different requirements, then the other designs
 can be explored.
+
+## FAQ
+
+### Use the Celestia transaction hash to reference the rollup data
+
+This is asked a lot since it's the most intuitive way of referencing data.
+However, in Celestia, referencing the data using the transaction hash is not recommended.
+
+A transaction proof in Celestia goes back to providing an inclusion proof of the shares containing the transaction.
+This means if the transaction hash is used to reference data in a Celestia block, the rollup verification mechanism should
+do the following:
+
+- Verify an inclusion proof of the shares comprising the transaction up to the data root tuple root
+- Decode those shares and parse the transaction, then hash its components to generate the transaction hash
+- Verify that the generated transaction hash matches the one used to reference the data
+
+At this level, the transaction hash is authenticated and the verification contract has the
+shares of the transaction.
+Then, the verification contract needs to take the share commitment from the parsed transaction
+and follow the steps outlined in the [blob share commitment](#blob-share-commitment) section.
+
+As observed, using the transaction hash is expensive and doesn't yield any significant advantages
+over using the blob share commitment, which in turn is more expensive than using the sequence of spans.
+
+So, unless there are more reasons to use the transaction hash to reference the rollup data, the sequence of
+spans approach remains better.
