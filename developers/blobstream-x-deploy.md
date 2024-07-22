@@ -274,15 +274,14 @@ cp .env.example .env
 vim .env
 ```
 
-The following is required environment for the prover:
-
+The following is the required environment for the prover:
 - `PRIVATE_KEY`: the EVM private key to use to submit the proofs.
 - `RPC_URL`: the RPC endpoint of the chain where the BlobstreamX contract is deployed.
 - `TENDERMINT_RPC_URL`: the Celestia chain RPC endpoint. Accepts a comma-separated list of RPC URLs for fail over.
 - `CHAIN_ID`: the target EVM chain ID.
 - `CONTRACT_ADDRESS`: the target BlobstreamX contract address.
-- `NEXT_HEADER_FUNCTION_ID`: the functionID of the next header function registered in the succinct gateway.
-- `HEADER_RANGE_FUNCTION_ID`: the functionID of the header range function registered in the succinct gateway.
+- `NEXT_HEADER_FUNCTION_ID`: the function ID of the next header function registered in the succinct gateway.
+- `HEADER_RANGE_FUNCTION_ID`: the function ID of the header range function registered in the succinct gateway.
 - `LOOP_DELAY_MINS`: the time to wait before sending the proofs in minutes. For example, for having a proof every 1hr, set it to `60`.
 - `LOCAL_PROVE_MODE`: set to true to enable local proving, which is what these instructions are about.
 - `LOCAL_RELAY_MODE`: set to true to enable submitting the proofs onchain, which is what these instructions are about.
