@@ -481,7 +481,7 @@ shares of the transaction.
 Then, the verification contract needs to take the share commitment from the parsed transaction
 and follow the steps outlined in the [blob share commitment](#blob-share-commitment) section.
 
-As observed, using the transaction hash is expensive and doesn't yield any significant advantages
+As observed, using the transaction hash is expensive and doesn't yield any advantages
 over using the blob share commitment, which in turn is more expensive than using the sequence of spans.
 
 So, unless there are more reasons to use the transaction hash to reference the rollup data, the sequence of
