@@ -75,12 +75,12 @@ PRIVATE_KEY=
 SUCCINCT_FEE_VAULT_12345=
 ```
 
-- `PRIVATE_KEY`: is the private key of the account used to send the transaction. 
-- `CREATE2_SALT`: is the salt used to generate the gateway address. using the same salt between deployments in different chains will make the gateways be on the same address.
-- `GUARDIAN`: is the owner of the `SuccinctGateway` contract. It should be set to an account that will have full access to the gateway. 
-- `PROVER`: is the address of the account used to submit the proofs to the gateway. It is enabled by default for all the registered function verifiers.
-- `RPC_12345`: is the RPC endpoint for the EVM chain whose chain ID is 12345. If the chain ID is different, make sure to change it in the environment variable name as well.
-- `ETHERSCAN_API_KEY_12345`: is the Etherscan API key corresponding to the chain whose chain ID is 12345. Similar to `RPC_12345`, make sure to change the chain ID in the environment variable name if it's a different chain.
+- `PRIVATE_KEY`: the private key of the account used to send the transaction.
+- `CREATE2_SALT`: the salt used to generate the gateway address. Using the same salt between deployments in different chains will make the gateways be on the same address.
+- `GUARDIAN`: the owner of the `SuccinctGateway` contract. It should be set to an account that will have full access to the gateway.
+- `PROVER`: the address of the account used to submit the proofs to the gateway. It is enabled by default for all the registered function verifiers.
+- `RPC_12345`: the RPC endpoint for the EVM chain whose chain ID is 12345. If the chain ID is different, make sure to change it in the environment variable name as well.
+- `ETHERSCAN_API_KEY_12345`: the Etherscan API key corresponding to the chain whose chain ID is 12345. Similar to `RPC_12345`, make sure to change the chain ID in the environment variable name if it's a different chain.
 
 Then, save the environment to a `.env` file and run the following:
 
