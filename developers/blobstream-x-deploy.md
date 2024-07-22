@@ -25,7 +25,7 @@ The `SuccinctGateway` is a contract that acts as a registry for onchain circuit 
 4. Forward the proof to the function verifier to be verified
 5. If the proof is valid, it calls back the `BlobstreamX` contract to update its state
 
-The `BlobstreamX` requires the update to be provided through the `SuccinctGateway`, otherwise, the contract can't be updated. 
+The `BlobstreamX` requires the update to be provided through the `SuccinctGateway`. Otherwise, the contract can't be updated. 
 
 To deploy a `SuccinctGateway` contract, you need to have `foundry` installed. If not, refer to [foundry documentation](https://book.getfoundry.sh/getting-started/installation).
 
