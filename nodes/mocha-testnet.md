@@ -135,7 +135,7 @@ The default port is 1317.
 - [https://mocha.api.cumulo.me/](https://mocha.api.cumulo.me/)
 - [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
 - [https://api-mocha-full.avril14th.org](https://api-mocha-full.avril14th.org)
-- [https://api.mocha.bitszn.com ](https://api.mocha.bitszn.com)
+- [https://api.mocha.bitszn.com](https://api.mocha.bitszn.com)
 - [https://celestia-t-api.noders.services](https://celestia-t-api.noders.services)
 - [https://api-1.testnet.celestia.nodes.guru](https://api-1.testnet.celestia.nodes.guru)
 - [https://api-2.testnet.celestia.nodes.guru](https://api-2.testnet.celestia.nodes.guru)
@@ -240,5 +240,7 @@ There are several explorers you can use for Mocha:
 
 ## Network upgrades
 
-Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
-for network upgrades.
+There are a few ways to stay inform about network upgrades on Mocha testnet:
+
+- Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+- Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)

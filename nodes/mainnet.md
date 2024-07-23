@@ -294,7 +294,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://celestia.exploreme.pro/](https://celestia.exploreme.pro/)
 - [https://mainnet.itrocket.net/celestia/](https://mainnet.itrocket.net/celestia/)
 - [https://explorer.mainnet.dteam.tech/celestia](https://explorer.mainnet.dteam.tech/celestia)
-  
+
 ## Analytics
 
 The following websites provide analytics for Celestia:
@@ -307,6 +307,7 @@ The following websites provide analytics for Celestia:
 
 ## Network upgrades
 
-Join the
-[Community Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
-for network upgrades.
+There are a few ways to stay inform about network upgrades on Mainnet Beta:
+
+- Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+- Discord [Mainnet beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
