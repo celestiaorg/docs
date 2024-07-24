@@ -12,7 +12,6 @@ capable of hosting EVM-compatible smart contracts. This rollup will process
 transactions locally, settle on the public Arbitrum Sepolia testnet, and post data to
 Celestia's Mocha testnet.
 
-
 If you're looking to learn more about the integration of Celestia and Orbit,
 read the [Arbitrum Orbit integration overview](./arbitrum-integration.md). If you're
 looking to learn more about Orbit, read
@@ -35,7 +34,7 @@ and [the original deployment guide](https://docs.arbitrum.io/launch-orbit-chain/
   running on your machine
 - [Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
 - A fully synced and funded Mocha testnet [light node](../nodes/light-node.md)
-on **v0.13.2**
+on **v0.13.7**
   - [Mocha testnet faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet)
 - A browser-based Ethereum wallet (like [MetaMask](https://metamask.io))
 - At least 1 Arbitrum Sepolia testnet ETH (for custom gas token chains,
@@ -181,36 +180,7 @@ root of your cloned `orbit-setup-script` repository.
 
 3. Install dependencies by running `yarn install` from the root of the `orbit-setup-script` repository.
 
-### Step 6: Pick an L2 RPC URL for the Batch Poster
-
-In order for the Batch Poster, which is responsible for posting batches of data, to
-subscribe to Blobstream's smart contract events, the node most use a WebSocket
-connection, since an HTTP one will not support subscriptions. This RPC URL is different
-from the `parent-chain.connection.url` object used in the node config, and is
-not necessary when running a full node. WebSocket (WSS) URLs which are
-essential for real-time data fetching and interaction with the
-Arbitrum Sepolia network. 
-
-To establish a WebSocket connection for your rollup to Arbitrum Sepolia, it's
-recommended to
-[find an RPC provider with WSS connections from Arbitrum's docs](https://docs.arbitrum.io/build-decentralized-apps/reference/node-providers).
-
-For this example, we will make an account on Alchemy. Follow these steps to set up your account and obtain a WSS URL using Alchemy: 
-
-1. Visit [Alchemy's website](https://www.alchemy.com/) and sign up for an account.
-2. Once logged in, create a new app by selecting the Arbitrum network, specifically
-targeting the Arbitrum Sepolia testnet.
-3. After creating your app, navigate to the "API key" section to find your WebSocket
-(WSS) URL.
-4. In the next step, use this WSS URL in your `nodeConfig.json` under the
-`celestia-cfg.eth-rpc` object to ensure your node can establish a
-WebSocket connection to the Arbitrum Sepolia network
-and successfully subscribe to Blobstream events. 
-
-Without a WSS connection, the Batch Poster won't be able to subscribe to Blobstream
-events, and thus will fall back to posting data to parent chain.
-
-### Step 7: Run your light node for Mocha testnet
+### Step 6: Run your light node for Mocha testnet
 
 First, be sure that your light node is running, using a command similar to:
 
@@ -226,6 +196,7 @@ a host in your `docker-compose.yml`:
 extra_hosts:
       - "host.docker.internal:host-gateway"
 ```
+
 :::
 
 ```bash
@@ -246,25 +217,16 @@ to communicate with Blobstream, you now only have to configure your node
 accordingly. First understand the different variables that will be set in the config:
 
 - **`enable`:** set it to true if you are using Celestia DA 😁
+- **`gas-price`:** how much to pay for gas (in uTIA)
+- **`gas-multiplier`:** will increase the gas price linearly based on the number
+you provide. 1.01 increases the gas by 1%.
 - **`rpc`:** RPC endpoint for **celestia-node**
-- **`tendermint-rpc`:** a celestia-core endpoint from a full node
-(**NOTE:** only needed for a batch poster node)
-- **`eth-rpc`:** Ethereum Client WSS RPC endpoint, only used when the node is a batch
-poster. The eth-rpc must be WSS. Otherwise, it won't be able to subscribe to events
-for Blobstream.
 - **`namespace-id`:** namespace being used to post data to Celestia
 - **`auth-token`:** auth token for your Celestia Node
-- **`is-poster`:** is the node with Celestia DA the batch poster, set to true if so.
-- **`gas-price`:** how much to pay for gas (in uTIA)
-- **`event-channel-size`:** size of the events channel used by the batch poster
-to wait for a range of headers that contains the header for the block in which
-it posted a blob, before posting the batch to the base layer for verification
-on Blobstream X.
-- **`blobstreamx-address`:** address of the Blobstream X contract on the base chain.
-    - Note that the `SequencerInbox` contract for each chain has a constant
-    address for the `BlobstreamX` contract, thus make sure that the Blobstream X
-    address in the `SequencerInbox` being used for the templates in
-    `RollupCreator` matches the one in your config.
+- **`noop-writer`:** setting this to true allows you to force fallbacks by
+disabling storing posting data to Celestia
+- **`validator-config` (optional):** optional validator configuration as
+described on [Running a full node and/or validator](./arbitrum-full-node.md)
 
 Now enable Celestia DA in your Arbitrum chain params in
 `config/nodeConfig.json`. If you'd like to use your own namespace,
@@ -283,21 +245,18 @@ This is crucial to protect against potential misuse by copy-paste errors.
 ```ts
 "celestia-cfg": {
   "enable": true,
+  "gas-price": 0.01,
+  "gas-multiplier", 1.01,
   "rpc": "http://host.docker.internal:26658",
-  "tendermint-rpc": "http://consensus-full-mocha-4.celestia-mocha.com:26657",
-  "eth-rpc": "wss://<YOUR_ETH_RPC_WSS_URL>",
   "namespace-id": "<YOUR_10_BYTE_NAMESPACE>",
   "auth-token": "<YOUR_AUTH_TOKEN>",
-  "is-poster": true,
-  "gas-price": 0.3,
-  "event-channel-size": 100,
-  "blobstreamx-address": "0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2",
+  "noop-writer": false,
 }
 ```
 
 [See the compatibility matrix in the appendix to verify you're using the right versions.](#compatibility-matrix)
 
-### Step 8: Run your chain's node and block explorer
+### Step 7: Run your chain's node and block explorer
 
 Start Docker, then run `docker-compose up -d` from the root of
 the `orbit-setup-script` repository.
@@ -313,7 +272,7 @@ After you have some activity on your rollup, it will look more like this:
 
 ![explorer-view](/arbitrum/explorer-view.png)
 
-### Step 9: Finish setting up your chain
+### Step 8: Finish setting up your chain
 
 The Offchain Labs team has provided a Hardhat script that
 handles the following tasks:
@@ -404,6 +363,7 @@ or [bridge in and out of your rollup](./arbitrum-bridge.md).
 ## Appendix
 
 Extra resources in Arbitrum documentation:
+
 - [Logging](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart#appendix-a-logging)
 - [Depositing ETH/native token](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart#appendix-b-depositing-ethnative-token)
 - [Troubleshooting: `error getting latest batch count`](https://docs.arbitrum.io/launch-orbit-chain/orbit-quickstart#appendix-c-troubleshooting)
@@ -412,87 +372,118 @@ Extra resources in Arbitrum documentation:
 <!-- markdownlint-disable MD013 -->
 | Component | Version | Details |
 |-----------|---------|---------|
-| Nitro | [v2.3.1-rc.1](https://github.com/celestiaorg/nitro/releases/tag/v2.3.1-rc.1) | Includes the replay binary for the WASM root `0x10c65b27d5031ce2351c719072e58f3153228887f027f9f6d65300d2b5b30152`. [Read the overview for overall changes](../developers/arbitrum-integration.md). |
+| Nitro | [v2.3.3](https://github.com/celestiaorg/nitro/releases/tag/v2.3.3) | Includes the replay binary for the WASM root `0x9286b47ebb3f668fbba011c0e541655a7ecc833032154bba0d8d5ce4f2411f2a`. [Read the overview for overall changes](../developers/arbitrum-integration.md). |
 | Contracts | [v1.2.1-celestia](https://github.com/celestiaorg/nitro-contracts/releases/tag/v1.2.1-celestia) | Integrates Blobstream X functionality into nitro-contracts v1.2.1 |
 | Orbit SDK | [v0.8.2 Orbit SDK for Celestia DA](https://github.com/celestiaorg/arbitrum-orbit-sdk/releases/tag/v0.8.2) | This is not compatible with Orbit SDK v0.8.2 or with the latest changes to nitro-contracts for the Atlas upgrade. The Orbit SDK itself is in Alpha. |
-| celestia-node | [v0.13.1](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.1) | This integration has only been tested with celestia-node 0.13.1 and only works with said version, and with future versions after that. Under the hood, the Nitro node uses [this commit](https://github.com/celestiaorg/celestia-openrpc/commit/64f04840aa97d4deb821b654b1fb59167d242bd1) of celestia-openrpc. |
+| celestia-node | [v0.13.7](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.7) | This integration has only been tested with celestia-node 0.13.7 and only works with said version, and with future versions after that. Under the hood, the Nitro node uses [this commit](https://github.com/celestiaorg/celestia-openrpc/commit/64f04840aa97d4deb821b654b1fb59167d242bd1) of celestia-openrpc. |
 <!-- markdownlint-enable MD013 -->
 
 ### Blobstream X contract deployments
 
 The Orbit contracts depend on the following Blobstream X deployments.
-The current deployments, which can be found at
-`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2` in both chains, relays
+The current deployments, which can be
+[found on the Blobstream page](../developers/blobstream#deployed-contracts), relays
 headers from the **Mocha-4** testnet to the chains below:
-  - Arbitrum Sepolia
-  - Base Sepolia
+
+- Ethereum Sepolia
+- Arbitrum Sepolia
+- Base Sepolia
+
+#### Ethereum Sepolia
+
+- RollupCreator: `0xcE2F52d9439e5bea4b15B5E44E963a9597049358`
+- [Find additional Ethereum Sepolia deployments below](#ethereum-sepolia-additional-deployments)
 
 #### Arbitrum Sepolia
 
-- RollupCreator: `0x79751B011BCc20F413a2c4E3AF019b6E2a9738B9`
-- TokenBridgeCreator: `0xaAe3A04931345Df5AC6e784bB6bDeb29B1fF0286`
-- TokenBridgeRetryableSender: `0x22a6580faECA49cF86Cbb2F18f2B7f98031FC6Ad`
+- RollupCreator: `0x37C8904a69FEdCDA11aa4aE803fC30aDB3391c4E`
 - [Find additional Arbitrum Sepolia deployments below](#arbitrum-sepolia-additional-deployments)
 
 #### Base Sepolia
 
-- RollupCreator: `0x1Bb8ADd5e878b12Fa37756392642eB94C53A1Cf4`
-- TokenBridgeCreator: `0xAa3b8B63cCCa3c98b948FD1d6eD875d378dE2C6c`
-- TokenBridgeRetryableSender: `0x4270889AdcB82338C5FF5e64B45c0A3d31CFd08C`
+- RollupCreator: `0x55de945C429857f6A6B919e1CEc98272751Bf5C2`
 - [Find additional Base Sepolia deployments below](#base-sepolia-additional-deployments)
+
+### Ethereum Sepolia additional deployments
+
+| Contract                | Address                                    |
+|-------------------------|--------------------------------------------|
+| Bridge                  | `0x19cFAaDAD418CcDb65e08d47c14Ab022beDa7Edd` |
+| SequencerInbox          | `0xe34175f465fB01C6939c3D7512B67672AA6C4F52` |
+| Inbox                   | `0x037b75442a06cfb9c5b3a516BF1cC2073ABa8256` |
+| RollupEventInbox        | `0xE1Dc6f0A70Ba97CAb913E651eEBD3702e2D236aB` |
+| Outbox                  | `0xF74E9F7CDb5949E8B6f029a95DAF00f853D8e895` |
+| ERC20Bridge             | `0xc3Fef4dDd01667CcA276f1fEFF23d7d91650c88d` |
+| SequencerInbox          | `0xE1581f6d80a52994F8b2dbfc344285Fb01B00e31` |
+| ERC20Inbox              | `0x8E48bb3439D2c7C47c722E1126AD755654dBbD26` |
+| ERC20RollupEventInbox   | `0x0BBC1b9c8a5d840b433AF0759a9cd6a78d4CddA5` |
+| ERC20Outbox             | `0x17a072942e841F4fF4ee04FE65c63295D84d8c69` |
+| BridgeCreator           | `0x8B5484c5FEdFfEb51d5Dad355eb073b6cB2c3374` |
+| OneStepProver0          | `0x0C444a48B4DE38B8CAC62204D7F341D7954fC1cD` |
+| OneStepProverMemory     | `0xE0d12F3aD9A1FD70B2607C242e11F9714b388873` |
+| OneStepProverMath       | `0x35e1050DC615638F8f3dd83d773f5671D0B30841` |
+| OneStepProverHostIo     | `0x47DF395ae223dA4aa6d2E87cC71876c445FC3129` |
+| OneStepProofEntry       | `0x469970f779e2e356e48eDf9c94378eAfcb13Fc5D` |
+| ChallengeManager        | `0xf16754a2D015b27A44E42ac70043AfC29000C0C9` |
+| RollupAdminLogic        | `0x93b980A95AAdb4fd5f3259E79c0b8760C426573D` |
+| RollupUserLogic         | `0x2778Ef247800f1dbCA9917b2412CDEc85A5F723a` |
+| ValidatorUtils          | `0x8A5cAA7719b021F7cf2fE315bCf3e17F876a6AE4` |
+| ValidatorWalletCreator  | `0xfBD3Fac05f89ad8fdD75C6a7701953E895c669d4` |
+| RollupCreator           | `0xcE2F52d9439e5bea4b15B5E44E963a9597049358` |
+| DeployHelper            | `0x387c3F8699D661D6AA722d59ee894EC753094e68` |
 
 ### Arbitrum Sepolia additional deployments
 
 | Contract                | Address                                    |
 |-------------------------|--------------------------------------------|
-| Bridge                  | `0x95FEA00e689e8D1CBa909836E1Ef1b941D5f21b1` |
-| SequencerInbox          | `0x95CBDa89325db5529eAF1813E181f66B83A7d65a` |
-| Inbox                   | `0x3681Cbb0E95AB50b63F2FC524FbBcC78adEfBd33` |
-| RollupEventInbox        | `0x61e154128b6a1400ea8090B4431B4aA1DBb80Cc4` |
-| Outbox                  | `0x5187a92539bB4A2befe1fc078745c84AB6d37171` |
-| ERC20Bridge             | `0xD0a6699Fc7519966685181c80BF98D35aFa1fC95` |
-| SequencerInbox          | `0x2588867F19E2DE51f90F0aB852C7Ad11228e3d83` |
-| ERC20Inbox              | `0x6cB49605f10831749c6090AD09918bC61439bacE` |
-| ERC20RollupEventInbox   | `0x7fC4D9A24949680faD666FeEe7cD6a100E39C4F0` |
-| ERC20Outbox             | `0xA773e19DC9e822933A7e72Df9c87eD1578701D29` |
-| BridgeCreator           | `0x3Bc040EAca40b91FA06cf55Ea91842FaC88b1AF4` |
-| OneStepProver0          | `0x5810F0916BAE1067Ca1efcc00AaaF30301af001c` |
-| OneStepProverMemory     | `0xaC3427E621C6F10dC2ABdAB00188D92690503914` |
-| OneStepProverMath       | `0xFB612fb83959b8ACD3E49540B29C93c5A67e05f1` |
-| OneStepProverHostIo     | `0x630093954CbF19Fe4532A2edD0bD3B10dEcA7A4D` |
-| OneStepProofEntry       | `0x53DEA3A90Fd6C82840a1f7224F799D622f142Df4` |
-| ChallengeManager        | `0x01B5905B154F21a393F5B5a0C6d15B53a493C05e` |
-| RollupAdminLogic        | `0xe371AFcb8437bF61bd831EF57Be7A2496D88488B` |
-| RollupUserLogic         | `0xE24a60b758b51b0a3dA5E8F4F6ddf1cd0aFF646C` |
-| ValidatorUtils          | `0x7973D0b475E898082dF25c1617CBce1917cFED17` |
-| ValidatorWalletCreator  | `0xe2662ff9b41f39e63A850E50E013Ea66e60A4F37` |
-| RollupCreator           | `0x79751B011BCc20F413a2c4E3AF019b6E2a9738B9` |
-| DeployHelper            | `0xd2D353916B34a877793628049c99858f04123eE1` |
+| Bridge                  | `0x88D5e7B38f4eeb98BC5067723B8acF60247dE1Ad` |
+| SequencerInbox          | `0x42a3D30F996811316fDaC96d0E8531Bb805A0608` |
+| Inbox                   | `0x1B65BA336CE6484f63b7f7D3F080f793a2E7aA76` |
+| RollupEventInbox        | `0x34ABbc93e5521C9089d4e4Ae46Ed7501759bBbA5` |
+| Outbox                  | `0x86e0A15aF8df110CF1C8b34491c0aa07794685b1` |
+| ERC20Bridge             | `0xC0864848a6c73374652EEa92fc19cFF7D9DD52e4` |
+| SequencerInbox          | `0xB49156413cCdc31bbdC7f68b95C50b1B4bDc240F` |
+| ERC20Inbox              | `0xCAa6919eC04964E9bC700A3EdF6215DC9bF5c632` |
+| ERC20RollupEventInbox   | `0x4180D0a68e5201FF033ED476C6F2A6B8879BE62d` |
+| ERC20Outbox             | `0x31081a17a3FD0AFEc0F33609b697Ea4e91d8cDed` |
+| BridgeCreator           | `0x25651083abd09c56d34Ffe1c83eD421DDac176B1` |
+| OneStepProver0          | `0x8964C627f5D6da05f3f95747D3ACd82a80e9c1aD` |
+| OneStepProverMemory     | `0x16512eE886b5f818D1BC5EC6E3700D0Bf2c18E5D` |
+| OneStepProverMath       | `0xaddc57a97CB62b986603bA68531eFefEf3d5ceF1` |
+| OneStepProverHostIo     | `0x9dCA3D96a0e38E07D411C7E7cAC15163B748E87B` |
+| OneStepProofEntry       | `0x5E5e332f76bc9a24A80EfAB94D04196A3dcD6C27` |
+| ChallengeManager        | `0x1AE8AF97c665864880A6EEE28337da7e0b60c476` |
+| RollupAdminLogic        | `0xBE24ff3d857e70FC081A1A58CaC6805c2644DEa4` |
+| RollupUserLogic         | `0x76924eb22cd3B3Fd8037654EBD6aD664B726fb23` |
+| ValidatorUtils          | `0x2E0848589d85Bb55a3F3e0f5cE5bFAcd24f3E197` |
+| ValidatorWalletCreator  | `0x03568A3aAAC150D0D22230729126B92Ee7988D44` |
+| RollupCreator           | `0x37C8904a69FEdCDA11aa4aE803fC30aDB3391c4E` |
+| DeployHelper            | `0x0f626da2FAa65eF03fE6e93338315393E76cD1DB` |
 
 ### Base Sepolia additional deployments
 
 | Contract                | Address                                    |
 |-------------------------|--------------------------------------------|
-| Bridge                  | `0xb6052122545AACD2BDda0Ca9FA56416bD968cDbc` |
-| SequencerInbox          | `0xcd9FCa5015b5ce2B06a2266e4a5dd54D9ca39F1a` |
-| Inbox                   | `0x44B412b291fEf00398501B2cA353EA912AD0fe13` |
-| RollupEventInbox        | `0x51D196e07a27DBA0F4461Dd6CC26108424F196f7` |
-| Outbox                  | `0x5A48aDf22f526eBD06e3e8856cFEa2490923CC55` |
-| ERC20Bridge             | `0x9abC41fEfAe7E7543a01FA837AeC909F96147280` |
-| SequencerInbox          | `0x8f97Cb7c643Acd7f79f3B13841b24a243dA51242` |
-| ERC20Inbox              | `0x40f8c63e0a20B399bCd9631A22E57BB988a9400e` |
-| ERC20RollupEventInbox   | `0x3B6e845fb9f0c8Ee4E9F6D44781f6547d9c6359a` |
-| ERC20Outbox             | `0xc99eEA0B8e67D5b2226AB6D37882DAAf6dd7593b` |
-| BridgeCreator           | `0xC7535F078CB3880a0FD5E54FA7A3B4EAf09b3924` |
-| OneStepProver0          | `0xf889a3174Fddd9f78E6cd250Ebf4c16F1bDd1b6a` |
-| OneStepProverMemory     | `0x61254e43e5c1e9E801F9C56B47a9ac3EADF6d1E9` |
-| OneStepProverMath       | `0x55527d53fdA37Dbf1924482b40AcF8625E1cAA5B` |
-| OneStepProverHostIo     | `0x03B43F7B61Fa100611191F481Ef48aa1fc98F434` |
-| OneStepProofEntry       | `0x89b7c7970c13BB587893a70697AD6d2A335b6A15` |
-| ChallengeManager        | `0x04CAe899Fc0B7Ef45c529f8Bf075D54F6fB70eD9` |
-| RollupAdminLogic        | `0x99E9D2F04352B42C18F1DA5Dd93a970F82C08aFe` |
-| RollupUserLogic         | `0x1ae3A8DC1e7eFD37F418B2987D3DF74c5a917a8B` |
-| ValidatorUtils          | `0x1cc4551922C069A9aDE06756BF14bF0410eA44fF` |
-| ValidatorWalletCreator  | `0x78f8B2941ddE5a8A312814Ebd29c2E2A36f25E91` |
-| RollupCreator           | `0x1Bb8ADd5e878b12Fa37756392642eB94C53A1Cf4` |
-| DeployHelper            | `0x20d8153AaCC4E6D29558fa3916BfF422BEDE9B5E` |
+| Bridge                  | `0x780c064b1a94B4a7d78c39717383F3d9CC9c2eDD` |
+| SequencerInbox          | `0x5D523203002f32d95f3647bAB766805160a414Ba` |
+| Inbox                   | `0x0D9759cDAfBAc4bE7a8d6a577A11AD0184a3e8cD` |
+| RollupEventInbox        | `0x1de5Af878007BEf2B1185719CbBf81256d625Cde` |
+| Outbox                  | `0x8D6DbB897F12c0aAF1C9Dc2671ED4ae1baB46Dd0` |
+| ERC20Bridge             | `0x004A652B34B3d87FA40894D319CCA760cA7F0F56` |
+| SequencerInbox          | `0xE618FC0C9357e172F9cF939730356Dc75E78A5c2` |
+| ERC20Inbox              | `0xd27fFe4c99b652E66f3e872E3030704341b77adc` |
+| ERC20RollupEventInbox   | `0x8D9a646A251B91494e7b1668c0675A43DCCA5356` |
+| ERC20Outbox             | `0xA85AEaBC72c5359E9A0b02C7850F8a8A2274ccE4` |
+| BridgeCreator           | `0x1C4fF8E18a07851f274c74A24f3d97c9b10d3823` |
+| OneStepProver0          | `0x3118377300Cc90167b9e0b287f385d1c016D5576` |
+| OneStepProverMemory     | `0x95Fd0bA3c36195cb27Ed6743Cb838DF2cb9a74e2` |
+| OneStepProverMath       | `0xD1bbf860EE98530F3F294402eA8012DFE522303A` |
+| OneStepProverHostIo     | `0x5dcF9F45C0015B0aad10B90A0f5F346a1fF0F326` |
+| OneStepProofEntry       | `0x8a2Dee18a58a3D2fBdc39e92c5633797077F7B55` |
+| ChallengeManager        | `0x376687d089370E1d50d8d6a8Ab215Ac2d7b5f93E` |
+| RollupAdminLogic        | `0x022adaEdd9374cFB0d8302ea0B8a8280f2d24e44` |
+| RollupUserLogic         | `0x26f2Ce42cB44F573118a0631f6723f909FA58F14` |
+| ValidatorUtils          | `0xACD2811D5AfA03B984A29803a01Fd45C0c6468e5` |
+| ValidatorWalletCreator  | `0x102d6A9814b0216A802a47Edc32C9a4f541748bd` |
+| RollupCreator           | `0x55de945C429857f6A6B919e1CEc98272751Bf5C2` |
+| DeployHelper            | `0x1c17b66d3707537B1073fbac319AD9b090414e3C` |
