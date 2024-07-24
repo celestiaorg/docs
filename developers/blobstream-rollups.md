@@ -463,7 +463,7 @@ can be explored.
 
 ## FAQ
 
-### Use the Celestia transaction hash to reference the rollup data
+### Should I use the Celestia transaction hash to reference the rollup data?
 
 This is asked a lot since it's the most intuitive way of referencing data.
 However, in Celestia, referencing the data using the transaction hash is not recommended.
