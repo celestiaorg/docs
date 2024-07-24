@@ -1,9 +1,9 @@
 ---
 sidebar_label: Docker images
-description: Comprehensive guide for setting up Celestia-App and Celestia-Node using Docker.
+description: Comprehensive guide for setting up celestia-app and celestia-node using Docker.
 ---
 
-# Celestia-App and Celestia-Node Setting Up with Docker 🐳
+# Celestia-app and celestia-node setup with Docker 🐳
 
 ## Table of Contents
 
