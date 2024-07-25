@@ -449,6 +449,10 @@ function sidebarHome() {
                   link: "/nodes/celestia-node-custom-networks",
                 },
                 {
+                  text: "Syncing a light node from a trusted hash",
+                  link: "/nodes/celestia-node-trusted-hash",
+                },
+                {
                   text: "Troubleshooting",
                   link: "/nodes/celestia-node-troubleshooting",
                 },
