@@ -608,6 +608,10 @@ function sidebarHome() {
                           text: "Caldera",
                           link: "https://caldera.xyz/",
                         },
+                        {
+                          text: "Conduit",
+                          link: "https://conduit.xyz/",
+                        }
                       ],
                     },
                     
