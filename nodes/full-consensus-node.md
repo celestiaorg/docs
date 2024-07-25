@@ -232,6 +232,15 @@ trust_height = 0
 trust_hash = ""
 ```
 
+And also set statesync to `true`:
+
+```toml
+#######################################################
+###         State Sync Configuration Options        ###
+#######################################################
+[statesync]
+enable = true
+```
 To their respective fields. At least two different rpc endpoints should be provided.
 The more, the greater the chance of detecting any fraudulent behavior.
 
