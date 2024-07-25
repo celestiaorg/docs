@@ -31,8 +31,8 @@ Celenium
 celestia light start --headers.trusted-hash <hash_of_block_n>
 ```
 
-## For rollup operators
+## For service operators
 
-If you're using multiple light nodes for similar things like tracking the same rollup,
-it is recommended to use the same hash and height for them all rollups or applications using
+If you're using multiple light nodes for similar services like tracking the same rollup,
+it is recommended to use the same hash and height for them all services using
 the same starting height.
