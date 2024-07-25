@@ -10,7 +10,7 @@ accordingly for Mocha, Arabica, or a custom network.
 
 ::: warning
 Syncing to a trusted hash means that you will not sample the entire chain. This adds a trust
-assumption that you trust the history of chain up to that point and that you trust the entity
+assumption that you trust the history of the chain up to that point and that you trust the entity
 where you get the hash from. In this example, the trusted entity is a consensus endpoint or
 Celenium
 :::
@@ -35,4 +35,4 @@ celestia light start --headers.trusted-hash <hash_of_block_n>
 
 If you're using multiple light nodes for similar things like tracking the same rollup,
 it is recommended to use the same hash and height for them all rollups or applications using
-same starting height.
+the same starting height.
