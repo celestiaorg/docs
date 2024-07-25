@@ -50,14 +50,6 @@ Follow the tutorial on [installing `celestia-app`](./celestia-app.md).
 
 ### Set up the P2P networks
 
-Now we will set up the P2P Networks by cloning the networks repository:
-
-```sh
-cd $HOME
-rm -rf networks
-git clone https://github.com/celestiaorg/networks.git
-```
-
 To initialize the network, pick a "node-name" that describes your
 node. Keep in mind that this might change if a new testnet is deployed.
 
