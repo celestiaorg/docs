@@ -103,7 +103,7 @@ p2p_sequencer_account = "0xaddress"
 p2p_sequencer_key = "privatekey"
 ```
 
-Your `0xaddress` key must also be funded with testnet ETH. We recommend at least 1 SepoliaETH to get your chain started, but you will need more to keep it running longer.
+Your `0xaddress` key must also be funded with testnet ETH. We recommend at least 10 SepoliaETH to get your chain started, but you will need more to keep it running longer.
 
 ## Congratulations
 
