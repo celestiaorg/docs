@@ -106,6 +106,7 @@ These RPC providers are meant to be used in production environments.
 | NewMetric | https://app.newmetric.xyz/start |
 | Numia | For RPC access: https://docs.numia.xyz/overview/rpc-api-access |
 | Numia | For data warehouse access: https://docs.numia.xyz/overview/sql-access/chains/celestia |
+| Grove | https://www.grove.city/ |
 
 ### Consensus nodes
 
