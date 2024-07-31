@@ -81,8 +81,8 @@ celestia full start --core.ip <URI>
 ```
 
 Using an RPC of your own, or one from the
-[list on the Mocha testnet page](./mocha-testnet.md#rpc-endpoints) or
-[list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints),
+[list on the Mocha testnet page](./mocha-testnet.md#community-rpc-endpoints) or
+[list on the Arabica devnet page](./arabica-devnet.md#community-rpc-endpoints),
 start your node.
 
 Connecting to a core endpoint with `--core.ip string`

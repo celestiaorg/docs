@@ -93,8 +93,8 @@ transactions, and other state-related queries).
 Note: You are also encouraged to find a community-run API endpoint
 and there are several in the Discord. This one is used for demonstration
 purposes. Check out the
-[Mocha testnet page](../nodes/mocha-testnet.md#rpc-endpoints),
-or [Arabica devnet page](../nodes/arabica-devnet.md#rpc-endpoints).
+[Mocha testnet page](../nodes/mocha-testnet.md#community-rpc-endpoints),
+or [Arabica devnet page](../nodes/arabica-devnet.md#community-rpc-endpoints).
 
 ::: code-group
 

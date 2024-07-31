@@ -54,14 +54,35 @@ import MochaTestnetDetails from '../.vitepress/components/MochaTestnetDetails.vu
 
 ## RPC for DA bridge, full, and light nodes
 
-### Data availability (DA) RPC endpoints for bridge node sync
+### Production RPC endpoints
+
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD034 -->
+
+These RPC providers are meant to be used in production environments.
+
+| Provider | URL |
+|--------|--------|
+| NewMetric | <https://app.newmetric.xyz/start> |
+| Numia | For RPC access: <https://docs.numia.xyz/overview/rpc-api-access> |
+| Numia | For data warehouse access: <https://docs.numia.xyz/overview/sql-access/chains/celestia> |
+| Grove | <https://www.grove.city/> |
+
+:::warning
+Do not rely on the free community endpoints listed below
+for production deployments. Production deployments should rely
+on [service providers with SLAs](#production-rpc-endpoints) or
+your own node.
+:::
+
+### Community Data availability (DA) RPC endpoints for bridge node sync
 
 These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
 For users, they will need to provide a `–core.ip string`
 from a consensus node’s URL or IP that populates a default RPC port at 26657
 to their respective DA node.
 
-### Data availability (DA) gRPC endpoints for state access
+### Community Data availability (DA) gRPC endpoints for state access
 
 These gRPC endpoints for DA nodes provide state access for querying the
 chain’s state and broadcasting transactions (balances, blobs, etc.) to the
@@ -92,7 +113,7 @@ full blocks from it.
   - RPC port: 26357
   - gRPC port: 9070
 
-## RPC endpoints
+## Community RPC endpoints
 
 The RPC endpoint is to allow users to interact with Celestia's nodes by
 querying the node's state and broadcasting transactions on the
@@ -117,7 +138,7 @@ Celestia network. The default port is 26657.
 - `rpc-celestia-testnet.cryptech.com.ua:443`
 - `rpc.celestia.testnet.dteam.tech:443`
 
-## API endpoints
+## Community API endpoints
 
 The API endpoint is to allow users to interact with the REST API in Cosmos
 SDK which is implemented using gRPC-gateway, which exposes gRPC endpoints
@@ -143,7 +164,7 @@ The default port is 1317.
 - [https://api-celestia-testnet.cryptech.com.ua](https://api-celestia-testnet.cryptech.com.ua)
 - [https://api.celestia.testnet.dteam.tech](https://api.celestia.testnet.dteam.tech)
 
-## gRPC endpoints
+## Community gRPC endpoints
 
 The gRPC endpoint is to allow users to interact with a Celestia Node using
 gRPC, a modern open-source and high-performance RPC framework. The default
@@ -172,7 +193,7 @@ broadcast transactions.
 - `grpc-celestia-testnet.cryptech.com.ua:443`
 - `grpc.celestia.testnet.dteam.tech:27090`
 
-## Bridge and full node endpoints
+## Community bridge and full node endpoints
 
 The endpoints below are for bridge and full nodes only. They can be used to
 find bootstrapper peers in the p2p network.
