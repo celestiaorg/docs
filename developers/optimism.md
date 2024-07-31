@@ -66,7 +66,7 @@ source ./venv/bin/activate
 
 Congrats! Your devnet is running on a mock EVM chain and Celestia Mocha.
 
-## Deploying a testnet to to an L1 (or L2) and Mocha
+## Deploying a testnet to an L1 (or L2) and Mocha
 
 See [the Alt-DA x Celestia README](https://github.com/celestiaorg/op-plasma-celestia/blob/main/README.md) for instructions on [how to deploy a Testnet](https://github.com/celestiaorg/op-plasma-celestia/blob/main/README.md#testnet).
 
