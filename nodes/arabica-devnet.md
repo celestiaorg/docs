@@ -69,10 +69,11 @@ These RPC providers are meant to be used in production environments.
 :::warning
 Do not rely on the free community endpoints listed below
 for production deployments. Production deployments should rely
-on [service providers with SLAs](#production-rpc-endpoints).
+on [service providers with SLAs](#production-rpc-endpoints) or
+your own node.
 :::
 
-in order to participate in Arabica devnet:
+RPC endpoints and types of nodes you can run in order to participate in Arabica devnet:
 
 <!-- markdownlint-disable MD013 -->
 

@@ -71,7 +71,8 @@ These RPC providers are meant to be used in production environments.
 :::warning
 Do not rely on the free community endpoints listed below
 for production deployments. Production deployments should rely
-on [service providers with SLAs](#production-rpc-endpoints).
+on [service providers with SLAs](#production-rpc-endpoints) or
+your own node.
 :::
 
 ### Community Data availability (DA) RPC endpoints for bridge node sync

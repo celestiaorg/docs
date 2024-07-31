@@ -108,6 +108,13 @@ These RPC providers are meant to be used in production environments.
 | Numia | For data warehouse access: <https://docs.numia.xyz/overview/sql-access/chains/celestia> |
 | Grove | <https://www.grove.city/> |
 
+:::warning
+Do not rely on the free community endpoints listed below
+for production deployments. Production deployments should rely
+on [service providers with SLAs](#production-rpc-endpoints) or
+your own node.
+:::
+
 ### Consensus nodes
 
 - [Full consensus node](./full-consensus-node)
