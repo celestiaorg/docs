@@ -19,7 +19,7 @@ consensus layer.
 
 ## Minimum hardware requirements
 
-The following hardware minimum requirements are recommended for running a
+The following minimum hardware requirements are recommended for running a
 full consensus node:
 
 - Memory: **16 GB RAM**
