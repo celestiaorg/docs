@@ -104,19 +104,18 @@ seeds = ""
 
 :::
 
-**Optionally**, you can set persistent peers in your `config.toml` file.
+<details>
+  <summary>Optional: Set persistent peers</summary>
+
+Optionally, you can set persistent peers in your `config.toml` file.
 If you set persistent peers, your node will **always** try to connect
 to these peers. This is useful when running a local devnet, for example,
 when you would always want to connect to the same local nodes in your
-devnet. This is also useful in production settings if you trust the peers
-that you are connecting to.
+devnet. In production, setting persistent peers is advised only if you are running a [sentry node](https://hub.cosmos.network/main/validators/security.html#sentry-nodes-ddos-protection).
 
 You can get the persistent peers from the
 [@cosmos/chain-registry](https://github.com/cosmos/chain-registry)
-repository with the following commands:
-
-Setting persistent peers is advised only if you are running a
-[sentry node](https://hub.cosmos.network/main/validators/security.html#sentry-nodes-ddos-protection).
+repository (for Mainnet Beta) or [@celestiaorg/networks repository](https://github.com/celestiaorg/networks) repo (for Mocha and Arabica) with the following commands:
 
 ::: code-group
 
@@ -126,25 +125,24 @@ echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 
-
-
 ```bash-vue [Mocha]
-PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants.mochaChainId}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
+PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.mochaChainId}}/peers.txt | tr '\n' ',')
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 
 ```bash-vue [Arabica]
-PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants.arabicaChainId}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
+PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.arabicaChainId}}/peers.txt | tr '\n' ',')
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 
 :::
+</details>
 
 ## Storage and pruning configurations
 
-### Optional: Connecting a consensus node to a bridge node
+### Optional: Connect a consensus node to a bridge node
 
 If your consensus node is being connected to a celestia-node bridge node,
 you will need to enable transaction indexing and retain all block
@@ -165,7 +163,7 @@ setting of `0`:
 min-retain-blocks = 0 # retain all block data, this is default setting
 ```
 
-### Querying transactions by hash
+### Query transactions by hash
 
 To query transactions using their hash, transaction
 indexing must be turned on. Set the `indexer` to `"kv"` in your `config.toml`:
@@ -174,7 +172,7 @@ indexing must be turned on. Set the `indexer` to `"kv"` in your `config.toml`:
 indexer = "kv"
 ```
 
-### Optional: Accessing historical state
+### Optional: Access historical state
 
 If you want to query the historical state — for example, you might want
 to know the balance of a Celestia wallet at a given height in the past —
@@ -186,7 +184,7 @@ significant storage:
 pruning = "nothing"
 ```
 
-### Saving on storage requirements
+### Save on storage requirements
 
 If you want to save on storage requirements, consider using
 `pruning = "everything"` in your `app.toml` to prune everything. If you
@@ -201,7 +199,7 @@ pruning = "everything"
 min-retain-blocks = 0 # this is the default setting
 ```
 
-## Syncing
+## Sync types
 
 types of sync, time it takes, trust assumptions
 
@@ -326,7 +324,7 @@ This will delete all data folders so we can start fresh:
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
-### Optional: Configuring an RPC endpoint
+### Optional: Configure an RPC endpoint
 
 You can configure your full consensus node to be a public RPC endpoint.
 This allows it to accept connections from data availability nodes and
