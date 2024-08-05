@@ -138,7 +138,7 @@ celestia light start --p2p.network arabica \
 :::tip Bridge node runners
 Not all of the RPC endpoints do not guarantee the full block history.
 Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
-or run your own full consensus node with no pruning for
+or run your own consensus node with no pruning for
 your bridge node.
 :::
 

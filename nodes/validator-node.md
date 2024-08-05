@@ -19,9 +19,9 @@ Validator nodes allow you to participate in consensus in the Celestia network.
 The following hardware minimum requirements are recommended for running a
 validator node:
 
-- Memory: **8 GB RAM**
-- CPU: **6 cores**
-- Disk: **500 GB SSD Storage**
+- Memory: **16 GB RAM**
+- CPU: **8 cores**
+- Disk: **2 TB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up a validator node
@@ -30,7 +30,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
 
 First, follow the instructions on
-[setting up a full consensus node](/nodes/full-consensus-node#setting-up-a-full-consensus-node).
+[setting up a consensus node](/nodes/full-consensus-node#set-up-a-full-consensus-node).
 
 ### Wallet
 
@@ -241,7 +241,7 @@ to configure your `config.toml` file to select which transactions to index.
 ## Additional resources
 
 For additional resources, refer to
-[the extra resources for consensus nodessection of the full consensus node page](./full-consensus-node.md#extra-resources-for-consensus-nodes).
+[the extra resources for consensus nodessection of the consensus node page](./consensus-node.md#extra-resources-for-consensus-nodes).
 
 ## FAQ
 

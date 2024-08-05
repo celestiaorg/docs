@@ -11,7 +11,7 @@ next:
 
 ## Prerequisites
 
-- Access to a Celestia [full consensus node](../nodes/full-consensus-node.md)
+- Access to a Celestia [consensus node](../nodes/consensus-node.md)
   RPC endpoint (or full node). The node doesn't need to be a
   validating node in order for the proofs to be queried. A full node is enough.
 

@@ -414,7 +414,7 @@ function sidebarHome() {
               text: "Consensus",
               collapsed: true,
               items: [
-                { text: "Full consensus node", link: "/nodes/full-consensus-node" },
+                { text: "Consensus node", link: "/nodes/consensus-node" },
                 { text: "Validator node", link: "/nodes/validator-node" },
               ],
             },
