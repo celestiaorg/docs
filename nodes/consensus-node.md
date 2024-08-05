@@ -200,6 +200,11 @@ min-retain-blocks = 0 # this is the default setting
 
 ## Sync types
 
+| Sync mode  | Time     | Notes                                                                                                                                        |
+|------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Block sync | ~3 weeks | Downloads and executes all blocks from genesis to the tip                                                                                    |
+| State sync | ~1 hour  | Downloads a snapshot of the state then downloads and executes all blocks after that snapshot to the tip.                                     |
+| Quick sync | ~5 hours | Downloads the data directory from a node. Time depends on your download speed because the data being downloaded can exceed 1 TB for mainnet. |
 
 ### Option 1: Block sync
 
@@ -235,6 +240,7 @@ And also set statesync to `true`:
 [statesync]
 enable = true
 ```
+
 To their respective fields. At least two different rpc endpoints should be provided.
 The more, the greater the chance of detecting any fraudulent behavior.
 
