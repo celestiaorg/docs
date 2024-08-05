@@ -1,9 +1,9 @@
 ---
-description: Learn how to set up a Celestia full consensus node.
+description: Learn how to set up a Celestia consensus node.
 outline: deep
 ---
 
-# Full consensus node
+# Consensus node
 
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD013 -->
@@ -11,23 +11,22 @@ outline: deep
 import constants from '/.vitepress/constants/constants.js'
 </script>
 
-This guide covers how to set up a full consensus node on Celestia.
-Full consensus nodes allow you to sync blockchain history in the Celestia
+This guide covers how to set up a consensus node on Celestia.
+Cconsensus nodes allow you to sync the entire blockchain history in the Celestia
 consensus layer.
 
-![full consensus node](/img/nodes/full-consensus-node.png)
+![consensus node](/img/nodes/full-consensus-node.png)
 
 ## Minimum hardware requirements
 
-The following minimum hardware requirements are recommended for running a
-full consensus node:
+The following minimum hardware requirements are recommended for running a consensus node:
 
 - Memory: **16 GB RAM**
 - CPU: **Quad-Core**
 - Disk: **2 TB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
-## Set up a full consensus node
+## Set up a consensus node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
@@ -329,7 +328,7 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 
 ### Optional: Configure an RPC endpoint
 
-You can configure your full consensus node to be a public RPC endpoint.
+You can configure your consensus node to be a public RPC endpoint.
 This allows it to accept connections from data availability nodes and
 serve requests for the data availability API.
 
