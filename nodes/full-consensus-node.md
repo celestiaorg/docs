@@ -111,8 +111,9 @@ when you would always want to connect to the same local nodes in your
 devnet. This is also useful in production settings if you trust the peers
 that you are connecting to.
 
-You can get the persistent peers from the networks repository with
-the following commands:
+You can get the persistent peers from the
+[@cosmos/chain-registry](https://github.com/cosmos/chain-registry)
+repository with the following commands:
 
 Setting persistent peers is advised only if you are running a
 [sentry node](https://hub.cosmos.network/main/validators/security.html#sentry-nodes-ddos-protection).
@@ -120,21 +121,21 @@ Setting persistent peers is advised only if you are running a
 ::: code-group
 
 ```bash-vue [Mainnet Beta]
-PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.mainnetChainId}}/peers.txt | tr '\n' ',')
+PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants.mainnetChainId}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 
-curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/celestia/chain.json | jq -r '.peers.persistent_peers[].address'
+
 
 ```bash-vue [Mocha]
-PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.mochaChainId}}/peers.txt | tr '\n' ',')
+PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants.mochaChainId}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
 
 ```bash-vue [Arabica]
-PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.arabicaChainId}}/peers.txt | tr '\n' ',')
+PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants.arabicaChainId}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
