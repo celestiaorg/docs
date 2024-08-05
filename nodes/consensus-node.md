@@ -12,7 +12,7 @@ import constants from '/.vitepress/constants/constants.js'
 </script>
 
 This guide covers how to set up a consensus node on Celestia.
-Cconsensus nodes allow you to sync the entire blockchain history in the Celestia
+Consensus nodes allow you to sync the entire blockchain history in the Celestia
 consensus layer.
 
 ![consensus node](/img/nodes/full-consensus-node.png)
@@ -200,16 +200,12 @@ min-retain-blocks = 0 # this is the default setting
 
 ## Sync types
 
-| Mode              | Block sync  | State sync      | Quick sync |
-|-------------------|-------------|-----------------|------------|
-| Time              | ~3 weeks    | TBD             | TBD        |
-| Trust assumptions | Most secure | Trusts snapshot | TBD        |
 
 ### Option 1: Block sync
 
 By default, a consensus node will sync using block sync; which will request, validate
 and execute every block up to the head of the blockchain. This is the most secure
-mechanism yet the slowest (taking up to days depending on the height of the blockchain).
+mechanism yet the slowest (taking up to weeks depending on the height of the blockchain).
 
 There are two alternatives for quicker syncing.
 
