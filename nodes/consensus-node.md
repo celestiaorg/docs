@@ -207,7 +207,7 @@ min-retain-blocks = 0 # this is the default setting
 
 ### Option 1: Block sync
 
-By default, a consensus node will sync using block sync; that is request, validate
+By default, a consensus node will sync using block sync; which will request, validate
 and execute every block up to the head of the blockchain. This is the most secure
 mechanism yet the slowest (taking up to days depending on the height of the blockchain).
 
