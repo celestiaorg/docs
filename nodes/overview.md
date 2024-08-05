@@ -39,7 +39,7 @@ each tutorial guide.
 |-------------------|-------------|-------------|------------|-----------|
 | Light node        | 500 MB RAM  | Single core | 100 GB SSD | 56 Kbps   |
 | Bridge node       | 16 GB RAM   | 6 cores     | 10 TB SSD  | 1 Gbps    |
-| Full Storage node | 16 GB RAM   | Quad-core   | 10 TB SSD  | 1 Gbps    |
+| Full storage node | 16 GB RAM   | Quad-core   | 10 TB SSD  | 1 Gbps    |
 
 ## Consensus nodes
 
