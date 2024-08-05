@@ -3,7 +3,7 @@ description: Learn how to set up a Celestia full consensus node.
 outline: deep
 ---
 
-# Setting up a Celestia full consensus node
+# Full consensus node
 
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD013 -->
@@ -17,7 +17,7 @@ consensus layer.
 
 ![full consensus node](/img/nodes/full-consensus-node.png)
 
-## Hardware requirements
+## Minimum hardware requirements
 
 The following hardware minimum requirements are recommended for running a
 full consensus node:
@@ -35,7 +35,7 @@ node, and it is recommended to have 500 GB of SSD storage. Please ensure that
 your storage meets this requirement to ensure smooth syncing and operation of
 the node.
 
-## Setting up a full consensus node
+## Set up a full consensus node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
@@ -142,7 +142,7 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"
 
 ## Storage and pruning configurations
 
-### Connecting a consensus node to a bridge node
+### Optional: Connecting a consensus node to a bridge node
 
 If your consensus node is being connected to a celestia-node bridge node,
 you will need to enable transaction indexing and retain all block
@@ -172,7 +172,7 @@ indexing must be turned on. Set the `indexer` to `"kv"` in your `config.toml`:
 indexer = "kv"
 ```
 
-### Accessing historical state
+### Optional: Accessing historical state
 
 If you want to query the historical state — for example, you might want
 to know the balance of a Celestia wallet at a given height in the past —
@@ -309,12 +309,6 @@ celestia-appd start --v2-upgrade-height <height>
 :::
 
 Optional: If you would like celestia-app to run as a background process, you can follow the [SystemD tutorial](./systemd.md).
-
-:::tip
-Refer to
-[the ports section of the celestia-node troubleshooting page](../nodes/celestia-node-troubleshooting.md#ports)
-for information on which ports are required to be open on your machine.
-:::
 
 ## Extra resources for consensus nodes
 
