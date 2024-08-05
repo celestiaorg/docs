@@ -201,7 +201,10 @@ min-retain-blocks = 0 # this is the default setting
 
 ## Sync types
 
-types of sync, time it takes, trust assumptions
+| Mode              | Block sync  | State sync      | Quick sync |
+|-------------------|-------------|-----------------|------------|
+| Time              | ~3 weeks    | TBD             | TBD        |
+| Trust assumptions | Most secure | Trusts snapshot | TBD        |
 
 ### Option 1: Block sync
 

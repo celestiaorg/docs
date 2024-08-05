@@ -121,7 +121,7 @@ your own node.
 
 ### Consensus nodes
 
-- [Full consensus node](./full-consensus-node)
+- [Consensus node](./consensus-node)
 - [Validator node](./validator-node)
 
 #### Community consensus RPC endpoints
@@ -254,7 +254,7 @@ celestia <da_type> start --core.ip <url> -–core.grpc.port <port>
 :::tip Bridge nodes
 Not all RPC endpoints guarantee the full block history.
 Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
-or run your own full consensus node with no pruning for your bridge node.
+or run your own consensus node with no pruning for your bridge node.
 :::
 
 RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with:

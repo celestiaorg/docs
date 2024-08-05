@@ -41,7 +41,7 @@ The core logic behind posting and retrieving data happens in [celestia.go](https
 Then the `Read` logic takes care of taking the deserialized Blob Pointer struct and consuming it in order to fetch the data from Celestia and additionally inform the fetcher about the position of the data on Celestia (we'll get back to this in the next section).
 
 The following represents a non-exhaustive list of considerations when running a Batch Poster node for a chain with Celestia underneath:
-- You will need to use a consensus full node RPC endpoint, you can
+- You will need to use a consensus node RPC endpoint, you can
 [find a list of them for Mocha](../nodes/mocha-testnet#community-rpc-endpoints)
 - The Batch Poster will only post a Celestia batch to the underlying chain if the height for which it posted is in a recent range in BlobstreamX and if the verification succeeds, otherwise it will discard the batch. Since it will wait until a range is relayed, it can take several minutes for a batch to be posted, but one can always make an on-chain request for the BlobstreamX contract to relay a header promptly.
 

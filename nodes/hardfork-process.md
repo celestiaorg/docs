@@ -40,5 +40,5 @@ The two testnets where hardforks are deployed are:
 
 The Lemongrass hardfork is the first consensus layer breaking change since Celestia's Mainnet Beta genesis block. The Lemongrass hardfork includes all of the CIPs listed in [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-17.md). The Lemongrass hardfork will be executed on Arabica, then Mocha, then Mainnet Beta. The hardfork will take place at an "upgrade height" that will be coordinated offline on a per-network basis. The upgrade heights will be announced in advance (see [Network upgrades](./participate#network-upgrades)) to give node operators time to download and start a compatible binary prior to the upgrade height.
 
-- If you are a full consensus node or validator operator: you will need to download and run a celestia-app v2.x.x binary prior to the `--v2-upgrade-height` to remain on the canonical chain.
+- If you are a consensus node or validator operator: you will need to download and run a celestia-app v2.x.x binary prior to the `--v2-upgrade-height` to remain on the canonical chain.
 - If you are a DA node operator, you will need to download and run a compatible celestia-node binary (likely v0.16.0) prior to the upgrade height.

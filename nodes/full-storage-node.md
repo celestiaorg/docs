@@ -6,7 +6,7 @@ description: Set up a Celestia full storage node.
 
 This tutorial will guide you through setting up a Celestia full storage
 node, which is a celestia-node that doesn't connect to celestia-app
-(hence not a full consensus node), but stores all the data.
+(hence not a consensus node), but stores all the data.
 
 ## Overview of full storage nodes
 
