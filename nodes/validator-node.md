@@ -19,9 +19,9 @@ Validator nodes allow you to participate in consensus in the Celestia network.
 The following hardware minimum requirements are recommended for running a
 validator node:
 
-- Memory: **8 GB RAM**
-- CPU: **6 cores**
-- Disk: **500 GB SSD Storage**
+- Memory: **16 GB RAM**
+- CPU: **8 cores**
+- Disk: **2 TB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up a validator node

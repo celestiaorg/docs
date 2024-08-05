@@ -22,18 +22,10 @@ consensus layer.
 The following hardware minimum requirements are recommended for running a
 full consensus node:
 
-- Memory: **8 GB RAM**
+- Memory: **16 GB RAM**
 - CPU: **Quad-Core**
-- Disk: **250 GB SSD Storage**
+- Disk: **2 TB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
-
-Running a full consensus node requires significant storage capacity to store the
-entire blockchain history. As of the latest recommendation, it is advisable to
-have at least 250 GB of SSD storage for a Celestia full consensus node if you
-are using pruning. If you are not using pruning, you are running an archive
-node, and it is recommended to have 500 GB of SSD storage. Please ensure that
-your storage meets this requirement to ensure smooth syncing and operation of
-the node.
 
 ## Set up a full consensus node
 
@@ -113,10 +105,17 @@ seeds = ""
 :::
 
 **Optionally**, you can set persistent peers in your `config.toml` file.
+If you set persistent peers, your node will **always** try to connect
+to these peers. This is useful when running a local devnet, for example,
+when you would always want to connect to the same local nodes in your
+devnet. This is also useful in production settings if you trust the peers
+that you are connecting to.
+
 You can get the persistent peers from the networks repository with
 the following commands:
 
-Setting persistent peers is advised only if you are running a sentry node.
+Setting persistent peers is advised only if you are running a
+[sentry node](https://hub.cosmos.network/main/validators/security.html#sentry-nodes-ddos-protection).
 
 ::: code-group
 
@@ -125,6 +124,8 @@ PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networ
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
+
+curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/celestia/chain.json | jq -r '.peers.persistent_peers[].address'
 
 ```bash-vue [Mocha]
 PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.mochaChainId}}/peers.txt | tr '\n' ',')
@@ -201,13 +202,17 @@ min-retain-blocks = 0 # this is the default setting
 
 ## Syncing
 
+types of sync, time it takes, trust assumptions
+
+### Option 1: Block sync
+
 By default, a consensus node will sync using block sync; that is request, validate
 and execute every block up to the head of the blockchain. This is the most secure
 mechanism yet the slowest (taking up to days depending on the height of the blockchain).
 
 There are two alternatives for quicker syncing.
 
-### State sync
+### Option 2: State sync
 
 State sync uses light client verification to verify state snapshots from peers
 and then apply them. State sync relies on weak subjectivity; a trusted header
@@ -240,7 +245,7 @@ Once setup, you should be ready to start the node as normal. In the logs, you sh
 see: `Discovering snapshots`. This may take a few minutes before snapshots are found
 depending on the network topology.
 
-### Quick sync
+### Option 3: Quick sync
 
 Quick sync effectively downloads the entire `data` directory from a third-party provider
 meaning the node has all the application and blockchain state as the node it was
