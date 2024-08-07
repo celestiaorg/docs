@@ -54,5 +54,8 @@ with the validator community on Mocha.
 
 ## Network upgrades
 
-Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
-for network upgrades.
+There are a few ways to stay inform about network upgrades:
+
+- Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+- Discord [Mainnet beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
+- Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)

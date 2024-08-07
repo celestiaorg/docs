@@ -1,9 +1,9 @@
 ---
-description: Learn how to set up a Celestia full consensus node.
+description: Learn how to set up a Celestia consensus node.
 outline: deep
 ---
 
-# Setting up a Celestia full consensus node
+# Consensus node
 
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD013 -->
@@ -11,31 +11,22 @@ outline: deep
 import constants from '/.vitepress/constants/constants.js'
 </script>
 
-This guide covers how to set up a full consensus node on Celestia.
-Full consensus nodes allow you to sync blockchain history in the Celestia
+This guide covers how to set up a consensus node on Celestia.
+Consensus nodes allow you to sync the entire blockchain history in the Celestia
 consensus layer.
 
-![full consensus node](/img/nodes/full-consensus-node.png)
+![consensus node](/img/nodes/full-consensus-node.png)
 
-## Hardware requirements
+## Minimum hardware requirements
 
-The following hardware minimum requirements are recommended for running a
-full consensus node:
+The following minimum hardware requirements are recommended for running a consensus node:
 
-- Memory: **8 GB RAM**
+- Memory: **16 GB RAM**
 - CPU: **Quad-Core**
-- Disk: **250 GB SSD Storage**
+- Disk: **2 TB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
-Running a full consensus node requires significant storage capacity to store the
-entire blockchain history. As of the latest recommendation, it is advisable to
-have at least 250 GB of SSD storage for a Celestia full consensus node if you
-are using pruning. If you are not using pruning, you are running an archive
-node, and it is recommended to have 500 GB of SSD storage. Please ensure that
-your storage meets this requirement to ensure smooth syncing and operation of
-the node.
-
-## Setting up a full consensus node
+## Set up a consensus node
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
@@ -49,14 +40,6 @@ Follow the instructions on [installing dependencies](./environment.md).
 Follow the tutorial on [installing `celestia-app`](./celestia-app.md).
 
 ### Set up the P2P networks
-
-Now we will set up the P2P Networks by cloning the networks repository:
-
-```sh
-cd $HOME
-rm -rf networks
-git clone https://github.com/celestiaorg/networks.git
-```
 
 To initialize the network, pick a "node-name" that describes your
 node. Keep in mind that this might change if a new testnet is deployed.
@@ -120,16 +103,23 @@ seeds = ""
 
 :::
 
-**Optionally**, you can set persistent peers in your `config.toml` file.
-You can get the persistent peers from the networks repository with
-the following commands:
+<details>
+  <summary>Optional: Set persistent peers</summary>
 
-Setting persistent peers is advised only if you are running a sentry node.
+Optionally, you can set persistent peers in your `config.toml` file.
+If you set persistent peers, your node will **always** try to connect
+to these peers. This is useful when running a local devnet, for example,
+when you would always want to connect to the same local nodes in your
+devnet. In production, setting persistent peers is advised only if you are running a [sentry node](https://hub.cosmos.network/main/validators/security.html#sentry-nodes-ddos-protection).
+
+You can get the persistent peers from the
+[@cosmos/chain-registry](https://github.com/cosmos/chain-registry)
+repository (for Mainnet Beta) or [@celestiaorg/networks repository](https://github.com/celestiaorg/networks) repo (for Mocha and Arabica) with the following commands:
 
 ::: code-group
 
 ```bash-vue [Mainnet Beta]
-PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants.mainnetChainId}}/peers.txt | tr '\n' ',')
+PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants.mainnetChainId}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
@@ -147,10 +137,11 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"
 ```
 
 :::
+</details>
 
 ## Storage and pruning configurations
 
-### Connecting a consensus node to a bridge node
+### Optional: Connect a consensus node to a bridge node
 
 If your consensus node is being connected to a celestia-node bridge node,
 you will need to enable transaction indexing and retain all block
@@ -171,7 +162,7 @@ setting of `0`:
 min-retain-blocks = 0 # retain all block data, this is default setting
 ```
 
-### Querying transactions by hash
+### Query transactions by hash
 
 To query transactions using their hash, transaction
 indexing must be turned on. Set the `indexer` to `"kv"` in your `config.toml`:
@@ -180,7 +171,7 @@ indexing must be turned on. Set the `indexer` to `"kv"` in your `config.toml`:
 indexer = "kv"
 ```
 
-### Accessing historical state
+### Optional: Access historical state
 
 If you want to query the historical state — for example, you might want
 to know the balance of a Celestia wallet at a given height in the past —
@@ -192,7 +183,7 @@ significant storage:
 pruning = "nothing"
 ```
 
-### Saving on storage requirements
+### Save on storage requirements
 
 If you want to save on storage requirements, consider using
 `pruning = "everything"` in your `app.toml` to prune everything. If you
@@ -207,15 +198,23 @@ pruning = "everything"
 min-retain-blocks = 0 # this is the default setting
 ```
 
-## Syncing
+## Sync types
 
-By default, a consensus node will sync using block sync; that is request, validate
+| Sync mode  | Time     | Notes                                                                                                                                        |
+|------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Block sync | ~3 weeks | Downloads and executes all blocks from genesis to the tip                                                                                    |
+| State sync | ~1 hour  | Downloads a snapshot of the state then downloads and executes all blocks after that snapshot to the tip.                                     |
+| Quick sync | ~5 hours | Downloads the data directory from a node. Time depends on your download speed because the data being downloaded can exceed 1 TB for mainnet. |
+
+### Option 1: Block sync
+
+By default, a consensus node will sync using block sync; which will request, validate
 and execute every block up to the head of the blockchain. This is the most secure
-mechanism yet the slowest (taking up to days depending on the height of the blockchain).
+mechanism yet the slowest (taking up to weeks depending on the height of the blockchain).
 
 There are two alternatives for quicker syncing.
 
-### State sync
+### Option 2: State sync
 
 State sync uses light client verification to verify state snapshots from peers
 and then apply them. State sync relies on weak subjectivity; a trusted header
@@ -232,6 +231,16 @@ trust_height = 0
 trust_hash = ""
 ```
 
+And also set statesync to `true`:
+
+```toml
+#######################################################
+###         State Sync Configuration Options        ###
+#######################################################
+[statesync]
+enable = true
+```
+
 To their respective fields. At least two different rpc endpoints should be provided.
 The more, the greater the chance of detecting any fraudulent behavior.
 
@@ -239,7 +248,7 @@ Once setup, you should be ready to start the node as normal. In the logs, you sh
 see: `Discovering snapshots`. This may take a few minutes before snapshots are found
 depending on the network topology.
 
-### Quick sync
+### Option 3: Quick sync
 
 Quick sync effectively downloads the entire `data` directory from a third-party provider
 meaning the node has all the application and blockchain state as the node it was
@@ -283,19 +292,31 @@ tar xf celestia-snap.tar -C ~/.celestia-app/data/
 
 ## Start the consensus node
 
-In order to start your full consensus node, run the following:
+If you are running celestia-app v1.x.x:
 
 ```sh
 celestia-appd start
 ```
 
-Optional: If you would like celestia-app to run as a background process, you can follow the [SystemD tutorial](./systemd.md).
+If you are running celestia-app >= v2.0.0: then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
 
-:::tip
-Refer to
-[the ports section of the celestia-node troubleshooting page](../nodes/celestia-node-troubleshooting.md#ports)
-for information on which ports are required to be open on your machine.
+::: code-group
+
+```sh-vue [Mainnet Beta]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+```sh-vue [Mocha]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+```sh-vue [Arabica]
+celestia-appd start --v2-upgrade-height <height>
+```
+
 :::
+
+Optional: If you would like celestia-app to run as a background process, you can follow the [SystemD tutorial](./systemd.md).
 
 ## Extra resources for consensus nodes
 
@@ -307,9 +328,9 @@ This will delete all data folders so we can start fresh:
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
-### Optional: Configuring an RPC endpoint
+### Optional: Configure an RPC endpoint
 
-You can configure your full consensus node to be a public RPC endpoint.
+You can configure your consensus node to be a public RPC endpoint.
 This allows it to accept connections from data availability nodes and
 serve requests for the data availability API.
 

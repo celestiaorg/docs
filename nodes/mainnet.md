@@ -82,6 +82,10 @@ blob size. It depends on several factors:
 These factors can cause the maximum total blob size that can be included in one
 block to vary.
 
+See the code in
+[celestia-app](https://github.com/celestiaorg/celestia-app/blob/2e49d665b3275e769dfe0371b1ca41e39dc3f5f5/pkg/appconsts/initial_consts.go#L14)
+and [celestia-node](https://github.com/celestiaorg/celestia-node/blob/540192259c144ccbd24e45e34616a41389232a51/blob/blob.go#L93).
+
 ## Integrations
 
 This guide contains the relevant sections for how to connect to Mainnet Beta,
@@ -94,12 +98,39 @@ to connect to them. Learn about the different endpoint types
 Here is a list of options of the types of nodes you can run in order
 to participate in Mainnet Beta:
 
+### Production RPC endpoints
+
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD034 -->
+
+These RPC providers are meant to be used in production environments.
+
+| Provider | URL |
+|--------|--------|
+| NewMetric | <https://app.newmetric.xyz/start> |
+| Numia | For RPC access: <https://docs.numia.xyz/overview/rpc-api-access> |
+| Numia | For data warehouse access: <https://docs.numia.xyz/overview/sql-access/chains/celestia> |
+| Grove | <https://www.grove.city/> |
+
+:::warning
+Do not rely on the free community endpoints listed below
+for production deployments. Production deployments should rely
+on [service providers with SLAs](#production-rpc-endpoints) or
+your own node.
+:::
+
 ### Consensus nodes
 
-- [Full consensus node](./full-consensus-node)
+- [Consensus node](./consensus-node)
 - [Validator node](./validator-node)
 
-#### Consensus RPC endpoints
+#### Community consensus RPC endpoints
+
+:::warning
+Do not rely on the free community endpoints listed below
+for production deployments. Production deployments should rely
+on [service providers with SLAs](#production-rpc-endpoints).
+:::
 
 - `public-celestia-rpc.numia.xyz`
 - `celestia-rpc.mesa.newmetric.xyz`
@@ -129,7 +160,7 @@ to participate in Mainnet Beta:
 - `celestia-mainnet-rpc.itrocket.net:443`
 - `rpc.celestia.mainnet.dteam.tech:443`
 
-#### API endpoints
+#### Community API endpoints
 
 - `public-celestia-lcd.numia.xyz`
 - `celestia-rest.mesa.newmetric.xyz`
@@ -158,7 +189,7 @@ to participate in Mainnet Beta:
 - `celestia-mainnet-api.itrocket.net:443`
 - `api.celestia.mainnet.dteam.tech:443`
 
-#### gRPC endpoints
+#### Community gRPC endpoints
 
 - `public-celestia-grpc.numia.xyz`
 - `celestia-grpc.mesa.newmetric.xyz`
@@ -185,7 +216,7 @@ to participate in Mainnet Beta:
 - `celestia-mainnet-grpc.itrocket.net:443`
 - `grpc.celestia.mainnet.dteam.tech:28090`
 
-#### WebSocket endpoints
+#### Community WebSocket endpoints
 
 - `wss://celestia-ws.chainode.tech:33373/websocket`
 - `wss://celestia-mainnet-ws.itrocket.net:443/websocket`
@@ -197,14 +228,14 @@ to participate in Mainnet Beta:
 - [Bridge node](./bridge-node.md)
 - [Full storage node](./full-storage-node.md)
 
-#### Data availability (DA) RPC endpoints for bridge node sync
+#### Community Data availability (DA) RPC endpoints for bridge node sync
 
 These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
 For users, they will need to provide a `–core.ip string`
 from a consensus node’s URL or IP that populates a default RPC port at 26657
 to their respective DA node.
 
-#### Data availability (DA) gRPC endpoints for state access
+#### Community Data availability (DA) gRPC endpoints for state access
 
 These gRPC endpoints for DA nodes provide state access for querying the
 chain’s state and broadcasting transactions (balances, blobs, etc.) to the
@@ -223,7 +254,7 @@ celestia <da_type> start --core.ip <url> -–core.grpc.port <port>
 :::tip Bridge nodes
 Not all RPC endpoints guarantee the full block history.
 Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
-or run your own full consensus node with no pruning for your bridge node.
+or run your own consensus node with no pruning for your bridge node.
 :::
 
 RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with:
@@ -290,7 +321,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://celestia.exploreme.pro/](https://celestia.exploreme.pro/)
 - [https://mainnet.itrocket.net/celestia/](https://mainnet.itrocket.net/celestia/)
 - [https://explorer.mainnet.dteam.tech/celestia](https://explorer.mainnet.dteam.tech/celestia)
-  
+
 ## Analytics
 
 The following websites provide analytics for Celestia:
@@ -303,6 +334,7 @@ The following websites provide analytics for Celestia:
 
 ## Network upgrades
 
-Join the
-[Community Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
-for network upgrades.
+There are a few ways to stay inform about network upgrades on Mainnet Beta:
+
+- Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+- Discord [Mainnet beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)

@@ -19,9 +19,9 @@ Validator nodes allow you to participate in consensus in the Celestia network.
 The following hardware minimum requirements are recommended for running a
 validator node:
 
-- Memory: **8 GB RAM**
-- CPU: **6 cores**
-- Disk: **500 GB SSD Storage**
+- Memory: **16 GB RAM**
+- CPU: **8 cores**
+- Disk: **2 TB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up a validator node
@@ -30,7 +30,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
 
 First, follow the instructions on
-[setting up a full consensus node](/nodes/full-consensus-node#setting-up-a-full-consensus-node).
+[setting up a consensus node](/nodes/full-consensus-node#set-up-a-full-consensus-node).
 
 ### Wallet
 
@@ -122,8 +122,8 @@ for information on which ports are required to be open on your machine.
 :::
 
 If you need a list of RPC endpoints to connect to, you can find the
-[list on the Mocha testnet page](./mocha-testnet.md#rpc-endpoints) or
-[list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints).
+[list on the Mocha testnet page](./mocha-testnet.md#community-rpc-endpoints) or
+[list on the Arabica devnet page](./arabica-devnet.md#community-rpc-endpoints).
 
 ### Run the bridge node
 
@@ -142,12 +142,29 @@ You have successfully set up a bridge node that is syncing with the network.
 
 ## Run the validator node
 
-In order to start your validator node, run the following:
+If you are running celestia-app v1.x.x:
 
-```bash
+```sh
 celestia-appd start
 ```
 
+If you are running celestia-app >= v2.0.0: then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
+
+::: code-group
+
+```sh-vue [Mainnet Beta]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+```sh-vue [Mocha]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+```sh-vue [Arabica]
+celestia-appd start --v2-upgrade-height <height>
+```
+
+:::
 After completing all the necessary steps, you are now ready to run a validator!
 In order to create your validator onchain, follow the instructions below.
 Keep in mind that these steps are necessary ONLY if you want to participate
@@ -224,7 +241,7 @@ to configure your `config.toml` file to select which transactions to index.
 ## Additional resources
 
 For additional resources, refer to
-[the extra resources for consensus nodessection of the full consensus node page](./full-consensus-node.md#extra-resources-for-consensus-nodes).
+[the extra resources for consensus nodessection of the consensus node page](./consensus-node.md#extra-resources-for-consensus-nodes).
 
 ## FAQ
 

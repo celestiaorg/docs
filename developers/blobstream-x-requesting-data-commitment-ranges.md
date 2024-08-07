@@ -7,7 +7,7 @@ prev:
 # Requesting data commitment ranges
 
 By default, the Blobstream X deployments on Ethereum will be
-updating every 4 hours, and on Arbitrum One
+updated every 4 hours, and on Arbitrum One
 and Base, updating every 1 hour. If you wish for the Blobstream X contract
 to be updated at a different cadence, then you have several different
 options for how to update the smart contract.
@@ -15,13 +15,41 @@ options for how to update the smart contract.
 To request proofs to be submitted to the Blobstream X contract at a
 different cadence, you can do one of the following:
 
-## Recommended setup
+> **_NOTE:_** The requested proof ranges cannot include
+> blocks that were already used in a previous batch.
+> The ranges should start from the last proven block, aka, 
+> [`latest_block`](https://github.com/succinctlabs/blobstreamx/blob/aac0842f17056e5343f66de7df44020c1637e8b7/contracts/src/BlobstreamX.sol#L16-L17)
+> and they should end in a block already committed by Celestia.
+> In other words, it's the end-inclusive range defined 
+> by `[latest_block, target_block]` with `target_block` <= Celestia tip.
+
+## Local proving
+
+To run the Blobstream X operator with local proving, follow this [guide](https://hackmd.io/@succinctlabs/HJE7XRrup).
+
+Local proving allows self-generating the proofs and submitting them to an existing BlobstreamX contract.
+Alternatively, if a team needs a very specific cadence that starts at very specific heights, they can deploy their own
+BlobstreamX contract and submit proofs to it. Deployment instructions can be found in the [BlobstreamX deploy](./blobstream-x-deploy.md) 
+documentation.
+
+::: Note
+Requires a large cloud machine to run in a reasonable
+amount of time. EC2 r6a.16xlarge, i.e., 64CPU 512GB RAM, takes ~30 minutes to generate a
+header range proof.
+:::
+
+## Request proofs from the Succinct platform
+
+> **_NOTE:_** Requesting a proof from the succinct platform requires
+> having a Succinct API key. It can be requested using 
+> this [form](https://alpha.succinct.xyz/partner).
 
 Run the Blobstream X operator with hosted proving on the Succinct
 platform, by running an operator script that pings the platform with
 proof requests at a specified cadence.
 
-[Follow these instructions to run the operator script](https://github.com/succinctlabs/blobstreamx?tab=readme-ov-file#operator-with-hosted-proving).
+Follow [these instructions](https://github.com/succinctlabs/blobstreamx?tab=readme-ov-file#operator-with-hosted-proving)
+to run the operator script.
 
 Here are example values for the `.env` file:
 
@@ -37,17 +65,7 @@ Here are example values for the `.env` file:
    `nextHeaderFunctionId` and `headerRangeFunctionId` respectively,
    which are public storage variables.
 
-## Local proving
-
-To run the Blobstream X operator with local proving, follow this [guide](https://hackmd.io/@succinctlabs/HJE7XRrup).
-
-:::tip
-Note: Requires a large cloud machine to run in a reasonable
-amount of time. EC2 r6a.16xlarge takes ~30 minutes to generate a
-header range proof.
-:::
-
-## Request proof onchain
+## Request proofs onchain
 
 Directly request a proof via the Blobstream X contract interface.
 Unlike the Blobstream X operator which handles requests off-chain,

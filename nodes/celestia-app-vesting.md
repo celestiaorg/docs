@@ -308,7 +308,7 @@ Next, you can learn how to create a vesting account on Mocha testnet.
 
 In the previous section of this tutorial, we learned how to create a vesting
 account on a local devnet. In this portion of the tutorial, we'll cover how
-to set up a full consensus node and set up a vesting account on
+to set up a consensus node and set up a vesting account on
 [Mocha testnet](../nodes/mocha-testnet.md).
 
 First, be sure that you have
@@ -350,7 +350,7 @@ and fund your `origin` address.
 
 To create a vesting account on Mocha, you will need an RPC URL to send
 the transaction to. You can find the
-[RPC endpoints on the Mocha testnet page](../nodes/mocha-testnet.md#rpc-endpoints).
+[RPC endpoints on the Mocha testnet page](../nodes/mocha-testnet.md#community-rpc-endpoints).
 
 Set your RPC URL:
 
@@ -376,13 +376,13 @@ Here's an example command to set up the vesting account:
 celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas 100000 --fees 100000utia --node $RPC_URL --chain-id mocha --delayed
 ```
 
-### Optional: Set up a full consensus node or validator
+### Optional: Set up a consensus node or validator
 
-Running a full consensus node or validator will prevent you from needing
+Running a consensus node or validator will prevent you from needing
 to use an RPC.
 
 You can set up a [validator](../nodes/validator-node.md)
-or [full consensus node](../nodes/full-consensus-node.md)
+or [consensus node](../nodes/consensus-node.md)
 for the previous portion of the tutorial.
 
 Note: this may take some time depending on how you choose to sync the

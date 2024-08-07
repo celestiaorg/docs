@@ -12,6 +12,22 @@ To submit data to Celestia, users submit blob transactions (`BlobTx`). Blob
 transactions contain two components, a standard Cosmos-SDK transaction called
 `MsgPayForBlobs` and one or more `Blob`s of data.
 
+## Maximum blob size
+
+The maximum total blob size in a transaction is just under **2 MiB
+(1,973,786 bytes)**, based on a 64x64 share grid (4096 shares).
+With one share for the PFB transaction, 4095 shares remain:
+1 at 478 bytes and 4094 at 482 bytes each.
+
+This is subject to change based on governance parameters.
+Learn more on [the Mainnet Beta page under "Maximum bytes"](../nodes/mainnet.md#maximum-bytes).
+
+It is advisable to submit transactions where the total blob size is significantly
+smaller than 1.8 MiB (e.g. 500 KiB) in order for your transaction to get included
+in a block quickly. If a tx contains blobs approaching 1.8 MiB then there will
+be no room for any other transactions. This means that your transaction will
+only be included in a block if it has a higher gas price than every other
+transaction in the mempool.
 ## Fee market and mempool
 
 Celestia makes use of a standard gas-priced prioritized mempool. By default,

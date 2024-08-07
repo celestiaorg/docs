@@ -10,14 +10,12 @@ prev:
 
 # Ethereum fallback
 
-Ethereum fallback is
-[a fallback mechanism](https://github.com/celestiaorg/optimism/pull/266)
+Ethereum fallback is a mechanism
 that enables Ethereum L2s (or L3s) to “fall back” to using Ethereum
 calldata for data availability in the event of downtime on Celestia
 Mainnet Beta. This feature is currently supported by Celestia integrations
 with:
 
-- [OP Stack](./optimism-devnet.md#ethereum-fallback-mechanism-in-op-stack)
 - [Arbitrum Nitro](./arbitrum-integration.md#ethereum-fallback-mechanism-in-nitro)
 
 In the case of Celestia downtime or temporary unavailability, L2s can
