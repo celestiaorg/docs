@@ -141,7 +141,7 @@ and run our node.
    Use `echo $SHELL` to figure out what type of shell you are using!
    :::
 
-5. To verify that the correct version of Go was installed correctly run:
+4. To verify that the correct version of Go was installed correctly run:
 
    ```bash
    go version
