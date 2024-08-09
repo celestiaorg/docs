@@ -19,7 +19,7 @@ Celenium
 1. Initialize the node store
 
     ```sh
-    celestia light init
+    celestia light init --p2p.network <network>
     ```
 
 1. Set the trusted height & hash
@@ -28,7 +28,8 @@ Celenium
 1. Run the node with the hash and flag:
 
 ```sh
-celestia light start --headers.trusted-hash <hash_of_block_n>
+celestia light start --headers.trusted-hash <hash_of_block_n> \
+    --p2p.network <network> --core.ip <consensus-node-rpc>
 ```
 
 ## For service operators
