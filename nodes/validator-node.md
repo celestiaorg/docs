@@ -30,7 +30,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
 
 First, follow the instructions on
-[setting up a consensus node](/nodes/consensus-node#set-up-a-consensus-node).
+[setting up a consensus node](/nodes/full-consensus-node#set-up-a-full-consensus-node).
 
 ### Wallet
 
