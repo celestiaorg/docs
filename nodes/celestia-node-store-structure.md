@@ -2,33 +2,27 @@
 description: This section contains information on the celestia-node datastore and its contents.
 ---
 
-# celestia-node store
+# celestia-node datastore
 
-The node's store refers to the storage structure
+The node's datastore refers to the storage structure
 used to manage the data that supports the node's operation.
 It consists of directories and files that contain the node's state,
 configuration, and other information relevant to the node.
 
-Below are the directories contained in the node's store:
+The following are the directories and files found in the datastore:
 
 - `/blocks`: This directory stores blocks. Each file contained in this directory
-represents a block on Celestia and contains its associated data.
+represents a block on Celestia and contains its associated data. The light node datastore does not contain this directory as light nodes do not store blocks.
 
-- `/data`: This directory contains the block header files.
+- `/data`: This directory contains block headers and various files belonging to node LSM storage system such as `DISCARD`, `KEYREGISTRY`, and`MANIFEST`.
 
-- `/config`: This directory stores the files used to set the node's operational parameters.
-It contains the following configuration files:
+- `/index`: This directory stores the index files that handle mapping specific keys such as block heights, to the corresponding data.
 
-  - `app.toml`: The configuration file to define application settings such as logging levels and performance tuning.
-
-  - `client.toml`: used to configure parameters for client interactions like API endpoints or timeouts.
-
-- `config.toml`: This is the node's primary configuration file.
-It defines the node's core settings such as the network parameters and the node's identity.
-
-- `inverted_index`: This file stores indexed data that can be used to make blockchain queries.
-
+- `/inverted_index`: This directory stores inverted index files used for mapping queries to the corresponding data location, and various files belonging to node LSM storage system such as `DISCARD`, `KEYREGISTRY`, `LOCK`, and `MANIFEST`.
+  
 - `/keys`: This directory stores the cryptographic key pairs that are used to operate the node.
 
-- `/transients`: This directory stores temporary data such as cache files
+- `/transients`: This directory contains temporary data such as cache files
 that are used while the node is operating, but are not a part of the permanent blockchain state.
+
+- `config.toml`: This is the node's primary configuration file. It defines the node's core settings such as the network parameters.
