@@ -45,6 +45,6 @@ The Lemongrass hardfork is the first consensus layer breaking change since Celes
 
 Network      | Chain ID   | Datetime                                 | `--v2-upgrade-height`
 -------------|------------|------------------------------------------|----------------------
-Arabica      | arabica-11 | 2024/08/14 @ 14:00 UTC                   | 1713503
+Arabica      | arabica-11 | 2024/08/19 @ 14:00 UTC                   | 1751707
 Mocha        | mocha-4    | TBD approximately 2024/08/28 @ 14:00 UTC | TBD
 Mainnet Beta | celestia   | TBD approximately 2024/09/18 @ 14:00 UTC | TBD
