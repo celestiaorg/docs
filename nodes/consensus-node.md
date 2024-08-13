@@ -311,7 +311,7 @@ celestia-appd start --v2-upgrade-height <height>
 ```
 
 ```sh-vue [Arabica]
-celestia-appd start --v2-upgrade-height <height>
+celestia-appd start --v2-upgrade-height 1751707
 ```
 
 :::
