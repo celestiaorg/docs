@@ -157,7 +157,7 @@ celestia-appd start --v2-upgrade-height <height>
 ```
 
 ```sh-vue [Mocha]
-celestia-appd start --v2-upgrade-height 2534757
+celestia-appd start --v2-upgrade-height 2585031
 ```
 
 ```sh-vue [Arabica]
