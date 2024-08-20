@@ -29,9 +29,9 @@ Data Availability:
 You can learn more about how to set up each different node by going through
 each tutorial guide.
 
-<!-- ![Banner](/img/node-requirements.jpg) -->
-
 ## Recommended Celestia node requirements
+
+![Banner](/img/node-requirements.jpg)
 
 ## Data availability nodes
 
