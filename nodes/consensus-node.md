@@ -15,7 +15,7 @@ This guide covers how to set up a consensus node on Celestia.
 Consensus nodes allow you to sync the entire blockchain history in the Celestia
 consensus layer.
 
-![consensus node](/img/nodes/full-consensus-node.png)
+![consensus node](/img/nodes/consensus-node.jpg)
 
 ## Minimum hardware requirements
 
