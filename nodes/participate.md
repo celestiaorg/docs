@@ -61,4 +61,4 @@ There are a few ways to stay informed about network upgrades:
 - Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
 
 See the [Hardfork process page](./hardfork-process.md) to learn more
-about specific upgrades like the [Lemongrass Hardfork](./hardfork-process.md#lemongrass-hardfork).
+about specific upgrades like the [Lemongrass hardfork](./hardfork-process.md#lemongrass-hardfork).
