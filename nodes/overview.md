@@ -31,8 +31,6 @@ each tutorial guide.
 
 ## Recommended Celestia node requirements
 
-![Banner](/img/node-requirements.jpg)
-
 ## Data availability nodes
 
 | Node type         | Memory      | CPU         | Disk       | Bandwidth |
