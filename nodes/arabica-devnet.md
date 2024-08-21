@@ -181,3 +181,6 @@ There are multiple explorers you can use for Arabica:
 
 Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 for network upgrades.
+
+See the [Hardfork process page](./hardfork-process.md) to learn more
+about specific upgrades like the [Lemongrass Hardfork](./hardfork-process.md#lemongrass-hardfork).
