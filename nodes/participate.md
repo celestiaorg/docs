@@ -54,8 +54,11 @@ with the validator community on Mocha.
 
 ## Network upgrades
 
-There are a few ways to stay inform about network upgrades:
+There are a few ways to stay informed about network upgrades:
 
 - Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
-- Discord [Mainnet beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
+- Discord [Mainnet Beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
 - Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
+
+See the [Hardfork process page](./hardfork-process.md) to learn more
+about specific upgrades like the [Lemongrass Hardfork](./hardfork-process.md#lemongrass-hardfork).
