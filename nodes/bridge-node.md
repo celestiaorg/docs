@@ -174,16 +174,16 @@ In order to run a bridge node using a custom key:
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia bridge start --core.ip <URI> --keyring.accname <name-of-custom-key>
+celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key>
 ```
 
 ```sh [Mocha]
-celestia bridge start --core.ip <URI> --keyring.accname <name-of-custom-key> \
+celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
   --p2p.network mocha
 ```
 
 ```sh [Arabica]
-celestia bridge start --core.ip <URI> --keyring.accname <name-of-custom-key> \
+celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
   --p2p.network arabica
 ```
 

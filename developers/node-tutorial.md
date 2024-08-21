@@ -166,16 +166,16 @@ the following command:
 ::: code-group
 
 ```bash [Mainnet Beta]
-celestia light start --core.ip <URI> --keyring.accname <key-name>
+celestia light start --core.ip <URI> --keyring.keyname <key-name>
 ```
 
 ```bash [Mocha]
-celestia light start --core.ip <URI> --keyring.accname <key-name> \
+celestia light start --core.ip <URI> --keyring.keyname <key-name> \
   --p2p.network mocha
 ```
 
 ```bash [Arabica]
-celestia light start --core.ip <URI> --keyring.accname <key-name> \
+celestia light start --core.ip <URI> --keyring.keyname <key-name> \
   --p2p.network arabica
 ```
 

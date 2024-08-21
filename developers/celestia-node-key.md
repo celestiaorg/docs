@@ -249,7 +249,7 @@ services:
     image: celestia-node
     environment:
       - NODE_TYPE=light
-    command: celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha --keyring.accname my_celes_key
+    command: celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha --keyring.keyname my_celes_key
     volumes:
       - ${PWD}/keys:/root/.celestia-light-mocha-4/keys
     ports:
