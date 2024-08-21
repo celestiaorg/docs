@@ -1,8 +1,8 @@
 ---
 description: Use the cel-key utility to generate a wallet on celestia-node.
 prev:
-  text: "New Blobstream X deployments"
-  link: "/developers/blobstream-x-deploy"
+  text: "New SP1 Blobstream deployments"
+  link: "/developers/sp1-blobstream-deploy"
 ---
 
 # Create a wallet with celestia-node

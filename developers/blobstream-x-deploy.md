@@ -4,13 +4,13 @@ next:
     link: "/developers/celestia-node-key"
 ---
 
-# New Blobstream X deployments
+# New SP1 Blobstream deployments
 
-This document provides instructions for deploying BlobstreamX to a new chain.
+This document provides instructions for deploying SP1 Blobstream to a new chain.
 
 ## Deploying the contracts
 
-To deploy Blobstream X to a new chain, follow these steps:
+To deploy SP1 Blobstream to a new chain, follow these steps:
 
 1. Clone the sp1-blobstream repository:
 

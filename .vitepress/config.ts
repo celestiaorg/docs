@@ -721,7 +721,7 @@ function sidebarHome() {
               link: "https://github.com/CryptoKass/blobstreamx-example",
             },
             {
-              text: "Local Blobstream X operators",
+              text: "Local SP1 Blobstream operators",
               collapsed: true,
               items: [
                 {
@@ -729,8 +729,8 @@ function sidebarHome() {
                   link: "/developers/blobstream-x-requesting-data-commitment-ranges",
                 },
                 {
-                  text: "New Blobstream X deployments",
-                  link: "/developers/blobstream-x-deploy",
+                  text: "New SP1 Blobstream deployments",
+                  link: "/developers/sp1-blobstream-deploy",
                 },
               ],
             },
