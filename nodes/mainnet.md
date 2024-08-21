@@ -334,7 +334,7 @@ The following websites provide analytics for Celestia:
 
 ## Network upgrades
 
-There are a few ways to stay inform about network upgrades on Mainnet Beta:
+There are a few ways to stay informed about network upgrades on Mainnet Beta:
 
 - Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
-- Discord [Mainnet beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
+- Discord [Mainnet Beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
