@@ -32,3 +32,4 @@ cd sp1-blobstream
 
    - For local proving, set `SP1_PROVER=local` in your environment.
    - To use the Succinct Proving Network for remote proving, set `SP1_PROVER=network`.
+   - We recommend an instance with 64 vCPU and 128GB of RAM
