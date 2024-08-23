@@ -116,17 +116,17 @@ following command:
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia light start --keyring.accname my_celes_key \
+celestia light start --keyring.keyname my_celes_key \
     --core.ip consensus.lunaroasis.net
 ```
 
 ```sh [Mocha]
-celestia light start --keyring.accname my_celes_key \
+celestia light start --keyring.keyname my_celes_key \
     --core.ip rpc-mocha.pops.one --p2p.network mocha
 ```
 
 ```sh [Arabica]
-celestia light start --keyring.accname my_celes_key \
+celestia light start --keyring.keyname my_celes_key \
     --core.ip validator-1.celestia-arabica-11.com \
     --p2p.network arabica
 ```
@@ -174,18 +174,18 @@ In order to run a light node using a custom key:
 
 ```sh [Mainnet Beta]
 celestia light start --core.ip <URI> \
-    --keyring.accname <name-of-custom-key> \
+    --keyring.keyname <name-of-custom-key> \
 ```
 
 ```sh [Arabica]
 celestia light start --core.ip <URI> \
-    --keyring.accname <name-of-custom-key> \
+    --keyring.keyname <name-of-custom-key> \
     --p2p.network arabica
 ```
 
 ```sh [Mocha]
 celestia light start --core.ip <URI> \
-    --keyring.accname <name-of-custom-key> \
+    --keyring.keyname <name-of-custom-key> \
     --p2p.network mocha
 ```
 
