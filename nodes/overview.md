@@ -41,7 +41,7 @@ each tutorial guide.
 
 ## Consensus nodes
 
-| Node Type        | Memory      | CPU         | Disk       | Bandwidth |
+| Node type        | Memory      | CPU         | Disk       | Bandwidth |
 |------------------|-------------|-------------|------------|-----------|
 | Validator        | 16 GB RAM   | 8 cores     | 2 TB SSD   | 1 Gbps    |
 | Consensus node   | 16 GB RAM   | Quad-core   | 2 TB SSD   | 1 Gbps    |
