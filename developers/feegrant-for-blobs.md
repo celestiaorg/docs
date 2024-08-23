@@ -70,7 +70,7 @@ First, your node will need to be running with a command similar to:
 
 ```bash
 celestia light start --p2p.network mocha --core.ip $RPC_URL \
-  --keyring.accname granter_key
+  --keyring.keyname granter_key
 ```
 
 Then, grant the fee to the grantee:

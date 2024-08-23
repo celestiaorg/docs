@@ -131,18 +131,18 @@ In order to run a full storage node using a custom key:
 
 ```sh [Mainnet Beta]
 celestia full start --core.ip <URI> \
-  --keyring.accname <name-of-custom-key> \
+  --keyring.keyname <name-of-custom-key> \
 ```
 
 ```sh [Mocha]
 celestia full start --core.ip <URI> \
-  --keyring.accname <name-of-custom-key> \
+  --keyring.keyname <name-of-custom-key> \
   --p2p.network mocha
 ```
 
 ```sh [Arabica]
 celestia full start --core.ip <URI> \
-  --keyring.accname <name-of-custom-key> \
+  --keyring.keyname <name-of-custom-key> \
   --p2p.network arabica
 ```
 
