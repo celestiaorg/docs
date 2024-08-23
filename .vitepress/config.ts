@@ -667,6 +667,10 @@ function sidebarHome() {
               link: "/developers/feegrant-for-blobs",
             },
             {
+              text: "MultiAccounts feature for blobs submission",
+              link: "/developers/multiaccounts",
+            },
+            {
               text: "Transaction resubmission guidelines",
               link: "/developers/transaction-resubmission",
             },
