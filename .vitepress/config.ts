@@ -735,6 +735,20 @@ function sidebarHome() {
               ],
             },
             {
+              text: "SP1 Blobstream audits",
+              collapsed: true,
+              items: [
+                {
+                  text: "Ottersec",
+                  link: "https://docs.celestia.org/audits/SP1_Blobstream_Ottersec_Audit.pdf",
+                },
+                {
+                  text: "SP1 Audits",
+                  link: "https://github.com/succinctlabs/sp1/tree/dev/audits"
+                }
+              ]
+            },
+            {
               text: "Blobstream X audits",
               collapsed: true,
               items: [
