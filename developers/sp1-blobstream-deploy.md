@@ -28,11 +28,13 @@ cd sp1-blobstream
 3. If you're deploying on a chain where there isn't a canonical verifier listed in the
 [SP1 contract addresses](https://github.com/succinctlabs/sp1/blob/main/book/onchain-verification/contract-addresses.md), you'll need to:
 
-   a. Deploy your own SP1 Verifier from `sp1-contracts` matching your `sp1-sdk` version.
+   a. Deploy your own SP1 Verifier from the [sp1-contracts](https://github.com/succinctlabs/sp1-contracts) matching your `sp1-sdk` version.
    b. Set the `SP1_VERIFIER_ADDRESS` in your `.env` file to the address of your deployed verifier.
 
 4. To run the prover:
 
    - For local proving, set `SP1_PROVER=local` in your environment.
    - To use the Succinct Proving Network for remote proving, set `SP1_PROVER=network`.
-   - We recommend an instance with 64 vCPU and 128GB of RAM
+   - We recommend an instance with 64 vCPU and 128GB of RAM for local proving.
+
+Note: Any whitelisting for custom provers would need to be implemented in the application's smart contracts (e.g., by using an approvedProvers mapping).
