@@ -29,7 +29,7 @@ users should use Blobstream at their own risk.
 
 ### Implementations of Blobstream
 
-* [SP1 Blobstream](#what-is-sp1-blobstream)
+* [SP1 Blobstream](#what-is-sp1-blobstream) (an implementation of Blobstream X)
 * [Blobstream X](#what-is-blobstream-x)
 
 ## Blobstream vs. data availability committees (DACs)
@@ -64,7 +64,11 @@ compared to the potential centralized nature of DACs.
 
 ## What is SP1 Blobstream?
 
-SP1 Blobstream is the latest implementation of Blobstream using
+SP1 Blobstream is the latest implementation of Blobstream X
+in Rust for the SP1 zkVM.
+
+Learn more at the [sp1-blobstream](https://github.com/succinctlabs/sp1-blobstream)
+repo.
 
 ## What is Blobstream X?
 
