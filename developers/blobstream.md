@@ -27,6 +27,11 @@ guarantees of Celestia.
 Please note: Blobstream remains early-stage, experimental software and
 users should use Blobstream at their own risk.
 
+### Implementations of Blobstream
+
+* [SP1 Blobstream](#what-is-sp1-blobstream)
+* [Blobstream X](#what-is-blobstream-x)
+
 ## Blobstream vs. data availability committees (DACs)
 
 ### Decentralization and security
@@ -56,6 +61,10 @@ and flexibility of a DAC would depend on its specific design and implementation.
 In summary, both Blobstream and DACs aim to ensure offchain data availability,
 but Blobstream offers a more decentralized, secure, and scalable solution
 compared to the potential centralized nature of DACs.
+
+## What is SP1 Blobstream?
+
+SP1 Blobstream is the latest implementation of Blobstream using
 
 ## What is Blobstream X?
 

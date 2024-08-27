@@ -705,77 +705,93 @@ function sidebarHome() {
               link: "/developers/blobstream",
             },
             {
-              text: "Integrate with Blobstream contracts",
-              link: "/developers/blobstream-contracts",
-            },
-            {
-              text: "Integrate with Blobstream client",
-              link: "/developers/blobstream-offchain",
-            },
-            {
-              text: "Querying the Blobstream proofs",
-              link: "/developers/blobstream-proof-queries",
-            },
-            {
-              text: "Example implementation of Blobstream proofs by CryptoKass",
-              link: "https://github.com/CryptoKass/blobstreamx-example",
-            },
-            {
-              text: "Local SP1 Blobstream operators",
+              text: "SP1 Blobstream",
               collapsed: true,
               items: [
                 {
-                  text: "New SP1 Blobstream deployments",
-                  link: "/developers/sp1-blobstream-deploy",
-                },
-              ],
-            },
-            {
-              text: "SP1 Blobstream audits",
-              collapsed: true,
-              items: [
-                {
-                  text: "Ottersec",
-                  link: "https://docs.celestia.org/audits/SP1_Blobstream_Ottersec_Audit.pdf",
+                  text: "Local SP1 Blobstream operators",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "New SP1 Blobstream deployments",
+                      link: "/developers/sp1-blobstream-deploy",
+                    },
+                  ],
                 },
                 {
-                  text: "SP1 Audits",
-                  link: "https://github.com/succinctlabs/sp1/tree/dev/audits"
-                }
-              ]
-            },
-            {
-              text: "Local Blobstream X operators",
-              collapsed: true,
-              items: [
-                {
-                  text: "Requesting data commitment ranges",
-                link: "/developers/blobstream-x-requesting-data-commitment-ranges",
+                  text: "SP1 Blobstream audits",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Ottersec",
+                      link: "https://docs.celestia.org/audits/SP1_Blobstream_Ottersec_Audit.pdf",
+                    },
+                    {
+                      text: "SP1 Audits",
+                      link: "https://github.com/succinctlabs/sp1/tree/dev/audits"
+                    }
+                  ]
                 },
               ]
             },
             {
-              text: "Blobstream X audits",
+              text: "Blobstream X",
               collapsed: true,
               items: [
                 {
-                  text: "Informal Systems",
-                  link: "https://docs.celestia.org/audits/Blobstream_X-Informal_Systems_Audit.pdf",
+                  text: "Integrate with Blobstream contracts",
+                  link: "/developers/blobstream-contracts",
                 },
                 {
-                  text: "OtterSec",
-                  link: "https://docs.celestia.org/audits/Blobstream_X-OtterSec_Audit.pdf",
+                  text: "Integrate with Blobstream client",
+                  link: "/developers/blobstream-offchain",
                 },
                 {
-                  text: "Veridise",
-                  link: "https://docs.celestia.org/audits/Blobstream_X-Veridise_Audit.pdf",
+                  text: "Querying the Blobstream proofs",
+                  link: "/developers/blobstream-proof-queries",
                 },
                 {
-                  text: "Zellic",
-                  link: "https://docs.celestia.org/audits/Blobstream_X-Zellic_Audit.pdf",
+                  text: "Example implementation of Blobstream proofs by CryptoKass",
+                  link: "https://github.com/CryptoKass/blobstreamx-example",
+                },
+                {
+                  text: "Local Blobstream X operators",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Requesting data commitment ranges",
+                      link: "/developers/blobstream-x-requesting-data-commitment-ranges",
+                    },
+                    {
+                      text: "New Blobstream X deployments",
+                      link: "/developers/blobstream-x-deploy",
+                    }
+                  ]
+                },
+                {
+                  text: "Blobstream X audits",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Informal Systems",
+                      link: "https://docs.celestia.org/audits/Blobstream_X-Informal_Systems_Audit.pdf",
+                    },
+                    {
+                      text: "OtterSec",
+                      link: "https://docs.celestia.org/audits/Blobstream_X-OtterSec_Audit.pdf",
+                    },
+                    {
+                      text: "Veridise",
+                      link: "https://docs.celestia.org/audits/Blobstream_X-Veridise_Audit.pdf",
+                    },
+                    {
+                      text: "Zellic",
+                      link: "https://docs.celestia.org/audits/Blobstream_X-Zellic_Audit.pdf",
+                    }
+                  ],
                 }
-              ],
-            }
+              ]
+            },
           ],
         },
         {

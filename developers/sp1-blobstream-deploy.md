@@ -1,7 +1,7 @@
 ---
 next:
-    text: "Celestia-node key"
-    link: "/developers/celestia-node-key"
+    text: "Integrate with Blobstream X contracts"
+    link: "/developers/blobstream-contracts"
 ---
 
 # New SP1 Blobstream deployments
