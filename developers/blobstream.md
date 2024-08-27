@@ -24,6 +24,10 @@ validity of Celestia block headers on a target EVM chain using zero-knowledge (Z
 proofs, which allow inheriting all the security
 guarantees of Celestia.
 
+The latest implementation of Blobstream X is [SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream), 
+which is written in Rust for the SP1 zkVM. SP1 Blobstream offers improved performance and 
+efficiency while maintaining the security guarantees of the original Blobstream X.
+
 Please note: Blobstream remains early-stage, experimental software and
 users should use Blobstream at their own risk.
 
