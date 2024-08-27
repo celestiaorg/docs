@@ -29,7 +29,7 @@ To run the Blobstream X operator with local proving, follow this [guide](https:/
 
 Local proving allows self-generating the proofs and submitting them to an existing BlobstreamX contract.
 Alternatively, if a team needs a very specific cadence that starts at very specific heights, they can deploy their own
-BlobstreamX contract and submit proofs to it. Deployment instructions can be found in the [SP1 Blobstream deployment](./sp1-blobstream-deploy.md) 
+BlobstreamX contract and submit proofs to it. Deployment instructions can be found in the [BlobstreamX deploy](./blobstream-x-deploy.md) 
 documentation.
 
 ::: Note

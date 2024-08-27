@@ -725,10 +725,6 @@ function sidebarHome() {
               collapsed: true,
               items: [
                 {
-                    text: "Requesting data commitment ranges",
-                  link: "/developers/blobstream-x-requesting-data-commitment-ranges",
-                },
-                {
                   text: "New SP1 Blobstream deployments",
                   link: "/developers/sp1-blobstream-deploy",
                 },
@@ -746,6 +742,16 @@ function sidebarHome() {
                   text: "SP1 Audits",
                   link: "https://github.com/succinctlabs/sp1/tree/dev/audits"
                 }
+              ]
+            },
+            {
+              text: "Local Blobstream X operators",
+              collapsed: true,
+              items: [
+                {
+                  text: "Requesting data commitment ranges",
+                link: "/developers/blobstream-x-requesting-data-commitment-ranges",
+                },
               ]
             },
             {
