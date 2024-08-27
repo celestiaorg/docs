@@ -8,6 +8,9 @@ next:
 
 This document provides instructions for deploying SP1 Blobstream to a new chain.
 
+SP1 Blobstream is the latest implementation of Blobstream X
+in Rust for the SP1 zkVM.
+
 ## Deploying the contracts
 
 To deploy SP1 Blobstream to a new chain, follow these steps:
