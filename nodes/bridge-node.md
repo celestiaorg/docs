@@ -193,7 +193,7 @@ celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
 
 To migrate a bridge node ID:
 
-1. You need to backup two files located in the celestia-bridge node directory at the correct path (default: `~/.celestia-bridge/keys`).
+1. You need to back up two files located in the celestia-bridge node directory at the correct path (default: `~/.celestia-bridge/keys`).
 2. Upload the files to the new server and start the node.
 
 ### Optional: start the bridge node with SystemD
