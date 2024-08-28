@@ -191,6 +191,13 @@ celestia light start --core.ip <URI> \
 
 :::
 
+#### Optional: Migrate node id to another server
+
+To migrate a light node ID:
+
+1. You need to back up two files located in the celestia-light node directory at the correct path (default: `~/.celestia-light/keys`).
+2. Upload the files to the new server and start the node.
+
 ### Optional: start light node with SystemD
 
 Follow

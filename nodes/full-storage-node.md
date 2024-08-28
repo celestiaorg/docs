@@ -148,6 +148,13 @@ celestia full start --core.ip <URI> \
 
 :::
 
+#### Optional: Migrate node id to another server
+
+To migrate a full storage node ID:
+
+1. You need to back up two files located in the celestia-full node directory at the correct path (default: `~/.celestia-full/keys`).
+2. Upload the files to the new server and start the node.
+
 ### Optional: start the full storage node with SystemD
 
 If you would like to run the full storage node as a background process, follow the
