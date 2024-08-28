@@ -191,7 +191,7 @@ celestia light start --core.ip <URI> \
 
 :::
 
-#### Optional: migrate node id to another server
+#### Optional: Migrate node id to another server
 
 To migrate a light node ID:
 

@@ -189,7 +189,7 @@ celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
 
 :::
 
-#### Optional: migrate node id to another server
+#### Optional: Migrate node id to another server
 
 To migrate a bridge node ID:
 
