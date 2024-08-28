@@ -60,7 +60,7 @@ use the [`cel-key` library](https://github.com/celestiaorg/celestia-node/blob/ma
 ./cel-key import
 ```
 Learn more on the
-[./celestia-node-key#create-a-wallet-with-celestia-node](Create a wallet with celestia-node)
+[Create a wallet with celestia-node](./celestia-node-key#create-a-wallet-with-celestia-node)
 page.
 
 ## Optional flags for write transactions
