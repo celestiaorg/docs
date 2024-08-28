@@ -68,7 +68,7 @@ compared to the potential centralized nature of DACs.
 
 ## What is SP1 Blobstream?
 
-SP1 Blobstream is the latest implementation of Blobstream X
+[SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream) is the latest implementation of Blobstream
 in Rust using the [SP1](https://github.com/succinctlabs/sp1) zkVM.
 
 If you're looking to deploy SP1 blobstream to a new chain,
