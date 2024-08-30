@@ -24,7 +24,7 @@ participate in Mocha:
 
 Consensus:
 
-- [Full consensus node](./full-consensus-node)
+- [Consensus node](./full-consensus-node)
 - [Validator node](./validator-node)
 
 Data Availability:
@@ -54,14 +54,35 @@ import MochaTestnetDetails from '../.vitepress/components/MochaTestnetDetails.vu
 
 ## RPC for DA bridge, full, and light nodes
 
-### Data availability (DA) RPC endpoints for bridge node sync
+### Production RPC endpoints
+
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD034 -->
+
+These RPC providers are meant to be used in production environments.
+
+| Provider | URL |
+|--------|--------|
+| NewMetric | <https://app.newmetric.xyz/start> |
+| Numia | For RPC access: <https://docs.numia.xyz/overview/rpc-api-access> |
+| Numia | For data warehouse access: <https://docs.numia.xyz/overview/sql-access/chains/celestia> |
+| Grove | <https://www.grove.city/> |
+
+:::warning
+Do not rely on the free community endpoints listed below
+for production deployments. Production deployments should rely
+on [service providers with SLAs](#production-rpc-endpoints) or
+your own node.
+:::
+
+### Community Data availability (DA) RPC endpoints for bridge node sync
 
 These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
 For users, they will need to provide a `–core.ip string`
 from a consensus node’s URL or IP that populates a default RPC port at 26657
 to their respective DA node.
 
-### Data availability (DA) gRPC endpoints for state access
+### Community Data availability (DA) gRPC endpoints for state access
 
 These gRPC endpoints for DA nodes provide state access for querying the
 chain’s state and broadcasting transactions (balances, blobs, etc.) to the
@@ -72,7 +93,7 @@ to their respective DA node.
 :::tip Bridge nodes
 Mentioned below RPC endpoints do not guarantee you the download of full blocks from
 them. We advise that if you are running a bridge node, that you also
-run a local [full consensus node](./full-consensus-node.md) in order to download
+run a local [consensus node](./consensus-node.md) in order to download
 full blocks from it.
 :::
 
@@ -86,8 +107,13 @@ full blocks from it.
   - gRPC port: 9090
 - `rpc-celestia-testnet.cryptech.com.ua`
   - gRPC: grpc-celestia-testnet.cryptech.com.ua:443
+- `rpc.celestia.testnet.dteam.tech:443`
+  - gRPC: grpc.celestia.testnet.dteam.tech:27090
+- `celestia-consensus-testnet.noders.services`
+  - RPC port: 26357
+  - gRPC port: 9070
 
-## RPC endpoints
+## Community RPC endpoints
 
 The RPC endpoint is to allow users to interact with Celestia's nodes by
 querying the node's state and broadcasting transactions on the
@@ -110,8 +136,9 @@ Celestia network. The default port is 26657.
 - `rpc-2.testnet.celestia.nodes.guru`
 - `celestia-testnet-rpc.itrocket.net:443`
 - `rpc-celestia-testnet.cryptech.com.ua:443`
+- `rpc.celestia.testnet.dteam.tech:443`
 
-## API endpoints
+## Community API endpoints
 
 The API endpoint is to allow users to interact with the REST API in Cosmos
 SDK which is implemented using gRPC-gateway, which exposes gRPC endpoints
@@ -129,14 +156,15 @@ The default port is 1317.
 - [https://mocha.api.cumulo.me/](https://mocha.api.cumulo.me/)
 - [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
 - [https://api-mocha-full.avril14th.org](https://api-mocha-full.avril14th.org)
-- [https://api.mocha.bitszn.com ](https://api.mocha.bitszn.com)
+- [https://api.mocha.bitszn.com](https://api.mocha.bitszn.com)
 - [https://celestia-t-api.noders.services](https://celestia-t-api.noders.services)
 - [https://api-1.testnet.celestia.nodes.guru](https://api-1.testnet.celestia.nodes.guru)
 - [https://api-2.testnet.celestia.nodes.guru](https://api-2.testnet.celestia.nodes.guru)
 - [https://celestia-testnet-api.itrocket.net](https://celestia-testnet-api.itrocket.net)
 - [https://api-celestia-testnet.cryptech.com.ua](https://api-celestia-testnet.cryptech.com.ua)
+- [https://api.celestia.testnet.dteam.tech](https://api.celestia.testnet.dteam.tech)
 
-## gRPC endpoints
+## Community gRPC endpoints
 
 The gRPC endpoint is to allow users to interact with a Celestia Node using
 gRPC, a modern open-source and high-performance RPC framework. The default
@@ -163,8 +191,9 @@ broadcast transactions.
 - `grpc-2.testnet.celestia.nodes.guru:10790`
 - `celestia-testnet-grpc.itrocket.net:443`
 - `grpc-celestia-testnet.cryptech.com.ua:443`
+- `grpc.celestia.testnet.dteam.tech:27090`
 
-## Bridge and full node endpoints
+## Community bridge and full node endpoints
 
 The endpoints below are for bridge and full nodes only. They can be used to
 find bootstrapper peers in the p2p network.
@@ -210,6 +239,12 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 Faucet has a limit of 10 tokens per week per address/Discord ID.
 :::
 
+## Analytics
+
+The following websites provide analytics for Mocha Testnet:
+
+- [https://cosmoslist.co/testnet/celestia](https://cosmoslist.co/testnet/celestia)
+
 ## Explorers
 
 There are several explorers you can use for Mocha:
@@ -222,8 +257,14 @@ There are several explorers you can use for Mocha:
 - [https://testnet.celestia.explorers.guru](https://testnet.celestia.explorers.guru)
 - [https://testnet.itrocket.net/celestia](https://testnet.itrocket.net/celestia)
 - [https://explorers.cryptech.com.ua/Celestia-Testnet](https://explorers.cryptech.com.ua/Celestia-Testnet)
+- [https://explorer.testnet.dteam.tech/celestia](https://explorer.testnet.dteam.tech/celestia)
 
 ## Network upgrades
 
-Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
-for network upgrades.
+There are a few ways to stay informed about network upgrades on Mocha testnet:
+
+- Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+- Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
+
+See the [Hardfork process page](./hardfork-process.md) to learn more
+about specific upgrades like the [Lemongrass hardfork](./hardfork-process.md#lemongrass-hardfork).

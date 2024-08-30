@@ -50,10 +50,30 @@ like to run. Each node’s guide will link to the relevant network in
 order to show you how to connect to them. Learn about the different
 endpoint types [in the Cosmos SDK documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest).
 
-### RPC endpoints
+### Production RPC endpoints
 
-RPC endpoints and types of nodes you can run
-in order to participate in Arabica devnet:
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD034 -->
+
+These RPC providers are meant to be used in production environments.
+
+| Provider | URL |
+|--------|--------|
+| NewMetric | <https://app.newmetric.xyz/start> |
+| Numia | For RPC access: <https://docs.numia.xyz/overview/rpc-api-access> |
+| Numia | For data warehouse access: <https://docs.numia.xyz/overview/sql-access/chains/celestia> |
+| Grove | <https://www.grove.city/> |
+
+### Community RPC endpoints
+
+:::warning
+Do not rely on the free community endpoints listed below
+for production deployments. Production deployments should rely
+on [service providers with SLAs](#production-rpc-endpoints) or
+your own node.
+:::
+
+RPC endpoints and types of nodes you can run in order to participate in Arabica devnet:
 
 <!-- markdownlint-disable MD013 -->
 
@@ -118,7 +138,7 @@ celestia light start --p2p.network arabica \
 :::tip Bridge node runners
 Not all of the RPC endpoints do not guarantee the full block history.
 Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
-or run your own full consensus node with no pruning for
+or run your own consensus node with no pruning for
 your bridge node.
 :::
 
@@ -161,3 +181,6 @@ There are multiple explorers you can use for Arabica:
 
 Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 for network upgrades.
+
+See the [Hardfork process page](./hardfork-process.md) to learn more
+about specific upgrades like the [Lemongrass hardfork](./hardfork-process.md#lemongrass-hardfork).

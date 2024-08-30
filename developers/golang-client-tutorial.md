@@ -24,7 +24,7 @@ The [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit) method takes 
 
 - The namespace can be generated with `share.NewBlobNamespaceV0`.
 - The blobs can be generated with `blob.NewBlobV0`.
-- You can set `blob.DefaultGasPrice()` as the gas price to have celestia-node automatically determine an appropriate gas price.
+- You can use `blob.NewSubmitOptions()`, which has celestia-node automatically determine an appropriate gas price. To set your own gas price, use `blob.NewSubmitOptions().WithGasPrice(X)`. The available options are `WithGasPrice`, `WithGas`, `WithKeyName`, `WithSignerAddress`, and `WithFeeGranterAddress`.
 
 The [blob.GetAll](https://node-rpc-docs.celestia.org/#blob.GetAll) method takes a height and slice of namespaces, returning the slice of blobs found in the given namespaces.
 
@@ -59,7 +59,7 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
 	}
 
 	// submit the blob to the network
-	height, err := client.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, blob.DefaultGasPrice())
+	height, err := client.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, blob.NewSubmitOptions())
 	if err != nil {
 		return err
 	}
@@ -77,13 +77,43 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
 }
 ```
 
+## Subscribing to new blobs
+
+You can subscribe to new blobs in a namespace using the [blob.Subscribe](https://node-rpc-docs.celestia.org/#blob.Subscribe) method. This method returns a channel that will receive new blobs as they are produced. In this example, we will fetch all blobs in the `0xDEADBEEF` namespace.
+
+```go
+func SubscribeBlobs(ctx context.Context, url string, token string) error {
+	client, err := client.NewClient(ctx, url, token)
+	if err != nil {
+		return err
+	}
+
+	// create a namespace to filter blobs with
+	namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+	if err != nil {
+		return err
+	}
+
+	// subscribe to new blobs using a <-chan *blob.BlobResponse channel
+	blobChan, err := client.Blob.Subscribe(ctx)
+	if err != nil {
+		return err
+	}
+
+	for {
+		select {
+		case resp := <-blobChan:
+			fmt.Printf("Found %d blobs at height %d in 0xDEADBEEF namespace\n", len(resp.Blobs()), resp.Height)
+		case <-ctx.Done():
+			return nil
+		}
+	}
+}
+```
+
 ## Subscribing to new headers
 
-<!---
-Yet another thing: There is a argument rn that GetAll should return an error if no blobs are found. I do not agree with this argument, as it is not intuitive to the user, as seen in this example. I will try to resolve this before this PR is merged.
---->
-
-You can subscribe to new headers using the [header.Subscribe](https://node-rpc-docs.celestia.org/#header.Subscribe) method. This method returns a channel that will receive new headers as they are produced. In this example, we will fetch all blobs at the height of the new header in the `0xDEADBEEF` namespace.
+Alternatively, you can subscribe to new headers using the [header.Subscribe](https://node-rpc-docs.celestia.org/#header.Subscribe) method. This method returns a channel that will receive new headers as they are produced. In this example, we will fetch all blobs at the height of the new header in the `0xDEADBEEF` namespace.
 
 ```go
 // SubscribeHeaders subscribes to new headers and fetches all blobs at the height of the new header in the 0xDEADBEEF namespace.

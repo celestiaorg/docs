@@ -97,7 +97,7 @@ celestia light start --core.ip validator-1.celestia-arabica-11.com --p2p.network
 
 :::
 
-Tip: you can replace the core.ip with a consensus node RPC endpoint from [mainnet](mainnet.md#consensus-rpc-endpoints), [mocha](mocha-testnet.md#rpc-endpoints), or [arabica](arabica-devnet.md#rpc-endpoints).
+Tip: you can replace the core.ip with a consensus node RPC endpoint from [mainnet](mainnet.md#community-consensus-rpc-endpoints), [mocha](mocha-testnet.md#community-rpc-endpoints), or [arabica](arabica-devnet.md#community-rpc-endpoints).
 
 ### Keys and wallets
 
@@ -116,17 +116,17 @@ following command:
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia light start --keyring.accname my_celes_key \
+celestia light start --keyring.keyname my_celes_key \
     --core.ip consensus.lunaroasis.net
 ```
 
 ```sh [Mocha]
-celestia light start --keyring.accname my_celes_key \
+celestia light start --keyring.keyname my_celes_key \
     --core.ip rpc-mocha.pops.one --p2p.network mocha
 ```
 
 ```sh [Arabica]
-celestia light start --keyring.accname my_celes_key \
+celestia light start --keyring.keyname my_celes_key \
     --core.ip validator-1.celestia-arabica-11.com \
     --p2p.network arabica
 ```
@@ -174,22 +174,29 @@ In order to run a light node using a custom key:
 
 ```sh [Mainnet Beta]
 celestia light start --core.ip <URI> \
-    --keyring.accname <name-of-custom-key> \
+    --keyring.keyname <name-of-custom-key> \
 ```
 
 ```sh [Arabica]
 celestia light start --core.ip <URI> \
-    --keyring.accname <name-of-custom-key> \
+    --keyring.keyname <name-of-custom-key> \
     --p2p.network arabica
 ```
 
 ```sh [Mocha]
 celestia light start --core.ip <URI> \
-    --keyring.accname <name-of-custom-key> \
+    --keyring.keyname <name-of-custom-key> \
     --p2p.network mocha
 ```
 
 :::
+
+#### Optional: Migrate node id to another server
+
+To migrate a light node ID:
+
+1. You need to back up two files located in the celestia-light node directory at the correct path (default: `~/.celestia-light/keys`).
+2. Upload the files to the new server and start the node.
 
 ### Optional: start light node with SystemD
 

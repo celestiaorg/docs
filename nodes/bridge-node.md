@@ -88,8 +88,8 @@ Refer to
 for information on which ports are required to be open on your machine.
 
 Using an RPC of your own, or one from the
-[list on the Mocha testnet page](./mocha-testnet.md#rpc-endpoints) or
-[list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints),
+[list on the Mocha testnet page](./mocha-testnet.md#community-rpc-endpoints) or
+[list on the Arabica devnet page](./arabica-devnet.md#community-rpc-endpoints),
 start your node.
 
 Connecting to a core endpoint with `--core.ip string`
@@ -174,20 +174,27 @@ In order to run a bridge node using a custom key:
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia bridge start --core.ip <URI> --keyring.accname <name-of-custom-key>
+celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key>
 ```
 
 ```sh [Mocha]
-celestia bridge start --core.ip <URI> --keyring.accname <name-of-custom-key> \
+celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
   --p2p.network mocha
 ```
 
 ```sh [Arabica]
-celestia bridge start --core.ip <URI> --keyring.accname <name-of-custom-key> \
+celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
   --p2p.network arabica
 ```
 
 :::
+
+#### Optional: Migrate node id to another server
+
+To migrate a bridge node ID:
+
+1. You need to back up two files located in the celestia-bridge node directory at the correct path (default: `~/.celestia-bridge/keys`).
+2. Upload the files to the new server and start the node.
 
 ### Optional: start the bridge node with SystemD
 

@@ -414,7 +414,7 @@ function sidebarHome() {
               text: "Consensus",
               collapsed: true,
               items: [
-                { text: "Full consensus node", link: "/nodes/full-consensus-node" },
+                { text: "Consensus node", link: "/nodes/consensus-node" },
                 { text: "Validator node", link: "/nodes/validator-node" },
               ],
             },
@@ -447,6 +447,10 @@ function sidebarHome() {
                 {
                   text: "Custom networks and values",
                   link: "/nodes/celestia-node-custom-networks",
+                },
+                {
+                  text: "Syncing a light node from a trusted hash",
+                  link: "/nodes/celestia-node-trusted-hash",
                 },
                 {
                   text: "Troubleshooting",
@@ -608,6 +612,10 @@ function sidebarHome() {
                           text: "Caldera",
                           link: "https://caldera.xyz/",
                         },
+                        {
+                          text: "Conduit",
+                          link: "https://conduit.xyz/",
+                        }
                       ],
                     },
                     

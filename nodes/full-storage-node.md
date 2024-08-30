@@ -6,7 +6,7 @@ description: Set up a Celestia full storage node.
 
 This tutorial will guide you through setting up a Celestia full storage
 node, which is a celestia-node that doesn't connect to celestia-app
-(hence not a full consensus node), but stores all the data.
+(hence not a consensus node), but stores all the data.
 
 ## Overview of full storage nodes
 
@@ -81,8 +81,8 @@ celestia full start --core.ip <URI>
 ```
 
 Using an RPC of your own, or one from the
-[list on the Mocha testnet page](./mocha-testnet.md#rpc-endpoints) or
-[list on the Arabica devnet page](./arabica-devnet.md#rpc-endpoints),
+[list on the Mocha testnet page](./mocha-testnet.md#community-rpc-endpoints) or
+[list on the Arabica devnet page](./arabica-devnet.md#community-rpc-endpoints),
 start your node.
 
 Connecting to a core endpoint with `--core.ip string`
@@ -131,22 +131,29 @@ In order to run a full storage node using a custom key:
 
 ```sh [Mainnet Beta]
 celestia full start --core.ip <URI> \
-  --keyring.accname <name-of-custom-key> \
+  --keyring.keyname <name-of-custom-key> \
 ```
 
 ```sh [Mocha]
 celestia full start --core.ip <URI> \
-  --keyring.accname <name-of-custom-key> \
+  --keyring.keyname <name-of-custom-key> \
   --p2p.network mocha
 ```
 
 ```sh [Arabica]
 celestia full start --core.ip <URI> \
-  --keyring.accname <name-of-custom-key> \
+  --keyring.keyname <name-of-custom-key> \
   --p2p.network arabica
 ```
 
 :::
+
+#### Optional: Migrate node id to another server
+
+To migrate a full storage node ID:
+
+1. You need to back up two files located in the celestia-full node directory at the correct path (default: `~/.celestia-full/keys`).
+2. Upload the files to the new server and start the node.
 
 ### Optional: start the full storage node with SystemD
 

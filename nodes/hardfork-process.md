@@ -31,34 +31,20 @@ The general process can be broken down into several components:
 - Testing of the features (happens on testnets first prior to activating on
   mainnet in order to ensure the network can upgrade securely).
 
-The two testnets were hardforks are deployed on are:
+The two testnets where hardforks are deployed are:
 
 - [Arabica devnet](./arabica-devnet.md)
 - [Mocha testnet](./mocha-testnet.md)
 
-### Mocha hardfork
+### Lemongrass hardfork
 
-Celestia is planning the Mocha Hardfork upgrade on the Mamaki Testnet.
-This hardfork is unique as it will reset the Mamaki network to block 0
-while maintaining the existing state and also will rename Mamaki to Mocha.
+The Lemongrass hardfork is the first consensus layer breaking change since Celestia's Mainnet Beta genesis block. The Lemongrass hardfork includes all of the CIPs listed in [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-17.md). The Lemongrass hardfork will be executed on Arabica, then Mocha, then Mainnet Beta. The hardfork will take place at an "upgrade height" that will be coordinated offline on a per-network basis. The upgrade heights will be announced in advance (see [Network upgrades](./participate#network-upgrades)) to give node operators time to download and start a compatible binary prior to the upgrade height.
 
-The new chain-id will be `mocha`.
+- If you are a consensus node or validator operator: you will need to download and run a celestia-app binary >= v2.0.0 prior to the `--v2-upgrade-height` to remain on the canonical chain. You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary at the upgrade height.
+- If you are a DA node operator, you will need to download and run a compatible celestia-node binary >= v0.16.0-rc0 prior to the upgrade height.
 
-You can find the
-[release logs for consensus nodes on the celestia-app releases page](https://github.com/celestiaorg/celestia-app/releases).
-
-The most exciting feature included is setting the stage for Blobstream on Mocha.
-
-Validators will need to generate 2 new keys in order to be Blobstream-ready.
-Note that for the Mocha Hardfork, Blobstream will not launch yet so you
-can swap those keys after for new ones if needed. The keys needed are:
-
-- 1 EVM key
-- 1 Celestia key
-
-So, in order for this to happen, validators will need to maintain two
-new keys in order to have a successful upgrade.
-
-Those two keys will need to be added to 2 new flags on `celestia-app`:
-
-- `--evm-address`: This flag should contain a `0x` EVM address.
+Network      | Chain ID   | Datetime                                 | `--v2-upgrade-height`
+-------------|------------|------------------------------------------|----------------------
+Arabica      | arabica-11 | 2024/08/19 @ 14:00 UTC                   | 1751707
+Mocha        | mocha-4    | 2024/08/28 @ 14:00 UTC                   | 2585031
+Mainnet Beta | celestia   | TBD approximately 2024/09/18 @ 14:00 UTC | TBD

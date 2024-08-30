@@ -14,7 +14,7 @@ Consensus:
 - [Validator node](./validator-node):
   This type of node participates
   in consensus by producing and voting on blocks.
-- [Full consensus node](./full-consensus-node): A celestia-app Full node
+- [Consensus node](./consensus-node): A celestia-app full node
   to sync blockchain history.
 
 Data Availability:
@@ -29,7 +29,23 @@ Data Availability:
 You can learn more about how to set up each different node by going through
 each tutorial guide.
 
-![Banner](/img/node-requirements.jpg)
+## Recommended Celestia node requirements
+
+## Data availability nodes
+
+| Node type         | Memory      | CPU         | Disk       | Bandwidth |
+|-------------------|-------------|-------------|------------|-----------|
+| Light node        | 500 MB RAM  | Single core | 100 GB SSD | 56 Kbps   |
+| Bridge node       | 16 GB RAM   | 6 cores     | 10 TB SSD  | 1 Gbps    |
+| Full storage node | 16 GB RAM   | Quad-core   | 10 TB SSD  | 1 Gbps    |
+
+## Consensus nodes
+
+| Node type        | Memory      | CPU         | Disk       | Bandwidth |
+|------------------|-------------|-------------|------------|-----------|
+| Validator        | 16 GB RAM   | 8 cores     | 2 TB SSD   | 1 Gbps    |
+| Consensus node   | 16 GB RAM   | Quad-core   | 2 TB SSD   | 1 Gbps    |
+
 
 Please provide any feedback on the tutorials and guides. If you notice
 a bug or issue, feel free to make a pull request or write up a Github
