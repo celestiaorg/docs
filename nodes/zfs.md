@@ -65,10 +65,25 @@ zfs set compression=zstd-3 $ZFS_POOL_NAME/$ZFS_DATASET_NAME
 ```
 
 Set the custom path to the bridge data folder:
-```sh
+
+::: code-group
+
+```sh [Mainnet Beta]
 # Add flag --node.store /celestia/bridge/.celestia-bridge to your command, example:
 celestia bridge start --metrics.tls=true --metrics --metrics.endpoint otel.celestia.observer --p2p.metrics --node.store /celestia/bridge/.celestia-bridge
 ```
+
+```sh [Mocha]
+# Add flag --node.store /celestia/bridge/.celestia-bridge-mocha-4 to your command, example:
+celestia bridge start --metrics.tls=true --metrics --metrics.endpoint otel.celestia-mocha.com --p2p.metrics --node.store /celestia/bridge/.celestia-bridge-mocha-4 --p2p.network mocha
+```
+
+```sh [Arabica]
+# Add flag --node.store /celestia/bridge/.celestia-bridge-arabica-11 to your command, example:
+celestia bridge start --node.store /celestia/bridge/.celestia-bridge-arabica-11 --p2p.network arabica
+```
+
+:::
 
 :::tip NOTE
 It is recommended to sync from scratch. In case of using a snapshot it is important to have your local route to `--data.store` identical to one in a snapshot.
