@@ -206,4 +206,4 @@ You have successfully set up a bridge node that is syncing with the network.
 ### Optional: enable on-fly compression with ZFS
 
 Follow the
-[tutorial on how to setup your DA node to use on-fly compression with ZFS](./zfs.md).
+[tutorial on how to set up your DA node to use on-fly compression with ZFS](./zfs.md).
