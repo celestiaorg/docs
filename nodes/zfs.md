@@ -76,7 +76,7 @@ It is recommended to sync from scratch. In case of using a snapshot it is import
 
 After completing the steps above, you can begin syncing your DA node.
 
-Check your compression rate:
+You can check your compression rate with the following command:
 ```sh
 zfs get compressratio $ZFS_POOL_NAME
 ```
