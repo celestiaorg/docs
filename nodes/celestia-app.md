@@ -41,15 +41,15 @@ Be sure to select the correct network to install the binary for.
    ::: code-group
 
    ```bash-vue [Mainnet Beta]
-   git checkout tags/{{mainnetVersions['app-latest-tag']}} -b {{mainnetVersions['app-latest-tag']}}
+   git checkout tags/{{mainnetVersions['app-latest-tag']}}
    ```
 
    ```bash-vue [Mocha]
-   git checkout tags/{{mochaVersions['app-latest-tag']}} -b {{mochaVersions['app-latest-tag']}}
+   git checkout tags/{{mochaVersions['app-latest-tag']}}
    ```
 
    ```bash-vue [Arabica]
-   git checkout tags/{{arabicaVersions['app-latest-tag']}} -b {{arabicaVersions['app-latest-tag']}}
+   git checkout tags/{{arabicaVersions['app-latest-tag']}}
    ```
 
    :::
