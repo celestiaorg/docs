@@ -202,3 +202,8 @@ Follow the
 [tutorial on setting up the bridge node as a background process with SystemD](./systemd.md).
 
 You have successfully set up a bridge node that is syncing with the network.
+
+### Optional: enable on-fly compression with ZFS
+
+Follow the
+[tutorial on how to setup your DA node to use on-fly compression with ZFS](./zfs.md).
