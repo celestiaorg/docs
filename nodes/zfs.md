@@ -4,7 +4,7 @@ description: Learn how to setup your DA node to use on-fly compression with ZFS.
 
 # Setting up your DA node to use ZFS
 
-Enabling ZFS compression on a DA Node server  can significantly optimize storage efficiency by compressing data on the fly. Follow this step-by-step guide to implement ZFS compression without requiring any additional tuning on the DA node.
+Enabling ZFS compression on a DA Node server can significantly optimize storage efficiency by compressing data on the fly. Follow this step-by-step guide to implement ZFS compression without requiring any additional tuning on the DA node.
 
 :::tip NOTE
 ZFS, compression `zstd-3`:
@@ -23,7 +23,7 @@ $ du -h ~/.celestia-bridge/
 
 ## Requirements:
 1. Bare Metal server with decent amount of RAM (64GB+)
-2. At least one empty disk
+2. At least one empty disk (with no filesystem)
 
 ## Guide:
 
@@ -70,7 +70,11 @@ Set the custom path to the bridge data folder:
 celestia bridge start --metrics.tls=true --metrics --metrics.endpoint otel.celestia.observer --p2p.metrics --node.store /celestia/bridge/.celestia-bridge
 ```
 
-After completing the steps above, you can begin syncing your DA node. It is recommended to sync from scratch unless you intend to mount your ZFS volume to the default or a custom `data.store`.
+:::tip NOTE
+It is recommended to sync from scratch. In case of using a snapshot it is important to have your local route to `--data.store` identical to one in a snapshot.
+:::
+
+After completing the steps above, you can begin syncing your DA node.
 
 Check your compression rate:
 ```sh
