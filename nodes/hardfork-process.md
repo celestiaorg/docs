@@ -43,8 +43,8 @@ The Lemongrass hardfork is the first consensus layer breaking change since Celes
 - If you are a consensus node or validator operator: you will need to download and run a celestia-app binary >= v2.0.0 prior to the `--v2-upgrade-height` to remain on the canonical chain. You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary at the upgrade height.
 - If you are a DA node operator, you will need to download and run a compatible celestia-node binary >= v0.16.0-rc0 prior to the upgrade height.
 
-Network      | Chain ID   | Datetime                                 | `--v2-upgrade-height`
+Network      | Chain ID   | Date and approximate time                | `--v2-upgrade-height`
 -------------|------------|------------------------------------------|----------------------
 Arabica      | arabica-11 | 2024/08/19 @ 14:00 UTC                   | 1751707
 Mocha        | mocha-4    | 2024/08/28 @ 14:00 UTC                   | 2585031
-Mainnet Beta | celestia   | TBD approximately 2024/09/18 @ 14:00 UTC | TBD
+Mainnet Beta | celestia   | 2024/09/18 @ 14:00 UTC                   | 2371728
