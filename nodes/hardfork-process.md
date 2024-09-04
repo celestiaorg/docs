@@ -47,4 +47,4 @@ Network      | Chain ID   | Date and approximate time                | `--v2-upg
 -------------|------------|------------------------------------------|----------------------
 Arabica      | arabica-11 | 2024/08/19 @ 14:00 UTC                   | 1751707
 Mocha        | mocha-4    | 2024/08/28 @ 14:00 UTC                   | 2585031
-Mainnet Beta | celestia   | 2024/09/18 @ 14:00 UTC                   | 2371728
+Mainnet Beta | celestia   | 2024/09/18 @ 14:00 UTC                   | 2371495
