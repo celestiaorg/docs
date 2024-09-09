@@ -42,63 +42,36 @@ export RPC_URL=rpc.celestia-mocha.com
 
 ### FeeGrant module implementation in celestia-node
 
-Using celestia-node, you now can easily give permission for
+Using celestia-node, you can now easily give permission for
 other nodes to submit transactions on your behalf. It is also
 possible to revoke the grant.
 
-The node that receives the grant has to run a node with the
-`--granter.address=$GRANTER_ADDRESS>` flag to use FeeGrant functionality.
-
-The granter address will be stored until the next run of your local node.
-So, in case the granter revokes permission, you will have to restart the
-node without this flag.
-
-::: tip
-Transactions paid for by the the FeeGrant module will consume more gas than
-regular `PayForBlobs` transactions.
-
-| Fee and transaction type | Transaction 1 | Transaction 2 |
-|--------------------------------|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| 0.000176 fee with feegrant on Mocha testnet | [Link](https://mocha.celenium.io/tx/82384c8006c6cf73072ffeb160f78c659447dba1757e4a4f6d5e6684935acc61) | [Link](https://mocha.celenium.io/tx/83fa70a496eaf4fa21da43c88c1f0bf8f9aa6676ec1d47f183fca948ab418f94)  |
-| 0.00016 fee without feegrant on Mocha testnet | [Link](https://mocha.celenium.io/tx/9e15dcf7e82288bdf0efc06edf92a30eead60d5ed6518a4721fee1bc34613e2c) | [Link](https://mocha.celenium.io/tx/a670112dee5bc2001b18225587f2cce86c97016a87d33cc1425b755518050348) |
-
-:::
+The FeeGrant functionality can now be used during runtime without
+the need to restart the node.
 
 ### Grant permission for an allowance as a granter
 
-First, your node will need to be running with a command similar to:
+First, start your node:
 
 ```bash
-celestia light start --p2p.network mocha --core.ip $RPC_URL \
-  --keyring.keyname granter_key
+celestia light start --p2p.network mocha --core.ip $RPC_URL
 ```
 
 Then, grant the fee to the grantee:
 
 ```bash
-celestia state grant-fee $GRANTEE_ADDRESS 2000 1000000
+celestia state grant-fee $GRANTEE_ADDRESS --amount 2000
 ```
 
-Note that the `--amount uint` flag specifies the spend limit (in utia) for the
-grantee. The default value is 0 which means the grantee does not have a spend
-limit.
-
-To set a limit of 42069 utia, use the following command:
-
-```bash
-celestia state grant-fee $GRANTEE_ADDRESS 2000 1000000 \
-  --amount 42069
-```
-
-Find the [example transaction on Celenium](https://mocha.celenium.io/tx/532c2d63b0732e335def1cb7f805bb798793fda43f88a955c5a9224dc6d0433e).
+Note that the `--amount` flag specifies the spend limit (in utia) for the
+grantee. If not specified, the grantee does not have a spend limit.
 
 ## Using a FeeGrant allowance as a grantee in celestia-node
 
-First, start your node with the grantee account:
+Start your node:
 
 ```bash
 celestia light start --core.ip $RPC_URL --p2p.network=mocha
-  --granter.address=$GRANTER_ADDRESS
 ```
 
 To check the balance of a light node, use the following command:
@@ -120,10 +93,10 @@ Example response when the account balance does not exist:
 
 This indicates that the light node currently does not have any funds.
 
-Now submit a blob:
+Now submit a blob using the FeeGrant:
 
 ```bash
-celestia blob submit 0x42690c204d39600fddd3 0x6665656772616e74
+celestia blob submit 0x42690c204d39600fddd3 'gm' --granter.address $GRANTER_ADDRESS
 ```
 
 You'll see the height and the commitment of your blob:
@@ -138,10 +111,6 @@ You'll see the height and the commitment of your blob:
   }
 }
 ```
-
-After the transactions made making this guide,
-[see that the account balance is still 0 utia](https://mocha.celenium.io/address/celestia1e500l0nlwqj7x5vsqcxqd8rns5khvfw0skgu60).
-
 
 ## Checking account balances after submission
 
@@ -167,18 +136,11 @@ Example output showing fees are not deducted:
 
 ## Optional: Revoke permission for a FeeGrant allowance as a granter
 
-To revoke the feegrant, run your light node as the granter and run:
+To revoke the feegrant, run:
 
 ```bash
-celestia state revoke-grant-fee $GRANTEE_ADDRESS 2000 1000000
+celestia state revoke-grant-fee $GRANTEE_ADDRESS
 ```
-
-There is also a specific error for the case when you run your node as a
-grantee, but the granter revokes their permission. In this case, your transaction will
-fail with the error: `granter has revoked the grant`
-This will mean that you have to restart the node without the `granter.address`
-flag.
-
 
 ### Optional: Submitting a blob from file input
 
