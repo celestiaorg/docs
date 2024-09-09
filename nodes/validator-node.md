@@ -153,7 +153,7 @@ If you are running celestia-app >= v2.0.0: then you'll want to start the node wi
 ::: code-group
 
 ```sh-vue [Mainnet Beta]
-celestia-appd start --v2-upgrade-height <height>
+celestia-appd start --v2-upgrade-height 2371495
 ```
 
 ```sh-vue [Mocha]
