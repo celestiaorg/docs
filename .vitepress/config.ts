@@ -705,6 +705,18 @@ function sidebarHome() {
               link: "/developers/blobstream",
             },
             {
+              text: "Integrate with Blobstream contracts",
+              link: "/developers/blobstream-contracts",
+            },
+            {
+              text: "Integrate with Blobstream client",
+              link: "/developers/blobstream-offchain",
+            },
+            {
+              text: "Querying the Blobstream proofs",
+              link: "/developers/blobstream-proof-queries",
+            },
+            {
               text: "SP1 Blobstream",
               collapsed: true,
               items: [
@@ -739,16 +751,8 @@ function sidebarHome() {
               collapsed: true,
               items: [
                 {
-                  text: "Integrate with Blobstream contracts",
-                  link: "/developers/blobstream-contracts",
-                },
-                {
-                  text: "Integrate with Blobstream client",
-                  link: "/developers/blobstream-offchain",
-                },
-                {
-                  text: "Querying the Blobstream proofs",
-                  link: "/developers/blobstream-proof-queries",
+                  text: "Overview of BlobstreamX",
+                  link: "/developers/blobstreamx",
                 },
                 {
                   text: "Example implementation of Blobstream proofs by CryptoKass",

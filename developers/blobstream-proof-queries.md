@@ -41,7 +41,20 @@ Celestia mainnet beta, and [mocha](../nodes/mocha-testnet.md) for the Mocha test
 In case the reader wants to interact with an on-chain contract that can be used to verify
 that data was posted to Celestia, the bindings of that contract are needed.
 
-For Blobstream, the golang bindings can be found in the [Blobstream X](https://github.com/succinctlabs/blobstreamx/blob/main/bindings/BlobstreamX.go)
+For Blobstream, the golang bindings can be found in the following links:
+
+::: code-group
+
+```text [BlobstreamX]
+https://github.com/succinctlabs/blobstreamx/blob/main/bindings/BlobstreamX.go
+```
+
+```text [SP1 Blobstream]
+TBD
+```
+
+:::
+
 repository. For other languages, the corresponding smart contract bindings should
 be generated. Refer to [abigen](https://geth.ethereum.org/docs/tools/abigen) for
 more information.
@@ -79,10 +92,8 @@ portion of the specs.
 ![Blobstream Commitment Diagram](/img/blobstream/blobstream-commitment-diagram.png)
 
 So to prove inclusion of a share to a Celestia block, we use Blobstream
-as a source of truth. Currently, we will be using the Blobstream X implementation 
-of Blobstream, more information on Blobstream X can be found in
-[the overview](./blobstream.md#blobstream-x). In a nutshell, Blobstream X
-attests to the data posted to Celestia in the Blobstream X contract via
+as a source of truth. In a nutshell, Blobstream
+attests to the data posted to Celestia in the zk-Blobstream contract via
 verifying a zk-proof of the headers of a batch of Celestia blocks. Then, it
 keeps reference of that batch of blocks using the merkleized commitment
 of their `(dataRoot, height)` resulting in a `data root tuple root`.
@@ -102,12 +113,17 @@ Check the above diagram which shows:
 - 3: in order to batch multiple blocks into the same commitment, we create
   a commitment over the `(dataRoot, height)` tuple for a batch of blocks,
   which results in a data root tuple root. It's this commitment that gets
-  stored in the Blobstream X smart contract.
+  stored in the Blobstream smart contract.
 
-So, if we're able to prove that a share is part of a row, then that row is
-committed to by a data root. Then, prove that that data root along with its
+So, if we're able to prove:
+
+- That a share is part of a row, then that row is
+committed to by a data root. 
+- Then, prove that that data root along with its
 height is committed to by the data root tuple root, which gets saved to the
-Blobstream X contract, we can be sure that that share was committed to in
+Blobstream contract.
+
+We can be sure that that share was committed to in
 the corresponding Celestia block.
 
 In this document, we will provide details on how to query the above proofs,
@@ -144,7 +160,7 @@ Also, make sure to update the versions to match the latest
 
 ### 1. Data root inclusion proof
 
-To prove the data root is committed to by the Blobstream X smart
+To prove the data root is committed to by the Blobstream smart
 contract, we will need to provide a Merkle proof of the data root
 tuple to a data root tuple root. This can be created using the
 [`data_root_inclusion_proof`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L492-L511)
@@ -154,7 +170,7 @@ This [endpoint](https://github.com/celestiaorg/celestia-core/blob/793ece9bbd732a
 allows querying a data root to data root tuple root proof. It takes a block
 `height`, a starting block, and an end block, then it generates the binary
 Merkle proof of the `DataRootTuple`, corresponding to that `height`,
-to the `DataRootTupleRoot` which is committed to in the Blobstream X contract.
+to the `DataRootTupleRoot` which is committed to in the Blobstream contract.
 
 #### HTTP query
 
@@ -232,11 +248,13 @@ func main() {
 
 <!-- markdownlint-disable MD013 -->
 
-### Full example of proving that a Celestia block was committed to by Blobstream X contract
+### Full example of proving that a Celestia block was committed to by Blobstream contract
 
 <div style="overflow-y: auto; max-height: 400px;">
 
-```go
+::: code-group
+   
+```bash [BlobstreamX]
 package main
 
 import (
@@ -364,7 +382,7 @@ func verify() error {
 		fmt.Println("data root was not committed to by the BlobstreamX contract")
 		return nil
 	}
-    return nil
+	return nil
 }
 
 func VerifyDataRootInclusion(
@@ -402,6 +420,14 @@ func VerifyDataRootInclusion(
 	return valid, nil
 }
 ```
+
+```bash [SP1 Blobstream]
+// Similar to Blobstream, except replace the BlobstreamX contract with SP1 Blobstream:
+import {
+  "TBD"
+}
+```
+:::
 </div>
 
 <!-- markdownlint-enable MD013 -->
@@ -715,12 +741,12 @@ struct SharesProof {
     NamespaceNode[] rowRoots;
     // The proofs of the rowRoots to the data root.
     BinaryMerkleProof[] rowProofs;
-    // The proof of the data root tuple to the data root tuple root that was posted to the BlobstreamX contract.
+    // The proof of the data root tuple to the data root tuple root that was posted to the Blobstream contract.
     AttestationProof attestationProof;
 }
 
 /// @notice Contains the necessary parameters needed to verify that a data root tuple
-/// was committed to, by the BlobstreamX smart contract, at some specif nonce.
+/// was committed to, by the Blobstream smart contract, at some specif nonce.
 struct AttestationProof {
     // the attestation nonce that commits to the data root tuple.
     uint256 tupleRootNonce;
@@ -1001,11 +1027,11 @@ with `proofs` being `sharesProof.RowProof.Proofs`.
 ### `attestationProof`
 
 This is the proof of the data root to the data root tuple root, which is committed
-to in the Blobstream X contract:
+to in the Blobstream contract:
 
 ```solidity
 /// @notice Contains the necessary parameters needed to verify that a data root tuple
-/// was committed to, by the BlobstreamX smart contract, at some specif nonce.
+/// was committed to, by the Blobstream smart contract, at some specif nonce.
 struct AttestationProof {
     // the attestation nonce that commits to the data root tuple.
     uint256 tupleRootNonce;
@@ -1016,7 +1042,7 @@ struct AttestationProof {
 }
 ```
 
-- `tupleRootNonce`: the nonce at which Blobstream X committed to the batch containing
+- `tupleRootNonce`: the nonce at which Blobstream committed to the batch containing
   the block containing the data.
 - `tuple`: the `DataRootTuple` of the block:
 
@@ -1081,7 +1107,7 @@ func toAttestationProof(
 ```
 </div>
 
-With the `nonce` being the attestation nonce, which can be retrieved using `BlobstreamX`
+With the `nonce` being the attestation nonce, which can be retrieved using `Blobstream`
 contract events. Check below for an example. And `height` being the Celestia
 Block height that contains the rollup data, along with the `blockDataRoot` being
 the data root of the block height. Finally, `dataRootInclusionProof` is the
@@ -1094,9 +1120,9 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
   (`15` in this example endpoint), and taking the `data_hash`
   field from the response.
 - `tupleRootNonce`: can be retried via querying the
-  `BlobstreamXDataCommitmentStored` events from the BlobstreamX
+  data commitment stored events from the Blobstream
   contract and looking for the nonce attesting to the
-  corresponding data. An example:
+  corresponding data.
 
 ### Querying the proof's `tupleRootNonce`
 
@@ -1104,7 +1130,8 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 
 <div style="overflow-y: auto; max-height: 400px;">
 
-```go
+::: code-group
+```go [BlobstreamX]
 	// get the nonce corresponding to the block height that contains the PayForBlob transaction
 	// since BlobstreamX emits events when new batches are submitted, we will query the events
 	// and look for the range committing to the blob
@@ -1164,16 +1191,27 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 		return fmt.Errorf("couldn't find range containing the block height")
 	}
 ```
+
+```go [SP1 Blobstream]
+// Similar to BlobstreamX, but instead of importing the BlobstreamX contract,
+// import the SP1 Blobstream contract:
+import {
+	"TBD"
+} 
+// and use the `BlobstreamDataCommitmentStored` event instead.
+```
+:::
 </div>
 
 ### Listening for new data commitments
 
-For listening for new `BlobstreamXDataCommitmentStored` events, sequencers can
+For listening for new data commitment stored events, sequencers can
 use the `WatchDataCommitmentStored` as follows:
 
 <div style="overflow-y: auto; max-height: 400px;">
 
-```go
+::: code-groupe
+```go [BlobstreamX]
     ethClient, err := ethclient.Dial("evm_rpc")
     if err != nil {
 	    return err
@@ -1211,6 +1249,15 @@ use the `WatchDataCommitmentStored` as follows:
 	    }
     }
 ```
+```go [SP1 Blobstream]
+// Similar to BlobstreamX, but instead of importing the BlobstreamX contract,
+// import the SP1 Blobstream contract:
+import {
+	"TBD"
+} 
+// and use the `BlobstreamDataCommitmentStored` event instead.
+```
+:::
 </div>
 
 <!-- markdownlint-enable MD013 -->
@@ -1253,8 +1300,9 @@ contract SimpleRollup {
 Then, you can submit the fraud proof using golang as follows:
 
 <div style="overflow-y: auto; max-height: 400px;">
+:::code-group
 
-```go
+```go [BlobstreamX]
 package main
 
 import (
@@ -1489,12 +1537,22 @@ func namespace(namespaceID []byte) *client.Namespace {
 	}
 }
 ```
+
+```go [SP1 Blobstream]
+// Similar to BlobstreamX, but instead of importing the BlobstreamX contract,
+// import the SP1 Blobstream contract:
+import {
+	"TBD"
+} 
+// and use the `BlobstreamDataCommitmentStored` event instead.
+```
+:::
 </div>
 
 For the step (2), check the [rollup inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md)
 for more information.
 
-For an example project that uses the above proof queries, checkout the 
+For an example BlobstreamX project that uses the above proof queries, checkout the 
 [blobstreamx-example](https://github.com/CryptoKass/blobstreamx-example)
 sample project.
 

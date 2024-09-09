@@ -71,15 +71,7 @@ compared to the potential centralized nature of DACs.
 [SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream) is the latest implementation of Blobstream
 in Rust using the [SP1](https://github.com/succinctlabs/sp1) zkVM.
 
-If you're looking to deploy SP1 blobstream to a new chain,
-see [new Sp1 Blobstream deployments](./sp1-blobstream-deploy.md).
-
-Learn more at the [sp1-blobstream](https://github.com/succinctlabs/sp1-blobstream)
-repo.
-
-## What is Blobstream X?
-
-Blobstream X is an implementation of Blobstream with a
+[SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream) is the latest implementation of Blobstream with a
 ZK light client that bridges Celestia’s modular DA layer to
 Ethereum to allow high-throughput rollups to use Celestia’s DA while settling
 on Ethereum.
@@ -92,81 +84,51 @@ the Celestia network.
 
 Bridging Celestia’s data root to Ethereum requires running a Celestia
 _light client_ as a smart contract on Ethereum, to make the latest state
-of the Celestia chain known on Ethereum and available to rollups. Blobstream
-X utilizes the latest advances in ZK proofs to generate a
+of the Celestia chain known on Ethereum and available to rollups. SP1 Blobstream
+uses the latest advances in ZK proofs to generate a
 _succinct proof_ that enough Celestia validators have come to consensus
 (according to the CometBFT consensus protocol) on a block header, and
-verifies this proof in the Blobstream X Ethereum smart contract to update
+verifies this proof in the SP1 Blobstream Ethereum smart contract to update
 it with the latest Celestia header.
 
-The Blobstream X ZK proof not only verifies the consensus of
+The SP1 Blobstream ZK proof not only verifies the consensus of
 Celestia validators, but it also merkelizes and hashes all the data roots
 in the block range from the previous update to the current update, making
 accessible all Celestia data roots (verifiable with a Merkle inclusion proof
 against the stored Merkle root) to rollups.
 
-Blobstream X is built and deployed with
-[Succinct's protocol](https://platform-docs.succinct.xyz).
+If you're looking to deploy SP1 blobstream to a new chain,
+see [new Sp1 Blobstream deployments](./sp1-blobstream-deploy.md).
 
-![blobstream x draft diagram](/img/blobstream/Celestia_Blobstream_X1b.png)
+Learn more at the [sp1-blobstream](https://github.com/succinctlabs/sp1-blobstream)
+repo.
 
-## Integrate with Blobstream X
+:::tip NOTE
+The current Blobstream deployments all use SP1 Blobstream.
+:::
 
-The following docs go over how developers can integrate Blobstream X.
+## Integrate with SP1 Blobstream
 
-You can [find the repository for Blobstream X](https://github.com/succinctlabs/blobstreamx)
+The following docs go over how developers can integrate SP1 Blobstream.
+
+You can [find the repository for SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream)
 along with code for:
 
-- [The Blobstream X smart contract - `BlobstreamX.sol`](https://github.com/succinctlabs/blobstreamx/blob/main/contracts/src/BlobstreamX.sol)
-- [The Blobstream X circuits](https://alpha.succinct.xyz/celestia/blobstreamx)
-- [The Blobstream X contract Golang bindings](https://github.com/succinctlabs/blobstreamx/blob/main/bindings/BlobstreamX.go)
+- [The SP1 Blobstream smart contract - `SP1Blobstream.sol`](https://github.com/succinctlabs/sp1-blobstream/blob/main/contracts/src/SP1Blobstream.sol)
+- [The SP1 program](https://github.com/succinctlabs/sp1-blobstream/tree/main/program)
+- [The SP1 Blobstream contract Golang bindings](//TODO)
 
-The first deployments of Blobstream X will be maintained on the
+The first deployments of SP1 Blobstream will be maintained on the
 following chains: Arbitrum One, Base and Ethereum Mainnet. Every 1
-hour, the prover/relayer will post an update to the Blobstream X contract
+hour, the prover/relayer will post an update to the Blobstream contract
 that will include a new data commitment range that covers a 1-hour
-block range from the `latestBlock` in the Blobstream X contract.
-On Ethereum Mainnet, the Blobstream X contract will be updated
+block range from the `latestBlock` in the contract.
+On Ethereum Mainnet, the contract will be updated
 every 4 hours.
 
-:::tip NOTE
-Custom ranges can be requested using the `BlobstreamX` contract
-to create proofs for specific Celestia block batches. These ranges
-can be constructed as `[latestBlock, customTargetBlock)`, with
-`latestBlock` as the latest block height that was committed to by the
-`BlobstreamX` contract, and `latestBlock > customTargetBlock`,
-and `customTargetBlock - latestBlock <= DATA_COMMITMENT_MAX`.
+### How to integrate with Blobstream
 
-Block ranges that are before the contract's `latestBlock` can't be
-proven a second time in different batches.
-
-More information can be found in the [`requestHeaderRange(...)`](https://github.com/succinctlabs/blobstreamx/blob/364d3dc8c8dc9fd44b6f9f049cfb18479e56cec4/contracts/src/BlobstreamX.sol#L78-L101)
-method.
-:::
-
-### How Blobstream X works
-
-As shown in the diagram below, the entrypoint for updates to the Blobstream
-X contract is through the `SuccinctGateway` smart contract, which is a
-simple entrypoint contract that verifies proofs (against a deployed
-onchain verifier for the Blobstream X circuit) and then calls the
-`BlobstreamX.sol` contract to update it.
-[Find more information about the `SuccinctGateway`](https://platform-docs.succinct.xyz/platform/onchain-integration#succinct-gateway).
-
-![blobstream x overview diagram draft](/img/blobstream/Celestia_Blobstream_X2b.png)
-
-<!-- markdownlint-disable MD042 -->
-
-:::tip NOTE
-If the Blobstream X contract is not deployed on a desired chain,
-it needs to be deployed before it can be used by your rollup. See the
-[deployment documentation](https://platform-docs.succinct.xyz/platform/onchain-integration#non-canonical-chain-contract-deployment)
-for more details.
-:::
-
-### How to integrate with Blobstream X
-
-Integrating your L2 with Blobstream X requires two components: your
+Integrating your L2 with Blobstream requires two components: your
 [onchain smart contract logic](./blobstream-contracts.md),
 and your [offchain client logic for your rollup](./blobstream-offchain.md).
 The next three sections cover these
@@ -183,31 +145,17 @@ More on the different ways to build a blobstream rollup can be found in the
 
 ### Deployed contracts
 
-You can interact with the Blobstream X contracts today. The
-Blobstream X Solidity smart contracts are currently deployed on
+You can interact with the SP1 Blobstream contracts today. The
+SP1 Blobstream Solidity smart contracts are currently deployed on
 the following chains:
-
-::: warning
-Blobstream X is in beta and slashing is not enabled yet.
-:::
 
 <!-- markdownlint-disable MD013 -->
 
-| Contract     | EVM network      | Contract address                                                                                                                | Attested data on Celestia | Link to Celenium |
-| ------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------- |
-| Blobstream X  | Ethereum Mainnet          | [`0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe`](https://etherscan.io/address/0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe#events) | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=ethereum&page=1) |
-| Blobstream X | Arbitrum One | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://arbiscan.io/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=arbitrum&page=1) |
-| Blobstream X | Base           | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://basescan.org/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=base&page=1) |
-| Blobstream X  | Sepolia          | [`0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e`](https://sepolia.etherscan.io/address/0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e#events) | [Mocha testnet](../nodes/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=ethereum&page=1) |
-| Blobstream X | Arbitrum Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.arbiscan.io/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](../nodes/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=arbitrum&page=1) |
-| Blobstream X | Base Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.basescan.org/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](../nodes/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=base&page=1) |
-
-## Deploy Blobstream X
-
-If your target chain is [still not supported](#deployed-contracts), it is possible to deploy and maintain a Blobstream x instance and have the same security guarantees.
-
-First, you will need to create a multisig that governs the Blobstream X contract and also the function identifiers. The function identifiers can be registered in the [Succinct gateway](https://platform-docs.succinct.xyz/platform/onchain-integration#register-circuits-with-your-deployed-succinct-gateway).
-
-Then, check the [deployment](https://github.com/succinctlabs/blobstreamx/blob/main/README.md#blobstreamx-contract-overview) documentation for how to deploy the contract.
-
-Then, you will need to run a relayer, which will generate the proofs and relay them to your deployed Blobstream X contract. Check the [local proving documentation](./blobstream-x-requesting-data-commitment-ranges.md#local-proving) for more information.
+| Contract       | EVM network      | Contract address                                                                                                                | Attested data on Celestia | Link to Celenium |
+|----------------| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------- |
+| SP1 Blobstream | Ethereum Mainnet          | [`0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe`](https://etherscan.io/address/0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe#events) | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=ethereum&page=1) |
+| SP1 Blobstream | Arbitrum One | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://arbiscan.io/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=arbitrum&page=1) |
+| SP1 Blobstream | Base           | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://basescan.org/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](../nodes/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=base&page=1) |
+| SP1 Blobstream | Sepolia          | [`0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e`](https://sepolia.etherscan.io/address/0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e#events) | [Mocha testnet](../nodes/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=ethereum&page=1) |
+| SP1 Blobstream | Arbitrum Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.arbiscan.io/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](../nodes/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=arbitrum&page=1) |
+| SP1 Blobstream | Base Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.basescan.org/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](../nodes/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=base&page=1) |
