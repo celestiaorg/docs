@@ -1259,6 +1259,7 @@ import {
 } 
 // and use the `BlobstreamDataCommitmentStored` event instead.
 ```
+
 :::
 </div>
 
