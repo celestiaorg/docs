@@ -1210,7 +1210,7 @@ use the `WatchDataCommitmentStored` as follows:
 
 <div style="overflow-y: auto; max-height: 400px;">
 
-::: code-groupe
+::: code-group
 
 ```go [BlobstreamX]
     ethClient, err := ethclient.Dial("evm_rpc")
@@ -1303,7 +1303,7 @@ Then, you can submit the fraud proof using golang as follows:
 
 <div style="overflow-y: auto; max-height: 400px;">
 
-:::code-group
+::: code-group
 
 ```go [BlobstreamX]
 package main
