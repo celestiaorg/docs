@@ -1211,6 +1211,7 @@ use the `WatchDataCommitmentStored` as follows:
 <div style="overflow-y: auto; max-height: 400px;">
 
 ::: code-groupe
+
 ```go [BlobstreamX]
     ethClient, err := ethclient.Dial("evm_rpc")
     if err != nil {
@@ -1249,6 +1250,7 @@ use the `WatchDataCommitmentStored` as follows:
 	    }
     }
 ```
+
 ```go [SP1 Blobstream]
 // Similar to BlobstreamX, but instead of importing the BlobstreamX contract,
 // import the SP1 Blobstream contract:
@@ -1300,6 +1302,7 @@ contract SimpleRollup {
 Then, you can submit the fraud proof using golang as follows:
 
 <div style="overflow-y: auto; max-height: 400px;">
+
 :::code-group
 
 ```go [BlobstreamX]
@@ -1546,7 +1549,9 @@ import {
 } 
 // and use the `BlobstreamDataCommitmentStored` event instead.
 ```
+
 :::
+
 </div>
 
 For the step (2), check the [rollup inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md)
