@@ -22,7 +22,7 @@ $ du -h ~/.celestia-bridge/
 :::
 
 ## Requirements:
-1. Bare Metal server with decent amount of RAM (64GB+)
+1. A bare metal server with a substantial amount of RAM (64GB or more) and a modern CPU (latest generation EPYC or Xeon with a clock speed of 2.1GHz or higher is recommended)
 2. At least one empty disk (with no filesystem)
 
 ## Guide:
