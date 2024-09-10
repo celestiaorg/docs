@@ -254,7 +254,7 @@ func main() {
 
 ::: code-group
    
-```bash [BlobstreamX]
+```go [BlobstreamX]
 package main
 
 import (
@@ -421,7 +421,7 @@ func VerifyDataRootInclusion(
 }
 ```
 
-```bash [SP1 Blobstream]
+```go [SP1 Blobstream]
 // Similar to Blobstream, except replace the BlobstreamX contract with SP1 Blobstream:
 import {
   sp1blobstreamwrapper "github.com/succinctlabs/sp1-blobstream/bindings"
