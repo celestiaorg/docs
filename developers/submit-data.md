@@ -174,7 +174,7 @@ willingness to accept changes to fix this issue.
 
 ## API
 
-Users can currently create and submit `BlobTx`s in four ways.
+Users can currently create and submit `BlobTx`s in six ways.
 
 ### The celestia-app consensus node CLI
 
@@ -360,5 +360,21 @@ Using the JSON RPC API, submit data using the following methods:
 - [state.SubmitPayForBlob](https://node-rpc-docs.celestia.org/#state.SubmitPayForBlob)
 
 Learn more in the [celestia-node API docs](https://node-rpc-docs.celestia.org/).
+
+### Post a blob directly from Celenium
+
+Celenium provides a user-friendly interface to view and interact with data on Celestia,
+and allows for submitting blobs directly from the explorer interface.
+
+To submit a blob from Celenium, follow these steps:
+
+1. Navigate to the [Celenium explorer](https://celenium.io) and connect your wallet.
+2. Click on the terminal button in the top right corner of the screen and select the "Submit data blob" option.
+3. Next, ensure the file you are submitting is in a supported format and upload it.
+4. In the "Namespace" field, input the namespace you want to use for the blob in hex format.
+5. Finally, click on the "Continue" button to submit your blob, then approve the transaction in your wallet.
+
+Once the blob is submitted, you will see the its hash on the screen.
+You can also use Celenium’s search bar to search for the blob's hash and view its details.
 
 <!-- markdownlint-disable MD013 -->
