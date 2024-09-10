@@ -10,7 +10,7 @@ Rollups can use Blobstream for DA by posting their data to Celestia and then
 proving that it was posted on Ethereum. This is done identically to how any
 rollup or user would post data to Celestia. Then, a zero-knowledge proof that
 Celestia validators have come to consensus on Celestia block headers is
-generated, and subsequently relayed to Ethereum to the Blobstream X smart
+generated, and subsequently relayed to Ethereum to the Blobstream smart
 contract.
 
 This demo rollup will outline (the outline is not an
