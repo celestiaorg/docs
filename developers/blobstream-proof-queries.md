@@ -50,7 +50,7 @@ https://github.com/succinctlabs/blobstreamx/blob/main/bindings/BlobstreamX.go
 ```
 
 ```text [SP1 Blobstream]
-TBD
+https://github.com/succinctlabs/sp1-blobstream/blob/main/bindings/SP1Blobstream.go
 ```
 
 :::
@@ -424,7 +424,7 @@ func VerifyDataRootInclusion(
 ```bash [SP1 Blobstream]
 // Similar to Blobstream, except replace the BlobstreamX contract with SP1 Blobstream:
 import {
-  "TBD"
+  sp1blobstreamwrapper "github.com/succinctlabs/sp1-blobstream/bindings"
 }
 ```
 :::
@@ -1196,7 +1196,7 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 // Similar to BlobstreamX, but instead of importing the BlobstreamX contract,
 // import the SP1 Blobstream contract:
 import {
-	"TBD"
+    sp1blobstreamwrapper "github.com/succinctlabs/sp1-blobstream/bindings"
 } 
 // and use the `BlobstreamDataCommitmentStored` event instead.
 ```
@@ -1255,7 +1255,7 @@ use the `WatchDataCommitmentStored` as follows:
 // Similar to BlobstreamX, but instead of importing the BlobstreamX contract,
 // import the SP1 Blobstream contract:
 import {
-	"TBD"
+    sp1blobstreamwrapper "github.com/succinctlabs/sp1-blobstream/bindings"
 } 
 // and use the `BlobstreamDataCommitmentStored` event instead.
 ```
@@ -1546,7 +1546,7 @@ func namespace(namespaceID []byte) *client.Namespace {
 // Similar to BlobstreamX, but instead of importing the BlobstreamX contract,
 // import the SP1 Blobstream contract:
 import {
-	"TBD"
+    sp1blobstreamwrapper "github.com/succinctlabs/sp1-blobstream/bindings"
 } 
 // and use the `BlobstreamDataCommitmentStored` event instead.
 ```

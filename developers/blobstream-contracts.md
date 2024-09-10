@@ -46,7 +46,6 @@ Example minimal Solidity contract for a stub ZK rollup that leverages the
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.19;
 
-TBD
 import "blobstream-contracts/IDAOracle.sol";
 import "blobstream-contracts/DataRootTuple.sol";
 import "blobstream-contracts/lib/tree/binary/BinaryMerkleProof.sol";
