@@ -1,6 +1,9 @@
 ---
 sidebar_label: Integrate with Blobstream contracts
 description: Learn how to integrate your L2's onchain logic with Blobstream
+prev:
+    text: "New SP1 Blobstream deployments"
+    link: "/developers/sp1-blobstream-deploy"
 ---
 
 # Integrate with Blobstream contracts
@@ -13,15 +16,14 @@ Make sure to have the following installed:
 
 - [Foundry](https://github.com/foundry-rs/foundry)
 
-### Installing Blobstream X contracts
+### Installing Blobstream contracts
 
-We will be using the Blobstream X implementation of
-Blobstream, so we can install its repo as a dependency:
-
-Install the Blobstream X contracts repo as a dependency:
+We will be using the [`IDAOracle`](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/IDAOracle.sol)
+interface to verify inclusion. 
+So, we will install the Blobstream contracts repo as a dependency:
 
 ```sh
-forge install succinctlabs/blobstreamx --no-commit
+forge install celestiaorg/blobstream-contracts --no-commit
 ```
 
 Make sure that the directory you're running this command
@@ -44,30 +46,29 @@ Example minimal Solidity contract for a stub ZK rollup that leverages the
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.19;
 
-TBD
 import "blobstream-contracts/IDAOracle.sol";
 import "blobstream-contracts/DataRootTuple.sol";
 import "blobstream-contracts/lib/tree/binary/BinaryMerkleProof.sol";
 
 contract MyRollup {
-    IDAOracle immutable blobstreamX;
+    IDAOracle immutable blobstream;
     bytes32[] public rollup_block_hashes;
 
-    constructor(IDAOracle _blobstreamX) {
-        blobstreamX = _blobstreamX;
+    constructor(IDAOracle _blobstream) {
+        blobstream = _blobstream;
     }
 
     function submitRollupBlock(
         bytes32 _rollup_block_hash,
         bytes calldata _zk_proof,
-        uint256 _blobstreamX_nonce,
+        uint256 _blobstream_nonce,
         DataRootTuple calldata _tuple,
         BinaryMerkleProof calldata _proof
     ) public {
         // Verify that the data root tuple (analog. block header) has been
         // attested to by the Blobstream contract.
         require(
-            blobstreamX.verifyAttestation(_blobstreamX_nonce, _tuple, _proof)
+            blobstream.verifyAttestation(_blobstream_nonce, _tuple, _proof)
         );
 
         // Verify the ZKP (zero-knowledge proof).
