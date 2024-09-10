@@ -55,7 +55,7 @@ https://github.com/succinctlabs/sp1-blobstream/blob/main/bindings/SP1Blobstream.
 
 :::
 
-repository. For other languages, the corresponding smart contract bindings should
+For other languages, the corresponding smart contract bindings should
 be generated. Refer to [abigen](https://geth.ethereum.org/docs/tools/abigen) for
 more information.
 
