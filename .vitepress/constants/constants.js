@@ -1,5 +1,5 @@
 const constants = Object.freeze({
-  golangNodeMainnet: "1.22.0",
+  golangNodeMainnet: "1.23.0",
   golangNodeMocha: "1.23.0",
   golangNodeArabica: "1.23.0",
   golangApp: "1.22.6",
