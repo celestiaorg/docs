@@ -32,6 +32,18 @@ a light node:
 - Disk: **100 GB SSD Storage**
 - Bandwidth: **56 Kbps for Download/56 Kbps for Upload**
 
+## Quickstart: Run a light node in your browser
+
+The easiest way to run a Celestia light node is with [Lumina.rs](https://lumina.rs)
+in your browser.
+
+<img width="1000" alt="Lumina.rs in browser" src="https://github.com/user-attachments/assets/5c6ae717-503e-4b83-844f-8716f33ec76c">
+
+You can also run Lumina on the first decentralized block explorer,
+[Celenium](https://celenium.io).
+
+<img width="1000" alt="Celenium running a light node with Lumina.rs" src="https://github.com/user-attachments/assets/28183a24-8bb1-4f77-850c-d0528de075c7">
+
 ## Setting up your light node
 
 This tutorial was performed on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
