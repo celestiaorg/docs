@@ -338,6 +338,10 @@ function sidebarHome() {
                   text: "Celestia glossary",
                   link: "https://celestia.org/glossary/",
                 },
+                {
+                  text: "Awesome Celestia resources",
+                  link: "https://github.com/celestiaorg/awesome-celestia/",
+                },
               ],
             },
           ],
