@@ -1,7 +1,7 @@
 ---
 next:
-    text: "Integrate with Blobstream X contracts"
-    link: "/developers/blobstream-contracts"
+    text: "Overview of Blobstream X"
+    link: "/developers/blobstreamx"
 ---
 
 # New SP1 Blobstream deployments

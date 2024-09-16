@@ -1,8 +1,5 @@
 ---
 description: Start your own rollup with op-plasma-celestia and roll-op.
-next:
-  text: "Ethereum fallback mechanism"
-  link: "/developers/ethereum-fallback"
 ---
 
 # Run an OP Stack rollup with Celestia underneath

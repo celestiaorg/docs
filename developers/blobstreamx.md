@@ -1,8 +1,14 @@
 ---
 description: What is BlobstreamX
+prev:
+    text: "New SP1 Blobstream deployments"
+    link: "/developers/sp1-blobstream-deploy"
+next:
+    text: "Requesting data commitment ranges"
+    link: "/developers/blobstream-x-requesting-data-commitment-ranges"
 ---
 
-# BlobstreamX: the previous zk implementation of Blobstream
+# Blobstream X: the previous zk implementation of Blobstream
 
 ![blobstream x draft diagram](/img/blobstream/Celestia_Blobstream_X1b.png)
 
