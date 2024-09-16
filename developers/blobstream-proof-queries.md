@@ -32,8 +32,8 @@ used for the queries. It can be initialized using:
 	}(trpc)
 ```
 
-The `<rpc_endpoint>` can be retrieved from [mainnet](../nodes/mainnet.md) for 
-Celestia mainnet beta, and [mocha](../nodes/mocha-testnet.md) for the Mocha testnet.
+The `<rpc_endpoint>` can be retrieved from [Mainnet Beta](../nodes/mainnet.md#integrations) for
+and [Mocha](../nodes/mocha-testnet.md) for the Mocha testnet.
 
 In case the reader wants to interact with an on-chain contract that can be used to verify
 that data was posted to Celestia, the bindings of that contract are needed.

@@ -87,7 +87,7 @@ manually specify the `--node.store` flag for each RPC request.
 **Assumptions:**
 
 - The presence of a lock signifies a running node.
-- Networks are ordered as Mainnet, Mocha, Arabica, private, custom.
+- Networks are ordered as Mainnet Beta, Mocha, Arabica, private, custom.
 - Node types are ordered as bridge, full, and light.
 - Each network has only one running node type.
 - Multiple nodes of the same network and type are prohibited
@@ -156,7 +156,7 @@ making the request:
 
 The request will go to the Mainnet Beta node, and a 401 will show in
 this node's logs. Note that a 401 is expected because this blob was
-posted to Mocha and neither the namespace nor the blob exist on Mainnet.
+posted to Mocha and neither the namespace nor the blob exist on Mainnet Beta.
 
 #### Mocha full and Arabica light
 

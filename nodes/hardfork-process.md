@@ -31,7 +31,7 @@ The general process can be broken down into several components:
   their binary to be network upgrade ready, the network upgrade does not happen right
   away, but some short time in the future at a specific block number.
 - Testing of the features, which happens on testnets first prior to activating on
-  mainnet in order to ensure the network can upgrade securely.
+  Mainnet Beta in order to ensure the network can upgrade securely.
 
 The two testnets where network upgrades are deployed are:
 

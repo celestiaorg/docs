@@ -16,7 +16,7 @@ Celestia ecosystem come to life in a real-world environment.
 
 Mainnet Beta is the culmination of rigorous community testing,
 upgrades, and feedback. It serves as the platform for deploying
-mainnet rollups and applications.
+Mainnet Beta rollups and applications.
 
 ## Network stability and upgrades
 

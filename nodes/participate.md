@@ -14,7 +14,7 @@ import constants from '../.vitepress/constants/constants.js'
 ## Mainnet Beta
 
 Celestia’s [Mainnet Beta](./mainnet.md) is the production network
-for deploying mainnet rollups and applications. This marks the
+for deploying Mainnet Beta rollups and applications. This marks the
 culmination of years of development and community testing. While
 the network is stable and continues to receive updates, it remains
 experimental and users may experience occasional instability or

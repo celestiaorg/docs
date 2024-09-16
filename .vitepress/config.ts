@@ -174,7 +174,7 @@ export default {
       { icon: "github", link: "https://github.com/celestiaorg/docs" },
       { icon: "twitter", link: "https://twitter.com/CelestiaOrg" },
       { icon: "youtube", link: "https://www.youtube.com/@CelestiaNetwork" },
-      { icon: "discord", link: "https://discord.com/invite/YsnTPcSfWQ" },
+      { icon: "discord", link: "https://discord.gg/celestiacommunity" },
       { icon: { svg: telegramSVG }, link: "https://t.me/CelestiaCommunity" },
     ],
 
@@ -258,7 +258,7 @@ function nav() {
         { text: "Networks", link: "/nodes/participate" },
         { text: "Nodes", link: "/nodes/overview" },
         { text: "Developers", link: "/developers/build-whatever" },
-        { text: "Community", link: "/community/overview" },
+        { text: "Discord", link: "https://discord.gg/celestiacommunity" },
         {
           text: "Quick start",
           items: [
@@ -813,12 +813,11 @@ function sidebarHome() {
       text: "Community",
       collapsed: true,
       items: [
-        { text: "Overview", link: "/community/overview" },
+        { text: "Discord", link: "https://discord.gg/celestiacommunity"},
         { text: "Code of Conduct", link: "/community/coc" },
-        { text: "Community calendar", link: "/community/calendar" },
-	{ text: "Celestia Foundation Delegation Program", 
-	  link: "/community/foundation-delegation-program"
-	},
+        { text: "Celestia Foundation Delegation Program", 
+          link: "/community/foundation-delegation-program"
+        },
         {
           text: "Modular Meetups",
           collapsed: true,
@@ -828,10 +827,6 @@ function sidebarHome() {
             { text: "Toolkit", link: "/community/modular-meetup-toolkit" },
             { text: "Speaker list", link: "/community/speaker-list" },
           ],
-        },
-        {
-          text: "Incentivized testnet supplemental terms",
-          link: "/community/itn-tos",
         },
       ],
     },
