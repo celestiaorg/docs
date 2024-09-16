@@ -475,7 +475,7 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-metrics",
                 },
                 {
-                  text: "Jailing and Slashing mechanics",
+                  text: "Jailing and slashing mechanics",
                   link: "/nodes/celestia-app-slashing",
                 },
                 {
@@ -548,14 +548,6 @@ function sidebarHome() {
                       link: "https://docs.arbitrum.io/launch-orbit-chain/how-tos/customize-deployment-configuration",
                     },
                     {
-                      text: "Deploy a smart contract on Arbitrum rollup",
-                      link: "/developers/arbitrum-smart-contract",
-                    },
-                    {
-                      text: "Deploy a dapp on your Arbitrum rollup devnet",
-                      link: "/developers/arbitrum-dapp-deploy",
-                    },
-                    {
                       text: "Audit",
                       link: "https://github.com/celestiaorg/nitro/blob/celestia-v2.3.3/audits/celestia/arbitrum_nitro_celestia_audit_report.pdf",
                     }
@@ -567,8 +559,8 @@ function sidebarHome() {
                   items: [
                     { text: "Documentation", link: "https://docs.astria.org" },
                     {
-                      text: "Deploy to Dusknet",
-                      link: "https://docs.astria.org/docs/local-rollup/introduction/",
+                      text: "Just deploy",
+                      link: "https://docs.astria.org/developer/tutorials/install-the-cli",
                     },
                   ],
                 },
@@ -581,32 +573,26 @@ function sidebarHome() {
                       link: "/developers/intro-to-op-stack",
                     },
                     {
-                      text: "Bubs testnet",
-                      link: "/developers/bubs-testnet",
-                    },
-                    {
-                      text: "Raspberry testnet",
-                      link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
-                    },
-                    {
-                      text: "Deploy a smart contract on Bubs testnet",
-                      link: "/developers/deploy-on-bubs",
-                    },
-                    {
-                      text: "Deploy a dapp on Bubs testnet",
-                      link: "/developers/gm-portal-bubs",
-                    },
-                    {
                       text: "Run an OP Stack devnet posting Celestia",
                       link: "/developers/optimism",
                     },
                     {
-                      text: "Audit",
-                      link: "https://docs.celestia.org/audits/Celestia_OP_Stack_Audit.pdf",
+                      text: "OP Stack testnets",
+                      collapsed: true,
+                      items: [
+                        {
+                          text: "Bubs testnet",
+                          link: "/developers/bubs-testnet",
+                        },
+                        {
+                          text: "Raspberry testnet",
+                          link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
+                        },
+                      ]
                     },
                     {
-                      text: "Deploy a dapp with thirdweb",
-                      link: "https://thirdweb.com/bubs-testnet",
+                      text: "Audit",
+                      link: "https://docs.celestia.org/audits/Celestia_OP_Stack_Audit.pdf",
                     },
                     {
                       text: "Rollups as a Service",

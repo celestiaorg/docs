@@ -1,8 +1,8 @@
 ---
 description: The first testnet built with OP Stack and Celestia.
 next:
-  text: "Deploy a smart contract on Bubs testnet"
-  link: "/developers/deploy-on-bubs"
+  text: "Ethereum fallback mechanism"
+  link: "/developers/ethereum-fallback"
 ---
 
 # Bubs testnet
