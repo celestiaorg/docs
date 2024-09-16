@@ -505,7 +505,7 @@ function sidebarHome() {
               ],
             },
             { text: "SystemD", link: "/nodes/systemd" },
-            { text: "Hardfork process", link: "/nodes/hardfork-process" },
+            { text: "Network upgrade process", link: "/nodes/network-upgrade-process" },
           ],
         },
       ],

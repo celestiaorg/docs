@@ -24,7 +24,7 @@ it is a useful way to keep testing the latest changes in the software.
 
 Developers can still deploy on Mocha testnet their sovereign rollups if they
 chose to do so, it just will always lag behind Arabica devnet until Mocha
-undergoes Hardfork Upgrades in coordination with Validators.
+undergoes network upgrades upgrades in coordination with validators.
 
 ## Network details
 
@@ -182,5 +182,5 @@ There are multiple explorers you can use for Arabica:
 Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 for network upgrades.
 
-See the [Hardfork process page](./hardfork-process.md) to learn more
-about specific upgrades like the [Lemongrass hardfork](./hardfork-process.md#lemongrass-hardfork).
+See the [network upgrade process page](./network-upgrade-process.md) to learn more
+about specific upgrades like the [Lemongrass network upgrade](./network-upgrade-process.md#lemongrass-network-upgrade).
