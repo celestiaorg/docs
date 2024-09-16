@@ -1559,6 +1559,8 @@ For an example BlobstreamX project that uses the above proof queries, checkout t
 [blobstreamx-example](https://github.com/CryptoKass/blobstreamx-example)
 sample project.
 
+Learn more on the [Lightlink docs](https://docs.lightlink.io/lightlink-protocol/achitecture-and-design/lightlink-protocol-deep-dive#id-5.-hummingbird).
+
 ## Conclusion
 
 After creating all the proofs, and verifying them:
