@@ -339,5 +339,5 @@ There are a few ways to stay informed about network upgrades on Mainnet Beta:
 - Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 - Discord [Mainnet Beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
 
-See the [Hardfork process page](./hardfork-process.md) to learn more
-about specific upgrades like the [Lemongrass hardfork](./hardfork-process.md#lemongrass-hardfork).
+See the [network upgrade process page](./network-upgrade-process.md) to learn more
+about specific upgrades like the [Lemongrass network upgrade](./network-upgrade-process.md#lemongrass-network-upgrade).
