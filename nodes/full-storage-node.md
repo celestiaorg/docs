@@ -80,9 +80,10 @@ for information on which ports are required to be open on your machine.
 celestia full start --core.ip <URI>
 ```
 
-Using an RPC of your own, or one from the
-[list on the Mocha testnet page](./mocha-testnet.md#community-rpc-endpoints) or
-[list on the Arabica devnet page](./arabica-devnet.md#community-rpc-endpoints),
+Using an RPC of your own, or one from
+[Mainnet Beta](./mainnet.md#integrations),
+[Mocha testnet](./mocha-testnet.md#integrations) or
+[Arabica devnet](./arabica-devnet.md#integrations),
 start your node.
 
 Connecting to a core endpoint with `--core.ip string`

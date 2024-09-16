@@ -20,7 +20,7 @@ This documentation site is built with [VitePress](https://vitepress.dev)
 We love contributions from the community! Whether you're fixing typos,
 improving content clarity, or adding new topics, every contribution helps.
 
-- Fork & Clone: Fork this repository and clone it to your local machine.
+- Fork & clone: Fork this repository and clone it to your local machine.
 - Branch: Always create a new branch for your changes. Naming it relevantly.
 - Commit Changes: Make your changes and commit them with a clear and concise
   commit message.
