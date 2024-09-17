@@ -38,9 +38,9 @@ The two testnets where network upgrades are deployed are:
 - [Arabica devnet](./arabica-devnet.md)
 - [Mocha testnet](./mocha-testnet.md)
 
-### Lemongrass network upgrades
+### Lemongrass network upgrade
 
-The Lemongrass network upgrades is the first consensus layer breaking change since Celestia's Mainnet Beta genesis block. The Lemongrass network upgrades includes all of the CIPs listed in [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-17.md). The Lemongrass network upgrades will be executed on Arabica, then Mocha, then Mainnet Beta. The network upgrades will take place at an "upgrade height" that will be coordinated offline on a per-network basis. The upgrade heights will be announced in advance (see [network upgrades channels](./participate#network-upgrades)) to give node operators time to download and start a compatible binary prior to the upgrade height.
+The Lemongrass network upgrade is the first consensus layer breaking change since Celestia's Mainnet Beta genesis block. The Lemongrass network upgrade includes all of the CIPs listed in [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-17.md). The Lemongrass network upgrade will be executed on Arabica, then Mocha, then Mainnet Beta. The network upgrade will take place at an "upgrade height" that will be coordinated offline on a per-network basis. The upgrade heights will be announced in advance (see [network upgrades channels](./participate#network-upgrades)) to give node operators time to download and start a compatible binary prior to the upgrade height.
 
 - If you are a consensus node or validator operator: you will need to download and run a celestia-app binary >= v2.0.0 prior to the `--v2-upgrade-height` to remain on the canonical chain. You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary at the upgrade height.
 - If you are a DA node operator, you will need to download and run a compatible celestia-node binary >= v0.16.0-rc0 prior to the upgrade height.
