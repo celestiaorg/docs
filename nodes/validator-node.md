@@ -256,3 +256,10 @@ If you encounter an error like:
 ```
 
 then it is likely that the network has upgraded to a new app version but your consensus node was not prepared for the upgrade. To fix this, you'll need to update your binary to the latest version and restart your node with the relevant `--v2-upgrade-height` for the network you're running on. If your node still can't sync to the tip of the chain after the above steps, consider a `celestia-appd tendermint reset-state` to reset your node and start syncing from the genesis block.
+
+1. [Optional] Back up your validator keys.
+1. [Optional] Back up the `data/priv_validator_state.json` inside your CELESTIA_HOME directory.
+1. Remove DBs from your CELESTIA_HOME directory via: `celestia-appd tendermint reset-state`.
+1. Remove the `data/application.db` inside your CELESTIA_HOME directory.
+1. Download the latest binary for your network.
+1. Restart your consensus node with the relevant `--v2-upgrade-height` for the network you're running on.
