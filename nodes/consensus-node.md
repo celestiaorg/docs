@@ -248,6 +248,20 @@ Once setup, you should be ready to start the node as normal. In the logs, you sh
 see: `Discovering snapshots`. This may take a few minutes before snapshots are found
 depending on the network topology.
 
+::: tip
+If you are looking to quickly sync a consensus node, and do not need historical blocks,
+you can use the following scripts and state sync. Remember to checkout to the correct
+version and run `make install` before running the scripts:
+
+- Local devnet: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/single-node.sh>
+- Arabica: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/arabica.sh>
+- Mocha: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/mocha.sh>
+- Mainnet Beta: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/mainnet.sh>
+
+The public networks will use state sync so they'll get to the tip very quickly,
+but won't work for your use case if you need historical blocks.
+:::
+
 ### Option 3: Quick sync
 
 Quick sync effectively downloads the entire `data` directory from a third-party provider
