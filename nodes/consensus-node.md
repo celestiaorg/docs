@@ -250,7 +250,8 @@ depending on the network topology.
 
 ::: tip
 If you are looking to quickly sync a consensus node, and do not need historical blocks,
-you can use the following scripts and state sync:
+you can use the following scripts and state sync. Remember to checkout to the correct
+version and run `make install` before running the scripts:
 
 - Local devnet: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/single-node.sh>
 - Arabica: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/arabica.sh>
@@ -259,9 +260,6 @@ you can use the following scripts and state sync:
 
 The public networks will use state sync so they'll get to the tip very quickly,
 but won't work for your use case if you need historical blocks.
-
-Remember to checkout to the correct version and run `make install` before running the scripts
-above.
 :::
 
 ### Option 3: Quick sync
