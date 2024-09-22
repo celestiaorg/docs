@@ -1,6 +1,6 @@
 # Celestia Documentation Site
 
-Welcome to the official documentation repository for Celestia.
+Welcome to the official documentation repository for [Celestia](https://celestia.org/).
 
 Here you'll find comprehensive guides, tutorials, and reference materials
 to help you make the most out of Celestia.
