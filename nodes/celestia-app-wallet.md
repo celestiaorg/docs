@@ -40,7 +40,7 @@ celestia-appd keys list
 ## Fund a wallet
 
 For the public celestia address, you can fund the
-previously created wallet via [Discord](https://discord.gg/8affx48xyb)
+previously created wallet via [Discord](https://discord.gg/celestiacommunity)
 by sending this message to either the #mocha-faucet or #arabica-faucet channel:
 
 ```text

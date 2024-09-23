@@ -33,6 +33,6 @@ features:
     icon: ⚙️
   - title: Community
     details: Join the Celestia discord to connect, collaborate, and contribute to the future of modular blockchains.
-    link: https://discord.gg/8affx48xyb
+    link: https://discord.gg/celestiacommunity
     icon: 🏰
 ---
