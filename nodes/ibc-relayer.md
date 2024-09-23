@@ -210,7 +210,7 @@ each chain.
 
 You can get testnet tokens from faucets for bot testnets via Discord:
 
-- Celestia: [https://discord.gg/8affx48xyb](https://discord.gg/8affx48xyb)
+- Celestia: [https://discord.gg/celestiacommunity](https://discord.gg/celestiacommunity)
 - Cosmos Hub: [https://discord.gg/cosmosnetwork](https://discord.gg/cosmosnetwork)
 
 Add your seed phrase to a file and upload it to the server. Do not

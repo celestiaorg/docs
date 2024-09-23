@@ -194,7 +194,7 @@ the celestia-node directory:
 
 If you would like to fund your wallet with testnet tokens, head over
 to either the `#mocha-faucet` or `#arabica-faucet` channels on the
-[Celestia Discord](https://discord.gg/8affx48xyb).
+[Celestia Discord](https://discord.gg/celestiacommunity).
 
 You can request funds to your wallet address using the following command in
 Discord:

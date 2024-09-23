@@ -174,7 +174,7 @@ export default {
       { icon: "github", link: "https://github.com/celestiaorg/docs" },
       { icon: "twitter", link: "https://twitter.com/CelestiaOrg" },
       { icon: "youtube", link: "https://www.youtube.com/@CelestiaNetwork" },
-      { icon: "discord", link: "https://discord.gg/8affx48xyb" },
+      { icon: "discord", link: "https://discord.gg/celestiacommunity" },
       { icon: { svg: telegramSVG }, link: "https://t.me/CelestiaCommunity" },
     ],
 
@@ -258,7 +258,7 @@ function nav() {
         { text: "Networks", link: "/nodes/participate" },
         { text: "Nodes", link: "/nodes/overview" },
         { text: "Developers", link: "/developers/build-whatever" },
-        { text: "Discord", link: "https://discord.gg/8affx48xyb" },
+        { text: "Discord", link: "https://discord.gg/celestiacommunity" },
         {
           text: "Quick start",
           items: [
@@ -813,7 +813,7 @@ function sidebarHome() {
       text: "Community",
       collapsed: true,
       items: [
-        { text: "Discord", link: "https://discord.gg/8affx48xyb"},
+        { text: "Discord", link: "https://discord.gg/celestiacommunity"},
         { text: "Code of Conduct", link: "/community/coc" },
         { text: "Celestia Foundation Delegation Program", 
           link: "/community/foundation-delegation-program"
