@@ -30,6 +30,10 @@ Read
 :::tip
 If you already have a running and funded node,
 you can skip to the [RPC CLI guide section](#rpc-cli-guide).
+
+If you would like to skip syncing, you can use
+this
+[guide to sync from trusted hash and height](../nodes/celestia-node-trusted-hash.md).
 :::
 
 :::warning
