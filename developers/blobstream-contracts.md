@@ -2,8 +2,8 @@
 sidebar_label: Integrate with Blobstream contracts
 description: Learn how to integrate your L2's onchain logic with Blobstream
 prev:
-    text: "New SP1 Blobstream deployments"
-    link: "/developers/sp1-blobstream-deploy"
+    text: "Overview of Blobstream"
+    link: "/developers/blobstream"
 ---
 
 # Integrate with Blobstream contracts
