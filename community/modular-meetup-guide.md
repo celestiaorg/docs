@@ -286,7 +286,7 @@ for attracting attendees and ensuring a successful event.
      Developer Relations Team on X (formerly Twitter). Don't hesitate to reach
      out to them for assistance.
 3. Share on social media
-   - Promote your event on Twitter and any other popular social media
+   - Promote your event on X (Twitter) and any other popular social media
      platforms in your area. Tag speakers, sponsors, and use relevant
      hashtags to increase visibility.
 4. Leverage local community groups
