@@ -36,8 +36,7 @@ The [blob.GetAll](https://node-rpc-docs.celestia.org/#blob.GetAll) method takes 
 
 ```rust
 use celestia_rpc::{BlobClient, Client, HeaderClient, ShareClient};
-use celestia_types::blob::GasPrice;
-use celestia_types::{nmt::Namespace, Blob, ExtendedDataSquare};
+use celestia_types::{nmt::Namespace, Blob, blob::SubmitOptions};
 
 async fn submit_blob(url: &str, token: &str) {
     let client = Client::new(url, Some(token))
@@ -52,7 +51,7 @@ async fn submit_blob(url: &str, token: &str) {
 
     // submit the blob to the network
     let height = client
-        .blob_submit(&[blob.clone()], GasPrice::default())
+        .blob_submit(&[blob.clone()], SubmitOptions::default())
         .await
         .expect("Failed submitting blob");
 
