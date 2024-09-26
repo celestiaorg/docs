@@ -283,7 +283,7 @@ for attracting attendees and ensuring a successful event.
    - Celestia Labs can help co-promote your meetup on social media
      and Discord. They can also add your event to their online
      calendar, email local contacts, and share the event via their
-     Developer Relations Team on Twitter. Don't hesitate to reach
+     Developer Relations Team on X (formerly Twitter). Don't hesitate to reach
      out to them for assistance.
 3. Share on social media
    - Promote your event on Twitter and any other popular social media
