@@ -47,8 +47,8 @@ From an implementation perspective, Bridge nodes run two separate processes:
 The following hardware minimum requirements are recommended for running the
 bridge node:
 
-- Memory: **16 GB RAM (minimum)**
-- CPU: **6 cores**
+- Memory: **8 GB RAM (minimum)**
+- CPU: **Quad core**
 - Disk: **10 TB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 

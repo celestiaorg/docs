@@ -22,8 +22,8 @@ between one another.
 The following hardware minimum requirements are recommended for running
 the full storage node:
 
-- Memory: **16 GB RAM (minimum)**
-- CPU: **6 cores**
+- Memory: **8 GB RAM (minimum)**
+- CPU: **Quad core**
 - Disk: **10 TB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
