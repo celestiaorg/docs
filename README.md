@@ -1,3 +1,5 @@
+[![Deploy](https://github.com/celestiaorg/docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/deploy.yml)
+
 # Celestia Documentation Site
 
 Welcome to the official documentation repository for [Celestia](https://celestia.org/).
