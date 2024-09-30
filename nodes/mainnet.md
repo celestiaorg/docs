@@ -221,6 +221,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `wss://celestia-ws.chainode.tech:33373/websocket`
 - `wss://celestia-mainnet-ws.itrocket.net:443/websocket`
 - `wss://rpc.celestia.mainnet.dteam.tech:443/websocket`
+- `wss://celestia.cumulo.org.es:443/websocket`
 
 ### Data availability nodes
 
