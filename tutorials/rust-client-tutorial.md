@@ -1,15 +1,15 @@
 ---
 next:
   text: "Prompt Scavenger"
-  link: "/developers/prompt-scavenger"
+  link: "/tutorials/prompt-scavenger"
 ---
 
 # Rust client library tutorial {#rust-client-library}
 
 This section tutorial will guide you through using the most common RPC endpoints with [Lumina](https://github.com/eigerco/lumina/tree/main/rpc)'s rust client library.
 
-Install [dependencies](../nodes/environment.md) and
-[celestia-node](../nodes/celestia-node.md) if you have
+Install [dependencies](../how-to-guides/environment.md) and
+[celestia-node](../how-to-guides/celestia-node.md) if you have
 not already.
 
 ## Project setup

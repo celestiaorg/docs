@@ -1,7 +1,7 @@
 ---
 prev:
     text: "Overview of Blobstream X"
-    link: "/developers/blobstreamx"
+    link: "/how-to-guides/blobstreamx"
 ---
 
 # Requesting data commitment ranges
@@ -54,7 +54,7 @@ to run the operator script.
 Here are example values for the `.env` file:
 
 1. `TENDERMINT_RPC_URL` from
-   [the public Celestia list](https://docs.celestia.org/nodes/mainnet#integrations).
+   [the public Celestia list](https://docs.celestia.org/how-to-guides/mainnet#integrations).
 2. `SUCCINCT_RPC_URL` = `https://alpha.succinct.xyz/api`
 3. Request for `SUCCINCT_API_KEY` from
    [the Succinct team](https://alpha.succinct.xyz/partner).

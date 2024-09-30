@@ -8,7 +8,7 @@ description: Learn how to query the inclusion proofs used in Blobstream
 
 ## Prerequisites
 
-- Access to a Celestia [consensus node](../nodes/consensus-node.md)
+- Access to a Celestia [consensus node](../how-to-guides/consensus-node.md)
   RPC endpoint (or full node). The node doesn't need to be a
   validating node in order for the proofs to be queried. A full node is enough.
 
@@ -32,8 +32,8 @@ used for the queries. It can be initialized using:
 	}(trpc)
 ```
 
-The `<rpc_endpoint>` can be retrieved from [Mainnet Beta](../nodes/mainnet.md#integrations) for
-and [Mocha](../nodes/mocha-testnet.md) for the Mocha testnet.
+The `<rpc_endpoint>` can be retrieved from [Mainnet Beta](../how-to-guides/mainnet.md#integrations) for
+and [Mocha](../how-to-guides/mocha-testnet.md) for the Mocha testnet.
 
 In case the reader wants to interact with an on-chain contract that can be used to verify
 that data was posted to Celestia, the bindings of that contract are needed.

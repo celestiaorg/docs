@@ -27,7 +27,7 @@ Learn
 | Delegation support   | Yes            |
 
 Learn how to
-[stake on your own at the community dashboards](../../nodes/staking.md).
+[stake on your own at the community dashboards](../../how-to-guides/staking.md).
 
 ## Inflation
 
@@ -53,7 +53,7 @@ TIA holders (not just stakers) can propose and vote on governance proposals to
 change a subset of network parameters. To learn more, see a
 [complete list of both the changeable and non-changeable parameters and their values](https://github.com/celestiaorg/celestia-app/blob/v1.x/specs/src/specs/params.md).
 Additionally, learn how to
-[submit and vote on governance proposals](../nodes/celestia-app-commands.md#governance).
+[submit and vote on governance proposals](../how-to-guides/celestia-app-commands.md#governance).
 
 ### Community pool
 
@@ -63,7 +63,7 @@ receives 2% of all Celestia block rewards. TIA stakers may vote to fund
 ecosystem initiatives as in many other Cosmos SDK chains.
 
 Learn how to
-[submit a governance proposal to spend community pool funds](../nodes/celestia-app-commands.md#community-pool).
+[submit a governance proposal to spend community pool funds](../how-to-guides/celestia-app-commands.md#community-pool).
 
 ## TIA allocation at genesis
 

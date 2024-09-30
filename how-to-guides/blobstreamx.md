@@ -2,10 +2,10 @@
 description: What is BlobstreamX
 prev:
     text: "New SP1 Blobstream deployments"
-    link: "/developers/sp1-blobstream-deploy"
+    link: "/how-to-guides/sp1-blobstream-deploy"
 next:
     text: "Requesting data commitment ranges"
-    link: "/developers/blobstream-x-requesting-data-commitment-ranges"
+    link: "/how-to-guides/blobstream-x-requesting-data-commitment-ranges"
 ---
 
 # Blobstream X: the previous zk implementation of Blobstream

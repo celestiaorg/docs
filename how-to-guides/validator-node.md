@@ -30,11 +30,11 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
 
 First, follow the instructions on
-[setting up a consensus node](/nodes/consensus-node#set-up-a-consensus-node).
+[setting up a consensus node](/how-to-guides/consensus-node#set-up-a-consensus-node).
 
 ### Wallet
 
-Follow [the tutorial on creating a wallet](../nodes/celestia-app-wallet.md).
+Follow [the tutorial on creating a wallet](../how-to-guides/celestia-app-wallet.md).
 
 ### Delegate stake to a validator
 
@@ -117,7 +117,7 @@ celestia bridge init --core.ip <URI>
 
 :::tip
 Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+[the ports section of the celestia-node troubleshooting page](../../how-to-guides/celestia-node-troubleshooting/#ports)
 for information on which ports are required to be open on your machine.
 :::
 
@@ -237,7 +237,7 @@ After starting your node, please submit your node as a seed and peer to the
 ## Optional: Transaction indexer configuration options
 
 Follow the instructions under
-[transaction indexer configuration options](/nodes/full-consensus-node#optional-transaction-indexer-configuration-options)
+[transaction indexer configuration options](/how-to-guides/consensus-node#optional-transaction-indexer-configuration-options)
 to configure your `config.toml` file to select which transactions to index.
 
 ## Additional resources

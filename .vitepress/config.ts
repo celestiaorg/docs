@@ -262,7 +262,7 @@ function nav() {
                 {
                     text: "Quick start",
                     items: [
-                        { text: "Blob tutorial", link: "/developers/node-tutorial" },
+                        { text: "Blob tutorial", link: "/tutorials/node-tutorial" },
                         {
                             text: "celestia-app specs",
                             link: "https://celestiaorg.github.io/celestia-app/",
@@ -776,26 +776,26 @@ function sidebarHome() {
             items: [
                 { 
                     text: "Node API Tutorials",
-                    link: "/developers/node-api",
+                    link: "/tutorials/node-api",
                     collapsed: true,
                     items: [
                         {
                             text: "CLI tutorial",
-                            link: "/developers/node-tutorial",
+                            link: "/tutorials/node-tutorial",
                           },
                           {
                             text: "Golang client tutorial",
-                            link: "/developers/golang-client-tutorial",
+                            link: "/tutorials/golang-client-tutorial",
                           },
                           {
                             text: "Rust client tutorial",
-                            link: "/developers/rust-client-tutorial",
+                            link: "/tutorials/rust-client-tutorial",
                           },
                           {
                             text: "RPC documentation & playground",
                             link: "https://node-rpc-docs.celestia.org/",
                           },
-                          { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
+                          { text: "Prompt Scavenger", link: "/tutorials/prompt-scavenger" },
                     ],
                 },
                 {
@@ -804,17 +804,17 @@ function sidebarHome() {
                     items: [
                         {
                             text: "Celestia-node",
-                            link: "/developers/celestia-node-key"
+                            link: "/tutorials/celestia-node-key"
                         },
                         {
                         text: "Integrating Wallets for developers",
-                        link: "/developers/wallets",
+                        link: "/tutorials/wallets",
                         },
                     ],
                 },
                 {
                     text: "Integrate Celestia for service providers",
-                    link: "/developers/integrate-celestia",
+                    link: "/tutorials/integrate-celestia",
                 },
 
             ]

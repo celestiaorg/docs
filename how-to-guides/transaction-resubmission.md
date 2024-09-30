@@ -14,8 +14,8 @@ transactions will not be re-gossiped, except in the presence of a new peer.
 
 If you are running a production application on Celestia, it is recommended
 to use a high-availability, production
-RPC provider for [Mainnet Beta](../nodes/mainnet.md#production-rpc-endpoints),[Mocha](../nodes/mocha-testnet.md#production-rpc-endpoints),
-or [Arabica](../nodes/arabica-devnet.md#production-rpc-endpoints).
+RPC provider for [Mainnet Beta](../how-to-guides/mainnet.md#production-rpc-endpoints),[Mocha](../how-to-guides/mocha-testnet.md#production-rpc-endpoints),
+or [Arabica](../how-to-guides/arabica-devnet.md#production-rpc-endpoints).
 
 ## Monitoring and resubmission
 

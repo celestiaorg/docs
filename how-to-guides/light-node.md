@@ -90,7 +90,7 @@ node's account balance, a gRPC endpoint of a validator
 (core) node must be passed as directed below.
 
 Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+[the ports section of the celestia-node troubleshooting page](../../how-to-guides/celestia-node-troubleshooting/#ports)
 for information on which ports are required to be open on your machine.
 
 ::: code-group
@@ -114,7 +114,7 @@ Tip: you can replace the core.ip with a consensus node RPC endpoint from [Mainne
 ### Keys and wallets
 
 You can create your key for your node by running the following command with the
-[`cel-key` utility](../../developers/celestia-node-key) in the
+[`cel-key` utility](../../tutorials/celestia-node-key) in the
 `celestia-node` directory:
 
 ```sh
@@ -149,7 +149,7 @@ Once you start the light node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
 `PayForBlob` transactions.
 
-You can [find the address using the RPC CLI](../developers/node-tutorial.md#get-your-account-address)
+You can [find the address using the RPC CLI](../tutorials/node-tutorial.md#get-your-account-address)
 or by running the following command in the
 `celestia-node` directory:
 
@@ -218,4 +218,4 @@ Follow
 ## Data availability sampling
 
 With your light node running, you can check out
-[this tutorial on submitting `PayForBlob` transactions](../developers/node-tutorial.md).
+[this tutorial on submitting `PayForBlob` transactions](../tutorials/node-tutorial.md).

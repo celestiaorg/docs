@@ -73,7 +73,7 @@ node's account balance, a gRPC endpoint of a validator
 (core) node must be passed as directed below.
 
 Refer to
-[the ports section of the celestia-node troubleshooting page](../../nodes/celestia-node-troubleshooting/#ports)
+[the ports section of the celestia-node troubleshooting page](../../how-to-guides/celestia-node-troubleshooting/#ports)
 for information on which ports are required to be open on your machine.
 
 ```sh
@@ -91,7 +91,7 @@ provides the light node with access to state queries (reading balances, submitti
 transactions, and other state-related queries).
 
 You can create your key for your node by following
-[the `cel-key` instructions](../../developers/celestia-node-key)
+[the `cel-key` instructions](../../tutorials/celestia-node-key)
 
 Once you start the full storage node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for

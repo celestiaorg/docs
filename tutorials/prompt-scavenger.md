@@ -2,7 +2,7 @@
 description: Learn how to interact with the Celestia Node API with this tutorial.
 prev:
   text: "Rust client tutorial"
-  link: "/developers/rust-client-tutorial"
+  link: "/tutorials/rust-client-tutorial"
 ---
 
 # Prompt scavenger
@@ -29,13 +29,13 @@ Golang along the way, let’s get started!
 
 The following dependencies are needed to be installed or obtained:
 
-- Golang, see [setting up environment](../nodes/environment.md)
-- Celestia [light node](../nodes/light-node.md)
+- Golang, see [setting up environment](../how-to-guides/environment.md)
+- Celestia [light node](../how-to-guides/light-node.md)
 - Getting an OpenAI API Key for GPT-3.5
 
 ### Install Celestia Node and run a light node
 
-First, [install the celestia-node binary](../nodes/celestia-node.md).
+First, [install the celestia-node binary](../how-to-guides/celestia-node.md).
 
 Let's start by initializing our light node and funding our account with some tokens. We will be using the Arabica testnet for this tutorial.
 

@@ -24,9 +24,9 @@ So, you’re ready to start experimenting and building on Celestia?
 Here are a few options that are currently available for developers.
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
-  <UrlImageButton url="/developers/intro-to-op-stack" imageSrc="/build/opstack.webp" text="OP Stack" notes="EVM" target="_self" alt="OP Stack logo" aria-label="OP Stack"/>
-  <UrlImageButton url="/developers/arbitrum-integration" imageSrc="/build/arbitrum.webp" text="Arbitrum Orbit" notes="EVM" target="_self" alt="Arbitrum logo" aria-label="Arbitrum"/>
-  <!-- <UrlImageButton url="/developers/build-whatever" imageSrc="/build/polygon.webp" text="Polygon CDK" target="_self" notes="EVM: Coming soon" alt="Polygon logo" aria-label="Polygon"/> -->
+  <UrlImageButton url="/how-to-guides/intro-to-op-stack" imageSrc="/build/opstack.webp" text="OP Stack" notes="EVM" target="_self" alt="OP Stack logo" aria-label="OP Stack"/>
+  <UrlImageButton url="/how-to-guides/arbitrum-integration" imageSrc="/build/arbitrum.webp" text="Arbitrum Orbit" notes="EVM" target="_self" alt="Arbitrum logo" aria-label="Arbitrum"/>
+  <!-- <UrlImageButton url="/how-to-guides/build-whatever" imageSrc="/build/polygon.webp" text="Polygon CDK" target="_self" notes="EVM: Coming soon" alt="Polygon logo" aria-label="Polygon"/> -->
   <UrlImageButton url="https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup" imageSrc="/build/sovereign.webp" text="Sovereign SDK" notes="Sovereign" alt="Sovereign logo" aria-label="Sovereign"/>
   <UrlImageButton url="https://docs.dymension.xyz/" imageSrc="/build/dymension.webp" text="Dymension" alt="Dymension logo" aria-label="Dymension"/>
   <UrlImageButton url="https://docs.stf.xyz" imageSrc="/build/stackr.webp" text="Stackr" alt="Stackr logo" aria-label="Stackr"/>

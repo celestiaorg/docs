@@ -17,9 +17,9 @@ flag to your vesting transaction.
 
 ## Local devnet
 
-First, [download and install celestia-app](../nodes/celestia-app.md),
+First, [download and install celestia-app](../how-to-guides/celestia-app.md),
 selecting the
-[network and corresponding version](../nodes/participate.md)
+[network and corresponding version](../how-to-guides/participate.md)
 that you would like to use.
 
 ### Setting up the local devnet
@@ -309,10 +309,10 @@ Next, you can learn how to create a vesting account on Mocha testnet.
 In the previous section of this tutorial, we learned how to create a vesting
 account on a local devnet. In this portion of the tutorial, we'll cover how
 to set up a consensus node and set up a vesting account on
-[Mocha testnet](../nodes/mocha-testnet.md).
+[Mocha testnet](../how-to-guides/mocha-testnet.md).
 
 First, be sure that you have
-[installed celestia-app for the latest version for Mocha testnet](../nodes/celestia-app.md).
+[installed celestia-app for the latest version for Mocha testnet](../how-to-guides/celestia-app.md).
 
 ### Create a wallet
 
@@ -343,14 +343,14 @@ export TO_ADDRESS=address_of_vesting_account
 
 ### Fund your account
 
-Head to [the faucet](../nodes/mocha-testnet.md#mocha-testnet-faucet),
+Head to [the faucet](../how-to-guides/mocha-testnet.md#mocha-testnet-faucet),
 and fund your `origin` address.
 
 ### Create a vesting account on Mocha
 
 To create a vesting account on Mocha, you will need an RPC URL to send
 the transaction to. You can find the
-[RPC endpoints on the Mocha testnet page](../nodes/mocha-testnet.md#integrations).
+[RPC endpoints on the Mocha testnet page](../how-to-guides/mocha-testnet.md#integrations).
 
 If you are running a production application, use a production endpoint.
 
@@ -383,8 +383,8 @@ celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 168674805
 Running a consensus node or validator will prevent you from needing
 to use an RPC.
 
-You can set up a [validator](../nodes/validator-node.md)
-or [consensus node](../nodes/consensus-node.md)
+You can set up a [validator](../how-to-guides/validator-node.md)
+or [consensus node](../how-to-guides/consensus-node.md)
 for the previous portion of the tutorial.
 
 Note: this may take some time depending on how you choose to sync the

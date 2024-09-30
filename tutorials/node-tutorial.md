@@ -33,7 +33,7 @@ you can skip to the [RPC CLI guide section](#rpc-cli-guide).
 
 If you would like to skip syncing, you can use
 this
-[guide to sync from trusted hash and height](../nodes/celestia-node-trusted-hash.md).
+[guide to sync from trusted hash and height](../how-to-guides/celestia-node-trusted-hash.md).
 :::
 
 :::warning
@@ -54,8 +54,8 @@ light node:
 
 ## Setting up dependencies
 
-Install [dependencies](../nodes/environment.md) and
-[celestia-node](../nodes/celestia-node.md) if you have
+Install [dependencies](../how-to-guides/environment.md) and
+[celestia-node](../how-to-guides/celestia-node.md) if you have
 not already.
 
 ### Instantiate a Celestia light node
@@ -95,9 +95,9 @@ provides the light node with access to state queries (reading balances, submitti
 transactions, and other state-related queries).
 
 Note: You are also encouraged to find an RPC endpoint for
-[Mainnet Beta](../nodes/mainnet.md#integrations),
-[Mocha testnet](../nodes/mocha-testnet.md#integrations),
-or [Arabica devnet](../nodes/arabica-devnet.md#integrations).
+[Mainnet Beta](../how-to-guides/mainnet.md#integrations),
+[Mocha testnet](../how-to-guides/mocha-testnet.md#integrations),
+or [Arabica devnet](../how-to-guides/arabica-devnet.md#integrations).
 If you are running a production application, use a production endpoint.
 
 ::: code-group
@@ -125,7 +125,7 @@ add the port after the IP address or use the
 port if you prefer.
 
 Refer to
-[the ports section of the celestia-node troubleshooting page](../nodes/celestia-node-troubleshooting.md#ports)
+[the ports section of the celestia-node troubleshooting page](../how-to-guides/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 :::
 
@@ -156,7 +156,7 @@ command from the celestia-node directory:
 
 :::tip
 You do not need to declare a network for Mainnet Beta. Refer to
-[the chain ID section on the troubleshooting page for more information](../nodes/celestia-node-troubleshooting.md)
+[the chain ID section on the troubleshooting page for more information](../how-to-guides/celestia-node-troubleshooting.md)
 :::
 
 ```bash
@@ -252,7 +252,7 @@ once your node store is set:
 :::note
 Previously, the `node.store` flag had to be specified manually for each
 request. This has changed in v0.14.0+ and you can
-[read more about the implementation in celestia-node troubleshooting](../nodes/celestia-node-troubleshooting.md#changing-the-location-of-your-node-store).
+[read more about the implementation in celestia-node troubleshooting](../how-to-guides/celestia-node-troubleshooting.md#changing-the-location-of-your-node-store).
 :::
 
 ```bash
@@ -574,7 +574,7 @@ To set the gas price, you can use the `--gas.price` flag.
 The gas price will be set to default (0.002) if no value
 is passed.
 
-Learn [more about gas fees and limits](../developers/submit-data.md).
+Learn [more about gas fees and limits](../how-to-guides/submit-data.md).
 
 To set a higher gas price of 0.004 utia, use the `--gas.price 0.004` flag:
 

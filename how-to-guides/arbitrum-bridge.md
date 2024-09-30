@@ -2,7 +2,7 @@
 description: A guide on how to bridge in and out of your Arbitrum Orbit rollup.
 next:
   text: "Intro to OP Stack integration"
-  link: "/developers/intro-to-op-stack"
+  link: "/how-to-guides/intro-to-op-stack"
 ---
 
 # Bridging in and out of your Orbit rollup

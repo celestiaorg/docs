@@ -9,7 +9,7 @@ funding it, enabling a third-party account to cover the transaction fees.
 
 ## Pre-requisites
 
-- celestia-node binary (`celestia`) [installed](../nodes/celestia-node.md)
+- celestia-node binary (`celestia`) [installed](../how-to-guides/celestia-node.md)
 - Access to a Mocha node (e.g., `https://rpc.celestia-mocha.com:443`)
 - Running DA Light node on Mocha testnet
 - One account with sufficient funds, the "granter"

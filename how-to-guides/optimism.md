@@ -15,7 +15,7 @@ If you don't have devops experience and would like to use a Rollups as a Service
 
 ## Dependency setup
 
-- [celestia-node](../nodes/celestia-node.md)
+- [celestia-node](../how-to-guides/celestia-node.md)
 
 ### Setting up your light node
 

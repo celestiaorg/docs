@@ -1,7 +1,7 @@
 ---
 next:
     text: "Overview of Blobstream X"
-    link: "/developers/blobstreamx"
+    link: "/how-to-guides/blobstreamx"
 ---
 
 # New SP1 Blobstream deployments

@@ -9,7 +9,7 @@ wallet using celestia-app.
 
 ## Prerequisites
 
-- Gone through [quick start and Installed celestia-app](../nodes/quick-start.md)
+- Gone through [quick start and Installed celestia-app](../how-to-guides/quick-start.md)
 
 Note, you do not need to install celestia-node for this tutorial.
 
@@ -60,6 +60,6 @@ celestia-appd query bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 :::tip
 Refer to
-[the ports section of the celestia-node troubleshooting page](../nodes/celestia-node-troubleshooting.md#ports)
+[the ports section of the celestia-node troubleshooting page](../how-to-guides/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 :::

@@ -2,7 +2,7 @@
 description: The first testnet built with OP Stack and Celestia.
 next:
   text: "Ethereum fallback mechanism"
-  link: "/developers/ethereum-fallback"
+  link: "/how-to-guides/ethereum-fallback"
 ---
 
 # Bubs testnet
@@ -23,7 +23,7 @@ layer. This integration can be found in the
 The testnet is hosted by [Caldera](https://caldera.xyz),
 who makes it easy to launch rollups with no code required.
 Bubs' data is posted to Celestia
-on the [Mocha testnet](../nodes/mocha-testnet.md).
+on the [Mocha testnet](../how-to-guides/mocha-testnet.md).
 [View the namespace for Bubs on Celestia's Mocha testnet](https://mocha-4.celenium.io/namespace/000000000000000000000000000000000000ca1de12ad45362e77e87).
 
 [Learn more about the setup of the integration in

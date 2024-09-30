@@ -2,7 +2,7 @@
 description: Learn how service providers can integrate with the Celestia network.
 prev:
   text: "Integrating Wallets for developers"
-  link: "/developers/wallets"
+  link: "/tutorials/wallets"
 ---
 
 # Integrate Celestia for service providers
@@ -18,7 +18,7 @@ When getting started Celestia, we recommend checking out these resources first:
 - [Monolithic v. Modular](../learn/how-celestia-works/monolithic-vs-modular.md)
 - [Celestia's DA Layer](../learn/how-celestia-works/data-availability-layer.md)
 - [Learn modular](https://celestia.org/learn)
-- [Overview to running nodes on Celestia](../nodes/overview.md)
+- [Overview to running nodes on Celestia](../how-to-guides/nodes-overview.md)
 - [Build whatever](./build-whatever.md)
 
 ## Celestia service provider notes

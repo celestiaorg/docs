@@ -106,7 +106,7 @@ to Ethereum, this would likely mean running and connecting to a full node.
 More information on the RPC that is exposed by a Celestia light node can be found
 [in the RPC documentation](https://node-rpc-docs.celestia.org/).
 Additionally, if you need more information on how to run a light node, you can
-[check out the documentation](../nodes/light-node.md).
+[check out the documentation](../how-to-guides/light-node.md).
 
 ```go
 // CelestiaLightNodeClient summarizes the actions that a rollup that uses

@@ -188,7 +188,7 @@ celestia-appd start
 
 :::tip
 Refer to
-[the ports section of the celestia-node troubleshooting page](../nodes/celestia-node-troubleshooting.md#ports)
+[the ports section of the celestia-node troubleshooting page](../how-to-guides/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 
 :::

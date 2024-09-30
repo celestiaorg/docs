@@ -2,10 +2,10 @@
 description: Learn how to build rollups that use Blobstream.
 prev:
   text: "Ethereum fallback mechanism"
-  link: "/developers/ethereum-fallback"
+  link: "/how-to-guides/ethereum-fallback"
 next:
   text: "Submitting data blobs to Celestia"
-  link: "/developers/submit-data"
+  link: "/how-to-guides/submit-data"
 ---
 
 # Introduction to Blobstream rollups
@@ -51,12 +51,12 @@ meaning four merkle proofs:
    to prove that the subtree roots belong to a set of rows in the Celestia block
    3. [row roots proofs to the data root](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#row-root-to-data-root-inclusion-proof):
    to prove that those rows belong to the Celestia Block
-   4. [data root tuple proof to the data root tuple](https://docs.celestia.org/developers/blobstream-proof-queries#the-commitment-scheme):
+   4. [data root tuple proof to the data root tuple](https://docs.celestia.org/how-to-guides/blobstream-proof-queries#the-commitment-scheme):
    to prove that the Celestia block referenced by its height and data root,
    was committed to by Blobstream.
 
 More details on the blob share commitment inclusion proof can be found in the
-[commitment scheme docs](https://docs.celestia.org/developers/blobstream-proof-queries#the-commitment-scheme)
+[commitment scheme docs](https://docs.celestia.org/how-to-guides/blobstream-proof-queries#the-commitment-scheme)
 and also the
 [data square layout](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/specs/data_square_layout.md#blob-share-commitment-rules).
 
@@ -178,7 +178,7 @@ For the data root, we will use a binary Merkle proof to prove its
 inclusion in a data root tuple root that was committed to by the
 Blobstream smart contract.
 More on this in the
-[data root inclusion proofs section](https://docs.celestia.org/developers/blobstream-proof-queries#_1-data-root-inclusion-proof).
+[data root inclusion proofs section](https://docs.celestia.org/how-to-guides/blobstream-proof-queries#_1-data-root-inclusion-proof).
 
 #### Sequence of spans: Proving inclusion of some data
 
@@ -201,7 +201,7 @@ part of the rollup data is done as follows:
     root tuple root. This can be created using the
     [`data_root_inclusion_proof`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L492-L511)
     query. More on this can be found in the
-    [data root inclusion proofs documentation](https://docs.celestia.org/developers/blobstream-proof-queries#_1-data-root-inclusion-proof).
+    [data root inclusion proofs documentation](https://docs.celestia.org/how-to-guides/blobstream-proof-queries#_1-data-root-inclusion-proof).
 
 2. Verify inclusion proof of the data to Celestia data root:
 
@@ -216,7 +216,7 @@ part of the rollup data is done as follows:
     query.
 
     More details on these proofs can be found in the transaction inclusion proof
-    [documentation](https://docs.celestia.org/developers/blobstream-proof-queries#_2-transaction-inclusion-proof).
+    [documentation](https://docs.celestia.org/how-to-guides/blobstream-proof-queries#_2-transaction-inclusion-proof).
 
 3. Prove that the data is in the sequence spans:
 
@@ -298,7 +298,7 @@ It portrays the different possible data availability proofs, constructs them and
 shows how to verify them.
 
 Also, more details on querying these kinds of proofs can be found in the
-[proof queries](https://docs.celestia.org/developers/blobstream-proof-queries) documentation.
+[proof queries](https://docs.celestia.org/how-to-guides/blobstream-proof-queries) documentation.
 
 ### Optimistic rollups that use blob share commitments
 

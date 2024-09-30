@@ -22,9 +22,14 @@ settles on Arbitrum One, Ethereum, or other EVM chains.
 
 The integration of Celestia with Arbitrum orbit is possible thanks to 3 key components:
 
-- [DA Provider implementation](#da-provider-implementation)
-- [Preimage Oracle implementation](#preimage-oracle-implementation)
-- [Blobstream X implementation](#blobstream-x-implementation)
+- [Introduction to Arbitrum rollups with Celestia as DA](#introduction-to-arbitrum-rollups-with-celestia-as-da)
+  - [Overview](#overview)
+  - [Key components](#key-components)
+    - [DA provider implementation](#da-provider-implementation)
+    - [Preimage Oracle Implementation](#preimage-oracle-implementation)
+    - [Blobstream X implementation](#blobstream-x-implementation)
+    - [Ethereum fallback mechanism in Nitro](#ethereum-fallback-mechanism-in-nitro)
+  - [Next steps](#next-steps)
 
 Additionally, the [Ethereum fallback mechanism](#ethereum-fallback-mechanism-in-nitro) is a feature of the integration, which is native in Nitro.
 
@@ -42,7 +47,7 @@ Then the `Read` logic takes care of taking the deserialized Blob Pointer struct 
 
 The following represents a non-exhaustive list of considerations when running a Batch Poster node for a chain with Celestia underneath:
 - You will need to use a consensus node RPC endpoint, you can
-[find a list of them for Mocha](../nodes/mocha-testnet#community-rpc-endpoints)
+[find a list of them for Mocha](../how-to-guides/mocha-testnet#community-rpc-endpoints)
 - The Batch Poster will only post a Celestia batch to the underlying chain if the height for which it posted is in a recent range in BlobstreamX and if the verification succeeds, otherwise it will discard the batch. Since it will wait until a range is relayed, it can take several minutes for a batch to be posted, but one can always make an on-chain request for the BlobstreamX contract to relay a header promptly.
 
 The following represents a non-exhaustive list of considerations when running a Nitro node for a chain with Celestia underneath:

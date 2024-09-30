@@ -2,7 +2,7 @@
 description: Learn about the integration of OP Stack with Celestia.
 prev:
   text: "Bridging in and out of your Orbit rollup"
-  link: "/developers/arbitrum-bridge"
+  link: "/how-to-guides/arbitrum-bridge"
 ---
 
 # Introduction to OP Stack integration
