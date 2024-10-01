@@ -28,7 +28,7 @@ features:
     link: /how-to-guides/nodes-overview
     icon: 📈
   - title: Tutorials
-    details: Access tutorials for interacting with celestia-node through the node API.
+    details: Access tutorials for interacting with Celestia, starting with celestia-node through the node API.
     link: /tutorials/node-api
     icon: ⚙️
   - title: Community
