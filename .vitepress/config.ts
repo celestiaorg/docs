@@ -255,20 +255,20 @@ function nav() {
             text: "Join the network",
             items: [
                 { text: "Learn", link: "/learn/how-celestia-works/overview" },
-                { text: "Networks", link: "/how-to-guides/participate" },
-                { text: "Nodes", link: "/how-to-guides/nodes-overview" },
-                { text: "Developers", link: "/how-to-guides/build-whatever" },
+                { text: "Build whatever", link: "/how-to-guides/build-whatever" },
+                { text: "Node API", link: "/tutorials/node-api" },
                 { text: "Discord", link: "https://discord.gg/celestiacommunity" },
                 {
                     text: "Quick start",
                     items: [
+                        { text: "Run a node", link: "/how-to-guides/nodes-overview" },
                         { text: "Blob tutorial", link: "/tutorials/node-tutorial" },
                         {
                             text: "celestia-app specs",
                             link: "https://celestiaorg.github.io/celestia-app/",
                         },
                         {
-                            text: "celestia-node API",
+                            text: "celestia-node API docs",
                             link: "https://node-rpc-docs.celestia.org/",
                         },
                     ],
@@ -375,7 +375,7 @@ function sidebarHome() {
             ],
         },
         {
-            text: "How To Guides",
+            text: "How-to guides",
             collapsed: true,
             items: [
                 { 

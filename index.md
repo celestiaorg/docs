@@ -23,13 +23,13 @@ features:
     details: Celestia allows you to deploy your own blockchain in minutes, as easily as a smart contract.
     link: /learn/how-celestia-works/overview
     icon: 🏗️
-  - title: Run a node
-    details: Access the dynamic scaling unlocked by data availability sampling, where scale increases with the number of users.
+  - title: How-to guides
+    details: Explore step-by-step guides for running a node, posting data blobs, building applications and sovereign rollups on Celestia.
     link: /how-to-guides/nodes-overview
     icon: 📈
-  - title: Developers
-    details: Create applications using your favorite VM or define your own. Build sovereign rollups, a new type of self-governing blockchain with minimal platform risk.
-    link: /how-to-guides/build-whatever
+  - title: Tutorials
+    details: Access tutorials for interacting with celestia-node through the node API.
+    link: /tutorials/node-api
     icon: ⚙️
   - title: Community
     details: Join the Celestia discord to connect, collaborate, and contribute to the future of modular blockchains.
