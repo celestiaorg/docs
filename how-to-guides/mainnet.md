@@ -148,7 +148,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-rpc.0xcryptovestor.com`
 - `rpc-celestia-mainnet.trusted-point.com`
 - `celestia-rpc.chainode.tech:33373`
-- `celestia-rpc.noders.services`
 - `celestia-mainnet-rpc.itrocket.net:443`
 
 #### Community API endpoints
@@ -169,7 +168,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia.api.kjnodes.com`
 - `api-celestia-mainnet.trusted-point.com`
 - `celestia-api.chainode.tech`
-- `celestia-api.noders.services`
 - `celestia-mainnet-api.itrocket.net:443`
 
 #### Community gRPC endpoints
@@ -189,14 +187,12 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia.grpc.kjnodes.com:443`
 - `grpc-celestia-mainnet.trusted-point.com:9095`
 - `celestia-grpc.chainode.tech:443`
-- `celestia-grpc.noders.services:11090`
 - `celestia-mainnet-grpc.itrocket.net:443`
 
 #### Community WebSocket endpoints
 
 - `wss://celestia-ws.chainode.tech:33373/websocket`
 - `wss://celestia-mainnet-ws.itrocket.net:443/websocket`
-- `wss://rpc.celestia.mainnet.dteam.tech:443/websocket`
 - `wss://celestia.cumulo.org.es:443/websocket`
 
 ### Data availability nodes
@@ -251,9 +247,6 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-mainnet-consensus.itrocket.net`
   - gRPC: port 9090
   - RPC: port 26657
-- `celestia-consensus-mainnet.noders.services`
-  - gRPC: port 9080
-  - RPC: port 26657
 
 DA full and light nodes might have troubles connecting to the networks, so you
 can check out this
@@ -291,7 +284,6 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
 - [https://celestia.exploreme.pro/](https://celestia.exploreme.pro/)
 - [https://mainnet.itrocket.net/celestia/](https://mainnet.itrocket.net/celestia/)
-- [https://explorer.mainnet.dteam.tech/celestia](https://explorer.mainnet.dteam.tech/celestia)
 
 ## Analytics
 

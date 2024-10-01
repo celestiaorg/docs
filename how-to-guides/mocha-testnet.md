@@ -107,9 +107,6 @@ full blocks from it.
   - gRPC port: 9090
 - `rpc-celestia-testnet.cryptech.com.ua`
   - gRPC: grpc-celestia-testnet.cryptech.com.ua:443
-- `celestia-consensus-testnet.noders.services`
-  - RPC port: 26357
-  - gRPC port: 9070
 
 ## Community RPC endpoints
 
@@ -125,7 +122,6 @@ Celestia network. The default port is 26657.
 - `rpc-celestia-testnet-01.stakeflow.io`
 - `mocha.celestia.rpc.cumulo.me`
 - `rpc-mocha-full.avril14th.org`
-- `celestia-t-rpc.noders.services/`
 - `rpc-1.testnet.celestia.nodes.guru`
 - `rpc-2.testnet.celestia.nodes.guru`
 - `celestia-testnet-rpc.itrocket.net:443`
@@ -146,7 +142,6 @@ The default port is 1317.
 - [https://api-celestia-testnet-01.stakeflow.io/](https://api-celestia-testnet-01.stakeflow.io/)
 - [https://mocha.api.cumulo.me/](https://mocha.api.cumulo.me/)
 - [https://api-mocha-full.avril14th.org](https://api-mocha-full.avril14th.org)
-- [https://celestia-t-api.noders.services](https://celestia-t-api.noders.services)
 - [https://api-1.testnet.celestia.nodes.guru](https://api-1.testnet.celestia.nodes.guru)
 - [https://api-2.testnet.celestia.nodes.guru](https://api-2.testnet.celestia.nodes.guru)
 - [https://celestia-testnet-api.itrocket.net](https://celestia-testnet-api.itrocket.net)
@@ -170,7 +165,6 @@ broadcast transactions.
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
 - `mocha.grpc.cumulo.me:443`
 - `grpc-mocha-full.avril14th.org`
-- `celestia-grpc.noders.services:21090`
 - `grpc-1.testnet.celestia.nodes.guru:10790`
 - `grpc-2.testnet.celestia.nodes.guru:10790`
 - `celestia-testnet-grpc.itrocket.net:443`
@@ -240,7 +234,6 @@ There are several explorers you can use for Mocha:
 - [https://testnet.celestia.explorers.guru](https://testnet.celestia.explorers.guru)
 - [https://testnet.itrocket.net/celestia](https://testnet.itrocket.net/celestia)
 - [https://explorers.cryptech.com.ua/Celestia-Testnet](https://explorers.cryptech.com.ua/Celestia-Testnet)
-- [https://explorer.testnet.dteam.tech/celestia](https://explorer.testnet.dteam.tech/celestia)
 
 ## Network upgrades
 
