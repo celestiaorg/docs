@@ -101,6 +101,8 @@ _The definitions for circulating and available supply were adapted from
 
 Unlock schedule by category is described in the table below.
 
+_Note: Due to 2024 being a leap year, the yearly unlock intervals will occur on October 30th of each year. For example, unlocks at year 1 will occur on October 30, 2024._
+
 | Category                  | Unlock Schedule                                                                             |
 |---------------------------|---------------------------------------------------------------------------------------------|
 | Public Allocation         | Fully unlocked at launch.                                                                   |
