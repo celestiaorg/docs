@@ -460,6 +460,10 @@ function sidebarHome() {
                   text: "Troubleshooting",
                   link: "/nodes/celestia-node-troubleshooting",
                 },
+                {
+                  text: "Datastore structure",
+                  link: "nodes/celestia-node-store-structure",
+                },
               ],
             },
             {
