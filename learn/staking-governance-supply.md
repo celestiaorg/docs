@@ -27,7 +27,7 @@ Learn
 | Delegation support   | Yes            |
 
 Learn how to
-[stake on your own at the community dashboards](../../how-to-guides/staking.md).
+[stake on your own at the community dashboards](../learn/staking.md).
 
 ## Inflation
 
