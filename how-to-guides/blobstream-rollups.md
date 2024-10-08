@@ -216,7 +216,7 @@ part of the rollup data is done as follows:
     query.
 
     More details on these proofs can be found in the transaction inclusion proof
-    [documentation](https://docs.celestia.org/how-to-guides/blobstream-proof-queries#2-transaction-inclusion-proof).
+    [documentation](https://docs.celestia.org/how-to-guides/blobstream-proof-queries#_2-transaction-inclusion-proof).
 
 3. Prove that the data is in the sequence spans:
 
