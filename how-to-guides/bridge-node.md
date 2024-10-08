@@ -49,7 +49,7 @@ bridge node:
 
 - Memory: **16 GB RAM (minimum)**
 - CPU: **6 cores**
-- Disk: **10 TB SSD Storage**
+- Disk: **2 TB NVME Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up your bridge node

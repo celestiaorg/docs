@@ -123,7 +123,7 @@ deploy your Orbit chain.
 
 After configuring your batch poster, proceed to the next step.
 
-### Step 3: Review & Deploy your Orbit chain
+### Step 4: Review & Deploy your Orbit chain
 
 Now, deploy your chain's base contracts to Arbitrum Sepolia!
 
@@ -154,7 +154,7 @@ the challenge mechanism, bridging mechanisms, and more.
 Once your transaction is complete, continue to Step 4 to
 download your chain's configuration files and launch your chain.
 
-### Step 4: Download your chain's configuration files and launch your chain
+### Step 5: Download your chain's configuration files and launch your chain
 
 After configuring your chain, you will need to download the necessary configuration files to launch your chain. Click the **Download zip files** button to download both the Rollup Config and L3 Config in a single ZIP file.
 
@@ -166,7 +166,7 @@ Ensure to securely store these downloaded files as they contain sensitive inform
 
 ![download config](/arbitrum/download-config.png)
 
-### Step 5: Clone the setup script repository and add your configuration files
+### Step 6: Clone the setup script repository and add your configuration files
 
 1. Clone the [orbit-setup-script](https://github.com/celestiaorg/orbit-setup-script/tree/main)
 repository:
@@ -181,7 +181,7 @@ root of your cloned `orbit-setup-script` repository.
 
 3. Install dependencies by running `yarn install` from the root of the `orbit-setup-script` repository.
 
-### Step 6: Pick an L2 RPC URL for the Batch Poster
+### Step 7: Pick an L2 RPC URL for the Batch Poster
 
 In order for the Batch Poster, which is responsible for posting batches of data, to
 subscribe to Blobstream's smart contract events, the node most use a WebSocket
@@ -210,7 +210,7 @@ and successfully subscribe to Blobstream events.
 Without a WSS connection, the Batch Poster won't be able to subscribe to Blobstream
 events, and thus will fall back to posting data to parent chain.
 
-### Step 7: Run your light node for Mocha testnet
+### Step 8: Run your light node for Mocha testnet
 
 First, be sure that your light node is running, using a command similar to:
 
@@ -297,7 +297,7 @@ This is crucial to protect against potential misuse by copy-paste errors.
 
 [See the compatibility matrix in the appendix to verify you're using the right versions.](#compatibility-matrix)
 
-### Step 8: Run your chain's node and block explorer
+### Step 9: Run your chain's node and block explorer
 
 Start Docker, then run `docker-compose up -d` from the root of
 the `orbit-setup-script` repository.
@@ -313,7 +313,7 @@ After you have some activity on your rollup, it will look more like this:
 
 ![explorer-view](/arbitrum/explorer-view.png)
 
-### Step 9: Finish setting up your chain
+### Step 10: Finish setting up your chain
 
 The Offchain Labs team has provided a Hardhat script that
 handles the following tasks:
