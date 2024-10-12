@@ -248,6 +248,20 @@ Once setup, you should be ready to start the node as normal. In the logs, you sh
 see: `Discovering snapshots`. This may take a few minutes before snapshots are found
 depending on the network topology.
 
+::: tip
+If you are looking to quickly sync a consensus node, and do not need historical blocks,
+you can use the following scripts and state sync. Remember to checkout to the correct
+version and run `make install` before running the scripts:
+
+- Local devnet: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/single-node.sh>
+- Arabica: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/arabica.sh>
+- Mocha: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/mocha.sh>
+- Mainnet Beta: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/mainnet.sh>
+
+The public networks will use state sync so they'll get to the tip very quickly,
+but won't work for your use case if you need historical blocks.
+:::
+
 ### Option 3: Quick sync
 
 Quick sync effectively downloads the entire `data` directory from a third-party provider
@@ -303,7 +317,7 @@ If you are running celestia-app >= v2.0.0: then you'll want to start the node wi
 ::: code-group
 
 ```sh-vue [Mainnet Beta]
-celestia-appd start --v2-upgrade-height <height>
+celestia-appd start --v2-upgrade-height 2371495
 ```
 
 ```sh-vue [Mocha]
@@ -433,4 +447,9 @@ If you encounter an error like:
 2024-04-25 14:48:24 6:48PM ERR CONSENSUS FAILURE!!! err="+2/3 committed an invalid block: wrong Block.Header.Version. Expected {11 1}, got {11 2}" module=consensus stack="goroutine 214 [running]:\nruntime/debug.Stack()\n\t/usr/local/go/src/runtime/debug/stack.go:24 +0x64\ngithub.com/tendermint/tendermint/consensus.(*State).receiveRoutine.func2()\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:746 +0x44\npanic({0x1b91180?, 0x400153b240?})\n\t/usr/local/go/src/runtime/panic.go:770 +0x124\ngithub.com/tendermint/tendermint/consensus.(*State).finalizeCommit(0x400065ea88, 0x3)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:1637 +0xd30\ngithub.com/tendermint/tendermint/consensus.(*State).tryFinalizeCommit(0x400065ea88, 0x3)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:1606 +0x26c\ngithub.com/tendermint/tendermint/consensus.(*State).handleCompleteProposal(0x400065ea88, 0x3)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:2001 +0x2d8\ngithub.com/tendermint/tendermint/consensus.(*State).handleMsg(0x400065ea88, {{0x2b30a00, 0x400143e048}, {0x40002a61b0, 0x28}})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:856 +0x1c8\ngithub.com/tendermint/tendermint/consensus.(*State).receiveRoutine(0x400065ea88, 0x0)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:782 +0x2c4\ncreated by github.com/tendermint/tendermint/consensus.(*State).OnStart in goroutine 169\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:391 +0x110\n"
 ```
 
-then it is likely that the network has upgraded to a new app version but your consensus node was not prepared for the upgrade. To fix this, you'll need to update your binary to the latest version and restart your node with the relevant `--v2-upgrade-height` for the network you're running on. If your node still can't sync to the tip of the chain after the above steps, consider a `celestia-appd tendermint unsafe-reset-all` to reset your node and start syncing from the genesis block.
+then it is likely that the network has upgraded to a new app version but your consensus node was not prepared for the upgrade. To fix this, you'll need to:
+
+1. Remove DBs from your CELESTIA_HOME directory via: `celestia-appd tendermint reset-state`.
+1. Remove the `data/application.db` inside your CELESTIA_HOME directory.
+1. Download the latest binary for your network.
+1. Restart your consensus node with the relevant `--v2-upgrade-height` for the network you're running on.

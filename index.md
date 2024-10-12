@@ -32,7 +32,7 @@ features:
     link: /developers/build-whatever
     icon: ⚙️
   - title: Community
-    details: Join the Celestia community to connect, collaborate, and contribute to the future of modular blockchains.
-    link: /community/overview
+    details: Join the Celestia discord to connect, collaborate, and contribute to the future of modular blockchains.
+    link: https://discord.gg/celestiacommunity
     icon: 🏰
 ---

@@ -30,6 +30,10 @@ Read
 :::tip
 If you already have a running and funded node,
 you can skip to the [RPC CLI guide section](#rpc-cli-guide).
+
+If you would like to skip syncing, you can use
+this
+[guide to sync from trusted hash and height](../nodes/celestia-node-trusted-hash.md).
 :::
 
 :::warning
@@ -90,11 +94,11 @@ to an example core endpoint. Connecting to a core endpoint
 provides the light node with access to state queries (reading balances, submitting
 transactions, and other state-related queries).
 
-Note: You are also encouraged to find a community-run API endpoint
-and there are several in the Discord. This one is used for demonstration
-purposes. Check out the
-[Mocha testnet page](../nodes/mocha-testnet.md#community-rpc-endpoints),
-or [Arabica devnet page](../nodes/arabica-devnet.md#community-rpc-endpoints).
+Note: You are also encouraged to find an RPC endpoint for
+[Mainnet Beta](../nodes/mainnet.md#integrations),
+[Mocha testnet](../nodes/mocha-testnet.md#integrations),
+or [Arabica devnet](../nodes/arabica-devnet.md#integrations).
+If you are running a production application, use a production endpoint.
 
 ::: code-group
 

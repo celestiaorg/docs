@@ -1,8 +1,8 @@
 ---
 description: Learn about the integration of OP Stack with Celestia.
 prev:
-  text: "Deploy a dapp on your Arbitrum rollup devnet"
-  link: "/developers/arbitrum-dapp-deploy"
+  text: "Bridging in and out of your Orbit rollup"
+  link: "/developers/arbitrum-bridge"
 ---
 
 # Introduction to OP Stack integration
@@ -58,19 +58,6 @@ at `https://github.com/celestiaorg/optimism`.
 This is a **beta integration** and we are working on resolving
 [open issues](https://github.com/celestiaorg/optimism/issues).
 :::
-
-## Category contents
-
-This category will guide you through interacting with existing OP Stack rollups
-with Celestia underneath, then how to start your own devnet
-with a modified version of `optimism-bedrock` that uses Celestia as a
-DA layer.
-
-- [Bubs testnet](./bubs-testnet.md): learn about
-the first testnet made with OP Stack with Celestia underneath
-- [Deploy a smart contract on Bubs testnet](./deploy-on-bubs.md)
-- [Deploy a GM Portal dapp on Bubs testnet](./gm-portal-bubs.md)
-- [Run an OP Stack devnet posting Celestia](./optimism.md)
 
 <!-- ### What are Optimism and the OP Stack?
 

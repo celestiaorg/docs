@@ -16,7 +16,7 @@ Celestia ecosystem come to life in a real-world environment.
 
 Mainnet Beta is the culmination of rigorous community testing,
 upgrades, and feedback. It serves as the platform for deploying
-mainnet rollups and applications.
+Mainnet Beta rollups and applications.
 
 ## Network stability and upgrades
 
@@ -133,13 +133,10 @@ on [service providers with SLAs](#production-rpc-endpoints).
 :::
 
 - `public-celestia-rpc.numia.xyz`
-- `celestia-rpc.mesa.newmetric.xyz`
 - `rpc.celestia.pops.one`
 - `rpc.lunaroasis.net`
 - `rpc.celestia.nodestake.top`
 - `celestia-rpc.brightlystake.com`
-- `celestia-rpc.spidey.services`
-- `rpc-celestia.contributiondao.com`
 - `celestia.rpc.stakin-nodes.com`
 - `celestia.cumulo.org.es`
 - `rpc-celestia.mzonder.com`
@@ -150,15 +147,9 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia.rpc.kjnodes.com`
 - `celestia-rpc.0xcryptovestor.com`
 - `rpc-celestia-mainnet.trusted-point.com`
-- `celestia.rpc.archives.validao.xyz`
-- `rpc-archive.celestia.bitszn.com`
-- `celestia-rpc.f5nodes.com`
 - `celestia-rpc.chainode.tech:33373`
-- `rpc-celestia.staker.space`
 - `celestia-rpc.noders.services`
-- `celestia.moonli.me`
 - `celestia-mainnet-rpc.itrocket.net:443`
-- `rpc.celestia.mainnet.dteam.tech:443`
 
 #### Community API endpoints
 
@@ -168,8 +159,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `api.lunaroasis.net`
 - `api.celestia.nodestake.top`
 - `celestia-rpc.brightlystake.com/api`
-- `celestia-api.spidey.services`
-- `api-celestia.contributiondao.com`
 - `celestia.rest.stakin-nodes.com`
 - `celestia.api.cumulo.org.es`
 - `api-celestia.mzonder.com`
@@ -179,15 +168,9 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-lcd.easy2stake.com`
 - `celestia.api.kjnodes.com`
 - `api-celestia-mainnet.trusted-point.com`
-- `celestia.rest.archives.validao.xyz`
-- `api-archive.celestia.bitszn.com`
-- `celestia-api.f5nodes.com`
 - `celestia-api.chainode.tech`
-- `api-celestia.staker.space`
 - `celestia-api.noders.services`
-- `celestia.moonli.me/api`
 - `celestia-mainnet-api.itrocket.net:443`
-- `api.celestia.mainnet.dteam.tech:443`
 
 #### Community gRPC endpoints
 
@@ -197,8 +180,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `grpc.lunaroasis.net:443`
 - `grpc.celestia.nodestake.top`
 - `celestia-rpc.brightlystake.com:9090`
-- `celestia-grpc.spidey.services`
-- `grpc-celestia.contributiondao.com`
 - `celestia.grpc.stakin-nodes.com:443`
 - `celestia.grpc.cumulo.org.es:443`
 - `grpc-celestia.mzonder.com:443`
@@ -207,20 +188,16 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `grpc-celestia-full.avril14th.org`
 - `celestia.grpc.kjnodes.com:443`
 - `grpc-celestia-mainnet.trusted-point.com:9095`
-- `celestia.grpc.archives.validao.xyz:9090`
-- `gprc-archive.celestia.bitszn.com`
-- `celestia-grpc.f5nodes.com:9390`
 - `celestia-grpc.chainode.tech:443`
-- `grpc-celestia.staker.space`
 - `celestia-grpc.noders.services:11090`
 - `celestia-mainnet-grpc.itrocket.net:443`
-- `grpc.celestia.mainnet.dteam.tech:28090`
 
 #### Community WebSocket endpoints
 
 - `wss://celestia-ws.chainode.tech:33373/websocket`
 - `wss://celestia-mainnet-ws.itrocket.net:443/websocket`
 - `wss://rpc.celestia.mainnet.dteam.tech:443/websocket`
+- `wss://celestia.cumulo.org.es:443/websocket`
 
 ### Data availability nodes
 
@@ -262,9 +239,6 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `public-celestia-consensus.numia.xyz`
   - gRPC: port 9090
   - RPC: port 26657
-- `celestia-consensus.mesa.newmetric.xyz`
-  - gRPC: port 9090
-  - RPC: port 26657
 - `rpc.celestia.pops.one`
   - gRPC: port 9090
   - RPC: port 26657
@@ -277,12 +251,9 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-mainnet-consensus.itrocket.net`
   - gRPC: port 9090
   - RPC: port 26657
-- `rpc.celestia.mainnet.dteam.tech`
-  - gRPC: port 28090
-  - RPC: 28657
 - `celestia-consensus-mainnet.noders.services`
   - gRPC: port 9080
-  - RPC: port 26557
+  - RPC: port 26657
 
 DA full and light nodes might have troubles connecting to the networks, so you
 can check out this
@@ -339,5 +310,5 @@ There are a few ways to stay informed about network upgrades on Mainnet Beta:
 - Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 - Discord [Mainnet Beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
 
-See the [Hardfork process page](./hardfork-process.md) to learn more
-about specific upgrades like the [Lemongrass hardfork](./hardfork-process.md#lemongrass-hardfork).
+See the [network upgrade process page](./network-upgrade-process.md) to learn more
+about specific upgrades like the [Lemongrass network upgrade](./network-upgrade-process.md#lemongrass-network-upgrade).

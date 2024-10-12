@@ -174,7 +174,7 @@ export default {
       { icon: "github", link: "https://github.com/celestiaorg/docs" },
       { icon: "twitter", link: "https://twitter.com/CelestiaOrg" },
       { icon: "youtube", link: "https://www.youtube.com/@CelestiaNetwork" },
-      { icon: "discord", link: "https://discord.com/invite/YsnTPcSfWQ" },
+      { icon: "discord", link: "https://discord.gg/celestiacommunity" },
       { icon: { svg: telegramSVG }, link: "https://t.me/CelestiaCommunity" },
     ],
 
@@ -258,7 +258,7 @@ function nav() {
         { text: "Networks", link: "/nodes/participate" },
         { text: "Nodes", link: "/nodes/overview" },
         { text: "Developers", link: "/developers/build-whatever" },
-        { text: "Community", link: "/community/overview" },
+        { text: "Discord", link: "https://discord.gg/celestiacommunity" },
         {
           text: "Quick start",
           items: [
@@ -337,6 +337,10 @@ function sidebarHome() {
                 {
                   text: "Celestia glossary",
                   link: "https://celestia.org/glossary/",
+                },
+                {
+                  text: "Awesome Celestia resources",
+                  link: "https://github.com/celestiaorg/awesome-celestia/",
                 },
               ],
             },
@@ -471,7 +475,7 @@ function sidebarHome() {
                   link: "/nodes/celestia-app-metrics",
                 },
                 {
-                  text: "Jailing and Slashing mechanics",
+                  text: "Jailing and slashing mechanics",
                   link: "/nodes/celestia-app-slashing",
                 },
                 {
@@ -501,7 +505,7 @@ function sidebarHome() {
               ],
             },
             { text: "SystemD", link: "/nodes/systemd" },
-            { text: "Hardfork process", link: "/nodes/hardfork-process" },
+            { text: "Network upgrade process", link: "/nodes/network-upgrade-process" },
           ],
         },
       ],
@@ -544,14 +548,6 @@ function sidebarHome() {
                       link: "https://docs.arbitrum.io/launch-orbit-chain/how-tos/customize-deployment-configuration",
                     },
                     {
-                      text: "Deploy a smart contract on Arbitrum rollup",
-                      link: "/developers/arbitrum-smart-contract",
-                    },
-                    {
-                      text: "Deploy a dapp on your Arbitrum rollup devnet",
-                      link: "/developers/arbitrum-dapp-deploy",
-                    },
-                    {
                       text: "Audit",
                       link: "https://github.com/celestiaorg/nitro/blob/celestia-v2.3.3/audits/celestia/arbitrum_nitro_celestia_audit_report.pdf",
                     }
@@ -563,8 +559,8 @@ function sidebarHome() {
                   items: [
                     { text: "Documentation", link: "https://docs.astria.org" },
                     {
-                      text: "Deploy to Dusknet",
-                      link: "https://docs.astria.org/docs/local-rollup/introduction/",
+                      text: "Just deploy",
+                      link: "https://docs.astria.org/developer/tutorials/install-the-cli",
                     },
                   ],
                 },
@@ -577,32 +573,26 @@ function sidebarHome() {
                       link: "/developers/intro-to-op-stack",
                     },
                     {
-                      text: "Bubs testnet",
-                      link: "/developers/bubs-testnet",
-                    },
-                    {
-                      text: "Raspberry testnet",
-                      link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
-                    },
-                    {
-                      text: "Deploy a smart contract on Bubs testnet",
-                      link: "/developers/deploy-on-bubs",
-                    },
-                    {
-                      text: "Deploy a dapp on Bubs testnet",
-                      link: "/developers/gm-portal-bubs",
-                    },
-                    {
                       text: "Run an OP Stack devnet posting Celestia",
                       link: "/developers/optimism",
                     },
                     {
-                      text: "Audit",
-                      link: "https://docs.celestia.org/audits/Celestia_OP_Stack_Audit.pdf",
+                      text: "OP Stack testnets",
+                      collapsed: true,
+                      items: [
+                        {
+                          text: "Bubs testnet",
+                          link: "/developers/bubs-testnet",
+                        },
+                        {
+                          text: "Raspberry testnet",
+                          link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
+                        },
+                      ]
                     },
                     {
-                      text: "Deploy a dapp with thirdweb",
-                      link: "https://thirdweb.com/bubs-testnet",
+                      text: "Audit",
+                      link: "https://docs.celestia.org/audits/Celestia_OP_Stack_Audit.pdf",
                     },
                     {
                       text: "Rollups as a Service",
@@ -648,7 +638,7 @@ function sidebarHome() {
               items: [
                 {
                   text: "Dymension",
-                  link: "https://docs.dymension.xyz/build/overview/",
+                  link: "https://docs.dymension.xyz/",
                 },
               ]
             }
@@ -665,6 +655,10 @@ function sidebarHome() {
             {
               text: "FeeGrant module for blobs submission",
               link: "/developers/feegrant-for-blobs",
+            },
+            {
+              text: "MultiAccounts feature for blobs submission",
+              link: "/developers/multiaccounts",
             },
             {
               text: "Transaction resubmission guidelines",
@@ -717,45 +711,85 @@ function sidebarHome() {
               link: "/developers/blobstream-proof-queries",
             },
             {
-              text: "Example implementation of Blobstream proofs by CryptoKass",
-              link: "https://github.com/CryptoKass/blobstreamx-example",
-            },
-            {
-              text: "Local Blobstream X operators",
+              text: "SP1 Blobstream",
               collapsed: true,
               items: [
                 {
-                    text: "Requesting data commitment ranges",
-                  link: "/developers/blobstream-x-requesting-data-commitment-ranges",
+                  text: "Local SP1 Blobstream operators",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "New SP1 Blobstream deployments",
+                      link: "/developers/sp1-blobstream-deploy",
+                    },
+                  ],
                 },
                 {
-                  text: "New Blobstream X deployments",
-                  link: "/developers/blobstream-x-deploy",
+                  text: "SP1 Blobstream audits",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Ottersec",
+                      link: "https://docs.celestia.org/audits/SP1_Blobstream_Ottersec_Audit.pdf",
+                    },
+                    {
+                      text: "SP1 Audits",
+                      link: "https://github.com/succinctlabs/sp1/tree/dev/audits"
+                    }
+                  ]
                 },
-              ],
+              ]
             },
             {
-              text: "Blobstream X audits",
+              text: "Blobstream X",
               collapsed: true,
               items: [
                 {
-                  text: "Informal Systems",
-                  link: "https://docs.celestia.org/audits/Blobstream_X-Informal_Systems_Audit.pdf",
+                  text: "Overview of BlobstreamX",
+                  link: "/developers/blobstreamx",
                 },
                 {
-                  text: "OtterSec",
-                  link: "https://docs.celestia.org/audits/Blobstream_X-OtterSec_Audit.pdf",
+                  text: "Example implementation of Blobstream proofs by CryptoKass",
+                  link: "https://github.com/CryptoKass/blobstreamx-example",
                 },
                 {
-                  text: "Veridise",
-                  link: "https://docs.celestia.org/audits/Blobstream_X-Veridise_Audit.pdf",
+                  text: "Local Blobstream X operators",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Requesting data commitment ranges",
+                      link: "/developers/blobstream-x-requesting-data-commitment-ranges",
+                    },
+                    {
+                      text: "New Blobstream X deployments",
+                      link: "/developers/blobstream-x-deploy",
+                    }
+                  ]
                 },
                 {
-                  text: "Zellic",
-                  link: "https://docs.celestia.org/audits/Blobstream_X-Zellic_Audit.pdf",
+                  text: "Blobstream X audits",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Informal Systems",
+                      link: "https://docs.celestia.org/audits/Blobstream_X-Informal_Systems_Audit.pdf",
+                    },
+                    {
+                      text: "OtterSec",
+                      link: "https://docs.celestia.org/audits/Blobstream_X-OtterSec_Audit.pdf",
+                    },
+                    {
+                      text: "Veridise",
+                      link: "https://docs.celestia.org/audits/Blobstream_X-Veridise_Audit.pdf",
+                    },
+                    {
+                      text: "Zellic",
+                      link: "https://docs.celestia.org/audits/Blobstream_X-Zellic_Audit.pdf",
+                    }
+                  ],
                 }
-              ],
-            }
+              ]
+            },
           ],
         },
         {
@@ -779,12 +813,11 @@ function sidebarHome() {
       text: "Community",
       collapsed: true,
       items: [
-        { text: "Overview", link: "/community/overview" },
+        { text: "Discord", link: "https://discord.gg/celestiacommunity"},
         { text: "Code of Conduct", link: "/community/coc" },
-        { text: "Community calendar", link: "/community/calendar" },
-	{ text: "Celestia Foundation Delegation Program", 
-	  link: "/community/foundation-delegation-program"
-	},
+        { text: "Celestia Foundation Delegation Program", 
+          link: "/community/foundation-delegation-program"
+        },
         {
           text: "Modular Meetups",
           collapsed: true,
@@ -794,10 +827,6 @@ function sidebarHome() {
             { text: "Toolkit", link: "/community/modular-meetup-toolkit" },
             { text: "Speaker list", link: "/community/speaker-list" },
           ],
-        },
-        {
-          text: "Incentivized testnet supplemental terms",
-          link: "/community/itn-tos",
         },
       ],
     },

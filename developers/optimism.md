@@ -1,8 +1,5 @@
 ---
 description: Start your own rollup with op-plasma-celestia and roll-op.
-next:
-  text: "Ethereum fallback mechanism"
-  link: "/developers/ethereum-fallback"
 ---
 
 # Run an OP Stack rollup with Celestia underneath
@@ -19,7 +16,6 @@ If you don't have devops experience and would like to use a Rollups as a Service
 ## Dependency setup
 
 - [celestia-node](../nodes/celestia-node.md)
-- [roll-op](https://github.com/celestiaorg/roll-op?tab=readme-ov-file#prerequisites)
 
 ### Setting up your light node
 

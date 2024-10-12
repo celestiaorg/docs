@@ -2,7 +2,7 @@
 description: This section covers the jailing and slashing mechanics for validators in Celestia.
 ---
 
-# Jailing and Slashing on Celestia
+# Jailing and slashing on Celestia
 
 Slashing is a mechanism employed in proof of stake blockchains
 that is used to deter and punish malicious behavior.

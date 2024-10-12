@@ -1,0 +1,22 @@
+name: Build VitePress Site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn 
+      - name: Install dependencies
+        run: yarn install 
+      - name: Build with VitePress
+        run: yarn build 

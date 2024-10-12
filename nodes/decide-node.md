@@ -7,18 +7,20 @@ description: Guide on helping you decide which type of node to run.
 Now that you have installed the basic dependencies,
 you can start exploring which nodes to run!
 
-## Beginner
+## Light node
 
-It is highly recommended if you are a beginner to
-get started with running a Data-Availability light node.
-
-In order to get started, you can proceed to the
-[light node section](./light-node.md).
+It is highly recommended to
+get started with running a data availability [light node](./light-node.md).
 
 You can also play around with the Data Availability API in
 [this tutorial for posting and retrieving data with a light node](../developers/node-tutorial.md).
 
-## Advanced
+### Other DA nodes
+
+Depending on your use case, you also may want to run a [bridge node](./bridge-node.md)
+or a [full DA node](./full-storage-node.md).
+
+## Consensus node
 
 If you are looking to run a consensus node, please follow the
 [tutorial for running a consensus node](./full-consensus-node.md).

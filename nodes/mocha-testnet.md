@@ -107,8 +107,6 @@ full blocks from it.
   - gRPC port: 9090
 - `rpc-celestia-testnet.cryptech.com.ua`
   - gRPC: grpc-celestia-testnet.cryptech.com.ua:443
-- `rpc.celestia.testnet.dteam.tech:443`
-  - gRPC: grpc.celestia.testnet.dteam.tech:27090
 - `celestia-consensus-testnet.noders.services`
   - RPC port: 26357
   - gRPC port: 9070
@@ -122,21 +120,16 @@ Celestia network. The default port is 26657.
 - `public-celestia-mocha4-consensus.numia.xyz:26657`
 - `mocha-4-consensus.mesa.newmetric.xyz:26657`
 - `rpc.celestia-mocha.com`
-- `celestia-testnet-rpc.f5nodes.com`
 - `celestia-testnet.brightlystake.com`
-- `rpc-celestia-mocha.architectnodes.com`
 - `rpc-celestia-mocha.trusted-point.com`
 - `rpc-celestia-testnet-01.stakeflow.io`
 - `mocha.celestia.rpc.cumulo.me`
-- `rpc-mocha-4.spidey.services`
 - `rpc-mocha-full.avril14th.org`
-- `rpc.mocha.bitszn.com`
 - `celestia-t-rpc.noders.services/`
 - `rpc-1.testnet.celestia.nodes.guru`
 - `rpc-2.testnet.celestia.nodes.guru`
 - `celestia-testnet-rpc.itrocket.net:443`
 - `rpc-celestia-testnet.cryptech.com.ua:443`
-- `rpc.celestia.testnet.dteam.tech:443`
 
 ## Community API endpoints
 
@@ -148,21 +141,16 @@ The default port is 1317.
 
 - [https://api-mocha.pops.one](https://api-mocha.pops.one)
 - [https://api.celestia-mocha.com/](https://api.celestia-mocha.com/)
-- [https://celestia-testnet-api.f5nodes.com](https://celestia-testnet-api.f5nodes.com)
 - [https://celestia-testnet.brightlystake.com/api](https://celestia-testnet.brightlystake.com/api)
-- [https://rest-celestia-mocha.architectnodes.com](https://rest-celestia-mocha.architectnodes.com)
 - [https://api-celestia-mocha.trusted-point.com](https://api-celestia-mocha.trusted-point.com)
 - [https://api-celestia-testnet-01.stakeflow.io/](https://api-celestia-testnet-01.stakeflow.io/)
 - [https://mocha.api.cumulo.me/](https://mocha.api.cumulo.me/)
-- [http://api-mocha-4.spidey.services](http://api-mocha-4.spidey.services)
 - [https://api-mocha-full.avril14th.org](https://api-mocha-full.avril14th.org)
-- [https://api.mocha.bitszn.com](https://api.mocha.bitszn.com)
 - [https://celestia-t-api.noders.services](https://celestia-t-api.noders.services)
 - [https://api-1.testnet.celestia.nodes.guru](https://api-1.testnet.celestia.nodes.guru)
 - [https://api-2.testnet.celestia.nodes.guru](https://api-2.testnet.celestia.nodes.guru)
 - [https://celestia-testnet-api.itrocket.net](https://celestia-testnet-api.itrocket.net)
 - [https://api-celestia-testnet.cryptech.com.ua](https://api-celestia-testnet.cryptech.com.ua)
-- [https://api.celestia.testnet.dteam.tech](https://api.celestia.testnet.dteam.tech)
 
 ## Community gRPC endpoints
 
@@ -177,21 +165,16 @@ broadcast transactions.
 - `grpc.celestia-mocha.com:443`
 - `full.consensus.mocha-4.celestia-mocha.com:9090`
 - `consensus-full-mocha-4.celestia-mocha.com:9090`
-- `celestia-testnet-grpc.f5nodes.com`
 - `celestia-testnet.brightlystake.com:9390`
-- `grpc-celestia-mocha.architectnodes.com:1443`
 - `grpc-celestia-mocha.trusted-point.com:9099`
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
 - `mocha.grpc.cumulo.me:443`
-- `grpc-mocha-4.spidey.services`
 - `grpc-mocha-full.avril14th.org`
-- `grpc.mocha.bitszn.com`
 - `celestia-grpc.noders.services:21090`
 - `grpc-1.testnet.celestia.nodes.guru:10790`
 - `grpc-2.testnet.celestia.nodes.guru:10790`
 - `celestia-testnet-grpc.itrocket.net:443`
 - `grpc-celestia-testnet.cryptech.com.ua:443`
-- `grpc.celestia.testnet.dteam.tech:27090`
 
 ## Community bridge and full node endpoints
 
@@ -266,5 +249,5 @@ There are a few ways to stay informed about network upgrades on Mocha testnet:
 - Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 - Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
 
-See the [Hardfork process page](./hardfork-process.md) to learn more
-about specific upgrades like the [Lemongrass hardfork](./hardfork-process.md#lemongrass-hardfork).
+See the [network upgrade process page](./network-upgrade-process.md) to learn more
+about specific upgrades like the [Lemongrass network upgrade](./network-upgrade-process.md#lemongrass-network-upgrade).

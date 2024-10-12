@@ -1,7 +1,7 @@
 ---
 prev:
-   text: "Querying the Blobstream proofs"
-   link: "/developers/blobstream-proof-queries"
+    text: "Overview of Blobstream X"
+    link: "/developers/blobstreamx"
 ---
 
 # Requesting data commitment ranges
@@ -32,7 +32,7 @@ Alternatively, if a team needs a very specific cadence that starts at very speci
 BlobstreamX contract and submit proofs to it. Deployment instructions can be found in the [BlobstreamX deploy](./blobstream-x-deploy.md) 
 documentation.
 
-::: Note
+::: tip
 Requires a large cloud machine to run in a reasonable
 amount of time. EC2 r6a.16xlarge, i.e., 64CPU 512GB RAM, takes ~30 minutes to generate a
 header range proof.
@@ -54,7 +54,7 @@ to run the operator script.
 Here are example values for the `.env` file:
 
 1. `TENDERMINT_RPC_URL` from
-   [the public Celestia list](https://docs.celestia.org/nodes/mainnet#consensus-nodes).
+   [the public Celestia list](https://docs.celestia.org/nodes/mainnet#integrations).
 2. `SUCCINCT_RPC_URL` = `https://alpha.succinct.xyz/api`
 3. Request for `SUCCINCT_API_KEY` from
    [the Succinct team](https://alpha.succinct.xyz/partner).
