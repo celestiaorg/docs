@@ -95,3 +95,35 @@ You can check your compression rate with the following command:
 ```sh
 zfs get compressratio $ZFS_POOL_NAME
 ```
+
+## ZFS Fine-Tuning (Advanced)
+If you want to increase your I/O performance and sync speed, you can try the following steps:
+### Disable Auto-Trim
+Auto-trim disabling can improve I/O performance, but may lead to increased SSD wear over time.
+```sh
+sudo zpool set autotrim=off $ZFS_POOL_NAME
+```
+
+:::tip NOTE
+You always can trim maually: `sudo zpool trim $ZFS_POOL_NAME`
+:::
+
+### Disable sync
+Disabling boosts write speed, but risks data loss if the system crashes before data is written to disk.
+```sh
+sudo zfs set sync=disabled $ZFS_POOL_NAME
+```
+
+:::tip NOTE
+You should not keep the `sync` feature disabled permanently; it is useful during the initial DA node sync but can be re-enabled afterward. You can enable `sync` again with: `sudo zfs set sync=enabled $ZFS_POOL_NAME`.
+:::
+
+### Disable prefetch
+Disabling reduces memory usage but can slow down performance for sequential read workloads.
+```sh
+echo 1 | sudo tee /sys/module/zfs/parameters/zfs_prefetch_disable
+```
+
+:::tip NOTE
+You can always re-enable it: `echo 0 | sudo tee /sys/module/zfs/parameters/zfs_prefetch_disable`
+:::
