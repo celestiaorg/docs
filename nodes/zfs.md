@@ -44,13 +44,13 @@ sudo apt update && sudo apt install zfsutils-linux
 
 Create ZFS pool:
 ```sh
-zpool create $ZFS_POOL_NAME /dev/nvme0n1
+zpool create -o ashift=12 $ZFS_POOL_NAME /dev/nvme0n1
 ```
 
 :::tip NOTE
 If you have more than one disk available - you can add them also:
 ```sh
-zpool create $ZFS_POOL_NAME /dev/nvme0n1 /dev/nvme1n1
+zpool create -o ashift=12 $ZFS_POOL_NAME /dev/nvme0n1 /dev/nvme1n1
 ```
 :::
 
@@ -111,7 +111,7 @@ You always can trim maually: `sudo zpool trim $ZFS_POOL_NAME`
 ### Disable sync
 Disabling boosts write speed, but risks data loss if the system crashes before data is written to disk.
 ```sh
-sudo zfs set sync=disabled $ZFS_POOL_NAME
+zfs set sync=disabled $ZFS_POOL_NAME
 ```
 
 :::tip NOTE
@@ -127,3 +127,9 @@ echo 1 | sudo tee /sys/module/zfs/parameters/zfs_prefetch_disable
 :::tip NOTE
 You can always re-enable it: `echo 0 | sudo tee /sys/module/zfs/parameters/zfs_prefetch_disable`
 :::
+
+### Set record size
+Setting `recordsize=256K` defines the maximum block size that ZFS will use when writing data to a dataset.
+```sh
+zfs set recordsize=256K $ZFS_POOL_NAME/$ZFS_DATASET_NAME
+```
