@@ -70,7 +70,7 @@ The minimum requirements for participation in the program are as follows:
 for at least 1 month before application deadline
 * Run a bridge node (on Mainnet Beta if you are already an active Mainnet Beta
 validator or on Mocha testnet if not) that is connected and reporting
-to the Celestia Labs [OTEL collector](../nodes/celestia-node-metrics.md)
+to the Celestia Labs [OTEL collector](../how-to-guides/celestia-node-metrics.md)
 (for new applicants - on testnet, so that we can evaluate performance)
 * Not jailed or slashed in the 6 months before application deadline
 * Not associated with an exchange or custodian
