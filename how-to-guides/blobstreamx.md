@@ -3,9 +3,6 @@ description: What is BlobstreamX
 prev:
     text: "New SP1 Blobstream deployments"
     link: "/how-to-guides/sp1-blobstream-deploy"
-next:
-    text: "Requesting data commitment ranges"
-    link: "/how-to-guides/blobstream-x-requesting-data-commitment-ranges"
 ---
 
 # Blobstream X: the previous zk implementation of Blobstream
@@ -76,3 +73,7 @@ First, you will need to create a multisig that governs the Blobstream X contract
 Then, check the [deployment](https://github.com/succinctlabs/blobstreamx/blob/main/README.md#blobstreamx-contract-overview) documentation for how to deploy the contract.
 
 Then, you will need to run a relayer, which will generate the proofs and relay them to your deployed Blobstream X contract. Check the [local proving documentation](./blobstream-x-requesting-data-commitment-ranges.md#local-proving) for more information.
+
+## Community implementations
+
+Learn more about the community [implementation of Blobstream proofs by CryptoKass](https://github.com/CryptoKass/blobstreamx-example).
