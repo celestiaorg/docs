@@ -2,153 +2,257 @@
 description: Learn how to generate a vesting account using celestia-app.
 ---
 
-# Security for Celestia App 
-## Overview
-As Celestia continues to grow, an increasing number of validators will be running nodes on baremetal servers. These servers often lack built-in DDoS and firewall protection. To address this, we can integrate FireHOL to add an additional layer of security, ensuring that our nodes remain safe from common threats, such as unauthorized access and DDoS attacks. This guide focuses on setting up FireHOL for traffic filtering, rate limiting, and IP blacklisting to bolster security for your Celestia node.
-
-## Motivation
-Validators in Celestia often rely on cloud or baremetal servers for their infrastructure. While some providers offer basic protection, most setups lack advanced firewall solutions such as DDoS mitigation. This makes it critical to implement your own measures. By using FireHOL, we introduce a flexible and lightweight firewall that supports advanced features like rate limiting and dynamic IP blacklisting. This solution ensures that your node can handle increasing traffic while protecting it from malicious actors.
+# Security for Celestia App
+Validators in Celestia often rely on cloud or baremetal servers for their infrastructure. While some providers offer basic protection, most setups lack advanced firewall solutions such as DDoS mitigation. This makes it critical to implement your own measures. By using [FireHOL](https://github.com/firehol/firehol), we introduce a flexible and lightweight firewall that supports advanced features like rate limiting and dynamic IP blacklisting. This solution ensures that your node can handle increasing traffic while protecting it from malicious actors.
+  
 
 ### Key features we’ll leverage include:
 
+  
+
 1. Traffic filtering and rate limiting to mitigate potential DDoS attacks.
-2. Dynamic IP blocking using blacklists like DShield and Emerging Threats to automatically block known malicious IPs.
+
+2. Dynamic IP blocking using blacklists like [DShield](https://iplists.firehol.org/?ipset=dshield) and [Emerging Threats](https://iplists.firehol.org/?ipset=et_block) to automatically block known malicious IPs.
+
 3. Flexible firewall rules that allow only necessary traffic for Celestia node operations.
 
+  
+
 ### Step 1: Install FireHOL
+
 First, ensure FireHOL is installed on your server. You can install it using the following commands:
-```
+
+```sh
 sudo apt update
-sudo apt install firehol 
+sudo apt install firehol
 ```
+
+  
 Check that FireHOL is installed and working by running:
 
-  ```
+```sh
 sudo firehol version
 ```
 
+  
+
 ## Step 2: Configure FireHOL for Celestia Node
+
 Create or modify your FireHOL configuration file, typically located at ```/etc/firehol/firehol.conf```. The following configuration allows P2P, RPC, and gRPC traffic, while applying security measures such as rate limiting and IP blacklisting.
+
+  
 
 FireHOL Configuration
 
-```
+  
+
+```sh
 version 6
 
-# Define your external network interface (replace eth0 with actual interface name)
-interface eth0 internet
-   protection strong
+# Define ipsets for blocked IPs and networks from Emerging Threats and DShield
+ipv4 ipset create blocked_ips hash:ip
+ipv4 ipset addfile blocked_ips /etc/firehol/blocked.ips
 
-   # Allow P2P traffic on port 26656 (TCP only)
-   server p2p tcp/26656 accept
+ipv4 ipset create blocked_nets hash:net
+ipv4 ipset addfile blocked_nets /etc/firehol/blocked.nets
 
-   # Allow RPC traffic on port 26657 (TCP) from any source
-   server rpc accept src any dport 26657
-   server rpc rate-limit 20/second burst 50 src
+# Block IPs and Networks from DShield and Emerging Threats
+ipv4 blacklist full ipset:blocked_ips ipset:blocked_nets
 
-   # Allow Prometheus metrics on port 26660 (limit to trusted IPs or internal network)
-   server prometheus accept src 192.168.1.0/24 dport 26660
+# Define your external network interface
+interface4 enp5s0 internet
+    protection strong
 
-   # Allow gRPC communication on ports 9090 and 9091 (TCP)
-   server grpc accept src any dport 9090
-   server grpc accept src any dport 9091
+    # Allow P2P traffic on port 26656 (TCP) with DDoS protection
+    server custom p2p tcp/26656 default accept
+    protection syn-floods 20/sec 50  # Protect against SYN flood attacks
 
-   # Allow REST API access on port 1317 (TCP)
-   server rest accept src any dport 1317
+    # Allow RPC traffic on port 26657 (TCP) with DDoS protection
+    server custom rpc tcp/26657 default accept
+    protection syn-floods 20/sec 50  # Protect against SYN flood attacks
 
-   # Allow UDP traffic on port 123 for NTP (clock synchronization)
-   server ntp udp/123 accept
+    # Allow Prometheus metrics on port 26660 (limit to trusted IPs or internal network) with DDoS protection
+    server custom prometheus tcp/26660 default accept src 192.168.1.0/24
+    protection syn-floods 10/sec 20  # Protect against SYN flood attacks
 
-   # Block IPs from DShield and Emerging Threats (ensure /etc/firehol/blocked.ips is up-to-date)
-   blacklist full /etc/firehol/blocked.ips
+    # Allow gRPC communication on port 9090 (TCP) with DDoS protection
+    server custom grpc tcp/9090 default accept
+    protection syn-floods 15/sec 30  # Protect against SYN flood attacks
 
-   # Log dropped connections
-   log iptables drop
+    # Allow gRPC communication on port 9091 (TCP) with DDoS protection
+    server custom grpc2 tcp/9091 default accept
+    protection syn-floods 15/sec 30  # Protect against SYN flood attacks
 
-   # General protection rules for DoS attempts and port scanning
-   server all drop rate-limit 50/sec burst 100
+    # Allow REST API access on port 1317 (TCP) with DDoS protection
+    server custom rest tcp/1317 default accept
+    protection syn-floods 20/sec 40  # Protect against SYN flood attacks
+    
+    # Allow all traffic from localhost without specifying ports
+    server all accept src 127.0.0.1
 
-   # Allow localhost traffic
-   server all accept src 127.0.0.1
+    # Allow all traffic from internal network without specifying ports
+    server all accept src 192.168.1.0/24
 
-   # Allow internal network traffic (optional)
-   server all accept src 192.168.1.0/24
+    # Allow outgoing traffic for general internet access
+    client all accept
 
 # Block all IPv6 traffic
-interface eth0 ipv6
-   server all drop
+interface4 enp5s0 ipv6
+    server all drop
 ```
+
 ::: tip
+
 Currently bind to eth0, make sure you bind it to the correct interface or bind all
+
 ```interface any world```
+
 :::
-####  Key Configuration Details
+
+#### Key Configuration Details
+
 - P2P (26656): Allows inbound P2P traffic, essential for Celestia node synchronization.
+
 - RPC (26657): Open to external sources with rate limiting to prevent abuse.
+
 - Prometheus (26660): Restricted to internal networks or trusted IPs for security.
+
 - gRPC (9090, 9091): Opened for gRPC communication.
+
 - REST API (1317): Opened for API access.
-- Blocked IPs: Dynamic IP blocking is applied using blacklists like DShield and 
+
+- Blocked IPs: Dynamic IP blocking is applied using blacklists like DShield and
+
 - Emerging Threats.
 
-###  Step 3: Set Up Cron to Automatically Update Blocked IPs
+  
+
+### Step 3: Set Up Cron to Automatically Update Blocked IPs
+
 To maintain an updated list of blocked IPs, set up a cron job to fetch the latest blacklists every hour. Here’s how you can configure it.
 
-#### Step 3.1: Create a Script to Update the Blocked IPs
-Create a script in /usr/local/bin/update-blocked-ips.sh to download and update the IP blacklist.
+  
 
-```
+#### Step 3.1: Create a Script to Update the Blocked IPs
+
+Create a script in ```/usr/local/bin/update-blocked-ips.sh``` to download and update the IP blacklist.
+
+  
+
+```sh
 #!/bin/bash
 
-# Fetch the latest IPs from DShield
-curl -s https://www.dshield.org/block.txt | awk '{print $1}' > /etc/firehol/blocked.ips
+# Temporary files for downloading the blocklists
+tmp_emerging=$(mktemp) || exit 1
+tmp_dshield=$(mktemp) || exit 1
 
-# Fetch additional IPs from Emerging Threats
-curl -s https://rules.emergingthreats.net/blockrules/emerging-Block-IPs.txt >> /etc/firehol/blocked.ips
+# Download the block lists from Emerging Threats and DShield
+wget -O $tmp_emerging "http://rules.emergingthreats.net/fwrules/emerging-Block-IPs.txt"
+if [ $? -ne 0 -o ! -s $tmp_emerging ]; then
+    rm $tmp_emerging
+    echo >&2 "Cannot download Emerging Threats blacklist."
+    exit 1
+fi
 
-# Reload FireHOL to apply the new blocked IPs
-firehol reload
+wget -O $tmp_dshield "https://feeds.dshield.org/block.txt"
+if [ $? -ne 0 -o ! -s $tmp_dshield ]; then
+    rm $tmp_dshield
+    echo >&2 "Cannot download DShield blocklist."
+    exit 1
+fi
+
+# Update the IPSet collections using FireHOL
+# Split the Emerging Threats list into IPs and Networks
+firehol ipset_update_from_file blocked_ips ips $tmp_emerging
+firehol ipset_update_from_file blocked_nets nets $tmp_emerging
+
+# Split the DShield list into IPs and Networks
+firehol ipset_update_from_file blocked_nets nets $tmp_dshield
+
+# Clean up temporary files
+rm $tmp_emerging
+rm $tmp_dshield
+
 ```
+
+::: tip
+You can add more IP list from the db, not adding more list will create more overhead: [Cyber Crime IP DB](https://iplists.firehol.org/)
+::: 
+
 Make the script executable:
-```
+
+```sh
 sudo chmod +x /usr/local/bin/update-blocked-ips.sh
 ```
 
+  
+
 #### Step 3.2: Set Up the Cron Job
+
 To run this script automatically every hour, add the following line to your cron configuration:
 
-```
+  
+```sh
 sudo crontab -e
 ```
+
 Then, add this line at the end:
-```
+
+```sh
 0 * * * * /usr/local/bin/update-blocked-ips.sh
 ```
+
 This cron job will run every hour, update the blocked IPs, and reload FireHOL with the new list.
 
+  
+
 ### Step 4: Apply and Test FireHOL Configuration
-After editing the FireHOL configuration and setting up the cron job, restart the service to apply the new rules:
+Ensure FireHOL is enabled to start at boot by editing its default configuration:
+
+```sh
+sudo nano /etc/default/firehol
 ```
+
+Change the ```START_FIREHOL``` to YES
+
+```sh
+START_FIREHOL=YES
+```
+
+Start the service to apply the new rules:
+
+```sh
 sudo firehol start
 ```
+
 Verify that the rules are applied correctly by listing the current active firewall rules:
-```
+
+```sh
 sudo iptables -L
 ```
+
 Test specific port access using netcat:
+
+```sh
+nc -zv 127.0.0.1 26657 # Test RPC port
+nc -zv 127.0.0.1 26656 # Test P2P port
 ```
-nc -zv 127.0.0.1 26657  # Test RPC port
-nc -zv 127.0.0.1 26656  # Test P2P port
-```
+
 Check the logs to monitor any dropped connections:
 
-```
+```sh
 tail -f /var/log/kern.log
 ```
 
+  
+  
 
 ::: tip
+
 Regularly monitor your firewall logs to detect any unusual traffic patterns.
+
 Adjust the rate limits based on your node’s traffic load.
+
 Keep the blacklist sources updated for optimal protection.
+
 :::
