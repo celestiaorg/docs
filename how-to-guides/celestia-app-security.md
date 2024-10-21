@@ -12,7 +12,7 @@ Validators in Celestia often rely on cloud or baremetal servers for their infras
 
 1. Traffic filtering and rate limiting to mitigate potential DDoS attacks.
 
-2. Dynamic IP blocking using blacklists like [DShield](https://iplists.firehol.org/?ipset=dshield) and [Emerging Threats](https://iplists.firehol.org/?ipset=et_block) to automatically block known malicious IPs.
+2. Dynamic IP blocking using blacklists like [Firehol Level 4](https://iplists.firehol.org/?ipset=firehol_level4) and [Emerging Threats](https://iplists.firehol.org/?ipset=et_block) to automatically block known malicious IPs.
 
 3. Flexible firewall rules that allow only necessary traffic for Celestia node operations.
 
@@ -49,14 +49,14 @@ FireHOL Configuration
 ```sh
 version 6
 
-# Define ipsets for blocked IPs and networks from Emerging Threats and DShield
+# Define ipsets for blocked IPs and networks from Emerging Threats and Firehole Level4
 ipv4 ipset create blocked_ips hash:ip
 ipv4 ipset addfile blocked_ips /etc/firehol/blocked.ips
 
 ipv4 ipset create blocked_nets hash:net
 ipv4 ipset addfile blocked_nets /etc/firehol/blocked.nets
 
-# Block IPs and Networks from DShield and Emerging Threats
+# Block IPs and Networks from Firehole Level4 and Emerging Threats
 ipv4 blacklist full ipset:blocked_ips ipset:blocked_nets
 
 # Define your external network interface
@@ -121,7 +121,7 @@ Currently bind to eth0, make sure you bind it to the correct interface or bind a
 
 - REST API (1317): Opened for API access.
 
-- Blocked IPs: Dynamic IP blocking is applied using blacklists like DShield and
+- Blocked IPs: Dynamic IP blocking is applied using blacklists like Firehole Level4 and
 
 - Emerging Threats.
 
@@ -144,34 +144,31 @@ Create a script in ```/usr/local/bin/update-blocked-ips.sh``` to download and up
 
 # Temporary files for downloading the blocklists
 tmp_emerging=$(mktemp) || exit 1
-tmp_dshield=$(mktemp) || exit 1
+tmp_firehol=$(mktemp) || exit 1
+tmp_nets=$(mktemp) || exit 1
 
-# Download the block lists from Emerging Threats and DShield
+# Download the block lists from Emerging Threats and FireHOL Level 4
 wget -O $tmp_emerging "http://rules.emergingthreats.net/fwrules/emerging-Block-IPs.txt"
 if [ $? -ne 0 -o ! -s $tmp_emerging ]; then
     rm $tmp_emerging
-    echo >&2 "Cannot download Emerging Threats blacklist."
     exit 1
 fi
 
-wget -O $tmp_dshield "https://feeds.dshield.org/block.txt"
-if [ $? -ne 0 -o ! -s $tmp_dshield ]; then
-    rm $tmp_dshield
-    echo >&2 "Cannot download DShield blocklist."
+wget -O $tmp_firehol "https://iplists.firehol.org/files/firehol_level4.netset"
+if [ $? -ne 0 -o ! -s $tmp_firehol ]; then
+    rm $tmp_firehol
     exit 1
 fi
+
+# Preprocess the blocklists: Extract only network entries (lines with '/')
+grep '/' $tmp_emerging > $tmp_nets
+cat $tmp_firehol >> $tmp_nets
 
 # Update the IPSet collections using FireHOL
-# Split the Emerging Threats list into IPs and Networks
-firehol ipset_update_from_file blocked_ips ips $tmp_emerging
-firehol ipset_update_from_file blocked_nets nets $tmp_emerging
-
-# Split the DShield list into IPs and Networks
-firehol ipset_update_from_file blocked_nets nets $tmp_dshield
+firehol ipset_update_from_file blocked_nets nets $tmp_nets
 
 # Clean up temporary files
-rm $tmp_emerging
-rm $tmp_dshield
+rm $tmp_emerging $tmp_firehol $tmp_nets
 
 ```
 
