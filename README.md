@@ -35,9 +35,9 @@ making a pull request.
 ## Directory Structure
 
 - /learn: A category for learning about Celestia.
-- /developers: A category with tutorials and guides for deploying
-  rollups and interacting with Celestia nodes.
-- /nodes: Technical reference materials for all node types.
+- /how-to guides: A category with guides for running a node, deploying
+  rollups, and building on Celestia.
+- /tutorials: A category with tutorials on interacting with celestia-node.
 <!-- * /guides [WIP]: In-depth articles that cover specific topics in detail. -->
 - /community: A category for the Celestia community.
 - /public: Images, diagrams, and other media files used in the documentation.
