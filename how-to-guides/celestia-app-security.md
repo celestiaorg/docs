@@ -237,6 +237,12 @@ Change the ```START_FIREHOL``` to YES
 START_FIREHOL=YES
 ```
 
+Create your blocked IPs and Net files
+
+```sh
+sudo sh -c 'echo "# This is the blocked IPs file\n" > /etc/firehol/blocked.ips && echo "# This is the blocked networks file\n" > /etc/firehol/blocked.nets'
+```
+
 Start the service to apply the new rules:
 
 ```sh
