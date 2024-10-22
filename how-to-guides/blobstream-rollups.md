@@ -58,7 +58,7 @@ meaning four merkle proofs:
 More details on the blob share commitment inclusion proof can be found in the
 [commitment scheme docs](https://docs.celestia.org/how-to-guides/blobstream-proof-queries#the-commitment-scheme)
 and also the
-[data square layout](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/specs/data_square_layout.md#blob-share-commitment-rules).
+[data square layout](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/data_square_layout.md).
 
 If all of these proofs are valid, then you successfully managed to prove that
 the data corresponding to that blob share commitment has been posted to Celestia.
