@@ -22,8 +22,8 @@ The upgrade process can be broken down into a few steps:
 1. Celestia core developer teams implement the features defined in the CIPs.
 1. A new binary is released with the new features to be tested on testnets.
 1. Validators upgrade their nodes to the new binary, on [Arabica devnet](./arabica-devnet.md), [Mocha testnet](./mocha-testnet.md), and finally on Celestia [Mainnet Beta](./mainnet.md).
-    - For upgrades using pre-programmed height (v2): A block number for when the breaking network upgrade occurs
-    - For upgrades using in-protocol signaling (v3+): Reaching 5/6 validator consensus on the new version
+    - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
+    - Upgrades using in-protocol signaling (v3+) activate one week after 5/6 of the voting power has signaled for a particular version
 
 ### Upcoming upgrade
 
@@ -38,7 +38,7 @@ Key features include:
 - [CIP-27](https://cips.celestia.org/cip-27.html): Block limits for number of PFBs and non-PFBs
 - [CIP-28](https://cips.celestia.org/cip-28.html): Transaction size limit
 
-Unlike the Lemongrass upgrade, there will not be a pre-programmed upgrade height. Instead, validators will signal their readiness for v3 through in-protocol signaling, and the upgrade will automatically activate once 5/6 of validators have signaled support.
+Unlike the Lemongrass upgrade, there will not be a pre-programmed upgrade height. Instead, validators will signal their readiness for v3 through in-protocol signaling, and the upgrade will automatically activate one week after 5/6 of voting power have signaled for a particular version.
 
 :::info
 Validators should ensure they are running a v3 binary before signaling support for the upgrade.
