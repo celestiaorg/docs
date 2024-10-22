@@ -18,7 +18,7 @@ Validators in Celestia often rely on cloud or baremetal servers for their infras
 
   
 
-### Step 1: Install FireHOL
+### Install FireHOL
 
 First, ensure FireHOL is installed on your server. You can install it using the following commands:
 
@@ -36,7 +36,7 @@ sudo firehol version
 
   
 
-## Step 2: Configure FireHOL for Celestia Node
+## Configure FireHOL for Celestia Node
 
 Create or modify your FireHOL configuration file, typically located at ```/etc/firehol/firehol.conf```. The following configuration allows P2P, RPC, and gRPC traffic, while applying security measures such as rate limiting and IP blacklisting.
 
@@ -63,12 +63,15 @@ ipv4 blacklist full ipset:blocked_ips ipset:blocked_nets
 interface4 enp5s0 internet
     protection strong
 
+    # Allow SSH traffic on port 22 (TCP) for public access
+    server ssh accept
+
     # Allow P2P traffic on port 26656 (TCP) with DDoS protection
     server custom p2p tcp/26656 default accept
     protection syn-floods 20/sec 50  # Protect against SYN flood attacks
 
-    # Allow RPC traffic on port 26657 (TCP) with DDoS protection
-    server custom rpc tcp/26657 default accept
+    # Allow RPC traffic on port 26657-26659 (TCP) with DDoS protection
+    server custom rpc tcp/26657:26659 default accept
     protection syn-floods 20/sec 50  # Protect against SYN flood attacks
 
     # Allow Prometheus metrics on port 26660 (limit to trusted IPs or internal network) with DDoS protection
@@ -86,7 +89,25 @@ interface4 enp5s0 internet
     # Allow REST API access on port 1317 (TCP) with DDoS protection
     server custom rest tcp/1317 default accept
     protection syn-floods 20/sec 40  # Protect against SYN flood attacks
-    
+
+    # Additional Ports
+    server custom 11656 tcp/11656 default accept
+    server custom 11656 udp/11656 default accept
+    server custom 11065 tcp/11065 default accept
+    server custom 11065 udp/11065 default accept
+    server custom 36656 tcp/36656 default accept
+    server custom 36656 udp/36656 default accept
+    server custom 6065 tcp/6065 default accept
+    server custom 6065 udp/6065 default accept
+    server custom 9099 tcp/9099 default accept
+    server custom 9099 udp/9099 default accept
+
+    # Allow traffic on port 2121 for both TCP and UDP (separate rules for TCP and UDP)
+    server custom 2121 tcp/2121 default accept
+    protection syn-floods 20/sec 40  # Protect against SYN flood attacks
+    server custom 2121 udp/2121 default accept
+    protection syn-floods 20/sec 40  # Protect against SYN flood attacks
+
     # Allow all traffic from localhost without specifying ports
     server all accept src 127.0.0.1
 
@@ -127,13 +148,13 @@ Currently bind to eth0, make sure you bind it to the correct interface or bind a
 
   
 
-### Step 3: Set Up Cron to Automatically Update Blocked IPs
+## Set Up Cron to Automatically Update Blocked IPs
 
 To maintain an updated list of blocked IPs, set up a cron job to fetch the latest blacklists every hour. Here’s how you can configure it.
 
   
 
-#### Step 3.1: Create a Script to Update the Blocked IPs
+### Create a Script to Update the Blocked IPs
 
 Create a script in ```/usr/local/bin/update-blocked-ips.sh``` to download and update the IP blacklist.
 
@@ -184,7 +205,7 @@ sudo chmod +x /usr/local/bin/update-blocked-ips.sh
 
   
 
-#### Step 3.2: Set Up the Cron Job
+### Set Up the Cron Job
 
 To run this script automatically every hour, add the following line to your cron configuration:
 
@@ -203,7 +224,7 @@ This cron job will run every hour, update the blocked IPs, and reload FireHOL wi
 
   
 
-### Step 4: Apply and Test FireHOL Configuration
+## Apply and Test FireHOL Configuration
 Ensure FireHOL is enabled to start at boot by editing its default configuration:
 
 ```sh
