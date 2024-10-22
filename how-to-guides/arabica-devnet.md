@@ -183,4 +183,4 @@ Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 for network upgrades.
 
 See the [network upgrade process page](./network-upgrade-process.md) to learn more
-about specific upgrades like the [Lemongrass network upgrade](./network-upgrade-process.md#lemongrass-network-upgrade).
+about specific upgrades like the [Ginger network upgrade](./network-upgrade-process.md#ginger-network-upgrade).
