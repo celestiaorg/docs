@@ -1,5 +1,5 @@
 ---
-description: Learn how to generate a vesting account using celestia-app.
+description: Security Guide for Celestia Nodes
 ---
 
 # Security for Celestia App
@@ -130,7 +130,7 @@ Currently bind to eth0, make sure you bind it to the correct interface or bind a
 
 :::
 
-#### Key Configuration Details
+### Key Configuration Details
 
 - P2P (26656): Allows inbound P2P traffic, essential for Celestia node synchronization.
 
@@ -258,8 +258,8 @@ sudo iptables -L
 Test specific port access using netcat:
 
 ```sh
-nc -zv 127.0.0.1 26657 # Test RPC port
-nc -zv 127.0.0.1 26656 # Test P2P port
+nc -zv <your_server_ip> 26657 # Test RPC port
+nc -zv <your_server_ip> 26656 # Test P2P port
 ```
 
 Check the logs to monitor any dropped connections:
