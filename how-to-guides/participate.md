@@ -61,4 +61,4 @@ There are a few ways to stay informed about network upgrades:
 - Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
 
 See the [network upgrade process page](./network-upgrade-process.md) to learn more
-about specific upgrades like the [Lemongrass network upgrade](./network-upgrade-process.md#lemongrass-network-upgrade).
+about specific upgrades like the [Ginger network upgrade](./network-upgrade-process.md#ginger-network-upgrade).
