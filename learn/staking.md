@@ -12,7 +12,7 @@ staking rewards.
 ## Mainnet Beta
 
 Currently, the following staking interfaces exist for the
-[Mainnet Beta](../nodes/mainnet.md).
+[Mainnet Beta](../how-to-guides/mainnet.md).
 
 Just connect your wallet to get started!
 
@@ -23,10 +23,10 @@ Just connect your wallet to get started!
 ## Mocha testnet
 
 Currently, the following staking interfaces exist for the
-[Mocha testnet](../nodes/mocha-testnet.md).
+[Mocha testnet](../how-to-guides/mocha-testnet.md).
 
 Just connect your wallet to get started!
 
-- [https://alphab.ai/s/t/celestia-mocha-4/](https://alphab.ai/s/t/celestia-mocha-4/)
-- [https://explorer.kjnodes.com/celestia-testnet](https://explorer.kjnodes.com/celestia-testnet)
 - [https://testnet.keplr.app/chains/celestia-mocha-testnet](https://testnet.keplr.app/chains/celestia-mocha-testnet)
+- [https://explorer.kjnodes.com/celestia-testnet](https://explorer.kjnodes.com/celestia-testnet)
+- [https://alphab.ai/s/t/celestia-mocha-4/](https://alphab.ai/s/t/celestia-mocha-4/)

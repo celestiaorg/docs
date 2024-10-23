@@ -21,13 +21,13 @@ Learn
 [how proof of stake works on Cosmos SDK chains like Celestia](https://docs.cosmos.network/main/modules/staking).
 
 | Consensus mechanism  | Proof-of-stake |
-| -------------------- | -------------- |
+|----------------------|----------------|
 | Blockchain framework | Cosmos SDK     |
 | Validator set size   | 100            |
 | Delegation support   | Yes            |
 
 Learn how to
-[stake on your own at the community dashboards](../../nodes/staking.md).
+[stake on your own at the community dashboards](../learn/staking.md).
 
 ## Inflation
 
@@ -53,7 +53,7 @@ TIA holders (not just stakers) can propose and vote on governance proposals to
 change a subset of network parameters. To learn more, see a
 [complete list of both the changeable and non-changeable parameters and their values](https://github.com/celestiaorg/celestia-app/blob/v1.x/specs/src/specs/params.md).
 Additionally, learn how to
-[submit and vote on governance proposals](../nodes/celestia-app-commands.md#governance).
+[submit and vote on governance proposals](../how-to-guides/celestia-app-commands.md#governance).
 
 ### Community pool
 
@@ -63,7 +63,7 @@ receives 2% of all Celestia block rewards. TIA stakers may vote to fund
 ecosystem initiatives as in many other Cosmos SDK chains.
 
 Learn how to
-[submit a governance proposal to spend community pool funds](../nodes/celestia-app-commands.md#community-pool).
+[submit a governance proposal to spend community pool funds](../how-to-guides/celestia-app-commands.md#community-pool).
 
 ## TIA allocation at genesis
 
@@ -72,13 +72,13 @@ split across five categories described in the chart and table below.
 
 ![allocation diagram](/img/learn/Celestia_TIA_Allocation_at_Genesis.png)
 
-| Category                  | Description                                                                                                                                                                                                                                   | %     |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| Public Allocation         | Genesis Drop and Incentivized Testnet: 7.4%<br/>Future initiatives: 12.6%                                                                                                                                                                     | 20%   |
-| R&D & Ecosystem           | Tokens allocated to the Celestia Foundation and core devs for research, development, and ecosystem initiatives including:<br/>- Protocol maintenance and development<br/>- Programs for rollup developers, infrastructure, and node operators | 26.8% |
-| Early Backers: Series A&B | Early supporters of Celestia                                                                                                                                                                                                                  | 19.7% |
-| Early Backers: Seed       | Early supporters of Celestia                                                                                                                                                                                                                  | 15.9% |
-| Initial Core Contributors | Members of Celestia Labs, the first core contributor to Celestia                                                                                                                                                                              | 17.6% |
+| Category                  | Description                                                                                                                                                                                                                                   | %      |
+|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|
+| Public Allocation         | Genesis Drop and Incentivized Testnet: 7.41%<br/>Future initiatives: 12.59%                                                                                                                                                                   | 20.00% |
+| R&D & Ecosystem           | Tokens allocated to the Celestia Foundation and core devs for research, development, and ecosystem initiatives including:<br/>- Protocol maintenance and development<br/>- Programs for rollup developers, infrastructure, and node operators | 26.79% |
+| Early Backers: Series A&B | Early supporters of Celestia                                                                                                                                                                                                                  | 19.67% |
+| Early Backers: Seed       | Early supporters of Celestia                                                                                                                                                                                                                  | 15.90% |
+| Initial Core Contributors | Members of Celestia Labs, the first core contributor to Celestia                                                                                                                                                                              | 17.64% |
 
 ### Unlocks
 
@@ -101,10 +101,12 @@ _The definitions for circulating and available supply were adapted from
 
 Unlock schedule by category is described in the table below.
 
-| Category                  | Unlock Schedule                                                                       |
-| ------------------------- | ------------------------------------------------------------------------------------- |
-| Public Allocation         | Fully unlocked at launch.                                                             |
-| R&D & Ecosystem           | 25% unlocked at launch.<br/>Remaining 75% unlocks continuously from year 1 to year 4. |
-| Initial Core Contributors | 33% unlocked at year 1.<br/>Remaining 67% unlocks continuously from year 1 to year 3. |
-| Early Backers: Seed       | 33% unlocked at year 1.<br/>Remaining 67% unlocks continuously from year 1 to year 2. |
-| Early Backers: Series A&B | 33% unlocked at year 1.<br/>Remaining 67% unlocks continuously from year 1 to year 2. |
+_Note: Due to 2024 being a leap year, the yearly unlock intervals will occur on October 30th of each year. For example, unlocks at year 1 will occur on October 30, 2024._
+
+| Category                  | Unlock Schedule                                                                             |
+|---------------------------|---------------------------------------------------------------------------------------------|
+| Public Allocation         | Fully unlocked at launch.                                                                   |
+| R&D & Ecosystem           | 25.00% unlocked at launch.<br/>Remaining 75.00% unlocks continuously from year 1 to year 4. |
+| Initial Core Contributors | 33.33% unlocked at year 1.<br/>Remaining 66.67% unlocks continuously from year 1 to year 3. |
+| Early Backers: Seed       | 33.33% unlocked at year 1.<br/>Remaining 66.67% unlocks continuously from year 1 to year 2. |
+| Early Backers: Series A&B | 33.33% unlocked at year 1.<br/>Remaining 66.67% unlocks continuously from year 1 to year 2. |

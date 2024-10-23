@@ -1,6 +1,8 @@
+[![Deploy](https://github.com/celestiaorg/docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/deploy.yml)
+
 # Celestia Documentation Site
 
-Welcome to the official documentation repository for Celestia.
+Welcome to the official documentation repository for [Celestia](https://celestia.org/).
 
 Here you'll find comprehensive guides, tutorials, and reference materials
 to help you make the most out of Celestia.
@@ -20,7 +22,7 @@ This documentation site is built with [VitePress](https://vitepress.dev)
 We love contributions from the community! Whether you're fixing typos,
 improving content clarity, or adding new topics, every contribution helps.
 
-- Fork & Clone: Fork this repository and clone it to your local machine.
+- Fork & clone: Fork this repository and clone it to your local machine.
 - Branch: Always create a new branch for your changes. Naming it relevantly.
 - Commit Changes: Make your changes and commit them with a clear and concise
   commit message.
@@ -33,9 +35,9 @@ making a pull request.
 ## Directory Structure
 
 - /learn: A category for learning about Celestia.
-- /developers: A category with tutorials and guides for deploying
-  rollups and interacting with Celestia nodes.
-- /nodes: Technical reference materials for all node types.
+- /how-to guides: A category with guides for running a node, deploying
+  rollups, and building on Celestia.
+- /tutorials: A category with tutorials on interacting with celestia-node.
 <!-- * /guides [WIP]: In-depth articles that cover specific topics in detail. -->
 - /community: A category for the Celestia community.
 - /public: Images, diagrams, and other media files used in the documentation.

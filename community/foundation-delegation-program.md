@@ -66,11 +66,11 @@ the delegation for the duration of the cohort they are currently in.
 
 The minimum requirements for participation in the program are as follows:
 
-* Run an active mainnet validator **or** an active Mocha testnet validator
+* Run an active Mainnet Beta validator **or** an active Mocha testnet validator
 for at least 1 month before application deadline
-* Run a bridge node (on mainnet if you are already an active mainnet
+* Run a bridge node (on Mainnet Beta if you are already an active Mainnet Beta
 validator or on Mocha testnet if not) that is connected and reporting
-to the Celestia Labs [OTEL collector](../nodes/celestia-node-metrics.md)
+to the Celestia Labs [OTEL collector](../how-to-guides/celestia-node-metrics.md)
 (for new applicants - on testnet, so that we can evaluate performance)
 * Not jailed or slashed in the 6 months before application deadline
 * Not associated with an exchange or custodian
@@ -136,16 +136,16 @@ Before applying, be ready to share the following:
   * Website if any
   * Github page of your organization
   * Team experience and roster (including Twitter + Github links)
-  * Which networks you validate on mainnet + links to your validators
+  * Which networks you validate on Mainnet Beta + links to your validators
   * A personal statement why you should receive delegation from the
   Foundation (max 1500 characters)
 * Infrastructure
-  * Validator address and bridge node ID on MAINNET
-  * If you don't run an active mainnet validator, please provide us with
+  * Validator address and bridge node ID on Mainnet Beta
+  * If you don't run an active Mainnet Beta validator, please provide us with
   validator address, bridge node ID and blobstream address on Mocha-4
   * Have you been slashed or jailed in the last 6 months on Celestia or
   other chains you validated on.
-  * Hosting provider and Data Center location (mainnet and testnet if applicable)
+  * Hosting provider and Data Center location (Mainnet Beta and testnet if applicable)
   * Setup of the 2 components (validator and bridge)
     * Hardware
     * Security setup (servers, private keys)
@@ -169,7 +169,7 @@ The Foundation will report each cohort’s composition and the duration of
 their respective delegations.
 
 * [Cohort 1](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit#gid=0): 50 Validator Seats
-* Cohort 2: 15 Validator Seats (Applications open June 1, 2024)
+* [Cohort 2](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=855157686#gid=855157686): 15 Validator Seats (Applications open June 1, 2024)
 * Cohort 3: 15 Validator Seats (Applications open October 1, 2024)
 * Cohort 4: 20 Validator Seats (Applications open February 1, 2025)
 
