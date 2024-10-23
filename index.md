@@ -12,8 +12,8 @@ hero:
     alt: Celestia
   actions:
     - theme: brand
-      text: Build whatever
-      link: /how-to-guides/build-whatever
+      text: Quick start
+      link: /how-to-guides/quick-start
     - theme: alt
       text: Introduction
       link: /learn/how-celestia-works/overview
