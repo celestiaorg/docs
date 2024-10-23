@@ -220,7 +220,7 @@ If you're interested in writing a Golang program to interact with your Celestia 
 
 ### Node store contents
 
-As described in the [Initialize the light node section](#initialize-the-light-node) above, the node store is created in the `~/.celestia-<node-type>-<network>` directory.
+As described in the [initialize the light node section](#initialize-the-light-node) above, the node store is created in the `~/.celestia-<node-type>-<network>` directory.
 
 In this guide, the node store for `~/.celestia-light-{{ constants.mochaChainId }}` contains the following directories:
 
