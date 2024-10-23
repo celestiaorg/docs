@@ -5,18 +5,11 @@ description: Security Guide for Celestia Nodes
 # Security for Celestia App
 Validators in Celestia often rely on cloud or baremetal servers for their infrastructure. While some providers offer basic protection, most setups lack advanced firewall solutions such as DDoS mitigation. This makes it critical to implement your own measures. By using [FireHOL](https://github.com/firehol/firehol), we introduce a flexible and lightweight firewall that supports advanced features like rate limiting and dynamic IP blacklisting. This solution ensures that your node can handle increasing traffic while protecting it from malicious actors.
   
-
 ### Key features we’ll leverage include:
 
-  
-
 1. Traffic filtering and rate limiting to mitigate potential DDoS attacks.
-
 2. Dynamic IP blocking using blacklists like [Firehol Level 4](https://iplists.firehol.org/?ipset=firehol_level4) and [Emerging Threats](https://iplists.firehol.org/?ipset=et_block) to automatically block known malicious IPs.
-
 3. Flexible firewall rules that allow only necessary traffic for Celestia node operations.
-
-  
 
 ### Install FireHOL
 
@@ -34,17 +27,11 @@ Check that FireHOL is installed and working by running:
 sudo firehol version
 ```
 
-  
-
 ## Configure FireHOL for Celestia Node
 
 Create or modify your FireHOL configuration file, typically located at ```/etc/firehol/firehol.conf```. The following configuration allows P2P, RPC, and gRPC traffic, while applying security measures such as rate limiting and IP blacklisting.
 
-  
-
 FireHOL Configuration
-
-  
 
 ```sh
 version 6
@@ -123,42 +110,27 @@ interface4 enp5s0 ipv6
 ```
 
 ::: tip
-
 Currently bind to eth0, make sure you bind it to the correct interface or bind all
-
 ```interface any world```
-
 :::
 
 ### Key Configuration Details
 
 - P2P (26656): Allows inbound P2P traffic, essential for Celestia node synchronization.
-
 - RPC (26657): Open to external sources with rate limiting to prevent abuse.
-
 - Prometheus (26660): Restricted to internal networks or trusted IPs for security.
-
 - gRPC (9090, 9091): Opened for gRPC communication.
-
 - REST API (1317): Opened for API access.
-
 - Blocked IPs: Dynamic IP blocking is applied using blacklists like Firehole Level4 and
-
 - Emerging Threats.
-
-  
 
 ## Set Up Cron to Automatically Update Blocked IPs
 
 To maintain an updated list of blocked IPs, set up a cron job to fetch the latest blacklists every hour. Here’s how you can configure it.
 
-  
-
 ### Create a Script to Update the Blocked IPs
 
 Create a script in ```/usr/local/bin/update-blocked-ips.sh``` to download and update the IP blacklist.
-
-  
 
 ```sh
 #!/bin/bash
@@ -203,13 +175,10 @@ Make the script executable:
 sudo chmod +x /usr/local/bin/update-blocked-ips.sh
 ```
 
-  
-
 ### Set Up the Cron Job
 
 To run this script automatically every hour, add the following line to your cron configuration:
 
-  
 ```sh
 sudo crontab -e
 ```
@@ -221,8 +190,6 @@ Then, add this line at the end:
 ```
 
 This cron job will run every hour, update the blocked IPs, and reload FireHOL with the new list.
-
-  
 
 ## Apply and Test FireHOL Configuration
 Ensure FireHOL is enabled to start at boot by editing its default configuration:
@@ -268,15 +235,8 @@ Check the logs to monitor any dropped connections:
 tail -f /var/log/kern.log
 ```
 
-  
-  
-
 ::: tip
-
 Regularly monitor your firewall logs to detect any unusual traffic patterns.
-
 Adjust the rate limits based on your node’s traffic load.
-
 Keep the blacklist sources updated for optimal protection.
-
 :::
