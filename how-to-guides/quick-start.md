@@ -192,6 +192,8 @@ If you see a response like this, you'll either need to let the node sync to the 
 
 ## Diving deeper into the stack
 
+This section covers some more in-depth topics that you may find useful when working with your Celestia light node.
+
 ### Get your auth token
 
 Your auth token may be useful when you want to interact with your Celestia light node from a client application. You can get your auth token by running:
