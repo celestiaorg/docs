@@ -1,5 +1,5 @@
 ---
-description: Security Guide for Celestia Nodes
+description: Security Guide for Celestia Consensus Node
 ---
 
 # Security for Celestia App
@@ -9,7 +9,7 @@ Validators in Celestia often rely on cloud or baremetal servers for their infras
 
 1. Traffic filtering and rate limiting to mitigate potential DDoS attacks.
 2. Dynamic IP blocking using blacklists like [Firehol Level 4](https://iplists.firehol.org/?ipset=firehol_level4) and [Emerging Threats](https://iplists.firehol.org/?ipset=et_block) to automatically block known malicious IPs.
-3. Flexible firewall rules that allow only necessary traffic for Celestia node operations.
+3. Flexible firewall rules that allow only necessary traffic for Celestia consensus node operations.
 
 ### Install FireHOL
 
@@ -27,7 +27,7 @@ Check that FireHOL is installed and working by running:
 sudo firehol version
 ```
 
-## Configure FireHOL for Celestia Node
+## Configure FireHOL for Celestia Consensus Node
 
 Create or modify your FireHOL configuration file, typically located at ```/etc/firehol/firehol.conf```. The following configuration allows P2P, RPC, and gRPC traffic, while applying security measures such as rate limiting and IP blacklisting.
 
@@ -116,7 +116,7 @@ Currently bind to eth0, make sure you bind it to the correct interface or bind a
 
 ### Key Configuration Details
 
-- P2P (26656): Allows inbound P2P traffic, essential for Celestia node synchronization.
+- P2P (26656): Allows inbound P2P traffic, essential for Celestia consensus node synchronization.
 - RPC (26657): Open to external sources with rate limiting to prevent abuse.
 - Prometheus (26660): Restricted to internal networks or trusted IPs for security.
 - gRPC (9090, 9091): Opened for gRPC communication.
