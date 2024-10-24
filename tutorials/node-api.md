@@ -35,9 +35,13 @@ signing + providing RPC-level DOS protection.
 
 ### RPC API tutorial
 
+The [quick start guide](../how-to-guides/quick-start.md) is the easiest way to get started.
+
 The [node tutorial](./node-tutorial.md), which uses the RPC CLI, is the
 recommended way
-to get started interacting with your Celestia node.
+to learn more about interacting with your Celestia node.
+
+Other ways to get started are with the [Rust](./rust-client-tutorial.md) and [Golang](./golang-client-tutorial.md) tutorials.
 
 ## Gateway API
 

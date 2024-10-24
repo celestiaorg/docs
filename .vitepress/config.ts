@@ -255,14 +255,15 @@ function nav() {
       text: "Join the network",
       items: [
         { text: "Learn", link: "/learn/how-celestia-works/overview" },
+        { text: "Quick start", link: "/how-to-guides/quick-start" },
         { text: "Build whatever", link: "/how-to-guides/build-whatever" },
-        { text: "Node API", link: "/tutorials/node-api" },
-        { text: "Discord", link: "https://discord.gg/celestiacommunity" },
         {
-          text: "Quick start",
+          text: "Resources",
           items: [
-            { text: "Run a node", link: "/how-to-guides/nodes-overview" },
-            { text: "Blob tutorial", link: "/tutorials/node-tutorial" },
+            {
+              text: "Celestia Improvement Proposals (CIPs)",
+              link: "https://cips.celestia.org/",
+            },
             {
               text: "celestia-app specs",
               link: "https://celestiaorg.github.io/celestia-app/",
@@ -380,14 +381,20 @@ function sidebarHome() {
       items: [
         {
           text: "Run a node",
-          link: "/how-to-guides/nodes-overview",
           collapsed: true,
           items: [
             {
-              text: "Quick start",
-              link: "/how-to-guides/quick-start",
+              text: "Overview",
+              link: "/how-to-guides/nodes-overview",
+            },
+            {
+              text: "Getting started",
               collapsed: true,
               items: [
+                {
+                  text: "Quick start",
+                  link: "/how-to-guides/quick-start",
+                },
                 {
                   text: "Deciding which node to run",
                   link: "/how-to-guides/decide-node",
@@ -552,9 +559,12 @@ function sidebarHome() {
         },
         {
           text: "Build whatever",
-          link: "/how-to-guides/build-whatever",
           collapsed: true,
           items: [
+            {
+              text: "Overview",
+              link: "/how-to-guides/build-whatever",
+            },
             {
               text: "EVM",
               collapsed: true,
@@ -807,9 +817,12 @@ function sidebarHome() {
       items: [
         {
           text: "Node API Tutorials",
-          link: "/tutorials/node-api",
           collapsed: true,
           items: [
+            {
+              text: "Overview",
+              link: "/tutorials/node-api",
+            },
             {
               text: "CLI tutorial",
               link: "/tutorials/node-tutorial",

@@ -11,6 +11,19 @@ echo "                                                    "
 LOGFILE="$HOME/celestia-node-temp/logfile.log"
 TEMP_DIR="$HOME/celestia-node-temp"
 
+# Parse command line arguments
+while getopts "v:" opt; do
+  case $opt in
+    v) USER_VERSION="$OPTARG"
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2
+        echo "Usage: $0 [-v version]"
+        echo "Example: $0 -v v0.11.0"
+        exit 1
+    ;;
+  esac
+done
+
 # Check if the directory exists
 if [ -d "$TEMP_DIR" ]; then
     read -p "Directory $TEMP_DIR exists. Do you want to clear it out? (y/n) " -n 1 -r
@@ -33,17 +46,28 @@ echo "Log file is located at: $LOGFILE" | tee -a "$LOGFILE"
 cd "$TEMP_DIR" || exit 1
 echo "Working from temporary directory: $TEMP_DIR" | tee -a "$LOGFILE"
 
-# Fetch the latest release tag from GitHub
-VERSION=$(curl -s "https://api.github.com/repos/celestiaorg/celestia-node/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+# Set VERSION based on user input or fetch latest
+if [ -n "$USER_VERSION" ]; then
+    VERSION="$USER_VERSION"
+    echo "Using specified version: $VERSION" | tee -a "$LOGFILE"
+else
+    # Fetch the latest release tag from GitHub
+    VERSION=$(curl -s "https://api.github.com/repos/celestiaorg/celestia-node/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
-# Check if VERSION is empty
-if [ -z "$VERSION" ]; then
-    echo "Failed to fetch the latest version. Exiting." | tee -a "$LOGFILE"
-    exit 1
+    # Check if VERSION is empty
+    if [ -z "$VERSION" ]; then
+        echo "Failed to fetch the latest version. Exiting." | tee -a "$LOGFILE"
+        exit 1
+    fi
+    echo "Using latest version: $VERSION" | tee -a "$LOGFILE"
 fi
 
-# Log and print a message
-echo "Latest version detected: $VERSION" | tee -a "$LOGFILE"
+# Validate version format
+if [[ ! $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-.*)?$ ]]; then
+    echo "Invalid version format: $VERSION" | tee -a "$LOGFILE"
+    echo "Version should be in the format vX.X.X (e.g., v0.11.0)" | tee -a "$LOGFILE"
+    exit 1
+fi
 
 # Detect the operating system and architecture
 OS=$(uname -s)
@@ -127,33 +151,133 @@ echo "Binary extracted to: $TEMP_DIR" | tee -a "$LOGFILE"
 
 # Remove the tarball to clean up
 rm "celestia-node_$PLATFORM.tar.gz"
+rm "checksums.txt"
 
 # Log and print a message
 echo "Temporary files cleaned up." | tee -a "$LOGFILE"
 
-# Ask the user if they want to move the binary to /usr/local/bin
-read -p "Do you want to move the binary to /usr/local/bin? This will require sudo access. (y/n) " -n 1 -r
-echo    # move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    sudo mv "$TEMP_DIR/celestia" /usr/local/bin/
-    echo "Binary moved to /usr/local/bin" | tee -a "$LOGFILE"
-    # Create a symbolic link in the temporary directory
-    ln -s /usr/local/bin/celestia "$TEMP_DIR/celestia"
-    echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
-    echo ""
-    echo "You can now run celestia from anywhere." | tee -a "$LOGFILE"
-    echo ""
-    echo "To check its version and see the menu, execute the following command:" | tee -a "$LOGFILE"
-    echo ""
-    echo "celestia version && celestia --help" | tee -a "$LOGFILE"
+# Check if Go is installed
+if command -v go >/dev/null 2>&1; then
+    GOPATH=${GOPATH:-$(go env GOPATH)}
+    GOBIN="$GOPATH/bin"
+    HAS_GO=true
 else
-    echo ""
-    echo "You can navigate to $TEMP_DIR to find and run celestia." | tee -a "$LOGFILE"
-    echo ""
-    echo "To check its version and see the menu, execute the following commands:" | tee -a "$LOGFILE"
-    echo ""
-    echo "cd $TEMP_DIR" | tee -a "$LOGFILE"
-    echo "chmod +x celestia" | tee -a "$LOGFILE"
-    echo "./celestia version && ./celestia --help" | tee -a "$LOGFILE"
+    HAS_GO=false
+fi
+
+# Ask the user where to install the binary
+echo ""
+if [ "$HAS_GO" = true ]; then
+    echo "Where would you like to install the celestia binary?"
+    echo "1) Go bin directory ($GOBIN) [Recommended]"
+    echo "2) System bin directory (/usr/local/bin)"
+    echo "3) Keep in current directory ($TEMP_DIR)"
+else
+    echo "Go is not installed. Where would you like to install the celestia binary?"
+    echo "1) System bin directory (/usr/local/bin) [Recommended]"
+    echo "2) Keep in current directory ($TEMP_DIR)"
+fi
+
+read -p "Enter your choice: " -n 1 -r
+echo    # move to a new line
+
+if [ "$HAS_GO" = true ]; then
+    case $REPLY in
+        1)
+            # Install to GOBIN
+            mkdir -p "$GOBIN"
+            mv "$TEMP_DIR/celestia" "$GOBIN/"
+            chmod +x "$GOBIN/celestia"
+            echo "Binary moved to $GOBIN" | tee -a "$LOGFILE"
+            # Create a symbolic link in the temporary directory
+            ln -s "$GOBIN/celestia" "$TEMP_DIR/celestia"
+            echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo ""
+            # Check if GOBIN is in PATH
+            if [[ ":$PATH:" != *":$GOBIN:"* ]]; then
+                echo "NOTE: $GOBIN is not in your PATH. You may want to add it by adding this line to your ~/.bashrc or ~/.zshrc:"
+                echo "export PATH=\$PATH:$GOBIN"
+                echo ""
+            fi
+            echo "You can now run celestia from anywhere (if $GOBIN is in your PATH)." | tee -a "$LOGFILE"
+            ;;
+        2)
+            # Install to /usr/local/bin
+            sudo mv "$TEMP_DIR/celestia" /usr/local/bin/
+            echo "Binary moved to /usr/local/bin" | tee -a "$LOGFILE"
+            # Create a symbolic link in the temporary directory
+            ln -s /usr/local/bin/celestia "$TEMP_DIR/celestia"
+            echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo ""
+            echo "You can now run celestia from anywhere." | tee -a "$LOGFILE"
+            ;;
+        3)
+            # Keep in current directory
+            chmod +x "$TEMP_DIR/celestia"
+            echo "Binary kept in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo "You can run celestia from this directory using ./celestia" | tee -a "$LOGFILE"
+            ;;
+        *)
+            echo ""
+            echo "Invalid choice. The binary remains in $TEMP_DIR" | tee -a "$LOGFILE"
+            chmod +x "$TEMP_DIR/celestia"
+            echo "You can run celestia from this directory using ./celestia" | tee -a "$LOGFILE"
+            ;;
+    esac
+else
+    case $REPLY in
+        1)
+            # Install to /usr/local/bin
+            sudo mv "$TEMP_DIR/celestia" /usr/local/bin/
+            echo "Binary moved to /usr/local/bin" | tee -a "$LOGFILE"
+            # Create a symbolic link in the temporary directory
+            ln -s /usr/local/bin/celestia "$TEMP_DIR/celestia"
+            echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo ""
+            echo "You can now run celestia from anywhere." | tee -a "$LOGFILE"
+            ;;
+        2)
+            # Keep in current directory
+            chmod +x "$TEMP_DIR/celestia"
+            echo "Binary kept in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo "You can run celestia from this directory using ./celestia" | tee -a "$LOGFILE"
+            ;;
+        *)
+            echo ""
+            echo "Invalid choice. The binary remains in $TEMP_DIR" | tee -a "$LOGFILE"
+            chmod +x "$TEMP_DIR/celestia"
+            echo "You can run celestia from this directory using ./celestia" | tee -a "$LOGFILE"
+            ;;
+    esac
+fi
+
+echo ""
+echo "To check its version and see the menu, execute the following command:" | tee -a "$LOGFILE"
+if [ "$HAS_GO" = true ]; then
+    case $REPLY in
+        1)  # Go bin installation
+            echo "celestia version && celestia --help" | tee -a "$LOGFILE"
+            ;;
+        2)  # System bin installation
+            echo "celestia version && celestia --help" | tee -a "$LOGFILE"
+            ;;
+        3)  # Current directory
+            echo "$TEMP_DIR/celestia version && $TEMP_DIR/celestia --help" | tee -a "$LOGFILE"
+            ;;
+        *)  # Invalid choice (kept in temp dir)
+            echo "$TEMP_DIR/celestia version && $TEMP_DIR/celestia --help" | tee -a "$LOGFILE"
+            ;;
+    esac
+else
+    case $REPLY in
+        1)  # System bin installation
+            echo "celestia version && celestia --help" | tee -a "$LOGFILE"
+            ;;
+        2)  # Current directory
+            echo "$TEMP_DIR/celestia version && $TEMP_DIR/celestia --help" | tee -a "$LOGFILE"
+            ;;
+        *)  # Invalid choice (kept in temp dir)
+            echo "$TEMP_DIR/celestia version && $TEMP_DIR/celestia --help" | tee -a "$LOGFILE"
+            ;;
+    esac
 fi
