@@ -5,7 +5,7 @@ description: Security Guide for Celestia Consensus Node
 # Security for Celestia App
 Validators in Celestia often rely on cloud or baremetal servers for their infrastructure. While some providers offer basic protection, most setups lack advanced firewall solutions such as DDoS mitigation. This makes it critical to implement your own measures. By using [FireHOL](https://github.com/firehol/firehol), we introduce a flexible and lightweight firewall that supports advanced features like rate limiting and dynamic IP blacklisting. This solution ensures that your node can handle increasing traffic while protecting it from malicious actors.
   
-### Key features we’ll leverage include:
+### Key features we’ll leverage:
 
 1. Traffic filtering and rate limiting to mitigate potential DDoS attacks.
 2. Dynamic IP blocking using blacklists like [Firehol Level 4](https://iplists.firehol.org/?ipset=firehol_level4) and [Emerging Threats](https://iplists.firehol.org/?ipset=et_block) to automatically block known malicious IPs.
@@ -20,7 +20,6 @@ sudo apt update
 sudo apt install firehol
 ```
 
-  
 Check that FireHOL is installed and working by running:
 
 ```sh
@@ -77,15 +76,17 @@ interface4 enp5s0 internet
     server custom rest tcp/1317 default accept
     protection syn-floods 20/sec 40  # Protect against SYN flood attacks
 
-    # Additional Ports
+    # Peers, Seeds, Addrbook ports
     server custom 11656 tcp/11656 default accept
     server custom 11656 udp/11656 default accept
     server custom 11065 tcp/11065 default accept
     server custom 11065 udp/11065 default accept
+    # Standard CometBFT P2P ports
     server custom 36656 tcp/36656 default accept
     server custom 36656 udp/36656 default accept
     server custom 6065 tcp/6065 default accept
     server custom 6065 udp/6065 default accept
+    # gRPC endpoint ports
     server custom 9099 tcp/9099 default accept
     server custom 9099 udp/9099 default accept
 
@@ -121,8 +122,7 @@ Currently bind to eth0, make sure you bind it to the correct interface or bind a
 - Prometheus (26660): Restricted to internal networks or trusted IPs for security.
 - gRPC (9090, 9091): Opened for gRPC communication.
 - REST API (1317): Opened for API access.
-- Blocked IPs: Dynamic IP blocking is applied using blacklists like Firehole Level4 and
-- Emerging Threats.
+- Blocked IPs: Dynamic IP blocking is applied using blacklists like Firehole Level4 and Emerging Threats.
 
 ## Set Up Cron to Automatically Update Blocked IPs
 
@@ -134,6 +134,13 @@ Create a script in ```/usr/local/bin/update-blocked-ips.sh``` to download and up
 
 ```sh
 #!/bin/bash
+# Define log file
+LOG_FILE="/var/log/blocklist_update.log"
+
+# Logging function to append messages to log file
+log() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$LOG_FILE"
+}
 
 # Temporary files for downloading the blocklists
 tmp_emerging=$(mktemp) || exit 1
@@ -143,12 +150,14 @@ tmp_nets=$(mktemp) || exit 1
 # Download the block lists from Emerging Threats and FireHOL Level 4
 wget -O $tmp_emerging "http://rules.emergingthreats.net/fwrules/emerging-Block-IPs.txt"
 if [ $? -ne 0 -o ! -s $tmp_emerging ]; then
+    log "Failed to download Emerging Threats blocklist"
     rm $tmp_emerging
     exit 1
 fi
 
 wget -O $tmp_firehol "https://iplists.firehol.org/files/firehol_level4.netset"
 if [ $? -ne 0 -o ! -s $tmp_firehol ]; then
+    log "Failed to download FireHOL Level 4 blocklist"
     rm $tmp_firehol
     exit 1
 fi
@@ -162,7 +171,7 @@ firehol ipset_update_from_file blocked_nets nets $tmp_nets
 
 # Clean up temporary files
 rm $tmp_emerging $tmp_firehol $tmp_nets
-
+log "Successfully updated blocked IPs and networks"
 ```
 
 ::: tip
