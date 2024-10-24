@@ -469,7 +469,7 @@ function sidebarHome() {
                 },
                 {
                   text: "Datastore structure",
-                  link: "nodes/celestia-node-store-structure",
+                  link: "how-to-guides/celestia-node-store-structure",
                 },
               ],
             },
