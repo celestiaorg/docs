@@ -48,12 +48,12 @@ celestia light init --p2p.network mocha
 
 Once you've run this command, you'll see a new keypair that's created in your terminal. Be sure to save your mnemonic somewhere safe for future use!
 
-```bash
-INFO	node	nodebuilder/init.go:31	Initializing Light Node Store over '/Users/js/.celestia-light-mocha-4'
-INFO	node	nodebuilder/init.go:64	Saved config	{"path": "/Users/js/.celestia-light-mocha-4/config.toml"}
+```bash-vue
+INFO	node	nodebuilder/init.go:31	Initializing Light Node Store over '/Users/js/.celestia-light-{{ constants.mochaChainId }}'
+INFO	node	nodebuilder/init.go:64	Saved config	{"path": "/Users/js/.celestia-light-{{ constants.mochaChainId }}/config.toml"}
 INFO	node	nodebuilder/init.go:66	Accessing keyring...
 WARN	node	nodebuilder/init.go:196	Detected plaintext keyring backend. For elevated security properties, consider using the `file` keyring backend.
-INFO	node	nodebuilder/init.go:211	NO KEY FOUND IN STORE, GENERATING NEW KEY...	{"path": "/Users/js/.celestia-light-mocha-4/keys"}
+INFO	node	nodebuilder/init.go:211	NO KEY FOUND IN STORE, GENERATING NEW KEY...	{"path": "/Users/js/.celestia-light-{{ constants.mochaChainId }}/keys"}
 INFO	node	nodebuilder/init.go:216	NEW KEY GENERATED...
 
 NAME: my_celes_key
@@ -70,7 +70,7 @@ You'll also see In this example, using the Mocha testnet and setting up a light 
 
 #### Set the trusted hash
 
-Setting and syncing to a trusted hash and height means your light node will not sample the entire chain. This adds the trust assumption that you trust the entity where you get the hash and height from, in this case, the [P-OPS](https://pops.one)  team's consensus endpoint. This is useful when you want to sync your light node quickly.
+Setting and syncing to a trusted hash and height means your light node will not sample the entire chain. This is useful when you want to sync your light node quickly. However, it's important to note that this adds the trust assumption that you trust the entity where you get the hash and height from, in this case, the [P-OPS](https://pops.one)  team's consensus endpoint.
 
 Let's set the trusted hash!
 
@@ -81,7 +81,7 @@ Let's set the trusted hash!
     ```
 
 1. Set the trusted height & hash
-    1. Open your `config.toml` at `.celestia-light-mocha-4/config.toml`
+    1. Open your `config.toml` at `.celestia-light-{{ constants.mochaChainId }}/config.toml`
     1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
 
 > If you dont do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 94721, requestedHeight: 2983850"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
@@ -164,6 +164,10 @@ The `[namespace]` is a permissionless way to categorize your data on Celestia. I
 > Learn more about namespaces in [the celestia-app documentation](https://celestiaorg.github.io/celestia-app/namespace.html).
 
 The `[blobData]` is the blob data you want to post to the network. In this example, we'll use a quote from Leonardo da Vinci:
+
+:::tip
+Feeling creative? Post your favorite quote and [share it on Twitter](https://x.com/JoshCStein/status/1849553273470263636)!
+:::
 
 ```bash
 celestia blob submit 0x71756f746573 '"Simplicity is the ultimate sophistication." -Leonardo da Vinci'
