@@ -45,7 +45,7 @@ Validators should ensure they are running a v3 binary before signaling support f
 :::
 
 :::warning
-You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
+You **do not** need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 :::
 
 ### Past Upgrades
