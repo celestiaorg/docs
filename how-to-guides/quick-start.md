@@ -64,7 +64,7 @@ never gonna give you up never gonna let you down never gonna run around and dese
 INFO	node	nodebuilder/init.go:73	Node Store initialized
 ```
 
-You'll also see In this example, using the Mocha testnet and setting up a light node, our node store will be at: `~/.celestia-light-{{ constants.mochaChainId }}`.
+You'll also see in this example, using the Mocha testnet and setting up a light node, our node store will be at: `~/.celestia-light-{{ constants.mochaChainId }}`.
 
 > Logs above have the timestamps removed for brevity. And yes, that's a Rickroll mnemonic. 😜
 
