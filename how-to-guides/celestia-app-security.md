@@ -5,7 +5,7 @@ description: Security Guide for Celestia Consensus Node
 # Security for Celestia App
 Validators in Celestia often rely on cloud or baremetal servers for their infrastructure. While some providers offer basic protection, most setups lack advanced firewall solutions such as DDoS mitigation. This makes it critical to implement your own measures. By using [FireHOL](https://github.com/firehol/firehol), we introduce a flexible and lightweight firewall that supports advanced features like rate limiting and dynamic IP blacklisting. This solution ensures that your node can handle increasing traffic while protecting it from malicious actors.
   
-## Key features we’ll leverage:
+## Key Features We'll Leverage
 
 1. Traffic filtering and rate limiting to mitigate potential DDoS attacks.
 2. Dynamic IP blocking using blacklists like [Firehol Level 4](https://iplists.firehol.org/?ipset=firehol_level4) and [Emerging Threats](https://iplists.firehol.org/?ipset=et_block) to automatically block known malicious IPs.
@@ -175,7 +175,7 @@ log "Successfully updated blocked IPs and networks"
 ```
 
 ::: tip
-You can add more IP list from the db, not adding more list will create more overhead: [Cyber Crime IP DB](https://iplists.firehol.org/)
+You can add additional IP lists from the database, but keep in mind that adding too many lists may increase overhead and affect performance [Cyber Crime IP DB](https://iplists.firehol.org/)
 ::: 
 
 Make the script executable:
