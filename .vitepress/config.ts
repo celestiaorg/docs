@@ -474,6 +474,10 @@ function sidebarHome() {
                     },
                   ],
                 },
+                {
+                  text: "Datastore structure",
+                  link: "how-to-guides/celestia-node-store-structure",
+                },
               ],
             },
             {
