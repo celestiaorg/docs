@@ -12,7 +12,7 @@ accordingly for Mocha, Arabica, or a custom network.
 Syncing to a trusted hash means that you will not sample the entire chain. This adds a trust
 assumption that you trust the history of the chain up to that point and that you trust the entity
 where you get the hash from. In this example, the trusted entity is a consensus endpoint or
-Celenium
+Celenium.
 :::
 
 1. Get trusted height & hash from a consensus endpoint or [Celenium](https://celenium.io).
@@ -23,7 +23,7 @@ Celenium
     ```
 
 1. Set the trusted height & hash
-    1. Open your config.toml at `.celestia-light/config.toml` (or `.celestia-light-<other-network>/config.toml`)
+    1. Open your `config.toml` at `.celestia-light/config.toml` (or `.celestia-light-<other-network>/config.toml`)
     1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
 1. Run the node with the hash and flag:
 

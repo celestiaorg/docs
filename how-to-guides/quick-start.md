@@ -2,7 +2,7 @@
 description: Learn how to get started and post your first blob to Celestia.
 ---
 
-# Quick start guide
+# Quick-start guide
 
 <!-- markdownlint-disable MD033 -->
 <script setup>
@@ -10,7 +10,7 @@ import constants from '/.vitepress/constants/constants.js'
 import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 </script>
 
-Welcome to Celestia's quick start guide! In this guide, we'll learn how to run a Celestia data availability sampling (DAS) light node to post and retrieve data blobs on Celestia's [Mocha testnet](./mocha-testnet.md).
+Welcome to Celestia's quick-start guide! In this guide, we'll learn how to run a Celestia data availability sampling (DAS) light node to post and retrieve data blobs on Celestia's [Mocha testnet](./mocha-testnet.md).
 
 A blob (a.k.a. [BLOB](https://en.wikipedia.org/wiki/Object_storage#Origins)) is a Binary Large OBject. In other words, a blob is arbitrary data. In this case, it's data that you want to post and make available on Celestia's data availability (DA) layer.
 
@@ -18,7 +18,7 @@ Your light node will allow you to post data, and then use DAS to sample and retr
 
 ## Run a light node
 
-First we'll need to install the `celestia` binary to run our DAS light node. Use the following command to install a pre-built binary of [celestia-node](https://github.com/celestiaorg/celestia-node), for the latest release on Mocha testnet:
+First we'll need to install the `celestia` binary to run our DAS light node. Use the following command to install a pre-built binary of [celestia-node](https://github.com/celestiaorg/celestia-node), for the latest release for Mocha testnet:
 
 > For this guide, select either your Go bin or system bin directory when prompted. If you're curious what [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-node.sh) is doing, check out [the celestia-node page](./celestia-node.md#installing-a-pre-built-binary).
 
@@ -68,17 +68,39 @@ You'll also see In this example, using the Mocha testnet and setting up a light 
 
 > Logs above have the timestamps removed for brevity. And yes, that's a Rickroll mnemonic. 😜
 
+#### Set the trusted hash
+
+Setting and syncing to a trusted hash and height means your light node will not sample the entire chain. This adds the trust assumption that you trust the entity where you get the hash and height from, in this case, the [P-OPS](https://pops.one)  team's consensus endpoint. This is useful when you want to sync your light node quickly.
+
+Let's set the trusted hash!
+
+1. Get trusted height & hash from the P-OPS consensus endpoint:
+
+    ```bash
+    export TRUSTED_HEIGHT=$(curl -s "https://rpc-mocha.pops.one/header" | jq -r '.result.header.height') && export TRUSTED_HASH=$(curl -s "https://rpc-mocha.pops.one/header" | jq -r '.result.header.last_block_id.hash') && echo "Height: $TRUSTED_HEIGHT" && echo "Hash: $TRUSTED_HASH"
+    ```
+
+1. Set the trusted height & hash
+    1. Open your `config.toml` at `.celestia-light-mocha-4/config.toml`
+    1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
+
+> If you dont do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 94721, requestedHeight: 2983850"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
+Learn more in [the trusted hash quick sync guide](./celestia-node-trusted-hash.md).
+
 ### Start the light node
 
 Run the following command to start your light node:
 
+In the same terminal you initialized the node store and set the variable for `TRUSTED_HASH`, start the node with the hash and flag:
+
 ```bash
-celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one
+celestia light start --headers.trusted-hash $TRUSTED_HASH \
+    --p2p.network mocha --core.ip rpc-mocha.pops.one
 ```
 
-The `core.ip` flag is used to specify the consensus RPC endpoints you want to connect to. We'll use `rpc-mocha.pops.one` from the [P-OPS team](https://pops.one) for Mocha testnet.
+The `core.ip` flag is used to specify the consensus RPC endpoints you want to connect to, this is the same one we got the trusted height and hash from. We'll use `rpc-mocha.pops.one` from the P-OPS team for Mocha testnet. The `headers.trusted-hash` flag will set the trusted hash from the previous section.
 
-Once you see this in the logs, you're ready to start posting data!
+Once you see this in the logs, you're ready to start posting and retrieving data!
 
 ```bash-vue
 /_____/  /_____/  /_____/  /_____/  /_____/
@@ -90,6 +112,24 @@ network: 	{{ constants.mochaChainId }}
 
 /_____/  /_____/  /_____/  /_____/  /_____/
 ```
+
+:::tip
+If you want to see that your node is synced, use the `celestia das sampling-stats` command to check it in another terminal:
+
+```bash
+{
+  "result": {
+    "head_of_sampled_chain": 2990507,
+    "head_of_catchup": 2990507,
+    "network_head_height": 2990507,
+    "concurrency": 0,
+    "catch_up_done": true,
+    "is_running": true
+  }
+}
+```
+
+:::
 
 ## Post and retrieve data with your light node
 
@@ -105,7 +145,7 @@ celestia state account-address
 
 Take this account address and head over to the [Discord](https://discord.gg/celestiacommunity) and request tokens from the `#mocha-faucet` channel.
 
-Once you've requested tokens, can check the balance using:
+Once you've requested tokens, can check the balance of your running node using:
 
 ```bash
 celestia state balance
@@ -119,24 +159,24 @@ Now that you have tokens in your account, you can post data to the network. Let'
 celestia blob submit [namespace] [blobData]
 ```
 
-The `[namespace]` is a permissionless way to categorize your data on Celestia. In other words, it's a channel for you to post your data. For example, this could be the name of your project or a category for the type of blob. In this example, we'll use `0x48656C6C6F` as the namespace, which is the hex encoding of "quotes".
+The `[namespace]` is a permissionless way to categorize your data on Celestia. In other words, it's a channel for you to post your data. For example, this could be the name of your project or a category for the type of blob. In this example, we'll use `0x71756f746573` as the namespace, which is the hex encoding of "quotes". See the ["quotes" namespace on Celenium](https://mocha.celenium.io/namespace/0000000000000000000000000000000000000000000071756f746573?tab=Blobs).
 
 > Learn more about namespaces in [the celestia-app documentation](https://celestiaorg.github.io/celestia-app/namespace.html).
 
 The `[blobData]` is the blob data you want to post to the network. In this example, we'll use a quote from Leonardo da Vinci:
 
 ```bash
-celestia blob submit 0x48656C6C6F '"Simplicity is the ultimate sophistication." -Leonardo da Vinci'
+celestia blob submit 0x71756f746573 '"Simplicity is the ultimate sophistication." -Leonardo da Vinci'
 ```
 
-Once you run this command, you'll see a a height and data committment in the response. This means your data has been successfully posted to the network!
+Once you run this command, you'll see a height and data committment in the response. This means your data has been successfully posted to the network!
 
 ```bash
 {
   "result": {
-    "height": 2983850,
+    "height": 2990556,
     "commitments": [
-      "0x6e2b64874f7daca3d61c3302ecff5634d9ac0a01d58b4b41417c4e1cacd26a9a"
+      "0x715ab246772c923104c556dc28d5d4fcfca0398b0a252bcd19dd5705495756ac"
     ]
   }
 }
@@ -153,7 +193,7 @@ celestia blob get [height] [namespace] [committment]
 In this example, you'll use the height and commitment from the response above:
 
 ```bash
-celestia blob get 2983850 0x48656C6C6F 0x6e2b64874f7daca3d61c3302ecff5634d9ac0a01d58b4b41417c4e1cacd26a9a
+celestia blob get 2990556 0x71756f746573 0x715ab246772c923104c556dc28d5d4fcfca0398b0a252bcd19dd5705495756ac
 ```
 
 In response, you'll see the data you posted:
@@ -161,11 +201,11 @@ In response, you'll see the data you posted:
 ```bash
 {
   "result": {
-    "namespace": "0x48656C6C6F",
+    "namespace": "0x71756f746573",
     "data": "\"Simplicity is the ultimate sophistication.\" -Leonardo da Vinci",
     "share_version": 0,
-    "commitment": "0x5fdba4ca4a3012fcf66569a5fe0a23e9f0681f79b8f6f3d53bac99de0aa21312",
-    "index": 781
+    "commitment": "0x715ab246772c923104c556dc28d5d4fcfca0398b0a252bcd19dd5705495756ac",
+    "index": 29
   }
 }
 ```
@@ -179,16 +219,6 @@ Let's break it down:
 - `index`: The [index](https://celestiaorg.github.io/celestia-app/shares.html#overview) of the data share in the square.
 
 Congratulations! You've successfully learned how to run a light node to post and retrieve data from Celestia's Mocha testnet.
-
-:::tip
-If you see a response like this, you'll either need to let the node sync to the `requestedHeight`, or use [the trusted hash quick sync guide](./celestia-node-trusted-hash.md):
-
-```bash
-{
-  "result": "header: syncing in progress: localHeadHeight: 94721, requestedHeight: 2983850"
-}
-```
-:::
 
 ## Diving deeper into the stack
 
