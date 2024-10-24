@@ -508,6 +508,10 @@ function sidebarHome() {
                       link: "https://celestiaorg.github.io/celestia-app/",
                     },
                     {
+                      text: "Security",
+                      link: "/how-to-guides/celestia-app-security",
+                    },
+                    {
                       text: "Metrics, visualization, and alerts",
                       link: "/how-to-guides/celestia-app-metrics",
                     },
