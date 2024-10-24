@@ -25,7 +25,7 @@ features:
     icon: 🏗️
   - title: How-to guides
     details: Explore step-by-step guides for running a node, posting data blobs, building applications and sovereign rollups on Celestia.
-    link: /how-to-guides/nodes-overview
+    link: /how-to-guides/quick-start
     icon: 📈
   - title: Tutorials
     details: Access tutorials for interacting with Celestia, starting with celestia-node through the node API.

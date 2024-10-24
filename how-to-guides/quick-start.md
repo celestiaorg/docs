@@ -76,7 +76,7 @@ Run the following command to start your light node:
 celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one
 ```
 
-The `core.ip` flag is used to specify the consensus RPC endpoint's you want to connect to. We'll use `rpc-mocha.pops.one` from the [P-OPS team](https://pops.one) for Mocha testnet.
+The `core.ip` flag is used to specify the consensus RPC endpoints you want to connect to. We'll use `rpc-mocha.pops.one` from the [P-OPS team](https://pops.one) for Mocha testnet.
 
 Once you see this in the logs, you're ready to start posting data!
 
@@ -121,7 +121,7 @@ celestia blob submit [namespace] [blobData]
 
 The `[namespace]` is a permissionless way to categorize your data on Celestia. In other words, it's a channel for you to post your data. For example, this could be the name of your project or a category for the type of blob. In this example, we'll use `0x48656C6C6F` as the namespace, which is the hex encoding of "quotes".
 
-> [Learn more about namespaces in celestia-app documentation](https://celestiaorg.github.io/celestia-app/namespace.html).
+> Learn more about namespaces in [the celestia-app documentation](https://celestiaorg.github.io/celestia-app/namespace.html).
 
 The `[blobData]` is the blob data you want to post to the network. In this example, we'll use a quote from Leonardo da Vinci:
 
@@ -224,7 +224,7 @@ If you're interested in writing a Golang program to interact with your Celestia 
 
 As described in the [initialize the light node section](#initialize-the-light-node) above, the node store is created in the `~/.celestia-<node-type>-<network>` directory.
 
-In this guide, the node store for `~/.celestia-light-{{ constants.mochaChainId }}` contains the following directories:
+In this guide, the node store for `~/.celestia-light-{{ constants.mochaChainId }}` contains the following directories and file types:
 
 - `config.toml`: Node configuration settings
 - `data/`: Contains database files
@@ -233,7 +233,7 @@ In this guide, the node store for `~/.celestia-light-{{ constants.mochaChainId }
   - System files: `DISCARD`, `KEYREGISTRY`, and `MANIFEST` for database management
 - `keys/`: Stores node identity and account keys
   - Contains encoded node identifiers
-  - `keyring-test/`: Test keyring directory storing
+  - `keyring-test/`: Test keyring directory
     - `.address` files: Account addresses
     - `.info` files: Key metadata and information
 
