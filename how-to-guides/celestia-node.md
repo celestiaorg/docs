@@ -115,7 +115,7 @@ You can install the latest version or specify a particular version:
 # Install latest version
 bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)"
 
-# Install specific version
+# Install specific version, Mainnet Beta in this example
 bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
 ```
 
