@@ -1,5 +1,5 @@
 ---
-description: Security Guide for Celestia Consensus Node
+description: Security guide for Celestia consensus nodes
 ---
 
 # Security for Celestia App
