@@ -45,7 +45,7 @@ Home directory: /var/folders/_8/ljj6hspn0kn09qf9fy8kdyh40000gn/T/celestia_app_XX
 --> Updating go.mod
 ```
 
-And set the location as the `CElESTIA_APP_HOME` variable. We will use this
+And set the location as the `CELESTIA_APP_HOME` variable. We will use this
 for the remainder of the devnet section.
 
 ```bash
