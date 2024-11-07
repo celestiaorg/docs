@@ -42,7 +42,7 @@ availability sampling for blocks within the data recency window of 30 days.
 ## Suggested practices for rollups
 
 Rollups may need to access historic data in order to allow new rollup nodes
-to reconstruct the latest state by replaying historic blocks. Once data has
+to reconstruct the latest state by replaying historical blocks. Once data has
 been published on Celestia and guaranteed to have been made available, rollups
 and applications are responsible for storing their historical data.
 
