@@ -40,7 +40,7 @@ process will work for Cohort 1 and what that means for future cohorts.
 
 * Initial Cohort (Cohort 1): 50 applicants will be accepted
   * Grading System: Applicants in Cohort 1 are divided into first, second,
-  and third place based eligibility criteria outlined in this document.
+  and third place based on eligibility criteria outlined in this document.
   * Delegation Duration: This varies based on the applicant’s placement in
   Cohort 1. First place receives 12 months of delegation, second place receives
   8 months, third place receives 4 months.
