@@ -38,7 +38,7 @@ Here is an example for Mainnet Beta:
 
 ```sh
 celestia <node-type> start --metrics.tls=true \
-    --metrics --metrics.endpoint otel.celestia.observer \
+    --metrics --metrics.endpoint otel.lunar.celestia.dev \
     --core.ip <URI>
 ```
 
@@ -48,7 +48,7 @@ Here is an example for Mocha testnet:
 
 ```sh
 celestia <node-type> start --metrics.tls=true \
-    --metrics --metrics.endpoint otel.celestia-mocha.com \
+    --metrics --metrics.endpoint otel.mocha.celestia.dev \
     --core.ip <URI> --p2p.network mocha
 ```
 

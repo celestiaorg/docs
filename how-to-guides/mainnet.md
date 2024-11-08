@@ -250,7 +250,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 
 DA full and light nodes might have troubles connecting to the networks, so you
 can check out this
-[Grafana dashboard](https://celestia.grafana.net/public-dashboards/a10eff0043bb4bf0839004e2746e2bc6)
+[Grafana dashboard](https://grafana.celestia.dev/d/caaeabfb-33c5-45fd-b5e9-867f5f34ad57/public-bootstrappers?orgId=1&refresh=5s)
 to see health/uptime status of DA bootstrappers (now `celestia` network only).
 
 You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
