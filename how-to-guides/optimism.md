@@ -19,7 +19,7 @@ This guide is in two parts:
 
 - In the second part, you'll deploy a testnet that posts data to the Mocha testnet, but this time on a real L1 environment; the Ethereum Sepolia testnet. This will involve setting up a configuration file with the necessary details like Sepolia chain ID, RPC URL, and your deployment keys.
 
-After successful deployments, you'll be able to observe data blobs being successfully submitted to the Mocha testnet in the logs, as well as some activity on your rollup account on [Celenium](celenium.io).
+After successful deployments, you'll be able to observe data blobs being successfully submitted to the Mocha testnet in the logs, as well as some activity on your rollup account on [Celenium](https://celenium.io).
 
 If you don't have devops experience and would like to use a Rollups as a Service (RaaS) provider, see the RaaS category in the menu.
 
