@@ -234,6 +234,7 @@ There are several explorers you can use for Mocha:
 - [https://testnet.celestia.explorers.guru](https://testnet.celestia.explorers.guru)
 - [https://testnet.itrocket.net/celestia](https://testnet.itrocket.net/celestia)
 - [https://explorers.cryptech.com.ua/Celestia-Testnet](https://explorers.cryptech.com.ua/Celestia-Testnet)
+- [https://testnet.celestia.valopers.com/](https://testnet.celestia.valopers.com/)
 
 ## Network upgrades
 
