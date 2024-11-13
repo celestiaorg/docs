@@ -106,9 +106,9 @@ Navigate to `Celestia` and select `Stake`.
 
 ![Gem1](/img/gem/gem1.gif)
 
-### :two: Choose the amount of Celestia and search for a validator.
+### :two: Choose the amount of TIA and search for a validator.
 
-Select the amount of Celestia tokens and choose a validator from the list.
+Select the amount of TIA tokens and choose a validator from the list.
 
 ![Gem2](/img/gem/gem2.gif)
 
