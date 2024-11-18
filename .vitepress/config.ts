@@ -6,7 +6,6 @@ const telegramSVG = ` <svg width="24" height="24" viewBox="0 0 24 24" fill="none
 
 const { BASE: base = "/" } = process.env;
 
-// https://vitepress.dev/concepts/site-config
 export default {
   lang: "en-US",
   title: "Celestia Docs",
@@ -25,38 +24,9 @@ export default {
   head: [
     [
       "link",
-      {
-        rel: "icon",
-        href: "/favicons/favicon.svg",
-        type: "image/svg+xml",
-      },
+      { rel: "icon", href: "/favicons/favicon.svg", type: "image/svg+xml" },
     ],
-    // [
-    //   "link",
-    //   {
-    //     rel: "icon",
-    //     type: "image/svg+xml",
-    //     href: "/favicons/favicon-dark.svg",
-    //     media: "(prefers-color-scheme: dark)",
-    //   },
-    // ],
-    [
-      "link",
-      {
-        rel: "icon",
-        href: "/favicons/favicon.png",
-        type: "image/png",
-      },
-    ],
-    // [
-    //   "link",
-    //   {
-    //     rel: "icon",
-    //     type: "image/png",
-    //     href: "/favicons/favicon-dark.png",
-    //     media: "(prefers-color-scheme: dark)",
-    //   },
-    // ],
+    ["link", { rel: "icon", href: "/favicons/favicon.png", type: "image/png" }],
     [
       "link",
       {
@@ -65,15 +35,6 @@ export default {
         type: "image/x-icon",
       },
     ],
-    // [
-    //   "link",
-    //   {
-    //     rel: "icon",
-    //     type: "image/x-icon",
-    //     href: "/favicons/favicon-dark.ico",
-    //     media: "(prefers-color-scheme: dark)",
-    //   },
-    // ],
     ["meta", { name: "msapplication-TileColor", content: "#fff" }],
     ["meta", { name: "theme-color", content: "#fff" }],
     [
@@ -84,8 +45,6 @@ export default {
           "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
       },
     ],
-    // ['meta', { property: 'og:title', content: 'Celestia' }],
-    // ['meta', { property: 'og:description', content: 'The first modular blockchain network.' }],
     [
       "meta",
       {
@@ -94,7 +53,11 @@ export default {
       },
     ],
     ["meta", { httpEquiv: "Content-Language", content: "en" }],
+
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
+    ["meta", { name: "twitter:site", content: "@CelestiaOrg" }],
+    ["meta", { name: "twitter:site:domain", content: "docs.celestia.org" }],
+    ["meta", { name: "twitter:url", content: "https://docs.celestia.org" }],
     [
       "meta",
       {
@@ -102,20 +65,11 @@ export default {
         content: "https://docs.celestia.org/Celestia-og.png",
       },
     ],
-    [
-      "meta",
-      {
-        name: "twitter:site:domain",
-        content: "docs.celestia.org",
-      },
-    ],
-    [
-      "meta",
-      {
-        name: "twitter:url",
-        content: "https://docs.celestia.org",
-      },
-    ],
+    ["meta", { name: "twitter:image:alt", content: "Celestia Documentation" }],
+
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:site_name", content: "Celestia Docs" }],
+    ["meta", { property: "og:url", content: "https://docs.celestia.org" }],
     [
       "meta",
       {
@@ -123,8 +77,10 @@ export default {
         content: "https://docs.celestia.org/Celestia-og.png",
       },
     ],
-    ["meta", { property: "og:type", content: "website" }],
-    ["meta", { property: "og:site_name", content: "Celestia Docs" }],
+    ["meta", { property: "og:image:width", content: "1200" }],
+    ["meta", { property: "og:image:height", content: "630" }],
+    ["meta", { property: "og:image:type", content: "image/png" }],
+
     ["meta", { name: "apple-mobile-web-app-title", content: "Celestia" }],
     [
       "script",
@@ -154,7 +110,6 @@ export default {
   ],
 
   themeConfig: {
-    // https://vitepress.dev/concepts/default-theme-config
     nav: nav(),
     outline: {
       level: "deep",
@@ -269,6 +224,35 @@ export default {
   },
 };
 
+function nav() {
+  return [
+    {
+      text: "Join the network",
+      items: [
+        { text: "Learn", link: "/learn/how-celestia-works/overview" },
+        { text: "Quick start", link: "/how-to-guides/quick-start" },
+        { text: "Build whatever", link: "/how-to-guides/build-whatever" },
+        {
+          text: "Resources",
+          items: [
+            {
+              text: "Celestia Improvement Proposals (CIPs)",
+              link: "https://cips.celestia.org/",
+            },
+            {
+              text: "celestia-app specs",
+              link: "https://celestiaorg.github.io/celestia-app/",
+            },
+            {
+              text: "celestia-node API docs",
+              link: "https://node-rpc-docs.celestia.org/",
+            },
+          ],
+        },
+      ],
+    },
+  ];
+}
 function nav() {
   return [
     {
