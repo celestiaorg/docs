@@ -110,8 +110,8 @@ export default {
     ],
   ],
 
-  // https://vitepress.dev/concepts/default-theme-config
   themeConfig: {
+    // https://vitepress.dev/concepts/default-theme-config
     nav: nav(),
     outline: {
       level: "deep",
@@ -226,35 +226,6 @@ export default {
   },
 };
 
-function nav() {
-  return [
-    {
-      text: "Join the network",
-      items: [
-        { text: "Learn", link: "/learn/how-celestia-works/overview" },
-        { text: "Quick start", link: "/how-to-guides/quick-start" },
-        { text: "Build whatever", link: "/how-to-guides/build-whatever" },
-        {
-          text: "Resources",
-          items: [
-            {
-              text: "Celestia Improvement Proposals (CIPs)",
-              link: "https://cips.celestia.org/",
-            },
-            {
-              text: "celestia-app specs",
-              link: "https://celestiaorg.github.io/celestia-app/",
-            },
-            {
-              text: "celestia-node API docs",
-              link: "https://node-rpc-docs.celestia.org/",
-            },
-          ],
-        },
-      ],
-    },
-  ];
-}
 function nav() {
   return [
     {
