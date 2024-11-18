@@ -95,7 +95,13 @@ export default {
     ],
     ["meta", { httpEquiv: "Content-Language", content: "en" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: "/Celestia-og.png" }],
+    [
+      "meta",
+      {
+        name: "twitter:image",
+        content: "https://docs.celestia.org/Celestia-og.png",
+      },
+    ],
     [
       "meta",
       {
@@ -110,7 +116,15 @@ export default {
         content: "https://docs.celestia.org",
       },
     ],
-    ["meta", { name: "og:image", content: "/Celestia-og.png" }],
+    [
+      "meta",
+      {
+        property: "og:image",
+        content: "https://docs.celestia.org/Celestia-og.png",
+      },
+    ],
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:site_name", content: "Celestia Docs" }],
     ["meta", { name: "apple-mobile-web-app-title", content: "Celestia" }],
     [
       "script",
@@ -232,20 +246,26 @@ export default {
   },
   transformPageData(pageData) {
     pageData.frontmatter.head ??= [];
-    pageData.frontmatter.head.push([
-      "meta",
-      {
-        name: "og:title",
-        content:
-          pageData.frontmatter.layout === "home"
-            ? `Celestia Docs`
-            : `${pageData.title} | Celestia Docs`,
-      },
-      {
-        name: "og:description",
-        content: pageData.frontmatter.layout === `${pageData.description}`,
-      },
-    ]);
+    pageData.frontmatter.head.push(
+      [
+        "meta",
+        {
+          property: "og:title",
+          content:
+            pageData.frontmatter.layout === "home"
+              ? "Celestia Docs"
+              : `${pageData.title} | Celestia Docs`,
+        },
+      ],
+      [
+        "meta",
+        {
+          property: "og:description",
+          content:
+            pageData.description || "The first modular blockchain network.",
+        },
+      ],
+    );
   },
 };
 
