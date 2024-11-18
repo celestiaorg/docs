@@ -6,6 +6,7 @@ const telegramSVG = ` <svg width="24" height="24" viewBox="0 0 24 24" fill="none
 
 const { BASE: base = "/" } = process.env;
 
+// https://vitepress.dev/concepts/site-config
 export default {
   lang: "en-US",
   title: "Celestia Docs",
@@ -109,6 +110,7 @@ export default {
     ],
   ],
 
+  // https://vitepress.dev/concepts/default-theme-config
   themeConfig: {
     nav: nav(),
     outline: {
