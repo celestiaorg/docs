@@ -23,7 +23,7 @@ We love contributions from the community! Whether you're fixing typos,
 improving content clarity, or adding new topics, every contribution helps.
 
 - Fork & clone: Fork this repository and clone it to your local machine.
-- Branch: Always create a new branch for your changes. Naming it relevantly.
+- Branch: Always create a new branch for your changes. Name it relevantly.
 - Commit Changes: Make your changes and commit them with a clear and concise
   commit message.
 - Push & Create PR: Push your changes to your fork and create a pull request
