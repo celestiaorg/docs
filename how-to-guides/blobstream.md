@@ -13,7 +13,7 @@ is the first data availability solution for Ethereum that securely
 scales with the number of users. Formerly known as the [Quantum Gravity Bridge (QGB)](https://blog.celestia.org/celestiums/),
 Blobstream relays commitments to Celestia's data root to an onchain light client
 on Ethereum, for integration by developers into L2 contracts. This enables Ethereum
-developers to build high-throughput L2s using Celestia's optimised DA layer,
+developers to build high-throughput L2s using Celestia's optimized DA layer,
 the first with Data Availability Sampling (DAS). Any ecosystem can deploy a
 Blobstream light client onchain to allow L2s and L3s to access DA from Celestia.
 
