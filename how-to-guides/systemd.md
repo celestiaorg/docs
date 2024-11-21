@@ -1,5 +1,5 @@
 ---
-description: Learn how to setup your node as a background process with SystemD.
+description: Learn how to set up your node as a background process with SystemD.
 ---
 
 # Setting up your node as a background process with SystemD
