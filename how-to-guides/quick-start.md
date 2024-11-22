@@ -277,6 +277,6 @@ If you run into issues, check out the [troubleshooting](./celestia-node-troubles
 
 ## Next steps
 
-Check out the [build whatever page](./build-whatever.md) to get started learning about ways to build with Celestia underneath.
+Check out the [rollup stacks page](./rollup-stacks.md) to get started learning about ways to build whatever with Celestia underneath.
 
 Head to the next page to learn about different node types for the consensus and DA networks.

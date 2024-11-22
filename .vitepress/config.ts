@@ -233,7 +233,7 @@ function nav() {
       items: [
         { text: "Learn", link: "/learn/how-celestia-works/overview" },
         { text: "Quick start", link: "/how-to-guides/quick-start" },
-        { text: "Build whatever", link: "/how-to-guides/build-whatever" },
+        { text: "Rollup stacks", link: "/how-to-guides/rollup-stacks" },
         {
           text: "Resources",
           items: [
@@ -535,12 +535,12 @@ function sidebarHome() {
           ],
         },
         {
-          text: "Build whatever",
+          text: "Rollup stacks",
           collapsed: true,
           items: [
             {
               text: "Overview",
-              link: "/how-to-guides/build-whatever",
+              link: "/how-to-guides/rollup-stacks",
             },
             {
               text: "EVM",
