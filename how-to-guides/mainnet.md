@@ -139,6 +139,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-rpc.brightlystake.com`
 - `celestia.rpc.stakin-nodes.com`
 - `celestia.cumulo.org.es`
+- `rpc.archive.celestia.cumulo.com.es`
 - `rpc-celestia.mzonder.com`
 - `rpc-celestia-01.stakeflow.io`
 - `rpc-celestia.alphab.ai`
@@ -160,6 +161,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-rpc.brightlystake.com/api`
 - `celestia.rest.stakin-nodes.com`
 - `celestia.api.cumulo.org.es`
+- `api.archive.celestia.cumulo.com.es`
 - `api-celestia.mzonder.com`
 - `api-celestia-01.stakeflow.io`
 - `api-celestia.alphab.ai`
@@ -180,6 +182,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-rpc.brightlystake.com:9090`
 - `celestia.grpc.stakin-nodes.com:443`
 - `celestia.grpc.cumulo.org.es:443`
+- `grpc.archive.celestia.cumulo.com.es:443`
 - `grpc-celestia.mzonder.com:443`
 - `grpc-celestia-01.stakeflow.io:15002`
 - `rpc-celestia.alphab.ai:9090`
@@ -194,6 +197,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `wss://celestia-ws.chainode.tech:33373/websocket`
 - `wss://celestia-mainnet-ws.itrocket.net:443/websocket`
 - `wss://celestia.cumulo.org.es:443/websocket`
+- `wss://rpc.archive.celestia.cumulo.com.es:443/websocket`
 
 ### Data availability nodes
 
