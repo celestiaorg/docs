@@ -13,7 +13,7 @@ As of the Lemongrass upgrade in September 2024, Celestia has implemented [CIP-10
 1. **Pre-programmed height**: Used for the Lemongrass network upgrade (v2)
 2. **In-protocol signaling**: Used for all subsequent upgrades (v3+)
 
-Under the in-protocol signaling mechanism, validators submit messages to signal their readiness and preference for the next version. The upgrade activates automatically once a quorum of 5/6 of validators has signaled for the same version.
+Under the in-protocol signaling mechanism, validators submit messages to signal their readiness and preference for the next version. The upgrade activates automatically once a quorum of 5/6 of validators have signaled for the same version.
 
 ## Upgrade process
 

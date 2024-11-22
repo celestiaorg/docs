@@ -8,6 +8,14 @@ description: A guide to the contents of the Config.toml file.
 
 Please, make sure that you have installed and initialized `celestia-node`
 
+## Viewing the help menu
+
+In order to view all flags and their descriptions, use:
+
+```bash
+celestia light start --help
+```
+
 ## Understanding config.toml
 
 After initialization, for any type of node, you will find a
