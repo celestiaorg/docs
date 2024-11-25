@@ -48,8 +48,18 @@ Here is an example for Mocha testnet:
 
 ```sh
 celestia <node-type> start --metrics.tls=true \
-    --metrics --metrics.endpoint otel.celestia-mocha.com \
+    --metrics --metrics.endpoint otel.mocha.celestia.observer \
     --core.ip <URI> --p2p.network mocha
+```
+
+### Arabica devnet
+
+Here is an example for Arabica devnet:
+
+```sh
+celestia <node-type> start --metrics.tls=true \
+    --metrics --metrics.endpoint otel.arabica.celestia.observer \
+    --core.ip <URI> --p2p.network arabica
 ```
 
 ### TLS connections
