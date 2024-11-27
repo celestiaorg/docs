@@ -140,7 +140,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia.rpc.stakin-nodes.com`
 - `celestia.cumulo.org.es`
 - `rpc.archive.celestia.cumulo.com.es`
-- `rpc-celestia.mzonder.com`
 - `rpc-celestia-01.stakeflow.io`
 - `rpc-celestia.alphab.ai`
 - `rpc-celestia-full.avril14th.org`
@@ -183,7 +182,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia.grpc.stakin-nodes.com:443`
 - `celestia.grpc.cumulo.org.es:443`
 - `grpc.archive.celestia.cumulo.com.es:443`
-- `grpc-celestia.mzonder.com:443`
 - `grpc-celestia-01.stakeflow.io:15002`
 - `rpc-celestia.alphab.ai:9090`
 - `grpc-celestia-full.avril14th.org`

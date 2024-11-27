@@ -116,7 +116,6 @@ Celestia network. The default port is 26657.
 
 - `public-celestia-mocha4-consensus.numia.xyz:26657`
 - `mocha-4-consensus.mesa.newmetric.xyz:26657`
-- `rpc.celestia-mocha.com`
 - `celestia-testnet.brightlystake.com`
 - `rpc-celestia-mocha.trusted-point.com`
 - `rpc-celestia-testnet-01.stakeflow.io`
