@@ -28,7 +28,8 @@ done
 if [ -d "$TEMP_DIR" ]; then
     read -p "Directory $TEMP_DIR exists. Do you want to clear it out? (y/n) " -n 1 -r
     echo    # move to a new line
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
         rm -rf "$TEMP_DIR"
         echo "Directory $TEMP_DIR has been removed."
     fi
@@ -52,6 +53,8 @@ if [ -n "$USER_VERSION" ]; then
 else
     # Fetch the latest release tag from GitHub
     VERSION=$(curl -s "https://api.github.com/repos/celestiaorg/celestia-node/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+
+    # Check if VERSION is empty
     if [ -z "$VERSION" ]; then
         echo "Failed to fetch the latest version. Exiting." | tee -a "$LOGFILE"
         exit 1
@@ -72,29 +75,49 @@ ARCH=$(uname -m)
 
 # Translate architecture to expected format
 case $ARCH in
-    x86_64) ARCH="x86_64" ;;
-    aarch64|arm64) ARCH="arm64" ;;
-    *) echo "Unsupported architecture: $ARCH. Exiting." | tee -a "$LOGFILE"; exit 1 ;;
+    x86_64)
+        ARCH="x86_64"
+        ;;
+    aarch64|arm64)
+        ARCH="arm64"
+        ;;
+    *)
+        echo "Unsupported architecture: $ARCH. Exiting." | tee -a "$LOGFILE"
+        exit 1
+        ;;
 esac
 
 # Translate OS to expected format
 case $OS in
-    Linux|Darwin) ;;
-    *) echo "Unsupported operating system: $OS. Exiting." | tee -a "$LOGFILE"; exit 1 ;;
+    Linux|Darwin)
+        ;;
+    *)
+        echo "Unsupported operating system: $OS. Exiting." | tee -a "$LOGFILE"
+        exit 1
+        ;;
 esac
 
 # Construct the download URL
 PLATFORM="${OS}_${ARCH}"
 URL="https://github.com/celestiaorg/celestia-node/releases/download/$VERSION/celestia-node_$PLATFORM.tar.gz"
 
-# Log and download the tarball
+# Check if URL is valid
+if [[ ! $URL =~ ^https://github.com/celestiaorg/celestia-node/releases/download/[^/]+/celestia-node_[^/]+.tar.gz$ ]]; then
+    echo "Invalid URL: $URL. Exiting." | tee -a "$LOGFILE"
+    exit 1
+fi
+
+# Log and print a message
 echo "Downloading from: $URL" | tee -a "$LOGFILE"
+
+# Download the tarball
 if ! curl -L "$URL" -o "celestia-node_$PLATFORM.tar.gz" >> "$LOGFILE" 2>&1; then
     echo "Download failed. Exiting." | tee -a "$LOGFILE"
     exit 1
 fi
 
-# Detect if running on macOS and calculate checksum
+
+# Detect if running on macOS and use appropriate command for checksum
 if [ "$OS" = "Darwin" ]; then
     CALCULATED_CHECKSUM=$(shasum -a 256 "celestia-node_$PLATFORM.tar.gz" | awk '{print $1}')
 else
@@ -102,15 +125,15 @@ else
 fi
 
 # Download checksums.txt
-CHECKSUMS_URL="https://github.com/celestiaorg/celestia-node/releases/download/$VERSION/checksums.txt"
-echo "Downloading checksums.txt from: $CHECKSUMS_URL" | tee -a "$LOGFILE"
-if ! curl -L "$CHECKSUMS_URL" -o "checksums.txt" >> "$LOGFILE" 2>&1; then
+if ! curl -L "https://github.com/celestiaorg/celestia-node/releases/download/$VERSION/checksums.txt" -o "checksums.txt" >> "$LOGFILE" 2>&1; then
     echo "Failed to download checksums. Exiting." | tee -a "$LOGFILE"
     exit 1
 fi
 
-# Verify the checksum
+# Find the expected checksum in checksums.txt
 EXPECTED_CHECKSUM=$(grep "celestia-node_$PLATFORM.tar.gz" checksums.txt | awk '{print $1}')
+
+# Verify the checksum
 if [ "$CALCULATED_CHECKSUM" != "$EXPECTED_CHECKSUM" ]; then
     echo "Checksum verification failed. Expected: $EXPECTED_CHECKSUM, but got: $CALCULATED_CHECKSUM. Exiting." | tee -a "$LOGFILE"
     exit 1
@@ -118,15 +141,20 @@ else
     echo "Checksum verification successful." | tee -a "$LOGFILE"
 fi
 
-# Extract the tarball
+# Extract the tarball to the temporary directory
 if ! tar -xzf "celestia-node_$PLATFORM.tar.gz" >> "$LOGFILE" 2>&1; then
     echo "Extraction failed. Exiting." | tee -a "$LOGFILE"
     exit 1
 fi
+
+# Log and print a message
 echo "Binary extracted to: $TEMP_DIR" | tee -a "$LOGFILE"
 
-# Clean up temporary files
-rm "celestia-node_$PLATFORM.tar.gz" "checksums.txt"
+# Remove the tarball to clean up
+rm "celestia-node_$PLATFORM.tar.gz"
+rm "checksums.txt"
+
+# Log and print a message
 echo "Temporary files cleaned up." | tee -a "$LOGFILE"
 
 # Check if Go is installed
@@ -157,39 +185,100 @@ echo    # move to a new line
 if [ "$HAS_GO" = true ]; then
     case $REPLY in
         1)
+            # Install to GOBIN
             mkdir -p "$GOBIN"
             mv "$TEMP_DIR/celestia" "$GOBIN/"
             chmod +x "$GOBIN/celestia"
             echo "Binary moved to $GOBIN" | tee -a "$LOGFILE"
+            # Create a symbolic link in the temporary directory
+            ln -s "$GOBIN/celestia" "$TEMP_DIR/celestia"
+            echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo ""
+            # Check if GOBIN is in PATH
+            if [[ ":$PATH:" != *":$GOBIN:"* ]]; then
+                echo "NOTE: $GOBIN is not in your PATH. You may want to add it by adding this line to your ~/.bashrc or ~/.zshrc:"
+                echo "export PATH=\$PATH:$GOBIN"
+                echo ""
+            fi
+            echo "You can now run celestia from anywhere (if $GOBIN is in your PATH)." | tee -a "$LOGFILE"
             ;;
         2)
+            # Install to /usr/local/bin
             sudo mv "$TEMP_DIR/celestia" /usr/local/bin/
             echo "Binary moved to /usr/local/bin" | tee -a "$LOGFILE"
+            # Create a symbolic link in the temporary directory
+            ln -s /usr/local/bin/celestia "$TEMP_DIR/celestia"
+            echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo ""
+            echo "You can now run celestia from anywhere." | tee -a "$LOGFILE"
             ;;
         3)
+            # Keep in current directory
             chmod +x "$TEMP_DIR/celestia"
             echo "Binary kept in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo "You can run celestia from this directory using ./celestia" | tee -a "$LOGFILE"
             ;;
         *)
-            echo "Invalid choice. Exiting." | tee -a "$LOGFILE"
-            exit 1
+            echo ""
+            echo "Invalid choice. The binary remains in $TEMP_DIR" | tee -a "$LOGFILE"
+            chmod +x "$TEMP_DIR/celestia"
+            echo "You can run celestia from this directory using ./celestia" | tee -a "$LOGFILE"
             ;;
     esac
 else
     case $REPLY in
         1)
+            # Install to /usr/local/bin
             sudo mv "$TEMP_DIR/celestia" /usr/local/bin/
             echo "Binary moved to /usr/local/bin" | tee -a "$LOGFILE"
+            # Create a symbolic link in the temporary directory
+            ln -s /usr/local/bin/celestia "$TEMP_DIR/celestia"
+            echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo ""
+            echo "You can now run celestia from anywhere." | tee -a "$LOGFILE"
             ;;
         2)
+            # Keep in current directory
             chmod +x "$TEMP_DIR/celestia"
             echo "Binary kept in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo "You can run celestia from this directory using ./celestia" | tee -a "$LOGFILE"
             ;;
         *)
-            echo "Invalid choice. Exiting." | tee -a "$LOGFILE"
-            exit 1
+            echo ""
+            echo "Invalid choice. The binary remains in $TEMP_DIR" | tee -a "$LOGFILE"
+            chmod +x "$TEMP_DIR/celestia"
+            echo "You can run celestia from this directory using ./celestia" | tee -a "$LOGFILE"
             ;;
     esac
 fi
 
-echo "Installation complete. You can now use the celestia binary." | tee -a "$LOGFILE"
+echo ""
+echo "To check its version and see the menu, execute the following command:" | tee -a "$LOGFILE"
+if [ "$HAS_GO" = true ]; then
+    case $REPLY in
+        1)  # Go bin installation
+            echo "celestia version && celestia --help" | tee -a "$LOGFILE"
+            ;;
+        2)  # System bin installation
+            echo "celestia version && celestia --help" | tee -a "$LOGFILE"
+            ;;
+        3)  # Current directory
+            echo "$TEMP_DIR/celestia version && $TEMP_DIR/celestia --help" | tee -a "$LOGFILE"
+            ;;
+        *)  # Invalid choice (kept in temp dir)
+            echo "$TEMP_DIR/celestia version && $TEMP_DIR/celestia --help" | tee -a "$LOGFILE"
+            ;;
+    esac
+else
+    case $REPLY in
+        1)  # System bin installation
+            echo "celestia version && celestia --help" | tee -a "$LOGFILE"
+            ;;
+        2)  # Current directory
+            echo "$TEMP_DIR/celestia version && $TEMP_DIR/celestia --help" | tee -a "$LOGFILE"
+            ;;
+        *)  # Invalid choice (kept in temp dir)
+            echo "$TEMP_DIR/celestia version && $TEMP_DIR/celestia --help" | tee -a "$LOGFILE"
+            ;;
+    esac
+fi
