@@ -116,7 +116,6 @@ if ! curl -L "$URL" -o "celestia-node_$PLATFORM.tar.gz" >> "$LOGFILE" 2>&1; then
     exit 1
 fi
 
-
 # Detect if running on macOS and use appropriate command for checksum
 if [ "$OS" = "Darwin" ]; then
     CALCULATED_CHECKSUM=$(shasum -a 256 "celestia-node_$PLATFORM.tar.gz" | awk '{print $1}')
