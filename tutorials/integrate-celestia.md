@@ -12,14 +12,14 @@ explorers, integrating the Celestia network.
 
 ## Getting started
 
-When getting started Celestia, we recommend checking out these resources first:
+When getting started with Celestia, we recommend checking out these resources first:
 
 - [Introduction to Celestia](../learn/how-celestia-works/overview.md)
 - [Monolithic v. Modular](../learn/how-celestia-works/monolithic-vs-modular.md)
 - [Celestia's DA Layer](../learn/how-celestia-works/data-availability-layer.md)
 - [Learn modular](https://celestia.org/learn)
 - [Overview to running nodes on Celestia](../how-to-guides/nodes-overview.md)
-- [Build whatever](./build-whatever.md)
+- [Rollup stacks](./rollup-stacks.md)
 
 ## Celestia service provider notes
 

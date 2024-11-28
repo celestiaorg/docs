@@ -1,6 +1,6 @@
 # Golang client library tutorial {#golang-client-library}
 
-This section tutorial will guide you through using the most common RPC endpoints with the golang client library.
+This tutorial section will guide you through using the most common RPC endpoints with the golang client library.
 
 Install [dependencies](../how-to-guides/environment.md) and
 [celestia-node](../how-to-guides/celestia-node.md) if you have

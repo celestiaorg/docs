@@ -139,7 +139,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-rpc.brightlystake.com`
 - `celestia.rpc.stakin-nodes.com`
 - `celestia.cumulo.org.es`
-- `rpc-celestia.mzonder.com`
+- `rpc.archive.celestia.cumulo.com.es`
 - `rpc-celestia-01.stakeflow.io`
 - `rpc-celestia.alphab.ai`
 - `rpc-celestia-full.avril14th.org`
@@ -160,6 +160,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-rpc.brightlystake.com/api`
 - `celestia.rest.stakin-nodes.com`
 - `celestia.api.cumulo.org.es`
+- `api.archive.celestia.cumulo.com.es`
 - `api-celestia.mzonder.com`
 - `api-celestia-01.stakeflow.io`
 - `api-celestia.alphab.ai`
@@ -180,7 +181,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-rpc.brightlystake.com:9090`
 - `celestia.grpc.stakin-nodes.com:443`
 - `celestia.grpc.cumulo.org.es:443`
-- `grpc-celestia.mzonder.com:443`
+- `grpc.archive.celestia.cumulo.com.es:443`
 - `grpc-celestia-01.stakeflow.io:15002`
 - `rpc-celestia.alphab.ai:9090`
 - `grpc-celestia-full.avril14th.org`
@@ -194,6 +195,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `wss://celestia-ws.chainode.tech:33373/websocket`
 - `wss://celestia-mainnet-ws.itrocket.net:443/websocket`
 - `wss://celestia.cumulo.org.es:443/websocket`
+- `wss://rpc.archive.celestia.cumulo.com.es:443/websocket`
 
 ### Data availability nodes
 
@@ -250,7 +252,7 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 
 DA full and light nodes might have troubles connecting to the networks, so you
 can check out this
-[Grafana dashboard](https://celestia.grafana.net/public-dashboards/a10eff0043bb4bf0839004e2746e2bc6)
+[Grafana dashboard](https://celestia.observer/grafana)
 to see health/uptime status of DA bootstrappers (now `celestia` network only).
 
 You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
@@ -283,6 +285,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
 - [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
 - [https://celestia.exploreme.pro/](https://celestia.exploreme.pro/)
+- [https://celestia.valopers.com/](https://celestia.valopers.com/)
 - [https://mainnet.itrocket.net/celestia/](https://mainnet.itrocket.net/celestia/)
 
 ## Analytics

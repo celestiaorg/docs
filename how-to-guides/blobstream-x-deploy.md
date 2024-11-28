@@ -54,7 +54,7 @@ Assume we're deploying to a chain which chainID is 12345. The `.env` should look
 CREATE2_SALT=
 # The 'owner' of the contracts, recommended to be an EOA
 GUARDIAN=
-# The default prover to fullfill requests for Functions that have not opted for a different prover
+# The default prover to fulfill requests for Functions that have not opted for a different prover
 PROVER=
 # RPC URLs for each chain you want to deploy to
 RPC_12345=
@@ -162,7 +162,7 @@ which will return the address of the function verifier that was deployed in the 
 
 Now that the function verifier's contract is deployed and registered in the succinct gateway, we can define whitelisting rules for the proof submission. 
 
-by default, the whitelist status is set to `Default`. This means that only the default verifier, which was setup when [deploying the SuccinctGateway](#deploy-a-new-succinctgateway). And if you want to restrict the list of provers that can submit proofs to your registered function verifier, you can set the whitelisting status of the function verifier and then add a custom prover. Or even allow for permissionlss submission.
+by default, the whitelist status is set to `Default`. This means that only the default verifier, which was setup when [deploying the SuccinctGateway](#deploy-a-new-succinctgateway). And if you want to restrict the list of provers that can submit proofs to your registered function verifier, you can set the whitelisting status of the function verifier and then add a custom prover. Or even allow for permissionless submission.
 
 #### Set Whitelist Status
 

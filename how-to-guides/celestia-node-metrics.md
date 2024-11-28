@@ -9,7 +9,7 @@ availability instance. This tutorial will focus on running metrics for a light n
 
 This tutorial assumes you have already setup your light node
 by following the tutorial in the
-[celestia-node API tutorial](./tutorials/node-tutorial.md).
+[celestia-node API tutorial](../tutorials/node-tutorial.md).
 
 ## Running metrics flags
 
@@ -48,8 +48,18 @@ Here is an example for Mocha testnet:
 
 ```sh
 celestia <node-type> start --metrics.tls=true \
-    --metrics --metrics.endpoint otel.celestia-mocha.com \
+    --metrics --metrics.endpoint otel.mocha.celestia.observer \
     --core.ip <URI> --p2p.network mocha
+```
+
+### Arabica devnet
+
+Here is an example for Arabica devnet:
+
+```sh
+celestia <node-type> start --metrics.tls=true \
+    --metrics --metrics.endpoint otel.arabica.celestia.observer \
+    --core.ip <URI> --p2p.network arabica
 ```
 
 ### TLS connections

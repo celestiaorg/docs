@@ -13,7 +13,7 @@ As of the Lemongrass upgrade in September 2024, Celestia has implemented [CIP-10
 1. **Pre-programmed height**: Used for the Lemongrass network upgrade (v2)
 2. **In-protocol signaling**: Used for all subsequent upgrades (v3+)
 
-Under the in-protocol signaling mechanism, validators submit messages to signal their readiness and preference for the next version. The upgrade activates automatically once a quorum of 5/6 of validators has signaled for the same version.
+Under the in-protocol signaling mechanism, validators submit messages to signal their readiness and preference for the next version. The upgrade activates automatically once a quorum of 5/6 of validators have signaled for the same version.
 
 ## Upgrade process
 
@@ -40,12 +40,14 @@ Key features include:
 
 Unlike the Lemongrass upgrade, there will not be a pre-programmed upgrade height. Instead, validators will signal their readiness for v3 through in-protocol signaling, and the upgrade will automatically activate one week after 5/6 of voting power have signaled for a particular version.
 
+Learn more in the [v3.0.0 release notes](https://github.com/celestiaorg/celestia-app/blob/main/docs/release-notes/release-notes.md#v300).
+
 :::info
 Validators should ensure they are running a v3 binary before signaling support for the upgrade.
 :::
 
 :::warning
-You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
+You **do not** need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 :::
 
 ### Past Upgrades

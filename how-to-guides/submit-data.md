@@ -194,7 +194,7 @@ Learn more in the [node tutorial](./node-tutorial.md).
 
 ### The celestia-node API golang client
 
-For more celestia-node API golang examples, refer to the [golang client tutorial](./golang-client-tutorial.md).
+For more celestia-node API golang examples, refer to the [golang client tutorial](../tutorials/golang-client-tutorial.md).
 
 ```go
 import (

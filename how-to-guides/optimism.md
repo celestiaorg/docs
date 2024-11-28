@@ -11,7 +11,18 @@ import constants from '/.vitepress/constants/constants.js'
 
 This guide will show you how to run your own OP Stack devnet and testnet that posts data to Celestia's Mocha testnet using [roll-op](https://github.com/celestiaorg/roll-op) and [op-plasma-celestia](https://github.com/celestiaorg/op-plasma-celestia).
 
+The roll-op tool is used to deploy and manage the OP Stack rollup environment, including the rollup, batcher, and other components. While the op-plasma-celestia integration allows the OP Stack to use Celestia as the data availability (DA) layer.
+
+This guide is in two parts:
+
+- First, you'll spin up a mock L1 environment and deploy a devnet that posts data to the Mocha testnet.
+- In the second part, you'll deploy a testnet that posts data to the Mocha testnet, but this time on a real L1 environment; the Ethereum Sepolia testnet. This will involve setting up a configuration file with the necessary details like Sepolia chain ID, RPC URL, and your deployment keys.
+
+After successful deployments, you'll be able to observe data blobs being successfully submitted to the Mocha testnet in the logs, as well as some activity on your rollup account on [Celenium](https://celenium.io).
+
 If you don't have devops experience and would like to use a Rollups as a Service (RaaS) provider, see the RaaS category in the menu.
+
+This guide is also available on [YouTube](https://www.youtube.com/watch?v=lOLw4uLX644) if you'd like to follow along with a video.
 
 ## Dependency setup
 

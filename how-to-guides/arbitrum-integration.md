@@ -57,14 +57,14 @@ The following represents a non-exhaustive list of considerations when running a 
 
 ### Preimage Oracle Implementation
 
-In order to support fraud proofs, this integration has the necessary code for a Nitro validator to populate its preimage mapping with Celestia hashes that then get "unpealed" in order to reveal the full data for a Blob. You can
+In order to support fraud proofs, this integration has the necessary code for a Nitro validator to populate its preimage mapping with Celestia hashes that then get "unpeeled" in order to reveal the full data for a Blob. You can
 [read more about the "Hash Oracle Trick"](https://docs.arbitrum.io/inside-arbitrum-nitro/#readpreimage-and-the-hash-oracle-trick).
 
 The data structures and hashing functions for this can be found in the [`nitro/das/celestia/tree` folder](https://github.com/celestiaorg/nitro/tree/v2.3.1-rc.1/das/celestia/tree)
 
 You can see where the preimage oracle gets used in the fraud proof replay binary [here](https://github.com/celestiaorg/nitro/blob/966e631f1a03b49d49f25bea67a92b275d3bacb9/cmd/replay/main.go#L153-L294)
 
-Something important to note is that the preimage oracle only keeps track of hashes for the rows in the Celestia data square in which a blob resides in, this way each Orbit chain with Celestia underneath does not need validators to recompute an entire Celestia Data Square, but instead, only have to compute the row roots for the rows in which it's data lives in, and the header data root, which is the binary merkle tree hash built using the row roots and column roots fetched from a Celestia node. Because only data roots that can be confirmed on Blobstream get accepted into the sequencer inbox, one can have a high degree of certainty that the canonical data root being unpealed as well as the row roots are in fact correct.
+Something important to note is that the preimage oracle only keeps track of hashes for the rows in the Celestia data square in which a blob resides in, this way each Orbit chain with Celestia underneath does not need validators to recompute an entire Celestia Data Square, but instead, only have to compute the row roots for the rows in which it's data lives in, and the header data root, which is the binary merkle tree hash built using the row roots and column roots fetched from a Celestia node. Because only data roots that can be confirmed on Blobstream get accepted into the sequencer inbox, one can have a high degree of certainty that the canonical data root being unpeeled as well as the row roots are in fact correct.
 
 ### Blobstream X implementation
 

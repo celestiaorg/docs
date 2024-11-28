@@ -80,7 +80,7 @@ Make sure you run this command in a different terminal window because the node h
 ### OpenAI key
 
 Visit [OpenAI](https://platform.openai.com/) to sign up for an account and generate an API key.
-order to sign up for an account and generate an OpenAI API key.
+In order to sign up for an account and generate an OpenAI API key.
 The key will be needed to communicate with OpenAI.
 
 Once you have created an API key, set it as an environment variable with the following command, pasting in your own key:
