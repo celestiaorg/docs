@@ -111,7 +111,7 @@ fi
 echo "Downloading from: $URL" | tee -a "$LOGFILE"
 
 # Download the tarball
-if ! wget "$URL" >> "$LOGFILE" 2>&1; then
+if ! curl -L "$URL" -o "celestia-node_$PLATFORM.tar.gz" >> "$LOGFILE" 2>&1; then
     echo "Download failed. Exiting." | tee -a "$LOGFILE"
     exit 1
 fi
@@ -124,7 +124,7 @@ else
 fi
 
 # Download checksums.txt
-if ! wget "https://github.com/celestiaorg/celestia-node/releases/download/$VERSION/checksums.txt" >> "$LOGFILE" 2>&1; then
+if ! curl -L "https://github.com/celestiaorg/celestia-node/releases/download/$VERSION/checksums.txt" -o "checksums.txt" >> "$LOGFILE" 2>&1; then
     echo "Failed to download checksums. Exiting." | tee -a "$LOGFILE"
     exit 1
 fi
