@@ -10,7 +10,7 @@ funding it, enabling a third-party account to cover the transaction fees.
 ## Pre-requisites
 
 - celestia-node binary (`celestia`) [installed](../how-to-guides/celestia-node.md)
-- Access to a Mocha node (e.g., `https://rpc.celestia-mocha.com:443`)
+- Access to a Mocha node (e.g., `https://rpc-mocha.pops.one:443`)
 - Running DA Light node on Mocha testnet
 - One account with sufficient funds, the "granter"
 - One account with no funds, the "grantee"
@@ -37,7 +37,7 @@ Set some variables for your accounts for the remainder of the guide:
 ```bash
 export GRANTER_ADDRESS=<your-granter-account-address>
 export GRANTEE_ADDRESS=<your-grantee-account-address>
-export RPC_URL=rpc.celestia-mocha.com
+export RPC_URL=rpc-mocha.pops.one
 ```
 
 ### FeeGrant module implementation in celestia-node
@@ -163,7 +163,7 @@ the RPC URL:
 ```bash
 export GRANTER_ADDRESS=<your-granter-account-address>
 export GRANTEE_ADDRESS=<your-grantee-account-address>
-export RPC_URL=https://rpc.celestia-mocha.com:443
+export RPC_URL=https://rpc-mocha.pops.one:443
 ```
 
 Then, send the feegrant transaction:
@@ -193,7 +193,7 @@ granted the fee allowance, run:
 
 ```bash
 celestia-appd query bank balances $GRANTER_ADDRESS \
---node https://rpc.celestia-mocha.com:443 --denom utia
+--node https://rpc-mocha.pops.one:443 --denom utia
 ```
 
 This output will show the remaining balance after fees have been deducted,

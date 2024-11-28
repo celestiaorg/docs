@@ -478,6 +478,10 @@ function sidebarHome() {
                       link: "/how-to-guides/celestia-node-trusted-hash",
                     },
                     {
+                      text: "Datastore structure",
+                      link: "how-to-guides/celestia-node-store-structure",
+                    },
+                    {
                       text: "Troubleshooting",
                       link: "/how-to-guides/celestia-node-troubleshooting",
                     },

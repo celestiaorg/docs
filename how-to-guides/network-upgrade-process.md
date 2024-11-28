@@ -40,6 +40,8 @@ Key features include:
 
 Unlike the Lemongrass upgrade, there will not be a pre-programmed upgrade height. Instead, validators will signal their readiness for v3 through in-protocol signaling, and the upgrade will automatically activate one week after 5/6 of voting power have signaled for a particular version.
 
+Learn more in the [v3.0.0 release notes](https://github.com/celestiaorg/celestia-app/blob/main/docs/release-notes/release-notes.md#v300).
+
 :::info
 Validators should ensure they are running a v3 binary before signaling support for the upgrade.
 :::
