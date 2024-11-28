@@ -467,10 +467,6 @@ function sidebarHome() {
                     },
                   ],
                 },
-                {
-                  text: "Datastore structure",
-                  link: "how-to-guides/celestia-node-store-structure",
-                },
               ],
             },
             {
@@ -496,6 +492,10 @@ function sidebarHome() {
                     {
                       text: "Syncing a light node from a trusted hash",
                       link: "/how-to-guides/celestia-node-trusted-hash",
+                    },
+                    {
+                      text: "Datastore structure",
+                      link: "how-to-guides/celestia-node-store-structure",
                     },
                     {
                       text: "Troubleshooting",
