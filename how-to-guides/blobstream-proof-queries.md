@@ -743,7 +743,7 @@ struct SharesProof {
 }
 
 /// @notice Contains the necessary parameters needed to verify that a data root tuple
-/// was committed to, by the Blobstream smart contract, at some specif nonce.
+/// was committed to, by the Blobstream smart contract, at some specific nonce.
 struct AttestationProof {
     // the attestation nonce that commits to the data root tuple.
     uint256 tupleRootNonce;
@@ -1028,7 +1028,7 @@ to in the Blobstream contract:
 
 ```solidity
 /// @notice Contains the necessary parameters needed to verify that a data root tuple
-/// was committed to, by the Blobstream smart contract, at some specif nonce.
+/// was committed to, by the Blobstream smart contract, at some specific nonce.
 struct AttestationProof {
     // the attestation nonce that commits to the data root tuple.
     uint256 tupleRootNonce;
