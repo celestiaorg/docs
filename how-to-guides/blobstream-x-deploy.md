@@ -95,7 +95,7 @@ Now the SuccinctGateway address should be printed on the terminal.
 
 ### Deploy the function verifiers
 
-The function verifiers are the onchain ciruit verifiers that take PLONK proofs as an input and verify them onchain.
+The function verifiers are the onchain circuit verifiers that take PLONK proofs as an input and verify them onchain.
 
 The function verifiers can be either downloaded from the succinct platform or regenerated.
 
