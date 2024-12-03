@@ -600,7 +600,7 @@ function sidebarHome() {
                       link: "/how-to-guides/intro-to-op-stack",
                     },
                     {
-                      text: "Run an OP Stack devnet posting Celestia",
+                      text: "Run an OP Stack devnet posting to Celestia",
                       link: "/how-to-guides/optimism",
                     },
                     {
