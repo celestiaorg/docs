@@ -413,7 +413,7 @@ Extra resources in Arbitrum documentation:
 | Component | Version | Details |
 |-----------|---------|---------|
 | Nitro | [v2.3.1-rc.1](https://github.com/celestiaorg/nitro/releases/tag/v2.3.1-rc.1) | Includes the replay binary for the WASM root `0x10c65b27d5031ce2351c719072e58f3153228887f027f9f6d65300d2b5b30152`. [Read the overview for overall changes](../how-to-guides/arbitrum-integration.md). |
-| Contracts | [v1.2.1-celestia](https://github.com/celestiaorg/nitro-contracts/releases/tag/v1.2.1-celestia) | Integrates Blobstream X functionality into nitro-contracts v1.2.1 |
+| Contracts | [v1.2.1](https://github.com/celestiaorg/nitro-contracts/releases/tag/v1.2.1) | Integrates Blobstream X functionality into nitro-contracts v1.2.1 |
 | Orbit SDK | [v0.8.2 Orbit SDK for Celestia DA](https://github.com/celestiaorg/arbitrum-orbit-sdk/releases/tag/v0.8.2) | This is not compatible with Orbit SDK v0.8.2 or with the latest changes to nitro-contracts for the Atlas upgrade. The Orbit SDK itself is in Alpha. |
 | celestia-node | [v0.13.1](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.1) | This integration has only been tested with celestia-node 0.13.1 and only works with said version, and with future versions after that. Under the hood, the Nitro node uses [this commit](https://github.com/celestiaorg/celestia-openrpc/commit/64f04840aa97d4deb821b654b1fb59167d242bd1) of celestia-openrpc. |
 <!-- markdownlint-enable MD013 -->
