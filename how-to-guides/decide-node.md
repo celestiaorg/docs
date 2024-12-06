@@ -23,7 +23,7 @@ or a [full DA node](./full-storage-node.md).
 ## Consensus node
 
 If you are looking to run a consensus node, please follow the
-[tutorial for running a consensus node](./full-consensus-node.md).
+[tutorial for running a consensus node](./consensus-node.md).
 
 Note that running a validator means you must also run a bridge node,
 which is covered in [this section](./bridge-node.md).

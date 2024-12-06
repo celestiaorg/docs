@@ -179,7 +179,7 @@ proof used to verify state. Find more information in the
 Also, see the documentation for the
 [data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md)
 and the
-[shares](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/specs/shares.md)
+[shares](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/shares.md)
 of the Celestia block to see how the data is encoded in Celestia.
 
 ### Creating blocks

@@ -116,7 +116,7 @@ along with code for:
 
 - [The SP1 Blobstream smart contract - `SP1Blobstream.sol`](https://github.com/succinctlabs/sp1-blobstream/blob/main/contracts/src/SP1Blobstream.sol)
 - [The SP1 program](https://github.com/succinctlabs/sp1-blobstream/tree/main/program)
-- [The SP1 Blobstream contract Golang bindings](//TODO)
+- [The SP1 Blobstream contract Golang bindings](https://github.com/succinctlabs/sp1-blobstream/blob/main/bindings/SP1Blobstream.go)
 
 The first deployments of SP1 Blobstream will be maintained on the
 following chains: Arbitrum One, Base and Ethereum Mainnet. Every 1

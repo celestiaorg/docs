@@ -144,7 +144,7 @@ View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-
 
 ## Next steps
 
-First, we recommend [reading the overview](./overview.md)
+First, we recommend [reading the overview](./nodes-overview.md)
 of our node types, if you haven't yet.
 
 Now that you've installed Celestia Node, it's time to
