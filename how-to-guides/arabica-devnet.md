@@ -23,7 +23,7 @@ Arabica can break unexpectedly, but given it will be continuously updated,
 it is a useful way to keep testing the latest changes in the software.
 
 Developers can still deploy on Mocha testnet their sovereign rollups if they
-chose to do so, it just will always lag behind Arabica devnet until Mocha
+choose to do so, it just will always lag behind Arabica devnet until Mocha
 undergoes network upgrades in coordination with validators.
 
 ## Network details
