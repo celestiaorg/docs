@@ -184,7 +184,7 @@ root of your cloned `orbit-setup-script` repository.
 ### Step 7: Pick an L2 RPC URL for the Batch Poster
 
 In order for the Batch Poster, which is responsible for posting batches of data, to
-subscribe to Blobstream's smart contract events, the node most use a WebSocket
+subscribe to Blobstream's smart contract events, the node must use a WebSocket
 connection, since an HTTP one will not support subscriptions. This RPC URL is different
 from the `parent-chain.connection.url` object used in the node config, and is
 not necessary when running a full node. WebSocket (WSS) URLs which are
