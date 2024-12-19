@@ -126,6 +126,7 @@ Celestia network. The default port is 26657.
 - `rpc-2.testnet.celestia.nodes.guru`
 - `celestia-testnet-rpc.itrocket.net:443`
 - `rpc-celestia-testnet.cryptech.com.ua:443`
+- `celestia-t-rpc.noders.services`
 
 ## Community API endpoints
 
@@ -147,6 +148,7 @@ The default port is 1317.
 - [https://api-2.testnet.celestia.nodes.guru](https://api-2.testnet.celestia.nodes.guru)
 - [https://celestia-testnet-api.itrocket.net](https://celestia-testnet-api.itrocket.net)
 - [https://api-celestia-testnet.cryptech.com.ua](https://api-celestia-testnet.cryptech.com.ua)
+- [https://celestia-t-api.noders.services](https://celestia-t-api.noders.services)
 
 ## Community gRPC endpoints
 
@@ -171,6 +173,7 @@ broadcast transactions.
 - `grpc-2.testnet.celestia.nodes.guru:10790`
 - `celestia-testnet-grpc.itrocket.net:443`
 - `grpc-celestia-testnet.cryptech.com.ua:443`
+- `celestia-t-grpc.noders.services:21090`
 
 ## Community bridge and full node endpoints
 
