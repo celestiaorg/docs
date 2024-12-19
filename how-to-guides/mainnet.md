@@ -149,6 +149,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `rpc-celestia-mainnet.trusted-point.com`
 - `celestia-rpc.chainode.tech:33373`
 - `celestia-mainnet-rpc.itrocket.net:443`
+- `celestia-rpc.noders.services`
 
 #### Community API endpoints
 
@@ -170,6 +171,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `api-celestia-mainnet.trusted-point.com`
 - `celestia-api.chainode.tech`
 - `celestia-mainnet-api.itrocket.net:443`
+- `celestia-api.noders.services`
 
 #### Community gRPC endpoints
 
@@ -189,6 +191,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `grpc-celestia-mainnet.trusted-point.com:9095`
 - `celestia-grpc.chainode.tech:443`
 - `celestia-mainnet-grpc.itrocket.net:443`
+- `celestia-grpc.noders.services:11090`
 
 #### Community WebSocket endpoints
 
