@@ -766,7 +766,7 @@ If we take the example blob that was submitted in the
 [`RollupInclusionProofs.t.sol`](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/test/RollupInclusionProofs.t.sol#L64-L65),
 we can convert it to bytes using the `abi.encode(...)` as done for
 [this variable](https://github.com/celestiaorg/blobstream-contracts/blob/3a552d8f7bfbed1f3175933260e6e440915d2da4/src/lib/verifier/test/RollupInclusionProofs.t.sol#L384-L402).
-This can be gotten from the above result of the
+This can be obtained from the above result of the
 [transaction inclusion proof](#2-transaction-inclusion-proof)
 query in the field `data`.
 

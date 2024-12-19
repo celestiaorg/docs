@@ -32,7 +32,7 @@ help you plan and execute your meetups effectively.
 
 - [Sample presentation - run a light node](https://docs.google.com/presentation/d/1fV7OYUdW4kafkZcgHwFenFWDbSIwkk0R6BnSKrAV-Hc/edit#slide=id.g20713cce7c2_1_0)
 - Summary:
-  This is an overview presentation goes over running a Celestia light node.
+  This is an overview presentation that goes over running a Celestia light node.
   You can find existing video presentations for this here:
 - The sample presentation covers:
   1. What is a Celestia light node?

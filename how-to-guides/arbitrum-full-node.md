@@ -1,5 +1,5 @@
 ---
-description: A guide on how to run a full node or validating full node on your Orbit rollup.
+description: A guide on how to run a full node or validate a full node on your Orbit rollup.
 ---
 
 # Running a full node and/or validator
