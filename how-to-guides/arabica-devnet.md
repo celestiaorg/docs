@@ -118,7 +118,7 @@ to their respective DA node.
 :::tip EXAMPLE
 
 ```bash
-celestia <da_type> start –core.ip <url> -–core.grpc.port <port>
+celestia <da_type> start --core.ip <url> --core.grpc.port <port>
 ```
 
 :::
