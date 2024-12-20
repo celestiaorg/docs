@@ -388,6 +388,10 @@ function sidebarHome() {
                   text: "Install celestia-app",
                   link: "/how-to-guides/celestia-app",
                 },
+                {
+                  text: "Set up a local testnet",
+                  link: "/how-to-guides/local-testnet",
+                },
                 { text: "Docker images", link: "/how-to-guides/docker-images" },
               ],
             },
