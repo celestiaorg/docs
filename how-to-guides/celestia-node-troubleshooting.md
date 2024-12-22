@@ -24,7 +24,7 @@ celestia <node-type> start --p2p.network <network> --core.ip <URI>
 
 :::tip
 Refer to [the ports section of this page](#ports)
-for information on which ports are required to be opened on your machine.
+for information on which ports are required to be open on your machine.
 :::
 
 :::tip NOTE
