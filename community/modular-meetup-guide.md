@@ -23,7 +23,7 @@ to help aid you in your journey to organize a Modular Meetup.
    to raise awareness about the meetup.
 7. Confirm speakers, including their availability, presentation topics,
    and technical requirements. If you are working from a Speaker List,
-   please reach out to Nat for any support needed on coordination with speakers.
+   please reach out to Nat for any support needed in coordination with speakers.
 8. Arrange any necessary equipment, such as microphones, projectors, and whiteboards.
 9. Plan and arrange refreshments, if applicable.
 10. Prepare and print any required materials, like agendas, name tags,
@@ -68,7 +68,7 @@ to help aid you in your journey to organize a Modular Meetup.
 
 These are provided guidelines for different components of kickstarting
 a Modular Meetup to help you get started on the logistics of organizing
-a meetup. A lot of those guidelines are thanks to the wonderful write ups
+a meetup. A lot of those guidelines are thanks to the wonderful write-ups
 in [Ethereum Meetup Support Program](https://emsp.gitbook.io/ethereum-meetup-support-program/meetup-kit)
 and [Elastic Community Organizer Guides](https://www.elastic.co/community/usergroupguide).
 
@@ -163,7 +163,7 @@ for organizing successful Modular Meetups for Celestia.
      meetup group or speaking at other events before launching a
      new group. This approach will help spread the word about your
      planned Modular Meetup and gauge interest. Speakers are covered
-     in the following section with a reference to Speaker List offered
+     in the following section with a reference to the Speaker List offered
      by the Modular Meetup program.
 3. Establish connections with other user groups:
    - Forge relationships with other tech-focused meetup groups to
