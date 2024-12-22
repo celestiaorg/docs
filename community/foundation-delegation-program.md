@@ -72,7 +72,7 @@ for at least 1 month before application deadline
 validator or on Mocha testnet if not) that is connected and reporting
 to the Celestia Labs [OTEL collector](../how-to-guides/celestia-node-metrics.md)
 (for new applicants - on testnet, so that we can evaluate performance)
-* Not jailed or slashed in the 6 months before application deadline
+* Not jailed or slashed in the 6 months before the application deadline
 * Not associated with an exchange or custodian
 * Not in the top 10 validators by delegation power, unless it enters the
 top 10 as a result of the Foundation’s delegation under this program
@@ -87,11 +87,11 @@ of emergency upgrades and fixes
 
 Not adhering to any of the criteria above will automatically disqualify your
 application, and violating any of the criteria after you have received
-delegation will result in withdrawal of the delegation. A participant
+delegation will result in the withdrawal of the delegation. A participant
 who loses stake due to being jailed by the protocol may reapply to the
 program after 2 cohort periods.
 
-Applicants are also expected to have reviewed Celestia docs and recommended
+Applicants are also expected to have reviewed Celestia's docs and recommended
 guides on devops and monitoring setups.
 
 Other optional but important criteria:
