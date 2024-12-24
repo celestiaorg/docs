@@ -173,7 +173,7 @@ Feeling creative? Post your favorite quote and [share it on Twitter](https://x.c
 celestia blob submit 0x71756f746573 '"Simplicity is the ultimate sophistication." -Leonardo da Vinci'
 ```
 
-Once you run this command, you'll see a height and data committment in the response. This means your data has been successfully posted to the network!
+Once you run this command, you'll see a height and data commitment in the response. This means your data has been successfully posted to the network!
 
 ```bash
 {
@@ -191,7 +191,7 @@ Once you run this command, you'll see a height and data committment in the respo
 To retrieve the data you posted, use the following command:
 
 ```bash
-celestia blob get [height] [namespace] [committment]
+celestia blob get [height] [namespace] [commitment]
 ```
 
 In this example, you'll use the height and commitment from the response above:

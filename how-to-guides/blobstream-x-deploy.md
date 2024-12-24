@@ -71,7 +71,7 @@ WALLET_TYPE=PRIVATE_KEY
 # The private key of the deployer account
 PRIVATE_KEY=
 # The address of the succinct fee vault contract. Set it to an example address
-# if you don't want to use a vault like: 0x0000000000000000000000000000000000000001
+# if you don't want to use a vault-like: 0x0000000000000000000000000000000000000001
 SUCCINCT_FEE_VAULT_12345=
 ```
 
