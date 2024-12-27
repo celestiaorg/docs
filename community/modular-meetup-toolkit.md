@@ -15,7 +15,7 @@ help you plan and execute your meetups effectively.
 - [Brand kit](https://company-223625.frontify.com/d/JoSwaZS4Mjpj/guidelines)
   1. Includes logo files, color schemes, typography, icons and illustrations
 
-## Sample “Introduction to Modularity” workshop presentation
+## Sample ＂Introduction to Modularity＂ workshop presentation
 
 - [Sample presentation - introduction to modularity](https://docs.google.com/presentation/d/1R4bkWgU2nql1chwVwND4seREHbKzugl0-Xr88w3QdIQ/edit#slide=id.g1b629412475_0_0)
 - Summary: This is an overview presentation on Modular blockchains and
@@ -28,7 +28,7 @@ help you plan and execute your meetups effectively.
   5. Sovereign Rollups
   6. Q&A session
 
-## Sample “Run a Celestia light node” workshop presentation
+## Sample ＂Run a Celestia light node＂ workshop presentation
 
 - [Sample presentation - run a light node](https://docs.google.com/presentation/d/1fV7OYUdW4kafkZcgHwFenFWDbSIwkk0R6BnSKrAV-Hc/edit#slide=id.g20713cce7c2_1_0)
 - Summary:
@@ -43,7 +43,7 @@ help you plan and execute your meetups effectively.
   6. Best practices for maintaining a light node
   7. Q&A session
 
-## Sample “Deploy a Sovereign Rollup” workshop presentation
+## Sample ＂Deploy a Sovereign Rollup＂ workshop presentation
 
 - [Sample presentation - deploy a sovereign rollup](https://docs.google.com/presentation/d/163yP8lQ28k-xfL3jcdX2cfO-3zg8e63AOuHeHxde3vk/edit#slide=id.g20713cce7c2_1_596)
 - Summary: This is an overview presentation on deploying a sovereign rollup
@@ -56,7 +56,7 @@ help you plan and execute your meetups effectively.
   4. Setting up a sovereign rollup: hardware and software requirements
   5. Q&A session
 
-## Sample “Modular Meetup Introduction” workshop presentation
+## Sample ＂Modular Meetup Introduction＂ workshop presentation
 
 - [Sample presentation - modular meetup introduction](https://docs.google.com/presentation/d/1HIOKwnCRylofo4sp5I93hsfY3DKWbmXxfvMdoiIk-3I/edit?usp=sharing)
 - The sample presentation covers:

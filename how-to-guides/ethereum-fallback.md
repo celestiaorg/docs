@@ -11,7 +11,7 @@ prev:
 # Ethereum fallback
 
 Ethereum fallback is a mechanism
-that enables Ethereum L2s (or L3s) to “fallback” to using Ethereum
+that enables Ethereum L2s (or L3s) to ＂fallback＂ to using Ethereum
 calldata for data availability in the event of downtime on Celestia
 Mainnet Beta. This feature is currently supported by Celestia integrations
 with:
