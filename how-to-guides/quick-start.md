@@ -84,7 +84,7 @@ Let's set the trusted hash!
     1. Open your `config.toml` at `.celestia-light-{{ constants.mochaChainId }}/config.toml`
     1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
 
-> If you dont do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 94721, requestedHeight: 2983850"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
+> If you don't do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 94721, requestedHeight: 2983850"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
 Learn more in [the trusted hash quick sync guide](./celestia-node-trusted-hash.md).
 
 ### Start the light node
