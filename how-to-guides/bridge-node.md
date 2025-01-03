@@ -12,12 +12,12 @@ Bridge nodes connect the data availability layer and the consensus layer.
 
 A Celestia bridge node has the following properties:
 
-1. Import and process “raw” headers & blocks from a trusted core process
+1. Import and process ＂raw＂ headers & blocks from a trusted core process
    (meaning a trusted RPC connection to a celestia-core node) in the
    Consensus network. Bridge nodes can run this core process internally
    (embedded) or simply connect to a remote endpoint. Bridge nodes also
    have the option of being an active validator in the consensus network.
-2. Validate and erasure code the “raw” blocks
+2. Validate and erasure code the ＂raw＂ blocks
 3. Supply block shares with data availability headers to light nodes in the DA network.
 
 ![bridge-node-diagram](/img/nodes/BridgeNodes.png)
@@ -40,7 +40,7 @@ From an implementation perspective, Bridge nodes run two separate processes:
 
    - **celestia-node** augments the above with a separate libp2p network that
      serves data availability sampling requests. The team sometimes refers to
-     this as the “halo” network.
+     this as the ＂halo＂ network.
 
 ## Hardware requirements
 

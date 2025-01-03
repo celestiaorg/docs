@@ -90,7 +90,7 @@ The [@celestiaorg/nitro](https://github.com/celestiaorg/nitro) integration
 [uses the same fallback mechanism](https://github.com/celestiaorg/nitro/blob/f01968eb3d4e19329e9c92b050e98a8e5772f1f2/arbnode/batch_poster.go#L845-L857).
 
 [More information can be found on the Ethereum fallback mechanisms for Celestia](./ethereum-fallback.md),
-which enables Ethereum L2s (or L3s) to “fall back” to using Ethereum
+which enables Ethereum L2s (or L3s) to ＂fall back＂ to using Ethereum
 calldata for data availability in the event of downtime on Celestia Mainnet
 Beta.
 

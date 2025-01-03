@@ -18,7 +18,7 @@ way to interact with Celestia networks.
 
 Light nodes have the following behavior:
 
-1. They listen for `ExtendedHeaders`, i.e. wrapped “raw” headers, that notify
+1. They listen for `ExtendedHeaders`, i.e. wrapped ＂raw＂ headers, that notify
    Celestia nodes of new block headers and relevant DA metadata.
 2. They perform DAS on the received headers
 
