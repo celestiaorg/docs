@@ -81,7 +81,7 @@ from the scalability Celestia’s data availability layer can provide.
 ### Ethereum fallback mechanism in Nitro
 
 By default in [Arbitrum Nitro](https://github.com/OffchainLabs/nitro), the
-[Ethereum fallback mechanism in the `BatchPoster` function](https://github.com/OffchainLabs/nitro/blob/master/arbnode/batch_poster.go#L989-L1001)
+[Ethereum fallback mechanism in the `BatchPoster` function](https://github.com/OffchainLabs/nitro/blob/d74229c5bcd592db7f6c7e37aa64375f53d2266d/arbnode/batch_poster.go#L1419~L1485)
 is handling the process of storing data, with a fallback mechanism
 to store data onchain if the primary data availability storage
 fails.
