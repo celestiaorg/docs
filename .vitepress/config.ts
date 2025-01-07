@@ -143,7 +143,7 @@ export default {
 
     socialLinks: [
       { icon: "github", link: "https://github.com/celestiaorg/docs" },
-      { icon: "twitter", link: "https://twitter.com/CelestiaOrg" },
+      { icon: "twitter", link: "https://twitter.com/Celestia" },
       { icon: "youtube", link: "https://www.youtube.com/@CelestiaNetwork" },
       { icon: "discord", link: "https://discord.gg/celestiacommunity" },
       { icon: { svg: telegramSVG }, link: "https://t.me/CelestiaCommunity" },
