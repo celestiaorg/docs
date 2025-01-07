@@ -167,6 +167,152 @@ export const ARABICA_PARAMS = {`{
 Now, we can connect to the network that you would like to use
 in Keplr wallet.
 
+## Add Celestia network parameters to Leap with React
+
+Before we demonstrate how to export the specific parameters for
+Celestia's testnets, we need to create a ReactJS component
+that allows us to connect directly to Leap and pass it the network
+parameters.
+
+In the following code, we show how you can export a component
+that detects whether Leap is installed and sets the network
+params for it:
+
+::: code-group
+
+<!-- markdownlint-disable MD013 -->
+
+```jsx [Leap]
+// @site/src/components/AddNetworkLeap.js
+import React from "react";
+import styles from "./Leap.module.css";
+
+export default function AddNetworkLeap({ params }) {
+    async function add() {
+        if (!window.leap) {
+            alert("Please install leap extension");
+        } else {
+            if (window.leap.experimentalSuggestChain) {
+                try {
+                    await window.leap.experimentalSuggestChain({
+                        chainId: params.chainId,
+                        chainName: params.chainName,
+                        rpc: params.rpc,
+                        rest: params.rest,
+                        bip44: {
+                            coinType: 118,
+                        },
+                        bech32Config: {
+                            bech32PrefixAccAddr: "celestia",
+                            bech32PrefixAccPub: "celestia" + "pub",
+                            bech32PrefixValAddr: "celestia" + "valoper",
+                            bech32PrefixValPub: "celestia" + "valoperpub",
+                            bech32PrefixConsAddr: "celestia" + "valcons",
+                            bech32PrefixConsPub: "celestia" + "valconspub",
+                        },
+                        currencies: [
+                            {
+                                coinDenom: "TIA",
+                                coinMinimalDenom: "utia",
+                                coinDecimals: 6,
+                                coinGeckoId: "celestia",
+                            },
+                        ],
+                        feeCurrencies: [
+                            {
+                                coinDenom: "TIA",
+                                coinMinimalDenom: "utia",
+                                coinDecimals: 6,
+                                coinGeckoId: "celestia",
+                                gasPriceStep: {
+                                    low: 0.01,
+                                    average: 0.02,
+                                    high: 0.1,
+                                },
+                            },
+                        ],
+                        stakeCurrency: {
+                            coinDenom: "TIA",
+                            coinMinimalDenom: "utia",
+                            coinDecimals: 6,
+                            coinGeckoId: "celestia",
+                        },
+                    });
+                } catch {
+                    alert("Failed to suggest the chain");
+                }
+            }
+            const chainId = params.chainId;
+            // Enabling before using the Leap is recommended.
+            // This method will ask the user whether to allow access if they haven't visited this website.
+            // Also, it will request that the user unlock the wallet if the wallet is locked.
+            await window.leap.enable(chainId);
+        }
+    }
+
+    return (
+        <div className={styles.center}>
+            <button className={styles.leapButton} onClick={add}>
+                Add/switch To {params.chainName}
+            </button>
+        </div>
+    );
+}
+```
+
+:::
+
+<!-- markdownlint-enable MD013 -->
+
+We still need to pass the Celestia network parameters to
+the `AddNetworkLeap` function:
+
+::: code-group
+
+```js-vue [Mainnet Beta]
+import '@site/src/components/AddNetworkLeap'
+
+export const MAINNET_PARAMS = {`{
+  chainId: '{{constants.mainnetChainId}}',
+  chainName: 'Celestia',
+  rpc: '{{constants.mainnetRpcUrl}}',
+  rest: '{{constants.mainnetRestUrl}}'
+}`}
+
+{<AddNetworkLeap params={MAINNET_PARAMS}/>}
+```
+
+```js-vue [Mocha]
+import '@site/src/components/AddNetworkLeap'
+
+export const MOCHA_PARAMS = {`{
+  chainId: '{{constants.mochaChainId}}',
+  chainName: 'Mocha testnet',
+  rpc: '{{constants.mochaRpcUrl}}',
+  rest: '{{constants.mochaRestUrl}}'
+}`}
+
+{<AddNetworkLeap params={MOCHA_PARAMS}/>}
+```
+
+```js-vue [Arabica]
+import '@site/src/components/AddNetworkLeap'
+
+export const ARABICA_PARAMS = {`{
+  chainId: '{{constants.arabicaChainId}}',
+  chainName: 'Arabica devnet',
+  rpc: '{{constants.arabicaRpcUrl}}',
+  rest: '{{constants.arabicaRestUrl}}'
+}`}
+
+{<AddNetworkLeap params={ARABICA_PARAMS}/>}
+```
+
+:::
+
+Now, we can connect to the network that you would like to use
+in Leap wallet.
+
 ## Adding a custom chain to Leap
 
 If you want to add a custom chain to Leap, you can do so by:
