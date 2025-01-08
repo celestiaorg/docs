@@ -5,10 +5,10 @@ titleTemplate: ":title"
 
 hero:
   name: "Celestia"
-  text: "The first modular blockchain network"
-  tagline: Celestia is a modular data availability network that securely scales with the number of users, making it easy for anyone to launch their own blockchain.
+  text: "Build whatever"
+  tagline: Celestia is the modular blockchain powering unstoppable applications with full-stack customizability.
   image:
-    src: /modular.svg
+    src: /Blobspace.png
     alt: Celestia
   actions:
     - theme: brand
