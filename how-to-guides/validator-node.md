@@ -181,6 +181,12 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
+| Name                                                              | Type          | Chain ID    | CLI Usage               | 
+|-------------------------------------------------------------------|---------------|-------------|-------------------------|
+| [Celestia](https://docs.celestia.org/how-to-guides/mainnet)       | Mainnet Beta  | `celestia`  | `--chain-id celestia`   | 
+| [Mocha](https://docs.celestia.org/how-to-guides/mocha-testnet)    | Testnet       | `mocha-4`   | `--chain-id mocha-4`    | 
+| [Arabica](https://docs.celestia.org/how-to-guides/arabica-devnet) | Devnet        | `arabica-11`| `--chain-id arabica-11` |
+
 Continuing the validator tutorial, here are the steps to connect your
 validator to Mocha:
 
@@ -239,6 +245,72 @@ After starting your node, please submit your node as a seed and peer to the
 Follow the instructions under
 [transaction indexer configuration options](/how-to-guides/consensus-node#optional-transaction-indexer-configuration-options)
 to configure your `config.toml` file to select which transactions to index.
+
+## Migrating a validator to another machine
+
+:::tip NOTE
+Moving a validator to a new machine is a sensitive process that needs to be done carefully. If the transfer isn’t handled properly, it could result in double signing, which will permanently slash your validator, wipe out delegated tokens, and remove you from the active validator set. To avoid this, make sure to follow the steps closely and stop the old node completely before starting the migration.
+:::
+
+### Step 1: Set up a new full consensus node
+
+First, set up a new [full consensus node](https://docs.celestia.org/how-to-guides/consensus-node) on the new server and make sure the node is fully synced with the chain. To check whether your node is synced, you can check the `catching_up` status using:
+
+```bash
+celestia-appd status | jq '{ "catching_up": .SyncInfo.catching_up }'
+```
+
+If the node is synced, the output will look like this: 
+
+```json
+{
+  "catching_up": false
+}
+```
+
+### Step 2: Stop the old validator
+
+After your new full consensus node is synced, proceed to stop the current validator on the old machine. If you’re running it with [SystemD](https://docs.celestia.org/how-to-guides/systemd), use the following command:
+
+```bash
+sudo systemctl stop <SERVICE_NAME>
+```
+
+Additionally, it’s recommended to disable the service to prevent it from restarting automatically after a system reboot. You can do this with:
+
+```bash
+sudo systemctl disable <SERVICE_NAME>
+```
+
+For extra safety, you may also delete the service file from the server:
+
+```bash
+sudo rm -rf /etc/systemd/system/<SERVICE_NAME>.service
+```
+
+### Step 3: Backup and transfer `priv_validator_key.json`
+
+Once the old validator is stopped and the new node is synced, you’ll need to back up the `priv_validator_key.json` file from the old server (if it has not been backed up earlier). This file is located at:
+
+```plaintext
+~/.celestia-app/config/priv_validator_key.json
+```
+
+Copy this file to the same location on the new server. To verify that the file has been transferred correctly, compare its contents on both servers using:
+
+```bash
+cat ~/.celestia-app/config/priv_validator_key.json
+```
+
+### Step 4: Start the new validator
+
+If everything checks out, you can now restart the new node with the updated validator key: 
+
+```bash
+sudo systemctl restart <SERVICE_NAME>
+```
+
+After this, your validator will resume signing blocks on the new server, and the migration is complete. Validators operate within a 10,000 signed block window, and missing more than 2,500 blocks in this window will result in downtime jail. The faster you complete the transfer, the fewer blocks your validator will miss.
 
 ## Additional resources
 
