@@ -78,7 +78,7 @@ Congrats! Your devnet is running on a mock EVM chain and Celestia Mocha.
 See [the Alt-DA x Celestia README](https://github.com/celestiaorg/op-plasma-celestia/blob/main/README.md) for instructions on [how to deploy a Testnet](https://github.com/celestiaorg/op-plasma-celestia/blob/main/README.md#testnet).
 
 :::tip
-If you are using a public RPC for your EVM chain, you should to enable `deploy_slowly = true` in your `config.toml`. If you still have issues, we recommend running the
+If you are using a public RPC for your EVM chain, you should enable `deploy_slowly = true` in your `config.toml`. If you still have issues, we recommend running the
 integration with a high-availability, paid endpoint.
 :::
 
