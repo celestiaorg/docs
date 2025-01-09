@@ -150,54 +150,57 @@ export default {
     ],
 
     transformHead(assets: string[]): HeadConfig[] {
-      const ruberoidLightFont = assets.find(
-        (file) => /Ruberoid-Light\.\w+\.otf/,
+      const youthRegularFont = assets.find(
+        (file) => /youth\/Youth-Regular\.\w+\.woff2/
       );
-      const ruberoidRegularFont = assets.find(
-        (file) => /Ruberoid-Regular\.\w+\.otf/,
+      const untitledSansRegularFont = assets.find(
+        (file) => /Unititled-Sans-Regular\.\w+\.woff2/
       );
-      const ruberoidBoldFont = assets.find((file) => /Ruberoid-Bold\.\w+\.otf/);
+      const untitledSansMediumFont = assets.find(
+        (file) => /Unititled-Sans-Medium\.\w+\.woff2/
+      );
 
       const headConfig: HeadConfig[] = [];
 
-      if (ruberoidLightFont) {
+      if (youthRegularFont) {
         headConfig.push([
           "link",
           {
             rel: "preload",
-            href: ruberoidLightFont,
+            href: youthRegularFont,
             as: "font",
-            type: "font/opentype",
+            type: "font/woff2",
             crossorigin: "",
           },
         ]);
       }
 
-      if (ruberoidRegularFont) {
+      if (untitledSansRegularFont) {
         headConfig.push([
           "link",
           {
             rel: "preload",
-            href: ruberoidRegularFont,
+            href: untitledSansRegularFont,
             as: "font",
-            type: "font/opentype",
+            type: "font/woff2",
             crossorigin: "",
           },
         ]);
       }
 
-      if (ruberoidBoldFont) {
+      if (untitledSansMediumFont) {
         headConfig.push([
           "link",
           {
             rel: "preload",
-            href: ruberoidBoldFont,
+            href: untitledSansMediumFont,
             as: "font",
-            type: "font/opentype",
+            type: "font/woff2",
             crossorigin: "",
           },
         ]);
       }
+
       return headConfig;
     },
   },
