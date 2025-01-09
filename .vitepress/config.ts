@@ -154,7 +154,7 @@ export default {
         (file) => /youth\/Youth-Regular\.\w+\.woff2/
       );
       const untitledSansRegularFont = assets.find(
-        (file) => /Unititled-Sans-Regular\.\w+\.woff2/
+        (file) => /Untitled-Sans-Regular\.\w+\.woff2/
       );
       const untitledSansMediumFont = assets.find(
         (file) => /Unititled-Sans-Medium\.\w+\.woff2/
