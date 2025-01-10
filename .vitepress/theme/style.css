@@ -159,12 +159,20 @@ body {
   font-family: var(--font-body);
 }
 
-.VPSidebarItem.level-1 .text,
-.VPSidebarItem.level-2 .text,
-.VPSidebarItem.level-3 .text {
-  font-weight: 300 !important;
+.VPSidebar {
+  font-family: var(--font-body) !important;
+}
+
+.VPSidebarItem .text,
+.VPSidebarGroup .title,
+.VPSidebarGroup .items,
+.VPSidebarGroup .VPLink,
+.VPDocAsideOutline .outline-title,
+.VPDocAsideOutline .outline-link {
+  font-family: var(--font-body) !important;
+  font-weight: 400 !important;
 }
 
 .VPSidebarItem.is-active .text {
-  color: var(--vp-c-brand); 
+  color: var(--vp-c-brand);
 }
