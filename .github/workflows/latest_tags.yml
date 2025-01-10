@@ -80,7 +80,7 @@ jobs:
 
   # This job creates a PR if there were changes. The changes are created when
   # the workflow writes to the version files. This means that the workflow
-  # should be able to be run and will just be a no-op if the is no new release.
+  # should be able to be run and will just be a no-op if there is no new release.
   # Either way, since a PR is created, this job won't break the docs on main.
   createPR:
     needs: logLatestRelease
