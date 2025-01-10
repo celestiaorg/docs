@@ -67,12 +67,12 @@ the delegation for the duration of the cohort they are currently in.
 The minimum requirements for participation in the program are as follows:
 
 * Run an active Mainnet Beta validator **or** an active Mocha testnet validator
-for at least 1 month before application deadline
+for at least 1 month before the application deadline
 * Run a bridge node (on Mainnet Beta if you are already an active Mainnet Beta
 validator or on Mocha testnet if not) that is connected and reporting
 to the Celestia Labs [OTEL collector](../how-to-guides/celestia-node-metrics.md)
 (for new applicants - on testnet, so that we can evaluate performance)
-* Not jailed or slashed in the 6 months before application deadline
+* Not jailed or slashed in the 6 months before the application deadline
 * Not associated with an exchange or custodian
 * Not in the top 10 validators by delegation power, unless it enters the
 top 10 as a result of the Foundation’s delegation under this program
@@ -82,16 +82,16 @@ or within any other prohibited jurisdiction, and successfully complete a
 compliance screen
 * Dedicated email address so that the Foundation can reach you in the event
 of emergency upgrades and fixes
-* Maintain a fully archival (non pruned) bridge node for both Mainnet Beta and Mocha if selected for the program
+* Maintain a fully archival (non-pruned) bridge node for both Mainnet Beta and Mocha if selected for the program
 * Not running your infrastructure in Hetzner or OVH 
 
 Not adhering to any of the criteria above will automatically disqualify your
 application, and violating any of the criteria after you have received
-delegation will result in withdrawal of the delegation. A participant
-who loses stake due to being jailed by the protocol may reapply to the
+delegation will result in the withdrawal of the delegation. A participant
+who loses a stake due to being jailed by the protocol may reapply to the
 program after 2 cohort periods.
 
-Applicants are also expected to have reviewed Celestia docs and recommended
+Applicants are also expected to have reviewed Celestia's docs and recommended
 guides on devops and monitoring setups.
 
 Other optional but important criteria:
@@ -137,7 +137,7 @@ Before applying, be ready to share the following:
   * Github page of your organization
   * Team experience and roster (including Twitter + Github links)
   * Which networks you validate on Mainnet Beta + links to your validators
-  * A personal statement why you should receive delegation from the
+  * A personal statement why you should receive a delegation from the
   Foundation (max 1500 characters)
 * Infrastructure
   * Validator address and bridge node ID on Mainnet Beta
@@ -157,7 +157,7 @@ Before applying, be ready to share the following:
 Please note, the objective of the program is to contribute to Celestia’s
 resilience and uptime. If you contribute a lot to the Celestia ecosystem,
 but your validator uptime is low, this will negatively impact your chance
-at selection for the program. Furthermore, merely receiving delegation
+at selection for the program. Furthermore, merely receiving a delegation
 from the Foundation under the program does not guarantee your placement
 in the active validator set.
 
