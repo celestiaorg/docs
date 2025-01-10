@@ -377,7 +377,7 @@ function sidebarHome() {
                   link: "/how-to-guides/decide-node",
                 },
                 {
-                  text: "Setting up environment ",
+                  text: "Setting up the environment ",
                   link: "/how-to-guides/environment",
                 },
                 {
