@@ -86,7 +86,7 @@ On the following screen choose a validator of your choice, enter
 the desired amount, and click `Review`.
 
 Following that, review the transaction details and select `Stake`,
-then wait for the transaction to finalize.
+then wait for the transaction to be finalized.
 
 ![Keplr1](/img/leap/leap2.gif)
 
