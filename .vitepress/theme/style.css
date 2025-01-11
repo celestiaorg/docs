@@ -158,3 +158,21 @@ body {
 .VPHome {
   font-family: var(--font-body);
 }
+
+.VPSidebar {
+  font-family: var(--font-body) !important;
+}
+
+.VPSidebarItem .text,
+.VPSidebarGroup .title,
+.VPSidebarGroup .items,
+.VPSidebarGroup .VPLink,
+.VPDocAsideOutline .outline-title,
+.VPDocAsideOutline .outline-link {
+  font-family: var(--font-body) !important;
+  font-weight: 400 !important;
+}
+
+.VPSidebarItem.is-active .text {
+  color: var(--vp-c-brand);
+}
