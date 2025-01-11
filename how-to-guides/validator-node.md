@@ -181,11 +181,11 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
-| Name                                                              | Type          | Chain ID    | CLI Usage               | 
-|-------------------------------------------------------------------|---------------|-------------|-------------------------|
-| [Celestia](https://docs.celestia.org/how-to-guides/mainnet)       | Mainnet Beta  | `celestia`  | `--chain-id celestia`   | 
-| [Mocha](https://docs.celestia.org/how-to-guides/mocha-testnet)    | Testnet       | `mocha-4`   | `--chain-id mocha-4`    | 
-| [Arabica](https://docs.celestia.org/how-to-guides/arabica-devnet) | Devnet        | `arabica-11`| `--chain-id arabica-11` |
+| Name                           | Type          | Chain ID                       | CLI Usage                                  | 
+|--------------------------------|---------------|--------------------------------|--------------------------------------------|
+| [Celestia](./mainnet.md)       | Mainnet Beta  | {{ constants.mainnetChainId }} | `--chain-id {{ constants.mainnetChainId }}`| 
+| [Mocha](./mocha-testnet.md)    | Testnet       | {{ constants.mochaChainId }}   | `--chain-id {{ constants.mochaChainId }}`  | 
+| [Arabica](./arabica-devnet.md) | Devnet        | {{ constants.arabicaChainId }} | `--chain-id {{ constants.arabicaChainId }}`|
 
 Continuing the validator tutorial, here are the steps to connect your
 validator to Mocha:
@@ -254,7 +254,7 @@ Moving a validator to a new machine is a sensitive process that needs to be done
 
 ### Step 1: Set up a new full consensus node
 
-First, set up a new [full consensus node](https://docs.celestia.org/how-to-guides/consensus-node) on the new server and make sure the node is fully synced with the chain. To check whether your node is synced, you can check the `catching_up` status using:
+First, set up a new [full consensus node](./consensus-node.md) on the new server and make sure the node is fully synced with the chain. To check whether your node is synced, you can check the `catching_up` status using:
 
 ```bash
 celestia-appd status | jq '{ "catching_up": .SyncInfo.catching_up }'
@@ -270,7 +270,7 @@ If the node is synced, the output will look like this:
 
 ### Step 2: Stop the old validator
 
-After your new full consensus node is synced, proceed to stop the current validator on the old machine. If you’re running it with [SystemD](https://docs.celestia.org/how-to-guides/systemd), use the following command:
+After your new full consensus node is synced, proceed to stop the current validator on the old machine. If you’re running it with [SystemD](./systemd.md), use the following command:
 
 ```bash
 sudo systemctl stop <SERVICE_NAME>
