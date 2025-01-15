@@ -18,6 +18,11 @@ To use the following methods, you will need the node URL and your auth token. To
 
 The default URL is `http://localhost:26658`. If you would like to use subscription methods, such as `SubscribeHeaders` below, you must use the `ws` protocol in place of `http`: `ws://localhost:26658`.
 
+> **Important:** Remember to close the client connection when you're done using it to prevent resource leaks:
+> ```go
+> defer client.Close()
+> ```
+
 ## Submitting and retrieving blobs
 
 The [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit) method takes a slice of blobs and a gas price, returning the height the blob was successfully posted at.
