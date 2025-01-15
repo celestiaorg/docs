@@ -37,7 +37,6 @@ execution layer, making it an ideal platform for developers looking to
 build and test applications in a setting that closely mirrors an OP Stack
 rollup on Celestia.
 
-Learn more at <https://bubs-sepolia.hub.caldera.xyz/>.
 
 ### RPC URLs
 
