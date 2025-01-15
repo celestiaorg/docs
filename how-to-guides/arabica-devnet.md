@@ -175,7 +175,6 @@ There are multiple explorers you can use for Arabica:
 
 - [https://arabica.celenium.io](https://arabica.celenium.io)
 - [https://explorer.celestia-arabica-11.com](https://explorer.celestia-arabica-11.com)
-- [https://celestiascan.com](https://celestiascan.com)
 
 ## Network upgrades
 
