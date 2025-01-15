@@ -149,6 +149,7 @@ The default port is 1317.
 - `https://celestia-testnet-api.itrocket.net`
 - `https://api-celestia-testnet.cryptech.com.ua`
 - `https://celestia-t-api.noders.services`
+- `http://celestiam.rest.lava.build`
 
 ## Community gRPC endpoints
 
@@ -174,6 +175,16 @@ broadcast transactions.
 - `celestia-testnet-grpc.itrocket.net:443`
 - `grpc-celestia-testnet.cryptech.com.ua:443`
 - `celestia-t-grpc.noders.services:21090`
+- `celestiam.grpc.lava.build:443`
+
+## Community JSON-RPC Endpoints
+
+- `celestiam.jsonrpc.lava.build`
+
+## Community Tendermint RPC Endpoints
+
+- `celestiam.tendermintrpc.lava.build`
+
 
 ## Community bridge and full node endpoints
 

@@ -172,6 +172,8 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-api.chainode.tech`
 - `celestia-mainnet-api.itrocket.net:443`
 - `celestia-api.noders.services`
+- `celestia.rest.lava.build`
+
 
 #### Community gRPC endpoints
 
@@ -192,6 +194,8 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-grpc.chainode.tech:443`
 - `celestia-mainnet-grpc.itrocket.net:443`
 - `celestia-grpc.noders.services:11090`
+- `celestia.grpc.lava.build:443`
+
 
 #### Community WebSocket endpoints
 
