@@ -9,7 +9,7 @@ next:
 
 ![Bubs testnet](/img/Celestia_Bubs_Testnet.jpg)
 
-[Bubs Testnet](https://bubstestnet.com/) is a the first
+[Bubs Testnet](https://bubstestnet.com/) is the first
 OP Stack testnet with Celestia underneath hosted by
 [Caldera](https://caldera.xyz) with support from Celestia Labs. Bubs is dedicated to providing developers with
 an EVM-compatible execution layer to deploy their EVM applications on.
