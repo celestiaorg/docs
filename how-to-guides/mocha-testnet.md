@@ -24,7 +24,7 @@ participate in Mocha:
 
 Consensus:
 
-- [Consensus node](./full-consensus-node)
+- [Consensus node](./consensus-node)
 - [Validator node](./validator-node)
 
 Data Availability:
