@@ -121,8 +121,8 @@ your own node.
 
 ### Consensus nodes
 
-- [Consensus node](./consensus-node)
-- [Validator node](./validator-node)
+- [Consensus node](./consensus-node.md)
+- [Validator node](./validator-node.md)
 
 #### Community consensus RPC endpoints
 

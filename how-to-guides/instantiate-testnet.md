@@ -12,7 +12,7 @@ or if you want to test out new features to build as a core developer.
 ## Hardware requirements
 
 You will need to
-[follow hardware requirements](./validator-node#hardware-requirements).
+[follow hardware requirements](./validator-node.md#hardware-requirements).
 
 ## Setup dependencies
 

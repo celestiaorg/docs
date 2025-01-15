@@ -84,7 +84,7 @@ add the port after the IP address or use the
 port if you prefer.
 
 Refer to
-[the ports section of the celestia-node troubleshooting page](../how-to-guides/celestia-node-troubleshooting.md#ports)
+[the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 
 Using an RPC of your own, or one from the
@@ -136,7 +136,7 @@ celestia bridge start --core.ip validator-1.celestia-arabica-11.com \
   --p2p.network arabica
 ```
 
-You can create your key for your node by [following the `cel-key` instructions](../../tutorials/celestia-node-key).
+You can create your key for your node by [following the `cel-key` instructions](/tutorials/celestia-node-key.md).
 
 Once you start the bridge node, a wallet key will be generated for you.
 You will need to fund that address with Testnet tokens to pay for

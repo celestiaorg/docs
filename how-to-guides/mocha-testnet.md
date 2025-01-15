@@ -24,8 +24,8 @@ participate in Mocha:
 
 Consensus:
 
-- [Consensus node](./full-consensus-node)
-- [Validator node](./validator-node)
+- [Consensus node](./consensus-node.md)
+- [Validator node](./validator-node.md)
 
 Data Availability:
 
@@ -136,19 +136,19 @@ as REST endpoints. This allows for communication with the node using REST
 calls, which can be useful if the client does not support gRPC or HTTP2.
 The default port is 1317.
 
-- [https://api-mocha.pops.one](https://api-mocha.pops.one)
-- [https://api.celestia-mocha.com/](https://api.celestia-mocha.com/)
-- [https://celestia-testnet.brightlystake.com/api](https://celestia-testnet.brightlystake.com/api)
-- [https://api-celestia-mocha.trusted-point.com](https://api-celestia-mocha.trusted-point.com)
-- [https://api-celestia-testnet-01.stakeflow.io/](https://api-celestia-testnet-01.stakeflow.io/)
-- [https://mocha.api.cumulo.me/](https://mocha.api.cumulo.me/)
-- [https://api.archive.mocha.cumulo.com.es](https://api.archive.mocha.cumulo.com.es)
-- [https://api-mocha-full.avril14th.org](https://api-mocha-full.avril14th.org)
-- [https://api-1.testnet.celestia.nodes.guru](https://api-1.testnet.celestia.nodes.guru)
-- [https://api-2.testnet.celestia.nodes.guru](https://api-2.testnet.celestia.nodes.guru)
-- [https://celestia-testnet-api.itrocket.net](https://celestia-testnet-api.itrocket.net)
-- [https://api-celestia-testnet.cryptech.com.ua](https://api-celestia-testnet.cryptech.com.ua)
-- [https://celestia-t-api.noders.services](https://celestia-t-api.noders.services)
+- `https://api-mocha.pops.one`
+- `https://api.celestia-mocha.com/`
+- `https://celestia-testnet.brightlystake.com/api`
+- `https://api-celestia-mocha.trusted-point.com`
+- `https://api-celestia-testnet-01.stakeflow.io/`
+- `https://mocha.api.cumulo.me/`
+- `https://api.archive.mocha.cumulo.com.es`
+- `https://api-mocha-full.avril14th.org`
+- `https://api-1.testnet.celestia.nodes.guru`
+- `https://api-2.testnet.celestia.nodes.guru`
+- `https://celestia-testnet-api.itrocket.net`
+- `https://api-celestia-testnet.cryptech.com.ua`
+- `https://celestia-t-api.noders.services`
 
 ## Community gRPC endpoints
 
@@ -225,20 +225,20 @@ Faucet has a limit of 10 tokens per week per address/Discord ID.
 
 The following websites provide analytics for Mocha Testnet:
 
-- [https://cosmoslist.co/testnet/celestia](https://cosmoslist.co/testnet/celestia)
+- <https://cosmoslist.co/testnet/celestia>
 
 ## Explorers
 
 There are several explorers you can use for Mocha:
 
-- [https://testnet.mintscan.io/celestia-testnet](https://testnet.mintscan.io/celestia-testnet)
-- [https://mocha.celenium.io](https://mocha.celenium.io)
-- [https://explorer.nodestake.top/celestia-testnet/](https://explorer.nodestake.top/celestia-testnet)
-- [https://stakeflow.io/celestia-testnet](https://stakeflow.io/celestia-testnet)
-- [https://testnet.celestia.explorers.guru](https://testnet.celestia.explorers.guru)
-- [https://testnet.itrocket.net/celestia](https://testnet.itrocket.net/celestia)
-- [https://explorers.cryptech.com.ua/Celestia-Testnet](https://explorers.cryptech.com.ua/Celestia-Testnet)
-- [https://testnet.celestia.valopers.com/](https://testnet.celestia.valopers.com/)
+- `https://testnet.mintscan.io/celestia-testnet`
+- `https://mocha.celenium.io`
+- `https://explorer.nodestake.top/celestia-testnet/`
+- `https://stakeflow.io/celestia-testnet`
+- `https://testnet.celestia.explorers.guru`
+- `https://testnet.itrocket.net/celestia`
+- `https://explorers.cryptech.com.ua/Celestia-Testnet`
+- `https://testnet.celestia.valopers.com/`
 
 ## Network upgrades
 

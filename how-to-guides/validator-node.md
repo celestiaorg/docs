@@ -30,7 +30,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
 
 First, follow the instructions on
-[setting up a consensus node](/how-to-guides/consensus-node#set-up-a-consensus-node).
+[setting up a consensus node](/how-to-guides/consensus-node/md#set-up-a-consensus-node).
 
 ### Wallet
 
@@ -117,7 +117,7 @@ celestia bridge init --core.ip <URI>
 
 :::tip
 Refer to
-[the ports section of the celestia-node troubleshooting page](../../how-to-guides/celestia-node-troubleshooting/#ports)
+[the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 :::
 
@@ -138,7 +138,7 @@ celestia bridge start
 #### Optional: start the bridge node with SystemD
 
 Follow
-[the tutorial on setting up the bridge node as a background process with SystemD](../systemd).
+[the tutorial on setting up the bridge node as a background process with SystemD](/how-to-guides/systemd.md).
 
 You have successfully set up a bridge node that is syncing with the network.
 

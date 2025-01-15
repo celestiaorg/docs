@@ -11,10 +11,10 @@ Celestia node operators can run several options on the network.
 
 Consensus:
 
-- [Validator node](./validator-node):
+- [Validator node](./validator-node.md):
   This type of node participates
   in consensus by producing and voting on blocks.
-- [Consensus node](./consensus-node): A celestia-app full node
+- [Consensus node](./consensus-node.md): A celestia-app full node
   to sync blockchain history.
 
 Data Availability:
