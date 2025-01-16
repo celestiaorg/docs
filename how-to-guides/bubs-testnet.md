@@ -39,4 +39,4 @@ rollup on Celestia.
 
 ## Next steps
 
-Now that you have a better understanding of the Bubs Testnet and its integration of OP Stack and Celestia, you can start exploring its capabilities.
+Now that you understand how Bubs Testnet integrated OP Stack with Celestia, you can explore current testnet options like [Gelato's Raspberry testnet](https://raas.gelato.network/rollups/details/public/opcelestia-raspberry).
