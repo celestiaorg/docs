@@ -107,7 +107,6 @@ These RPC providers are meant to be used in production environments.
 
 | Provider | URL |
 |--------|--------|
-| NewMetric | <https://app.newmetric.xyz/start> |
 | Numia | For RPC access: <https://docs.numia.xyz/overview/rpc-api-access> |
 | Numia | For data warehouse access: <https://docs.numia.xyz/overview/sql-access/chains/celestia> |
 | Grove | <https://www.grove.city/> |
@@ -154,7 +153,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 #### Community API endpoints
 
 - `public-celestia-lcd.numia.xyz`
-- `celestia-rest.mesa.newmetric.xyz`
 - `api.celestia.pops.one`
 - `api.lunaroasis.net`
 - `api.celestia.nodestake.top`
@@ -178,7 +176,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 #### Community gRPC endpoints
 
 - `public-celestia-grpc.numia.xyz`
-- `celestia-grpc.mesa.newmetric.xyz`
 - `grpc.celestia.pops.one`
 - `grpc.lunaroasis.net:443`
 - `grpc.celestia.nodestake.top`

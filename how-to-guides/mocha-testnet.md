@@ -63,7 +63,6 @@ These RPC providers are meant to be used in production environments.
 
 | Provider | URL |
 |--------|--------|
-| NewMetric | <https://app.newmetric.xyz/start> |
 | Numia | For RPC access: <https://docs.numia.xyz/overview/rpc-api-access> |
 | Numia | For data warehouse access: <https://docs.numia.xyz/overview/sql-access/chains/celestia> |
 | Grove | <https://www.grove.city/> |
@@ -98,7 +97,6 @@ full blocks from it.
 :::
 
 - `public-celestia-mocha4-consensus.numia.xyz`
-- `mocha-4-consensus.mesa.newmetric.xyz`
 - `full.consensus.mocha-4.celestia-mocha.com`
 - `consensus-full-mocha-4.celestia-mocha.com`
 - `rpc-mocha.pops.one`
@@ -115,7 +113,6 @@ querying the node's state and broadcasting transactions on the
 Celestia network. The default port is 26657.
 
 - `public-celestia-mocha4-consensus.numia.xyz:26657`
-- `mocha-4-consensus.mesa.newmetric.xyz:26657`
 - `celestia-testnet.brightlystake.com`
 - `rpc-celestia-mocha.trusted-point.com`
 - `rpc-celestia-testnet-01.stakeflow.io`
@@ -159,7 +156,6 @@ port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
 - `public-celestia-mocha4-consensus.numia.xyz:9090`
-- `mocha-4-consensus.mesa.newmetric.xyz:9090`
 - `grpc-mocha.pops.one`
 - `grpc.celestia-mocha.com:443`
 - `full.consensus.mocha-4.celestia-mocha.com:9090`
