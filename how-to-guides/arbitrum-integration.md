@@ -47,7 +47,7 @@ Then the `Read` logic takes care of taking the deserialized Blob Pointer struct 
 
 The following represents a non-exhaustive list of considerations when running a Batch Poster node for a chain with Celestia underneath:
 - You will need to use a consensus node RPC endpoint, you can
-[find a list of them for Mocha](../how-to-guides/mocha-testnet#community-rpc-endpoints)
+[find a list of them for Mocha](../how-to-guides/mocha-testnet.md#community-rpc-endpoints)
 - The Batch Poster will only post a Celestia batch to the underlying chain if the height for which it posted is in a recent range in BlobstreamX and if the verification succeeds, otherwise it will discard the batch. Since it will wait until a range is relayed, it can take several minutes for a batch to be posted, but one can always make an on-chain request for the BlobstreamX contract to relay a header promptly.
 
 The following represents a non-exhaustive list of considerations when running a Nitro node for a chain with Celestia underneath:

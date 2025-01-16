@@ -120,8 +120,8 @@ your own node.
 
 ### Consensus nodes
 
-- [Consensus node](./consensus-node)
-- [Validator node](./validator-node)
+- [Consensus node](./consensus-node.md)
+- [Validator node](./validator-node.md)
 
 #### Community consensus RPC endpoints
 
@@ -284,7 +284,6 @@ There are multiple explorers you can use for Mainnet Beta:
 
 - [https://celenium.io](https://celenium.io)
 - [https://celestia.explorers.guru](https://celestia.explorers.guru)
-- [https://explorer.modular.cloud/celestia-mainnet](https://explorer.modular.cloud/celestia-mainnet)
 - [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
 - [https://stakeflow.io/celestia](https://stakeflow.io/celestia)

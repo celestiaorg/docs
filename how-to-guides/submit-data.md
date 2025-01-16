@@ -190,7 +190,7 @@ Using `blob.Submit`:
 celestia blob submit <hex-encoded namespace> <hex-encoded data>
 ```
 
-Learn more in the [node tutorial](./node-tutorial.md).
+Learn more in the [node tutorial](/tutorials/node-tutorial.md).
 
 ### The celestia-node API golang client
 
