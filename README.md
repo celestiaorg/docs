@@ -32,6 +32,13 @@ improving content clarity, or adding new topics, every contribution helps.
 Please ensure to review the detailed Contribution Guidelines above before
 making a pull request.
 
+### Link Format Guidelines
+
+When adding internal links to documentation, please use the following format:
+`[link text](/base-working-dir/subdir/page.md#section-id)`, i.e. `[link text](/how-to-guides/quick-start.md#get-your-auth-token)`
+
+This format ensures long-term compatibility and consistent behavior across different platforms and documentation builds.
+
 ## Directory Structure
 
 - /learn: A category for learning about Celestia.
