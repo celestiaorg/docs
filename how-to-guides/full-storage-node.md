@@ -22,9 +22,9 @@ between one another.
 The following hardware minimum requirements are recommended for running
 the full storage node:
 
-- Memory: **16 GB RAM (minimum)**
+- Memory: **24 GB RAM (minimum)**
 - CPU: **6 cores**
-- Disk: **2 TB NVME Storage**
+- Disk: **5 TiB NVME Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Setting up your full storage node

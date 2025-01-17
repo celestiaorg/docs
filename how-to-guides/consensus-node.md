@@ -21,9 +21,9 @@ consensus layer.
 
 The following minimum hardware requirements are recommended for running a consensus node:
 
-- Memory: **16 GB RAM**
-- CPU: **Quad-Core**
-- Disk: **2 TB SSD Storage**
+- Memory: **24 GB RAM**
+- CPU: **8 cores**
+- Disk: **3 TiB SSD Storage**
 - Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
 
 ## Set up a consensus node
