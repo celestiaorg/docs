@@ -75,7 +75,7 @@ celestia bridge start --metrics.tls=true --metrics --metrics.endpoint otel.celes
 
 ```sh [Mocha]
 # Add flag --node.store /celestia/bridge/.celestia-bridge-mocha-4 to your command, example:
-celestia bridge start --metrics.tls=true --metrics --metrics.endpoint otel.celestia-mocha.com --p2p.metrics --node.store /celestia/bridge/.celestia-bridge-mocha-4 --p2p.network mocha
+celestia bridge start --metrics.tls=true --metrics --metrics.endpoint otel.mocha.celestia.observer --p2p.metrics --node.store /celestia/bridge/.celestia-bridge-mocha-4 --p2p.network mocha
 ```
 
 ```sh [Arabica]
