@@ -81,6 +81,16 @@ zpool create -o ashift=12 $ZFS_POOL_NAME /dev/nvme0n1 /dev/nvme1n1
 ```
 :::
 
+Verify pool status:
+```sh
+zpool status $ZFS_POOL_NAME
+```
+
+Verify pool properties:
+```sh
+zpool get all $ZFS_POOL_NAME
+```
+
 Create dataset:
 ```sh
 zfs create $ZFS_POOL_NAME/$ZFS_DATASET_NAME
