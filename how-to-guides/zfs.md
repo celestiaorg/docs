@@ -145,7 +145,7 @@ sudo zpool set autotrim=off $ZFS_POOL_NAME
 ```
 
 :::tip NOTE
-You always can trim maually: `sudo zpool trim $ZFS_POOL_NAME`
+You can always trim manually: `sudo zpool trim $ZFS_POOL_NAME`
 :::
 
 ### Disable sync
