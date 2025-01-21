@@ -55,7 +55,7 @@ validator of your choice.
 
 ### :three: Stake your TIA tokens
 
-On the following screen enter amount of TIA tokens and select `Stake`.
+On the following screen enter the amount of TIA tokens and select `Stake`.
 
 A Keplr popup will appear, requesting your approval for the
 transaction. Select `Approve`.
@@ -74,9 +74,9 @@ or stake additional tokens.
 
 ### :one: Open your Leap browser extension
 
-In top right select `Celestia` network and navigate to `Stake`.
+In the top right select `Celestia` network and navigate to `Stake`.
 
-Similarly to previous step, select the `+Stake` button.
+Similarly to the previous step, select the `+Stake` button.
 
 ![Keplr1](/img/leap/leap1.gif)
 
@@ -86,7 +86,7 @@ On the following screen choose a validator of your choice, enter
 the desired amount, and click `Review`.
 
 Following that, review the transaction details and select `Stake`,
-then wait for the transaction to finalize.
+then wait for the transaction to be finalized.
 
 ![Keplr1](/img/leap/leap2.gif)
 
@@ -106,7 +106,7 @@ Navigate to `Celestia` and select `Stake`.
 
 ![Gem1](/img/gem/gem1.gif)
 
-### :two: Choose the amount of Celestia and search for a validator.
+### :two: Choose the amount of Celestia tokens and search for a validator.
 
 Select the amount of Celestia tokens and choose a validator from the list.
 

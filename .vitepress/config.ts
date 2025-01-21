@@ -25,38 +25,9 @@ export default {
   head: [
     [
       "link",
-      {
-        rel: "icon",
-        href: "/favicons/favicon.svg",
-        type: "image/svg+xml",
-      },
+      { rel: "icon", href: "/favicons/favicon.svg", type: "image/svg+xml" },
     ],
-    // [
-    //   "link",
-    //   {
-    //     rel: "icon",
-    //     type: "image/svg+xml",
-    //     href: "/favicons/favicon-dark.svg",
-    //     media: "(prefers-color-scheme: dark)",
-    //   },
-    // ],
-    [
-      "link",
-      {
-        rel: "icon",
-        href: "/favicons/favicon.png",
-        type: "image/png",
-      },
-    ],
-    // [
-    //   "link",
-    //   {
-    //     rel: "icon",
-    //     type: "image/png",
-    //     href: "/favicons/favicon-dark.png",
-    //     media: "(prefers-color-scheme: dark)",
-    //   },
-    // ],
+    ["link", { rel: "icon", href: "/favicons/favicon.png", type: "image/png" }],
     [
       "link",
       {
@@ -65,15 +36,6 @@ export default {
         type: "image/x-icon",
       },
     ],
-    // [
-    //   "link",
-    //   {
-    //     rel: "icon",
-    //     type: "image/x-icon",
-    //     href: "/favicons/favicon-dark.ico",
-    //     media: "(prefers-color-scheme: dark)",
-    //   },
-    // ],
     ["meta", { name: "msapplication-TileColor", content: "#fff" }],
     ["meta", { name: "theme-color", content: "#fff" }],
     [
@@ -84,8 +46,6 @@ export default {
           "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
       },
     ],
-    // ['meta', { property: 'og:title', content: 'Celestia' }],
-    // ['meta', { property: 'og:description', content: 'The first modular blockchain network.' }],
     [
       "meta",
       {
@@ -94,23 +54,34 @@ export default {
       },
     ],
     ["meta", { httpEquiv: "Content-Language", content: "en" }],
+
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: "/Celestia-og.png" }],
+    ["meta", { name: "twitter:site", content: "@CelestiaOrg" }],
+    ["meta", { name: "twitter:site:domain", content: "docs.celestia.org" }],
+    ["meta", { name: "twitter:url", content: "https://docs.celestia.org" }],
     [
       "meta",
       {
-        name: "twitter:site:domain",
-        content: "docs.celestia.org",
+        name: "twitter:image",
+        content: "https://docs.celestia.org/Celestia-og.png",
       },
     ],
+    ["meta", { name: "twitter:image:alt", content: "Celestia Documentation" }],
+
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:site_name", content: "Celestia Docs" }],
+    ["meta", { property: "og:url", content: "https://docs.celestia.org" }],
     [
       "meta",
       {
-        name: "twitter:url",
-        content: "https://docs.celestia.org",
+        property: "og:image",
+        content: "https://docs.celestia.org/Celestia-og.png",
       },
     ],
-    ["meta", { name: "og:image", content: "/Celestia-og.png" }],
+    ["meta", { property: "og:image:width", content: "1200" }],
+    ["meta", { property: "og:image:height", content: "630" }],
+    ["meta", { property: "og:image:type", content: "image/png" }],
+
     ["meta", { name: "apple-mobile-web-app-title", content: "Celestia" }],
     [
       "script",
@@ -172,80 +143,89 @@ export default {
 
     socialLinks: [
       { icon: "github", link: "https://github.com/celestiaorg/docs" },
-      { icon: "twitter", link: "https://twitter.com/CelestiaOrg" },
+      { icon: "twitter", link: "https://twitter.com/Celestia" },
       { icon: "youtube", link: "https://www.youtube.com/@CelestiaNetwork" },
       { icon: "discord", link: "https://discord.gg/celestiacommunity" },
       { icon: { svg: telegramSVG }, link: "https://t.me/CelestiaCommunity" },
     ],
 
     transformHead(assets: string[]): HeadConfig[] {
-      const ruberoidLightFont = assets.find(
-        (file) => /Ruberoid-Light\.\w+\.otf/,
+      const youthRegularFont = assets.find(
+        (file) => /youth\/Youth-Regular\.\w+\.woff2/
       );
-      const ruberoidRegularFont = assets.find(
-        (file) => /Ruberoid-Regular\.\w+\.otf/,
+      const untitledSansRegularFont = assets.find(
+        (file) => /Untitled-Sans-Regular\.\w+\.woff2/
       );
-      const ruberoidBoldFont = assets.find((file) => /Ruberoid-Bold\.\w+\.otf/);
+      const untitledSansMediumFont = assets.find(
+        (file) => /Unititled-Sans-Medium\.\w+\.woff2/
+      );
 
       const headConfig: HeadConfig[] = [];
 
-      if (ruberoidLightFont) {
+      if (youthRegularFont) {
         headConfig.push([
           "link",
           {
             rel: "preload",
-            href: ruberoidLightFont,
+            href: youthRegularFont,
             as: "font",
-            type: "font/opentype",
+            type: "font/woff2",
             crossorigin: "",
           },
         ]);
       }
 
-      if (ruberoidRegularFont) {
+      if (untitledSansRegularFont) {
         headConfig.push([
           "link",
           {
             rel: "preload",
-            href: ruberoidRegularFont,
+            href: untitledSansRegularFont,
             as: "font",
-            type: "font/opentype",
+            type: "font/woff2",
             crossorigin: "",
           },
         ]);
       }
 
-      if (ruberoidBoldFont) {
+      if (untitledSansMediumFont) {
         headConfig.push([
           "link",
           {
             rel: "preload",
-            href: ruberoidBoldFont,
+            href: untitledSansMediumFont,
             as: "font",
-            type: "font/opentype",
+            type: "font/woff2",
             crossorigin: "",
           },
         ]);
       }
+
       return headConfig;
     },
   },
   transformPageData(pageData) {
     pageData.frontmatter.head ??= [];
-    pageData.frontmatter.head.push([
-      "meta",
-      {
-        name: "og:title",
-        content:
-          pageData.frontmatter.layout === "home"
-            ? `Celestia Docs`
-            : `${pageData.title} | Celestia Docs`,
-      },
-      {
-        name: "og:description",
-        content: pageData.frontmatter.layout === `${pageData.description}`,
-      },
-    ]);
+    pageData.frontmatter.head.push(
+      [
+        "meta",
+        {
+          property: "og:title",
+          content:
+            pageData.frontmatter.layout === "home"
+              ? "Celestia Docs"
+              : `${pageData.title} | Celestia Docs`,
+        },
+      ],
+      [
+        "meta",
+        {
+          property: "og:description",
+          content:
+            pageData.description || "The first modular blockchain network.",
+        },
+      ],
+    );
   },
 };
 
@@ -255,20 +235,21 @@ function nav() {
       text: "Join the network",
       items: [
         { text: "Learn", link: "/learn/how-celestia-works/overview" },
-        { text: "Networks", link: "/nodes/participate" },
-        { text: "Nodes", link: "/nodes/overview" },
-        { text: "Developers", link: "/developers/build-whatever" },
-        { text: "Discord", link: "https://discord.gg/celestiacommunity" },
+        { text: "Quick start", link: "/how-to-guides/quick-start" },
+        { text: "Rollup stacks", link: "/how-to-guides/rollup-stacks" },
         {
-          text: "Quick start",
+          text: "Resources",
           items: [
-            { text: "Blob tutorial", link: "/developers/node-tutorial" },
+            {
+              text: "Celestia Improvement Proposals (CIPs)",
+              link: "https://cips.celestia.org/",
+            },
             {
               text: "celestia-app specs",
               link: "https://celestiaorg.github.io/celestia-app/",
             },
             {
-              text: "celestia-node API",
+              text: "celestia-node API docs",
               link: "https://node-rpc-docs.celestia.org/",
             },
           ],
@@ -375,150 +356,199 @@ function sidebarHome() {
       ],
     },
     {
-      text: "Run a node",
+      text: "How-to guides",
       collapsed: true,
       items: [
-        { text: "Overview", link: "/nodes/overview" },
         {
-          text: "Quick start",
-          link: "/nodes/quick-start",
-          collapsed: true,
-          items: [
-            { text: "Deciding which node to run", link: "/nodes/decide-node" },
-            { text: "Setting up environment ", link: "/nodes/environment" },
-            { text: "Install celestia-node", link: "/nodes/celestia-node" },
-            { text: "Install celestia-app", link: "/nodes/celestia-app" },
-            { text: "Docker images", link: "/nodes/docker-images" },
-          ],
-        },
-        {
-          text: "Networks",
-          collapsed: true,
-          items: [
-            { text: "Networks overview", link: "/nodes/participate"},
-            { text: "Mainnet Beta", link: "/nodes/mainnet" },
-            { text: "Mocha testnet", link: "/nodes/mocha-testnet" },
-            { text: "Arabica devnet", link: "/nodes/arabica-devnet" },
-          ],
-        },
-        {
-          text: "Types of nodes",
+          text: "Run a node",
           collapsed: true,
           items: [
             {
-              text: "Data availability",
-              collapsed: true,
-              items: [
-                { text: "Light node", link: "/nodes/light-node" },
-                { text: "Full node", link: "/nodes/full-storage-node" },
-                { text: "Bridge node", link: "/nodes/bridge-node" },
-              ],
-            },
-            { 
-              text: "Consensus",
-              collapsed: true,
-              items: [
-                { text: "Consensus node", link: "/nodes/consensus-node" },
-                { text: "Validator node", link: "/nodes/validator-node" },
-              ],
+              text: "Overview",
+              link: "/how-to-guides/nodes-overview",
             },
             {
-              text: "IBC relayers",
+              text: "Getting started",
               collapsed: true,
               items: [
                 {
-                  text: "IBC relaying guide",
-                  link: "/nodes/ibc-relayer",
+                  text: "Quick start",
+                  link: "/how-to-guides/quick-start",
+                },
+                {
+                  text: "Deciding which node to run",
+                  link: "/how-to-guides/decide-node",
+                },
+                {
+                  text: "Setting up environment ",
+                  link: "/how-to-guides/environment",
+                },
+                {
+                  text: "Install celestia-node",
+                  link: "/how-to-guides/celestia-node",
+                },
+                {
+                  text: "Install celestia-app",
+                  link: "/how-to-guides/celestia-app",
+                },
+                { text: "Docker images", link: "/how-to-guides/docker-images" },
+              ],
+            },
+            {
+              text: "Networks",
+              collapsed: true,
+              items: [
+                {
+                  text: "Networks overview",
+                  link: "/how-to-guides/participate",
+                },
+                { text: "Mainnet Beta", link: "/how-to-guides/mainnet" },
+                { text: "Mocha testnet", link: "/how-to-guides/mocha-testnet" },
+                {
+                  text: "Arabica devnet",
+                  link: "/how-to-guides/arabica-devnet",
+                },
+              ],
+            },
+            {
+              text: "Types of nodes",
+              collapsed: true,
+              items: [
+                {
+                  text: "Data availability",
+                  collapsed: true,
+                  items: [
+                    { text: "Light node", link: "/how-to-guides/light-node" },
+                    {
+                      text: "Full node",
+                      link: "/how-to-guides/full-storage-node",
+                    },
+                    { text: "Bridge node", link: "/how-to-guides/bridge-node" },
+                  ],
+                },
+                {
+                  text: "Consensus",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Consensus node",
+                      link: "/how-to-guides/consensus-node",
+                    },
+                    {
+                      text: "Validator node",
+                      link: "/how-to-guides/validator-node",
+                    },
+                  ],
                 },
                 {
                   text: "IBC relayers",
-                  link: "https://www.mintscan.io/celestia/relayers",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "IBC relaying guide",
+                      link: "/how-to-guides/ibc-relayer",
+                    },
+                    {
+                      text: "IBC relayers",
+                      link: "https://www.mintscan.io/celestia/relayers",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              text: "Resources",
+              collapsed: true,
+              items: [
+                {
+                  text: "celestia-node",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Metrics",
+                      link: "/how-to-guides/celestia-node-metrics",
+                    },
+                    {
+                      text: "config.toml guide",
+                      link: "/how-to-guides/config-toml",
+                    },
+                    {
+                      text: "Custom networks and values",
+                      link: "/how-to-guides/celestia-node-custom-networks",
+                    },
+                    {
+                      text: "Syncing a light node from a trusted hash",
+                      link: "/how-to-guides/celestia-node-trusted-hash",
+                    },
+                    {
+                      text: "Datastore structure",
+                      link: "how-to-guides/celestia-node-store-structure",
+                    },
+                    {
+                      text: "Troubleshooting",
+                      link: "/how-to-guides/celestia-node-troubleshooting",
+                    },
+                  ],
+                },
+                {
+                  text: "celestia-app",
+                  collapsed: true,
+                  items: [
+                    {
+                      text: "Specifications",
+                      link: "https://celestiaorg.github.io/celestia-app/",
+                    },
+                    {
+                      text: "Metrics, visualization, and alerts",
+                      link: "/how-to-guides/celestia-app-metrics",
+                    },
+                    {
+                      text: "Jailing and slashing mechanics",
+                      link: "/how-to-guides/celestia-app-slashing",
+                    },
+                    {
+                      text: "Create a Celestia testnet",
+                      link: "/how-to-guides/instantiate-testnet",
+                    },
+                    {
+                      text: "Helpful CLI commands",
+                      link: "/how-to-guides/celestia-app-commands",
+                    },
+                    {
+                      text: "Upgrade Monitor",
+                      link: "/how-to-guides/celestia-app-upgrade-monitor",
+                    },
+                    {
+                      text: "Wallets in celestia-app",
+                      link: "/how-to-guides/celestia-app-wallet",
+                    },
+                    {
+                      text: "Multisig",
+                      link: "/how-to-guides/celestia-app-multisig",
+                    },
+                    {
+                      text: "Create a vesting account",
+                      link: "/how-to-guides/celestia-app-vesting",
+                    },
+                  ],
+                },
+                { text: "SystemD", link: "/how-to-guides/systemd" },
+                {
+                  text: "Network upgrade process",
+                  link: "/how-to-guides/network-upgrade-process",
                 },
               ],
             },
           ],
         },
         {
-          text: "Resources",
+          text: "Rollup stacks",
           collapsed: true,
           items: [
             {
-              text: "celestia-node",
-              collapsed: true,
-              items: [
-                { text: "Metrics", link: "/nodes/celestia-node-metrics" },
-                { text: "config.toml guide", link: "/nodes/config-toml" },
-                {
-                  text: "Custom networks and values",
-                  link: "/nodes/celestia-node-custom-networks",
-                },
-                {
-                  text: "Syncing a light node from a trusted hash",
-                  link: "/nodes/celestia-node-trusted-hash",
-                },
-                {
-                  text: "Troubleshooting",
-                  link: "/nodes/celestia-node-troubleshooting",
-                },
-              ],
+              text: "Overview",
+              link: "/how-to-guides/rollup-stacks",
             },
-            {
-              text: "celestia-app",
-              collapsed: true,
-              items: [
-                {
-                  text: "Specifications",
-                  link: "https://celestiaorg.github.io/celestia-app/",
-                },
-                {
-                  text: "Metrics, visualization, and alerts",
-                  link: "/nodes/celestia-app-metrics",
-                },
-                {
-                  text: "Jailing and slashing mechanics",
-                  link: "/nodes/celestia-app-slashing",
-                },
-                {
-                  text: "Create a Celestia testnet",
-                  link: "/nodes/instantiate-testnet",
-                },
-                {
-                  text: "Helpful CLI commands",
-                  link: "/nodes/celestia-app-commands",
-                },
-                {
-                  text: "Upgrade Monitor",
-                  link: "/nodes/celestia-app-upgrade-monitor",
-                },
-                {
-                  text: "Wallets in celestia-app",
-                  link: "/nodes/celestia-app-wallet",
-                },
-                {
-                  text: "Multisig",
-                  link: "/nodes/celestia-app-multisig",
-                },
-                {
-                  text: "Create a vesting account",
-                  link: "/nodes/celestia-app-vesting",
-                },
-              ],
-            },
-            { text: "SystemD", link: "/nodes/systemd" },
-            { text: "Network upgrade process", link: "/nodes/network-upgrade-process" },
-          ],
-        },
-      ],
-    },
-    {
-      text: "Developers",
-      collapsed: true,
-      items: [
-        { 
-          text: "Build whatever",
-          link: "/developers/build-whatever",
-          collapsed: true,
-          items: [
             {
               text: "EVM",
               collapsed: true,
@@ -529,19 +559,19 @@ function sidebarHome() {
                   items: [
                     {
                       text: "Introduction to Arbitrum rollups with Celestia as DA",
-                      link: "/developers/arbitrum-integration",
+                      link: "/how-to-guides/arbitrum-integration",
                     },
                     {
                       text: "Quickstart: Deploy an Arbitrum Orbit rollup",
-                      link: "/developers/arbitrum-deploy",
+                      link: "/how-to-guides/arbitrum-deploy",
                     },
                     {
                       text: "How to run a full Orbit rollup node and validator",
-                      link: "/developers/arbitrum-full-node",
+                      link: "/how-to-guides/arbitrum-full-node",
                     },
                     {
                       text: "Bridging in and out of your Orbit rollup",
-                      link: "/developers/arbitrum-bridge",
+                      link: "/how-to-guides/arbitrum-bridge",
                     },
                     {
                       text: "How to customize your Orbit chain's deployment configuration",
@@ -550,7 +580,7 @@ function sidebarHome() {
                     {
                       text: "Audit",
                       link: "https://github.com/celestiaorg/nitro/blob/celestia-v2.3.3/audits/celestia/arbitrum_nitro_celestia_audit_report.pdf",
-                    }
+                    },
                   ],
                 },
                 {
@@ -570,11 +600,11 @@ function sidebarHome() {
                   items: [
                     {
                       text: "Intro to OP Stack integration",
-                      link: "/developers/intro-to-op-stack",
+                      link: "/how-to-guides/intro-to-op-stack",
                     },
                     {
-                      text: "Run an OP Stack devnet posting Celestia",
-                      link: "/developers/optimism",
+                      text: "Run an OP Stack devnet posting to Celestia",
+                      link: "/how-to-guides/optimism",
                     },
                     {
                       text: "OP Stack testnets",
@@ -582,13 +612,13 @@ function sidebarHome() {
                       items: [
                         {
                           text: "Bubs testnet",
-                          link: "/developers/bubs-testnet",
+                          link: "/how-to-guides/bubs-testnet",
                         },
                         {
                           text: "Raspberry testnet",
                           link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
                         },
-                      ]
+                      ],
                     },
                     {
                       text: "Audit",
@@ -605,22 +635,21 @@ function sidebarHome() {
                         {
                           text: "Conduit",
                           link: "https://conduit.xyz/",
-                        }
+                        },
                       ],
                     },
-                    
                   ],
                 },
                 {
                   text: "Ethereum fallback mechanism",
-                  link: "/developers/ethereum-fallback",
+                  link: "/how-to-guides/ethereum-fallback",
                 },
               ],
             },
             {
               text: "Sovereign",
               collapsed: true,
-                items: [
+              items: [
                 { text: "Rollkit", link: "https://rollkit.dev" },
                 {
                   text: "Sovereign SDK",
@@ -630,7 +659,7 @@ function sidebarHome() {
             },
             {
               text: "Blobstream rollups",
-              link: "/developers/blobstream-rollups",
+              link: "/how-to-guides/blobstream-rollups",
             },
             {
               text: "Other",
@@ -640,54 +669,30 @@ function sidebarHome() {
                   text: "Dymension",
                   link: "https://docs.dymension.xyz/",
                 },
-              ]
-            }
+              ],
+            },
           ],
         },
         {
-          text: "Posting data to Celestia",
+          text: "Post data to Celestia",
           collapsed: true,
           items: [
             {
               text: "Submitting data blobs to Celestia",
-              link: "/developers/submit-data",
+              link: "/how-to-guides/submit-data",
             },
             {
               text: "FeeGrant module for blobs submission",
-              link: "/developers/feegrant-for-blobs",
+              link: "/how-to-guides/feegrant-for-blobs",
             },
             {
               text: "MultiAccounts feature for blobs submission",
-              link: "/developers/multiaccounts",
+              link: "/how-to-guides/multiaccounts",
             },
             {
               text: "Transaction resubmission guidelines",
-              link: "/developers/transaction-resubmission",
+              link: "/how-to-guides/transaction-resubmission",
             },
-          ]
-        },
-        {
-          text: "Node API",
-          link: "/developers/node-api",
-          collapsed: true,
-          items: [
-            {
-              text: "CLI tutorial",
-              link: "/developers/node-tutorial",
-            },
-            {
-              text: "Golang client tutorial",
-              link: "/developers/golang-client-tutorial",
-            },
-            {
-              text: "Rust client tutorial",
-              link: "/developers/rust-client-tutorial",
-            },
-            {
-              text: "RPC documentation & playground",
-              link: "https://node-rpc-docs.celestia.org/",
-            },
-            { text: "Prompt Scavenger", link: "/developers/prompt-scavenger" },
           ],
         },
         {
@@ -696,19 +701,19 @@ function sidebarHome() {
           items: [
             {
               text: "Overview of Blobstream",
-              link: "/developers/blobstream",
+              link: "/how-to-guides/blobstream",
             },
             {
               text: "Integrate with Blobstream contracts",
-              link: "/developers/blobstream-contracts",
+              link: "/how-to-guides/blobstream-contracts",
             },
             {
               text: "Integrate with Blobstream client",
-              link: "/developers/blobstream-offchain",
+              link: "/how-to-guides/blobstream-offchain",
             },
             {
               text: "Querying the Blobstream proofs",
-              link: "/developers/blobstream-proof-queries",
+              link: "/how-to-guides/blobstream-proof-queries",
             },
             {
               text: "SP1 Blobstream",
@@ -720,7 +725,7 @@ function sidebarHome() {
                   items: [
                     {
                       text: "New SP1 Blobstream deployments",
-                      link: "/developers/sp1-blobstream-deploy",
+                      link: "/how-to-guides/sp1-blobstream-deploy",
                     },
                   ],
                 },
@@ -734,11 +739,11 @@ function sidebarHome() {
                     },
                     {
                       text: "SP1 Audits",
-                      link: "https://github.com/succinctlabs/sp1/tree/dev/audits"
-                    }
-                  ]
+                      link: "https://github.com/succinctlabs/sp1/tree/dev/audits",
+                    },
+                  ],
                 },
-              ]
+              ],
             },
             {
               text: "Blobstream X",
@@ -746,11 +751,7 @@ function sidebarHome() {
               items: [
                 {
                   text: "Overview of BlobstreamX",
-                  link: "/developers/blobstreamx",
-                },
-                {
-                  text: "Example implementation of Blobstream proofs by CryptoKass",
-                  link: "https://github.com/CryptoKass/blobstreamx-example",
+                  link: "/how-to-guides/blobstreamx",
                 },
                 {
                   text: "Local Blobstream X operators",
@@ -758,13 +759,13 @@ function sidebarHome() {
                   items: [
                     {
                       text: "Requesting data commitment ranges",
-                      link: "/developers/blobstream-x-requesting-data-commitment-ranges",
+                      link: "/how-to-guides/blobstream-x-requesting-data-commitment-ranges",
                     },
                     {
                       text: "New Blobstream X deployments",
-                      link: "/developers/blobstream-x-deploy",
-                    }
-                  ]
+                      link: "/how-to-guides/blobstream-x-deploy",
+                    },
+                  ],
                 },
                 {
                   text: "Blobstream X audits",
@@ -785,27 +786,77 @@ function sidebarHome() {
                     {
                       text: "Zellic",
                       link: "https://docs.celestia.org/audits/Blobstream_X-Zellic_Audit.pdf",
-                    }
+                    },
                   ],
-                }
-              ]
+                },
+              ],
             },
+          ],
+        },
+      ],
+    },
+    {
+      text: "Tutorials",
+      collapsed: true,
+      items: [
+        {
+          text: "Node API Tutorials",
+          collapsed: true,
+          items: [
+            {
+              text: "Overview",
+              link: "/tutorials/node-api",
+            },
+            {
+              text: "CLI tutorial",
+              link: "/tutorials/node-tutorial",
+            },
+            {
+              text: "Golang client tutorial",
+              link: "/tutorials/golang-client-tutorial",
+            },
+            {
+              text: "Rust client tutorial",
+              link: "/tutorials/rust-client-tutorial",
+            },
+            {
+              text: "RPC documentation & playground",
+              link: "https://node-rpc-docs.celestia.org/",
+            },
+            { text: "Prompt Scavenger", link: "/tutorials/prompt-scavenger" },
           ],
         },
         {
           text: "Wallets",
           collapsed: true,
           items: [
-            { text: "Celestia-node", link: "/developers/celestia-node-key" },
+            {
+              text: "Celestia-node",
+              link: "/tutorials/celestia-node-key",
+            },
             {
               text: "Integrating Wallets for developers",
-              link: "/developers/wallets",
+              link: "/tutorials/wallets",
             },
           ],
         },
         {
           text: "Integrate Celestia for service providers",
-          link: "/developers/integrate-celestia",
+          link: "/tutorials/integrate-celestia",
+        },
+      ],
+    },
+    {
+      text: "References",
+      collapsed: true,
+      items: [
+        {
+          text: "celestia-node api documentation",
+          link: "https://node-rpc-docs.celestia.org/",
+        },
+        {
+          text: "celestia-app specifications",
+          link: "https://celestiaorg.github.io/celestia-app/",
         },
       ],
     },
@@ -813,10 +864,11 @@ function sidebarHome() {
       text: "Community",
       collapsed: true,
       items: [
-        { text: "Discord", link: "https://discord.gg/celestiacommunity"},
+        { text: "Discord", link: "https://discord.gg/celestiacommunity" },
         { text: "Code of Conduct", link: "/community/coc" },
-        { text: "Celestia Foundation Delegation Program", 
-          link: "/community/foundation-delegation-program"
+        {
+          text: "Celestia Foundation Delegation Program",
+          link: "/community/foundation-delegation-program",
         },
         {
           text: "Modular Meetups",

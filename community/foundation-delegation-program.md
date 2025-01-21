@@ -40,7 +40,7 @@ process will work for Cohort 1 and what that means for future cohorts.
 
 * Initial Cohort (Cohort 1): 50 applicants will be accepted
   * Grading System: Applicants in Cohort 1 are divided into first, second,
-  and third place based eligibility criteria outlined in this document.
+  and third place based on eligibility criteria outlined in this document.
   * Delegation Duration: This varies based on the applicant’s placement in
   Cohort 1. First place receives 12 months of delegation, second place receives
   8 months, third place receives 4 months.
@@ -70,7 +70,7 @@ The minimum requirements for participation in the program are as follows:
 for at least 1 month before application deadline
 * Run a bridge node (on Mainnet Beta if you are already an active Mainnet Beta
 validator or on Mocha testnet if not) that is connected and reporting
-to the Celestia Labs [OTEL collector](../nodes/celestia-node-metrics.md)
+to the Celestia Labs [OTEL collector](../how-to-guides/celestia-node-metrics.md)
 (for new applicants - on testnet, so that we can evaluate performance)
 * Not jailed or slashed in the 6 months before application deadline
 * Not associated with an exchange or custodian
@@ -170,7 +170,7 @@ their respective delegations.
 
 * [Cohort 1](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit#gid=0): 50 Validator Seats
 * [Cohort 2](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=855157686#gid=855157686): 15 Validator Seats (Applications open June 1, 2024)
-* Cohort 3: 15 Validator Seats (Applications open October 1, 2024)
+* [Cohort 3](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=1432570846#gid=1432570846): 15 Validator Seats (Applications open October 1, 2024)
 * Cohort 4: 20 Validator Seats (Applications open February 1, 2025)
 
 IMPORTANT: Each validator selected for the program has to maintain a fully archival (non pruned) bridge node for both Mainnet Beta and Mocha.
