@@ -12,6 +12,18 @@ Enabling ZFS compression on a DA Node server can significantly optimize storage 
 
 :::tip NOTE
 ZFS, compression `zstd-3`:
+```
+$ zfs get compressratio celestia && du -h /celestia/bridge/.celestia-bridge
+NAME             PROPERTY       VALUE  SOURCE
+celestia         compressratio  2.05x  -
+2.6T    /celestia/bridge/.celestia-bridge
+```
+EXT4, no compression:
+```
+$ du -h ~/.celestia-bridge/
+5.0T    /home/ubuntu/.celestia-bridge/
+```
+:::
 
 ## Requirements:
 1. A bare metal server with:
