@@ -4,25 +4,24 @@ description: Learn how to setup your DA node to use on-fly compression with ZFS.
 
 # Setting up your DA node to use ZFS
 
+# Setting up your DA node to use ZFS
+
+:::warning
+Using ZFS compression may impact node performance depending on your hardware configuration. Ensure your system meets the recommended requirements before proceeding. This is an optional optimization that may not be suitable for all deployments.
+:::
+
 Enabling ZFS compression on a DA Node server can significantly optimize storage efficiency by compressing data on the fly. Follow this step-by-step guide to implement ZFS compression without requiring any additional tuning on the DA node.
 
 :::tip NOTE
 ZFS, compression `zstd-3`:
-```
-$ zfs get compressratio celestia && du -h /celestia/bridge/.celestia-bridge
-NAME             PROPERTY       VALUE  SOURCE
-celestia         compressratio  2.05x  -
-2.6T    /celestia/bridge/.celestia-bridge
-```
-EXT4, no compression:
-```
-$ du -h ~/.celestia-bridge/
-5.0T    /home/ubuntu/.celestia-bridge/
-```
-:::
 
 ## Requirements:
-1. A bare metal server with a substantial amount of RAM (64GB or more) and a modern CPU (latest generation EPYC or Xeon with a clock speed of 2.1GHz or higher and 32 threads or higher is recommended)
+1. A bare metal server with:
+   - RAM: 64GB or more
+   - CPU: Latest generation EPYC or Xeon with:
+     - Clock speed: 2.1GHz or higher
+     - Threads: 32 or higher
+     - Note: Additional CPU overhead is required for ZFS compression
 2. At least one empty disk (with no filesystem)
 
 ## Guide:
@@ -97,6 +96,9 @@ zfs get compressratio $ZFS_POOL_NAME
 ```
 
 ## ZFS Fine-Tuning (Advanced)
+:::danger
+The following settings can significantly impact data integrity and system stability. Only proceed if you fully understand the implications of each setting. These optimizations should be carefully tested in a non-production environment first.
+:::
 If you want to increase your I/O performance and sync speed, you can try the following steps:
 ### Disable Auto-Trim
 Auto-trim disabling can improve I/O performance, but may lead to increased SSD wear over time.
@@ -109,14 +111,15 @@ You always can trim maually: `sudo zpool trim $ZFS_POOL_NAME`
 :::
 
 ### Disable sync
-Disabling boosts write speed, but risks data loss if the system crashes before data is written to disk.
-```sh
-zfs set sync=disabled $ZFS_POOL_NAME
-```
+:::danger
+Disabling sync provides faster write speeds but significantly increases the risk of data corruption in case of system crashes or power failures. Data in memory may be permanently lost before being written to disk.
 
-:::tip NOTE
-You should not keep the `sync` feature disabled permanently; it is useful during the initial DA node sync but can be re-enabled afterward. You can enable `sync` again with: `sudo zfs set sync=enabled $ZFS_POOL_NAME`.
+This setting should:
+1. Only be used during initial node sync
+2. Never be used in production environments
+3. Be re-enabled immediately after initial sync completes
 :::
+
 
 ### Disable prefetch
 Disabling reduces memory usage but can slow down performance for sequential read workloads.
