@@ -44,6 +44,14 @@ Set variables:
 ZFS_POOL_NAME="celestia" && ZFS_DATASET_NAME="bridge"
 ```
 
+Validate variables are set:
+```sh
+if [ -z "$ZFS_POOL_NAME" ] || [ -z "$ZFS_DATASET_NAME" ]; then
+  echo "Error: Variables not set correctly"
+  exit 1
+fi
+```
+
 Install ZFS utils:
 ```sh
 sudo apt update && sudo apt install zfsutils-linux
