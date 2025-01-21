@@ -31,6 +31,16 @@ Get your disk name:
 lsblk --nodeps -o name
 ```
 
+Verify disk is empty (should show no partitions):
+```sh
+lsblk YOUR_DISK_NAME (/dev/nvme0n1 or /dev/sda i.e.)
+```
+
+Verify disk is not mounted:
+```sh
+mount | grep YOUR_DISK_NAME
+```
+
 Set variables:
 ```sh
 ZFS_POOL_NAME="celestia" && ZFS_DATASET_NAME="bridge"
