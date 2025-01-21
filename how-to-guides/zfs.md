@@ -15,13 +15,13 @@ ZFS, compression `zstd-3`:
 ```
 $ zfs get compressratio celestia && du -h /celestia/bridge/.celestia-bridge
 NAME             PROPERTY       VALUE  SOURCE
-celestia         compressratio  2.05x  -
-2.6T    /celestia/bridge/.celestia-bridge
+celestia         compressratio  1.22x  -
+1.3T    /celestia/bridge/.celestia-bridge
 ```
 EXT4, no compression:
 ```
 $ du -h ~/.celestia-bridge/
-5.0T    /home/ubuntu/.celestia-bridge/
+1.8T    /home/ubuntu/.celestia-bridge/
 ```
 :::
 
