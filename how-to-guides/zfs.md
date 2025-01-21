@@ -4,8 +4,6 @@ description: Learn how to setup your DA node to use on-fly compression with ZFS.
 
 # Setting up your DA node to use ZFS
 
-# Setting up your DA node to use ZFS
-
 :::warning
 Using ZFS compression may impact node performance depending on your hardware configuration. Ensure your system meets the recommended requirements before proceeding. This is an optional optimization that may not be suitable for all deployments.
 :::
