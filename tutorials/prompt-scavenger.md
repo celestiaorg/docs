@@ -318,13 +318,7 @@ func gpt3(ctx context.Context, msg string) (string, error) {
 
 	return resp.Choices[0].Message.Content, nil
 }
-```
 
-### Wrapping things up
-
-Now, we will update our `main` function to finish our last TODO item: prompting CHATGPT with the fetched blob data.
-
-```go
 func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
@@ -363,12 +357,21 @@ func main() {
 	}
 
 	log.Printf("Fetched blob: %s\n", string(fetchedBlob.Data))
+	
+	// Process the fetched blob data with GPT-3
 	promptAnswer, err := gpt3(ctx, string(fetchedBlob.Data))
 	if err != nil {
 		log.Fatalf("Failed to process message with GPT-3: %v", err)
 	}
 
 	log.Printf("GPT-3 response: %s\n", promptAnswer)
+	
+	// - [X] Load program arguments
+	// - [X] Initialize the node API client
+	// - [X] Create a namespace ID
+	// - [X] Create and submit a blob
+	// - [X] Retrieve the blob from the network
+	// - [X] Prompt chatgpt with the retrieved blob data
 }
 ```
 
