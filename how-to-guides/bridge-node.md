@@ -83,6 +83,10 @@ add the port after the IP address or use the
 `--core.grpc.port` flag to specify another
 port if you prefer.
 
+:::warning Important
+Make sure port 2121 TCP/UDP is open and publicly accessible on your bridge node so it can be discovered by other peers in the DHT network. This port is essential for P2P connectivity and if not properly configured, your node won't be able to participate in the network effectively.
+:::
+
 Refer to
 [the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
