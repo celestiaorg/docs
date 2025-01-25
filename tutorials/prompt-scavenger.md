@@ -10,20 +10,20 @@ prev:
 <!-- markdownlint-disable MD013 -->
 
 Welcome to the world of Prompt Scavenger, a game where
-you’ll be using Celestia’s Node API and OpenAI’s GPT-3.5
-to decode hidden messages scattered throughout Celestia’s
-blockchain. In this tutorial, we’ll be using Golang to
+you'll be using Celestia's Node API and OpenAI's GPT-3.5
+to decode hidden messages scattered throughout Celestia's
+blockchain. In this tutorial, we'll be using Golang to
 write the code for the game.
 
-Through this tutorial, you’ll gain experience using
-Celestia’s Node API to fetch data from the blockchain,
+Through this tutorial, you'll gain experience using
+Celestia's Node API to fetch data from the blockchain,
 process it, and submit new transactions with that data.
-You’ll also learn how to integrate OpenAI’s GPT-3.5 API
-to generate fun responses based on the data you’ve found.
+You'll also learn how to integrate OpenAI's GPT-3.5 API
+to generate fun responses based on the data you've found.
 
-So if you’re ready to embark on an adventure that combines
+So if you're ready to embark on an adventure that combines
 blockchain technology with the power of AI, and learn some
-Golang along the way, let’s get started!
+Golang along the way, let's get started!
 
 ## Dependencies
 
@@ -122,11 +122,11 @@ import (
 	nodeclient "github.com/celestiaorg/celestia-openrpc"
 	"github.com/celestiaorg/celestia-openrpc/types/blob"
 	"github.com/celestiaorg/celestia-openrpc/types/share"
-	 openai "github.com/sashabaranov/go-openai"
+	openai "github.com/sashabaranov/go-openai"
 )
 
 func main() {
-  // TODO:
+	// TODO:
 	// - [ ] Load program arguments
 	// - [ ] Initialize the node API client
 	// - [ ] Create a namespace ID
@@ -148,7 +148,6 @@ Depending on your IDE, unused import statements may be removed every time you sa
 Let's start populating our main function. To begin, we need to load the arguments we pass to the program. and do some sanity checks. We will then initialize the node API client.
 
 ```go
-
 func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
@@ -294,30 +293,30 @@ First, we need one more utility function to help us prompt GPT-3.5. It reads the
 ```go
 // gpt3 processes a given message using GPT-3 and returns the response.
 func gpt3(ctx context.Context, msg string) (string, error) {
-    // Set the authentication header
-    openAIKey := os.Getenv("OPENAI_KEY")
-   	if openAIKey == "" {
-    	return "", fmt.Errorf("OPENAI_KEY environment variable not set")
-    }
-    client := openai.NewClient(openAIKey)
-    resp, err := client.CreateChatCompletion(
+	// Set the authentication header
+	openAIKey := os.Getenv("OPENAI_KEY")
+	if openAIKey == "" {
+		return "", fmt.Errorf("OPENAI_KEY environment variable not set")
+	}
+	client := openai.NewClient(openAIKey)
+	resp, err := client.CreateChatCompletion(
 		ctx,
-        openai.ChatCompletionRequest{
-            Model: openai.GPT3Dot5Turbo,
-            Messages: []openai.ChatCompletionMessage{
-                {
-                    Role:    openai.ChatMessageRoleUser,
-                    Content: msg,
-                },
-            },
-        },
-    )
+		openai.ChatCompletionRequest{
+			Model: openai.GPT3Dot5Turbo,
+			Messages: []openai.ChatCompletionMessage{
+				{
+					Role:    openai.ChatMessageRoleUser,
+					Content: msg,
+				},
+			},
+		},
+	)
 
-    if err != nil {
-       	return "", fmt.Errorf("ChatCompletion error: %w", err)
-    }
+	if err != nil {
+		return "", fmt.Errorf("ChatCompletion error: %w", err)
+	}
 
-    return resp.Choices[0].Message.Content, nil
+	return resp.Choices[0].Message.Content, nil
 }
 ```
 
@@ -387,7 +386,7 @@ For example, you could run:
 go run main.go ws://localhost:26658 ce1e5714 'What is a modular blockchain?'
 ```
 
-After some time, it’ll post the output of the prompt you submitted to OpenAI that you pulled from Celestia’s blockchain.
+After some time, it'll post the output of the prompt you submitted to OpenAI that you pulled from Celestia's blockchain.
 
 ## Next steps
 
@@ -397,3 +396,80 @@ If you're up for a challenge, you can refer to the Node API [client guide](./gol
 
 - Subscribing to new prompts inside the `ce1e5714` namespace, submitting each one to GPT-3.5
 - Posting the responses back to Celestia under a different namespace.
+
+```go
+// promptGPT sends the retrieved blob data to ChatGPT and returns its response
+func promptGPT(ctx context.Context, apiKey string, prompt string) (string, error) {
+	client := openai.NewClient(apiKey)
+	
+	resp, err := client.CreateChatCompletion(
+		ctx,
+		openai.ChatCompletionRequest{
+			Model: openai.GPT3Dot5Turbo,
+			Messages: []openai.ChatCompletionMessage{
+				{
+					Role:    openai.ChatMessageRoleUser,
+					Content: prompt,
+				},
+			},
+		},
+	)
+	if err != nil {
+		return "", fmt.Errorf("ChatGPT API error: %w", err)
+	}
+
+	return resp.Choices[0].Message.Content, nil
+}
+
+func main() {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	// Get IP, namespace, and prompt from program arguments
+	if len(os.Args) != 4 {
+		log.Fatal("Usage: go run main.go <nodeIP> <namespace> <prompt>")
+	}
+	nodeIP, namespaceHex, prompt := os.Args[1], os.Args[2], os.Args[3]
+
+	// Get OpenAI API key from environment
+	apiKey := os.Getenv("OPENAI_KEY")
+	if apiKey == "" {
+		log.Fatal("OPENAI_KEY environment variable not set")
+	}
+
+	// We pass an empty string as the jwt token, since we
+	// disabled auth with the --rpc.skip-auth flag
+	client, err := nodeclient.NewClient(ctx, nodeIP, "")
+	if err != nil {
+		log.Fatalf("Failed to create client: %v", err)
+	}
+	defer client.Close()
+
+	// Create namespace ID from hex string
+	namespace, err := createNamespaceID(namespaceHex)
+	if err != nil {
+		log.Fatalf("Failed to create namespace: %v", err)
+	}
+
+	// Create and submit blob
+	blob, height, err := createAndSubmitBlob(ctx, client, namespace, prompt)
+	if err != nil {
+		log.Fatalf("Failed to submit blob: %v", err)
+	}
+
+	// Get the response from ChatGPT
+	response, err := promptGPT(ctx, apiKey, prompt)
+	if err != nil {
+		log.Fatalf("Failed to get ChatGPT response: %v", err)
+	}
+
+	log.Printf("ChatGPT Response: %s\n", response)
+	
+	// - [X] Load program arguments
+	// - [X] Initialize the node API client
+	// - [X] Create a namespace ID
+	// - [X] Create and submit a blob
+	// - [X] Retrieve the blob from the network
+	// - [X] Prompt chatgpt with the retrieved blob data
+}
+```
