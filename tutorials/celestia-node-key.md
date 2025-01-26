@@ -10,7 +10,7 @@ prev:
 This tutorial will go over using the `cel-key` utility
 to generate a wallet on celestia-node.
 
-While this tutorial will go over installation process
+While this tutorial will go over the installation process
 of `cel-key`, it is recommended that you complete
 the following prerequisites first:
 
