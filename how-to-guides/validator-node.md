@@ -254,7 +254,7 @@ Moving a validator to a new machine is a sensitive process that needs to be done
 
 ### Step 1: Set up a new full consensus node
 
-First, set up a new [full consensus node](./consensus-node.md) on the new server and make sure the node is fully synced with the chain. To check whether your node is synced, you can check the `catching_up` status using:
+First, set up a new [consensus node](./consensus-node.md) on the new server and make sure the node is fully synced with the chain. To check whether your node is synced, you can check the `catching_up` status using:
 
 ```bash
 celestia-appd status | jq '{ "catching_up": .SyncInfo.catching_up }'
@@ -270,7 +270,7 @@ If the node is synced, the output will look like this:
 
 ### Step 2: Stop the old validator
 
-After your new full consensus node is synced, proceed to stop the current validator on the old machine. If you’re running it with [SystemD](./systemd.md), use the following command:
+After your new consensus node is synced, proceed to stop the current validator on the old machine. If you’re running it with [SystemD](./systemd.md), use the following command:
 
 ```bash
 sudo systemctl stop <SERVICE_NAME>
