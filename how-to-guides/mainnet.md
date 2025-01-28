@@ -66,7 +66,7 @@ This can be calculated as follows:
 
 <!-- markdownlint-disable MD013 -->
 
-$\text{Total Bytes} = (1 \times 478 \, \text{bytes}) + (16382 \times 482 \, \text{bytes}) = 7,895,546 \, \text{bytes}$
+$\text{Total Bytes} = (1 \times 478 \, \text{bytes}) + (16382 \times 482 \, \text{bytes}) = 7,896,602 \, \text{bytes}$
 
 <!-- markdownlint-enable MD013 -->
 
