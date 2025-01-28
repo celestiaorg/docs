@@ -53,7 +53,7 @@ as a part of the CIP process.
 There is a hard limit on the total blob size in a transaction, which is
 determined by the effective maximum square size. Given that the current
 governance maximum square size is 128, the total blob size in a transaction
-must be slightly less than ~8 MiB, or 7,895,546 bytes to be exact.
+must be slightly less than ~8 MiB, or 7,896,602 bytes to be exact.
 
 The following provides an approximation of the maximum block size:
 
