@@ -80,7 +80,7 @@ creating a welcoming atmosphere for the Celestia community.
 1. Startup Incubators
    - Often they would have spaces for meetups.
 2. Libraries
-   - Libraries can normally have spaces for meetups at little to no costs
+   - Libraries can normally have spaces for meetups at little to no cost
 3. Co-working spaces:
    - Co-working spaces might be able to offer necessary equipment like
      microphones, projectors, and whiteboards.
@@ -89,7 +89,7 @@ creating a welcoming atmosphere for the Celestia community.
      that you can book, depending on the restaurant.
 5. Universities and Blockchain Clubs:
    - Partnering with universities and their local university clubs can
-     offer you a lot of spaces for meetups, as well as necessary equipments
+     offer you a lot of spaces for meetups, as well as necessary equipment
      if needed for giving a talk.
 6. Other options:
    - If you're having difficulty finding a venue, don't hesitate to ask
