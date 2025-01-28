@@ -23,7 +23,7 @@ By joining the Modular Meetup Program, you can enjoy the benefits of our Speaker
 List and bring a touch of expertise to your events. The speakers can participate
 either in person or virtually, depending on location and timing.
 
-You can expect benefits from the Speaker List including high-quality presentations,
+You can expect benefits from the Speaker List, including high-quality presentations,
 interactive Q&A sessions, and knowledge-sharing opportunities facilitated by the
 best and brightest in the Celestia ecosystem. With our Speaker List, you'll be
 able to create memorable and impactful Modular Meetups that foster genuine
