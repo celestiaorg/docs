@@ -82,7 +82,7 @@ or within any other prohibited jurisdiction, and successfully complete a
 compliance screen
 * Dedicated email address so that the Foundation can reach you in the event
 of emergency upgrades and fixes
-* Maintain a fully archival (non pruned) bridge node for both Mainnet Beta and Mocha if selected for the program
+* Maintain a fully archival (non-pruned) bridge node for both Mainnet Beta and Mocha if selected for the program
 * Not running your infrastructure in Hetzner or OVH 
 
 Not adhering to any of the criteria above will automatically disqualify your
