@@ -52,13 +52,13 @@ as a part of the CIP process.
 
 There is a hard limit on the total blob size in a transaction, which is
 determined by the effective maximum square size. Given that the current
-governance maximum square size is 64, the total blob size in a transaction
-must be slightly less than ~2 MiB, or 1,973,786 bytes to be exact.
+governance maximum square size is 128, the total blob size in a transaction
+must be slightly less than ~8 MiB, or 7,896,602 bytes to be exact.
 
 The following provides an approximation of the maximum block size:
 
-- The maximum square size is 64x64, which gives us 4096 shares.
-- One share is reserved for the PFB transaction, leaving us with 4095 shares.
+- The maximum square size is 128x128, which gives us 16384 shares.
+- One share is reserved for the PFB transaction, leaving us with 16383 shares.
 - The first sparse share has 478 bytes available, and the remaining sparse
   shares have 482 bytes each.
 
@@ -66,7 +66,7 @@ This can be calculated as follows:
 
 <!-- markdownlint-disable MD013 -->
 
-$\text{Total Bytes} = (1 \times 478 \, \text{bytes}) + (4094 \times 482 \, \text{bytes}) = 1,973,786 \, \text{bytes}$
+$\text{Total Bytes} = (1 \times 478 \, \text{bytes}) + (16382 \times 482 \, \text{bytes}) = 7,896,602 \, \text{bytes}$
 
 <!-- markdownlint-enable MD013 -->
 
