@@ -12,7 +12,7 @@ import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 
 Welcome to Celestia's quick-start guide! In this guide, we'll learn how to run a Celestia data availability sampling (DAS) light node to post and retrieve data blobs on Celestia's [Mocha testnet](./mocha-testnet.md).
 
-A blob (a.k.a. [BLOB](https://en.wikipedia.org/wiki/Object_storage#Origins)) is a Binary Large OBject. In other words, a blob is arbitrary data. In this case, it's data that you want to post and make available on Celestia's data availability (DA) layer.
+A blob (a.k.a. [BLOB](https://en.wikipedia.org/wiki/Object_storage#Origins)) is a Binary Large Object. In other words, a blob is arbitrary data. In this case, it's data that you want to post and make available on Celestia's data availability (DA) layer.
 
 Your light node will allow you to post data, and then use DAS to sample and retrieve it from the DA network. Let's get started!
 
