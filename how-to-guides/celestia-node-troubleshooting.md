@@ -150,7 +150,7 @@ making the request:
 ```bash
 ❯ celestia blob get 1318129 0x42690c204d39600fddd3 0MFhYKQUi2BU+U1jxPzG7QY2BVV1lb3kiU+zAK7nUiY=
 {
- "result": "RPC client error: sendRequest failed: http status 401 Unauthorized unmarshaling response: EOF"
+ "result": "RPC client error: sendRequest failed: http status 401 Unauthorized unmarshalling response: EOF"
 }
 ```
 
