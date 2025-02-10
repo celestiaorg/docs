@@ -52,7 +52,6 @@ each tutorial guide.
 
 | Node type        | Memory      | CPU         | Disk       | Bandwidth |
 |------------------|-------------|-------------|------------|-----------|
-| Validator        | 48 GB RAM   | 8 cores   | 6 TiB NVME  | 1 Gbps    |
 | Consensus node   | 64 GB RAM   | 8 cores   | 6 TiB NVME  | 1 Gbps    |
 
 
