@@ -24,13 +24,7 @@ Light nodes have the following behavior:
 
 ## Hardware requirements
 
-The following minimum hardware requirements are recommended for running
-a light node:
-
-- Memory: **500 MB RAM (minimum)**
-- CPU: **Single Core**
-- Disk: **100 GB SSD Storage**
-- Bandwidth: **56 Kbps for Download/56 Kbps for Upload**
+See [hardware requirements](/how-to-guides/nodes-overview.md#recommended-celestia-node-requirements).
 
 ## Quickstart: Run a light node in your browser
 

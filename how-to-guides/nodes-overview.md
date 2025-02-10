@@ -36,15 +36,24 @@ each tutorial guide.
 | Node type         | Memory      | CPU         | Disk       | Bandwidth |
 |-------------------|-------------|-------------|------------|-----------|
 | Light node        | 500 MB RAM  | Single core | 100 GB SSD | 56 Kbps   |
-| Bridge node       | 24 GB RAM   | 8 cores     | 5 TiB NVME  | 1 Gbps    |
-| Full storage node | 24 GB RAM   | 8 cores   | 5 TiB NVME  | 1 Gbps    |
+| Bridge node       | 64 GB RAM   | 8 cores     | 5 TiB NVME  | 1 Gbps    |
+| Full storage node | 64 GB RAM   | 8 cores   | 5 TiB NVME  | 1 Gbps    |
 
-## Consensus nodes
+### Consensus nodes
+
+#### Non-archival consensus nodes
 
 | Node type        | Memory      | CPU         | Disk       | Bandwidth |
 |------------------|-------------|-------------|------------|-----------|
-| Validator        | 24 GB RAM   | 8 cores     | 3 TiB SSD   | 1 Gbps    |
-| Consensus node   | 24 GB RAM   | 8 cores   | 3 TiB SSD   | 1 Gbps    |
+| Validator        | 24 GB RAM   | 8 cores     | 3 TiB NVME   | 1 Gbps    |
+| Consensus node   | 24 GB RAM   | 8 cores     | 3 TiB NVME   | 1 Gbps    |
+
+#### Archival consensus nodes
+
+| Node type        | Memory      | CPU         | Disk       | Bandwidth |
+|------------------|-------------|-------------|------------|-----------|
+| Validator        | 48 GB RAM   | 8 cores   | 6 TiB NVME  | 1 Gbps    |
+| Consensus node   | 64 GB RAM   | 8 cores   | 6 TiB NVME  | 1 Gbps    |
 
 
 Please provide any feedback on the tutorials and guides. If you notice

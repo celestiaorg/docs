@@ -1,5 +1,5 @@
 ---
-\description: Learn how to set up your Celestia bridge node.
+description: Learn how to set up your Celestia bridge node.
 ---
 
 # Setting up a Celestia bridge node
@@ -44,13 +44,7 @@ From an implementation perspective, Bridge nodes run two separate processes:
 
 ## Hardware requirements
 
-The following hardware minimum requirements are recommended for running the
-bridge node:
-
-- Memory: **24 GB RAM (minimum)**
-- CPU: **8 cores**
-- Disk: **5 TiB NVME Storage**
-- Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
+See [hardware requirements](/how-to-guides/nodes-overview.md#recommended-celestia-node-requirements).
 
 ## Setting up your bridge node
 
