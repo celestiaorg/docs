@@ -19,13 +19,7 @@ between one another.
 
 ## Hardware requirements
 
-The following hardware minimum requirements are recommended for running
-the full storage node:
-
-- Memory: **16 GB RAM (minimum)**
-- CPU: **6 cores**
-- Disk: **2 TB NVME Storage**
-- Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
+See [hardware requirements](/how-to-guides/nodes-overview.md#recommended-celestia-node-requirements).
 
 ## Setting up your full storage node
 

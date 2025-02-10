@@ -19,12 +19,7 @@ consensus layer.
 
 ## Minimum hardware requirements
 
-The following minimum hardware requirements are recommended for running a consensus node:
-
-- Memory: **16 GB RAM**
-- CPU: **Quad-Core**
-- Disk: **2 TB SSD Storage**
-- Bandwidth: **1 Gbps for Download/1 Gbps for Upload**
+See [hardware requirements](/how-to-guides/nodes-overview.md#recommended-celestia-node-requirements).
 
 ## Set up a consensus node
 
