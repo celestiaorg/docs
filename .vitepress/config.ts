@@ -157,7 +157,7 @@ export default {
         (file) => /Untitled-Sans-Regular\.\w+\.woff2/
       );
       const untitledSansMediumFont = assets.find(
-        (file) => /Unititled-Sans-Medium\.\w+\.woff2/
+        (file) => /Untitled-Sans-Medium\.\w+\.woff2/
       );
 
       const headConfig: HeadConfig[] = [];
