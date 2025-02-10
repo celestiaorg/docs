@@ -110,6 +110,7 @@ These RPC providers are meant to be used in production environments.
 | Numia | For RPC access: <https://docs.numia.xyz/overview/rpc-api-access> |
 | Numia | For data warehouse access: <https://docs.numia.xyz/overview/sql-access/chains/celestia> |
 | Grove | <https://www.grove.city/> |
+| QuickNode | <https://www.quicknode.com/chains/celestia> |
 
 :::warning
 Do not rely on the free community endpoints listed below
