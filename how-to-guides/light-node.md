@@ -241,7 +241,7 @@ Where `/path-to-directory` is the path to the directory containing the
 
 ```json
 {
-  "x-token": "2d33bb8ba72af4e02d12439a5076ba46a2c084e3"
+  "x-token": "<YOUR-SECRET-X-TOKEN"
 }
 ```
 
