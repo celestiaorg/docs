@@ -23,7 +23,61 @@ import UrlImageButton from '../.vitepress/components/UrlImageButton.vue';
 So, you’re ready to start experimenting and building on Celestia?
 Here are a few options that are currently available for developers.
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
+<style>
+.framework-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.framework-grid > * {
+  height: 0;
+  padding-bottom: 112.5%;
+  position: relative;
+}
+
+.framework-grid > * > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .framework-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .framework-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.framework-grid :deep(.url-image-button) {
+  width: 100% !important;
+  height: 140px !important;
+  padding: 12px !important;
+  font-size: 14px !important;
+}
+
+.framework-grid :deep(.button-icon) {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.framework-grid :deep(.notes-text) {
+  font-size: 11px !important;
+  margin-top: 2px !important;
+}
+</style>
+
+<div class="framework-grid">
   <UrlImageButton url="/how-to-guides/intro-to-op-stack" imageSrc="/build/opstack.webp" text="OP Stack" notes="EVM" target="_self" alt="OP Stack logo" aria-label="OP Stack"/>
   <UrlImageButton url="/how-to-guides/arbitrum-integration" imageSrc="/build/arbitrum.webp" text="Arbitrum Orbit" notes="EVM" target="_self" alt="Arbitrum logo" aria-label="Arbitrum"/>
   <UrlImageButton url="https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup" imageSrc="/build/sovereign.webp" text="Sovereign SDK" notes="Sovereign" alt="Sovereign logo" aria-label="Sovereign"/>
@@ -36,16 +90,13 @@ Here are a few options that are currently available for developers.
 
 Deploy your rollup with a RaaS provider.
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
+<div class="framework-grid">
   <UrlImageButton url="https://altlayer.io/raas/" imageSrc="/build/altlayer.webp" text="AltLayer" notes="Orbit, OP Stack" alt="AltLayer logo" aria-label="AltLayer"/>
   <UrlImageButton url="https://www.astria.org/" imageSrc="/build/astria.webp" text="Astria" alt="Astria logo" aria-label="Astria"/>
   <UrlImageButton url="https://www.caldera.xyz/" imageSrc="/build/caldera.webp" text="Caldera" notes="Orbit, OP Stack" alt="Caldera logo" aria-label="Caldera"/>
   <UrlImageButton url="https://conduit.xyz/" imageSrc="/build/conduit.webp" text="Conduit" notes="Orbit, OP Stack" alt="Conduit logo" aria-label="Conduit"/>
-  <!-- <UrlImageButton url="https://gateway.fm/" imageSrc="/build/gateway.webp" text="Gateway" notes="Polygon CDK" alt="Gateway logo" aria-label="Gateway"/> -->
   <UrlImageButton url="https://www.gelato.network/" imageSrc="/build/gelato.webp" text="Gelato" notes="Orbit, OP Stack" alt="Gelato logo" aria-label="Gelato"/>
   <UrlImageButton url="https://www.karnot.xyz/" imageSrc="/build/karnot.webp" text="Karnot" notes="Starknet" alt="Karnot logo" aria-label="Karnot"/>
-  <!-- <UrlImageButton url="https://lumoz.org/" imageSrc="/build/lumoz.webp" text="Lumoz" notes="Polygon CDK" alt="Lumoz logo" aria-label="Lumoz"/> -->
-  <!-- <UrlImageButton url="https://snapchain.dev/" imageSrc="/build/snapchain.webp" text="Snapchain" notes="Polygon CDK" alt="Snapchain logo" aria-label="Snapchain"/> -->
   <UrlImageButton url="https://docs.vistara.dev/" imageSrc="/build/vistara.webp" text="Vistara" alt="Vistara logo" aria-label="Vistara"/>
   <UrlImageButton url="https://www.zeeve.io/" imageSrc="/build/zeeve.webp" text="Zeeve" notes="Orbit, OP Stack" alt="Zeeve logo" aria-label="Zeeve"/>
 </div>
@@ -54,7 +105,7 @@ Deploy your rollup with a RaaS provider.
 
 Deploy your smart contracts on dedicated EVM-compatible rollups.
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px;">
+<div class="framework-grid">
   <UrlImageButton url="https://bubstestnet.com/" imageSrc="/build/caldera.webp" text="Bubs testnet" notes="OP Stack" alt="Caldera logo" aria-label="Caldera Bubs testnet"/>
   <UrlImageButton url="https://raas.gelato.network/rollups/details/public/opcelestia-raspberry" imageSrc="/build/gelato.webp" text="Raspberry testnet" notes="OP Stack" alt="Gelato logo" aria-label="Gelato Raspberry testnet"/>
 </div>
