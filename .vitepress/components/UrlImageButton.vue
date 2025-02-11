@@ -56,11 +56,12 @@ export default {
   }
 
   .notes-text {
-    font-size: 12px !important;
+    font-size: 14px !important;
     margin-top: 2px !important;
   }
 
   .button-text {
+    font-size: 16px;
     line-height: 1.1;
     margin: 2px 0;
   }
