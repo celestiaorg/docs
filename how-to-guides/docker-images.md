@@ -88,6 +88,12 @@ Ubuntu. You can
    export RPC_URL=this-is-an-rpc-url.com
    ```
 
+   Then set the port for the RPC_URL:
+
+   ```bash
+   export RPC_PORT=9090
+   ```
+
 4. Run the image from the command line:
 
    ::: code-group
@@ -95,19 +101,19 @@ Ubuntu. You can
    ```bash-vue [Mainnet Beta]
    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
        ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
-       celestia $NODE_TYPE start --core.ip $RPC_URL --p2p.network $NETWORK
+       celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
    ```
 
    ```bash-vue [Mocha]
    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
        ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
-       celestia $NODE_TYPE start --core.ip $RPC_URL --p2p.network $NETWORK
+       celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
    ```
 
    ```bash-vue [Arabica]
    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
        ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
-       celestia $NODE_TYPE start --core.ip $RPC_URL --p2p.network $NETWORK
+       celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
    ```
 
    :::
@@ -211,21 +217,21 @@ A full start command will look similar to below.
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
-    celestia light start --core.ip $RPC_URL --p2p.network $NETWORK
+    celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
 ```
 
 ```bash-vue [Mocha]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
-    celestia light start --core.ip $RPC_URL --p2p.network $NETWORK
+    celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
 ```
 
 ```bash-vue [Arabica]
 docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
     -v $HOME/my-node-store:/home/celestia \
     ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
-    celestia light start --core.ip $RPC_URL --p2p.network $NETWORK
+    celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
 ```
 
 :::

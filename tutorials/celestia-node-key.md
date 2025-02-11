@@ -184,7 +184,7 @@ import mochaVersions from "/.vitepress/constants/mocha_versions.js";
 ```bash-vue
 docker run --name celestia-node -e NODE_TYPE=light -e P2P_NETWORK=mocha -p 26659:26659 \
 ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} celestia light start \
---core.ip rpc-mocha.pops.one --p2p.network mocha
+--core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
 ```
 
 <!-- markdownlint-enable MD013 -->
@@ -249,7 +249,7 @@ services:
     image: celestia-node
     environment:
       - NODE_TYPE=light
-    command: celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha --keyring.keyname my_celes_key
+    command: celestia light start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha --keyring.keyname my_celes_key
     volumes:
       - ${PWD}/keys:/root/.celestia-light-mocha-4/keys
     ports:

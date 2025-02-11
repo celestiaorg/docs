@@ -54,7 +54,7 @@ the need to restart the node.
 First, start your node:
 
 ```bash
-celestia light start --p2p.network mocha --core.ip $RPC_URL
+celestia light start --p2p.network mocha --core.ip $RPC_URL --core.port $RPC_PORT
 ```
 
 Then, grant the fee to the grantee:
@@ -71,7 +71,7 @@ grantee. If not specified, the grantee does not have a spend limit.
 Start your node:
 
 ```bash
-celestia light start --core.ip $RPC_URL --p2p.network=mocha
+celestia light start --core.ip $RPC_URL --p2p.network=mocha --core.port $RPC_PORT
 ```
 
 To check the balance of a light node, use the following command:
@@ -163,7 +163,8 @@ the RPC URL:
 ```bash
 export GRANTER_ADDRESS=<your-granter-account-address>
 export GRANTEE_ADDRESS=<your-grantee-account-address>
-export RPC_URL=https://rpc-mocha.pops.one:443
+export RPC_URL=https://rpc-mocha.pops.one
+export RPC_PORT=443
 ```
 
 Then, send the feegrant transaction:

@@ -67,15 +67,11 @@ Follow the tutorial for [installing `celestia-node`](./celestia-node.md).
 Run the following:
 
 ```sh
-celestia bridge init --core.ip <URI>
+celestia bridge init --core.ip <URI> --core.port <port>
 ```
 
-The `--core.ip` gRPC port defaults to 9090,
-so if you do not specify it in the command
-line, it will default to that port. You can
-add the port after the IP address or use the
-`--core.grpc.port` flag to specify another
-port if you prefer.
+After v0.21.5, the `--core.port` must be specified.
+In most cases, it is port 9090 by default.
 
 :::warning Important
 Make sure port 2121 TCP/UDP is open and publicly accessible on your bridge node so it can be discovered by other peers in the DHT network. This port is essential for P2P connectivity and if not properly configured, your node won't be able to participate in the network effectively.
@@ -99,15 +95,15 @@ Here is an example of initializing the bridge node:
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia bridge init --core.ip <URI>
+celestia bridge init --core.ip <URI> --core.port <port>
 ```
 
 ```sh [Mocha]
-celestia bridge init --core.ip <URI> --p2p.network mocha
+celestia bridge init --core.ip <URI> --core.port <port> --p2p.network mocha
 ```
 
 ```sh [Arabica]
-celestia bridge init --core.ip <URI> --p2p.network arabica
+celestia bridge init --core.ip <URI> --core.port <port> --p2p.network arabica
 ```
 
 :::
@@ -118,20 +114,20 @@ Start the bridge node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
-celestia bridge start --core.ip <URI>
+celestia bridge start --core.ip <URI> --core.port <port>
 ```
 
 Here is an example of starting the bridge node on Mocha:
 
 ```sh
-celestia bridge start --core.ip rpc-mocha.pops.one:26657 --p2p.network mocha
+celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
 ```
 
 And on Arabica:
 
 ```sh
 celestia bridge start --core.ip validator-1.celestia-arabica-11.com \
-  --p2p.network arabica
+  --p2p.network arabica --core.port 9090
 ```
 
 You can create your key for your node by [following the `cel-key` instructions](/tutorials/celestia-node-key.md).
@@ -172,17 +168,18 @@ In order to run a bridge node using a custom key:
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key>
+celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
+    --core.port <port>
 ```
 
 ```sh [Mocha]
 celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-  --p2p.network mocha
+    --p2p.network mocha --core.port <port>
 ```
 
 ```sh [Arabica]
 celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-  --p2p.network arabica
+  --p2p.network arabica --core.port <port>
 ```
 
 :::

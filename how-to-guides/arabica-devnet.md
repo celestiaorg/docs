@@ -117,7 +117,7 @@ to their respective DA node.
 :::tip EXAMPLE
 
 ```bash
-celestia <da_type> start --core.ip <url> --core.grpc.port <port>
+celestia <da_type> start --core.ip <url> --core.port <port>
 ```
 
 :::
@@ -131,7 +131,8 @@ state access, using default ports:
 
 ```bash
 celestia light start --p2p.network arabica \
-  --core.ip validator-1.celestia-arabica-11.com
+  --core.ip validator-1.celestia-arabica-11.com \
+  --core.port 9090
 ```
 
 :::tip Bridge node runners

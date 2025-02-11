@@ -19,7 +19,8 @@ command:
 ```sh
 celestia <node-type> start --metrics.tls=<boolean> \
     --metrics --metrics.endpoint <URI> \
-    --p2p.network <network> --core.ip <URI>
+    --p2p.network <network> \
+    --core.ip <URI> --core.port <port>
 ```
 
 Add metrics flags to your node start command and restart your node to apply it.
@@ -39,7 +40,7 @@ Here is an example for Mainnet Beta:
 ```sh
 celestia <node-type> start --metrics.tls=true \
     --metrics --metrics.endpoint otel.celestia.observer \
-    --core.ip <URI>
+    --core.ip <URI> --core.port <port>
 ```
 
 ### Mocha testnet
@@ -49,7 +50,7 @@ Here is an example for Mocha testnet:
 ```sh
 celestia <node-type> start --metrics.tls=true \
     --metrics --metrics.endpoint otel.mocha.celestia.observer \
-    --core.ip <URI> --p2p.network mocha
+    --core.ip <URI> --core.port <port> --p2p.network mocha
 ```
 
 ### Arabica devnet
@@ -59,7 +60,7 @@ Here is an example for Arabica devnet:
 ```sh
 celestia <node-type> start --metrics.tls=true \
     --metrics --metrics.endpoint otel.arabica.celestia.observer \
-    --core.ip <URI> --p2p.network arabica
+    --core.ip <URI> --core.port <port> --p2p.network arabica
 ```
 
 ### TLS connections
@@ -82,12 +83,12 @@ Here are examples of how to use it:
 # To enable TLS connection
 celestia <node-type> start --metrics.tls=true --metrics \
     --metrics.endpoint <URI> \
-    --p2p.network <network> --core.ip <URI>
+    --p2p.network <network> --core.ip <URI> --core.port <port>
 
 # To disable TLS connection
 celestia <node-type> start --metrics.tls=false --metrics \
     --metrics.endpoint <URI> \
-    --p2p.network <network> --core.ip <URI>
+    --p2p.network <network> --core.ip <URI> --core.port <port>
 ```
 
 ## Metrics endpoint design considerations

@@ -95,7 +95,7 @@ In the same terminal you initialized the node store and set the variable for `TR
 
 ```bash
 celestia light start --headers.trusted-hash $TRUSTED_HASH \
-    --p2p.network mocha --core.ip rpc-mocha.pops.one
+    --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
 ```
 
 The `core.ip` flag is used to specify the consensus RPC endpoints you want to connect to, this is the same one we got the trusted height and hash from. We'll use `rpc-mocha.pops.one` from the P-OPS team for Mocha testnet. The `headers.trusted-hash` flag will set the trusted hash from the previous section.

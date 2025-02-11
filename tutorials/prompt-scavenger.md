@@ -60,7 +60,7 @@ To fund your account, copy the address from the "ADDRESS" log and paste it in th
 While waiting for our account to be funded, we can start our light node.
 
 ```sh
-celestia light start --core.ip validator-1.celestia-arabica-11.com --p2p.network arabica --rpc.skip-auth
+celestia light start --core.ip validator-1.celestia-arabica-11.com --core.port 9090 --p2p.network arabica --rpc.skip-auth
 ```
 
 You should now have a running light node on your machine.

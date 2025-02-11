@@ -106,7 +106,7 @@ You can [follow the tutorial for installing `celestia-node`](./celestia-node.md)
 Run the following:
 
 ```bash
-celestia bridge init --core.ip <URI>
+celestia bridge init --core.ip <URI> --core.port <port>
 ```
 
 :::tip
@@ -175,10 +175,10 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
-| Name                           | Type          | Chain ID                       | CLI Usage                                  | 
+| Name                           | Type          | Chain ID                       | CLI Usage                                  |
 |--------------------------------|---------------|--------------------------------|--------------------------------------------|
-| [Celestia](./mainnet.md)       | Mainnet Beta  | {{ constants.mainnetChainId }} | `--chain-id {{ constants.mainnetChainId }}`| 
-| [Mocha](./mocha-testnet.md)    | Testnet       | {{ constants.mochaChainId }}   | `--chain-id {{ constants.mochaChainId }}`  | 
+| [Celestia](./mainnet.md)       | Mainnet Beta  | {{ constants.mainnetChainId }} | `--chain-id {{ constants.mainnetChainId }}`|
+| [Mocha](./mocha-testnet.md)    | Testnet       | {{ constants.mochaChainId }}   | `--chain-id {{ constants.mochaChainId }}`  |
 | [Arabica](./arabica-devnet.md) | Devnet        | {{ constants.arabicaChainId }} | `--chain-id {{ constants.arabicaChainId }}`|
 
 Continuing the validator tutorial, here are the steps to connect your
@@ -254,7 +254,7 @@ First, set up a new [consensus node](./consensus-node.md) on the new server and 
 celestia-appd status | jq '{ "catching_up": .SyncInfo.catching_up }'
 ```
 
-If the node is synced, the output will look like this: 
+If the node is synced, the output will look like this:
 
 ```json
 {
@@ -298,7 +298,7 @@ cat ~/.celestia-app/config/priv_validator_key.json
 
 ### Step 4: Start the new validator
 
-If everything checks out, you can now restart the new node with the updated validator key: 
+If everything checks out, you can now restart the new node with the updated validator key:
 
 ```bash
 sudo systemctl restart <SERVICE_NAME>

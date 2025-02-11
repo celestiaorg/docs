@@ -90,15 +90,18 @@ for information on which ports are required to be open on your machine.
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia light start --core.ip rpc.celestia.pops.one --p2p.network celestia
+celestia light start --core.ip rpc.celestia.pops.one \
+    --core.port 9090 --p2p.network celestia
 ```
 
 ```sh [Mocha]
-celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
+celestia light start --core.ip rpc-mocha.pops.one \
+    --core.port 9090 --p2p.network mocha
 ```
 
 ```sh [Arabica]
-celestia light start --core.ip validator-1.celestia-arabica-11.com --p2p.network arabica
+celestia light start --core.ip validator-1.celestia-arabica-11.com \
+    --core.port 9090 --p2p.network arabica
 ```
 
 :::
@@ -123,18 +126,19 @@ following command:
 
 ```sh [Mainnet Beta]
 celestia light start --keyring.keyname my_celes_key \
-    --core.ip consensus.lunaroasis.net
+    --core.ip consensus.lunaroasis.net --core.port 9090
 ```
 
 ```sh [Mocha]
 celestia light start --keyring.keyname my_celes_key \
-    --core.ip rpc-mocha.pops.one --p2p.network mocha
+    --core.ip rpc-mocha.pops.one --core.port 9090 \
+    --p2p.network mocha
 ```
 
 ```sh [Arabica]
 celestia light start --keyring.keyname my_celes_key \
     --core.ip validator-1.celestia-arabica-11.com \
-    --p2p.network arabica
+    --core.port 9090 --p2p.network arabica
 ```
 
 :::
@@ -180,17 +184,21 @@ In order to run a light node using a custom key:
 
 ```sh [Mainnet Beta]
 celestia light start --core.ip <URI> \
-    --keyring.keyname <name-of-custom-key> \
+    --core.port <port> \
+    --keyring.keyname <name-of-custom-key>
 ```
 
 ```sh [Arabica]
 celestia light start --core.ip <URI> \
+    --core.port <port> \
     --keyring.keyname <name-of-custom-key> \
     --p2p.network arabica
+
 ```
 
 ```sh [Mocha]
 celestia light start --core.ip <URI> \
+    --core.port <port> \
     --keyring.keyname <name-of-custom-key> \
     --p2p.network mocha
 ```

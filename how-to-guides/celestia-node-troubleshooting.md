@@ -19,7 +19,7 @@ Note: If you do not select a network, the default network will be Mainnet Beta.
 
 ```sh
 celestia <node-type> init --p2p.network <network>
-celestia <node-type> start --p2p.network <network> --core.ip <URI>
+celestia <node-type> start --p2p.network <network> --core.ip <URI> --core.port <port>
 ```
 
 :::tip
@@ -121,7 +121,7 @@ Next, start your node:
 
 ```bash
 celestia full start --core.ip rpc-mocha.pops.one --p2p.network mocha \
-    --node.store /home/user/celestia-<node-type>-location/
+    --node.store /home/user/celestia-<node-type>-location/ --core.port <port>
 ```
 
 If you choose to change the location of your node store,

@@ -75,7 +75,7 @@ Refer to
 for information on which ports are required to be open on your machine.
 
 ```sh
-celestia full start --core.ip <URI>
+celestia full start --core.ip <URI> --core.port <port>
 ```
 
 Using an RPC of your own, or one from
@@ -129,18 +129,18 @@ In order to run a full storage node using a custom key:
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia full start --core.ip <URI> \
+celestia full start --core.ip <URI> --core.port <port> \
   --keyring.keyname <name-of-custom-key> \
 ```
 
 ```sh [Mocha]
-celestia full start --core.ip <URI> \
+celestia full start --core.ip <URI> --core.port <port> \
   --keyring.keyname <name-of-custom-key> \
   --p2p.network mocha
 ```
 
 ```sh [Arabica]
-celestia full start --core.ip <URI> \
+celestia full start --core.ip <URI> --core.port <port> \
   --keyring.keyname <name-of-custom-key> \
   --p2p.network arabica
 ```

@@ -189,13 +189,13 @@ connection, since an HTTP one will not support subscriptions. This RPC URL is di
 from the `parent-chain.connection.url` object used in the node config, and is
 not necessary when running a full node. WebSocket (WSS) URLs which are
 essential for real-time data fetching and interaction with the
-Arbitrum Sepolia network. 
+Arbitrum Sepolia network.
 
 To establish a WebSocket connection for your rollup to Arbitrum Sepolia, it's
 recommended to
 [find an RPC provider with WSS connections from Arbitrum's docs](https://docs.arbitrum.io/build-decentralized-apps/reference/node-providers).
 
-For this example, we will make an account on Alchemy. Follow these steps to set up your account and obtain a WSS URL using Alchemy: 
+For this example, we will make an account on Alchemy. Follow these steps to set up your account and obtain a WSS URL using Alchemy:
 
 1. Visit [Alchemy's website](https://www.alchemy.com/) and sign up for an account.
 2. Once logged in, create a new app by selecting the Arbitrum network, specifically
@@ -205,7 +205,7 @@ targeting the Arbitrum Sepolia testnet.
 4. In the next step, use this WSS URL in your `nodeConfig.json` under the
 `celestia-cfg.eth-rpc` object to ensure your node can establish a
 WebSocket connection to the Arbitrum Sepolia network
-and successfully subscribe to Blobstream events. 
+and successfully subscribe to Blobstream events.
 
 Without a WSS connection, the Batch Poster won't be able to subscribe to Blobstream
 events, and thus will fall back to posting data to parent chain.
@@ -229,7 +229,7 @@ extra_hosts:
 :::
 
 ```bash
-celestia light start --p2p.network mocha --core.ip <RPC_URL>
+celestia light start --p2p.network mocha --core.ip <RPC_URL> --core.port 9090
 ```
 
 To set your light node's auth token, you will use the auth
