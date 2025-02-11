@@ -51,6 +51,11 @@ Install the `celestia` binary by
 
 ## Initialize the light node
 
+:::tip
+If you would like to skip sampling the entire chain's headers, you can
+[initialize the light node from a trusted hash](/how-to-guides/celestia-node-trusted-hash.md).
+:::
+
 Run the following command:
 
 ::: code-group
@@ -216,6 +221,29 @@ To migrate a light node ID:
 
 Follow
 [the tutorial on setting up the light node as a background process with SystemD](./systemd.md#celestia-light-node).
+
+### Optional: start light node with core endpoint with authenication
+
+If you are running a light node with a core endpoint that requires authentication,
+you can pass the directory containing the json of your x-token to the light node with
+the following command:
+
+```sh
+celestia light start \
+    --core.ip snowy-methodical-leaf.celestia-mainnet.quiknode.pro \
+    --core.tls \
+    --core.xtoken.path /path-to-directory \
+    --core.port 9090
+```
+
+Where `/path-to-directory` is the path to the directory containing the
+`x-token.json` file with the format of:
+
+```json
+{
+  "x-token": "2d33bb8ba72af4e02d12439a5076ba46a2c084e3"
+}
+```
 
 ## Data availability sampling
 

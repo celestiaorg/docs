@@ -112,6 +112,11 @@ These RPC providers are meant to be used in production environments.
 | Grove | <https://www.grove.city/> |
 | QuickNode | <https://www.quicknode.com/chains/celestia> |
 
+If you are using QuickNode or another provider with authentication of endpoints,
+see [the light node guide](/how-to-guides/light-node.md#optional-start-light-node-with-core-endpoint-with-authenication
+)
+to learn how to use an endpoint with x-token.
+
 :::warning
 Do not rely on the free community endpoints listed below
 for production deployments. Production deployments should rely

@@ -99,11 +99,13 @@ celestia bridge init --core.ip <URI> --core.port <port>
 ```
 
 ```sh [Mocha]
-celestia bridge init --core.ip <URI> --core.port <port> --p2p.network mocha
+celestia bridge init --core.ip <URI> --core.port <port> \
+    --p2p.network mocha
 ```
 
 ```sh [Arabica]
-celestia bridge init --core.ip <URI> --core.port <port> --p2p.network arabica
+celestia bridge init --core.ip <URI> --core.port <port> \
+    --p2p.network arabica
 ```
 
 :::

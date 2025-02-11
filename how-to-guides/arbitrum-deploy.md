@@ -229,7 +229,8 @@ extra_hosts:
 :::
 
 ```bash
-celestia light start --p2p.network mocha --core.ip <RPC_URL> --core.port 9090
+celestia light start --p2p.network mocha --core.ip <RPC_URL> \
+    --core.port 9090
 ```
 
 To set your light node's auth token, you will use the auth

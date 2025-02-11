@@ -19,7 +19,8 @@ Note: If you do not select a network, the default network will be Mainnet Beta.
 
 ```sh
 celestia <node-type> init --p2p.network <network>
-celestia <node-type> start --p2p.network <network> --core.ip <URI> --core.port <port>
+celestia <node-type> start --p2p.network <network> \
+    --core.ip <URI> --core.port <port>
 ```
 
 :::tip
