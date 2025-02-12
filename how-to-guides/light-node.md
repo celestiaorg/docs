@@ -192,11 +192,11 @@ celestia light start \
 ```
 
 Where `/path-to-directory` is the path to the directory containing the
-`x-token.json` file with the format of:
+`x-token.json` file. Ensure the file has restricted permissions (e.g., `chmod 600`) and contains:
 
 ```json
 {
-  "x-token": "<YOUR-SECRET-X-TOKEN"
+  "x-token": "<YOUR-SECRET-X-TOKEN>"
 }
 ```
 
