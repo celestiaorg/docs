@@ -10,7 +10,9 @@ import constants from '/.vitepress/constants/constants.js'
 import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 </script>
 
-Welcome to Celestia's quick-start guide! In this guide, we'll learn how to run a Celestia data availability sampling (DAS) light node to post and retrieve data blobs on Celestia's [Mocha testnet](./mocha-testnet.md).
+Welcome to Celestia's quick-start guide! In this guide, we'll learn how to run a Celestia data availability sampling (DAS) light node to post and retrieve data blobs on Celestia's [Mocha testnet](/mocha-testnet.md).
+
+> This is a self-contained tutorial optimized for getting started quickly on Mocha testnet. For complete documentation on installing celestia-node or running light nodes on other networks, see the [celestia-node installation guide](/how-to-guides/celestia-node.md) and [light node guide](/how-to-guides/light-node.md).
 
 A blob (a.k.a. [BLOB](https://en.wikipedia.org/wiki/Object_storage#Origins)) is a Binary Large OBject. In other words, a blob is arbitrary data. In this case, it's data that you want to post and make available on Celestia's data availability (DA) layer.
 
@@ -20,13 +22,13 @@ Your light node will allow you to post data, and then use DAS to sample and retr
 
 First we'll need to install the `celestia` binary to run our DAS light node. Use the following command to install a pre-built binary of [celestia-node](https://github.com/celestiaorg/celestia-node), for the latest release for Mocha testnet:
 
-> For this guide, select either your Go bin or system bin directory when prompted. If you're curious what [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-node.sh) is doing, check out [the celestia-node page](./celestia-node.md#installing-a-pre-built-binary).
+> For this guide to work out of the box, select either your Go bin or system bin directory when prompted. If you're curious what [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-node.sh) is doing, check out [the celestia-node page](./celestia-node.md#installing-a-pre-built-binary).
 
 ```bash-vue
 bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mochaVersions['node-latest-tag']}}
 ```
 
-Once you've installed `celestia`, double-check that you're using the right version by running:
+Once you've installed `celestia`, double-check that you're using the right version (`{{mochaVersions['node-latest-tag']}}`) by running:
 
 ```bash
 celestia version
@@ -70,7 +72,7 @@ You'll also see in this example, using the Mocha testnet and setting up a light 
 
 #### Set the trusted hash
 
-Setting and syncing to a trusted hash and height means your light node will not sample the entire chain. This is useful when you want to sync your light node quickly. However, it's important to note that this adds the trust assumption that you trust the entity where you get the hash and height from, in this case, the [P-OPS](https://pops.one)  team's consensus endpoint.
+Setting and syncing to a trusted hash and height means your light node will not sample the entire chain. This is useful when you want to sync your light node quickly. However, it's important to note that this adds the trust assumption that you trust the entity where you get the hash and height from, in this case, the [P-OPS](https://pops.one) team's consensus endpoint.
 
 Let's set the trusted hash!
 
@@ -224,9 +226,9 @@ Let's break it down:
 
 Congratulations! You've successfully learned how to run a light node to post and retrieve data from Celestia's Mocha testnet.
 
-## Diving deeper into the stack
+## Optional: Diving deeper into the stack
 
-This section covers some more in-depth topics that you may find useful when working with your Celestia light node.
+This section covers some more in-depth topics that you may find useful when working with your Celestia light node. For advanced configurations like running with custom keys, using SystemD, or authentication with core endpoints, see the [light node guide](/how-to-guides/light-node.md).
 
 ### Get your auth token
 

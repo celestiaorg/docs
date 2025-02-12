@@ -177,6 +177,29 @@ $request <CELESTIA-ADDRESS>
 Where `<CELESTIA-ADDRESS>` is the `celestia1******` address generated
 when you created the wallet.
 
+### Optional: start light node with core endpoint with authenication
+
+If you are running a light node with a core endpoint that requires authentication,
+you can pass the directory containing the json of your x-token to the light node with
+the following command:
+
+```sh
+celestia light start \
+    --core.ip snowy-methodical-leaf.celestia-mainnet.quiknode.pro \
+    --core.tls \
+    --core.xtoken.path /path-to-directory \
+    --core.port 9090
+```
+
+Where `/path-to-directory` is the path to the directory containing the
+`x-token.json` file with the format of:
+
+```json
+{
+  "x-token": "<YOUR-SECRET-X-TOKEN"
+}
+```
+
 ### Optional: run the light node with a custom key
 
 In order to run a light node using a custom key:
@@ -221,29 +244,6 @@ To migrate a light node ID:
 
 Follow
 [the tutorial on setting up the light node as a background process with SystemD](./systemd.md#celestia-light-node).
-
-### Optional: start light node with core endpoint with authenication
-
-If you are running a light node with a core endpoint that requires authentication,
-you can pass the directory containing the json of your x-token to the light node with
-the following command:
-
-```sh
-celestia light start \
-    --core.ip snowy-methodical-leaf.celestia-mainnet.quiknode.pro \
-    --core.tls \
-    --core.xtoken.path /path-to-directory \
-    --core.port 9090
-```
-
-Where `/path-to-directory` is the path to the directory containing the
-`x-token.json` file with the format of:
-
-```json
-{
-  "x-token": "<YOUR-SECRET-X-TOKEN"
-}
-```
 
 ## Data availability sampling
 
