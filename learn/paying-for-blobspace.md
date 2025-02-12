@@ -17,10 +17,10 @@ Merkelized into a data root commitment included in the block header.
 ![Lifecycle of a celestia-app Transaction](/img/learn/tx-lifecycle.png)
 
 See
-[the detailed life cycle of a Celestia transaction](./how-celestia-works/transaction-lifecycle.md).
+[the detailed life cycle of a Celestia transaction](/how-to-guides/how-celestia-works/transaction-lifecycle.md).
 
 Learn how to
-[submit data to Celestia’s data availability layer](../how-to-guides/submit-data.md).
+[submit data to Celestia’s data availability layer](/how-to-guides/submit-data.md).
 
 ## Fee market overview
 
@@ -30,4 +30,4 @@ comprised of a flat fee per transaction and then a variable fee based on the
 size of each blob in the transaction.
 
 Understand how fees are calculated on Celestia in
-[the overview on submitting PFB transactions](../how-to-guides/submit-data.md).
+[the overview on submitting PFB transactions](/how-to-guides/submit-data.md).

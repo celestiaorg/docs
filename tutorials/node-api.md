@@ -35,13 +35,13 @@ signing + providing RPC-level DOS protection.
 
 ### RPC API tutorial
 
-The [quick start guide](../how-to-guides/quick-start.md) is the easiest way to get started.
+The [quick start guide](/how-to-guides/quick-start.md) is the easiest way to get started.
 
-The [node tutorial](./node-tutorial.md), which uses the RPC CLI, is the
+The [node tutorial](/tutorials/node-tutorial.md), which uses the RPC CLI, is the
 recommended way
 to learn more about interacting with your Celestia node.
 
-Other ways to get started are with the [Rust](./rust-client-tutorial.md) and [Golang](./golang-client-tutorial.md) tutorials.
+Other ways to get started are with the [Rust](/tutorials/rust-client-tutorial.md) and [Golang](/tutorials/golang-client-tutorial.md) tutorials.
 
 ## Gateway API
 
@@ -61,5 +61,5 @@ functionality.
 
 ### Gateway API tutorial
 
-Check out the [Prompt scavenger gateway API tutorial](./prompt-scavenger.md)
+Check out the [Prompt scavenger gateway API tutorial](/tutorials/prompt-scavenger.md)
 for more details.

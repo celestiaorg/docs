@@ -22,7 +22,7 @@ Your light node will allow you to post data, and then use DAS to sample and retr
 
 First we'll need to install the `celestia` binary to run our DAS light node. Use the following command to install a pre-built binary of [celestia-node](https://github.com/celestiaorg/celestia-node), for the latest release for Mocha testnet:
 
-> For this guide to work out of the box, select either your Go bin or system bin directory when prompted. If you're curious what [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-node.sh) is doing, check out [the celestia-node page](./celestia-node.md#installing-a-pre-built-binary).
+> For this guide to work out of the box, select either your Go bin or system bin directory when prompted. If you're curious what [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-node.sh) is doing, check out [the celestia-node page](/how-to-guides/celestia-node.md#installing-a-pre-built-binary).
 
 ```bash-vue
 bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mochaVersions['node-latest-tag']}}
@@ -87,7 +87,7 @@ Let's set the trusted hash!
     1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
 
 > If you don't do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 94721, requestedHeight: 2983850"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
-Learn more in [the trusted hash quick sync guide](./celestia-node-trusted-hash.md).
+Learn more in [the trusted hash quick sync guide](/how-to-guides/celestia-node-trusted-hash.md).
 
 ### Start the light node
 
@@ -246,15 +246,15 @@ In the first part of this guide, we generated a key when we initialized the ligh
 
 An advanced option for key management is using the `cel-key` utility, which is a separate tool from the `celestia` binary. `cel-key` is a key management tool that allows you to create, import, and manage keys for your Celestia DA node.
 
-If you're using the quickstart script above, you will have to build `cel-key` separately from source. You can find the instructions for building `cel-key` in the [celestia-node](./celestia-node.md) documentation.
+If you're using the quickstart script above, you will have to build `cel-key` separately from source. You can find the instructions for building `cel-key` in the [celestia-node](/how-to-guides/celestia-node.md) documentation.
 
 ### Rust client tutorial
 
-If you're interested in writing a Rust program to interact with your Celestia light node, check out the [Rust client tutorial](../tutorials/rust-client-tutorial.md).
+If you're interested in writing a Rust program to interact with your Celestia light node, check out the [Rust client tutorial](/tutorials/rust-client-tutorial.md).
 
 ### Golang client tutorial
 
-If you're interested in writing a Golang program to interact with your Celestia light node, check out the [Golang client tutorial](../tutorials/golang-client-tutorial.md).
+If you're interested in writing a Golang program to interact with your Celestia light node, check out the [Golang client tutorial](/tutorials/golang-client-tutorial.md).
 
 ### Node store contents
 
@@ -275,10 +275,10 @@ In this guide, the node store for `~/.celestia-light-{{ constants.mochaChainId }
 
 ## Troubleshooting
 
-If you run into issues, check out the [troubleshooting](./celestia-node-troubleshooting.md) page for common problems and solutions.
+If you run into issues, check out the [troubleshooting](/how-to-guides/celestia-node-troubleshooting.md) page for common problems and solutions.
 
 ## Next steps
 
-Check out the [rollup stacks page](./rollup-stacks.md) to get started learning about ways to build whatever with Celestia underneath.
+Check out the [rollup stacks page](/how-to-guides/rollup-stacks.md) to get started learning about ways to build whatever with Celestia underneath.
 
 Head to the next page to learn about different node types for the consensus and DA networks.

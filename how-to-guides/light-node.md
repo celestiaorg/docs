@@ -42,12 +42,12 @@ You can also run Lumina on the first decentralized block explorer,
 
 This tutorial was performed on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
-Set up dependencies on the [setting up environment](./environment.md) page.
+Set up dependencies on the [setting up environment](/how-to-guides/environment.md) page.
 
 ### Install celestia-node
 
 Install the `celestia` binary by
-[building and installing celestia-node](./celestia-node.md).
+[building and installing celestia-node](/how-to-guides/celestia-node.md).
 
 ## Initialize the light node
 
@@ -152,7 +152,7 @@ Once you start the light node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
 `PayForBlob` transactions.
 
-You can [find the address using the RPC CLI](../tutorials/node-tutorial.md#get-your-account-address)
+You can [find the address using the RPC CLI](/tutorials/node-tutorial.md#get-your-account-address)
 or by running the following command in the
 `celestia-node` directory:
 
@@ -165,8 +165,8 @@ or by running the following command in the
 
 You have two networks to get testnet tokens from:
 
-- [Arabica devnet](./arabica-devnet.md#arabica-devnet-faucet)
-- [Mocha testnet](./mocha-testnet.md#mocha-testnet-faucet)
+- [Arabica devnet](/how-to-guides/arabica-devnet.md#arabica-devnet-faucet)
+- [Mocha testnet](/how-to-guides/mocha-testnet.md#mocha-testnet-faucet)
 
 You can request funds to your wallet address using the following command in Discord:
 
@@ -243,9 +243,9 @@ To migrate a light node ID:
 ### Optional: start light node with SystemD
 
 Follow
-[the tutorial on setting up the light node as a background process with SystemD](./systemd.md#celestia-light-node).
+[the tutorial on setting up the light node as a background process with SystemD](/how-to-guides/systemd.md#celestia-light-node).
 
 ## Data availability sampling
 
 With your light node running, you can check out
-[this tutorial on submitting `PayForBlob` transactions](../tutorials/node-tutorial.md).
+[this tutorial on submitting `PayForBlob` transactions](/tutorials/node-tutorial.md).

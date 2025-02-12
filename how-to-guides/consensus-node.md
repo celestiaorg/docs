@@ -28,11 +28,11 @@ instance machine.
 
 ### Set up the dependencies
 
-Follow the instructions on [installing dependencies](./environment.md).
+Follow the instructions on [installing dependencies](/how-to-guides/environment.md).
 
 ### Install celestia-app
 
-Follow the tutorial on [installing `celestia-app`](./celestia-app.md).
+Follow the tutorial on [installing `celestia-app`](/how-to-guides/celestia-app.md).
 
 ### Set up the P2P networks
 
@@ -325,7 +325,7 @@ celestia-appd start --v2-upgrade-height 1751707
 
 :::
 
-Optional: If you would like celestia-app to run as a background process, you can follow the [SystemD tutorial](./systemd.md).
+Optional: If you would like celestia-app to run as a background process, you can follow the [SystemD tutorial](/how-to-guides/systemd.md).
 
 ## Extra resources for consensus nodes
 

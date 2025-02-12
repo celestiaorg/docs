@@ -40,7 +40,7 @@ Code of Conduct. Organizers will respectfully enforce this code
 throughout the event. We genuinely appreciate the cooperation of all
 participants in maintaining a safe and empowering space for everyone.
 
-- [Celestia.org Community Code of Conduct](./coc.md)
+- [Celestia.org Community Code of Conduct](/community/coc.md)
 
 ### Signup form
 
@@ -81,6 +81,6 @@ companion in organizing events. Drawing upon the wisdom of seasoned event
 organizers, this resource is available for you and your co-organizers
 to explore and learn.
 
-- [Meetup Guide](./modular-meetup-guide.md)
-- [Modular Meetup Toolkit](./modular-meetup-toolkit.md)
-- [Speaker List](./speaker-list.md)
+- [Meetup Guide](/community/modular-meetup-guide.md)
+- [Modular Meetup Toolkit](/community/modular-meetup-toolkit.md)
+- [Speaker List](/community/speaker-list.md)

@@ -10,7 +10,7 @@ This guide contains the relevant sections for how to connect to Mocha,
 depending on the type of node you are running. Mocha testnet is designed
 to help validators test out their infrastructure and node software.
 Developers are encouraged to deploy their
-sovereign rollups on Mocha, but we also recommend [Arabica devnet](./arabica-devnet.md)
+sovereign rollups on Mocha, but we also recommend [Arabica devnet](/how-to-guides/arabica-devnet.md)
 for that as it is designed for development purposes.
 
 Mocha is a milestone in Celestia, allowing everyone to test out
@@ -24,14 +24,14 @@ participate in Mocha:
 
 Consensus:
 
-- [Consensus node](./consensus-node.md)
-- [Validator node](./validator-node.md)
+- [Consensus node](/how-to-guides/consensus-node.md)
+- [Validator node](/how-to-guides/validator-node.md)
 
 Data Availability:
 
-- [Bridge node](./bridge-node.md)
-- [Full storage node](./full-storage-node.md)
-- [Light node](./light-node.md)
+- [Bridge node](/how-to-guides/bridge-node.md)
+- [Full storage node](/how-to-guides/full-storage-node.md)
+- [Light node](/how-to-guides/light-node.md)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
@@ -92,7 +92,7 @@ to their respective DA node.
 :::tip Bridge nodes
 Mentioned below RPC endpoints do not guarantee you the download of full blocks from
 them. We advise that if you are running a bridge node, that you also
-run a local [consensus node](./consensus-node.md) in order to download
+run a local [consensus node](/how-to-guides/consensus-node.md) in order to download
 full blocks from it.
 :::
 
@@ -254,5 +254,5 @@ There are a few ways to stay informed about network upgrades on the Mocha testne
 - Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 - Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
 
-See the [network upgrade process page](./network-upgrade-process.md) to learn more
-about specific upgrades like the [Ginger network upgrade](./network-upgrade-process.md#ginger-network-upgrade).
+See the [network upgrade process page](/how-to-guides/network-upgrade-process.md) to learn more
+about specific upgrades like the [Ginger network upgrade](/how-to-guides/network-upgrade-process.md#ginger-network-upgrade).

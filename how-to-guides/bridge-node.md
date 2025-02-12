@@ -52,7 +52,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-Follow the tutorial for [installing the dependencies](./environment.md).
+Follow the tutorial for [installing the dependencies](/how-to-guides/environment.md).
 
 ## Deploy the Celestia bridge node
 
@@ -60,7 +60,7 @@ Follow the tutorial for [installing the dependencies](./environment.md).
 
 Install the `celestia-node` binary, which will be used to run the bridge node.
 
-Follow the tutorial for [installing `celestia-node`](./celestia-node.md).
+Follow the tutorial for [installing `celestia-node`](/how-to-guides/celestia-node.md).
 
 ### Initialize the bridge node
 
@@ -82,8 +82,8 @@ Refer to
 for information on which ports are required to be open on your machine.
 
 Using an RPC of your own, or one from the
-[list on the Mocha testnet page](./mocha-testnet.md#community-rpc-endpoints) or
-[list on the Arabica devnet page](./arabica-devnet.md#community-rpc-endpoints),
+[list on the Mocha testnet page](/how-to-guides/mocha-testnet.md#community-rpc-endpoints) or
+[list on the Arabica devnet page](/how-to-guides/arabica-devnet.md#community-rpc-endpoints),
 start your node.
 
 Connecting to a core endpoint with `--core.ip string`
@@ -145,13 +145,13 @@ You can find the address by running the following command:
 
 :::tip
 You do not need to declare a network for Mainnet Beta. Refer to
-[the chain ID section on the troubleshooting page for more information](./celestia-node-troubleshooting.md)
+[the chain ID section on the troubleshooting page for more information](/how-to-guides/celestia-node-troubleshooting.md)
 :::
 
 You can get testnet tokens from:
 
-- [Mocha](./mocha-testnet.md)
-- [Arabica](./arabica-devnet.md)
+- [Mocha](/how-to-guides/mocha-testnet.md)
+- [Arabica](/how-to-guides/arabica-devnet.md)
 
 :::tip NOTE
 If you are running a bridge node for your validator
@@ -196,7 +196,7 @@ To migrate a bridge node ID:
 ### Optional: start the bridge node with SystemD
 
 Follow the
-[tutorial on setting up the bridge node as a background process with SystemD](./systemd.md).
+[tutorial on setting up the bridge node as a background process with SystemD](/how-to-guides/systemd.md).
 
 You have successfully set up a bridge node that is syncing with the network.
 

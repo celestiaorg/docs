@@ -86,7 +86,7 @@ any monolithic chain. But, the data of those transactions get sent to a
 layer 1 blockchain to carry out the remaining functions.
 
 If you want to brush up on your understanding of modular blockchains,
-head over to [learn modular](../learn/how-celestia-works/monolithic-vs-modular.md).
+head over to [learn modular](/learn/how-celestia-works/monolithic-vs-modular.md).
 
 ## Benefits of modular blockchains
 

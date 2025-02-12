@@ -9,7 +9,7 @@ funding it, enabling a third-party account to cover the transaction fees.
 
 ## Pre-requisites
 
-- celestia-node binary (`celestia`) [installed](../how-to-guides/celestia-node.md)
+- celestia-node binary (`celestia`) [installed](/how-to-guides/celestia-node.md)
 - Access to a Mocha node (e.g., `https://rpc-mocha.pops.one:443`)
 - Running DA Light node on Mocha testnet
 - One account with sufficient funds, the "granter"
@@ -24,7 +24,7 @@ a DA node's (grantee) account. You will need one account that will
 contain the funds, the granter, and another account that will be in the
 DA node you run to post blobs, the grantee. You will see the DA node's account
 once you initialize the node. Learn more about managing accounts with
-`cel-key` in [create a wallet with celestia-node](../tutorials/celestia-node-key.md#create-a-wallet-with-celestia-node).
+`cel-key` in [create a wallet with celestia-node](/tutorials/celestia-node-key.md#create-a-wallet-with-celestia-node).
 
 ## Granting fee allowances using celestia-node
 

@@ -14,7 +14,7 @@ While this tutorial will go over the installation process
 of `cel-key`, it is recommended that you complete
 the following prerequisites first:
 
-- [Setting up your environment](../how-to-guides/environment.md)
+- [Setting up your environment](/how-to-guides/environment.md)
 
 Once you completed the prerequisite, you can proceed with this
 tutorial.
@@ -58,7 +58,7 @@ the tab for your node type:
 
 :::tip
 You do not need to declare a network for Mainnet Beta. Refer to
-[the chain ID section on the troubleshooting page for more information](../how-to-guides/celestia-node-troubleshooting.md)
+[the chain ID section on the troubleshooting page for more information](/how-to-guides/celestia-node-troubleshooting.md)
 :::
 
 ::: code-group
@@ -168,7 +168,7 @@ then enter your bip39 mnemonic:
 
 - Docker installed on your machine
 - Understanding of the
-  [guide on how to run celestia-node with Docker](../how-to-guides/docker-images.md).
+  [guide on how to run celestia-node with Docker](/how-to-guides/docker-images.md).
 
 ### Running your node
 
@@ -191,11 +191,11 @@ ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} celestia 
 
 :::tip
 Refer to
-[the ports section of the celestia-node troubleshooting page](../how-to-guides/celestia-node-troubleshooting.md#ports)
+[the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 
 You do not need to declare a network for Mainnet Beta. Refer to
-[the chain ID section on the troubleshooting page for more information](../how-to-guides/celestia-node-troubleshooting.md)
+[the chain ID section on the troubleshooting page for more information](/how-to-guides/celestia-node-troubleshooting.md)
 :::
 
 List active containers in another window with:

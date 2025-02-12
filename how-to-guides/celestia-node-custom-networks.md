@@ -18,7 +18,7 @@ export NETWORK=<network-name>
 export CELESTIA_CUSTOM="${NETWORK}:${GENESIS_HASH}:${BRIDGE}"
 ```
 
-Query your node ID [using the RPC CLI](../tutorials/node-tutorial.md#get-your-node-id).
+Query your node ID [using the RPC CLI](/tutorials/node-tutorial.md#get-your-node-id).
 These values with examples would look like:
 
 ```bash

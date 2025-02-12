@@ -27,11 +27,11 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-You can follow [the tutorial for setting up your dependencies](./environment.md)
+You can follow [the tutorial for setting up your dependencies](/how-to-guides/environment.md)
 
 ## Install celestia-node
 
-You can follow [the tutorial for installing `celestia-node`](./celestia-node.md)
+You can follow [the tutorial for installing `celestia-node`](/how-to-guides/celestia-node.md)
 
 ### Run the full storage node
 
@@ -79,9 +79,9 @@ celestia full start --core.ip <URI> --core.port <port>
 ```
 
 Using an RPC of your own, or one from
-[Mainnet Beta](./mainnet.md#integrations),
-[Mocha testnet](./mocha-testnet.md#integrations) or
-[Arabica devnet](./arabica-devnet.md#integrations),
+[Mainnet Beta](/how-to-guides/mainnet.md#integrations),
+[Mocha testnet](/how-to-guides/mocha-testnet.md#integrations) or
+[Arabica devnet](/how-to-guides/arabica-devnet.md#integrations),
 start your node.
 
 Connecting to a core endpoint with `--core.ip string`
@@ -102,13 +102,13 @@ You can find the address by running the following command:
 
 :::tip
 You do not need to declare a network for Mainnet Beta. Refer to
-[the chain ID section on the troubleshooting page for more information](./celestia-node-troubleshooting.md)
+[the chain ID section on the troubleshooting page for more information](/how-to-guides/celestia-node-troubleshooting.md)
 :::
 
 You can get testnet tokens from:
 
-- [Mocha](./mocha-testnet.md)
-- [Arabica](./arabica-devnet.md)
+- [Mocha](/how-to-guides/mocha-testnet.md)
+- [Arabica](/how-to-guides/arabica-devnet.md)
 
 :::tip NOTE
 If you are running a full-storage node for your sovereign
@@ -157,7 +157,7 @@ To migrate a full storage node ID:
 ### Optional: start the full storage node with SystemD
 
 If you would like to run the full storage node as a background process, follow the
-[SystemD tutorial](./systemd.md).
+[SystemD tutorial](/how-to-guides/systemd.md).
 
 With that, you are now running a Celestia full storage node.
 

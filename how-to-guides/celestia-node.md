@@ -16,7 +16,7 @@ import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 
 This section goes over building and installing celestia-node. This
 tutorial assumes you completed the steps in
-[setting up your development environment](./environment.md).
+[setting up your development environment](/how-to-guides/environment.md).
 
 Install the celestia-node binary by running the following
 commands:
@@ -144,17 +144,17 @@ View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-
 
 ## Next steps
 
-First, we recommend [reading the overview](./nodes-overview.md)
+First, we recommend [reading the overview](/how-to-guides/nodes-overview.md)
 of our node types, if you haven't yet.
 
 Now that you've installed Celestia Node, it's time to
-[pick your node type](./decide-node.md) and run your node!
+[pick your node type](/how-to-guides/decide-node.md) and run your node!
 
 If you're planning to run a light node,
-we recommend the [node RPC CLI tutorial](../tutorials/node-tutorial.md).
+we recommend the [node RPC CLI tutorial](/tutorials/node-tutorial.md).
 
 ## Upgrading your binary
 
 To upgrade your binary, you can install the latest version from the
 instructions above and restart your node. If you run into any issues,
-Refer to the [troubleshooting section](./celestia-node-troubleshooting.md).
+Refer to the [troubleshooting section](/how-to-guides/celestia-node-troubleshooting.md).

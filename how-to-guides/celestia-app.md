@@ -23,7 +23,7 @@ validator nodes and provide RPC endpoints.
 ## Building binary from source
 
 This section of the tutorial presumes you completed the steps in
-[setting up your own environment](./environment.md).
+[setting up your own environment](/how-to-guides/environment.md).
 
 The steps below will create a binary file named `celestia-appd`
 inside `$HOME/go/bin` folder which will be used later to run the node.
@@ -71,7 +71,7 @@ Be sure to select the correct network to install the binary for.
    ```
 
 You will see an output with the menu for `celestia-appd`. Learn more
-on the [helpful CLI commands page](./celestia-app-commands.md)
+on the [helpful CLI commands page](/how-to-guides/celestia-app-commands.md)
 
 ## Installing a pre-built binary
 
@@ -102,7 +102,7 @@ Follow the instructions in the terminal output to choose your installation
 preferences.
 
 You will see an output with the menu for `celestia-appd`. Learn more
-on the [helpful CLI commands page](./celestia-app-commands.md)
+on the [helpful CLI commands page](/how-to-guides/celestia-app-commands.md)
 
 View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-app.sh)
 to learn more about what it is doing.

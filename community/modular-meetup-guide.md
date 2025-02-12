@@ -191,7 +191,7 @@ an exceptional Celestia Modular Meetup.
      rollups, data availability, or other topics relevant to the
      Modular ecosystem. This will help you find speakers with
      expertise in the chosen subject.
-2. Utilize the [Speaker List](./speaker-list.md) provided by the Modular Meetup program
+2. Utilize the [Speaker List](/community/speaker-list.md) provided by the Modular Meetup program
    - As a meetup organizer, you have access to a curated
      list of talented speakers from Celestia Labs and the
      broader Modular ecosystem. This valuable resource can

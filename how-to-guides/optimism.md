@@ -26,7 +26,7 @@ This guide is also available on [YouTube](https://www.youtube.com/watch?v=lOLw4u
 
 ## Dependency setup
 
-- [celestia-node](../how-to-guides/celestia-node.md)
+- [celestia-node](/how-to-guides/celestia-node.md)
 
 ### Setting up your light node
 
@@ -88,7 +88,7 @@ Here is an example:
 
 ```toml
 # Chain ID of your rollup
-l2_chain_id = 1117733 
+l2_chain_id = 1117733
 
 # Sepolia Ethereum
 l1_chain_id = 11155111
