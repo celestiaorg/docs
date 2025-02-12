@@ -17,7 +17,7 @@ export default {
     text: String,
     notes: {
       type: String,
-      default: ''
+      default: '',
     },
   },
 };
@@ -39,8 +39,32 @@ export default {
   transition: all 0.2s ease;
   background-color: var(--vp-c-brand-dimm);
   color: var(--text-color);
-  width: 200px;
-  height: 225px;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .url-image-button {
+    padding: 16px 12px;
+    font-size: 15px;
+    gap: 4px;
+  }
+
+  .button-icon {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .notes-text {
+    font-size: 14px !important;
+    margin-top: 2px !important;
+  }
+
+  .button-text {
+    font-size: 16px;
+    line-height: 1.1;
+    margin: 2px 0;
+  }
 }
 
 .url-image-button:hover {
@@ -56,6 +80,7 @@ export default {
 .button-text {
   font-weight: 600;
   text-align: center;
+  line-height: 1.3;
 }
 
 .notes-text {
@@ -68,6 +93,8 @@ export default {
 
 .button-link {
   text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
-
 </style>
