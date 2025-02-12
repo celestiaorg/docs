@@ -12,8 +12,8 @@ To start a Celestia node with a different default key name, use the following
 command:
 
 ```sh
-celestia light start --core.ip=consensus.celestia-arabica-11.com \
-    --p2p.network=arabica --keyring.keyname testKey
+celestia light start --core.ip consensus.celestia-arabica-11.com \
+    --core.port 9090 --p2p.network=arabica --keyring.keyname testKey
 ```
 
 In this example, `testKey` becomes the default node key, and the

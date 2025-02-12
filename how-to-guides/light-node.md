@@ -42,14 +42,19 @@ You can also run Lumina on the first decentralized block explorer,
 
 This tutorial was performed on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
-Set up dependencies on the [setting up environment](./environment.md) page.
+Set up dependencies on the [setting up environment](/how-to-guides/environment.md) page.
 
 ### Install celestia-node
 
 Install the `celestia` binary by
-[building and installing celestia-node](./celestia-node.md).
+[building and installing celestia-node](/how-to-guides/celestia-node.md).
 
 ## Initialize the light node
+
+:::tip
+If you would like to skip sampling the entire chain's headers, you can
+[initialize the light node from a trusted hash](/how-to-guides/celestia-node-trusted-hash.md).
+:::
 
 Run the following command:
 
@@ -90,15 +95,18 @@ for information on which ports are required to be open on your machine.
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia light start --core.ip rpc.celestia.pops.one --p2p.network celestia
+celestia light start --core.ip rpc.celestia.pops.one \
+    --core.port 9090 --p2p.network celestia
 ```
 
 ```sh [Mocha]
-celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
+celestia light start --core.ip rpc-mocha.pops.one \
+    --core.port 9090 --p2p.network mocha
 ```
 
 ```sh [Arabica]
-celestia light start --core.ip validator-1.celestia-arabica-11.com --p2p.network arabica
+celestia light start --core.ip validator-1.celestia-arabica-11.com \
+    --core.port 9090 --p2p.network arabica
 ```
 
 :::
@@ -123,18 +131,19 @@ following command:
 
 ```sh [Mainnet Beta]
 celestia light start --keyring.keyname my_celes_key \
-    --core.ip consensus.lunaroasis.net
+    --core.ip consensus.lunaroasis.net --core.port 9090
 ```
 
 ```sh [Mocha]
 celestia light start --keyring.keyname my_celes_key \
-    --core.ip rpc-mocha.pops.one --p2p.network mocha
+    --core.ip rpc-mocha.pops.one --core.port 9090 \
+    --p2p.network mocha
 ```
 
 ```sh [Arabica]
 celestia light start --keyring.keyname my_celes_key \
     --core.ip validator-1.celestia-arabica-11.com \
-    --p2p.network arabica
+    --core.port 9090 --p2p.network arabica
 ```
 
 :::
@@ -143,7 +152,7 @@ Once you start the light node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
 `PayForBlob` transactions.
 
-You can [find the address using the RPC CLI](../tutorials/node-tutorial.md#get-your-account-address)
+You can [find the address using the RPC CLI](/tutorials/node-tutorial.md#get-your-account-address)
 or by running the following command in the
 `celestia-node` directory:
 
@@ -156,8 +165,8 @@ or by running the following command in the
 
 You have two networks to get testnet tokens from:
 
-- [Arabica devnet](./arabica-devnet.md#arabica-devnet-faucet)
-- [Mocha testnet](./mocha-testnet.md#mocha-testnet-faucet)
+- [Arabica devnet](/how-to-guides/arabica-devnet.md#arabica-devnet-faucet)
+- [Mocha testnet](/how-to-guides/mocha-testnet.md#mocha-testnet-faucet)
 
 You can request funds to your wallet address using the following command in Discord:
 
@@ -167,6 +176,29 @@ $request <CELESTIA-ADDRESS>
 
 Where `<CELESTIA-ADDRESS>` is the `celestia1******` address generated
 when you created the wallet.
+
+### Optional: start light node with core endpoint with authenication
+
+If you are running a light node with a core endpoint that requires authentication,
+you can pass the directory containing the json of your x-token to the light node with
+the following command:
+
+```sh
+celestia light start \
+    --core.ip snowy-methodical-leaf.celestia-mainnet.quiknode.pro \
+    --core.tls \
+    --core.xtoken.path /path-to-directory \
+    --core.port 9090
+```
+
+Where `/path-to-directory` is the path to the directory containing the
+`x-token.json` file. Ensure the file has restricted permissions (e.g., `chmod 600`) and contains:
+
+```json
+{
+  "x-token": "<YOUR-SECRET-X-TOKEN>"
+}
+```
 
 ### Optional: run the light node with a custom key
 
@@ -180,17 +212,21 @@ In order to run a light node using a custom key:
 
 ```sh [Mainnet Beta]
 celestia light start --core.ip <URI> \
-    --keyring.keyname <name-of-custom-key> \
+    --core.port <port> \
+    --keyring.keyname <name-of-custom-key>
 ```
 
 ```sh [Arabica]
 celestia light start --core.ip <URI> \
+    --core.port <port> \
     --keyring.keyname <name-of-custom-key> \
     --p2p.network arabica
+
 ```
 
 ```sh [Mocha]
 celestia light start --core.ip <URI> \
+    --core.port <port> \
     --keyring.keyname <name-of-custom-key> \
     --p2p.network mocha
 ```
@@ -207,9 +243,9 @@ To migrate a light node ID:
 ### Optional: start light node with SystemD
 
 Follow
-[the tutorial on setting up the light node as a background process with SystemD](./systemd.md#celestia-light-node).
+[the tutorial on setting up the light node as a background process with SystemD](/how-to-guides/systemd.md#celestia-light-node).
 
 ## Data availability sampling
 
 With your light node running, you can check out
-[this tutorial on submitting `PayForBlob` transactions](../tutorials/node-tutorial.md).
+[this tutorial on submitting `PayForBlob` transactions](/tutorials/node-tutorial.md).

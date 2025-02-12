@@ -9,7 +9,7 @@ funding it, enabling a third-party account to cover the transaction fees.
 
 ## Pre-requisites
 
-- celestia-node binary (`celestia`) [installed](../how-to-guides/celestia-node.md)
+- celestia-node binary (`celestia`) [installed](/how-to-guides/celestia-node.md)
 - Access to a Mocha node (e.g., `https://rpc-mocha.pops.one:443`)
 - Running DA Light node on Mocha testnet
 - One account with sufficient funds, the "granter"
@@ -24,7 +24,7 @@ a DA node's (grantee) account. You will need one account that will
 contain the funds, the granter, and another account that will be in the
 DA node you run to post blobs, the grantee. You will see the DA node's account
 once you initialize the node. Learn more about managing accounts with
-`cel-key` in [create a wallet with celestia-node](../tutorials/celestia-node-key.md#create-a-wallet-with-celestia-node).
+`cel-key` in [create a wallet with celestia-node](/tutorials/celestia-node-key.md#create-a-wallet-with-celestia-node).
 
 ## Granting fee allowances using celestia-node
 
@@ -54,7 +54,7 @@ the need to restart the node.
 First, start your node:
 
 ```bash
-celestia light start --p2p.network mocha --core.ip $RPC_URL
+celestia light start --p2p.network mocha --core.ip $RPC_URL --core.port $RPC_PORT
 ```
 
 Then, grant the fee to the grantee:
@@ -71,7 +71,7 @@ grantee. If not specified, the grantee does not have a spend limit.
 Start your node:
 
 ```bash
-celestia light start --core.ip $RPC_URL --p2p.network=mocha
+celestia light start --core.ip $RPC_URL --p2p.network=mocha --core.port $RPC_PORT
 ```
 
 To check the balance of a light node, use the following command:
@@ -163,7 +163,8 @@ the RPC URL:
 ```bash
 export GRANTER_ADDRESS=<your-granter-account-address>
 export GRANTEE_ADDRESS=<your-grantee-account-address>
-export RPC_URL=https://rpc-mocha.pops.one:443
+export RPC_URL=https://rpc-mocha.pops.one
+export RPC_PORT=443
 ```
 
 Then, send the feegrant transaction:

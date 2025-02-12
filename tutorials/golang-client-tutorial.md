@@ -2,8 +2,8 @@
 
 This tutorial section will guide you through using the most common RPC endpoints with the golang client library.
 
-Install [dependencies](../how-to-guides/environment.md) and
-[celestia-node](../how-to-guides/celestia-node.md) if you have
+Install [dependencies](/how-to-guides/environment.md) and
+[celestia-node](/how-to-guides/celestia-node.md) if you have
 not already.
 
 ## Project setup
@@ -14,7 +14,7 @@ To start, add celestia-openrpc as a dependency to your project:
 go get github.com/celestiaorg/celestia-openrpc
 ```
 
-To use the following methods, you will need the node URL and your auth token. To get your auth token, see this [guide](./node-tutorial.md#auth-token). To run your node without an auth token, you can use the `--rpc.skip-auth` flag when starting your node. This allows you to pass an empty string as your auth token.
+To use the following methods, you will need the node URL and your auth token. To get your auth token, see this [guide](/tutorials/node-tutorial.md#auth-token). To run your node without an auth token, you can use the `--rpc.skip-auth` flag when starting your node. This allows you to pass an empty string as your auth token.
 
 The default URL is `http://localhost:26658`. If you would like to use subscription methods, such as `SubscribeHeaders` below, you must use the `ws` protocol in place of `http`: `ws://localhost:26658`.
 

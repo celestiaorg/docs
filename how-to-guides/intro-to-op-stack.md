@@ -82,6 +82,6 @@ Learn [more about Optimism](https://www.optimism.io/). -->
 ## Next steps
 
 Now that you understand the integration, you can start learning about the
-[Bubs testnet](./bubs-testnet.md), built with OP Stack and Celestia! This
+[Bubs testnet](/how-to-guides/bubs-testnet.md), built with OP Stack and Celestia! This
 testnet is a great way to explore the possibilities of this integration
 and test your applications in a live environment.

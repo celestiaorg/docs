@@ -19,7 +19,7 @@ Make sure to have the following installed:
 ### Installing Blobstream contracts
 
 We will be using the [`IDAOracle`](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/IDAOracle.sol)
-interface to verify inclusion. 
+interface to verify inclusion.
 So, we will install the Blobstream contracts repo as a dependency:
 
 ```sh
@@ -28,7 +28,7 @@ forge install celestiaorg/blobstream-contracts --no-commit
 
 Make sure that the directory you're running this command
 from is an initialized git repository. If not, just
-initialize the repo using: 
+initialize the repo using:
 
 ```sh
 git init
@@ -115,7 +115,7 @@ header is included in the Celestia chain.
 ## Querying the proof
 
 To prove that the data was published to Celestia, check out the
-[proof queries documentation](./blobstream-proof-queries.md)
+[proof queries documentation](/how-to-guides/blobstream-proof-queries.md)
 to understand how to query the proofs from Celestia consensus
 nodes and make them usable in the Blobstream X verifier contract.
 
@@ -168,4 +168,4 @@ take a closer look at these functions:
   `verifySharesToDataRootTupleRoot()` method.
 
 For an overview of a demo rollup implementation, head to
-[the next section](./blobstream-offchain.md).
+[the next section](/how-to-guides/blobstream-offchain.md).

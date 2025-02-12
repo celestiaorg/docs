@@ -21,7 +21,7 @@ are two standard implementations:
 - [Go Relayer](https://pkg.go.dev/github.com/cosmos/relayer) built in Go
 
 The following guide explains how to establish IBC connections and relay
-packets between [Mocha testnet](../how-to-guides/mocha-testnet.md) and
+packets between [Mocha testnet](/how-to-guides/mocha-testnet.md) and
 [Cosmos hub testnet](https://hub.cosmos.network/main/hub-tutorials/join-testnet.html)
 networks by using the Hermes relayer.
 

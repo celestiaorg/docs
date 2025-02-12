@@ -28,7 +28,7 @@ First, follow the instructions on
 
 ### Wallet
 
-Follow [the tutorial on creating a wallet](../how-to-guides/celestia-app-wallet.md).
+Follow [the tutorial on creating a wallet](/how-to-guides/celestia-app-wallet.md).
 
 ### Delegate stake to a validator
 
@@ -99,14 +99,14 @@ Celestia bridge node daemon.
 
 ### Install celestia-node
 
-You can [follow the tutorial for installing `celestia-node`](./celestia-node.md)
+You can [follow the tutorial for installing `celestia-node`](/how-to-guides/celestia-node.md)
 
 ### Initialize the bridge node
 
 Run the following:
 
 ```bash
-celestia bridge init --core.ip <URI>
+celestia bridge init --core.ip <URI> --core.port <port>
 ```
 
 :::tip
@@ -116,9 +116,9 @@ for information on which ports are required to be open on your machine.
 :::
 
 Using an RPC of your own, or one from
-[Mainnet Beta](./mainnet.md#integrations),
-[Mocha testnet](./mocha-testnet.md#integrations) or
-[Arabica devnet](./arabica-devnet.md#integrations),
+[Mainnet Beta](/how-to-guides/mainnet.md#integrations),
+[Mocha testnet](/how-to-guides/mocha-testnet.md#integrations) or
+[Arabica devnet](/how-to-guides/arabica-devnet.md#integrations),
 initialize your node.
 
 ### Run the bridge node
@@ -175,11 +175,11 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
-| Name                           | Type          | Chain ID                       | CLI Usage                                  | 
+| Name                           | Type          | Chain ID                       | CLI Usage                                  |
 |--------------------------------|---------------|--------------------------------|--------------------------------------------|
-| [Celestia](./mainnet.md)       | Mainnet Beta  | {{ constants.mainnetChainId }} | `--chain-id {{ constants.mainnetChainId }}`| 
-| [Mocha](./mocha-testnet.md)    | Testnet       | {{ constants.mochaChainId }}   | `--chain-id {{ constants.mochaChainId }}`  | 
-| [Arabica](./arabica-devnet.md) | Devnet        | {{ constants.arabicaChainId }} | `--chain-id {{ constants.arabicaChainId }}`|
+| [Celestia](/how-to-guides/mainnet.md)       | Mainnet Beta  | {{ constants.mainnetChainId }} | `--chain-id {{ constants.mainnetChainId }}`|
+| [Mocha](/how-to-guides/mocha-testnet.md)    | Testnet       | {{ constants.mochaChainId }}   | `--chain-id {{ constants.mochaChainId }}`  |
+| [Arabica](/how-to-guides/arabica-devnet.md) | Devnet        | {{ constants.arabicaChainId }} | `--chain-id {{ constants.arabicaChainId }}`|
 
 Continuing the validator tutorial, here are the steps to connect your
 validator to Mocha:
@@ -227,7 +227,7 @@ txhash: <tx-hash>
 ```
 
 You should now be able to see your validator from
-[a block explorer](./mocha-testnet.md#explorers)
+[a block explorer](/how-to-guides/mocha-testnet.md#explorers)
 
 ## Submit your validator information
 
@@ -248,13 +248,13 @@ Moving a validator to a new machine is a sensitive process that needs to be done
 
 ### Step 1: Set up a new full consensus node
 
-First, set up a new [consensus node](./consensus-node.md) on the new server and make sure the node is fully synced with the chain. To check whether your node is synced, you can check the `catching_up` status using:
+First, set up a new [consensus node](/how-to-guides/consensus-node.md) on the new server and make sure the node is fully synced with the chain. To check whether your node is synced, you can check the `catching_up` status using:
 
 ```bash
 celestia-appd status | jq '{ "catching_up": .SyncInfo.catching_up }'
 ```
 
-If the node is synced, the output will look like this: 
+If the node is synced, the output will look like this:
 
 ```json
 {
@@ -264,7 +264,7 @@ If the node is synced, the output will look like this:
 
 ### Step 2: Stop the old validator
 
-After your new consensus node is synced, proceed to stop the current validator on the old machine. If you’re running it with [SystemD](./systemd.md), use the following command:
+After your new consensus node is synced, proceed to stop the current validator on the old machine. If you’re running it with [SystemD](/how-to-guides/systemd.md), use the following command:
 
 ```bash
 sudo systemctl stop <SERVICE_NAME>
@@ -298,7 +298,7 @@ cat ~/.celestia-app/config/priv_validator_key.json
 
 ### Step 4: Start the new validator
 
-If everything checks out, you can now restart the new node with the updated validator key: 
+If everything checks out, you can now restart the new node with the updated validator key:
 
 ```bash
 sudo systemctl restart <SERVICE_NAME>
@@ -309,7 +309,7 @@ After this, your validator will resume signing blocks on the new server, and the
 ## Additional resources
 
 For additional resources, refer to
-[the extra resources for consensus nodessection of the consensus node page](./consensus-node.md#extra-resources-for-consensus-nodes).
+[the extra resources for consensus nodessection of the consensus node page](/how-to-guides/consensus-node.md#extra-resources-for-consensus-nodes).
 
 ## FAQ
 

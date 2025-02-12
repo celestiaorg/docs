@@ -179,7 +179,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which celestia) light start --core.ip <URI>
+ExecStart=$(which celestia) light start --core.ip <URI> --core.port <port>
 Restart=on-failure
 RestartSec=3
 

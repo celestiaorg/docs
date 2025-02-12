@@ -5,25 +5,25 @@ description: An overview on how to participate in the Celestia network.
 # Overview to running nodes on Celestia
 
 There are many ways you can participate in the Celestia
-[networks](./participate.md).
+[networks](/how-to-guides/participate.md).
 
 Celestia node operators can run several options on the network.
 
 Consensus:
 
-- [Validator node](./validator-node.md):
+- [Validator node](/how-to-guides/validator-node.md):
   This type of node participates
   in consensus by producing and voting on blocks.
-- [Consensus node](./consensus-node.md): A celestia-app full node
+- [Consensus node](/how-to-guides/consensus-node.md): A celestia-app full node
   to sync blockchain history.
 
 Data Availability:
 
-- [Bridge node](./bridge-node.md): This node bridges blocks between the
+- [Bridge node](/how-to-guides/bridge-node.md): This node bridges blocks between the
   Data-Availability network and the Consensus network.
-- [Full storage node](./full-storage-node.md): This node stores all
+- [Full storage node](/how-to-guides/full-storage-node.md): This node stores all
   the data but does not connect to Consensus.
-- [Light node](./light-node.md): Light clients conduct data availability
+- [Light node](/how-to-guides/light-node.md): Light clients conduct data availability
   sampling on the Data Availability network.
 
 You can learn more about how to set up each different node by going through

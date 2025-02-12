@@ -8,7 +8,7 @@ description: Learn how to query the inclusion proofs used in Blobstream
 
 ## Prerequisites
 
-- Access to a Celestia [consensus node](../how-to-guides/consensus-node.md)
+- Access to a Celestia [consensus node](/how-to-guides/consensus-node.md)
   RPC endpoint (or full node). The node doesn't need to be a
   validating node in order for the proofs to be queried. A full node is enough.
 
@@ -32,8 +32,8 @@ used for the queries. It can be initialized using:
 	}(trpc)
 ```
 
-The `<rpc_endpoint>` can be retrieved from [Mainnet Beta](../how-to-guides/mainnet.md#integrations) for
-and [Mocha](../how-to-guides/mocha-testnet.md) for the Mocha testnet.
+The `<rpc_endpoint>` can be retrieved from [Mainnet Beta](/how-to-guides/mainnet.md#integrations) for
+and [Mocha](/how-to-guides/mocha-testnet.md) for the Mocha testnet.
 
 In case the reader wants to interact with an on-chain contract that can be used to verify
 that data was posted to Celestia, the bindings of that contract are needed.
@@ -115,7 +115,7 @@ Check the above diagram which shows:
 So, if we're able to prove:
 
 - That a share is part of a row, then that row is
-committed to by a data root. 
+committed to by a data root.
 - Then, prove that that data root along with its
 height is committed to by the data root tuple root, which gets saved to the
 Blobstream contract.
@@ -250,7 +250,7 @@ func main() {
 <div style="overflow-y: auto; max-height: 400px;">
 
 ::: code-group
-   
+
 ```go [BlobstreamX]
 package main
 
@@ -431,7 +431,7 @@ import {
 
 ### 2. Transaction inclusion proof
 
-To prove that a rollup transaction, the PFB transaction and not the blob containing the 
+To prove that a rollup transaction, the PFB transaction and not the blob containing the
 Rollup blocks data, is part of the data root, we will need to
 provide two proofs: (1) a namespace Merkle proof of the transaction to
 a row root. This could be done via proving the shares that contain the
@@ -441,7 +441,7 @@ binary Merkle proof of the row root to the data root.
 ### Transaction inclusion proof using the transaction hash
 
 Given a transaction hash, the transaction inclusion proof can be queried from
-the transaction query. 
+the transaction query.
 
 #### HTTP request
 
@@ -555,7 +555,7 @@ Then, the proof is under `tx.Proof`.
 
 Currently, querying the proof of a blob, which contains the Rollup block data,
 using its corresponding PFB transaction hash is possible only using the golang client.
-Otherwise, the corresponding share range is required so that the 
+Otherwise, the corresponding share range is required so that the
 [`ProveShares`](#specific-share-range-inclusion-proof) endpoint can be used.
 
 #### Golang client
@@ -582,7 +582,7 @@ func queryShareRange() error {
 	if err != nil {
 		return err
 	}
-	
+
 	blockRes, err := trpc.Block(context.Background(), &tx.Height)
 	if err != nil {
 		return err
@@ -1194,7 +1194,7 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 // import the SP1 Blobstream contract:
 import {
     sp1blobstreamwrapper "github.com/succinctlabs/sp1-blobstream/bindings"
-} 
+}
 // and use the `BlobstreamDataCommitmentStored` event instead.
 ```
 :::
@@ -1253,7 +1253,7 @@ use the `WatchDataCommitmentStored` as follows:
 // import the SP1 Blobstream contract:
 import {
     sp1blobstreamwrapper "github.com/succinctlabs/sp1-blobstream/bindings"
-} 
+}
 // and use the `BlobstreamDataCommitmentStored` event instead.
 ```
 
@@ -1544,7 +1544,7 @@ func namespace(namespaceID []byte) *client.Namespace {
 // import the SP1 Blobstream contract:
 import {
     sp1blobstreamwrapper "github.com/succinctlabs/sp1-blobstream/bindings"
-} 
+}
 // and use the `BlobstreamDataCommitmentStored` event instead.
 ```
 
@@ -1555,7 +1555,7 @@ import {
 For the step (2), check the [rollup inclusion proofs documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md)
 for more information.
 
-For an example BlobstreamX project that uses the above proof queries, checkout the 
+For an example BlobstreamX project that uses the above proof queries, checkout the
 [blobstreamx-example](https://github.com/CryptoKass/blobstreamx-example)
 sample project. Learn more on the [Lightlink docs](https://docs.lightlink.io/lightlink-protocol/achitecture-and-design/lightlink-protocol-deep-dive#id-5.-hummingbird).
 

@@ -47,7 +47,7 @@ Then the `Read` logic takes care of taking the deserialized Blob Pointer struct 
 
 The following represents a non-exhaustive list of considerations when running a Batch Poster node for a chain with Celestia underneath:
 - You will need to use a consensus node RPC endpoint, you can
-[find a list of them for Mocha](../how-to-guides/mocha-testnet.md#community-rpc-endpoints)
+[find a list of them for Mocha](/how-to-guides/mocha-testnet.md#community-rpc-endpoints)
 - The Batch Poster will only post a Celestia batch to the underlying chain if the height for which it posted is in a recent range in BlobstreamX and if the verification succeeds, otherwise it will discard the batch. Since it will wait until a range is relayed, it can take several minutes for a batch to be posted, but one can always make an on-chain request for the BlobstreamX contract to relay a header promptly.
 
 The following represents a non-exhaustive list of considerations when running a Nitro node for a chain with Celestia underneath:
@@ -73,7 +73,7 @@ Finally, the integration only accepts batches with information that can be confi
 You can see how BlobstreamX is integrated into the `SequencerInbox.sol` contract [here](https://github.com/celestiaorg/nitro-contracts/blob/celestia-v1.2.1/src/bridge/SequencerInbox.sol#L584-L630), which allows us to discard batches with otherwise faulty data roots, thus giving us a high degree of confidence that the data root can be safely unpacked in case of a challenge.
 
 The Celestia and Arbitrum integration also
-[includes Blobstream](./blobstream.md),
+[includes Blobstream](/how-to-guides/blobstream.md),
 which relays commitments to Celestia’s data root to an onchain light client
 on Ethereum. This allows L2 solutions that settle on Ethereum to benefit
 from the scalability Celestia’s data availability layer can provide.
@@ -89,7 +89,7 @@ fails.
 The [@celestiaorg/nitro](https://github.com/celestiaorg/nitro) integration
 [uses the same fallback mechanism](https://github.com/celestiaorg/nitro/blob/f01968eb3d4e19329e9c92b050e98a8e5772f1f2/arbnode/batch_poster.go#L845-L857).
 
-[More information can be found on the Ethereum fallback mechanisms for Celestia](./ethereum-fallback.md),
+[More information can be found on the Ethereum fallback mechanisms for Celestia](/how-to-guides/ethereum-fallback.md),
 which enables Ethereum L2s (or L3s) to “fall back” to using Ethereum
 calldata for data availability in the event of downtime on Celestia Mainnet
 Beta.
@@ -104,4 +104,4 @@ chain.
 ## Next steps
 
 In the next page,
-[learn how to deploy an Arbitrum rollup devnet using Celestia as DA](./arbitrum-deploy.md).
+[learn how to deploy an Arbitrum rollup devnet using Celestia as DA](/how-to-guides/arbitrum-deploy.md).

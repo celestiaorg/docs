@@ -53,7 +53,7 @@ data from the chain.
 
 In celestia-node, the Data Availability node client, there is a JSON-RPC API
 that allows you to interact directly with Celestia's Data Availability layer.
-Learn [how to use the API in this tutorial](./node-tutorial.md).
+Learn [how to use the API in this tutorial](/tutorials/node-tutorial.md).
 
 ### Compatibility
 

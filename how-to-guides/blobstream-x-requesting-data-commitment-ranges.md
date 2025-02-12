@@ -17,10 +17,10 @@ different cadence, you can do one of the following:
 
 > **_NOTE:_** The requested proof ranges cannot include
 > blocks that were already used in a previous batch.
-> The ranges should start from the last proven block, aka, 
+> The ranges should start from the last proven block, aka,
 > [`latest_block`](https://github.com/succinctlabs/blobstreamx/blob/aac0842f17056e5343f66de7df44020c1637e8b7/contracts/src/BlobstreamX.sol#L16-L17)
 > and they should end in a block already committed by Celestia.
-> In other words, it's the end-inclusive range defined 
+> In other words, it's the end-inclusive range defined
 > by `[latest_block, target_block]` with `target_block` <= Celestia tip.
 
 ## Local proving
@@ -29,7 +29,7 @@ To run the Blobstream X operator with local proving, follow this [guide](https:/
 
 Local proving allows self-generating the proofs and submitting them to an existing BlobstreamX contract.
 Alternatively, if a team needs a very specific cadence that starts at very specific heights, they can deploy their own
-BlobstreamX contract and submit proofs to it. Deployment instructions can be found in the [BlobstreamX deploy](./blobstream-x-deploy.md) 
+BlobstreamX contract and submit proofs to it. Deployment instructions can be found in the [BlobstreamX deploy](/how-to-guides/blobstream-x-deploy.md)
 documentation.
 
 ::: tip
@@ -41,7 +41,7 @@ header range proof.
 ## Request proofs from the Succinct platform
 
 > **_NOTE:_** Requesting a proof from the succinct platform requires
-> having a Succinct API key. It can be requested using 
+> having a Succinct API key. It can be requested using
 > this [form](https://alpha.succinct.xyz/partner).
 
 Run the Blobstream X operator with hosted proving on the Succinct

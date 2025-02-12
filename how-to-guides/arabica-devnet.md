@@ -13,7 +13,7 @@ the latest upgrades for testing their rollups and applications.
 Arabica does not focus on validator or consensus-level testing, rather,
 that is what Mocha testnet is used for. If you are a validator, we
 recommend testing your validator operations on the
-[Mocha testnet](./mocha-testnet.md).
+[Mocha testnet](/how-to/mocha-testnet.md).
 
 ## Network stability and upgrades
 
@@ -28,12 +28,7 @@ undergoes network upgrades in coordination with validators.
 
 ## Network details
 
-<!-- markdownlint-disable MD033 -->
-<script setup>
-import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
-import ArabicaDevnetDetails from '../.vitepress/components/ArabicaDevnetDetails.vue'
-import constants from "/.vitepress/constants/constants.js";
-</script>
+
 
 <ArabicaDevnetDetails />
 
@@ -74,6 +69,7 @@ your own node.
 
 RPC endpoints and types of nodes you can run in order to participate in Arabica devnet:
 
+
 <!-- markdownlint-disable MD013 -->
 
 | Node type                                                                              | Endpoint type                    | Endpoint                                                                                                      |
@@ -88,7 +84,7 @@ RPC endpoints and types of nodes you can run in order to participate in Arabica 
 |                                                                                        |                                  | `validator-4.celestia-arabica-11.com`                                                                         |
 |                                                                                        |                                  |                                                                                                               |
 | **Data availability nodes**                                                            | DA Bridge Node Endpoints         | `/dns4/da-bridge-1.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWGqwzdEqM54Dce6LXzfFr97Bnhvm6rN7KM7MFwdomfm4S` |
-| ([light](./light-node.md), [bridge](./bridge-node.md), [full](./full-storage-node.md)) |                                  | `/dns4/da-bridge-2.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWCMGM5eZWVfCN9ZLAViGfLUWAfXP5pCm78NFKb9jpBtua` |
+| ([light](/how-to-guides/light-node.md), [bridge](/how-to-guides/bridge-node.md), [full](/how-to-guides/full-storage-node.md)) |                                  | `/dns4/da-bridge-2.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWCMGM5eZWVfCN9ZLAViGfLUWAfXP5pCm78NFKb9jpBtua` |
 |                                                                                        |                                  | `/dns4/da-bridge-3.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWEWuqrjULANpukDFGVoHW3RoeUU53Ec9t9v5cwW3MkVdQ` |
 |                                                                                        |                                  | `/dns4/da-bridge-4.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWLT1ysSrD7XWSBjh7tU1HQanF5M64dHV6AuM6cYEJxMPk` |
 |                                                                                        | `--core.ip string` endpoints     | Refer to "Direct endpoints with open ports" above                                                             |
@@ -117,7 +113,7 @@ to their respective DA node.
 :::tip EXAMPLE
 
 ```bash
-celestia <da_type> start --core.ip <url> --core.grpc.port <port>
+celestia <da_type> start --core.ip <url> --core.port <port>
 ```
 
 :::
@@ -131,7 +127,8 @@ state access, using default ports:
 
 ```bash
 celestia light start --p2p.network arabica \
-  --core.ip validator-1.celestia-arabica-11.com
+  --core.ip validator-1.celestia-arabica-11.com \
+  --core.port 9090
 ```
 
 :::tip Bridge node runners
@@ -180,5 +177,5 @@ There are multiple explorers you can use for Arabica:
 Join our [Telegram announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 for network upgrades.
 
-See the [network upgrade process page](./network-upgrade-process.md) to learn more
-about specific upgrades like the [Ginger network upgrade](./network-upgrade-process.md#ginger-network-upgrade).
+See the [network upgrade process page](/how-to-guides/network-upgrade-process.md) to learn more
+about specific upgrades like the [Ginger network upgrade](/how-to-guides/network-upgrade-process.md#ginger-network-upgrade).

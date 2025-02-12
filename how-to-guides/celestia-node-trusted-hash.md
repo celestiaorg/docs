@@ -29,7 +29,7 @@ Celenium.
 
 ```sh
 celestia light start --headers.trusted-hash <hash_of_block_n> \
-    --p2p.network <network> --core.ip <consensus-node-rpc>
+    --p2p.network <network> --core.ip <consensus-node-rpc> --core.port <port>
 ```
 
 ## For service operators

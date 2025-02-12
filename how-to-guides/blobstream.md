@@ -24,8 +24,8 @@ validity of Celestia block headers on a target EVM chain using zero-knowledge (Z
 proofs, which allow inheriting all the security
 guarantees of Celestia.
 
-The latest implementation of Blobstream X is [SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream), 
-which is written in Rust for the SP1 zkVM. SP1 Blobstream offers improved performance and 
+The latest implementation of Blobstream X is [SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream),
+which is written in Rust for the SP1 zkVM. SP1 Blobstream offers improved performance and
 efficiency while maintaining the security guarantees of the original Blobstream X.
 
 Please note: Blobstream remains early-stage, experimental software and
@@ -98,7 +98,7 @@ accessible all Celestia data roots (verifiable with a Merkle inclusion proof
 against the stored Merkle root) to rollups.
 
 If you're looking to deploy SP1 blobstream to a new chain,
-see [new Sp1 Blobstream deployments](./sp1-blobstream-deploy.md).
+see [new Sp1 Blobstream deployments](/how-to-guides/sp1-blobstream-deploy.md).
 
 Learn more at the [sp1-blobstream](https://github.com/succinctlabs/sp1-blobstream)
 repo.
@@ -129,19 +129,19 @@ every 4 hours.
 ### How to integrate with Blobstream
 
 Integrating your L2 with Blobstream requires two components: your
-[onchain smart contract logic](./blobstream-contracts.md),
-and your [offchain client logic for your rollup](./blobstream-offchain.md).
+[onchain smart contract logic](/how-to-guides/blobstream-contracts.md),
+and your [offchain client logic for your rollup](/how-to-guides/blobstream-offchain.md).
 The next three sections cover these
 topics:
 
-- [Integrate with Blobstream contracts](./blobstream-contracts.md)
-- [Integrate with Blobstream client](./blobstream-offchain.md)
-- [Querying the Blobstream proofs](./blobstream-proof-queries.md)
+- [Integrate with Blobstream contracts](/how-to-guides/blobstream-contracts.md)
+- [Integrate with Blobstream client](/how-to-guides/blobstream-offchain.md)
+- [Querying the Blobstream proofs](/how-to-guides/blobstream-proof-queries.md)
 
 ### Blobstream rollups
 
 More on the different ways to build a blobstream rollup can be found in the
-[blobstream rollups](./blobstream-rollups.md) documentation.
+[blobstream rollups](/how-to-guides/blobstream-rollups.md) documentation.
 
 ### Deployed contracts
 
@@ -153,9 +153,9 @@ the following chains:
 
 | Contract       | EVM network      | Contract address                                                                                                                | Attested data on Celestia | Link to Celenium |
 |----------------| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------- |
-| SP1 Blobstream | Ethereum Mainnet          | [`0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe`](https://etherscan.io/address/0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe#events) | [Mainnet Beta](../how-to-guides/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=ethereum&page=1) |
-| SP1 Blobstream | Arbitrum One | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://arbiscan.io/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](../how-to-guides/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=arbitrum&page=1) |
-| SP1 Blobstream | Base           | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://basescan.org/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](../how-to-guides/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=base&page=1) |
-| SP1 Blobstream | Sepolia          | [`0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e`](https://sepolia.etherscan.io/address/0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e#events) | [Mocha testnet](../how-to-guides/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=ethereum&page=1) |
-| SP1 Blobstream | Arbitrum Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.arbiscan.io/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](../how-to-guides/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=arbitrum&page=1) |
-| SP1 Blobstream | Base Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.basescan.org/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](../how-to-guides/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=base&page=1) |
+| SP1 Blobstream | Ethereum Mainnet          | [`0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe`](https://etherscan.io/address/0x7Cf3876F681Dbb6EdA8f6FfC45D66B996Df08fAe#events) | [Mainnet Beta](/how-to-guides/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=ethereum&page=1) |
+| SP1 Blobstream | Arbitrum One | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://arbiscan.io/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](/how-to-guides/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=arbitrum&page=1) |
+| SP1 Blobstream | Base           | [`0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794`](https://basescan.org/address/0xA83ca7775Bc2889825BcDeDfFa5b758cf69e8794#events)  | [Mainnet Beta](/how-to-guides/mainnet.md) | [Deployment on Celenium](https://celenium.io/blobstream?network=base&page=1) |
+| SP1 Blobstream | Sepolia          | [`0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e`](https://sepolia.etherscan.io/address/0xf0c6429ebab2e7dc6e05dafb61128be21f13cb1e#events) | [Mocha testnet](/how-to-guides/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=ethereum&page=1) |
+| SP1 Blobstream | Arbitrum Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.arbiscan.io/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](/how-to-guides/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=arbitrum&page=1) |
+| SP1 Blobstream | Base Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.basescan.org/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)  | [Mocha testnet](/how-to-guides/mocha-testnet.md) | [Deployment on Celenium](https://mocha-4.celenium.io/blobstream?network=base&page=1) |

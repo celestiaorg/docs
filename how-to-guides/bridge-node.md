@@ -52,7 +52,7 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machi
 
 ### Setup the dependencies
 
-Follow the tutorial for [installing the dependencies](./environment.md).
+Follow the tutorial for [installing the dependencies](/how-to-guides/environment.md).
 
 ## Deploy the Celestia bridge node
 
@@ -60,22 +60,18 @@ Follow the tutorial for [installing the dependencies](./environment.md).
 
 Install the `celestia-node` binary, which will be used to run the bridge node.
 
-Follow the tutorial for [installing `celestia-node`](./celestia-node.md).
+Follow the tutorial for [installing `celestia-node`](/how-to-guides/celestia-node.md).
 
 ### Initialize the bridge node
 
 Run the following:
 
 ```sh
-celestia bridge init --core.ip <URI>
+celestia bridge init --core.ip <URI> --core.port <port>
 ```
 
-The `--core.ip` gRPC port defaults to 9090,
-so if you do not specify it in the command
-line, it will default to that port. You can
-add the port after the IP address or use the
-`--core.grpc.port` flag to specify another
-port if you prefer.
+After v0.21.5, the `--core.port` must be specified.
+In most cases, it is port 9090 by default.
 
 :::warning Important
 Make sure port 2121 TCP/UDP is open and publicly accessible on your bridge node so it can be discovered by other peers in the DHT network. This port is essential for P2P connectivity and if not properly configured, your node won't be able to participate in the network effectively.
@@ -86,8 +82,8 @@ Refer to
 for information on which ports are required to be open on your machine.
 
 Using an RPC of your own, or one from the
-[list on the Mocha testnet page](./mocha-testnet.md#community-rpc-endpoints) or
-[list on the Arabica devnet page](./arabica-devnet.md#community-rpc-endpoints),
+[list on the Mocha testnet page](/how-to-guides/mocha-testnet.md#community-rpc-endpoints) or
+[list on the Arabica devnet page](/how-to-guides/arabica-devnet.md#community-rpc-endpoints),
 start your node.
 
 Connecting to a core endpoint with `--core.ip string`
@@ -99,15 +95,17 @@ Here is an example of initializing the bridge node:
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia bridge init --core.ip <URI>
+celestia bridge init --core.ip <URI> --core.port <port>
 ```
 
 ```sh [Mocha]
-celestia bridge init --core.ip <URI> --p2p.network mocha
+celestia bridge init --core.ip <URI> --core.port <port> \
+    --p2p.network mocha
 ```
 
 ```sh [Arabica]
-celestia bridge init --core.ip <URI> --p2p.network arabica
+celestia bridge init --core.ip <URI> --core.port <port> \
+    --p2p.network arabica
 ```
 
 :::
@@ -118,20 +116,20 @@ Start the bridge node with a connection to a validator node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 ```sh
-celestia bridge start --core.ip <URI>
+celestia bridge start --core.ip <URI> --core.port <port>
 ```
 
 Here is an example of starting the bridge node on Mocha:
 
 ```sh
-celestia bridge start --core.ip rpc-mocha.pops.one:26657 --p2p.network mocha
+celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
 ```
 
 And on Arabica:
 
 ```sh
 celestia bridge start --core.ip validator-1.celestia-arabica-11.com \
-  --p2p.network arabica
+  --p2p.network arabica --core.port 9090
 ```
 
 You can create your key for your node by [following the `cel-key` instructions](/tutorials/celestia-node-key.md).
@@ -147,13 +145,13 @@ You can find the address by running the following command:
 
 :::tip
 You do not need to declare a network for Mainnet Beta. Refer to
-[the chain ID section on the troubleshooting page for more information](./celestia-node-troubleshooting.md)
+[the chain ID section on the troubleshooting page for more information](/how-to-guides/celestia-node-troubleshooting.md)
 :::
 
 You can get testnet tokens from:
 
-- [Mocha](./mocha-testnet.md)
-- [Arabica](./arabica-devnet.md)
+- [Mocha](/how-to-guides/mocha-testnet.md)
+- [Arabica](/how-to-guides/arabica-devnet.md)
 
 :::tip NOTE
 If you are running a bridge node for your validator
@@ -172,17 +170,18 @@ In order to run a bridge node using a custom key:
 ::: code-group
 
 ```sh [Mainnet Beta]
-celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key>
+celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
+    --core.port <port>
 ```
 
 ```sh [Mocha]
 celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-  --p2p.network mocha
+    --p2p.network mocha --core.port <port>
 ```
 
 ```sh [Arabica]
 celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-  --p2p.network arabica
+  --p2p.network arabica --core.port <port>
 ```
 
 :::
@@ -197,7 +196,7 @@ To migrate a bridge node ID:
 ### Optional: start the bridge node with SystemD
 
 Follow the
-[tutorial on setting up the bridge node as a background process with SystemD](./systemd.md).
+[tutorial on setting up the bridge node as a background process with SystemD](/how-to-guides/systemd.md).
 
 You have successfully set up a bridge node that is syncing with the network.
 

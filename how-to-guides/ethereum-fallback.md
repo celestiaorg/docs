@@ -16,7 +16,7 @@ calldata for data availability in the event of downtime on Celestia
 Mainnet Beta. This feature is currently supported by Celestia integrations
 with:
 
-- [Arbitrum Nitro](./arbitrum-integration.md#ethereum-fallback-mechanism-in-nitro)
+- [Arbitrum Nitro](/how-to-guides/arbitrum-integration.md#ethereum-fallback-mechanism-in-nitro)
 
 In the case of Celestia downtime or temporary unavailability, L2s can
 fallback to posting transactions as calldata on Ethereum or another DA

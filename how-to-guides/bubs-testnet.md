@@ -23,11 +23,11 @@ layer. This integration can be found in the
 The testnet was hosted by [Caldera](https://caldera.xyz),
 who makes it easy to launch rollups with no code required.
 Bubs' data was posted to Celestia
-on the [Mocha testnet](../how-to-guides/mocha-testnet.md).
+on the [Mocha testnet](/how-to-guides/mocha-testnet.md).
 [View the namespace for Bubs on Celestia's Mocha testnet](https://mocha-4.celenium.io/namespace/000000000000000000000000000000000000ca1de12ad45362e77e87).
 
 [Learn more about the setup of the integration in
-the introduction](./intro-to-op-stack.md#about-the-integration).
+the introduction](/how-to-guides/intro-to-op-stack.md#about-the-integration).
 
 ## Building on Bubs
 

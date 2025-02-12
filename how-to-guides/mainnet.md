@@ -110,6 +110,11 @@ These RPC providers are meant to be used in production environments.
 | Numia | For RPC access: <https://docs.numia.xyz/overview/rpc-api-access> |
 | Numia | For data warehouse access: <https://docs.numia.xyz/overview/sql-access/chains/celestia> |
 | Grove | <https://www.grove.city/> |
+| QuickNode | <https://www.quicknode.com/chains/celestia> |
+
+If you are using QuickNode or another provider with authentication of endpoints,
+see [the light node guide](/how-to-guides/light-node.md#optional-start-light-node-with-core-endpoint-with-authenication)
+to learn how to use an endpoint with x-token.
 
 :::warning
 Do not rely on the free community endpoints listed below
@@ -120,8 +125,8 @@ your own node.
 
 ### Consensus nodes
 
-- [Consensus node](./consensus-node.md)
-- [Validator node](./validator-node.md)
+- [Consensus node](/how-to-guides/consensus-node.md)
+- [Validator node](/how-to-guides/validator-node.md)
 
 #### Community consensus RPC endpoints
 
@@ -203,9 +208,9 @@ on [service providers with SLAs](#production-rpc-endpoints).
 
 ### Data availability nodes
 
-- [Light node](./light-node.md)
-- [Bridge node](./bridge-node.md)
-- [Full storage node](./full-storage-node.md)
+- [Light node](/how-to-guides/light-node.md)
+- [Bridge node](/how-to-guides/bridge-node.md)
+- [Full storage node](/how-to-guides/full-storage-node.md)
 
 #### Community Data availability (DA) RPC endpoints for bridge node sync
 
@@ -225,7 +230,7 @@ to their respective DA node.
 :::tip
 
 ```bash
-celestia <da_type> start --core.ip <url> -–core.grpc.port <port>
+celestia <da_type> start --core.ip <url> -–core.port <port>
 ```
 
 :::
@@ -266,7 +271,7 @@ You can [find the status of these endpoints](https://celestia-tools.brightlystak
 By default, light nodes prune recent data to save on storage space. Archival
 data availability (DA) nodes store the entire history of the chain without
 pruning any data so all data available data is retrievable. You can
-[read more about light vs archival nodes](../learn/retrievability.md).
+[read more about light vs archival nodes](/learn/retrievability.md).
 
 ##### Grove archival endpoints
 
@@ -308,5 +313,5 @@ There are a few ways to stay informed about network upgrades on Mainnet Beta:
 - Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 - Discord [Mainnet Beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
 
-See the [network upgrade process page](./network-upgrade-process.md) to learn more
-about specific upgrades like the [Ginger network upgrade](./network-upgrade-process.md#ginger-network-upgrade).
+See the [network upgrade process page](/how-to-guides/network-upgrade-process.md) to learn more
+about specific upgrades like the [Ginger network upgrade](/how-to-guides/network-upgrade-process.md#ginger-network-upgrade).

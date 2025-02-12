@@ -97,26 +97,22 @@ If you are running a production application, use a production endpoint.
 ::: code-group
 
 ```bash [Mainnet Beta]
-celestia light start --core.ip <URI>
+celestia light start --core.ip <URI> --core.port <port>
 ```
 
 ```bash [Mocha]
-celestia light start --core.ip <URI> --p2p.network mocha
+celestia light start --core.ip <URI> --core.port <port> --p2p.network mocha
 ```
 
 ```bash [Arabica]
-celestia light start --core.ip <URI> --p2p.network arabica
+celestia light start --core.ip <URI> --core.port <port> --p2p.network arabica
 ```
 
 :::
 
 :::tip
-The `--core.ip` gRPC port defaults to 9090,
-so if you do not specify it in the command
-line, it will default to that port. You can
-add the port after the IP address or use the
-`--core.grpc.port` flag to specify another
-port if you prefer.
+After v0.21.5, the `--core.port` must be specified.
+In most cases, it is port 9090 by default.
 
 Refer to
 [the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
@@ -129,16 +125,16 @@ look like this:
 ::: code-group
 
 ```bash [Mainnet Beta]
-celestia light start --core.ip consensus.lunaroasis.net
+celestia light start --core.ip consensus.lunaroasis.net --core.port 9090
 ```
 
 ```bash [Mocha]
-celestia light start --core.ip rpc-mocha.pops.one --p2p.network mocha
+celestia light start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
 ```
 
 ```bash [Arabica]
 celestia light start --core.ip validator-1.celestia-arabica-11.com \
-  --p2p.network arabica
+  --core.port 9090 --p2p.network arabica
 ```
 
 :::
@@ -164,17 +160,18 @@ the following command:
 ::: code-group
 
 ```bash [Mainnet Beta]
-celestia light start --core.ip <URI> --keyring.keyname <key-name>
+celestia light start --core.ip <URI> --core.port <port> \
+    --keyring.keyname <key-name>
 ```
 
 ```bash [Mocha]
-celestia light start --core.ip <URI> --keyring.keyname <key-name> \
-  --p2p.network mocha
+celestia light start --core.ip <URI> --core.port <port> \
+    --keyring.keyname <key-name> --p2p.network mocha
 ```
 
 ```bash [Arabica]
-celestia light start --core.ip <URI> --keyring.keyname <key-name> \
-  --p2p.network arabica
+celestia light start --core.ip <URI> --core.port <port> \
+    --keyring.keyname <key-name> --p2p.network arabica
 ```
 
 :::
@@ -872,9 +869,9 @@ celestia share get-by-namespace \
 ### Submitting a blob using curl
 
 In order to post a blob using curl, you will need a light node running
-with the `--core.ip string` flag, providing access to a consensus
+with the `--core.ip string` and `--core.port string` flags, providing access to a consensus
 endpoint.
-The flag indicates node to connect to the given core consensus node.
+The flags indicate to the node to connect to the given core consensus node.
 Examples: `127.0.0.1` or `subdomain.domain.tld`.
 Using either IP or DNS assumes RPC port 26657 and gRPC port 9090
 as default unless otherwise specified.

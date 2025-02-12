@@ -12,17 +12,17 @@ or if you want to test out new features to build as a core developer.
 ## Hardware requirements
 
 You will need to
-[follow hardware requirements](./validator-node.md#hardware-requirements).
+[follow hardware requirements](/how-to-guides/validator-node.md#hardware-requirements).
 
 ## Setup dependencies
 
 You will need to
-[setup dependencies by following the guide](./environment.md).
+[setup dependencies by following the guide](/how-to-guides/environment.md).
 
 ## celestia-app installation
 
 You will need to
-[install `celestia-app` by following the guide](./celestia-app.md).
+[install `celestia-app` by following the guide](/how-to-guides/celestia-app.md).
 
 ## Spin up a Celestia testnet
 
@@ -188,7 +188,7 @@ celestia-appd start
 
 :::tip
 Refer to
-[the ports section of the celestia-node troubleshooting page](../how-to-guides/celestia-node-troubleshooting.md#ports)
+[the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
 
 :::
