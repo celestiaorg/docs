@@ -177,7 +177,7 @@ $request <CELESTIA-ADDRESS>
 Where `<CELESTIA-ADDRESS>` is the `celestia1******` address generated
 when you created the wallet.
 
-### Optional: start light node with core endpoint with authenication
+### Optional: start light node with core endpoint with authentication
 
 If you are running a light node with a core endpoint that requires authentication,
 you can pass the directory containing the json of your x-token to the light node with
