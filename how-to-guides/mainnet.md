@@ -273,16 +273,6 @@ data availability (DA) nodes store the entire history of the chain without
 pruning any data so all data available data is retrievable. You can
 [read more about light vs archival nodes](/learn/retrievability.md).
 
-##### Grove archival endpoints
-
-You can [provision your own Celestia Archival endpoint on Grove](https://grove.city).
-[Learn more about Celestia on Grove](https://docs.grove.city/celestia-api/intro),
-or find [the fully supported spec](https://docs.grove.city/celestia-api/endpoints/celestia-archival).
-
-There is a sandbox you can leverage for testing straight in your browser:
-
-![grove-sandbox](/grove/grove-sandbox.png)
-
 ## Explorers
 
 There are multiple explorers you can use for Mainnet Beta:
