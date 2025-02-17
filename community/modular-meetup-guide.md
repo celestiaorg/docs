@@ -80,7 +80,7 @@ creating a welcoming atmosphere for the Celestia community.
 1. Startup Incubators
    - Often they would have spaces for meetups.
 2. Libraries
-   - Libraries can normally have spaces for meetups at little to no costs
+   - Libraries can normally have spaces for meetups at little to no cost
 3. Co-working spaces:
    - Co-working spaces might be able to offer necessary equipment like
      microphones, projectors, and whiteboards.
@@ -134,7 +134,7 @@ among attendees.
 2. Offer a variety of refreshments
    - If you're ordering in, pizza and finger foods work well,
      but you can also have more budget-friendly options for food.
-   - Offering drinks like beer, soda, or lemonade are great,
+   - Offering drinks like beer, soda, or lemonade is great,
      but water also works. Keep in mind that not everyone drinks
      alcohol so it’s not a requirement. But having at least water
      and plastic cups works well.
