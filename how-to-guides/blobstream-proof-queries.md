@@ -1200,7 +1200,7 @@ import {
 :::
 </div>
 
-### Listening for new data commitments
+### Listening to new data commitments
 
 For listening for new data commitment stored events, sequencers can
 use the `WatchDataCommitmentStored` as follows:
