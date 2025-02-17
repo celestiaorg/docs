@@ -18,6 +18,11 @@ To use the following methods, you will need the node URL and your auth token. To
 
 The default URL is `http://localhost:26658`. If you would like to use subscription methods, such as `SubscribeHeaders` below, you must use the `ws` protocol in place of `http`: `ws://localhost:26658`.
 
+> **Important:** Remember to close the client connection when you're done using it to prevent resource leaks:
+> ```go
+> defer client.Close()
+> ```
+
 ## Submitting and retrieving blobs
 
 The [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit) method takes a slice of blobs and a gas price, returning the height the blob was successfully posted at.
@@ -41,39 +46,40 @@ import (
 
 // SubmitBlob submits a blob containing "Hello, World!" to the 0xDEADBEEF namespace. It uses the default signer on the running node.
 func SubmitBlob(ctx context.Context, url string, token string) error {
-	client, err := client.NewClient(ctx, url, token)
-	if err != nil {
-		return err
-	}
+    client, err := client.NewClient(ctx, url, token)
+    if err != nil {
+        return err
+    }
+    defer client.Close() // It is important to close the connection after use
 
-	// let's post to 0xDEADBEEF namespace
-	namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
-	if err != nil {
-		return err
-	}
+    // let's post to 0xDEADBEEF namespace
+    namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+    if err != nil {
+        return err
+    }
 
-	// create a blob
-	helloWorldBlob, err := blob.NewBlobV0(namespace, []byte("Hello, World!"))
-	if err != nil {
-		return err
-	}
+    // create a blob
+    helloWorldBlob, err := blob.NewBlobV0(namespace, []byte("Hello, World!"))
+    if err != nil {
+        return err
+    }
 
-	// submit the blob to the network
-	height, err := client.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, blob.NewSubmitOptions())
-	if err != nil {
-		return err
-	}
+    // submit the blob to the network
+    height, err := client.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, blob.NewSubmitOptions())
+    if err != nil {
+        return err
+    }
 
-	fmt.Printf("Blob was included at height %d\n", height)
+    fmt.Printf("Blob was included at height %d\n", height)
 
-	// fetch the blob back from the network
-	retrievedBlobs, err := client.Blob.GetAll(ctx, height, []share.Namespace{namespace})
-	if err != nil {
-		return err
-	}
+    // fetch the blob back from the network
+    retrievedBlobs, err := client.Blob.GetAll(ctx, height, []share.Namespace{namespace})
+    if err != nil {
+        return err
+    }
 
-	fmt.Printf("Blobs are equal? %v\n", bytes.Equal(helloWorldBlob.Commitment, retrievedBlobs[0].Commitment))
-	return nil
+    fmt.Printf("Blobs are equal? %v\n", bytes.Equal(helloWorldBlob.Commitment, retrievedBlobs[0].Commitment))
+    return nil
 }
 ```
 
@@ -83,31 +89,32 @@ You can subscribe to new blobs in a namespace using the [blob.Subscribe](https:/
 
 ```go
 func SubscribeBlobs(ctx context.Context, url string, token string) error {
-	client, err := client.NewClient(ctx, url, token)
-	if err != nil {
-		return err
-	}
+    client, err := client.NewClient(ctx, url, token)
+    if err != nil {
+        return err
+    }
+    defer client.Close() // We close the WebSocket connection after use
 
-	// create a namespace to filter blobs with
-	namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
-	if err != nil {
-		return err
-	}
+    // create a namespace to filter blobs with
+    namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+    if err != nil {
+        return err
+    }
 
-	// subscribe to new blobs using a <-chan *blob.BlobResponse channel
-	blobChan, err := client.Blob.Subscribe(ctx)
-	if err != nil {
-		return err
-	}
+    // subscribe to new blobs using a <-chan *blob.BlobResponse channel
+    blobChan, err := client.Blob.Subscribe(ctx)
+    if err != nil {
+        return err
+    }
 
-	for {
-		select {
-		case resp := <-blobChan:
-			fmt.Printf("Found %d blobs at height %d in 0xDEADBEEF namespace\n", len(resp.Blobs()), resp.Height)
-		case <-ctx.Done():
-			return nil
-		}
-	}
+    for {
+        select {
+        case resp := <-blobChan:
+            fmt.Printf("Found %d blobs at height %d in 0xDEADBEEF namespace\n", len(resp.Blobs()), resp.Height)
+        case <-ctx.Done():
+            return nil
+        }
+    }
 }
 ```
 
@@ -118,37 +125,38 @@ Alternatively, you can subscribe to new headers using the [header.Subscribe](htt
 ```go
 // SubscribeHeaders subscribes to new headers and fetches all blobs at the height of the new header in the 0xDEADBEEF namespace.
 func SubscribeHeaders(ctx context.Context, url string, token string) error {
-	client, err := client.NewClient(ctx, url, token)
-	if err != nil {
-		return err
-	}
+    client, err := client.NewClient(ctx, url, token)
+    if err != nil {
+        return err
+    }
+    defer client.Close() // We close the WebSocket connection after usage
 
-	// create a namespace to filter blobs with
-	namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
-	if err != nil {
-		return err
-	}
+    // create a namespace to filter blobs with
+    namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+    if err != nil {
+        return err
+    }
 
-	// subscribe to new headers using a <-chan *header.ExtendedHeader channel
-	headerChan, err := client.Header.Subscribe(ctx)
-	if err != nil {
-		return err
-	}
+    // subscribe to new headers using a <-chan *header.ExtendedHeader channel
+    headerChan, err := client.Header.Subscribe(ctx)
+    if err != nil {
+        return err
+    }
 
-	for {
-		select {
-		case header := <-headerChan:
-			// fetch all blobs at the height of the new header
-			blobs, err := client.Blob.GetAll(context.TODO(), header.Height(), []share.Namespace{namespace})
-			if err != nil {
-				fmt.Printf("Error fetching blobs: %v\n", err)
-			}
+    for {
+        select {
+        case header := <-headerChan:
+            // fetch all blobs at the height of the new header
+            blobs, err := client.Blob.GetAll(context.TODO(), header.Height(), []share.Namespace{namespace})
+            if err != nil {
+                fmt.Printf("Error fetching blobs: %v\n", err)
+            }
 
-			fmt.Printf("Found %d blobs at height %d in 0xDEADBEEF namespace\n", len(blobs), header.Height())
-		case <-ctx.Done():
-			return nil
-		}
-	}
+            fmt.Printf("Found %d blobs at height %d in 0xDEADBEEF namespace\n", len(blobs), header.Height())
+        case <-ctx.Done():
+            return nil
+        }
+    }
 }
 ```
 
@@ -159,19 +167,20 @@ You can fetch an [Extended Data Square (EDS)](https://celestiaorg.github.io/cele
 ```go
 // GetEDS fetches the EDS at the given height.
 func GetEDS(ctx context.Context, url string, token string, height uint64) (*rsmt2d.ExtendedDataSquare, error) {
-	client, err := client.NewClient(ctx, url, token)
-	if err != nil {
-		return nil, err
-	}
+    client, err := client.NewClient(ctx, url, token)
+    if err != nil {
+        return nil, err
+    }
+    defer client.Close() // We close the connection after use
 
-	// First get the header of the block you want to fetch the EDS from
-	header, err := client.Header.GetByHeight(ctx, height)
-	if err != nil {
-		return nil, err
-	}
+    // First get the header of the block you want to fetch the EDS from
+    header, err := client.Header.GetByHeight(ctx, height)
+    if err != nil {
+        return nil, err
+    }
 
-	// Fetch the EDS
-	return client.Share.GetEDS(ctx, header)
+    // Fetch the EDS
+    return client.Share.GetEDS(ctx, header)
 }
 ```
 
