@@ -151,7 +151,7 @@ Now that you've installed Celestia Node, it's time to
 [pick your node type](/how-to-guides/decide-node.md) and run your node!
 
 If you're planning to run a light node,
-we recommend the [node RPC CLI tutorial](/tutorials/node-tutorial.md).
+we recommend the [quick-start guide](/how-to-guides/quick-start.md).
 
 ## Upgrading your binary
 
