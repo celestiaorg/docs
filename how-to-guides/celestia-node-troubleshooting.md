@@ -194,7 +194,7 @@ node is running. It fails as expected:
 
 ## Resetting your config
 
-If you an encounter an error, it is likely that an old config file is present:
+If you encounter an error, it is likely that an old config file is present:
 
 ```sh
 Error: nodebuilder/share: interval must be positive; nodebuilder/core: invalid IP addr given:
