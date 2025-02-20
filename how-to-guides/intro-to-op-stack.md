@@ -5,6 +5,8 @@ prev:
   link: "/how-to-guides/arbitrum-bridge"
 ---
 
+<!-- TODO: Revise this with Javed to make this accurate. -->
+
 # Introduction to OP Stack integration
 
 [Optimism](https://optimism.io) is a low-cost and lightning-fast Ethereum
@@ -82,6 +84,6 @@ Learn [more about Optimism](https://www.optimism.io/). -->
 ## Next steps
 
 Now that you understand the integration, you can start learning about the
-[Bubs testnet](/how-to-guides/bubs-testnet.md), built with OP Stack and Celestia! This
+[Raspberry testnet](https://raas.gelato.network/rollups/details/public/opcelestia-raspberry), built with OP Stack and Celestia! This
 testnet is a great way to explore the possibilities of this integration
 and test your applications in a live environment.

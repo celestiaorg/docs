@@ -151,13 +151,13 @@ export default {
 
     transformHead(assets: string[]): HeadConfig[] {
       const youthRegularFont = assets.find(
-        (file) => /youth\/Youth-Regular\.\w+\.woff2/
+        (file) => /youth\/Youth-Regular\.\w+\.woff2/,
       );
       const untitledSansRegularFont = assets.find(
-        (file) => /Untitled-Sans-Regular\.\w+\.woff2/
+        (file) => /Untitled-Sans-Regular\.\w+\.woff2/,
       );
       const untitledSansMediumFont = assets.find(
-        (file) => /Untitled-Sans-Medium\.\w+\.woff2/
+        (file) => /Untitled-Sans-Medium\.\w+\.woff2/,
       );
 
       const headConfig: HeadConfig[] = [];
@@ -562,10 +562,6 @@ function sidebarHome() {
                       link: "/how-to-guides/arbitrum-integration",
                     },
                     {
-                      text: "Quickstart: Deploy an Arbitrum Orbit rollup",
-                      link: "/how-to-guides/arbitrum-deploy",
-                    },
-                    {
                       text: "How to run a full Orbit rollup node and validator",
                       link: "/how-to-guides/arbitrum-full-node",
                     },
@@ -607,18 +603,8 @@ function sidebarHome() {
                       link: "/how-to-guides/optimism",
                     },
                     {
-                      text: "OP Stack testnets",
-                      collapsed: true,
-                      items: [
-                        {
-                          text: "Bubs testnet",
-                          link: "/how-to-guides/bubs-testnet",
-                        },
-                        {
-                          text: "Raspberry testnet",
-                          link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
-                        },
-                      ],
+                      text: "Raspberry testnet",
+                      link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
                     },
                     {
                       text: "Audit",
@@ -635,6 +621,10 @@ function sidebarHome() {
                         {
                           text: "Conduit",
                           link: "https://conduit.xyz/",
+                        },
+                        {
+                          text: "Gelato",
+                          link: "https://raas.gelato.network/dashboard",
                         },
                       ],
                     },

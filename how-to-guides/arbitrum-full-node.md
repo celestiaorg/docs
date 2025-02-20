@@ -9,7 +9,6 @@ description: A guide on how to run a full node or validate a full node on your O
 - Familiarity with Ethereum, Ethereum's testnets, Arbitrum, and Celestia
 - [A gentle introduction: Orbit chains](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
 - [Arbitrum Orbit integration overview](/how-to-guides/arbitrum-integration.md)
-- [Quickstart: Deploy an Arbitrum Orbit rollup](/how-to-guides/arbitrum-deploy.md)
 
 ## Running a full node
 

@@ -2,6 +2,8 @@
 description: An overview of the integration of Arbitrum Nitro with Celestia, detailing the key features and benefits, including the Ethereum fallback mechanism.
 ---
 
+<!-- TODO: cleanup and revise this with Diego -->
+
 # Introduction to Arbitrum rollups with Celestia as DA
 
 ![Celestia_Arbitrum](/img/Celestia-Arbitrum.png)
@@ -13,8 +15,7 @@ The
 and the Nitro tech stack marks the first external contribution to the Arbitrum
 Orbit protocol layer, offering developers an additional option for selecting
 a data availability layer alongside Arbitrum AnyTrust. The integration allows
-developers to deploy an Orbit Chain that uses Celestia for data availability and
-settles on Arbitrum One, Ethereum, or other EVM chains.
+developers to deploy an Orbit Chain that uses Celestia for data availability.
 
 [Learn more about Orbit in Arbitrum's introduction.](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
 
@@ -22,18 +23,15 @@ settles on Arbitrum One, Ethereum, or other EVM chains.
 
 The integration of Celestia with Arbitrum orbit is possible thanks to 3 key components:
 
-- [Introduction to Arbitrum rollups with Celestia as DA](#introduction-to-arbitrum-rollups-with-celestia-as-da)
-  - [Overview](#overview)
-  - [Key components](#key-components)
-    - [DA provider implementation](#da-provider-implementation)
-    - [Preimage Oracle Implementation](#preimage-oracle-implementation)
-    - [Blobstream X implementation](#blobstream-x-implementation)
-    - [Ethereum fallback mechanism in Nitro](#ethereum-fallback-mechanism-in-nitro)
-  - [Next steps](#next-steps)
+  - [DA provider implementation](#da-provider-implementation)
+  - [Preimage Oracle Implementation](#preimage-oracle-implementation)
+  - [Blobstream X implementation](#blobstream-x-implementation)
 
 Additionally, the [Ethereum fallback mechanism](#ethereum-fallback-mechanism-in-nitro) is a feature of the integration, which is native in Nitro.
 
 ### DA provider implementation
+
+<!-- TODO: Josh and Diego to work on this -->
 
 The Arbitrum Nitro code has a `DataAvailabilityProvider` interface that is used across the codebase to store and retrieve data from a specific provider (eip4844 blobs, Anytrust, and now Celestia).
 
@@ -51,11 +49,13 @@ The following represents a non-exhaustive list of considerations when running a 
 - The Batch Poster will only post a Celestia batch to the underlying chain if the height for which it posted is in a recent range in BlobstreamX and if the verification succeeds, otherwise it will discard the batch. Since it will wait until a range is relayed, it can take several minutes for a batch to be posted, but one can always make an on-chain request for the BlobstreamX contract to relay a header promptly.
 
 The following represents a non-exhaustive list of considerations when running a Nitro node for a chain with Celestia underneath:
-- The `TendermintRpc` endpoint is only needed by the batch poster, every other node can operate without a connection to a full node.
+<!-- - The `TendermintRpc` endpoint is only needed by the batch poster, every other node can operate without a connection to a full node. -->
 - The message header flag for Celestia batches is `0x0c`.
 - You will need to know the namespace for the chain that you are trying to connect to, but don't worry if you don't find it, as the information in the BlobPointer can be used to identify where a batch of data is in the Celestia Data Square for a given height, and thus can be used to find out the namespace as well!
 
 ### Preimage Oracle Implementation
+
+<!-- TODO: Link to nitro-das-celestia -->
 
 In order to support fraud proofs, this integration has the necessary code for a Nitro validator to populate its preimage mapping with Celestia hashes that then get "unpeeled" in order to reveal the full data for a Blob. You can
 [read more about the "Hash Oracle Trick"](https://docs.arbitrum.io/inside-arbitrum-nitro/#readpreimage-and-the-hash-oracle-trick).
@@ -66,8 +66,9 @@ You can see where the preimage oracle gets used in the fraud proof replay binary
 
 Something important to note is that the preimage oracle only keeps track of hashes for the rows in the Celestia data square in which a blob resides in, this way each Orbit chain with Celestia underneath does not need validators to recompute an entire Celestia Data Square, but instead, only have to compute the row roots for the rows in which it's data lives in, and the header data root, which is the binary merkle tree hash built using the row roots and column roots fetched from a Celestia node. Because only data roots that can be confirmed on Blobstream get accepted into the sequencer inbox, one can have a high degree of certainty that the canonical data root being unpeeled as well as the row roots are in fact correct.
 
-### Blobstream X implementation
+### Blobstream SP1 implementation
 
+<!-- TODO: Change to Blobstream SP1 and right interface. Clean up duplicate paragraphs -->
 Finally, the integration only accepts batches with information that can be confirmed on BlobstreamX, which gives us a high certainty that data was made available on Celestia.
 
 You can see how BlobstreamX is integrated into the `SequencerInbox.sol` contract [here](https://github.com/celestiaorg/nitro-contracts/blob/celestia-v1.2.1/src/bridge/SequencerInbox.sol#L584-L630), which allows us to discard batches with otherwise faulty data roots, thus giving us a high degree of confidence that the data root can be safely unpacked in case of a challenge.
@@ -101,7 +102,8 @@ added to the Arbitrum node software which allows the sequencer to call
 not, before it sends the sequencer message (data pointer) to the underlying
 chain.
 
+<!-- TODO: Cleanup and add fallback to anytrust -->
+
 ## Next steps
 
-In the next page,
-[learn how to deploy an Arbitrum rollup devnet using Celestia as DA](/how-to-guides/arbitrum-deploy.md).
+<!-- TODO: add new quickstart page. -->
