@@ -146,7 +146,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `rpc.archive.celestia.cumulo.com.es`
 - `rpc-celestia-01.stakeflow.io`
 - `rpc-celestia.alphab.ai`
-- `rpc-celestia-full.avril14th.org`
 - `celestia-rpc.easy2stake.com`
 - `celestia.rpc.kjnodes.com`
 - `celestia-rpc.0xcryptovestor.com`
@@ -168,7 +167,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `api-celestia.mzonder.com`
 - `api-celestia-01.stakeflow.io`
 - `api-celestia.alphab.ai`
-- `api-celestia-full.avril14th.org`
 - `celestia-lcd.easy2stake.com`
 - `celestia.api.kjnodes.com`
 - `api-celestia-mainnet.trusted-point.com`
@@ -190,7 +188,6 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `grpc.archive.celestia.cumulo.com.es:443`
 - `grpc-celestia-01.stakeflow.io:15002`
 - `rpc-celestia.alphab.ai:9090`
-- `grpc-celestia-full.avril14th.org`
 - `celestia.grpc.kjnodes.com:443`
 - `grpc-celestia-mainnet.trusted-point.com:9095`
 - `celestia-grpc.chainode.tech:443`
