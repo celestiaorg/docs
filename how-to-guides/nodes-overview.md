@@ -4,6 +4,11 @@ description: An overview on how to participate in the Celestia network.
 
 # Overview to running nodes on Celestia
 
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import StorageCalculator from '/.vitepress/components/StorageCalculator.vue'
+</script>
+
 There are many ways you can participate in the Celestia
 [networks](/how-to-guides/participate.md).
 
@@ -31,29 +36,9 @@ each tutorial guide.
 
 ## Recommended Celestia node requirements
 
-## Data availability nodes
+Below are the recommended hardware requirements for running different types of Celestia nodes. Use the dropdown to see how storage requirements change based on block size:
 
-| Node type         | Memory      | CPU         | Disk       | Bandwidth |
-|-------------------|-------------|-------------|------------|-----------|
-| Light node        | 500 MB RAM  | Single core | 100 GB SSD | 56 Kbps   |
-| Bridge node       | 64 GB RAM   | 8 cores     | 5 TiB NVME  | 1 Gbps    |
-| Full storage node | 64 GB RAM   | 8 cores   | 5 TiB NVME  | 1 Gbps    |
-
-### Consensus nodes
-
-#### Non-archival consensus nodes
-
-| Node type        | Memory      | CPU         | Disk       | Bandwidth |
-|------------------|-------------|-------------|------------|-----------|
-| Validator        | 24 GB RAM   | 8 cores     | 3 TiB NVME   | 1 Gbps    |
-| Consensus node   | 24 GB RAM   | 8 cores     | 3 TiB NVME   | 1 Gbps    |
-
-#### Archival consensus nodes
-
-| Node type        | Memory      | CPU         | Disk       | Bandwidth |
-|------------------|-------------|-------------|------------|-----------|
-| Consensus node   | 64 GB RAM   | 8 cores   | 6 TiB NVME  | 1 Gbps    |
-
+<StorageCalculator />
 
 Please provide any feedback on the tutorials and guides. If you notice
 a bug or issue, feel free to make a pull request or write up a Github
