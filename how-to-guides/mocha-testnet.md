@@ -103,8 +103,6 @@ full blocks from it.
 - `celestia-testnet-consensus.itrocket.net`
   - RPC port: 26657
   - gRPC port: 9090
-- `rpc-celestia-testnet.cryptech.com.ua`
-  - gRPC: grpc-celestia-testnet.cryptech.com.ua:443
 
 ## Community RPC endpoints
 
@@ -118,11 +116,9 @@ Celestia network. The default port is 26657.
 - `rpc-celestia-testnet-01.stakeflow.io`
 - `mocha.celestia.rpc.cumulo.me`
 - `rpc.archive.mocha.cumulo.com.es`
-- `rpc-mocha-full.avril14th.org`
 - `rpc-1.testnet.celestia.nodes.guru`
 - `rpc-2.testnet.celestia.nodes.guru`
 - `celestia-testnet-rpc.itrocket.net:443`
-- `rpc-celestia-testnet.cryptech.com.ua:443`
 - `celestia-t-rpc.noders.services`
 
 ## Community API endpoints
@@ -140,11 +136,9 @@ The default port is 1317.
 - `https://api-celestia-testnet-01.stakeflow.io/`
 - `https://mocha.api.cumulo.me/`
 - `https://api.archive.mocha.cumulo.com.es`
-- `https://api-mocha-full.avril14th.org`
 - `https://api-1.testnet.celestia.nodes.guru`
 - `https://api-2.testnet.celestia.nodes.guru`
 - `https://celestia-testnet-api.itrocket.net`
-- `https://api-celestia-testnet.cryptech.com.ua`
 - `https://celestia-t-api.noders.services`
 - `http://celestiam.rest.lava.build`
 
@@ -165,11 +159,9 @@ broadcast transactions.
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
 - `mocha.grpc.cumulo.me:443`
 - `grpc.archive.mocha.cumulo.com.es:443`
-- `grpc-mocha-full.avril14th.org`
 - `grpc-1.testnet.celestia.nodes.guru:10790`
 - `grpc-2.testnet.celestia.nodes.guru:10790`
 - `celestia-testnet-grpc.itrocket.net:443`
-- `grpc-celestia-testnet.cryptech.com.ua:443`
 - `celestia-t-grpc.noders.services:21090`
 - `celestiam.grpc.lava.build:443`
 
@@ -244,7 +236,6 @@ There are several explorers you can use for Mocha:
 - `https://stakeflow.io/celestia-testnet`
 - `https://testnet.celestia.explorers.guru`
 - `https://testnet.itrocket.net/celestia`
-- `https://explorers.cryptech.com.ua/Celestia-Testnet`
 - `https://testnet.celestia.valopers.com/`
 
 ## Network upgrades
