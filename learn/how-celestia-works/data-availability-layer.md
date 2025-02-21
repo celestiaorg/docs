@@ -109,7 +109,7 @@ For this to work, the DA layer must be able to prove that the provided
 data is complete, _i.e._, all the data for a given namespace is returned.
 To this end, Celestia is using Namespaced Merkle trees (NMTs).
 
-An NMT is a Merkle tree with the leafs ordered by the namespace identifiers
+An NMT is a Merkle tree with the leaves ordered by the namespace identifiers
 and the hash function modified so that every node in the tree includes the
 range of namespaces of all its descendants. The following figure shows an
 example of an NMT with height three (_i.e._, eight data shares). The data is
