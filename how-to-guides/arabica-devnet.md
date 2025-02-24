@@ -13,7 +13,7 @@ the latest upgrades for testing their rollups and applications.
 Arabica does not focus on validator or consensus-level testing, rather,
 that is what Mocha testnet is used for. If you are a validator, we
 recommend testing your validator operations on the
-[Mocha testnet](/how-to/mocha-testnet.md).
+[Mocha testnet](/how-to-guides/mocha-testnet.md).
 
 ## Network stability and upgrades
 
