@@ -20,8 +20,7 @@ The following are the conditions for a validator to get jailed or slashed:
    of the last 5,000 blocks, they will be jailed for 1 minute.
    During this period, the validator is removed from the validator set
    temporarily, and will be unable to propose new blocks or earn rewards.
-   After the jail period, the validator can send an unjail request to
-   rejoin the validator set.
+   After the jail period, the validator can submit an unjail request to rejoin the validator set.
 
 2. **Double signing**: This is a more severe offense and results in getting slashed.
    If a validator engages in double signing, the validator
