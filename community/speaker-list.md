@@ -10,8 +10,7 @@ That's why we've created an exclusive Speaker List specifically
 tailored for organizers participating in the Modular Meetup Program.
 This resource gives you access to a curated selection of top-tier
 speakers who are passionate about Celestia and the modular ecosystem.
-Due to privacy, the list is not shared publicly but is accessible
-to participants of the Modular Meetup program when they create a meetup.
+Due to privacy, the list is not shared publicly but is accessible to participants of the Modular Meetup Program upon organizing a meetup.
 
 The Speaker List features experts from Celestia Labs, as well as prominent
 figures from the broader Celestia and modular communities. Each individual
