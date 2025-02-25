@@ -562,12 +562,12 @@ function sidebarHome() {
                       link: "/how-to-guides/arbitrum-integration",
                     },
                     {
-                      text: "How to run a full Orbit rollup node and validator",
-                      link: "/how-to-guides/arbitrum-full-node",
+                      text: "Quickstart: Local development with Nitro testnode",
+                      link: "/how-to-guides/nitro-local",
                     },
                     {
-                      text: "Bridging in and out of your Orbit rollup",
-                      link: "/how-to-guides/arbitrum-bridge",
+                      text: "How to run a full Orbit rollup node and validator",
+                      link: "/how-to-guides/arbitrum-full-node",
                     },
                     {
                       text: "How to customize your Orbit chain's deployment configuration",

@@ -53,9 +53,9 @@ The following represents a non-exhaustive list of considerations when running a 
 - The message header flag for Celestia batches is `0x0c`.
 - You will need to know the namespace for the chain that you are trying to connect to, but don't worry if you don't find it, as the information in the BlobPointer can be used to identify where a batch of data is in the Celestia Data Square for a given height, and thus can be used to find out the namespace as well!
 
-### Preimage Oracle Implementation
+To run the data availability server for the Arbitrum Nitro stack, leveraging Celestia DA, see the [nitro-das-celestia](https://github.com/celestiaorg/nitro-das-celestia) repository.
 
-<!-- TODO: Link to nitro-das-celestia -->
+### Preimage Oracle Implementation
 
 In order to support fraud proofs, this integration has the necessary code for a Nitro validator to populate its preimage mapping with Celestia hashes that then get "unpeeled" in order to reveal the full data for a Blob. You can
 [read more about the "Hash Oracle Trick"](https://docs.arbitrum.io/inside-arbitrum-nitro/#readpreimage-and-the-hash-oracle-trick).

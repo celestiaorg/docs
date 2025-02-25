@@ -1,5 +1,8 @@
 ---
 description: A guide on how to run a full node or validate a full node on your Orbit rollup.
+next:
+  text: "Introduction to OP Stack integration"
+  link: "/how-to-guides/intro-to-op-stack"
 ---
 
 # Running a full node and/or validator

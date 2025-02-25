@@ -1,8 +1,8 @@
 ---
 description: Learn about the integration of OP Stack with Celestia.
 prev:
-  text: "Bridging in and out of your Orbit rollup"
-  link: "/how-to-guides/arbitrum-bridge"
+  text: "How to run an Orbit full node and validator"
+  link: "/how-to-guides/arbitrum-full-node"
 ---
 
 <!-- TODO: Revise this with Javed to make this accurate. -->
