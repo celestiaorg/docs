@@ -114,7 +114,7 @@ repository (for Mainnet Beta) or [@celestiaorg/networks repository](https://gith
 ::: code-group
 
 ```bash-vue [Mainnet Beta]
-PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/celestia/chain.json | jq -r '.peers.persistent_peers[] | "\(.id)@\(.address)"' | tr '\n' ',' | sed 's/,$/\n/')
+PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants.mainnetChainId}}/chain.json | jq -r '.peers.persistent_peers[] | "\(.id)@\(.address)"' | tr '\n' ',' | sed 's/,$/\n/')
 echo $PERSISTENT_PEERS
 sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
 ```
