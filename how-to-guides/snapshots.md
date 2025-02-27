@@ -2,9 +2,9 @@
 description: A guide to using node snapshots and snapshot providers for quick node setup, including how to use the celestia-snapshot-finder tool
 ---
 
-# Node Snapshots
+# Node snapshots
 
-## What are Node Snapshots?
+## What are node snapshots?
 
 Node snapshots are pre-synced copies of the blockchain state that allow you to get your node up and running quickly without having to sync from genesis. Think of them as checkpoints - instead of processing every single block since the beginning of the chain, you can start from a recent, verified state.
 
@@ -12,11 +12,11 @@ Among various options for setting up your node, snapshots offer one of the faste
 
 Using snapshots can save you significant time and resources, especially as the blockchain grows larger.
 
-## Pruned vs Archive Snapshots
+## Pruned vs archive snapshots
 
 There are two main types of snapshots available:
 
-### Pruned Snapshots
+### Pruned snapshots
 
 Pruned snapshots contain only the essential state needed to run a node. They exclude historical data that isn't necessary for current operations, making them much smaller in size. These are ideal for:
 
@@ -24,7 +24,7 @@ Pruned snapshots contain only the essential state needed to run a node. They exc
 - Consensus nodes that don't need complete historical data
 - Users who want to get started quickly and aren't concerned with historical queries
 
-### Archive Snapshots
+### Archive snapshots
 
 Archive snapshots contain the complete blockchain history, including all historical states. They're larger in size but provide access to the entire chain history. You'll need an archive snapshot if you're:
 
@@ -32,9 +32,9 @@ Archive snapshots contain the complete blockchain history, including all histori
 - Operating a consensus node that needs to support historical queries
 - Building an application that requires access to past states
 
-## Available Snapshot Providers
+## Available snapshot providers
 
-### Mainnet Beta
+### Mainnet beta
 
 | Provider      | Consensus Node                                                                                                                                 | Bridge Node                                                                |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
@@ -48,7 +48,7 @@ Archive snapshots contain the complete blockchain history, including all histori
 | CitizenWeb3   | [Pruned](https://staking.citizenweb3.com/chains/celestia?tab=snapshot)                                                                         | -                                                                          |
 | BlackBlocks   | [Archive](https://wiki.blackblocks.io/en/public/services/mainnet/celestia)                                                                     | [Archive](https://wiki.blackblocks.io/en/public/services/mainnet/celestia) |
 
-### Mocha Testnet
+### Mocha testnet
 
 | Provider      | Consensus Node                                                                                                         | Bridge Node                                                                |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
@@ -88,7 +88,7 @@ cd celestia-snapshot-finder
 ./build.sh
 ```
 
-### Usage Examples
+### Usage examples
 
 A CLI tool for downloading Celestia node snapshots with direct URLs. Supports different node types and snapshot types with automatic or manual selection.
 
