@@ -105,9 +105,7 @@ You'll see the height and the commitment of your blob:
 {
   "result": {
     "height": 1639397,
-    "commitments": [
-      "19L/C4iBEsqXGzC5ZxJ3vtuGBiAdQAMIEnbYjKEGcac="
-    ]
+    "commitments": ["19L/C4iBEsqXGzC5ZxJ3vtuGBiAdQAMIEnbYjKEGcac="]
   }
 }
 ```
@@ -117,10 +115,13 @@ You'll see the height and the commitment of your blob:
 Light node account:
 After submitting a blob, you can check the light node account's balance
 to verify that the fees have been deducted:
+
 <!-- markdownlint-disable MD013 -->
+
 ```bash
 celestia state balance
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 Example output showing fees are not deducted:
@@ -145,10 +146,13 @@ celestia state revoke-grant-fee $GRANTEE_ADDRESS
 ### Optional: Submitting a blob from file input
 
 To submit a blob from file input:
+
 <!-- markdownlint-disable MD013 -->
+
 ```bash
 celestia blob submit --input-file blob.json
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 ## Optional: Granting fee allowances using celestia-appd
@@ -170,6 +174,7 @@ export RPC_PORT=443
 Then, send the feegrant transaction:
 
 <!-- markdownlint-disable MD013 -->
+
 ```bash
 celestia-appd tx feegrant grant \
   $GRANTER_ADDRESS $GRANTEE_ADDRESS \
@@ -182,6 +187,7 @@ celestia-appd tx feegrant grant \
   --broadcast-mode block \
   --yes
 ```
+
 <!-- markdownlint-enable MD013 -->
 
 Example:
@@ -199,3 +205,85 @@ celestia-appd query bank balances $GRANTER_ADDRESS \
 
 This output will show the remaining balance after fees have been deducted,
 confirming that the FeeGrant module is working as intended.
+
+## Optional: Using FeeGrant with curl commands
+
+To grant fee allowances using curl commands, which can be useful for automation
+or when you need more direct control over the RPC calls, follow these steps.
+
+First, make sure you have `curl` and `jq` installed on your system.
+
+1. Start your local light node for Mocha testnet:
+
+```bash
+celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one
+```
+
+2. In a new terminal, export the authentication token:
+
+```bash
+CELESTIA_NODE_AUTH_TOKEN=$(celestia light auth admin --p2p.network mocha)
+```
+
+3. Get your node's address (this will be the granter address) and store it as a variable:
+
+```bash
+GRANTER_ADDRESS=$(celestia state account-address | jq -r .result) && echo $GRANTER_ADDRESS
+```
+
+4. Set the grantee address (the address that will receive the grant):
+
+```bash
+GRANTEE_ADDRESS=<grantee-address>
+```
+
+5. Send the feegrant request using curl:
+
+```bash
+curl -H "Content-Type: application/json" \
+     -H "Authorization: Bearer $CELESTIA_NODE_AUTH_TOKEN" \
+     -X POST \
+     --data "{
+       \"id\": 1,
+       \"jsonrpc\": \"2.0\",
+       \"method\": \"state.GrantFee\",
+       \"params\": [
+         \"$GRANTEE_ADDRESS\",
+         \"42\",
+         {
+           \"gas_price\": 0.002,
+           \"is_gas_price_set\": true,
+           \"gas\": 142225,
+           \"key_name\": \"my_celes_key\",
+           \"signer_address\": \"$GRANTER_ADDRESS\",
+           \"fee_granter_address\": \"$GRANTER_ADDRESS\"
+         }
+       ]
+     }" http://localhost:26658/
+```
+
+A successful response will look like this:
+
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "height": 3068554,
+    "txhash": "4AAFDA4CE622C56CE9681B7E3BE7773E3B36ABE6C02BD66111BD2F2491011FD2",
+    "logs": null,
+    "events": null
+  }
+}
+```
+
+You can verify the transaction on [Celenium Explorer](https://mocha.celenium.io/tx/4AAFDA4CE622C56CE9681B7E3BE7773E3B36ABE6C02BD66111BD2F2491011FD2?tab=messages) by searching for the transaction hash.
+
+The parameters in the request are:
+
+- `gas_price`: The price of gas in utia
+- `is_gas_price_set`: Boolean indicating if gas price is explicitly set
+- `gas`: The gas limit for the transaction
+- `key_name`: The name of your key in the keyring
+- `signer_address`: The address granting the allowance
+- `fee_granter_address`: The address that will pay for the transaction fees
