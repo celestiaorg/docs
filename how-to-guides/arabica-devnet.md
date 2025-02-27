@@ -54,8 +54,8 @@ These RPC providers are meant to be used in production environments.
 
 | Provider | URL |
 |--------|--------|
-| Numia | For RPC access: <https://docs.numia.xyz/overview/rpc-api-access> |
-| Numia | For data warehouse access: <https://docs.numia.xyz/overview/sql-access/chains/celestia> |
+| Numia | For RPC access: <https://docs.numia.xyz/infra/overview/getting-started> |
+| Numia | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia> |
 | Grove | <https://www.grove.city/> |
 
 ### Community RPC endpoints
