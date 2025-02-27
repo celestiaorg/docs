@@ -103,6 +103,9 @@ full blocks from it.
 - `celestia-testnet-consensus.itrocket.net`
   - RPC port: 26657
   - gRPC port: 9090
+- `celestia-mocha-archive-rpc.mzonder.com`
+  - RPC port: 26657
+  - gRPC port: 9090
 
 ## Community RPC endpoints
 
@@ -120,6 +123,7 @@ Celestia network. The default port is 26657.
 - `rpc-2.testnet.celestia.nodes.guru`
 - `celestia-testnet-rpc.itrocket.net:443`
 - `celestia-t-rpc.noders.services`
+- `rpc-celestia-testnet.mzonder.com:443`
 
 ## Community API endpoints
 
@@ -141,6 +145,7 @@ The default port is 1317.
 - `https://celestia-testnet-api.itrocket.net`
 - `https://celestia-t-api.noders.services`
 - `http://celestiam.rest.lava.build`
+- `http://api-celestia-testnet.mzonder.com:443`
 
 ## Community gRPC endpoints
 
@@ -164,6 +169,7 @@ broadcast transactions.
 - `celestia-testnet-grpc.itrocket.net:443`
 - `celestia-t-grpc.noders.services:21090`
 - `celestiam.grpc.lava.build:443`
+- `grpc-celestia-testnet.mzonder.com:443`
 
 ## Community JSON-RPC Endpoints
 
@@ -198,6 +204,9 @@ Full node 2:
 
 - da-full-2-mocha-4.celestia-mocha.com
 - full-2-mocha-4.da.celestia-mocha.com
+- celestia-testnet-da-full-storage.mzonder.com
+  - RPC port: 27758
+  - Gateway port: 27759
 
 ## Mocha testnet faucet
 
