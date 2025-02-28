@@ -302,7 +302,7 @@ tar xf celestia-snap.tar -C ~/.celestia-app/data/
 
 ::: tip
 
-The [Node Snapshots guide](/how-to-guides/snapshots.md) provides everything you need to quick sync your node:
+The [Node snapshots guide](/how-to-guides/snapshots.md) provides everything you need to quick sync your node:
 
 - Details about pruned and archive snapshots
 - A list of snapshot providers for different node types
