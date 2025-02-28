@@ -162,6 +162,122 @@ then enter your bip39 mnemonic:
 ./cel-key --help
 ```
 
+## Managing the key used by celestia state account-address
+
+When you run a Celestia node and use the command `celestia state account-address`, it returns the address of the key that your node is currently using. This key is the same one that was either:
+
+1. Auto-generated during node initialization with `celestia <node-type> init`
+2. Manually created using `cel-key add` 
+3. Imported/recovered using `cel-key add --recover`
+
+### Understanding the relationship
+
+The key reported by `celestia state account-address` is stored in your node's keyring directory:
+- For Mocha testnet: `~/.celestia-<node-type>-mocha-4/keys/keyring-test/`
+- For Mainnet Beta: `~/.celestia-<node-type>/keys/keyring-test/`
+
+You can verify this by listing your keys with `cel-key`:
+
+```bash
+cel-key list --keyring-backend test --node.type <node-type> --p2p.network <network>
+```
+
+For example, with a light node on Mocha:
+
+```bash
+cel-key list --keyring-backend test --node.type light --p2p.network mocha
+```
+
+The address shown in this output should match the one returned by `celestia state account-address`.
+
+### Backing up your key
+
+To back up the key used by your node, you have two options:
+
+#### Option 1: Export the key's mnemonic
+
+```bash
+cel-key export <key-name> --keyring-backend test --node.type <node-type> --p2p.network <network>
+```
+
+For example, if your key is named "my_celes_key":
+
+```bash
+cel-key export my_celes_key --keyring-backend test --node.type light --p2p.network mocha
+```
+
+This will prompt you for a password to encrypt the exported key. Store this exported key and password securely.
+
+#### Option 2: Back up the keyring directory
+
+You can also directly back up the entire keyring directory:
+
+```bash
+# For Mocha testnet
+cp -r ~/.celestia-<node-type>-mocha-4/keys/keyring-test /secure/backup/location
+
+# For Mainnet Beta
+cp -r ~/.celestia-<node-type>/keys/keyring-test /secure/backup/location
+```
+
+### Recovering your key
+
+If you need to recover your key on a new machine or after reinstalling your node:
+
+#### Option 1: Recover using the mnemonic
+
+If you have the mnemonic phrase for your key:
+
+```bash
+cel-key add <key-name> --recover --keyring-backend test --node.type <node-type> --p2p.network <network>
+```
+
+For example:
+
+```bash
+cel-key add my_celes_key --recover --keyring-backend test --node.type light --p2p.network mocha
+```
+
+You'll be prompted to enter your mnemonic phrase.
+
+#### Option 2: Restore from backup
+
+If you backed up the keyring directory:
+
+1. Install and initialize your node as normal
+2. Stop the node if it's running
+3. Replace the keyring-test directory with your backup:
+
+```bash
+# For Mocha testnet
+cp -r /secure/backup/location/* ~/.celestia-<node-type>-mocha-4/keys/keyring-test/
+
+# For Mainnet Beta
+cp -r /secure/backup/location/* ~/.celestia-<node-type>/keys/keyring-test/
+```
+
+4. Start your node with the restored key:
+
+```bash
+celestia <node-type> start --p2p.network <network> --keyring.keyname <key-name> [other flags]
+```
+
+### Using a specific key with your node
+
+If you have multiple keys and want to use a specific one with your node:
+
+```bash
+celestia <node-type> start --p2p.network <network> --keyring.keyname <key-name> [other flags]
+```
+
+For example:
+
+```bash
+celestia light start --p2p.network mocha --keyring.keyname my_celes_key --core.ip rpc-mocha.pops.one
+```
+
+This ensures your node uses the specified key for all operations, including those reported by `celestia state account-address`.
+
 ## Docker and `cel-key`
 
 ### Prerequisites
