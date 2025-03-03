@@ -57,8 +57,8 @@ Learn more in the [v3.0.0 release notes](https://github.com/celestiaorg/celestia
 Network      | Chain ID   | Date and time             | Upgrade height
 -------------|------------|---------------------------|---------------
 Arabica      | arabica-11 | 2024/11/05 @ 21:55:13 UTC | 2348907
-Mocha        | mocha-4    | TBD                       | TBD
-Mainnet Beta | celestia   | TBD                       | TBD
+Mocha        | mocha-4    | 2024/11/14 @ 18:31:11 UTC | 3140052
+Mainnet Beta | celestia   | 2024/12/12 @ 14:28:52 UTC | 2993219
 
 ### Upcoming Upgrades
 
