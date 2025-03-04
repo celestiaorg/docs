@@ -153,6 +153,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-rpc.chainode.tech:33373`
 - `celestia-mainnet-rpc.itrocket.net:443`
 - `celestia-rpc.noders.services`
+- `rpc-celestia.mzonder.com:443`
 
 #### Community API endpoints
 
@@ -174,6 +175,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-mainnet-api.itrocket.net:443`
 - `celestia-api.noders.services`
 - `celestia.rest.lava.build`
+- `api-celestia.mzonder.com:443`
 
 
 #### Community gRPC endpoints
@@ -194,6 +196,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `celestia-mainnet-grpc.itrocket.net:443`
 - `celestia-grpc.noders.services:11090`
 - `celestia.grpc.lava.build:443`
+- `grpc-celestia.mzonder.com:443`
 
 
 #### Community WebSocket endpoints
@@ -202,6 +205,7 @@ on [service providers with SLAs](#production-rpc-endpoints).
 - `wss://celestia-mainnet-ws.itrocket.net:443/websocket`
 - `wss://celestia.cumulo.org.es:443/websocket`
 - `wss://rpc.archive.celestia.cumulo.com.es:443/websocket`
+- `wss://rpc-celestia.mzonder.com:443/websocket`
 
 ### Data availability nodes
 
@@ -255,7 +259,10 @@ RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with
 - `celestia-mainnet-consensus.itrocket.net`
   - gRPC: port 9090
   - RPC: port 26657
-
+- `celestia-archive-rpc.mzonder.com`
+  - gRPC: port 9090
+  - RPC: port 26657
+    
 DA full and light nodes might have troubles connecting to the networks, so you
 can check out this
 [Grafana dashboard](https://celestia.observer/grafana)
@@ -269,6 +276,10 @@ By default, light nodes prune recent data to save on storage space. Archival
 data availability (DA) nodes store the entire history of the chain without
 pruning any data so all data available data is retrievable. You can
 [read more about light vs archival nodes](/learn/retrievability.md).
+
+- `celestia-da-full-storage.mzonder.com`
+  - RPC: port 27758
+  - Gateway: port 27759
 
 ## Explorers
 
