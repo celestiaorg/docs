@@ -132,6 +132,7 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"
 ```
 
 :::
+
 </details>
 
 ## Storage and pruning configurations
@@ -196,7 +197,7 @@ min-retain-blocks = 0 # this is the default setting
 ## Sync types
 
 | Sync mode  | Time     | Notes                                                                                                                                        |
-|------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | Block sync | ~3 weeks | Downloads and executes all blocks from genesis to the tip                                                                                    |
 | State sync | ~1 hour  | Downloads a snapshot of the state then downloads and executes all blocks after that snapshot to the tip.                                     |
 | Quick sync | ~5 hours | Downloads the data directory from a node. Time depends on your download speed because the data being downloaded can exceed 1 TB for mainnet. |
@@ -296,6 +297,16 @@ SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
 aria2c -x 16 -s 16 -o celestia-snap.tar "https://snaps.qubelabs.io/celestia/${SNAP_NAME}"
 tar xf celestia-snap.tar -C ~/.celestia-app/data/
 ```
+
+:::
+
+::: tip
+
+The [Node snapshots guide](/how-to-guides/snapshots.md) provides everything you need to quick sync your node:
+
+- Details about pruned and archive snapshots
+- A list of snapshot providers for different node types
+- Installation and usage instructions for `celestia-snapshot-finder` - a tool that automatically finds and downloads the fastest snapshot for your server location
 
 :::
 

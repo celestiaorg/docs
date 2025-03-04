@@ -224,7 +224,7 @@ export default {
           content:
             pageData.description || "The first modular blockchain network.",
         },
-      ],
+      ]
     );
   },
 };
@@ -533,6 +533,7 @@ function sidebarHome() {
                   ],
                 },
                 { text: "SystemD", link: "/how-to-guides/systemd" },
+                { text: "Snapshots", link: "/how-to-guides/snapshots" },
                 {
                   text: "Network upgrade process",
                   link: "/how-to-guides/network-upgrade-process",
