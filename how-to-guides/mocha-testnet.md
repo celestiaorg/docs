@@ -145,7 +145,7 @@ The default port is 1317.
 - `https://celestia-testnet-api.itrocket.net`
 - `https://celestia-t-api.noders.services`
 - `http://celestiam.rest.lava.build`
-- `http://api-celestia-testnet.mzonder.com:443`
+- `https://api-celestia-testnet.mzonder.com:443`
 
 ## Community gRPC endpoints
 
