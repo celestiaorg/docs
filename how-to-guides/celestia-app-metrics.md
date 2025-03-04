@@ -140,7 +140,7 @@ Finally click the "Import" button and the "Cosmos Dashboard" should appear.
 
 ## Node exporter
 
-Celestia's metrics include a plethora of application specific
+Celestia's metrics include a plethora of application-specific
 trackers but it's also important to keep an eye on system level
 metrics such as memory usage and disk space. This can be best
 achieved by running [Node Exporter](https://prometheus.io/docs/guides/node-exporter/).
