@@ -33,11 +33,21 @@ each tutorial guide.
 
 ## Data availability nodes
 
+### Non-archival data availability nodes
+
 | Node type         | Memory      | CPU         | Disk       | Bandwidth |
 |-------------------|-------------|-------------|------------|-----------|
 | Light node        | 500 MB RAM  | Single core | 100 GB SSD | 56 Kbps   |
 | Bridge node       | 64 GB RAM   | 8 cores     | 5 TiB NVME  | 1 Gbps    |
 | Full storage node | 64 GB RAM   | 8 cores   | 5 TiB NVME  | 1 Gbps    |
+
+### Archival data availability nodes
+
+| Node type         | Memory      | CPU         | Disk       | Bandwidth |
+|-------------------|-------------|-------------|------------|-----------|
+| Light node        | 500 MB RAM  | Single core | 100 GB SSD | 56 Kbps   |
+| Bridge node       | 64 GB RAM   | 8 cores     | 6 TiB NVME  | 1 Gbps    |
+| Full storage node | 64 GB RAM   | 8 cores   | 6 TiB NVME  | 1 Gbps    |
 
 ### Consensus nodes
 
