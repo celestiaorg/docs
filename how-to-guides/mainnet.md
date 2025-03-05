@@ -277,6 +277,7 @@ data availability (DA) nodes store the entire history of the chain without
 pruning any data so all data available data is retrievable. You can
 [read more about light vs archival nodes](/learn/retrievability.md).
 
+- QuickNode: <https://www.quicknode.com/chains/celestia>
 - `celestia-da-full-storage.mzonder.com`
   - RPC: port 27758
   - Gateway: port 27759
