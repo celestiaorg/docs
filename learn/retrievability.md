@@ -56,8 +56,14 @@ access historical data.
 - **Use professional archival node or data providers.** It is expected that
   professional infrastructure providers will provide paid access to archival
   nodes, where historical data can be retrieved, for example using the `GetAll`
-  API method. This provides better guarantees than solely relying on free
-  archival nodes on the public Celestia network.
+  API method. Providers like QuickNode offer archival node services that maintain
+  complete historical data, ensuring reliable access to past transactions and state.
+  This provides better guarantees than solely relying on free archival nodes on the
+  public Celestia network. For a list of available providers, see the 
+  [network pages](/how-to-guides/mainnet.md) page, and for specific archival
+  node endpoints, refer to the [archival DA RPC endpoints](/how-to-guides/mainnet.md#archival-da-rpc-endpoints)
+  section.
+  
 - **Share snapshots of rollup nodes.** Rollups could share snapshots of their
   data directories which can be downloaded manually by users bootstrapping new
   nodes. These snapshots could contain the latest state of the rollup, and/or
