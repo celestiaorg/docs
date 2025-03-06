@@ -110,7 +110,7 @@ These RPC providers are meant to be used in production environments.
 | Numia | For RPC access: <https://docs.numia.xyz/infra/overview/getting-started> |
 | Numia | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia> |
 | Grove | <https://www.grove.city/> |
-| QuickNode | <https://www.quicknode.com/chains/celestia> |
+| QuickNode | <https://www.quicknode.com/chains/celestia>, [docs](https://quicknode.com/docs/celestia) |
 
 If you are using QuickNode or another provider with authentication of endpoints,
 see [the light node guide](/how-to-guides/light-node.md#optional-start-light-node-with-core-endpoint-with-authentication)
@@ -277,7 +277,8 @@ data availability (DA) nodes store the entire history of the chain without
 pruning any data so all data available data is retrievable. You can
 [read more about light vs archival nodes](/learn/retrievability.md).
 
-- QuickNode: <https://www.quicknode.com/chains/celestia>
+- QuickNode: <https://www.quicknode.com/chains/celestia>, [docs](https://quicknode.com/docs/celestia)
+
 - `celestia-da-full-storage.mzonder.com`
   - RPC: port 27758
   - Gateway: port 27759
