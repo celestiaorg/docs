@@ -159,14 +159,14 @@ For example, to connect to the P-OPS endpoint:
 celestia light start --core.ip rpc.celestia.pops.one --core.port 9090
 ```
 
-:::tip Bridge node operators
+### Bridge Node Requirements
+
 Not all RPC endpoints guarantee the full block history.
 Bridge nodes require access to the full historical block data, so you should use an archive endpoint to run your bridge node.
 
 Check the [production endpoints](#production-rpc-endpoints) or the [community dashboard](https://celestia-tools.brightlystake.com/) to identify which endpoints are archive nodes with full historical data.
 
 Alternatively, you can run your own consensus node with no pruning for your bridge node.
-:::
 
 ### Archival DA RPC endpoints
 
