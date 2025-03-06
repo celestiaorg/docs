@@ -63,10 +63,10 @@ These RPC providers are meant to be used in production environments.
 
 | Provider | URL |
 |--------|--------|
+| QuickNode | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) |
 | Numia | For RPC access: <https://docs.numia.xyz/infra/overview/getting-started> |
 | Numia | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia> |
 | Grove | <https://www.grove.city/> |
-| QuickNode | <https://www.quicknode.com/chains/celestia> |
 
 :::warning
 Do not rely on the free community endpoints listed below

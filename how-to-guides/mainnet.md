@@ -178,7 +178,7 @@ pruning any data so all data available data is retrievable. You can
 
 | Provider | Endpoint | RPC Port | Gateway Port |
 |----------|----------|----------|-------------|
-| QuickNode | <https://www.quicknode.com/chains/celestia> | - | - |
+| QuickNode | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) | - | - |
 | Mzonder | `celestia-da-full-storage.mzonder.com` | 27758 | 27759 |
 | See the Brightly Stake dashboard | <https://celestia-tools.brightlystake.com/> | - | - |
 
