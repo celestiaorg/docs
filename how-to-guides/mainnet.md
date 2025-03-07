@@ -9,14 +9,10 @@ import MainnetBetaDetails from '../.vitepress/components/MainnetBetaDetails.vue'
 
 ![Mainnet Beta](/img/Mainnet-Beta.png)
 
-Welcome to the guide for Celestia’s Mainnet Beta, the production
-network that marks the pinnacle of Celestia’s evolution since its
-inception in 2019. This network is where all components of the
-Celestia ecosystem come to life in a real-world environment.
-
+Welcome to the guide for Celestia's Mainnet Beta.
 Mainnet Beta is the culmination of rigorous community testing,
 upgrades, and feedback. It serves as the platform for deploying
-Mainnet Beta rollups and applications.
+Mainnet Beta rollups and unstoppable applications.
 
 ## Network stability and upgrades
 
@@ -40,20 +36,15 @@ functional, users may encounter occasional instability or reduced performance.
 
 ## Network parameters
 
-Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/23d13d4de41631dc3c52f7d94fc214e44d03962d/specs/src/specs/params.md?plain=1#L30),
-can be found in the
-[celestia-app specifications](https://celestiaorg.github.io/celestia-app/specs/params.html).
+### Transaction size limit
 
-[CIP-13](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-13.md)
-has been drafted to create a living document for these parameters
-as a part of the CIP process.
+As specified in [CIP-28](https://cips.celestia.org/cip-28.html), there is a 2 MiB (2,097,152 bytes) limit on individual transaction size. This limit was implemented to maintain network stability and provide clear expectations for users and developers, even as block sizes may be larger.
 
-### Maximum bytes
+### Block size limit
 
-There is a hard limit on the total blob size in a transaction, which is
-determined by the effective maximum square size. Given that the current
-governance maximum square size is 128, the total blob size in a transaction
-must be slightly less than ~8 MiB, or 7,896,602 bytes to be exact.
+While individual transactions are limited to 2 MiB, a block can contain multiple transactions and has a much larger capacity. The maximum block size is determined by the effective maximum square size.
+
+Given that the current governance maximum square size is 128, the total block size can be slightly less than ~8 MiB, or 7,896,602 bytes to be exact.
 
 The following provides an approximation of the maximum block size:
 
@@ -70,7 +61,7 @@ $\text{Total Bytes} = (1 \times 478 \, \text{bytes}) + (16382 \times 482 \, \tex
 
 <!-- markdownlint-enable MD013 -->
 
-Please note that there isn't a precise upper bound on the maximum total
+There isn't a precise upper bound on the maximum total
 blob size. It depends on several factors:
 
 - The maximum square size, which is determined by a governance parameter
@@ -86,17 +77,18 @@ See the code in
 [celestia-app](https://github.com/celestiaorg/celestia-app/blob/2e49d665b3275e769dfe0371b1ca41e39dc3f5f5/pkg/appconsts/initial_consts.go#L14)
 and [celestia-node](https://github.com/celestiaorg/celestia-node/blob/540192259c144ccbd24e45e34616a41389232a51/blob/blob.go#L93).
 
+Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/23d13d4de41631dc3c52f7d94fc214e44d03962d/specs/src/specs/params.md?plain=1#L30),
+can be found in the
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v3.html).
+
 ## Integrations
 
 This guide contains the relevant sections for how to connect to Mainnet Beta,
 depending on the type of node you are running. Your best approach to
-participating is to first determine which node you would like to run. Each
-node’s guide will link to the relevant network in order to show you how
+participating is to first [determine which node you would like to run](/how-to-guides/decide-node.md). Each
+node's guide will link to the relevant network in order to show you how
 to connect to them. Learn about the different endpoint types
 [in the Cosmos SDK documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest).
-
-Here is a list of options of the types of nodes you can run in order
-to participate in Mainnet Beta:
 
 ### Production RPC endpoints
 
@@ -107,28 +99,16 @@ These RPC providers are meant to be used in production environments.
 
 | Provider | URL |
 |--------|--------|
+| QuickNode | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) |
 | Numia | For RPC access: <https://docs.numia.xyz/infra/overview/getting-started> |
 | Numia | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia> |
 | Grove | <https://www.grove.city/> |
-| QuickNode | <https://www.quicknode.com/chains/celestia> |
 
 If you are using QuickNode or another provider with authentication of endpoints,
 see [the light node guide](/how-to-guides/light-node.md#optional-start-light-node-with-core-endpoint-with-authentication)
 to learn how to use an endpoint with x-token.
 
-:::warning
-Do not rely on the free community endpoints listed below
-for production deployments. Production deployments should rely
-on [service providers with SLAs](#production-rpc-endpoints) or
-your own node.
-:::
-
-### Consensus nodes
-
-- [Consensus node](/how-to-guides/consensus-node.md)
-- [Validator node](/how-to-guides/validator-node.md)
-
-#### Community consensus RPC endpoints
+### Community consensus endpoints
 
 :::warning
 Do not rely on the free community endpoints listed below
@@ -136,164 +116,94 @@ for production deployments. Production deployments should rely
 on [service providers with SLAs](#production-rpc-endpoints).
 :::
 
-- `public-celestia-rpc.numia.xyz`
-- `rpc.celestia.pops.one`
-- `rpc.lunaroasis.net`
-- `rpc.celestia.nodestake.top`
-- `celestia-rpc.brightlystake.com`
-- `celestia.rpc.stakin-nodes.com`
-- `celestia.cumulo.org.es`
-- `rpc.archive.celestia.cumulo.com.es`
-- `rpc-celestia-01.stakeflow.io`
-- `rpc-celestia.alphab.ai`
-- `celestia-rpc.easy2stake.com`
-- `celestia.rpc.kjnodes.com`
-- `celestia-rpc.0xcryptovestor.com`
-- `rpc-celestia-mainnet.trusted-point.com`
-- `celestia-rpc.chainode.tech:33373`
-- `celestia-mainnet-rpc.itrocket.net:443`
-- `celestia-rpc.noders.services`
-- `rpc-celestia.mzonder.com:443`
+The following table lists community-provided consensus node endpoints that you can use:
 
-#### Community API endpoints
+| Provider | RPC Endpoint | API Endpoint | gRPC Endpoint | WebSocket Endpoint |
+|----------|--------------|--------------|---------------|-------------------|
+| Numia | `public-celestia-rpc.numia.xyz` | `public-celestia-lcd.numia.xyz` | `public-celestia-grpc.numia.xyz` | - |
+| P-OPS | `rpc.celestia.pops.one` | `api.celestia.pops.one` | `grpc.celestia.pops.one` | - |
+| lunaroasis | `rpc.lunaroasis.net` | `api.lunaroasis.net` | `grpc.lunaroasis.net:443` | - |
+| NodeStake | `rpc.celestia.nodestake.top` | `api.celestia.nodestake.top` | `grpc.celestia.nodestake.top` | - |
+| Brightly Stake | `celestia-rpc.brightlystake.com` | `celestia-rpc.brightlystake.com/api` | `celestia-rpc.brightlystake.com:9090` | `wss://celestia-ws.chainode.tech:33373/websocket` |
+| Stakin | `celestia.rpc.stakin-nodes.com` | `celestia.rest.stakin-nodes.com` | `celestia.grpc.stakin-nodes.com:443` | - |
+| Cumulo | `celestia.cumulo.org.es` | `celestia.api.cumulo.org.es` | `celestia.grpc.cumulo.org.es:443` | `wss://celestia.cumulo.org.es:443/websocket` |
+| Cumulo Archive | `rpc.archive.celestia.cumulo.com.es` | `api.archive.celestia.cumulo.com.es` | `grpc.archive.celestia.cumulo.com.es:443` | `wss://rpc.archive.celestia.cumulo.com.es:443/websocket` |
+| Stakeflow | `rpc-celestia-01.stakeflow.io` | `api-celestia-01.stakeflow.io` | `grpc-celestia-01.stakeflow.io:15002` | - |
+| AlphaB | `rpc-celestia.alphab.ai` | `api-celestia.alphab.ai` | `rpc-celestia.alphab.ai:9090` | - |
+| Easy2Stake | `celestia-rpc.easy2stake.com` | `celestia-lcd.easy2stake.com` | - | - |
+| kjnodes | `celestia.rpc.kjnodes.com` | `celestia.api.kjnodes.com` | `celestia.grpc.kjnodes.com:443` | - |
+| 0xcryptovestor | `celestia-rpc.0xcryptovestor.com` | - | - | - |
+| Trusted Point | `rpc-celestia-mainnet.trusted-point.com` | `api-celestia-mainnet.trusted-point.com` | `grpc-celestia-mainnet.trusted-point.com:9095` | - |
+| Chainode | `celestia-rpc.chainode.tech:33373` | `celestia-api.chainode.tech` | `celestia-grpc.chainode.tech:443` | `wss://celestia-ws.chainode.tech:33373/websocket` |
+| ITRocket | `celestia-mainnet-rpc.itrocket.net:443` | `celestia-mainnet-api.itrocket.net:443` | `celestia-mainnet-grpc.itrocket.net:443` | `wss://celestia-mainnet-ws.itrocket.net:443/websocket` |
+| Noders Services | `celestia-rpc.noders.services` | `celestia-api.noders.services` | `celestia-grpc.noders.services:11090` | - |
+| Lava | - | `celestia.rest.lava.build` | `celestia.grpc.lava.build:443` | - |
+| Mzonder | `rpc-celestia.mzonder.com:443` | `api-celestia.mzonder.com:443` | `grpc-celestia.mzonder.com:443` | `wss://rpc-celestia.mzonder.com:443/websocket` |
 
-- `public-celestia-lcd.numia.xyz`
-- `api.celestia.pops.one`
-- `api.lunaroasis.net`
-- `api.celestia.nodestake.top`
-- `celestia-rpc.brightlystake.com/api`
-- `celestia.rest.stakin-nodes.com`
-- `celestia.api.cumulo.org.es`
-- `api.archive.celestia.cumulo.com.es`
-- `api-celestia.mzonder.com`
-- `api-celestia-01.stakeflow.io`
-- `api-celestia.alphab.ai`
-- `celestia-lcd.easy2stake.com`
-- `celestia.api.kjnodes.com`
-- `api-celestia-mainnet.trusted-point.com`
-- `celestia-api.chainode.tech`
-- `celestia-mainnet-api.itrocket.net:443`
-- `celestia-api.noders.services`
-- `celestia.rest.lava.build`
-- `api-celestia.mzonder.com:443`
+### Connecting DA nodes to consensus nodes
 
-
-#### Community gRPC endpoints
-
-- `public-celestia-grpc.numia.xyz`
-- `grpc.celestia.pops.one`
-- `grpc.lunaroasis.net:443`
-- `grpc.celestia.nodestake.top`
-- `celestia-rpc.brightlystake.com:9090`
-- `celestia.grpc.stakin-nodes.com:443`
-- `celestia.grpc.cumulo.org.es:443`
-- `grpc.archive.celestia.cumulo.com.es:443`
-- `grpc-celestia-01.stakeflow.io:15002`
-- `rpc-celestia.alphab.ai:9090`
-- `celestia.grpc.kjnodes.com:443`
-- `grpc-celestia-mainnet.trusted-point.com:9095`
-- `celestia-grpc.chainode.tech:443`
-- `celestia-mainnet-grpc.itrocket.net:443`
-- `celestia-grpc.noders.services:11090`
-- `celestia.grpc.lava.build:443`
-- `grpc-celestia.mzonder.com:443`
-
-
-#### Community WebSocket endpoints
-
-- `wss://celestia-ws.chainode.tech:33373/websocket`
-- `wss://celestia-mainnet-ws.itrocket.net:443/websocket`
-- `wss://celestia.cumulo.org.es:443/websocket`
-- `wss://rpc.archive.celestia.cumulo.com.es:443/websocket`
-- `wss://rpc-celestia.mzonder.com:443/websocket`
-
-### Data availability nodes
-
-- [Light node](/how-to-guides/light-node.md)
-- [Bridge node](/how-to-guides/bridge-node.md)
-- [Full storage node](/how-to-guides/full-storage-node.md)
-
-#### Community Data availability (DA) RPC endpoints for bridge node sync
-
-These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
-For users, they will need to provide a `–core.ip string`
-from a consensus node’s URL or IP that populates a default RPC port at 26657
-to their respective DA node.
-
-#### Community Data availability (DA) gRPC endpoints for state access
-
-These gRPC endpoints for DA nodes provide state access for querying the
-chain’s state and broadcasting transactions (balances, blobs, etc.) to the
-Celestia network. For users, they will need to provide a `–core.ip string`
-from a consensus node’s URL or IP that populates a default gRPC port at 9090
-to their respective DA node.
+Data availability (DA) nodes need to connect to consensus nodes to sync blocks and access state. When starting a DA node, you'll need to provide a consensus node endpoint using the `--core.ip` parameter and the port.
 
 :::tip
 
 ```bash
-celestia <da_type> start --core.ip <url> -–core.port <port>
+celestia <da_type> start --core.ip <consensus_node_url> --core.port <port>
 ```
 
 :::
 
-:::tip Bridge nodes
+You can use any of the RPC endpoints from the [community consensus endpoints](#community-consensus-endpoints) table above. The default port is 9090, where gRPC is used for both block sync and state access.
+
+For example, to connect to the P-OPS endpoint:
+```bash
+celestia light start --core.ip rpc.celestia.pops.one --core.port 9090
+```
+
+### Bridge node requirements
+
 Not all RPC endpoints guarantee the full block history.
-Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
-or run your own consensus node with no pruning for your bridge node.
-:::
+Bridge nodes require access to the full historical block data, so you should use an archive endpoint to run your bridge node.
 
-RPCs for DA nodes to initialise or start your celestia-node to Mainnet Beta with:
+Check the [production endpoints](#production-rpc-endpoints) or the [community dashboard](https://celestia-tools.brightlystake.com/) to identify which endpoints are archive nodes with full historical data.
 
-- `public-celestia-consensus.numia.xyz`
-  - gRPC: port 9090
-  - RPC: port 26657
-- `rpc.celestia.pops.one`
-  - gRPC: port 9090
-  - RPC: port 26657
-- `consensus.lunaroasis.net`
-  - gRPC: port 9090
-  - RPC: port 26657
-- `rpc-celestia.alphab.ai`
-  - gRPC: port 9090
-  - RPC: port 26657
-- `celestia-mainnet-consensus.itrocket.net`
-  - gRPC: port 9090
-  - RPC: port 26657
-- `celestia-archive-rpc.mzonder.com`
-  - gRPC: port 9090
-  - RPC: port 26657
-    
-DA full and light nodes might have troubles connecting to the networks, so you
-can check out this
-[Grafana dashboard](https://celestia.observer/grafana)
-to see health/uptime status of DA bootstrappers (now `celestia` network only).
+Alternatively, you can run your own consensus node with no pruning for your bridge node.
 
-You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
-
-#### Archival DA RPC endpoints
+### Archival DA RPC endpoints
 
 By default, light nodes prune recent data to save on storage space. Archival
 data availability (DA) nodes store the entire history of the chain without
 pruning any data so all data available data is retrievable. You can
 [read more about light vs archival nodes](/learn/retrievability.md).
 
-- QuickNode: <https://www.quicknode.com/chains/celestia>
-- `celestia-da-full-storage.mzonder.com`
-  - RPC: port 27758
-  - Gateway: port 27759
+| Provider | Endpoint | RPC Port | Gateway Port |
+|----------|----------|----------|-------------|
+| QuickNode | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) | - | - |
+| Mzonder | `celestia-da-full-storage.mzonder.com` | 27758 | 27759 |
+| See the Brightly Stake dashboard | <https://celestia-tools.brightlystake.com/> | - | - |
 
 ## Explorers
 
 There are multiple explorers you can use for Mainnet Beta:
 
 - [https://celenium.io](https://celenium.io)
+- [https://mammoblocks.io/](https://mammoblocks.io/)
 - [https://celestia.explorers.guru](https://celestia.explorers.guru)
 - [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
 - [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
-- [https://celestia.exploreme.pro/](https://celestia.exploreme.pro/)
 - [https://celestia.valopers.com/](https://celestia.valopers.com/)
 - [https://mainnet.itrocket.net/celestia/](https://mainnet.itrocket.net/celestia/)
+
+## Community endpoint status dashboard
+
+To check the current status, uptime, and health of all community endpoints, visit the [RPC stats for Celestia dashboard](https://celestia-tools.brightlystake.com/). This dashboard provides real-time information about:
+
+- Which endpoints are currently online
+- Response times and performance metrics
+- Which endpoints are archive nodes with full historical data
+- Last seen heights for each endpoint
+
+This is an essential resource when selecting endpoints for your nodes or applications.
 
 ## Analytics
 
