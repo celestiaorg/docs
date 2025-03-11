@@ -26,9 +26,13 @@ Developers can still deploy on Mocha testnet their sovereign rollups if they
 chose to do so, it just will always lag behind Arabica devnet until Mocha
 undergoes network upgrades in coordination with validators.
 
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
+import ArabicaDevnetDetails from '../.vitepress/components/ArabicaDevnetDetails.vue'
+</script>
+
 ## Network details
-
-
 
 <ArabicaDevnetDetails />
 
