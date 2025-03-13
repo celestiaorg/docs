@@ -17,7 +17,7 @@ Merkelized into a data root commitment included in the block header.
 ![Lifecycle of a celestia-app Transaction](/img/learn/tx-lifecycle.png)
 
 See
-[the detailed life cycle of a Celestia transaction](/how-to-guides/how-celestia-works/transaction-lifecycle.md).
+[the detailed life cycle of a Celestia transaction](/learn/how-celestia-works/transaction-lifecycle.md).
 
 Learn how to
 [submit data to Celestia’s data availability layer](/how-to-guides/submit-data.md).
