@@ -106,7 +106,6 @@ Deploy your rollup with a RaaS provider.
 Deploy your smart contracts on dedicated EVM-compatible rollups.
 
 <div class="framework-grid">
-  <UrlImageButton url="https://bubstestnet.com/" imageSrc="/build/caldera.webp" text="Bubs testnet" notes="OP Stack" alt="Caldera logo" aria-label="Caldera Bubs testnet"/>
   <UrlImageButton url="https://raas.gelato.network/rollups/details/public/opcelestia-raspberry" imageSrc="/build/gelato.webp" text="Raspberry testnet" notes="OP Stack" alt="Gelato logo" aria-label="Gelato Raspberry testnet"/>
 </div>
 

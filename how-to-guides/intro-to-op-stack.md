@@ -1,9 +1,11 @@
 ---
 description: Learn about the integration of OP Stack with Celestia.
 prev:
-  text: "Bridging in and out of your Orbit rollup"
-  link: "/how-to-guides/arbitrum-bridge"
+  text: "How to run an Orbit full node and validator"
+  link: "/how-to-guides/arbitrum-full-node"
 ---
+
+<!-- TODO: Revise this with Javed to make this accurate. -->
 
 # Introduction to OP Stack integration
 
@@ -82,6 +84,6 @@ Learn [more about Optimism](https://www.optimism.io/). -->
 ## Next steps
 
 Now that you understand the integration, you can start learning about the
-[Bubs testnet](/how-to-guides/bubs-testnet.md), built with OP Stack and Celestia! This
+[Raspberry testnet](https://raas.gelato.network/rollups/details/public/opcelestia-raspberry), built with OP Stack and Celestia! This
 testnet is a great way to explore the possibilities of this integration
 and test your applications in a live environment.
