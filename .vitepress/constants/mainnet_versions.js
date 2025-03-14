@@ -1,9 +1,9 @@
 const mainnetVersions = Object.freeze({
-  "app-latest-tag": "v3.3.1",
-  "app-latest-sha": "addcd77c01fa6b58c59e05439592169d2e54555c",
-  "core-latest-tag": "v1.49.0-tm-v0.34.35",
-  "core-latest-sha": "511badf2d82480b5297a49469583fe176610941a",
-  "node-latest-tag": "v0.21.5",
-  "node-latest-sha": "d57107415355ef6fee3fc01ba12cd3e48d7a310c",
+  "app-latest-tag": "v3.4.2",
+  "app-latest-sha": "5b6032731ca5653707434b4408c7fd5a53608012",
+  "core-latest-tag": "v1.50.0-tm-v0.34.35",
+  "core-latest-sha": "1d1d65b6704b75a567e1ee2176e60c9104415f31",
+  "node-latest-tag": "v0.22.0-mammoth.1",
+  "node-latest-sha": "e74699aadc643b8a446506283a85bd27040ada07",
 });
 export default mainnetVersions;
