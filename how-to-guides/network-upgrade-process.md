@@ -8,7 +8,7 @@ Blockchain networks often need to upgrade with new features which require coordi
 
 ## Network upgrade coordination
 
-As of the Lemongrass upgrade in September 2024, Celestia has implemented [CIP-10](https://cips.celestia.org/cip-10.html), which establishes two methods for coordinating network upgrades:
+As of the Lemongrass upgrade in September 2024, Celestia has implemented [CIP-10](https://cips.celestia.org/cip-010.html), which establishes two methods for coordinating network upgrades:
 
 1. **Pre-programmed height**: Used for the Lemongrass network upgrade (v2)
 2. **In-protocol signaling**: Used for all subsequent upgrades (v3+)
@@ -30,7 +30,7 @@ The upgrade process can be broken down into a few steps:
 
 #### Lemongrass network upgrade
 
-The Lemongrass network upgrade (v2) was the first consensus layer breaking change since Celestia's Mainnet Beta genesis block. The Lemongrass network upgrade included all of the CIPs listed in [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-17.md) and implemented CIP-10 for future upgrades.
+The Lemongrass network upgrade (v2) was the first consensus layer breaking change since Celestia's Mainnet Beta genesis block. The Lemongrass network upgrade included all of the CIPs listed in [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-017.md) and implemented CIP-10 for future upgrades.
 
 Network      | Chain ID   | Date and time          | Upgrade height
 -------------|------------|------------------------|---------------
@@ -40,15 +40,15 @@ Mainnet Beta | celestia   | 2024/09/18 @ 14:00 UTC | 2371495
 
 #### Ginger network upgrade
 
-The Ginger network upgrade (v3) was the first to use the in-protocol signaling mechanism defined in [CIP-10](https://cips.celestia.org/cip-10.html). This upgrade included changes defined in [CIP-25](https://cips.celestia.org/cip-25.html):
+The Ginger network upgrade (v3) was the first to use the in-protocol signaling mechanism defined in [CIP-10](https://cips.celestia.org/cip-010.html). This upgrade included changes defined in [CIP-25](https://cips.celestia.org/cip-025.html):
 
 Key features include:
 
-- [CIP-21](https://cips.celestia.org/cip-21.html): Introduce blob type with verified signer
-- [CIP-24](https://cips.celestia.org/cip-24.html): Versioned Gas Scheduler Variables
-- [CIP-26](https://cips.celestia.org/cip-26.html): Versioned timeouts
-- [CIP-27](https://cips.celestia.org/cip-27.html): Block limits for number of PFBs and non-PFBs
-- [CIP-28](https://cips.celestia.org/cip-28.html): Transaction size limit
+- [CIP-21](https://cips.celestia.org/cip-021.html): Introduce blob type with verified signer
+- [CIP-24](https://cips.celestia.org/cip-024.html): Versioned Gas Scheduler Variables
+- [CIP-26](https://cips.celestia.org/cip-026.html): Versioned timeouts
+- [CIP-27](https://cips.celestia.org/cip-027.html): Block limits for number of PFBs and non-PFBs
+- [CIP-28](https://cips.celestia.org/cip-028.html): Transaction size limit
 
 Unlike the Lemongrass upgrade, there will not be a pre-programmed upgrade height. Instead, validators will signal their readiness for v3 through in-protocol signaling, and the upgrade will automatically activate one week after 5/6 of voting power have signaled for a particular version.
 
