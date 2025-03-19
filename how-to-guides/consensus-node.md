@@ -342,11 +342,53 @@ Optional: If you would like celestia-app to run as a background process, you can
 
 ### Optional: Reset network
 
-This will delete all data folders so we can start fresh:
+There are several ways to reset your consensus node, depending on what you need to preserve:
+
+#### Option 1: Reset blockchain data while preserving configuration
+
+This command removes blockchain data but keeps your node configuration:
+
+```sh
+celestia-appd tendermint reset-state
+```
+
+This preserves your configuration but removes:
+- blockstore.db
+- state.db
+- evidence.db
+
+#### Option 2: Manual reset (recommended for validator nodes)
+
+For more precise control over what gets reset:
+
+```sh
+mv ~/.celestia-app/data ~/.celestia-app/old-data
+mkdir -pv ~/.celestia-app/data
+cp ~/.celestia-app/old-data/priv_validator_state.json ~/.celestia-app/data/priv_validator_state.json
+```
+
+This approach lets you selectively preserve critical validator state files.
+
+#### Option 3: Full reset (including validator keys)
+
+⚠️ **CAUTION**: This will remove your address book, ALL blockchain data, and reset validator private keys:
 
 ```sh
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
+
+**Always backup your validator keys before using this command.**
+
+#### Option 4: Simple data directory cleanup
+
+For non-validator nodes, you can simply remove specific directories:
+
+```sh
+rm -rf ~/.celestia-app/data
+rm -rf ~/.celestia-app/keyring-test
+```
+
+It's recommended to test these commands on a testnet first before applying them to a mainnet node.
 
 ### Optional: Configure an RPC endpoint
 
