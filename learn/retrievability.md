@@ -20,7 +20,7 @@ order to ensure that syncing new rollup nodes is possible.
 
 As of version v0.13.0, celestia-node has implemented a light node
 sampling window of 30 days, as specified in
-[CIP-4](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-4.md).
+[CIP-4](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-004.md).
 This means that once pruning is implemented,
 light nodes will now only sample blocks within a 30-day
 window instead of sampling all blocks from genesis. This change
@@ -59,11 +59,11 @@ access historical data.
   API method. Providers like QuickNode offer archival node services that maintain
   complete historical data, ensuring reliable access to past transactions and state.
   This provides better guarantees than solely relying on free archival nodes on the
-  public Celestia network. For a list of available providers, see the 
+  public Celestia network. For a list of available providers, see the
   [network pages](/how-to-guides/mainnet.md) page, and for specific archival
   node endpoints, refer to the [archival DA RPC endpoints](/how-to-guides/mainnet.md#archival-da-rpc-endpoints)
   section.
-  
+
 - **Share snapshots of rollup nodes.** Rollups could share snapshots of their
   data directories which can be downloaded manually by users bootstrapping new
   nodes. These snapshots could contain the latest state of the rollup, and/or

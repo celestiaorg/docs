@@ -38,7 +38,7 @@ functional, users may encounter occasional instability or reduced performance.
 
 ### Transaction size limit
 
-As specified in [CIP-28](https://cips.celestia.org/cip-28.html), there is a 2 MiB (2,097,152 bytes) limit on individual transaction size. This limit was implemented to maintain network stability and provide clear expectations for users and developers, even as block sizes may be larger.
+As specified in [CIP-28](https://cips.celestia.org/cip-028.html), there is a 2 MiB (2,097,152 bytes) limit on individual transaction size. This limit was implemented to maintain network stability and provide clear expectations for users and developers, even as block sizes may be larger.
 
 ### Block size limit
 
