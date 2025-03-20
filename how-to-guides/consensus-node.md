@@ -384,11 +384,16 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 For non-validator nodes, you can simply remove specific directories:
 
 ```sh
+# Remove data directory
 rm -rf ~/.celestia-app/data
 rm -rf ~/.celestia-app/keyring-test
+
+# Create data directory and initialize validator state file
+mkdir -p ~/.celestia-app/data/
+echo "{}" > ~/.celestia-app/data/priv_validator_state.json
 ```
 
-It's recommended to test these commands on a testnet first before applying them to a mainnet node.
+The empty validator state file is necessary for the node to start properly after a data reset.
 
 ### Optional: Configure an RPC endpoint
 
