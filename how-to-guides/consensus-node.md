@@ -344,20 +344,38 @@ Optional: If you would like celestia-app to run as a background process, you can
 
 There are several ways to reset your consensus node, depending on what you need to preserve:
 
-#### Option 1: Reset blockchain data while preserving configuration
+#### Option 1: Reset blockchain data with `reset-state`
 
-This command removes blockchain data but keeps your node configuration:
+This command removes blockchain data but preserves validator state and address book:
 
 ```sh
 celestia-appd tendermint reset-state
 ```
 
-This preserves your configuration but removes:
+This preserves your configuration, validator state (`priv_validator_state.json`), and peer connections (`addrbook.json`), but removes:
 - blockstore.db
 - state.db
 - evidence.db
 
-#### Option 2: Manual reset (recommended for validator nodes)
+This option is safer for validator nodes and was created specifically for validators who need to reset without losing their validator state.
+
+#### Option 2: Full reset with `unsafe-reset-all`
+
+⚠️ **CAUTION FOR VALIDATORS**: This is considered "unsafe" because it resets validator state:
+
+```sh
+celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
+```
+
+This command:
+- Resets blockchain data
+- Resets validator state (`priv_validator_state.json`) 
+- Clears address book (`addrbook.json`)
+- Preserves node configuration
+
+Only use this during upgrades or when the chain is not moving. Always backup your validator keys before using this command.
+
+#### Option 3: Manual reset (recommended for validator nodes)
 
 For more precise control over what gets reset:
 
@@ -367,21 +385,11 @@ mkdir -pv ~/.celestia-app/data
 cp ~/.celestia-app/old-data/priv_validator_state.json ~/.celestia-app/data/priv_validator_state.json
 ```
 
-This approach allows you to selectively preserve important validator state files. It restores only the validator state and does not affect the validator key. The validator key is stored by default in `priv_validator_key.json`, located at `~/.celestia-app/config/priv_validator_key.json`, so it will remain unchanged.
-
-#### Option 3: Full reset (including validator keys)
-
-⚠️ **CAUTION**: This will remove your address book, all blockchain data, and reset validator private keys:
-
-```sh
-celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
-```
-
-**Always backup your validator keys before using this command.**
+This approach lets you selectively preserve critical validator state files.
 
 #### Option 4: Simple data directory cleanup
 
-For non-validator nodes, you can simply remove specific directories:
+For non-validator nodes, you can simply remove and recreate the data directory:
 
 ```sh
 # Remove data directory
@@ -394,6 +402,8 @@ echo "{}" > ~/.celestia-app/data/priv_validator_state.json
 ```
 
 The empty validator state file is necessary for the node to start properly after a data reset.
+
+It's recommended to test these commands on a testnet first before applying them to a mainnet node.
 
 ### Optional: Configure an RPC endpoint
 
