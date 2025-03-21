@@ -39,8 +39,8 @@ VALIDATOR_WALLET=<validator-wallet-name>
 ```
 
 If you want to delegate more stake to any validator, including your own you
-will need the `celesvaloper` address of the validator in question. You can run
-the command below to get the `celesvaloper` of your local validator wallet in
+will need the `celestiavaloper` address of the validator in question. You can run
+the command below to get the `celestiavaloper` of your local validator wallet in
 case you want to delegate more to it:
 
 ```bash
@@ -51,7 +51,7 @@ After entering the wallet passphrase you should see a similar output:
 
 ```bash
 Enter keyring passphrase:
-celesvaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
+celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
 ```
 
 To delegate tokens to the `celestiavaloper` validator, as an
