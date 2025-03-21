@@ -354,7 +354,7 @@ then add the following parameters:
 - Denom: `utia`
 - Symbol image URL (optional):
   `https://raw.githubusercontent.com/cosmos/chain-registry/master/testnets/celestiatestnet/images/celestia.svg`
-- Explorer URL (optional): `https://testnet.mintscan.io/celestia-testnet`
+- Explorer URL (optional): `https://www.mintscan.io/celestia-testnet/`
 - Coin Type: `118`
 - Decimals: `6`
 - Gas rate Tiny: `0.1`

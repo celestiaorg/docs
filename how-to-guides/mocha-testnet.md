@@ -79,15 +79,15 @@ your own node.
 
 These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
 For users, they will need to provide a `–core.ip string`
-from a consensus node’s URL or IP that populates a default RPC port at 26657
+from a consensus node's URL or IP that populates a default RPC port at 26657
 to their respective DA node.
 
 ### Community Data availability (DA) gRPC endpoints for state access
 
 These gRPC endpoints for DA nodes provide state access for querying the
-chain’s state and broadcasting transactions (balances, blobs, etc.) to the
+chain's state and broadcasting transactions (balances, blobs, etc.) to the
 Celestia network. For users, they will need to provide a `–core.ip string`
-from a consensus node’s URL or IP that populates a default gRPC port at 9090
+from a consensus node's URL or IP that populates a default gRPC port at 9090
 to their respective DA node.
 
 :::tip Bridge nodes
@@ -240,7 +240,7 @@ The following websites provide analytics for Mocha Testnet:
 
 There are several explorers you can use for Mocha:
 
-- `https://testnet.mintscan.io/celestia-testnet`
+- `https://www.mintscan.io/celestia-testnet/`
 - `https://mocha.celenium.io`
 - `https://explorer.nodestake.top/celestia-testnet/`
 - `https://stakeflow.io/celestia-testnet`
