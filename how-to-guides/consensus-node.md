@@ -357,7 +357,7 @@ This preserves your configuration, validator state (`priv_validator_state.json`)
 - state.db
 - evidence.db
 
-This option is safer for validator nodes and was created specifically for validators who need to reset without losing their validator state.
+This option is safe for validator nodes and was created specifically for validators who need to reset their node's blockchain data without risking double signing. Use this when you need to resync your node but want to maintain your validator's signing state and peer connections.
 
 #### Option 2: Full reset with `unsafe-reset-all`
 
@@ -369,15 +369,15 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 
 This command:
 - Resets blockchain data
-- Resets validator state (`priv_validator_state.json`) 
+- Resets validator state (`priv_validator_state.json`) but NOT private keys (which are in `priv_validator_key.json`)
 - Clears address book (`addrbook.json`)
 - Preserves node configuration
 
-Only use this during upgrades or when the chain is not moving. Always backup your validator keys before using this command.
+This option should ONLY be used when you're absolutely certain your validator isn't actively participating in consensus. Using this while your validator is active could lead to double signing. Always back up your validator keys before using this command.
 
 #### Option 3: Manual reset (recommended for validator nodes)
 
-For more precise control over what gets reset:
+For more granular control over what gets reset:
 
 ```sh
 mv ~/.celestia-app/data ~/.celestia-app/old-data
@@ -385,23 +385,22 @@ mkdir -pv ~/.celestia-app/data
 cp ~/.celestia-app/old-data/priv_validator_state.json ~/.celestia-app/data/priv_validator_state.json
 ```
 
-This approach lets you selectively preserve critical validator state files.
+This approach lets you manually preserve the validator state file while replacing all other data. The advantage over Option 1 is that you can selectively copy additional files if needed. Use this when you want maximum control over which files are preserved during reset.
 
 #### Option 4: Simple data directory cleanup
 
-For non-validator nodes, you can simply remove and recreate the data directory:
+For non-validator nodes, you can remove and recreate the data directory:
 
 ```sh
 # Remove data directory
 rm -rf ~/.celestia-app/data
-rm -rf ~/.celestia-app/keyring-test
 
 # Create data directory and initialize validator state file
 mkdir -p ~/.celestia-app/data/
 echo "{}" > ~/.celestia-app/data/priv_validator_state.json
 ```
 
-The empty validator state file is necessary for the node to start properly after a data reset.
+The empty validator state file is necessary for the node to start properly after a data reset. Unlike other options, this also removes any keyring in the data directory. Use this option for non-validator nodes when you want a complete fresh start.
 
 It's recommended to test these commands on a testnet first before applying them to a mainnet node.
 
