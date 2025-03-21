@@ -371,7 +371,7 @@ This approach lets you selectively preserve critical validator state files.
 
 #### Option 3: Full reset (including validator keys)
 
-⚠️ **CAUTION**: This will remove your address book, ALL blockchain data, and reset validator private keys:
+⚠️ **CAUTION**: This will remove your address book, all blockchain data, and reset validator private keys:
 
 ```sh
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
