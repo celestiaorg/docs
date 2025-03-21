@@ -367,7 +367,7 @@ mkdir -pv ~/.celestia-app/data
 cp ~/.celestia-app/old-data/priv_validator_state.json ~/.celestia-app/data/priv_validator_state.json
 ```
 
-This approach lets you selectively preserve critical validator state files.
+This approach allows you to selectively preserve important validator state files. It restores only the validator state and does not affect the validator key. The validator key is stored by default in `priv_validator_key.json`, located at `~/.celestia-app/config/priv_validator_key.json`, so it will remain unchanged.
 
 #### Option 3: Full reset (including validator keys)
 
