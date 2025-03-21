@@ -240,7 +240,7 @@ The following websites provide analytics for Mocha Testnet:
 
 There are several explorers you can use for Mocha:
 
-- `https://www.mintscan.io/celestia-testnet/`
+- `https://mintscan.io/celestia-testnet/`
 - `https://mocha.celenium.io`
 - `https://explorer.nodestake.top/celestia-testnet/`
 - `https://stakeflow.io/celestia-testnet`
