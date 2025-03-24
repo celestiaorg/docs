@@ -342,11 +342,76 @@ Optional: If you would like celestia-app to run as a background process, you can
 
 ### Optional: Reset network
 
-This will delete all data folders so we can start fresh:
+There are several ways to reset your consensus node, depending on what you need to preserve:
+
+#### Option 1: Reset blockchain data with `reset-state`
+
+This command removes blockchain data but preserves validator state and address book:
+
+```sh
+celestia-appd tendermint reset-state
+```
+
+This preserves your configuration, validator state (`priv_validator_state.json`), and peer connections (`addrbook.json`), but removes:
+- blockstore.db
+- state.db
+- evidence.db
+
+This option is safe for validator nodes and was created specifically for validators who need to reset their node's blockchain data without risking double signing. Use this when you need to resync your node but want to maintain your validator's signing state and peer connections.
+
+#### Option 2: Full reset with `unsafe-reset-all`
+
+⚠️ **CAUTION FOR VALIDATORS**: This is considered "unsafe" because it resets validator state:
 
 ```sh
 celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
+
+This command:
+- Resets blockchain data
+- Resets validator state (`priv_validator_state.json`) but NOT private keys (which are in `priv_validator_key.json`)
+- Clears address book (`addrbook.json`)
+- Preserves node configuration
+
+This option should ONLY be used when you're absolutely certain your validator isn't actively participating in consensus. Using this while your validator is active could lead to double signing. Always back up your validator keys before using this command.
+
+#### Option 3: Manual reset (recommended for validator nodes)
+
+For more granular control over what gets reset:
+
+```sh
+mv ~/.celestia-app/data ~/.celestia-app/old-data
+mkdir -pv ~/.celestia-app/data
+cp ~/.celestia-app/old-data/priv_validator_state.json ~/.celestia-app/data/priv_validator_state.json
+```
+
+This approach lets you manually preserve the validator state file while replacing all other data. The advantage over Option 1 is that you can selectively copy additional files if needed. Use this when you want maximum control over which files are preserved during reset.
+
+#### Option 4: Simple data directory cleanup
+
+For non-validator nodes, you can completely erase all blockchain data and test keys by removing and recreating the data directory:
+
+```sh
+# Remove data directory
+rm -rf ~/.celestia-app/data
+rm -rf ~/.celestia-app/keyring-test
+
+# Create data directory and initialize validator state file
+mkdir -p ~/.celestia-app/data/
+echo "{}" > ~/.celestia-app/data/priv_validator_state.json
+```
+
+This approach:
+- Completely removes all blockchain data (blocks, state, evidence, etc.)
+- Removes the keyring-test directory containing transaction signing keys (but not validator consensus keys)
+- Creates a new, empty data directory structure
+- Initializes a blank validator state file, which erases the record of blocks your validator has signed
+
+**Important:** This option should NOT be used for validator nodes because it creates a double-signing risk. The validator's consensus private key (in `priv_validator_key.json` in the config directory) remains intact, but the node loses all record of which blocks it has already signed. If the node is still an active validator on the network, it could sign conflicting blocks at the same height, resulting in slashing penalties.
+
+Use this option only for non-validator nodes when you want a complete fresh start with no preserved state or connections.
+
+It's recommended to test these commands on a testnet first before applying them to a mainnet node.
 
 ### Optional: Configure an RPC endpoint
 
@@ -446,16 +511,3 @@ configuration to load the new settings.
 ## FAQ
 
 ### `+2/3 committed an invalid block: wrong Block.Header.Version`
-
-If you encounter an error like:
-
-```bash
-2024-04-25 14:48:24 6:48PM ERR CONSENSUS FAILURE!!! err="+2/3 committed an invalid block: wrong Block.Header.Version. Expected {11 1}, got {11 2}" module=consensus stack="goroutine 214 [running]:\nruntime/debug.Stack()\n\t/usr/local/go/src/runtime/debug/stack.go:24 +0x64\ngithub.com/tendermint/tendermint/consensus.(*State).receiveRoutine.func2()\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:746 +0x44\npanic({0x1b91180?, 0x400153b240?})\n\t/usr/local/go/src/runtime/panic.go:770 +0x124\ngithub.com/tendermint/tendermint/consensus.(*State).finalizeCommit(0x400065ea88, 0x3)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:1637 +0xd30\ngithub.com/tendermint/tendermint/consensus.(*State).tryFinalizeCommit(0x400065ea88, 0x3)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:1606 +0x26c\ngithub.com/tendermint/tendermint/consensus.(*State).handleCompleteProposal(0x400065ea88, 0x3)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:2001 +0x2d8\ngithub.com/tendermint/tendermint/consensus.(*State).handleMsg(0x400065ea88, {{0x2b30a00, 0x400143e048}, {0x40002a61b0, 0x28}})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:856 +0x1c8\ngithub.com/tendermint/tendermint/consensus.(*State).receiveRoutine(0x400065ea88, 0x0)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:782 +0x2c4\ncreated by github.com/tendermint/tendermint/consensus.(*State).OnStart in goroutine 169\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:391 +0x110\n"
-```
-
-then it is likely that the network has upgraded to a new app version but your consensus node was not prepared for the upgrade. To fix this, you'll need to:
-
-1. Remove DBs from your CELESTIA_HOME directory via: `celestia-appd tendermint reset-state`.
-1. Remove the `data/application.db` inside your CELESTIA_HOME directory.
-1. Download the latest binary for your network.
-1. Restart your consensus node with the relevant `--v2-upgrade-height` for the network you're running on.
