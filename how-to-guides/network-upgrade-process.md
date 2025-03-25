@@ -77,7 +77,7 @@ Key features include:
 - [CIP-31](https://cips.celestia.org/cip-031.html): Incorporate staking rewards into vesting account schedules
 - [CIP-32](https://cips.celestia.org/cip-032.html): Add Hyperlane to Celestia
 
-Like the Ginger upgrade, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate one week after 5/6 of voting power have signaled for a particular version.
+Like the Ginger upgrade, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate after 5/6 of voting power have signaled for a particular version and a delay period based on the network.
 
 The new delay periods for v4 are based on [celestia-app #4413](https://github.com/celestiaorg/celestia-app/issues/4413):
 
@@ -86,7 +86,3 @@ The new delay periods for v4 are based on [celestia-app #4413](https://github.co
 | Arabica     | arabica-11 | TBD           | TBD            | 1 day
 | Mocha       | mocha-4    | TBD           | TBD            | 2 days
 | Mainnet Beta| celestia   | TBD           | TBD            | 7 days
-
-:::warning
-This is a consensus-breaking change that will be released in a minor release. Nodes must upgrade to a release with this change prior to the upgrade process starting on that network (specifically before the MsgTryUpgrade is submitted).
-:::
