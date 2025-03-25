@@ -65,3 +65,28 @@ Mainnet Beta | celestia   | 2024/12/12 @ 14:28:52 UTC | 2993219
 :::warning
 You **do not** need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 :::
+
+#### Lotus network upgrade
+
+The Lotus network upgrade (v4) will include several important changes defined in [CIP-33](https://cips.celestia.org/cip-033.html):
+
+Key features include:
+
+- [CIP-29](https://cips.celestia.org/cip-029.html): Decrease inflation and disinflation
+- [CIP-30](https://cips.celestia.org/cip-030.html): Disable auto-claim of staking rewards
+- [CIP-31](https://cips.celestia.org/cip-031.html): Incorporate staking rewards into vesting account schedules
+- [CIP-32](https://cips.celestia.org/cip-032.html): Add Hyperlane to Celestia
+
+Like the Ginger upgrade, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate one week after 5/6 of voting power have signaled for a particular version.
+
+The new delay periods for v4 are based on [celestia-app #4413](https://github.com/celestiaorg/celestia-app/issues/4413):
+
+| Network      | Chain ID   | Date and time | Upgrade height | Delay period
+|-------------|------------|---------------|----------------|-------------
+| Arabica     | arabica-11 | TBD           | TBD            | 1 day
+| Mocha       | mocha-4    | TBD           | TBD            | 2 days
+| Mainnet Beta| celestia   | TBD           | TBD            | 7 days
+
+:::warning
+This is a consensus-breaking change that will be released in a minor release. Nodes must upgrade to a release with this change prior to the upgrade process starting on that network (specifically before the MsgTryUpgrade is submitted).
+:::
