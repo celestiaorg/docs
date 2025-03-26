@@ -63,10 +63,10 @@ These RPC providers are meant to be used in production environments.
 
 | Provider | URL |
 |--------|--------|
-| QuickNode | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) |
+| Grove | <https://www.grove.city/> |
 | Numia | For RPC access: <https://docs.numia.xyz/infra/overview/getting-started> |
 | Numia | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia> |
-| Grove | <https://www.grove.city/> |
+| QuickNode | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) |
 
 :::warning
 Do not rely on the free community endpoints listed below
@@ -125,6 +125,7 @@ Celestia network. The default port is 26657.
 - `celestia-testnet-rpc.itrocket.net:443`
 - `celestia-t-rpc.noders.services`
 - `rpc-celestia-testnet.mzonder.com:443`
+- `celestia-testnet-da-archival.rpc.grove.city/v1/c33eeadb`
 
 ## Community API endpoints
 
@@ -147,6 +148,7 @@ The default port is 1317.
 - `https://celestia-t-api.noders.services`
 - `http://celestiam.rest.lava.build`
 - `https://api-celestia-testnet.mzonder.com:443`
+- `https://celestia-testnet-da-archival.rpc.grove.city/v1/c33eeadb`
 
 ## Community gRPC endpoints
 
@@ -175,6 +177,7 @@ broadcast transactions.
 ## Community JSON-RPC Endpoints
 
 - `celestiam.jsonrpc.lava.build`
+- `celestia-testnet-da-archival.rpc.grove.city/v1/c33eeadb`
 
 ## Community Tendermint RPC Endpoints
 
