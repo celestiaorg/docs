@@ -22,7 +22,7 @@ with the difference being that you will use this image:
 in the Arbitrum docs.
 
 Note that you can either use the flags in the nitro binary + the flags
-[found in the celestia package](https://github.com/celestiaorg/nitro/blob/v2.3.1-rc.1/das/celestia/celestia.go#L53-L65),
+[found in the `celestia` package](https://github.com/celestiaorg/nitro/blob/v2.3.1-rc.1/das/celestia/celestia.go#L53-L65),
 or you can just provide a node `config.json` file with the `celestia-cfg`
 for them to run it, which would look something like this:
 

@@ -5,17 +5,18 @@ description: How to get started with local development on the Arbitrum Nitro sta
 # Quickstart: Local development with Nitro testnode
 
 1. Install docker and docker compose.
-1. Run a celestia-node
+1. Run a `celestia-node` on a version targeting the [network you want to use](/how-to-guides/participate.md).
 1. Run the [nitro-das-celestia server](https://github.com/celestiaorg/nitro-das-celestia).
-1. Clone nitro
+1. Clone [@celestiaorg/nitro](https://github.com/celestiaorg/nitro.git):
     ```
-    git clone -b release --recurse-submodules https://github.com/celestiaorg/nitro.git && git checkout v3.2.1-rc.2 && cd /nitro/nitro-testnode
+    git clone -b release --recurse-submodules https://github.com/celestiaorg/nitro.git
+    git checkout v3.2.1-rc.2 && cd /nitro/nitro-testnode
     ```
 1. `./test-node.bash --init --dev`
-  1. Some useful optional commands:
-      - `--validate` (heavy computation, validates all blocks in WASM)
-      - `--blockscout` (builds or launches blockscout)
-      - `--l2-anytrsut` (launches anytrust DAC locally, useful to test anytrust fallbacks)
+1. Some useful optional commands to use with the start script:
+    - `--validate` (heavy computation, validates all blocks in WASM)
+    - `--blockscout` (builds or launches blockscout)
+    - `--l2-anytrsut` (launches anytrust DAC locally, useful to test anytrust fallbacks)
 
 ## Additional arguments
 

@@ -13,10 +13,7 @@ prev:
 Ethereum fallback is a mechanism
 that enables Ethereum L2s (or L3s) to “fallback” to using Ethereum
 calldata for data availability in the event of downtime on Celestia
-Mainnet Beta. This feature is currently supported by Celestia integrations
-with:
-
-- [Arbitrum Nitro](/how-to-guides/arbitrum-integration.md#ethereum-fallback-mechanism-in-nitro)
+Mainnet Beta. This feature is currently supported by the [Celestia integration with Arbitrum Nitro](/how-to-guides/arbitrum-integration.md#ethereum-fallback-mechanism-in-nitro)
 
 In the case of Celestia downtime or temporary unavailability, L2s can
 fallback to posting transactions as calldata on Ethereum or another DA

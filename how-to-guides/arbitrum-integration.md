@@ -17,31 +17,31 @@ Orbit protocol layer, offering developers an additional option for selecting
 a data availability layer alongside Arbitrum AnyTrust. The integration allows
 developers to deploy an Orbit Chain that uses Celestia for data availability.
 
-[Learn more about Orbit in Arbitrum's introduction.](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
+Learn more about Orbit in [Arbitrum's introduction](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction).
 
 ## Key components
 
-The integration of Celestia with Arbitrum orbit is possible thanks to 3 key components:
+The integration of Celestia with Arbitrum Orbit is possible thanks to 3 key components:
 
   - [DA provider implementation](#da-provider-implementation)
   - [Preimage Oracle Implementation](#preimage-oracle-implementation)
-  - [Blobstream X implementation](#blobstream-x-implementation)
+  - [Blobstream SP1 implementation](#blobstream-sp1-implementation)
 
 Additionally, the [Ethereum fallback mechanism](#ethereum-fallback-mechanism-in-nitro) is a feature of the integration, which is native in Nitro.
 
 ### DA provider implementation
 
-<!-- TODO: Josh and Diego to work on this -->
+<!-- TODO: Diego to revise this -->
 
 The Arbitrum Nitro code has a `DataAvailabilityProvider` interface that is used across the codebase to store and retrieve data from a specific provider (eip4844 blobs, Anytrust, and now Celestia).
 
 This integration implements the [`DataAvailabilityProvider` interface for Celestia DA](https://github.com/celestiaorg/nitro/blob/966e631f1a03b49d49f25bea67a92b275d3bacb9/arbstate/inbox.go#L366-L477)
 
 Additionally, this integration comes with
-[the necessary code for a Nitro chain node to post and retrieve data from Celestia](https://github.com/celestiaorg/nitro/tree/v2.3.1-rc.1/das/celestia).
+the necessary code for a Nitro chain node to [post and retrieve data from Celestia](https://github.com/celestiaorg/nitro/tree/v2.3.1-rc.1/das/celestia).
 
-The core logic behind posting and retrieving data happens in [celestia.go](https://github.com/celestiaorg/nitro/blob/v2.3.1-rc.1/das/celestia/celestia.go) where data is stored on Celestia and serialized into a small batch of data that gets published once the necessary range of headers (data roots) has been relayed to the [BlobstreamX contract](https://github.com/succinctlabs/blobstreamx).
-Then the `Read` logic takes care of taking the deserialized Blob Pointer struct and consuming it in order to fetch the data from Celestia and additionally inform the fetcher about the position of the data on Celestia (we'll get back to this in the next section).
+The core logic behind posting and retrieving data happens in [`celestia.go`](https://github.com/celestiaorg/nitro/blob/v2.3.1-rc.1/das/celestia/celestia.go) where data is stored on Celestia and serialized into a small batch of data that gets published once the necessary range of headers (data roots) has been relayed to the [BlobstreamX contract](https://github.com/succinctlabs/blobstreamx).
+Then the `Read` logic takes care of taking the deserialized blob pointer struct and consuming it in order to fetch the data from Celestia and additionally inform the fetcher about the position of the data on Celestia (we'll get back to this in the next section).
 
 The following represents a non-exhaustive list of considerations when running a Batch Poster node for a chain with Celestia underneath:
 - You will need to use a consensus node RPC endpoint, you can
@@ -51,27 +51,27 @@ The following represents a non-exhaustive list of considerations when running a 
 The following represents a non-exhaustive list of considerations when running a Nitro node for a chain with Celestia underneath:
 <!-- - The `TendermintRpc` endpoint is only needed by the batch poster, every other node can operate without a connection to a full node. -->
 - The message header flag for Celestia batches is `0x0c`.
-- You will need to know the namespace for the chain that you are trying to connect to, but don't worry if you don't find it, as the information in the BlobPointer can be used to identify where a batch of data is in the Celestia Data Square for a given height, and thus can be used to find out the namespace as well!
+- You will need to know the namespace for the chain that you are trying to connect to, but don't worry if you don't find it, as the information in the `BlobPointer` can be used to identify where a batch of data is in the Celestia Data Square for a given height, and thus can be used to find out the namespace as well!
 
-To run the data availability server for the Arbitrum Nitro stack, leveraging Celestia DA, see the [nitro-das-celestia](https://github.com/celestiaorg/nitro-das-celestia) repository.
+To run the data availability server for the Arbitrum Nitro stack, using Celestia DA, see the [nitro-das-celestia](https://github.com/celestiaorg/nitro-das-celestia) repository.
 
 ### Preimage Oracle Implementation
 
 In order to support fraud proofs, this integration has the necessary code for a Nitro validator to populate its preimage mapping with Celestia hashes that then get "unpeeled" in order to reveal the full data for a Blob. You can
 [read more about the "Hash Oracle Trick"](https://docs.arbitrum.io/inside-arbitrum-nitro/#readpreimage-and-the-hash-oracle-trick).
 
-The data structures and hashing functions for this can be found in the [`nitro/das/celestia/tree` folder](https://github.com/celestiaorg/nitro/tree/v2.3.1-rc.1/das/celestia/tree)
+The data structures and hashing functions for this can be found in the [`nitro/das/celestia/tree` directory](https://github.com/celestiaorg/nitro/tree/v2.3.1-rc.1/das/celestia/tree)
 
-You can see where the preimage oracle gets used in the fraud proof replay binary [here](https://github.com/celestiaorg/nitro/blob/966e631f1a03b49d49f25bea67a92b275d3bacb9/cmd/replay/main.go#L153-L294)
+You can [see where the preimage oracle gets used in the fraud proof replay binary](https://github.com/celestiaorg/nitro/blob/966e631f1a03b49d49f25bea67a92b275d3bacb9/cmd/replay/main.go#L153-L294).
 
 Something important to note is that the preimage oracle only keeps track of hashes for the rows in the Celestia data square in which a blob resides in, this way each Orbit chain with Celestia underneath does not need validators to recompute an entire Celestia Data Square, but instead, only have to compute the row roots for the rows in which it's data lives in, and the header data root, which is the binary merkle tree hash built using the row roots and column roots fetched from a Celestia node. Because only data roots that can be confirmed on Blobstream get accepted into the sequencer inbox, one can have a high degree of certainty that the canonical data root being unpeeled as well as the row roots are in fact correct.
 
 ### Blobstream SP1 implementation
 
-<!-- TODO: Change to Blobstream SP1 and right interface. Clean up duplicate paragraphs -->
-Finally, the integration only accepts batches with information that can be confirmed on BlobstreamX, which gives us a high certainty that data was made available on Celestia.
+Finally, the integration only accepts batches with information that can be confirmed on Blobstream SP1, which gives us a high certainty that data was made available on Celestia.
 
-You can see how BlobstreamX is integrated into the `SequencerInbox.sol` contract [here](https://github.com/celestiaorg/nitro-contracts/blob/celestia-v1.2.1/src/bridge/SequencerInbox.sol#L584-L630), which allows us to discard batches with otherwise faulty data roots, thus giving us a high degree of confidence that the data root can be safely unpacked in case of a challenge.
+<!-- TODO: Change to Blobstream SP1 and right interface. Clean up duplicate paragraphs -->
+You can see how Blobstream SP1 is integrated into the `SequencerInbox.sol` contract [here](https://github.com/celestiaorg/nitro-contracts/blob/celestia-v1.2.1/src/bridge/SequencerInbox.sol#L584-L630), which allows us to discard batches with otherwise faulty data roots, thus giving us a high degree of confidence that the data root can be safely unpacked in case of a challenge.
 
 The Celestia and Arbitrum integration also
 [includes Blobstream](/how-to-guides/blobstream.md),
@@ -106,4 +106,4 @@ chain.
 
 ## Next steps
 
-<!-- TODO: add new quickstart page. -->
+Follow the [quickstart](/how-to-guides/nitro-local.md) guide on the next page to run a local nitro chain with Nitro testnode.
