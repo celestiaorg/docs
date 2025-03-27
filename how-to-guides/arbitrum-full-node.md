@@ -1,5 +1,8 @@
 ---
 description: A guide on how to run a full node or validate a full node on your Orbit rollup.
+next:
+  text: "Introduction to OP Stack integration"
+  link: "/how-to-guides/intro-to-op-stack"
 ---
 
 # Running a full node and/or validator
@@ -9,7 +12,6 @@ description: A guide on how to run a full node or validate a full node on your O
 - Familiarity with Ethereum, Ethereum's testnets, Arbitrum, and Celestia
 - [A gentle introduction: Orbit chains](https://docs.arbitrum.io/launch-orbit-chain/orbit-gentle-introduction)
 - [Arbitrum Orbit integration overview](/how-to-guides/arbitrum-integration.md)
-- [Quickstart: Deploy an Arbitrum Orbit rollup](/how-to-guides/arbitrum-deploy.md)
 
 ## Running a full node
 
@@ -20,7 +22,7 @@ with the difference being that you will use this image:
 in the Arbitrum docs.
 
 Note that you can either use the flags in the nitro binary + the flags
-[found in the celestia package](https://github.com/celestiaorg/nitro/blob/v2.3.1-rc.1/das/celestia/celestia.go#L53-L65),
+[found in the `celestia` package](https://github.com/celestiaorg/nitro/blob/v2.3.1-rc.1/das/celestia/celestia.go#L53-L65),
 or you can just provide a node `config.json` file with the `celestia-cfg`
 for them to run it, which would look something like this:
 
