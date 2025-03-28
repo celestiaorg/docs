@@ -219,10 +219,16 @@ a trusted RPC endpoint (/block). RPC endpoints are also required for retrieving
 light blocks. These can be found in the docs here under the respective networks or
 from [the chain-registry](https://github.com/cosmos/chain-registry).
 
-In `$HOME/.celestia-app/config/config.toml`, set
+::: warning
+State sync requires at least two RPC endpoints to function. These endpoints are used to:
+1. Query the trusted header (height and hash)
+2. Retrieve light blocks for verification
+:::
+
+In `$HOME/.celestia-app/config/config.toml`, set the RPC endpoints:
 
 ```toml
-rpc_servers = ""
+rpc_servers = "rpc.example1.com:port,rpc.example2.com:port"  # Replace with actual RPC endpoints
 trust_height = 0
 trust_hash = ""
 ```
@@ -237,8 +243,9 @@ And also set statesync to `true`:
 enable = true
 ```
 
-To their respective fields. At least two different rpc endpoints should be provided.
-The more, the greater the chance of detecting any fraudulent behavior.
+::: tip
+The more RPC endpoints you provide, the greater the chance of detecting any fraudulent behavior.
+:::
 
 Once setup, you should be ready to start the node as normal. In the logs, you should
 see: `Discovering snapshots`. This may take a few minutes before snapshots are found
