@@ -15,26 +15,35 @@ next:
 
 ## Running a full node
 
-To run a full node, you can
-[follow the steps outlined in the Arbitrum docs](https://docs.arbitrum.io/node-running/how-tos/running-an-orbit-node),
-with the difference being that you will use this image:
-**`dfcelestia/nitro-node-dev:latest`** instead of the one mentioned
-in the Arbitrum docs.
+Running a  fullnode or validator for an Orbit chain with Celestia DA is as simple as
+[following the steps outlined in the Arbitrum docs](https://docs.arbitrum.io/run-arbitrum-node/run-full-node),
+but using a docker image from the [latest stable release](https://github.com/celestiaorg/nitro/releases) of the Celestia integration and passing the following flags:
 
-Note that you can either use the flags in the nitro binary + the flags
-[found in the `celestia` package](https://github.com/celestiaorg/nitro/blob/v2.3.1-rc.1/das/celestia/celestia.go#L53-L65),
-or you can just provide a node `config.json` file with the `celestia-cfg`
-for them to run it, which would look something like this:
+- `node.celestia-cfg.enable=true`
+- `node.celestia-cfg.url=$URL_TO_DA_SERVER`
 
-```json
-docker run --rm -v "$HOME/Documents/configs/nodeConfig.json:/config.json:ro" \
-  --network host celestia-nitro:v2.3.1-rc.1 --conf.file /config.json
+or adding the following to your config:
+
 ```
+"node": {
+ ...
+    "celestia-cfg": {
+        "enable": true,
+        "url": "DA_SERVER_URL"
+    },
+}
+```
+
+## Running a Celestia DA Server
+
+For instructions on how to run a DA Server, please refer to the [repo docs](https://github.com/celestiaorg/nitro-das-celestia).
+
+Note that you can either run a light node, a bridge node, or a paid provider like [Quicknode](https://www.quicknode.com/docs/celestia) to connect your DA Server with the targeted celestia network.
 
 ## Running a full node with validation
 
 The information above applies to
-[the steps outlined to run a validating full node (validator)](https://docs.arbitrum.io/node-running/how-tos/running-a-validator).
+[the steps outlined to run a validating full node (validator)](https://docs.arbitrum.io/node-running/how-tos/running-a-validator), with the addition of [configuring the DA Server to run as a validator](https://github.com/celestiaorg/nitro-das-celestia?tab=readme-ov-file#running-a-validator).
 
 Finally, note that this will require connection to a DA node,
 and we recommend running a Bridge node if you will be instantiating
