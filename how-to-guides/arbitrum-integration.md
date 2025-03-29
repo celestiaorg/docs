@@ -26,7 +26,7 @@ The integration of Celestia with Arbitrum Orbit is possible thanks to 3 key comp
 - [Preimage Oracle Implementation](#preimage-oracle-implementation)
 - [Blobstream integration](#blobstream-integration)
 
-Additionally, the [Fallback mechanism](#fallback-mechanism-in-nitro) is a feature of the integration, which is native in Nitro.
+Additionally, the [fallback mechanism](#fallback-mechanism-in-nitro) is a feature of the integration, which is native in Nitro.
 
 ### DA provider implementation
 
@@ -36,7 +36,7 @@ This integration implements the [`reader`](https://github.com/celestiaorg/nitro/
 
 Additionally, the logic for reading, writing, and generating Celestia related proofs is moved to a sidecar [`celestia-server`](https://github.com/celestiaorg/nitro-das-celestia), which allows the Nitro node to request submissions and retrivals from a celestia node using an [`RPC client`](https://github.com/celestiaorg/nitro/blob/v3.5.2/das/celestia/celestiaDasRpcClient.go).
 
-To run the celestia server see the [nitro-das-celestia](https://github.com/celestiaorg/nitro-das-celestia) repository for more instructions.
+To run the Celestia server see the [nitro-das-celestia](https://github.com/celestiaorg/nitro-das-celestia) repository for more instructions.
 
 ### Preimage Oracle Implementation
 

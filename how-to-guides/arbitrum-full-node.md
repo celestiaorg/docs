@@ -34,11 +34,11 @@ or adding the following to your config:
 }
 ```
 
-## Running a Celestia DA Server
+## Running a Celestia DA server
 
-For instructions on how to run a DA Server, please refer to the [repo docs](https://github.com/celestiaorg/nitro-das-celestia).
+For instructions on how to run a DA server, please refer to the [repo docs](https://github.com/celestiaorg/nitro-das-celestia).
 
-Note that you can either run a light node, a bridge node, or a paid provider like [Quicknode](https://www.quicknode.com/docs/celestia) to connect your DA Server with the targeted celestia network.
+Note that you can either run a light node, a bridge node, or a paid provider like [Quicknode](https://www.quicknode.com/docs/celestia) to connect your DA Server with the targeted Celestia network.
 
 ## Running a full node with validation
 
