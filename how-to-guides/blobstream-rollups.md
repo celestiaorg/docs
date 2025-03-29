@@ -1,8 +1,8 @@
 ---
 description: Learn how to build rollups that use Blobstream.
 prev:
-  text: "Ethereum fallback mechanism"
-  link: "/how-to-guides/ethereum-fallback"
+  text: "Run an OP Stack devnet posting to Celestia"
+  link: "/how-to-guides/optimism"
 next:
   text: "Submitting data blobs to Celestia"
   link: "/how-to-guides/submit-data"

@@ -1,8 +1,8 @@
 ---
 description: Start your own rollup with op-plasma-celestia and roll-op.
 next:
-  text: "Ethereum fallback mechanism"
-  link: "/how-to-guides/ethereum-fallback"
+  text: "Introduction to Blobstream rollups"
+  link: "/how-to-guides/blobstream-rollups"
 ---
 
 # Run an OP Stack rollup with Celestia underneath

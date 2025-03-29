@@ -631,10 +631,6 @@ function sidebarHome() {
                     },
                   ],
                 },
-                {
-                  text: "Ethereum fallback mechanism",
-                  link: "/how-to-guides/ethereum-fallback",
-                },
               ],
             },
             {
