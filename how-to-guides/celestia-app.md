@@ -127,6 +127,6 @@ The following ports are used by Celestia app nodes:
 
 | Port  | Protocol | Address   | Description | Enabled by default on node     | Flag                    |
 | ----- | -------- | --------- | ----------- | ------------------------------ | ----------------------- |
-| 2121  | TCP/UDP  | localhost | P2P         | true                           | N/A                     |
+| 2121  | TCP/UDP  | 127.0.0.1 | P2P         | true                           | N/A                     |
 | 9090  | HTTP     | 0.0.0.0   | gRPC        | true                           | `--grpc.address string` |
-| 26657 | TCP      | localhost | RPC         | false (only open to localhost) | `--rpc.laddr string`    |
+| 26657 | TCP      | 127.0.0.1 | RPC         | false (only open to localhost) | `--rpc.laddr string`    |
