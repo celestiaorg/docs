@@ -559,11 +559,11 @@ function sidebarHome() {
                   collapsed: true,
                   items: [
                     {
-                      text: "Introduction to Arbitrum rollups with Celestia as DA",
+                      text: "Arbitrum Orbit",
                       link: "/how-to-guides/arbitrum-integration",
                     },
                     {
-                      text: "Quickstart: Local development with Nitro testnode",
+                      text: "Quickstart: Run a local devnet",
                       link: "/how-to-guides/nitro-local",
                     },
                     {
@@ -630,10 +630,6 @@ function sidebarHome() {
                       ],
                     },
                   ],
-                },
-                {
-                  text: "Ethereum fallback mechanism",
-                  link: "/how-to-guides/ethereum-fallback",
                 },
               ],
             },
