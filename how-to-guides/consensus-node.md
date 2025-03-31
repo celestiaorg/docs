@@ -135,6 +135,8 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"
 
 </details>
 
+For additional peers and addrbook please visit [@celestiaorg/awesome-celestia](https://github.com/celestiaorg/awesome-celestia).
+
 ## Storage and pruning configurations
 
 ### Optional: Connect a consensus node to a bridge node
