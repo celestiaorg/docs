@@ -255,7 +255,7 @@ curl -H "Content-Type: application/json" \
            \"is_gas_price_set\": true,
            \"gas\": 142225,
            \"key_name\": \"my_celes_key\",
-           \"signer_address\": \"$GRANTER_ADDRESS\",
+           \"signer_address\": \"$GRANTEE_ADDRESS\",
            \"fee_granter_address\": \"$GRANTER_ADDRESS\"
          }
        ]
@@ -285,5 +285,5 @@ The parameters in the request are:
 - `is_gas_price_set`: Boolean indicating if gas price is explicitly set
 - `gas`: The gas limit for the transaction
 - `key_name`: The name of your key in the keyring
-- `signer_address`: The address granting the allowance
+- `signer_address`: The address being granted permission to use the granter's funds
 - `fee_granter_address`: The address that will pay for the transaction fees
