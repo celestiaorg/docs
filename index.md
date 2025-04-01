@@ -6,7 +6,7 @@ titleTemplate: ":title"
 hero:
   name: "Celestia"
   text: "Build whatever"
-  tagline: Celestia is the modular blockchain powering unstoppable applications with full-stack customizability.
+  tagline: Celestia is the modular blockchain powering unstoppable applications with full-stack control.
   image:
     src: /Blobspace.png
     alt: Celestia
