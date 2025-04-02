@@ -207,6 +207,8 @@ By default, a consensus node will sync using block sync; which will request, val
 and execute every block up to the head of the blockchain. This is the most secure
 mechanism yet the slowest (taking up to weeks depending on the height of the blockchain).
 
+There is an [issue](https://github.com/celestiaorg/celestia-app/issues/4370) that prevents recent celestia-app binaries from block syncing Mainnet Beta. As a temporary workaround, you can use celestia-app [v3.0.2](https://github.com/celestiaorg/celestia-app/releases/tag/v3.0.2) to block sync Mainnet Beta until that issue is resolved. After block syncing, please upgrade to the latest version of celestia-app to pick up recent security fixes.
+
 There are two alternatives for quicker syncing.
 
 ### Option 2: State sync
