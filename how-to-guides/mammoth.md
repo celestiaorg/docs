@@ -35,9 +35,6 @@ The testnet includes custom versions with:
 
 ### RPC Endpoints
 
-## RPC Endpoints
-
-### Main Endpoints
 | Location | gRPC | RPC | API |
 |----------|------|-----|-----|
 | Amsterdam | | https://rpc.ams.mamochain.com | https://api.ams.mamochain.com |
@@ -45,7 +42,7 @@ The testnet includes custom versions with:
 | Warsaw | | https://rpc.waw.mamochain.com | https://api.waw.mamochain.com |
 
 <details>
-<summary><b>Amsterdam Validators</b></summary>
+<summary><b>Amsterdam validators</b></summary>
 
 - conval-8.ams.mamochain.com
 - conval-9.ams.mamochain.com
@@ -56,7 +53,7 @@ The testnet includes custom versions with:
 </details>
 
 <details>
-<summary><b>Paris Validators</b></summary>
+<summary><b>Paris validators</b></summary>
 
 - conval-0.par.mamochain.com
 - conval-1.par.mamochain.com
@@ -69,7 +66,7 @@ The testnet includes custom versions with:
 </details>
 
 <details>
-<summary><b>Warsaw Validators</b></summary>
+<summary><b>Warsaw validators</b></summary>
 
 - conval-14.waw.mamochain.com
 - conval-15.waw.mamochain.com
