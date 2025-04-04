@@ -408,6 +408,10 @@ function sidebarHome() {
                   text: "Arabica devnet",
                   link: "/how-to-guides/arabica-devnet",
                 },
+                {
+                  text: "Mammoth testnet",
+                  link: "/how-to-guides/mammoth",
+                }
               ],
             },
             {
