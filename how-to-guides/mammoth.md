@@ -33,13 +33,52 @@ The testnet includes custom versions with:
 - 1-day sampling and pruning window
 - Optimized block time consistency
 
-### RPC endpoints
+### RPC Endpoints
 
+## RPC Endpoints
+
+### Main Endpoints
 | Location | gRPC | RPC | API |
 |----------|------|-----|-----|
-| Amsterdam | https://grpc.ams.mamochain.com | https://rpc.ams.mamochain.com | https://api.ams.mamochain.com |
-| Paris | https://grpc.par.mamochain.com | https://rpc.par.mamochain.com | https://api.par.mamochain.com |
-| Warsaw | https://grpc.waw.mamochain.com | https://rpc.waw.mamochain.com | https://api.waw.mamochain.com |
+| Amsterdam | | https://rpc.ams.mamochain.com | https://api.ams.mamochain.com |
+| Paris | https://grpc.mamochain.com | https://rpc.par.mamochain.com | https://api.par.mamochain.com |
+| Warsaw | | https://rpc.waw.mamochain.com | https://api.waw.mamochain.com |
+
+<details>
+<summary><b>Amsterdam Validators</b></summary>
+
+- conval-8.ams.mamochain.com
+- conval-9.ams.mamochain.com
+- conval-10.ams.mamochain.com
+- conval-11.ams.mamochain.com
+- conval-12.ams.mamochain.com
+- conval-13.ams.mamochain.com
+</details>
+
+<details>
+<summary><b>Paris Validators</b></summary>
+
+- conval-0.par.mamochain.com
+- conval-1.par.mamochain.com
+- conval-2.par.mamochain.com
+- conval-3.par.mamochain.com
+- conval-4.par.mamochain.com
+- conval-5.par.mamochain.com
+- conval-6.par.mamochain.com
+- conval-7.par.mamochain.com
+</details>
+
+<details>
+<summary><b>Warsaw Validators</b></summary>
+
+- conval-14.waw.mamochain.com
+- conval-15.waw.mamochain.com
+- conval-16.waw.mamochain.com
+- conval-17.waw.mamochain.com
+- conval-18.waw.mamochain.com
+- conval-19.waw.mamochain.com
+- conval-20.waw.mamochain.com
+</details>
 
 Status: <https://rpc.ams.mamochain.com/status>
 
@@ -65,7 +104,7 @@ celestia light init --p2p.network mammoth
 Start your light node with state access (with a consensus endpoint):
 
 ```bash
-celestia light start --p2p.network mammoth --core.ip grpc.waw.mamochain.com --rpc.skip-auth
+celestia light start --p2p.network mammoth --core.ip grpc.mamochain.com --rpc.skip-auth
 ```
 
 Find your account address:
