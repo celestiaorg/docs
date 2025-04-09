@@ -8,7 +8,7 @@ The Mammoth testnet is designed to demonstrate Celestia's high throughput capabi
 
 | Parameter | Value |
 |-----------|--------|
-| Chain ID | `mamo-2` |
+| Chain ID | `mamo-3` |
 | Genesis Hash | `TBD` |
 | Target Block Time | 6 seconds |
 | Target Throughput | **TODO**: 10.66MB/s at 64MB/6s OR 21.33MB/s at 128MB/6s |
