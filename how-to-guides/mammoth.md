@@ -8,8 +8,8 @@ The Mammoth testnet is designed to demonstrate Celestia's high throughput capabi
 
 | Parameter | Value |
 |-----------|--------|
-| Chain ID | `mamo-3` |
-| Genesis Hash | `TBD` |
+| Chain ID | `mamo-1` |
+| Genesis Hash | `8BED0B775B983596B90EEDDC245C13EF7EB4054EEA60E1F25393868C4A2C6660` |
 | Target Block Time | 6 seconds |
 | Target Throughput | **TODO**: 10.66MB/s at 64MB/6s OR 21.33MB/s at 128MB/6s |
 
@@ -149,4 +149,4 @@ celestia blob get 5235704 0x676d 0xb4774f791439fb1c09ee293812bf7dc7cfc75f20c49dd
 
 ### Optional: Post a blob with a frontend
 
-Head to [controller.jcstein.dev](https://controller.jcstein.dev) to post a blob through a UI, learn about your node, and run a locally encrypted database rollup.
+Head to [gmamo.vercel.app](https://gmamo.vercel.app) to post a blob through a UI, learn about your node, and run a locally encrypted database rollup.
