@@ -220,6 +220,8 @@ MAINNET CELESTIA TOKENS. THERE ARE NO PUBLIC SALES OF ANY MAINNET CELESTIA
 TOKENS.
 :::
 
+### Discord 
+
 You can request from Mocha testnet Faucet on the #mocha-faucet channel on
 Celestia's Discord server with the following command:
 
@@ -232,6 +234,10 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 :::tip NOTE
 Faucet has a limit of 10 tokens per week per address/Discord ID.
 :::
+
+### Web
+
+The web faucet is available at [https://celenium.io/faucet](https://celenium.io/faucet).
 
 ## Analytics
 
