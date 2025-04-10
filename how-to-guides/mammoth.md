@@ -1,6 +1,6 @@
 # Mammoth testnet
 
-TODO: [image placeholder]
+![mamo-1.png](/img/mamo-1.png)
 
 The Mammoth testnet is designed to demonstrate Celestia's high throughput capabilities with a larger validator set that closely mirrors real network conditions. This testnet will allow teams to stress test the network and verify our scaling capabilities.
 
@@ -11,7 +11,7 @@ The Mammoth testnet is designed to demonstrate Celestia's high throughput capabi
 | Chain ID | `mamo-1` |
 | Genesis Hash | `8BED0B775B983596B90EEDDC245C13EF7EB4054EEA60E1F25393868C4A2C6660` |
 | Target Block Time | 6 seconds |
-| Target Throughput | **TODO**: 10.66MB/s at 64MB/6s OR 21.33MB/s at 128MB/6s |
+| Target Throughput | 21.33MB/s at 128MB/6s |
 
 ## Chain details
 
