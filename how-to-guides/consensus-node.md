@@ -161,11 +161,14 @@ min-retain-blocks = 0 # retain all block data, this is default setting
 ### Query transactions by hash
 
 To query transactions using their hash, transaction
-indexing must be turned on. Set the `indexer` to `"kv"` in your `config.toml`:
+indexing must be turned on. Set the `indexer` to `"null"` in your `config.toml`:
 
 ```toml
-indexer = "kv"
+indexer = "null"
 ```
+
+The `null` indexer is a lightweight indexer. Do not use the `kv` indexer,
+as it results in substantial redundant data being saved.
 
 ### Optional: Access historical state
 
