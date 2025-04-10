@@ -25,7 +25,7 @@ Explorer for Mammoth testnet is available at [mammoth.celenium.io](https://mammo
 
 | Software | Version |
 |----------|---------|
-| `celestia-node` | `v0.21.9-mammoth-v0.0.9` |
+| `celestia-node` | `v0.21.9-mammoth-v0.0.10` |
 | `celestia-app` | `v3.4.2-mammoth-v0.6.0` |
 
 The testnet includes custom versions with:
@@ -84,14 +84,14 @@ Status: <https://rpc.ams.mamochain.com/status>
 
 ### Set up your light node
 
-Install celestia-node version `v0.21.9-mammoth-v0.0.9`, by using this quick install command:
+Install celestia-node version `v0.21.9-mammoth-v0.0.10`, by using this quick install command:
 
 ```bash
 # quick install
-bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v0.21.9-mammoth-v0.0.9
+bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v0.21.9-mammoth-v0.0.10
 ```
 
-If you'd like to build from source, checkout to `v0.21.9-mammoth-v0.0.9` and run the commands from the [celestia-node](/how-to-guides/celestia-node.md) page.
+If you'd like to build from source, checkout to `v0.21.9-mammoth-v0.0.10` and run the commands from the [celestia-node](/how-to-guides/celestia-node.md) page.
 
 Once installed, initialize your node:
 
@@ -102,7 +102,7 @@ celestia light init --p2p.network mammoth
 Start your light node with state access (with a consensus endpoint):
 
 ```bash
-celestia light start --p2p.network mammoth --core.ip grpc.mamochain.com --rpc.skip-auth
+celestia light start --p2p.network mammoth --core.ip grpc.mamochain.com --core.port 9090 --rpc.skip-auth
 ```
 
 Find your account address:
