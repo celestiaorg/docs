@@ -26,7 +26,7 @@ Explorer for Mammoth testnet is available at [mammoth.celenium.io](https://mammo
 | Software | Version |
 |----------|---------|
 | `celestia-node` | `v0.21.9-mammoth-v0.0.8` |
-| `celestia-app` | `v3.4.2-mammoth-v0.4.2` |
+| `celestia-app` | `v3.4.2-mammoth-v0.5.0` |
 
 The testnet includes custom versions with:
 - Datastore sharding
