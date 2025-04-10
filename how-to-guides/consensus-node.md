@@ -471,11 +471,11 @@ The available options are:
 1. `null` (default): This option disables indexing outside of
    transaction status. If you don't need to query transaction data,
    you can choose this option to save space.
-3. `kv`: This is the simplest indexer, backed by
+2. `kv`: This is the simplest indexer, backed by
    key-value storage (defaults to levelDB; see DBBackend).
    When `kv` is chosen, `tx.height` and `tx.hash` will always be
    indexed. This option is suitable for basic queries on transactions.
-4. `psql`: This indexer is backed by PostgreSQL. When psql is chosen,
+3. `psql`: This indexer is backed by PostgreSQL. When psql is chosen,
    `tx.height` and `tx.hash` will always be indexed. This option is
    suitable for complex queries on transactions.
 
