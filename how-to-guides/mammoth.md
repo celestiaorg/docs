@@ -102,7 +102,7 @@ celestia light init --p2p.network mammoth
 Start your light node with state access (with a consensus endpoint):
 
 ```bash
-celestia light start --p2p.network mammoth --core.ip conval-8.ams.mamochain.com --core.port 9090 --rpc.skip-auth
+celestia light start --p2p.network mammoth --core.ip global.grpc.mamochain.com --core.port 9090 --rpc.skip-auth
 ```
 
 Find your account address:
