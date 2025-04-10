@@ -115,6 +115,12 @@ celestia state account-address
 
 Head to the faucet at [faucet.mamochain.com](https://faucet.mamochain.com) to request tokens for the Mammoth testnet.
 
+Check your balance:
+
+```bash
+celestia state balance
+```
+
 ### Post your first blob
 
 #### Send the blob
