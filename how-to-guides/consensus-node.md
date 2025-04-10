@@ -145,9 +145,15 @@ data. This can be achieved with the following settings in your `config.toml`.
 
 #### Enable transaction indexing
 
+There is currently no way of entirely disabling indexing. Set the `indexer`
+to `"null"` in your `config.toml`:
+
 ```toml
-indexer = "kv"
+indexer = "null"
 ```
+
+The `null` indexer is a lightweight indexer that is sufficient for bridge
+nodes.
 
 #### Retain all block data
 
@@ -161,15 +167,11 @@ min-retain-blocks = 0 # retain all block data, this is default setting
 ### Query transactions by hash
 
 To query transactions using their hash, transaction
-indexing must be turned on (there is currently no way of entirely disabling
-indexing). Set the `indexer` to `"null"` in your `config.toml`:
+indexing must be turned on. Set the `indexer` to `"kv"` in your `config.toml`:
 
 ```toml
-indexer = "null"
+indexer = "kv"
 ```
-
-The `null` indexer is a lightweight indexer that is sufficient for bridge
-nodes.
 
 ### Optional: Access historical state
 
