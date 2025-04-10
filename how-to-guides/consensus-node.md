@@ -161,14 +161,15 @@ min-retain-blocks = 0 # retain all block data, this is default setting
 ### Query transactions by hash
 
 To query transactions using their hash, transaction
-indexing must be turned on. Set the `indexer` to `"null"` in your `config.toml`:
+indexing must be turned on (there is currently no way of entirely disabling
+indexing). Set the `indexer` to `"null"` in your `config.toml`:
 
 ```toml
 indexer = "null"
 ```
 
-The `null` indexer is a lightweight indexer. Do not use the `kv` indexer,
-as it results in substantial redundant data being saved.
+The `null` indexer is a lightweight indexer that is sufficient for bridge
+nodes.
 
 ### Optional: Access historical state
 
@@ -467,13 +468,14 @@ may decide which transactions to index.
 
 The available options are:
 
-1. `null`: This option disables indexing. If you don't need to
-   query transactions, you can choose this option to save space.
-2. `kv` (default): This is the simplest indexer, backed by
+1. `null` (default): This option disables indexing outside of
+   transaction status. If you don't need to query transaction data,
+   you can choose this option to save space.
+3. `kv`: This is the simplest indexer, backed by
    key-value storage (defaults to levelDB; see DBBackend).
    When `kv` is chosen, `tx.height` and `tx.hash` will always be
    indexed. This option is suitable for basic queries on transactions.
-3. `psql`: This indexer is backed by PostgreSQL. When psql is chosen,
+4. `psql`: This indexer is backed by PostgreSQL. When psql is chosen,
    `tx.height` and `tx.hash` will always be indexed. This option is
    suitable for complex queries on transactions.
 
