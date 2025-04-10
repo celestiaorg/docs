@@ -32,7 +32,7 @@ The testnet includes custom versions with:
 - Datastore sharding
 - 1-day sampling and pruning window
 - Optimized block time consistency
-- Maximum transaction size of 32MB
+- Maximum transaction size of 32MB, specifically where `max_tx_bytes: 33554400`
 
 ### RPC Endpoints
 
@@ -102,7 +102,7 @@ celestia light init --p2p.network mammoth
 Start your light node with state access (with a consensus endpoint):
 
 ```bash
-celestia light start --p2p.network mammoth --core.ip grpc.mamochain.com --core.port 9090 --rpc.skip-auth
+celestia light start --p2p.network mammoth --core.ip conval-8.ams.mamochain.com --core.port 9090 --rpc.skip-auth
 ```
 
 Find your account address:
