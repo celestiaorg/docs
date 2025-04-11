@@ -182,4 +182,44 @@ celestia blob submit 676d 676d | tee /dev/tty | jq -r '"\(.result.height) 676d \
 
 ### Optional: Post a blob with a frontend
 
-Head to [gmamo.vercel.app](https://gmamo.vercel.app) to post a blob through a UI, learn about your node, and run a locally encrypted database rollup.
+Head to [gmamo.vercel.app](https://gmamo.vercel.app) to explore an interactive UI that offers several features:
+- [View your node information and transfer TIA](#see-your-node-s-info)
+- [Monitor sampling statistics](#see-your-node-s-sampling-stats)
+- [Upload and retrieve blobs or images](#upload-and-retrieve-blob-or-image-to-mammoth)
+- [Create encrypted database rollups](#create-a-private-database-rollup)
+
+#### See your node's info
+
+The dashboard tab provides a comprehensive view of your node's information and allows you to send TIA to other addresses:
+
+![node info](/img/mamo/mamo-nodeinfo.png)
+
+#### See your node's sampling stats
+
+Monitor your light node's performance and sampling statistics in real-time:
+
+![sampling stats](/img/mamo/mamo-sampler.png)
+
+#### Upload and retrieve blob or image to Mammoth
+
+Use the blob management interface to upload and retrieve data, supporting images up to 32 MB:
+
+![uploader](/img/mamo/mamo-blob.png)
+
+Here's what the process looks like in action:
+
+When uploading an image:
+![mamo-post.png](/img/mamo/mamo-post.png)
+
+When retrieving an image:
+![mamo-retrieve.png](/img/mamo/mamo-retrieve.png)
+
+#### Create a private database rollup
+
+Create and manage your own encrypted database rollup with a custom schema. Your encryption key is securely stored in your browser's local storage for private access:
+
+![mamo-dbstart.png](/img/mamo/mamo-dbstart.png)
+
+After setting up your database, you can add entries according to your defined schema:
+
+![mamo-dbenter.png](/img/mamo/mamo-dbenter.png)
