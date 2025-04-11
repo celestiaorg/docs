@@ -25,7 +25,7 @@ Explorer for Mammoth testnet is available at [mammoth.celenium.io](https://mammo
 
 | Software | Version |
 |----------|---------|
-| `celestia-node` | `v0.21.9-mammoth-v0.0.10` |
+| `celestia-node` | `v0.21.9-mammoth-v0.0.11` |
 | `celestia-app` | `v3.4.2-mammoth-v0.6.0` |
 
 The testnet includes custom versions with:
@@ -84,14 +84,14 @@ Status: <https://rpc.ams.mamochain.com/status>
 
 ### Set up your light node
 
-Install celestia-node version `v0.21.9-mammoth-v0.0.10`, by using this quick install command:
+Install celestia-node version `v0.21.9-mammoth-v0.0.11`, by using this quick install command:
 
 ```bash
 # quick install
-bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v v0.21.9-mammoth-v0.0.10
+bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v v0.21.9-mammoth-v0.0.11
 ```
 
-If you'd like to build from source, checkout to `v0.21.9-mammoth-v0.0.10` and run the commands from the [celestia-node](/how-to-guides/celestia-node.md) page.
+If you'd like to build from source, checkout to `v0.21.9-mammoth-v0.0.11` and run the commands from the [celestia-node](/how-to-guides/celestia-node.md) page.
 
 Once installed, initialize your node:
 
