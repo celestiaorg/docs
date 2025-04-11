@@ -516,7 +516,3 @@ discard_abci_responses = false
 
 Remember to restart `celestia-appd` after making changes to the
 configuration to load the new settings.
-
-## FAQ
-
-### `+2/3 committed an invalid block: wrong Block.Header.Version`
