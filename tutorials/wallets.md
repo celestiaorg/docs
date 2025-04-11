@@ -331,7 +331,7 @@ then add the following parameters:
 - Native Denom: `utia`
 - Coin Type: `118`
 - Decimals: `6`
-- Block explorer URL (optional): `https://explorer.celestia-arabica-10.com`
+- Block explorer URL (optional): `https://explorer.celestia-arabica-11.com`
 
 Now, click `Add chain` and you will be able to view your Arabica
 account balance and transactions in Leap wallet.
