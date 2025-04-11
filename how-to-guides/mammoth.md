@@ -38,9 +38,9 @@ The testnet includes custom versions with:
 
 | Location | gRPC | RPC | API |
 |----------|------|-----|-----|
-| Amsterdam | | https://rpc.ams.mamochain.com | https://api.ams.mamochain.com |
-| Paris | https://grpc.mamochain.com | https://rpc.par.mamochain.com | https://api.par.mamochain.com |
-| Warsaw | | https://rpc.waw.mamochain.com | https://api.waw.mamochain.com |
+| Amsterdam | https://global.grpc.mamochain.com | https://rpc.ams.mamochain.com | https://api.ams.mamochain.com |
+| Paris | https://global.grpc.mamochain.com | https://rpc.par.mamochain.com | https://api.par.mamochain.com |
+| Warsaw | https://global.grpc.mamochain.com | https://rpc.waw.mamochain.com | https://api.waw.mamochain.com |
 
 <details>
 <summary><b>Amsterdam validators</b></summary>
@@ -133,10 +133,10 @@ celestia blob submit 676d 676d
 
 Where the response will look similar to:
 
-```bash
+```json
 {
   "result": {
-    "height": 5235704,
+    "height": 39651,
     "commitments": [
       "0xb4774f791439fb1c09ee293812bf7dc7cfc75f20c49dd16d061459dc8f5febff"
     ]
@@ -148,10 +148,36 @@ Where the response will look similar to:
 
 Retrieve your blob with the data from the response from your submission:
 
+:::tip
+You'll have to have your node synced all the way to the tip of the chain to retrieve the blob you just posted. You can check the syncing status with `celestia das sampling-stats`. Alternatively, you can [follow the guide to set a trusted hash and height](/how-to-guides/celestia-node-trusted-hash.md) and skip sampling the entire chain.
+:::
+
 ```bash
 # example
 # celestia blob get <height> <namespace> <commitment>
 celestia blob get 5235704 0x676d 0xb4774f791439fb1c09ee293812bf7dc7cfc75f20c49dd16d061459dc8f5febff
+```
+
+Your result should look similar to:
+
+```json
+{
+  "result": {
+    "namespace": "0x676d",
+    "data": "0x676d",
+    "share_version": 0,
+    "commitment": "0xb4774f791439fb1c09ee293812bf7dc7cfc75f20c49dd16d061459dc8f5febff",
+    "index": 9
+  }
+}
+```
+
+### Optional: Post and retrieve the blob in one command
+
+This command will post and retrieve the blob immediately:
+
+```bash
+celestia blob submit 676d 676d | tee /dev/tty | jq -r '"\(.result.height) 676d \(.result.commitments[0])"' | xargs -n3 celestia blob get
 ```
 
 ### Optional: Post a blob with a frontend
