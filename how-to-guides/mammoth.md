@@ -101,6 +101,10 @@ celestia light init --p2p.network mammoth
 
 Start your light node with state access (with a consensus endpoint):
 
+:::tip
+The `rpc.skip-auth` flag is being used to skip auth for the [demo app](#optional-post-a-blob-with-a-frontend), but this is optional.
+:::
+
 ```bash
 celestia light start --p2p.network mammoth --core.ip global.grpc.mamochain.com --core.port 9090 --rpc.skip-auth
 ```
