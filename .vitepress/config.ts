@@ -63,7 +63,7 @@ export default {
       "meta",
       {
         name: "twitter:image",
-        content: "https://docs.celestia.org/Celestia-og.png",
+        content: "https://docs.celestia.org/Documentation.png",
       },
     ],
     ["meta", { name: "twitter:image:alt", content: "Celestia Documentation" }],
@@ -75,7 +75,7 @@ export default {
       "meta",
       {
         property: "og:image",
-        content: "https://docs.celestia.org/Celestia-og.png",
+        content: "https://docs.celestia.org/Documentation.png",
       },
     ],
     ["meta", { property: "og:image:width", content: "1200" }],
