@@ -20,7 +20,7 @@ There are two main types of snapshots available:
 
 Pruned snapshots contain only the essential state needed to run a node. They exclude historical data that isn't necessary for current operations, making them much smaller in size. These are ideal for:
 
-- Validator nodes that only need recent state to participate in consensus
+- Consensus nodes (including validators) that only need recent state to participate in consensus
 - Consensus nodes that don't need complete historical data
 - Users who want to get started quickly and aren't concerned with historical queries
 
