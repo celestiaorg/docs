@@ -2,7 +2,7 @@
 
 ![mamo-1.png](/img/mamo-1.png)
 
-The Mammoth testnet is designed to demonstrate Celestia's high throughput capabilities with a larger validator set that closely mirrors real network conditions. This testnet will allow teams to stress test the network and verify our scaling capabilities.
+The Mammoth testnet is designed to demonstrate Celestia's high throughput capabilities with a larger validator set that closely mirrors real network conditions. This testnet will allow teams to stress test the network and verify our scaling capabilities. Read more about `mamo-1` in [the blog post](https://blog.celestia.org/mamo-1/).
 
 ## Overview
 
