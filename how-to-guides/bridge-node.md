@@ -112,8 +112,7 @@ celestia bridge init --core.ip <URI> --core.port <port> \
 
 ### Run the bridge node
 
-Start the bridge node with a connection to a Celestia Core node's gRPC endpoint (which is usually exposed on port 9090):
-(which is usually exposed on port 9090):
+Start the bridge node with a connection to a consensus node's gRPC endpoint, which is usually exposed on port 9090:
 
 ```sh
 celestia bridge start --core.ip <URI> --core.port <port>

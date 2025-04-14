@@ -57,7 +57,7 @@ celestia full init --p2p.network arabica
 
 #### Start the full storage node
 
-Start the full storage node with a connection to a Celestia Core node’s gRPC endpoint
+Start the full storage node with a connection to a consensus node's gRPC endpoint
 (which is usually exposed on port 9090):
 
 In order for access to the ability to get/submit
