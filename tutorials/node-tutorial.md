@@ -869,7 +869,7 @@ celestia share get-by-namespace \
 ### Submitting a blob using curl
 
 In order to post a blob using curl, you will need a light node running
-with the `--core.ip string` and `--.port string` flags, providing access to a consensus
+with the `--core.ip string` and `--core.port string` flags, providing access to a consensus
 endpoint.
 The flags indicate to the node to connect to the given core consensus node.
 Examples: `127.0.0.1` or `subdomain.domain.tld`.
