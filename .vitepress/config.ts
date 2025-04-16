@@ -465,6 +465,10 @@ function sidebarHome() {
               collapsed: true,
               items: [
                 {
+                  text: "Audits",
+                  link: "/how-to-guides/audits",
+                },
+                {
                   text: "celestia-node",
                   collapsed: true,
                   items: [
