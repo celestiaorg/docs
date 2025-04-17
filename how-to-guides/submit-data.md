@@ -40,7 +40,7 @@ Celestia-node provides flexible fee estimation options for submitting transactio
 
 1. **Default estimation**: By default, fee estimation relies on the consensus node to which the node is connected.
 
-2. **Third-party estimation**: Users can specify a separate endpoint for fee estimation using the `--core.estimator.address` flag in the CLI. This allows using a dedicated service for gas price and gas estimation.
+2. **Third-party estimation**: Users can specify a separate endpoint for fee estimation using the `--core.estimator.address` flag in the CLI. This allows using a dedicated endpoint for gas price and gas estimation.
 
 3. **Maximum gas price**: Users can set a maximum gas price they're willing to pay for transactions using the `--max.gas.price` flag. If the estimated gas price exceeds this maximum, the transaction will not be submitted. The default maximum is set to 100 times the minimum gas price (0.2 TIA).
 
