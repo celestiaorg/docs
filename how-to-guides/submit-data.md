@@ -34,6 +34,24 @@ Celestia makes use of a standard gas-priced prioritized mempool. By default,
 transactions with gas prices higher than that of other transactions in the mempool
 will be prioritized by validators.
 
+### Fee estimation
+
+Celestia-node provides flexible fee estimation options for submitting transactions:
+
+1. **Default estimation**: By default, fee estimation relies on the consensus node to which the node is connected.
+
+2. **Third-party estimation**: Users can specify a separate endpoint for fee estimation using the `--core.estimator.address` flag in the CLI. This allows using a dedicated service for gas price and gas estimation.
+
+3. **Maximum gas price**: Users can set a maximum gas price they're willing to pay for transactions using the `--max.gas.price` flag. If the estimated gas price exceeds this maximum, the transaction will not be submitted. The default maximum is set to 100 times the minimum gas price (0.2 TIA).
+
+:::tip NOTE
+The fee estimation mechanism is only available for non-PayForBlobs (PFB) transactions. PFB submissions will continue to use the app's default gas estimation algorithm.
+:::
+
+:::warning IMPORTANT
+When using third-party estimation, the consensus endpoint must be running celestia-app v3.8.1 or higher.
+:::
+
 ### Fees and gas limits
 
 As of version v1.0.0 of the application (celestia-app), there is no protocol
@@ -187,8 +205,12 @@ celestia-appd tx blob PayForBlobs <hex-encoded namespace> <hex-encoded data> [fl
 Using `blob.Submit`:
 
 ```bash
-celestia blob submit <hex-encoded namespace> <hex-encoded data>
+celestia blob submit <hex-encoded namespace> <hex-encoded data> [flags]
 ```
+
+Available flags:
+- `--core.estimator.address string`: Specifies the endpoint of the third-party service for gas price and gas estimation. Format: `<address>:<port>`. If not provided, the default connection to the consensus node will be used.
+- `--max.gas.price`: Sets the maximum gas price you're willing to pay for the transaction. If the estimated gas price exceeds this value, the transaction will not be submitted. Default is 0.2 TIA (100x the minimum gas price).
 
 Learn more in the [node tutorial](/tutorials/node-tutorial.md).
 
