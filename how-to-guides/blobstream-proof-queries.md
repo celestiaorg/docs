@@ -105,7 +105,7 @@ Check the above diagram which shows:
 - 2: the data roots: which are the binary merkle tree commitment over
   the row and column roots. This means that if you can prove that a share
   is part of a row, using a namespace merkle proof. Then prove that this
-  row is committed to by the data root. Then you can be sure that that share
+  row is committed to by the data root. Then you can be sure that share
   was published to the corresponding block.
 - 3: in order to batch multiple blocks into the same commitment, we create
   a commitment over the `(dataRoot, height)` tuple for a batch of blocks,
@@ -116,11 +116,11 @@ So, if we're able to prove:
 
 - That a share is part of a row, then that row is
 committed to by a data root.
-- Then, prove that that data root along with its
+- Then, prove that data root along with its
 height is committed to by the data root tuple root, which gets saved to the
 Blobstream contract.
 
-We can be sure that that share was committed to in
+We can be sure that share was committed to in
 the corresponding Celestia block.
 
 In this document, we will provide details on how to query the above proofs,
@@ -1058,7 +1058,7 @@ struct DataRootTuple {
 }
 ```
 
-which comprises a `dataRoot`, i.e. the block containing the Rollup data data root,
+which comprises a `dataRoot`, i.e. the block containing the Rollup data root,
 and the `height` which is the `height` of that block.
 
 - `proof`: the `BinaryMerkleProof` of the data root tuple to the data root
