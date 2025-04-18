@@ -104,7 +104,7 @@ These RPC providers are meant to be used in production environments.
 | Numia | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia> |
 | QuickNode | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) |
 
-If you are using QuickNode or another provider with authentication of endpoints,
+If you are using QuickNode or another provider with authenticated endpoints,
 see [the light node guide](/how-to-guides/light-node.md#optional-start-light-node-with-consensus-node-endpoint-with-authentication)
 to learn how to use an endpoint with x-token.
 
