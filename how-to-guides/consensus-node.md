@@ -354,7 +354,7 @@ There are several ways to reset your consensus node, depending on what you need 
 
 #### Option 1: Reset blockchain data with `reset-state`
 
-This command removes blockchain data but preserves validator state and address book:
+This command removes blockchain data but preserves validator state and address book of the consensus node:
 
 ```sh
 celestia-appd tendermint reset-state

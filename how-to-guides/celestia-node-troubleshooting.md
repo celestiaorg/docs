@@ -59,7 +59,7 @@ If you run a node on a cloud server, make sure that the ports are open
 on the server's firewall. If you run a node at home, make sure that your
 router allows connections to the correct ports.
 
-For example, validator ports 9090
+For example, validator (consensus node) ports 9090
 and 26657 need to be accessible by the bridge, and port 2121 is
 required for P2P connections for all node types.
 

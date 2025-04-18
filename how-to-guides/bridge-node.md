@@ -13,7 +13,7 @@ Bridge nodes connect the data availability layer and the consensus layer.
 A Celestia bridge node has the following properties:
 
 1. Import and process “raw” headers & blocks from a trusted core process
-   (meaning a trusted RPC connection to a celestia-core node) in the
+   (meaning a trusted RPC connection to a consensus node) in the
    Consensus network. Bridge nodes can run this core process internally
    (embedded) or simply connect to a remote endpoint. Bridge nodes also
    have the option of being an active validator in the consensus network.
@@ -86,7 +86,7 @@ Using an RPC of your own, or one from the
 [list on the Arabica devnet page](/how-to-guides/arabica-devnet.md#community-rpc-endpoints),
 start your node.
 
-Connecting to a core endpoint with `--core.ip string`
+Connecting to a consensus node endpoint (flag: `--core.ip string`)
 provides the light node with access to state queries (reading balances, submitting
 transactions, and other state-related queries).
 
@@ -112,8 +112,7 @@ celestia bridge init --core.ip <URI> --core.port <port> \
 
 ### Run the bridge node
 
-Start the bridge node with a connection to a validator node's gRPC endpoint
-(which is usually exposed on port 9090):
+Start the bridge node with a connection to a consensus node's gRPC endpoint, which is usually exposed on port 9090:
 
 ```sh
 celestia bridge start --core.ip <URI> --core.port <port>

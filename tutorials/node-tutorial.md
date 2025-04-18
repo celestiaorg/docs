@@ -16,7 +16,7 @@ and retrieve data (blobs) from the data availability layer by their namespace.
 ### Blobs
 
 Data is posted to Celestia's DA layer by using `MsgPayForBlobs`
-transactions to the core network. Read
+transactions to the consensus node network. Read
 [more about `MsgPayForBlobs`](https://github.com/celestiaorg/celestia-app/blob/main/x/blob/README.md#messages).
 
 ### Namespaces
@@ -81,10 +81,10 @@ Instantiating (or initializing) the node means setting up
 a node store on your machine. This is where the data and
 your keys will be stored.
 
-### Connect to a core endpoint
+### Connect to a consensus node endpoint
 
 Let's now run the Celestia Light node with a gRPC connection
-to an example core endpoint. Connecting to a core endpoint
+to an example consensus node endpoint. Connecting to a consensus node endpoint
 provides the light node with access to state queries (reading balances, submitting
 transactions, and other state-related queries).
 
@@ -871,7 +871,7 @@ celestia share get-by-namespace \
 In order to post a blob using curl, you will need a light node running
 with the `--core.ip string` and `--core.port string` flags, providing access to a consensus
 endpoint.
-The flags indicate to the node to connect to the given core consensus node.
+The flags indicate to the node to connect to the given consensus node.
 Examples: `127.0.0.1` or `subdomain.domain.tld`.
 Using either IP or DNS assumes RPC port 26657 and gRPC port 9090
 as default unless otherwise specified.

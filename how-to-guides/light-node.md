@@ -79,14 +79,14 @@ config. It will also show confirmation that the node store has been initialized.
 
 ## Start the light node
 
-Start the light node with a connection to a validator node's gRPC endpoint (which
+Start the light node with a connection to a consensus node's gRPC endpoint (which
 is usually exposed on port 9090):
 
 In order for access to the ability to get and submit
 state-related information, such as the ability to
 submit `PayForBlobs` transactions, or query for the
 node's account balance, a gRPC endpoint of a validator
-(core) node must be passed as directed below.
+(consensus) node must be passed as directed below.
 
 Refer to
 [the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
@@ -177,9 +177,9 @@ $request <CELESTIA-ADDRESS>
 Where `<CELESTIA-ADDRESS>` is the `celestia1******` address generated
 when you created the wallet.
 
-### Optional: start light node with core endpoint with authentication
+### Optional: start light node with consensus node endpoint with authentication
 
-If you are running a light node with a core endpoint that requires authentication,
+If you are running a light node connected to a consensus node endpoint that requires authentication,
 you can pass the directory containing the json of your x-token to the light node with
 the following command:
 
