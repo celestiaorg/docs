@@ -64,7 +64,7 @@ In order for access to the ability to get/submit
 state-related information, such as the ability to
 submit `PayForBlob` transactions, or query for the
 node's account balance, a gRPC endpoint of a validator
-(core) node must be passed as directed below.
+(consensus) node must be passed as directed below.
 
 :::warning Important
 Make sure port 2121 TCP/UDP is open and publicly accessible on your full storage node so it can be discovered by other peers in the DHT network. This port is essential for P2P connectivity and if not properly configured, your node won't be able to participate in the network effectively.
@@ -84,7 +84,7 @@ Using an RPC of your own, or one from
 [Arabica devnet](/how-to-guides/arabica-devnet.md#integrations),
 start your node.
 
-Connecting to a core endpoint with `--core.ip string`
+Connecting to a consensus node endpoint with `--core.ip string`
 provides the light node with access to state queries (reading balances, submitting
 transactions, and other state-related queries).
 
@@ -115,7 +115,7 @@ If you are running a full-storage node for your sovereign
 rollup, it is highly recommended to request Arabica devnet tokens
 as Arabica has the latest changes that can be used to
 test for developing your sovereign rollup. You can still use
-Mocha testnet as well, it is just mostly used for validator operations.
+the Mocha testnet as well, although it is primarily used for validator operations.
 :::
 
 ### Optional: run the full storage node with a custom key

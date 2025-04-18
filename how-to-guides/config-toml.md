@@ -27,11 +27,11 @@ After initialization, for any type of node, you will find a
 
 Let's break down some of the most used sections.
 
-### Core
+### Core (Consensus)
 
 This section is needed for the Celestia bridge node.
 By default, `Remote = false`. Still for devnet, we are going
-to use the remote core option and this can also be set
+to use the remote consensus node option and this can also be set
 by the command line flag `--core.remote`.
 
 ### P2P
@@ -56,7 +56,7 @@ need to change the field `PeerExchange` from false to true.
 #### TrustedHash and TrustedPeer
 
 `TrustedHash` is needed to properly initialize a Celestia bridge
-node with an already-running `Remote` celestia-core node. Celestia
+node with an already-running `Remote` Celestia consensus node. Celestia
 light node will take a genesis hash as the trusted one, if no hash
 is manually provided during initialization phase.
 
