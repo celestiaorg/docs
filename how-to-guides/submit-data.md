@@ -28,6 +28,7 @@ in a block quickly. If a tx contains blobs approaching 1.8 MiB then there will
 be no room for any other transactions. This means that your transaction will
 only be included in a block if it has a higher gas price than every other
 transaction in the mempool.
+
 ## Fee market and mempool
 
 Celestia makes use of a standard gas-priced prioritized mempool. By default,
@@ -40,12 +41,14 @@ Celestia-node provides flexible fee estimation options for submitting transactio
 
 1. **Default estimation**: By default, fee estimation relies on the consensus node to which the node is connected.
 
-2. **Third-party estimation**: Users can specify a separate endpoint for fee estimation using the `--core.estimator.address` flag in the CLI. This allows using a dedicated service for gas price and gas estimation.
+2. **Third-party estimation**: Users can specify a separate endpoint for fee estimation using the `--core.estimator.address` flag in the CLI. This allows using a dedicated service for fee estimation.
 
 3. **Maximum gas price**: Users can set a maximum gas price they're willing to pay for transactions using the `--max.gas.price` flag. If the estimated gas price exceeds this maximum, the transaction will not be submitted. The default maximum is set to 100 times the minimum gas price (0.2 TIA).
 
 :::tip NOTE
-The fee estimation mechanism is only available for non-PayForBlobs (PFB) transactions. PFB submissions will continue to use the app's default gas estimation algorithm.
+Fee estimation differs by transaction type:
+- PayForBlobs (PFB) transactions: Only the gas price (cost per unit) is dynamically estimated. The gas usage (number of units) uses a fixed calculation method.
+- All other transactions: Both gas price and gas usage are dynamically estimated.
 :::
 
 :::warning IMPORTANT
