@@ -79,10 +79,11 @@ commands:
    make install
    ```
 
-5. Build the `cel-key` utility:
+5. Build and install the `cel-key` utility:
 
    ```bash
    make cel-key
+   make install-key
    ```
 
 6. Verify that the binary is working and check the version:
