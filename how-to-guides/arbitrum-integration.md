@@ -49,7 +49,7 @@ You can [see where the preimage oracle gets used in the fraud proof replay binar
 
 ### Blobstream integration
 
-The integration ensures that in the case of a challenge in which the `ReadInboxMessage` instruction is disputed, that the corresponding batch can be confirmed to be in Celestia through the use of Blobstream (default is SP1 Blobstream by Succinct), which gives us strong security gaurantees that the data was made available on Celestia.
+The integration ensures that in the case of a challenge in which the `ReadInboxMessage` instruction is disputed, that the corresponding batch can be confirmed to be in Celestia through the use of Blobstream (default is SP1 Blobstream by Succinct), which gives us strong security guarantees that the data was made available on Celestia.
 
 ### Fallback mechanism in Nitro
 
