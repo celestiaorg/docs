@@ -89,7 +89,7 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Write latest tags and commit SHAs to txt files
         # This is the code that writes to a file. If we need to update the file
         # layout, contents, or file name, do it here.
