@@ -18,7 +18,7 @@ This tutorial will guide you through installing celestia-app, both
 [a pre-built binary](#installing-a-pre-built-binary)
 
 Celestia-app is the software that allows you to run
-validator nodes and provide RPC endpoints.
+consensus nodes — including validators — and provide RPC endpoints.
 
 ## Building binary from source
 
