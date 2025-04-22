@@ -3,6 +3,7 @@
 [![Twitter](https://img.shields.io/twitter/follow/celestia)](https://x.com/celestia)
 [![Discord](https://img.shields.io/discord/638338779505229824)](https://discord.com/invite/celestiacommunity)
 [![License](https://img.shields.io/badge/License-Apache2.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![celestiaorg/docs context](https://badge.forgithub.com/celestiaorg/docs?accept=text%2Fhtml&maxTokens=500000)](https://uithub.com/celestiaorg/docs?accept=text%2Fhtml&maxTokens=500000)
 
 # Celestia Documentation Site
 
