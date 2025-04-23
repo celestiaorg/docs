@@ -12,6 +12,19 @@ echo ""
 LOGFILE="$HOME/celestia-app-temp/logfile.log"
 TEMP_DIR="$HOME/celestia-app-temp"
 
+# Parse command line arguments
+while getopts "v:" opt; do
+  case $opt in
+    v) USER_VERSION="$OPTARG"
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2
+        echo "Usage: $0 [-v version]"
+        echo "Example: $0 -v v0.11.0"
+        exit 1
+    ;;
+  esac
+done
+
 # Check if the directory exists
 if [ -d "$TEMP_DIR" ]; then
     read -p "Directory $TEMP_DIR exists. Do you want to clear it out? (y/n) " -n 1 -r
@@ -34,17 +47,28 @@ echo "Log file is located at: $LOGFILE" | tee -a "$LOGFILE"
 cd "$TEMP_DIR" || exit 1
 echo "Working from temporary directory: $TEMP_DIR" | tee -a "$LOGFILE"
 
-# Fetch the latest release tag from GitHub
-VERSION=$(curl -s "https://api.github.com/repos/celestiaorg/celestia-app/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+# Set VERSION based on user input or fetch latest
+if [ -n "$USER_VERSION" ]; then
+  VERSION="$USER_VERSION"
+  echo "Using specified version: $VERSION" | tee -a "$LOGFILE"
+else
+  # Fetch the latest release tag from GitHub
+  VERSION=$(curl -s "https://api.github.com/repos/celestiaorg/celestia-app/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
-# Check if VERSION is empty
-if [ -z "$VERSION" ]; then
-    echo "Failed to fetch the latest version. Exiting." | tee -a "$LOGFILE"
-    exit 1
+  # Check if VERSION is empty
+  if [ -z "$VERSION" ]; then
+      echo "Failed to fetch the latest version. Exiting." | tee -a "$LOGFILE"
+      exit 1
+  fi
+  echo "Using latest version: $VERSION" | tee -a "$LOGFILE"
 fi
 
-# Log and print a message
-echo "Latest version detected: $VERSION" | tee -a "$LOGFILE"
+# Validate version format
+if [[ ! $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+    echo "Invalid version format: $VERSION" | tee -a "$LOGFILE"
+    echo "Version should start with vX.X.X (e.g., v3.8.1 or v3.8.1-mocha)" | tee -a "$LOGFILE"
+    exit 1
+fi
 
 # Detect the operating system and architecture
 OS=$(uname -s)
@@ -128,6 +152,7 @@ echo "Binary extracted to: $TEMP_DIR" | tee -a "$LOGFILE"
 
 # Remove the tarball to clean up
 rm "celestia-app_$PLATFORM.tar.gz"
+rm "checksums.txt"
 
 # Log and print a message
 echo "Temporary files cleaned up." | tee -a "$LOGFILE"
