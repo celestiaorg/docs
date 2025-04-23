@@ -361,6 +361,7 @@ celestia-appd tendermint reset-state
 ```
 
 This preserves your configuration, validator state (`priv_validator_state.json`), and peer connections (`addrbook.json`), but removes:
+
 - blockstore.db
 - state.db
 - evidence.db
@@ -376,6 +377,7 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
 This command:
+
 - Resets blockchain data
 - Resets validator state (`priv_validator_state.json`) but NOT private keys (which are in `priv_validator_key.json`)
 - Clears address book (`addrbook.json`)
@@ -410,6 +412,7 @@ echo "{}" > ~/.celestia-app/data/priv_validator_state.json
 ```
 
 This approach:
+
 - Completely removes all blockchain data (blocks, state, evidence, etc.)
 - Removes the keyring-test directory containing transaction signing keys (but not validator consensus keys)
 - Creates a new, empty data directory structure
@@ -516,3 +519,13 @@ discard_abci_responses = false
 
 Remember to restart `celestia-appd` after making changes to the
 configuration to load the new settings.
+
+### Optional: Reduce log level
+
+To reduce the log level, you can modify the `log_level` field in your `config.toml` file.
+
+```diff
+# Output level for logging, including package level options
+-log_level = "info"
++log_level = "*:error,p2p:info,state:info"
+```
