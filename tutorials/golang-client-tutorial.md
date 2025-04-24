@@ -8,57 +8,97 @@ not already.
 
 ## Project setup
 
-To start, add celestia-openrpc as a dependency to your project:
+**Note:** The previously documented `celestia-openrpc` library is deprecated. The recommended approach is to use the RPC client from [`celestia-node/api/rpc/client`](https://github.com/celestiaorg/celestia-node/blob/main/api/rpc/client/client.go) until the new Celestia client SDK is released.
+
+---
+
+## Project setup
+
+First, add the following dependencies to your Go project:
 
 ```bash
-go get github.com/celestiaorg/celestia-openrpc
+go get github.com/celestiaorg/celestia-node/api/rpc/client
+go get github.com/celestiaorg/celestia-node/nodebuilder/blob
+go get github.com/celestiaorg/celestia-node/nodebuilder/share
 ```
 
-To use the following methods, you will need the node URL and your auth token. To get your auth token, see this [guide](/tutorials/node-tutorial.md#auth-token). To run your node without an auth token, you can use the `--rpc.skip-auth` flag when starting your node. This allows you to pass an empty string as your auth token.
+You will also need your node URL and an auth token. See the [auth token guide](/tutorials/node-tutorial.md#auth-token).  
+To run your node without an auth token, use the `--rpc.skip-auth` flag.
 
-The default URL is `http://localhost:26658`. If you would like to use subscription methods, such as `SubscribeHeaders` below, you must use the `ws` protocol in place of `http`: `ws://localhost:26658`.
-
-> **Important:** Remember to close the client connection when you're done using it to prevent resource leaks:
-> ```go
-> defer client.Close()
-> ```
+The default URL is `http://localhost:26658`.
 
 ## Submitting and retrieving blobs
 
-The [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit) method takes a slice of blobs and a gas price, returning the height the blob was successfully posted at.
+Here is how to submit and retrieve blobs using the RPC client from celestia-node:
 
-- The namespace can be generated with `share.NewBlobNamespaceV0`.
-- The blobs can be generated with `blob.NewBlobV0`.
-- You can use `blob.NewSubmitOptions()`, which has celestia-node automatically determine an appropriate gas price. To set your own gas price, use `blob.NewSubmitOptions().WithGasPrice(X)`. The available options are `WithGasPrice`, `WithGas`, `WithKeyName`, `WithSignerAddress`, and `WithFeeGranterAddress`.
-
-The [blob.GetAll](https://node-rpc-docs.celestia.org/#blob.GetAll) method takes a height and slice of namespaces, returning the slice of blobs found in the given namespaces.
+### Submitting a blob
 
 ```go
 import (
-	"bytes"
-	"context"
-	"fmt"
-
-	client "github.com/celestiaorg/celestia-openrpc"
-	"github.com/celestiaorg/celestia-openrpc/types/blob"
-	"github.com/celestiaorg/celestia-openrpc/types/share"
+    "context"
+    "fmt"
+    "github.com/celestiaorg/celestia-node/api/rpc/client"
+    "github.com/celestiaorg/celestia-node/nodebuilder/share"
+    "github.com/celestiaorg/celestia-node/nodebuilder/blob"
 )
 
-// SubmitBlob submits a blob containing "Hello, World!" to the 0xDEADBEEF namespace. It uses the default signer on the running node.
-func SubmitBlob(ctx context.Context, url string, token string) error {
-    client, err := client.NewClient(ctx, url, token)
+func SubmitBlob(ctx context.Context, url, token string) error {
+    // Create the RPC client
+    c, err := client.NewClient(ctx, url, token)
     if err != nil {
-        return err
+        return fmt.Errorf("failed to create RPC client: %w", err)
     }
-    defer client.Close() // It is important to close the connection after use
+    defer c.Close()
 
-    // let's post to 0xDEADBEEF namespace
+    // Create a namespace (e.g., 0xDEADBEEF)
     namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
     if err != nil {
-        return err
+        return fmt.Errorf("failed to create namespace: %w", err)
     }
 
-    // create a blob
+    // Create a blob
+    b, err := blob.NewBlobV0(namespace, []byte("Hello, World!"))
+    if err != nil {
+        return fmt.Errorf("failed to create blob: %w", err)
+    }
+
+    // Submit the blob using the Blob API
+    height, err := c.Blob.Submit(ctx, []*blob.Blob{b}, nil)
+    if err != nil {
+        return fmt.Errorf("failed to submit blob: %w", err)
+    }
+
+    fmt.Printf("Blob submitted at height: %d\n", height)
+    return nil
+}
+```
+
+### Retrieving blobs
+
+```go
+func GetBlobs(ctx context.Context, url, token string, height uint64, namespace *share.Namespace) ([]*blob.Blob, error) {
+    c, err := client.NewClient(ctx, url, token)
+    if err != nil {
+        return nil, fmt.Errorf("failed to create RPC client: %w", err)
+    }
+    defer c.Close()
+
+    blobs, err := c.Blob.GetAll(ctx, height, []*share.Namespace{namespace})
+    if err != nil {
+        return nil, fmt.Errorf("failed to get blobs: %w", err)
+    }
+    return blobs, nil
+}
+```
+
+---
+
+## Notes
+
+- This approach directly uses the RPC client from `celestia-node` and may introduce additional dependencies.
+- This is a temporary solution until the new Celestia client SDK is released.
+- For more advanced usage (e.g., custom gas, key management), refer to the [celestia-node/blob API](https://github.com/celestiaorg/celestia-node/blob/main/nodebuilder/blob/api.go).
+
     helloWorldBlob, err := blob.NewBlobV0(namespace, []byte("Hello, World!"))
     if err != nil {
         return err
