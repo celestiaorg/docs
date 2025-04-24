@@ -94,7 +94,7 @@ Pre-built binaries are available for:
 To install the latest, or a specific version of the pre-built binary you can run this command in your
 terminal:
 
-```bash
+```bash-vue
 # Install latest version
 bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)"
 
