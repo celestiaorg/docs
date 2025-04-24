@@ -14,7 +14,7 @@ This page provides a comprehensive list of audits conducted on various Celestia 
 | Blobstream X               | OtterSec         | [Link](https://docs.celestia.org/audits/Blobstream_X-OtterSec_Audit.pdf)                                                   |
 | Blobstream X               | Veridise         | [Link](https://docs.celestia.org/audits/Blobstream_X-Veridise_Audit.pdf)                                                   |
 | Blobstream X               | Zellic           | [Link](https://docs.celestia.org/audits/Blobstream_X-Zellic_Audit.pdf)                                                     |
+| Shwap                      | OtterSec         | [Link](https://docs.celestia.org/audits/celestia_shwap_audit_draft.pdf)                                                    |
 | v4 celestia-app            | TBD              | TBD                                                                                                                        |
 | v5 celestia-app            | TBD              | TBD                                                                                                                        |
-| Shwap                      | OtterSec         | TBD                                                                                                                        |
 | ZK Sync                    | TBD              | TBD                                                                                                                        |
