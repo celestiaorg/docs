@@ -83,11 +83,11 @@ func GetBlobs(ctx context.Context, url, token string, height uint64, namespace *
     }
     defer c.Close()
 
-    blobs, err := c.Blob.GetAll(ctx, height, []*share.Namespace{namespace})
-    if err != nil {
-        return nil, fmt.Errorf("failed to get blobs: %w", err)
-    }
-    return blobs, nil
+	blobs, err := c.Blob.GetAll(ctx, height, []*share.Namespace{namespace})
+	if err != nil {
+		return nil, fmt.Errorf("failed to get blobs: %w", err)
+	}
+	return blobs, nil
 }
 ```
 
