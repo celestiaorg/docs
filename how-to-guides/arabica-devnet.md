@@ -87,10 +87,7 @@ RPC endpoints and types of nodes you can run in order to participate in Arabica 
 |                                                                                        |                                  | `validator-3.celestia-arabica-11.com`                                                                         |
 |                                                                                        |                                  | `validator-4.celestia-arabica-11.com`                                                                         |
 |                                                                                        |                                  |                                                                                                               |
-| **Data availability nodes**                                                            | DA Bridge Node Endpoints         | `/dns4/da-bridge-1.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWGqwzdEqM54Dce6LXzfFr97Bnhvm6rN7KM7MFwdomfm4S` |
-| ([light](/how-to-guides/light-node.md), [bridge](/how-to-guides/bridge-node.md), [full](/how-to-guides/full-storage-node.md)) |                                  | `/dns4/da-bridge-2.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWCMGM5eZWVfCN9ZLAViGfLUWAfXP5pCm78NFKb9jpBtua` |
-|                                                                                        |                                  | `/dns4/da-bridge-3.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWEWuqrjULANpukDFGVoHW3RoeUU53Ec9t9v5cwW3MkVdQ` |
-|                                                                                        |                                  | `/dns4/da-bridge-4.celestia-arabica-11.com/tcp/2121/p2p/12D3KooWLT1ysSrD7XWSBjh7tU1HQanF5M64dHV6AuM6cYEJxMPk` |
+| **Data availability nodes** | DA Bridge Node Endpoints | See the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39). |
 |                                                                                        | `--core.ip string` endpoints     | Refer to "Direct endpoints with open ports" above                                                             |
 
 <!-- markdownlint-enable MD013 -->
