@@ -122,7 +122,7 @@ USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER DISTRIBUTION OF
 MAINNET CELESTIA TOKENS.
 :::
 
-Head to the faucet at [celenium.io/faucet](https://celenium.io/faucet) or [faucet.mamochain.com](https://faucet.mamochain.com) to request tokens for the Mammoth testnet.
+Head to the faucet at [mammoth.celenium.io/faucet](https://mammoth.celenium.io/faucet) to request tokens for the Mammoth testnet.
 
 Check your balance:
 
