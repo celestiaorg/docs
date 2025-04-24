@@ -8,15 +8,9 @@ not already.
 
 ## Project setup
 
-**Note:** The previously documented `celestia-openrpc` library is deprecated. The recommended approach is to use the RPC client from [`celestia-node/api/rpc/client`](https://github.com/celestiaorg/celestia-node/blob/main/api/rpc/client/client.go) until the new Celestia client SDK is released.
+This tutorial demonstrates how to interact with a Celestia node using the official Go API client from [`celestia-node/api/rpc/client`](https://github.com/celestiaorg/celestia-node/blob/main/api/rpc/client.go) (v0.22.1).
 
-You have two options for interacting with Celestia in Go:
-1. Using the official client libraries (covered in the first part of this tutorial)
-2. Using direct HTTP JSON-RPC calls (covered in the second part)
-
----
-
-## Project setup
+**Note:** The previously documented `celestia-openrpc` library is deprecated. The recommended approach is to use the RPC client from `celestia-node/api/rpc/client` until the new Celestia client SDK is released.
 
 First, add the following dependencies to your Go project:
 
@@ -129,76 +123,9 @@ func GetBlobs(ctx context.Context, url, token string, height uint64, namespace *
 
 ---
 
-## Using direct HTTP JSON-RPC calls
-
-If you prefer not to use the official client libraries or want more control over the network calls, you can interact with Celestia nodes directly using HTTP JSON-RPC. This section provides a complete example of submitting and retrieving blobs using standard Go libraries.
-
-### Project setup for direct HTTP JSON-RPC
-
-Create a new Go module:
-
-```bash
-mkdir celestia-direct-client
-cd celestia-direct-client
-go mod init celestia-direct-client
-```
-
-Create a file named `main.go` with the following content:
-
-```go
-package main
-
-import (
-	"bytes"
-	"encoding/base64"
-	"encoding/hex"
-	"encoding/json"
-	"fmt"
-	"io"
-	"log"
-	"net/http"
-)
-
-const (
-	NodeURL = "http://localhost:26658"
-	AuthToken = "" // Set your auth token if needed
-)
-
-// Namespace represents a Celestia namespace
-type Namespace struct {
-	Version uint8  `json:"version"`
-	ID      string `json:"id"`
-}
-
-// Blob represents a Celestia blob
-type Blob struct {
-	Namespace    string `json:"namespace"`    // base64 encoded
-	Data         string `json:"data"`         // base64 encoded
-	ShareVersion uint8  `json:"share_version"`
-	Commitment   string `json:"commitment"`   // base64 encoded
-	Index        int    `json:"index"`
-}
-
-// SubmitBlobRequest is the request for submitting blobs
-type SubmitBlobRequest struct {
-	NamespaceID string `json:"namespace_id"`
-	Data        string `json:"data"`
-	GasLimit    int64  `json:"gas_limit,omitempty"`
-	Fee         int64  `json:"fee,omitempty"`
-}
-
-// SubmitBlobResponse is the response from submitting blobs
-type SubmitBlobResponse struct {
-	Height int64 `json:"height"`
-}
-
-// GetBlobsResponse is the response from getting blobs
-type GetBlobsResponse struct {
-	Blobs []Blob `json:"blobs"`
-}
-
-func main() {
-	// Create a namespace ID (0xDEADBEEF)
+<!--
+The following section on direct HTTP JSON-RPC calls has been removed to comply with the requirement to use ONLY the official Go API from celestia-node/api/rpc/client. All code examples and instructions below exclusively use the Go client library.
+-->
 	namespaceID := "deadbeef"
 	
 	// Create blob data
@@ -395,51 +322,6 @@ func getBlobs(height int64, namespaceID string) ([]Blob, error) {
 }
 ```
 
-### Running the direct HTTP client
-
-Build and run your application:
-
-```bash
-go mod tidy
-go run main.go
-```
-
-### How it works
-
-The code above does the following:
-
-1. **Namespace formatting**: Creates a namespace ID in the proper format
-   - Version 0 in the first byte
-   - 10 reserved bytes
-   - 18 bytes for the namespace ID (with leading zeros as needed)
-
-2. **Submitting a blob**:
-   - Encodes the namespace and data in base64
-   - Creates a JSON-RPC request to the `blob.Submit` method
-   - Sends an HTTP POST request to the node
-   - Parses the response to get the height
-
-3. **Retrieving blobs**:
-   - Creates a JSON-RPC request to the `blob.GetAll` method
-   - Specifies the height and namespace
-   - Parses the response to get the blobs
-   - Decodes the blob data from base64
-
-### Advantages of direct HTTP calls
-
-- Minimal dependencies (only uses the standard library)
-- Full control over the network requests
-- Easy to understand the underlying protocol
-- Can be adapted for other languages that support HTTP requests
-
-### Considerations
-
-- No built-in retries or error handling
-- Need to manually format namespaces according to specification
-- Need to handle authentication manually
-- Need to stay up-to-date with API changes
-
-If you need more robust functionality, consider using the official client libraries as shown in the first part of this tutorial.
 
 ## Subscribing to new blobs
 
