@@ -320,11 +320,11 @@ When a bridge or full storage node runs on `ext4` file system, there will be err
 ERROR   header/sync     sync/sync.go:227        syncing headers {"from": 5074102, "to": 5161144, "err": "creating file: creating ODSQ4 file: creating Q4 file: creating Q4 file: open /root/.celestia-bridge-mocha-4/blocks/C9ADF6D9F862D92993D67977DE407D17ECF7F1DACE5FB7FE9A6845F4BD0172CE.q4: no space left on device"}
 ```
 
-You may also observe similar errors from `tar` command when extracting a snapshot of an archival bridge node.
+You may also observe similar errors from the `tar` command when extracting a snapshot of an archival bridge node.
 
 There are two solutions to this problem:
 
-**Option 1: enable the large_dir feature for ext4**
+#### Option 1: enable the large_dir feature for ext4
 
 :::tip NOTE
 If the Node Store is on the same partition as the OS, it is recommended to take Option 2.
@@ -350,7 +350,7 @@ sudo mount </dev/yourpartition> <mountpoint>
 ```
 3. Restart the node
 
-**Option 2: migrate to XFS/ZFS file system**
+#### Option 2: migrate to XFS/ZFS file system
 
 Make sure you have your node id backed up so that you can import them later on.
 
