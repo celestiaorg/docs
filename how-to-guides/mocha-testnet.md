@@ -236,7 +236,7 @@ Faucet has a limit of 10 tokens per week per address/Discord ID.
 
 ### Web
 
-The web faucet is available at [https://mocha.celenium.io/faucet](https://mocha.celenium.io/faucet).
+The web faucet is available at [https://celenium.io/faucet](https://celenium.io/faucet).
 
 ## Analytics
 
