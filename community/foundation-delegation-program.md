@@ -18,8 +18,8 @@ fostering a modular blockchain network that delivers exceptional performance.
 
 ### Program launch
 
-Prospective validators are welcome to apply to the program starting February 6,
-2024. The application is designed to assess a validator’s uptime performance
+Prospective validators are welcome to apply to the program starting. The application
+is designed to assess a validator’s uptime performance
 and contributions to the Celestia ecosystem. Of the 100 total slots in
 Celestia’s active validator set, up to 50 will receive delegations within the
 program.
@@ -34,28 +34,21 @@ details about the application and eligibility criteria are described below.
 Every 4 months, the Celestia Foundation will distribute a portion of the
 Foundation’s total available stake to a cohort of validators who meet
 certain criteria, detailed below. Here is an overview of how the cohort
-process will work for Cohort 1 and what that means for future cohorts.
+process will work.
 
 ### Key Points
 
-* Initial Cohort (Cohort 1): 50 applicants will be accepted
-  * Grading System: Applicants in Cohort 1 are divided into first, second,
-  and third place based on eligibility criteria outlined in this document.
-  * Delegation Duration: This varies based on the applicant’s placement in
-  Cohort 1. First place receives 12 months of delegation, second place receives
-  8 months, third place receives 4 months.
+* The program is split into Cohorts every 4 months.
+* Each Cohort has to renew in 12 months.
+* Open slots may be filled by existing Cohort members up for renewal or new applicants.
 
-| Tier          | Placement       | Delegation Duration | Renewal By Cohort |
-|---------------|-----------------|---------------------|-------------------|
-| First Place   | Applicants 1-20 | 12 months           | Cohort 4          |
-| Second Place  | Applicants 21-35| 8 months            | Cohort 3          |
-| Third Place   | Applicants 36-50| 4 months            | Cohort 2          |
+| Cohort   | Cohort Size | Delegation Duration | Renewal By Cohort |
+|----------|-------------|---------------------|-------------------|
+| Cohort 5 | 15          | 12 months           | Cohort 8          |
+| Cohort 6 | 15          | 12 months           | Cohort 9          |
+| Cohort 7 | 20          | 12 months           | Cohort 10         |
 
-* Subsequent Cohorts (Cohorts 2-onwards):
-  * After Cohort 1, open slots may be filled by Cohort 1 members up for
-  renewals or new applicants. There will be no Tiers (e.g. First Place,
-  Second Place, Third Place) in cohorts after Cohort 1. This structure
-  allows for a steady flow of both existing applicants and new applicants
+ This structure allows for a steady flow of both existing applicants and new applicants
   to maintain a stable set of participants in the program.
 
 During this period, so long as the validator maintains high uptime and
@@ -67,12 +60,15 @@ the delegation for the duration of the cohort they are currently in.
 The minimum requirements for participation in the program are as follows:
 
 * Run an active Mainnet Beta validator **or** an active Mocha testnet validator
-for at least 1 month before application deadline
+for **at least 1 month before application deadline**
 * Run a bridge node (on Mainnet Beta if you are already an active Mainnet Beta
 validator or on Mocha testnet if not) that is connected and reporting
 to the Celestia Labs [OTEL collector](/how-to-guides/celestia-node-metrics.md)
 (for new applicants - on testnet, so that we can evaluate performance)
-* Not jailed or slashed in the 6 months before application deadline
+* Not jailed more than once in the 6 months before application deadline
+* If jailed more than once in the 6 months period before application deadline,
+then we require a public forum post with detailed post mortem and we consider
+case by case
 * Not associated with an exchange or custodian
 * Not in the top 10 validators by delegation power, unless it enters the
 top 10 as a result of the Foundation’s delegation under this program
@@ -142,7 +138,7 @@ Before applying, be ready to share the following:
 * Infrastructure
   * Validator address and bridge node ID on Mainnet Beta
   * If you don't run an active Mainnet Beta validator, please provide us with
-  validator address, bridge node ID and blobstream address on Mocha-4
+  validator address, bridge node ID on Mocha-4
   * Have you been slashed or jailed in the last 6 months on Celestia or
   other chains you validated on.
   * Hosting provider and Data Center location (Mainnet Beta and testnet if applicable)
@@ -151,8 +147,7 @@ Before applying, be ready to share the following:
     * Security setup (servers, private keys)
     * Monitoring and alerting
 * Contributions
-  * Please list all technical contributions for Celestia and its ecosystem
-  * Please list all community contributions for Celestia and its ecosystem
+  * Please list all contributions for Celestia and its ecosystem
 
 Please note, the objective of the program is to contribute to Celestia’s
 resilience and uptime. If you contribute a lot to the Celestia ecosystem,
