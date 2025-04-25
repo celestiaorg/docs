@@ -1,8 +1,8 @@
 ---
 description: Use the cel-key utility to generate a wallet on celestia-node.
 prev:
-  text: "New Blobstream X deployments"
-  link: "/how-to-guides/blobstream-x-deploy"
+  text: "Rust client tutorial"
+  link: "/tutorials/rust-client-tutorial"
 ---
 
 # Create a wallet with celestia-node
