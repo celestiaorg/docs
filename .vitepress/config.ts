@@ -818,7 +818,6 @@ function sidebarHome() {
               text: "RPC documentation & playground",
               link: "https://node-rpc-docs.celestia.org/",
             },
-            { text: "Prompt Scavenger", link: "/tutorials/prompt-scavenger" },
           ],
         },
         {

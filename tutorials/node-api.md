@@ -59,7 +59,3 @@ functionality.
 
 <!-- We may also implement super-light-clients over Gateway API at some point. -->
 
-### Gateway API tutorial
-
-Check out the [Prompt scavenger gateway API tutorial](/tutorials/prompt-scavenger.md)
-for more details.
