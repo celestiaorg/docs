@@ -169,8 +169,3 @@ their respective delegations.
 * [Cohort 4](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=1814073511#gid=1814073511): 20 Validator Seats (Applications open February 1, 2025)
 
 IMPORTANT: Each validator selected for the program has to maintain a fully archival (non pruned) bridge node for both Mainnet Beta and Mocha.
-
-## Feedback process
-
-Validators in the program will receive a feedback form every quarter, so
-the program can be continually improved.
