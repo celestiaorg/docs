@@ -18,7 +18,7 @@ fostering a modular blockchain network that delivers exceptional performance.
 
 ### Program launch
 
-Prospective validators are welcome to apply to the program starting. The application
+Prospective validators are welcome to apply to the program. The application
 is designed to assess a validator’s uptime performance
 and contributions to the Celestia ecosystem. Of the 100 total slots in
 Celestia’s active validator set, up to 50 will receive delegations within the
