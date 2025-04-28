@@ -162,13 +162,13 @@ then enter your bip39 mnemonic:
 ./cel-key --help
 ```
 
-## Managing the key used by celestia state account-address
+## Managing the key returned by `celestia state account-address`
 
 When you run a Celestia node and use the command `celestia state account-address`, it returns the address of the key that your node is currently using. This key is the same one that was either:
 
 1. Auto-generated during node initialization with `celestia <node-type> init`
-2. Manually created using `cel-key add` 
-3. Imported/recovered using `cel-key add --recover`
+2. Manually created using `cel-key add <name> [flags]` 
+3. Imported/recovered using `cel-key add <name> --recover --node.type <node-type>`
 
 ### Understanding the relationship
 
