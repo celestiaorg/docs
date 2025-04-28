@@ -91,11 +91,15 @@ Pre-built binaries are available for:
 - Operating systems: Darwin (Apple), Linux
 - Architectures: x86_64 (amd64), arm64
 
-To install the latest pre-built binary you can run this command in your
+To install the latest, or a specific version of the pre-built binary you can run this command in your
 terminal:
 
-```bash
+```bash-vue
+# Install latest version
 bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)"
+
+# Install specific version, latest version for Mocha testnet in this example
+bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)" -- -v {{mochaVersions['app-latest-tag']}}
 ```
 
 Follow the instructions in the terminal output to choose your installation
