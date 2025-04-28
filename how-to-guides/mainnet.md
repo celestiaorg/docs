@@ -116,6 +116,8 @@ for production deployments. Production deployments should rely
 on [service providers with SLAs](#production-rpc-endpoints).
 :::
 
+You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
+
 The following table lists community-provided consensus node endpoints that you can use:
 
 | Provider | RPC Endpoint | API Endpoint | gRPC Endpoint | WebSocket Endpoint |

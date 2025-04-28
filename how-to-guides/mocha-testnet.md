@@ -75,6 +75,10 @@ on [service providers with SLAs](#production-rpc-endpoints) or
 your own node.
 :::
 
+### Community bridge and full node endpoints
+
+You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
+
 ### Community Data availability (DA) RPC endpoints for bridge node sync
 
 These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
