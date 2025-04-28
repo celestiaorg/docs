@@ -57,7 +57,17 @@ This can be calculated as follows:
 
 <!-- markdownlint-disable MD013 -->
 
-$\text{Total Bytes} = (1 \times 478 \, \text{bytes}) + (16382 \times 482 \, \text{bytes}) = 7,896,602 \, \text{bytes}$
+$$
+\text{First share: } 1 \times 478 \text{ bytes}
+$$
+
+$$
+\text{Remaining shares: } 16382 \times 482 \text{ bytes}
+$$
+
+$$
+\text{Total Bytes: } 7,896,602 \text{ bytes}
+$$
 
 <!-- markdownlint-enable MD013 -->
 
