@@ -4,6 +4,14 @@ description: A guide to Arabica devnet.
 
 # Arabica devnet
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
+import ArabicaDevnetDetails from '../.vitepress/components/ArabicaDevnetDetails.vue'
+</script>
+
 ![arabica-devnet](/img/arabica-devnet.png)
 
 Arabica devnet is a testnet from Celestia Labs that is focused
@@ -25,12 +33,6 @@ it is a useful way to keep testing the latest changes in the software.
 Developers can still deploy on Mocha testnet their sovereign rollups if they
 chose to do so, it just will always lag behind Arabica devnet until Mocha
 undergoes network upgrades in coordination with validators.
-
-<!-- markdownlint-disable MD033 -->
-<script setup>
-import ArabicaVersionTags from '../.vitepress/components/ArabicaVersionTags.vue'
-import ArabicaDevnetDetails from '../.vitepress/components/ArabicaDevnetDetails.vue'
-</script>
 
 ## Network details
 
@@ -78,14 +80,14 @@ RPC endpoints and types of nodes you can run in order to participate in Arabica 
 
 | Node type                                                                              | Endpoint type                    | Endpoint                                                                                                      |
 | -------------------------------------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Consensus nodes** ([full](../how-to-guides/consensus-node.md))                               | Consensus RPC                    | `https://rpc.celestia-arabica-11.com`                                                                         |
-|                                                                                        | API                              | `https://api.celestia-arabica-11.com`                                                                         |
-|                                                                                        | gRPC                             | `grpc.celestia-arabica-11.com:443`                                                                            |
+| **Consensus nodes** ([full](../how-to-guides/consensus-node.md))                               | Consensus RPC                    | `https://rpc.celestia-{{constants.arabicaChainId}}.com`                                                                         |
+|                                                                                        | API                              | `https://api.celestia-{{constants.arabicaChainId}}.com`                                                                         |
+|                                                                                        | gRPC                             | `grpc.celestia-{{constants.arabicaChainId}}.com:443`                                                                            |
 |                                                                                        | Direct endpoints with open ports | Open ports: 26656 (p2p), 26657 (RPC), 1317 (API), 9090 (GRPC)                                                 |
-|                                                                                        |                                  | `validator-1.celestia-arabica-11.com`                                                                         |
-|                                                                                        |                                  | `validator-2.celestia-arabica-11.com`                                                                         |
-|                                                                                        |                                  | `validator-3.celestia-arabica-11.com`                                                                         |
-|                                                                                        |                                  | `validator-4.celestia-arabica-11.com`                                                                         |
+|                                                                                        |                                  | `validator-1.celestia-{{constants.arabicaChainId}}.com`                                                                         |
+|                                                                                        |                                  | `validator-2.celestia-{{constants.arabicaChainId}}.com`                                                                         |
+|                                                                                        |                                  | `validator-3.celestia-{{constants.arabicaChainId}}.com`                                                                         |
+|                                                                                        |                                  | `validator-4.celestia-{{constants.arabicaChainId}}.com`                                                                         |
 |                                                                                        |                                  |                                                                                                               |
 | **Data availability nodes** | DA Bridge Node Endpoints | See the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39). |
 |                                                                                        | `--core.ip string` endpoints     | Refer to "Direct endpoints with open ports" above                                                             |
@@ -126,9 +128,9 @@ Arabica devnet with can be found in the table in the
 As an example, this command will work to start a light node with
 state access, using default ports:
 
-```bash
+```bash-vue
 celestia light start --p2p.network arabica \
-  --core.ip validator-1.celestia-arabica-11.com \
+  --core.ip validator-1.celestia-{{constants.arabicaChainId}}.com \
   --core.port 9090
 ```
 
@@ -163,14 +165,14 @@ Faucet has a limit of 10 tokens per week per address/Discord ID.
 
 ### Web
 
-The web faucet is available at [https://arabica.celenium.io/faucet](https://arabica.celenium.io/faucet) and [https://faucet.celestia-arabica-11.com/](https://faucet.celestia-arabica-11.com/).
+The web faucet is available at [https://arabica.celenium.io/faucet](https://arabica.celenium.io/faucet) and [https://faucet.celestia-{{constants.arabicaChainId}}.com/](https://faucet.celestia-{{constants.arabicaChainId}}.com/).
 
 ## Explorers
 
 There are multiple explorers you can use for Arabica:
 
 - [https://arabica.celenium.io](https://arabica.celenium.io)
-- [https://explorer.celestia-arabica-11.com](https://explorer.celestia-arabica-11.com)
+- [https://explorer.celestia-{{constants.arabicaChainId}}.com](https://explorer.celestia-{{constants.arabicaChainId}}.com)
 
 ## Network upgrades
 

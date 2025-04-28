@@ -2,6 +2,12 @@
 
 ## Overview
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+</script>
+
 By default, a celestia-node creates a key named `my_celes_key` during
 initialization. This document explains how to run a node with a different
 default key name and how to submit blobs using different signers.
@@ -11,8 +17,8 @@ default key name and how to submit blobs using different signers.
 To start a Celestia node with a different default key name, use the following
 command:
 
-```sh
-celestia light start --core.ip consensus.celestia-arabica-11.com \
+```sh-vue
+celestia light start --core.ip consensus.celestia-{{constants.arabicaChainId}}.com \
     --core.port 9090 --p2p.network=arabica --keyring.keyname testKey
 ```
 

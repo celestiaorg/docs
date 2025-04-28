@@ -7,6 +7,13 @@ prev:
 
 # Create a wallet with celestia-node
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+import mochaVersions from "/.vitepress/constants/mocha_versions.js";
+</script>
+
 This tutorial will go over using the `cel-key` utility
 to generate a wallet on celestia-node.
 
@@ -173,7 +180,7 @@ When you run a Celestia node and use the command `celestia state account-address
 ### Understanding the relationship
 
 The key reported by `celestia state account-address` is stored in your node's keyring directory:
-- For Mocha testnet: `~/.celestia-<node-type>-mocha-4/keys/keyring-test/`
+- For Mocha testnet: `~/.celestia-<node-type>-{{constants.mochaChainId}}/keys/keyring-test/`
 - For Mainnet Beta: `~/.celestia-<node-type>/keys/keyring-test/`
 
 You can verify this by listing your keys with `cel-key`:
@@ -212,9 +219,9 @@ This will prompt you for a password to encrypt the exported key. Store this expo
 
 You can also directly back up the entire keyring directory:
 
-```bash
+```bash-vue
 # For Mocha testnet
-cp -r ~/.celestia-<node-type>-mocha-4/keys/keyring-test /secure/backup/location
+cp -r ~/.celestia-<node-type>-{{constants.mochaChainId}}/keys/keyring-test /secure/backup/location
 
 # For Mainnet Beta
 cp -r ~/.celestia-<node-type>/keys/keyring-test /secure/backup/location
@@ -248,9 +255,9 @@ If you backed up the keyring directory:
 2. Stop the node if it's running
 3. Replace the keyring-test directory with your backup:
 
-```bash
+```bash-vue
 # For Mocha testnet
-cp -r /secure/backup/location/* ~/.celestia-<node-type>-mocha-4/keys/keyring-test/
+cp -r /secure/backup/location/* ~/.celestia-<node-type>-{{constants.mochaChainId}}/keys/keyring-test/
 
 # For Mainnet Beta
 cp -r /secure/backup/location/* ~/.celestia-<node-type>/keys/keyring-test/
@@ -290,12 +297,6 @@ This ensures your node uses the specified key for all operations, including thos
 
 Run the Docker image (in this example, we are using a light node on Mocha
 testnet):
-
-<!-- markdownlint-disable MD013 -->
-<!-- markdownlint-disable MD033 -->
-<script setup>
-import mochaVersions from "/.vitepress/constants/mocha_versions.js";
-</script>
 
 ```bash-vue
 docker run --name celestia-node -e NODE_TYPE=light -e P2P_NETWORK=mocha -p 26659:26659 \
@@ -358,7 +359,7 @@ Write a `docker-compose.yml` to accomplish this:
 
 <!-- markdownlint-disable MD013 -->
 
-```yaml
+```yaml-vue
 version: "3.8"
 services:
   celestia:
@@ -367,7 +368,7 @@ services:
       - NODE_TYPE=light
     command: celestia light start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha --keyring.keyname my_celes_key
     volumes:
-      - ${PWD}/keys:/root/.celestia-light-mocha-4/keys
+      - ${PWD}/keys:/root/.celestia-light-{{constants.mochaChainId}}/keys
     ports:
       - 26659:26659
 ```
@@ -400,9 +401,9 @@ docker exec -ti <container-id> /bin/bash
 Now, interact with `cel-key` to check your address matches the address you
 expect with the key you mounted:
 
-```bash
+```bash-vue
 root@<container-id>:/# ./cel-key list --keyring-backend test --node.type light
-using directory:  ~/.celestia-light-mocha-4/keys
+using directory:  ~/.celestia-light-{{constants.mochaChainId}}/keys
 - address: celestia1wkhyhr7ngf0ayqlpnsnxg4d72hfs5453dvunm9
   name: my_celes_key
   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A1/NsoY0RGL7Hqt4VWLg441GQKJsZ2fBUnZXipgns8oV"}'

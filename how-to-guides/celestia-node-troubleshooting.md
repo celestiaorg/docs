@@ -316,8 +316,8 @@ sudo systemctl restart celestia-bridge
 
 When a bridge or full storage node runs on `ext4` file system, there will be errors like the following due to large folder size:
 
-```bash
-ERROR   header/sync     sync/sync.go:227        syncing headers {"from": 5074102, "to": 5161144, "err": "creating file: creating ODSQ4 file: creating Q4 file: creating Q4 file: open /root/.celestia-bridge-mocha-4/blocks/C9ADF6D9F862D92993D67977DE407D17ECF7F1DACE5FB7FE9A6845F4BD0172CE.q4: no space left on device"}
+```bash-vue
+ERROR   header/sync     sync/sync.go:227        syncing headers {"from": 5074102, "to": 5161144, "err": "creating file: creating ODSQ4 file: creating Q4 file: creating Q4 file: open /root/.celestia-bridge-{{constants.mochaChainId}}/blocks/C9ADF6D9F862D92993D67977DE407D17ECF7F1DACE5FB7FE9A6845F4BD0172CE.q4: no space left on device"}
 ```
 
 You may also observe similar errors from the `tar` command when extracting a snapshot of an archival bridge node.

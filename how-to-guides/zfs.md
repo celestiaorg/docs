@@ -110,14 +110,14 @@ Set the custom path to the bridge data folder:
 celestia bridge start --metrics.tls=true --metrics --metrics.endpoint otel.celestia.observer --p2p.metrics --node.store /celestia/bridge/.celestia-bridge
 ```
 
-```sh [Mocha]
-# Add flag --node.store /celestia/bridge/.celestia-bridge-mocha-4 to your command, example:
-celestia bridge start --metrics.tls=true --metrics --metrics.endpoint otel.mocha.celestia.observer --p2p.metrics --node.store /celestia/bridge/.celestia-bridge-mocha-4 --p2p.network mocha
+```sh-vue [Mocha]
+# Add flag --node.store /celestia/bridge/.celestia-bridge-{{constants.mochaChainId}} to your command, example:
+celestia bridge start --metrics.tls=true --metrics --metrics.endpoint otel.mocha.celestia.observer --p2p.metrics --node.store /celestia/bridge/.celestia-bridge-{{constants.mochaChainId}} --p2p.network mocha
 ```
 
-```sh [Arabica]
-# Add flag --node.store /celestia/bridge/.celestia-bridge-arabica-11 to your command, example:
-celestia bridge start --node.store /celestia/bridge/.celestia-bridge-arabica-11 --p2p.network arabica
+```sh-vue [Arabica]
+# Add flag --node.store /celestia/bridge/.celestia-bridge-{{constants.arabicaChainId}} to your command, example:
+celestia bridge start --node.store /celestia/bridge/.celestia-bridge-{{constants.arabicaChainId}} --p2p.network arabica
 ```
 
 :::
