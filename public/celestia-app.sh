@@ -112,7 +112,7 @@ fi
 echo "Downloading from: $URL" | tee -a "$LOGFILE"
 
 # Download the tarball
-if ! wget "$URL" >> "$LOGFILE" 2>&1; then
+if ! curl -L "$URL" -o "celestia-app_$PLATFORM.tar.gz" >> "$LOGFILE" 2>&1; then
     echo "Download failed. Exiting." | tee -a "$LOGFILE"
     exit 1
 fi
@@ -125,7 +125,7 @@ else
 fi
 
 # Download checksums.txt
-if ! wget "https://github.com/celestiaorg/celestia-app/releases/download/$VERSION/checksums.txt" >> "$LOGFILE" 2>&1; then
+if ! curl -L "https://github.com/celestiaorg/celestia-app/releases/download/$VERSION/checksums.txt" -o "checksums.txt" >> "$LOGFILE" 2>&1; then
     echo "Failed to download checksums. Exiting." | tee -a "$LOGFILE"
     exit 1
 fi
@@ -157,29 +157,128 @@ rm "checksums.txt"
 # Log and print a message
 echo "Temporary files cleaned up." | tee -a "$LOGFILE"
 
-# Ask the user if they want to move the binary to /usr/local/bin
-read -p "Do you want to move the binary to /usr/local/bin? This will require sudo access. (y/n) " -n 1 -r
-echo    # move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    sudo mv "$TEMP_DIR/celestia-appd" /usr/local/bin/
-    echo "Binary moved to /usr/local/bin" | tee -a "$LOGFILE"
-    # Create a symbolic link in the temporary directory
-    ln -s /usr/local/bin/celestia-appd "$TEMP_DIR/celestia-appd"
-    echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
-    echo ""
-    echo "You can now run celestia-appd from anywhere." | tee -a "$LOGFILE"
-    echo ""
-    echo "To check its version and see the menu, execute the following command:" | tee -a "$LOGFILE"
-    echo ""
-    echo "celestia-appd version && celestia-appd --help" | tee -a "$LOGFILE"
+# Check if Go is installed
+if command -v go >/dev/null 2>&1; then
+    GOPATH=${GOPATH:-$(go env GOPATH)}
+    GOBIN="$GOPATH/bin"
+    HAS_GO=true
 else
-    echo ""
-    echo "You can navigate to $TEMP_DIR to find and run celestia-appd." | tee -a "$LOGFILE"
-    echo ""
-    echo "To check its version and see the menu, execute the following commands:" | tee -a "$LOGFILE"
-    echo ""
-    echo "cd $TEMP_DIR" | tee -a "$LOGFILE"
-    echo "chmod +x celestia-appd" | tee -a "$LOGFILE"
-    echo "./celestia-appd version && ./celestia-appd --help" | tee -a "$LOGFILE"
+    HAS_GO=false
+fi
+
+# Ask the user where to install the binary
+echo ""
+if [ "$HAS_GO" = true ]; then
+    echo "Where would you like to install the celestia-appd binary?"
+    echo "1) Go bin directory ($GOBIN) [Recommended]"
+    echo "2) System bin directory (/usr/local/bin)"
+    echo "3) Keep in current directory ($TEMP_DIR)"
+else
+    echo "Go is not installed. Where would you like to install the celestia-appd binary?"
+    echo "1) System bin directory (/usr/local/bin) [Recommended]"
+    echo "2) Keep in current directory ($TEMP_DIR)"
+fi
+
+read -p "Enter your choice: " -n 1 -r
+echo    # move to a new line
+
+if [ "$HAS_GO" = true ]; then
+    case $REPLY in
+        1)
+            # Install to GOBIN
+            mkdir -p "$GOBIN"
+            mv "$TEMP_DIR/celestia-appd" "$GOBIN/"
+            chmod +x "$GOBIN/celestia-appd"
+            echo "Binary moved to $GOBIN" | tee -a "$LOGFILE"
+            # Create a symbolic link in the temporary directory
+            ln -s "$GOBIN/celestia-appd" "$TEMP_DIR/celestia-appd"
+            echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo ""
+            # Check if GOBIN is in PATH
+            if [[ ":$PATH:" != *":$GOBIN:"* ]]; then
+                echo "NOTE: $GOBIN is not in your PATH. You may want to add it by adding this line to your ~/.bashrc or ~/.zshrc:"
+                echo "export PATH=\$PATH:$GOBIN"
+                echo ""
+            fi
+            echo "You can now run celestia-appd from anywhere (if $GOBIN is in your PATH)." | tee -a "$LOGFILE"
+            ;;
+        2)
+            # Install to /usr/local/bin
+            sudo mv "$TEMP_DIR/celestia-appd" /usr/local/bin/
+            echo "Binary moved to /usr/local/bin" | tee -a "$LOGFILE"
+            # Create a symbolic link in the temporary directory
+            ln -s /usr/local/bin/celestia-appd "$TEMP_DIR/celestia-appd"
+            echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo ""
+            echo "You can now run celestia-appd from anywhere." | tee -a "$LOGFILE"
+            ;;
+        3)
+            # Keep in current directory
+            chmod +x "$TEMP_DIR/celestia-appd"
+            echo "Binary kept in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo "You can run celestia-appd from this directory using ./celestia-appd" | tee -a "$LOGFILE"
+            ;;
+        *)
+            echo ""
+            echo "Invalid choice. The binary remains in $TEMP_DIR" | tee -a "$LOGFILE"
+            chmod +x "$TEMP_DIR/celestia-appd"
+            echo "You can run celestia-appd from this directory using ./celestia-appd" | tee -a "$LOGFILE"
+            ;;
+    esac
+else
+    case $REPLY in
+        1)
+            # Install to /usr/local/bin
+            sudo mv "$TEMP_DIR/celestia-appd" /usr/local/bin/
+            echo "Binary moved to /usr/local/bin" | tee -a "$LOGFILE"
+            # Create a symbolic link in the temporary directory
+            ln -s /usr/local/bin/celestia-appd "$TEMP_DIR/celestia-appd"
+            echo "Symbolic link created in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo ""
+            echo "You can now run celestia-appd from anywhere." | tee -a "$LOGFILE"
+            ;;
+        2)
+            # Keep in current directory
+            chmod +x "$TEMP_DIR/celestia-appd"
+            echo "Binary kept in $TEMP_DIR" | tee -a "$LOGFILE"
+            echo "You can run celestia-appd from this directory using ./celestia-appd" | tee -a "$LOGFILE"
+            ;;
+        *)
+            echo ""
+            echo "Invalid choice. The binary remains in $TEMP_DIR" | tee -a "$LOGFILE"
+            chmod +x "$TEMP_DIR/celestia-appd"
+            echo "You can run celestia-appd from this directory using ./celestia-appd" | tee -a "$LOGFILE"
+            ;;
+    esac
+fi
+
+echo ""
+echo "To check its version and see the menu, execute the following command:" | tee -a "$LOGFILE"
+if [ "$HAS_GO" = true ]; then
+    case $REPLY in
+        1)  # Go bin installation
+            echo "celestia-appd version && celestia-appd --help" | tee -a "$LOGFILE"
+            ;;
+        2)  # System bin installation
+            echo "celestia-appd version && celestia-appd --help" | tee -a "$LOGFILE"
+            ;;
+        3)  # Current directory
+            echo "$TEMP_DIR/celestia-appd version && $TEMP_DIR/celestia-appd --help" | tee -a "$LOGFILE"
+            ;;
+        *)  # Invalid choice (kept in temp dir)
+            echo "$TEMP_DIR/celestia-appd version && $TEMP_DIR/celestia-appd --help" | tee -a "$LOGFILE"
+            ;;
+    esac
+else
+    case $REPLY in
+        1)  # System bin installation
+            echo "celestia-appd version && celestia-appd --help" | tee -a "$LOGFILE"
+            ;;
+        2)  # Current directory
+            echo "$TEMP_DIR/celestia-appd version && $TEMP_DIR/celestia-appd --help" | tee -a "$LOGFILE"
+            ;;
+        *)  # Invalid choice (kept in temp dir)
+            echo "$TEMP_DIR/celestia-appd version && $TEMP_DIR/celestia-appd --help" | tee -a "$LOGFILE"
+            ;;
+    esac
 fi
