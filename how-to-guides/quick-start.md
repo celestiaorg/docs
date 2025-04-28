@@ -248,7 +248,7 @@ An advanced option for key management is using the `cel-key` utility, which is a
 
 If you're using the quickstart script above, you will have to build `cel-key` separately from source. You can find the instructions for building `cel-key` in the [celestia-node](/how-to-guides/celestia-node.md) documentation.
 
-#### Managing the key used by celestia state account-address
+#### Managing the key returned by `celestia state account-address`
 
 When you run the command `celestia state account-address`, it returns the address of the key that your node is currently using. This is the same key that was generated during node initialization or that you've manually created/imported with `cel-key`.
 
@@ -257,7 +257,7 @@ For detailed instructions on how to:
 - Verify the relationship between this key and your node
 - Use a specific key with your node
 
-Please refer to our comprehensive guide on [Managing the key used by celestia state account-address](/tutorials/celestia-node-key.md#managing-the-key-used-by-celestia-state-account-address).
+Please refer to our comprehensive guide on [Managing the key returned by celestia state account-address](/tutorials/celestia-node-key.md#managing-the-key-returned-by-celestia-state-account-address).
 
 ### Rust client tutorial
 
