@@ -132,8 +132,8 @@ celestia light start --core.ip consensus.lunaroasis.net --core.port 9090
 celestia light start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
 ```
 
-```bash [Arabica]
-celestia light start --core.ip validator-1.celestia-arabica-11.com \
+```bash-vue [Arabica]
+celestia light start --core.ip validator-1.celestia-{{constants.arabicaChainId}}.com \
   --core.port 9090 --p2p.network arabica
 ```
 
@@ -705,7 +705,7 @@ It will output something like this:
 
 <!-- markdownlint-disable MD013 -->
 
-```json
+```json-vue
 {
   "jsonrpc": "2.0",
   "result": {
@@ -714,7 +714,7 @@ It will output something like this:
         "block": "11",
         "app": "1"
       },
-      "chain_id": "arabica-11",
+      "chain_id": "{{constants.arabicaChainId}}",
       "height": "1",
       "time": "2023-06-27T13:02:39.741743Z",
       "last_block_id": {

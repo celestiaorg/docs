@@ -325,13 +325,13 @@ then add the following parameters:
 
 - Chain Id: `{{ constants.arabicaChainId }}`
 - Chain Name: `Arabica devnet`
-- New RPC URL: `https://rpc.celestia-arabica-11.com/`
-- New REST URL: `https://api.celestia-arabica-11.com`
+- New RPC URL: `https://rpc.celestia-{{constants.arabicaChainId}}.com/`
+- New REST URL: `https://api.celestia-{{constants.arabicaChainId}}.com`
 - Address Prefix: `celestia`
 - Native Denom: `utia`
 - Coin Type: `118`
 - Decimals: `6`
-- Block explorer URL (optional): `https://explorer.celestia-arabica-11.com`
+- Block explorer URL (optional): `https://explorer.celestia-{{constants.arabicaChainId}}.com`
 
 Now, click `Add chain` and you will be able to view your Arabica
 account balance and transactions in Leap wallet.

@@ -4,6 +4,14 @@ description: Learn how to connect to the Mocha network.
 
 # Mocha testnet
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
+import MochaTestnetDetails from '../.vitepress/components/MochaTestnetDetails.vue'
+</script>
+
 ![mocha-testnet](/img/mocha.jpg)
 
 This guide contains the relevant sections for how to connect to Mocha,
@@ -37,12 +45,6 @@ Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
 you want to connect to in those guides, select `Mocha` to refer
 to the correct instructions on this page on how to connect to Mocha.
-
-<!-- markdownlint-disable MD033 -->
-<script setup>
-import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
-import MochaTestnetDetails from '../.vitepress/components/MochaTestnetDetails.vue'
-</script>
 
 ## Network details
 
@@ -102,8 +104,8 @@ full blocks from it.
 :::
 
 - `public-celestia-mocha4-consensus.numia.xyz`
-- `full.consensus.mocha-4.celestia-mocha.com`
-- `consensus-full-mocha-4.celestia-mocha.com`
+- `full.consensus.{{constants.mochaChainId}}.celestia-mocha.com`
+- `consensus-full-{{constants.mochaChainId}}.celestia-mocha.com`
 - `rpc-mocha.pops.one`
 - `celestia-testnet-consensus.itrocket.net`
   - RPC port: 26657
@@ -164,8 +166,8 @@ broadcast transactions.
 - `public-celestia-mocha4-consensus.numia.xyz:9090`
 - `grpc-mocha.pops.one`
 - `grpc.celestia-mocha.com:443`
-- `full.consensus.mocha-4.celestia-mocha.com:9090`
-- `consensus-full-mocha-4.celestia-mocha.com:9090`
+- `full.consensus.{{constants.mochaChainId}}.celestia-mocha.com:9090`
+- `consensus-full-{{constants.mochaChainId}}.celestia-mocha.com:9090`
 - `celestia-testnet.brightlystake.com:9390`
 - `grpc-celestia-mocha.trusted-point.com:9099`
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
@@ -195,23 +197,23 @@ find bootstrapper peers in the p2p network.
 
 Bridge node 1:
 
-- da-bridge-mocha-4.celestia-mocha.com
-- bridge-mocha-4.da.celestia-mocha.com
+- da-bridge-{{constants.mochaChainId}}.celestia-mocha.com
+- bridge-{{constants.mochaChainId}}.da.celestia-mocha.com
 
 Bridge node 2:
 
-- da-bridge-mocha-4-2.celestia-mocha.com
-- bridge-mocha-4-2.da.celestia-mocha.com
+- da-bridge-{{constants.mochaChainId}}-2.celestia-mocha.com
+- bridge-{{constants.mochaChainId}}-2.da.celestia-mocha.com
 
 Full node 1:
 
-- da-full-1-mocha-4.celestia-mocha.com
-- full-1-mocha-4.da.celestia-mocha.com
+- da-full-1-{{constants.mochaChainId}}.celestia-mocha.com
+- full-1-{{constants.mochaChainId}}.da.celestia-mocha.com
 
 Full node 2:
 
-- da-full-2-mocha-4.celestia-mocha.com
-- full-2-mocha-4.da.celestia-mocha.com
+- da-full-2-{{constants.mochaChainId}}.celestia-mocha.com
+- full-2-{{constants.mochaChainId}}.da.celestia-mocha.com
 - celestia-testnet-da-full-storage.mzonder.com
   - RPC port: 27758
   - Gateway port: 27759

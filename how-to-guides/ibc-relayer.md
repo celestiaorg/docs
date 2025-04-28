@@ -7,6 +7,12 @@ next:
 
 # IBC relaying guide
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+</script>
+
 Celestia uses [IBC](https://ibcprotocol.dev/)
 (Inter-Blockchain Communication protocol) to enable cross-chain
 transfer of tokens. To support this capability it relies on
@@ -59,7 +65,7 @@ the chains you want to relay between.
 
 For this tutorial, we will be using the following chains:
 
-- Celestia's `mocha-4` testnet
+- Celestia's `{{constants.mochaChainId}}` testnet
 - Cosmos Hub's `theta-testnet-001` testnet
 
 Edit the Hermes configuration.
@@ -156,7 +162,7 @@ list = [["transfer", "channel-3108"]]
 derivation = "cosmos"
 
 [[chains]]
-id = "mocha-4"
+id = "{{constants.mochaChainId}}"
 type = "CosmosSdk"
 rpc_addr = "https://rpc-celestia-mocha.architectnodes.com"
 grpc_addr = "https://grpc.celestia-mocha.com:443"
@@ -221,8 +227,8 @@ Follow the steps at
 [adding-keys-to-hermes](https://hermes.informal.systems/documentation/commands/keys/index.html#adding-keys-to-hermes)
 to add keys for each chain
 
-```bash
-hermes keys add --chain mocha-4 --mnemonic-file <seed-file>
+```bash-vue
+hermes keys add --chain {{constants.mochaChainId}} --mnemonic-file <seed-file>
 hermes keys add --chain theta-testnet-001 --mnemonic-file <seed-file>
 ```
 
@@ -251,41 +257,41 @@ place and use the existing ones if they do. In that case you can
 **skip this step** and go to [Configure channels in Hermes](#configure-channels-in-hermes)
 section.
 
-In this example, we are creating new clients and a new connection between `mocha-4`
+In this example, we are creating new clients and a new connection between `{{constants.mochaChainId}}`
 and `theta-testnet-001` networks.
 
 ## Create clients
 
 To learn if a client already exists, you can use the following command:
 
-```bash
-hermes query clients --host-chain mocha-4 --reference-chain theta-testnet-001
+```bash-vue
+hermes query clients --host-chain {{constants.mochaChainId}} --reference-chain theta-testnet-001
 ```
 
 To create a new client, use the
 [`create-client` command](https://hermes.informal.systems/documentation/commands/path-setup/clients.html#create-client):
 
-```bash
-hermes create client --host-chain mocha-4 --reference-chain theta-testnet-001
+```bash-vue
+hermes create client --host-chain {{constants.mochaChainId}} --reference-chain theta-testnet-001
 ```
 
 Create a second client:
 
-```bash
-hermes create client --host-chain theta-testnet-001 --reference-chain mocha-4
+```bash-vue
+hermes create client --host-chain theta-testnet-001 --reference-chain {{constants.mochaChainId}}
 ```
 
 ### Open connection over new clients
 
 To create a new connection over clients, use the following command:
 
-```bash
-hermes create connection --a-chain mocha-4 --b-chain theta-testnet-001
+```bash-vue
+hermes create connection --a-chain {{constants.mochaChainId}} --b-chain theta-testnet-001
 ```
 
 You should be seeing a similar output to this:
 
-```bash
+```bash-vue
 SUCCESS Connection {
     delay_period: 0ns,
     a_side: ConnectionSide {
@@ -308,7 +314,7 @@ SUCCESS Connection {
     b_side: ConnectionSide {
         chain: BaseChainHandle {
             chain_id: ChainId {
-                id: "mocha-4",
+                id: "{{constants.mochaChainId}}",
                 version: 4,
             },
             runtime_sender: Sender { .. },
@@ -338,7 +344,7 @@ hermes create channel --a-chain theta-testnet-001 --a-connection connection-2727
 
 You should be seeing a similar output to this:
 
-```bash
+```bash-vue
 SUCCESS Channel {
     ordering: Unordered,
     a_side: ChannelSide {
@@ -368,7 +374,7 @@ SUCCESS Channel {
     b_side: ChannelSide {
         chain: BaseChainHandle {
             chain_id: ChainId {
-                id: "mocha-4",
+                id: "{{constants.mochaChainId}}",
                 version: 4,
             },
             runtime_sender: Sender { .. },
@@ -405,7 +411,7 @@ Now that we have created new connections and opened channels, we need to
 edit `config.toml` again and add the newly created channels, or use the
 already existing ones.
 
-For `mocha-4` add:
+For `{{constants.mochaChainId}}` add:
 
 ```bash
 [chains.packet_filter]
@@ -417,11 +423,11 @@ list = [
 
 For `theta-testnet-001` add:
 
-```bash
+```bash-vue
 [chains.packet_filter]
 policy = 'allow'
 list = [
-  ['transfer', 'channel-3108'], # mocha-4
+  ['transfer', 'channel-3108'], # {{constants.mochaChainId}}
 ]
 ```
 

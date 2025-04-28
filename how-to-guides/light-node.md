@@ -5,6 +5,12 @@ description: This tutorial covers setting up a Celestia light node.
 
 # Setting up a Celestia light node
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+</script>
+
 This tutorial will guide you through setting up a Celestia light node, which
 will allow you to perform data availability sampling (DAS) on Celestia's data
 availability (DA) network.
@@ -104,8 +110,8 @@ celestia light start --core.ip rpc-mocha.pops.one \
     --core.port 9090 --p2p.network mocha
 ```
 
-```sh [Arabica]
-celestia light start --core.ip validator-1.celestia-arabica-11.com \
+```sh [Arabica]-vue
+celestia light start --core.ip validator-1.celestia-{{constants.arabicaChainId}}.com \
     --core.port 9090 --p2p.network arabica
 ```
 
@@ -140,9 +146,9 @@ celestia light start --keyring.keyname my_celes_key \
     --p2p.network mocha
 ```
 
-```sh [Arabica]
+```sh-vue [Arabica]
 celestia light start --keyring.keyname my_celes_key \
-    --core.ip validator-1.celestia-arabica-11.com \
+    --core.ip validator-1.celestia-{{constants.arabicaChainId}}.com \
     --core.port 9090 --p2p.network arabica
 ```
 

@@ -1,5 +1,11 @@
 # FeeGrant module for blobs submission
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+</script>
+
 ## Overview
 
 This guide provides developers with the knowledge to use the FeeGrant
@@ -175,13 +181,13 @@ Then, send the feegrant transaction:
 
 <!-- markdownlint-disable MD013 -->
 
-```bash
+```bash-vue
 celestia-appd tx feegrant grant \
   $GRANTER_ADDRESS $GRANTEE_ADDRESS \
   --node $RPC_URL \
   --spend-limit 1000000utia \
   --allowed-messages "/cosmos.bank.v1beta1.MsgSend,/celestia.blob.v1.MsgPayForBlobs" \
-  --chain-id mocha-4 \
+  --chain-id {{constants.mochaChainId}} \
   --keyring-backend test \
   --fees 20000utia \
   --broadcast-mode block \
