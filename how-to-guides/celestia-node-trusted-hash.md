@@ -23,19 +23,19 @@ Celenium.
     celestia light init --p2p.network <network>
     ```
 
-3. Set the trusted height & hash
+3. Set the trusted height & hash in your config file
     1. Open your `config.toml` at `.celestia-light/config.toml` (or `.celestia-light-<other-network>/config.toml`)
     2. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
-4. Run the node with the hash and flag:
+    3. Set `Header.TrustedHash` to the trusted hash (e.g. `TrustedHash = "<hash_of_block_n>"`)
+4. Run the node:
 
 ```sh
-celestia light start --headers.trusted-hash <hash_of_block_n> \
-    --p2p.network <network> --core.ip <consensus-node-rpc> --core.port <port>
+celestia light start --p2p.network <network> --core.ip <consensus-node-rpc> --core.port <port>
 ```
 
 ## Automated Approach
 
-You can automate the process of setting the trusted height and hash using the following commands:
+You can automate the process of setting the trusted height and hash using the following commands for Mocha testnet:
 
 ### 1. Initialize the node store (if not already done)
 
