@@ -1,6 +1,6 @@
 # The Celestia Foundation Delegation Program
 
-![Delegation program banner](/img/foundation-delegation-program.jpg)
+![Delegation program banner](https://github.com/celestiaorg/docs/blob/main/public/img/foundation-delegation-program.jpg)
 
 ## Objectives of the program
 
