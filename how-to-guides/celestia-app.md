@@ -134,3 +134,7 @@ The following ports are used by Celestia app nodes:
 | 2121  | TCP/UDP  | 127.0.0.1 | P2P         | true                           | N/A                     |
 | 9090  | HTTP     | 0.0.0.0   | gRPC        | true                           | `--grpc.address string` |
 | 26657 | TCP      | 127.0.0.1 | RPC         | false (only open to localhost) | `--rpc.laddr string`    |
+
+## Next steps
+
+Now that you've installed `celestia-appd`, learn how to run a [consensus](/how-to-guides/consensus-node.md) and [validator](/how-to-guides/validator-node.md) node.
