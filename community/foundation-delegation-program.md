@@ -29,7 +29,7 @@ details about the application and eligibility criteria are described below.
 
 ### Cohort process
 
-![cohort timeline](/img/cohort-timeline.jpg)
+![cohort timeline](https://github.com/celestiaorg/docs/blob/main/public/img/cohort-timeline.jpg)
 
 Every 4 months, the Celestia Foundation will distribute a portion of the
 Foundation’s total available stake to a cohort of validators who meet
