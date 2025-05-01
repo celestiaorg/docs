@@ -12,6 +12,17 @@ import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 </script>
 
+## Supported architectures
+
+Celestia-node officially supports the following architectures:
+
+- linux/amd64
+- linux/arm64
+- darwin/amd64 (macOS Intel)
+- darwin/arm64 (macOS Apple Silicon)
+
+Only these four architectures are officially tested and supported.
+
 ## Installing from source
 
 This section goes over building and installing celestia-node. This

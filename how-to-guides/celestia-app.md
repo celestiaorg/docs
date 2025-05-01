@@ -20,6 +20,17 @@ This tutorial will guide you through installing celestia-app, both
 Celestia-app is the software that allows you to run
 consensus nodes — including validators — and provide RPC endpoints.
 
+## Supported architectures
+
+Celestia-app officially supports the following architectures:
+
+- linux/amd64
+- linux/arm64
+- darwin/amd64 (macOS Intel)
+- darwin/arm64 (macOS Apple Silicon)
+
+Only these four architectures are officially tested and supported.
+
 ## Building binary from source
 
 This section of the tutorial presumes you completed the steps in
