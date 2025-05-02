@@ -135,7 +135,7 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"
 
 </details>
 
-For additional peers and addrbook please visit [@celestiaorg/awesome-celestia](https://github.com/celestiaorg/awesome-celestia).
+For additional peers and addrbook visit [@celestiaorg/awesome-celestia](https://github.com/celestiaorg/awesome-celestia).
 
 ## Storage and pruning configurations
 
