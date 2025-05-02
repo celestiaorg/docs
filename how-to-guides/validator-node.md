@@ -202,7 +202,7 @@ You should now be able to see your validator from
 After starting your node, please submit your node as a seed and peer to the
 [networks repository](https://github.com/celestiaorg/networks).
 
-## Optional: Delegate more stake to a validator
+## Optional: Delegate stake to a validator
 
 Create an environment variable for the address:
 
