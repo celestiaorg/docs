@@ -17,8 +17,8 @@ This tutorial will guide you through installing celestia-app, both
 [from source](#building-binary-from-source) and with
 [a pre-built binary](#installing-a-pre-built-binary)
 
-Celestia-app is the software that allows you to run
-consensus nodes — including validators — and provide RPC endpoints.
+Celestia-app is the software that enables you to run
+consensus nodes (including validators) and provide RPC endpoints.
 
 ## Supported architectures
 
@@ -33,7 +33,7 @@ Only these four architectures are officially tested and supported.
 
 ## Building binary from source
 
-This section of the tutorial presumes you completed the steps in
+This section of the tutorial assumes you completed the steps in
 [setting up your own environment](/how-to-guides/environment.md).
 
 The steps below will create a binary file named `celestia-appd`
@@ -68,7 +68,7 @@ Be sure to select the correct network to install the binary for.
 
    :::
 
-3. Build and install the `celestia-appd` binary:
+3. Build and install the `celestia-appd` binary with multiplexer support:
 
    ```bash
    make install

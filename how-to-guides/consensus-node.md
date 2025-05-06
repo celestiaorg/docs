@@ -320,13 +320,13 @@ The [Node snapshots guide](/how-to-guides/snapshots.md) provides everything you 
 
 ## Start the consensus node
 
-If you are running celestia-app v1.x.x:
+If you are running celestia-app >= v4.0.0, the `rpc.grpc_laddr` config option is required. This option can be set via the CLI flag `--rpc.grpc_laddr tcp://0.0.0.0:9098` or in the `config.toml`.
 
 ```sh
-celestia-appd start
+celestia-appd start --rpc.grpc_laddr tcp://0.0.0.0:9098
 ```
 
-If you are running celestia-app >= v2.0.0: then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
+If you are running celestia-app v2.x.x then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
 
 ::: code-group
 
