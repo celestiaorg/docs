@@ -230,6 +230,23 @@ Congratulations! You've successfully learned how to run a light node to post and
 
 This section covers some more in-depth topics that you may find useful when working with your Celestia light node. For advanced configurations like running with custom keys, using SystemD, or authentication with core endpoints, see the [light node guide](/how-to-guides/light-node.md).
 
+### Node store contents
+
+As described in the [initialize the light node section](#initialize-the-light-node) above, the node store is created in the `~/.celestia-<node-type>-<network>` directory. 
+
+In this guide, the node store for `~/.celestia-light-{{ constants.mochaChainId }}` contains the following directories and file types:
+
+- `config.toml`: Node configuration settings
+- `data/`: Contains database files
+  - `.vlog` files: Value log files storing actual data
+  - `.sst` files: Static sorted tables containing indexed data
+  - System files: `DISCARD`, `KEYREGISTRY`, and `MANIFEST` for database management
+- `keys/`: Stores node identity and account keys
+  - Contains encoded node identifiers
+  - `keyring-test/`: Test keyring directory
+    - `.address` files: Account addresses
+    - `.info` files: Key metadata and information
+
 ### Get your auth token
 
 Your auth token may be useful when you want to interact with your Celestia light node from a client application. You can get your auth token by running:
@@ -259,6 +276,17 @@ For detailed instructions on how to:
 
 Please refer to our comprehensive guide on [Managing the key returned by celestia state account-address](/tutorials/celestia-node-key.md#managing-the-key-returned-by-celestia-state-account-address).
 
+
+## Troubleshooting
+
+If you run into issues, check out the [troubleshooting](/how-to-guides/celestia-node-troubleshooting.md) page for common problems and solutions.
+
+## Next steps
+
+Check out the [rollup stacks page](/how-to-guides/rollup-stacks.md) to get started learning about ways to build whatever with Celestia underneath. 
+
+Also, here are some suggested tutorials for you:
+
 ### Rust client tutorial
 
 If you're interested in writing a Rust program to interact with your Celestia light node, check out the [Rust client tutorial](/tutorials/rust-client-tutorial.md).
@@ -267,29 +295,5 @@ If you're interested in writing a Rust program to interact with your Celestia li
 
 If you're interested in writing a Golang program to interact with your Celestia light node, check out the [Golang client tutorial](/tutorials/golang-client-tutorial.md).
 
-### Node store contents
-
-As described in the [initialize the light node section](#initialize-the-light-node) above, the node store is created in the `~/.celestia-<node-type>-<network>` directory.
-
-In this guide, the node store for `~/.celestia-light-{{ constants.mochaChainId }}` contains the following directories and file types:
-
-- `config.toml`: Node configuration settings
-- `data/`: Contains database files
-  - `.vlog` files: Value log files storing actual data
-  - `.sst` files: Static sorted tables containing indexed data
-  - System files: `DISCARD`, `KEYREGISTRY`, and `MANIFEST` for database management
-- `keys/`: Stores node identity and account keys
-  - Contains encoded node identifiers
-  - `keyring-test/`: Test keyring directory
-    - `.address` files: Account addresses
-    - `.info` files: Key metadata and information
-
-## Troubleshooting
-
-If you run into issues, check out the [troubleshooting](/how-to-guides/celestia-node-troubleshooting.md) page for common problems and solutions.
-
-## Next steps
-
-Check out the [rollup stacks page](/how-to-guides/rollup-stacks.md) to get started learning about ways to build whatever with Celestia underneath.
 
 Head to the next page to learn about different node types for the consensus and DA networks.
