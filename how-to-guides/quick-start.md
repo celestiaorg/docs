@@ -79,12 +79,13 @@ Let's set the trusted hash!
 1. Get trusted height & hash from the P-OPS consensus endpoint:
 
     ```bash
-    export TRUSTED_HEIGHT=$(curl -s "https://rpc-mocha.pops.one/header" | jq -r '.result.header.height') && export TRUSTED_HASH=$(curl -s "https://rpc-mocha.pops.one/header" | jq -r '.result.header.last_block_id.hash') && echo "Height: $TRUSTED_HEIGHT" && echo "Hash: $TRUSTED_HASH"
+    read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH && echo "Height: $TRUSTED_HEIGHT" && echo "Hash:   $TRUSTED_HASH"
     ```
 
 1. Set the trusted height & hash
-    1. Open your `config.toml` at `.celestia-light-{{ constants.mochaChainId }}/config.toml`
+    1. Open your `config.toml` at `~/.celestia-light-{{ constants.mochaChainId }}/config.toml`
     1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
+    1. Set `Header.TrustedHash` ti the trusted hash (e.g. `TrustedHash = "71BDED03E16EC34A6548388ADBAF3BA679FD5C1AAC3587A7F5F843741856D839"` )
 
 > If you don't do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 94721, requestedHeight: 2983850"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
 Learn more in [the trusted hash quick sync guide](/how-to-guides/celestia-node-trusted-hash.md).
@@ -96,8 +97,7 @@ Run the following command to start your light node:
 In the same terminal you initialized the node store and set the variable for `TRUSTED_HASH`, start the node with the hash and flag:
 
 ```bash
-celestia light start --headers.trusted-hash $TRUSTED_HASH \
-    --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
 ```
 
 The `core.ip` flag is used to specify the consensus RPC endpoints you want to connect to, this is the same one we got the trusted height and hash from. We'll use `rpc-mocha.pops.one` from the P-OPS team for Mocha testnet. The `headers.trusted-hash` flag will set the trusted hash from the previous section.
@@ -116,7 +116,7 @@ network: 	{{ constants.mochaChainId }}
 ```
 
 :::tip
-If you want to see that your node is synced, use the `celestia das sampling-stats` command to check it in another terminal:
+If you want to see that your node is synced, use the `celestia das sampling-stats` command to check it in another terminal. Here is how a fully synced node looks like:
 
 ```bash
 {
