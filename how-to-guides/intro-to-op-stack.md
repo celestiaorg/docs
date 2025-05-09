@@ -80,10 +80,3 @@ to simplify L2 blockchain creation and support the Optimism ecosystem's
 growth and development.
 
 Learn [more about Optimism](https://www.optimism.io/). -->
-
-## Next steps
-
-Now that you understand the integration, you can start learning about the
-[Raspberry testnet](https://raas.gelato.network/rollups/details/public/opcelestia-raspberry), built with OP Stack and Celestia! This
-testnet is a great way to explore the possibilities of this integration
-and test your applications in a live environment.
