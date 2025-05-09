@@ -612,10 +612,6 @@ function sidebarHome() {
                       link: "/how-to-guides/optimism",
                     },
                     {
-                      text: "Raspberry testnet",
-                      link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
-                    },
-                    {
                       text: "Audit",
                       link: "https://docs.celestia.org/audits/Celestia_OP_Stack_Audit.pdf",
                     },
