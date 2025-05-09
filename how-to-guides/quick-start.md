@@ -258,24 +258,17 @@ celestia light auth admin --p2p.network mocha
 
 Use `celestia light auth --help` to learn more about the available options.
 
-### Key management with cel-key
+### Advanced Key management with `cel-key`
 
-In the first part of this guide, we generated a key when we initialized the light node.
 
-An advanced option for key management is using the `cel-key` utility, which is a separate tool from the `celestia` binary. `cel-key` is a key management tool that allows you to create, import, and manage keys for your Celestia DA node.
+For more advanced key management beyond the built-in capabilities of the light node, use the separate cel-key utility. This dedicated tool allows you to: 
+ - Create, import, and manage keys.
+ - Backup, verify and select the active key used by your node
 
-If you're using the quickstart script above, you will have to build `cel-key` separately from source. You can find the instructions for building `cel-key` in the [celestia-node](/how-to-guides/celestia-node.md) documentation.
+To utilize cel-key, you'll need to build it separately. Follow the instructions provided in the [celestia-node](/how-to-guides/celestia-node.md) documentation.
 
-#### Managing the key returned by `celestia state account-address`
+Detailed instructions for backing up, recovering, and verifying node keys are available in the guide on [Managing the key returned by `celestia state account-address`](/tutorials/celestia-node-key.md#managing-the-key-returned-by-celestia-state-account-address).
 
-When you run the command `celestia state account-address`, it returns the address of the key that your node is currently using. This is the same key that was generated during node initialization or that you've manually created/imported with `cel-key`.
-
-For detailed instructions on how to:
-- Backup and recover this key
-- Verify the relationship between this key and your node
-- Use a specific key with your node
-
-Please refer to our comprehensive guide on [Managing the key returned by celestia state account-address](/tutorials/celestia-node-key.md#managing-the-key-returned-by-celestia-state-account-address).
 
 
 ## Troubleshooting
