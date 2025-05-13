@@ -1,4 +1,6 @@
 name: Generate LLMs.txt File
+permissions:
+  contents: write
 
 on:
   # Run on a schedule using cron
