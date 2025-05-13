@@ -1,0 +1,30 @@
+name: Generate LLMs.txt File
+
+on:
+  # Run on push to main branch
+  push:
+    branches: [main]
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          
+      - name: Generate llms.txt
+        run: npx -y llmstxt gen https://docs.celestia.org/sitemap.xml > public/llms.txt
+        
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add public/llms.txt
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update llms.txt file" && git push)
