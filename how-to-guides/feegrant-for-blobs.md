@@ -205,21 +205,6 @@ Example:
 Once a fee grant has been established, the grantee can submit transactions using the granter's account to pay fees:
 
 ```bash-vue
-celestia-appd tx bank send \
-  $GRANTEE_ADDRESS <recipient-address> \
-  10000utia \
-  --node $RPC_URL:$RPC_PORT \
-  --chain-id {{constants.mochaChainId}} \
-  --keyring-backend test \
-  --fee-granter $GRANTER_ADDRESS \
-  --fees 20000utia \
-  --broadcast-mode block \
-  --yes
-```
-
-Similarly, the grantee can submit blobs using the fee-granter flag:
-
-```bash-vue
 celestia-appd tx blob PayForBlobs \
   --namespace 0x42690c204d39600fddd3 \
   --blob "0x676d" \
@@ -228,7 +213,7 @@ celestia-appd tx blob PayForBlobs \
   --from $GRANTEE_ADDRESS \
   --keyring-backend test \
   --fee-granter $GRANTER_ADDRESS \
-  --fees 21000utia \
+  --fees 20000utia \
   --broadcast-mode block \
   --yes
 ```
