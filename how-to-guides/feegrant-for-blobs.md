@@ -207,7 +207,7 @@ Once a fee grant has been established, the grantee can submit transactions using
 ```bash-vue
 celestia-appd tx blob pay-for-blob 0x42690c204d39600fddd3 0x676d \
   --node $RPC_URL:$RPC_PORT \
-  --chain-id mocha-4 \
+  --chain-id {{constants.mochaChainId}} \
   --from $GRANTEE_ADDRESS \
   --keyring-backend test \
   --fee-granter $GRANTER_ADDRESS \
