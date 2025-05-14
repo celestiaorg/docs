@@ -1,0 +1,51 @@
+import{c as l}from"./chunks/constants.b02263eb.js";import{m as p}from"./chunks/mocha_versions.36d31e38.js";import{o as t,c,k as s,a,t as n,l as e,Q as o}from"./chunks/framework.1a91c06a.js";const r=o("",37),y=s("li",null,[a("For Mainnet Beta: "),s("code",null,"~/.celestia-<node-type>/keys/keyring-test/")],-1),i=o("",14),E={class:"language-bash vp-adaptive-theme"},d=s("button",{title:"Copy Code",class:"copy"},null,-1),h=s("span",{class:"lang"},"bash",-1),F={class:"shiki github-dark vp-code-dark"},_=s("span",{class:"line"},[s("span",{style:{color:"#6A737D"}},"# For Mocha testnet")],-1),k={class:"line"},g=o("",9),u={style:{color:"#9ECBFF"}},C=s("span",{style:{color:"#E1E4E8"}}," ",-1),b=s("span",{style:{color:"#9ECBFF"}},"/secure/backup/location",-1),B=s("span",{class:"line"},null,-1),m=s("span",{class:"line"},[s("span",{style:{color:"#6A737D"}},"# For Mainnet Beta")],-1),v=o("",1),T={class:"shiki github-light vp-code-light"},A=s("span",{class:"line"},[s("span",{style:{color:"#6A737D"}},"# For Mocha testnet")],-1),w={class:"line"},D=o("",9),f={style:{color:"#032F62"}},S=s("span",{style:{color:"#24292E"}}," ",-1),I=s("span",{style:{color:"#032F62"}},"/secure/backup/location",-1),P=s("span",{class:"line"},null,-1),V=s("span",{class:"line"},[s("span",{style:{color:"#6A737D"}},"# For Mainnet Beta")],-1),q=o("",1),x=o("",11),N={class:"language-bash vp-adaptive-theme"},R=s("button",{title:"Copy Code",class:"copy"},null,-1),M=s("span",{class:"lang"},"bash",-1),O={class:"shiki github-dark vp-code-dark"},U=s("span",{class:"line"},[s("span",{style:{color:"#6A737D"}},"# For Mocha testnet")],-1),Y={class:"line"},G=o("",12),L={style:{color:"#9ECBFF"}},W=s("span",{class:"line"},null,-1),z=s("span",{class:"line"},[s("span",{style:{color:"#6A737D"}},"# For Mainnet Beta")],-1),H=o("",1),K={class:"shiki github-light vp-code-light"},Q=s("span",{class:"line"},[s("span",{style:{color:"#6A737D"}},"# For Mocha testnet")],-1),X={class:"line"},Z=o("",12),J={style:{color:"#032F62"}},j=s("span",{class:"line"},null,-1),$=s("span",{class:"line"},[s("span",{style:{color:"#6A737D"}},"# For Mainnet Beta")],-1),ss=o("",1),as=o("",13),os={class:"language-bash vp-adaptive-theme"},ns=s("button",{title:"Copy Code",class:"copy"},null,-1),es=s("span",{class:"lang"},"bash",-1),ls={class:"shiki github-dark vp-code-dark"},ps=o("",1),ts={class:"line"},cs={style:{color:"#E1E4E8"}},rs=o("",7),ys=o("",1),is={class:"shiki github-light vp-code-light"},Es=o("",1),ds={class:"line"},hs={style:{color:"#24292E"}},Fs=o("",7),_s=o("",1),ks=o("",13),gs={class:"language-yaml vp-adaptive-theme"},us=s("button",{title:"Copy Code",class:"copy"},null,-1),Cs=s("span",{class:"lang"},"yaml",-1),bs={class:"shiki github-dark vp-code-dark"},Bs=s("span",{class:"line"},[s("span",{style:{color:"#85E89D"}},"version"),s("span",{style:{color:"#E1E4E8"}},": "),s("span",{style:{color:"#9ECBFF"}},'"3.8"')],-1),ms=s("span",{class:"line"},[s("span",{style:{color:"#85E89D"}},"services"),s("span",{style:{color:"#E1E4E8"}},":")],-1),vs=s("span",{class:"line"},[s("span",{style:{color:"#E1E4E8"}},"  "),s("span",{style:{color:"#85E89D"}},"celestia"),s("span",{style:{color:"#E1E4E8"}},":")],-1),Ts=o("",1),As=s("span",{class:"line"},[s("span",{style:{color:"#E1E4E8"}},"    "),s("span",{style:{color:"#85E89D"}},"environment"),s("span",{style:{color:"#E1E4E8"}},":")],-1),ws=s("span",{class:"line"},[s("span",{style:{color:"#E1E4E8"}},"      - "),s("span",{style:{color:"#9ECBFF"}},"NODE_TYPE=light")],-1),Ds=o("",1),fs=s("span",{class:"line"},[s("span",{style:{color:"#E1E4E8"}},"    "),s("span",{style:{color:"#85E89D"}},"volumes"),s("span",{style:{color:"#E1E4E8"}},":")],-1),Ss={class:"line"},Is=s("span",{style:{color:"#E1E4E8"}},"      - ",-1),Ps={style:{color:"#9ECBFF"}},Vs=s("span",{class:"line"},[s("span",{style:{color:"#E1E4E8"}},"    "),s("span",{style:{color:"#85E89D"}},"ports"),s("span",{style:{color:"#E1E4E8"}},":")],-1),qs=s("span",{class:"line"},[s("span",{style:{color:"#E1E4E8"}},"      - "),s("span",{style:{color:"#9ECBFF"}},"26659:26659")],-1),xs={class:"shiki github-light vp-code-light"},Ns=s("span",{class:"line"},[s("span",{style:{color:"#22863A"}},"version"),s("span",{style:{color:"#24292E"}},": "),s("span",{style:{color:"#032F62"}},'"3.8"')],-1),Rs=s("span",{class:"line"},[s("span",{style:{color:"#22863A"}},"services"),s("span",{style:{color:"#24292E"}},":")],-1),Ms=s("span",{class:"line"},[s("span",{style:{color:"#24292E"}},"  "),s("span",{style:{color:"#22863A"}},"celestia"),s("span",{style:{color:"#24292E"}},":")],-1),Os=o("",1),Us=s("span",{class:"line"},[s("span",{style:{color:"#24292E"}},"    "),s("span",{style:{color:"#22863A"}},"environment"),s("span",{style:{color:"#24292E"}},":")],-1),Ys=s("span",{class:"line"},[s("span",{style:{color:"#24292E"}},"      - "),s("span",{style:{color:"#032F62"}},"NODE_TYPE=light")],-1),Gs=o("",1),Ls=s("span",{class:"line"},[s("span",{style:{color:"#24292E"}},"    "),s("span",{style:{color:"#22863A"}},"volumes"),s("span",{style:{color:"#24292E"}},":")],-1),Ws={class:"line"},zs=s("span",{style:{color:"#24292E"}},"      - ",-1),Hs={style:{color:"#032F62"}},Ks=s("span",{class:"line"},[s("span",{style:{color:"#24292E"}},"    "),s("span",{style:{color:"#22863A"}},"ports"),s("span",{style:{color:"#24292E"}},":")],-1),Qs=s("span",{class:"line"},[s("span",{style:{color:"#24292E"}},"      - "),s("span",{style:{color:"#032F62"}},"26659:26659")],-1),Xs=o("",9),Zs={class:"language-bash vp-adaptive-theme"},Js=s("button",{title:"Copy Code",class:"copy"},null,-1),js=s("span",{class:"lang"},"bash",-1),$s={class:"shiki github-dark vp-code-dark"},sa=o("",1),aa={class:"line"},oa=s("span",{style:{color:"#B392F0"}},"using",-1),na=s("span",{style:{color:"#E1E4E8"}}," ",-1),ea=s("span",{style:{color:"#9ECBFF"}},"directory:",-1),la=s("span",{style:{color:"#E1E4E8"}},"  ",-1),pa={style:{color:"#9ECBFF"}},ta=o("",1),ca=o("",1),ra=o("",1),ya=o("",1),ia={class:"shiki github-light vp-code-light"},Ea=o("",1),da={class:"line"},ha=s("span",{style:{color:"#6F42C1"}},"using",-1),Fa=s("span",{style:{color:"#24292E"}}," ",-1),_a=s("span",{style:{color:"#032F62"}},"directory:",-1),ka=s("span",{style:{color:"#24292E"}},"  ",-1),ga={style:{color:"#032F62"}},ua=o("",1),Ca=o("",1),ba=o("",1),Ba=o("",1),Sa=JSON.parse('{"title":"Create a wallet with celestia-node","description":"Use the cel-key utility to generate a wallet on celestia-node.","frontmatter":{"description":"Use the cel-key utility to generate a wallet on celestia-node.","prev":{"text":"Rust client tutorial","link":"/tutorials/rust-client-tutorial"},"head":[["meta",{"property":"og:title","content":"Create a wallet with celestia-node | Celestia Docs"}],["meta",{"property":"og:description","content":"Use the cel-key utility to generate a wallet on celestia-node."}]]},"headers":[],"relativePath":"tutorials/celestia-node-key.md","filePath":"tutorials/celestia-node-key.md","lastUpdated":1745861979000}'),ma={name:"tutorials/celestia-node-key.md"},Ia=Object.assign(ma,{setup(va){return(Ta,Aa)=>(t(),c("div",null,[r,s("ul",null,[s("li",null,[a("For Mocha testnet: "),s("code",null,"~/.celestia-<node-type>-"+n(e(l).mochaChainId)+"/keys/keyring-test/",1)]),y]),i,s("div",E,[d,h,s("pre",F,[s("code",null,[_,a(`
+`),s("span",k,[g,s("span",u,"-"+n(e(l).mochaChainId)+"/keys/keyring-test",1),C,b]),a(`
+`),B,a(`
+`),m,a(`
+`),v])]),s("pre",T,[s("code",null,[A,a(`
+`),s("span",w,[D,s("span",f,"-"+n(e(l).mochaChainId)+"/keys/keyring-test",1),S,I]),a(`
+`),P,a(`
+`),V,a(`
+`),q])])]),x,s("div",N,[R,M,s("pre",O,[s("code",null,[U,a(`
+`),s("span",Y,[G,s("span",L,"-"+n(e(l).mochaChainId)+"/keys/keyring-test/",1)]),a(`
+`),W,a(`
+`),z,a(`
+`),H])]),s("pre",K,[s("code",null,[Q,a(`
+`),s("span",X,[Z,s("span",J,"-"+n(e(l).mochaChainId)+"/keys/keyring-test/",1)]),a(`
+`),j,a(`
+`),$,a(`
+`),ss])])]),as,s("div",os,[ns,es,s("pre",ls,[s("code",null,[ps,a(`
+`),s("span",ts,[s("span",cs,"ghcr.io/celestiaorg/celestia-node:"+n(e(p)["node-latest-tag"])+" ",1),rs]),a(`
+`),ys])]),s("pre",is,[s("code",null,[Es,a(`
+`),s("span",ds,[s("span",hs,"ghcr.io/celestiaorg/celestia-node:"+n(e(p)["node-latest-tag"])+" ",1),Fs]),a(`
+`),_s])])]),ks,s("div",gs,[us,Cs,s("pre",bs,[s("code",null,[Bs,a(`
+`),ms,a(`
+`),vs,a(`
+`),Ts,a(`
+`),As,a(`
+`),ws,a(`
+`),Ds,a(`
+`),fs,a(`
+`),s("span",Ss,[Is,s("span",Ps,"${PWD}/keys:/root/.celestia-light-"+n(e(l).mochaChainId)+"/keys",1)]),a(`
+`),Vs,a(`
+`),qs])]),s("pre",xs,[s("code",null,[Ns,a(`
+`),Rs,a(`
+`),Ms,a(`
+`),Os,a(`
+`),Us,a(`
+`),Ys,a(`
+`),Gs,a(`
+`),Ls,a(`
+`),s("span",Ws,[zs,s("span",Hs,"${PWD}/keys:/root/.celestia-light-"+n(e(l).mochaChainId)+"/keys",1)]),a(`
+`),Ks,a(`
+`),Qs])])]),Xs,s("div",Zs,[Js,js,s("pre",$s,[s("code",null,[sa,a(`
+`),s("span",aa,[oa,na,ea,la,s("span",pa,"~/.celestia-light-"+n(e(l).mochaChainId)+"/keys",1)]),a(`
+`),ta,a(`
+`),ca,a(`
+`),ra,a(`
+`),ya])]),s("pre",ia,[s("code",null,[Ea,a(`
+`),s("span",da,[ha,Fa,_a,ka,s("span",ga,"~/.celestia-light-"+n(e(l).mochaChainId)+"/keys",1)]),a(`
+`),ua,a(`
+`),Ca,a(`
+`),ba,a(`
+`),Ba])])])]))}});export{Sa as __pageData,Ia as default};

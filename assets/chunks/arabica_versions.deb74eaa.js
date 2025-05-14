@@ -1,0 +1,1 @@
+const a=Object.freeze({"app-latest-tag":"v4.0.0-arabica","app-latest-sha":"96f59ae0efe230ac716dba225158ed85a14d666d","core-latest-tag":"v1.53.0-tm-v0.38.17","core-latest-sha":"4acfd99c3893123775c533465f164f771d3a6f15","node-latest-tag":"v0.23.0-arabica","node-latest-sha":"b814f44afb5bde01b3714c4f21fe34203d90405d"});export{a};
