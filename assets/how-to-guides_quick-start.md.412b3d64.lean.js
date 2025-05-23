@@ -1,0 +1,39 @@
+import{c as l}from"./chunks/constants.b02263eb.js";import{m as t}from"./chunks/mocha_versions.cb037ffa.js";import{o as p,c,k as s,t as n,l as e,a,Q as o}from"./chunks/framework.1a91c06a.js";const r=o("",8),i={class:"language-bash vp-adaptive-theme"},y=s("button",{title:"Copy Code",class:"copy"},null,-1),E=s("span",{class:"lang"},"bash",-1),d={class:"shiki github-dark vp-code-dark"},h={class:"line"},_=o("",14),u={style:{color:"#9ECBFF"}},F={class:"shiki github-light vp-code-light"},g={class:"line"},C=o("",14),b={style:{color:"#032F62"}},m=s("code",null,"celestia",-1),T=o("",5),B=o("",2),k={class:"language-bash vp-adaptive-theme"},v=s("button",{title:"Copy Code",class:"copy"},null,-1),f=s("span",{class:"lang"},"bash",-1),q={class:"shiki github-dark vp-code-dark"},A={class:"line"},S=o("",16),I={style:{color:"#9ECBFF"}},w={class:"line"},P=o("",12),D={style:{color:"#9ECBFF"}},N=o("",1),V=o("",1),R={class:"line"},x=o("",24),H={style:{color:"#9ECBFF"}},O=o("",1),U=s("span",{class:"line"},null,-1),L=s("span",{class:"line"},[s("span",{style:{color:"#B392F0"}},"NAME:"),s("span",{style:{color:"#E1E4E8"}}," "),s("span",{style:{color:"#9ECBFF"}},"my_celes_key")],-1),G=s("span",{class:"line"},[s("span",{style:{color:"#B392F0"}},"ADDRESS:"),s("span",{style:{color:"#E1E4E8"}}," "),s("span",{style:{color:"#9ECBFF"}},"celestia1lgvzg4ek9v499pl5vvsvqpquhwfg0jznpwd92m")],-1),z=o("",1),Y=o("",1),j=s("span",{class:"line"},null,-1),M=o("",1),K={class:"shiki github-light vp-code-light"},W={class:"line"},$=o("",16),Q={style:{color:"#032F62"}},X={class:"line"},J=o("",12),Z={style:{color:"#032F62"}},ss=o("",1),as=o("",1),os={class:"line"},ns=o("",24),es={style:{color:"#032F62"}},ls=o("",1),ts=s("span",{class:"line"},null,-1),ps=s("span",{class:"line"},[s("span",{style:{color:"#6F42C1"}},"NAME:"),s("span",{style:{color:"#24292E"}}," "),s("span",{style:{color:"#032F62"}},"my_celes_key")],-1),cs=s("span",{class:"line"},[s("span",{style:{color:"#6F42C1"}},"ADDRESS:"),s("span",{style:{color:"#24292E"}}," "),s("span",{style:{color:"#032F62"}},"celestia1lgvzg4ek9v499pl5vvsvqpquhwfg0jznpwd92m")],-1),rs=o("",1),is=o("",1),ys=s("span",{class:"line"},null,-1),Es=o("",1),ds=s("blockquote",null,[s("p",null,"Logs above have the timestamps removed for brevity. And yes, that's a Rickroll mnemonic. 😜")],-1),hs=s("h4",{id:"set-the-trusted-hash",tabindex:"-1"},[a("Set the trusted hash "),s("a",{class:"header-anchor",href:"#set-the-trusted-hash","aria-label":'Permalink to "Set the trusted hash"'},"​")],-1),_s=s("p",null,[a("Setting and syncing to a trusted hash and height means your light node will not sample the entire chain. This is useful when you want to sync your light node quickly. However, it's important to note that this adds the trust assumption that you trust the entity where you get the hash and height from, in this case, the "),s("a",{href:"https://pops.one",target:"_blank",rel:"noreferrer"},"P-OPS"),a(" team's consensus endpoint.")],-1),us=s("p",null,"Let's set the trusted hash!",-1),Fs=o("",1),gs=s("p",null,"Set the trusted height & hash",-1),Cs=s("code",null,"config.toml",-1),bs=s("li",null,[a("Set "),s("code",null,"DASer.SampleFrom"),a(" to the trusted height (e.g. "),s("code",null,"SampleFrom = 123456"),a(")")],-1),ms=s("li",null,[a("Set "),s("code",null,"Header.TrustedHash"),a(" ti the trusted hash (e.g. "),s("code",null,'TrustedHash = "E8BD0C48260C496BB7A4D8D1E7BDBF1F26A2FE3CF5714DECE1741B2FFB3C095C"'),a(" )")],-1),Ts=o("",7),Bs={class:"language-bash vp-adaptive-theme"},ks=s("button",{title:"Copy Code",class:"copy"},null,-1),vs=s("span",{class:"lang"},"bash",-1),fs={class:"shiki github-dark vp-code-dark"},qs=o("",1),As=s("span",{class:"line"},null,-1),Ss=o("",1),Is={class:"line"},ws=s("span",{style:{color:"#B392F0"}},"node",-1),Ps=s("span",{style:{color:"#E1E4E8"}}," ",-1),Ds=s("span",{style:{color:"#9ECBFF"}},"version:",-1),Ns=s("span",{style:{color:"#E1E4E8"}}," 	",-1),Vs={style:{color:"#9ECBFF"}},Rs=o("",1),xs={class:"line"},Hs=s("span",{style:{color:"#B392F0"}},"network:",-1),Os=s("span",{style:{color:"#E1E4E8"}}," 	",-1),Us={style:{color:"#9ECBFF"}},Ls=s("span",{class:"line"},null,-1),Gs=o("",1),zs={class:"shiki github-light vp-code-light"},Ys=o("",1),js=s("span",{class:"line"},null,-1),Ms=o("",1),Ks={class:"line"},Ws=s("span",{style:{color:"#6F42C1"}},"node",-1),$s=s("span",{style:{color:"#24292E"}}," ",-1),Qs=s("span",{style:{color:"#032F62"}},"version:",-1),Xs=s("span",{style:{color:"#24292E"}}," 	",-1),Js={style:{color:"#032F62"}},Zs=o("",1),sa={class:"line"},aa=s("span",{style:{color:"#6F42C1"}},"network:",-1),oa=s("span",{style:{color:"#24292E"}}," 	",-1),na={style:{color:"#032F62"}},ea=s("span",{class:"line"},null,-1),la=o("",1),ta=o("",34),pa=o("",20),_a=JSON.parse('{"title":"Quick-start guide","description":"Learn how to get started and post your first blob to Celestia.","frontmatter":{"description":"Learn how to get started and post your first blob to Celestia.","head":[["meta",{"property":"og:title","content":"Quick-start guide | Celestia Docs"}],["meta",{"property":"og:description","content":"Learn how to get started and post your first blob to Celestia."}]]},"headers":[],"relativePath":"how-to-guides/quick-start.md","filePath":"how-to-guides/quick-start.md","lastUpdated":1747144176000}'),ca={name:"how-to-guides/quick-start.md"},ua=Object.assign(ca,{setup(ra){return(ia,ya)=>(p(),c("div",null,[r,s("div",i,[y,E,s("pre",d,[s("code",null,[s("span",h,[_,s("span",u,n(e(t)["node-latest-tag"]),1)])])]),s("pre",F,[s("code",null,[s("span",g,[C,s("span",b,n(e(t)["node-latest-tag"]),1)])])])]),s("p",null,[a("Once you've installed "),m,a(", double-check that you're using the right version ("),s("code",null,n(e(t)["node-latest-tag"]),1),a(") by running:")]),T,s("blockquote",null,[s("p",null,[a("The chain ID "),s("code",null,n(e(l).mochaChainId),1),a(" is also an accepted alias.")])]),B,s("div",k,[v,f,s("pre",q,[s("code",null,[s("span",A,[S,s("span",I,"'/Users/js/.celestia-light-"+n(e(l).mochaChainId)+"'",1)]),a(`
+`),s("span",w,[P,s("span",D,'"/Users/js/.celestia-light-'+n(e(l).mochaChainId)+'/config.toml"}',1)]),a(`
+`),N,a(`
+`),V,a(`
+`),s("span",R,[x,s("span",H,'"/Users/js/.celestia-light-'+n(e(l).mochaChainId)+'/keys"}',1)]),a(`
+`),O,a(`
+`),U,a(`
+`),L,a(`
+`),G,a(`
+`),z,a(`
+`),Y,a(`
+`),j,a(`
+`),M])]),s("pre",K,[s("code",null,[s("span",W,[$,s("span",Q,"'/Users/js/.celestia-light-"+n(e(l).mochaChainId)+"'",1)]),a(`
+`),s("span",X,[J,s("span",Z,'"/Users/js/.celestia-light-'+n(e(l).mochaChainId)+'/config.toml"}',1)]),a(`
+`),ss,a(`
+`),as,a(`
+`),s("span",os,[ns,s("span",es,'"/Users/js/.celestia-light-'+n(e(l).mochaChainId)+'/keys"}',1)]),a(`
+`),ls,a(`
+`),ts,a(`
+`),ps,a(`
+`),cs,a(`
+`),rs,a(`
+`),is,a(`
+`),ys,a(`
+`),Es])])]),s("p",null,[a("You'll also see in this example, using the Mocha testnet and setting up a light node, our node store will be at: "),s("code",null,"~/.celestia-light-"+n(e(l).mochaChainId),1),a(".")]),ds,hs,_s,us,s("ol",null,[Fs,s("li",null,[gs,s("ol",null,[s("li",null,[a("Open your "),Cs,a(" at "),s("code",null,"~/.celestia-light-"+n(e(l).mochaChainId)+"/config.toml",1)]),bs,ms])])]),Ts,s("div",Bs,[ks,vs,s("pre",fs,[s("code",null,[qs,a(`
+`),As,a(`
+`),Ss,a(`
+`),s("span",Is,[ws,Ps,Ds,Ns,s("span",Vs,n(e(t)["node-latest-tag"].slice(1)),1)]),a(`
+`),Rs,a(`
+`),s("span",xs,[Hs,Os,s("span",Us,n(e(l).mochaChainId),1)]),a(`
+`),Ls,a(`
+`),Gs])]),s("pre",zs,[s("code",null,[Ys,a(`
+`),js,a(`
+`),Ms,a(`
+`),s("span",Ks,[Ws,$s,Qs,Xs,s("span",Js,n(e(t)["node-latest-tag"].slice(1)),1)]),a(`
+`),Zs,a(`
+`),s("span",sa,[aa,oa,s("span",na,n(e(l).mochaChainId),1)]),a(`
+`),ea,a(`
+`),la])])]),ta,s("p",null,[a("In this guide, the node store for "),s("code",null,"~/.celestia-light-"+n(e(l).mochaChainId),1),a(" contains the following directories and file types:")]),pa]))}});export{_a as __pageData,ua as default};
