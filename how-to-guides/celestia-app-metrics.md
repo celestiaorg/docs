@@ -159,3 +159,7 @@ Since we're already using Grafana, we can install the
 plugin. OnCall allows you to setup integrations. It could be a
 webhook or a direct integration into Telegram or Slack.
 You can find more information on Grafana's [Docs Page](https://grafana.com/docs/oncall/latest/integrations/).
+
+In addition, if you're running a validator and want an 
+alternative layer of alerts independent from Grafana, you may
+want to check out [Tenderduty](https://github.com/Firstset/tenderduty).
