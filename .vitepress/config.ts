@@ -861,6 +861,10 @@ function sidebarHome() {
           link: "/community/foundation-delegation-program",
         },
         {
+          text: "Celestia Foundation Ecosystem Delegation Program",
+          link: "/community/foundation-ecosystem-delegation-program",
+        },
+        {
           text: "Modular Meetups",
           collapsed: true,
           items: [
