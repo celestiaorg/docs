@@ -184,7 +184,7 @@ specify the nonce manually. If this is not done, the new transactions will not
 be able to be submitted until the first transaction is reaped from the mempool (i.e. included in a block), or dropped due to timing out.
 
 By default, nodes will drop a transaction if it does not get included in 5
-blocks (roughly 1 minute). At this point, the user must resubmit their
+blocks (roughly 30 seconds). At this point, the user must resubmit their
 transaction if they want it to eventually be included.
 
 As of v1.0.0 of the application (celestia-app), users are unable to replace an
