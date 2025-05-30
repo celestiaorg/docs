@@ -207,6 +207,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
 - [https://celestia.valopers.com/](https://celestia.valopers.com/)
 - [https://mainnet.itrocket.net/celestia/](https://mainnet.itrocket.net/celestia/)
+- [https://explorer.chainroot.io/celestia](https://explorer.chainroot.io/celestia)
 
 ## Community endpoint status dashboard
 
