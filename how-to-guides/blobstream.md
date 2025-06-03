@@ -39,7 +39,7 @@ Please note: While Blobstream is now in production on several chains, users shou
 
 * [SP1 Blobstream](#what-is-sp1-blobstream) (an implementation of Blobstream X)
 * [Blobstream X](#what-is-blobstream-x)
-* [RISC Zero Blobstream](#risc-zero-blobstream) (alternative ZK implementation)
+* [Blobstream0](#risc-zero-blobstream) (RISC Zero implementation)
 
 ## Blobstream vs. data availability committees (DACs)
 
