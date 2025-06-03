@@ -37,7 +37,7 @@ Archive snapshots contain the complete blockchain history, including all histori
 ITRocket provides comprehensive setup services for both mainnet and testnet, including automated installation scripts, snapshots, and state sync services:
 
 - **Mainnet**: [itrocket.net/services/mainnet/celestia/](https://itrocket.net/services/mainnet/celestia/) - Complete setup guides and tools
-- **Testnet**: [itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Complete setup guides and tools
+- **Mocha testnet**: [itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Complete setup guides and tools
 
 Their services include installation scripts, state sync, snapshots, RPC endpoints, and monitoring tools all in one place.
 
