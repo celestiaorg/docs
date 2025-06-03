@@ -132,6 +132,7 @@ validator to Mocha:
 ```bash-vue
 MONIKER="your_moniker"
 VALIDATOR_WALLET="<validator-wallet-name>"
+EVM_ADDRESS="<your-evm-address>"
 
 celestia-appd tx staking create-validator \
     --amount=1000000utia \
@@ -149,11 +150,23 @@ celestia-appd tx staking create-validator \
     --from=$VALIDATOR_WALLET \
     --keyring-backend=test \
     --fees=21000utia \
-    --gas=220000
+    --gas=220000 \
+    --evm-address=$EVM_ADDRESS
 ```
 
 :::tip NOTE
-The options `--identity`, `--website`, `--security-contact` and `--details` are optional. The `--identity` value is used to verify identity with systems like [Keybase](https://keybase.io/) or UPort. If you need to add or update the values of these descriptive fields when your validator is already created, you can use the following command (remove the options that you don't want to change the values for):
+The options `--identity`, `--website`, `--security-contact` and `--details` are
+optional. The `--identity` value is used to verify identity with systems like
+[Keybase](https://keybase.io/) or UPort.
+
+The `--evm-address` parameter is required for celestia-app >= v4.0.0 and should
+be a valid Ethereum-compatible address (42-character hexadecimal string starting
+with 0x). You can generate one using any Ethereum wallet or derive it from your
+validator key.
+
+If you need to add or update the values of these descriptive fields when your
+validator is already created, you can use the following command (remove the
+options that you don't want to change the values for):
 
 ```bash
 celestia-appd tx staking edit-validator \

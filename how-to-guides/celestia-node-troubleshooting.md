@@ -348,6 +348,7 @@ sudo fsck -f </dev/yourpartition>
 # mount the partition again
 sudo mount </dev/yourpartition> <mountpoint>
 ```
+
 3. Restart the node
 
 #### Option 2: migrate to XFS/ZFS file system

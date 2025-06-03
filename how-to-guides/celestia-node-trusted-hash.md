@@ -69,10 +69,12 @@ celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.por
 
 ::: tip
 For Linux users, remove the empty string (`''`) after `-i` in the `sed` commands:
+
 ```sh
 sed -i "s/SampleFrom = .*/SampleFrom = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
 sed -i "s/TrustedHash = .*/TrustedHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
 ```
+
 :::
 
 ## For service operators

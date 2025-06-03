@@ -58,4 +58,3 @@ external users who don't want or can't run light nodes
 functionality.
 
 <!-- We may also implement super-light-clients over Gateway API at some point. -->
-

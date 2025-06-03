@@ -168,6 +168,7 @@ celestia <da_type> start --core.ip <consensus_node_url> --core.port <port>
 You can use any of the RPC endpoints from the [community consensus endpoints](#community-consensus-endpoints) table above. The default port is 9090, where gRPC is used for both block sync and state access.
 
 For example, to connect to the P-OPS endpoint:
+
 ```bash
 celestia light start --core.ip rpc.celestia.pops.one --core.port 9090
 ```

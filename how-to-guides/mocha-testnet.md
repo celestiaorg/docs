@@ -189,7 +189,6 @@ broadcast transactions.
 
 - `celestiam.tendermintrpc.lava.build`
 
-
 ## Community bridge and full node endpoints
 
 The endpoints below are for bridge and full nodes only. They can be used to
@@ -225,7 +224,7 @@ USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER DISTRIBUTION OF
 MAINNET CELESTIA TOKENS.
 :::
 
-### Discord 
+### Discord
 
 You can request from Mocha testnet Faucet on the #mocha-faucet channel on
 Celestia's Discord server with the following command:
