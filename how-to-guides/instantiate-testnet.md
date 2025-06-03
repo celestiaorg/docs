@@ -75,7 +75,7 @@ Run the following command:
 
 ```sh
 TIA_AMOUNT="10000000utia"
-celestia-appd add-genesis-account $KEY_NAME $TIA_AMOUNT --keyring-backend test
+celestia-appd add-genesis-account $KEY_NAME $TIA_AMOUNT
 ```
 
 Here `$KEY_NAME` is the same key name as before.
