@@ -92,17 +92,17 @@ manually specify the `--node.store` flag for each RPC request.
 - Node types are ordered as bridge, full, and light.
 - Each network has only one running node type.
 - Multiple nodes of the same network and type are prohibited
-(resulting in an `Error: node: store is in use`).
+  (resulting in an `Error: node: store is in use`).
 
 **Key Points:**
 
 - Authentication token and other flags maintain their previous behavior
-and take precedence.
+  and take precedence.
 - Address and port details are fetched from the configuration.
 - `skipAuth` allows bypassing authentication for trusted setups and follows
-Unix daemon conventions.
+  Unix daemon conventions.
 - Non-default node store and cel-key configurations still require specific
-flags in the configuration settings.
+  flags in the configuration settings.
 
 ### Demonstration
 
@@ -348,6 +348,7 @@ sudo fsck -f </dev/yourpartition>
 # mount the partition again
 sudo mount </dev/yourpartition> <mountpoint>
 ```
+
 3. Restart the node
 
 #### Option 2: migrate to XFS/ZFS file system

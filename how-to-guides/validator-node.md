@@ -120,11 +120,11 @@ Now, connect to the network of your choice.
 
 You have the following option of connecting to list of networks shown below:
 
-| Name                           | Type          | Chain ID                       | CLI Usage                                  |
-|--------------------------------|---------------|--------------------------------|--------------------------------------------|
-| [Celestia](/how-to-guides/mainnet.md)       | Mainnet Beta  | {{ constants.mainnetChainId }} | `--chain-id {{ constants.mainnetChainId }}`|
-| [Mocha](/how-to-guides/mocha-testnet.md)    | Testnet       | {{ constants.mochaChainId }}   | `--chain-id {{ constants.mochaChainId }}`  |
-| [Arabica](/how-to-guides/arabica-devnet.md) | Devnet        | {{ constants.arabicaChainId }} | `--chain-id {{ constants.arabicaChainId }}`|
+| Name                                        | Type         | Chain ID                       | CLI Usage                                   |
+| ------------------------------------------- | ------------ | ------------------------------ | ------------------------------------------- |
+| [Celestia](/how-to-guides/mainnet.md)       | Mainnet Beta | {{ constants.mainnetChainId }} | `--chain-id {{ constants.mainnetChainId }}` |
+| [Mocha](/how-to-guides/mocha-testnet.md)    | Testnet      | {{ constants.mochaChainId }}   | `--chain-id {{ constants.mochaChainId }}`   |
+| [Arabica](/how-to-guides/arabica-devnet.md) | Devnet       | {{ constants.arabicaChainId }} | `--chain-id {{ constants.arabicaChainId }}` |
 
 Continuing the validator tutorial, here are the steps to connect your
 validator to Mocha:
