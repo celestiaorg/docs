@@ -34,7 +34,7 @@ Please send your application to this [form](https://forms.gle/Fbdo66W3GvCiQw896)
 
 This 6-month pilot runs July–December 2025 and will result in the Celestia Foundation delegating to up to 10 validators. Every applicant must choose exactly one of our three tracks—Mamo-Users, Bootcamp & Mammothon, or R&D—and will be evaluated solely on that focus area. Eligibility and success criteria are defined separately for each track below.
 
-![cohort banner](/img/celestia_mammoths_transparent_bg.png)
+![Celestia Mammoths Cohort Banner](/img/celestia_mammoths_transparent_bg.png)
 
 ---
 
