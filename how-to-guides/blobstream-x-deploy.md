@@ -1,7 +1,7 @@
 ---
 next:
-  text: "Celestia-node key"
-  link: "/tutorials/celestia-node-key"
+  text: "Node API"
+  link: "/tutorials/node-api"
 ---
 
 # New Blobstream X deployments

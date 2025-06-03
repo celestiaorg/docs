@@ -1,5 +1,8 @@
 ---
 description: An overview of the celestia-node API.
+prev:
+  text: "New Blobstream X deployments"
+  link: "/how-to-guides/blobstream-x-deploy.md"
 ---
 
 # Node API
