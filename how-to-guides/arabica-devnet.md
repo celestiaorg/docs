@@ -56,7 +56,12 @@ endpoint types [in the Cosmos SDK documentation](https://docs.cosmos.network/v0.
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD034 -->
 
-These RPC providers are meant to be used in production environments.
+These RPC providers are meant to be used in production environments
+and for specific use cases that require reliable access to full block
+history, such as:
+
+- Running Bridge Nodes that download data from core RPC endpoints
+- Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
 
 | Provider | URL |
 |--------|--------|
