@@ -65,6 +65,7 @@ use the [`cel-key` library](https://github.com/celestiaorg/celestia-node/blob/ma
 ```sh
 ./cel-key import
 ```
+
 Learn more on the
 [Create a wallet with celestia-node](/tutorials/celestia-node-key.md#create-a-wallet-with-celestia-node)
 page.
@@ -75,7 +76,6 @@ All other flags are now optional for all write transactions. This
 means you don't have to specify gas/fee parameters each time.
 The configuration can handle it for you automatically.
 
-
 The default configuration applies to all write transactions,
 including those in the [state module](https://node-rpc-docs.celestia.org/#state)
 and [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit).
@@ -83,5 +83,6 @@ This simplifies the process of submitting transactions and
 reduces the need for manual input.
 
 For reference, see the:
+
 - [Transaction configuration](https://github.com/celestiaorg/celestia-node/blob/87e2802b687065055e117b4ed2a0128d0666587d/state/tx_config.go#L35)
 - [State module command implementation](https://github.com/celestiaorg/celestia-node/blob/87e2802b687065055e117b4ed2a0128d0666587d/nodebuilder/state/cmd/state.go#L420)

@@ -2,7 +2,6 @@
 description: An overview of the integration of Arbitrum Orbit with Celestia, detailing the key features and benefits, including the fallback mechanism to Anytrust and Ethereum.
 ---
 
-
 # Arbitrum Orbit with Celestia DA
 
 ![Celestia_Arbitrum](/img/Celestia-Arbitrum.png)
