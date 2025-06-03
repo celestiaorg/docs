@@ -230,6 +230,12 @@ The following websites provide analytics for Celestia:
 - [https://itrocket.net/services/mainnet/celestia/decentralization/](https://itrocket.net/services/mainnet/celestia/decentralization/)
 - [https://cosmoslist.co/mainnet/celestia](https://cosmoslist.co/mainnet/celestia)
 
+## Node maps
+
+The following websites provide visual maps of Celestia DA nodes:
+
+- [https://validao.xyz/#maps-celestia-da](https://validao.xyz/#maps-celestia-da) (community contribution)
+
 ## Network upgrades
 
 There are a few ways to stay informed about network upgrades on Mainnet Beta:
