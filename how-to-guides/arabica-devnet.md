@@ -42,6 +42,12 @@ undergoes network upgrades in coordination with validators.
 
 <ArabicaVersionTags/>
 
+## Network status
+
+For real-time network status information, including uptime, incident reports,
+and service availability, visit the
+[official Celestia Arabica devnet status page](https://status.celestia.dev/status/arabica).
+
 ## Integrations
 
 This guide contains the relevant sections for how to connect to Arabica
