@@ -1,27 +1,6 @@
 # Celestia Foundation Ecosystem Delegation Program
 
-## Table of Contents
-
-- [Program Overview](#program-overview)
-- [Basic Eligibility & Compliance](#basic-eligibility--compliance)
-- [Form Submission](#form-submission)
-- [Background](#background)
-- [Mamo-Users Rules & Requirements](#mamo-users-rules--requirements)
-  - [Objectives & Key Metrics](#objectives--key-metrics)
-  - [Example Submission for Mamo-Users](#example-submission-for-mamo-users)
-- [Bootcamp & Mammothon Rules & Requirements](#bootcamp--mammothon-rules--requirements)
-  - [Scope & Deliverables](#scope--deliverables)
-  - [Timeline & Cadence](#timeline--cadence)
-  - [Participation & Scale](#participation--scale)
-  - [Review Process](#review-process)
-  - [Success Criteria](#success-criteria)
-  - [Example Submission for Bootcamp/Mammothon](#example-submission-for-bootcampmammothon)
-- [R&D Rules & Requirements](#rd-rules--requirements)
-  - [Scope](#scope)
-  - [Milestone Reporting](#milestone-reporting)
-  - [Review Process](#review-process-1)
-  - [Success Criteria](#success-criteria-1)
-  - [Example Submissions for R&D](#example-submissions-for-rd)
+![Ecosystem delegation program banner](/img/ecosystem-delegation-program.jpg)
 
 ## Program Overview
 
@@ -54,6 +33,8 @@ Please send your application to this [form](https://forms.gle/Fbdo66W3GvCiQw896)
 ## Background
 
 This 6-month pilot runs July–December 2025 and will result in the Celestia Foundation delegating to up to 10 validators. Every applicant must choose exactly one of our three tracks—Mamo-Users, Bootcamp & Mammothon, or R&D—and will be evaluated solely on that focus area. Eligibility and success criteria are defined separately for each track below.
+
+![Celestia Mammoths Cohort Banner](/img/celestia_mammoths_transparent_bg.png)
 
 ---
 
