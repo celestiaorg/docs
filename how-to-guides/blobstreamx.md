@@ -15,11 +15,17 @@ Blobstream X is the previous implementation of Blobstream. It uses
 [plonky2x](https://github.com/succinctlabs/succinctx/tree/main/plonky2x) to create
 circuits that verify the Celestia consensus and generate the corresponding proofs.
 
+:::tip NOTE
+The [Blobstream X repository](https://github.com/succinctlabs/blobstreamx) is now archived.
+For current deployments and active development, see [SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream).
+:::
+
 Blobstream X is built and deployed with
-[Succinct's protocol](https://platform-docs.succinct.xyz).
+[Succinct's protocol](https://docs.succinct.xyz).
 
 :::tip NOTE
-The Blobstream deployments below don't use the BlobstreamX circuits.
+Current Blobstream deployments use SP1 Blobstream, not BlobstreamX circuits.
+This documentation is maintained for historical reference and existing BlobstreamX deployments.
 :::
 
 You can [find the repository for Blobstream X](https://github.com/succinctlabs/blobstreamx)
@@ -51,7 +57,7 @@ X contract is through the `SuccinctGateway` smart contract, which is a
 simple entrypoint contract that verifies proofs (against a deployed
 onchain verifier for the Blobstream X circuit) and then calls the
 `BlobstreamX.sol` contract to update it.
-[Find more information about the `SuccinctGateway`](https://platform-docs.succinct.xyz/platform/onchain-integration#succinct-gateway).
+[Find more information about the `SuccinctGateway`](https://docs.succinct.xyz/platform/onchain-integration#succinct-gateway).
 
 ![blobstream x overview diagram draft](/img/blobstream/Celestia_Blobstream_X2b.png)
 
@@ -60,7 +66,7 @@ onchain verifier for the Blobstream X circuit) and then calls the
 :::tip NOTE
 If the Blobstream X contract is not deployed on a desired chain,
 it needs to be deployed before it can be used by your rollup. See the
-[deployment documentation](https://platform-docs.succinct.xyz/platform/onchain-integration#non-canonical-chain-contract-deployment)
+[deployment documentation](https://docs.succinct.xyz/platform/onchain-integration#non-canonical-chain-contract-deployment)
 for more details.
 :::
 
@@ -68,7 +74,7 @@ for more details.
 
 It is possible to deploy and maintain a Blobstream x instance and have the same security guarantees.
 
-First, you will need to create a multisig that governs the Blobstream X contract and also the function identifiers. The function identifiers can be registered in the [Succinct gateway](https://platform-docs.succinct.xyz/platform/onchain-integration#register-circuits-with-your-deployed-succinct-gateway).
+First, you will need to create a multisig that governs the Blobstream X contract and also the function identifiers. The function identifiers can be registered in the [Succinct gateway](https://docs.succinct.xyz/platform/onchain-integration#register-circuits-with-your-deployed-succinct-gateway).
 
 Then, check the [deployment](https://github.com/succinctlabs/blobstreamx/blob/main/README.md#blobstreamx-contract-overview) documentation for how to deploy the contract.
 
