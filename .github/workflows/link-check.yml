@@ -1,0 +1,26 @@
+name: Link Checker
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Run weekly on Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Fail action on broken links
+          fail: true
+          # Use the lychee.toml config file
+          args: --config lychee.toml --verbose '**/*.md' '**/*.ts' '**/*.vue' '**/*.js' '**/*.json'
+          # Optional: set a token for GitHub API access to avoid rate limiting
+          token: ${{ secrets.GITHUB_TOKEN }}

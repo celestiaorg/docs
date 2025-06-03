@@ -1,0 +1,28 @@
+# Configuration for lychee link checker
+# See: https://lychee.cli.rs/
+
+cache = true
+exclude_all_private = true
+exclude_path = ["./node_modules"]
+max_cache_age = "10d"
+max_redirects = 10
+max_retries = 3
+
+exclude = [
+    # rate limited / 403 / 503 / whatever
+    "https://explorer.celestia-arabica-11.com/",
+    "https://arabica.celenium.io/",
+    "https://sepolia.arbiscan.io/",
+    "https://arbiscan.io/",
+    "https://basescan.org/",
+    "https://sepolia.basescan.org/",
+    "https://celenium.io/",
+    "https://mocha.celenium.io",
+    "https://mocha-4.celenium.io/",
+    "https://celestia-testnet-api.itrocket.net/",
+    "https://platform.openai.com/",
+    "https://analytics.smartstake.io/",
+    # skip any templates used in URLs for `.vitepress/components/*.vue`
+    # matches "{.*}" literals in URLs
+    '\%7B.*\%7D',
+]

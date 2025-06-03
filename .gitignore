@@ -8,3 +8,4 @@ node_modules
 .temp
 .vite_opt_cache
 .vscode
+.lycheecache

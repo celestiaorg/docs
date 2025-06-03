@@ -7,7 +7,8 @@
     "lint": "eslint --fix",
     "lint:md": "markdownlint '**/*.md'",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,json,css,scss}'",
-    "import-blobstream": "node importBlobstream.mjs"
+    "import-blobstream": "node importBlobstream.mjs",
+    "link-check": "lychee --config lychee.toml '**/*.md' '**/*.ts' '**/*.vue' '**/*.js' '**/*.json'"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.2",
