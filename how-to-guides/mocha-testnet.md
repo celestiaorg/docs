@@ -77,6 +77,14 @@ on [service providers with SLAs](#production-rpc-endpoints) or
 your own node.
 :::
 
+### Node setup and tools
+
+Several community providers offer comprehensive node setup tools, installation scripts, and monitoring services to help node operators get started quickly:
+
+| Provider | Installation Guide | State Sync | Monitoring Tools |
+|----------|-------------------|------------|------------------|
+| ITRocket | [Setup Guide](https://itrocket.net/services/testnet/celestia/) | [State Sync](https://itrocket.net/services/testnet/celestia/) | [Chain Status](https://itrocket.net/services/testnet/celestia/) |
+
 ### Community bridge and full node endpoints
 
 You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
@@ -249,6 +257,7 @@ The web faucet is available at [https://mocha.celenium.io/faucet](https://mocha.
 The following websites provide analytics for Mocha Testnet:
 
 - <https://cosmoslist.co/testnet/celestia>
+- [https://itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Node setup, monitoring, and chain status tools
 
 ## Explorers
 
