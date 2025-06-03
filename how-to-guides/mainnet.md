@@ -129,6 +129,14 @@ If you are using QuickNode or another provider with authenticated endpoints,
 see [the light node guide](/how-to-guides/light-node.md#optional-start-light-node-with-consensus-node-endpoint-with-authentication)
 to learn how to use an endpoint with x-token.
 
+### Node setup and tools
+
+Several community providers offer comprehensive node setup tools, installation scripts, and monitoring services to help node operators get started quickly:
+
+| Provider | Installation guide | State sync | Monitoring tools |
+|----------|-------------------|------------|------------------|
+| ITRocket | [Setup guide](https://itrocket.net/services/mainnet/celestia/) | [State sync](https://itrocket.net/services/mainnet/celestia/) | [Chain status](https://itrocket.net/services/mainnet/celestia/) |
+
 ### Community consensus endpoints
 
 :::warning
@@ -240,6 +248,7 @@ The following websites provide analytics for Celestia:
 - [https://alphab.ai/s/m/celestia/](https://alphab.ai/s/m/celestia/)
 - [https://services.kjnodes.com/mainnet/celestia/slashboard](https://services.kjnodes.com/mainnet/celestia/slashboard)
 - [https://itrocket.net/services/mainnet/celestia/decentralization/](https://itrocket.net/services/mainnet/celestia/decentralization/)
+- [https://itrocket.net/services/mainnet/celestia/](https://itrocket.net/services/mainnet/celestia/) - Node setup, monitoring, and chain status tools
 - [https://cosmoslist.co/mainnet/celestia](https://cosmoslist.co/mainnet/celestia)
 
 ## Node maps
