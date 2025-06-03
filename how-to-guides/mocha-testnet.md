@@ -92,8 +92,8 @@ your own node.
 
 Several community providers offer comprehensive node setup tools, installation scripts, and monitoring services to help node operators get started quickly:
 
-| Provider | Installation guide | State sync | Monitoring tools |
-|----------|-------------------|------------|------------------|
+| Provider | Installation guide                                             | State sync                                                    | Monitoring tools                                                |
+| -------- | -------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------- |
 | ITRocket | [Setup guide](https://itrocket.net/services/testnet/celestia/) | [State sync](https://itrocket.net/services/testnet/celestia/) | [Chain status](https://itrocket.net/services/testnet/celestia/) |
 
 ### Community bridge and full node endpoints
