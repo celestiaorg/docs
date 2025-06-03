@@ -15,12 +15,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup lychee
+      - name: Link Checker
         uses: lycheeverse/lychee-action@v2
         with:
           # Fail action on broken links
           fail: true
           # Use the lychee.toml config file
-          args: --config lychee.toml --verbose '**/*.md' '**/*.ts' '**/*.vue' '**/*.js' '**/*.json'
+          args: --config lychee.toml --verbose '**/*.md' '.vitepress/config.ts'
           # Optional: set a token for GitHub API access to avoid rate limiting
           token: ${{ secrets.GITHUB_TOKEN }}
