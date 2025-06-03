@@ -34,6 +34,12 @@ functional, users may encounter occasional instability or reduced performance.
 
 <MainnetVersionTags/>
 
+## Network status
+
+For real-time network status information, including uptime, incident reports,
+and service availability, visit the
+[official Celestia Mainnet status page](https://status.celestia.dev/status/mainnet).
+
 ## Network parameters
 
 ### Transaction size limit

@@ -54,6 +54,12 @@ to the correct instructions on this page on how to connect to Mocha.
 
 <MochaVersionTags/>
 
+## Network status
+
+For real-time network status information, including uptime, incident reports,
+and service availability, visit the
+[official Celestia Mocha testnet status page](https://status.celestia.dev/status/mocha).
+
 ## RPC for DA bridge, full, and light nodes
 
 ### Production RPC endpoints
