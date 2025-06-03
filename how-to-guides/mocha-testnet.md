@@ -250,7 +250,7 @@ The following websites provide analytics for Mocha Testnet:
 
 - <https://cosmoslist.co/testnet/celestia>
 
-## Node Maps
+## Node maps
 
 The following websites provide visual maps of Celestia DA nodes:
 
