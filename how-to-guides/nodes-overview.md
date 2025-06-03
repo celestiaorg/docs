@@ -35,35 +35,34 @@ each tutorial guide.
 
 ### Non-archival data availability nodes
 
-| Node type         | Memory      | CPU         | Disk       | Bandwidth |
-|-------------------|-------------|-------------|------------|-----------|
-| Light node        | 500 MB RAM  | Single core | 100 GB SSD | 56 Kbps   |
-| Bridge node       | 64 GB RAM   | 8 cores     | 5 TiB NVME  | 1 Gbps    |
-| Full storage node | 64 GB RAM   | 8 cores   | 5 TiB NVME  | 1 Gbps    |
+| Node type         | Memory     | CPU         | Disk       | Bandwidth |
+| ----------------- | ---------- | ----------- | ---------- | --------- |
+| Light node        | 500 MB RAM | Single core | 100 GB SSD | 56 Kbps   |
+| Bridge node       | 64 GB RAM  | 8 cores     | 5 TiB NVME | 1 Gbps    |
+| Full storage node | 64 GB RAM  | 8 cores     | 5 TiB NVME | 1 Gbps    |
 
 ### Archival data availability nodes
 
-| Node type         | Memory      | CPU         | Disk       | Bandwidth |
-|-------------------|-------------|-------------|------------|-----------|
-| Light node        | 500 MB RAM  | Single core | 100 GB SSD | 56 Kbps   |
-| Bridge node       | 64 GB RAM   | 8 cores     | 6 TiB NVME  | 1 Gbps    |
-| Full storage node | 64 GB RAM   | 8 cores   | 6 TiB NVME  | 1 Gbps    |
+| Node type         | Memory     | CPU         | Disk       | Bandwidth |
+| ----------------- | ---------- | ----------- | ---------- | --------- |
+| Light node        | 500 MB RAM | Single core | 100 GB SSD | 56 Kbps   |
+| Bridge node       | 64 GB RAM  | 8 cores     | 6 TiB NVME | 1 Gbps    |
+| Full storage node | 64 GB RAM  | 8 cores     | 6 TiB NVME | 1 Gbps    |
 
 ### Consensus nodes
 
 #### Non-archival consensus nodes
 
-| Node type        | Memory      | CPU         | Disk       | Bandwidth |
-|------------------|-------------|-------------|------------|-----------|
-| Validator        | 24 GB RAM   | 8 cores     | 3 TiB NVME   | 1 Gbps    |
-| Consensus node   | 24 GB RAM   | 8 cores     | 3 TiB NVME   | 1 Gbps    |
+| Node type      | Memory    | CPU     | Disk       | Bandwidth |
+| -------------- | --------- | ------- | ---------- | --------- |
+| Validator      | 24 GB RAM | 8 cores | 3 TiB NVME | 1 Gbps    |
+| Consensus node | 24 GB RAM | 8 cores | 3 TiB NVME | 1 Gbps    |
 
 #### Archival consensus nodes
 
-| Node type        | Memory      | CPU         | Disk       | Bandwidth |
-|------------------|-------------|-------------|------------|-----------|
-| Consensus node   | 64 GB RAM   | 8 cores   | 6 TiB NVME  | 1 Gbps    |
-
+| Node type      | Memory    | CPU     | Disk       | Bandwidth |
+| -------------- | --------- | ------- | ---------- | --------- |
+| Consensus node | 64 GB RAM | 8 cores | 6 TiB NVME | 1 Gbps    |
 
 Please provide any feedback on the tutorials and guides. If you notice
 a bug or issue, feel free to make a pull request or write up a Github
