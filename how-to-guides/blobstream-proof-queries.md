@@ -199,6 +199,7 @@ Example response:
   }
 }
 ```
+
 </div>
 
 > **_NOTE:_** These values are base64 encoded. For these to be usable
@@ -241,6 +242,7 @@ func main() {
 	fmt.Println(dcProof.Proof.String())
 }
 ```
+
 </div>
 
 <!-- markdownlint-disable MD013 -->
@@ -424,6 +426,7 @@ import {
   sp1blobstreamwrapper "github.com/succinctlabs/sp1-blobstream/bindings"
 }
 ```
+
 :::
 </div>
 
@@ -523,6 +526,7 @@ Example response:
   }
 }
 ```
+
 </div>
 
 The `proof` field contains the transaction inclusion proof to the data root.
@@ -603,6 +607,7 @@ func queryShareRange() error {
 	}
 }
 ```
+
 </div>
 
 With the `<transaction_hash>` being the transaction hash of the PFB containing the blob
@@ -682,6 +687,7 @@ Example response:
   }
 }
 ```
+
 </div>
 
 > > **_NOTE:_** The values are base64 encoded. For these to be usable
@@ -753,6 +759,7 @@ struct AttestationProof {
     BinaryMerkleProof proof;
 }
 ```
+
 </div>
 
 <!-- markdownlint-enable MD013 -->
@@ -900,6 +907,7 @@ func toNamespaceNode(node []byte) *client.NamespaceNode {
 	}
 }
 ```
+
 </div>
 
 with `proofs` being `sharesProof.ShareProofs`.
@@ -1017,6 +1025,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 	return rowProofs
 }
 ```
+
 </div>
 
 with `proofs` being `sharesProof.RowProof.Proofs`.
@@ -1102,6 +1111,7 @@ func toAttestationProof(
 	}
 }
 ```
+
 </div>
 
 With the `nonce` being the attestation nonce, which can be retrieved using `Blobstream`
@@ -1128,6 +1138,7 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 <div style="overflow-y: auto; max-height: 400px;">
 
 ::: code-group
+
 ```go [BlobstreamX]
 	// get the nonce corresponding to the block height that contains the PayForBlob transaction
 	// since BlobstreamX emits events when new batches are submitted, we will query the events
@@ -1197,6 +1208,7 @@ import {
 }
 // and use the `BlobstreamDataCommitmentStored` event instead.
 ```
+
 :::
 </div>
 
@@ -1295,6 +1307,7 @@ contract SimpleRollup {
     }
 }
 ```
+
 </div>
 
 Then, you can submit the fraud proof using golang as follows:

@@ -75,7 +75,6 @@ your own node.
 
 RPC endpoints and types of nodes you can run in order to participate in Arabica devnet:
 
-
 <!-- markdownlint-disable MD013 -->
 
 | Node type                                                                              | Endpoint type                    | Endpoint                                                                                                      |

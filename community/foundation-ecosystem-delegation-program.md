@@ -1,6 +1,7 @@
 # Celestia Foundation Ecosystem Delegation Program
 
 ## Table of Contents
+
 - [Program Overview](#program-overview)
 - [Basic Eligibility & Compliance](#basic-eligibility--compliance)
 - [Form Submission](#form-submission)
@@ -51,6 +52,7 @@
 Please send your application to this [form](https://forms.gle/Fbdo66W3GvCiQw896)
 
 ## Background
+
 This 6-month pilot runs July–December 2025 and will result in the Celestia Foundation delegating to up to 10 validators. Every applicant must choose exactly one of our three tracks—Mamo-Users, Bootcamp & Mammothon, or R&D—and will be evaluated solely on that focus area. Eligibility and success criteria are defined separately for each track below.  
 
 ---
@@ -84,6 +86,7 @@ This 6-month pilot runs July–December 2025 and will result in the Celestia Fou
 | **Licensing** | All user-facing content must be released under CC0 (or similarly permissive public-domain terms) |
 
 #### Example Submission for Mamo-Users
+
 <details>
 <summary>Click to expand example</summary>
 
@@ -149,6 +152,7 @@ This 6-month pilot runs July–December 2025 and will result in the Celestia Fou
 | **Licensing** | All created materials must be open-sourced |
 
 #### Example Submission for Bootcamp/Mammothon
+
 <details>
 <summary>Click to expand example</summary>
 
@@ -198,6 +202,7 @@ This 6-month pilot runs July–December 2025 and will result in the Celestia Fou
 | **Penalties** | Missing a demo/report deadline or failing to address feedback on time ⇒ immediate disqualification |
 
 #### Example Submissions for R&D
+
 <details>
 <summary>Click to expand example</summary>
 
