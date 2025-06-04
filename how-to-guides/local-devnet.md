@@ -139,7 +139,7 @@ Once your local devnet is running, you can access these endpoints:
 | Consensus RPC   | `http://localhost:26657` |
 | Consensus gRPC  | `http://localhost:9090`  |
 | Consensus P2P   | `http://localhost:26656` |
-| Bridge Node API | `http://localhost:26658` |
+| Bridge node API | `http://localhost:26658` |
 
 ## Testing your setup
 
