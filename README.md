@@ -21,7 +21,7 @@ yarn && yarn dev
 
 This documentation site is built with [VitePress](https://vitepress.dev)
 
-## Link Checking
+## Link checking
 
 To check for broken links in the documentation, run:
 
