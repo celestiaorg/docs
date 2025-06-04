@@ -793,7 +793,7 @@ It will output something like this:
 #### Combined commands
 
 ```bash
-celestia share get-by-namespace "$(celestia header get-by-height 147105 | jq '.result.dah' -r)" 0x42690c204d39600fddd3
+celestia share get-by-namespace 147105 0x42690c204d39600fddd3
 ```
 
 #### Get data availability sampler stats
@@ -854,14 +854,11 @@ celestia <module> <method> --help
 
 ### Advanced example
 
-This example shows us using the `jq` command to parse the output of the
-`celestia header get-by-height` method to get the extended header
-used in `celestia share get-by-namespace`:
+This example shows us using the `celestia share get-by-namespace`
+method with a block height to retrieve shares from a specific namespace:
 
 ```bash
-celestia share get-by-namespace \
-  "$(celestia header get-by-height 252614 | jq '.result.dah' -r)" \
-  0x42690c204d39600fddd3
+celestia share get-by-namespace 252614 0x42690c204d39600fddd3
 ```
 
 ## Additional resources
