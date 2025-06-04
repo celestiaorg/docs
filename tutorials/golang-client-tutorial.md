@@ -42,7 +42,7 @@ The default URL is `http://localhost:26658`. If you would like to use subscripti
 
 The [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit) method takes a slice of blobs and a gas price, returning the height the blob was successfully posted at.
 
-- The namespace can be generated with `share.NewBlobNamespaceV0`.
+- The namespace can be generated with `share.NewV0Namespace`.
 - The blobs can be generated with `blob.NewBlobV0`.
 - You can use `blob.NewSubmitOptions()`, which has celestia-node automatically determine an appropriate gas price. To set your own gas price, use `blob.NewSubmitOptions().WithGasPrice(X)`. The available options are `WithGasPrice`, `WithGas`, `WithKeyName`, `WithSignerAddress`, and `WithFeeGranterAddress`.
 
@@ -111,7 +111,7 @@ func SubscribeBlobs(ctx context.Context, url string, token string) error {
     defer client.Close() // We close the WebSocket connection after use
 
     // create a namespace to filter blobs with
-    namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+    namespace, err := share.NewV0Namespace([]byte{0xDE, 0xAD, 0xBE, 0xEF})
     if err != nil {
         return err
     }
@@ -147,7 +147,7 @@ func SubscribeHeaders(ctx context.Context, url string, token string) error {
     defer client.Close() // We close the WebSocket connection after usage
 
     // create a namespace to filter blobs with
-    namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+    namespace, err := share.NewV0Namespace([]byte{0xDE, 0xAD, 0xBE, 0xEF})
     if err != nil {
         return err
     }
@@ -260,16 +260,16 @@ func main() {
 		os.Exit(1)
 	}
 	defer c.Close()
-	
+
 	fmt.Println("Successfully connected to node, checking node status...")
-	
+
 	// Try a simpler API call first - get network head to verify connectivity
 	headerHeight, err := GetNetworkHead(ctx, c)
 	if err != nil {
 		fmt.Printf("Failed to get network head: %v\n", err)
 	} else {
 		fmt.Printf("Current network height: %d\n", headerHeight)
-		
+
 		// Now try blob submission
 		err = SubmitBlob(ctx, url, token)
 		if err != nil {
@@ -307,7 +307,7 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
 
 	// Create basic TxConfig instead of passing nil
 	options := state.NewTxConfig()
-	
+
 	// Submit the blob to the network with the options
 	height, err := c.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, options)
 	if err != nil {
@@ -349,7 +349,7 @@ func GetNetworkHead(ctx context.Context, c *client.Client) (uint64, error) {
 	if err != nil {
 		return 0, fmt.Errorf("failed to get network head: %w", err)
 	}
-	
+
 	return header.Height(), nil
 }
 ```

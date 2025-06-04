@@ -1,7 +1,7 @@
 ---
 next:
-    text: "Overview of Blobstream X"
-    link: "/how-to-guides/blobstreamx"
+  text: "Overview of Blobstream X"
+  link: "/how-to-guides/blobstreamx"
 ---
 
 # New SP1 Blobstream deployments
@@ -23,10 +23,10 @@ cd sp1-blobstream
 ```
 
 2. Follow the deployment instructions in the
-[sp1-blobstream README](https://github.com/succinctlabs/sp1-blobstream?tab=readme-ov-file#deployment).
+   [sp1-blobstream README](https://github.com/succinctlabs/sp1-blobstream?tab=readme-ov-file#deployment).
 
 3. If you're deploying on a chain where there isn't a canonical verifier listed in the
-[SP1 contract addresses](https://github.com/succinctlabs/sp1/blob/main/book/verification/onchain/contract-addresses.md), you'll need to:
+   [SP1 contract addresses](https://github.com/succinctlabs/sp1/blob/main/book/verification/onchain/contract-addresses.md), you'll need to:
 
    a. Deploy your own SP1 Verifier from the [sp1-contracts](https://github.com/succinctlabs/sp1-contracts) matching your `sp1-sdk` version.
    b. Set the `SP1_VERIFIER_ADDRESS` in your `.env` file to the address of your deployed verifier.

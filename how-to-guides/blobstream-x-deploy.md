@@ -1,17 +1,23 @@
 ---
 next:
-    text: "Celestia-node key"
-    link: "/tutorials/celestia-node-key"
+  text: "Node API"
+  link: "/tutorials/node-api"
 ---
 
 # New Blobstream X deployments
+
+:::warning DEPRECATED
+BlobstreamX is the previous implementation of Blobstream. The [BlobstreamX repository](https://github.com/succinctlabs/blobstreamx) is now archived.
+
+For new deployments, consider using [SP1 Blobstream](/how-to-guides/sp1-blobstream-deploy.md) instead.
+:::
 
 This document will go over the instructions to deploy BlobstreamX to a new chain.
 
 ## Deploying the contracts
 
 To deploy a Blobstream X to a new chain, where a Gateway
-contract does not exist yet, the following steps need to be followed. 
+contract does not exist yet, the following steps need to be followed.
 
 If any of the components already exist in the target chain, feel free to skip the corresponding step.
 
@@ -25,7 +31,7 @@ The `SuccinctGateway` is a contract that acts as a registry for onchain circuit 
 4. Forward the proof to the function verifier to be verified
 5. If the proof is valid, it calls back the `BlobstreamX` contract to update its state
 
-The `BlobstreamX` requires the update to be provided through the `SuccinctGateway`. Otherwise, the contract can't be updated. 
+The `BlobstreamX` requires the update to be provided through the `SuccinctGateway`. Otherwise, the contract can't be updated.
 
 To deploy a `SuccinctGateway` contract, you need to have `foundry` installed. If not, refer to [foundry documentation](https://book.getfoundry.sh/getting-started/installation).
 
@@ -88,7 +94,7 @@ Then, save the environment to a `.env` file and run the following:
 ./script/deploy.sh "SuccinctGateway" "12345 1234"
 ```
 
-with `12345` and `1234` being chainID that we want to deploy to, given that the corresponding environment 
+with `12345` and `1234` being chainID that we want to deploy to, given that the corresponding environment
 variables, as specified above, are setup correctly.
 
 Now the SuccinctGateway address should be printed on the terminal.
@@ -101,11 +107,11 @@ The function verifiers can be either downloaded from the succinct platform or re
 
 To download the function verifiers, along with the circuits binaries, check the list in the [Succinct documentation](https://hackmd.io/@succinctlabs/HJE7XRrup#Download-Blobstream-X-Plonky2x-Circuits) and download the binaries and function verifiers corresponding to the circuits you want to verify.
 
-Alternatively, you can generate them locally as specified in the [regenerating the downloaded artifacts](#optional-regenerating-the-downloaded-artifacts) section. 
+Alternatively, you can generate them locally as specified in the [regenerating the downloaded artifacts](#optional-regenerating-the-downloaded-artifacts) section.
 
-After getting the `FunctionVerifier.sol`, either via downloading it or generating it locally, you can choose your favourite way to deploy it. 
+After getting the `FunctionVerifier.sol`, either via downloading it or generating it locally, you can choose your favourite way to deploy it.
 
-A simple way would be to copy the contract in the BlobstreamX repo and deploy it: 
+A simple way would be to copy the contract in the BlobstreamX repo and deploy it:
 
 ```shell
 cd $HOME
@@ -125,7 +131,7 @@ forge create FunctionVerifier --rpc-url <rpc_url> --private-key <private_key> --
 
 ### Register the function verifier in the deployed SuccinctGateway
 
-After deploying a function verifier for your target circuit, we should register it in 
+After deploying a function verifier for your target circuit, we should register it in
 a `SuccinctGateway` contract, either deployed by you in a previous step or pre-existing on the chain,
 to get a `functionID` and be able to use it to verify circuits.
 
@@ -154,13 +160,13 @@ cast call <succinct_gateway_contract_address> "verifiers(bytes32)(address)" --rp
 which will return the address of the function verifier that was deployed in the previous section.
 
 > **_NOTE:_** For BlobstreamX, there are always two function verifiers, corresponding to the two
-> circuits: `header_range` and `next_header`. Make sure to register both the function verifiers 
+> circuits: `header_range` and `next_header`. Make sure to register both the function verifiers
 > corresponding to those circuits as we will use those function IDs to deploy the BlobstreamX
 > contract in the next section.
 
 #### Enable prover whitelisting
 
-Now that the function verifier's contract is deployed and registered in the succinct gateway, we can define whitelisting rules for the proof submission. 
+Now that the function verifier's contract is deployed and registered in the succinct gateway, we can define whitelisting rules for the proof submission.
 
 by default, the whitelist status is set to `Default`. This means that only the default verifier, which was setup when [deploying the SuccinctGateway](#deploy-a-new-succinctgateway). And if you want to restrict the list of provers that can submit proofs to your registered function verifier, you can set the whitelisting status of the function verifier and then add a custom prover. Or even allow for permissionless submission.
 
@@ -275,6 +281,7 @@ vim .env
 ```
 
 The following is the required environment for the prover:
+
 - `PRIVATE_KEY`: the EVM private key to use to submit the proofs.
 - `RPC_URL`: the RPC endpoint of the chain where the BlobstreamX contract is deployed.
 - `TENDERMINT_RPC_URL`: the Celestia chain RPC endpoint. Accepts a comma-separated list of RPC URLs for fail over.
@@ -384,7 +391,8 @@ ls build
 # ^ should return something like: 0x007d0b2a2e2b013612e8.circuit  0x9039e58b2089e5f9abbb.circuit  0xce1636cfaf2bd5497c11.circuit  FunctionVerifier.sol  main.circuit 0x8e1ede4ce0865b41d714.circuit  0xa2140c9bde000dc5e21e.circuit  0xf6759ff933786ddacb92.circuit  header_range_1024
 ```
 
-The `header_range_1024` is a specific circuit. Other circuit names can be used there. The current circuits that we have for BlobstreamX: 
+The `header_range_1024` is a specific circuit. Other circuit names can be used there. The current circuits that we have for BlobstreamX:
+
 - `header_range_1024`: skip function circuit for batches that are <= 1024 block.
 - `header_range_2048`: skip function circuit for batches that are <= 2048 block.
 - `next_header`: step function circuit.
