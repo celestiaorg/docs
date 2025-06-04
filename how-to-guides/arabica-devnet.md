@@ -75,6 +75,75 @@ history, such as:
 | Numia    | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia> |
 | Grove    | <https://www.grove.city/>                                                             |
 
+### Node setup and tools
+
+Several community providers offer comprehensive node setup tools and monitoring services to help node operators get started quickly. Check the [community endpoint status dashboard](#community-endpoint-status-dashboard) for real-time endpoint status information.
+
+### Community consensus endpoints
+
+:::warning
+Do not rely on the free community endpoints listed below
+for production deployments. Production deployments should rely
+on [service providers with SLAs](#production-rpc-endpoints) or
+your own node.
+:::
+
+The following table lists community-provided consensus node endpoints that you can use:
+
+| Provider        | RPC Endpoint                                             | API Endpoint                                             | gRPC Endpoint                                             | WebSocket Endpoint |
+| --------------- | -------------------------------------------------------- | -------------------------------------------------------- | --------------------------------------------------------- | ------------------ |
+| Celestia Labs   | `rpc.celestia-{{constants.arabicaChainId}}.com`         | `api.celestia-{{constants.arabicaChainId}}.com`         | `grpc.celestia-{{constants.arabicaChainId}}.com:443`     | -                  |
+| Celestia Labs   | `validator-1.celestia-{{constants.arabicaChainId}}.com` | `validator-1.celestia-{{constants.arabicaChainId}}.com` | `validator-1.celestia-{{constants.arabicaChainId}}.com`  | -                  |
+| Celestia Labs   | `validator-2.celestia-{{constants.arabicaChainId}}.com` | `validator-2.celestia-{{constants.arabicaChainId}}.com` | `validator-2.celestia-{{constants.arabicaChainId}}.com`  | -                  |
+| Celestia Labs   | `validator-3.celestia-{{constants.arabicaChainId}}.com` | `validator-3.celestia-{{constants.arabicaChainId}}.com` | `validator-3.celestia-{{constants.arabicaChainId}}.com`  | -                  |
+| Celestia Labs   | `validator-4.celestia-{{constants.arabicaChainId}}.com` | `validator-4.celestia-{{constants.arabicaChainId}}.com` | `validator-4.celestia-{{constants.arabicaChainId}}.com`  | -                  |
+
+### Connecting DA nodes to consensus nodes
+
+Data availability (DA) nodes need to connect to consensus nodes to sync blocks and access state. When starting a DA node, you'll need to provide a consensus node endpoint using the `--core.ip` parameter and the port.
+
+:::tip
+
+```bash
+celestia <da_type> start --core.ip <consensus_node_url> --core.port <port>
+```
+
+:::
+
+You can use any of the RPC endpoints from the [community consensus endpoints](#community-consensus-endpoints) table above. The default port is 9090, where gRPC is used for both block sync and state access.
+
+For example, to connect to a Celestia Labs endpoint:
+
+```bash-vue
+celestia light start --p2p.network arabica \
+  --core.ip validator-1.celestia-{{constants.arabicaChainId}}.com \
+  --core.port 9090
+```
+
+### Bridge node requirements
+
+Not all RPC endpoints guarantee the full block history.
+Bridge nodes require access to the full historical block data, so you should use an archive endpoint to run your bridge node.
+
+Check the [production endpoints](#production-rpc-endpoints) or the [community endpoint status dashboard](#community-endpoint-status-dashboard) to identify which endpoints are archive nodes with full historical data.
+
+Alternatively, you can run your own consensus node with no pruning for your bridge node.
+
+## Community endpoint status dashboard
+
+To check the current status, uptime, and health of all community endpoints, visit the [RPC stats for Celestia dashboard](https://celestia-tools.brightlystake.com/). This dashboard provides real-time information about:
+
+- Which endpoints are currently online  
+- Response times and performance metrics
+- Which endpoints are archive nodes with full historical data
+- Last seen heights for each endpoint
+
+This is an essential resource when selecting endpoints for your nodes or applications.
+
+## Legacy endpoint information
+
+The sections below provide additional endpoint details. For most users, the [community consensus endpoints](#community-consensus-endpoints) table above provides all the information needed.
+
 ### Community RPC endpoints
 
 :::warning
@@ -84,72 +153,11 @@ on [service providers with SLAs](#production-rpc-endpoints) or
 your own node.
 :::
 
-RPC endpoints and types of nodes you can run in order to participate in Arabica devnet:
+Reference information about available endpoints and node types for Arabica devnet. Note: the official Celestia Labs endpoints have the following open ports:
 
-<!-- markdownlint-disable MD013 -->
+- 26656 (p2p), 26657 (RPC), 1317 (API), 9090 (gRPC)
 
-| Node type                                                        | Endpoint type                    | Endpoint                                                                                                                                                                                                               |
-| ---------------------------------------------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Consensus nodes** ([full](../how-to-guides/consensus-node.md)) | Consensus RPC                    | `https://rpc.celestia-{{constants.arabicaChainId}}.com`                                                                                                                                                                |
-|                                                                  | API                              | `https://api.celestia-{{constants.arabicaChainId}}.com`                                                                                                                                                                |
-|                                                                  | gRPC                             | `grpc.celestia-{{constants.arabicaChainId}}.com:443`                                                                                                                                                                   |
-|                                                                  | Direct endpoints with open ports | Open ports: 26656 (p2p), 26657 (RPC), 1317 (API), 9090 (GRPC)                                                                                                                                                          |
-|                                                                  |                                  | `validator-1.celestia-{{constants.arabicaChainId}}.com`                                                                                                                                                                |
-|                                                                  |                                  | `validator-2.celestia-{{constants.arabicaChainId}}.com`                                                                                                                                                                |
-|                                                                  |                                  | `validator-3.celestia-{{constants.arabicaChainId}}.com`                                                                                                                                                                |
-|                                                                  |                                  | `validator-4.celestia-{{constants.arabicaChainId}}.com`                                                                                                                                                                |
-|                                                                  |                                  |                                                                                                                                                                                                                        |
-| **Data availability nodes**                                      | DA Bridge Node Endpoints         | See the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39). |
-|                                                                  | `--core.ip string` endpoints     | Refer to "Direct endpoints with open ports" above                                                                                                                                                                      |
-
-<!-- markdownlint-enable MD013 -->
-
-You can [find the status of these endpoints](https://celestia-tools.brightlystake.com/).
-
-### Using consensus endpoints with DA nodes
-
-#### Data availability (DA) RPC endpoints for bridge node sync
-
-These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
-For users, they will need to provide a `–core.ip string`
-from a consensus node’s URL or IP that populates a default RPC port at 26657
-to their respective DA node.
-
-#### Data availability (DA) gRPC endpoints for state access
-
-These gRPC endpoints for DA nodes provide state access for querying the
-chain’s state and broadcasting transactions (balances, blobs, etc.) to the
-Celestia network. For users, they will need to provide a `–core.ip string`
-from a consensus node’s URL or IP that populates a default gRPC port at 9090
-to their respective DA node.
-
-:::tip EXAMPLE
-
-```bash
-celestia <da_type> start --core.ip <url> --core.port <port>
-```
-
-:::
-
-RPCs for DA nodes to initialise or start your celestia-node to
-Arabica devnet with can be found in the table in the
-"Direct endpoints with open ports" section above.
-
-As an example, this command will work to start a light node with
-state access, using default ports:
-
-```bash-vue
-celestia light start --p2p.network arabica \
-  --core.ip validator-1.celestia-{{constants.arabicaChainId}}.com \
-  --core.port 9090
-```
-
-:::tip Bridge node runners
-Not all of the RPC endpoints do not guarantee the full block history.
-Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/)
-or run your own consensus node with no pruning for
-your bridge node.
-:::
+For DA Bridge Node peer discovery, see the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
 
 ## Arabica devnet faucet
 

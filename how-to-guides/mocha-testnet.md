@@ -60,7 +60,11 @@ For real-time network status information, including uptime, incident reports,
 and service availability, visit the
 [official Celestia Mocha testnet status page](https://status.celestia.dev/status/mocha).
 
-## RPC for DA bridge, full, and light nodes
+## Integrations
+
+This guide contains the relevant sections for how to connect to Mocha,
+depending on the type of node you are running. Learn about the different
+endpoint types [in the Cosmos SDK documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest).
 
 ### Production RPC endpoints
 
@@ -81,13 +85,6 @@ history, such as:
 | Numia     | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia>     |
 | QuickNode | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) |
 
-:::warning
-Do not rely on the free community endpoints listed below
-for production deployments. Production deployments should rely
-on [service providers with SLAs](#production-rpc-endpoints) or
-your own node.
-:::
-
 ### Node setup and tools
 
 Several community providers offer comprehensive node setup tools, installation scripts, and monitoring services to help node operators get started quickly:
@@ -96,9 +93,59 @@ Several community providers offer comprehensive node setup tools, installation s
 | -------- | -------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------- |
 | ITRocket | [Setup guide](https://itrocket.net/services/testnet/celestia/) | [State sync](https://itrocket.net/services/testnet/celestia/) | [Chain status](https://itrocket.net/services/testnet/celestia/) |
 
-### Community bridge and full node endpoints
+### Community consensus endpoints
+
+:::warning
+Do not rely on the free community endpoints listed below
+for production deployments. Production deployments should rely
+on [service providers with SLAs](#production-rpc-endpoints) or
+your own node.
+:::
 
 You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
+
+The following table lists community-provided consensus node endpoints that you can use:
+
+| Provider        | RPC Endpoint                                     | API Endpoint                                     | gRPC Endpoint                                     | WebSocket Endpoint |
+| --------------- | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------- | ------------------ |
+| Brightly Stake  | `celestia-testnet.brightlystake.com`             | `celestia-testnet.brightlystake.com/api`         | `celestia-testnet.brightlystake.com:9390`         | -                  |
+| Cumulo          | `mocha.celestia.rpc.cumulo.me`                   | `mocha.api.cumulo.me`                            | `mocha.grpc.cumulo.me:443`                        | -                  |
+| Cumulo Archive  | `rpc.archive.mocha.cumulo.com.es`                | `api.archive.mocha.cumulo.com.es`                | `grpc.archive.mocha.cumulo.com.es:443`            | -                  |
+| Grove           | `celestia-testnet-da-archival.rpc.grove.city/v1/c33eeadb` | `celestia-testnet-da-archival.rpc.grove.city/v1/c33eeadb` | -                                   | -                  |
+| ITRocket        | `celestia-testnet-rpc.itrocket.net:443`          | `celestia-testnet-api.itrocket.net`              | `celestia-testnet-grpc.itrocket.net:443`          | -                  |
+| kjnodes         | `rpc-1.testnet.celestia.nodes.guru`              | `api-1.testnet.celestia.nodes.guru`              | `grpc-1.testnet.celestia.nodes.guru:10790`       | -                  |
+| kjnodes         | `rpc-2.testnet.celestia.nodes.guru`              | `api-2.testnet.celestia.nodes.guru`              | `grpc-2.testnet.celestia.nodes.guru:10790`       | -                  |
+| Lava            | -                                                | `celestiam.rest.lava.build`                      | `celestiam.grpc.lava.build:443`                   | -                  |
+| Mzonder         | `rpc-celestia-testnet.mzonder.com:443`           | `api-celestia-testnet.mzonder.com:443`           | `grpc-celestia-testnet.mzonder.com:443`           | -                  |
+| Noders Services | `celestia-t-rpc.noders.services`                 | `celestia-t-api.noders.services`                 | `celestia-t-grpc.noders.services:21090`           | -                  |
+| Numia           | `public-celestia-mocha4-consensus.numia.xyz:26657` | -                                              | `public-celestia-mocha4-consensus.numia.xyz:9090` | -                  |
+| P-OPS           | `rpc-mocha.pops.one`                             | `api-mocha.pops.one`                             | `grpc-mocha.pops.one`                             | -                  |
+| Stakeflow       | `rpc-celestia-testnet-01.stakeflow.io`           | `api-celestia-testnet-01.stakeflow.io`           | `grpc-celestia-testnet-01.stakeflow.io:16002`     | -                  |
+| Trusted Point   | `rpc-celestia-mocha.trusted-point.com`           | `api-celestia-mocha.trusted-point.com`           | `grpc-celestia-mocha.trusted-point.com:9099`      | -                  |
+
+### Connecting DA nodes to consensus nodes
+
+Data availability (DA) nodes need to connect to consensus nodes to sync blocks and access state. When starting a DA node, you'll need to provide a consensus node endpoint using the `--core.ip` parameter and the port.
+
+:::tip
+
+```bash
+celestia <da_type> start --core.ip <consensus_node_url> --core.port <port>
+```
+
+:::
+
+You can use any of the RPC endpoints from the [community consensus endpoints](#community-consensus-endpoints) table above. The default port is 9090, where gRPC is used for both block sync and state access.
+
+For example, to connect to the P-OPS endpoint:
+
+```bash
+celestia light start --core.ip rpc-mocha.pops.one --core.port 9090
+```
+
+## Legacy endpoint sections
+
+The sections below provide additional endpoint details organized by protocol type. For most users, the [community consensus endpoints](#community-consensus-endpoints) table above provides all the information needed.
 
 ### Community Data availability (DA) RPC endpoints for bridge node sync
 
@@ -207,6 +254,17 @@ broadcast transactions.
 ## Community Tendermint RPC Endpoints
 
 - `celestiam.tendermintrpc.lava.build`
+
+## Community endpoint status dashboard
+
+To check the current status, uptime, and health of all community endpoints, visit the [RPC stats for Celestia dashboard](https://celestia-tools.brightlystake.com/). This dashboard provides real-time information about:
+
+- Which endpoints are currently online
+- Response times and performance metrics
+- Which endpoints are archive nodes with full historical data
+- Last seen heights for each endpoint
+
+This is an essential resource when selecting endpoints for your nodes or applications.
 
 ## Community bridge and full node endpoints
 
