@@ -33,7 +33,6 @@ The original [Blobstream X repository](https://github.com/succinctlabs/blobstrea
 is now archived. Active development has moved to SP1 Blobstream.
 :::
 
-
 ### Implementations of Blobstream
 
 - [SP1 Blobstream](#what-is-sp1-blobstream) (an implementation of Blobstream X)
