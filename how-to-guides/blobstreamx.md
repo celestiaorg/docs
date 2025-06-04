@@ -1,8 +1,8 @@
 ---
 description: What is BlobstreamX
 prev:
-    text: "New SP1 Blobstream deployments"
-    link: "/how-to-guides/sp1-blobstream-deploy"
+  text: "New SP1 Blobstream deployments"
+  link: "/how-to-guides/sp1-blobstream-deploy"
 ---
 
 # Blobstream X: the previous zk implementation of Blobstream

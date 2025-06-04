@@ -15,7 +15,7 @@ next:
 
 ## Running a full node
 
-Running a  fullnode or validator for an Orbit chain with Celestia DA is as simple as
+Running a fullnode or validator for an Orbit chain with Celestia DA is as simple as
 [following the steps outlined in the Arbitrum docs](https://docs.arbitrum.io/run-arbitrum-node/run-full-node),
 but using a docker image from the [latest stable release](https://github.com/celestiaorg/nitro/releases) of the Celestia integration and passing the following flags:
 

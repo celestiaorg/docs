@@ -260,16 +260,16 @@ func main() {
 		os.Exit(1)
 	}
 	defer c.Close()
-	
+
 	fmt.Println("Successfully connected to node, checking node status...")
-	
+
 	// Try a simpler API call first - get network head to verify connectivity
 	headerHeight, err := GetNetworkHead(ctx, c)
 	if err != nil {
 		fmt.Printf("Failed to get network head: %v\n", err)
 	} else {
 		fmt.Printf("Current network height: %d\n", headerHeight)
-		
+
 		// Now try blob submission
 		err = SubmitBlob(ctx, url, token)
 		if err != nil {
@@ -307,7 +307,7 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
 
 	// Create basic TxConfig instead of passing nil
 	options := state.NewTxConfig()
-	
+
 	// Submit the blob to the network with the options
 	height, err := c.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, options)
 	if err != nil {
@@ -349,7 +349,7 @@ func GetNetworkHead(ctx context.Context, c *client.Client) (uint64, error) {
 	if err != nil {
 		return 0, fmt.Errorf("failed to get network head: %w", err)
 	}
-	
+
 	return header.Height(), nil
 }
 ```

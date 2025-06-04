@@ -19,14 +19,14 @@ Celenium.
 1. Get trusted height & hash from a consensus endpoint or [Celenium](https://celenium.io).
 2. Initialize the node store
 
-    ```sh
-    celestia light init --p2p.network <network>
-    ```
+   ```sh
+   celestia light init --p2p.network <network>
+   ```
 
 3. Set the trusted height & hash in your config file
-    1. Open your `config.toml` at `.celestia-light/config.toml` (or `.celestia-light-<other-network>/config.toml`)
-    2. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
-    3. Set `Header.TrustedHash` to the trusted hash (e.g. `TrustedHash = "<hash_of_block_n>"`)
+   1. Open your `config.toml` at `.celestia-light/config.toml` (or `.celestia-light-<other-network>/config.toml`)
+   2. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
+   3. Set `Header.TrustedHash` to the trusted hash (e.g. `TrustedHash = "<hash_of_block_n>"`)
 4. Run the node:
 
 ```sh
@@ -68,10 +68,12 @@ celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.por
 
 ::: tip
 For Linux users, remove the empty string (`''`) after `-i` in the `sed` commands:
+
 ```sh
 sed -i "s/SampleFrom = .*/SampleFrom = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
 sed -i "s/TrustedHash = .*/TrustedHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
 ```
+
 :::
 
 ## For service operators

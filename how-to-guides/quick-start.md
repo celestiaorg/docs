@@ -78,17 +78,17 @@ Let's set the trusted hash!
 
 1. Get trusted height & hash from the P-OPS consensus endpoint:
 
-    ```bash
-    read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH && echo "Height: $TRUSTED_HEIGHT" && echo "Hash:   $TRUSTED_HASH"
-    ```
+   ```bash
+   read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH && echo "Height: $TRUSTED_HEIGHT" && echo "Hash:   $TRUSTED_HASH"
+   ```
 
 1. Set the trusted height & hash
-    1. Open your `config.toml` at `~/.celestia-light-{{ constants.mochaChainId }}/config.toml`
-    1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
-    1. Set `Header.TrustedHash` ti the trusted hash (e.g. `TrustedHash = "E8BD0C48260C496BB7A4D8D1E7BDBF1F26A2FE3CF5714DECE1741B2FFB3C095C"` )
+   1. Open your `config.toml` at `~/.celestia-light-{{ constants.mochaChainId }}/config.toml`
+   1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
+   1. Set `Header.TrustedHash` ti the trusted hash (e.g. `TrustedHash = "E8BD0C48260C496BB7A4D8D1E7BDBF1F26A2FE3CF5714DECE1741B2FFB3C095C"` )
 
 > If you don't do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 94721, requestedHeight: 2983850"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
-Learn more in [the trusted hash quick sync guide](/how-to-guides/celestia-node-trusted-hash.md).
+> Learn more in [the trusted hash quick sync guide](/how-to-guides/celestia-node-trusted-hash.md).
 
 ### Start the light node
 
@@ -215,6 +215,7 @@ In response, you'll see the data you posted:
   }
 }
 ```
+
 You can also inspect this example on celenium explorer [here](https://mocha.celenium.io/blob?commitment=cVqyRncskjEExVbcKNXU/PygOYsKJSvNGd1XBUlXVqw=&hash=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxdW90ZXM=&height=2990556).
 
 Let's break it down:
@@ -233,7 +234,7 @@ This section covers some more in-depth topics that you may find useful when work
 
 ### Node store contents
 
-As described in the [initialize the light node section](#initialize-the-light-node) above, the node store is created in the `~/.celestia-<node-type>-<network>` directory. 
+As described in the [initialize the light node section](#initialize-the-light-node) above, the node store is created in the `~/.celestia-<node-type>-<network>` directory.
 
 In this guide, the node store for `~/.celestia-light-{{ constants.mochaChainId }}` contains the following directories and file types:
 
@@ -260,16 +261,14 @@ Use `celestia light auth --help` to learn more about the available options.
 
 ### Advanced Key management with `cel-key`
 
+For more advanced key management beyond the built-in capabilities of the light node, use the separate cel-key utility. This dedicated tool allows you to:
 
-For more advanced key management beyond the built-in capabilities of the light node, use the separate cel-key utility. This dedicated tool allows you to: 
- - Create, import, and manage keys.
- - Backup, verify and select the active key used by your node
+- Create, import, and manage keys.
+- Backup, verify and select the active key used by your node
 
 To utilize cel-key, you'll need to build it separately. Follow the instructions provided in the [celestia-node](/how-to-guides/celestia-node.md) documentation.
 
 Detailed instructions for backing up, recovering, and verifying node keys are available in the guide on [Managing the key returned by `celestia state account-address`](/tutorials/celestia-node-key.md#managing-the-key-returned-by-celestia-state-account-address).
-
-
 
 ## Troubleshooting
 
@@ -277,7 +276,7 @@ If you run into issues, check out the [troubleshooting](/how-to-guides/celestia-
 
 ## Next steps
 
-Check out the [rollup stacks page](/how-to-guides/rollup-stacks.md) to get started learning about ways to build whatever with Celestia underneath. 
+Check out the [rollup stacks page](/how-to-guides/rollup-stacks.md) to get started learning about ways to build whatever with Celestia underneath.
 
 Also, here are some suggested tutorials for you:
 
@@ -288,6 +287,5 @@ If you're interested in writing a Rust program to interact with your Celestia li
 ### Golang client tutorial
 
 If you're interested in writing a Golang program to interact with your Celestia light node, check out the [Golang client tutorial](/tutorials/golang-client-tutorial.md).
-
 
 Head to the next page to learn about different node types for the consensus and DA networks.
