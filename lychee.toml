@@ -18,6 +18,7 @@ exclude = [
     "https://sepolia.basescan.org/",
     "https://etherscan.io/*",
     "https://sepolia.etherscan.io/*",
+    "https://scrollscan.com/*",
     "https://celenium.io/",
     "https://mocha.celenium.io",
     "https://mocha-4.celenium.io/",
