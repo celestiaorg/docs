@@ -545,32 +545,32 @@ The passthrough command is useful in scenarios where:
 #### Basic usage
 
 ```sh
-celestia-appd passthrough <app-version> query <query-command>
+celestia-appd passthrough [app-version] [command] [flags]
 ```
 
 Where:
 
-- `<app-version>` is the historical app version you want to query against (e.g., `v1`, `v2`, `v3`)
-- `<query-command>` is the query you want to execute using that app version's format
+- `[app-version]` is the historical app version you want to query against (e.g., `v1`, `v2`, `v3`)
+- `[command]` is the command you want to execute using that app version's format
 
 #### Examples
 
 Query account balance using app version 1 format:
 
 ```sh
-celestia-appd passthrough v1 query bank balances <address>
+celestia-appd passthrough v1 query bank balances [address]
 ```
 
 Query validator information using app version 2 format:
 
 ```sh
-celestia-appd passthrough v2 query staking validator <validator-address>
+celestia-appd passthrough v2 query staking validator [validator-address]
 ```
 
 Query transaction using app version 3 format:
 
 ```sh
-celestia-appd passthrough v3 query tx <transaction-hash>
+celestia-appd passthrough v3 query tx [transaction-hash]
 ```
 
 #### Important considerations
@@ -591,5 +591,5 @@ celestia-appd passthrough --help
 To see available commands for a specific app version:
 
 ```sh
-celestia-appd passthrough <app-version> --help
+celestia-appd passthrough [app-version] --help
 ```
