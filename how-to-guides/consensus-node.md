@@ -532,7 +532,7 @@ To reduce the log level, you can modify the `log_level` field in your `config.to
 
 ### Passthrough command for historical queries
 
-Starting with celestia-app v4.0.0, the `passthrough` command allows you to invoke queries on historical app versions. This is particularly useful when you need to query data from before a major version upgrade occurred.
+Starting with celestia-app v4 the `passthrough` command allows you to invoke queries on historical app versions. This is particularly useful when you need to query data from before a major version upgrade occurred.
 
 #### When to use the passthrough command
 
