@@ -34,6 +34,7 @@ exclude = [
     "https://discord.gg/*",
     "https://discord.com/*",
     # Additional exclusions per CI feedback request
+    "https://vitepress.dev",
     "https://validao.xyz/*",
     "https://faucet.celestia*",
     "https://dl.acm.org/doi/abs/10.1145/98163.98167",
