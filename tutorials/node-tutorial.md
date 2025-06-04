@@ -915,11 +915,6 @@ curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NOD
 The example transaction can be
 [found on Celenium](https://celenium.io/tx/08af4b0934843f083300e682f1f8894c6b2871b6d0adbc3bbef1739431484cfd).
 
-### Post an SVG as a PFB
-
-If you'd like to create your own SVG, post it to Celestia, and retrieve it,
-you can check out the [Base64 SVG Tutorial](https://based64.xyz/).
-
 ### Troubleshooting
 
 If you encounter an error like:
