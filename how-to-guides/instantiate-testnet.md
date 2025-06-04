@@ -69,7 +69,14 @@ Save the output of this command somewhere; you'll need
 the address generated here later. Here, we set the value of our
 key `$KEY_NAME` to `validator` for demonstration.
 
-### Add genesis account KeyName
+### Add genesis account
+
+:::tip Prerequisites
+This command requires that you have already:
+1. Initialized your node with `celestia-appd init`
+2. Created a key with `celestia-appd keys add`
+3. Are running the command from the same directory where you ran `init`
+:::
 
 Run the following command:
 
@@ -79,6 +86,15 @@ celestia-appd add-genesis-account $KEY_NAME $TIA_AMOUNT --keyring-backend test
 ```
 
 Here `$KEY_NAME` is the same key name as before.
+
+This command adds the specified account to the `genesis.json` file that was created during the initialization step.
+
+:::warning Troubleshooting
+If you encounter an "unknown command" error, ensure that:
+- You have properly installed `celestia-app` following the [installation guide](/how-to-guides/celestia-app.md)
+- You have run `celestia-appd init` in the current directory first
+- You are using the correct command `celestia-appd` (not `celestia-node`)
+:::
 
 ### Optional: Adding other validators
 
