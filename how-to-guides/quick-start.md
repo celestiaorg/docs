@@ -51,19 +51,19 @@ celestia light init --p2p.network mocha
 Once you've run this command, you'll see a new keypair that's created in your terminal. Be sure to save your mnemonic somewhere safe for future use!
 
 ```bash-vue
-INFO node nodebuilder/init.go:31 Initializing Light Node Store over '/Users/js/.celestia-light-{{ constants.mochaChainId }}'
-INFO node nodebuilder/init.go:64 Saved config {"path": "/Users/js/.celestia-light-{{ constants.mochaChainId }}/config.toml"}
-INFO node nodebuilder/init.go:66 Accessing keyring...
-WARN node nodebuilder/init.go:196 Detected plaintext keyring backend. For elevated security properties, consider using the `file` keyring backend.
-INFO node nodebuilder/init.go:211 NO KEY FOUND IN STORE, GENERATING NEW KEY... {"path": "/Users/js/.celestia-light-{{ constants.mochaChainId }}/keys"}
-INFO node nodebuilder/init.go:216 NEW KEY GENERATED...
+INFO	node	nodebuilder/init.go:31	Initializing Light Node Store over '/Users/js/.celestia-light-{{ constants.mochaChainId }}'
+INFO	node	nodebuilder/init.go:64	Saved config	{"path": "/Users/js/.celestia-light-{{ constants.mochaChainId }}/config.toml"}
+INFO	node	nodebuilder/init.go:66	Accessing keyring...
+WARN	node	nodebuilder/init.go:196	Detected plaintext keyring backend. For elevated security properties, consider using the `file` keyring backend.
+INFO	node	nodebuilder/init.go:211	NO KEY FOUND IN STORE, GENERATING NEW KEY...	{"path": "/Users/js/.celestia-light-{{ constants.mochaChainId }}/keys"}
+INFO	node	nodebuilder/init.go:216	NEW KEY GENERATED...
 
 NAME: my_celes_key
 ADDRESS: celestia1lgvzg4ek9v499pl5vvsvqpquhwfg0jznpwd92m
 MNEMONIC (save this somewhere safe!!!):
 never gonna give you up never gonna let you down never gonna run around and desert you never gonna make you cry never gonna
 
-INFO node nodebuilder/init.go:73 Node Store initialized
+INFO	node	nodebuilder/init.go:73	Node Store initialized
 ```
 
 You'll also see in this example, using the Mocha testnet and setting up a light node, our node store will be at: `~/.celestia-light-{{ constants.mochaChainId }}`.
@@ -108,9 +108,9 @@ Once you see this in the logs, you're ready to start posting and retrieving data
 /_____/  /_____/  /_____/  /_____/  /_____/
 
 Started celestia DA node
-node version:  {{mochaVersions['node-latest-tag'].slice(1)}}
-node type:  light
-network:  {{ constants.mochaChainId }}
+node version: 	{{mochaVersions['node-latest-tag'].slice(1)}}
+node type: 	light
+network: 	{{ constants.mochaChainId }}
 
 /_____/  /_____/  /_____/  /_____/  /_____/
 ```

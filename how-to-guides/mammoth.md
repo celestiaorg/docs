@@ -39,9 +39,9 @@ The testnet includes custom versions with:
 
 | Location  | gRPC                              | RPC                           | API                           |
 | --------- | --------------------------------- | ----------------------------- | ----------------------------- |
-| Amsterdam | <https://global.grpc.mamochain.com> | <https://rpc.ams.mamochain.com> | <https://api.ams.mamochain.com> |
-| Paris     | <https://global.grpc.mamochain.com> | <https://rpc.par.mamochain.com> | <https://api.par.mamochain.com> |
-| Warsaw    | <https://global.grpc.mamochain.com> | <https://rpc.waw.mamochain.com> | <https://api.waw.mamochain.com> |
+| Amsterdam | https://global.grpc.mamochain.com | https://rpc.ams.mamochain.com | https://api.ams.mamochain.com |
+| Paris     | https://global.grpc.mamochain.com | https://rpc.par.mamochain.com | https://api.par.mamochain.com |
+| Warsaw    | https://global.grpc.mamochain.com | https://rpc.waw.mamochain.com | https://api.waw.mamochain.com |
 
 <details>
 <summary><b>Amsterdam validators</b></summary>
@@ -52,7 +52,6 @@ The testnet includes custom versions with:
 - conval-11.ams.mamochain.com
 - conval-12.ams.mamochain.com
 - conval-13.ams.mamochain.com
-
 </details>
 
 <details>
@@ -66,7 +65,6 @@ The testnet includes custom versions with:
 - conval-5.par.mamochain.com
 - conval-6.par.mamochain.com
 - conval-7.par.mamochain.com
-
 </details>
 
 <details>
@@ -79,7 +77,6 @@ The testnet includes custom versions with:
 - conval-18.waw.mamochain.com
 - conval-19.waw.mamochain.com
 - conval-20.waw.mamochain.com
-
 </details>
 
 Status: <https://rpc.ams.mamochain.com/status>

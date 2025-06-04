@@ -59,6 +59,11 @@ celestia bridge init --core.ip <URI> --core.port <port>
 Refer to
 [the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
 for information on which ports are required to be open on your machine.
+
+When connecting your bridge node to a localhost consensus node, ensure that gRPC
+is properly configured in your consensus node's `app.toml` file. The `[grpc]`
+section should have `enable = true` and the appropriate address setting for the
+bridge node to connect successfully.
 :::
 
 Using an RPC of your own, or one from
