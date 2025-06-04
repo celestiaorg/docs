@@ -93,7 +93,7 @@ This command adds the specified account to the `genesis.json` file that was crea
 If you encounter an "unknown command" error, ensure that:
 - You have properly installed `celestia-app` following the [installation guide](/how-to-guides/celestia-app.md)
 - You have run `celestia-appd init` in the current directory first
-- You are using the correct command `celestia-appd` (not `celestia-node`)
+- You are using the correct command `celestia-appd` (not `celestia`)
 :::
 
 ### Optional: Adding other validators
