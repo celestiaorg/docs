@@ -402,10 +402,6 @@ function sidebarHome() {
                   text: "Networks overview",
                   link: "/how-to-guides/participate",
                 },
-                {
-                  text: "Local devnet",
-                  link: "/how-to-guides/local-devnet",
-                },
                 { text: "Mainnet Beta", link: "/how-to-guides/mainnet" },
                 { text: "Mocha testnet", link: "/how-to-guides/mocha-testnet" },
                 {
@@ -415,6 +411,10 @@ function sidebarHome() {
                 {
                   text: "Mammoth testnet",
                   link: "/how-to-guides/mammoth",
+                },
+                {
+                  text: "Local devnet",
+                  link: "/how-to-guides/local-devnet",
                 },
               ],
             },
