@@ -26,7 +26,7 @@ cd sp1-blobstream
    [sp1-blobstream README](https://github.com/succinctlabs/sp1-blobstream?tab=readme-ov-file#deployment).
 
 3. If you're deploying on a chain where there isn't a canonical verifier listed in the
-   [deployed contracts](https://docs.celestia.org/how-to-guides/blobstream#deployed-contracts), you'll need to:
+   [deployed contracts](/how-to-guides/blobstream#deployed-contracts), you'll need to:
 
    a. Deploy your own SP1 Verifier from the [sp1-contracts](https://github.com/succinctlabs/sp1-contracts) matching your `sp1-sdk` version.
    b. Set the `SP1_VERIFIER_ADDRESS` in your `.env` file to the address of your deployed verifier.
