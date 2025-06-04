@@ -46,9 +46,8 @@ celestia light init --p2p.network mocha
 ### 2. Get and set the trusted height and hash automatically
 
 ```sh
-# Get both the height and hash values
-export TRUSTED_HEIGHT=$(curl -s "https://rpc-mocha.pops.one/header" | jq -r '.result.header.height') 
-export TRUSTED_HASH=$(curl -s "https://rpc-mocha.pops.one/header" | jq -r '.result.header.last_block_id.hash')
+# Get both the height and hash values in a single call
+read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
 
 # Use sed to find and replace the SampleFrom value in the config file (macOS version)
 sed -i '' "s/SampleFrom = .*/SampleFrom = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
