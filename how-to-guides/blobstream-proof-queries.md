@@ -115,10 +115,10 @@ Check the above diagram which shows:
 So, if we're able to prove:
 
 - That a share is part of a row, then that row is
-committed to by a data root.
+  committed to by a data root.
 - Then, prove that data root along with its
-height is committed to by the data root tuple root, which gets saved to the
-Blobstream contract.
+  height is committed to by the data root tuple root, which gets saved to the
+  Blobstream contract.
 
 We can be sure that share was committed to in
 the corresponding Celestia block.
@@ -199,6 +199,7 @@ Example response:
   }
 }
 ```
+
 </div>
 
 > **_NOTE:_** These values are base64 encoded. For these to be usable
@@ -241,6 +242,7 @@ func main() {
 	fmt.Println(dcProof.Proof.String())
 }
 ```
+
 </div>
 
 <!-- markdownlint-disable MD013 -->
@@ -424,7 +426,9 @@ import {
   sp1blobstreamwrapper "github.com/succinctlabs/sp1-blobstream/bindings"
 }
 ```
+
 :::
+
 </div>
 
 <!-- markdownlint-enable MD013 -->
@@ -523,6 +527,7 @@ Example response:
   }
 }
 ```
+
 </div>
 
 The `proof` field contains the transaction inclusion proof to the data root.
@@ -531,8 +536,8 @@ Also, the share range where this transaction spans is the end exclusive range de
 by `proof.share_proofs[0].start` and `proof.share_proofs[0].end`.
 
 > > **_NOTE:_** The values are base64 encoded. For these to be usable
-> with the solidity smart contract, they need to be converted to `bytes32`.
-> Check the next section for more information.
+> > with the solidity smart contract, they need to be converted to `bytes32`.
+> > Check the next section for more information.
 
 #### Golang client
 
@@ -603,6 +608,7 @@ func queryShareRange() error {
 	}
 }
 ```
+
 </div>
 
 With the `<transaction_hash>` being the transaction hash of the PFB containing the blob
@@ -682,11 +688,12 @@ Example response:
   }
 }
 ```
+
 </div>
 
 > > **_NOTE:_** The values are base64 encoded. For these to be usable
-> with the solidity smart contract, they need to be converted to `bytes32`.
-> Check the next section for more information.
+> > with the solidity smart contract, they need to be converted to `bytes32`.
+> > Check the next section for more information.
 
 :::tip WARNING
 As of Celestia-app [v1.10.0](https://github.com/celestiaorg/celestia-app/releases/tag/v1.10.0), the
@@ -753,6 +760,7 @@ struct AttestationProof {
     BinaryMerkleProof proof;
 }
 ```
+
 </div>
 
 <!-- markdownlint-enable MD013 -->
@@ -900,6 +908,7 @@ func toNamespaceNode(node []byte) *client.NamespaceNode {
 	}
 }
 ```
+
 </div>
 
 with `proofs` being `sharesProof.ShareProofs`.
@@ -1017,6 +1026,7 @@ func toRowProofs(proofs []*merkle.Proof) []client.BinaryMerkleProof {
 	return rowProofs
 }
 ```
+
 </div>
 
 with `proofs` being `sharesProof.RowProof.Proofs`.
@@ -1102,6 +1112,7 @@ func toAttestationProof(
 	}
 }
 ```
+
 </div>
 
 With the `nonce` being the attestation nonce, which can be retrieved using `Blobstream`
@@ -1128,6 +1139,7 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 <div style="overflow-y: auto; max-height: 400px;">
 
 ::: code-group
+
 ```go [BlobstreamX]
 	// get the nonce corresponding to the block height that contains the PayForBlob transaction
 	// since BlobstreamX emits events when new batches are submitted, we will query the events
@@ -1197,7 +1209,9 @@ import {
 }
 // and use the `BlobstreamDataCommitmentStored` event instead.
 ```
+
 :::
+
 </div>
 
 ### Listening to new data commitments
@@ -1258,6 +1272,7 @@ import {
 ```
 
 :::
+
 </div>
 
 <!-- markdownlint-enable MD013 -->
@@ -1295,6 +1310,7 @@ contract SimpleRollup {
     }
 }
 ```
+
 </div>
 
 Then, you can submit the fraud proof using golang as follows:

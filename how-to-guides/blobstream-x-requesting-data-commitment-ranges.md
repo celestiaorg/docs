@@ -1,7 +1,7 @@
 ---
 prev:
-    text: "Overview of Blobstream X"
-    link: "/how-to-guides/blobstreamx"
+  text: "Overview of Blobstream X"
+  link: "/how-to-guides/blobstreamx"
 ---
 
 # Requesting data commitment ranges
