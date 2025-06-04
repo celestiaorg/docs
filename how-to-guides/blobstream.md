@@ -33,7 +33,6 @@ The original [Blobstream X repository](https://github.com/succinctlabs/blobstrea
 is now archived. Active development has moved to SP1 Blobstream.
 :::
 
-Please note: While Blobstream is now in production on several chains, users should evaluate their own risk tolerance when integrating with Blobstream deployments.
 
 ### Implementations of Blobstream
 
@@ -118,7 +117,7 @@ The current Blobstream deployments all use SP1 Blobstream.
 ZK implementation of Blobstream using the [RISC Zero](https://github.com/risc0/risc0) zkVM.
 This implementation provides another option for teams that prefer RISC Zero's technology stack.
 
-RISC Zero Blobstream offers similar functionality to SP1 Blobstream but utilizes
+Blobstream0 offers similar functionality to SP1 Blobstream but uses
 RISC Zero's zkVM for generating validity proofs of Celestia block headers.
 While the current production deployments use SP1 Blobstream, RISC Zero Blobstream
 serves as an important alternative implementation that demonstrates the flexibility

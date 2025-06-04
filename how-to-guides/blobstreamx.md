@@ -25,7 +25,7 @@ Blobstream X is built and deployed with
 
 :::tip NOTE
 Current Blobstream deployments use SP1 Blobstream, not BlobstreamX circuits.
-This documentation is maintained for historical reference and existing BlobstreamX deployments.
+This documentation is maintained for historical reference.
 :::
 
 You can [find the repository for Blobstream X](https://github.com/succinctlabs/blobstreamx)
