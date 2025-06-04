@@ -44,6 +44,7 @@ Set some variables for your accounts for the remainder of the guide:
 export GRANTER_ADDRESS=<your-granter-account-address>
 export GRANTEE_ADDRESS=<your-grantee-account-address>
 export RPC_URL=rpc-mocha.pops.one
+export RPC_PORT=9090
 ```
 
 ### FeeGrant module implementation in celestia-node
@@ -184,7 +185,7 @@ Then, send the feegrant transaction:
 ```bash-vue
 celestia-appd tx feegrant grant \
   $GRANTER_ADDRESS $GRANTEE_ADDRESS \
-  --node $RPC_URL \
+  --node $RPC_URL:$RPC_PORT \
   --spend-limit 1000000utia \
   --allowed-messages "/cosmos.bank.v1beta1.MsgSend,/celestia.blob.v1.MsgPayForBlobs" \
   --chain-id {{constants.mochaChainId}} \
@@ -198,6 +199,24 @@ celestia-appd tx feegrant grant \
 
 Example:
 [FeeGrant transaction on Mocha](https://mocha.celenium.io/tx/802a17777fbeab416f6fa2c25f0c56dd9cc8a92afc2a96293d114ac7c22efb5c)
+
+### Using a grantee account to send transactions with celestia-appd
+
+Once a fee grant has been established, the grantee can submit transactions using the granter's account to pay fees:
+
+```bash-vue
+celestia-appd tx blob pay-for-blob 0x42690c204d39600fddd3 0x676d \
+  --node $RPC_URL:$RPC_PORT \
+  --chain-id {{constants.mochaChainId}} \
+  --from $GRANTEE_ADDRESS \
+  --keyring-backend test \
+  --fee-granter $GRANTER_ADDRESS \
+  --fees 20000utia \
+  --broadcast-mode block \
+  --yes
+```
+
+Note the `--fee-granter` flag which specifies the account that will pay for the transaction fees.
 
 ### Optional: Checking the granter's account
 
