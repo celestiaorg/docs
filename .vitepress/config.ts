@@ -589,17 +589,6 @@ function sidebarHome() {
                   ],
                 },
                 {
-                  text: "Astria",
-                  collapsed: true,
-                  items: [
-                    { text: "Documentation", link: "https://docs.astria.org" },
-                    {
-                      text: "Just deploy",
-                      link: "https://docs.astria.org/developer/tutorials/install-the-cli",
-                    },
-                  ],
-                },
-                {
                   text: "Optimism",
                   collapsed: true,
                   items: [

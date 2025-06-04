@@ -33,6 +33,10 @@ exclude = [
     # Social media platforms
     "https://discord.gg/*",
     "https://discord.com/*",
+    # Additional exclusions per CI feedback request
+    "https://validao.xyz/*",
+    "https://faucet.celestia*",
+    "https://dl.acm.org/doi/abs/10.1145/98163.98167",
     # skip any templates used in URLs for `.vitepress/components/*.vue`
     # matches "{.*}" literals in URLs
     '\%7B.*\%7D',
