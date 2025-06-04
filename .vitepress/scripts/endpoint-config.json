@@ -1,0 +1,41 @@
+{
+  "networks": {
+    "mocha": {
+      "chainId": "mocha-4",
+      "grpcEndpoints": {
+        "archival": [
+          "grpc.archive.mocha.cumulo.com.es:443"
+        ],
+        "pruned": [],
+        "unverified": [
+          "public-celestia-mocha4-consensus.numia.xyz:9090",
+          "grpc-mocha.pops.one",
+          "grpc.celestia-mocha.com:443",
+          "full.consensus.mocha-4.celestia-mocha.com:9090",
+          "consensus-full-mocha-4.celestia-mocha.com:9090",
+          "celestia-testnet.brightlystake.com:9390",
+          "grpc-celestia-mocha.trusted-point.com:9099",
+          "grpc-celestia-testnet-01.stakeflow.io:16002",
+          "mocha.grpc.cumulo.me:443",
+          "grpc-1.testnet.celestia.nodes.guru:10790",
+          "grpc-2.testnet.celestia.nodes.guru:10790",
+          "celestia-testnet-grpc.itrocket.net:443",
+          "celestia-t-grpc.noders.services:21090",
+          "celestiam.grpc.lava.build:443",
+          "grpc-celestia-testnet.mzonder.com:443"
+        ]
+      }
+    }
+  },
+  "archivalIndicators": [
+    "archive",
+    "archival",
+    "full-history"
+  ],
+  "prunedIndicators": [
+    "pruned",
+    "recent"
+  ],
+  "lastUpdated": "2025-01-04",
+  "notes": "This configuration tracks the classification of gRPC endpoints for different Celestia networks. Endpoints are classified as archival (full blockchain history), pruned (recent history), or unverified (manual check needed)."
+}
