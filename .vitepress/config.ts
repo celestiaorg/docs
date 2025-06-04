@@ -6,7 +6,7 @@ const telegramSVG = ` <svg width="24" height="24" viewBox="0 0 24 24" fill="none
 
 const { BASE: base = "/" } = process.env;
 
-// https://vitepress.dev/concepts/site-config
+// VitePress site configuration
 export default {
   lang: "en-US",
   title: "Celestia Docs",
@@ -111,7 +111,7 @@ export default {
   ],
 
   themeConfig: {
-    // https://vitepress.dev/concepts/default-theme-config
+    // VitePress default theme configuration
     nav: nav(),
     outline: {
       level: "deep",
@@ -224,7 +224,7 @@ export default {
           content:
             pageData.description || "The first modular blockchain network.",
         },
-      ]
+      ],
     );
   },
 };
@@ -411,7 +411,11 @@ function sidebarHome() {
                 {
                   text: "Mammoth testnet",
                   link: "/how-to-guides/mammoth",
-                }
+                },
+                {
+                  text: "Local devnet",
+                  link: "/how-to-guides/local-devnet",
+                },
               ],
             },
             {
@@ -490,7 +494,7 @@ function sidebarHome() {
                     },
                     {
                       text: "Datastore structure",
-                      link: "how-to-guides/celestia-node-store-structure",
+                      link: "/how-to-guides/celestia-node-store-structure",
                     },
                     {
                       text: "Troubleshooting",
@@ -593,10 +597,6 @@ function sidebarHome() {
                   collapsed: true,
                   items: [
                     { text: "Documentation", link: "https://docs.astria.org" },
-                    {
-                      text: "Just deploy",
-                      link: "https://docs.astria.org/developer/tutorials/install-the-cli",
-                    },
                   ],
                 },
                 {
@@ -610,10 +610,6 @@ function sidebarHome() {
                     {
                       text: "Run an OP Stack devnet posting to Celestia",
                       link: "/how-to-guides/optimism",
-                    },
-                    {
-                      text: "Raspberry testnet",
-                      link: "https://raas.gelato.network/rollups/details/public/opcelestia-raspberry",
                     },
                     {
                       text: "Audit",
@@ -863,6 +859,10 @@ function sidebarHome() {
         {
           text: "Celestia Foundation Delegation Program",
           link: "/community/foundation-delegation-program",
+        },
+        {
+          text: "Celestia Foundation Ecosystem Delegation Program",
+          link: "/community/foundation-ecosystem-delegation-program",
         },
         {
           text: "Modular Meetups",

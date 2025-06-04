@@ -1,5 +1,6 @@
 .vitepress/dist
 node_modules
+package-lock.json
 .vitepress/cache/**
 *.log
 *.tgz
@@ -8,3 +9,8 @@ node_modules
 .temp
 .vite_opt_cache
 .vscode
+.lycheecache
+
+# Go build artifacts
+go.sum
+example_test

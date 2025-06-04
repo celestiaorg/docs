@@ -32,6 +32,15 @@ Archive snapshots contain the complete blockchain history, including all histori
 - Operating a consensus node that needs to support historical queries
 - Building an application that requires access to past states
 
+## Quick setup with ITRocket
+
+ITRocket provides comprehensive setup services for both mainnet and testnet, including automated installation scripts, snapshots, and state sync services:
+
+- **Mainnet**: [itrocket.net/services/mainnet/celestia/](https://itrocket.net/services/mainnet/celestia/) - Complete setup guides and tools
+- **Mocha testnet**: [itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Complete setup guides and tools
+
+Their services include installation scripts, state sync, snapshots, RPC endpoints, and monitoring tools all in one place.
+
 ## Available snapshot providers
 
 ### Mainnet beta
@@ -40,7 +49,7 @@ Archive snapshots contain the complete blockchain history, including all histori
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | Stake Town    | [Pruned](https://services.stake-town.com/home/mainnet/celestia/sync)                                                                           | -                                                                          |
 | ITRocket      | [Pruned](https://itrocket.net/services/mainnet/celestia/) • [Archive](https://itrocket.net/services/mainnet/celestia/)                         | [Archive](https://itrocket.net/services/mainnet/celestia/)                 |
-| Polkachu      | [Pruned](https://polkachu.com/tendermint_snapshots/celestia) • [Archive](https://polkachu.com/archive_snapshots/celestia/)                     | -                                                                          |
+| Polkachu      | [Pruned](https://polkachu.com/tendermint_snapshots/celestia)                                                                                   | -                                                                          |
 | kjnodes       | [Pruned](https://services.kjnodes.com/mainnet/celestia/snapshot/) • [Archive](https://services.kjnodes.com/mainnet/celestia/snapshot-archive/) | -                                                                          |
 | Tienthuattoan | [Pruned](https://services.tienthuattoan.com/mainnet/celestia/snapshot)                                                                         | -                                                                          |
 | Noders        | [Pruned](https://noders.services/mainnet-networks/celestia/snapshot/)                                                                          | -                                                                          |

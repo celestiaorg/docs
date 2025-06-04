@@ -54,6 +54,12 @@ to the correct instructions on this page on how to connect to Mocha.
 
 <MochaVersionTags/>
 
+## Network status
+
+For real-time network status information, including uptime, incident reports,
+and service availability, visit the
+[official Celestia Mocha testnet status page](https://status.celestia.dev/status/mocha).
+
 ## RPC for DA bridge, full, and light nodes
 
 ### Production RPC endpoints
@@ -61,13 +67,18 @@ to the correct instructions on this page on how to connect to Mocha.
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD034 -->
 
-These RPC providers are meant to be used in production environments.
+These RPC providers are meant to be used in production environments
+and for specific use cases that require reliable access to full block
+history, such as:
 
-| Provider | URL |
-|--------|--------|
-| Grove | <https://www.grove.city/> |
-| Numia | For RPC access: <https://docs.numia.xyz/infra/overview/getting-started> |
-| Numia | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia> |
+- Running Bridge Nodes that download data from core RPC endpoints
+- Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
+
+| Provider  | URL                                                                                       |
+| --------- | ----------------------------------------------------------------------------------------- |
+| Grove     | <https://www.grove.city/>                                                                 |
+| Numia     | For RPC access: <https://docs.numia.xyz/infra/overview/getting-started>                   |
+| Numia     | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia>     |
 | QuickNode | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) |
 
 :::warning
@@ -76,6 +87,14 @@ for production deployments. Production deployments should rely
 on [service providers with SLAs](#production-rpc-endpoints) or
 your own node.
 :::
+
+### Node setup and tools
+
+Several community providers offer comprehensive node setup tools, installation scripts, and monitoring services to help node operators get started quickly:
+
+| Provider | Installation guide                                             | State sync                                                    | Monitoring tools                                                |
+| -------- | -------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------- |
+| ITRocket | [Setup guide](https://itrocket.net/services/testnet/celestia/) | [State sync](https://itrocket.net/services/testnet/celestia/) | [Chain status](https://itrocket.net/services/testnet/celestia/) |
 
 ### Community bridge and full node endpoints
 
@@ -189,7 +208,6 @@ broadcast transactions.
 
 - `celestiam.tendermintrpc.lava.build`
 
-
 ## Community bridge and full node endpoints
 
 The endpoints below are for bridge and full nodes only. They can be used to
@@ -225,7 +243,7 @@ USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER DISTRIBUTION OF
 MAINNET CELESTIA TOKENS.
 :::
 
-### Discord 
+### Discord
 
 You can request from Mocha testnet Faucet on the #mocha-faucet channel on
 Celestia's Discord server with the following command:
@@ -249,6 +267,13 @@ The web faucet is available at [https://mocha.celenium.io/faucet](https://mocha.
 The following websites provide analytics for Mocha Testnet:
 
 - <https://cosmoslist.co/testnet/celestia>
+- [https://itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Node setup, monitoring, and chain status tools
+
+## Node maps
+
+The following websites provide visual maps of Celestia DA nodes:
+
+- [https://validao.xyz/#maps-celestia-testnet-da](https://validao.xyz/#maps-celestia-testnet-da) (community contribution)
 
 ## Explorers
 
@@ -261,6 +286,7 @@ There are several explorers you can use for Mocha:
 - `https://testnet.celestia.explorers.guru`
 - `https://testnet.itrocket.net/celestia`
 - `https://testnet.celestia.valopers.com/`
+- `https://explorer.chainroot.io/celestia-testnet-mocha4`
 
 ## Network upgrades
 
