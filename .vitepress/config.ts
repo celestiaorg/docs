@@ -412,6 +412,10 @@ function sidebarHome() {
                   text: "Mammoth testnet",
                   link: "/how-to-guides/mammoth",
                 },
+                {
+                  text: "Local devnet",
+                  link: "/how-to-guides/local-devnet",
+                },
               ],
             },
             {
