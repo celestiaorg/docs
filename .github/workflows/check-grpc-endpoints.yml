@@ -1,0 +1,78 @@
+name: Update gRPC Endpoint Classifications
+
+on:
+  schedule:
+    # Run weekly on Sundays at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+    # Allow manual triggering
+
+jobs:
+  check-endpoints:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'yarn'
+        
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: Check gRPC endpoints
+      run: yarn check-grpc-endpoints > endpoint-check-results.txt
+      
+    - name: Upload results as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: endpoint-check-results
+        path: endpoint-check-results.txt
+        retention-days: 30
+        
+    - name: Create issue for manual review
+      if: success()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const results = fs.readFileSync('endpoint-check-results.txt', 'utf8');
+          
+          const issueBody = `## gRPC Endpoint Classification Results
+          
+          The automated endpoint checker has completed its weekly scan. Please review the results below and update the endpoint configuration if needed.
+          
+          ### Results
+          
+          \`\`\`
+          ${results}
+          \`\`\`
+          
+          ### Actions Required
+          
+          1. Review the classification results above
+          2. Manually verify any "Unknown" endpoints 
+          3. Update \`.vitepress/scripts/endpoint-config.json\` with confirmed classifications
+          4. Run \`yarn generate-grpc-docs\` to update documentation
+          5. Close this issue when complete
+          
+          ### Files to Update
+          
+          - \`.vitepress/scripts/endpoint-config.json\` - Add confirmed classifications
+          - \`how-to-guides/mocha-testnet.md\` - Will be updated automatically by the generator
+          
+          ---
+          
+          This issue was created automatically by the gRPC endpoint checker workflow.`;
+          
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `Weekly gRPC Endpoint Classification Review - ${new Date().toISOString().split('T')[0]}`,
+            body: issueBody,
+            labels: ['documentation', 'endpoints', 'automated']
+          });

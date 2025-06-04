@@ -199,8 +199,8 @@ These endpoints require manual verification to determine if they are archival or
 - `public-celestia-mocha4-consensus.numia.xyz:9090`
 - `grpc-mocha.pops.one`
 - `grpc.celestia-mocha.com:443`
-- `full.consensus.mocha-4.celestia-mocha.com:9090`
-- `consensus-full-mocha-4.celestia-mocha.com:9090`
+- `full.consensus.{{constants.mochaChainId}}.celestia-mocha.com:9090`
+- `consensus-full-{{constants.mochaChainId}}.celestia-mocha.com:9090`
 - `celestia-testnet.brightlystake.com:9390`
 - `grpc-celestia-mocha.trusted-point.com:9099`
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
