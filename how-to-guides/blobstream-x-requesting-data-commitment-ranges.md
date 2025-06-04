@@ -6,6 +6,13 @@ prev:
 
 # Requesting data commitment ranges
 
+:::warning DEPRECATED
+This documentation is for BlobstreamX, which is the previous implementation of Blobstream.
+The [BlobstreamX repository](https://github.com/succinctlabs/blobstreamx) is now archived.
+
+For current deployments, see [SP1 Blobstream](/how-to-guides/sp1-blobstream-deploy.md) documentation.
+:::
+
 By default, the Blobstream X deployments on Ethereum will be
 updated every 4 hours, and on Arbitrum One
 and Base, updating every 1 hour. If you wish for the Blobstream X contract

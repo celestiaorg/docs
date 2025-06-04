@@ -17,24 +17,27 @@ developers to build high-throughput L2s using Celestia's optimised DA layer,
 the first with Data Availability Sampling (DAS). Any ecosystem can deploy a
 Blobstream light client onchain to allow L2s and L3s to access DA from Celestia.
 
-An implementation of Blobstream, by [Succinct](https://platform-docs.succinct.xyz/), called
+An implementation of Blobstream, by [Succinct](https://docs.succinct.xyz/), called
 [Blobstream X](https://github.com/succinctlabs/blobstreamx), is out
 and will be used in the upcoming deployments. This implementation proves the
 validity of Celestia block headers on a target EVM chain using zero-knowledge (ZK)
 proofs, which allow inheriting all the security
 guarantees of Celestia.
 
-The latest implementation of Blobstream X is [SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream),
+The latest implementation of Blobstream is [SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream),
 which is written in Rust for the SP1 zkVM. SP1 Blobstream offers improved performance and
 efficiency while maintaining the security guarantees of the original Blobstream X.
 
-Please note: Blobstream remains early-stage, experimental software and
-users should use Blobstream at their own risk.
+:::tip NOTE
+The original [Blobstream X repository](https://github.com/succinctlabs/blobstreamx)
+is now archived. Active development has moved to SP1 Blobstream.
+:::
 
 ### Implementations of Blobstream
 
 - [SP1 Blobstream](#what-is-sp1-blobstream) (an implementation of Blobstream X)
-- [Blobstream X](#what-is-blobstream-x)
+- [Blobstream X](/how-to-guides/blobstreamx.md)
+- [Blobstream0](#risc-zero-blobstream) (RISC Zero implementation)
 
 ## Blobstream vs. data availability committees (DACs)
 
@@ -106,6 +109,21 @@ repo.
 :::tip NOTE
 The current Blobstream deployments all use SP1 Blobstream.
 :::
+
+## RISC Zero Blobstream
+
+[RISC Zero Blobstream](https://github.com/risc0/blobstream0) is an alternative
+ZK implementation of Blobstream using the [RISC Zero](https://github.com/risc0/risc0) zkVM.
+This implementation provides another option for teams that prefer RISC Zero's technology stack.
+
+Blobstream0 offers similar functionality to SP1 Blobstream but uses
+RISC Zero's zkVM for generating validity proofs of Celestia block headers.
+While the current production deployments use SP1 Blobstream, RISC Zero Blobstream
+serves as an important alternative implementation that demonstrates the flexibility
+of the Blobstream architecture.
+
+You can [find the repository for RISC Zero Blobstream](https://github.com/risc0/blobstream0)
+which includes the necessary components for deployment and integration.
 
 ## Integrate with SP1 Blobstream
 
