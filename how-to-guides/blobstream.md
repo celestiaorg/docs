@@ -38,7 +38,7 @@ Please note: While Blobstream is now in production on several chains, users shou
 ### Implementations of Blobstream
 
 - [SP1 Blobstream](#what-is-sp1-blobstream) (an implementation of Blobstream X)
-- [Blobstream X](#what-is-blobstream-x)
+- [Blobstream X](/how-to-guides/blobstreamx.md)
 - [Blobstream0](#risc-zero-blobstream) (RISC Zero implementation)
 
 ## Blobstream vs. data availability committees (DACs)
