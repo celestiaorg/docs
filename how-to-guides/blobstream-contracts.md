@@ -2,8 +2,8 @@
 sidebar_label: Integrate with Blobstream contracts
 description: Learn how to integrate your L2's onchain logic with Blobstream
 prev:
-    text: "Overview of Blobstream"
-    link: "/how-to-guides/blobstream"
+  text: "Overview of Blobstream"
+  link: "/how-to-guides/blobstream"
 ---
 
 # Integrate with Blobstream contracts

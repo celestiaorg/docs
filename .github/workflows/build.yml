@@ -15,11 +15,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: yarn 
+          cache: yarn # or pnpm / npm
       - name: Install dependencies
-        run: yarn install 
+        run: yarn install # or pnpm install / npm ci
+      - name: Lint JavaScript/TypeScript
+        run: yarn eslint
+      - name: Check formatting
+        run: yarn prettier --check '**/*.{js,jsx,ts,tsx,md,json,css,scss}'
+      - name: Lint Markdown
+        run: yarn lint:md
+        continue-on-error: true
       - name: Build with VitePress
-        run: yarn build 
+        run: yarn build # or pnpm build / npm run build 
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
@@ -34,4 +41,4 @@ jobs:
           gofmt -l example_test.go
           # Test compilation (may timeout but will catch syntax errors)
           timeout 300s go build example_test.go || echo "Note: Build may timeout due to dependencies, but syntax was validated"
-          echo "Go compilation test passed!" 
+          echo "Go compilation test passed!"

@@ -7,15 +7,15 @@ description: How to get started with local development on the Arbitrum Nitro sta
 1. Install docker and docker compose.
 1. Clone [@celestiaorg/nitro](https://github.com/celestiaorg/nitro.git):
 
-    ```
-    git clone -b release --recurse-submodules https://github.com/celestiaorg/nitro.git
-    git checkout v3.2.5 && cd /nitro/nitro-testnode
-    ```
+   ```
+   git clone -b release --recurse-submodules https://github.com/celestiaorg/nitro.git
+   git checkout v3.2.5 && cd /nitro/nitro-testnode
+   ```
 
 1. `./celestia-start.sh`
 1. Some useful optional commands to use with the start script:
-    - `--validate` (heavy computation, validates all blocks in WASM)
-    - `--anytrsut` (launches anytrust DAC locally, useful to test anytrust fallbacks)
+   - `--validate` (heavy computation, validates all blocks in WASM)
+   - `--anytrsut` (launches anytrust DAC locally, useful to test anytrust fallbacks)
 
 ## Helper scripts
 
@@ -39,11 +39,11 @@ Here's an example of how to run the script that funds an address on L2. Replace`
 
 Node RPC endpoints are available at:
 
-| Node | Chain id | RPC endpoint |
-| --- | --- | --- |
-| L1 geth devnet | 1337 | `http://localhost:8545` |
-| L2 nitro devnet | 412346 | `http://localhost:8547` and `ws://localhost:8548` |
-| L3 nitro (if enabled) | 333333 | `http://localhost:3347` |
-| Celestia DA server |  | `http://localhost:9875` |
-| Anytrust  |  | `http://localhost:9876` |
-| Celestia Node |  | `http://localhost:26658` |
+| Node                  | Chain id | RPC endpoint                                      |
+| --------------------- | -------- | ------------------------------------------------- |
+| L1 geth devnet        | 1337     | `http://localhost:8545`                           |
+| L2 nitro devnet       | 412346   | `http://localhost:8547` and `ws://localhost:8548` |
+| L3 nitro (if enabled) | 333333   | `http://localhost:3347`                           |
+| Celestia DA server    |          | `http://localhost:9875`                           |
+| Anytrust              |          | `http://localhost:9876`                           |
+| Celestia Node         |          | `http://localhost:26658`                          |

@@ -224,7 +224,7 @@ export default {
           content:
             pageData.description || "The first modular blockchain network.",
         },
-      ]
+      ],
     );
   },
 };
@@ -411,7 +411,7 @@ function sidebarHome() {
                 {
                   text: "Mammoth testnet",
                   link: "/how-to-guides/mammoth",
-                }
+                },
               ],
             },
             {
