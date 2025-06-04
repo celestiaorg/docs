@@ -589,6 +589,13 @@ function sidebarHome() {
                   ],
                 },
                 {
+                  text: "Astria",
+                  collapsed: true,
+                  items: [
+                    { text: "Documentation", link: "https://docs.astria.org" },
+                  ],
+                },
+                {
                   text: "Optimism",
                   collapsed: true,
                   items: [
