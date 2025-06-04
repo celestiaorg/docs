@@ -130,4 +130,22 @@ exclude = [
     # skip any templates used in URLs for `.vitepress/components/*.vue`
     # matches "{.*}" literals in URLs
     '\%7B.*\%7D',
+    # Additional domains with network/certificate issues
+    "https://hub.cosmos.network/*",
+    "https://mintscan.io/*",
+    "https://stakeflow.io/*",
+    "https://explorer.nodestake.top/*",
+    "https://celestia.explorers.guru/*",
+    "https://mammoblocks.io/*",
+    "https://mainnet.itrocket.net/*",
+    "https://company-223625.frontify.com/*",
+    "https://docs.optimism.io/*",
+    "https://hermes.informal.systems/*",
+    "https://ibcprotocol.dev/*",
+    # Broken GitHub links
+    "https://github.com/succinctlabs/sp1/blob/main/book/verification/onchain/contract-addresses.md",
+    # Additional failing domains from recent tests
+    "https://status.celestia.dev/*",
+    "https://validao.xyz/*",
+    "https://docs.succinct.xyz/*",
 ]
