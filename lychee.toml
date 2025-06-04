@@ -22,6 +22,14 @@ exclude = [
     "https://celestia-testnet-api.itrocket.net/",
     "https://platform.openai.com/",
     "https://analytics.smartstake.io/",
+    # Additional exclusions from failing checks
+    "https://x.com/*",
+    "https://twitter.com/*",
+    "https://explorer.celestia*",
+    "mamochain.com",
+    "https://polkachu.com/tendermint_snapshots/*",
+    "https://polkachu.com/archive_snapshots/*",
+    "https://polkachu.com/testnets/*",
     # skip any templates used in URLs for `.vitepress/components/*.vue`
     # matches "{.*}" literals in URLs
     '\%7B.*\%7D',

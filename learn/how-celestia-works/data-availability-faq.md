@@ -131,7 +131,6 @@ Up until now it’s been all about transaction data, but blockchain state is a
 related topic. The state is different from transaction data. Specifically, the
 state is like a current snapshot of the network, which includes information
 about account balances, smart contract balances, and validator set info.
-[Problems that arise](https://forum.celestia.org/t/the-state-growth-problem-in-a-modular-blockchain-ecosystem/325)
 from the size of the state are different in nature than those around
 data availability and retrievability.
 

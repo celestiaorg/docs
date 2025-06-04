@@ -918,7 +918,7 @@ The example transaction can be
 ### Post an SVG as a PFB
 
 If you'd like to create your own SVG, post it to Celestia, and retrieve it,
-you can check out the [Base64 SVG Tutorial](https://based64.xyz/).
+you can create your own Base64 encoded SVG using any Base64 encoder tool.
 
 ### Troubleshooting
 
