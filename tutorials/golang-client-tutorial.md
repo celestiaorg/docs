@@ -42,7 +42,7 @@ The default URL is `http://localhost:26658`. If you would like to use subscripti
 
 The [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit) method takes a slice of blobs and a gas price, returning the height the blob was successfully posted at.
 
-- The namespace can be generated with `share.NewBlobNamespaceV0`.
+- The namespace can be generated with `share.NewV0Namespace`.
 - The blobs can be generated with `blob.NewBlobV0`.
 - You can use `blob.NewSubmitOptions()`, which has celestia-node automatically determine an appropriate gas price. To set your own gas price, use `blob.NewSubmitOptions().WithGasPrice(X)`. The available options are `WithGasPrice`, `WithGas`, `WithKeyName`, `WithSignerAddress`, and `WithFeeGranterAddress`.
 
