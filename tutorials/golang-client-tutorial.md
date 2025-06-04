@@ -111,7 +111,7 @@ func SubscribeBlobs(ctx context.Context, url string, token string) error {
     defer client.Close() // We close the WebSocket connection after use
 
     // create a namespace to filter blobs with
-    namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+    namespace, err := share.NewV0Namespace([]byte{0xDE, 0xAD, 0xBE, 0xEF})
     if err != nil {
         return err
     }
@@ -147,7 +147,7 @@ func SubscribeHeaders(ctx context.Context, url string, token string) error {
     defer client.Close() // We close the WebSocket connection after usage
 
     // create a namespace to filter blobs with
-    namespace, err := share.NewBlobNamespaceV0([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+    namespace, err := share.NewV0Namespace([]byte{0xDE, 0xAD, 0xBE, 0xEF})
     if err != nil {
         return err
     }
