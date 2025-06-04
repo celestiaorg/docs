@@ -7,7 +7,7 @@ next:
 # New Blobstream X deployments
 
 :::warning DEPRECATED
-BlobstreamX is the previous implementation of Blobstream. The [BlobstreamX repository](https://github.com/succinctlabs/blobstreamx) is now archived. 
+BlobstreamX is the previous implementation of Blobstream. The [BlobstreamX repository](https://github.com/succinctlabs/blobstreamx) is now archived.
 
 For new deployments, consider using [SP1 Blobstream](/how-to-guides/sp1-blobstream-deploy.md) instead.
 This documentation is maintained for existing BlobstreamX deployments only.

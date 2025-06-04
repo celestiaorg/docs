@@ -7,7 +7,7 @@ prev:
 # Requesting data commitment ranges
 
 :::warning DEPRECATED
-This documentation is for BlobstreamX, which is the previous implementation of Blobstream. 
+This documentation is for BlobstreamX, which is the previous implementation of Blobstream.
 The [BlobstreamX repository](https://github.com/succinctlabs/blobstreamx) is now archived.
 
 For current deployments, see [SP1 Blobstream](/how-to-guides/sp1-blobstream-deploy.md) documentation.

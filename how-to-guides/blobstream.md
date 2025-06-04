@@ -29,7 +29,7 @@ which is written in Rust for the SP1 zkVM. SP1 Blobstream offers improved perfor
 efficiency while maintaining the security guarantees of the original Blobstream X.
 
 :::tip NOTE
-The original [Blobstream X repository](https://github.com/succinctlabs/blobstreamx) 
+The original [Blobstream X repository](https://github.com/succinctlabs/blobstreamx)
 is now archived. Active development has moved to SP1 Blobstream.
 :::
 
@@ -114,12 +114,12 @@ The current Blobstream deployments all use SP1 Blobstream.
 
 ## RISC Zero Blobstream
 
-[RISC Zero Blobstream](https://github.com/risc0/blobstream0) is an alternative 
+[RISC Zero Blobstream](https://github.com/risc0/blobstream0) is an alternative
 ZK implementation of Blobstream using the [RISC Zero](https://github.com/risc0/risc0) zkVM.
 This implementation provides another option for teams that prefer RISC Zero's technology stack.
 
 RISC Zero Blobstream offers similar functionality to SP1 Blobstream but utilizes
-RISC Zero's zkVM for generating validity proofs of Celestia block headers. 
+RISC Zero's zkVM for generating validity proofs of Celestia block headers.
 While the current production deployments use SP1 Blobstream, RISC Zero Blobstream
 serves as an important alternative implementation that demonstrates the flexibility
 of the Blobstream architecture.
