@@ -529,3 +529,67 @@ To reduce the log level, you can modify the `log_level` field in your `config.to
 -log_level = "info"
 +log_level = "*:error,p2p:info,state:info"
 ```
+
+### Passthrough command for historical queries
+
+Starting with celestia-app v4.0.0, the `passthrough` command allows you to invoke queries on historical app versions. This is particularly useful when you need to query data from before a major version upgrade occurred.
+
+#### When to use the passthrough command
+
+The passthrough command is useful in scenarios where:
+
+- You need to query state or transactions that existed before a major app version upgrade
+- You're running a post-upgrade node but need to access data using the query format from a previous version
+- You're debugging issues related to version compatibility after an upgrade
+
+#### Basic usage
+
+```sh
+celestia-appd passthrough <app-version> query <query-command>
+```
+
+Where:
+
+- `<app-version>` is the historical app version you want to query against (e.g., `v1`, `v2`, `v3`)
+- `<query-command>` is the query you want to execute using that app version's format
+
+#### Examples
+
+Query account balance using app version 1 format:
+
+```sh
+celestia-appd passthrough v1 query bank balances <address>
+```
+
+Query validator information using app version 2 format:
+
+```sh
+celestia-appd passthrough v2 query staking validator <validator-address>
+```
+
+Query transaction using app version 3 format:
+
+```sh
+celestia-appd passthrough v3 query tx <transaction-hash>
+```
+
+#### Important considerations
+
+- The passthrough command requires that your node has the historical data for the version you're querying
+- Not all query types may be available for all historical versions
+- This command is most useful immediately after major version upgrades when you need backward compatibility
+- Ensure your node is fully synced before using passthrough queries for accurate results
+
+#### Getting help
+
+To see all available options for the passthrough command:
+
+```sh
+celestia-appd passthrough --help
+```
+
+To see available commands for a specific app version:
+
+```sh
+celestia-appd passthrough <app-version> --help
+```
