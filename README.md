@@ -22,6 +22,17 @@ yarn && yarn dev
 
 This documentation site is built with [VitePress](https://vitepress.dev)
 
+## Link checking
+
+To check for broken links in the documentation, run:
+
+```bash
+yarn link-check
+```
+
+This uses [lychee](https://lychee.cli.rs/) to validate all internal and external links.
+The link checker is also run automatically in CI on every push and pull request.
+
 ## Contribution Guidelines
 
 We love contributions from the community! Whether you're fixing typos,

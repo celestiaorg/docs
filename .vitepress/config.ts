@@ -6,7 +6,7 @@ const telegramSVG = ` <svg width="24" height="24" viewBox="0 0 24 24" fill="none
 
 const { BASE: base = "/" } = process.env;
 
-// https://vitepress.dev/concepts/site-config
+// VitePress site configuration
 export default {
   lang: "en-US",
   title: "Celestia Docs",
@@ -111,7 +111,7 @@ export default {
   ],
 
   themeConfig: {
-    // https://vitepress.dev/concepts/default-theme-config
+    // VitePress default theme configuration
     nav: nav(),
     outline: {
       level: "deep",
@@ -494,7 +494,7 @@ function sidebarHome() {
                     },
                     {
                       text: "Datastore structure",
-                      link: "how-to-guides/celestia-node-store-structure",
+                      link: "/how-to-guides/celestia-node-store-structure",
                     },
                     {
                       text: "Troubleshooting",
@@ -597,10 +597,6 @@ function sidebarHome() {
                   collapsed: true,
                   items: [
                     { text: "Documentation", link: "https://docs.astria.org" },
-                    {
-                      text: "Just deploy",
-                      link: "https://docs.astria.org/developer/tutorials/install-the-cli",
-                    },
                   ],
                 },
                 {

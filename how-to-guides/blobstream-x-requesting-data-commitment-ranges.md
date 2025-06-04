@@ -48,8 +48,7 @@ header range proof.
 ## Request proofs from the Succinct platform
 
 > **_NOTE:_** Requesting a proof from the succinct platform requires
-> having a Succinct API key. It can be requested using
-> this [form](https://alpha.succinct.xyz/partner).
+> having a Succinct API key.
 
 Run the Blobstream X operator with hosted proving on the Succinct
 platform, by running an operator script that pings the platform with
@@ -63,8 +62,7 @@ Here are example values for the `.env` file:
 1. `TENDERMINT_RPC_URL` from
    [the public Celestia list](https://docs.celestia.org/how-to-guides/mainnet#integrations).
 2. `SUCCINCT_RPC_URL` = `https://alpha.succinct.xyz/api`
-3. Request for `SUCCINCT_API_KEY` from
-   [the Succinct team](https://alpha.succinct.xyz/partner).
+3. Request for `SUCCINCT_API_KEY` from the Succinct team.
 4. `CHAIN_ID` is the chain ID of the deployed Blobstream X contract.
 5. `CONTRACT_ADDRESS`: Blobstream X proxy contract address.
 6. `NEXT_HEADER_FUNCTION_ID` & `HEADER_RANGE_FUNCTION_ID`: Get the
