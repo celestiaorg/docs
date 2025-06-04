@@ -1,9 +1,10 @@
 name: "CodeQL Config"
 
 # Explicitly specify which languages to scan
-# This repository contains JavaScript/TypeScript but not Go
+# This repository contains JavaScript/TypeScript and Go code
 languages:
   - javascript
+  - go
 
 # Optionally, you can specify paths to scan or ignore
 # paths:
