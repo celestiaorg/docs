@@ -140,12 +140,12 @@ required for P2P connections for all node types.
 
 The following ports are used by Celestia app nodes:
 
-| Port  | Protocol | Address   | Description                                                         | Enabled by default on node     | Flag                       |
-| ----- | -------- | --------- | ------------------------------------------------------------------- | ------------------------------ | -------------------------- |
-| 1317  | HTTP     | 0.0.0.0   | REST API (gRPC-gateway) - HTTP endpoints for blockchain queries    | true                           | `--api.address string`     |
-| 2121  | TCP/UDP  | 127.0.0.1 | P2P networking - Communication between nodes in the network        | true                           | N/A                        |
-| 9090  | HTTP     | 0.0.0.0   | gRPC server - Programmatic access for advanced integrations        | true                           | `--grpc.address string`    |
-| 26657 | TCP      | 127.0.0.1 | Tendermint RPC - JSON-RPC server for blockchain queries and txs    | false (only open to localhost) | `--rpc.laddr string`       |
+| Port  | Protocol | Address   | Description                                                     | Enabled by default on node     | Flag                    |
+| ----- | -------- | --------- | --------------------------------------------------------------- | ------------------------------ | ----------------------- |
+| 1317  | HTTP     | 0.0.0.0   | REST API (gRPC-gateway) - HTTP endpoints for blockchain queries | true                           | `--api.address string`  |
+| 2121  | TCP/UDP  | 127.0.0.1 | P2P networking - Communication between nodes in the network     | true                           | N/A                     |
+| 9090  | HTTP     | 0.0.0.0   | gRPC server - Programmatic access for advanced integrations     | true                           | `--grpc.address string` |
+| 26657 | TCP      | 127.0.0.1 | Tendermint RPC - JSON-RPC server for blockchain queries and txs | false (only open to localhost) | `--rpc.laddr string`    |
 
 ## Understanding port exposure and security
 
