@@ -8,3 +8,7 @@ node_modules
 .temp
 .vite_opt_cache
 .vscode
+
+# Go build artifacts
+go.sum
+example_test
