@@ -36,6 +36,7 @@ To start a local consensus node using the provided script:
    ```
 
    This script will:
+
    - Initialize a new chain with a single validator
    - Create a genesis file with pre-funded accounts
    - Start the consensus node
@@ -54,6 +55,7 @@ To set up both a consensus node and a bridge node together:
    ```
 
    This will:
+
    - Start a bridge node that connects to your local consensus node
    - Enable data availability sampling
    - Make the bridge node API available at `localhost:26658`
@@ -66,7 +68,7 @@ configuration based on the Celestia ZKEVM IBC demo repository.
 1. Create a `docker-compose.yml` file with the following content:
 
    ```yaml
-   version: '3.8'
+   version: "3.8"
    services:
      celestia-validator:
        image: ghcr.io/celestiaorg/celestia-app:latest
@@ -132,11 +134,11 @@ configuration based on the Celestia ZKEVM IBC demo repository.
 
 Once your local devnet is running, you can access these endpoints:
 
-| Service | Endpoint |
-|---------|----------|
-| Consensus RPC | `http://localhost:26657` |
-| Consensus gRPC | `http://localhost:9090` |
-| Consensus P2P | `http://localhost:26656` |
+| Service         | Endpoint                 |
+| --------------- | ------------------------ |
+| Consensus RPC   | `http://localhost:26657` |
+| Consensus gRPC  | `http://localhost:9090`  |
+| Consensus P2P   | `http://localhost:26656` |
 | Bridge Node API | `http://localhost:26658` |
 
 ## Testing your setup
