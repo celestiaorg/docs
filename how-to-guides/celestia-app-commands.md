@@ -352,7 +352,7 @@ Then add genesis account:
 
 ```sh
 CELES_AMOUNT="5000100000000utia"
-celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT
+celestia-appd genesis add-genesis-account $KEY_NAME $CELES_AMOUNT
 ```
 
 Then generate your gentx:
