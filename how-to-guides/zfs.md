@@ -35,7 +35,7 @@ $ du -h ~/.celestia-bridge/
 
 :::
 
-## Requirements:
+## Requirements
 
 1. A bare metal server with:
    - RAM: 64GB or more
@@ -45,7 +45,7 @@ $ du -h ~/.celestia-bridge/
      - Note: Additional CPU overhead is required for ZFS compression
 2. At least one empty disk (with no filesystem)
 
-## Guide:
+## Guide
 
 Get your disk name:
 

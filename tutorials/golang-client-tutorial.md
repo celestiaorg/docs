@@ -211,17 +211,17 @@ go 1.23.6
 toolchain go1.23.8
 
 require (
-	github.com/celestiaorg/celestia-node v0.22.1
-	github.com/celestiaorg/go-square/v2 v2.2.0
+ github.com/celestiaorg/celestia-node v0.22.1
+ github.com/celestiaorg/go-square/v2 v2.2.0
 )
 
 replace (
-	github.com/cosmos/cosmos-sdk => github.com/celestiaorg/cosmos-sdk v1.28.2-sdk-v0.46.16
-	github.com/filecoin-project/dagstore => github.com/celestiaorg/dagstore v0.0.0-20230824094345-537c012aa403
-	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
-	github.com/ipfs/boxo => github.com/celestiaorg/boxo v0.29.0-fork
-	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
-	github.com/tendermint/tendermint => github.com/celestiaorg/celestia-core v1.51.0-tm-v0.34.35
+ github.com/cosmos/cosmos-sdk => github.com/celestiaorg/cosmos-sdk v1.28.2-sdk-v0.46.16
+ github.com/filecoin-project/dagstore => github.com/celestiaorg/dagstore v0.0.0-20230824094345-537c012aa403
+ github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
+ github.com/ipfs/boxo => github.com/celestiaorg/boxo v0.29.0-fork
+ github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
+ github.com/tendermint/tendermint => github.com/celestiaorg/celestia-core v1.51.0-tm-v0.34.35
 )
 ```
 
@@ -231,126 +231,126 @@ And here's the `main.go` file:
 package main
 
 import (
-	"bytes"
-	"context"
-	"fmt"
-	"os"
-	"time"
+ "bytes"
+ "context"
+ "fmt"
+ "os"
+ "time"
 
-	client "github.com/celestiaorg/celestia-node/api/rpc/client"
-	"github.com/celestiaorg/celestia-node/blob"
-	"github.com/celestiaorg/celestia-node/state"
-	share "github.com/celestiaorg/go-square/v2/share"
+ client "github.com/celestiaorg/celestia-node/api/rpc/client"
+ "github.com/celestiaorg/celestia-node/blob"
+ "github.com/celestiaorg/celestia-node/state"
+ share "github.com/celestiaorg/go-square/v2/share"
 )
 
 func main() {
-	// Set up a context with timeout
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
-	defer cancel()
+ // Set up a context with timeout
+ ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+ defer cancel()
 
-	// Default RPC URL and token (empty string if using --rpc.skip-auth)
-	url := "http://localhost:26658"
-	token := "" // Replace with your auth token if not using --rpc.skip-auth
+ // Default RPC URL and token (empty string if using --rpc.skip-auth)
+ url := "http://localhost:26658"
+ token := "" // Replace with your auth token if not using --rpc.skip-auth
 
-	// Check if we can connect to the node first
-	fmt.Println("Testing connection to Celestia node...")
-	c, err := client.NewClient(ctx, url, token)
-	if err != nil {
-		fmt.Printf("Failed to connect to node: %v\n", err)
-		os.Exit(1)
-	}
-	defer c.Close()
+ // Check if we can connect to the node first
+ fmt.Println("Testing connection to Celestia node...")
+ c, err := client.NewClient(ctx, url, token)
+ if err != nil {
+  fmt.Printf("Failed to connect to node: %v\n", err)
+  os.Exit(1)
+ }
+ defer c.Close()
 
-	fmt.Println("Successfully connected to node, checking node status...")
+ fmt.Println("Successfully connected to node, checking node status...")
 
-	// Try a simpler API call first - get network head to verify connectivity
-	headerHeight, err := GetNetworkHead(ctx, c)
-	if err != nil {
-		fmt.Printf("Failed to get network head: %v\n", err)
-	} else {
-		fmt.Printf("Current network height: %d\n", headerHeight)
+ // Try a simpler API call first - get network head to verify connectivity
+ headerHeight, err := GetNetworkHead(ctx, c)
+ if err != nil {
+  fmt.Printf("Failed to get network head: %v\n", err)
+ } else {
+  fmt.Printf("Current network height: %d\n", headerHeight)
 
-		// Now try blob submission
-		err = SubmitBlob(ctx, url, token)
-		if err != nil {
-			fmt.Printf("Blob submission error: %v\n", err)
-		}
-	}
+  // Now try blob submission
+  err = SubmitBlob(ctx, url, token)
+  if err != nil {
+   fmt.Printf("Blob submission error: %v\n", err)
+  }
+ }
 }
 
 // SubmitBlob submits a blob containing "Hello, World!" to the 0xDEADBEEF namespace
 // and retrieves it from the network to verify the process works.
 func SubmitBlob(ctx context.Context, url string, token string) error {
-	// Create a new client
-	c, err := client.NewClient(ctx, url, token)
-	if err != nil {
-		return fmt.Errorf("failed to create client: %w", err)
-	}
-	defer c.Close() // Important to close the connection after use
+ // Create a new client
+ c, err := client.NewClient(ctx, url, token)
+ if err != nil {
+  return fmt.Errorf("failed to create client: %w", err)
+ }
+ defer c.Close() // Important to close the connection after use
 
-	fmt.Println("Connected to Celestia node")
+ fmt.Println("Connected to Celestia node")
 
-	// Create the 0xDEADBEEF namespace
-	namespace, err := share.NewV0Namespace([]byte{0xDE, 0xAD, 0xBE, 0xEF})
-	if err != nil {
-		return fmt.Errorf("failed to create namespace: %w", err)
-	}
+ // Create the 0xDEADBEEF namespace
+ namespace, err := share.NewV0Namespace([]byte{0xDE, 0xAD, 0xBE, 0xEF})
+ if err != nil {
+  return fmt.Errorf("failed to create namespace: %w", err)
+ }
 
-	// Create a blob with "Hello, World!" content
-	message := []byte("Hello, World!")
-	helloWorldBlob, err := blob.NewBlobV0(namespace, message)
-	if err != nil {
-		return fmt.Errorf("failed to create blob: %w", err)
-	}
+ // Create a blob with "Hello, World!" content
+ message := []byte("Hello, World!")
+ helloWorldBlob, err := blob.NewBlobV0(namespace, message)
+ if err != nil {
+  return fmt.Errorf("failed to create blob: %w", err)
+ }
 
-	fmt.Println("Submitting blob to the network...")
+ fmt.Println("Submitting blob to the network...")
 
-	// Create basic TxConfig instead of passing nil
-	options := state.NewTxConfig()
+ // Create basic TxConfig instead of passing nil
+ options := state.NewTxConfig()
 
-	// Submit the blob to the network with the options
-	height, err := c.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, options)
-	if err != nil {
-		return fmt.Errorf("failed to submit blob: %w", err)
-	}
+ // Submit the blob to the network with the options
+ height, err := c.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, options)
+ if err != nil {
+  return fmt.Errorf("failed to submit blob: %w", err)
+ }
 
-	fmt.Printf("Success! Blob was included at height %d\n", height)
+ fmt.Printf("Success! Blob was included at height %d\n", height)
 
-	// Wait a moment to ensure the blob is available for retrieval
-	time.Sleep(2 * time.Second)
+ // Wait a moment to ensure the blob is available for retrieval
+ time.Sleep(2 * time.Second)
 
-	fmt.Println("Retrieving blob from the network...")
+ fmt.Println("Retrieving blob from the network...")
 
-	// Fetch the blob back from the network
-	retrievedBlobs, err := c.Blob.GetAll(ctx, height, []share.Namespace{namespace})
-	if err != nil {
-		return fmt.Errorf("failed to retrieve blob: %w", err)
-	}
+ // Fetch the blob back from the network
+ retrievedBlobs, err := c.Blob.GetAll(ctx, height, []share.Namespace{namespace})
+ if err != nil {
+  return fmt.Errorf("failed to retrieve blob: %w", err)
+ }
 
-	if len(retrievedBlobs) == 0 {
-		return fmt.Errorf("no blobs retrieved from height %d", height)
-	}
+ if len(retrievedBlobs) == 0 {
+  return fmt.Errorf("no blobs retrieved from height %d", height)
+ }
 
-	// Verify the retrieved blob matches the submitted blob
-	equal := bytes.Equal(helloWorldBlob.Commitment, retrievedBlobs[0].Commitment)
-	fmt.Printf("Retrieved blob successfully! Blobs are equal? %v\n", equal)
+ // Verify the retrieved blob matches the submitted blob
+ equal := bytes.Equal(helloWorldBlob.Commitment, retrievedBlobs[0].Commitment)
+ fmt.Printf("Retrieved blob successfully! Blobs are equal? %v\n", equal)
 
-	// Verify the content is what we expect
-	fmt.Printf("Original message: %s\n", message)
-	fmt.Printf("Retrieved message: %s\n", retrievedBlobs[0].Data)
+ // Verify the content is what we expect
+ fmt.Printf("Original message: %s\n", message)
+ fmt.Printf("Retrieved message: %s\n", retrievedBlobs[0].Data)
 
-	return nil
+ return nil
 }
 
 // GetNetworkHead retrieves the current network height
 func GetNetworkHead(ctx context.Context, c *client.Client) (uint64, error) {
-	// Get the network head
-	header, err := c.Header.NetworkHead(ctx)
-	if err != nil {
-		return 0, fmt.Errorf("failed to get network head: %w", err)
-	}
+ // Get the network head
+ header, err := c.Header.NetworkHead(ctx)
+ if err != nil {
+  return 0, fmt.Errorf("failed to get network head: %w", err)
+ }
 
-	return header.Height(), nil
+ return header.Height(), nil
 }
 ```
 
