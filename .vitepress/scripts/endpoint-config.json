@@ -6,8 +6,7 @@
         "archival": [
           "grpc.archive.mocha.cumulo.com.es:443"
         ],
-        "pruned": [],
-        "unverified": [
+        "community": [
           "public-celestia-mocha4-consensus.numia.xyz:9090",
           "grpc-mocha.pops.one",
           "grpc.celestia-mocha.com:443",
@@ -27,15 +26,6 @@
       }
     }
   },
-  "archivalIndicators": [
-    "archive",
-    "archival",
-    "full-history"
-  ],
-  "prunedIndicators": [
-    "pruned",
-    "recent"
-  ],
   "lastUpdated": "2025-01-04",
-  "notes": "This configuration tracks the classification of gRPC endpoints for different Celestia networks. Endpoints are classified as archival (full blockchain history), pruned (recent history), or unverified (manual check needed)."
+  "notes": "This configuration tracks the classification of gRPC endpoints for different Celestia networks. Endpoints are classified as archival (confirmed full blockchain history) or community (general purpose endpoints)."
 }

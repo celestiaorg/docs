@@ -46,8 +46,8 @@ function generateGrpcMarkdown(network, config) {
   markdown += `broadcast transactions.\n\n`;
 
   // Explanation tip
-  markdown += `:::tip Archival vs Pruned Endpoints\n`;
-  markdown += `**Archival endpoints** maintain full blockchain history from genesis and are required for syncing new Bridge Nodes from scratch. **Pruned endpoints** maintain recent blockchain history and are suitable for transaction submission and maintaining already-synced Bridge Nodes.\n`;
+  markdown += `:::tip Bridge Node Syncing\n`;
+  markdown += `**Archival endpoints** maintain full blockchain history from genesis and are required for syncing new Bridge Nodes from scratch. If you need to sync a Bridge Node from genesis, use the archival endpoints listed below. Community endpoints are suitable for general transaction submission and maintaining already-synced nodes.\n`;
   markdown += `:::\n\n`;
 
   // Archival endpoints section
@@ -60,21 +60,11 @@ function generateGrpcMarkdown(network, config) {
     markdown += '\n';
   }
 
-  // Pruned endpoints section
-  if (grpcEndpoints.pruned && grpcEndpoints.pruned.length > 0) {
-    markdown += `### Pruned gRPC endpoints\n\n`;
-    markdown += `These endpoints maintain recent blockchain history and are suitable for transaction submission and maintaining already-synced Bridge Nodes:\n\n`;
-    grpcEndpoints.pruned.forEach(endpoint => {
-      markdown += `- \`${endpoint}\`\n`;
-    });
-    markdown += '\n';
-  }
-
-  // Unverified endpoints section
-  if (grpcEndpoints.unverified && grpcEndpoints.unverified.length > 0) {
-    markdown += `### Community gRPC endpoints (verification needed)\n\n`;
-    markdown += `These endpoints require manual verification to determine if they are archival or pruned:\n\n`;
-    grpcEndpoints.unverified.forEach(endpoint => {
+  // Community endpoints section
+  if (grpcEndpoints.community && grpcEndpoints.community.length > 0) {
+    markdown += `### General purpose gRPC endpoints\n\n`;
+    markdown += `These community-provided endpoints are suitable for general use:\n\n`;
+    grpcEndpoints.community.forEach(endpoint => {
       markdown += `- \`${endpoint}\`\n`;
     });
     markdown += '\n';
