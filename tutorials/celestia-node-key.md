@@ -174,13 +174,12 @@ then enter your bip39 mnemonic:
 When you run a Celestia node and use the command `celestia state account-address`, it returns the address of the key that your node is currently using. This key is the same one that was either:
 
 1. Auto-generated during node initialization with `celestia <node-type> init`
-2. Manually created using `cel-key add <name> [flags]`
+2. Manually created using `cel-key add <name> [flags]` 
 3. Imported/recovered using `cel-key add <name> --recover --node.type <node-type>`
 
 ### Understanding the relationship
 
 The key reported by `celestia state account-address` is stored in your node's keyring directory:
-
 - For Mocha testnet: `~/.celestia-<node-type>-{{constants.mochaChainId}}/keys/keyring-test/`
 - For Mainnet Beta: `~/.celestia-<node-type>/keys/keyring-test/`
 

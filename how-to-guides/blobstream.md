@@ -114,9 +114,9 @@ The following docs go over how developers can integrate SP1 Blobstream.
 You can [find the repository for SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream)
 along with code for:
 
-* [The SP1 Blobstream smart contract - `SP1Blobstream.sol`](https://github.com/succinctlabs/sp1-blobstream/blob/main/contracts/src/SP1Blobstream.sol)
-* [The SP1 program](https://github.com/succinctlabs/sp1-blobstream/tree/main/program)
-* [The SP1 Blobstream contract Golang bindings](https://github.com/succinctlabs/sp1-blobstream/blob/main/bindings/SP1Blobstream.go)
+- [The SP1 Blobstream smart contract - `SP1Blobstream.sol`](https://github.com/succinctlabs/sp1-blobstream/blob/main/contracts/src/SP1Blobstream.sol)
+- [The SP1 program](https://github.com/succinctlabs/sp1-blobstream/tree/main/program)
+- [The SP1 Blobstream contract Golang bindings](https://github.com/succinctlabs/sp1-blobstream/blob/main/bindings/SP1Blobstream.go)
 
 The first deployments of SP1 Blobstream will be maintained on the
 following chains: Arbitrum One, Base and Ethereum Mainnet. Every 1
@@ -134,9 +134,9 @@ and your [offchain client logic for your rollup](/how-to-guides/blobstream-offch
 The next three sections cover these
 topics:
 
-* [Integrate with Blobstream contracts](/how-to-guides/blobstream-contracts.md)
-* [Integrate with Blobstream client](/how-to-guides/blobstream-offchain.md)
-* [Querying the Blobstream proofs](/how-to-guides/blobstream-proof-queries.md)
+- [Integrate with Blobstream contracts](/how-to-guides/blobstream-contracts.md)
+- [Integrate with Blobstream client](/how-to-guides/blobstream-offchain.md)
+- [Querying the Blobstream proofs](/how-to-guides/blobstream-proof-queries.md)
 
 ### Blobstream rollups
 
