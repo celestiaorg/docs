@@ -39,7 +39,7 @@ Here are a few options that are currently available for developers.
   position: relative;
 }
 
-.framework-grid > * > * {
+.framework-grid > *>* {
   position: absolute;
   top: 0;
   left: 0;
