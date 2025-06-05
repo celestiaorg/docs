@@ -7,7 +7,9 @@
     "lint": "eslint --fix",
     "lint:md": "markdownlint '**/*.md'",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,json,css,scss}'",
-    "link-check": "lychee --config lychee.toml '**/*.md' '.vitepress/config.ts'"
+    "link-check": "lychee --config lychee.toml '**/*.md' '.vitepress/config.ts'",
+    "check-grpc-endpoints": "node .vitepress/scripts/check-grpc-endpoints.js",
+    "generate-grpc-docs": "node .vitepress/scripts/generate-grpc-docs.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.2",
