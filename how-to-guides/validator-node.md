@@ -164,9 +164,9 @@ be a valid Ethereum-compatible address (42-character hexadecimal string starting
 with 0x). You can generate one using any Ethereum wallet or derive it from your
 validator key.
 
-If you need to add or update the values of these descriptive fields when your
-validator is already created, you can use the following command (remove the
-options that you don't want to change the values for):
+If you need to add or update the values of these descriptive fields or the
+EVM address when your validator is already created, you can use the following
+command (remove the options that you don't want to change the values for):
 
 ```bash
 celestia-appd tx staking edit-validator \
@@ -179,7 +179,8 @@ celestia-appd tx staking edit-validator \
     --from=$VALIDATOR_WALLET \
     --keyring-backend=test \
     --fees=21000utia \
-    --gas=220000
+    --gas=220000 \
+    --evm-address=$EVM_ADDRESS
 ```
 
 :::
