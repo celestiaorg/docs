@@ -47,7 +47,7 @@ function generateGrpcMarkdown(network, config) {
 
   // Explanation tip
   markdown += `:::tip Bridge Node Syncing\n`;
-  markdown += `**Archival endpoints** maintain full blockchain history from genesis and are required for syncing new Bridge Nodes from scratch. If you need to sync a Bridge Node from genesis, use the archival endpoints listed below. Community endpoints are suitable for general transaction submission and maintaining already-synced nodes.\n`;
+  markdown += `**Archival endpoints** maintain full blockchain history from genesis and are required for syncing new Bridge Nodes from scratch. If you need to sync a Bridge Node from genesis, use the archival endpoints listed below. Pruned endpoints are suitable for general transaction submission and maintaining already-synced nodes.\n`;
   markdown += `:::\n\n`;
 
   // Archival endpoints section
@@ -62,7 +62,7 @@ function generateGrpcMarkdown(network, config) {
 
   // Community endpoints section
   if (grpcEndpoints.community && grpcEndpoints.community.length > 0) {
-    markdown += `### General purpose gRPC endpoints\n\n`;
+    markdown += `### Pruned gRPC endpoints\n\n`;
     markdown += `These community-provided endpoints are suitable for general use:\n\n`;
     grpcEndpoints.community.forEach(endpoint => {
       markdown += `- \`${endpoint}\`\n`;

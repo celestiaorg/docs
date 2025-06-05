@@ -183,7 +183,7 @@ port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
 :::tip Bridge Node Syncing
-**Archival endpoints** maintain full blockchain history from genesis and are required for syncing new Bridge Nodes from scratch. If you need to sync a Bridge Node from genesis, use the archival endpoints listed below. Community endpoints are suitable for general transaction submission and maintaining already-synced nodes.
+**Archival endpoints** maintain full blockchain history from genesis and are required for syncing new Bridge Nodes from scratch. If you need to sync a Bridge Node from genesis, use the archival endpoints listed below. Pruned endpoints are suitable for general transaction submission and maintaining already-synced nodes.
 :::
 
 ### Archival gRPC endpoints
@@ -192,7 +192,7 @@ These endpoints maintain full blockchain history and can be used for syncing Bri
 
 - `grpc.archive.mocha.cumulo.com.es:443`
 
-### General purpose gRPC endpoints
+### Pruned gRPC endpoints
 
 These community-provided endpoints are suitable for general use:
 
