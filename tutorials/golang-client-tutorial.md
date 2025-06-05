@@ -57,6 +57,7 @@ import (
     client "github.com/celestiaorg/celestia-node/api/rpc/client"
     "github.com/celestiaorg/celestia-node/blob"
     share "github.com/celestiaorg/go-square/v2/share"
+    "github.com/celestiaorg/celestia-node/state"
 )
 
 // SubmitBlob submits a blob containing "Hello, World!" to the 0xDEADBEEF namespace. It uses the default signer on the running node.
@@ -79,8 +80,12 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
         return err
     }
 
+    // Use a default TxConfig instead of passing nil,
+    // to ensure safe defaults for gas pricing and transaction behavior.
+    options := state.NewTxConfig()
+
     // submit the blob to the network
-    height, err := client.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, nil)
+    height, err := client.Blob.Submit(ctx, []*blob.Blob{helloWorldBlob}, options)
     if err != nil {
         return err
     }
@@ -305,7 +310,8 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
 
  fmt.Println("Submitting blob to the network...")
 
- // Create basic TxConfig instead of passing nil
+ // Use a default TxConfig instead of passing nil,
+ // to ensure safe defaults for gas pricing and transaction behavior.
  options := state.NewTxConfig()
 
  // Submit the blob to the network with the options
