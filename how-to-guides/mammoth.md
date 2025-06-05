@@ -37,8 +37,8 @@ The testnet includes custom versions with:
 
 ### RPC Endpoints
 
-| Location  | gRPC                              | RPC                           | API                           |
-| --------- | --------------------------------- | ----------------------------- | ----------------------------- |
+| Location  | gRPC                                | RPC                             | API                             |
+| --------- | ----------------------------------- | ------------------------------- | ------------------------------- |
 | Amsterdam | <https://global.grpc.mamochain.com> | <https://rpc.ams.mamochain.com> | <https://api.ams.mamochain.com> |
 | Paris     | <https://global.grpc.mamochain.com> | <https://rpc.par.mamochain.com> | <https://api.par.mamochain.com> |
 | Warsaw    | <https://global.grpc.mamochain.com> | <https://rpc.waw.mamochain.com> | <https://api.waw.mamochain.com> |
