@@ -235,6 +235,9 @@ Full node 2:
 - celestia-testnet-da-full-storage.mzonder.com
   - RPC port: 27758
   - Gateway port: 27759
+- celestia-testnet-da-full-storage.itrocket.net
+  - RPC port: 26658
+  - Gateway port: 26659
 
 ## Mocha testnet faucet
 
