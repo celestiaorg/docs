@@ -213,6 +213,7 @@ pruning any data so all data available data is retrievable. You can
 | Grove                            | `celestia-archival.rpc.grove.city/v1/c33eeadb`                                            | -        | -            |
 | Mzonder                          | `celestia-da-full-storage.mzonder.com`                                                    | 27758    | 27759        |
 | Noders Services                  | `celestia-archive-da.noders.services`                                                     | 26658    | 26659        |
+| ITRocket                         | `celestia-mainnet-da-full-storage.itrocket.net`                                           | 26658    | 26659        |
 | QuickNode                        | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) | -        | -            |
 | See the Brightly Stake dashboard | <https://celestia-tools.brightlystake.com/>                                               | -        | -            |
 
@@ -250,6 +251,7 @@ The following websites provide analytics for Celestia:
 - [https://services.kjnodes.com/mainnet/celestia/slashboard](https://services.kjnodes.com/mainnet/celestia/slashboard)
 - [https://itrocket.net/services/mainnet/celestia/decentralization/](https://itrocket.net/services/mainnet/celestia/decentralization/)
 - [https://itrocket.net/services/mainnet/celestia/](https://itrocket.net/services/mainnet/celestia/) - Node setup, monitoring, and chain status tools
+- [https://itrocket.net/services/mainnet/celestia/analytics/consensus-signal-tracker/](https://itrocket.net/services/mainnet/celestia/analytics/consensus-signal-tracker/) - Consensus signal tracker
 - [https://cosmoslist.co/mainnet/celestia](https://cosmoslist.co/mainnet/celestia)
 
 ## Node maps
