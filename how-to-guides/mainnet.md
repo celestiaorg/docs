@@ -212,6 +212,7 @@ pruning any data so all data available data is retrievable. You can
 | -------------------------------- | ----------------------------------------------------------------------------------------- | -------- | ------------ |
 | Grove                            | `celestia-archival.rpc.grove.city/v1/c33eeadb`                                            | -        | -            |
 | Mzonder                          | `celestia-da-full-storage.mzonder.com`                                                    | 27758    | 27759        |
+| Noders Services                  | `celestia-archive-da.noders.services`                                                     | 26658    | 26659        |
 | ITRocket                         | `celestia-mainnet-da-full-storage.itrocket.net`                                           | 26658    | 26659        |
 | QuickNode                        | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) | -        | -            |
 | See the Brightly Stake dashboard | <https://celestia-tools.brightlystake.com/>                                               | -        | -            |
