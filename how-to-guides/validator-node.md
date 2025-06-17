@@ -192,8 +192,8 @@ In order to create a validator on-chain, follow the steps below.
       --from $VALIDATOR_WALLET \
       --keyring-backend test \
       --fees 21000utia \
-
-    ```
+      --gas=220000 \
+      --yes
 
     :::
 
