@@ -191,7 +191,7 @@ In order to create a validator on-chain, follow the steps below.
     celestia-appd tx staking create-validator validator.json \
       --from $VALIDATOR_WALLET \
       --keyring-backend test \
-      --fees 21000utia
+      --fees 21000utia --yes
     ```
 
     :::
