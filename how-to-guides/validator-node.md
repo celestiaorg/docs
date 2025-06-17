@@ -30,60 +30,6 @@ First, follow the instructions on
 
 Follow [the tutorial on creating a wallet](/how-to-guides/celestia-app-wallet.md).
 
-### Delegate stake to a validator
-
-Create an environment variable for the address:
-
-```bash
-VALIDATOR_WALLET=<validator-wallet-name>
-```
-
-If you want to delegate more stake to any validator, including your own you
-will need the `celestiavaloper` address of the validator. You can run
-the command below to get the `celestiavaloper` of your local validator wallet in
-case you want to delegate more to it:
-
-```bash
-celestia-appd keys show $VALIDATOR_WALLET --bech val -a
-```
-
-After entering the wallet passphrase you should see output like:
-
-```bash
-Enter keyring passphrase:
-celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
-```
-
-To delegate tokens to the `celestiavaloper` validator, as an
-example you can run:
-
-```bash-vue
-celestia-appd tx staking delegate \
-celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u4q4gx4p 1000000utia \
---from=$VALIDATOR_WALLET --chain-id={{constants.mochaChainId}} \
---fees=21000utia
-```
-
-If successful, you should see output like:
-
-```console
-code: 0
-codespace: ""
-data: ""
-gas_used: "0"
-gas_wanted: "0"
-height: "0"
-info: ""
-logs: []
-raw_log: '[]'
-timestamp: ""
-tx: null
-txhash: <tx-hash>
-```
-
-You can check if the tx hash went through using the block explorer by
-inputting the `txhash` ID that was returned.
-
 ## Optional: Deploy the celestia-node
 
 Running a bridge node is critical to the Celestia network as it enables
@@ -204,6 +150,10 @@ In order to create a validator on-chain, follow the steps below.
         --amount=1000000utia \
         --pubkey=$(celestia-appd tendermint show-validator) \
         --moniker=$MONIKER \
+        --identity=<optional_identity_signature> \
+        --website="<optional_validator_website>" \
+        --security-contact="<optional_email_address_for_security_contact>" \
+        --details="A short and optional description of the validator." \
         --chain-id=$CHAIN_ID \
         --commission-rate=0.1 \
         --commission-max-rate=0.2 \
@@ -221,6 +171,10 @@ In order to create a validator on-chain, follow the steps below.
         --amount=1000000utia \
         --pubkey=$(celestia-appd tendermint show-validator) \
         --moniker=$MONIKER \
+        --identity=<optional_identity_signature> \
+        --website="<optional_validator_website>" \
+        --security-contact="<optional_email_address_for_security_contact>" \
+        --details="A short and optional description of the validator." \
         --chain-id=$CHAIN_ID \
         --commission-rate=0.1 \
         --commission-max-rate=0.2 \
@@ -259,12 +213,85 @@ tx: null
 txhash: <tx-hash>
 ```
 
+:::tip NOTE
+The options `--identity`, `--website`, `--security-contact` and `--details` are optional. The `--identity` value is used to verify identity with systems like [Keybase](https://keybase.io/) or UPort. If you need to add or update the values of these descriptive fields when your validator is already created, you can use the following command (remove the options that you don't want to change the values for):
+
+```bash
+celestia-appd tx staking edit-validator \
+    --new-moniker=<new_validator_name> \
+    --identity=<identity_signature> \
+    --website="<validator_website>" \
+    --security-contact="<email_address_for_security_contact>" \
+    --details="New description of the validator." \
+    --chain-id={{constants.mochaChainId}} \
+    --from=$VALIDATOR_WALLET \
+    --keyring-backend=test \
+    --fees=21000utia \
+    --gas=220000
+```
+
+:::
+
 You should now be able to see your validator from a [block explorer](/how-to-guides/mocha-testnet.md#explorers).
 
 ## Submit your validator information
 
 After starting your node, please submit your node as a seed and peer to the
 [networks repository](https://github.com/celestiaorg/networks).
+
+## Optional: Delegate stake to a validator
+
+Create an environment variable for the address:
+
+```bash
+VALIDATOR_WALLET=<validator-wallet-name>
+```
+
+If you want to delegate more stake to any validator, including your own you
+will need the `celestiavaloper` address of the validator in question. You can run
+the command below to get the `celestiavaloper` of your local validator wallet in
+case you want to delegate more to it:
+
+```bash
+celestia-appd keys show $VALIDATOR_WALLET --bech val -a
+```
+
+After entering the wallet passphrase you should see a similar output:
+
+```bash
+Enter keyring passphrase:
+celestiavaloper1q3v5cugc8cdpud87u4zwy0a74uxkk6u43cv6hd
+```
+
+To delegate tokens to the `celestiavaloper` validator, as an
+example you can run:
+
+```bash-vue
+celestia-appd tx staking delegate \
+<the_valoper_address_starts_with_celestiavaloper1...> 1000000utia \
+--from=$VALIDATOR_WALLET --chain-id={{constants.mochaChainId}} \
+--fees=21000utia
+```
+
+If successful, you should see a similar output as:
+
+```console
+code: 0
+codespace: ""
+data: ""
+gas_used: "0"
+gas_wanted: "0"
+height: "0"
+info: ""
+logs: []
+raw_log: '[]'
+timestamp: ""
+tx: null
+txhash: <tx-hash>
+```
+
+You can check if the TX hash went through using the block explorer by
+inputting the `txhash` ID that was returned.
 
 ## Optional: Transaction indexer configuration options
 

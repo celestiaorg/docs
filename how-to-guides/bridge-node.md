@@ -4,6 +4,12 @@ description: Learn how to set up your Celestia bridge node.
 
 # Setting up a Celestia bridge node
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+</script>
+
 This tutorial will go over the steps to set up your Celestia bridge node.
 
 Bridge nodes connect the data availability layer and the consensus layer.
@@ -126,8 +132,8 @@ celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.networ
 
 And on Arabica:
 
-```sh
-celestia bridge start --core.ip validator-1.celestia-arabica-11.com \
+```sh-vue
+celestia bridge start --core.ip validator-1.celestia-{{constants.arabicaChainId}}.com \
   --p2p.network arabica --core.port 9090
 ```
 

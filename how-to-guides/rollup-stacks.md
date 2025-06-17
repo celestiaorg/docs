@@ -39,7 +39,7 @@ Here are a few options that are currently available for developers.
   position: relative;
 }
 
-.framework-grid > * > * {
+.framework-grid > *>* {
   position: absolute;
   top: 0;
   left: 0;
@@ -99,14 +99,6 @@ Deploy your rollup with a RaaS provider.
   <UrlImageButton url="https://www.karnot.xyz/" imageSrc="/build/karnot.webp" text="Karnot" notes="Starknet" alt="Karnot logo" aria-label="Karnot"/>
   <UrlImageButton url="https://docs.vistara.dev/" imageSrc="/build/vistara.webp" text="Vistara" alt="Vistara logo" aria-label="Vistara"/>
   <UrlImageButton url="https://www.zeeve.io/" imageSrc="/build/zeeve.webp" text="Zeeve" notes="Orbit, OP Stack" alt="Zeeve logo" aria-label="Zeeve"/>
-</div>
-
-### Smart contracts
-
-Deploy your smart contracts on dedicated EVM-compatible rollups.
-
-<div class="framework-grid">
-  <UrlImageButton url="https://raas.gelato.network/rollups/details/public/opcelestia-raspberry" imageSrc="/build/gelato.webp" text="Raspberry testnet" notes="OP Stack" alt="Gelato logo" aria-label="Gelato Raspberry testnet"/>
 </div>
 
 ## What is a rollup?

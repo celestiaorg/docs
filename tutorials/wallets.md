@@ -188,75 +188,75 @@ import React from "react";
 import styles from "./Leap.module.css";
 
 export default function AddNetworkLeap({ params }) {
-    async function add() {
-        if (!window.leap) {
-            alert("Please install leap extension");
-        } else {
-            if (window.leap.experimentalSuggestChain) {
-                try {
-                    await window.leap.experimentalSuggestChain({
-                        chainId: params.chainId,
-                        chainName: params.chainName,
-                        rpc: params.rpc,
-                        rest: params.rest,
-                        bip44: {
-                            coinType: 118,
-                        },
-                        bech32Config: {
-                            bech32PrefixAccAddr: "celestia",
-                            bech32PrefixAccPub: "celestia" + "pub",
-                            bech32PrefixValAddr: "celestia" + "valoper",
-                            bech32PrefixValPub: "celestia" + "valoperpub",
-                            bech32PrefixConsAddr: "celestia" + "valcons",
-                            bech32PrefixConsPub: "celestia" + "valconspub",
-                        },
-                        currencies: [
-                            {
-                                coinDenom: "TIA",
-                                coinMinimalDenom: "utia",
-                                coinDecimals: 6,
-                                coinGeckoId: "celestia",
-                            },
-                        ],
-                        feeCurrencies: [
-                            {
-                                coinDenom: "TIA",
-                                coinMinimalDenom: "utia",
-                                coinDecimals: 6,
-                                coinGeckoId: "celestia",
-                                gasPriceStep: {
-                                    low: 0.01,
-                                    average: 0.02,
-                                    high: 0.1,
-                                },
-                            },
-                        ],
-                        stakeCurrency: {
-                            coinDenom: "TIA",
-                            coinMinimalDenom: "utia",
-                            coinDecimals: 6,
-                            coinGeckoId: "celestia",
-                        },
-                    });
-                } catch {
-                    alert("Failed to suggest the chain");
-                }
-            }
-            const chainId = params.chainId;
-            // Enabling before using the Leap is recommended.
-            // This method will ask the user whether to allow access if they haven't visited this website.
-            // Also, it will request that the user unlock the wallet if the wallet is locked.
-            await window.leap.enable(chainId);
+  async function add() {
+    if (!window.leap) {
+      alert("Please install leap extension");
+    } else {
+      if (window.leap.experimentalSuggestChain) {
+        try {
+          await window.leap.experimentalSuggestChain({
+            chainId: params.chainId,
+            chainName: params.chainName,
+            rpc: params.rpc,
+            rest: params.rest,
+            bip44: {
+              coinType: 118,
+            },
+            bech32Config: {
+              bech32PrefixAccAddr: "celestia",
+              bech32PrefixAccPub: "celestia" + "pub",
+              bech32PrefixValAddr: "celestia" + "valoper",
+              bech32PrefixValPub: "celestia" + "valoperpub",
+              bech32PrefixConsAddr: "celestia" + "valcons",
+              bech32PrefixConsPub: "celestia" + "valconspub",
+            },
+            currencies: [
+              {
+                coinDenom: "TIA",
+                coinMinimalDenom: "utia",
+                coinDecimals: 6,
+                coinGeckoId: "celestia",
+              },
+            ],
+            feeCurrencies: [
+              {
+                coinDenom: "TIA",
+                coinMinimalDenom: "utia",
+                coinDecimals: 6,
+                coinGeckoId: "celestia",
+                gasPriceStep: {
+                  low: 0.01,
+                  average: 0.02,
+                  high: 0.1,
+                },
+              },
+            ],
+            stakeCurrency: {
+              coinDenom: "TIA",
+              coinMinimalDenom: "utia",
+              coinDecimals: 6,
+              coinGeckoId: "celestia",
+            },
+          });
+        } catch {
+          alert("Failed to suggest the chain");
         }
+      }
+      const chainId = params.chainId;
+      // Enabling before using the Leap is recommended.
+      // This method will ask the user whether to allow access if they haven't visited this website.
+      // Also, it will request that the user unlock the wallet if the wallet is locked.
+      await window.leap.enable(chainId);
     }
+  }
 
-    return (
-        <div className={styles.center}>
-            <button className={styles.leapButton} onClick={add}>
-                Add/switch To {params.chainName}
-            </button>
-        </div>
-    );
+  return (
+    <div className={styles.center}>
+      <button className={styles.leapButton} onClick={add}>
+        Add/switch To {params.chainName}
+      </button>
+    </div>
+  );
 }
 ```
 
@@ -325,13 +325,13 @@ then add the following parameters:
 
 - Chain Id: `{{ constants.arabicaChainId }}`
 - Chain Name: `Arabica devnet`
-- New RPC URL: `https://rpc.celestia-arabica-11.com/`
-- New REST URL: `https://api.celestia-arabica-11.com`
+- New RPC URL: `https://rpc.celestia-{{constants.arabicaChainId}}.com/`
+- New REST URL: `https://api.celestia-{{constants.arabicaChainId}}.com`
 - Address Prefix: `celestia`
 - Native Denom: `utia`
 - Coin Type: `118`
 - Decimals: `6`
-- Block explorer URL (optional): `https://explorer.celestia-arabica-11.com`
+- Block explorer URL (optional): `https://explorer.celestia-{{constants.arabicaChainId}}.com`
 
 Now, click `Add chain` and you will be able to view your Arabica
 account balance and transactions in Leap wallet.

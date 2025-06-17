@@ -1,7 +1,7 @@
 ---
 next:
-  text: "Prompt Scavenger"
-  link: "/tutorials/prompt-scavenger"
+  text: "Create a wallet with celestia-node"
+  link: "/tutorials/celestia-node-key"
 ---
 
 # Rust client library tutorial {#rust-client-library}

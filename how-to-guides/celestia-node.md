@@ -12,6 +12,17 @@ import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 </script>
 
+## Supported architectures
+
+Celestia-node officially supports the following architectures:
+
+- linux/amd64
+- linux/arm64
+- darwin/amd64 (macOS Intel)
+- darwin/arm64 (macOS Apple Silicon)
+
+Only these four architectures are officially tested and supported.
+
 ## Installing from source
 
 This section goes over building and installing celestia-node. This
@@ -100,11 +111,13 @@ commit hash, build date, system version, and Golang version.
 Installing a pre-built binary is the fastest way to get started with your Celestia data availability node. Releases after celestia-node v0.13.3 have these binaries available.
 
 The installation script will download a binary file named `celestia`. Depending on your chosen installation option, the `celestia` binary will be available at one of these locations:
+
 - `$GOPATH/bin/celestia` (if Go is installed)
 - `/usr/local/bin/celestia`
 - `$HOME/celestia-node-temp/celestia`
 
 Pre-built binaries are available for:
+
 - Operating systems: Darwin (Apple), Linux
 - Architectures: x86_64 (amd64), arm64
 
@@ -121,6 +134,7 @@ bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnet
 ```
 
 The script will:
+
 1. Detect your system's operating system and architecture
 2. Download the appropriate binary
 3. Verify the checksum for security

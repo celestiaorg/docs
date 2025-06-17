@@ -1,5 +1,8 @@
 ---
 description: An overview of the celestia-node API.
+prev:
+  text: "New Blobstream X deployments"
+  link: "/how-to-guides/blobstream-x-deploy.md"
 ---
 
 # Node API
@@ -58,8 +61,3 @@ external users who don't want or can't run light nodes
 functionality.
 
 <!-- We may also implement super-light-clients over Gateway API at some point. -->
-
-### Gateway API tutorial
-
-Check out the [Prompt scavenger gateway API tutorial](/tutorials/prompt-scavenger.md)
-for more details.

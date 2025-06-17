@@ -1,8 +1,8 @@
 ---
 description: What is BlobstreamX
 prev:
-    text: "New SP1 Blobstream deployments"
-    link: "/how-to-guides/sp1-blobstream-deploy"
+  text: "New SP1 Blobstream deployments"
+  link: "/how-to-guides/sp1-blobstream-deploy"
 ---
 
 # Blobstream X: the previous zk implementation of Blobstream
@@ -15,18 +15,24 @@ Blobstream X is the previous implementation of Blobstream. It uses
 [plonky2x](https://github.com/succinctlabs/succinctx/tree/main/plonky2x) to create
 circuits that verify the Celestia consensus and generate the corresponding proofs.
 
+:::tip NOTE
+The [Blobstream X repository](https://github.com/succinctlabs/blobstreamx) is now archived.
+For current deployments and active development, see [SP1 Blobstream](https://github.com/succinctlabs/sp1-blobstream).
+:::
+
 Blobstream X is built and deployed with
-[Succinct's protocol](https://platform-docs.succinct.xyz).
+[Succinct's protocol](https://docs.succinct.xyz).
 
 :::tip NOTE
-The Blobstream deployments below don't use the BlobstreamX circuits.
+Current Blobstream deployments use SP1 Blobstream, not BlobstreamX circuits.
+This documentation is maintained for historical reference.
 :::
 
 You can [find the repository for Blobstream X](https://github.com/succinctlabs/blobstreamx)
 along with code for:
 
 - [The Blobstream X smart contract - `BlobstreamX.sol`](https://github.com/succinctlabs/blobstreamx/blob/main/contracts/src/BlobstreamX.sol)
-- [The Blobstream X circuits](https://alpha.succinct.xyz/celestia/blobstreamx)
+- The Blobstream X circuits
 - [The Blobstream X contract Golang bindings](https://github.com/succinctlabs/blobstreamx/blob/main/bindings/BlobstreamX.go)
 
 :::tip NOTE
@@ -51,7 +57,6 @@ X contract is through the `SuccinctGateway` smart contract, which is a
 simple entrypoint contract that verifies proofs (against a deployed
 onchain verifier for the Blobstream X circuit) and then calls the
 `BlobstreamX.sol` contract to update it.
-[Find more information about the `SuccinctGateway`](https://platform-docs.succinct.xyz/platform/onchain-integration#succinct-gateway).
 
 ![blobstream x overview diagram draft](/img/blobstream/Celestia_Blobstream_X2b.png)
 
@@ -59,16 +64,14 @@ onchain verifier for the Blobstream X circuit) and then calls the
 
 :::tip NOTE
 If the Blobstream X contract is not deployed on a desired chain,
-it needs to be deployed before it can be used by your rollup. See the
-[deployment documentation](https://platform-docs.succinct.xyz/platform/onchain-integration#non-canonical-chain-contract-deployment)
-for more details.
+it needs to be deployed before it can be used by your rollup.
 :::
 
 ## Deploy Blobstream X
 
 It is possible to deploy and maintain a Blobstream x instance and have the same security guarantees.
 
-First, you will need to create a multisig that governs the Blobstream X contract and also the function identifiers. The function identifiers can be registered in the [Succinct gateway](https://platform-docs.succinct.xyz/platform/onchain-integration#register-circuits-with-your-deployed-succinct-gateway).
+First, you will need to create a multisig that governs the Blobstream X contract and also the function identifiers.
 
 Then, check the [deployment](https://github.com/succinctlabs/blobstreamx/blob/main/README.md#blobstreamx-contract-overview) documentation for how to deploy the contract.
 

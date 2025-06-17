@@ -51,19 +51,19 @@ celestia light init --p2p.network mocha
 Once you've run this command, you'll see a new keypair that's created in your terminal. Be sure to save your mnemonic somewhere safe for future use!
 
 ```bash-vue
-INFO	node	nodebuilder/init.go:31	Initializing Light Node Store over '/Users/js/.celestia-light-{{ constants.mochaChainId }}'
-INFO	node	nodebuilder/init.go:64	Saved config	{"path": "/Users/js/.celestia-light-{{ constants.mochaChainId }}/config.toml"}
-INFO	node	nodebuilder/init.go:66	Accessing keyring...
-WARN	node	nodebuilder/init.go:196	Detected plaintext keyring backend. For elevated security properties, consider using the `file` keyring backend.
-INFO	node	nodebuilder/init.go:211	NO KEY FOUND IN STORE, GENERATING NEW KEY...	{"path": "/Users/js/.celestia-light-{{ constants.mochaChainId }}/keys"}
-INFO	node	nodebuilder/init.go:216	NEW KEY GENERATED...
+INFO node nodebuilder/init.go:31 Initializing Light Node Store over '/Users/js/.celestia-light-{{ constants.mochaChainId }}'
+INFO node nodebuilder/init.go:64 Saved config {"path": "/Users/js/.celestia-light-{{ constants.mochaChainId }}/config.toml"}
+INFO node nodebuilder/init.go:66 Accessing keyring...
+WARN node nodebuilder/init.go:196 Detected plaintext keyring backend. For elevated security properties, consider using the `file` keyring backend.
+INFO node nodebuilder/init.go:211 NO KEY FOUND IN STORE, GENERATING NEW KEY... {"path": "/Users/js/.celestia-light-{{ constants.mochaChainId }}/keys"}
+INFO node nodebuilder/init.go:216 NEW KEY GENERATED...
 
 NAME: my_celes_key
 ADDRESS: celestia1lgvzg4ek9v499pl5vvsvqpquhwfg0jznpwd92m
 MNEMONIC (save this somewhere safe!!!):
 never gonna give you up never gonna let you down never gonna run around and desert you never gonna make you cry never gonna
 
-INFO	node	nodebuilder/init.go:73	Node Store initialized
+INFO node nodebuilder/init.go:73 Node Store initialized
 ```
 
 You'll also see in this example, using the Mocha testnet and setting up a light node, our node store will be at: `~/.celestia-light-{{ constants.mochaChainId }}`.
@@ -78,16 +78,17 @@ Let's set the trusted hash!
 
 1. Get trusted height & hash from the P-OPS consensus endpoint:
 
-    ```bash
-    export TRUSTED_HEIGHT=$(curl -s "https://rpc-mocha.pops.one/header" | jq -r '.result.header.height') && export TRUSTED_HASH=$(curl -s "https://rpc-mocha.pops.one/header" | jq -r '.result.header.last_block_id.hash') && echo "Height: $TRUSTED_HEIGHT" && echo "Hash: $TRUSTED_HASH"
-    ```
+   ```bash
+   read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH && echo "Height: $TRUSTED_HEIGHT" && echo "Hash:   $TRUSTED_HASH"
+   ```
 
 1. Set the trusted height & hash
-    1. Open your `config.toml` at `.celestia-light-{{ constants.mochaChainId }}/config.toml`
-    1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
+   1. Open your `config.toml` at `~/.celestia-light-{{ constants.mochaChainId }}/config.toml`
+   1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
+   1. Set `Header.TrustedHash` to the trusted hash (e.g. `TrustedHash = "E8BD0C48260C496BB7A4D8D1E7BDBF1F26A2FE3CF5714DECE1741B2FFB3C095C"` )
 
 > If you don't do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 94721, requestedHeight: 2983850"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
-Learn more in [the trusted hash quick sync guide](/how-to-guides/celestia-node-trusted-hash.md).
+> Learn more in [the trusted hash quick sync guide](/how-to-guides/celestia-node-trusted-hash.md).
 
 ### Start the light node
 
@@ -96,8 +97,7 @@ Run the following command to start your light node:
 In the same terminal you initialized the node store and set the variable for `TRUSTED_HASH`, start the node with the hash and flag:
 
 ```bash
-celestia light start --headers.trusted-hash $TRUSTED_HASH \
-    --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
 ```
 
 The `core.ip` flag is used to specify the consensus RPC endpoints you want to connect to, this is the same one we got the trusted height and hash from. We'll use `rpc-mocha.pops.one` from the P-OPS team for Mocha testnet. The `headers.trusted-hash` flag will set the trusted hash from the previous section.
@@ -108,15 +108,15 @@ Once you see this in the logs, you're ready to start posting and retrieving data
 /_____/  /_____/  /_____/  /_____/  /_____/
 
 Started celestia DA node
-node version: 	{{mochaVersions['node-latest-tag'].slice(1)}}
-node type: 	light
-network: 	{{ constants.mochaChainId }}
+node version:  {{mochaVersions['node-latest-tag'].slice(1)}}
+node type:  light
+network:  {{ constants.mochaChainId }}
 
 /_____/  /_____/  /_____/  /_____/  /_____/
 ```
 
 :::tip
-If you want to see that your node is synced, use the `celestia das sampling-stats` command to check it in another terminal:
+If you want to see that your node is synced, use the `celestia das sampling-stats` command to check it in another terminal. Here is how a fully synced node looks like:
 
 ```bash
 {
@@ -216,6 +216,8 @@ In response, you'll see the data you posted:
 }
 ```
 
+You can also inspect this example on celenium explorer [here](https://mocha.celenium.io/blob?commitment=cVqyRncskjEExVbcKNXU/PygOYsKJSvNGd1XBUlXVqw=&hash=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxdW90ZXM=&height=2990556).
+
 Let's break it down:
 
 - `namespace`: The [namespace](https://celestiaorg.github.io/celestia-app/namespace.html) you used to categorize your data.
@@ -229,32 +231,6 @@ Congratulations! You've successfully learned how to run a light node to post and
 ## Optional: Diving deeper into the stack
 
 This section covers some more in-depth topics that you may find useful when working with your Celestia light node. For advanced configurations like running with custom keys, using SystemD, or authentication with core endpoints, see the [light node guide](/how-to-guides/light-node.md).
-
-### Get your auth token
-
-Your auth token may be useful when you want to interact with your Celestia light node from a client application. You can get your auth token by running:
-
-```bash
-celestia light auth admin --p2p.network mocha
-```
-
-Use `celestia light auth --help` to learn more about the available options.
-
-### Key management with cel-key
-
-In the first part of this guide, we generated a key when we initialized the light node.
-
-An advanced option for key management is using the `cel-key` utility, which is a separate tool from the `celestia` binary. `cel-key` is a key management tool that allows you to create, import, and manage keys for your Celestia DA node.
-
-If you're using the quickstart script above, you will have to build `cel-key` separately from source. You can find the instructions for building `cel-key` in the [celestia-node](/how-to-guides/celestia-node.md) documentation.
-
-### Rust client tutorial
-
-If you're interested in writing a Rust program to interact with your Celestia light node, check out the [Rust client tutorial](/tutorials/rust-client-tutorial.md).
-
-### Golang client tutorial
-
-If you're interested in writing a Golang program to interact with your Celestia light node, check out the [Golang client tutorial](/tutorials/golang-client-tutorial.md).
 
 ### Node store contents
 
@@ -273,6 +249,27 @@ In this guide, the node store for `~/.celestia-light-{{ constants.mochaChainId }
     - `.address` files: Account addresses
     - `.info` files: Key metadata and information
 
+### Get your auth token
+
+Your auth token may be useful when you want to interact with your Celestia light node from a client application. You can get your auth token by running:
+
+```bash
+celestia light auth admin --p2p.network mocha
+```
+
+Use `celestia light auth --help` to learn more about the available options.
+
+### Advanced Key management with `cel-key`
+
+For more advanced key management beyond the built-in capabilities of the light node, use the separate cel-key utility. This dedicated tool allows you to:
+
+- Create, import, and manage keys.
+- Backup, verify and select the active key used by your node
+
+To utilize cel-key, you'll need to build it separately. Follow the instructions provided in the [celestia-node](/how-to-guides/celestia-node.md) documentation.
+
+Detailed instructions for backing up, recovering, and verifying node keys are available in the guide on [Managing the key returned by `celestia state account-address`](/tutorials/celestia-node-key.md#managing-the-key-returned-by-celestia-state-account-address).
+
 ## Troubleshooting
 
 If you run into issues, check out the [troubleshooting](/how-to-guides/celestia-node-troubleshooting.md) page for common problems and solutions.
@@ -280,5 +277,15 @@ If you run into issues, check out the [troubleshooting](/how-to-guides/celestia-
 ## Next steps
 
 Check out the [rollup stacks page](/how-to-guides/rollup-stacks.md) to get started learning about ways to build whatever with Celestia underneath.
+
+Also, here are some suggested tutorials for you:
+
+### Rust client tutorial
+
+If you're interested in writing a Rust program to interact with your Celestia light node, check out the [Rust client tutorial](/tutorials/rust-client-tutorial.md).
+
+### Golang client tutorial
+
+If you're interested in writing a Golang program to interact with your Celestia light node, check out the [Golang client tutorial](/tutorials/golang-client-tutorial.md).
 
 Head to the next page to learn about different node types for the consensus and DA networks.

@@ -4,6 +4,14 @@ description: Learn how to connect to the Mocha network.
 
 # Mocha testnet
 
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<script setup>
+import constants from '/.vitepress/constants/constants.js'
+import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
+import MochaTestnetDetails from '../.vitepress/components/MochaTestnetDetails.vue'
+</script>
+
 ![mocha-testnet](/img/mocha.jpg)
 
 This guide contains the relevant sections for how to connect to Mocha,
@@ -38,12 +46,6 @@ on each respective page. Whenever you are asked to select the type of network
 you want to connect to in those guides, select `Mocha` to refer
 to the correct instructions on this page on how to connect to Mocha.
 
-<!-- markdownlint-disable MD033 -->
-<script setup>
-import MochaVersionTags from '../.vitepress/components/MochaVersionTags.vue'
-import MochaTestnetDetails from '../.vitepress/components/MochaTestnetDetails.vue'
-</script>
-
 ## Network details
 
 <MochaTestnetDetails/>
@@ -52,6 +54,12 @@ import MochaTestnetDetails from '../.vitepress/components/MochaTestnetDetails.vu
 
 <MochaVersionTags/>
 
+## Network status
+
+For real-time network status information, including uptime, incident reports,
+and service availability, visit the
+[official Celestia Mocha testnet status page](https://status.celestia.dev/status/mocha).
+
 ## RPC for DA bridge, full, and light nodes
 
 ### Production RPC endpoints
@@ -59,13 +67,18 @@ import MochaTestnetDetails from '../.vitepress/components/MochaTestnetDetails.vu
 <!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD034 -->
 
-These RPC providers are meant to be used in production environments.
+These RPC providers are meant to be used in production environments
+and for specific use cases that require reliable access to full block
+history, such as:
 
-| Provider | URL |
-|--------|--------|
-| Grove | <https://www.grove.city/> |
-| Numia | For RPC access: <https://docs.numia.xyz/infra/overview/getting-started> |
-| Numia | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia> |
+- Running Bridge Nodes that download data from core RPC endpoints
+- Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
+
+| Provider  | URL                                                                                       |
+| --------- | ----------------------------------------------------------------------------------------- |
+| Grove     | <https://www.grove.city/>                                                                 |
+| Numia     | For RPC access: <https://docs.numia.xyz/infra/overview/getting-started>                   |
+| Numia     | For data warehouse access: <https://docs.numia.xyz/sql/querying-data/chains/celestia>     |
 | QuickNode | <https://www.quicknode.com/chains/celestia> ([docs](https://quicknode.com/docs/celestia)) |
 
 :::warning
@@ -74,6 +87,18 @@ for production deployments. Production deployments should rely
 on [service providers with SLAs](#production-rpc-endpoints) or
 your own node.
 :::
+
+### Node setup and tools
+
+Several community providers offer comprehensive node setup tools, installation scripts, and monitoring services to help node operators get started quickly:
+
+| Provider | Installation guide                                             | State sync                                                    | Monitoring tools                                                |
+| -------- | -------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------- |
+| ITRocket | [Setup guide](https://itrocket.net/services/testnet/celestia/) | [State sync](https://itrocket.net/services/testnet/celestia/) | [Chain status](https://itrocket.net/services/testnet/celestia/) |
+
+### Community bridge and full node endpoints
+
+You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
 
 ### Community Data availability (DA) RPC endpoints for bridge node sync
 
@@ -98,8 +123,8 @@ full blocks from it.
 :::
 
 - `public-celestia-mocha4-consensus.numia.xyz`
-- `full.consensus.mocha-4.celestia-mocha.com`
-- `consensus-full-mocha-4.celestia-mocha.com`
+- `full.consensus.{{constants.mochaChainId}}.celestia-mocha.com`
+- `consensus-full-{{constants.mochaChainId}}.celestia-mocha.com`
 - `rpc-mocha.pops.one`
 - `celestia-testnet-consensus.itrocket.net`
   - RPC port: 26657
@@ -160,8 +185,8 @@ broadcast transactions.
 - `public-celestia-mocha4-consensus.numia.xyz:9090`
 - `grpc-mocha.pops.one`
 - `grpc.celestia-mocha.com:443`
-- `full.consensus.mocha-4.celestia-mocha.com:9090`
-- `consensus-full-mocha-4.celestia-mocha.com:9090`
+- `full.consensus.{{constants.mochaChainId}}.celestia-mocha.com:9090`
+- `consensus-full-{{constants.mochaChainId}}.celestia-mocha.com:9090`
 - `celestia-testnet.brightlystake.com:9390`
 - `grpc-celestia-mocha.trusted-point.com:9099`
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
@@ -183,7 +208,6 @@ broadcast transactions.
 
 - `celestiam.tendermintrpc.lava.build`
 
-
 ## Community bridge and full node endpoints
 
 The endpoints below are for bridge and full nodes only. They can be used to
@@ -191,26 +215,29 @@ find bootstrapper peers in the p2p network.
 
 Bridge node 1:
 
-- da-bridge-mocha-4.celestia-mocha.com
-- bridge-mocha-4.da.celestia-mocha.com
+- da-bridge-{{constants.mochaChainId}}.celestia-mocha.com
+- bridge-{{constants.mochaChainId}}.da.celestia-mocha.com
 
 Bridge node 2:
 
-- da-bridge-mocha-4-2.celestia-mocha.com
-- bridge-mocha-4-2.da.celestia-mocha.com
+- da-bridge-{{constants.mochaChainId}}-2.celestia-mocha.com
+- bridge-{{constants.mochaChainId}}-2.da.celestia-mocha.com
 
 Full node 1:
 
-- da-full-1-mocha-4.celestia-mocha.com
-- full-1-mocha-4.da.celestia-mocha.com
+- da-full-1-{{constants.mochaChainId}}.celestia-mocha.com
+- full-1-{{constants.mochaChainId}}.da.celestia-mocha.com
 
 Full node 2:
 
-- da-full-2-mocha-4.celestia-mocha.com
-- full-2-mocha-4.da.celestia-mocha.com
+- da-full-2-{{constants.mochaChainId}}.celestia-mocha.com
+- full-2-{{constants.mochaChainId}}.da.celestia-mocha.com
 - celestia-testnet-da-full-storage.mzonder.com
   - RPC port: 27758
   - Gateway port: 27759
+- celestia-testnet-da-full-storage.itrocket.net
+  - RPC port: 26658
+  - Gateway port: 26659
 
 ## Mocha testnet faucet
 
@@ -219,7 +246,7 @@ USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER DISTRIBUTION OF
 MAINNET CELESTIA TOKENS.
 :::
 
-### Discord 
+### Discord
 
 You can request from Mocha testnet Faucet on the #mocha-faucet channel on
 Celestia's Discord server with the following command:
@@ -236,13 +263,20 @@ Faucet has a limit of 10 tokens per week per address/Discord ID.
 
 ### Web
 
-The web faucet is available at [https://celenium.io/faucet](https://celenium.io/faucet).
+The web faucet is available at [https://mocha.celenium.io/faucet](https://mocha.celenium.io/faucet).
 
 ## Analytics
 
 The following websites provide analytics for Mocha Testnet:
 
 - <https://cosmoslist.co/testnet/celestia>
+- [https://itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Node setup, monitoring, and chain status tools
+
+## Node maps
+
+The following websites provide visual maps of Celestia DA nodes:
+
+- [https://validao.xyz/#maps-celestia-testnet-da](https://validao.xyz/#maps-celestia-testnet-da) (community contribution)
 
 ## Explorers
 
@@ -255,6 +289,7 @@ There are several explorers you can use for Mocha:
 - `https://testnet.celestia.explorers.guru`
 - `https://testnet.itrocket.net/celestia`
 - `https://testnet.celestia.valopers.com/`
+- `https://explorer.chainroot.io/celestia-testnet-mocha4`
 
 ## Network upgrades
 

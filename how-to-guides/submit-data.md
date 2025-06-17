@@ -47,9 +47,10 @@ Celestia-node provides flexible fee estimation options for submitting transactio
 
 :::tip NOTE
 Fee estimation differs by transaction type:
+
 - PayForBlobs (PFB) transactions: Only the gas price (cost per unit) is dynamically estimated. The gas usage (number of units) uses a fixed calculation method.
 - All other transactions: Both gas price and gas usage are dynamically estimated.
-:::
+  :::
 
 :::warning IMPORTANT
 When using third-party estimation, the consensus endpoint must be running celestia-app v3.8.1 or higher.
@@ -184,7 +185,7 @@ specify the nonce manually. If this is not done, the new transactions will not
 be able to be submitted until the first transaction is reaped from the mempool (i.e. included in a block), or dropped due to timing out.
 
 By default, nodes will drop a transaction if it does not get included in 5
-blocks (roughly 1 minute). At this point, the user must resubmit their
+blocks (roughly 30 seconds). At this point, the user must resubmit their
 transaction if they want it to eventually be included.
 
 As of v1.0.0 of the application (celestia-app), users are unable to replace an
@@ -212,6 +213,7 @@ celestia blob submit <hex-encoded namespace> <hex-encoded data> [flags]
 ```
 
 Available flags:
+
 - `--core.estimator.address string`: Specifies the endpoint of the third-party service for gas price and gas estimation. Format: `<address>:<port>`. If not provided, the default connection to the consensus node will be used.
 - `--max.gas.price`: Sets the maximum gas price you're willing to pay for the transaction. If the estimated gas price exceeds this value, the transaction will not be submitted. Default is 0.2 TIA (100x the minimum gas price).
 

@@ -29,7 +29,7 @@ jobs:
     strategy:
       matrix:
         # If we want more repos, we can just add them here.
-        repo: [celestia-app, celestia-core, celestia-node]
+        repo: [celestia-app, celestia-node]
     env:
       # This workflow is set for the celestiaorg github org, if we need other
       # orgs we will need to restructure this workflow
@@ -38,8 +38,6 @@ jobs:
     outputs:
       celestia-app_latest_tag: ${{ steps.set_outputs.outputs.celestia-app_latest_tag }}
       celestia-app_latest_sha: ${{ steps.set_outputs.outputs.celestia-app_latest_sha }}
-      celestia-core_latest_tag: ${{ steps.set_outputs.outputs.celestia-core_latest_tag }}
-      celestia-core_latest_sha: ${{ steps.set_outputs.outputs.celestia-core_latest_sha }}
       celestia-node_latest_tag: ${{ steps.set_outputs.outputs.celestia-node_latest_tag }}
       celestia-node_latest_sha: ${{ steps.set_outputs.outputs.celestia-node_latest_sha }}
     steps:
@@ -89,7 +87,7 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Write latest tags and commit SHAs to txt files
         # This is the code that writes to a file. If we need to update the file
         # layout, contents, or file name, do it here.
@@ -98,8 +96,6 @@ jobs:
           const ${{ inputs.network }}Versions = Object.freeze({
             "app-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-app_latest_tag }}",
             "app-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-app_latest_sha }}",
-            "core-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-core_latest_tag }}",
-            "core-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-core_latest_sha }}", 
             "node-latest-tag": "${{ needs.logLatestRelease.outputs.celestia-node_latest_tag }}",
             "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia-node_latest_sha }}"
           });

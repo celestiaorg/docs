@@ -6,12 +6,12 @@ The Mammoth testnet is designed to demonstrate Celestia's high throughput capabi
 
 ## Overview
 
-| Parameter | Value |
-|-----------|--------|
-| Chain ID | `mamo-1` |
-| Genesis Hash | `8BED0B775B983596B90EEDDC245C13EF7EB4054EEA60E1F25393868C4A2C6660` |
-| Target Block Time | 6 seconds |
-| Target Throughput | 21.33MB/s at 128MB/6s |
+| Parameter         | Value                                                              |
+| ----------------- | ------------------------------------------------------------------ |
+| Chain ID          | `mamo-1`                                                           |
+| Genesis Hash      | `8BED0B775B983596B90EEDDC245C13EF7EB4054EEA60E1F25393868C4A2C6660` |
+| Target Block Time | 6 seconds                                                          |
+| Target Throughput | 21.33MB/s at 128MB/6s                                              |
 
 ## Chain details
 
@@ -23,12 +23,13 @@ Explorer for Mammoth testnet is available at [mammoth.celenium.io](https://mammo
 
 ### Software versions
 
-| Software | Version |
-|----------|---------|
+| Software        | Version                   |
+| --------------- | ------------------------- |
 | `celestia-node` | `v0.21.9-mammoth-v0.0.16` |
-| `celestia-app` | `v3.4.2-mammoth-v0.6.0` |
+| `celestia-app`  | `v3.4.2-mammoth-v0.6.0`   |
 
 The testnet includes custom versions with:
+
 - Datastore sharding
 - 1-day sampling and pruning window
 - Optimized block time consistency
@@ -36,11 +37,11 @@ The testnet includes custom versions with:
 
 ### RPC Endpoints
 
-| Location | gRPC | RPC | API |
-|----------|------|-----|-----|
-| Amsterdam | https://global.grpc.mamochain.com | https://rpc.ams.mamochain.com | https://api.ams.mamochain.com |
-| Paris | https://global.grpc.mamochain.com | https://rpc.par.mamochain.com | https://api.par.mamochain.com |
-| Warsaw | https://global.grpc.mamochain.com | https://rpc.waw.mamochain.com | https://api.waw.mamochain.com |
+| Location  | gRPC                                | RPC                             | API                             |
+| --------- | ----------------------------------- | ------------------------------- | ------------------------------- |
+| Amsterdam | <https://global.grpc.mamochain.com> | <https://rpc.ams.mamochain.com> | <https://api.ams.mamochain.com> |
+| Paris     | <https://global.grpc.mamochain.com> | <https://rpc.par.mamochain.com> | <https://api.par.mamochain.com> |
+| Warsaw    | <https://global.grpc.mamochain.com> | <https://rpc.waw.mamochain.com> | <https://api.waw.mamochain.com> |
 
 <details>
 <summary><b>Amsterdam validators</b></summary>
@@ -51,6 +52,7 @@ The testnet includes custom versions with:
 - conval-11.ams.mamochain.com
 - conval-12.ams.mamochain.com
 - conval-13.ams.mamochain.com
+
 </details>
 
 <details>
@@ -64,6 +66,7 @@ The testnet includes custom versions with:
 - conval-5.par.mamochain.com
 - conval-6.par.mamochain.com
 - conval-7.par.mamochain.com
+
 </details>
 
 <details>
@@ -76,6 +79,7 @@ The testnet includes custom versions with:
 - conval-18.waw.mamochain.com
 - conval-19.waw.mamochain.com
 - conval-20.waw.mamochain.com
+
 </details>
 
 Status: <https://rpc.ams.mamochain.com/status>
@@ -122,7 +126,7 @@ USING THIS FAUCET DOES NOT ENTITLE YOU TO ANY AIRDROP OR OTHER DISTRIBUTION OF
 MAINNET CELESTIA TOKENS.
 :::
 
-Head to the faucet at [celenium.io/faucet](https://celenium.io/faucet) or [faucet.mamochain.com](https://faucet.mamochain.com) to request tokens for the Mammoth testnet.
+Head to the faucet at [mammoth.celenium.io/faucet](https://mammoth.celenium.io/faucet) to request tokens for the Mammoth testnet.
 
 Check your balance:
 
@@ -192,6 +196,7 @@ celestia blob submit 676d 676d | tee /dev/tty | jq -r '"\(.result.height) 676d \
 ### Optional: Post a blob with a frontend
 
 Head to [gmamo.vercel.app](https://gmamo.vercel.app) to explore an interactive UI that offers several features:
+
 - [View your node information and transfer TIA](#see-your-node-s-info)
 - [Monitor sampling statistics](#see-your-node-s-sampling-stats)
 - [Upload and retrieve blobs or images](#upload-and-retrieve-blob-or-image-to-mammoth)

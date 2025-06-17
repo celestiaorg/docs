@@ -132,8 +132,8 @@ celestia light start --core.ip consensus.lunaroasis.net --core.port 9090
 celestia light start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
 ```
 
-```bash [Arabica]
-celestia light start --core.ip validator-1.celestia-arabica-11.com \
+```bash-vue [Arabica]
+celestia light start --core.ip validator-1.celestia-{{constants.arabicaChainId}}.com \
   --core.port 9090 --p2p.network arabica
 ```
 
@@ -705,7 +705,7 @@ It will output something like this:
 
 <!-- markdownlint-disable MD013 -->
 
-```json
+```json-vue
 {
   "jsonrpc": "2.0",
   "result": {
@@ -714,7 +714,7 @@ It will output something like this:
         "block": "11",
         "app": "1"
       },
-      "chain_id": "arabica-11",
+      "chain_id": "{{constants.arabicaChainId}}",
       "height": "1",
       "time": "2023-06-27T13:02:39.741743Z",
       "last_block_id": {
@@ -793,7 +793,7 @@ It will output something like this:
 #### Combined commands
 
 ```bash
-celestia share get-by-namespace "$(celestia header get-by-height 147105 | jq '.result.dah' -r)" 0x42690c204d39600fddd3
+celestia share get-by-namespace 147105 0x42690c204d39600fddd3
 ```
 
 #### Get data availability sampler stats
@@ -854,14 +854,11 @@ celestia <module> <method> --help
 
 ### Advanced example
 
-This example shows us using the `jq` command to parse the output of the
-`celestia header get-by-height` method to get the extended header
-used in `celestia share get-by-namespace`:
+This example shows us using the `celestia share get-by-namespace`
+method with a block height to retrieve shares from a specific namespace:
 
 ```bash
-celestia share get-by-namespace \
-  "$(celestia header get-by-height 252614 | jq '.result.dah' -r)" \
-  0x42690c204d39600fddd3
+celestia share get-by-namespace 252614 0x42690c204d39600fddd3
 ```
 
 ## Additional resources
@@ -914,11 +911,6 @@ curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NOD
 
 The example transaction can be
 [found on Celenium](https://celenium.io/tx/08af4b0934843f083300e682f1f8894c6b2871b6d0adbc3bbef1739431484cfd).
-
-### Post an SVG as a PFB
-
-If you'd like to create your own SVG, post it to Celestia, and retrieve it,
-you can check out the [Base64 SVG Tutorial](https://based64.xyz/).
 
 ### Troubleshooting
 

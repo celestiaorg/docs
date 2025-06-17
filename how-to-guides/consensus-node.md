@@ -320,13 +320,13 @@ The [Node snapshots guide](/how-to-guides/snapshots.md) provides everything you 
 
 ## Start the consensus node
 
-If you are running celestia-app v1.x.x:
+If you are running celestia-app >= v4.0.0, the `rpc.grpc_laddr` config option is required. This option can be set via the CLI flag `--rpc.grpc_laddr tcp://0.0.0.0:9098` or in the `config.toml`.
 
 ```sh
-celestia-appd start
+celestia-appd start --rpc.grpc_laddr tcp://0.0.0.0:9098
 ```
 
-If you are running celestia-app >= v2.0.0: then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
+If you are running celestia-app v2.x.x then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
 
 ::: code-group
 
@@ -361,6 +361,7 @@ celestia-appd tendermint reset-state
 ```
 
 This preserves your configuration, validator state (`priv_validator_state.json`), and peer connections (`addrbook.json`), but removes:
+
 - blockstore.db
 - state.db
 - evidence.db
@@ -376,6 +377,7 @@ celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
 ```
 
 This command:
+
 - Resets blockchain data
 - Resets validator state (`priv_validator_state.json`) but NOT private keys (which are in `priv_validator_key.json`)
 - Clears address book (`addrbook.json`)
@@ -410,6 +412,7 @@ echo "{}" > ~/.celestia-app/data/priv_validator_state.json
 ```
 
 This approach:
+
 - Completely removes all blockchain data (blocks, state, evidence, etc.)
 - Removes the keyring-test directory containing transaction signing keys (but not validator consensus keys)
 - Creates a new, empty data directory structure
@@ -516,3 +519,77 @@ discard_abci_responses = false
 
 Remember to restart `celestia-appd` after making changes to the
 configuration to load the new settings.
+
+### Optional: Reduce log level
+
+To reduce the log level, you can modify the `log_level` field in your `config.toml` file.
+
+```diff
+# Output level for logging, including package level options
+-log_level = "info"
++log_level = "*:error,p2p:info,state:info"
+```
+
+### Passthrough command for historical queries
+
+Starting with celestia-app v4 the `passthrough` command allows you to invoke queries on historical app versions. This is particularly useful when you need to query data from before a major version upgrade occurred.
+
+#### When to use the passthrough command
+
+The passthrough command is useful in scenarios where:
+
+- You need to query state or transactions that existed before a major app version upgrade
+- You're running a post-upgrade node but need to access data using the query format from a previous version
+- You're debugging issues related to version compatibility after an upgrade
+
+#### Basic usage
+
+```sh
+celestia-appd passthrough [app-version] [command] [flags]
+```
+
+Where:
+
+- `[app-version]` is the historical app version you want to query against (e.g., `v1`, `v2`, `v3`)
+- `[command]` is the command you want to execute using that app version's format
+
+#### Examples
+
+Query account balance using app version 1 format:
+
+```sh
+celestia-appd passthrough v1 query bank balances [address]
+```
+
+Query validator information using app version 2 format:
+
+```sh
+celestia-appd passthrough v2 query staking validator [validator-address]
+```
+
+Query transaction using app version 3 format:
+
+```sh
+celestia-appd passthrough v3 query tx [transaction-hash]
+```
+
+#### Important considerations
+
+- The passthrough command requires that your node has the historical data for the version you're querying
+- Not all query types may be available for all historical versions
+- This command is most useful immediately after major version upgrades when you need backward compatibility
+- Ensure your node is fully synced before using passthrough queries for accurate results
+
+#### Getting help
+
+To see all available options for the passthrough command:
+
+```sh
+celestia-appd passthrough --help
+```
+
+To see available commands for a specific app version:
+
+```sh
+celestia-appd passthrough [app-version] --help
+```

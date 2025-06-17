@@ -156,7 +156,7 @@ proposals](https://docs.cosmos.network/v0.46/modules/gov/01_concepts.html#propos
 the list of [parameter defaults in the
 specs](https://github.com/celestiaorg/celestia-app/blob/0012451c4dc118767dd59bc8d341878b7a7cacdf/specs/src/specs/params.md),
 and the [x/paramfilter module
-specs](https://github.com/celestiaorg/celestia-app/blob/main/x/paramfilter/README.md).
+specs](https://github.com/celestiaorg/celestia-app/tree/1570b3d4937ac4418b3ecf77365d47c5f094ad8f/x/paramfilter).
 
 Viewing the available proposals can be done with the query command:
 
@@ -352,7 +352,7 @@ Then add genesis account:
 
 ```sh
 CELES_AMOUNT="5000100000000utia"
-celestia-appd add-genesis-account $KEY_NAME $CELES_AMOUNT
+celestia-appd genesis add-genesis-account $KEY_NAME $CELES_AMOUNT
 ```
 
 Then generate your gentx:
