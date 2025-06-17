@@ -169,7 +169,7 @@ In order to create a validator on-chain, follow the steps below.
     ```bash-vue [Mocha]
     celestia-appd tx staking create-validator \
         --amount=1000000utia \
-        --pubkey=$(celestia-appd tendermint show-validator) \
+        --pubkey=$VALIDATOR_PUBKEY \
         --moniker=$MONIKER \
         --identity=<optional_identity_signature> \
         --website="<optional_validator_website>" \
