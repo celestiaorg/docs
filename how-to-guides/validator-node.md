@@ -132,7 +132,7 @@ In order to create a validator on-chain, follow the steps below.
     {
       "pubkey": $VALIDATOR_PUBKEY,
       "amount": "1000000utia",
-      "moniker": "test-validator",
+      "moniker": "$MONIKER",
       "commission-rate": "0.1",
       "commission-max-rate": "0.2",
       "commission-max-change-rate": "0.01",
