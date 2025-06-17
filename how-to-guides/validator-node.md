@@ -223,7 +223,6 @@ celestia-appd tx staking edit-validator \
     --website="<validator_website>" \
     --security-contact="<email_address_for_security_contact>" \
     --details="New description of the validator." \
-    --chain-id={{constants.mochaChainId}} \
     --from=$VALIDATOR_WALLET \
     --keyring-backend=test \
     --fees=21000utia \
