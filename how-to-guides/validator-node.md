@@ -132,7 +132,7 @@ In order to create a validator on-chain, follow the steps below.
     {
       "pubkey": $VALIDATOR_PUBKEY,
       "amount": "1000000utia",
-      "moniker": "$MONIKER",
+      "moniker": "test-validator",
       "commission-rate": "0.1",
       "commission-max-rate": "0.2",
       "commission-max-change-rate": "0.01",
@@ -148,7 +148,7 @@ In order to create a validator on-chain, follow the steps below.
     ```bash-vue [Mainnet Beta]
     celestia-appd tx staking create-validator \
         --amount=1000000utia \
-        --pubkey=$VALIDATOR_PUBKEY \
+        --pubkey=$(celestia-appd tendermint show-validator) \
         --moniker=$MONIKER \
         --identity=<optional_identity_signature> \
         --website="<optional_validator_website>" \
@@ -191,7 +191,8 @@ In order to create a validator on-chain, follow the steps below.
     celestia-appd tx staking create-validator validator.json \
       --from $VALIDATOR_WALLET \
       --keyring-backend test \
-      --fees 21000utia --yes
+      --fees 21000utia \
+
     ```
 
     :::
