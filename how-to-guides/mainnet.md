@@ -221,6 +221,7 @@ pruning any data so all data available data is retrievable. You can
 
 There are multiple explorers you can use for Mainnet Beta:
 
+- [https://celestiahub.org/explorer](https://celestiahub.org/explorer)
 - [https://celenium.io](https://celenium.io)
 - [https://mammoblocks.io/](https://mammoblocks.io/)
 - [https://celestia.explorers.guru](https://celestia.explorers.guru)
