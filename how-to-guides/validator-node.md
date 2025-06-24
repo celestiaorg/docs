@@ -88,114 +88,115 @@ In order to create a validator on-chain, follow the steps below.
 
 1. Start the consensus node
 
-    ```sh
-    celestia-appd start
-    ```
+   ```sh
+   celestia-appd start
+   ```
 
 1. Export an environment variable for the chain ID you want to run on:
 
-    ::: code-group
+   ::: code-group
 
-    ```bash-vue [Mainnet Beta]
-    export CHAIN_ID={{constants.mainnetChainId}}
-    ```
+   ```bash-vue [Mainnet Beta]
+   export CHAIN_ID={{constants.mainnetChainId}}
+   ```
 
-    ```bash-vue [Mocha]
-    export CHAIN_ID={{constants.mochaChainId}}
-    ```
+   ```bash-vue [Mocha]
+   export CHAIN_ID={{constants.mochaChainId}}
+   ```
 
-    ```bash-vue [Arabica]
-    export CHAIN_ID={{constants.arabicaChainId}}
-    ```
+   ```bash-vue [Arabica]
+   export CHAIN_ID={{constants.arabicaChainId}}
+   ```
 
-    :::
+   :::
 
 1. Export more environment variables.
 
-    ```bash-vue
-    # Pick a moniker name of your choice.
-    export MONIKER="your_moniker"
+   ```bash-vue
+   # Pick a moniker name of your choice.
+   export MONIKER="your_moniker"
 
-    # Set VALIDATOR_WALLET to the same you defined previously.
-    export VALIDATOR_WALLET="validator"
+   # Set VALIDATOR_WALLET to the same you defined previously.
+   export VALIDATOR_WALLET="validator"
 
-    # Set VALIDATOR_PUBKEY to the pubkey of your validator wallet.
-    export VALIDATOR_PUBKEY=$(celestia-appd tendermint show-validator)
-    ```
+   # Set VALIDATOR_PUBKEY to the pubkey of your validator wallet.
+   export VALIDATOR_PUBKEY=$(celestia-appd tendermint show-validator)
+   ```
 
 1. If you want to create a validator on a testnet that is on app version 4 (currently only Arabica), you will need to create a `validator.json` file.
 
-    ::: code-group
+   ::: code-group
 
-    ```bash-vue [Arabica]
-    cat <<EOF > validator.json
-    {
-      "pubkey": $VALIDATOR_PUBKEY,
-      "amount": "1000000utia",
-      "moniker": "$MONIKER",
-      "commission-rate": "0.1",
-      "commission-max-rate": "0.2",
-      "commission-max-change-rate": "0.01",
-      "min-self-delegation": "1"
-    }
-    EOF
-    ```
+   ```bash-vue [Arabica]
+   cat <<EOF > validator.json
+   {
+     "pubkey": $VALIDATOR_PUBKEY,
+     "amount": "1000000utia",
+     "moniker": "$MONIKER",
+     "commission-rate": "0.1",
+     "commission-max-rate": "0.2",
+     "commission-max-change-rate": "0.01",
+     "min-self-delegation": "1"
+   }
+   EOF
+   ```
 
 1. Create a validator
 
-    ::: code-group
+   ::: code-group
 
-    ```bash-vue [Mainnet Beta]
-    celestia-appd tx staking create-validator \
-        --amount=1000000utia \
-        --pubkey=$VALIDATOR_PUBKEY \
-        --moniker=$MONIKER \
-        --identity=<optional_identity_signature> \
-        --website="<optional_validator_website>" \
-        --security-contact="<optional_email_address_for_security_contact>" \
-        --details="A short and optional description of the validator." \
-        --chain-id=$CHAIN_ID \
-        --commission-rate=0.1 \
-        --commission-max-rate=0.2 \
-        --commission-max-change-rate=0.01 \
-        --min-self-delegation=1000000 \
-        --from=$VALIDATOR_WALLET \
-        --keyring-backend=test \
-        --fees=21000utia \
-        --gas=220000
-        --yes
-    ```
+   ```bash-vue [Mainnet Beta]
+   celestia-appd tx staking create-validator \
+       --amount=1000000utia \
+       --pubkey=$VALIDATOR_PUBKEY \
+       --moniker=$MONIKER \
+       --identity=<optional_identity_signature> \
+       --website="<optional_validator_website>" \
+       --security-contact="<optional_email_address_for_security_contact>" \
+       --details="A short and optional description of the validator." \
+       --chain-id=$CHAIN_ID \
+       --commission-rate=0.1 \
+       --commission-max-rate=0.2 \
+       --commission-max-change-rate=0.01 \
+       --min-self-delegation=1000000 \
+       --from=$VALIDATOR_WALLET \
+       --keyring-backend=test \
+       --fees=21000utia \
+       --gas=220000
+       --yes
+   ```
 
-    ```bash-vue [Mocha]
-    celestia-appd tx staking create-validator \
-        --amount=1000000utia \
-        --pubkey=$VALIDATOR_PUBKEY \
-        --moniker=$MONIKER \
-        --identity=<optional_identity_signature> \
-        --website="<optional_validator_website>" \
-        --security-contact="<optional_email_address_for_security_contact>" \
-        --details="A short and optional description of the validator." \
-        --chain-id=$CHAIN_ID \
-        --commission-rate=0.1 \
-        --commission-max-rate=0.2 \
-        --commission-max-change-rate=0.01 \
-        --min-self-delegation=1000000 \
-        --from=$VALIDATOR_WALLET \
-        --keyring-backend=test \
-        --fees=21000utia \
-        --gas=220000
-        --yes
-    ```
+   ```bash-vue [Mocha]
+   celestia-appd tx staking create-validator \
+       --amount=1000000utia \
+       --pubkey=$VALIDATOR_PUBKEY \
+       --moniker=$MONIKER \
+       --identity=<optional_identity_signature> \
+       --website="<optional_validator_website>" \
+       --security-contact="<optional_email_address_for_security_contact>" \
+       --details="A short and optional description of the validator." \
+       --chain-id=$CHAIN_ID \
+       --commission-rate=0.1 \
+       --commission-max-rate=0.2 \
+       --commission-max-change-rate=0.01 \
+       --min-self-delegation=1000000 \
+       --from=$VALIDATOR_WALLET \
+       --keyring-backend=test \
+       --fees=21000utia \
+       --gas=220000
+       --yes
+   ```
 
-    ```bash-vue [Arabica]
-    celestia-appd tx staking create-validator validator.json \
-      --from $VALIDATOR_WALLET \
-      --keyring-backend test \
-      --fees 21000utia \
-      --gas=220000 \
-      --yes
+   ```bash-vue [Arabica]
+   celestia-appd tx staking create-validator validator.json \
+     --from $VALIDATOR_WALLET \
+     --keyring-backend test \
+     --fees 21000utia \
+     --gas=220000 \
+     --yes
+   ```
 
-    :::
+   :::
 
 You should see output like:
 
