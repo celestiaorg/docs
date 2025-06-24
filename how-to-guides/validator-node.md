@@ -194,6 +194,7 @@ In order to create a validator on-chain, follow the steps below.
       --fees 21000utia \
       --gas=220000 \
       --yes
+    ```
 
     :::
 
