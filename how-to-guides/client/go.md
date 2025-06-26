@@ -27,11 +27,11 @@ require (
 ## 🏗️ Example project with the Go client
 
 Here’s a working example that covers:
-	•	Initializing a keyring
-	•	Configuring the client
-	•	Checking balance
-	•	Submitting a blob
-	•	Retrieving the blob
+• Initializing a keyring
+• Configuring the client
+• Checking balance
+• Submitting a blob
+• Retrieving the blob
 
 ### 1. 📁 Create a New Directory
 
@@ -130,7 +130,6 @@ func main() {
 ```
 
 Remember to add in your Quicknode or other URL and API keys.
-
 
 ### 4. 📦 Add Dependencies to go.mod
 
