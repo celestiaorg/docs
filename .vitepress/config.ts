@@ -673,6 +673,20 @@ function sidebarHome() {
               link: "/how-to-guides/submit-data",
             },
             {
+              text: "Celestia clients",
+              collapsed: true,
+              items: [
+                {
+                  text: "Overview",
+                  link: "/how-to-guides/client/overview",
+                },
+                {
+                  text: "Golang client guide",
+                  link: "/how-to-guides/client/go",
+                },
+              ],
+            },
+            {
               text: "FeeGrant module for blobs submission",
               link: "/how-to-guides/feegrant-for-blobs",
             },
