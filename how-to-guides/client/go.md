@@ -24,7 +24,7 @@ require (
 )
 ```
 
-## 🏗️ Example project with the Go client
+## 🏗️ Example project with the Go client {#example-project-with-the-go-client}
 
 Here’s a working example that covers:
 • Initializing a keyring
@@ -33,20 +33,20 @@ Here’s a working example that covers:
 • Submitting a blob
 • Retrieving the blob
 
-### 1. 📁 Create a New Directory
+### 1. 📁 Create a New Directory {#create-a-new-directory}
 
 ```bash
 mkdir celestia-client-example
 cd celestia-client-example
 ```
 
-### 2. 🧱 Initialize Go Module
+### 2. 🧱 Initialize Go Module {#initialize-go-module}
 
 ```
 go mod init celestia-client-example
 ```
 
-### 3. ✍️ Create main.go
+### 3. ✍️ Create main.go {#create-main-go}
 
 Save the full example from above into `main.go`. Here’s a working version with import formatting and placeholder values cleaned up:
 
@@ -131,7 +131,7 @@ func main() {
 
 Remember to add in your Quicknode or other URL and API keys.
 
-### 4. 📦 Add Dependencies to go.mod
+### 4. 📦 Add Dependencies to go.mod {#add-dependencies-to-go-mod}
 
 Use this for a clean start:
 
@@ -160,19 +160,7 @@ require (
 
 Now run `go mod tidy`.
 
-### 5. 🔐 Create a Key Directory
-
-If you don’t already have one:
-
-```bash
-mkdir -p ./keys
-```
-
-### Run it
-
-```bash
-go run main.go
-```
+### 5. 🚀 Run the program {#run-the-program}
 
 If this is the first time running the program, you’ll see a mnemonic and address output which is your key. After you’ve funded it at the [Mocha faucet](/how-to-guides/mocha-testnet.md#mocha-testnet-faucet), run it again to post your blob.
 
@@ -183,6 +171,8 @@ Balance: <your-balance> utia
 Blob submitted at height: 6840663
 Retrieved blob data: hello celestia!
 ```
+
+Your keys will be made in the same directory you're in when you run the program.
 
 ## Alternate configuration
 
@@ -206,7 +196,7 @@ cfg := client.Config{
 }
 ```
 
-## 📚 Need more control or advanced usage?
+## 👀 Need more control or advanced usage?
 
 See the [full Celestia Go client documentation](https://github.com/celestiaorg/celestia-node/blob/main/api/client#readme) for:
 
