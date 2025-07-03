@@ -222,14 +222,15 @@ pruning any data so all data available data is retrievable. You can
 There are multiple explorers you can use for Mainnet Beta:
 
 - [https://celenium.io](https://celenium.io)
-- [https://mammoblocks.io/](https://mammoblocks.io/)
 - [https://celestia.explorers.guru](https://celestia.explorers.guru)
-- [https://mintscan.io/celestia](https://mintscan.io/celestia)
-- [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
-- [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
 - [https://celestia.valopers.com/](https://celestia.valopers.com/)
-- [https://mainnet.itrocket.net/celestia/](https://mainnet.itrocket.net/celestia/)
+- [https://celestiahub.org](https://celestiahub.org/explorer)
 - [https://explorer.chainroot.io/celestia](https://explorer.chainroot.io/celestia)
+- [https://explorer.nodestake.top/celestia](https://explorer.nodestake.top/celestia)
+- [https://mainnet.itrocket.net/celestia/](https://mainnet.itrocket.net/celestia/)
+- [https://mammoblocks.io/](https://mammoblocks.io/)
+- [https://mintscan.io/celestia](https://mintscan.io/celestia)
+- [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
 
 ## Community endpoint status dashboard
 
@@ -246,13 +247,14 @@ This is an essential resource when selecting endpoints for your nodes or applica
 
 The following websites provide analytics for Celestia:
 
-- [https://analytics.smartstake.io/celestia](https://analytics.smartstake.io/celestia)
 - [https://alphab.ai/s/m/celestia/](https://alphab.ai/s/m/celestia/)
-- [https://services.kjnodes.com/mainnet/celestia/slashboard](https://services.kjnodes.com/mainnet/celestia/slashboard)
-- [https://itrocket.net/services/mainnet/celestia/decentralization/](https://itrocket.net/services/mainnet/celestia/decentralization/)
+- [https://analytics.smartstake.io/celestia](https://analytics.smartstake.io/celestia)
+- [https://celestiahub.org/explorer/blobs](https://celestiahub.org/explorer/blobs)
+- [https://cosmoslist.co/mainnet/celestia](https://cosmoslist.co/mainnet/celestia)
 - [https://itrocket.net/services/mainnet/celestia/](https://itrocket.net/services/mainnet/celestia/) - Node setup, monitoring, and chain status tools
 - [https://itrocket.net/services/mainnet/celestia/analytics/consensus-signal-tracker/](https://itrocket.net/services/mainnet/celestia/analytics/consensus-signal-tracker/) - Consensus signal tracker
-- [https://cosmoslist.co/mainnet/celestia](https://cosmoslist.co/mainnet/celestia)
+- [https://itrocket.net/services/mainnet/celestia/decentralization/](https://itrocket.net/services/mainnet/celestia/decentralization/)
+- [https://services.kjnodes.com/mainnet/celestia/slashboard](https://services.kjnodes.com/mainnet/celestia/slashboard)
 
 ## Node maps
 
