@@ -35,7 +35,7 @@ Follow [the tutorial on creating a wallet](/how-to-guides/celestia-app-wallet.md
 Running a bridge node is critical to the Celestia network as it enables
 the data availability and consensus nodes to communicate with one
 another. It is recommended to support the data availability network,
-but is not required for `celestia-app`.
+but is not required.
 
 If you are not running a bridge node, you can skip to
 [run a validator node](#run-the-validator-node).
@@ -84,100 +84,121 @@ You have successfully set up a bridge node that is syncing with the network.
 
 ## Run the validator node
 
-If you are running celestia-app v1.x.x:
+In order to create a validator on-chain, follow the steps below.
 
-```sh
-celestia-appd start
-```
+1. Start the consensus node
 
-If you are running celestia-app >= v2.0.0: then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
+   ```sh
+   celestia-appd start
+   ```
 
-::: code-group
+1. Export an environment variable for the chain ID you want to run on:
 
-```sh-vue [Mainnet Beta]
-celestia-appd start --v2-upgrade-height 2371495
-```
+   ::: code-group
 
-```sh-vue [Mocha]
-celestia-appd start --v2-upgrade-height 2585031
-```
+   ```bash-vue [Mainnet Beta]
+   export CHAIN_ID={{constants.mainnetChainId}}
+   ```
 
-```sh-vue [Arabica]
-celestia-appd start --v2-upgrade-height 1751707
-```
+   ```bash-vue [Mocha]
+   export CHAIN_ID={{constants.mochaChainId}}
+   ```
 
-:::
-After completing all the necessary steps, you are now ready to run a validator!
-In order to create your validator onchain, follow the instructions below.
-Keep in mind that these steps are necessary ONLY if you want to participate
-in the consensus.
+   ```bash-vue [Arabica]
+   export CHAIN_ID={{constants.arabicaChainId}}
+   ```
 
-Pick a `moniker` name of your choice! This is the validator name that will show
-up on public dashboards and explorers. `VALIDATOR_WALLET` is the name of the validator's wallet you have created previously. Parameter `--min-self-delegation=1000000` defines the
-amount of tokens that are self delegated from your validator wallet.
+   :::
 
-Now, connect to the network of your choice.
+1. Export more environment variables.
 
-You have the following option of connecting to list of networks shown below:
+   ```bash-vue
+   # Pick a moniker name of your choice.
+   export MONIKER="your_moniker"
 
-| Name                                        | Type         | Chain ID                       | CLI Usage                                   |
-| ------------------------------------------- | ------------ | ------------------------------ | ------------------------------------------- |
-| [Celestia](/how-to-guides/mainnet.md)       | Mainnet Beta | {{ constants.mainnetChainId }} | `--chain-id {{ constants.mainnetChainId }}` |
-| [Mocha](/how-to-guides/mocha-testnet.md)    | Testnet      | {{ constants.mochaChainId }}   | `--chain-id {{ constants.mochaChainId }}`   |
-| [Arabica](/how-to-guides/arabica-devnet.md) | Devnet       | {{ constants.arabicaChainId }} | `--chain-id {{ constants.arabicaChainId }}` |
+   # Set VALIDATOR_WALLET to the same you defined previously.
+   export VALIDATOR_WALLET="validator"
 
-Continuing the validator tutorial, here are the steps to connect your
-validator to Mocha:
+   # Set VALIDATOR_PUBKEY to the pubkey of your validator wallet.
+   export VALIDATOR_PUBKEY=$(celestia-appd tendermint show-validator)
+   ```
 
-```bash-vue
-MONIKER="your_moniker"
-VALIDATOR_WALLET="<validator-wallet-name>"
+1. If you want to create a validator on a testnet that is on app version 4 (currently only Arabica), you will need to create a `validator.json` file.
 
-celestia-appd tx staking create-validator \
-    --amount=1000000utia \
-    --pubkey=$(celestia-appd tendermint show-validator) \
-    --moniker=$MONIKER \
-    --identity=<optional_identity_signature> \
-    --website="<optional_validator_website>" \
-    --security-contact="<optional_email_address_for_security_contact>" \
-    --details="A short and optional description of the validator." \
-    --chain-id={{constants.mochaChainId}} \
-    --commission-rate=0.1 \
-    --commission-max-rate=0.2 \
-    --commission-max-change-rate=0.01 \
-    --min-self-delegation=1000000 \
-    --from=$VALIDATOR_WALLET \
-    --keyring-backend=test \
-    --fees=21000utia \
-    --gas=220000
-```
+   ::: code-group
 
-:::tip NOTE
-The options `--identity`, `--website`, `--security-contact` and `--details` are optional. The `--identity` value is used to verify identity with systems like [Keybase](https://keybase.io/) or UPort. If you need to add or update the values of these descriptive fields when your validator is already created, you can use the following command (remove the options that you don't want to change the values for):
+   ```bash-vue [Arabica]
+   cat <<EOF > validator.json
+   {
+     "pubkey": $VALIDATOR_PUBKEY,
+     "amount": "1000000utia",
+     "moniker": "$MONIKER",
+     "commission-rate": "0.1",
+     "commission-max-rate": "0.2",
+     "commission-max-change-rate": "0.01",
+     "min-self-delegation": "1"
+   }
+   EOF
+   ```
 
-```bash
-celestia-appd tx staking edit-validator \
-    --new-moniker=<new_validator_name> \
-    --identity=<identity_signature> \
-    --website="<validator_website>" \
-    --security-contact="<email_address_for_security_contact>" \
-    --details="New description of the validator." \
-    --chain-id={{constants.mochaChainId}} \
-    --from=$VALIDATOR_WALLET \
-    --keyring-backend=test \
-    --fees=21000utia \
-    --gas=220000
-```
+1. Create a validator
 
-:::
+   ::: code-group
 
-You will be prompted to confirm the transaction:
+   ```bash-vue [Mainnet Beta]
+   celestia-appd tx staking create-validator \
+       --amount=1000000utia \
+       --pubkey=$VALIDATOR_PUBKEY \
+       --moniker=$MONIKER \
+       --identity=<optional_identity_signature> \
+       --website="<optional_validator_website>" \
+       --security-contact="<optional_email_address_for_security_contact>" \
+       --details="A short and optional description of the validator." \
+       --chain-id=$CHAIN_ID \
+       --commission-rate=0.1 \
+       --commission-max-rate=0.2 \
+       --commission-max-change-rate=0.01 \
+       --min-self-delegation=1000000 \
+       --from=$VALIDATOR_WALLET \
+       --keyring-backend=test \
+       --fees=21000utia \
+       --gas=220000
+       --yes
+   ```
 
-```console
-confirm transaction before signing and broadcasting [y/N]: y
-```
+   ```bash-vue [Mocha]
+   celestia-appd tx staking create-validator \
+       --amount=1000000utia \
+       --pubkey=$VALIDATOR_PUBKEY \
+       --moniker=$MONIKER \
+       --identity=<optional_identity_signature> \
+       --website="<optional_validator_website>" \
+       --security-contact="<optional_email_address_for_security_contact>" \
+       --details="A short and optional description of the validator." \
+       --chain-id=$CHAIN_ID \
+       --commission-rate=0.1 \
+       --commission-max-rate=0.2 \
+       --commission-max-change-rate=0.01 \
+       --min-self-delegation=1000000 \
+       --from=$VALIDATOR_WALLET \
+       --keyring-backend=test \
+       --fees=21000utia \
+       --gas=220000
+       --yes
+   ```
 
-Inputting `y` should provide an output similar to:
+   ```bash-vue [Arabica]
+   celestia-appd tx staking create-validator validator.json \
+     --from $VALIDATOR_WALLET \
+     --keyring-backend test \
+     --fees 21000utia \
+     --gas=220000 \
+     --yes
+   ```
+
+   :::
+
+You should see output like:
 
 ```console
 code: 0
@@ -194,8 +215,25 @@ tx: null
 txhash: <tx-hash>
 ```
 
-You should now be able to see your validator from
-[a block explorer](/how-to-guides/mocha-testnet.md#explorers)
+:::tip NOTE
+The options `--identity`, `--website`, `--security-contact` and `--details` are optional. The `--identity` value is used to verify identity with systems like [Keybase](https://keybase.io/) or UPort. If you need to add or update the values of these descriptive fields when your validator is already created, you can use the following command (remove the options that you don't want to change the values for):
+
+```bash
+celestia-appd tx staking edit-validator \
+    --new-moniker=<new_validator_name> \
+    --identity=<identity_signature> \
+    --website="<validator_website>" \
+    --security-contact="<email_address_for_security_contact>" \
+    --details="New description of the validator." \
+    --from=$VALIDATOR_WALLET \
+    --keyring-backend=test \
+    --fees=21000utia \
+    --gas=220000
+```
+
+:::
+
+You should now be able to see your validator from a [block explorer](/how-to-guides/mocha-testnet.md#explorers).
 
 ## Submit your validator information
 
