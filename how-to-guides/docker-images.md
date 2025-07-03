@@ -1,6 +1,6 @@
 ---
 sidebar_label: Docker images
-description: Running Celestia Node using Docker.
+description: Running Celestia Node and Celestia App using Docker.
 ---
 
 # 🐳 Docker setup
@@ -14,17 +14,18 @@ import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 </script>
 
-This page has instructions to run celestia-node using Docker. If you are
-looking for instructions to run celestia-node using a binary, please
-refer to the [celestia-node page](/how-to-guides/celestia-node.md).
+This page has instructions to run celestia-node and celestia-app using Docker.
+If you are looking for instructions to run these using binaries, please
+refer to the [celestia-node page](/how-to-guides/celestia-node.md) or
+[celestia-app page](/how-to-guides/celestia-app.md).
 
-Using Docker is the easiest way to run celestia-node for most
-users. Docker is a containerization platform that allows you to run celestia-node
-in an isolated environment.
+Using Docker is the easiest way to run celestia-node and celestia-app for most
+users. Docker is a containerization platform that allows you to run these
+applications in an isolated environment.
 
-This means that you can run celestia-node on your machine without having
+This means that you can run celestia-node or celestia-app on your machine without having
 to worry about installing and configuring all of the dependencies required
-to run the node.
+to run the applications.
 
 If you would like to learn more about
 key management in Docker, visit the
@@ -40,6 +41,8 @@ Ubuntu. You can
   understanding of Docker
 - [Docker Engine for Linux](https://docs.docker.com/engine/install/) and a
   basic understanding of Docker
+
+## Celestia Node
 
 ## Quick start
 
@@ -269,3 +272,177 @@ As a result the recommended path for Windows users to mount a persisted
 volume is to do so within WSL.
 You can find
 [instructions for installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
+
+## Celestia App
+
+Celestia App is the consensus layer implementation for the Celestia network.
+Using Docker, you can run a validator node to participate in consensus or
+connect to the network for development purposes.
+
+## Quick start for celestia-app
+
+1. Set [the network](/how-to-guides/participate.md) you would like to run your node on:
+
+   ::: code-group
+
+   ```bash [Mainnet Beta]
+   export NETWORK=celestia
+   ```
+
+   ```bash [Mocha]
+   export NETWORK=mocha
+   ```
+
+   ```bash [Arabica]
+   export NETWORK=arabica
+   ```
+
+   :::
+
+2. Set an RPC endpoint for either [Mainnet Beta](/how-to-guides/mainnet.md#integrations),
+   [Mocha](/how-to-guides/mocha-testnet.md#integrations), or
+   [Arabica](/how-to-guides/arabica-devnet.md#integrations)
+   using the bare URL (without http or https):
+
+   ```bash
+   export RPC_URL=this-is-an-rpc-url.com
+   ```
+
+   Then set the port for the RPC_URL:
+
+   ```bash
+   export RPC_PORT=9090
+   ```
+
+3. Run the image from the command line:
+
+   ::: code-group
+
+   ```bash-vue [Mainnet Beta]
+   docker run --rm -it \
+       ghcr.io/celestiaorg/celestia-app:{{mainnetVersions['app-latest-tag']}} \
+       celestia-appd start --help
+   ```
+
+   ```bash-vue [Mocha]
+   docker run --rm -it \
+       ghcr.io/celestiaorg/celestia-app:{{mochaVersions['app-latest-tag']}} \
+       celestia-appd start --help
+   ```
+
+   ```bash-vue [Arabica]
+   docker run --rm -it \
+       ghcr.io/celestiaorg/celestia-app:{{arabicaVersions['app-latest-tag']}} \
+       celestia-appd start --help
+   ```
+
+   :::
+
+## Validator node setup with persistent storage
+
+If you delete a container that you started above, all data will be lost.
+To avoid this, you can mount a volume to the container.
+This will allow you to persist data even after the container is deleted.
+
+First, you will need to create a directory on your host machine.
+This directory will be used to store the data for the container.
+Create a directory on your host machine and give it a name.
+For example, you can name it `my-app-store`:
+
+```bash
+cd $HOME
+mkdir my-app-store
+```
+
+Now, you can mount this directory to the container.
+Before mounting a volume, you _may_ need to set permissions for
+the user on the host machine by running:
+
+::: code-group
+
+```bash [Docker Engine on Linux]
+sudo chown 10001:10001 $HOME/my-app-store
+```
+
+```bash [Docker Desktop on Mac]
+# you're good to go 😎
+```
+
+:::
+
+### Initialize the node store
+
+In order to mount a volume to the container, you need to specify
+the path to the volume. When you run your container, you can specify
+the path to the volume using the `--volume` (or `-v` for short) flag.
+In this command, we'll initialize the node store,
+using the variables we set in the [quick start](#quick-start-for-celestia-app) section:
+
+```bash
+# --volume == -v [local path]:[container path]
+docker run [args...] -v $HOME/my-app-store:/home/celestia \
+    celestia-appd init [args...]
+```
+
+An example init command will look similar to below:
+
+::: code-group
+
+```bash-vue [Mainnet Beta]
+docker run --rm -v $HOME/my-app-store:/home/celestia \
+    ghcr.io/celestiaorg/celestia-app:{{mainnetVersions['app-latest-tag']}} \
+    celestia-appd init my-validator --chain-id $NETWORK
+```
+
+```bash-vue [Mocha]
+docker run --rm -v $HOME/my-app-store:/home/celestia \
+    ghcr.io/celestiaorg/celestia-app:{{mochaVersions['app-latest-tag']}} \
+    celestia-appd init my-validator --chain-id $NETWORK
+```
+
+```bash-vue [Arabica]
+docker run --rm -v $HOME/my-app-store:/home/celestia \
+    ghcr.io/celestiaorg/celestia-app:{{arabicaVersions['app-latest-tag']}} \
+    celestia-appd init my-validator --chain-id $NETWORK
+```
+
+:::
+
+### Start the validator node
+
+Run the following command to start the validator node:
+
+```bash
+# --volume == -v [local path]:[container path]
+docker run [...args] -v $HOME/my-app-store:/home/celestia \
+    celestia-appd start [...args]
+```
+
+A full start command will look similar to below.
+
+::: code-group
+
+```bash-vue [Mainnet Beta]
+docker run --rm -v $HOME/my-app-store:/home/celestia \
+    -p 26656:26656 -p 26657:26657 \
+    ghcr.io/celestiaorg/celestia-app:{{mainnetVersions['app-latest-tag']}} \
+    celestia-appd start
+```
+
+```bash-vue [Mocha]
+docker run --rm -v $HOME/my-app-store:/home/celestia \
+    -p 26656:26656 -p 26657:26657 \
+    ghcr.io/celestiaorg/celestia-app:{{mochaVersions['app-latest-tag']}} \
+    celestia-appd start
+```
+
+```bash-vue [Arabica]
+docker run --rm -v $HOME/my-app-store:/home/celestia \
+    -p 26656:26656 -p 26657:26657 \
+    ghcr.io/celestiaorg/celestia-app:{{arabicaVersions['app-latest-tag']}} \
+    celestia-appd start
+```
+
+:::
+
+Congratulations! You now have a celestia-app validator node running with persistent storage.
