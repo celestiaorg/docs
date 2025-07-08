@@ -629,7 +629,7 @@ function sidebarHome() {
                         },
                         {
                           text: "Gelato",
-                          link: "https://raas.gelato.network/dashboard",
+                          link: "https://gelato.cloud/",
                         },
                       ],
                     },
