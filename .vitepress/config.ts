@@ -629,7 +629,7 @@ function sidebarHome() {
                         },
                         {
                           text: "Gelato",
-                          link: "https://www.gelato.network/",
+                          link: "https://www.gelato.cloud/",
                         },
                       ],
                     },
