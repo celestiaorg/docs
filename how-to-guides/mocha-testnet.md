@@ -96,7 +96,7 @@ Several community providers offer comprehensive node setup tools, installation s
 | -------- | -------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------- |
 | ITRocket | [Setup guide](https://itrocket.net/services/testnet/celestia/) | [State sync](https://itrocket.net/services/testnet/celestia/) | [Chain status](https://itrocket.net/services/testnet/celestia/) |
 
-### Community bridge and full node endpoints
+### Community bridge and full node endpoint information
 
 You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
 
@@ -182,6 +182,20 @@ gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
+:::tip Bridge Node Syncing
+**Archival endpoints** maintain full blockchain history from genesis and are required for syncing new Bridge Nodes from scratch. If you need to sync a Bridge Node from genesis, use the archival endpoints listed below. Pruned endpoints are suitable for general transaction submission and maintaining already-synced nodes.
+:::
+
+### Archival gRPC endpoints
+
+These endpoints maintain full blockchain history and can be used for syncing Bridge Nodes from genesis:
+
+- `grpc.archive.mocha.cumulo.com.es:443`
+
+### Pruned gRPC endpoints
+
+These community-provided endpoints are suitable for general use:
+
 - `public-celestia-mocha4-consensus.numia.xyz:9090`
 - `grpc-mocha.pops.one`
 - `grpc.celestia-mocha.com:443`
@@ -191,7 +205,6 @@ broadcast transactions.
 - `grpc-celestia-mocha.trusted-point.com:9099`
 - `grpc-celestia-testnet-01.stakeflow.io:16002`
 - `mocha.grpc.cumulo.me:443`
-- `grpc.archive.mocha.cumulo.com.es:443`
 - `grpc-1.testnet.celestia.nodes.guru:10790`
 - `grpc-2.testnet.celestia.nodes.guru:10790`
 - `celestia-testnet-grpc.itrocket.net:443`
