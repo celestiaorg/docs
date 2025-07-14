@@ -10,7 +10,7 @@ import constants from '/.vitepress/constants/constants.js'
 import mochaVersions from '/.vitepress/constants/mocha_versions.js'
 </script>
 
-Welcome to Celestia's quick-start guide! In this guide, we'll learn how to run a Celestia data availability sampling (DAS) light node to post and retrieve data blobs on Celestia's [Mocha testnet](how-to-guides/mocha-testnet.md).
+Welcome to Celestia's quick-start guide! In this guide, we'll learn how to run a Celestia data availability sampling (DAS) light node to post and retrieve data blobs on Celestia's [Mocha testnet](mocha-testnet.md).
 
 > This is a self-contained tutorial optimized for getting started quickly on Mocha testnet. For complete documentation on installing celestia-node or running light nodes on other networks, see the [celestia-node installation guide](/how-to-guides/celestia-node.md) and [light node guide](/how-to-guides/light-node.md).
 
