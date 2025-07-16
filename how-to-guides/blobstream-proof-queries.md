@@ -1127,7 +1127,7 @@ If the `dataRoot` or the `tupleRootNonce` is unknown during the verification:
 - `dataRoot`: can be queried using the `/block?height=15` query
   (`15` in this example endpoint), and taking the `data_hash`
   field from the response.
-- `tupleRootNonce`: can be retrieved via querying the
+- `tupleRootNonce`: can be retrieved by querying the
   data commitment stored events from the Blobstream
   contract and looking for the nonce attesting to the
   corresponding data.
