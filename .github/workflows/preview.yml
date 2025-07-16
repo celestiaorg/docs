@@ -33,7 +33,6 @@ jobs:
 
       - name: Build with Base URL
         run: BASE='/docs-preview/pr-${{ github.event.number }}/' yarn build
-        
       - name: Check build output
         run: |
           if [ ! -d ".vitepress/dist" ]; then

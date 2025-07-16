@@ -39,6 +39,24 @@ If workflows are failing with permission errors:
 3. Ensure the tokens are created by the correct service account (`celestia-bot`)
 4. Verify that the service account has the necessary permissions in both repos
 
+### Common Error Messages
+
+- **"Resource not accessible by personal access token"**: The PAT may not have the required scopes or the service account may not have access to the repository
+- **"Bad credentials"**: The PAT may have expired or been revoked
+- **"Not Found"**: The target repository (docs-preview) may not exist or the PAT doesn't have access to it
+
+### Testing Workflows
+
+Use the validation script to test your local setup:
+```bash
+.github/workflows/validate.sh
+```
+
+This will check for:
+- Workflow file presence and syntax
+- Required directory structure
+- Build functionality
+
 ## Security Notes
 
 - The workflows use specific permissions rather than `write-all` for better security
