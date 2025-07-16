@@ -12,7 +12,7 @@ The workflows in this repository require the following secrets to be configured 
 - **Required permissions**:
   - `repo` (Full control of repositories)
   - `pull_requests:write` (Create and update pull requests)
-- **Associated user**: Should be created by the `celestia-bot` service account
+- **Associated user**: Should be created by a service account with repository access
 
 ### `PREVIEW_DEPLOY` 
 - **Used by**: `preview.yml`
@@ -20,7 +20,7 @@ The workflows in this repository require the following secrets to be configured 
 - **Required permissions**:
   - `repo` (Full control of repositories) - needed to push to docs-preview repo
   - `contents:write` (Write access to repository contents)
-- **Associated user**: Should be created by the `celestia-bot` service account
+- **Associated user**: Should be created by a service account with repository access
 
 ## Workflow Descriptions
 
@@ -36,7 +36,7 @@ If workflows are failing with permission errors:
 
 1. Verify that the required secrets are set in the repository settings
 2. Check that the PAT tokens haven't expired
-3. Ensure the tokens are created by the correct service account (`celestia-bot`)
+3. Ensure the tokens are created by the appropriate service account
 4. Verify that the service account has the necessary permissions in both repos
 
 ### Common Error Messages
