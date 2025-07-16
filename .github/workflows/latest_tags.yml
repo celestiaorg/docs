@@ -102,15 +102,29 @@ jobs:
           export default ${{ inputs.network }}Versions;
           EOF
           )
-          echo $CONTENTS > .vitepress/constants/\${{ inputs.network }}_versions.js
+          
+          # Ensure the constants directory exists
+          mkdir -p .vitepress/constants
+          
+          # Write the content to the file
+          echo "$CONTENTS" > .vitepress/constants/${{ inputs.network }}_versions.js
+          
+      - name: Verify file was created
+        run: |
+          if [ ! -f ".vitepress/constants/${{ inputs.network }}_versions.js" ]; then
+            echo "Error: Version file was not created"
+            exit 1
+          fi
+          echo "Version file created successfully:"
+          cat .vitepress/constants/${{ inputs.network }}_versions.js
       - name: Install Prettier
         run: |
           npm install -g prettier
       - name: Format the code with Prettier
         run: |
-          prettier .vitepress/constants/\${{ inputs.network }}_versions.js --write
+          prettier .vitepress/constants/${{ inputs.network }}_versions.js --write
       - name: Open PR
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v7
         with:
           # This github action has a lot of options, currently we just tweak the
           # commit-message and title of the PR.
