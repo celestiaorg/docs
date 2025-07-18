@@ -14,7 +14,7 @@ Welcome to Celestia's quick-start guide! In this guide, we'll learn how to run a
 
 > This is a self-contained tutorial optimized for getting started quickly on Mocha testnet. For complete documentation on installing celestia-node or running light nodes on other networks, see the [celestia-node installation guide](/how-to-guides/celestia-node.md) and [light node guide](/how-to-guides/light-node.md).
 
-A blob (a.k.a. [BLOB](https://en.wikipedia.org/wiki/Object_storage#Origins)) is a Binary Large OBject. In other words, a blob is arbitrary data. In this case, it's data that you want to post and make available on Celestia's data availability (DA) layer.
+A blob (a.k.a. [BLOB](https://en.wikipedia.org/wiki/Object_storage#Origins)) is a Binary Large Object. In other words, a blob is arbitrary data. In this case, it's data that you want to post and make available on Celestia's data availability (DA) layer.
 
 Your light node will allow you to post data, and then use DAS to sample and retrieve it from the DA network. Let's get started!
 
