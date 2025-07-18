@@ -109,3 +109,65 @@ Prometheus server which can then be viewed on a Grafana dashboard.
 In the future, we do want to open-source some developer toolings around
 this infrastructure to allow for node operators to be able to monitor
 their data availability nodes.
+
+### Configure celestia-node to export to multiple OTEL collectors
+
+It is not supported to directly export metrics to multiple OTEL collectors (see the discussions [here](https://github.com/open-telemetry/opentelemetry-go/issues/3055)). To achieve this goal, an agent OTEL collector needs to be deployed for the node, from which the metrics can be forwarded to any other OTEL collectors. Here are the necessary steps and example configurations.
+
+Follow the instructions [here](https://opentelemetry.io/docs/collector/installation/) to install the OTEL collector. If you have the binary installed in `/usr/local/bin/otelcol`, you may consider creating a systemd service to run the collector as a background service. Here is an example of a systemd service definition in `/etc/systemd/system/otelcol.service`:
+
+```ini
+[Unit]
+Description=OpenTelemetry Collector
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/otelcol --config /path/to/otelcol_config.yaml
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+The following is an example of the `otelcol_config.yaml` file that transforms the metrics into Prometheus metrics and reports them to the Celestia OTEL collector at the same time:
+
+```yaml
+receivers:
+  otlp:
+    protocols:
+      http: # Enable HTTP receiving
+        endpoint: "127.0.0.1:4318" # the endpoint where the celestia-node will send metrics (the default value of --metrics.endpoint for celestia when --metrics is specified)
+exporters:
+  prometheus:
+    # the node metrics will be transformed to Prometheus format and exposed on the following endpoint
+    endpoint: "0.0.0.0:8889"
+    namespace: "celestia"
+  otlphttp:
+    # report the metrics to Mocha testnet OTEL collector as an example
+    # change it according to your network
+    endpoint: https://otel.mocha.celestia.observer
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      exporters: [prometheus, otlphttp]
+```
+
+Run the following commands to enable the OTEL collector systemd service:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now otelcol.service
+
+# check the status of the service
+sudo systemctl status otelcol.service
+```
+
+If the collector is up and running without any error, you can adjust the options for the `celestia-node` service:
+
+```sh
+celestia <node-type> start --metrics.tls=false \
+    --metrics --metrics.endpoint localhost:4318 \
+    ...
+```
