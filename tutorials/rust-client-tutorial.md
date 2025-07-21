@@ -48,7 +48,7 @@ async fn submit_blob(url: &str, token: &str) {
 
     // create a blob with authorship information
     let blob = Blob::new_with_signer(
-        namespace, 
+        namespace,
         b"Hello, World!".to_vec(),
         "celestia1example".as_bytes().try_into().unwrap(), // example signer address
         AppVersion::V3

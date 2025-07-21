@@ -73,7 +73,7 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
         return err
     }
 
-    // create a blob with authorship information  
+    // create a blob with authorship information
     helloWorldBlob, err := blob.NewBlobV1(namespace, []byte("Hello, World!"), []byte("example-author"))
     if err != nil {
         return err
