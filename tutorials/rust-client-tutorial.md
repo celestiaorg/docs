@@ -29,14 +29,14 @@ The default URL is `http://localhost:26658`. If you would like to use subscripti
 The [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit) method takes an array of blobs and a gas price, returning the height the blob was successfully posted at.
 
 - The namespace can be generated with `Namespace::new_v0`.
-- The blobs can be generated with `Blob::new`.
+- The blobs can be generated with `Blob::new_with_signer` for authored blobs. Authored blobs include a signer parameter that identifies the author/creator of the blob, providing authorship information.
 - You can set `GasPrice::default()` as the gas price to have celestia-node automatically determine an appropriate gas price.
 
 The [blob.GetAll](https://node-rpc-docs.celestia.org/#blob.GetAll) method takes a height and array of namespaces, returning the array of blobs found in the given namespaces.
 
 ```rust
 use celestia_rpc::{BlobClient, Client, HeaderClient, ShareClient};
-use celestia_types::{nmt::Namespace, Blob, blob::SubmitOptions};
+use celestia_types::{nmt::Namespace, Blob, blob::SubmitOptions, consts::appconsts::AppVersion};
 
 async fn submit_blob(url: &str, token: &str) {
     let client = Client::new(url, Some(token))
@@ -46,8 +46,13 @@ async fn submit_blob(url: &str, token: &str) {
     // let's use the DEADBEEF namespace
     let namespace = Namespace::new_v0(&[0xDE, 0xAD, 0xBE, 0xEF]).expect("Invalid namespace");
 
-    // create a blob
-    let blob = Blob::new(namespace, b"Hello, World!".to_vec()).expect("Blob creation failed");
+    // create a blob with authorship information
+    let blob = Blob::new_with_signer(
+        namespace, 
+        b"Hello, World!".to_vec(),
+        "celestia1example".as_bytes().try_into().unwrap(), // example signer address
+        AppVersion::V3
+    ).expect("Blob creation failed");
 
     // submit the blob to the network
     let height = client

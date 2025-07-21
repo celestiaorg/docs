@@ -43,7 +43,7 @@ The default URL is `http://localhost:26658`. If you would like to use subscripti
 The [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit) method takes a slice of blobs and a gas price, returning the height the blob was successfully posted at.
 
 - The namespace can be generated with `share.NewV0Namespace`.
-- The blobs can be generated with `blob.NewBlobV0`.
+- The blobs can be generated with `blob.NewBlobV1` for authored blobs. Authored blobs include a signer parameter that identifies the author/creator of the blob, providing authorship information.
 - You can use `blob.NewSubmitOptions()`, which has celestia-node automatically determine an appropriate gas price. To set your own gas price, use `blob.NewSubmitOptions().WithGasPrice(X)`. The available options are `WithGasPrice`, `WithGas`, `WithKeyName`, `WithSignerAddress`, and `WithFeeGranterAddress`.
 
 The [blob.GetAll](https://node-rpc-docs.celestia.org/#blob.GetAll) method takes a height and slice of namespaces, returning the slice of blobs found in the given namespaces.
@@ -73,8 +73,8 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
         return err
     }
 
-    // create a blob
-    helloWorldBlob, err := blob.NewBlobV0(namespace, []byte("Hello, World!"))
+    // create a blob with authorship information  
+    helloWorldBlob, err := blob.NewBlobV1(namespace, []byte("Hello, World!"), []byte("example-author"))
     if err != nil {
         return err
     }
@@ -296,9 +296,9 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
   return fmt.Errorf("failed to create namespace: %w", err)
  }
 
- // Create a blob with "Hello, World!" content
+ // Create a blob with "Hello, World!" content and authorship information
  message := []byte("Hello, World!")
- helloWorldBlob, err := blob.NewBlobV0(namespace, message)
+ helloWorldBlob, err := blob.NewBlobV1(namespace, message, []byte("example-author"))
  if err != nil {
   return fmt.Errorf("failed to create blob: %w", err)
  }
