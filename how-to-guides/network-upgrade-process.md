@@ -85,4 +85,4 @@ The new delay periods for v4 are based on [celestia-app #4413](https://github.co
 | ------------ | ---------- | ----------------------- | -------------- | ------------ |
 | Arabica      | arabica-11 | 2025/05/16 07:51:35 UTC | 5975265        | 1 day        |
 | Mocha        | mocha-4    | 2025/07/01 11:51:58 UTC | 6915786        | 2 days       |
-| Mainnet Beta | celestia   | TBD                     | TBD            | 7 days       |
+| Mainnet Beta | celestia   | TBD                     | 6680339        | 7 days       |
