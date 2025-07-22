@@ -33,7 +33,7 @@ The upgrade process can be broken down into a few steps:
 The Lemongrass network upgrade (v2) was the first consensus layer breaking change since Celestia's Mainnet Beta genesis block. The Lemongrass network upgrade included all of the CIPs listed in [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-017.md) and implemented CIP-10 for future upgrades.
 
 | Network      | Chain ID   | Date and time          | Upgrade height |
-|--------------|------------|------------------------|----------------|
+| ------------ | ---------- | ---------------------- | -------------- |
 | Arabica      | arabica-11 | 2024/08/19 @ 14:00 UTC | 1751707        |
 | Mocha        | mocha-4    | 2024/08/28 @ 14:00 UTC | 2585031        |
 | Mainnet Beta | celestia   | 2024/09/18 @ 14:00 UTC | 2371495        |
@@ -55,7 +55,7 @@ Unlike the Lemongrass upgrade, there will not be a pre-programmed upgrade height
 Learn more in the [v3.0.0 release notes](https://github.com/celestiaorg/celestia-app/blob/main/docs/release-notes/release-notes.md#v300).
 
 | Network      | Chain ID   | Date and time             | Upgrade height |
-|--------------|------------|---------------------------|----------------|
+| ------------ | ---------- | ------------------------- | -------------- |
 | Arabica      | arabica-11 | 2024/11/05 @ 21:55:13 UTC | 2348907        |
 | Mocha        | mocha-4    | 2024/11/14 @ 18:31:11 UTC | 3140052        |
 | Mainnet Beta | celestia   | 2024/12/12 @ 14:28:52 UTC | 2993219        |
@@ -82,7 +82,7 @@ Like the Ginger upgrade, this upgrade will use the in-protocol signaling mechani
 The new delay periods for v4 are based on [celestia-app #4413](https://github.com/celestiaorg/celestia-app/issues/4413):
 
 | Network      | Chain ID   | Date and time                      | Upgrade height | Delay period |
-|--------------|------------|------------------------------------|----------------|--------------|
+| ------------ | ---------- | ---------------------------------- | -------------- | ------------ |
 | Arabica      | arabica-11 | 2025/05/16 07:51:35 UTC            | 5975265        | 1 day        |
 | Mocha        | mocha-4    | 2025/07/01 11:51:58 UTC            | 6915786        | 2 days       |
 | Mainnet Beta | celestia   | (Estimate) 2025/07/28 12:08:30 UTC | 6680339        | 7 days       |
