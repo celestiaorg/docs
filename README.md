@@ -30,7 +30,8 @@ To check for broken links in the documentation, run:
 yarn link-check
 ```
 
-This uses [lychee](https://lychee.cli.rs/) to validate all internal and external links.
+This uses [lychee](https://lychee.cli.rs/) to validate all internal and
+external links.
 The link checker is also run automatically in CI on every push and pull request.
 
 ## Contribution Guidelines
@@ -48,12 +49,69 @@ improving content clarity, or adding new topics, every contribution helps.
 Please ensure to review the detailed Contribution Guidelines above before
 making a pull request.
 
+## Documentation Standards
+
+This section outlines the standards and guidelines for maintaining
+consistent, high-quality documentation across the Celestia project.
+
+### Styling Rules
+
+- **Sentence case**: Use sentence case for headings and titles
+  (reference: [issue #161](https://github.com/celestiaorg/docs/issues/161))
+- **No "click here"**: Avoid using "click here" for link text
+  (reference: [issue #1073](https://github.com/celestiaorg/docs/issues/1073))
+- **International English**: Use international (common) English spelling
+  and terminology
+- **Network names**: Use "Arabica devnet", not "Arabica Devnet"
+- **Node types**: Use lowercase for node types (_e.g._, "bridge node",
+  not "Bridge Node")
+- **Politeness**: Avoid using "please" in instructional content
+- **Unique headings**: Ensure no duplicate headings within a document
+- **Network references**: Use "Coffee Beta" network (note the specific
+  capitalization)
+- **Latin abbreviations**: Use italicized _i.e._ or _e.g._ instead of
+  plain i.e. or e.g.
+- **Code references**: Use `celestia-app` in regular text, not as inline
+  code when referring to the application name
+- **Tab ordering**: When using tabs, order them as: Coffee Beta, Mocha,
+  Arabica
+- **Placeholders**: Use angle brackets with underscores for placeholders:
+  `<flag_name>` not `<flag-name>` or `<flag name>`
+
+### Documentation Update Procedures
+
+When updating documentation:
+
+1. **Run automation**: Execute any available automation tools before
+   manual updates
+2. **Chain ID updates**: If there are chain-id breaking changes:
+   - Update all chain-id references throughout the documentation
+   - Search comprehensively to ensure no references are missed
+   - Reference example: [chain-id update PR](https://github.com/celestiaorg/docs/pull/857/files#diff-7c3322aa40bebbde7be394c354f900d6b5606eabbd03ac0d661f7565fcadcb70)
+3. **Release notes review**: Read through release notes to identify and
+   implement any breaking changes that affect documentation
+4. **Process reference**: See [documentation update process video](https://www.loom.com/share/0d6897939b654b60b766887b37f86790)
+
+### Documentation Requirements for Software
+
+All software documentation must include:
+
+- **Proof of functionality**: Demonstrate that the software works through:
+  - Passing CI checks
+  - Manual testing evidence
+  - Links to block explorer (where applicable)
+  - Clear, step-by-step instructions for running the software
+- **Comprehensive setup**: Provide complete setup and usage instructions
+- **Troubleshooting**: Include common issues and their solutions
+- **Version compatibility**: Clearly state which versions are supported
+
 ### Link Format Guidelines
 
 When adding internal links to documentation, please use the following format:
 `[link text](/base-working-dir/subdir/page.md#section-id)`, i.e. `[link text](/how-to-guides/quick-start.md#get-your-auth-token)`
 
-This format ensures long-term compatibility and consistent behavior across different platforms and documentation builds.
+This format ensures long-term compatibility and consistent behavior across
+different platforms and documentation builds.
 
 ## Directory Structure
 
