@@ -34,7 +34,7 @@ This uses [lychee](https://lychee.cli.rs/) to validate all internal and
 external links.
 The link checker is also run automatically in CI on every push and pull request.
 
-## Contribution Guidelines
+## Contribution guidelines
 
 We love contributions from the community! Whether you're fixing typos,
 improving content clarity, or adding new topics, every contribution helps.
@@ -49,12 +49,12 @@ improving content clarity, or adding new topics, every contribution helps.
 Please ensure to review the detailed Contribution Guidelines above before
 making a pull request.
 
-## Documentation Standards
+## Documentation standards
 
 This section outlines the standards and guidelines for maintaining
 consistent, high-quality documentation across the Celestia project.
 
-### Styling Rules
+### Styling rules
 
 - **Sentence case**: Use sentence case for headings and titles
   (reference: [issue #161](https://github.com/celestiaorg/docs/issues/161))
@@ -78,7 +78,7 @@ consistent, high-quality documentation across the Celestia project.
 - **Placeholders**: Use angle brackets with underscores for placeholders:
   `<flag_name>` not `<flag-name>` or `<flag name>`
 
-### Documentation Update Procedures
+### Documentation update procedures
 
 When updating documentation:
 
@@ -92,7 +92,7 @@ When updating documentation:
    implement any breaking changes that affect documentation
 4. **Process reference**: See [documentation update process video](https://www.loom.com/share/0d6897939b654b60b766887b37f86790)
 
-### Documentation Requirements for Software
+### Documentation requirements for software
 
 All software documentation must include:
 
@@ -105,7 +105,7 @@ All software documentation must include:
 - **Troubleshooting**: Include common issues and their solutions
 - **Version compatibility**: Clearly state which versions are supported
 
-### Link Format Guidelines
+### Link format guidelines
 
 When adding internal links to documentation, please use the following format:
 `[link text](/base-working-dir/subdir/page.md#section-id)`, i.e. `[link text](/how-to-guides/quick-start.md#get-your-auth-token)`
@@ -113,7 +113,7 @@ When adding internal links to documentation, please use the following format:
 This format ensures long-term compatibility and consistent behavior across
 different platforms and documentation builds.
 
-## Directory Structure
+## Directory structure
 
 - /learn: A category for learning about Celestia.
 - /how-to guides: A category with guides for running a node, deploying
@@ -123,7 +123,7 @@ different platforms and documentation builds.
 - /community: A category for the Celestia community.
 - /public: Images, diagrams, and other media files used in the documentation.
 
-## Feedback & Suggestions
+## Feedback & suggestions
 
 We value feedback from the community. If you have suggestions for improvements
 or find any discrepancies in the documentation, please raise an issue in this
