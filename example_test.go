@@ -32,8 +32,8 @@ func SubmitBlob(ctx context.Context, url string, token string) error {
 		return err
 	}
 
-	// create a blob
-	helloWorldBlob, err := blob.NewBlobV0(namespace, []byte("Hello, World!"))
+	// create a blob with authorship information
+	helloWorldBlob, err := blob.NewBlobV1(namespace, []byte("Hello, World!"), []byte("example-author"))
 	if err != nil {
 		return err
 	}
@@ -152,9 +152,9 @@ func SubmitBlobComplete(ctx context.Context, url string, token string) error {
 		return fmt.Errorf("failed to create namespace: %w", err)
 	}
 
-	// Create a blob with "Hello, World!" content
+	// Create a blob with "Hello, World!" content and authorship information
 	message := []byte("Hello, World!")
-	helloWorldBlob, err := blob.NewBlobV0(namespace, message)
+	helloWorldBlob, err := blob.NewBlobV1(namespace, message, []byte("example-author"))
 	if err != nil {
 		return fmt.Errorf("failed to create blob: %w", err)
 	}
