@@ -54,7 +54,6 @@ Their services include installation scripts, state sync, snapshots, RPC endpoint
 | Tienthuattoan | [Pruned](https://services.tienthuattoan.com/mainnet/celestia/snapshot)                                                                         | -                                                                          |
 | Noders        | [Pruned](https://noders.services/mainnet-networks/celestia/snapshot/)                                                                          | -                                                                          |
 | QubeLabs      | [Archive](https://snaps.qubelabs.io/celestia/)                                                                                                 | -                                                                          |
-| CitizenWeb3   | [Pruned](https://staking.citizenweb3.com/chains/celestia?tab=snapshot)                                                                         | -                                                                          |
 | BlackBlocks   | [Archive](https://wiki.blackblocks.io/en/public/services/mainnet/celestia)                                                                     | [Archive](https://wiki.blackblocks.io/en/public/services/mainnet/celestia) |
 
 ### Mocha testnet
