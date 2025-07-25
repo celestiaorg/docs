@@ -117,6 +117,7 @@ history, such as:
 
 - Running Bridge Nodes that download data from core RPC endpoints
 - Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
+- Submitting blobs in production settings (free RPC endpoints have no guarantees, even for submitting transactions)
 
 | Provider  | URL                                                                                       |
 | --------- | ----------------------------------------------------------------------------------------- |
