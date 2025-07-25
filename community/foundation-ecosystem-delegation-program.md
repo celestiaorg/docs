@@ -16,7 +16,7 @@
 | Requirement      | Description                                                                                                                                                           |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Validator status | Active validator on mainnet or testnet                                                                                                                                |
-| Commission       | Maximum commission of 10%                                                                                                                                             |
+| Commission       | Maximum commission of 20%                                                                                                                                             |
 | Reliability      | No more than 1 jailing incident in the last 6 months (if more than 1, a public forum post with a detailed post mortem is required)                                    |
 | Independence     | Not associated with an exchange or custodian                                                                                                                          |
 | Compliance       | Not based within the US, within any country subject to economic sanctions, or within any other prohibited jurisdiction, and successfully complete a compliance screen |
