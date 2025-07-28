@@ -30,7 +30,7 @@ To check for broken links in the documentation, run:
 yarn link-check
 ```
 
-This uses [lychee](https://lychee.cli.rs/) to validate all internal and
+This uses [lychee](https://github.com/lycheeverse/lychee) to validate all internal and
 external links.
 The link checker is also run automatically in CI on every push and pull request.
 
