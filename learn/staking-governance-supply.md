@@ -31,11 +31,14 @@ Learn how to
 
 ## Inflation
 
-TIA inflation starts at 8% annually and decreases by 10% every year until it
-reaches the long term issuance rate of 1.5%. Exact annual inflation rates can be
-found in the diagram below.
+TIA inflation starts at 8% annually. Initially, it was set to decrease by 10% every year until
+reaching a long-term issuance rate of 1.5%. However, with the v4 Lotus upgrade
+([CIP-29](https://cips.celestia.org/cip-029.html)) in July 2025, the inflation rate
+dropped from ~7.2% to ~5.0% at the time of the upgrade and will continue to decrease by
+6.7% every year until it stabilizes at 1.5%. The diagram below illustrates both the
+initial inflation rates and those after the v4 upgrade.
 
-![inflation diagram](/img/learn/Celestia_TIA_Inflation.png)
+![inflation diagram](/img/learn/TIA_inflation_post-cip29.png)
 
 The annual provisions for inflation are calculated based on the total supply of
 TIA at the beginning of each year. To calculate how many TIA to issue per block,
