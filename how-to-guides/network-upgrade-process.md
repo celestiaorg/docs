@@ -91,10 +91,10 @@ You **do not** need to use a tool like [cosmovisor](https://docs.cosmos.network/
 
 The v5 network upgrade will include a fix for IBC compatibility.
 
-Like previous upgrades, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate after 5/6 of voting power have signaled for a particular version and a delay period based on the network.
+Like previous upgrades, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate after 5/6 of voting power have signaled for a particular version and a delay period based on the network, in accordance with the table below.
 
 | Network      | Chain ID   | Date and time | Upgrade height | Delay period |
 | ------------ | ---------- | ------------- | -------------- | ------------ |
-| Arabica      | arabica-11 | TBD           | 7316464        | 1 block          |
-| Mocha        | mocha-4    | TBD           | TBD            | TBD          |
-| Mainnet Beta | celestia   | TBD           | TBD            | TBD          |
+| Arabica      | arabica-11 | TBD           | 7316464        | 1 block      |
+| Mocha        | mocha-4    | TBD           | TBD            | 1 block      |
+| Mainnet Beta | celestia   | TBD           | TBD            | 1 block      |
