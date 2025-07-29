@@ -89,7 +89,7 @@ You **do not** need to use a tool like [cosmovisor](https://docs.cosmos.network/
 
 #### v5 network upgrade
 
-The v5 network upgrade will include various improvements and features to the Celestia network.
+The v5 network upgrade will include a fix for IBC compatibility.
 
 Like previous upgrades, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate after 5/6 of voting power have signaled for a particular version and a delay period based on the network.
 
