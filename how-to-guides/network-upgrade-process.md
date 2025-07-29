@@ -60,15 +60,9 @@ Learn more in the [v3.0.0 release notes](https://github.com/celestiaorg/celestia
 | Mocha        | mocha-4    | 2024/11/14 @ 18:31:11 UTC | 3140052        |
 | Mainnet Beta | celestia   | 2024/12/12 @ 14:28:52 UTC | 2993219        |
 
-### Upcoming Upgrades
-
-:::warning
-You **do not** need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
-:::
-
 #### Lotus network upgrade
 
-The Lotus network upgrade (v4) will include several important changes defined in [CIP-33](https://cips.celestia.org/cip-033.html):
+The Lotus network upgrade (v4) included several important changes defined in [CIP-33](https://cips.celestia.org/cip-033.html):
 
 Key features include:
 
@@ -77,12 +71,30 @@ Key features include:
 - [CIP-31](https://cips.celestia.org/cip-031.html): Incorporate staking rewards into vesting account schedules
 - [CIP-32](https://cips.celestia.org/cip-032.html): Add Hyperlane to Celestia
 
-Like the Ginger upgrade, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate after 5/6 of voting power have signaled for a particular version and a delay period based on the network.
+Like the Ginger upgrade, this upgrade used the in-protocol signaling mechanism. The upgrade activated automatically after 5/6 of voting power signaled for a particular version and a delay period based on the network.
 
-The new delay periods for v4 are based on [celestia-app #4413](https://github.com/celestiaorg/celestia-app/issues/4413):
+The delay periods for v4 were based on [celestia-app #4413](https://github.com/celestiaorg/celestia-app/issues/4413):
 
 | Network      | Chain ID   | Date and time                      | Upgrade height | Delay period |
 | ------------ | ---------- | ---------------------------------- | -------------- | ------------ |
 | Arabica      | arabica-11 | 2025/05/16 07:51:35 UTC            | 5975265        | 1 day        |
 | Mocha        | mocha-4    | 2025/07/01 11:51:58 UTC            | 6915786        | 2 days       |
 | Mainnet Beta | celestia   | (Estimate) 2025/07/28 12:08:30 UTC | 6680339        | 7 days       |
+
+### Upcoming Upgrades
+
+:::warning
+You **do not** need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
+:::
+
+#### v5 network upgrade
+
+The v5 network upgrade includes a fix to restore IBC support which was broken in v4.
+
+Like previous upgrades, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate after 5/6 of voting power have signaled for a particular version and a delay period based on the network, in accordance with the table below.
+
+| Network      | Chain ID   | Date and time           | Upgrade height | Delay period |
+| ------------ | ---------- | ----------------------- | -------------- | ------------ |
+| Arabica      | arabica-11 | 2025/07/29 19:59:00 UTC | 7316464        | 1 block      |
+| Mocha        | mocha-4    | TBD                     | TBD            | 1 block      |
+| Mainnet Beta | celestia   | TBD                     | TBD            | 1 block      |
