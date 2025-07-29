@@ -89,7 +89,7 @@ You **do not** need to use a tool like [cosmovisor](https://docs.cosmos.network/
 
 #### v5 network upgrade
 
-The v5 network upgrade will include a fix for IBC compatibility.
+The v5 network upgrade includes a fix to restore IBC support which was broken in v4.
 
 Like previous upgrades, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate after 5/6 of voting power have signaled for a particular version and a delay period based on the network, in accordance with the table below.
 
