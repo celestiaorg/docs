@@ -95,6 +95,6 @@ Like previous upgrades, this upgrade will use the in-protocol signaling mechanis
 
 | Network      | Chain ID   | Date and time | Upgrade height | Delay period |
 | ------------ | ---------- | ------------- | -------------- | ------------ |
-| Arabica      | arabica-11 | TBD           | 7316464        | 1 block      |
+| Arabica      | arabica-11 | 2025/07/29 19:59:00 UTC           | 7316464        | 1 block      |
 | Mocha        | mocha-4    | TBD           | TBD            | 1 block      |
 | Mainnet Beta | celestia   | TBD           | TBD            | 1 block      |
