@@ -37,6 +37,7 @@ exclude = [
     # Social media platforms
     "https://discord.gg/*",
     "https://discord.com/*",
+    "https://t.me/*",
     # Additional exclusions per CI feedback request
     "https://vitepress.dev",
     "https://validao.xyz/*",
