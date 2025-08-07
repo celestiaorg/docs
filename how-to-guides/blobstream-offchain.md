@@ -51,9 +51,9 @@ Note the Celestia-specific structures in the header such as the `Namespace` and
 the Blobstream-specific structure called the `Span`. The goal of these
 structures is to locate the data in the Celestia block so that we can prove
 that data's inclusion via Blobstream if needed. Read more in the
-[namespace specifications](https://celestiaorg.github.io/celestia-app/specs/namespace.html),
+[namespace specifications](https://celestiaorg.github.io/celestia-app/namespace.html),
 and you can think of this like a chain ID. Learn more
-[information about `shares`](https://celestiaorg.github.io/celestia-app/specs/shares.html),
+[information about `shares`](https://celestiaorg.github.io/celestia-app/shares.html),
 which are small pieces of the encoded Celestia block. We use the same encoding
 here so that the commitments to the rollup block match those committed to by
 validators in the Celestia data root.
