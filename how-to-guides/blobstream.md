@@ -180,7 +180,3 @@ the following chains:
 | SP1 Blobstream | Base Sepolia           | [`0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2`](https://sepolia.basescan.org/address/0xc3e209eb245Fd59c8586777b499d6A665DF3ABD2#events)             | [Mocha testnet](/how-to-guides/mocha-testnet.md) | [Deployment on Celenium](https://mocha.celenium.io/blobstream?network=base&page=1)     | 1 hour        |
 | SP1 Blobstream | Holesky                | [`0x315A044cb95e4d44bBf6253585FbEbcdB6fb41ef`](https://holesky.etherscan.io/address/0x315A044cb95e4d44bBf6253585FbEbcdB6fb41ef)                    | [Mocha testnet](/how-to-guides/mocha-testnet.md) | N/A                                                                                    | 1 hour        |
 | SP1 Blobstream | ZKSync Gateway Testnet | [`0xaf4B68552788325cCc2E65eb193CA65E7BA02db0`](https://explorer.era-gateway-testnet.zksync.dev/address/0xaf4B68552788325cCc2E65eb193CA65E7BA02db0) | [Mocha testnet](/how-to-guides/mocha-testnet.md) | N/A                                                                                    | 1 hour        |
-
-:::tip
-Would you like to see Blobstream deployed on another network? Please [open an issue on GitHub](https://github.com/celestiaorg/celestia-app/issues/new?assignees=&labels=blobstream&projects=&template=blobstream_network_request.yml&title=%5BBlobstream+Network+Request%5D%3A+) to request it.
-:::
