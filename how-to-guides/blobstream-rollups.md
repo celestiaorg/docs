@@ -27,7 +27,7 @@ Note: Only the [sequence of spans](#sequence-of-spans) method can be used curren
 
 ### Blob share commitment
 
-The [blob share commitment](https://celestiaorg.github.io/celestia-app/specs/data_square_layout.html#blob-share-commitment-rules)
+The [blob share commitment](https://celestiaorg.github.io/celestia-app/data_square_layout.html#blob-share-commitment-rules)
 is a commitment over the data contained in the
 [MsgPayForBlobs transaction](https://github.com/celestiaorg/celestia-app/blob/v1.0.0-rc2/proto/celestia/blob/v1/tx.proto#L16-L31).
 This commitment allows
@@ -40,9 +40,9 @@ Celestia using Blobstream, the following proofs need to be verified:
 
 1. [share inclusion proof to the blob share commitment](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#share-to-share-commitment-inclusion):
    meaning creating two merkle proofs:
-   1. share merkle proof up to the [subtree root](https://celestiaorg.github.io/celestia-app/specs/data_square_layout.html#blob-share-commitment-rules)
+   1. share merkle proof up to the [subtree root](https://celestiaorg.github.io/celestia-app/data_square_layout.html#blob-share-commitment-rules)
       corresponding to that share
-   2. subtree root merkle proof to the [blob share commitment](https://celestiaorg.github.io/celestia-app/specs/data_square_layout.html#blob-share-commitment-rules)
+   2. subtree root merkle proof to the [blob share commitment](https://celestiaorg.github.io/celestia-app/data_square_layout.html#blob-share-commitment-rules)
 2. [blob share commitment inclusion proof to the data root tuple root](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#prove-share-commitment-inclusion-to-data-root):
    meaning four merkle proofs:
    1. [subtree roots merkle proofs to the blob share commitment](https://github.com/celestiaorg/celestia-app/tree/main/pkg/proof#subtree-roots-inclusion-proof-to-the-share-commitment):

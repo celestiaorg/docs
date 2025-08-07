@@ -177,7 +177,7 @@ func SubscribeHeaders(ctx context.Context, url string, token string) error {
 
 ## Fetching an Extended Data Square (EDS)
 
-You can fetch an [Extended Data Square (EDS)](https://celestiaorg.github.io/celestia-app/specs/data_structures.html#erasure-coding) using the [share.GetEDS](https://node-rpc-docs.celestia.org/#share.GetEDS) method. This method takes a header and returns the EDS at the given height.
+You can fetch an [Extended Data Square (EDS)](https://celestiaorg.github.io/celestia-app/data_structures.html#erasure-coding) using the [share.GetEDS](https://node-rpc-docs.celestia.org/#share.GetEDS) method. This method takes a header and returns the EDS at the given height.
 
 ```go
 // GetEDS fetches the EDS at the given height.

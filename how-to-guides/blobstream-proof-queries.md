@@ -66,7 +66,7 @@ gets separated into a PFB transaction (without the blob), and the actual
 data blob that it carries. These two are split into shares, which are the
 low level constructs of a Celestia block, and saved to the corresponding
 Celestia block. Learn more about shares in the
-[shares specs](https://celestiaorg.github.io/celestia-app/specs/shares.html).
+[shares specs](https://celestiaorg.github.io/celestia-app/shares.html).
 
 The two diagrams below summarize how a single share, which can contain a
 PFB transaction, or a part of the rollup data that was posted using a PFB,
@@ -100,7 +100,7 @@ Check the above diagram which shows:
   data blob.
 - 1: the row and column roots are the namespace merkle tree roots over
   the shares. More information on the NMT in the
-  [NMT specs](https://celestiaorg.github.io/celestia-app/specs/data_structures.html?highlight=namespace%20merkle#namespace-merkle-tree).
+  [NMT specs](https://celestiaorg.github.io/celestia-app/data_structures.html?highlight=namespace%20merkle#namespace-merkle-tree).
   These commit to the rows and columns containing the above shares.
 - 2: the data roots: which are the binary merkle tree commitment over
   the row and column roots. This means that if you can prove that a share
@@ -835,7 +835,7 @@ The `min` and `max` are `Namespace` type which is:
 
 ```solidity
 /// @notice A representation of the Celestia-app namespace ID and its version.
-/// See: https://celestiaorg.github.io/celestia-app/specs/namespace.html
+/// See: https://celestiaorg.github.io/celestia-app/namespace.html
 struct Namespace {
     // The namespace version.
     bytes1 version;
@@ -920,7 +920,7 @@ As described above, it can be constructed as follows:
 
 ```solidity
 /// @notice A representation of the Celestia-app namespace ID and its version.
-/// See: https://celestiaorg.github.io/celestia-app/specs/namespace.html
+/// See: https://celestiaorg.github.io/celestia-app/namespace.html
 struct Namespace {
     // The namespace version.
     bytes1 version;
