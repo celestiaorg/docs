@@ -142,7 +142,7 @@ hour, the prover/relayer will post an update to the Blobstream contract
 that will include a new data commitment range that covers a 1-hour
 block range from the `latestBlock` in the contract.
 On Ethereum Mainnet, the contract will be updated
-every 4 hours.
+every hour.
 
 ### How to integrate with Blobstream
 
