@@ -33,5 +33,5 @@ The following are the conditions for a validator to get jailed or slashed:
    they have been unbonded.
 
 For more details on the jailing and slashing parameters, refer to the
-[celestia-app specifications](https://celestiaorg.github.io/celestia-app/params.html#module-parameters)
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters.html)
 page.
