@@ -26,6 +26,7 @@ exclude = [
     "https://celestia-testnet-api.itrocket.net/",
     "https://platform.openai.com/",
     "https://analytics.smartstake.io/",
+    "https://explorer.chainroot.io/*",
     # Additional exclusions from failing checks
     "https://x.com/*",
     "https://twitter.com/*",
