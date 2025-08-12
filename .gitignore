@@ -9,6 +9,3 @@ node_modules
 .vite_opt_cache
 .vscode
 .lycheecache
-
-# Go build artifacts
-example_test
