@@ -193,7 +193,7 @@ func SubmitBlobComplete(ctx context.Context, url string, token string) error {
 
 	// Verify the content is what we expect
 	fmt.Printf("Original message: %s\n", message)
-	fmt.Printf("Retrieved message: %v\n", retrievedBlobs[0].Data)
+	fmt.Printf("Retrieved message: %v\n", retrievedBlobs[0].Data())
 
 	return nil
 }
