@@ -616,6 +616,10 @@ function sidebarHome() {
                       link: "https://docs.celestia.org/audits/Celestia_OP_Stack_Audit.pdf",
                     },
                     {
+                      text: "Hana Audit",
+                      link: "https://docs.celestia.org/audits/Hana_Audit.pdf",
+                    },
+                    {
                       text: "Rollups as a Service",
                       collapsed: true,
                       items: [

@@ -7,6 +7,15 @@ description: How to sync a light node from a trusted hash.
 This guide goes over how to sync a DA light node from a trusted hash.
 The example uses the Mocha testnet. You will need to adjust the commands accordingly for Mainnet Beta, Arabica, or a custom network.
 
+If you already have a data store for your node, you need to remove it before syncing from a trusted hash:
+
+```sh
+rm -rf ~/.celestia-light-mocha-4/data
+```
+
+You also cannot sync to a height earlier than the data availability sampling (DAS) start height.
+If you want data from height `n`, start syncing from at least height `n`.
+
 ::: warning
 Syncing to a trusted hash means that you will not sample the entire chain. This adds a trust
 assumption that you trust the history of the chain up to that point and that you trust the entity

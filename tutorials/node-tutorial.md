@@ -455,7 +455,7 @@ use that block height and the namespace ID with which you submitted your
 PFB transaction to get your message shares (data) returned to you. In this
 example, the block height we got was 252614 which we will use for the following
 command. Read more about shares in the
-[Celestia Specs](https://celestiaorg.github.io/celestia-app/specs/shares.html).
+[Celestia Specs](https://celestiaorg.github.io/celestia-app/shares.html).
 
 Here is what an example of the format of the `get` command looks like:
 
