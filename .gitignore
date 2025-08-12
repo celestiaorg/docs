@@ -11,5 +11,4 @@ node_modules
 .lycheecache
 
 # Go build artifacts
-go.sum
 example_test
