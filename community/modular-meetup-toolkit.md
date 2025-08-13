@@ -47,12 +47,12 @@ help you plan and execute your meetups effectively.
 
 - [Sample presentation - deploy a sovereign rollup](https://docs.google.com/presentation/d/163yP8lQ28k-xfL3jcdX2cfO-3zg8e63AOuHeHxde3vk/edit#slide=id.g20713cce7c2_1_596)
 - Summary: This is an overview presentation on deploying a sovereign rollup
-  with Rollkit on Celestia.
+  with Evovle on Celestia.
   You can find existing video presentations for this here:
 - The sample presentation covers:
   1. What is a sovereign rollup?
   2. The role of sovereign rollups in the Celestia ecosystem
-  3. Introduction to Rollkit
+  3. Introduction to Evovle
   4. Setting up a sovereign rollup: hardware and software requirements
   5. Q&A session
 

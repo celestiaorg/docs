@@ -645,7 +645,7 @@ function sidebarHome() {
               text: "Sovereign",
               collapsed: true,
               items: [
-                { text: "Rollkit", link: "https://rollkit.dev" },
+                { text: "Evolve", link: "https://ev.xyz" },
                 {
                   text: "Sovereign SDK",
                   link: "https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup",

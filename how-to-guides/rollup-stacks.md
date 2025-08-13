@@ -83,7 +83,7 @@ Here are a few options that are currently available for developers.
   <UrlImageButton url="https://github.com/Sovereign-Labs/sovereign-sdk/tree/stable/examples/demo-rollup#demo-rollup" imageSrc="/build/sovereign.webp" text="Sovereign SDK" notes="Sovereign" alt="Sovereign logo" aria-label="Sovereign"/>
   <UrlImageButton url="https://docs.dymension.xyz/" imageSrc="/build/dymension.webp" text="Dymension" alt="Dymension logo" aria-label="Dymension"/>
   <UrlImageButton url="https://docs.stf.xyz" imageSrc="/build/stackr.webp" text="Stackr" alt="Stackr logo" aria-label="Stackr"/>
-  <UrlImageButton url="https://rollkit.dev" imageSrc="/build/rollkit.webp" text="Rollkit" notes="Sovereign" alt="Rollkit logo" aria-label="Rollkit"/>
+  <UrlImageButton url="https://ev.xyz" imageSrc="/build/evolve.webp" text="Evolve" notes="Sovereign" alt="Evolve logo" aria-label="Evolve"/>
 </div>
 
 ### Rollups as a Service
@@ -91,14 +91,13 @@ Here are a few options that are currently available for developers.
 Deploy your rollup with a RaaS provider.
 
 <div class="framework-grid">
+    <UrlImageButton url="https://alchemy.com/rollups" imageSrc="/build/alchemy.webp" text="Alchemy" notes="Orbit, OP Stack" alt="Alchemy logo" aria-label="Alchemy"/>
   <UrlImageButton url="https://altlayer.io/raas/" imageSrc="/build/altlayer.webp" text="AltLayer" notes="Orbit, OP Stack" alt="AltLayer logo" aria-label="AltLayer"/>
   <UrlImageButton url="https://www.astria.org/" imageSrc="/build/astria.webp" text="Astria" alt="Astria logo" aria-label="Astria"/>
   <UrlImageButton url="https://www.caldera.xyz/" imageSrc="/build/caldera.webp" text="Caldera" notes="Orbit, OP Stack" alt="Caldera logo" aria-label="Caldera"/>
   <UrlImageButton url="https://conduit.xyz/" imageSrc="/build/conduit.webp" text="Conduit" notes="Orbit, OP Stack" alt="Conduit logo" aria-label="Conduit"/>
   <UrlImageButton url="https://www.gelato.network/" imageSrc="/build/gelato.webp" text="Gelato" notes="Orbit, OP Stack" alt="Gelato logo" aria-label="Gelato"/>
   <UrlImageButton url="https://www.karnot.xyz/" imageSrc="/build/karnot.webp" text="Karnot" notes="Starknet" alt="Karnot logo" aria-label="Karnot"/>
-  <UrlImageButton url="https://docs.vistara.dev/" imageSrc="/build/vistara.webp" text="Vistara" alt="Vistara logo" aria-label="Vistara"/>
-  <UrlImageButton url="https://www.zeeve.io/" imageSrc="/build/zeeve.webp" text="Zeeve" notes="Orbit, OP Stack" alt="Zeeve logo" aria-label="Zeeve"/>
 </div>
 
 ## What is a rollup?
