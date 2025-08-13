@@ -394,7 +394,7 @@ Below is a detailed overview of how Celestia Labs can assist you.
    - Why: This information helps us cater to the needs of the user
      group members. If most attendees are looking for networking
      opportunities, we can schedule casual meetups alongside informative talks.
-3. Q3: Are you currently using or planning to use Celestia, Rollkit,
+3. Q3: Are you currently using or planning to use Celestia, Evolve,
    Celestia’s Node API or any of the rollups deployed on Celestia?
    Tell us all about it. We will use your response to help us better
    understand what talks would be most beneficial to the group.
