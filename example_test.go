@@ -79,7 +79,7 @@ func SubscribeBlobs(ctx context.Context, url string, token string) error {
 	for {
 		select {
 		case resp := <-blobChan:
-			fmt.Printf("Found %d blobs at height %d in 0xDEADBEEF namespace\n", len(resp.Blobs()), resp.Height)
+			fmt.Printf("Found %d blobs at height %d in 0xDEADBEEF namespace\n", len(resp.Blobs), resp.Height)
 		case <-ctx.Done():
 			return nil
 		}
@@ -193,7 +193,7 @@ func SubmitBlobComplete(ctx context.Context, url string, token string) error {
 
 	// Verify the content is what we expect
 	fmt.Printf("Original message: %s\n", message)
-	fmt.Printf("Retrieved message: %s\n", retrievedBlobs[0].Data)
+	fmt.Printf("Retrieved message: %v\n", retrievedBlobs[0].Data())
 
 	return nil
 }
