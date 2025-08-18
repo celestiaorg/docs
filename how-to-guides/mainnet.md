@@ -172,6 +172,7 @@ The following table lists community-provided consensus node endpoints that you c
 | Stakeflow       | `rpc-celestia-01.stakeflow.io`                           | `api-celestia-01.stakeflow.io`                                   | `grpc-celestia-01.stakeflow.io:15002`          | -                                                        |
 | Stakin          | `celestia.rpc.stakin-nodes.com`                          | `celestia.rest.stakin-nodes.com`                                 | `celestia.grpc.stakin-nodes.com:443`           | -                                                        |
 | Trusted Point   | `rpc-celestia-mainnet.trusted-point.com`                 | `api-celestia-mainnet.trusted-point.com`                         | `grpc-celestia-mainnet.trusted-point.com:9095` | -                                                        |
+| deNodes         | `celestia-mainnet-rpc.denodes.xyz`                       | `celestia-mainnet-api.denodes.xyz`                               | `celestia-mainnet-grpc.denodes.xyz:443`        | `wss://celestia-mainnet-rpc.denodes.xyz:443/websocket`   |
 
 ### Connecting DA nodes to consensus nodes
 
