@@ -46,7 +46,7 @@ improving content clarity, or adding new topics, every contribution helps.
 - Push & Create PR: Push your changes to your fork and create a pull request
   to the main branch of this repository.
 
-Please ensure to review the **[detailed Contribution Guidelines](https://github.com/celestiaorg/.github/blob/main/CONTRIBUTING.md#external-contributions)** before
+Please ensure to review the **[full Contribution Guidelines](https://github.com/celestiaorg/.github/blob/main/CONTRIBUTING.md#external-contributions)** before
 making a pull request.
 
 ## Documentation standards
