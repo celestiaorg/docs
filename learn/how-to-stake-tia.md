@@ -18,21 +18,15 @@ wallets.
 ## Select your preferred wallet
 
 <!-- markdownlint-disable MD033 -->
-<div style="display: inline-block;">
+<div style="display: flex">
     <a href="#stake-tia-with-keplr-wallet">
-    <img src="../public/img/keplr.png" alt="Keplr">
+        <img src="../public/img/keplr.png" alt="Keplr">
     </a>
-</div>
-
-<div style="display: inline-block;">
     <a href="#stake-tia-with-leap-wallet">
-    <img src="../public/img/leap.png" alt="Leap">
+        <img src="../public/img/leap.png" alt="Leap">
     </a>
-</div>
-
-<div style="display: inline-block;">
     <a href="#stake-tia-with-gem-wallet">
-    <img src="../public/img/gem.png" alt="Gem Wallet">
+        <img src="../public/img/gem.png" alt="Gem Wallet">
     </a>
 </div>
 
