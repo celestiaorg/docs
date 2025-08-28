@@ -20,13 +20,13 @@ wallets.
 <!-- markdownlint-disable MD033 -->
 <div style="display: flex">
     <a href="#stake-tia-with-keplr-wallet">
-        <img src="../public/img/keplr.png" alt="Keplr">
+        <img src="/public/img/keplr.png" alt="Keplr">
     </a>
     <a href="#stake-tia-with-leap-wallet">
-        <img src="../public/img/leap.png" alt="Leap">
+        <img src="/public/img/leap.png" alt="Leap">
     </a>
     <a href="#stake-tia-with-gem-wallet">
-        <img src="../public/img/gem.png" alt="Gem Wallet">
+        <img src="/public/img/gem.png" alt="Gem Wallet">
     </a>
 </div>
 
