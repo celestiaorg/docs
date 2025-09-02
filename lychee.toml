@@ -47,4 +47,6 @@ exclude = [
     # skip any templates used in URLs for `.vitepress/components/*.vue`
     # matches "{.*}" literals in URLs
     '\%7B.*\%7D',
+    # QubeLabs snapshot service appears to be unavailable
+    "https://snaps.qubelabs.io/*",
 ]
