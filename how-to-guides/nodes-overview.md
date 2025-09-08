@@ -45,7 +45,7 @@ each tutorial guide.
 
 | Node type                     | Memory     | CPU         | Disk           | Bandwidth |
 | ----------------------------- | ---------- | ----------- | -------------- | --------- |
-| Light node (unpruned headers) | 500 MB RAM | Single core | 111.7kb/block  | 56 Kbps   |
+| Light node (unpruned headers) | 500 MB RAM | Single core | 111.7 KB/block | 56 Kbps   |
 | Bridge node                   | 64 GB RAM  | 8 cores     | 160 TiB NVME\* | 1 Gbps    |
 | Full storage node             | 64 GB RAM  | 8 cores     | 160 TiB NVME\* | 1 Gbps    |
 
