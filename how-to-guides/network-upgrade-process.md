@@ -107,4 +107,4 @@ The Matcha network upgrade (app version 6) includes a number of changes to the n
 |--------------|------------|----------------------|----------------|----------------|
 | Arabica      | arabica-11 | 2025/09/09 ~02:05:31 | 8105605        | 14,400 blocks  |
 | Mocha        | mocha-4    | TBD                  | TBD            | 28,800 blocks  |
-| Mainnet Beta | celestia   | TBD                  | TBD            | 100_800 blocks |
+| Mainnet Beta | celestia   | TBD                  | TBD            | 100,800 blocks |
