@@ -37,17 +37,19 @@ each tutorial guide.
 
 | Node type         | Memory     | CPU         | Disk       | Bandwidth |
 | ----------------- | ---------- | ----------- | ---------- | --------- |
-| Light node        | 500 MB RAM | Single core | 100 GB SSD | 56 Kbps   |
-| Bridge node       | 64 GB RAM  | 8 cores     | 5 TiB NVME | 1 Gbps    |
-| Full storage node | 64 GB RAM  | 8 cores     | 5 TiB NVME | 1 Gbps    |
+| Light node        | 500 MB RAM | Single core | 20 GB SSD | 56 Kbps   |
+| Bridge node       | 64 GB RAM  | 8 cores     | 8 TiB NVME | 1 Gbps    |
+| Full storage node | 64 GB RAM  | 8 cores     | 8 TiB NVME | 1 Gbps    |
 
 ### Archival data availability nodes
 
 | Node type         | Memory     | CPU         | Disk       | Bandwidth |
 | ----------------- | ---------- | ----------- | ---------- | --------- |
-| Light node        | 500 MB RAM | Single core | 100 GB SSD | 56 Kbps   |
-| Bridge node       | 64 GB RAM  | 8 cores     | 6 TiB NVME | 1 Gbps    |
-| Full storage node | 64 GB RAM  | 8 cores     | 6 TiB NVME | 1 Gbps    |
+| Light node (unpruned headers)       | 500 MB RAM | Single core | 111.7kb/block  | 56 Kbps   |
+| Bridge node       | 64 GB RAM  | 8 cores     | 160 TiB NVME* | 1 Gbps    |
+| Full storage node | 64 GB RAM  | 8 cores     | 160 TiB NVME* | 1 Gbps    |
+
+*Archival disk requirement is based on the current v6 32MB/6s throughput at maximum capacity. In reality the requirement can be much lower and we advise regularly checking disk usage and having at least 1 month worth of max throughput of extra disk space (8TiB).
 
 ### Consensus nodes
 
@@ -55,14 +57,16 @@ each tutorial guide.
 
 | Node type      | Memory    | CPU     | Disk       | Bandwidth |
 | -------------- | --------- | ------- | ---------- | --------- |
-| Validator      | 24 GB RAM | 8 cores | 3 TiB NVME | 1 Gbps    |
-| Consensus node | 24 GB RAM | 8 cores | 3 TiB NVME | 1 Gbps    |
+| Validator      | 32 GB RAM | 16 cores | 2 TiB NVME | 1 Gbps    |
+| Consensus node | 32 GB RAM | 16 cores | 2 TiB NVME | 1 Gbps    |
 
 #### Archival consensus nodes
 
 | Node type      | Memory    | CPU     | Disk       | Bandwidth |
 | -------------- | --------- | ------- | ---------- | --------- |
-| Consensus node | 64 GB RAM | 8 cores | 6 TiB NVME | 1 Gbps    |
+| Consensus node | 64 GB RAM | 16 cores | 160 TiB NVME* | 1 Gbps    |
+
+*Archival disk requirement is based on the current v6 32MB/6s throughput at maximum capacity. In reality the requirement can be much lower and we advise regularly checking disk usage and having at least 1 month worth of max throughput of extra disk space (8TiB).
 
 Please provide any feedback on the tutorials and guides. If you notice
 a bug or issue, feel free to make a pull request or write up a Github
