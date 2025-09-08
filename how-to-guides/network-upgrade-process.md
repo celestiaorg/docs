@@ -112,8 +112,8 @@ Key features include:
 - [CIP-40](https://cips.celestia.org/cip-040.md): Privval Interface Extension for Arbitrary Message Signing
 - [CIP-41](https://cips.celestia.org/cip-041.md): Reduce issuance to 2.5% and increase minimum commission to 10%
 
-| Network      | Chain ID   | Date and time | Upgrade height | Delay period |
-|--------------|------------|---------------|----------------|--------------|
-| Arabica      | arabica-11 | 2025/09/09 ~02:05:31 | 8105605        | 1 day |
-| Mocha        | mocha-4    | TBD           | TBD            | 2 days       |
-| Mainnet Beta | celestia   | TBD           | TBD            | 7 days       |
+| Network      | Chain ID   | Date and time        | Upgrade height | Delay period |
+| ------------ | ---------- | -------------------- | -------------- | ------------ |
+| Arabica      | arabica-11 | 2025/09/09 ~02:05:31 | 8105605        | 1 day        |
+| Mocha        | mocha-4    | TBD                  | TBD            | 2 days       |
+| Mainnet Beta | celestia   | TBD                  | TBD            | 7 days       |
