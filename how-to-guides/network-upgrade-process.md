@@ -33,7 +33,7 @@ The upgrade process can be broken down into a few steps:
 The Lemongrass network upgrade (v2) was the first consensus layer breaking change since Celestia's Mainnet Beta genesis block. The Lemongrass network upgrade included all of the CIPs listed in [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-017.md) and implemented CIP-10 for future upgrades.
 
 | Network      | Chain ID   | Date and time          | Upgrade height |
-| ------------ | ---------- | ---------------------- | -------------- |
+|--------------|------------|------------------------|----------------|
 | Arabica      | arabica-11 | 2024/08/19 @ 14:00 UTC | 1751707        |
 | Mocha        | mocha-4    | 2024/08/28 @ 14:00 UTC | 2585031        |
 | Mainnet Beta | celestia   | 2024/09/18 @ 14:00 UTC | 2371495        |
@@ -55,7 +55,7 @@ Unlike the Lemongrass upgrade, there will not be a pre-programmed upgrade height
 Learn more in the [v3.0.0 release notes](https://github.com/celestiaorg/celestia-app/blob/main/docs/release-notes/release-notes.md#v300).
 
 | Network      | Chain ID   | Date and time             | Upgrade height |
-| ------------ | ---------- | ------------------------- | -------------- |
+|--------------|------------|---------------------------|----------------|
 | Arabica      | arabica-11 | 2024/11/05 @ 21:55:13 UTC | 2348907        |
 | Mocha        | mocha-4    | 2024/11/14 @ 18:31:11 UTC | 3140052        |
 | Mainnet Beta | celestia   | 2024/12/12 @ 14:28:52 UTC | 2993219        |
@@ -76,7 +76,7 @@ Like the Ginger upgrade, this upgrade used the in-protocol signaling mechanism. 
 The delay periods for v4 were based on [celestia-app #4413](https://github.com/celestiaorg/celestia-app/issues/4413):
 
 | Network      | Chain ID   | Date and time           | Upgrade height | Delay period |
-| ------------ | ---------- | ----------------------- | -------------- | ------------ |
+|--------------|------------|-------------------------|----------------|--------------|
 | Arabica      | arabica-11 | 2025/05/16 07:51:35 UTC | 5975265        | 1 day        |
 | Mocha        | mocha-4    | 2025/07/01 11:51:58 UTC | 6915786        | 2 days       |
 | Mainnet Beta | celestia   | 2025/07/28 13:46:27 UTC | 6680339        | 7 days       |
@@ -88,7 +88,7 @@ The v5 network upgrade included a fix to restore IBC support which was broken in
 Like previous upgrades, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate after 5/6 of voting power have signaled for a particular version and a delay period based on the network, in accordance with the table below.
 
 | Network      | Chain ID   | Date and time           | Upgrade height | Delay period |
-| ------------ | ---------- | ----------------------- | -------------- | ------------ |
+|--------------|------------|-------------------------|----------------|--------------|
 | Arabica      | arabica-11 | 2025/07/29 19:59:00 UTC | 7316464        | 1 block      |
 | Mocha        | mocha-4    | 2025/07/30 17:07:29 UTC | 7401191        | 1 block      |
 | Mainnet Beta | celestia   | 2025/08/01 14:30:29 UTC | 6748821        | 1 block      |
@@ -98,3 +98,13 @@ Like previous upgrades, this upgrade will use the in-protocol signaling mechanis
 :::warning
 You **do not** need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 :::
+
+#### Matcha network upgrade (v6)
+
+The Matcha network upgrade (app version 6) includes a number of changes to the network. Please see [CIP-42](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-042.md) for more details.
+
+| Network      | Chain ID   | Date and time        | Upgrade height | Delay period   |
+|--------------|------------|----------------------|----------------|----------------|
+| Arabica      | arabica-11 | 2025/09/09 ~02:05:31 | 8105605        | 14,400 blocks  |
+| Mocha        | mocha-4    | TBD                  | TBD            | 28,800 blocks  |
+| Mainnet Beta | celestia   | TBD                  | TBD            | 100_800 blocks |
