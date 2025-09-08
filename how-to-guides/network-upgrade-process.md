@@ -98,3 +98,22 @@ Like previous upgrades, this upgrade will use the in-protocol signaling mechanis
 :::warning
 You **do not** need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 :::
+
+#### Matcha network upgrade
+
+The Matcha network upgrade (v6) includes several important changes defined in [CIP-42](https://cips.celestia.org/cip-042.html).
+
+Key features include:
+
+- [CIP-36](https://cips.celestia.org/cip-036.md): Lowering Trusting Period to 7 Days
+- [CIP-37](https://cips.celestia.org/cip-037.md): Lower unbonding period to ~14 days
+- [CIP-38](https://cips.celestia.org/cip-038.md): Increase maximum block, square and transaction size
+- [CIP-39](https://cips.celestia.org/cip-039.md): Remove token filter for Hyperlane and IBC
+- [CIP-40](https://cips.celestia.org/cip-040.md): Privval Interface Extension for Arbitrary Message Signing
+- [CIP-41](https://cips.celestia.org/cip-041.md): Reduce issuance to 2.5% and increase minimum commission to 10%
+
+| Network      | Chain ID   | Date and time | Upgrade height | Delay period |
+|--------------|------------|---------------|----------------|--------------|
+| Arabica      | arabica-11 | TBD           | TBD            | 1 day        |
+| Mocha        | mocha-4    | TBD           | TBD            | 2 days       |
+| Mainnet Beta | celestia   | TBD           | TBD            | 7 days       |
