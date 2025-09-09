@@ -167,5 +167,6 @@ their respective delegations.
 - [Cohort 2](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=855157686#gid=855157686): 15 Validator Seats (Applications open June 1, 2024)
 - [Cohort 3](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=1432570846#gid=1432570846): 15 Validator Seats (Applications open October 1, 2024)
 - [Cohort 4](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=1814073511#gid=1814073511): 20 Validator Seats (Applications open February 1, 2025)
+- [Cohort 5](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=1471991269#gid=1471991269): 15 Validator Seats (Applications open June 1, 2025)
 
 IMPORTANT: Each validator selected for the program has to maintain a fully archival (non pruned) bridge node for both Mainnet Beta and Mocha.
