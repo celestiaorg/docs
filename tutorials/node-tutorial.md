@@ -562,7 +562,7 @@ gas limit is automatically calculated based on the size of the blob
 being submitted.
 
 To set the gas price, you can use the `--gas.price` flag.
-The gas price will be set to default (0.002) if no value
+The gas price will be set to default (0.004) if no value
 is passed.
 
 Learn [more about gas fees and limits](/how-to-guides/submit-data.md).
@@ -898,7 +898,7 @@ curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NOD
         "commitment": "AD5EzbG0/EMvpw0p8NIjMVnoCP4Bv6K+V6gjmwdXUKU="
       }
     ],
-    0.002
+    0.004
   ]
 }' 127.0.0.1:26658
 ```

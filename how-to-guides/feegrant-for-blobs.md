@@ -276,7 +276,7 @@ curl -H "Content-Type: application/json" \
          \"$GRANTEE_ADDRESS\",
          \"42\",
          {
-           \"gas_price\": 0.002,
+           \"gas_price\": 0.004,
            \"is_gas_price_set\": true,
            \"gas\": 142225,
            \"key_name\": \"my_celes_key\",
