@@ -562,15 +562,15 @@ gas limit is automatically calculated based on the size of the blob
 being submitted.
 
 To set the gas price, you can use the `--gas.price` flag.
-The gas price will be set to default (0.002) if no value
+The gas price will be set to default (0.004) if no value
 is passed.
 
 Learn [more about gas fees and limits](/how-to-guides/submit-data.md).
 
-To set a higher gas price of 0.004 utia, use the `--gas.price 0.004` flag:
+To set a higher gas price of 0.008 utia, use the `--gas.price 0.008` flag:
 
 ```bash
-celestia blob submit 0x42690c204d39600fddd3 'gm' --gas.price 0.004
+celestia blob submit 0x42690c204d39600fddd3 'gm' --gas.price 0.008
 ```
 
 You will receive the height and commitment of the block in which the
@@ -898,7 +898,7 @@ curl -H "Content-Type: application/json" -H "Authorization: Bearer $CELESTIA_NOD
         "commitment": "AD5EzbG0/EMvpw0p8NIjMVnoCP4Bv6K+V6gjmwdXUKU="
       }
     ],
-    0.002
+    0.004
   ]
 }' 127.0.0.1:26658
 ```
