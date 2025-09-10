@@ -114,7 +114,7 @@ Key features include:
 
 | Network      | Chain ID   | Date and time            | Upgrade height                                      | Delay period |
 | ------------ | ---------- | ------------------------ | --------------------------------------------------- | ------------ |
-| Arabica      | arabica-11 | 2025/09/09 00:08:11 UTC  | [8105605](https://arabica.celenium.io/block/8105605)| 1 day        |
+| Arabica      | arabica-11 | 2025/09/09 06:08:11 UTC  | [8105605](https://arabica.celenium.io/block/8105605)| 1 day        |
 | Mocha        | mocha-4    | TBD                      | TBD                                                 | 2 days       |
 | Mainnet Beta | celestia   | TBD                      | TBD                                                 | 7 days       |
 
