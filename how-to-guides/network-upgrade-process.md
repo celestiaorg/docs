@@ -15,6 +15,15 @@ As of the Lemongrass upgrade in September 2024, Celestia has implemented [CIP-10
 
 Under the in-protocol signaling mechanism, validators submit messages to signal their readiness and preference for the next version. The upgrade activates automatically once a quorum of 5/6 of validators have signaled for the same version.
 
+### Announcement channels
+
+Follow the latest network upgrade announcements on:
+
+- Telegram: [Network-wide announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+- Discord
+  - [Mainnet Beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
+  - [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
+
 ## Upgrade process
 
 The upgrade process can be broken down into a few steps:
