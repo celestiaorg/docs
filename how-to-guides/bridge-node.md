@@ -137,6 +137,20 @@ celestia bridge start --core.ip validator-1.celestia-{{constants.arabicaChainId}
   --p2p.network arabica --core.port 9090
 ```
 
+:::tip gRPC Configuration for Localhost Connections
+If you're connecting your bridge node to a localhost consensus node (`--core.ip localhost` or `--core.ip 127.0.0.1`), ensure that gRPC is enabled in your consensus node's `app.toml` configuration file. Look for the `[grpc]` section and verify that `enable = true` is set:
+
+```toml
+[grpc]
+# Enable defines if the gRPC server should be enabled.
+enable = true
+# Address defines the gRPC server address to bind to.
+address = "localhost:9090"
+```
+
+Without proper gRPC configuration, the bridge node will not be able to connect to the consensus node.
+:::
+
 You can create your key for your node by [following the `cel-key` instructions](/tutorials/celestia-node-key.md).
 
 Once you start the bridge node, a wallet key will be generated for you.
