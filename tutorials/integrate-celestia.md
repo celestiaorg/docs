@@ -67,18 +67,3 @@ other platforms.
 Since we utilize Tendermint and the Cosmos-SDK, syncing the chain can be
 performed by any method that is supported by those libraries. This includes
 fast-sync, state sync, and quick sync.
-
-### Notable exceptions relative to other blockchains
-
-Relative to other Tendermint based chains, Celestia will have significantly
-longer blocktimes of roughly 6\* seconds. The reason behind this block time is to
-optimize the bandwidth used by light clients that are sampling the chain, and
-is not because we have modified Tendermint consensus in any meaningful way.
-Validators will likely download/upload relatively large blocks. It should be
-noted that while these blocks are large, very little typical blockchain state
-execution is actually occurring on Celestia. Meaning that the bandwidth
-requirements will likely be larger than that of a typical Cosmos-SDK based
-blockchain full node, the computing requirements should be similar in
-magnitude.
-
-\*Subject to Change
