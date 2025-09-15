@@ -15,6 +15,33 @@ next:
 
 ## Running a full node
 
+<!-- CSS (add to your stylesheet or <style> tag) -->
+<!--TODO: add this to css (optional)-->
+<!--TODO: work this into the text-->
+<style>
+    .iframe-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio - adjust as needed */
+        height: 0;
+        overflow: hidden;
+    }
+
+    .iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+
+<!-- HTML -->
+<div class="iframe-container">
+    <iframe src="https://docs.arbitrum.io/run-arbitrum-node/run-full-node" title="arbitrum.io"></iframe>
+</div>
+
 Running a fullnode or validator for an Orbit chain with Celestia DA is as simple as
 [following the steps outlined in the Arbitrum docs](https://docs.arbitrum.io/run-arbitrum-node/run-full-node),
 but using a docker image from the [latest stable release](https://github.com/celestiaorg/nitro/releases) of the Celestia integration and passing the following flags:
