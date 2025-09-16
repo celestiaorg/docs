@@ -97,6 +97,14 @@ Full network parameters, such as [max bytes](https://github.com/celestiaorg/cele
 can be found in the
 [celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v3.html).
 
+For historical parameter references, see:
+
+- [Parameters v1][params-v1] - App version 1 parameters
+- [Parameters v6][params-v6] - App version 6 parameters
+
+[params-v1]: https://github.com/celestiaorg/celestia-app/blob/main/specs/src/parameters_v1.md
+[params-v6]: https://github.com/celestiaorg/celestia-app/blob/main/specs/src/parameters_v6.md
+
 ## Integrations
 
 This guide contains the relevant sections for how to connect to Mainnet Beta,
