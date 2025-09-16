@@ -249,14 +249,6 @@ function nav() {
               link: "https://celestiaorg.github.io/celestia-app/",
             },
             {
-              text: "celestia-app parameters v1",
-              link: "https://github.com/celestiaorg/celestia-app/blob/main/specs/src/parameters_v1.md",
-            },
-            {
-              text: "celestia-app parameters v6",
-              link: "https://github.com/celestiaorg/celestia-app/blob/main/specs/src/parameters_v6.md",
-            },
-            {
               text: "celestia-node API docs",
               link: "https://node-rpc-docs.celestia.org/",
             },
