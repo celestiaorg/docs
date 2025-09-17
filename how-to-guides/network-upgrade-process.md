@@ -47,6 +47,8 @@ The Lemongrass network upgrade (v2) was the first consensus layer breaking chang
 | Mocha        | mocha-4    | 2024/08/28 @ 14:00 UTC | 2585031        |
 | Mainnet Beta | celestia   | 2024/09/18 @ 14:00 UTC | 2371495        |
 
+See [parameters for v2](https://celestiaorg.github.io/celestia-app/parameters_v2.html).
+
 #### Ginger network upgrade
 
 The Ginger network upgrade (v3) was the first to use the in-protocol signaling mechanism defined in [CIP-10](https://cips.celestia.org/cip-010.html). This upgrade included changes defined in [CIP-25](https://cips.celestia.org/cip-025.html):
@@ -69,6 +71,8 @@ Learn more in the [v3.0.0 release notes](https://github.com/celestiaorg/celestia
 | Mocha        | mocha-4    | 2024/11/14 @ 18:31:11 UTC | 3140052        |
 | Mainnet Beta | celestia   | 2024/12/12 @ 14:28:52 UTC | 2993219        |
 
+See [parameters for v3](https://celestiaorg.github.io/celestia-app/parameters_v3.html).
+
 #### Lotus network upgrade
 
 The Lotus network upgrade (v4) included several important changes defined in [CIP-33](https://cips.celestia.org/cip-033.html):
@@ -90,6 +94,8 @@ The delay periods for v4 were based on [celestia-app #4413](https://github.com/c
 | Mocha        | mocha-4    | 2025/07/01 11:51:58 UTC | 6915786        | 2 days       |
 | Mainnet Beta | celestia   | 2025/07/28 13:46:27 UTC | 6680339        | 7 days       |
 
+See [parameters for v4](https://celestiaorg.github.io/celestia-app/parameters_v4.html).
+
 #### v5 network upgrade
 
 The v5 network upgrade included a fix to restore IBC support which was broken in v4.
@@ -101,6 +107,8 @@ Like previous upgrades, this upgrade will use the in-protocol signaling mechanis
 | Arabica      | arabica-11 | 2025/07/29 19:59:00 UTC | 7316464        | 1 block      |
 | Mocha        | mocha-4    | 2025/07/30 17:07:29 UTC | 7401191        | 1 block      |
 | Mainnet Beta | celestia   | 2025/08/01 14:30:29 UTC | 6748821        | 1 block      |
+
+See [parameters for v5](https://celestiaorg.github.io/celestia-app/parameters_v5.html).
 
 ### Upcoming Upgrades
 
@@ -126,3 +134,5 @@ Key features include:
 | Arabica      | arabica-11 | 2025/09/09 06:08:11 UTC | [8105605](https://arabica.celenium.io/block/8105605) | 1 day        |
 | Mocha        | mocha-4    | TBD                     | TBD                                                  | 2 days       |
 | Mainnet Beta | celestia   | TBD                     | TBD                                                  | 7 days       |
+
+See [parameters for v6](https://celestiaorg.github.io/celestia-app/parameters_v6.html).
