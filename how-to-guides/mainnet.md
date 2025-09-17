@@ -95,7 +95,7 @@ and [celestia-node](https://github.com/celestiaorg/celestia-node/blob/540192259c
 
 Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/23d13d4de41631dc3c52f7d94fc214e44d03962d/specs/src/specs/params.md?plain=1#L30),
 can be found in the
-[celestia-app specifications](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/parameters_v6.md).
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v6.html).
 
 ## Integrations
 
