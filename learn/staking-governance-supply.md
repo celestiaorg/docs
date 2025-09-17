@@ -54,7 +54,7 @@ For an in-depth understanding, refer to
 
 TIA holders (not just stakers) can propose and vote on governance proposals to
 change a subset of network parameters. To learn more, see a
-[complete list of both the changeable and non-changeable parameters and their values](https://github.com/celestiaorg/celestia-app/blob/v1.x/specs/src/specs/params.md).
+[complete list of both the changeable and non-changeable parameters and their values](https://celestiaorg.github.io/celestia-app/parameters_v6.html).
 Additionally, learn how to
 [submit and vote on governance proposals](/how-to-guides/celestia-app-commands.md#governance).
 

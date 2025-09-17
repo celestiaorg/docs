@@ -93,9 +93,9 @@ See the code in
 [celestia-app](https://github.com/celestiaorg/celestia-app/blob/2e49d665b3275e769dfe0371b1ca41e39dc3f5f5/pkg/appconsts/initial_consts.go#L14)
 and [celestia-node](https://github.com/celestiaorg/celestia-node/blob/540192259c144ccbd24e45e34616a41389232a51/blob/blob.go#L93).
 
-Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/23d13d4de41631dc3c52f7d94fc214e44d03962d/specs/src/specs/params.md?plain=1#L30),
+Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md?plain=1#L35),
 can be found in the
-[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v3.html).
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v6.html).
 
 ## Integrations
 

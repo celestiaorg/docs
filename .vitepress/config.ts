@@ -245,6 +245,10 @@ function nav() {
               link: "https://cips.celestia.org/",
             },
             {
+              text: "v6 parameters",
+              link: "https://celestiaorg.github.io/celestia-app/parameters_v6.html",
+            },
+            {
               text: "celestia-app specs",
               link: "https://celestiaorg.github.io/celestia-app/",
             },

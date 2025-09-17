@@ -20,7 +20,7 @@ With one share for the PFB transaction, 4095 shares remain:
 1 at 478 bytes and 4094 at 482 bytes each.
 
 This is subject to change based on governance parameters.
-Learn more on [the Mainnet Beta page under "Maximum bytes"](/how-to-guides/mainnet.md#maximum-bytes).
+Learn more on [the Mainnet Beta page under "Maximum bytes"](/how-to-guides/mainnet.md#transaction-size-limit).
 
 It is advisable to submit transactions where the total blob size is significantly
 smaller than 1.8 MiB (e.g. 500 KiB) in order for your transaction to get included
@@ -104,8 +104,8 @@ how many shares are needed to store the blob size. Then, it computes the product
 of the number of shares, the number of bytes per share, and the `gasPerByte`
 parameter. Finally, it adds a static amount per blob.
 
-The [`blob.GasPerBlobByte`](https://github.com/celestiaorg/celestia-app/blob/ad91a5b2ca2d562f0b8c9c2e1ed6b4d3098a2e8e/specs/src/specs/params.md?plain=1#L27)
-and [`auth.TxSizeCostPerByte`](https://github.com/celestiaorg/celestia-app/blob/ad91a5b2ca2d562f0b8c9c2e1ed6b4d3098a2e8e/specs/src/specs/params.md?plain=1#L25)
+The [`blob.GasPerBlobByte`](https://github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md?plain=1#L33)
+and [`auth.TxSizeCostPerByte`](https://github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md?plain=1#L31)
 are parameters that
 could potentially be adjusted through the system's governance mechanisms. Hence,
 actual costs may vary depending on the current state of these parameters.
