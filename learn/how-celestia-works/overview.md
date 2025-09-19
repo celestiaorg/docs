@@ -16,7 +16,7 @@ transactions and guaranteeing their data availability; this is
 similar to [reducing consensus to atomic broadcast](https://en.wikipedia.org/wiki/Atomic_broadcast#Equivalent_to_Consensus).
 
 The latter provides an efficient solution to the
-[data availability problem](https://coinmarketcap.com/alexandria/article/what-is-data-availability)
+[data availability problem](https://coinmarketcap.com/academy/article/what-is-data-availability)
 by only requiring resource-limited light nodes to sample a
 small number of random shares from each block to verify data availability.
 

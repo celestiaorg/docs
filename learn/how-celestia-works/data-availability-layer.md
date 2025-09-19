@@ -5,7 +5,7 @@ description: Celestia's Data Availability layer and its key features.
 # Celestia's data availability layer
 
 Celestia is a data availability (DA) layer that provides a
-scalable solution to the [data availability problem](https://coinmarketcap.com/alexandria/article/what-is-data-availability).
+scalable solution to the [data availability problem](https://coinmarketcap.com/academy/article/what-is-data-availability).
 Due to the permissionless nature of the blockchain networks,
 a DA layer must provide a mechanism for the execution and settlement
 layers to check in a trust-minimized way whether transaction data is indeed available.
