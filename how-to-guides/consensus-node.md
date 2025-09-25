@@ -227,6 +227,20 @@ a trusted RPC endpoint (/block). RPC endpoints are also required for retrieving
 light blocks. These can be found in the docs here under the respective networks or
 from [the chain-registry](https://github.com/cosmos/chain-registry).
 
+#### State sync quick start scripts
+
+If you are looking to quickly sync a consensus node, and do not need historical blocks,
+you can use the following scripts and state sync.
+
+**Before running the scripts, make sure to checkout to the [correct version](/how-to-guides/participate):**
+
+<NetworkScriptLinks />
+
+The public networks will use state sync so they'll get to the tip very quickly,
+but won't work for your use case if you need historical blocks.
+
+#### Manual state sync setup
+
 In `$HOME/.celestia-app/config/config.toml`, set
 
 ```toml
@@ -251,20 +265,6 @@ The more, the greater the chance of detecting any fraudulent behavior.
 Once setup, you should be ready to start the node as normal. In the logs, you should
 see: `Discovering snapshots`. This may take a few minutes before snapshots are found
 depending on the network topology.
-
-::: tip
-If you are looking to quickly sync a consensus node, and do not need historical blocks,
-you can use the following scripts and state sync. Remember to checkout to the correct
-version and run `make install` before running the scripts:
-
-- Local devnet: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/single-node.sh>
-- Arabica: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/arabica.sh>
-- Mocha: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/mocha.sh>
-- Mainnet Beta: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/mainnet.sh>
-
-The public networks will use state sync so they'll get to the tip very quickly,
-but won't work for your use case if you need historical blocks.
-:::
 
 ### Option 3: Quick sync
 
