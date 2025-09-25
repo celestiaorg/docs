@@ -2,6 +2,7 @@
 import { h } from "vue";
 import Theme from "vitepress/theme";
 import "./style.css";
+import NetworkScriptLinks from "../components/NetworkScriptLinks.vue";
 
 export default {
   extends: Theme,
@@ -11,6 +12,6 @@ export default {
     });
   },
   enhanceApp({ app, router, siteData }) {
-    // ...
+    app.component("NetworkScriptLinks", NetworkScriptLinks);
   },
 };
