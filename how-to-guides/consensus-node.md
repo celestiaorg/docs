@@ -9,6 +9,9 @@ outline: deep
 <!-- markdownlint-disable MD013 -->
 <script setup>
 import constants from '/.vitepress/constants/constants.js'
+import arabicaVersions from '/.vitepress/constants/arabica_versions.js'
+import mochaVersions from '/.vitepress/constants/mocha_versions.js'
+import mainnetVersions from '/.vitepress/constants/mainnet_versions.js'
 </script>
 
 This guide covers how to set up a consensus node on Celestia.
@@ -252,15 +255,37 @@ Once setup, you should be ready to start the node as normal. In the logs, you sh
 see: `Discovering snapshots`. This may take a few minutes before snapshots are found
 depending on the network topology.
 
-::: tip
+::: tip State Sync Quick Start Scripts
 If you are looking to quickly sync a consensus node, and do not need historical blocks,
-you can use the following scripts and state sync. Remember to checkout to the correct
-version and run `make install` before running the scripts:
+you can use the following scripts and state sync. 
 
-- Local devnet: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/single-node.sh>
-- Arabica: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/arabica.sh>
-- Mocha: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/mocha.sh>
-- Mainnet Beta: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/mainnet.sh>
+**Before running the scripts, make sure to checkout to the correct version:**
+
+::: code-group
+
+```bash-vue [Mainnet Beta]
+git checkout tags/{{mainnetVersions['app-latest-tag']}}
+make install
+```
+
+```bash-vue [Mocha]
+git checkout tags/{{mochaVersions['app-latest-tag']}}
+make install
+```
+
+```bash-vue [Arabica]
+git checkout tags/{{arabicaVersions['app-latest-tag']}}
+make install
+```
+
+:::
+
+**Then run the appropriate script for your network:**
+
+- **Local devnet**: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/single-node.sh>
+- **Arabica**: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/arabica.sh>
+- **Mocha**: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/mocha.sh>
+- **Mainnet Beta**: <https://github.com/celestiaorg/celestia-app/blob/main/scripts/mainnet.sh>
 
 The public networks will use state sync so they'll get to the tip very quickly,
 but won't work for your use case if you need historical blocks.
