@@ -430,6 +430,10 @@ You can configure your consensus node to be a public RPC endpoint.
 This allows it to accept connections from data availability nodes and
 serve requests for the data availability API.
 
+:::tip Bridge Node Connectivity
+If you're running a [bridge node](/how-to-guides/bridge-node.md) that connects to your consensus node, ensure that gRPC is properly configured in your `app.toml` file. Bridge nodes require gRPC access (typically on port 9090) to communicate with the consensus layer.
+:::
+
 #### Expose RPC
 
 By default, the RPC service listens on `localhost` which means it can't
