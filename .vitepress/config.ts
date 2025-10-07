@@ -308,6 +308,10 @@ function sidebarHome() {
               collapsed: true,
               items: [
                 {
+                  text: "Data, dashboards, & analytics",
+                  link: "/learn/resources",
+                },
+                {
                   text: "Learn modular",
                   link: "https://celestia.org/learn/",
                 },
