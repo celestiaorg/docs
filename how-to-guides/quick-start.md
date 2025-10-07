@@ -84,11 +84,17 @@ Let's set the trusted hash!
 
 1. Set the trusted height & hash
    1. Open your `config.toml` at `~/.celestia-light-{{ constants.mochaChainId }}/config.toml`
-   1. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
-   1. Set `Header.TrustedHash` to the trusted hash (e.g. `TrustedHash = "E8BD0C48260C496BB7A4D8D1E7BDBF1F26A2FE3CF5714DECE1741B2FFB3C095C"` )
+   1. Set `Header.Syncer.SyncFromHeight` to the trusted height (e.g. `SyncFromHeight = 123456`)
+   1. Set `Header.Syncer.SyncFromHash` to the trusted hash (e.g. `SyncFromHash = "E8BD0C48260C496BB7A4D8D1E7BDBF1F26A2FE3CF5714DECE1741B2FFB3C095C"` )
 
 > If you don't do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 94721, requestedHeight: 2983850"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
 > Learn more in [the trusted hash quick sync guide](/how-to-guides/celestia-node-trusted-hash.md).
+
+:::warning Historical Queries
+Default light nodes no longer support historical queries. By default, nodes maintain a sliding window of headers, bounded by Tail and Head headers. Requests with height below the Tail are rejected (This is, however, temporary, and lazy header fetching will be available with Backward Sync).
+
+To retain the ability to request older queries with light nodes, use the new configuration fields to set an absolute header that the node will sync from, either the `Header.Syncer.SyncFromHeight` or the `Header.Syncer.SyncFromHash` field.
+:::
 
 ### Start the light node
 

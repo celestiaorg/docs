@@ -34,8 +34,8 @@ Celenium.
 
 3. Set the trusted height & hash in your config file
    1. Open your `config.toml` at `.celestia-light/config.toml` (or `.celestia-light-<other-network>/config.toml`)
-   2. Set `DASer.SampleFrom` to the trusted height (e.g. `SampleFrom = 123456`)
-   3. Set `Header.TrustedHash` to the trusted hash (e.g. `TrustedHash = "<hash_of_block_n>"`)
+   2. Set `Header.Syncer.SyncFromHeight` to the trusted height (e.g. `SyncFromHeight = 123456`)
+   3. Set `Header.Syncer.SyncFromHash` to the trusted hash (e.g. `SyncFromHash = "<hash_of_block_n>"`)
 4. Run the node:
 
 ```sh
@@ -58,15 +58,15 @@ celestia light init --p2p.network mocha
 # Get both the height and hash values in a single call
 read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
 
-# Use sed to find and replace the SampleFrom value in the config file (macOS version)
-sed -i '' "s/SampleFrom = .*/SampleFrom = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
+# Use sed to find and replace the SyncFromHeight value in the config file (macOS version)
+sed -i '' "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
 
-# Add/update the TrustedHash value
-sed -i '' "s/TrustedHash = .*/TrustedHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
+# Add/update the SyncFromHash value
+sed -i '' "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
 
 # Display the updated values to confirm
-echo "SampleFrom updated to: $TRUSTED_HEIGHT"
-echo "TrustedHash updated to: $TRUSTED_HASH"
+echo "SyncFromHeight updated to: $TRUSTED_HEIGHT"
+echo "SyncFromHash updated to: $TRUSTED_HASH"
 ```
 
 ### 3. Start the node
@@ -79,11 +79,26 @@ celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.por
 For Linux users, remove the empty string (`''`) after `-i` in the `sed` commands:
 
 ```sh
-sed -i "s/SampleFrom = .*/SampleFrom = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
-sed -i "s/TrustedHash = .*/TrustedHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
+sed -i "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
+sed -i "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
 ```
 
 :::
+
+## Historical queries
+
+::: warning
+Default light nodes no longer support historical queries. By default, nodes maintain a sliding window of headers, bounded by Tail and Head headers. Requests with height below the Tail are rejected.
+
+This is, however, temporary, and lazy header fetching will be available with Backward Sync.
+:::
+
+To retain the ability to request older queries with light nodes, use the new configuration fields to set an absolute header that the node will sync from:
+
+- `Header.Syncer.SyncFromHeight`: Set the height from which the node will sync
+- `Header.Syncer.SyncFromHash`: Set the hash from which the node will sync
+
+By configuring these fields, your light node will maintain history from the specified height onward, allowing you to query historical data from that point.
 
 ## For service operators
 
