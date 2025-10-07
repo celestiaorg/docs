@@ -94,6 +94,7 @@ This is, however, temporary, and lazy header fetching will be available with Bac
 :::
 
 To retain the ability to request older queries with light nodes, use the new configuration fields to set an absolute header that the node will sync from:
+
 - `Header.Syncer.SyncFromHeight`: Set the height from which the node will sync
 - `Header.Syncer.SyncFromHash`: Set the hash from which the node will sync
 
