@@ -126,6 +126,7 @@ export default {
 
     sidebar: {
       "/": sidebarHome(),
+      "/releases/": sidebarReleases(),
     },
 
     editLink: {
@@ -873,6 +874,15 @@ function sidebarHome() {
       ],
     },
     {
+      text: "Releases",
+      collapsed: true,
+      items: [
+        { text: "Overview", link: "/releases/" },
+        { text: "Celestia Node", link: "/releases/node/" },
+        { text: "Celestia App", link: "/releases/app/" },
+      ],
+    },
+    {
       text: "Community",
       collapsed: true,
       items: [
@@ -896,6 +906,29 @@ function sidebarHome() {
             { text: "Speaker list", link: "/community/speaker-list" },
           ],
         },
+      ],
+    },
+  ];
+}
+
+function sidebarReleases() {
+  return [
+    {
+      text: "Celestia Node",
+      collapsed: false,
+      items: [
+        { text: "All Releases", link: "/releases/node/" },
+        { text: "v0.26.4", link: "/releases/node/v0.26.4" },
+        { text: "v0.25.3", link: "/releases/node/v0.25.3" },
+      ],
+    },
+    {
+      text: "Celestia App",
+      collapsed: false,
+      items: [
+        { text: "All Releases", link: "/releases/app/" },
+        { text: "v6.0.5-mocha", link: "/releases/app/v6.0.5-mocha" },
+        { text: "v6.0.2", link: "/releases/app/v6.0.2" },
       ],
     },
   ];
