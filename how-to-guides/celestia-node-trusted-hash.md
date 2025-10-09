@@ -23,6 +23,21 @@ where you get the hash from. In this example, the trusted entity is a consensus 
 Celenium.
 :::
 
+## Historical queries
+
+::: warning
+Default light nodes no longer support historical queries. By default, nodes maintain a sliding window of headers, bounded by Tail and Head headers. Requests with height below the Tail are rejected.
+
+This is, however, temporary, and lazy header fetching will be available with Backward Sync.
+:::
+
+To retain the ability to request older queries with light nodes, use the new configuration fields to set an absolute header that the node will sync from:
+
+- `Header.Syncer.SyncFromHeight`: Set the height from which the node will sync
+- `Header.Syncer.SyncFromHash`: Set the hash from which the node will sync
+
+By configuring these fields, your light node will maintain history from the specified height onward, allowing you to query historical data from that point.
+
 ## General Approach
 
 1. Get trusted height & hash from a consensus endpoint or [Celenium](https://celenium.io).
@@ -84,21 +99,6 @@ sed -i "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light
 ```
 
 :::
-
-## Historical queries
-
-::: warning
-Default light nodes no longer support historical queries. By default, nodes maintain a sliding window of headers, bounded by Tail and Head headers. Requests with height below the Tail are rejected.
-
-This is, however, temporary, and lazy header fetching will be available with Backward Sync.
-:::
-
-To retain the ability to request older queries with light nodes, use the new configuration fields to set an absolute header that the node will sync from:
-
-- `Header.Syncer.SyncFromHeight`: Set the height from which the node will sync
-- `Header.Syncer.SyncFromHash`: Set the hash from which the node will sync
-
-By configuring these fields, your light node will maintain history from the specified height onward, allowing you to query historical data from that point.
 
 ## For service operators
 
