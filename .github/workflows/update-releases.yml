@@ -1,0 +1,90 @@
+name: Update Release Pages
+
+on:
+  # Run when releases are published in the target repositories
+  repository_dispatch:
+    types: [release-published]
+  
+  # Run daily to catch any missed releases
+  schedule:
+    - cron: '0 6 * * *'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      node_only:
+        description: 'Update only celestia-node releases'
+        required: false
+        default: false
+        type: boolean
+      app_only:
+        description: 'Update only celestia-app releases'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  update-releases:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Generate release pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event.inputs.node_only }}" = "true" ]; then
+            yarn generate-releases --node
+          elif [ "${{ github.event.inputs.app_only }}" = "true" ]; then
+            yarn generate-releases --app
+          else
+            yarn generate-releases
+          fi
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet docs/releases/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/releases/
+          git commit -m "chore: update release pages [skip ci]"
+          git push
+
+      - name: Build VitePress site
+        if: steps.changes.outputs.changed == 'true'
+        run: yarn build
+
+      - name: Comment on completion
+        if: steps.changes.outputs.changed == 'true' && github.event_name == 'workflow_dispatch'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.repos.createCommitComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: context.sha,
+              body: '✅ Release pages have been updated successfully!'
+            })

@@ -7,11 +7,13 @@
     "lint": "eslint --fix",
     "lint:md": "markdownlint '**/*.md'",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,json,css,scss}'",
-    "link-check": "lychee --config lychee.toml '**/*.md' '.vitepress/config.ts'"
+    "link-check": "lychee --config lychee.toml '**/*.md' '.vitepress/config.ts'",
+    "generate-releases": "npx tsx scripts/generate-release-pages.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.2",
     "@commitlint/config-conventional": "^17.7.0",
+    "@types/node": "^24.7.0",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "eslint": "^8.51.0",
@@ -21,6 +23,7 @@
     "lint-staged": "^14.0.1",
     "markdownlint-cli": "^0.37.0",
     "prettier": "^3.0.3",
+    "tsx": "^4.20.6",
     "typescript": "^5.2.2",
     "vitepress": "1.0.0-rc.24"
   },
