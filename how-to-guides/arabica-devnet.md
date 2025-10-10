@@ -176,7 +176,7 @@ Faucet has a limit of 10 tokens per week per address/Discord ID.
 
 ### Web
 
-The web faucet is available at [https://arabica.celenium.io/faucet](https://arabica.celenium.io/faucet) and [https://faucet.celestia-{{constants.arabicaChainId}}.com/](https://faucet.celestia-{{constants.arabicaChainId}}.com/).
+The web faucet is available at [https://arabica.celenium.io/faucet](https://arabica.celenium.io/faucet) and [https://faucet.celestia-arabica-11.com/](https://faucet.celestia-arabica-11.com/).
 
 ## Explorers
 
