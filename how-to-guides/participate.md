@@ -20,6 +20,8 @@ the network is stable and continues to receive updates, it remains
 experimental and users may experience occasional instability or
 reduced performance.
 
+See the [official Celestia Mainnet Beta status page](https://status.celestia.dev/status/mainnet).
+
 ### Compatible software versions for Mainnet Beta
 
 <MainnetVersionTags/>
@@ -36,6 +38,8 @@ Arabica will be updated frequently and might be unstable at times given new upda
 Validators won't be able to validate on Arabica as it is not designed for
 validators to participate.
 
+See the [official Celestia Arabica devnet status page](https://status.celestia.dev/status/arabica).
+
 #### Compatible software versions for Arabica devnet
 
 <ArabicaVersionTags/>
@@ -47,6 +51,8 @@ to test out their infrastructure by running nodes connected to the network. Deve
 can also deploy sovereign rollups on Mocha, it just will always be behind Arabica
 as Mocha upgrades are slower given they need to be done via breaking network upgrades
 in coordination with the validator community on Mocha.
+
+See the [official Celestia Mocha testnet status page](https://status.celestia.dev/status/mocha).
 
 ### Compatible software versions for Mocha testnet
 
