@@ -49,4 +49,13 @@ exclude = [
     '\%7B.*\%7D',
     # QubeLabs snapshot service appears to be unavailable
     "https://snaps.qubelabs.io/*",
+    # Links with 500 status code issues - added per issue request
+    "http://meetup.com/",
+    "https://meetup.com/",
+    "https://geth.ethereum.org/docs/tools/abigen",
+    "https://medium.com/aztec-protocol/aztec-announcing-our-ignition-ceremony-757850264cfe",
+    "https://app.blockworksresearch.com/*",
+    "https://celestiadata.com/",
+    "https://community.optimism.io/docs/governance/allocations/#token-distribution-details",
+    "https://testnet.keplr.app/chains/celestia-mocha-testnet",
 ]
