@@ -25,7 +25,7 @@ First we'll need to install the `celestia` binary to run our DAS light node. Use
 > For this guide to work out of the box, select either your Go bin or system bin directory when prompted. If you're curious what [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-node.sh) is doing, check out [the celestia-node page](/how-to-guides/celestia-node.md#installing-a-pre-built-binary).
 
 ```bash-vue
-bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mochaVersions['node-latest-tag']}}
+bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)" -- -v {{mochaVersions['node-latest-tag']}}
 ```
 
 Once you've installed `celestia`, double-check that you're using the right version (`{{mochaVersions['node-latest-tag']}}`) by running:
