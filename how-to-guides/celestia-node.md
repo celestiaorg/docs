@@ -127,10 +127,10 @@ You can install the latest version or specify a particular version:
 
 ```bash-vue
 # Install latest version
-bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)"
+bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)"
 
 # Install specific version, Mainnet Beta in this example
-bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
+bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
 ```
 
 The script will:

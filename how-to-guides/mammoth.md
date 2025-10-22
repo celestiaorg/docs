@@ -92,7 +92,7 @@ Install celestia-node version `v0.21.9-mammoth-v0.0.17`, by using this quick ins
 
 ```bash
 # quick install
-bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v v0.21.9-mammoth-v0.0.17
+bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)" -- -v v0.21.9-mammoth-v0.0.17
 ```
 
 If you'd like to build from source, checkout to `v0.21.9-mammoth-v0.0.17` and run the commands from the [celestia-node](/how-to-guides/celestia-node.md) page.
