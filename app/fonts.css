@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'UntitledSans';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/fonts/untitled-sans-regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'UntitledSans';
+  font-weight: 500;
+  font-style: normal;
+  src: url('/fonts/UntitledSans-Medium.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Youth';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/fonts/Youth-Regular.otf') format('opentype');
+  font-display: swap;
+}
+
+/* Apply fonts */
+body {
+  font-family: 'Youth', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'UntitledSans', sans-serif;
+  font-weight: 500;
+}
+
+/* Fix logo alignment */
+.nx-flex {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
