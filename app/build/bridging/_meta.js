@@ -1,4 +1,4 @@
 export default {
-  'ibc-hyperlane': 'IBC / Hyperlane',
-  'lazy': 'Lazy Bridging'
-}
+  "ibc-hyperlane": "IBC / Hyperlane",
+  lazy: "Lazybridging",
+};
