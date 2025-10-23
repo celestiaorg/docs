@@ -1,10 +1,10 @@
-# Celestia client overview
+# Celestia transaction client overview
 
-The Celestia client enables developers and applications to read from and submit data to Celestia nodes without running their own node infrastructure.
+The Celestia transaction (tx) client enables developers and applications to read from and submit data to Celestia nodes without running their own node infrastructure.
 
 ## Overview
 
-The Celestia client provides a streamlined API for two key purposes:
+The Celestia transaction client provides a streamlined API for two key purposes:
 
 - **Reading data** (via bridge nodes).
 - **Submitting transactions** (via core/consensus nodes).

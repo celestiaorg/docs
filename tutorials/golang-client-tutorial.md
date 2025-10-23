@@ -1,4 +1,4 @@
-# Golang client library tutorial {#golang-client-library}
+# Golang tx client library tutorial {#golang-tx-client-library}
 
 This tutorial section will guide you through using the most common RPC endpoints with the golang client library.
 

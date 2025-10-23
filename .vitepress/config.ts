@@ -685,7 +685,7 @@ function sidebarHome() {
               link: "/how-to-guides/submit-data",
             },
             {
-              text: "Celestia clients",
+              text: "Celestia transaction (tx) clients",
               collapsed: true,
               items: [
                 {
@@ -693,7 +693,7 @@ function sidebarHome() {
                   link: "/how-to-guides/client/overview",
                 },
                 {
-                  text: "Golang client guide",
+                  text: "Golang tx client guide",
                   link: "/how-to-guides/client/go",
                 },
               ],
