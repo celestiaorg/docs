@@ -50,7 +50,7 @@ By configuring these fields, your light node will maintain history from the spec
 3. Set the trusted height & hash in your config file
    1. Open your `config.toml` at `.celestia-light/config.toml` (or `.celestia-light-<other-network>/config.toml`)
    2. Set `Header.Syncer.SyncFromHeight` to the trusted height (e.g. `SyncFromHeight = 123456`)
-   3. Set `Header.Syncer.SyncFromHash` to the trusted hash (e.g. `SyncFromHash = "<hash_of_block_n>"`)
+   3. Set `Header.Syncer.SyncFromHash` to the trusted hash (e.g. `SyncFromHash = "<hash_of_block_n>"`, with **no `0x` prefix**.)
 4. Run the node:
 
 ```sh
