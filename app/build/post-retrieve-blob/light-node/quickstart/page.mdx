@@ -101,13 +101,25 @@ celestia blob get 8554059 0x676d 0x457e23252db8edaa9a08d092ec1814ae9fadd47929b99
 
 TODO: this still doesn't work right away...not good UX. Don't want to have to tell people to use trusted hash to basically eliminate the pruning window...
 
+```
+{
+  "result": "header: syncing in progress: localHeadHeight: 8458501, requestedHeight: 8554059"
+}
+```
+
 TODO: replace with actual response
 
 ```
 celestia blob get 8554059 0x676d 0x457e23252db8edaa9a08d092ec1814ae9fadd47929b99bcceed947298613c94a
 
 {
-  "result": "header: syncing in progress: localHeadHeight: 8458501, requestedHeight: 8554059"
+  "result": {
+    "namespace": "0x676d",
+    "data": "gm",
+    "share_version": 0,
+    "commitment": "0x457e23252db8edaa9a08d092ec1814ae9fadd47929b99bcceed947298613c94a",
+    "index": 132
+  }
 }
 ```
 
