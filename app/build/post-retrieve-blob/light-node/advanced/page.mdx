@@ -1,0 +1,109 @@
+
+# Optional: Diving deeper into the stack
+
+This section covers some more in-depth topics that you may find useful when working with your Celestia light node.
+
+import { Steps, Callout } from 'nextra/components'
+
+## Node store contents
+
+Elaborating on the [initialize the node store](#initialize-the-node-store) section above, the node store is created in the `~/.celestia-<node-type>-<network>` directory.
+
+In this guide, the node store for `~/.celestia-light-mocha-4` contains the following directories and file types:
+
+- `config.toml`: Node configuration settings
+- `data/`: Contains database files
+  - `.vlog` files: Value log files storing actual data
+  - `.sst` files: Static sorted tables containing indexed data
+  - System files: `DISCARD`, `KEYREGISTRY`, and `MANIFEST` for database management
+- `keys/`: Stores node identity and account keys
+  - Contains encoded node identifiers
+  - `keyring-test/`: Test keyring directory
+    - `.address` files: Account addresses
+    - `.info` files: Key metadata and information
+
+## Get your auth token
+
+Your auth token may be useful when you want to interact with your Celestia light node from a client application. You can get your auth token by running:
+
+```bash
+celestia light auth admin --p2p.network mocha
+```
+
+Each time you run this, you will receive a new token. It's not possible to revoke tokens once they are issued.
+
+Use `celestia light auth --help` to learn more about the available options.
+
+## Advanced key management with `cel-key`
+
+For more advanced key management beyond the built-in capabilities of the light node, use the separate `cel-key` utility. This dedicated tool allows you to:
+
+- Create, import, and manage keys.
+- Backup, verify and select the active key used by your node
+
+To utilize `cel-key`, you'll need to build it separately from the binary with `make cel-key`.
+
+# Advanced, high throughput
+
+## Parallel tx submission
+
+1. parallel transaction submission: https://github.com/celestiaorg/docs/issues/2273 - different accounts. must track height, namespace, commitment
+
+## Queued tx submission
+
+1. queued transaction submission https://github.com/celestiaorg/celestia-app/blob/98bb2ab0de430f59e2c2664524cacb3f71974562/specs/src/tx_client.md
+
+## Pruning windows
+
+if you want data older than the pruning window, you can use the SyncFromHash = "" and SyncFromHeight = "" in config.toml
+
+Sampling window is 7 days as per release notes https://github.com/celestiaorg/celestia-node/releases/tag/v0.25.3
+Header pruning window is 14 days as per release notes https://github.com/celestiaorg/celestia-node/releases/tag/v0.26.4
+
+## Set a trusted height and hash
+
+This allows you to retain data from a specific height and hash.
+
+If you're using multiple light nodes for similar services like tracking the same rollup, it is recommended to use the same hash and height for all services using the same starting height.
+
+<Steps>
+
+### Initialize the node store (if not done already)
+
+```
+celestia light init --p2p.network mocha
+```
+
+### Get and set the trusted height and hash
+
+```
+# Get both the height and hash values in a single call
+read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
+
+# Use sed to find and replace the SyncFromHeight value in the config file (macOS version)
+sed -i '' "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
+
+# Add/update the SyncFromHash value
+sed -i '' "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
+
+# Display the updated values to confirm
+echo "SyncFromHeight updated to: $TRUSTED_HEIGHT"
+echo "SyncFromHash updated to: $TRUSTED_HASH"
+```
+
+### Start the node
+
+```
+celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+```
+
+<Callout>
+For Linux users, remove the empty string (`''`) after `-i` in the `sed` commands:
+
+```
+sed -i "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
+sed -i "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
+```
+</Callout>
+
+</Steps>
