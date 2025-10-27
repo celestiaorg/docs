@@ -1,0 +1,144 @@
+# Quickstart: post and retrieve your first blob
+
+Celestia light nodes use data availability sampling (DAS) to verify that block data is available without downloading it all. They can also post and retrieve blobs (data) from the Celestia network.
+
+import { Steps, Callout } from 'nextra/components'
+
+<Steps>
+
+## Install the binary
+
+To post and retrieve blobs with your light node, use this script to install celestia-node:
+
+```
+bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)" -- -v v0.28.2-mocha
+```
+
+Check the version of celestia-node installed:
+```
+celestia version
+```
+
+Use `celestia --help` to see the CLI menu.
+
+<Callout type="info">
+You can visit the repo to build from source at https://github.com/celestiaorg/celestia-node.
+</Callout>
+
+## Initialize the node store
+
+This step sets up configuration files and creates a keypair for your node. The `p2p.network` flag is used to specify the network you want to connect to. Use `mocha` for Mocha testnet. You'll see a new keypair that's created in your terminal. Be sure to save your mnemonic somewhere safe for future use!
+
+```
+celestia light init --p2p.network mocha
+```
+
+**Visit the [faucet](https://mocha.celenium.io/faucet)** and fund your key from the output. The address begins with `celestia1`.
+
+## Set the trusted height and hash
+
+Setting and syncing to a trusted hash and height means your light node will not sample the entire chain. This is useful when you want to sync your light node quickly. However, it's important to note that this adds the trust assumption that you trust the entity where you get the hash and height from, in this case, the [P-OPS](https://pops.one) team's consensus endpoint.
+
+Let's set the trusted hash!
+
+1. Get trusted height & hash from the P-OPS consensus endpoint:
+
+   ```bash
+   read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH && echo "Height: $TRUSTED_HEIGHT" && echo "Hash:   $TRUSTED_HASH"
+   ```
+
+1. Set the trusted height & hash
+   1. Open your `config.toml` at `~/.celestia-light-mocha-4/config.toml`
+   1. Set `Header.Syncer.SyncFromHeight` to the trusted height (e.g. `SyncFromHeight = 123456`)
+   1. Set `Header.Syncer.SyncFromHash` to the trusted hash (e.g. `SyncFromHash = "E8BD0C48260C496BB7A4D8D1E7BDBF1F26A2FE3CF5714DECE1741B2FFB3C095C"`, with **no `0x` prefix**)
+
+If you don't do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 8458501, requestedHeight: 8554059"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
+
+## Start the node
+
+Start the light node with:
+
+```
+celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+```
+
+The `core.ip` flag is used to specify a consensus RPC endpoint you want to connect to.
+
+Once you see this, your node is ready to go!
+
+```
+/_____/  /_____/  /_____/  /_____/  /_____/
+
+Started celestia DA node
+node version:  0.28.2-mocha
+node type:  light
+network:  mocha-4
+
+/_____/  /_____/  /_____/  /_____/  /_____/
+```
+
+## Check your balance
+
+```
+celestia state balance
+```
+
+Your balance will return in utia, where 1 TIA = 1000000 utia.
+
+## Post your first blob
+
+Use `celestia blob submit [namespace] [data]` to post your first blob.
+
+```bash
+celestia blob submit 0x676d 0x676d
+```
+
+The namespace and data are hex-encoded strings. Namespaces are a way to permissionlessly categorize your data in Celestia. In other words, its a channel for you to post your data. You will keep track of blobs by their namespace, height, and commitment.
+
+The response will look similar to:
+
+```
+{
+  "result": {
+    "height": 8554059,
+    "commitments": [
+      "0x457e23252db8edaa9a08d092ec1814ae9fadd47929b99bcceed947298613c94a"
+    ]
+  }
+}
+```
+
+## Retrieve your first blob
+
+Use `celestia blob get [height] [namespace] [commitment]` to retrieve your first blob.
+
+```bash
+celestia blob get 8554059 0x676d 0x457e23252db8edaa9a08d092ec1814ae9fadd47929b99bcceed947298613c94a
+```
+
+Where the response is similar to:
+```
+{
+  "result": {
+    "namespace": "0x676d",
+    "data": "gm",
+    "share_version": 0,
+    "commitment": "0x457e23252db8edaa9a08d092ec1814ae9fadd47929b99bcceed947298613c94a",
+    "index": 132
+  }
+}
+```
+
+</Steps>
+
+You can also inspect this example on celenium explorer [here](https://mocha.celenium.io/blob?commitment=RX4jJS247aqaCNCS7BgUrp+t1HkpuZvM7tlHKYYTyUo=&hash=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ20=&height=8554059).
+
+Let's break it down:
+
+- `namespace`: The [namespace](https://celestiaorg.github.io/celestia-app/namespace.html) you used to categorize your data.
+- `data`: The data blob you posted to the network.
+- `share_version`: The version of the [share](https://celestiaorg.github.io/celestia-app/shares.html). A share is a fixed-size data chunk that is associated with exactly one namespace.
+- `commitment`: The commitment of the data (see [Blob Share Commitment Rules](https://celestiaorg.github.io/celestia-app/data_square_layout.html#blob-share-commitment-rules)).
+- `index`: The [index](https://celestiaorg.github.io/celestia-app/shares.html#overview) of the data share in the square.
+
+Congratulations! You've successfully learned how to run a light node to post and retrieve data from Celestia's Mocha testnet.
