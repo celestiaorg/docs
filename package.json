@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "prepare": "simple-git-hooks",
     "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind"
+  },
+  "simple-git-hooks": {
+    "pre-push": "npm run lint"
   },
   "dependencies": {
     "next": "16.0.0",
@@ -24,6 +28,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "pagefind": "^1.4.0",
+    "simple-git-hooks": "^2.13.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
