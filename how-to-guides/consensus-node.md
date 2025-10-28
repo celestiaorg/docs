@@ -105,7 +105,7 @@ Optionally, you can set persistent peers in your `config.toml` file.
 If you set persistent peers, your node will **always** try to connect
 to these peers. This is useful when running a local devnet, for example,
 when you would always want to connect to the same local nodes in your
-devnet. In production, setting persistent peers is advised only if you are running a [sentry node](https://hub.cosmos.network/main/validators/security.html#sentry-nodes-ddos-protection).
+devnet. In production, setting persistent peers is advised only if you are running a sentry node.
 
 You can get the persistent peers from the
 [@cosmos/chain-registry](https://github.com/cosmos/chain-registry)

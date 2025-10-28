@@ -28,7 +28,7 @@ are two standard implementations:
 
 The following guide explains how to establish IBC connections and relay
 packets between [Mocha testnet](/how-to-guides/mocha-testnet.md) and
-[Cosmos hub testnet](https://hub.cosmos.network/main/hub-tutorials/join-testnet.html)
+Cosmos hub testnet
 networks by using the Hermes relayer.
 
 Check the [latest celestia-app release's `go.mod`](https://github.com/celestiaorg/celestia-app/blob/2b8cc9e23826ccb658b7dd5aa6cd51a0921a0c29/go.mod#L35)
