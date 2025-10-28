@@ -35,6 +35,6 @@ jobs:
         with:
           source-dir: .vitepress/dist
           deploy-repository: celestiaorg/docs-preview
-          token: ${{ secrets.PREVIEW_DEPLOY }}
+          token: ${{ secrets.PR_PREVIEW_DEPLOY }}
           preview-branch: main
           umbrella-dir: .
