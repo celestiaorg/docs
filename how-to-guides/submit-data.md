@@ -208,6 +208,7 @@ Setting `TxWorkerAccounts` to `1` enables synchronous, queued transaction submis
 ```
 
 Characteristics:
+
 - Each transaction queues until the previous one is confirmed
 - Preserves strict ordering of transactions
 - Avoids sequence mismatch errors
@@ -237,7 +238,8 @@ by setting TxWorkerAccounts to a value > 1:
 #### How it works:
 
 TxWorkerAccounts defines how many parallel lanes the node will initialize for submitting transactions. These lanes are implemented as
- subaccounts that are automatically:
+subaccounts that are automatically:
+
 1. Created and derived from your default account
 2. Funded by your default account
 3. Added to your node's keyring
@@ -258,7 +260,7 @@ unordered transaction workflows.
 
 - Account opacity: You will not know which subaccount signed which blob. Subaccounts are managed automatically by the node.
 - Default account only: Parallel submission only works with your node's default account. If you specify a different account in
-TxConfig, parallel submission is bypassed.
+  TxConfig, parallel submission is bypassed.
 - Blob retrieval: Since you don't know which account submitted each blob, retrieve your blobs using namespace, height, and commitment.
 
 ### Retrieving blobs submitted via parallel lanes
@@ -285,7 +287,7 @@ Users can currently create and submit `BlobTx`s in six ways.
 
 ```bash
 celestia-appd tx blob PayForBlobs <hex-encoded namespace> <hex-encoded data> [flags]
-````
+```
 
 ### The celestia-node light node CLI
 
