@@ -46,9 +46,6 @@ jobs:
       - name: Build static site
         run: yarn build
 
-      - name: Export static HTML
-        run: yarn next export
-
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
