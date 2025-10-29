@@ -53,7 +53,7 @@ func main() {
 	daToken := os.Getenv("CELE_DA_TOKEN")
 	coreTLS := os.Getenv("CELE_CORE_TLS") == "true"
 	coreToken := os.Getenv("CELE_CORE_TOKEN")
-	
+
 	if daURL == "" {
 		fmt.Println("Error: Set CELE_DA_URL environment variable")
 		fmt.Println("Example: export CELE_DA_URL=http://localhost:26658")
@@ -183,11 +183,11 @@ func submitAndRetrieveBlob(ctx context.Context, c *client.Client) error {
 	// Verify the data
 	retrievedData := string(retrieved.Data())
 	fmt.Printf("✓ Retrieved: %s\n", retrievedData)
-	
+
 	if retrievedData != message {
 		return fmt.Errorf("data mismatch!")
 	}
-	
+
 	fmt.Println("✓ Data verified!")
 	return nil
 }
@@ -238,6 +238,7 @@ go mod tidy
 Choose your connection type:
 
 **QuickNode (recommended for beginners):**
+
 ```bash
 export CELE_DA_URL=https://your-quicknode-url.celestia-mocha.quiknode.pro/<your-token>
 export CELE_DA_TLS=true
@@ -247,6 +248,7 @@ export CELE_CORE_TOKEN=<your-token>
 ```
 
 **Local bridge node:**
+
 ```bash
 export CELE_DA_URL=http://localhost:26658
 export CELE_DA_TLS=false
@@ -255,6 +257,7 @@ export CELE_CORE_TLS=false
 ```
 
 **Read-only mode (no blob submission):**
+
 ```bash
 export CELE_DA_URL=http://localhost:26658
 export CELE_DA_TLS=false
@@ -270,6 +273,7 @@ go run main.go
 **First run:** You'll see your account address. Fund it at the [Mocha faucet](https://docs.celestia.org/how-to-guides/mocha-testnet#mocha-testnet-faucet).
 
 **Second run:** After funding, you'll see:
+
 ```
 Creating account...
 Your address: celestia16k0wsej6rewd2pfh0taah35suzf3apj552q8c3
@@ -285,6 +289,7 @@ Retrieving blob...
 ```
 
 **First run (unfunded account):**
+
 ```
 Creating account...
 Your address: celestia16k0wsej6rewd2pfh0taah35suzf3apj552q8c3
@@ -298,6 +303,7 @@ Faucet: https://docs.celestia.org/how-to-guides/mocha-testnet#mocha-testnet-fauc
 ```
 
 **Read-only mode output:**
+
 ```
 Creating account...
 Your address: celestia16k0wsej6rewd2pfh0taah35suzf3apj552q8c3
@@ -320,10 +326,10 @@ Balance: 1000000utia
 
 ### Connection types
 
-| Purpose | Node type | Example URL |
-|---------|-----------|-------------|
-| Read data | Bridge node | `http://localhost:26658` |
-| Submit data | Consensus node | `localhost:26657` |
+| Purpose     | Node type      | Example URL              |
+| ----------- | -------------- | ------------------------ |
+| Read data   | Bridge node    | `http://localhost:26658` |
+| Submit data | Consensus node | `localhost:26657`        |
 
 ### Read-only mode
 
