@@ -190,7 +190,7 @@ transaction. If you wish to submit multiple transactions from the same account i
 manually. Otherwise, subsequent transactions will not be accepted until the first transaction is reaped from the mempool (included in
 a block) or dropped after timing out.
 
-By default, nodes will drop a transaction if it does not get included in 5 blocks (roughly 30 seconds). At this point, you must
+By default, nodes will drop a transaction if it does not get included in 12 blocks (roughly 72 seconds). At this point, you must
 resubmit your transaction if you want it to eventually be included.
 
 :::warning
@@ -212,7 +212,7 @@ Characteristics:
 - Each transaction queues until the previous one is confirmed
 - Preserves strict ordering of transactions
 - Avoids sequence mismatch errors
-- Throughput: approximately 1 PayForBlobs transaction per block
+- Throughput: approximately 1 PayForBlobs transaction every other block
 
 :::warning IMPORTANT
 If you specify an account other than the default account in TxConfig, the queue is bypassed and transactions enter the mempool
