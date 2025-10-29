@@ -1,27 +1,38 @@
 name: Deploy PR previews
 
 on:
-  pull_request:
+  pull_request_target:
+    branches:
+      - docs-glow-up
     types:
       - opened
       - reopened
       - synchronize
       - closed
 
+permissions:
+  contents: read
+  pull-requests: write
+
 concurrency:
-  group: preview-${{ github.ref }}
-  cancel-in-progress: false
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   deploy-preview:
+    if: github.event.action != 'closed'
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+      contents: read
+      pull-requests: write
     env:
       BASE_PATH: /docs-preview/pr-${{ github.event.number }}
       NEXT_PUBLIC_BASE_PATH: /docs-preview/pr-${{ github.event.number }}
     steps:
-      - name: Checkout
+      - name: Checkout PR head
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -46,3 +57,19 @@ jobs:
           token: ${{ secrets.PR_PREVIEW_DEPLOY }}
           preview-branch: main
           umbrella-dir: .
+
+  remove-preview:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Remove preview deployment
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          deploy-repository: celestiaorg/docs-preview
+          token: ${{ secrets.PR_PREVIEW_DEPLOY }}
+          preview-branch: main
+          umbrella-dir: .
+          clean: true
