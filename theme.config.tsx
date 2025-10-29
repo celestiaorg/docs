@@ -2,7 +2,7 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
   project: {
-    link: 'https://github.com/celestiaorg/celestia',
+    link: 'https://github.com/celestiaorg/docs',
   },
   chat: {
     link: 'https://discord.gg/celestiacommunity',
