@@ -417,10 +417,6 @@ function sidebarHome() {
                   link: "/how-to-guides/arabica-devnet",
                 },
                 {
-                  text: "Mammoth testnet",
-                  link: "/how-to-guides/mammoth",
-                },
-                {
                   text: "Local devnet",
                   link: "/how-to-guides/local-devnet",
                 },
