@@ -1,0 +1,48 @@
+name: Deploy PR previews
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    env:
+      BASE_PATH: /docs-preview/pr-${{ github.event.number }}
+      NEXT_PUBLIC_BASE_PATH: /docs-preview/pr-${{ github.event.number }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build static site
+        run: yarn build
+
+      - name: Export static HTML
+        run: yarn next export
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: out
+          deploy-repository: celestiaorg/docs-preview
+          token: ${{ secrets.PR_PREVIEW_DEPLOY }}
+          preview-branch: main
+          umbrella-dir: .
