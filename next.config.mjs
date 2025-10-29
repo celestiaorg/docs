@@ -8,10 +8,19 @@ const withNextra = nextra({
     rehypePlugins: [],
   },
 })
+
+const basePath = process.env.BASE_PATH ?? ''
+const assetPrefix = process.env.NEXT_PUBLIC_BASE_PATH ?? basePath
  
 // Export the final Next.js config with Nextra included
 export default withNextra({
   // Add regular Next.js options here
+  basePath: basePath || undefined,
+  assetPrefix: assetPrefix || undefined,
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
   experimental: {
     mdxRs: true,
   },

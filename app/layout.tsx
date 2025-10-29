@@ -4,6 +4,9 @@ import { getPageMap } from 'nextra/page-map'
 import Image from 'next/image'
 import 'nextra-theme-docs/style.css'
 import './fonts.css'
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+const withBasePath = (path: string) => `${basePath}${path}`
  
 export const metadata = {
   // Define your metadata here
@@ -40,10 +43,10 @@ export default async function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <Head>
-        <link rel="icon" href="/favicons/favicon.ico" />
-        <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+        <link rel="icon" href={withBasePath('/favicons/favicon.ico')} />
+        <link rel="apple-touch-icon" href={withBasePath('/favicons/apple-touch-icon.png')} />
+        <link rel="icon" type="image/png" sizes="32x32" href={withBasePath('/favicons/favicon-32x32.png')} />
+        <link rel="icon" type="image/png" sizes="16x16" href={withBasePath('/favicons/favicon-16x16.png')} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:title" content="Celestia Documentation" />
         <meta property="og:description" content="Learn, build, and operate on Celestia - the first modular blockchain network." />
