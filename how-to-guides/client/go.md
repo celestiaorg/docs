@@ -87,7 +87,7 @@ func main() {
 			DefaultKeyName: keyname,
 			Network:        "mocha-4",
 			CoreGRPCConfig: client.CoreGRPCConfig{
-				Addr:       "your-quicknode-url:9090",
+				Addr:       "your-quicknode-url",
 				TLSEnabled: true,
 				AuthToken:  "<your-api-token>",
 			},
