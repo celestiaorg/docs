@@ -2,6 +2,7 @@ import { Footer, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import Image from 'next/image'
+import type { ReactNode } from 'react'
 import 'nextra-theme-docs/style.css'
 import './fonts.css'
 
@@ -31,8 +32,12 @@ const navbar = (
   />
 )
 const footer = <Footer>© {new Date().getFullYear()} Celestia Labs. All rights reserved.</Footer>
- 
-export default async function RootLayout({ children }) {
+
+type RootLayoutProps = {
+  children: ReactNode
+}
+
+export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       // Not required, but good for SEO
