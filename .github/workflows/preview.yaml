@@ -30,14 +30,14 @@ jobs:
       NEXT_PUBLIC_BASE_PATH: /docs-preview/pr-${{ github.event.number }}
     steps:
       - name: Checkout PR head
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.7
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.0.3
         with:
-          node-version: 18
+          node-version: 20
           cache: yarn
 
       - name: Install dependencies
