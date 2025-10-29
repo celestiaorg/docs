@@ -1,7 +1,7 @@
 name: Deploy PR previews
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - docs-glow-up
     types:
@@ -32,7 +32,7 @@ jobs:
       - name: Checkout PR head
         uses: actions/checkout@v4.1.7
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.sha }}
 
       - name: Setup Node
         uses: actions/setup-node@v4.0.3
