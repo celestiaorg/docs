@@ -1,4 +1,4 @@
-# Celestia Go Client Tutorial
+# Celestia Go client tutorial
 
 The Celestia Go client lets you submit and retrieve data from the Celestia network without running your own node. This tutorial shows you how to get started with the basics.
 
@@ -15,7 +15,7 @@ The Celestia Go client lets you submit and retrieve data from the Celestia netwo
 - A Celestia account (created automatically)
 - Testnet tokens from the [Mocha faucet](https://docs.celestia.org/how-to-guides/mocha-testnet#mocha-testnet-faucet)
 
-## Quick Setup
+## Quick setup
 
 ### 1. Create your project
 
@@ -25,7 +25,7 @@ cd celestia-client-example
 go mod init celestia-client-example
 ```
 
-### 3. Create main.go
+### 2. Create main.go
 
 ```go
 package main
@@ -193,7 +193,7 @@ func submitAndRetrieveBlob(ctx context.Context, c *client.Client) error {
 }
 ```
 
-### 3. Set up your go.mod
+### 4. Set up your go.mod
 
 Create `go.mod` with these dependencies:
 
@@ -231,7 +231,7 @@ Then run:
 go mod tidy
 ```
 
-## Running the Tutorial
+## Running the tutorial
 
 ### 1. Set environment variables
 
@@ -308,9 +308,9 @@ Balance: 1000000utia
 ✓ Tutorial complete!
 ```
 
-## Understanding the Code
+## Understanding the code
 
-### Key Components
+### Key components
 
 - **Keyring**: Manages your Celestia account keys
 - **Client**: Connects to Celestia nodes for read/write operations
@@ -318,14 +318,14 @@ Balance: 1000000utia
 - **Blob**: The data structure you submit to the network
 - **Commitment**: A hash that uniquely identifies your blob
 
-### Connection Types
+### Connection types
 
-| Purpose | Node Type | Example URL |
+| Purpose | Node type | Example URL |
 |---------|-----------|-------------|
 | Read data | Bridge node | `http://localhost:26658` |
 | Submit data | Consensus node | `localhost:26657` |
 
-### Read-Only Mode
+### Read-only mode
 
 To only retrieve data (no submission), remove the `SubmitConfig` from your client configuration:
 
@@ -338,7 +338,7 @@ cfg := client.Config{
 }
 ```
 
-## Next Steps
+## Next steps
 
 - **Production**: Use `keyring.BackendFile` instead of `keyring.BackendTest`
 - **Security**: Enable TLS with authentication tokens for production
