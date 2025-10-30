@@ -253,7 +253,7 @@ block.
 
 :::warning
 Parallel submission is not suitable for implementations that require sequential transaction ordering. Only use this mode for
-unordered transaction workflows.
+unordered transaction workflows where your system requires a single signer, a.k.a. authored blobs.
 :::
 
 #### Key points to understand:
