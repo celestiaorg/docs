@@ -239,6 +239,10 @@ Choose your connection type:
 
 **QuickNode (recommended for beginners):**
 
+:::tip
+For QuickNode: `CELE_DA_URL` uses `https://` and no port, while `CELE_CORE_GRPC` uses a port (e.g. `:9090`) and no `https://` prefix.
+:::
+
 ```bash
 export CELE_DA_URL=https://your-quicknode-url.celestia-mocha.quiknode.pro/<your-token>
 export CELE_DA_TLS=true
