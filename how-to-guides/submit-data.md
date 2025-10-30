@@ -19,6 +19,8 @@ The maximum total blob size in a transaction is just under **2 MiB
 With one share for the PFB transaction, 4095 shares remain:
 1 at 478 bytes and 4094 at 482 bytes each.
 
+hello world
+
 This is subject to change based on governance parameters.
 Learn more on [the Mainnet Beta page under "Maximum bytes"](/how-to-guides/mainnet.md#transaction-size-limit).
 
