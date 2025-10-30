@@ -240,7 +240,7 @@ Choose your connection type:
 **QuickNode (recommended for beginners):**
 
 :::tip
-Use `https://` only for `BridgeDAAddr` (no port), and no `https://` for `Addr` (include `:9090`).
+For QuickNode: `CELE_DA_URL` uses `https://` and no port, while `CELE_CORE_GRPC` uses a port (e.g. `:9090`) and no `https://` prefix.
 :::
 
 ```bash
