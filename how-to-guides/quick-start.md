@@ -153,7 +153,7 @@ celestia state account-address
 
 Take this account address and head over to the [Discord](https://discord.gg/celestiacommunity) and request tokens from the `#mocha-faucet` channel.
 
-Once you've requested tokens, can check the balance of your running node using:
+Once you've requested tokens, you can check the balance of your running node using:
 
 ```bash
 celestia state balance
