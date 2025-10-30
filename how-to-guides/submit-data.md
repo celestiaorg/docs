@@ -175,24 +175,109 @@ specs](https://github.com/celestiaorg/celestia-app/blob/d17e231ae3a0150b50a1854f
 and the exact formula can be found in the [blob
 module](https://github.com/celestiaorg/celestia-app/blob/d17e231ae3a0150b50a1854f3e9a268c34502b6b/x/blob/types/payforblob.go#L157-L181).
 
-### Submitting multiple transactions in one block from the same account
+## Transaction submission strategies
 
-The mempool Celestia uses works by maintaining a fork of the canonical state
-each block. This means that each time we submit a transaction to it, it will
-update the sequence number (aka nonce) for the account that submitted the
-transaction. If users wish to submit a second transaction, they can, but must
-specify the nonce manually. If this is not done, the new transactions will not
-be able to be submitted until the first transaction is reaped from the mempool (i.e. included in a block), or dropped due to timing out.
+Celestia-node offers three transaction submission modes, controlled by the `TxWorkerAccounts` configuration parameter in your node's
+state config in `config.toml`. Each mode has different throughput characteristics and ordering guarantees.
 
-By default, nodes will drop a transaction if it does not get included in 5
-blocks (roughly 30 seconds). At this point, the user must resubmit their
-transaction if they want it to eventually be included.
+### Default behavior (TxWorkerAccounts = 0)
 
-As of v1.0.0 of the application (celestia-app), users are unable to replace an
-existing transaction with a different one with higher fees. They must instead
-wait 5 blocks from the original submitted time and then resubmit the
-transaction. Again, community members have already suggested solutions and a
-willingness to accept changes to fix this issue.
+By default, `TxWorkerAccounts` is set to `0`, which means queued submission is disabled. All PayForBlobs transactions are submitted
+immediately to the mempool without waiting for confirmations. This is the same behavior as versions prior to [v0.28.2-arabica](https://github.com/celestiaorg/celestia-node/releases/tag/v0.28.2-arabica).
+
+The mempool maintains a fork of the canonical state each block, updating the sequence number (nonce) for each account that submits a
+transaction. If you wish to submit multiple transactions from the same account in quick succession, you must specify the nonce
+manually. Otherwise, subsequent transactions will not be accepted until the first transaction is reaped from the mempool (included in
+a block) or dropped after timing out.
+
+By default, nodes will drop a transaction if it does not get included in 12 blocks (roughly 72 seconds). At this point, you must
+resubmit your transaction if you want it to eventually be included.
+
+:::warning
+As of v1.0.0 of celestia-app, you cannot replace an existing transaction with a higher-fee version. You must wait 5 blocks from the
+original submission time and then resubmit the transaction.
+:::
+
+### Synchronous submission (TxWorkerAccounts = 1)
+
+Setting `TxWorkerAccounts` to `1` enables synchronous, queued transaction submission:
+
+```toml
+[State]
+  TxWorkerAccounts = 1
+```
+
+Characteristics:
+
+- Each transaction queues until the previous one is confirmed
+- Preserves strict ordering of transactions
+- Avoids sequence mismatch errors
+- Throughput: approximately 1 PayForBlobs transaction every other block
+
+:::warning IMPORTANT
+If you specify an account other than the default account in TxConfig, the queue is bypassed and transactions enter the mempool
+directly without waiting for confirmations.
+:::
+
+### Parallel transaction submission (TxWorkerAccounts > 1)
+
+:::tip
+This feature is currently available on Arabica devnet and Mocha testnet (v0.28.2-arabica and later).
+:::
+
+For high-throughput applications that do not require sequential transaction ordering, you can enable parallel transaction submission
+by setting TxWorkerAccounts to a value > 1:
+
+```toml
+[State]
+  DefaultKeyName = "my_celes_key"
+  DefaultBackendName = "test"
+  TxWorkerAccounts = 8
+```
+
+#### How it works:
+
+TxWorkerAccounts defines how many parallel lanes the node will initialize for submitting transactions. These lanes are implemented as
+subaccounts that are automatically:
+
+1. Created and derived from your default account
+2. Funded by your default account
+3. Added to your node's keyring
+
+This bypasses account sequence limits and enables significantly higher throughput.
+
+Example: TxWorkerAccounts = 8 creates 7 subaccounts plus your 1 default account, allowing at least 8 PayForBlobs transactions per
+block.
+
+#### Important considerations
+
+:::warning
+Parallel submission is not suitable for implementations that require sequential transaction ordering. Only use this mode for
+unordered transaction workflows where your system requires a single signer, a.k.a. authored blobs.
+:::
+
+#### Key points to understand:
+
+- Account opacity: You will not know which subaccount signed which blob. Subaccounts are managed automatically by the node.
+- Default account only: Parallel submission only works with your node's default account. If you specify a different account in
+  TxConfig, parallel submission is bypassed.
+- Blob retrieval: Since you don't know which account submitted each blob, retrieve your blobs using namespace, height, and commitment.
+
+### Retrieving blobs submitted via parallel lanes
+
+When using parallel submission, retrieve your blobs using the following RPC methods:
+
+- [blob.Get](https://node-rpc-docs.celestia.org/#blob.Get) - Get blob by namespace and commitment
+- [blob.GetProof](https://node-rpc-docs.celestia.org/#blob.GetProof) - Get inclusion proof by height, namespace, and commitment
+- [blob.GetCommitmentProof](https://node-rpc-docs.celestia.org/#blob.GetCommitmentProof) - Get commitment proof by height, namespace, and share commitment
+
+Example using blob.Get:
+
+```bash
+celestia blob get <height> <namespace> <commitment>
+```
+
+You should store the namespace, height, and commitment from your submission response to retrieve blobs later.
 
 ## API
 
