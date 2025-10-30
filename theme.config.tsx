@@ -1,6 +1,4 @@
-import { DocsThemeConfig } from 'nextra-theme-docs'
-
-const config: DocsThemeConfig = {
+const config = {
   project: {
     link: 'https://github.com/celestiaorg/docs',
   },
@@ -18,7 +16,7 @@ const config: DocsThemeConfig = {
   },
   // Sidebar configuration - this will change based on the current section
   sidebar: {
-    titleComponent({ title, type }) {
+    titleComponent({ title, type }: { title: string; type: string }) {
       if (type === 'separator') {
         return <span className="cursor-default">{title}</span>
       }
@@ -38,7 +36,7 @@ const config: DocsThemeConfig = {
     placeholder: 'Search documentation...',
   },
   // Git configuration
-  gitTimestamp: ({ timestamp }) => (
+  gitTimestamp: ({ timestamp }: { timestamp: Date }) => (
     <div>Last updated on {timestamp.toDateString()}</div>
   ),
   // Custom head
