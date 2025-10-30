@@ -239,6 +239,10 @@ Choose your connection type:
 
 **QuickNode (recommended for beginners):**
 
+:::tip
+Use https:// only for BridgeDAAddr (no port), and no https:// for Addr (include :9090).
+:::
+
 ```bash
 export CELE_DA_URL=https://your-quicknode-url.celestia-mocha.quiknode.pro/<your-token>
 export CELE_DA_TLS=true
