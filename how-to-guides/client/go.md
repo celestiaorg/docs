@@ -193,7 +193,7 @@ func submitAndRetrieveBlob(ctx context.Context, c *client.Client) error {
 }
 ```
 
-### 4. Set up your go.mod
+### 3. Set up your go.mod
 
 Create `go.mod` with these dependencies:
 
