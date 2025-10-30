@@ -240,7 +240,7 @@ Choose your connection type:
 **QuickNode (recommended for beginners):**
 
 :::tip
-Use https:// only for BridgeDAAddr (no port), and no https:// for Addr (include :9090).
+Use `https://` only for `BridgeDAAddr` (no port), and no `https://` for `Addr` (include `:9090`).
 :::
 
 ```bash
