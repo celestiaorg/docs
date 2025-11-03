@@ -14,7 +14,7 @@ generated, and subsequently relayed to Ethereum to the Blobstream smart
 contract.
 
 This demo rollup will outline (the outline is not an
-implementation! Please do not expect to copy and paste this code 🙂) a very
+implementation! Please do not expect tofff copy and paste this code 🙂) a very
 simple Blobstream rollup to illustrate at a high level what this could look
 like.
 
