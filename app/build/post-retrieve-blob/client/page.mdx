@@ -17,7 +17,11 @@ The Celestia Go client lets you submit and retrieve data from the Celestia netwo
 
 ## Quick setup
 
-### 1. Create your project
+import { Steps } from 'nextra/components'
+
+<Steps>
+
+### Create your project
 
 ```bash
 mkdir celestia-client-example
@@ -25,7 +29,7 @@ cd celestia-client-example
 go mod init celestia-client-example
 ```
 
-### 2. Create main.go
+### Create main.go
 
 ```go
 package main
@@ -53,7 +57,7 @@ func main() {
 	daToken := os.Getenv("CELE_DA_TOKEN")
 	coreTLS := os.Getenv("CELE_CORE_TLS") == "true"
 	coreToken := os.Getenv("CELE_CORE_TOKEN")
-	
+
 	if daURL == "" {
 		fmt.Println("Error: Set CELE_DA_URL environment variable")
 		fmt.Println("Example: export CELE_DA_URL=http://localhost:26658")
@@ -183,17 +187,17 @@ func submitAndRetrieveBlob(ctx context.Context, c *client.Client) error {
 	// Verify the data
 	retrievedData := string(retrieved.Data())
 	fmt.Printf("✓ Retrieved: %s\n", retrievedData)
-	
+
 	if retrievedData != message {
 		return fmt.Errorf("data mismatch!")
 	}
-	
+
 	fmt.Println("✓ Data verified!")
 	return nil
 }
 ```
 
-### 4. Set up your go.mod
+### Set up your go.mod
 
 Create `go.mod` with these dependencies:
 
@@ -231,11 +235,19 @@ Then run:
 go mod tidy
 ```
 
+</Steps>
+
 ## Running the tutorial
 
-### 1. Set environment variables
+<Steps>
+
+### Set environment variables
 
 Choose your connection type:
+
+:::tip
+For QuickNode: `CELE_DA_URL` uses `https://` and no port, while `CELE_CORE_GRPC` uses a port (e.g. `:9090`) and no `https://` prefix.
+:::
 
 **QuickNode (recommended for beginners):**
 ```bash
@@ -261,7 +273,7 @@ export CELE_DA_TLS=false
 # Don't set CELE_CORE_GRPC for read-only mode
 ```
 
-### 2. Run the program
+### Run the program
 
 ```bash
 go run main.go
@@ -307,6 +319,8 @@ Connecting to Celestia...
 Balance: 1000000utia
 ✓ Tutorial complete!
 ```
+
+</Steps>
 
 ## Understanding the code
 
