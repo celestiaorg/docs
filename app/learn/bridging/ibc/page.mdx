@@ -1,0 +1,45 @@
+---
+description: How to use IBC with Celestia — wallet, CLI, and JavaScript.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+
+# Using IBC with Celestia
+
+## Short summary
+[IBC (Inter-Blockchain Communication)](https://ibcprotocol.dev/) is a protocol for authenticated, permissionless message passing between blockchains. Along with [Hyperlane](/bridging/hyperlane), it is one of the standards used on Celestia for cross-chain asset transfers and messages.
+
+You can use IBC to bridge assets between Celestia-native chains along with other chains.
+
+<Callout type="info">
+Celestia uses relayers to forward packets between chains. Relayers are processes that can be run by anyone which constantly scan for outbound packets on one chain and submits these packets alongside corresponding proofs on the destination chain. This doc covers using IBC to bridge assets, we also [have docs on how to run a relayer](TODO). 
+</Callout>
+
+
+## How bridging works
+
+![IBC technical diagram](/img/ibc-diagram.png)
+
+**TEMPOARY DIAGRAM, WELL HAVE YONI REDO IN CELESTIA STYLE IN THE FUTURE**
+
+
+- **Light client** — a lightweight representation of a destination chain that lives within the state machine of a source chain.
+
+- **Relayer** — an off-chain program that facilitates communication between independent blockchains.
+
+- **Router** — a component in the that connects two blockchains, handles packet routing between applications, and manages the verification of cross-chain data.
+
+**Bridging flow**
+1. **Source chain** — the source router (onchain module) escrows or burns the tokens, builds a packet (payload + seq + timeout), and stores a packet commitment (hash) in state.
+
+2. **Relayer** — an offchain relayer observes the source, reads the packet and the packet-commitment, and fetches a proof of that commitment from the source chain.
+
+3. **Relayer → Destination** — the relayer submits the packet plus the commitment proof to the destination router.
+
+4. **Destination chain** — the destination’s light client verifies the commitment proof and, if valid, the destination router processes the packet (for example mints or credits) and writes an acknowledgement commitment.
+
+5. **Relayer → Source** — the relayer fetches the acknowledgement and submits the acknowledgement proof back to the source chain.
+
+6. **Source chain** — the source’s light client verifies the acknowledgement proof and the source router finalizes the transfer (releases escrow or marks the packet complete); if the timeout elapsed first, the source router executes refund logic.
+
