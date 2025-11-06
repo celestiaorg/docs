@@ -2,7 +2,7 @@
 
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { INotification } from '../lib/types';
 
@@ -13,6 +13,27 @@ export default function NotificationModal({
   notification: INotification;
   setNotification: (notification: INotification) => void;
 }) {
+  // Dark mode detection
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof document !== 'undefined') {
+      return document.documentElement.classList.contains('dark');
+    }
+    return false;
+  });
+  
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     if (notification.active) {
       const timer = setTimeout(() => {
@@ -27,43 +48,86 @@ export default function NotificationModal({
   return (
     <div
       aria-live='assertive'
-      className='nx-pointer-events-none fixed inset-0 z-50 flex items-end px-4 py-6 sm:items-start sm:p-6'
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 10001, // Higher than playground modal
+        display: 'flex',
+        alignItems: 'flex-end',
+        padding: '1.5rem',
+        pointerEvents: 'none'
+      }}
     >
-      <div className='nx-flex w-full flex-col items-center space-y-4 sm:items-end'>
-        <div className='nx-pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5'>
-          <div className='nx-p-4'>
-            <div className='nx-flex items-start'>
-              <div className='nx-flex-shrink-0'>
+      <div style={{ 
+        display: 'flex', 
+        width: '100%', 
+        flexDirection: 'column', 
+        alignItems: 'flex-end',
+        gap: '1rem'
+      }}>
+        <div style={{ 
+          pointerEvents: 'auto',
+          width: '100%', 
+          maxWidth: '24rem', 
+          overflow: 'hidden', 
+          borderRadius: '0.5rem', 
+          backgroundColor: isDark ? '#1f2937' : 'white', 
+          boxShadow: isDark 
+            ? '0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3)'
+            : '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+          border: isDark ? '1px solid #374151' : '1px solid rgba(0, 0, 0, 0.05)'
+        }}>
+          <div style={{ padding: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+              <div style={{ flexShrink: 0 }}>
                 {notification.success ? (
                   <CheckCircleIcon
-                    className='nx-h-6 w-6 text-green-400'
+                    style={{ width: '1.5rem', height: '1.5rem', color: '#22c55e' }}
                     aria-hidden='true'
                   />
                 ) : (
                   <XCircleIcon
-                    className='nx-h-6 w-6 text-red-400'
+                    style={{ width: '1.5rem', height: '1.5rem', color: '#ef4444' }}
                     aria-hidden='true'
                   />
                 )}
               </div>
-              <div className='nx-ml-3 w-0 flex-1 pt-0.5'>
-                <p className='nx-text-sm font-medium text-gray-900'>
+              <div style={{ marginLeft: '0.75rem', flex: 1, paddingTop: '0.125rem' }}>
+                <p style={{ fontSize: '0.875rem', fontWeight: 500, color: isDark ? '#f9fafb' : '#111827' }}>
                   {notification.success ? 'Success' : 'Error'}
                 </p>
-                <p className='nx-mt-1 text-sm text-gray-500'>
+                <p style={{ marginTop: '0.25rem', fontSize: '0.875rem', color: isDark ? '#d1d5db' : '#6b7280' }}>
                   {notification.message}
                 </p>
               </div>
-              <div className='nx-ml-4 flex flex-shrink-0'>
+              <div style={{ marginLeft: '1rem', display: 'flex', flexShrink: 0 }}>
                 <button
                   type='button'
-                  className='nx-inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
+                  style={{ 
+                    display: 'inline-flex',
+                    borderRadius: '0.375rem',
+                    backgroundColor: isDark ? '#1f2937' : 'white',
+                    color: '#9ca3af',
+                    cursor: 'pointer',
+                    border: 'none',
+                    padding: '0.25rem'
+                  }}
                   onClick={() => {
                     setNotification({ ...notification, active: false });
                   }}
                 >
-                  <span className='nx-sr-only'>Close</span>
-                  <XMarkIcon className='nx-h-5 w-5' aria-hidden='true' />
+                  <span style={{ 
+                    position: 'absolute',
+                    width: '1px',
+                    height: '1px',
+                    padding: 0,
+                    margin: '-1px',
+                    overflow: 'hidden',
+                    clip: 'rect(0, 0, 0, 0)',
+                    whiteSpace: 'nowrap',
+                    borderWidth: 0
+                  }}>Close</span>
+                  <XMarkIcon style={{ width: '1.25rem', height: '1.25rem' }} aria-hidden='true' />
                 </button>
               </div>
             </div>
