@@ -84,6 +84,25 @@ const versions = [
 ].reverse();
 
 export default function RPCDocumentation() {
+  const [isDark, setIsDark] = useState(false);
+  
+  useEffect(() => {
+    // Set initial theme
+    setIsDark(document.documentElement.classList.contains('dark'));
+    
+    // Watch for theme changes
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    return () => observer.disconnect();
+  }, []);
+  
   const handleVersionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedVersion(event.target.value);
     window.history.pushState({}, '', `?version=${event.target.value}`);
@@ -165,58 +184,51 @@ export default function RPCDocumentation() {
 
   return (
     <>
-      {/* Version Selector and Description */}
-      <div style={{ marginBottom: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
-          <div style={{ flex: 1, minWidth: '300px' }}>
-            {spec && (
-              <>
-                <div style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.5rem' }}>
-                  {spec.info.description} Node API uses auth tokens to control access to this API.{' '}
-                  <a
-                    href='https://docs.celestia.org/how-to-guides/quick-start#get-your-auth-token'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    style={{ color: '#0070f3', textDecoration: 'none' }}
-                  >
-                    Learn more about setting them up here
-                  </a>
-                  .{' '}
-                  <a
-                    href={`https://github.com/celestiaorg/celestia-node/releases/${spec.info.version}`}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    style={{ color: '#0070f3', textDecoration: 'none' }}
-                  >
-                    ({spec.info.version})
-                  </a>
-                </div>
-              </>
-            )}
+      {/* Description and Controls */}
+      <div className="x:mb-4">
+        {spec && (
+          <div className="x:text-sm x:text-gray-600 x:dark:text-gray-200 x:mb-8">
+            The Celestia Node API is the collection of RPC methods that can be used to interact with the services provided by Celestia Data Availability Nodes. Node API uses auth tokens to control access to this API.{' '}
+            <a
+              href={`https://node-rpc-docs.celestia.org/?version=${spec.info.version}`}
+              target='_blank'
+              rel='noopener noreferrer'
+              className="x:text-primary-600 x:dark:text-primary-500 x:no-underline x:hover:underline"
+            >
+              ({spec.info.version})
+            </a>
           </div>
+        )}
+        
+        {/* Search and Version Picker - Search fills space, Version floats right */}
+        <div className="x:flex x:items-center x:gap-4">
+          <input
+            type='text'
+            placeholder='Search modules & methods...'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="x:px-3 x:py-2 x:border x:border-gray-300 x:dark:border-gray-600 x:rounded-md x:text-sm x:text-gray-900 x:dark:text-gray-100 x:placeholder-gray-500 x:dark:placeholder-gray-400 x:shadow-sm"
+            style={{
+              backgroundColor: isDark ? 'rgb(17 24 39)' : 'white',
+              flex: '1 1 0%',
+              minWidth: '0'
+            }}
+          />
           
-          <div style={{ 
-            display: 'inline-flex', 
-            alignItems: 'center', 
-            gap: '0.5rem', 
-            padding: '0.5rem 1rem', 
-            backgroundColor: '#f3f4f6',
-            borderRadius: '0.5rem',
-            fontSize: '0.875rem',
-            fontWeight: 500
-          }}>
-            <span style={{ whiteSpace: 'nowrap' }}>API version:</span>
+          <div 
+            className="x:inline-flex x:items-center x:gap-2 x:px-4 x:py-2 x:rounded-lg x:text-sm x:font-medium"
+            style={{
+              backgroundColor: isDark ? 'rgb(31 41 55)' : 'rgb(243 244 246)',
+              marginLeft: 'auto'
+            }}
+          >
+            <span className="x:whitespace-nowrap x:text-gray-700 x:dark:text-gray-200">API version:</span>
             <select
               value={selectedVersion}
               onChange={handleVersionChange}
+              className="x:h-8 x:px-3 x:pr-7 x:border x:border-gray-300 x:dark:border-gray-700 x:rounded-md x:text-sm x:cursor-pointer x:text-gray-900 x:dark:text-gray-100"
               style={{
-                height: '2rem',
-                padding: '0 1.75rem 0 0.75rem',
-                border: '1px solid #d1d5db',
-                borderRadius: '0.375rem',
-                backgroundColor: 'white',
-                fontSize: '0.875rem',
-                cursor: 'pointer'
+                backgroundColor: isDark ? 'rgb(31 41 55)' : 'white'
               }}
             >
               {versions.map((version) => (
@@ -227,28 +239,10 @@ export default function RPCDocumentation() {
             </select>
           </div>
         </div>
-
-        {/* Search */}
-        <div>
-          <input
-            type='text'
-            placeholder='Search modules & methods...'
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '0.5rem 0.75rem',
-              border: '1px solid #d1d5db',
-              borderRadius: '0.375rem',
-              fontSize: '0.875rem',
-              boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
-            }}
-          />
-        </div>
       </div>
 
       {/* Methods by Package */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+      <div className="x:flex x:flex-col x:gap-12">
         {spec &&
           Object.entries(getMethodsByPackage(spec))
             .filter(
@@ -274,7 +268,7 @@ export default function RPCDocumentation() {
                   );
 
               return (
-                <div key={pkg} style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: '2rem' }}>
+                <div key={pkg} className="x:border-b x:border-gray-200 x:dark:border-gray-800 x:pb-8">
                   <h2 
                     id={pkg}
                     className="x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border"
@@ -287,7 +281,7 @@ export default function RPCDocumentation() {
                     />
                   </h2>
                   
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                  <div className="x:flex x:flex-col x:gap-6">
                     {filteredMethods.map((method) => (
                       <div
                         key={`${pkg}.${method.name}`}
@@ -300,6 +294,7 @@ export default function RPCDocumentation() {
                           selectedVersion={selectedVersion}
                           setCurrentRequest={setCurrentRequest}
                           setPlaygroundOpen={setPlaygroundOpen}
+                          isDark={isDark}
                         />
                       </div>
                     ))}

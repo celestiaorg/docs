@@ -16,6 +16,7 @@ const RPCMethod = ({
   selectedVersion,
   setCurrentRequest,
   setPlaygroundOpen,
+  isDark = false,
 }: {
   pkg: string;
   method: Method;
@@ -23,6 +24,7 @@ const RPCMethod = ({
   selectedVersion: string;
   setCurrentRequest: (req: string) => void;
   setPlaygroundOpen: (open: boolean) => void;
+  isDark?: boolean;
 }) => {
   const [showRequest, setShowRequest] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
@@ -38,17 +40,17 @@ const RPCMethod = ({
     <div
       key={`${pkg}.${method.name}`}
       id={`${pkg}.${method.name}`}
-      style={{ padding: '0.5rem 0' }}
+      className="x:py-2"
       ref={methodRef}
     >
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-        <div style={{ fontFamily: 'monospace', fontSize: '0.95rem' }}>
-          <span style={{ fontWeight: 600 }}>{method.name}</span>(
+      <div className="x:flex x:items-center x:justify-between x:mb-2">
+        <div className="x:font-mono x:text-[0.95rem]">
+          <span className="x:font-semibold x:text-gray-900 x:dark:text-gray-100">{method.name}</span>(
           {method.params.map((param, i, { length }) => (
-            <span key={param.name} style={{ fontSize: '0.875rem', color: '#666' }}>
+            <span key={param.name} className="x:text-sm x:text-gray-600 x:dark:text-gray-400">
               <span>{param.name}</span>{' '}
               <span
-                style={{ color: '#0070f3', cursor: 'pointer' }}
+                className="x:text-primary-600 x:dark:text-primary-500 x:cursor-pointer x:hover:underline"
                 onClick={() => activateSidebar(param)}
               >
                 {param.description}
@@ -59,23 +61,13 @@ const RPCMethod = ({
           )
           {method.result.description != 'Null' && (
             <span
-              style={{ marginLeft: '0.5rem', fontSize: '0.875rem', color: '#0070f3', cursor: 'pointer' }}
+              className="x:ml-2 x:text-sm x:text-primary-600 x:dark:text-primary-500 x:cursor-pointer x:hover:underline"
               onClick={() => activateSidebar(method.result)}
             >
               {method.result.description}
             </span>
           )}
-          <span style={{ 
-            marginLeft: '0.5rem',
-            display: 'inline-flex',
-            alignItems: 'center',
-            padding: '0.125rem 0.625rem',
-            borderRadius: '9999px',
-            backgroundColor: '#ede9fe',
-            fontSize: '0.75rem',
-            fontWeight: 500,
-            color: '#6b21a8'
-          }}>
+          <span className="x:ml-2 x:inline-flex x:items-center x:px-2.5 x:py-0.5 x:rounded-full x:bg-purple-100 x:dark:bg-purple-900/30 x:text-xs x:font-medium x:text-purple-800 x:dark:text-purple-300">
             perms: {method.auth}
           </span>
         </div>
@@ -84,7 +76,7 @@ const RPCMethod = ({
           onCopy={handleCopyClick}
         >
           <div
-            style={{ cursor: 'pointer' }}
+            className="x:cursor-pointer"
             onClick={() => {
               window.location.hash = `${pkg}.${method.name}`;
             }}
@@ -94,7 +86,7 @@ const RPCMethod = ({
         </CopyToClipboard>
       </div>
       
-      <div style={{ fontSize: '0.875rem', color: '#666', marginBottom: '0.75rem', fontWeight: 300 }}>
+      <div className="x:text-sm x:text-gray-600 x:dark:text-gray-200 x:mb-3 x:font-light">
         {method.description}
       </div>
       
@@ -106,58 +98,41 @@ const RPCMethod = ({
           }
           setPlaygroundOpen(true);
         }}
+        className="x:mt-3 x:mb-3 x:inline-flex x:w-full x:justify-center x:px-4 x:py-2 x:border x:border-gray-300 x:dark:border-gray-700 x:rounded-md x:text-sm x:font-medium x:text-gray-700 x:dark:text-gray-200 x:shadow-sm x:cursor-pointer x:hover:bg-gray-50 x:dark:hover:bg-gray-700 x:transition-colors"
         style={{
-          marginTop: '0.75rem',
-          marginBottom: '0.75rem',
-          display: 'inline-flex',
-          width: '100%',
-          justifyContent: 'center',
-          padding: '0.5rem 1rem',
-          border: '1px solid #d1d5db',
-          borderRadius: '0.375rem',
-          backgroundColor: 'white',
-          fontSize: '0.875rem',
-          fontWeight: 500,
-          color: '#374151',
-          boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-          cursor: 'pointer'
+          backgroundColor: isDark ? 'rgb(31 41 55)' : 'white'
         }}
       >
         Try it out
       </button>
       
-      <div style={{ 
-        marginTop: '1.5rem',
-        overflow: 'hidden',
-        borderRadius: '0.5rem',
-        border: '1px solid #e5e7eb',
-        backgroundColor: 'white',
-        fontSize: '0.875rem',
-        boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
-      }}>
+      <div 
+        className="x:mt-6 x:overflow-hidden x:rounded-lg x:border x:border-gray-200 x:dark:border-gray-700 x:text-sm x:shadow-sm"
+        style={{
+          backgroundColor: isDark ? 'rgb(31 41 55)' : 'white'
+        }}
+      >
         <div
           onClick={() => setShowRequest(!showRequest)}
+          className="x:flex x:items-center x:px-4 x:py-3 x:cursor-pointer x:transition-colors"
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: '0.75rem 1rem',
-            cursor: 'pointer',
-            backgroundColor: showRequest ? '#f9fafb' : 'white'
+            backgroundColor: isDark ? (showRequest ? 'rgba(31, 41, 55, 0.5)' : 'rgb(31 41 55)') : (showRequest ? 'rgb(249 250 251)' : 'white')
           }}
         >
           {showRequest ? (
-            <ChevronDownIcon style={{ marginRight: '0.5rem', height: '1.25rem', width: '1.25rem' }} />
+            <ChevronDownIcon className="x:mr-2 x:h-5 x:w-5 x:text-gray-600 x:dark:text-gray-400" />
           ) : (
-            <ChevronRightIcon style={{ marginRight: '0.5rem', height: '1.25rem', width: '1.25rem' }} />
+            <ChevronRightIcon className="x:mr-2 x:h-5 x:w-5 x:text-gray-600 x:dark:text-gray-400" />
           )}
-          <span style={{ fontWeight: 500 }}>Request</span>
+          <span className="x:font-medium x:text-gray-900 x:dark:text-gray-100">Request</span>
         </div>
         {showRequest && (
-          <div style={{ 
-            borderTop: '1px solid #e5e7eb',
-            backgroundColor: '#f9fafb',
-            padding: '1rem'
-          }}>
+          <div 
+            className="x:border-t x:border-gray-200 x:dark:border-gray-700 x:p-4"
+            style={{
+              backgroundColor: isDark ? 'rgb(17 24 39)' : 'rgb(249 250 251)'
+            }}
+          >
             <SyntaxHighlighter
               language='javascript'
               customStyle={{
@@ -186,28 +161,25 @@ const RPCMethod = ({
         
         <div
           onClick={() => setShowResponse(!showResponse)}
+          className="x:flex x:items-center x:px-4 x:py-3 x:border-t x:border-gray-200 x:dark:border-gray-700 x:cursor-pointer x:transition-colors"
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: '0.75rem 1rem',
-            borderTop: '1px solid #e5e7eb',
-            cursor: 'pointer',
-            backgroundColor: showResponse ? '#f9fafb' : 'white'
+            backgroundColor: isDark ? (showResponse ? 'rgba(31, 41, 55, 0.5)' : 'rgb(31 41 55)') : (showResponse ? 'rgb(249 250 251)' : 'white')
           }}
         >
           {showResponse ? (
-            <ChevronDownIcon style={{ marginRight: '0.5rem', height: '1.25rem', width: '1.25rem' }} />
+            <ChevronDownIcon className="x:mr-2 x:h-5 x:w-5 x:text-gray-600 x:dark:text-gray-400" />
           ) : (
-            <ChevronRightIcon style={{ marginRight: '0.5rem', height: '1.25rem', width: '1.25rem' }} />
+            <ChevronRightIcon className="x:mr-2 x:h-5 x:w-5 x:text-gray-600 x:dark:text-gray-400" />
           )}
-          <span style={{ fontWeight: 500 }}>Response</span>
+          <span className="x:font-medium x:text-gray-900 x:dark:text-gray-100">Response</span>
         </div>
         {showResponse && (
-          <div style={{ 
-            borderTop: '1px solid #e5e7eb',
-            backgroundColor: '#f9fafb',
-            padding: '1rem'
-          }}>
+          <div 
+            className="x:border-t x:border-gray-200 x:dark:border-gray-700 x:p-4"
+            style={{
+              backgroundColor: isDark ? 'rgb(17 24 39)' : 'rgb(249 250 251)'
+            }}
+          >
             <SyntaxHighlighter
               language='javascript'
               customStyle={{
