@@ -42,24 +42,25 @@ export default function ParamModal({
                   {currentParam.description}
                 </h3>
                 <div className='nx-mt-2'>
-                  {currentParam.schema?.examples &&
-                    currentParam.schema.examples.length > 0 && (
-                      <p className='nx-text-sm nx-text-gray-500 dark:nx-text-gray-400'>
-                        Example Value:
-                        <SyntaxHighlighter
-                          language='javascript'
-                          customStyle={{
-                            backgroundColor: 'transparent',
-                          }}
-                        >
-                          {JSON.stringify(
-                            currentParam.schema.examples[0],
-                            null,
-                            '\t'
-                          )}
-                        </SyntaxHighlighter>
-                      </p>
-                    )}
+                  {(() => {
+                    const examples = currentParam.schema?.examples;
+                    if (Array.isArray(examples) && examples.length > 0) {
+                      return (
+                        <p className='nx-text-sm nx-text-gray-500 dark:nx-text-gray-400'>
+                          Example Value:
+                          <SyntaxHighlighter
+                            language='javascript'
+                            customStyle={{
+                              backgroundColor: 'transparent',
+                            }}
+                          >
+                            {JSON.stringify(examples[0], null, '\t')}
+                          </SyntaxHighlighter>
+                        </p>
+                      );
+                    }
+                    return null;
+                  })()}
                 </div>
               </div>
             </div>

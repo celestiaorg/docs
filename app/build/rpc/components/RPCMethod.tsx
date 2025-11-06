@@ -146,11 +146,12 @@ const RPCMethod = ({
                   id: 1,
                   jsonrpc: '2.0',
                   method: pkg + '.' + method.name,
-                  params: method.params.map((param) =>
-                    param.schema && param.schema.examples
-                      ? param.schema.examples[0]
-                      : undefined
-                  ),
+                  params: method.params.map((param) => {
+                    const examples = param.schema?.examples;
+                    return (Array.isArray(examples) && examples.length > 0) 
+                      ? examples[0] 
+                      : undefined;
+                  }),
                 },
                 null,
                 2
@@ -192,11 +193,13 @@ const RPCMethod = ({
                 {
                   id: 1,
                   jsonrpc: '2.0',
-                  result:
-                    method.result.description == 'Null' ||
-                    !method.result.schema.examples
-                      ? []
-                      : method.result.schema.examples[0],
+                  result: (() => {
+                    if (method.result.description == 'Null') return [];
+                    const examples = method.result.schema?.examples;
+                    return (Array.isArray(examples) && examples.length > 0) 
+                      ? examples[0] 
+                      : [];
+                  })(),
                 },
                 null,
                 2

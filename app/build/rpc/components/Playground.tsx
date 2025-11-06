@@ -15,9 +15,10 @@ import {
   RequestManager,
   WebSocketTransport,
 } from '@open-rpc/client-js';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { INotification, NodeError } from '../lib/types';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 const tabs = [
   { name: 'Request', href: '#' },
@@ -43,87 +44,79 @@ const Playground = ({
   const [currentTab, setCurrentTab] = useState(0);
   const [currentResponse, setCurrentResponse] = useState<string>('');
   
-  // Dark mode detection
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof document !== 'undefined') {
-      return document.documentElement.classList.contains('dark');
-    }
-    return false;
-  });
-  
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setIsDark(document.documentElement.classList.contains('dark'));
-    });
-    
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    });
-    
-    return () => observer.disconnect();
-  }, []);
+  // Use shared dark mode hook
+  const isDark = useDarkMode();
 
   const sendRequest = async (
     request: string,
     hostname: string
   ): Promise<object> => {
-    // Determine the WebSocket URL
-    let wsUrl: string;
-    if (hostname == '') {
-      wsUrl = 'ws://localhost:26658';
-    } else {
-      wsUrl = 'ws://' + hostname;
-    }
+    return new Promise((resolve, reject) => {
+      // Determine the WebSocket URL
+      const wsUrl = hostname === '' ? 'ws://localhost:26658' : `wss://${hostname}`;
+      
+      const transport = new WebSocketTransport(wsUrl);
+      let connectionEstablished = false;
+      let connectionClosed = false;
 
-    const transport = new WebSocketTransport(wsUrl);
+      // Enhanced error handling for WebSocket connection
+      transport.connection.onerror = (error: Event) => {
+        console.error('WebSocket connection error:', error);
+        if (!connectionEstablished && !connectionClosed) {
+          connectionClosed = true;
+          reject(new Error(`Cannot connect to ${wsUrl}. Make sure your Celestia node is running with --rpc.skip-auth flag.`));
+        }
+      };
 
-    // Enhanced error handling for WebSocket connection
-    transport.connection.onerror = (error: Event) => {
-      console.error('WebSocket connection error:', error);
-      setNotification({
-        active: true,
-        success: false,
-        message: `Cannot connect to ${wsUrl}. Make sure your Celestia node is running with --rpc.skip-auth flag.`,
-      });
-    };
+      transport.connection.onopen = () => {
+        connectionEstablished = true;
+      };
 
-    transport.connection.onclose = (event: CloseEvent) => {
-      if (event.code !== 1000) {
-        // 1000 is normal closure
-        setNotification({
-          active: true,
-          success: false,
-          message: `Connection closed unexpectedly (code: ${event.code}). Check your node configuration.`,
-        });
-      }
+      transport.connection.onclose = (event: CloseEvent) => {
+        if (event.code !== 1000 && connectionEstablished && !connectionClosed) {
+          // 1000 is normal closure
+          connectionClosed = true;
+          reject(new Error(`Connection closed unexpectedly (code: ${event.code}). Check your node configuration.`));
+        }
     };
 
     const requestManager = new RequestManager([transport]);
     const client = new Client(requestManager);
 
-    // Parse and send the request
+      // Parse and send the request
+      try {
     const { method, params } = JSON.parse(request);
-    try {
-      const response = await client.request({ method, params });
-      return { id: 1, jsonrpc: '2.0', result: response };
-    } catch (err: unknown) {
+        
+        client.request({ method, params })
+          .then(response => {
+            resolve({ id: 1, jsonrpc: '2.0', result: response });
+          })
+          .catch((err: unknown) => {
       if (err instanceof JSONRPCError) {
-        return {
+              // Resolve with error format (not reject) for RPC errors
+              resolve({
           id: 1,
           jsonrpc: '2.0',
           error: { code: err.code, message: err.message },
-        };
+              });
       } else {
-        // Enhanced error reporting
-        console.error('Request failed:', err);
-        throw new Error(
-          err instanceof Error 
-            ? err.message 
-            : 'Request failed - check console for details'
-        );
+              // Enhanced error reporting for non-RPC errors
+              console.error('Request failed:', err);
+              reject(new Error(
+                err instanceof Error 
+                  ? err.message 
+                  : 'Request failed - check console for details'
+              ));
+            }
+          });
+      } catch (parseError) {
+        reject(new Error(
+          parseError instanceof Error
+            ? `Invalid JSON: ${parseError.message}`
+            : 'Failed to parse request JSON'
+        ));
       }
-    }
+    });
   };
 
   return (
@@ -202,11 +195,11 @@ const Playground = ({
                       backgroundColor: '#f3e8ff',
                       flexShrink: 0
                     }}>
-                      <CommandLineIcon
+                  <CommandLineIcon
                         style={{ width: '1.5rem', height: '1.5rem', color: '#9333ea' }}
-                        aria-hidden='true'
-                      />
-                    </div>
+                    aria-hidden='true'
+                  />
+                </div>
                     <DialogTitle
                       as='h3'
                       style={{ 
@@ -215,10 +208,10 @@ const Playground = ({
                         fontWeight: 600,
                         color: isDark ? '#f9fafb' : '#111827'
                       }}
-                    >
-                      Node Playground
+                >
+                  Node Playground
                     </DialogTitle>
-                  </div>
+              </div>
                   <div>
                     <div style={{ marginTop: '0.5rem' }}>
                       <div style={{ 
@@ -232,45 +225,45 @@ const Playground = ({
                           <div style={{ flexShrink: 0 }}>
                             <svg
                               style={{ width: '1.25rem', height: '1.25rem', color: '#facc15' }}
-                              viewBox='0 0 20 20'
-                              fill='currentColor'
-                            >
-                              <path
-                                fillRule='evenodd'
-                                d='M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z'
-                                clipRule='evenodd'
-                              />
-                            </svg>
-                          </div>
+                          viewBox='0 0 20 20'
+                          fill='currentColor'
+                        >
+                          <path
+                            fillRule='evenodd'
+                            d='M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z'
+                            clipRule='evenodd'
+                          />
+                        </svg>
+                      </div>
                           <div style={{ marginLeft: '0.75rem' }}>
                             <h3 style={{ fontSize: '0.875rem', fontWeight: 500, color: isDark ? '#fbbf24' : '#854d0e' }}>
-                              Local Node Required
-                            </h3>
+                          Local Node Required
+                        </h3>
                             <div style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: isDark ? '#fde047' : '#a16207' }}>
-                              <p>To use this playground, you need:</p>
+                          <p>To use this playground, you need:</p>
                               <ul style={{ marginTop: '0.25rem', listStyle: 'disc', paddingLeft: '1.25rem' }}>
-                                <li>A locally running light node</li>
-                                <li>
-                                  Node started with{' '}
+                            <li>A locally running light node</li>
+                            <li>
+                              Node started with{' '}
                                   <code style={{ 
                                     borderRadius: '0.25rem', 
                                     backgroundColor: isDark ? '#78350f' : '#fef9c3', 
                                     padding: '0 0.25rem',
                                     color: isDark ? '#fde047' : 'inherit'
                                   }}>
-                                    --rpc.skip-auth
-                                  </code>{' '}
-                                  flag
-                                </li>
-                                <li>
+                                --rpc.skip-auth
+                              </code>{' '}
+                              flag
+                            </li>
+                            <li>
                                   Node running on the default WebSocket port (26658)
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
+                            </li>
+                          </ul>
                         </div>
                       </div>
-                      {/* TABS */}
+                    </div>
+                  </div>
+                  {/* TABS */}
                       <div style={{ marginBottom: '1rem' }}>
                         <nav
                           style={{
@@ -282,12 +275,12 @@ const Playground = ({
                             overflow: 'hidden',
                             backgroundColor: isDark ? '#374151' : 'white'
                           }}
-                          aria-label='Tabs'
-                        >
-                          {tabs.map((tab, tabIdx) => (
-                            <a
-                              key={tab.name}
-                              href={tab.href}
+                      aria-label='Tabs'
+                    >
+                      {tabs.map((tab, tabIdx) => (
+                        <a
+                          key={tab.name}
+                          href={tab.href}
                               onClick={(e) => {
                                 e.preventDefault();
                                 setCurrentTab(tabIdx);
@@ -312,13 +305,13 @@ const Playground = ({
                                 borderTopRightRadius: tabIdx === tabs.length - 1 ? '0.5rem' : 0,
                                 borderBottomRightRadius: tabIdx === tabs.length - 1 ? '0.5rem' : 0,
                               }}
-                              aria-current={
-                                currentTab == tabIdx ? 'page' : undefined
-                              }
-                            >
-                              <span>{tab.name}</span>
-                              <span
-                                aria-hidden='true'
+                          aria-current={
+                            currentTab == tabIdx ? 'page' : undefined
+                          }
+                        >
+                          <span>{tab.name}</span>
+                          <span
+                            aria-hidden='true'
                                 style={{
                                   position: 'absolute',
                                   bottom: 0,
@@ -327,52 +320,52 @@ const Playground = ({
                                   height: '2px',
                                   backgroundColor: currentTab == tabIdx ? '#9333ea' : 'transparent'
                                 }}
-                              />
-                            </a>
-                          ))}
-                        </nav>
-                      </div>
-                      {/* PLAYGROUND */}
+                          />
+                        </a>
+                      ))}
+                    </nav>
+                  </div>
+                  {/* PLAYGROUND */}
                       {/* Request Tab */}
                       <div style={{ marginTop: '0.75rem', display: currentTab === 0 ? 'block' : 'none' }}>
-                        <Editor
+                          <Editor
                           key='request-editor'
-                          language='json'
+                            language='json'
                           theme={isDark ? 'vs-dark' : 'light'}
-                          options={{
-                            scrollBeyondLastLine: false,
-                            minimap: { enabled: false },
-                            useShadows: false,
-                          }}
+                            options={{
+                              scrollBeyondLastLine: false,
+                              minimap: { enabled: false },
+                              useShadows: false,
+                            }}
                           height='13rem'
-                          value={currentRequest}
-                          onChange={(value) =>
-                            value &&
-                            value != currentResponse &&
-                            setCurrentRequest(value)
-                          }
-                        />
-                      </div>
+                            value={currentRequest}
+                            onChange={(value) =>
+                              value &&
+                              value != currentResponse &&
+                              setCurrentRequest(value)
+                            }
+                          />
+                        </div>
                       {/* Response Tab */}
                       <div style={{ marginTop: '0.75rem', display: currentTab === 1 ? 'block' : 'none' }}>
-                        <Editor
+                          <Editor
                           key='response-editor'
-                          language='json'
+                            language='json'
                           theme={isDark ? 'vs-dark' : 'light'}
-                          options={{
-                            scrollBeyondLastLine: false,
-                            minimap: { enabled: false },
-                            useShadows: false,
-                            readOnly: true,
-                          }}
+                            options={{
+                              scrollBeyondLastLine: false,
+                              minimap: { enabled: false },
+                              useShadows: false,
+                              readOnly: true,
+                            }}
                           height='13rem'
-                          value={currentResponse}
-                        />
-                      </div>
+                            value={currentResponse}
+                          />
+                        </div>
                       {/* Configuration Tab */}
                       <div style={{ display: currentTab === 2 ? 'block' : 'none' }}>
-                        <label
-                          htmlFor='ip'
+                          <label
+                            htmlFor='ip'
                           style={{ 
                             marginTop: '1.5rem',
                             display: 'block',
@@ -381,9 +374,9 @@ const Playground = ({
                             lineHeight: 1.5,
                             color: isDark ? '#f9fafb' : '#111827'
                           }}
-                        >
-                          IP Address
-                        </label>
+                          >
+                            IP Address
+                          </label>
                         <div style={{ 
                           marginTop: '0.5rem', 
                           display: 'flex', 
@@ -404,12 +397,12 @@ const Playground = ({
                             backgroundColor: isDark ? '#374151' : 'transparent',
                             fontSize: '0.875rem'
                           }}>
-                            ws://
-                          </span>
-                          <input
-                            type='text'
-                            name='ip'
-                            id='ip'
+                              ws://
+                            </span>
+                            <input
+                              type='text'
+                              name='ip'
+                              id='ip'
                             style={{ 
                               display: 'block',
                               width: '100%',
@@ -425,28 +418,28 @@ const Playground = ({
                               fontSize: '0.875rem',
                               lineHeight: 1.5
                             }}
-                            placeholder='localhost:26658'
-                            value={hostname}
-                            onChange={(e) => setHostname(e.target.value)}
-                          />
-                        </div>
-                        <p
+                              placeholder='localhost:26658'
+                              value={hostname}
+                              onChange={(e) => setHostname(e.target.value)}
+                            />
+                          </div>
+                          <p
                           style={{ 
                             marginTop: '0.5rem', 
                             fontSize: '0.875rem', 
                             color: isDark ? '#9ca3af' : '#6b7280' 
                           }}
-                          id='protocol-description'
-                        >
-                          only ws:// is supported at this time
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                            id='protocol-description'
+                          >
+                            only ws:// is supported at this time
+                          </p>
+                        </div>
                 </div>
+              </div>
+            </div>
                 <div style={{ marginTop: '1.25rem', display: 'flex', flexDirection: 'row-reverse', gap: '0.75rem' }}>
-                  <button
-                    type='button'
+              <button
+                type='button'
                     style={{
                       display: 'inline-flex',
                       justifyContent: 'center',
@@ -462,35 +455,35 @@ const Playground = ({
                       border: isDark ? '1px solid #9333ea' : '1px solid #d8b4fe',
                       cursor: 'pointer'
                     }}
-                    onClick={async () => {
-                      // Validate JSON request
-                      try {
-                        JSON.parse(currentRequest);
-                      } catch (e) {
-                        setNotification({
-                          active: true,
-                          success: false,
-                          message: 'Invalid JSON in request body. Please fix the syntax.',
-                        });
-                        return;
-                      }
+                onClick={async () => {
+                  // Validate JSON request
+                  try {
+                    JSON.parse(currentRequest);
+                  } catch {
+                    setNotification({
+                      active: true,
+                      success: false,
+                      message: 'Invalid JSON in request body. Please fix the syntax.',
+                    });
+                    return;
+                  }
 
-                      // Check if request has required fields
-                      let parsedRequest;
-                      try {
-                        parsedRequest = JSON.parse(currentRequest);
-                        if (!parsedRequest.method) {
-                          setNotification({
-                            active: true,
-                            success: false,
-                            message: 'Request must include a "method" field.',
-                          });
-                          return;
-                        }
-                      } catch (e) {
-                        // Already handled above
-                        return;
-                      }
+                  // Check if request has required fields
+                  let parsedRequest;
+                  try {
+                    parsedRequest = JSON.parse(currentRequest);
+                    if (!parsedRequest.method) {
+                      setNotification({
+                        active: true,
+                        success: false,
+                        message: 'Request must include a "method" field.',
+                      });
+                      return;
+                    }
+                  } catch {
+                    // Already handled above
+                    return;
+                  }
 
                       // Show loading notification
                       setNotification({
@@ -499,43 +492,43 @@ const Playground = ({
                         message: 'Connecting to node...',
                       });
 
-                      try {
-                        const data = await sendRequest(
-                          currentRequest,
-                          hostname
-                        );
-                        setCurrentResponse(JSON.stringify(data, null, 2));
-                        setCurrentTab(1);
-                        if ('error' in data) {
-                          const nodeError = data as { error: NodeError };
-                          setNotification({
-                            active: true,
-                            success: false,
+                  try {
+                    const data = await sendRequest(
+                      currentRequest,
+                      hostname
+                    );
+                    setCurrentResponse(JSON.stringify(data, null, 2));
+                    setCurrentTab(1);
+                    if ('error' in data) {
+                      const nodeError = data as { error: NodeError };
+                      setNotification({
+                        active: true,
+                        success: false,
                             message: `RPC Error: ${nodeError.error.message}`,
-                          });
-                        } else {
-                          setNotification({
-                            active: true,
-                            success: true,
+                      });
+                    } else {
+                      setNotification({
+                        active: true,
+                        success: true,
                             message: 'Request sent successfully! ✓',
-                          });
-                        }
-                      } catch (e) {
+                      });
+                    }
+                  } catch (e) {
                         const errorMessage = (e as Error).message || String(e);
-                        setNotification({
-                          active: true,
-                          success: false,
+                    setNotification({
+                      active: true,
+                      success: false,
                           message: `Failed to send request: ${errorMessage}`,
-                        });
-                        return;
-                      }
-                    }}
-                    data-autofocus
-                  >
-                    Send Request
-                  </button>
-                  <button
-                    type='button'
+                    });
+                    return;
+                  }
+                }}
+                data-autofocus
+              >
+                Send Request
+              </button>
+              <button
+                type='button'
                     style={{
                       display: 'inline-flex',
                       justifyContent: 'center',
@@ -551,12 +544,12 @@ const Playground = ({
                       border: isDark ? '1px solid #4b5563' : '1px solid #d1d5db',
                       cursor: 'pointer'
                     }}
-                    onClick={() => setPlaygroundOpen(false)}
-                    data-autofocus
-                  >
-                    Dismiss
-                  </button>
-                </div>
+                onClick={() => setPlaygroundOpen(false)}
+                data-autofocus
+              >
+                Dismiss
+              </button>
+            </div>
               </DialogPanel>
             </TransitionChild>
           </div>

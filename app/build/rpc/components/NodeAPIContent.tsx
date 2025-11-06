@@ -1,44 +1,39 @@
 'use client';
 
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
-import { INotification, MethodByPkg, Param } from '../lib/types';
+import { INotification, MethodByPkg, OpenRPCSpec, Param } from '../lib/types';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 import NotificationModal from '../components/NotificationModal';
 import Playground from '../components/Playground';
 import RPCMethod from '../components/RPCMethod';
 import ParamModal from '../components/ParamModal';
 
-function extractAuth(methodDescription: string): string {
-  return methodDescription.split('Auth level: ')[1];
+function extractAuth(methodDescription: string | undefined): string {
+  if (!methodDescription) return '';
+  return methodDescription.split('Auth level: ')[1] || '';
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getMethodsByPackage(spec: any): MethodByPkg {
+function getMethodsByPackage(spec: OpenRPCSpec): MethodByPkg {
   const methodsByPackage: MethodByPkg = {};
   for (const method of spec.methods) {
     const methodName = method.name.split('.');
     const pkg = methodName[0];
     const name = methodName[1];
+    const methodData = {
+      name: name,
+      description: method.summary,
+      params: method.params || [],
+      auth: extractAuth(method.description),
+      result: method.result || { name: '', schema: {} },
+    };
+    
     if (!methodsByPackage[pkg]) {
-      methodsByPackage[pkg] = [
-        {
-          name: name,
-          description: method.summary,
-          params: method.params,
-          auth: extractAuth(method.description),
-          result: method.result,
-        },
-      ];
+      methodsByPackage[pkg] = [methodData];
     } else {
-      methodsByPackage[pkg].push({
-        name: name,
-        description: method.summary,
-        params: method.params,
-        auth: extractAuth(method.description),
-        result: method.result,
-      });
+      methodsByPackage[pkg].push(methodData);
     }
   }
   return methodsByPackage;
@@ -84,35 +79,14 @@ const versions = [
 ].reverse();
 
 export default function RPCDocumentation() {
-  const [isDark, setIsDark] = useState(() => {
-    // Initialize with current theme on mount
-    if (typeof document !== 'undefined') {
-      return document.documentElement.classList.contains('dark');
-    }
-    return false;
-  });
+  // Use shared dark mode hook
+  const isDark = useDarkMode();
   
-  useEffect(() => {
-    // Watch for theme changes
-    const observer = new MutationObserver(() => {
-      setIsDark(document.documentElement.classList.contains('dark'));
-    });
-    
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    });
-    
-    return () => observer.disconnect();
-  }, []);
-  
-  const handleVersionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedVersion(event.target.value);
-    window.history.pushState({}, '', `?version=${event.target.value}`);
-  };
-  
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [spec, setSpec] = useState<any>();
+  // State management
+  const [spec, setSpec] = useState<OpenRPCSpec | null>(null);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [isSwitchingVersion, setIsSwitchingVersion] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [currentParam, setCurrentParam] = useState<Param>({
     name: '',
@@ -131,59 +105,168 @@ export default function RPCDocumentation() {
   const [selectedVersion, setSelectedVersion] = useState(versions[0]);
   const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    const fetchJsonData = async (version: string) => {
-      try {
-        const response = await axios.get(`/specs/openrpc-${version}.json`);
-        setSpec(response.data);
-        const hash = window.location.hash;
-        window.history.replaceState({}, '', `?version=${version}${hash}`);
-      } catch (error) {
-        console.error('Error fetching JSON data:', error);
-      }
-    };
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const versionParam = urlParams.get('version');
-    if (versionParam && versions.includes(versionParam)) {
-      setSelectedVersion(versionParam);
+  // Consolidated fetch function with loading and error handling
+  const fetchJsonData = useCallback(async (version: string, isInitial = false) => {
+    if (isInitial) {
+      setIsInitialLoading(true);
     } else {
-      setSelectedVersion(versions[0]);
+      setIsSwitchingVersion(true);
     }
-
-    fetchJsonData(selectedVersion);
-  }, [selectedVersion]);
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const versionParam = urlParams.get('version');
-    if (versionParam && versions.includes(versionParam)) {
-      setSelectedVersion(versionParam);
+    setError(null);
+    try {
+      const response = await axios.get(`/specs/openrpc-${version}.json`);
+      setSpec(response.data);
+      const hash = window.location.hash;
+      window.history.replaceState({}, '', `?version=${version}${hash}`);
+    } catch (err) {
+      setError(`Failed to load API specification for ${version}`);
+      console.error('Error fetching JSON data:', err);
+    } finally {
+      if (isInitial) {
+        setIsInitialLoading(false);
+      } else {
+        setIsSwitchingVersion(false);
+      }
     }
   }, []);
 
+  // Initialize version from URL on mount and fetch data
   useEffect(() => {
-    if (spec) {
-      setTimeout(() => {
-        const hash = window.location.hash.substring(1);
-        const element = document.getElementById(hash);
+    const urlParams = new URLSearchParams(window.location.search);
+    const versionParam = urlParams.get('version');
+    const targetVersion = (versionParam && versions.includes(versionParam)) 
+      ? versionParam 
+      : versions[0];
+    
+    if (targetVersion !== selectedVersion) {
+      setSelectedVersion(targetVersion);
+    }
+    
+    fetchJsonData(targetVersion, true); // Mark as initial load
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-        if (element) {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest',
-          });
-        }
-      }, 1000);
+  // Handle version changes after mount
+  useEffect(() => {
+    // Skip if this is the initial render
+    if (isInitialLoading) return;
+    
+    if (selectedVersion !== versions[0] || window.location.search) {
+      fetchJsonData(selectedVersion, false); // Mark as version switch
+    }
+  }, [selectedVersion, fetchJsonData, isInitialLoading]);
+
+  // Scroll to hash with MutationObserver (replaces hardcoded setTimeout)
+  useEffect(() => {
+    if (!spec) return;
+    
+    const scrollToHash = () => {
+      const hash = window.location.hash.substring(1);
+      if (!hash) return false;
+      
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest',
+        });
+        return true;
+      }
+      return false;
+    };
+    
+    // Try immediately
+    if (scrollToHash()) return;
+    
+    // Watch for content to appear
+    const observer = new MutationObserver(() => {
+      if (scrollToHash()) {
+        observer.disconnect();
+      }
+    });
+    
+    const main = document.querySelector('main');
+    if (main) {
+      observer.observe(main, { childList: true, subtree: true });
+      // Safety timeout to prevent infinite observation
+      const timeoutId = setTimeout(() => observer.disconnect(), 5000);
+      
+      return () => {
+        observer.disconnect();
+        clearTimeout(timeoutId);
+      };
     }
   }, [spec]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const activateSidebar = (param: any) => {
+  const handleVersionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newVersion = event.target.value;
+    setSelectedVersion(newVersion);
+    window.history.pushState({}, '', `?version=${newVersion}`);
+  };
+
+  const activateSidebar = (param: Param) => {
     setOpen(true);
     setCurrentParam(param);
   };
+
+  // Show loading state only on initial page load
+  if (isInitialLoading) {
+    return (
+      <div 
+        className="x:flex x:items-center x:justify-center x:py-12"
+        style={{ minHeight: '400px' }}
+      >
+        <div className="x:text-gray-600 x:dark:text-gray-400 x:text-center">
+          <div className="x:mb-4 x:text-lg">Loading API documentation...</div>
+          <div className="x:text-sm x:text-gray-500 x:dark:text-gray-500">
+            Version: {selectedVersion}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div 
+        className="x:rounded-lg x:p-6"
+        style={{
+          backgroundColor: isDark ? 'rgba(220, 38, 38, 0.1)' : 'rgb(254, 242, 242)',
+          border: `1px solid ${isDark ? 'rgba(220, 38, 38, 0.3)' : 'rgb(252, 165, 165)'}`
+        }}
+      >
+        <h3 
+          className="x:text-lg x:font-semibold x:mb-2"
+          style={{ color: isDark ? 'rgb(252, 165, 165)' : 'rgb(153, 27, 27)' }}
+        >
+          Error Loading Documentation
+        </h3>
+        <p 
+          className="x:text-sm x:mb-4"
+          style={{ color: isDark ? 'rgb(254, 202, 202)' : 'rgb(185, 28, 28)' }}
+        >
+          {error}
+        </p>
+        <button
+          onClick={() => fetchJsonData(selectedVersion)}
+          className="x:px-4 x:py-2 x:rounded-md x:text-sm x:font-medium x:transition-colors"
+          style={{
+            backgroundColor: isDark ? 'rgb(185, 28, 28)' : 'rgb(220, 38, 38)',
+            color: 'white',
+            border: 'none',
+            cursor: 'pointer'
+          }}
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
+  // Ensure spec is not null before rendering
+  if (!spec) return null;
 
   return (
     <>
@@ -240,12 +323,31 @@ export default function RPCDocumentation() {
                 </option>
               ))}
             </select>
+            {isSwitchingVersion && (
+              <div 
+                className="x:inline-block x:animate-spin" 
+                style={{
+                  width: '1rem',
+                  height: '1rem',
+                  border: '2px solid',
+                  borderColor: isDark ? 'rgb(156 163 175)' : 'rgb(209 213 219)',
+                  borderTopColor: isDark ? 'rgb(79 70 229)' : 'rgb(99 102 241)',
+                  borderRadius: '50%'
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
 
       {/* Methods by Package */}
-      <div className="x:flex x:flex-col x:gap-12">
+      <div 
+        className="x:flex x:flex-col x:gap-12"
+        style={{
+          opacity: isSwitchingVersion ? 0.5 : 1,
+          transition: 'opacity 0.2s ease-in-out'
+        }}
+      >
         {spec &&
           Object.entries(getMethodsByPackage(spec))
             .filter(

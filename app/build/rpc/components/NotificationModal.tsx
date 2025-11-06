@@ -2,9 +2,10 @@
 
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { INotification } from '../lib/types';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 export default function NotificationModal({
   notification,
@@ -13,26 +14,8 @@ export default function NotificationModal({
   notification: INotification;
   setNotification: (notification: INotification) => void;
 }) {
-  // Dark mode detection
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof document !== 'undefined') {
-      return document.documentElement.classList.contains('dark');
-    }
-    return false;
-  });
-  
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setIsDark(document.documentElement.classList.contains('dark'));
-    });
-    
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    });
-    
-    return () => observer.disconnect();
-  }, []);
+  // Use shared dark mode hook
+  const isDark = useDarkMode();
 
   useEffect(() => {
     if (notification.active) {
