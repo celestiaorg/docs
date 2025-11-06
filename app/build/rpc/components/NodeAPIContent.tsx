@@ -274,15 +274,17 @@ export default function RPCDocumentation() {
                   );
 
               return (
-                <div key={pkg} id={pkg} style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: '2rem' }}>
-                  <h2 style={{ 
-                    fontSize: '1.5rem', 
-                    fontWeight: 700, 
-                    marginBottom: '1.5rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.025em'
-                  }}>
+                <div key={pkg} style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: '2rem' }}>
+                  <h2 
+                    id={pkg}
+                    className="x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border"
+                  >
                     {pkg == 'p2p' ? 'P2P' : pkg}
+                    <a 
+                      href={`#${pkg}`} 
+                      className="x:focus-visible:nextra-focus subheading-anchor" 
+                      aria-label={`Permalink for ${pkg}`}
+                    />
                   </h2>
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
