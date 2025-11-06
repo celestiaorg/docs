@@ -137,23 +137,40 @@ export function DynamicRPCTOC() {
     let scrollHandler: (() => void) | null = null
     let clickHandler: ((e: Event) => void) | null = null
     let buttonRef: HTMLButtonElement | null = null
-    let isSetup = false
+    let mutationObserver: MutationObserver | null = null
+    let setupDebounceTimer: NodeJS.Timeout | null = null
+    
+    const cleanupObservers = () => {
+      observer?.disconnect()
+      if (scrollHandler) window.removeEventListener('scroll', scrollHandler)
+      if (clickHandler && buttonRef) {
+        buttonRef.removeEventListener('click', clickHandler, true)
+      }
+    }
     
     const setupScrollButton = () => {
-      if (isSetup) return true
+      // Clean up previous observers but not the mutation observer
+      cleanupObservers()
       
       const scrollButton = document.querySelector<HTMLButtonElement>(TOC_CONFIG.selectors.scrollButton)
       if (!scrollButton) return false
       
       const headings = extractHeadingsFromDOM()
       const targetIndex = TOC_CONFIG.scrollToTopThreshold
-      if (headings.length <= targetIndex) return false
+      
+      // Hide button if not enough visible headings
+      if (headings.length <= targetIndex) {
+        toggleScrollButton(scrollButton, false)
+        return false
+      }
       
       const targetHeading = document.getElementById(headings[targetIndex].id)
-      if (!targetHeading) return false
+      if (!targetHeading) {
+        toggleScrollButton(scrollButton, false)
+        return false
+      }
       
       buttonRef = scrollButton
-      observer?.disconnect()
       
       // Click handler - scroll to top
       clickHandler = (e: Event) => {
@@ -165,8 +182,18 @@ export function DynamicRPCTOC() {
       
       // Visibility handler - show when scrolled past target heading
       const updateButtonVisibility = () => {
-        const el = document.getElementById(headings[targetIndex].id)
-        if (!el) return
+        // Re-query headings to handle dynamic changes
+        const currentHeadings = extractHeadingsFromDOM()
+        if (currentHeadings.length <= targetIndex) {
+          toggleScrollButton(scrollButton, false)
+          return
+        }
+        
+        const el = document.getElementById(currentHeadings[targetIndex].id)
+        if (!el) {
+          toggleScrollButton(scrollButton, false)
+          return
+        }
         
         const inUpperHalf = el.getBoundingClientRect().top < window.innerHeight / 2
         toggleScrollButton(scrollButton, inUpperHalf)
@@ -183,21 +210,32 @@ export function DynamicRPCTOC() {
       updateButtonVisibility()
       
       observer.observe(targetHeading)
-      isSetup = true
       return true
     }
     
-    // Retry with delays for dynamic content
+    // Initial setup with retries
     setupScrollButton()
     const timeouts = TOC_CONFIG.retryDelays.map(delay => 
-      setTimeout(() => !isSetup && setupScrollButton(), delay)
+      setTimeout(setupScrollButton, delay)
     )
+    
+    // Watch for content changes and re-setup button
+    const mainContent = document.querySelector(TOC_CONFIG.selectors.mainContent)
+    if (mainContent) {
+      mutationObserver = new MutationObserver(() => {
+        // Clear previous debounce timer
+        if (setupDebounceTimer) clearTimeout(setupDebounceTimer)
+        // Debounce re-setup to avoid excessive calls
+        setupDebounceTimer = setTimeout(setupScrollButton, 200)
+      })
+      mutationObserver.observe(mainContent, { childList: true, subtree: true })
+    }
     
     return () => {
       timeouts.forEach(clearTimeout)
-      observer?.disconnect()
-      if (scrollHandler) window.removeEventListener('scroll', scrollHandler)
-      if (clickHandler && buttonRef) buttonRef.removeEventListener('click', clickHandler, true)
+      if (setupDebounceTimer) clearTimeout(setupDebounceTimer)
+      cleanupObservers()
+      mutationObserver?.disconnect()
     }
   }, [])
   
