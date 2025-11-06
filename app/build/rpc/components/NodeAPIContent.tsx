@@ -84,12 +84,15 @@ const versions = [
 ].reverse();
 
 export default function RPCDocumentation() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    // Initialize with current theme on mount
+    if (typeof document !== 'undefined') {
+      return document.documentElement.classList.contains('dark');
+    }
+    return false;
+  });
   
   useEffect(() => {
-    // Set initial theme
-    setIsDark(document.documentElement.classList.contains('dark'));
-    
     // Watch for theme changes
     const observer = new MutationObserver(() => {
       setIsDark(document.documentElement.classList.contains('dark'));
