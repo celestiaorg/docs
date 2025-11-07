@@ -54,12 +54,12 @@ const RPCMethod = ({
                 onClick={() => activateSidebar(param)}
               >
                 {param.description}
-                {length - 1 != i && ', '}
+                {length - 1 !== i && ', '}
               </span>
             </span>
           ))}
           )
-          {method.result.description != 'Null' && (
+          {method.result.description !== 'Null' && (
             <span
               className="x:ml-2 x:text-sm x:text-primary-600 x:dark:text-primary-500 x:cursor-pointer x:hover:underline"
               onClick={() => activateSidebar(method.result)}
@@ -194,7 +194,7 @@ const RPCMethod = ({
                   id: 1,
                   jsonrpc: '2.0',
                   result: (() => {
-                    if (method.result.description == 'Null') return [];
+                    if (method.result.description === 'Null') return [];
                     const examples = method.result.schema?.examples;
                     return (Array.isArray(examples) && examples.length > 0) 
                       ? examples[0] 

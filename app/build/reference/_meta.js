@@ -1,5 +1,5 @@
 const meta = {
   'api': 'API',
-}
+};
 
-export default meta
+export default meta;
