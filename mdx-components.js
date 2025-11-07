@@ -1,8 +1,8 @@
-import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs' // nextra-theme-blog or your custom theme
- 
-// Get the default MDX components
+import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
+
+// Get the default MDX components from nextra-theme-docs
 const themeComponents = getThemeComponents()
- 
+
 // Merge components
 export function useMDXComponents(components) {
   return {
