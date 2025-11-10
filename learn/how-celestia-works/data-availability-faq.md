@@ -71,15 +71,15 @@ on how data availability sampling is like flipping a coin.
 
 Celestia assumes that there is a minimum number of light nodes that are
 conducting data availability sampling for a given block size. This assumption
-is necessary so that a full node can reconstruct an entire block from the
+is necessary so that a bridge node can reconstruct an entire block from the
 portions of data light nodes sampled and stored. The amount of light nodes
 that are needed will depend on the block size - for bigger blocks more light
 nodes are assumed to be running.
 
 A second notable assumption that is made by light nodes is that they are
-connected to at least one honest full node. This ensures that they can receive
+connected to at least one honest bridge node. This ensures that they can receive
 fraud proofs for incorrectly erasure coded blocks. If a light node is not
-connected to an honest full node, such as during an eclipse attack, it can’t
+connected to an honest bridge node, such as during an eclipse attack, it can’t
 verify that the block is improperly constructed.
 
 ## Why is block reconstruction necessary for security?
@@ -91,7 +91,7 @@ fraud proofs to verify that erasure coding is incorrect, the full block
 data is needed to generate a bad encoding fraud proof.
 
 There could be a situation where validators only provide data to light nodes
-and not full nodes. If the full nodes don’t have the ability to reconstruct the
+and not bridge nodes. If the bridge nodes don’t have the ability to reconstruct the
 full block from the portions of data stored by light nodes, they wouldn’t be
 able to generate a bad encoding fraud proof.
 

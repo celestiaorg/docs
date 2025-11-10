@@ -38,7 +38,7 @@ To verify that the data is available, Celestia light nodes are sampling
 the $2k \times 2k$ data shares.
 
 Every light node randomly chooses a set of unique coordinates in the
-extended matrix and queries full nodes for the data shares and the
+extended matrix and queries bridge nodes for the data shares and the
 corresponding Merkle proofs at those coordinates. If light nodes
 receive a valid response for each sampling query, then there is a
 [high probability guarantee](https://github.com/celestiaorg/celestia-node/issues/805#issuecomment-1150081075)
@@ -48,7 +48,7 @@ Additionally, every received data share with a correct Merkle proof
 is gossiped to the network. As a result, as long as the Celestia light
 nodes are sampling together enough data shares (_i.e._, at least
 $k \times k$ unique shares),
-the full block can be recovered by honest full nodes.
+the full block can be recovered by honest bridge nodes.
 
 For more details on DAS, take a look at the [original paper](https://arxiv.org/abs/1809.09044).
 

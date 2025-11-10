@@ -431,10 +431,6 @@ function sidebarHome() {
                   collapsed: true,
                   items: [
                     { text: "Light node", link: "/how-to-guides/light-node" },
-                    {
-                      text: "Full node",
-                      link: "/how-to-guides/full-storage-node",
-                    },
                     { text: "Bridge node", link: "/how-to-guides/bridge-node" },
                   ],
                 },
