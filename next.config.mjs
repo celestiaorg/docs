@@ -24,4 +24,11 @@ export default withNextra({
   experimental: {
     mdxRs: true,
   },
+  webpack: (config) => {
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: ['**/node-rpc-docs/**', '**/node_modules/**']
+    }
+    return config
+  }
 })

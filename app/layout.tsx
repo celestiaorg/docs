@@ -32,7 +32,7 @@ const navbar = (
 )
 const footer = <Footer>© {new Date().getFullYear()} Celestia Labs. All rights reserved.</Footer>
  
-export default async function RootLayout({ children }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       // Not required, but good for SEO
@@ -58,7 +58,6 @@ export default async function RootLayout({ children }) {
           pageMap={await getPageMap()}
           docsRepositoryBase="https://github.com/shuding/nextra/tree/main/docs"
           footer={footer}
-          // ... Your additional layout options
         >
           {children}
         </Layout>

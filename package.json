@@ -14,17 +14,26 @@
     "pre-push": "npm run lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@monaco-editor/react": "^4.7.0",
+    "@open-rpc/client-js": "^2.0.0",
+    "axios": "^1.13.2",
     "next": "16.0.0",
     "nextra": "^4.6.0",
     "nextra-theme-docs": "^4.6.0",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "19.2.0",
+    "react-icons": "^5.5.0",
+    "react-syntax-highlighter": "^16.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
+    "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^19",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "pagefind": "^1.4.0",
