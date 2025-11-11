@@ -2,13 +2,14 @@
   "name": "docs",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind",
     "start": "next start",
     "lint": "eslint",
-    "prepare": "simple-git-hooks",
-    "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind"
+    "prepare": "simple-git-hooks"
   },
   "simple-git-hooks": {
     "pre-push": "npm run lint"
@@ -36,6 +37,7 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
+    "glob": "^11.0.3",
     "pagefind": "^1.4.0",
     "simple-git-hooks": "^2.13.1",
     "tailwindcss": "^4",

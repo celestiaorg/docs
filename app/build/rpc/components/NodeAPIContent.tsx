@@ -11,6 +11,9 @@ import Playground from '../components/Playground';
 import RPCMethod from '../components/RPCMethod';
 import ParamModal from '../components/ParamModal';
 
+// Get base path for asset references
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 function extractAuth(methodDescription: string | undefined): string {
   if (!methodDescription) return '';
   return methodDescription.split('Auth level: ')[1] || '';
@@ -114,7 +117,7 @@ export default function RPCDocumentation() {
     }
     setError(null);
     try {
-      const response = await axios.get(`/specs/openrpc-${version}.json`);
+      const response = await axios.get(`${basePath}/specs/openrpc-${version}.json`);
       setSpec(response.data);
       const hash = window.location.hash;
       window.history.replaceState({}, '', `?version=${version}${hash}`);

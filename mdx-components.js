@@ -1,4 +1,5 @@
 import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
+import { BaseImage } from './components/BaseImage'
 
 // Get the default MDX components from nextra-theme-docs
 const themeComponents = getThemeComponents()
@@ -7,6 +8,7 @@ const themeComponents = getThemeComponents()
 export function useMDXComponents(components) {
   return {
     ...themeComponents,
+    BaseImage,
     ...components
   }
 }

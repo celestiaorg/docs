@@ -9,15 +9,17 @@ const withNextra = nextra({
   },
 })
 
-const basePath = process.env.BASE_PATH ?? ''
-const assetPrefix = process.env.NEXT_PUBLIC_BASE_PATH ?? basePath
- 
+// Follow VitePress pattern: use BASE environment variable with trailing slash
+const { BASE: base = "" } = process.env;
+const basePath = base ? base.replace(/\/$/, '') : undefined; // Remove trailing slash for Next.js
+
 // Export the final Next.js config with Nextra included
 export default withNextra({
   // Add regular Next.js options here
-  basePath: basePath || undefined,
-  assetPrefix: assetPrefix || undefined,
+  basePath: basePath,
+  assetPrefix: base || undefined, // Keep trailing slash for assets
   output: 'export',
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
@@ -27,7 +29,7 @@ export default withNextra({
   webpack: (config) => {
     config.watchOptions = {
       ...config.watchOptions,
-      ignored: ['**/node-rpc-docs/**', '**/node_modules/**']
+      ignored: ['**/node_modules/**']
     }
     return config
   }

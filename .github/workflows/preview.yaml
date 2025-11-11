@@ -1,38 +1,22 @@
-name: Deploy PR previews
+name: Deploy New Docs Preview
 
 on:
-  pull_request_target:
+  push:
     branches:
       - docs-glow-up
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - closed
-
-permissions:
-  contents: read
-  pull-requests: write
 
 concurrency:
-  group: preview-${{ github.event.pull_request.number }}
+  group: new-docs-preview
   cancel-in-progress: true
 
 jobs:
-  deploy-preview:
-    if: github.event.action != 'closed'
+  deploy-new-docs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write
-    env:
-      BASE_PATH: /docs-preview/pr-${{ github.event.number }}
-      NEXT_PUBLIC_BASE_PATH: /docs-preview/pr-${{ github.event.number }}
     steps:
-      - name: Checkout PR head
+      - name: Checkout
         uses: actions/checkout@v4.1.7
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Setup Node
         uses: actions/setup-node@v4.0.3
@@ -44,32 +28,40 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build static site
+        env:
+          BASE: /docs-preview/new_docs/
+          NEXT_PUBLIC_BASE_PATH: /docs-preview/new_docs
         run: yarn build
 
-      - name: Export static HTML
-        run: yarn next export
-
-      - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1
+      - name: Checkout docs-preview repository
+        uses: actions/checkout@v4.1.7
         with:
-          source-dir: out
-          deploy-repository: celestiaorg/docs-preview
+          repository: celestiaorg/docs-preview
           token: ${{ secrets.PR_PREVIEW_DEPLOY }}
-          preview-branch: main
-          umbrella-dir: .
+          path: docs-preview
 
-  remove-preview:
-    if: github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    steps:
-      - name: Remove preview deployment
-        uses: rossjrw/pr-preview-action@v1
-        with:
-          deploy-repository: celestiaorg/docs-preview
-          token: ${{ secrets.PR_PREVIEW_DEPLOY }}
-          preview-branch: main
-          umbrella-dir: .
-          clean: true
+      - name: Clear previous new_docs deployment
+        run: |
+          rm -rf docs-preview/new_docs
+          mkdir -p docs-preview/new_docs
+
+      - name: Copy built files
+        run: |
+          cp -r out/* docs-preview/new_docs/
+
+      - name: Create .nojekyll file
+        run: |
+          touch docs-preview/.nojekyll
+
+      - name: Deploy to docs-preview
+        run: |
+          cd docs-preview
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to deploy"
+          else
+            git commit -m "Deploy new docs preview from ${{ github.sha }}"
+            git push
+          fi
