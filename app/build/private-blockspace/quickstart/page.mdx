@@ -1,0 +1,283 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Private blockspace quickstart
+
+Private blockspace encrypts your blob data before it’s posted to Celestia using a lightweight proxy.  
+In this quickstart, you’ll use **hosted Celestia nodes (like QuickNode)** instead of running your own.
+
+<Steps>
+
+## Get your node credentials
+
+To use **Private Blockspace**, you’ll need access to a hosted **Celestia Data Availability (DA) + Consensus Node**.  
+The easiest option is **[QuickNode’s Celestia service](https://www.quicknode.com/docs/celestia)**, which provides ready-to-use mainnet and Mocha testnet endpoints.
+
+1. Visit the [QuickNode Celestia dashboard](https://www.quicknode.com/docs/celestia) and log in (or create a free account).  
+2. Click **Create Endpoint**, then select:  
+   - **Chain:** `Celestia`  
+   - **Network:** `Mainnet` or `Mocha`
+
+<Callout type="info">
+You’ll need to create a QuickNode plan before spinning up your endpoint.  
+They offer a **free 30-day trial**, which is enough for this quickstart.
+</Callout>
+
+3. Copy the generated endpoint URL (it looks like this):
+   ```
+   https://celestia-mocha.quiknode.pro/<your-token>/
+   ```
+4. Copy the token from your endpoint URL (this is your **write token**).  
+5. Save both the **URL** and **token** — you’ll add them to your `.env` file next.
+
+
+
+## Create your `.env`
+
+Download the repo’s `example.env` and save it as `.env`.  
+Edit **only** the following items.
+
+| Key | What to do |
+| --- | --- |
+| `PDA_DB_PATH` | Absolute path for local proxy data (e.g. `/Users/you/dev/pda-db`) |
+| `ENCRYPTION_KEY` | 32-byte key — see command below |
+| `CELESTIA_NODE_RPC` | Your QuickNode HTTPS endpoint (includes your token) |
+| `CELESTIA_CORE_GRPC` | Same host + `:9090` (no token in path) |
+| `CELESTIA_NODE_WRITE_TOKEN` | Your QuickNode token |
+| `CELESTIA_SIGNING_KEY` | 32-byte private key for your signer (funded on Mocha) |
+| `TLS_CERTS_PATH` / `TLS_KEY_PATH` | Path to your local TLS cert + key (see next step) |
+| `CELESTIA_NETWORK` etc. | Keep defaults; ensure all paths are absolute |
+
+### Generate an `ENCRYPTION_KEY` (ChaCha20, 32 bytes)
+This is a random 256-bit symmetric key, **not** a wallet key.
+
+```bash
+openssl rand -hex 32
+# or
+python3 -c "import secrets; print(secrets.token_hex(32))"
+```
+
+Paste the value (no quotes) as your `ENCRYPTION_KEY`.
+
+
+
+## Generate TLS certificates
+
+The proxy requires TLS certificates (even for local testing).
+
+```bash
+mkdir -p tls
+openssl req -x509 -nodes -newkey rsa:2048   -keyout tls/tls.key -out tls/tls.crt -days 365   -subj "/CN=localhost"
+```
+
+Then mount that folder when running Docker and set:
+```
+TLS_CERTS_PATH=/app/tls/tls.crt
+TLS_KEY_PATH=/app/tls/tls.key
+```
+
+<Callout type="warning">
+Without valid certs, the proxy will exit with  
+`TLS_CERTS_PATH required: NotPresent`.
+</Callout>
+
+
+
+## Fund your signer
+
+Your `CELESTIA_SIGNING_KEY` corresponds to a Mocha testnet address.  
+That address must exist and hold some test TIA.
+
+**Get funds from the [Celestia Mocha faucet](https://faucet.celestia-mocha.com).**
+
+<Callout type="info">
+You can verify your signer address in the proxy logs it prints the address when starting.
+</Callout>
+
+
+
+## Run the proxy container
+
+**Apple Silicon (M1/M2/M3)**
+
+The published image is `amd64` only — run it under emulation:
+
+```bash
+docker pull --platform=linux/amd64 ghcr.io/celestiaorg/pda-proxy:latest
+mkdir -p "$PDA_DB_PATH"
+
+docker run --name pda-proxy --rm -it   --platform=linux/amd64   --env-file ./.env   -v "$PDA_DB_PATH:$PDA_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pda-proxy:latest
+```
+
+**Intel/AMD Linux or other amd64 hosts**
+
+```bash
+docker pull ghcr.io/celestiaorg/pda-proxy:latest
+mkdir -p "$PDA_DB_PATH"
+
+docker run --name pda-proxy --rm -it   --env-file ./.env   -v "$PDA_DB_PATH:$PDA_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pda-proxy:latest
+```
+
+### Verify it’s running
+
+Check logs:
+```bash
+docker logs -f pda-proxy
+```
+
+Or test status:
+```bash
+curl -k -sS -X POST   -H "Content-Type: application/json"   -H "Authorization: Bearer YOUR_TOKEN"   --data '{"jsonrpc":"2.0","id":1,"method":"status","params":[]}'   https://127.0.0.1:26657 | jq .
+```
+
+<Callout type="info">
+On Apple Silicon, keep `--platform=linux/amd64` until a native arm64 image exists.
+</Callout>
+
+## Send a blob
+
+Try a small encrypted payload:
+
+```bash
+curl -k -sS \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -X POST --data '{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "blob.Submit",
+    "params": [[
+      {
+        "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAMJ/xGlNMdE=",
+        "data": "SSBMb3ZlIEJpZyBCbG9icw==",
+        "share_version": 0,
+        "commitment": "aHlbp+J9yub6hw/uhK6dP8hBLR2mFy78XNRRdLf2794=",
+        "index": -1
+      }
+    ], {}]
+  }' https://127.0.0.1:26657 | jq .
+
+```
+
+The proxy will:
+- Encrypt your blob  
+- Submit to Celestia  
+- Return a `height` and `tx hash`
+
+If the response includes `"result": { "height": "…" }`, you’re set. Jump to **Verify your blob** with that height.
+
+If you see `"[pda-proxy] Verifiable encryption processing..."`, the proxy queued the job. Two quick options:
+
+**Option A — resend once**
+
+Sometimes it finishes fast and you’ll get the height on the next call.
+
+**Option B — find the height**
+
+Either tail logs:
+```bash
+docker logs -f pda-proxy | egrep -i 'submit|height|commit|error'
+```
+
+Or poll a small window around the tip for your namespace:
+```bash
+LATEST=$(
+  curl -k -sS \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer YOUR_TOKEN" \
+    -X POST --data '{"jsonrpc":"2.0","id":1,"method":"status","params":[]}' \
+    https://127.0.0.1:26657 |
+  jq -r '.result.sync_info.latest_block_height'
+)
+
+for h in $(seq $((LATEST-2)) $((LATEST+2))); do
+  RES=$(
+    curl -k -sS \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer YOUR_TOKEN" \
+      -X POST --data "{
+        \"id\":1,
+        \"jsonrpc\":\"2.0\",
+        \"method\":\"blob.GetAll\",
+        \"params\":[ $h, [ \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAMJ/xGlNMdE=\" ] ]
+      }" \
+      https://127.0.0.1:26657
+  )
+
+  if echo "$RES" | jq -e '.result | length > 0' >/dev/null; then
+    echo "Height $h"
+    echo "$RES" | jq .
+  fi
+done
+```
+Copy the `commitment` you see there and use it with `blob.Get`.
+
+
+## Verify your blob
+
+Now, fetch the same blob through your proxy using the following command with `HEIGHT` replaced with your actual height:
+
+```bash
+curl -k -sS   -H "Content-Type: application/json"   -H "Authorization: Bearer YOUR_TOKEN"   -X POST --data "{
+    \"id\":1,
+    \"jsonrpc\":\"2.0\",
+    \"method\":\"blob.GetAll\",
+    \"params\":[HEIGHT,[\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAMJ/xGlNMdE=\"]]
+  }" https://127.0.0.1:26657 | jq .
+```
+
+You’ll see a `commitment` and your decrypted data:
+
+```json
+{
+  "commitment": "…base64…",
+  "data": "SSBMb3ZlIEJpZyBCbG9icw==",
+  "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAMJ/xGlNMdE="
+}
+```
+
+<Callout type="info">
+**Decode base64 to plaintext**
+
+When you retrieve a blob, the `data` field is base64. To see the plaintext:
+
+**macOS/Linux**
+```bash
+echo "SSBMb3ZlIEJpZyBCbG9icw==" | base64 -d
+```
+
+**Python**
+```bash
+python3 - <<'PY'
+import base64
+print(base64.b64decode("SSBMb3ZlIEJpZyBCbG9icw==").decode())
+PY
+```
+
+**Node.js**
+```bash
+node -e 'console.log(Buffer.from("SSBMb3ZlIEJpZyBCbG9icw==","base64").toString())'
+```
+</Callout>
+</Steps>
+
+## Troubleshooting
+
+| Error message | Cause | Fix |
+| --- | --- | --- |
+| `TLS_CERTS_PATH required` | Missing or commented-out cert vars | Generate certs (see above). |
+| `account not found` | Unfunded signer | Use [Mocha faucet](https://faucet.celestia-mocha.com). |
+| `blob: not found` | Wrong commitment | Run `blob.GetAll` to find the real one. |
+| `grpc-status header missing` | Invalid gRPC URL | Must be `https://<host>:9090`, no token. |
+
+
+
+## ✅ You’re done
+
+You’re running **Private Blockspace** end-to-end using hosted infrastructure.
+
+✅ No local Celestia node  
+✅ No GPU or prover setup  
+✅ Fully containerized  
+✅ Encrypted data posted to Celestia
+
+
