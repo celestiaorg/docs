@@ -122,7 +122,7 @@ Next, start your node:
 
 ```bash
 celestia bridge start --core.ip rpc-mocha.pops.one --p2p.network mocha \
-    --node.store /home/user/celestia-<node-type>-location/ --core.port <port>
+    --node.store /home/user/celestia-bridge-location/ --core.port <port>
 ```
 
 If you choose to change the location of your node store,
@@ -138,7 +138,7 @@ To show the keys you should add `--keyring-dir` like this example:
 
 ```bash
 ./cel-key list --p2p.network mocha --node.type bridge \
-    --keyring-dir /home/user/celestia-<node-type>-location/keys/
+    --keyring-dir /home/user/celestia-bridge-location/keys/
 ```
 
 ### Examples
@@ -232,7 +232,7 @@ celestia <node-type> start --p2p.network <network>
 
 ## Clearing the data store
 
-For **bridge, and light nodes**,
+For **bridge and light nodes**,
 remove the data store with this command:
 
 ```bash

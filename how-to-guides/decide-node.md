@@ -15,7 +15,7 @@ get started with running a data availability [light node](/how-to-guides/light-n
 You can also play around with the Data Availability API in
 [this tutorial for posting and retrieving data with a light node](/tutorials/node-tutorial.md).
 
-### Other DA node
+### Bridge DA node
 
 Depending on your use case, you also may want to run a [bridge node](/how-to-guides/bridge-node.md).
 
