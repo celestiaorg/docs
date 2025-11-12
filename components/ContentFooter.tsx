@@ -1,9 +1,8 @@
 import Link from "next/link";
 
 export const ContentFooter = () => (
-  <div>
-    <br />
-    <h3>
+  <div className="mt-12 border-t pt-8">
+    <h3 style={{ marginTop: '1.5rem' }}>
       Feel stuck?{" "}
       <Link
         href="https://discord.gg/celestiacommunity"
