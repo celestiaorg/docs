@@ -8,6 +8,16 @@ import { FontStyles } from '@/components/FontStyles'
 // Use BASE env var (same as next.config.mjs) and ensure it's available client-side
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || process.env.BASE?.replace(/\/$/, '') || ''
 const withBasePath = (path: string) => `${basePath}${path}`
+
+// Theme configuration
+const THEME_CONFIG = {
+  projectLink: 'https://github.com/celestiaorg/docs',
+  chatLink: 'https://discord.gg/celestiacommunity',
+  docsRepositoryBase: 'https://github.com/celestiaorg/docs',
+  footerText: 'Celestia Documentation',
+  primaryHue: 200,
+  primarySaturation: 100,
+}
  
 export const metadata = {
   // Define your metadata here
@@ -28,10 +38,11 @@ const navbar = (
         style={{ height: 'auto' }}
       />
     }
-    projectLink="https://github.com/celestiaorg/celestia"
+    projectLink={THEME_CONFIG.projectLink}
+    chatLink={THEME_CONFIG.chatLink}
   />
 )
-const footer = <Footer>© {new Date().getFullYear()} Celestia Labs. All rights reserved.</Footer>
+const footer = <Footer>{THEME_CONFIG.footerText}</Footer>
  
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -58,7 +69,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           banner={banner}
           navbar={navbar}
           pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/shuding/nextra/tree/main/docs"
+          docsRepositoryBase={THEME_CONFIG.docsRepositoryBase}
           footer={footer}
         >
           {children}
