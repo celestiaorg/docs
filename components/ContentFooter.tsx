@@ -12,7 +12,7 @@ export const ContentFooter = () => (
           textDecoration: "underline",
         }}
       >
-        Go to our discord!
+        Go to our Discord!
       </Link>
     </h3>
   </div>
