@@ -38,7 +38,6 @@ Consensus:
 Data Availability:
 
 - [Bridge node](/how-to-guides/bridge-node.md)
-- [Full storage node](/how-to-guides/full-storage-node.md)
 - [Light node](/how-to-guides/light-node.md)
 
 Select the type of node you would like to run and follow the instructions
@@ -97,7 +96,7 @@ Several community providers offer comprehensive node setup tools, installation s
 | -------- | -------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------- |
 | ITRocket | [Setup guide](https://itrocket.net/services/testnet/celestia/) | [State sync](https://itrocket.net/services/testnet/celestia/) | [Chain status](https://itrocket.net/services/testnet/celestia/) |
 
-### Community bridge and full node endpoints
+### Community bridge node endpoints
 
 You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
 
@@ -209,9 +208,9 @@ broadcast transactions.
 
 - `celestiam.tendermintrpc.lava.build`
 
-## Community bridge and full node endpoints
+## Community bridge node endpoints
 
-The endpoints below are for bridge and full nodes only. They can be used to
+The endpoints below are for bridge nodes only. They can be used to
 find bootstrapper peers in the p2p network.
 
 Bridge node 1:
@@ -223,22 +222,6 @@ Bridge node 2:
 
 - da-bridge-{{constants.mochaChainId}}-2.celestia-mocha.com
 - bridge-{{constants.mochaChainId}}-2.da.celestia-mocha.com
-
-Full node 1:
-
-- da-full-1-{{constants.mochaChainId}}.celestia-mocha.com
-- full-1-{{constants.mochaChainId}}.da.celestia-mocha.com
-
-Full node 2:
-
-- da-full-2-{{constants.mochaChainId}}.celestia-mocha.com
-- full-2-{{constants.mochaChainId}}.da.celestia-mocha.com
-- celestia-testnet-da-full-storage.mzonder.com
-  - RPC port: 27758
-  - Gateway port: 27759
-- celestia-testnet-da-full-storage.itrocket.net
-  - RPC port: 26658
-  - Gateway port: 26659
 
 ## Mocha testnet faucet
 

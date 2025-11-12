@@ -89,7 +89,7 @@ manually specify the `--node.store` flag for each RPC request.
 
 - The presence of a lock signifies a running node.
 - Networks are ordered as Mainnet Beta, Mocha, Arabica, private, custom.
-- Node types are ordered as bridge, full, and light.
+- Node types are ordered as bridge and light.
 - Each network has only one running node type.
 - Multiple nodes of the same network and type are prohibited
   (resulting in an `Error: node: store is in use`).
@@ -121,8 +121,8 @@ celestia <node-type> init --node.store /home/user/celestia-<node-type>-location/
 Next, start your node:
 
 ```bash
-celestia full start --core.ip rpc-mocha.pops.one --p2p.network mocha \
-    --node.store /home/user/celestia-<node-type>-location/ --core.port <port>
+celestia bridge start --core.ip rpc-mocha.pops.one --p2p.network mocha \
+    --node.store /home/user/celestia-bridge-location/ --core.port <port>
 ```
 
 If you choose to change the location of your node store,
@@ -137,15 +137,15 @@ When using `cel-key`, the process is different.
 To show the keys you should add `--keyring-dir` like this example:
 
 ```bash
-./cel-key list --p2p.network mocha --node.type full \
-    --keyring-dir /home/user/celestia-<node-type>-location/keys/
+./cel-key list --p2p.network mocha --node.type bridge \
+    --keyring-dir /home/user/celestia-bridge-location/keys/
 ```
 
 ### Examples
 
-#### Mainnet Beta full and Mocha light
+#### Mainnet Beta bridge and Mocha light
 
-This example uses a Mainnet Beta full node and a Mocha light node. When
+This example uses a Mainnet Beta bridge node and a Mocha light node. When
 making the request:
 
 ```bash
@@ -159,9 +159,9 @@ The request will go to the Mainnet Beta node, and a 401 will show in
 this node's logs. Note that a 401 is expected because this blob was
 posted to Mocha and neither the namespace nor the blob exist on Mainnet Beta.
 
-#### Mocha full and Arabica light
+#### Mocha bridge and Arabica light
 
-This example uses a Mocha full node and an Arabica light node. When
+This example uses a Mocha bridge node and an Arabica light node. When
 making the request:
 
 ```bash
@@ -177,7 +177,7 @@ making the request:
 }
 ```
 
-The request will go to the Mocha full node, and result shown as expected.
+The request will go to the Mocha bridge node, and result shown as expected.
 
 #### Using a custom rpc.config address
 
@@ -232,7 +232,7 @@ celestia <node-type> start --p2p.network <network>
 
 ## Clearing the data store
 
-For **bridge, full, and light nodes**,
+For **bridge and light nodes**,
 remove the data store with this command:
 
 ```bash
@@ -314,7 +314,7 @@ sudo systemctl restart celestia-bridge
 
 ## Error: "no space left on device"
 
-When a bridge or full storage node runs on `ext4` file system, there will be errors like the following due to large folder size:
+When a bridge node runs on `ext4` file system, there will be errors like the following due to large folder size:
 
 ```bash-vue
 ERROR   header/sync     sync/sync.go:227        syncing headers {"from": 5074102, "to": 5161144, "err": "creating file: creating ODSQ4 file: creating Q4 file: creating Q4 file: open /root/.celestia-bridge-{{constants.mochaChainId}}/blocks/C9ADF6D9F862D92993D67977DE407D17ECF7F1DACE5FB7FE9A6845F4BD0172CE.q4: no space left on device"}

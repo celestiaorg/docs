@@ -12,7 +12,7 @@ configuration, and other information relevant to the node.
 The following are the directories and files found in the datastore:
 
 - `/blocks`: This directory stores blocks. Each file contained in this directory
-  represents a block on Celestia and contains its associated data. This directory is present in the datastore for bridge and full nodes but not light nodes, as light nodes do not store blocks.
+  represents a block on Celestia and contains its associated data. This directory is present in the datastore for bridge nodes but not light nodes, as light nodes do not store blocks.
 
 - `/data`: This directory contains block headers and various files belonging to the node's log-structured merge (LSM) storage system. The LSM files (such as `DISCARD`, `KEYREGISTRY`, and `MANIFEST`) manage the efficient storage and retrieval of data.
 

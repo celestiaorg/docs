@@ -21,8 +21,6 @@ Data Availability:
 
 - [Bridge node](/how-to-guides/bridge-node.md): This node bridges blocks between the
   Data-Availability network and the Consensus network.
-- [Full storage node](/how-to-guides/full-storage-node.md): This node stores all
-  the data but does not connect to Consensus.
 - [Light node](/how-to-guides/light-node.md): Light clients conduct data availability
   sampling on the Data Availability network.
 
@@ -35,11 +33,10 @@ each tutorial guide.
 
 ### Non-archival data availability nodes
 
-| Node type         | Memory     | CPU         | Disk       | Bandwidth |
-| ----------------- | ---------- | ----------- | ---------- | --------- |
-| Light node        | 500 MB RAM | Single core | 20 GB SSD  | 56 Kbps   |
-| Bridge node       | 64 GB RAM  | 8 cores     | 8 TiB NVME | 1 Gbps    |
-| Full storage node | 64 GB RAM  | 8 cores     | 8 TiB NVME | 1 Gbps    |
+| Node type   | Memory     | CPU         | Disk       | Bandwidth |
+| ----------- | ---------- | ----------- | ---------- | --------- |
+| Light node  | 500 MB RAM | Single core | 20 GB SSD  | 56 Kbps   |
+| Bridge node | 64 GB RAM  | 8 cores     | 8 TiB NVME | 1 Gbps    |
 
 ### Archival data availability nodes
 
@@ -47,7 +44,6 @@ each tutorial guide.
 | ----------------------------- | ---------- | ----------- | -------------- | --------- |
 | Light node (unpruned headers) | 500 MB RAM | Single core | 111.7 KB/block | 56 Kbps   |
 | Bridge node                   | 64 GB RAM  | 8 cores     | 160 TiB NVME\* | 1 Gbps    |
-| Full storage node             | 64 GB RAM  | 8 cores     | 160 TiB NVME\* | 1 Gbps    |
 
 \*Archival disk requirement is based on the current v6 32MB/6s throughput at maximum capacity. In reality the requirement can be much lower and we advise regularly checking disk usage and having at least 1 month worth of max throughput of extra disk space (8TiB).
 

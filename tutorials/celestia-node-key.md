@@ -31,7 +31,7 @@ tutorial.
 Inside the celestia-node repository is a utility called `cel-key` that uses
 the key utility provided by Cosmos-SDK under the hood. The utility can be
 used to `add`, `delete`, and manage keys for any DA node
-type `(bridge || full || light)`, or just keys in general.
+type `(bridge || light)`, or just keys in general.
 
 ### Installation
 
@@ -77,11 +77,6 @@ You do not need to declare a network for Mainnet Beta. Refer to
   --p2p.network <network>
 ```
 
-```bash-vue [Full]
-./cel-key add <key-name> --keyring-backend test --node.type full \
-  --p2p.network <network>
-```
-
 ```bash-vue [Light]
 ./cel-key add <key-name> --keyring-backend test --node.type light \
   --p2p.network <network>
@@ -121,11 +116,6 @@ ASCII-armored format.
   --p2p.network <network>
 ```
 
-```bash-vue [Full]
-./cel-key export <key-name> --keyring-backend test --node.type full \
-  --p2p.network <network>
-```
-
 ```bash-vue [Light]
 ./cel-key export <key-name> --keyring-backend test --node.type light \
   --p2p.network <network>
@@ -147,11 +137,6 @@ then enter your bip39 mnemonic:
 ```bash-vue [Bridge]
 ./cel-key add <key-name> --recover --keyring-backend test \
   --node.type bridge --p2p.network <network>
-```
-
-```bash-vue [Full]
-./cel-key add <key-name> --recover --keyring-backend test \
-  --node.type full --p2p.network <network>
 ```
 
 ```bash-vue [Light]

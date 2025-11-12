@@ -83,7 +83,7 @@ data is available. This may happen due to network congestion for example.
 Alternatively, light nodes may accept a block header although the data
 is not available, i.e., a _false positive_. This is possible since the
 soundness property (i.e., if an honest light node accepts a block as available,
-then at least one honest full node will eventually have the entire block data)
+then at least one honest bridge node will eventually have the entire block data)
 is probabilistically guaranteed (for more details, take a look at the
 [original paper](https://arxiv.org/abs/1809.09044)).
 

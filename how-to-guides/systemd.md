@@ -73,44 +73,6 @@ until it is in sync.
 
 ## Data availability nodes
 
-### Celestia full storage node
-
-Create Celestia full storage node systemd file:
-
-```sh
-sudo tee <<EOF >/dev/null /etc/systemd/system/celestia-full.service
-[Unit]
-Description=celestia-full Cosmos daemon
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$(which celestia) full start
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=1400000
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-If the file was created successfully you will be able to see its content:
-
-```sh
-cat /etc/systemd/system/celestia-full.service
-```
-
-Enable and start celestia-full daemon:
-
-```sh
-sudo systemctl enable celestia-full
-sudo systemctl start celestia-full && sudo journalctl -u \
-celestia-full.service -f
-```
-
-You should be seeing logs coming through of the full storage node syncing.
-
 ### Celestia bridge node
 
 Create Celestia Bridge systemd file:

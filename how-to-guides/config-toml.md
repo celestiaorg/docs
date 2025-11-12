@@ -23,7 +23,6 @@ After initialization, for any type of node, you will find a
 
 - `$HOME/.celestia-bridge/config.toml` for bridge node
 - `$HOME/.celestia-light/config.toml` for light node
-- `$HOME/.celestia-full/config.toml` for a full DA node
 
 Let's break down some of the most used sections.
 
