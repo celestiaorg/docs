@@ -1,9 +1,8 @@
-
 # Optional: Diving deeper into the stack
 
 This section covers some more in-depth topics that you may find useful when working with your Celestia light node.
 
-import { Steps, Callout } from 'nextra/components'
+import { Steps, Callout } from "nextra/components";
 
 ## Node store contents
 
@@ -52,6 +51,7 @@ Celestia supports three transaction submission modes that affect how transaction
 This is the default behavior. Transactions are submitted immediately without a queue.
 
 **Characteristics:**
+
 - Transactions enter the mempool immediately
 - No queuing or waiting for confirmations
 - Potential sequence number conflicts if submitting multiple transactions quickly
@@ -87,6 +87,7 @@ celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.por
 </Steps>
 
 **Characteristics:**
+
 - Each transaction queues until the previous one is confirmed
 - Preserves strict ordering of transactions based on submission time
 - Avoids sequence mismatch errors
@@ -124,12 +125,14 @@ celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.por
 </Steps>
 
 **How it works:**
+
 - Creates `TxWorkerAccounts` parallel submission lanes
 - Each lane is a subaccount automatically created and funded from your default account
 - Example: `TxWorkerAccounts = 8` creates 7 subaccounts + 1 default account = 8 parallel lanes
 - Enables at least 8 PayForBlobs transactions per block
 
 **Characteristics:**
+
 - Transactions can be submitted concurrently across multiple lanes
 - Does NOT guarantee transaction ordering
 - Blobs may be included in blocks in a different order than submitted
@@ -138,10 +141,13 @@ celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.por
 **Use case:** High-throughput, unordered workflows
 
 <Callout type="warning">
-**Important:** When retrieving blobs submitted in parallel mode, you must track the height, namespace, and commitment for each blob submission, as you won't know which subaccount was used.
+  **Important:** When retrieving blobs submitted in parallel mode, you must
+  track the height, namespace, and commitment for each blob submission, as you
+  won't know which subaccount was used.
 </Callout>
 
 **Subaccount management:**
+
 - Subaccounts are automatically created and funded from your default account
 - They are named `parallel-worker-1`, `parallel-worker-2`, etc. in your keyring
 - Subaccounts are reused across node restarts if `TxWorkerAccounts` value remains the same
@@ -207,6 +213,7 @@ For Linux users, remove the empty string (`''`) after `-i` in the `sed` commands
 sed -i "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
 sed -i "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
 ```
+
 </Callout>
 
 </Steps>
