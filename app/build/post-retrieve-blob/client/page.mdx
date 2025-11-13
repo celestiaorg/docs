@@ -17,7 +17,7 @@ The Celestia Go client lets you submit and retrieve data from the Celestia netwo
 
 ## Quick setup
 
-import { Steps } from "nextra/components";
+import { Steps, Callout } from "nextra/components";
 
 <Steps>
 
@@ -245,9 +245,9 @@ go mod tidy
 
 Choose your connection type:
 
-:::tip
+<Callout type="info">
 For QuickNode: `CELE_DA_URL` uses `https://` and no port, while `CELE_CORE_GRPC` uses a port (e.g. `:9090`) and no `https://` prefix.
-:::
+</Callout>
 
 **QuickNode (recommended for beginners):**
 
@@ -602,13 +602,13 @@ Blob 8 submitted at height 1234568
 
 **Important considerations:**
 
-:::warning
+<Callout type="warning">
 **Ordering**: Parallel submission does NOT guarantee transaction ordering. Blobs may be included in blocks in a different order than submitted.
-:::
+</Callout>
 
-:::warning
+<Callout type="warning">
 **Default account only**: Queued and parallel submission modes always use your default account (`DefaultKeyName`). If you specify a different account in `TxConfig` (via `WithKeyName` or `WithSignerAddress`), it will be ignored and the default account will be used instead.
-:::
+</Callout>
 
 **Retrieving blobs from parallel submission:**
 
