@@ -477,6 +477,7 @@ func submitBlobsQueued(ctx context.Context, c *client.Client) error {
     // Create 5 blobs
     blobs := make([]*blob.Blob, 5)
     namespaces := make([]share.Namespace, 5)
+    commitments := make([][]byte, 5)
 
     for i := 0; i < 5; i++ {
         nsBytes := make([]byte, 10)
@@ -485,6 +486,7 @@ func submitBlobsQueued(ctx context.Context, c *client.Client) error {
         namespaces[i] = ns
         blobs[i], _ = blob.NewBlob(share.ShareVersionZero, ns,
             []byte(fmt.Sprintf("Data %d", i)), nil)
+        commitments[i] = blobs[i].Commitment
     }
 
     heights := make([]uint64, 5)
@@ -506,6 +508,16 @@ func submitBlobsQueued(ctx context.Context, c *client.Client) error {
     if err := g.Wait(); err != nil {
         return err
     }
+
+    // Retrieve and verify all blobs
+    for i := 0; i < 5; i++ {
+        retrieved, err := c.Blob.Get(ctx, heights[i], namespaces[i], commitments[i])
+        if err != nil {
+            return err
+        }
+        fmt.Printf("✓ Blob %d retrieved: %s\n", i+1, string(retrieved.Data()))
+    }
+
     return nil
 }
 ```
@@ -518,6 +530,11 @@ Blob 1 submitted at height 1234568  // Second to call Submit()
 Blob 5 submitted at height 1234569  // Third to call Submit()
 Blob 2 submitted at height 1234570  // Fourth to call Submit()
 Blob 4 submitted at height 1234571  // Fifth to call Submit()
+✓ Blob 1 retrieved: Data 0
+✓ Blob 2 retrieved: Data 1
+✓ Blob 3 retrieved: Data 2
+✓ Blob 4 retrieved: Data 3
+✓ Blob 5 retrieved: Data 4
 ```
 
 Note: With concurrent submission, blobs may print in any order, but their heights will always reflect their submission order (first submitted = lowest height).
@@ -544,7 +561,6 @@ cfg.SubmitConfig.TxWorkerAccounts = 8  // Creates 8 parallel lanes
 ```go
 import (
     "golang.org/x/sync/errgroup"
-    "sync"
 )
 
 func submitBlobsParallel(ctx context.Context, c *client.Client) error {
@@ -583,6 +599,15 @@ func submitBlobsParallel(ctx context.Context, c *client.Client) error {
         return err
     }
 
+    // Retrieve and verify all blobs
+    for i := 0; i < 8; i++ {
+        retrieved, err := c.Blob.Get(ctx, heights[i], namespaces[i], commitments[i])
+        if err != nil {
+            return err
+        }
+        fmt.Printf("✓ Blob %d retrieved: %s\n", i+1, string(retrieved.Data()))
+    }
+
     return nil
 }
 ```
@@ -598,6 +623,14 @@ Blob 5 submitted at height 1234568
 Blob 6 submitted at height 1234568
 Blob 7 submitted at height 1234569
 Blob 8 submitted at height 1234568
+✓ Blob 1 retrieved: Parallel data 0
+✓ Blob 2 retrieved: Parallel data 1
+✓ Blob 3 retrieved: Parallel data 2
+✓ Blob 4 retrieved: Parallel data 3
+✓ Blob 5 retrieved: Parallel data 4
+✓ Blob 6 retrieved: Parallel data 5
+✓ Blob 7 retrieved: Parallel data 6
+✓ Blob 8 retrieved: Parallel data 7
 ```
 
 **Important considerations:**
