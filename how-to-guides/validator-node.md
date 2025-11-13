@@ -414,3 +414,25 @@ Re-download all historical binaries:
 ```bash
 make download-v3-binaries download-v4-binaries download-v5-binaries
 ```
+
+### `ERR failed to LoadFinalizeBlockResponse err="node is not persisting finalize block responses"`
+
+If you encounter an error like:
+
+```bash
+ERR failed to LoadFinalizeBlockResponse err="node is not persisting finalize block responses" module=rpc
+```
+
+Then the RPC node you are querying is not persisting finalize block responses. To resolve, you can query a node that _does_ persist finalize block responses.
+
+If you run the node, you can modify the `config.toml` to set `discard_abci_responses = false`:
+
+```toml
+[storage]
+
+# Set to true to discard ABCI responses from the state store, which can save a
+# considerable amount of disk space. Set to false to ensure ABCI responses are
+# persisted. ABCI responses are required for /block_results RPC queries, and to
+# reindex events in the command-line tool.
+discard_abci_responses = false
+```
