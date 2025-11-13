@@ -394,3 +394,23 @@ then it is likely that the network has upgraded to a new app version but your co
 1. Remove the `data/application.db` inside your CELESTIA_HOME directory.
 1. Download the latest binary for your network.
 1. Restart your consensus node with the relevant `--v2-upgrade-height` for the network you're running on.
+
+### `App cannot be started without CometBFT when using the multiplexer`
+
+If you encounter an error like:
+
+```bash
+2025-11-13 14:48:24 6:48PM ERR App cannot be started without CometBFT when using the multiplexer.
+```
+
+It is possible that one of the historical celestia-app binaries you have downloaded is a multiplexer binary. To resolve you can remove all historical binaries:
+
+```bash
+rm -rf ~/.celestia-app/bin
+```
+
+Re-download all historical binaries:
+
+```bash
+make download-v3-binaries download-v4-binaries download-v5-binaries
+```
