@@ -1,0 +1,1 @@
+const e=Object.freeze({"app-latest-tag":"v6.2.5-mocha","app-latest-sha":"7b98de1e3bbb196cb358825220bf4a8f8fc4c81b","node-latest-tag":"v0.28.2-mocha","node-latest-sha":"e4384c0f4b5de00d65e321ee9f4f400850165e6d"});export{e as m};
