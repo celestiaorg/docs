@@ -174,6 +174,8 @@ The following table lists community-provided consensus node endpoints that you c
 | Trusted Point   | `rpc-celestia-mainnet.trusted-point.com`                 | `api-celestia-mainnet.trusted-point.com`                         | `grpc-celestia-mainnet.trusted-point.com:9095` | -                                                        |
 | deNodes         | `celestia-mainnet-rpc.denodes.xyz`                       | `celestia-mainnet-api.denodes.xyz`                               | `celestia-mainnet-grpc.denodes.xyz:443`        | `wss://celestia-mainnet-rpc.denodes.xyz:443/websocket`   |
 
+| CitizenWeb3     | `rpc.celestia.citizenweb3.com`                           | `api.celestia.citizenweb3.com`                                   | `grpc.celestia.citizenweb3.com:443`            | -                                                        |
+
 ### Connecting DA nodes to consensus nodes
 
 Data availability (DA) nodes need to connect to consensus nodes to sync blocks and access state. When starting a DA node, you'll need to provide a consensus node endpoint using the `--core.ip` parameter and the port.
@@ -233,6 +235,7 @@ There are multiple explorers you can use for Mainnet Beta:
 - [https://mammoblocks.io/](https://mammoblocks.io/)
 - [https://mintscan.io/celestia](https://mintscan.io/celestia)
 - [https://stakeflow.io/celestia](https://stakeflow.io/celestia)
+- [https://validatorinfo.com/networks/celestia/overview](https://validatorinfo.com/networks/celestia/overview)
 
 ## Community endpoint status dashboard
 
