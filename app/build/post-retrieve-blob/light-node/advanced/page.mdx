@@ -1,9 +1,8 @@
-
 # Optional: Diving deeper into the stack
 
 This section covers some more in-depth topics that you may find useful when working with your Celestia light node.
 
-import { Steps, Callout } from 'nextra/components'
+import { Steps, Callout } from "nextra/components";
 
 ## Node store contents
 
@@ -43,15 +42,125 @@ For more advanced key management beyond the built-in capabilities of the light n
 
 To utilize `cel-key`, you'll need to build it separately from the binary with `make cel-key`.
 
-# Advanced, high throughput
+## Advanced: High throughput transaction submission
 
-## Parallel tx submission
+Celestia supports three transaction submission modes that affect how transactions are queued and submitted, impacting throughput and ordering guarantees. These modes are controlled by the `TxWorkerAccounts` setting in your light node's `config.toml` file.
 
-1. parallel transaction submission: https://github.com/celestiaorg/docs/issues/2273 - different accounts. must track height, namespace, commitment
+### Default mode (TxWorkerAccounts = 0)
 
-## Queued tx submission
+This is the default behavior. Transactions are submitted immediately without a queue.
 
-1. queued transaction submission https://github.com/celestiaorg/celestia-app/blob/98bb2ab0de430f59e2c2664524cacb3f71974562/specs/src/tx_client.md
+**Characteristics:**
+
+- Transactions enter the mempool immediately
+- No queuing or waiting for confirmations
+- Potential sequence number conflicts if submitting multiple transactions quickly
+- Same behavior as versions prior to v0.28.2
+
+### Queued mode (TxWorkerAccounts = 1)
+
+Enable synchronous, ordered submission by setting `TxWorkerAccounts` to `1` in your `config.toml`.
+
+<Steps>
+
+#### Open your config file
+
+```bash
+nano ~/.celestia-light-mocha-4/config.toml
+```
+
+#### Set TxWorkerAccounts to 1
+
+Find the `[SubmitClient]` section and add or update:
+
+```toml
+[SubmitClient]
+TxWorkerAccounts = 1
+```
+
+#### Restart your node
+
+```bash
+celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+```
+
+</Steps>
+
+**Characteristics:**
+
+- Each transaction queues until the previous one is confirmed
+- Preserves strict ordering of transactions based on submission time
+- Avoids sequence mismatch errors
+- Throughput: approximately 1 PayForBlobs transaction every other block
+
+**Use case:** Applications requiring strict transaction ordering
+
+### Parallel mode (TxWorkerAccounts > 1)
+
+For high-throughput applications that don't require sequential ordering, enable parallel submission by setting `TxWorkerAccounts` to a value greater than 1.
+
+<Steps>
+
+#### Open your config file
+
+```bash
+nano ~/.celestia-light-mocha-4/config.toml
+```
+
+#### Set TxWorkerAccounts to desired number of lanes
+
+Find the `[SubmitClient]` section and add or update:
+
+```toml
+[SubmitClient]
+TxWorkerAccounts = 8
+```
+
+#### Restart your node
+
+```bash
+celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+```
+
+</Steps>
+
+**How it works:**
+
+- Creates `TxWorkerAccounts` parallel submission lanes
+- Each lane is a subaccount automatically created and funded from your default account
+- Example: `TxWorkerAccounts = 8` creates 7 subaccounts + 1 default account = 8 parallel lanes
+- Enables at least 8 PayForBlobs transactions per block
+
+**Characteristics:**
+
+- Transactions can be submitted concurrently across multiple lanes
+- Does NOT guarantee transaction ordering
+- Blobs may be included in blocks in a different order than submitted
+- Higher throughput for applications that can handle unordered transactions
+
+**Use case:** High-throughput, unordered workflows
+
+<Callout type="warning">
+  **Important:** When retrieving blobs submitted in parallel mode, you must
+  track the height, namespace, and commitment for each blob submission, as you
+  won't know which subaccount was used.
+</Callout>
+
+**Subaccount management:**
+
+- Subaccounts are automatically created and funded from your default account
+- They are named `parallel-worker-1`, `parallel-worker-2`, etc. in your keyring
+- Subaccounts are reused across node restarts if `TxWorkerAccounts` value remains the same
+- If you decrease `TxWorkerAccounts`, only the first N workers are used
+- If you increase `TxWorkerAccounts`, additional workers are created
+
+### Comparison table
+
+| Mode     | TxWorkerAccounts | Ordering       | Throughput       | Use case                                 |
+| -------- | ---------------- | -------------- | ---------------- | ---------------------------------------- |
+| Default  | 0                | Not guaranteed | Immediate        | Simple applications, single transactions |
+| Queued   | 1                | Guaranteed     | ~1 tx per block  | Applications requiring strict ordering   |
+| Parallel | >1               | Not guaranteed | ≥N txs per block | High-throughput, unordered workflows     |
 
 ## Pruning windows
 
@@ -104,6 +213,7 @@ For Linux users, remove the empty string (`''`) after `-i` in the `sed` commands
 sed -i "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
 sed -i "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
 ```
+
 </Callout>
 
 </Steps>
