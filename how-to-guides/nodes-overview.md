@@ -56,6 +56,13 @@ each tutorial guide.
 | Validator      | 32 GB RAM | 16 cores | 2 TiB NVME | 1 Gbps    |
 | Consensus node | 32 GB RAM | 16 cores | 2 TiB NVME | 1 Gbps    |
 
+When upgrading to 128mb/6s, validators must use hardware that passes the [CPU benchmark](https://github.com/celestiaorg/celestia-app/blob/main/tools/cpu_requirements/README.md). If your server does not pass, upgrade to a more powerful machine.
+
+For a list of CPUs tested for 128mb/6s, see the [release notes](https://github.com/celestiaorg/celestia-app/blob/main/docs/release-notes/release-notes.md#v6---128mb6s). Other CPUs are acceptable if they pass the benchmark. Recommended CPU specs:
+- 32 or more cores
+- GFNI (Galois Field New Instructions) support
+- SHA-NI (SHA New Instructions) support
+
 #### Archival consensus nodes
 
 | Node type      | Memory    | CPU      | Disk           | Bandwidth |
