@@ -45,28 +45,28 @@ Their services include installation scripts, state sync, snapshots, RPC endpoint
 
 ### Mainnet beta
 
-| Provider      | Consensus Node                                                                                                                                 | Bridge Node                                                                |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Stake Town    | [Pruned](https://services.stake-town.com/home/mainnet/celestia/sync)                                                                           | -                                                                          |
-| ITRocket      | [Pruned](https://itrocket.net/services/mainnet/celestia/) • [Archive](https://itrocket.net/services/mainnet/celestia/)                         | [Archive](https://itrocket.net/services/mainnet/celestia/)                 |
-| Polkachu      | [Pruned](https://polkachu.com/tendermint_snapshots/celestia)                                                                                   | -                                                                          |
-| kjnodes       | [Pruned](https://services.kjnodes.com/mainnet/celestia/snapshot/) • [Archive](https://services.kjnodes.com/mainnet/celestia/snapshot-archive/) | -                                                                          |
-| TTT | [Pruned](https://services.tienthuattoan.com/mainnet/celestia/snapshot)                                                                         | -                                                                          |
-| Noders        | [Pruned](https://noders.services/mainnet-networks/celestia/snapshot/)                                                                          | -                                                                          |
-| QubeLabs      | [Archive](https://snaps.qubelabs.io/celestia/)                                                                                                 | -                                                                          |
-| BlackBlocks   | [Archive](https://wiki.blackblocks.io/en/public/services/mainnet/celestia)                                                                     | [Archive](https://wiki.blackblocks.io/en/public/services/mainnet/celestia) |
+| Provider    | Consensus Node                                                                                                                                 | Bridge Node                                                                |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Stake Town  | [Pruned](https://services.stake-town.com/home/mainnet/celestia/sync)                                                                           | -                                                                          |
+| ITRocket    | [Pruned](https://itrocket.net/services/mainnet/celestia/) • [Archive](https://itrocket.net/services/mainnet/celestia/)                         | [Archive](https://itrocket.net/services/mainnet/celestia/)                 |
+| Polkachu    | [Pruned](https://polkachu.com/tendermint_snapshots/celestia)                                                                                   | -                                                                          |
+| kjnodes     | [Pruned](https://services.kjnodes.com/mainnet/celestia/snapshot/) • [Archive](https://services.kjnodes.com/mainnet/celestia/snapshot-archive/) | -                                                                          |
+| TTT         | [Pruned](https://services.tienthuattoan.com/mainnet/celestia/snapshot)                                                                         | -                                                                          |
+| Noders      | [Pruned](https://noders.services/mainnet-networks/celestia/snapshot/)                                                                          | -                                                                          |
+| QubeLabs    | [Archive](https://snaps.qubelabs.io/celestia/)                                                                                                 | -                                                                          |
+| BlackBlocks | [Archive](https://wiki.blackblocks.io/en/public/services/mainnet/celestia)                                                                     | [Archive](https://wiki.blackblocks.io/en/public/services/mainnet/celestia) |
 
 ### Mocha testnet
 
-| Provider      | Consensus Node                                                                                                         | Bridge Node                                                                |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Stake Town    | [Pruned](https://services.stake-town.com/home/testnet/celestia/sync)                                                   | -                                                                          |
-| ITRocket      | [Pruned](https://itrocket.net/services/testnet/celestia/) • [Archive](https://itrocket.net/services/testnet/celestia/) | [Archive](https://itrocket.net/services/testnet/celestia/)                 |
-| Polkachu      | [Pruned](https://polkachu.com/testnets/celestia/snapshots)                                                             | -                                                                          |
-| kjnodes       | [Pruned](https://services.kjnodes.com/testnet/celestia/snapshot/)                                                      | -                                                                          |
-| Noders        | [Pruned](https://noders.services/testnet-networks/celestia/snapshot)                                                   | -                                                                          |
-| QubeLabs      | [Archive](https://snaps.qubelabs.io/celestia/)                                                                         | -                                                                          |
-| BlackBlocks   | [Archive](https://wiki.blackblocks.io/en/public/services/testnet/celestia)                                             | [Archive](https://wiki.blackblocks.io/en/public/services/testnet/celestia) |
+| Provider    | Consensus Node                                                                                                         | Bridge Node                                                                |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Stake Town  | [Pruned](https://services.stake-town.com/home/testnet/celestia/sync)                                                   | -                                                                          |
+| ITRocket    | [Pruned](https://itrocket.net/services/testnet/celestia/) • [Archive](https://itrocket.net/services/testnet/celestia/) | [Archive](https://itrocket.net/services/testnet/celestia/)                 |
+| Polkachu    | [Pruned](https://polkachu.com/testnets/celestia/snapshots)                                                             | -                                                                          |
+| kjnodes     | [Pruned](https://services.kjnodes.com/testnet/celestia/snapshot/)                                                      | -                                                                          |
+| Noders      | [Pruned](https://noders.services/testnet-networks/celestia/snapshot)                                                   | -                                                                          |
+| QubeLabs    | [Archive](https://snaps.qubelabs.io/celestia/)                                                                         | -                                                                          |
+| BlackBlocks | [Archive](https://wiki.blackblocks.io/en/public/services/testnet/celestia)                                             | [Archive](https://wiki.blackblocks.io/en/public/services/testnet/celestia) |
 
 ## Using celestia-snapshot-finder
 
