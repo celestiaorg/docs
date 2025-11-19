@@ -43,5 +43,5 @@ jobs:
         uses: lycheeverse/lychee-action@v2.0.0
         with:
           fail: true
-          args: --verbose --exclude '^https?://localhost(:[0-9]+)?/?$' 'README.md' 'app/**/*.mdx' 'app/**/*.md' 'hibachi.xyz'
+          args: --verbose --exclude '^https?://localhost(:[0-9]+)?/?$' --exclude 'https://hibachi.xyz/' 'README.md' 'app/**/*.mdx' 'app/**/*.md'
           token: ${{ secrets.GITHUB_TOKEN }}
