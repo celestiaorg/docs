@@ -1,5 +1,5 @@
 const meta = {
-  "private-da": "Private DA",
+  "private-blockspace": "Private blockspace",
   "zk-equivalency-service": "ZK equivalency service",
 };
 
