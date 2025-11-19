@@ -3,33 +3,21 @@ import { Callout, Steps } from 'nextra/components'
 # Private blockspace quickstart
 
 Private blockspace encrypts your blob data before it’s posted to Celestia using a lightweight proxy.  
-In this quickstart, you’ll use **hosted Celestia nodes (like QuickNode)** instead of running your own.
+In this quickstart, you’ll use hosted Celestia nodes (like QuickNode) instead of running your own.
 
 <Steps>
 
 ## Get your node credentials
 
-To use **Private Blockspace**, you’ll need access to a hosted **Celestia Data Availability (DA) + Consensus Node**.  
-The easiest option is **[QuickNode’s Celestia service](https://www.quicknode.com/docs/celestia)**, which provides ready-to-use mainnet and Mocha testnet endpoints.
+To use Private Blockspace, you’ll need access to a hosted **Celestia Data Availability (DA) + Consensus Node**. The easiest option is [QuickNode’s Celestia service](https://www.quicknode.com/docs/celestia), which provides ready-to-use mainnet and Mocha testnet endpoints. They offer a free 30-day trial, which is enough for this quickstart.
 
 1. Visit the [QuickNode Celestia dashboard](https://www.quicknode.com/docs/celestia) and log in (or create a free account).  
 2. Click **Create Endpoint**, then select:  
    - **Chain:** `Celestia`  
    - **Network:** `Mainnet` or `Mocha`
-
-<Callout type="info">
-You’ll need to create a QuickNode plan before spinning up your endpoint.  
-They offer a **free 30-day trial**, which is enough for this quickstart.
-</Callout>
-
-3. Copy the generated endpoint URL (it looks like this):
-   ```
-   https://celestia-mocha.quiknode.pro/<your-token>/
-   ```
-4. Copy the token from your endpoint URL (this is your **write token**).  
+3. Copy the generated endpoint URL (it looks like this): `https://celestia-mocha.quiknode.pro/<your-token>/`
+4. Copy the token from your endpoint URL (this is your **write / read token**).  
 5. Save both the **URL** and **token** — you’ll add them to your `.env` file next.
-
-
 
 ## Create your `.env`
 
@@ -276,7 +264,6 @@ node -e 'console.log(Buffer.from("SSBMb3ZlIEJpZyBCbG9icw==","base64").toString()
 You’re running **Private Blockspace** end-to-end using hosted infrastructure.
 
 ✅ No local Celestia node  
-✅ No GPU or prover setup  
 ✅ Fully containerized  
 ✅ Encrypted data posted to Celestia
 
