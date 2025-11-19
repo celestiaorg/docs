@@ -58,8 +58,6 @@ python3 -c "import secrets; print(secrets.token_hex(32))"
 
 Paste the value (no quotes) as your `ENCRYPTION_KEY`.
 
-
-
 ## Generate TLS certificates
 
 The proxy requires TLS certificates (even for local testing).
@@ -80,8 +78,6 @@ Without valid certs, the proxy will exit with
 `TLS_CERTS_PATH required: NotPresent`.
 </Callout>
 
-
-
 ## Fund your signer
 
 Your `CELESTIA_SIGNING_KEY` corresponds to a Mocha testnet address.  
@@ -92,8 +88,6 @@ That address must exist and hold some test TIA.
 <Callout type="info">
 You can verify your signer address in the proxy logs it prints the address when starting.
 </Callout>
-
-
 
 ## Run the proxy container
 
@@ -211,7 +205,6 @@ done
 ```
 Copy the `commitment` you see there and use it with `blob.Get`.
 
-
 ## Verify your blob
 
 Now, fetch the same blob through your proxy using the following command with `HEIGHT` replaced with your actual height:
@@ -269,8 +262,6 @@ node -e 'console.log(Buffer.from("SSBMb3ZlIEJpZyBCbG9icw==","base64").toString()
 | `blob: not found` | Wrong commitment | Run `blob.GetAll` to find the real one. |
 | `grpc-status header missing` | Invalid gRPC URL | Must be `https://<host>:9090`, no token. |
 
-
-
 ## ✅ You’re done
 
 You’re running **Private Blockspace** end-to-end using hosted infrastructure.
@@ -279,5 +270,4 @@ You’re running **Private Blockspace** end-to-end using hosted infrastructure.
 ✅ No GPU or prover setup  
 ✅ Fully containerized  
 ✅ Encrypted data posted to Celestia
-
 
