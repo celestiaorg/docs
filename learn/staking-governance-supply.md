@@ -31,19 +31,17 @@ Learn how to
 
 ## Inflation
 
-TIA inflation starts at 8% annually. Initially, it was set to decrease by 10% every year until
-reaching a long-term issuance rate of 1.5%. However, with the v4 Lotus upgrade
-([CIP-29](https://cips.celestia.org/cip-029.html)) in July 2025, the inflation rate
-dropped from ~7.2% to ~5.0% at the time of the upgrade and will continue to decrease by
-6.7% every year until it stabilizes at 1.5%. The diagram below illustrates both the
-initial inflation rates and those after the v4 upgrade.
+TIA inflation started at 8% annually.
 
-![inflation diagram](/img/learn/TIA_inflation_post-cip29.png)
+1. Initially, it was set to decrease by 10% every year until reaching a long-term issuance rate of 1.5%.
 
-The annual provisions for inflation are calculated based on the total supply of
-TIA at the beginning of each year. To calculate how many TIA to issue per block,
-Celestia uses the block timestamp rather than the block height since the time
-between blocks can vary and cause actual issuance to be higher than the target.
+2. With the v4 Lotus upgrade ([CIP-29](https://cips.celestia.org/cip-029.html)) in July 2025, the inflation rate dropped from ~7.2% to ~5.0% and was set to continue decreasing by 6.7% every year until it stabilized at 1.5%.
+
+3. With the v6 ([CIP-41](https://cips.celestia.org/cip-041.html#inflation-schedule-over-time)) upgrade in November 2025, the inflation rate again dropped to ~2.5% and will continue to decrease by 6.7% every year until it stabilizes at 1.5%.
+
+The diagram below illustrates both the initial inflation rates and those after the v6 upgrade.
+
+![inflation diagram](/img/learn/TIA_inflation_post-cip41.jpg)
 
 For an in-depth understanding, refer to
 [ADR019](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-019-strict-inflation-schedule.md).
