@@ -1,11 +1,31 @@
 # Celestia 101
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
 
-## What is Celestia?
+Celestia is the modular blockchain powering unstoppable apps with full-stack control.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+With Celestia you run the execution stack you design while relying on a provable, decentralized substrate for consensus and data availability. Celestia gives developers ownership of execution semantics, gas economics, sequencer architecture, and upgrade policy, while providing research-grade primitives (data availability sampling, erasure coding, and succinct light-client checks) that scale verification and preserve censorship resistance.
 
+Why this matters: owning the full stack removes tradeoffs imposed by monolithic chains. Teams can optimize for latency, cost, or security; iterate on formal models and gas; and deploy onchain systems that remain verifiable by lightweight clients. The result is scalable, composable, and survivable applications that are easier to reason about and easier to prove correct.
 
 ## Use cases
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+- **Sovereign rollups.** Rollups post commitments to Celestia for ordering and availability while operating independent sequencers and dispute mechanisms. Execution correctness is enforced by the rollup’s chosen proof system (fraud proofs, zk proofs, or other mechanisms).
+
+- **App-specific chains.** Domain-specific state machines (for marketplaces, games, or financial primitives) that reuse Celestia’s DA/consensus substrate so teams can optimize execution without reimplementing consensus.
+
+- **Permissionless L2 ecosystems.** Many independent execution layers share a single decentralized DA plane, enabling parallel scaling without centralized sequencing.
+
+- **Verifiable off-chain computation.** Off-chain workers publish results and compact proofs to Celestia. Light clients validate outcomes with bounded work and the network’s DA guarantees.
+
+- **Bridging and coordination.** Celestia’s availability proofs serve as a canonical reference for cross-protocol messaging, simplifying bridge design and composability.
+
+## How it works (short)
+
+1. **Consensus and data availability.**  Celestia reaches consensus on blocks of application data and publishes erasure-coded shares. The network enforces availability so blocks are provably retrievable.
+
+2. **Data availability sampling.** Light clients and remote verifiers sample randomly selected shares. Sampling detects missing data with high probability while avoiding full downloads.
+
+3. **Erasure coding.** Blocks are transformed into redundant parity shares (Reed-Solomon style) so missing pieces are detectable and block recovery is feasible when enough shares are available.
+
+4. **Light-client verification.** Clients perform small, verifiable checks for inclusion and availability. Verification is efficient enough for constrained devices without weakening security assumptions.
+
+5. **Separation of execution.** Celestia does not execute transactions. Execution layers choose their correctness mechanism and economic model and post results or commitments to Celestia for durable ordering and availability.
