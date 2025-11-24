@@ -52,7 +52,7 @@ Previously, in [CIP-28](https://cips.celestia.org/cip-028.html), there was a 2 M
 
 While individual transactions are limited to 8 MiB as of v6, a block can contain multiple transactions and has a much larger capacity. The maximum block size is determined by the effective maximum square size.
 
-Given that the current governance [maximum square size is 512](https://cips.celestia.org/cip-038.html#parameters), the total block size can be slightly less than ~126 MB (126,352,922 bytes), based on the share layout used for blobs.
+Given that the current governance [maximum square size is 512](https://cips.celestia.org/cip-038.html#parameters), the total block size can be slightly less than ~120.5 MiB (126,352,922 bytes), based on the share layout used for blobs.
 
 The following provides an approximation of the maximum block size:
 
