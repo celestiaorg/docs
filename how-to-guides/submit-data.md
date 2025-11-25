@@ -28,9 +28,6 @@ Under v6 and future upgrades, networks will use larger square sizes, so the abso
 
 See the [Mainnet Beta page under “Transaction size limit”](/how-to-guides/mainnet#transaction-size-limit) for details.
 
-### Practical guidance
-
-It is advisable to submit blob transactions substantially **smaller than the 8 MiB transaction limit** to ensure faster inclusion. Very large transactions may only be included if they pay a sufficiently high gas price, since they consume a significant portion of the block’s available bytes.
 
 ## Fee market and mempool
 
