@@ -44,7 +44,7 @@ and service availability, visit the
 
 ### Transaction size limit
 
-The maximum transaction size on all networks is 8 MiB (8,388,608 bytes). See [CIP-38](https://cips.celestia.org/cip-038.html) which activated at the v6 upgrade height.
+The maximum transaction size on all networks is 8 MiB (8,388,608 bytes). See [CIP-38](https://cips.celestia.org/cip-038.html) which activated at [the v6 upgrade height](/how-to-guides/network-upgrade-process#matcha-network-upgrade).
 
 Previously, in [CIP-28](https://cips.celestia.org/cip-028.html), there was a 2 MiB limit on transaction size. This limit was implemented to maintain network stability and provide clear expectations for users and developers, even as block sizes may be larger.
 

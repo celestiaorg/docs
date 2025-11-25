@@ -14,20 +14,32 @@ transactions contain two components, a standard Cosmos-SDK transaction called
 
 ## Maximum blob size
 
-The maximum total blob size in a transaction is just under **2 MiB
-(1,973,786 bytes)**, based on a 64x64 share grid (4096 shares).
-With one share for the PFB transaction, 4095 shares remain:
-1 at 478 bytes and 4094 at 482 bytes each.
+As of **v6**, the maximum transaction size on all networks is **8 MiB (8,388,608 bytes)**. This cap applies to the *entire* transaction—including the PFB, all blobs, and overhead—so the maximum total blob size is slightly smaller than 8 MiB.
 
-This is subject to change based on governance parameters.
-Learn more on [the Mainnet Beta page under "Maximum bytes"](/how-to-guides/mainnet.md#transaction-size-limit).
+The *exact* maximum total blob size in a transaction depends on:
 
-It is advisable to submit transactions where the total blob size is significantly
-smaller than 1.8 MiB (e.g. 500 KiB) in order for your transaction to get included
-in a block quickly. If a tx contains blobs approaching 1.8 MiB then there will
-be no room for any other transactions. This means that your transaction will
-only be included in a block if it has a higher gas price than every other
-transaction in the mempool.
+- the number of shares available after accounting for the PFB transaction,
+- the share version and layout rules,
+- and the fact that the **first sparse share has 478 bytes**, while **all subsequent sparse shares have 482 bytes**.
+
+For example, at the prior **64×64 share square (4096 shares)**:
+
+- 1 share is used by the PFB,
+- leaving **4095 shares** for blob data,
+- which corresponds to a total blob capacity of:
+
+  - `1 × 478 bytes`
+  - `+ 4094 × 482 bytes`
+  - `= 1,973,786 bytes` (just under **2 MiB**)
+
+Under v6 and future upgrades, networks may use larger square sizes, so the absolute maximum blob capacity per transaction will increase correspondingly—up to the global **8 MiB transaction size limit**, which is now the binding constraint.
+
+See the [Mainnet Beta page under “Transaction size limit”](/how-to-guides/mainnet#transaction-size-limit) for details.
+
+### Practical guidance
+
+It is advisable to submit blob transactions **well below the maximum**, ideally **< 1.8 MiB**, to improve inclusion probability.  
+Large transactions crowd out others: the closer a transaction gets to the full size limit, the more likely it is to only be included if it pays a *higher gas price than every other transaction in the mempool*.
 
 ## Fee market and mempool
 
