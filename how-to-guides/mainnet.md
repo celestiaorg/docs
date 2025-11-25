@@ -44,15 +44,15 @@ and service availability, visit the
 
 ### Transaction size limit
 
-Currently, the maximum transaction size is 8 MiB (8,388,608 bytes) as of [CIP-38](https://cips.celestia.org/cip-038.html) going live on the Matcha v6 upgrade.
+The maximum transaction size on all networks is 8 MiB (8,388,608 bytes). See [CIP-38](https://cips.celestia.org/cip-038.html) which activated at the v6 upgrade height.
 
-Previously, in [CIP-28](https://cips.celestia.org/cip-028.html), there was a 2 MiB (2,097,152 bytes) limit on individual transaction size. This limit was implemented to maintain network stability and provide clear expectations for users and developers, even as block sizes may be larger.
+Previously, in [CIP-28](https://cips.celestia.org/cip-028.html), there was a 2 MiB limit on transaction size. This limit was implemented to maintain network stability and provide clear expectations for users and developers, even as block sizes may be larger.
 
 ### Block size limit
 
 While individual transactions are limited to 8 MiB as of v6, a block can contain multiple transactions and has a much larger capacity. The maximum block size is determined by the effective maximum square size.
 
-Given that the current governance [maximum square size is 512](https://cips.celestia.org/cip-038.html#parameters), the total block size can be slightly less than ~120.5 MiB (126,352,922 bytes), based on the share layout used for blobs.
+The current max square size on Arabica is 128 MiB, Mocha is 32 MiB, and Mainnet is 8 MiB.
 
 The following provides an approximation of the maximum block size:
 
