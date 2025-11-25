@@ -22,15 +22,7 @@ The *exact* maximum total blob size in a transaction depends on:
 - the share version and layout rules,
 - and the fact that the **first sparse share has 478 bytes**, while **all subsequent sparse shares have 482 bytes**.
 
-For example, at the prior **64×64 share square (4096 shares)**:
-
-- 1 share is used by the PFB,
-- leaving **4095 shares** for blob data,
-- which corresponds to a total blob capacity of:
-
-  - `1 × 478 bytes`
-  - `+ 4094 × 482 bytes`
-  - `= 1,973,786 bytes` (just under **2 MiB**)
+The current max square size on Arabica is 128 MiB, Mocha is 32 MiB, and Mainnet is 8 MiB.
 
 Under v6 and future upgrades, networks may use larger square sizes, so the absolute maximum blob capacity per transaction will increase correspondingly—up to the global **8 MiB transaction size limit**, which is now the binding constraint.
 
@@ -38,8 +30,7 @@ See the [Mainnet Beta page under “Transaction size limit”](/how-to-guides/ma
 
 ### Practical guidance
 
-It is advisable to submit blob transactions **well below the maximum**, ideally **< 1.8 MiB**, to improve inclusion probability.  
-Large transactions crowd out others: the closer a transaction gets to the full size limit, the more likely it is to only be included if it pays a *higher gas price than every other transaction in the mempool*.
+It is advisable to submit blob transactions substantially **smaller than the 8 MiB transaction limit** to ensure faster inclusion. Very large transactions may only be included if they pay a sufficiently high gas price, since they consume a significant portion of the block’s available bytes.
 
 ## Fee market and mempool
 
