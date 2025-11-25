@@ -24,7 +24,7 @@ The *exact* maximum total blob size in a transaction depends on:
 
 The current max square size on Arabica is 128 MiB, Mocha is 32 MiB, and Mainnet is 8 MiB.
 
-Under v6 and future upgrades, networks may use larger square sizes, so the absolute maximum blob capacity per transaction will increase correspondingly—up to the global **8 MiB transaction size limit**, which is now the binding constraint.
+Under v6 and future upgrades, networks will use larger square sizes, so the absolute maximum blob capacity per transaction will increase correspondingly—up to the global **8 MiB transaction size limit**, which is now the binding constraint.
 
 See the [Mainnet Beta page under “Transaction size limit”](/how-to-guides/mainnet#transaction-size-limit) for details.
 
