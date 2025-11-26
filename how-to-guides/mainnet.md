@@ -54,7 +54,7 @@ While individual transactions are limited to 8 MiB as of v6, a block can contain
 
 The current max square size on Arabica is 128 MiB, Mocha is 32 MiB, and Mainnet is 8 MiB.
 
-The following provides an approximation of the maximum block size:
+The following provides an approximation of the maximum blob capacity on Arabica:
 
 - The maximum square size is 512x512, which gives us 262,144 shares.
 - One share is reserved for the PFB transaction, leaving us with 262,143 shares available for blob data.
