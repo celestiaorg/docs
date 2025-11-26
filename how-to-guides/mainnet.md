@@ -44,18 +44,20 @@ and service availability, visit the
 
 ### Transaction size limit
 
-As specified in [CIP-28](https://cips.celestia.org/cip-028.html), there is a 2 MiB (2,097,152 bytes) limit on individual transaction size. This limit was implemented to maintain network stability and provide clear expectations for users and developers, even as block sizes may be larger.
+The maximum transaction size on all networks is 8 MiB (8,388,608 bytes). See [CIP-38](https://cips.celestia.org/cip-038.html) which activated at [the v6 upgrade height](/how-to-guides/network-upgrade-process#matcha-network-upgrade).
+
+Previously, in [CIP-28](https://cips.celestia.org/cip-028.html), there was a 2 MiB limit on transaction size. This limit was implemented to maintain network stability and provide clear expectations for users and developers, even as block sizes may be larger.
 
 ### Block size limit
 
-While individual transactions are limited to 2 MiB, a block can contain multiple transactions and has a much larger capacity. The maximum block size is determined by the effective maximum square size.
+While individual transactions are limited to 8 MiB as of v6, a block can contain multiple transactions and has a much larger capacity. The maximum block size is determined by the effective maximum square size.
 
-Given that the current governance maximum square size is 128, the total block size can be slightly less than ~8 MiB, or 7,896,602 bytes to be exact.
+The current max square size on Arabica is 128 MiB, Mocha is 32 MiB, and Mainnet is 8 MiB.
 
-The following provides an approximation of the maximum block size:
+The following provides an approximation of the maximum blob capacity on Arabica:
 
-- The maximum square size is 128x128, which gives us 16384 shares.
-- One share is reserved for the PFB transaction, leaving us with 16383 shares.
+- The maximum square size is 512x512, which gives us 262,144 shares.
+- One share is reserved for the PFB transaction, leaving us with 262,143 shares available for blob data.
 - The first sparse share has 478 bytes available, and the remaining sparse
   shares have 482 bytes each.
 
@@ -68,16 +70,16 @@ $$
 $$
 
 $$
-\text{Remaining shares: } 16382 \times 482 \text{ bytes}
+\text{Remaining shares: } 262,142 \times 482 \text{ bytes}
 $$
 
 $$
-\text{Total Bytes: } 7,896,602 \text{ bytes}
+\text{Total Bytes: } 126,352,922 \text{ bytes}
 $$
 
 <!-- markdownlint-enable MD013 -->
 
-There isn't a precise upper bound on the maximum total
+There is no precise, static upper bound on the maximum total
 blob size. It depends on several factors:
 
 - The maximum square size, which is determined by a governance parameter
@@ -90,10 +92,9 @@ These factors can cause the maximum total blob size that can be included in one
 block to vary.
 
 See the code in
-[celestia-app](https://github.com/celestiaorg/celestia-app/blob/2e49d665b3275e769dfe0371b1ca41e39dc3f5f5/pkg/appconsts/initial_consts.go#L14)
-and [celestia-node](https://github.com/celestiaorg/celestia-node/blob/540192259c144ccbd24e45e34616a41389232a51/blob/blob.go#L93).
+[celestia-app](https://github.com/celestiaorg/celestia-app/blob/52a3cfadbf4439e5e1bd89a8c47e14d3209ca525/pkg/appconsts/initial_consts.go#L9).
 
-Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md?plain=1#L35),
+Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/52a3cfadbf4439e5e1bd89a8c47e14d3209ca525/specs/src/parameters_v6.md?plain=1#L35),
 can be found in the
 [celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v6.html).
 
