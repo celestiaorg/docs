@@ -2,40 +2,75 @@
 landingPage: true
 ---
 
-# 🚧 UNDER CONSTRUCTION 🚧
-
-import Image from 'next/image';
-
-<div style={{textAlign: 'center', fontFamily: "'Comic Sans MS', cursive", background: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00)', padding: '20px', border: '5px dashed #ff0000', margin: '20px'}}>
-
-<BaseImage src="/underConstruction.png" alt="Under Construction Mammoth" width={800} height={600} style={{maxWidth: '100%', height: 'auto', margin: '20px 0'}} unoptimized />
-
-<h2 style={{color: '#ff0000', textShadow: '2px 2px 4px #000000', fontSize: '2em', margin: '20px 0'}}>
-🔥 CELESTIA DOCS ARE BEING BUILT 🔥
-</h2>
-
-<p style={{fontSize: '1.2em', color: '#0000ff', background: '#ffff00', padding: '10px', border: '3px solid #ff0000', margin: '20px'}}>
-<strong>⚠️ WARNING: This site is under heavy construction! ⚠️</strong><br/>
-Our mammoth construction crew is working hard to bring you the best docs ever!<br/>
-Please check back soon for the full experience! 🦣
-</p>
-
-
-<div style={{background: '#ffff00', color: '#ff0000', padding: '10px', border: '3px solid #0000ff', margin: '20px', fontWeight: 'bold'}}>
-🎵 <span>COMING SOON TO A BROWSER NEAR YOU!</span> 🎵
-</div>
-
 import Link from 'next/link';
 
-<div style={{textAlign: 'center', margin: '30px 0'}}>
-<Link href="/learn" style={{background: '#ff00ff', color: '#ffffff', padding: '10px 20px', textDecoration: 'none', border: '3px solid #000000', fontWeight: 'bold', margin: '10px', display: 'inline-block'}}>📚 LEARN</Link>
-<Link href="/build/post-retrieve-blob/light-node/quickstart/" style={{background: '#00ffff', color: '#000000', padding: '10px 20px', textDecoration: 'none', border: '3px solid #000000', fontWeight: 'bold', margin: '10px', display: 'inline-block'}}>🛠️ BUILD</Link>
-<Link href="/operate" style={{background: '#ffff00', color: '#000000', padding: '10px 20px', textDecoration: 'none', border: '3px solid #000000', fontWeight: 'bold', margin: '10px', display: 'inline-block'}}>⚙️ OPERATE</Link>
-</div>
+<div style={{
+  maxWidth: '900px',
+  margin: '4rem auto',
+  padding: '2rem'
+}}>
+  <h1 style={{
+    fontSize: '2.5rem',
+    fontWeight: '700',
+    marginBottom: '1rem',
+    textAlign: 'center'
+  }}>
+    Celestia docs
+  </h1>
 
-<div style={{background: '#ff0000', color: '#ffffff', padding: '15px', border: '5px solid #ffff00', margin: '20px', textAlign: 'center'}}>
-<h3 style={{margin: '0'}}>🦣 MAMMOTH CONSTRUCTION CREW 🦣</h3>
-<p style={{margin: '10px 0 0 0', fontSize: '0.9em'}}>Building the future of modular blockchains, one pixel at a time!</p>
-</div>
+  <div style={{
+    fontSize: '1.125rem',
+    marginBottom: '3rem',
+    textAlign: 'center'
+  }}>
+    The first modular blockchain network. Build scalable applications with customizable execution environments.
+  </div>
 
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '1.5rem'
+  }}>
+    <Link href="/learn/celestia-101/celestia" style={{
+      padding: '2rem',
+      borderRadius: '8px',
+      border: '1px solid var(--border-color, #e5e7eb)',
+      textDecoration: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.75rem'
+    }}>
+      <span style={{ fontSize: '2rem' }}>📚</span>
+      <h3 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Learn</h3>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Understand modular blockchains and Celestia's architecture</p>
+    </Link>
+
+    <Link href="/build/post-retrieve-blob/light-node/quickstart/" style={{
+      padding: '2rem',
+      borderRadius: '8px',
+      border: '1px solid var(--border-color, #e5e7eb)',
+      textDecoration: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.75rem'
+    }}>
+      <span style={{ fontSize: '2rem' }}>🛠️</span>
+      <h3 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Build</h3>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Start building applications on Celestia's data availability layer</p>
+    </Link>
+
+    <Link href="/operate" style={{
+      padding: '2rem',
+      borderRadius: '8px',
+      border: '1px solid var(--border-color, #e5e7eb)',
+      textDecoration: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.75rem'
+    }}>
+      <span style={{ fontSize: '2rem' }}>⚙️</span>
+      <h3 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Operate</h3>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Run and maintain Celestia nodes and infrastructure</p>
+    </Link>
+  </div>
 </div>

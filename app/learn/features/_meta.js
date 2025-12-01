@@ -1,6 +1,6 @@
 const meta = {
   "private-blockspace": "Private blockspace",
-  "zk-equivalency-service": "ZK equivalency service",
+  bridging: "Bridging",
 };
 
 export default meta;

@@ -1,7 +1,7 @@
 const meta = {
-  "overview": "Overview",
-  "governance": "Governance",
-  "defi": "DeFi",
+  overview: "Overview",
+  "staking-governance-supply": "Staking, governance, & supply",
+  staking: "Staking on Celestia",
 };
 
 export default meta;
