@@ -14,9 +14,9 @@ transactions contain two components, a standard Cosmos-SDK transaction called
 
 ## Maximum blob size
 
-As of **v6**, the maximum transaction size on all networks is **8 MiB (8,388,608 bytes)**. This cap applies to the *entire* transaction—including the PFB, all blobs, and overhead—so the maximum total blob size is slightly smaller than 8 MiB.
+As of **v6**, the maximum transaction size on all networks is **8 MiB (8,388,608 bytes)**. This cap applies to the _entire_ transaction—including the PFB, all blobs, and overhead—so the maximum total blob size is slightly smaller than 8 MiB.
 
-The *exact* maximum total blob size in a transaction depends on:
+The _exact_ maximum total blob size in a transaction depends on:
 
 - the number of shares available after accounting for the PFB transaction,
 - the share version and layout rules,
@@ -27,7 +27,6 @@ The current max square size on Arabica is 128 MiB, Mocha is 32 MiB, and Mainnet 
 Under v6 and future upgrades, networks will use larger square sizes, so the absolute maximum blob capacity per transaction will increase correspondingly—up to the global **8 MiB transaction size limit**, which is now the binding constraint.
 
 See the [Mainnet Beta page under “Transaction size limit”](/how-to-guides/mainnet#transaction-size-limit) for details.
-
 
 ## Fee market and mempool
 
