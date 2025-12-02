@@ -1,13 +1,25 @@
-# Private data availability on Celestia
+# Private blockspace
 
-Private data availability (PDA) lets apps post **encrypted** state to Celestia while proving it’s **valid and available**. You get privacy **and** auditability — ideal for institutional use.
+Private blockspace lets you post **encrypted** data to Celestia while proving it's **valid and available**. You get confidentiality and verifiability, which is ideal for institutional applications that need both privacy and compliance.
 
-* zkVM encrypts data + proves correctness
-* Celestia stores ciphertext with DA guarantees
-* Anyone can verify availability without seeing plaintext
-* Supports selective disclosure, user-controlled keys, safe exits
+## How it works
 
-Use it for private exchanges, payments, RWAs, backups, and cross-chain encrypted messaging.
+A lightweight proxy sits between your app and Celestia:
 
-**For full details, go to the repo:**
-[https://github.com/celestiaorg/pda-proxy](https://github.com/celestiaorg/pda-proxy)
+1. **Submit**: The proxy encrypts your data, generates a zkVM proof, and posts to Celestia
+2. **Retrieve**: The proxy fetches and decrypts blobs using your encryption key
+3. **Verify**: Anyone can verify availability and correctness without seeing plaintext
+
+## Use cases
+
+- **Confidential exchanges**: Private order books with provable solvency ([Hibachi](https://hibachi.xyz/))
+- **Confidential payments**: Encrypted transactions with regulatory compliance
+- **RWA tokenization**: Private holder data with verifiable state
+- **Private backups**: Encrypted recovery without exposing plaintext
+- **Cross-chain messaging**: Verifiable encrypted data transport
+
+## Get started
+
+- [About private blockspace](/build/private-blockspace/about): Architecture and technical details
+- [Quickstart guide](/build/private-blockspace/quickstart): Run on your own
+- [PDA proxy repo](https://github.com/celestiaorg/pda-proxy): Source code and examples

@@ -43,5 +43,5 @@ jobs:
         uses: lycheeverse/lychee-action@v2.0.0
         with:
           fail: true
-          args: --verbose --exclude '^https?://localhost(:[0-9]+)?/?$' --exclude 'https://hibachi.xyz/' 'README.md' 'app/**/*.mdx' 'app/**/*.md' 'https://dl.acm.org/doi/abs/10.1145/98163.98167'
+          args: --verbose --exclude '^https?://localhost(:[0-9]+)?/?$' --exclude 'https://hibachi.xyz/' 'README.md' 'app/**/*.mdx' 'app/**/*.md' 'https://dl.acm.org/doi/abs/10.1145/98163.98167' 'https://lib.rs/crates/celestia-client'
           token: ${{ secrets.GITHUB_TOKEN }}
