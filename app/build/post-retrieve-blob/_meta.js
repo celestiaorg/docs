@@ -1,6 +1,6 @@
 const meta = {
-  "light-node": "Light Node",
   client: "Blob/transaction client",
+  "light-node": "Self-hosted light node",
   twinkle: "Twinkle",
 };
 
