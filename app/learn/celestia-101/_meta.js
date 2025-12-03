@@ -1,5 +1,5 @@
 const meta = {
-  celestia: "Celestia",
+  celestia: "How Celestia works",
   DA: "Data availability & light nodes",
   "da-faq": "Data availability FAQ",
 };
