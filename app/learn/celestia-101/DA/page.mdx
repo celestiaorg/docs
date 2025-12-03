@@ -2,7 +2,25 @@
 description: Celestia's Data Availability layer and its key features.
 ---
 
+import { Callout } from 'nextra/components'
+
 # Celestia's data availability layer
+
+## tl;dr
+
+1. Celestia publishes blob data and uses data availability sampling (DAS) so light nodes can verify availability by sampling small chunks.
+2. Namespaced Merkle trees (NMTs) let each app fetch only its own namespaced data and prove availability.
+3. Block producers erasure-code blobs into a _2k × 2k_ matrix, commit to every row and column, and put that root in the header.
+4. Light nodes sample within a rolling window; archival nodes (or providers) keep older data retrievable.
+5. Celestia is modular: DA and consensus at the base, with execution and settlement layers above.
+
+## Quick links
+
+- [DAS](#data-availability-sampling-das)
+- [Namespaced Merkle trees](#namespaced-merkle-trees-nmts)
+- [Lifecycle of a transaction](#the-lifecycle-of-a-celestia-app-transaction)
+- [Retrievability & pruning](#data-retrievability-and-pruning)
+- [Modular vs monolithic](#monolithic-vs-modular-blockchains)
 
 Celestia is a data availability (DA) layer that provides a
 scalable solution to the [data availability problem](https://coinmarketcap.com/academy/article/what-is-data-availability).
@@ -24,18 +42,18 @@ commitments (_i.e._, Merkle roots) of the block data (_i.e._, the list of trans
 
 To make DAS possible, Celestia uses a 2-dimensional Reed-Solomon
 encoding scheme to encode the block data: every block data is split
-into k × k shares, arranged in a k × k matrix, and extended with parity
-data into a 2k × 2k extended matrix by applying multiple
+into _k × k_ shares, arranged in a _k × k_ matrix, and extended with parity
+data into a _2k × 2k_ extended matrix by applying multiple
 times Reed-Solomon encoding.
 
-Then, 4k separate Merkle roots are computed for the rows and columns
+Then, _4k_ separate Merkle roots are computed for the rows and columns
 of the extended matrix; the Merkle root of these Merkle roots is used
 as the block data commitment in the block header.
 
 ![2D Reed-Soloman (RS) Encoding](/img/learn/reed-solomon-encoding.png)
 
 To verify that the data is available, Celestia light nodes are sampling
-the 2k × 2k data shares.
+the _2k × 2k_ data shares.
 
 Every light node randomly chooses a set of unique coordinates in the
 extended matrix and queries bridge nodes for the data shares and the
@@ -47,7 +65,7 @@ that the whole block's data is available.
 Additionally, every received data share with a correct Merkle proof
 is gossiped to the network. As a result, as long as the Celestia light
 nodes are sampling together enough data shares (_i.e._, at least
-k × k unique shares),
+_k × k_ unique shares),
 the full block can be recovered by honest bridge nodes.
 
 For more details on DAS, take a look at the [original paper](https://arxiv.org/abs/1809.09044).
@@ -62,22 +80,22 @@ the more data they can collectively download and store.
 This means that increasing the number of light nodes performing DAS allows
 for larger blocks (_i.e._, with more transactions), while still keeping DAS
 feasible for resource-limited light nodes. However, in order to validate
-block headers, Celestia light nodes need to download the 4k intermediate
+block headers, Celestia light nodes need to download the _4k_ intermediate
 Merkle roots.
 
-For a block data size of n² bytes, this means that every light node must
-download O(n) bytes. Therefore, any improvement in the bandwidth capacity
+For a block data size of _n²_ bytes, this means that every light node must
+download _O(n)_ bytes. Therefore, any improvement in the bandwidth capacity
 of Celestia light nodes has a quadratic effect on the throughput of Celestia's
 DA layer.
 
 ### Fraud proofs of incorrectly extended data
 
-The requirement of downloading the 4k intermediate Merkle roots is a
+The requirement of downloading the _4k_ intermediate Merkle roots is a
 consequence of using a 2-dimensional Reed-Solomon encoding scheme. Alternatively,
 DAS could be designed with a standard (_i.e._, 1-dimensional) Reed-Solomon encoding,
-where the original data is split into k shares and extended with k additional
+where the original data is split into _k_ shares and extended with _k_ additional
 shares of parity data. Since the block data commitment is the Merkle root of the
-2k resulting data shares, light nodes no longer need to download O(n) bytes to
+_2k_ resulting data shares, light nodes no longer need to download _O(n)_ bytes to
 validate block headers.
 
 The downside of the standard Reed-Solomon encoding is dealing with malicious
@@ -87,14 +105,14 @@ This is possible as **Celestia does not require a majority of the consensus
 (_i.e._, block producers) to be honest to guarantee data availability.**
 Thus, if the extended data is invalid, the original data might not be
 recoverable, even if the light nodes are sampling sufficient unique shares
-(_i.e._, at least k for a standard encoding and k × k for a
+(_i.e._, at least k for a standard encoding and _k × k_ for a
 2-dimensional encoding).
 
 As a solution, _Fraud Proofs of Incorrectly Generated Extended Data_ enable
 light nodes to reject blocks with invalid extended data. Such proofs require
 reconstructing the encoding and verifying the mismatch. With standard Reed-Solomon
-encoding, this entails downloading the original data, _i.e._, n² bytes.
-Contrastingly, with 2-dimensional Reed-Solomon encoding, only O(n) bytes are
+encoding, this entails downloading the original data, _i.e._, _n²_ bytes.
+Contrastingly, with 2-dimensional Reed-Solomon encoding, only _O(n)_ bytes are
 required as it is sufficient to verify only one row or one column of the
 extended matrix.
 
@@ -148,8 +166,8 @@ celestia-app is built on top of [celestia-core](https://github.com/celestiaorg/c
 a modified version of the [Tendermint consensus algorithm](https://arxiv.org/abs/1807.04938).
 Among the more important changes to vanilla Tendermint, celestia-core:
 
-- Enables the erasure coding of block data (using the 2-dimensional Reed-Solomon
-  encoding scheme).
+- Enables the erasure coding of block data (using the [2-dimensional Reed-Solomon
+  encoding scheme](https://github.com/celestiaorg/rsmt2d)).
 - Replaces the regular Merkle tree used by Tendermint to store block data with
   a [Namespaced Merkle tree](https://github.com/celestiaorg/nmt) that enables
   the above layers (_i.e._, execution and settlement) to only download the needed
@@ -195,8 +213,8 @@ executed by the Celestia state machine once the block is committed.
 
 Next, the block producer adds to the block header a commitment
 of the block data. As
-[described in the "Celestia's data availability layer" page](/learn/how-celestia-works/data-availability-layer.md),
-the commitment is the Merkle root of the $4k$ intermediate Merkle roots
+[described in the "Celestia's data availability layer" page](/learn/celestia-101/DA),
+the commitment is the Merkle root of the _4k_ intermediate Merkle roots
 (i.e., one for each row and column of the extended matrix).
 To compute this commitment, the block producer performs the following operations:
 
@@ -206,8 +224,8 @@ To compute this commitment, the block producer performs the following operations
   with a reserved namespace.
 - It arranges these shares into a square matrix (row-wise). Note that
   the shares are padded to the next power of two. The outcome square
-  of size $k \times k$ is referred to as the original data.
-- It extends the original data to a $2k \times 2k$ square matrix using
+  of size _k × k_ is referred to as the original data.
+- It extends the original data to a _2k × 2k_ square matrix using
   the 2-dimensional Reed-Solomon encoding scheme described above.
   The extended shares (i.e., containing erasure data) are associated
   with another reserved namespace.
@@ -228,7 +246,7 @@ that serves DAS requests.
 
 Light nodes connect to a celestia-node in the DA network, listen to
 extended block headers (i.e., the block headers together with the
-relevant DA metadata, such as the $4k$ intermediate Merkle roots), and
+relevant DA metadata, such as the _4k_ intermediate Merkle roots), and
 perform DAS on the received headers (i.e., ask for random data shares).
 
 Note that although it is recommended, performing DAS is optional -- light
@@ -274,26 +292,21 @@ order to ensure that syncing new rollup nodes is possible.
 
 ### Data retrievability and pruning in celestia-node
 
-As of version v0.13.0, celestia-node has implemented a light node
-sampling window of 30 days, as specified in
-[CIP-4](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-004.md).
-This means that once pruning is implemented,
-light nodes will now only sample blocks within a 30-day
+As of version v6 of celestia-app, celestia-node has implemented a light node
+sampling window of 7 days, as specified in
+[CIP-36](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-036.md).
+Light nodes now only sample blocks within a 7-day
 window instead of sampling all blocks from genesis. This change
 introduces the concept of pruning to celestia-node, where data
-outside of the 30-day window may not be stored by light nodes,
+outside of the 7-day window may not be stored by light nodes,
 marking a significant update in how data retrievability and
-storage are managed within the network
-([v0.13.0 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.13.0)).
+storage are managed within the network.
 
 Data blobs older than the recency window will be pruned by default
-on light nodes, after pruning is fully implemented,
+on light nodes,
 but will continue to be stored by archival nodes that do not prune data. Light
 nodes will be able to query historic blob data in namespaces from archival
 nodes, as long as archival nodes exist on the public network.
-
-Once pruning is fully implemented, light nodes will only perform data
-availability sampling for blocks within the data recency window of 30 days.
 
 ### Suggested practices for rollups
 
