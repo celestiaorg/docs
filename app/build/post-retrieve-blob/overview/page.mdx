@@ -2,8 +2,8 @@
 
 There are multiple ways to post and retrieve blobs from Celestia, each with different requirements. Pick the flow that matches how you want to connect and authenticate. This checklist covers what you need to configure and where to start.
 
-| Option                     | What you need                       | Endpoints to set                   | Guides                                                                                                  |
-| -------------------------- | ----------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| **Tx client (Go/Rust)**    | Local keyring handled by the client | **2** — DA bridge RPC + Core gRPC  | [Go client](/build/post-retrieve-blob/client/go) · [Rust client](/build/post-retrieve-blob/client/rust) |
-| **Self-hosted light node** | celestia-node with its auth token   | **1** — your node's RPC endpoint   | [Light node quickstart](/build/post-retrieve-blob/light-node/quickstart)                                |
-| **Hosted API (Twinkle)**   | Twinkle API key                     | **1** — HTTPS endpoint at `t.tech` | [Twinkle guide](/build/post-retrieve-blob/twinkle)                                                      |
+| Option                     | What you need                       | Endpoints to set                      | Guides                                                                                                  |
+| -------------------------- | ----------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Tx client (Go/Rust)**    | Local keyring handled by the client | **2** — DA bridge RPC + Core gRPC     | [Go client](/build/post-retrieve-blob/client/go) · [Rust client](/build/post-retrieve-blob/client/rust) |
+| **Self-hosted light node** | celestia-node with its auth token   | **1** — your node's Core RPC endpoint | [Light node quickstart](/build/post-retrieve-blob/light-node/quickstart)                                |
+| **Hosted API (Twinkle)**   | Twinkle API key                     | **1** — HTTPS endpoint at `t.tech`    | [Twinkle guide](/build/post-retrieve-blob/twinkle)                                                      |
