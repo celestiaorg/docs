@@ -1,0 +1,129 @@
+---
+description: Learn to set up your development environment to run Celestia software.
+---
+
+# Development environment
+
+This page will go over setting up your development environment
+to run Celestia software. This environment can be used for development, building
+binaries, and running nodes.
+
+## Supported architectures
+
+Celestia-app and celestia-node only officially support the following architectures:
+
+- linux/amd64
+- linux/arm64
+- darwin/amd64 (macOS Intel)
+- darwin/arm64 (macOS Apple Silicon)
+
+Only these four architectures are officially tested and supported.
+
+## Install dependencies
+
+1. If you are on Ubuntu, first update and upgrade your OS:
+
+   **APT**
+   ```bash
+   sudo apt update && sudo apt upgrade -y
+   ```
+
+   **YUM**
+   ```bash
+   sudo yum update
+   ```
+
+2. Install essential packages that are necessary to execute many tasks like
+   downloading files, compiling, and monitoring the node:
+
+   **APT**
+   ```bash
+   sudo apt install curl tar wget aria2 clang pkg-config libssl-dev jq build-essential \
+   git make ncdu -y
+   ```
+
+   **YUM**
+   ```bash
+   sudo yum install curl tar wget aria2 clang pkg-config libssl-dev jq build-essential \
+   git make ncdu -y
+   ```
+
+   **Mac**
+   ```bash
+   # install Homebrew, then wget & jq
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   brew install wget && brew install jq
+   ```
+
+## Install Golang
+
+celestia-node is written in Golang so we must install Golang to build
+and run our node.
+
+1. Set the version for your desired network:
+
+   - Mainnet Beta: `ver="1.24.1"`
+   - Mocha: `ver="1.24.1"`
+   - Arabica: `ver="1.24.1"`
+
+2. Download and install Golang:
+
+   **Ubuntu (AMD)**
+   ```bash
+   cd $HOME
+   wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+   sudo rm -rf /usr/local/go
+   sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+   rm "go$ver.linux-amd64.tar.gz"
+   ```
+
+   **Ubuntu (ARM)**
+   ```bash
+   cd $HOME
+   wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
+   sudo rm -rf /usr/local/go
+   sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
+   rm "go$ver.linux-arm64.tar.gz"
+   ```
+
+   **Mac (Apple)**
+   ```bash
+   cd $HOME
+   wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
+   sudo rm -rf /usr/local/go
+   sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
+   rm "go$ver.darwin-arm64.tar.gz"
+   ```
+
+   **Mac (Intel)**
+   ```bash
+   cd $HOME
+   wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
+   sudo rm -rf /usr/local/go
+   sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
+   rm "go$ver.darwin-amd64.tar.gz"
+   ```
+
+3. Add your `/usr/local/go/bin` directory to
+   your `$PATH` if you have not already:
+
+   **bash**
+   ```bash
+   echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+   source $HOME/.bash_profile
+   ```
+
+   **zsh**
+   ```bash
+   echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+   source $HOME/.zshrc
+   ```
+   > Tip: Use `echo $SHELL` to figure out what type of shell you are using!
+
+4. To verify that the correct version of Go was installed correctly run:
+
+   ```bash
+   go version
+   ```
+
+The output will show the version installed.
