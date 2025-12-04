@@ -6,6 +6,8 @@ import { Callout } from 'nextra/components'
 
 # Celestia's data availability layer
 
+Data availability (DA) answers a simple question: **has this block's data been published and can it be downloaded? In other words, is the data available?** When a node receives a new block, it must be able to retrieve the associated transaction data; otherwise, the chain can stall or be exploited. Celestia provides a modular DA layer so light nodes can verify availability efficiently without downloading whole blocks.
+
 ## tl;dr
 
 1. Celestia publishes blob data and uses data availability sampling (DAS) so light nodes can verify availability by sampling small chunks.
@@ -13,14 +15,6 @@ import { Callout } from 'nextra/components'
 3. Block producers erasure-code blobs into a _2k × 2k_ matrix, commit to every row and column, and put that root in the header.
 4. Light nodes sample within a rolling window; archival nodes (or providers) keep older data retrievable.
 5. Celestia is modular: DA and consensus at the base, with execution and settlement layers above.
-
-## Quick links
-
-- [DAS](#data-availability-sampling-das)
-- [Namespaced Merkle trees](#namespaced-merkle-trees-nmts)
-- [Lifecycle of a transaction](#the-lifecycle-of-a-celestia-app-transaction)
-- [Retrievability & pruning](#data-retrievability-and-pruning)
-- [Modular vs monolithic](#monolithic-vs-modular-blockchains)
 
 Celestia is a data availability (DA) layer that provides a
 scalable solution to the [data availability problem](https://coinmarketcap.com/academy/article/what-is-data-availability).
@@ -187,167 +181,6 @@ enable the governance of the DA layer.
 
 However, the celestia-app is data-agnostic -- the state machine neither
 validates nor stores the data that is made available by the celestia-app.
-
-## The lifecycle of a celestia-app transaction
-
-Users request the celestia-app to make data available by
-sending `PayForBlobs` transactions. Every such transaction consists
-of the identity of the sender, the data to be made available, also
-referred to as the message, the data size, the namespace, and
-a signature. Every block producer batches multiple `PayForBlobs`
-transactions into a block.
-
-Before proposing the block though, the producer passes it to the
-state machine via ABCI++, where each `PayForBlobs` transaction is
-split into a namespaced message (denoted by `Msg` in the figure below),
-i.e., the data together with the namespace ID, and an executable
-transaction (denoted by `e-Tx` in the figure below) that does not
-contain the data, but only a commitment that can be used at a later
-time to prove that the data was indeed made available.
-
-Thus, the block data consists of data partitioned into namespaces
-and executable transactions. Note that only these transactions are
-executed by the Celestia state machine once the block is committed.
-
-![Lifecycle of a celestia-app Transaction](/img/learn/tx-lifecycle.png)
-
-Next, the block producer adds to the block header a commitment
-of the block data. As
-[described in the "Celestia's data availability layer" page](/learn/celestia-101/DA),
-the commitment is the Merkle root of the _4k_ intermediate Merkle roots
-(i.e., one for each row and column of the extended matrix).
-To compute this commitment, the block producer performs the following operations:
-
-- It splits the executable transactions and the namespaced data
-  into shares. Every share consists of some bytes prefixed by a
-  namespace. To this end, the executable transactions are associated
-  with a reserved namespace.
-- It arranges these shares into a square matrix (row-wise). Note that
-  the shares are padded to the next power of two. The outcome square
-  of size _k × k_ is referred to as the original data.
-- It extends the original data to a _2k × 2k_ square matrix using
-  the 2-dimensional Reed-Solomon encoding scheme described above.
-  The extended shares (i.e., containing erasure data) are associated
-  with another reserved namespace.
-- It computes a commitment for every row and column of the extended
-  matrix using the NMTs described above.
-
-Thus, the commitment of the block data is the root of a Merkle tree
-with the leaves the roots of a forest of Namespaced Merkle subtrees,
-one for every row and column of the extended matrix.
-
-### Checking data availability
-
-![DA network](/img/learn/consensus-da.png)
-
-To enhance connectivity, the celestia-node augments the celestia-app
-with a separate libp2p network, _i.e._, the so-called _DA network_,
-that serves DAS requests.
-
-Light nodes connect to a celestia-node in the DA network, listen to
-extended block headers (i.e., the block headers together with the
-relevant DA metadata, such as the _4k_ intermediate Merkle roots), and
-perform DAS on the received headers (i.e., ask for random data shares).
-
-Note that although it is recommended, performing DAS is optional -- light
-nodes could just trust that the data corresponding to the commitments in
-the block headers was indeed made available by the Celestia DA layer.
-In addition, light nodes can also submit transactions to the celestia-app,
-i.e., `PayForBlobs` transactions.
-
-While performing DAS for a block header, every light node queries Celestia
-Nodes for a number of random data shares from the extended matrix and the
-corresponding Merkle proofs. If all the queries are successful, then the
-light node accepts the block header as valid (from a DA perspective).
-
-If at least one of the queries fails (i.e., either the data share is not
-received or the Merkle proof is invalid), then the light node rejects the
-block header and tries again later. The retrial is necessary to deal with
-false negatives, i.e., block headers being rejected although the block
-data is available. This may happen due to network congestion for example.
-
-Alternatively, light nodes may accept a block header although the data
-is not available, i.e., a _false positive_. This is possible since the
-soundness property (i.e., if an honest light node accepts a block as available,
-then at least one honest bridge node will eventually have the entire block data)
-is probabilistically guaranteed (for more details, take a look at the
-[original paper](https://arxiv.org/abs/1809.09044)).
-
-By fine tuning Celestia's parameters (e.g., the number of data shares sampled
-by each light node) the likelihood of false positives can be sufficiently
-reduced such that block producers have no incentive to withhold the block data.
-
-## Data retrievability and pruning
-
-The purpose of data availability layers such as Celestia is to ensure
-that block data is provably published, so that applications
-and rollups can know what the state of their chain is, and store that data.
-Once the data is published, data availability layers
-[do not inherently guarantee that historical data will be permanently stored](https://notes.ethereum.org/@vbuterin/proto_danksharding_faq#If-data-is-deleted-after-30-days-how-would-users-access-older-blobs)
-and remain retrievable.
-
-In this document, we discuss the state of data retrievability and
-pruning in Celestia, as well as some tips for rollup developers in
-order to ensure that syncing new rollup nodes is possible.
-
-### Data retrievability and pruning in celestia-node
-
-As of version v6 of celestia-app, celestia-node has implemented a light node
-sampling window of 7 days, as specified in
-[CIP-36](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-036.md).
-Light nodes now only sample blocks within a 7-day
-window instead of sampling all blocks from genesis. This change
-introduces the concept of pruning to celestia-node, where data
-outside of the 7-day window may not be stored by light nodes,
-marking a significant update in how data retrievability and
-storage are managed within the network.
-
-Data blobs older than the recency window will be pruned by default
-on light nodes,
-but will continue to be stored by archival nodes that do not prune data. Light
-nodes will be able to query historic blob data in namespaces from archival
-nodes, as long as archival nodes exist on the public network.
-
-### Suggested practices for rollups
-
-Rollups may need to access historic data in order to allow new rollup nodes
-to reconstruct the latest state by replaying historical blocks. Once data has
-been published on Celestia and guaranteed to have been made available, rollups
-and applications are responsible for storing their historical data.
-
-While it is possible to continue to do this by using the `GetAll` API method in
-celestia-node on historic blocks as long as archival nodes exist on the public
-Celestia network, rollup developers should not rely on this as the only method
-to access historical data, as archival nodes serving requests for historical
-data for free is not guaranteed. Below are some other suggested methods to
-access historical data.
-
-- **Use professional archival node or data providers.** It is expected that
-  professional infrastructure providers will provide paid access to archival
-  nodes, where historical data can be retrieved, for example using the `GetAll`
-  API method. Providers like QuickNode offer archival node services that maintain
-  complete historical data, ensuring reliable access to past transactions and state.
-  This provides better guarantees than solely relying on free archival nodes on the
-  public Celestia network. For a list of available providers, see the
-  [network pages](/how-to-guides/mainnet) page, and for specific archival
-  node endpoints, refer to the [archival DA RPC endpoints](/how-to-guides/mainnet#archival-da-rpc-endpoints)
-  section.
-
-- **Share snapshots of rollup nodes.** Rollups could share snapshots of their
-  data directories which can be downloaded manually by users bootstrapping new
-  nodes. These snapshots could contain the latest state of the rollup, and/or
-  all the historical blocks.
-- **Add peer-to-peer support for historical block sync.** A less manual version
-  of sharing snapshots, where rollup nodes could implement built-in support for
-  block sync, where rollup nodes download historical block data from each other
-  over a peer-to-peer network.
-  - [**Namespace pinning.**](https://github.com/celestiaorg/celestia-node/issues/2830)
-    In the future, celestia-node is expected to allow nodes to choose to "pin"
-    data from selected namespaces that they wish to store and make available for
-    other nodes. This will allow rollup nodes to be responsible for storing their
-    data, without needing to implement their own peer-to-peer historical block
-    sync mechanism.
-
 
 ## Monolithic vs. modular blockchains
 
