@@ -10,11 +10,11 @@ Data availability (DA) answers a simple question: **has this block's data been p
 
 ## tl;dr
 
-1. Celestia publishes blob data and uses data availability sampling (DAS) so light nodes can verify availability by sampling small chunks.
-2. Namespaced Merkle trees (NMTs) let each app fetch only its own namespaced data and prove availability.
-3. Block producers erasure-code blobs into a _2k × 2k_ matrix, commit to every row and column, and put that root in the header.
-4. Light nodes sample within a rolling window; archival nodes (or providers) keep older data retrievable.
-5. Celestia is modular: DA and consensus at the base, with execution and settlement layers above.
+1. Celestia is a modular data availability network: it orders blobs and keeps them available while execution and settlement live on layers above.
+2. It scales by decoupling execution from consensus and using data availability sampling (DAS) so light nodes can verify availability without downloading whole blocks; more light nodes sampling safely unlocks larger block sizes.
+3. Namespaced Merkle trees (NMTs) let each app fetch only its own namespaced data and prove availability.
+4. Block producers erasure-code blobs into a _2k × 2k_ matrix, commit to every row and column, and put that root in the header.
+5. Light nodes sample within a rolling window; archival nodes (or providers) keep older data retrievable.
 
 Celestia is a data availability (DA) layer that provides a
 scalable solution to the [data availability problem](https://coinmarketcap.com/academy/article/what-is-data-availability).

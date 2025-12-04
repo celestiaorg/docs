@@ -1,5 +1,4 @@
 const meta = {
-  introduction: "Introduction",
   "data-availability": "Data availability",
   retrievability: "Data retrievability and pruning",
   "transaction-lifecycle": "The lifecycle of a celestia-app transaction",
