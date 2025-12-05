@@ -106,21 +106,25 @@ actual costs may vary depending on the current state of these parameters.
 The total fee for a transaction is calculated as the product of the gas limit
 for the transaction and the gas price set by the user:
 
-_Total Fee = Gas Limit x Gas Price_
+$$
+\text{Total Fee} = \text{Gas Limit} \times \text{Gas Price}
+$$
 
 The gas limit for a transaction is the maximum amount of gas that a user is
 willing to spend on a transaction. It is determined by both a static
 fixed cost (FC) and a variable dynamic cost based on the size of each blob involved
 in the transaction:
 
-_Gas Limit = FC + sum(i=1..n) SSN(B_i) x SS x GCPBB_
+$$
+\text{Gas Limit} = FC + \sum_{i=1}^{n} \text{SSN}(B_i) \times SS \times GCPBB
+$$
 
 Where:
 
-- _FC_ = Fixed Cost, is a static value (65,000 gas)
-- _sum(i=1..n) SSN(B_i)_ = SparseSharesNeeded for the ith Blob, is the number of shares needed for the ith blob in the transaction
-- _SS_ = Share Size, is the size of each share
-- _GCPBB_ = Gas Cost Per Blob Byte, is a parameter that could potentially be adjusted through the system's governance mechanisms.
+- $FC$ = Fixed Cost, is a static value (65,000 gas)
+- $\sum_{i=1}^{n} \text{SSN}(B_i)$ = SparseSharesNeeded for the ith Blob, is the number of shares needed for the ith blob in the transaction
+- $SS$ = Share Size, is the size of each share
+- $GCPBB$ = Gas Cost Per Blob Byte, is a parameter that could potentially be adjusted through the system's governance mechanisms.
 
 The gas fee is set by the user when they submit a transaction. The fee is often
 specified by users directly. The total cost for the transaction is then
@@ -217,7 +221,7 @@ This feature is currently available on Arabica devnet and Mocha testnet (v0.28.2
 </Callout>
 
 For high-throughput applications that do not require sequential transaction ordering, you can enable parallel transaction submission
-by setting TxWorkerAccounts to a value > 1:
+by setting `TxWorkerAccounts` to a value > 1:
 
 ```toml
 [State]
@@ -228,7 +232,7 @@ by setting TxWorkerAccounts to a value > 1:
 
 #### How it works:
 
-TxWorkerAccounts defines how many parallel lanes the node will initialize for submitting transactions. These lanes are implemented as
+`TxWorkerAccounts` defines how many parallel lanes the node will initialize for submitting transactions. These lanes are implemented as
 subaccounts that are automatically:
 
 1. Created and derived from your default account

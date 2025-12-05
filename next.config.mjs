@@ -1,12 +1,14 @@
 import nextra from 'nextra'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 import remarkReplaceVariables from './plugins/remark-replace-variables.mjs'
 
 // Set up Nextra with its configuration
 const withNextra = nextra({
   defaultShowCopyCode: true,
   mdxOptions: {
-    remarkPlugins: [remarkReplaceVariables],
-    rehypePlugins: [],
+    remarkPlugins: [remarkReplaceVariables, remarkMath],
+    rehypePlugins: [rehypeKatex],
   },
 })
 

@@ -1,6 +1,7 @@
 const meta = {
-  "private-blockspace": "Private blockspace",
+  latex: "Math & LaTeX",
   bridging: "Bridging",
+  "private-blockspace": "Private blockspace",
 };
 
 export default meta;

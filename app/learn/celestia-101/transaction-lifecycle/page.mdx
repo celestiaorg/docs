@@ -24,7 +24,7 @@ executed by the Celestia state machine once the block is committed.
 Next, the block producer adds to the block header a commitment
 of the block data. As
 [described in the "Celestia's data availability layer" page](/learn/celestia-101/data-availability),
-the commitment is the Merkle root of the _4k_ intermediate Merkle roots
+the commitment is the Merkle root of the $4k$ intermediate Merkle roots
 (i.e., one for each row and column of the extended matrix).
 To compute this commitment, the block producer performs the following operations:
 
@@ -34,8 +34,8 @@ To compute this commitment, the block producer performs the following operations
   with a reserved namespace.
 - It arranges these shares into a square matrix (row-wise). Note that
   the shares are padded to the next power of two. The outcome square
-  of size _k × k_ is referred to as the original data.
-- It extends the original data to a _2k × 2k_ square matrix using
+  of size $k \times k$ is referred to as the original data.
+- It extends the original data to a $2k \times 2k$ square matrix using
   the 2-dimensional Reed-Solomon encoding scheme described above.
   The extended shares (i.e., containing erasure data) are associated
   with another reserved namespace.
@@ -56,7 +56,7 @@ that serves DAS requests.
 
 Light nodes connect to a celestia-node in the DA network, listen to
 extended block headers (i.e., the block headers together with the
-relevant DA metadata, such as the _4k_ intermediate Merkle roots), and
+relevant DA metadata, such as the $4k$ intermediate Merkle roots), and
 perform DAS on the received headers (i.e., ask for random data shares).
 
 Note that although it is recommended, performing DAS is optional -- light
