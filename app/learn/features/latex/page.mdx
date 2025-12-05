@@ -1,0 +1,29 @@
+---
+title: Math & LaTeX
+---
+
+You can write LaTeX math directly in MDX. Inline formulas use single dollar signs: `Einstein noted $E = mc^2$.`
+
+$$
+E = mc^2
+$$
+
+For display equations, wrap the math in double dollar signs on their own lines:
+
+$$
+\oint_C \vec{E} \cdot d\vec{l} = - \frac{d\Phi_B}{dt}
+$$
+
+Aligned expressions work with standard LaTeX environments:
+
+$$
+\begin{aligned}
+\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
+\nabla \times \vec{E} &= -\frac{\partial \vec{B}}{\partial t}
+\end{aligned}
+$$
+
+Tips:
+
+- Use a single backslash inside math (`\alpha`, `\frac{1}{2}`); MDX math blocks don’t need double escaping.
+- Keep math blocks separated from surrounding text with blank lines for reliable rendering.

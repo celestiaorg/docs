@@ -20,7 +20,7 @@ The current max square size on Arabica is 128 MiB, Mocha is 32 MiB, and Mainnet 
 
 Under v6 and future upgrades, networks will use larger square sizes, so the absolute maximum blob capacity per transaction will increase correspondingly—up to the global **8 MiB transaction size limit**, which is now the binding constraint.
 
-See the [Mainnet Beta page under “Transaction size limit”](/how-to-guides/mainnet#transaction-size-limit) for details.
+See the [Mainnet Beta page under “Transaction size limit”](/operate/networks/mainnet-beta#transaction-size-limit) for details.
 
 ## Fee market and mempool
 
@@ -106,21 +106,25 @@ actual costs may vary depending on the current state of these parameters.
 The total fee for a transaction is calculated as the product of the gas limit
 for the transaction and the gas price set by the user:
 
-_Total Fee = Gas Limit x Gas Price_
+$$
+\text{Total Fee} = \text{Gas Limit} \times \text{Gas Price}
+$$
 
 The gas limit for a transaction is the maximum amount of gas that a user is
 willing to spend on a transaction. It is determined by both a static
 fixed cost (FC) and a variable dynamic cost based on the size of each blob involved
 in the transaction:
 
-_Gas Limit = FC + sum(i=1..n) SSN(B_i) x SS x GCPBB_
+$$
+\text{Gas Limit} = FC + \sum_{i=1}^{n} \text{SSN}(B_i) \times SS \times GCPBB
+$$
 
 Where:
 
-- _FC_ = Fixed Cost, is a static value (65,000 gas)
-- _sum(i=1..n) SSN(B_i)_ = SparseSharesNeeded for the ith Blob, is the number of shares needed for the ith blob in the transaction
-- _SS_ = Share Size, is the size of each share
-- _GCPBB_ = Gas Cost Per Blob Byte, is a parameter that could potentially be adjusted through the system's governance mechanisms.
+- $FC$ = Fixed Cost, is a static value (65,000 gas)
+- $\sum_{i=1}^{n} \text{SSN}(B_i)$ = SparseSharesNeeded for the ith Blob, is the number of shares needed for the ith blob in the transaction
+- $SS$ = Share Size, is the size of each share
+- $GCPBB$ = Gas Cost Per Blob Byte, is a parameter that could potentially be adjusted through the system's governance mechanisms.
 
 The gas fee is set by the user when they submit a transaction. The fee is often
 specified by users directly. The total cost for the transaction is then
@@ -217,7 +221,7 @@ This feature is currently available on Arabica devnet and Mocha testnet (v0.28.2
 </Callout>
 
 For high-throughput applications that do not require sequential transaction ordering, you can enable parallel transaction submission
-by setting TxWorkerAccounts to a value > 1:
+by setting `TxWorkerAccounts` to a value > 1:
 
 ```toml
 [State]
@@ -228,7 +232,7 @@ by setting TxWorkerAccounts to a value > 1:
 
 #### How it works:
 
-TxWorkerAccounts defines how many parallel lanes the node will initialize for submitting transactions. These lanes are implemented as
+`TxWorkerAccounts` defines how many parallel lanes the node will initialize for submitting transactions. These lanes are implemented as
 subaccounts that are automatically:
 
 1. Created and derived from your default account
@@ -293,15 +297,15 @@ Available flags:
 - `--core.estimator.address string`: Specifies the endpoint of the third-party service for gas price and gas estimation. Format: `<address>:<port>`. If not provided, the default connection to the consensus node will be used.
 - `--max.gas.price`: Sets the maximum gas price you're willing to pay for the transaction. If the estimated gas price exceeds this value, the transaction will not be submitted. Default is 0.2 TIA (100x the minimum gas price).
 
-Learn more in the [node tutorial](/tutorials/node-tutorial.md).
+Learn more in the [light node tutorial](/operate/data-availability/light-node).
 
 ### The celestia-node API golang client
 
-See the [golang client tutorial](/tutorials/golang-client-tutorial.md).
+See the [golang client tutorial](/build/post-retrieve-blob/client/go).
 
 ### The celestia-node API Rust client
 
-See the [Rust client tutorial](/tutorials/rust-client-tutorial.md).
+See the [Rust client tutorial](/build/post-retrieve-blob/client/rust).
 
 ### RPC to a celestia-node
 

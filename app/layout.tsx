@@ -3,6 +3,7 @@ import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import Image from "next/image";
 import "nextra-theme-docs/style.css";
+import "katex/dist/katex.min.css";
 import { FontStyles } from "@/components/FontStyles";
 
 // Use BASE env var (same as next.config.mjs) and ensure it's available client-side
