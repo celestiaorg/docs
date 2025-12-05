@@ -13,7 +13,7 @@ The Celestia Go client lets you submit and retrieve data from the Celestia netwo
 
 - Go 1.24 or later
 - A Celestia account (created automatically)
-- Testnet tokens from the [Mocha faucet](https://docs.celestia.org/how-to-guides/mocha-testnet#mocha-testnet-faucet)
+- Testnet tokens from the [Mocha faucet](https://docs.celestia.org/operate/networks/mocha-testnet#mocha-testnet-faucet)
 
 ## Quick setup
 
@@ -139,7 +139,7 @@ func main() {
 		if balanceStr == "0utia" || balanceStr == "0 utia" {
 			fmt.Println("Account has no funds. Fund this address at the Mocha faucet to submit blobs:")
 			fmt.Printf("Address: %s\n", address.String())
-			fmt.Println("Faucet: https://docs.celestia.org/how-to-guides/mocha-testnet#mocha-testnet-faucet")
+			fmt.Println("Faucet: https://docs.celestia.org/operate/networks/mocha-testnet#mocha-testnet-faucet")
 		} else {
 			if err := submitAndRetrieveBlob(ctx, c); err != nil {
 				panic(err)
@@ -282,7 +282,7 @@ export CELE_DA_TLS=false
 go run main.go
 ```
 
-**First run:** You'll see your account address. Fund it at the [Mocha faucet](https://docs.celestia.org/how-to-guides/mocha-testnet#mocha-testnet-faucet).
+**First run:** You'll see your account address. Fund it at the [Mocha faucet](https://docs.celestia.org/operate/networks/mocha-testnet#mocha-testnet-faucet).
 
 **Second run:** After funding, you'll see:
 
@@ -310,7 +310,7 @@ Connecting to Celestia...
 Balance: 0utia
 Account has no funds. Fund this address at the Mocha faucet to submit blobs:
 Address: celestia16k0wsej6rewd2pfh0taah35suzf3apj552q8c3
-Faucet: https://docs.celestia.org/how-to-guides/mocha-testnet#mocha-testnet-faucet
+Faucet: https://docs.celestia.org/operate/networks/mocha-testnet#mocha-testnet-faucet
 ✓ Tutorial complete!
 ```
 
@@ -715,7 +715,7 @@ Common errors and solutions:
 
 **`account for signer ... not found`**
 - The account has not been funded yet
-- Fund your account at the [Mocha faucet](https://docs.celestia.org/how-to-guides/mocha-testnet#mocha-testnet-faucet)
+- Fund your account at the [Mocha faucet](https://docs.celestia.org/operate/networks/mocha-testnet#mocha-testnet-faucet)
 
 **`failed to submit blobs due to insufficient gas price`**
 - The estimated or configured gas price is too low

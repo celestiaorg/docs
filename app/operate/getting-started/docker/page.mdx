@@ -7,7 +7,7 @@ description: Running Celestia Node using Docker.
 
 This page has instructions to run celestia-node using Docker. If you are
 looking for instructions to run celestia-node using a binary, please
-refer to the [celestia-node page](/how-to-guides/celestia-node.md).
+refer to the [celestia-node page](/operate/data-availability/install-celestia-node).
 
 Using Docker is the easiest way to run celestia-node for most
 users. Docker is a containerization platform that allows you to run celestia-node
@@ -19,7 +19,7 @@ to run the node.
 
 If you would like to learn more about
 key management in Docker, visit the
-[Docker and `cel-key` section](/tutorials/celestia-node-key.md#docker-and-cel-key).
+[Docker and `cel-key` section](/operate/keys-wallets/celestia-node-key#docker-and-cel-key).
 
 The easiest way to install Docker is to use the Docker Desktop installer or
 Ubuntu. You can
@@ -34,7 +34,7 @@ Ubuntu. You can
 
 ## Quick start
 
-1. Set [the network](/how-to-guides/participate.md) you would like to run your node on:
+1. Set [the network](/operate/networks/overview) you would like to run your node on:
 
    **Mainnet Beta**
    ```bash
@@ -68,9 +68,9 @@ Ubuntu. You can
    export NODE_TYPE=full
    ```
 
-3. Set an RPC endpoint for either [Mainnet Beta](/how-to-guides/mainnet.md#integrations),
-   [Mocha](/how-to-guides/mocha-testnet.md#integrations), or
-   [Arabica](/how-to-guides/arabica-devnet.md#integrations)
+3. Set an RPC endpoint for either [Mainnet Beta](/operate/networks/mainnet-beta#integrations),
+   [Mocha](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes), or
+   [Arabica](/operate/networks/arabica-devnet#integrations)
    using the bare URL (without http or https):
 
    ```bash
@@ -110,8 +110,8 @@ Congratulations! You now have a celestia-node running!
 
 If you would like to run the node with custom flags,
 you can refer to the
-[celestia-node tutorial](/tutorials/node-tutorial.md#connect-to-a-core-endpoint) page. Refer to
-[the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
+[celestia-node tutorial](/operate/data-availability/light-node#start-the-light-node) page. Refer to
+[the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports)
 for information on which ports are required to be open on your machine.
 
 ## Light node setup with persistent storage

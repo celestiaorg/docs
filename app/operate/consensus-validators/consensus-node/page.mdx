@@ -12,7 +12,7 @@ consensus layer.
 
 ## Minimum hardware requirements
 
-See [hardware requirements](/how-to-guides/nodes-overview.md#recommended-celestia-node-requirements).
+See [hardware requirements](/operate/getting-started/hardware-requirements).
 
 ## Set up a consensus node
 
@@ -21,11 +21,11 @@ instance machine.
 
 ### Set up the dependencies
 
-Follow the instructions on [installing dependencies](/how-to-guides/environment.md).
+Follow the instructions on [installing dependencies](/operate/getting-started/environment-setup).
 
 ### Install celestia-app
 
-Follow the tutorial on [installing `celestia-app`](/how-to-guides/celestia-app.md).
+Follow the tutorial on [installing `celestia-app`](/operate/consensus-validators/install-celestia-app).
 
 ### Set up the P2P networks
 
@@ -218,7 +218,7 @@ from [the chain-registry](https://github.com/cosmos/chain-registry).
 If you are looking to quickly sync a consensus node, and do not need historical blocks,
 you can use the following scripts and state sync.
 
-**Before running the scripts, make sure to checkout to the [correct version](/how-to-guides/participate):**
+**Before running the scripts, make sure to checkout to the [correct version](/operate/networks/overview):**
 
 > **Note:** State sync scripts for each network are available in the [networks repository](https://github.com/celestiaorg/networks).
 
@@ -297,7 +297,7 @@ tar xf celestia-snap.tar -C ~/.celestia-app/data/
 
 > **Tip:**
 
-The [Node snapshots guide](/how-to-guides/snapshots.md) provides everything you need to quick sync your node:
+The [Node snapshots guide](/operate/maintenance/snapshots) provides everything you need to quick sync your node:
 
 - Details about pruned and archive snapshots
 - A list of snapshot providers for different node types
@@ -331,7 +331,7 @@ celestia-appd start --v2-upgrade-height 1751707
 ```
 
 
-Optional: If you would like celestia-app to run as a background process, you can follow the [SystemD tutorial](/how-to-guides/systemd.md).
+Optional: If you would like celestia-app to run as a background process, you can follow the [SystemD tutorial](/operate/maintenance/systemd).
 
 ## Extra resources for consensus nodes
 

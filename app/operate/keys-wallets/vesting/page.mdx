@@ -11,9 +11,9 @@ celestia-app for both a local devnet and on Mocha testnet.
 
 ## Local devnet
 
-First, [download and install celestia-app](/how-to-guides/celestia-app.md),
+[download and install celestia-app](/operate/consensus-validators/install-celestia-app),
 selecting the
-[network and corresponding version](/how-to-guides/participate.md)
+[network and corresponding version](/operate/networks/overview)
 that you would like to use.
 
 ### Setting up the local devnet
@@ -282,10 +282,10 @@ Next, you can learn how to create a vesting account on Mocha testnet.
 In the previous section of this tutorial, we learned how to create a vesting
 account on a local devnet. In this portion of the tutorial, we'll cover how
 to set up a consensus node and set up a vesting account on
-[Mocha testnet](/how-to-guides/mocha-testnet.md).
+[Mocha testnet](/operate/networks/mocha-testnet).
 
 First, be sure that you have
-[installed celestia-app for the latest version for Mocha testnet](/how-to-guides/celestia-app.md).
+[installed celestia-app for the latest version for Mocha testnet](/operate/consensus-validators/install-celestia-app).
 
 ### Create a wallet
 
@@ -316,14 +316,14 @@ export TO_ADDRESS=address_of_vesting_account
 
 ### Fund your account
 
-Head to [the faucet](/how-to-guides/mocha-testnet.md#mocha-testnet-faucet),
+Head to [the faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet),
 and fund your `origin` address.
 
 ### Create a vesting account on Mocha
 
 To create a vesting account on Mocha, you will need an RPC URL to send
 the transaction to. You can find the
-[RPC endpoints on the Mocha testnet page](/how-to-guides/mocha-testnet.md#integrations).
+[RPC endpoints on the Mocha testnet page](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes).
 
 If you are running a production application, use a production endpoint.
 
@@ -356,8 +356,8 @@ celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 168674805
 Running a consensus node or validator will prevent you from needing
 to use an RPC.
 
-You can set up a [validator](/how-to-guides/validator-node.md)
-or [consensus node](/how-to-guides/consensus-node.md)
+You can set up a [validator](/operate/consensus-validators/validator-node)
+or [consensus node](/operate/consensus-validators/consensus-node)
 for the previous portion of the tutorial.
 
 Note: this may take some time depending on how you choose to sync the

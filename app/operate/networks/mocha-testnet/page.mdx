@@ -10,7 +10,7 @@ This guide contains the relevant sections for how to connect to Mocha,
 depending on the type of node you are running. Mocha testnet is designed
 to help validators test out their infrastructure and node software.
 Developers are encouraged to deploy their
-sovereign rollups on Mocha, but we also recommend [Arabica devnet](/how-to-guides/arabica-devnet.md)
+sovereign rollups on Mocha, but we also recommend [Arabica devnet](/operate/networks/arabica-devnet)
 for that as it is designed for development purposes.
 
 Mocha is a milestone in Celestia, allowing everyone to test out
@@ -24,13 +24,13 @@ participate in Mocha:
 
 Consensus:
 
-- [Consensus node](/how-to-guides/consensus-node.md)
-- [Validator node](/how-to-guides/validator-node.md)
+- [Consensus node](/operate/consensus-validators/consensus-node)
+- [Validator node](/operate/consensus-validators/validator-node)
 
 Data Availability:
 
-- [Bridge node](/how-to-guides/bridge-node.md)
-- [Light node](/how-to-guides/light-node.md)
+- [Bridge node](/operate/data-availability/bridge-node)
+- [Light node](/operate/data-availability/light-node)
 
 Select the type of node you would like to run and follow the instructions
 on each respective page. Whenever you are asked to select the type of network
@@ -108,7 +108,7 @@ Celestia network. For users, they will need to provide a `–core.ip string`
 from a consensus node's URL or IP that populates a default gRPC port at 9090
 to their respective DA node.
 
-> **Tip for bridge nodes:** Community RPC endpoints do not guarantee full block downloads. If you are running a bridge node, also run a local [consensus node](/how-to-guides/consensus-node.md) to download full blocks.
+> **Tip for bridge nodes:** Community RPC endpoints do not guarantee full block downloads. If you are running a bridge node, also run a local [consensus node](/operate/consensus-validators/consensus-node) to download full blocks.
 
 - `public-celestia-mocha4-consensus.numia.xyz`
 - `full.consensus.mocha-4.celestia-mocha.com`
@@ -265,5 +265,5 @@ There are a few ways to stay informed about network upgrades on the Mocha testne
 - Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 - Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
 
-See the [network upgrade process page](/how-to-guides/network-upgrade-process.md) to learn more
-about specific upgrades like the [Ginger network upgrade](/how-to-guides/network-upgrade-process.md#ginger-network-upgrade).
+See the [network upgrade process page](/operate/maintenance/network-upgrades) to learn more
+about specific upgrades like the [Ginger network upgrade](/operate/maintenance/network-upgrades#ginger-network-upgrade).

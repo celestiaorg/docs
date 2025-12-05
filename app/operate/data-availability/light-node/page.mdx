@@ -23,7 +23,7 @@ Light nodes have the following behavior:
 
 ## Hardware requirements
 
-See [hardware requirements](/how-to-guides/nodes-overview.md#recommended-celestia-node-requirements).
+See [hardware requirements](/operate/getting-started/hardware-requirements).
 
 ## Quickstart: Run a light node in your browser
 
@@ -41,18 +41,18 @@ You can also run Lumina on the first decentralized block explorer,
 
 This tutorial was performed on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
-Set up dependencies on the [setting up environment](/how-to-guides/environment.md) page.
+Set up dependencies on the [setting up environment](/operate/getting-started/environment-setup) page.
 
 ### Install celestia-node
 
 Install the `celestia` binary by
-[building and installing celestia-node](/how-to-guides/celestia-node.md).
+[building and installing celestia-node](/operate/data-availability/install-celestia-node).
 
 ## Initialize the light node
 
 > **Tip:**
 If you would like to skip sampling the entire chain's headers, you can
-[initialize the light node from a trusted hash](/how-to-guides/celestia-node-trusted-hash.md).
+[initialize the light node from a trusted hash](/operate/maintenance/trusted-hash-recovery).
 
 Run the following command:
 
@@ -88,7 +88,7 @@ node's account balance, a gRPC endpoint of a validator
 (consensus) node must be passed as directed below.
 
 Refer to
-[the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
+[the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports)
 for information on which ports are required to be open on your machine.
 
 
@@ -111,12 +111,12 @@ celestia light start --core.ip validator-1.celestia-arabica-11.com \
 ```
 
 
-Tip: you can replace the core.ip with a consensus node RPC endpoint from [Mainnet Beta](/operate/networks/mainnet-beta#integrations), [Mocha testnet](/operate/networks/mocha-testnet#integrations), or [Arabica devnet](/operate/networks/arabica-devnet#integrations).
+Tip: you can replace the core.ip with a consensus node RPC endpoint from [Mainnet Beta](/operate/networks/mainnet-beta#integrations), [Mocha testnet](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes), or [Arabica devnet](/operate/networks/arabica-devnet#integrations).
 
 ### Keys and wallets
 
 You can create your key for your node by running the following command with the
-[`cel-key` utility](/tutorials/celestia-node-key.md) in the
+[`cel-key` utility](/operate/keys-wallets/celestia-node-key) in the
 `celestia-node` directory:
 
 ```sh
@@ -153,9 +153,8 @@ Once you start the light node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
 `PayForBlob` transactions.
 
-You can [find the address using the RPC CLI](/tutorials/node-tutorial.md#get-your-account-address)
-or by running the following command in the
-`celestia-node` directory:
+You can find the address using the RPC CLI or by running the following command
+in the `celestia-node` directory:
 
 ```sh
 ./cel-key list --node.type light --keyring-backend test \
@@ -244,9 +243,9 @@ To migrate a light node ID:
 ### Optional: start light node with SystemD
 
 Follow
-[the tutorial on setting up the light node as a background process with SystemD](/how-to-guides/systemd.md#celestia-light-node).
+[the tutorial on setting up the light node as a background process with SystemD](/operate/maintenance/systemd#celestia-light-node).
 
 ## Data availability sampling
 
 With your light node running, you can check out
-[this tutorial on submitting `PayForBlob` transactions](/tutorials/node-tutorial.md).
+[this tutorial on submitting `PayForBlob` transactions](/build/post-retrieve-blob/light-node/quickstart#post-a-blob).

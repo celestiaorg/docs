@@ -11,7 +11,7 @@ Validator nodes allow you to participate in consensus in the Celestia network.
 
 ## Hardware requirements
 
-See [hardware requirements](/how-to-guides/nodes-overview.md#recommended-celestia-node-requirements).
+See [hardware requirements](/operate/getting-started/hardware-requirements).
 
 ## Setting up a validator node
 
@@ -19,11 +19,11 @@ The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64
 instance machine.
 
 First, follow the instructions on
-[setting up a consensus node](/how-to-guides/consensus-node.md#set-up-a-consensus-node).
+[setting up a consensus node](/operate/consensus-validators/consensus-node#set-up-a-consensus-node).
 
 ### Wallet
 
-Follow [the tutorial on creating a wallet](/how-to-guides/celestia-app-wallet.md).
+Follow [the tutorial on creating a wallet](/operate/keys-wallets/celestia-app-wallet).
 
 ## Optional: Deploy the celestia-node
 
@@ -40,7 +40,7 @@ Celestia bridge node daemon.
 
 ### Install celestia-node
 
-You can [follow the tutorial for installing `celestia-node`](/how-to-guides/celestia-node.md)
+You can [follow the tutorial for installing `celestia-node`](/operate/data-availability/install-celestia-node)
 
 ### Initialize the bridge node
 
@@ -52,7 +52,7 @@ celestia bridge init --core.ip <URI> --core.port <port>
 
 > **Tip:**
 Refer to
-[the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports)
+[the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports)
 for information on which ports are required to be open on your machine.
 
 When connecting your bridge node to a localhost consensus node, ensure that gRPC
@@ -61,9 +61,9 @@ section should have `enable = true` and the appropriate address setting for the
 bridge node to connect successfully.
 
 Using an RPC of your own, or one from
-[Mainnet Beta](/how-to-guides/mainnet.md#integrations),
-[Mocha testnet](/how-to-guides/mocha-testnet.md#integrations) or
-[Arabica devnet](/how-to-guides/arabica-devnet.md#integrations),
+[Mainnet Beta](/operate/networks/mainnet-beta#integrations),
+[Mocha testnet](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes) or
+[Arabica devnet](/operate/networks/arabica-devnet#integrations),
 initialize your node.
 
 ### Run the bridge node
@@ -77,7 +77,7 @@ celestia bridge start
 #### Optional: start the bridge node with SystemD
 
 Follow
-[the tutorial on setting up the bridge node as a background process with SystemD](/how-to-guides/systemd.md).
+[the tutorial on setting up the bridge node as a background process with SystemD](/operate/maintenance/systemd).
 
 You have successfully set up a bridge node that is syncing with the network.
 
@@ -227,7 +227,7 @@ celestia-appd tx staking edit-validator \
 ```
 
 
-You should now be able to see your validator from a [block explorer](/how-to-guides/mocha-testnet.md#explorers).
+You should now be able to see your validator from a [block explorer](/operate/networks/mocha-testnet#explorers).
 
 ## Submit your validator information
 
@@ -291,7 +291,7 @@ inputting the `txhash` ID that was returned.
 ## Optional: Transaction indexer configuration options
 
 Follow the instructions under
-[transaction indexer configuration options](/how-to-guides/consensus-node#optional-transaction-indexer-configuration-options)
+[transaction indexer configuration options](/operate/consensus-validators/consensus-node#optional-transaction-indexer-configuration-options)
 to configure your `config.toml` file to select which transactions to index.
 
 ## Migrating a validator to another machine
@@ -300,7 +300,7 @@ to configure your `config.toml` file to select which transactions to index.
 
 ### Step 1: Set up a new full consensus node
 
-First, set up a new [consensus node](/how-to-guides/consensus-node.md) on the new server and make sure the node is fully synced with the chain. To check whether your node is synced, you can check the `catching_up` status using:
+First, set up a new [consensus node](/operate/consensus-validators/consensus-node) on the new server and make sure the node is fully synced with the chain. To check whether your node is synced, you can check the `catching_up` status using:
 
 ```bash
 celestia-appd status | jq '{ "catching_up": .SyncInfo.catching_up }'
@@ -316,7 +316,7 @@ If the node is synced, the output will look like this:
 
 ### Step 2: Stop the old validator
 
-After your new consensus node is synced, proceed to stop the current validator on the old machine. If you’re running it with [SystemD](/how-to-guides/systemd.md), use the following command:
+After your new consensus node is synced, proceed to stop the current validator on the old machine. If you’re running it with [SystemD](/operate/maintenance/systemd), use the following command:
 
 ```bash
 sudo systemctl stop <SERVICE_NAME>
@@ -361,7 +361,7 @@ After this, your validator will resume signing blocks on the new server, and the
 ## Additional resources
 
 For additional resources, refer to
-[the extra resources for consensus nodessection of the consensus node page](/how-to-guides/consensus-node.md#extra-resources-for-consensus-nodes).
+[the extra resources for consensus nodessection of the consensus node page](/operate/consensus-validators/consensus-node#extra-resources-for-consensus-nodes).
 
 ## FAQ
 

@@ -20,7 +20,7 @@ The current max square size on Arabica is 128 MiB, Mocha is 32 MiB, and Mainnet 
 
 Under v6 and future upgrades, networks will use larger square sizes, so the absolute maximum blob capacity per transaction will increase correspondingly—up to the global **8 MiB transaction size limit**, which is now the binding constraint.
 
-See the [Mainnet Beta page under “Transaction size limit”](/how-to-guides/mainnet#transaction-size-limit) for details.
+See the [Mainnet Beta page under “Transaction size limit”](/operate/networks/mainnet-beta#transaction-size-limit) for details.
 
 ## Fee market and mempool
 
@@ -297,15 +297,15 @@ Available flags:
 - `--core.estimator.address string`: Specifies the endpoint of the third-party service for gas price and gas estimation. Format: `<address>:<port>`. If not provided, the default connection to the consensus node will be used.
 - `--max.gas.price`: Sets the maximum gas price you're willing to pay for the transaction. If the estimated gas price exceeds this value, the transaction will not be submitted. Default is 0.2 TIA (100x the minimum gas price).
 
-Learn more in the [node tutorial](/tutorials/node-tutorial.md).
+Learn more in the [light node tutorial](/operate/data-availability/light-node).
 
 ### The celestia-node API golang client
 
-See the [golang client tutorial](/tutorials/golang-client-tutorial.md).
+See the [golang client tutorial](/build/post-retrieve-blob/client/go).
 
 ### The celestia-node API Rust client
 
-See the [Rust client tutorial](/tutorials/rust-client-tutorial.md).
+See the [Rust client tutorial](/build/post-retrieve-blob/client/rust).
 
 ### RPC to a celestia-node
 

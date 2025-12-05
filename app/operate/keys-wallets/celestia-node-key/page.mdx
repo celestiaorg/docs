@@ -11,7 +11,7 @@ While this tutorial will go over the installation process
 of `cel-key`, it is recommended that you complete
 the following prerequisites first:
 
-- [Setting up your environment](/how-to-guides/environment.md)
+- [Setting up your environment](/operate/getting-started/environment-setup)
 
 Once you completed the prerequisite, you can proceed with this
 tutorial.
@@ -53,7 +53,7 @@ For the purpose of this guide, we will use the `make cel-key` command.
 To generate a key for a Celestia node, select
 the tab for your node type:
 
-> **Tip:** You do not need to declare a network for Mainnet Beta. Refer to [the chain ID section on the troubleshooting page for more information](/how-to-guides/celestia-node-troubleshooting.md).
+> **Tip:** You do not need to declare a network for Mainnet Beta. Refer to [the chain ID section on the troubleshooting page for more information](/operate/maintenance/troubleshooting).
 
 ```bash
 ./cel-key add <key-name> --keyring-backend test --node.type bridge \
@@ -240,7 +240,7 @@ This ensures your node uses the specified key for all operations, including thos
 
 - Docker installed on your machine
 - Understanding of the
-  [guide on how to run celestia-node with Docker](/how-to-guides/docker-images.md).
+  [guide on how to run celestia-node with Docker](/operate/getting-started/docker).
 
 ### Running your node
 
@@ -253,7 +253,7 @@ ghcr.io/celestiaorg/celestia-node:v0.28.4-mocha celestia light start \
 --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
 ```
 
-> **Tip:** Refer to [the ports section of the celestia-node troubleshooting page](/how-to-guides/celestia-node-troubleshooting.md#ports) for information on which ports are required to be open on your machine. You do not need to declare a network for Mainnet Beta. Refer to [the chain ID section on the troubleshooting page for more information](/how-to-guides/celestia-node-troubleshooting.md).
+> **Tip:** Refer to [the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports) for information on which ports are required to be open on your machine. You do not need to declare a network for Mainnet Beta. Refer to [the chain ID section on the troubleshooting page for more information](/operate/maintenance/troubleshooting).
 
 List active containers in another window with:
 
