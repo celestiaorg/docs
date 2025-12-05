@@ -1,10 +1,11 @@
 import nextra from 'nextra'
+import remarkReplaceVariables from './plugins/remark-replace-variables.mjs'
 
 // Set up Nextra with its configuration
 const withNextra = nextra({
   defaultShowCopyCode: true,
   mdxOptions: {
-    remarkPlugins: [],
+    remarkPlugins: [remarkReplaceVariables],
     rehypePlugins: [],
   },
 })
@@ -24,7 +25,7 @@ export default withNextra({
     unoptimized: true,
   },
   experimental: {
-    mdxRs: true,
+    // mdxRs is disabled because it doesn't support custom remark plugins
   },
   webpack: (config) => {
     config.watchOptions = {

@@ -45,17 +45,17 @@ Be sure to select the correct network to install the binary for.
 
    **Mainnet Beta:**
    ```bash
-   git checkout tags/v6.3.0
+   git checkout tags/{{mainnetVersions['app-latest-tag']}}
    ```
 
    **Mocha:**
    ```bash
-   git checkout tags/v6.3.0-mocha
+   git checkout tags/{{mochaVersions['app-latest-tag']}}
    ```
 
    **Arabica:**
    ```bash
-   git checkout tags/v6.4.0-arabica
+   git checkout tags/{{arabicaVersions['app-latest-tag']}}
    ```
 
 3. Build and install the `celestia-appd` binary with multiplexer support:
@@ -100,7 +100,7 @@ terminal:
 bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)"
 
 # Install specific version, latest version for Mocha testnet in this example
-bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)" -- -v v6.3.0-mocha
+bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)" -- -v {{mochaVersions['app-latest-tag']}}
 ```
 
 Follow the instructions in the terminal output to choose your installation
