@@ -10,7 +10,7 @@ The example uses the Mocha testnet. You will need to adjust the commands accordi
 If you already have a data store for your node, you need to remove it before syncing from a trusted hash:
 
 ```sh
-rm -rf ~/.celestia-light-mocha-4/data
+rm -rf ~/.celestia-light-{{constants['mochaChainId']}}/data
 ```
 
 You also cannot sync to a height earlier than the data availability sampling (DAS) start height.
@@ -65,10 +65,10 @@ celestia light init --p2p.network mocha
 read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
 
 # Use sed to find and replace the SyncFromHeight value in the config file (macOS version)
-sed -i '' "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
+sed -i '' "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-{{constants['mochaChainId']}}/config.toml
 
 # Add/update the SyncFromHash value
-sed -i '' "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
+sed -i '' "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-{{constants['mochaChainId']}}/config.toml
 
 # Display the updated values to confirm
 echo "SyncFromHeight updated to: $TRUSTED_HEIGHT"
@@ -82,8 +82,8 @@ celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.por
 ```
 
 > **Tip (Linux):** Remove the empty string (`''`) after `-i` in the `sed` commands:  
-> `sed -i "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml`  
-> `sed -i "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml`
+> `sed -i "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-{{constants['mochaChainId']}}/config.toml`  
+> `sed -i "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-{{constants['mochaChainId']}}/config.toml`
 
 ## For service operators
 
