@@ -2,6 +2,8 @@
 description: This tutorial covers setting up a Celestia light node.
 ---
 
+import { Tabs } from 'nextra/components'
+
 # Setting up a Celestia light node
 
 This tutorial will guide you through setting up a Celestia light node, which
@@ -56,21 +58,23 @@ If you would like to skip sampling the entire chain's headers, you can
 
 Run the following command:
 
-
-**Mainnet Beta:**
-```sh
-celestia light init
-```
-
-**Mocha:**
-```sh
-celestia light init --p2p.network mocha
-```
-
-**Arabica:**
-```sh
-celestia light init --p2p.network arabica
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```sh
+    celestia light init
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia light init --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia light init --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 
 The output in your terminal will show the location of your node store and
@@ -91,24 +95,26 @@ Refer to
 [the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports)
 for information on which ports are required to be open on your machine.
 
-
-**Mainnet Beta:**
-```sh
-celestia light start --core.ip rpc.celestia.pops.one \
-    --core.port 9090 --p2p.network celestia
-```
-
-**Mocha:**
-```sh
-celestia light start --core.ip rpc-mocha.pops.one \
-    --core.port 9090 --p2p.network mocha
-```
-
-**Arabica:**
-```sh
-celestia light start --core.ip validator-1.celestia-arabica-11.com \
-    --core.port 9090 --p2p.network arabica
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```sh
+    celestia light start --core.ip rpc.celestia.pops.one \
+        --core.port 9090 --p2p.network celestia
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia light start --core.ip rpc-mocha.pops.one \
+        --core.port 9090 --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia light start --core.ip validator-1.celestia-arabica-11.com \
+        --core.port 9090 --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 
 Tip: you can replace the core.ip with a consensus node RPC endpoint from [Mainnet Beta](/operate/networks/mainnet-beta#integrations), [Mocha testnet](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes), or [Arabica devnet](/operate/networks/arabica-devnet#integrations).
@@ -128,25 +134,28 @@ You can start your light node with the key created above by running the
 following command:
 
 
-**Mainnet Beta:**
-```sh
-celestia light start --keyring.keyname my_celes_key \
-    --core.ip consensus.lunaroasis.net --core.port 9090
-```
-
-**Mocha:**
-```sh
-celestia light start --keyring.keyname my_celes_key \
-    --core.ip rpc-mocha.pops.one --core.port 9090 \
-    --p2p.network mocha
-```
-
-**Arabica:**
-```sh
-celestia light start --keyring.keyname my_celes_key \
-    --core.ip validator-1.celestia-arabica-11.com \
-    --core.port 9090 --p2p.network arabica
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```sh
+    celestia light start --keyring.keyname my_celes_key \
+        --core.ip consensus.lunaroasis.net --core.port 9090
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia light start --keyring.keyname my_celes_key \
+        --core.ip rpc-mocha.pops.one --core.port 9090 \
+        --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia light start --keyring.keyname my_celes_key \
+        --core.ip validator-1.celestia-arabica-11.com \
+        --core.port 9090 --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 
 Once you start the light node, a wallet key will be generated for you.
@@ -209,28 +218,31 @@ In order to run a light node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 
-**Mainnet Beta:**
-```sh
-celestia light start --core.ip <URI> \
-    --core.port <port> \
-    --keyring.keyname <name-of-custom-key>
-```
-
-**Arabica:**
-```sh
-celestia light start --core.ip <URI> \
-    --core.port <port> \
-    --keyring.keyname <name-of-custom-key> \
-    --p2p.network arabica
-```
-
-**Mocha:**
-```sh
-celestia light start --core.ip <URI> \
-    --core.port <port> \
-    --keyring.keyname <name-of-custom-key> \
-    --p2p.network mocha
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```sh
+    celestia light start --core.ip <URI> \
+        --core.port <port> \
+        --keyring.keyname <name-of-custom-key>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia light start --core.ip <URI> \
+        --core.port <port> \
+        --keyring.keyname <name-of-custom-key> \
+        --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia light start --core.ip <URI> \
+        --core.port <port> \
+        --keyring.keyname <name-of-custom-key> \
+        --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 
 #### Optional: Migrate node id to another server

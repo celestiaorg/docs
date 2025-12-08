@@ -2,6 +2,8 @@
 description: Learn to build and install celestia-node.
 ---
 
+import { Tabs } from 'nextra/components'
+
 # Install celestia-node
 
 ## Supported architectures
@@ -36,20 +38,23 @@ commands:
 
 2. Check out to the desired version, based on the network you will use:
 
-   **Mainnet Beta:**
-   ```bash
-   git checkout tags/v0.28.4
-   ```
-
-   **Mocha:**
-   ```bash
-   git checkout tags/v0.28.4-mocha
-   ```
-
-   **Arabica:**
-   ```bash
-   git checkout tags/v0.28.4-arabica
-   ```
+   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/v0.28.4
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/v0.28.4-mocha
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/v0.28.4-arabica
+       ```
+     </Tabs.Tab>
+   </Tabs>
 
 3. Build the `celestia` binary:
 

@@ -2,6 +2,8 @@
 description: Learn how to set up your Celestia bridge node.
 ---
 
+import { Tabs } from 'nextra/components'
+
 # Setting up a Celestia bridge node
 
 This tutorial will go over the steps to set up your Celestia bridge node.
@@ -91,22 +93,25 @@ transactions, and other state-related queries).
 Here is an example of initializing the bridge node:
 
 
-**Mainnet Beta:**
-```sh
-celestia bridge init --core.ip <URI> --core.port <port>
-```
-
-**Mocha:**
-```sh
-celestia bridge init --core.ip <URI> --core.port <port> \
-    --p2p.network mocha
-```
-
-**Arabica:**
-```sh
-celestia bridge init --core.ip <URI> --core.port <port> \
-    --p2p.network arabica
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge init --core.ip <URI> --core.port <port>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge init --core.ip <URI> --core.port <port> \
+        --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge init --core.ip <URI> --core.port <port> \
+        --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 
 ### Run the bridge node
@@ -173,23 +178,26 @@ In order to run a bridge node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 
-**Mainnet Beta:**
-```sh
-celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-    --core.port <port>
-```
-
-**Mocha:**
-```sh
-celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-    --p2p.network mocha --core.port <port>
-```
-
-**Arabica:**
-```sh
-celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-  --p2p.network arabica --core.port <port>
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
+        --core.port <port>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
+        --p2p.network mocha --core.port <port>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
+      --p2p.network arabica --core.port <port>
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 
 #### Optional: Migrate node id to another server
