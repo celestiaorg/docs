@@ -106,7 +106,7 @@ celestia light start --core.ip rpc-mocha.pops.one \
 
 **Arabica:**
 ```sh
-celestia light start --core.ip validator-1.celestia-arabica-11.com \
+celestia light start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
     --core.port 9090 --p2p.network arabica
 ```
 
@@ -144,7 +144,7 @@ celestia light start --keyring.keyname my_celes_key \
 **Arabica:**
 ```sh
 celestia light start --keyring.keyname my_celes_key \
-    --core.ip validator-1.celestia-arabica-11.com \
+    --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
     --core.port 9090 --p2p.network arabica
 ```
 
