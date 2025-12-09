@@ -11,7 +11,8 @@
     "postbuild:static": "npm run postbuild",
     "start": "next start",
     "lint": "eslint",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "generate:llms": "node scripts/generate-llms.js"
   },
   "simple-git-hooks": {
     "pre-push": "npm run lint"
