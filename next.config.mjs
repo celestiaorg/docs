@@ -2,6 +2,9 @@ import nextra from 'nextra'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import remarkReplaceVariables from './plugins/remark-replace-variables.mjs'
+import fs from 'node:fs'
+import path from 'node:path'
+
 
 // Set up Nextra with its configuration
 const withNextra = nextra({
@@ -21,7 +24,7 @@ export default withNextra({
   // Add regular Next.js options here
   basePath: basePath,
   assetPrefix: base || undefined, // Keep trailing slash for assets
-  output: 'export',
+  output: process.env.STATIC_EXPORT === 'true' ? 'export' : undefined,
   trailingSlash: true,
   images: {
     unoptimized: true,
@@ -35,5 +38,19 @@ export default withNextra({
       ignored: ['**/node_modules/**']
     }
     return config
+  },
+  async redirects() {
+    if (process.env.STATIC_EXPORT === 'true') {
+      return []
+    }
+    
+    try {
+      const redirectsPath = path.join(process.cwd(), 'redirects.json')
+      const redirectsData = fs.readFileSync(redirectsPath, 'utf8')
+      return JSON.parse(redirectsData)
+    } catch (error) {
+      console.error('Error reading redirects.json:', error)
+      return []
+    }
   }
 })
