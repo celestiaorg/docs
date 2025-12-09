@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import { promises as fs } from 'fs';
+import path from 'path';
 
 const RAW_BASE = 'https://raw.githubusercontent.com/celestiaorg/docs/main/';
 
-import path from 'path';
 
 const header = [
   '# Celestia documentation',
