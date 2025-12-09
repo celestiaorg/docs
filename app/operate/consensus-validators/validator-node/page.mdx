@@ -2,6 +2,8 @@
 description: Learn how to set up a Celestia validator node.
 ---
 
+import { Callout, Tabs } from 'nextra/components'
+
 # Setting up a Celestia validator node
 
 This tutorial will guide you through setting up a validator node on Celestia.
@@ -50,10 +52,9 @@ Run the following:
 celestia bridge init --core.ip <URI> --core.port <port>
 ```
 
-> **Tip:**
-Refer to
-[the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports)
-for information on which ports are required to be open on your machine.
+<Callout type="info">
+Refer to [the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports) for information on which ports are required to be open on your machine.
+</Callout>
 
 When connecting your bridge node to a localhost consensus node, ensure that gRPC
 is properly configured in your consensus node's `app.toml` file. The `[grpc]`
@@ -93,20 +94,23 @@ In order to create a validator on-chain, follow the steps below.
 
 1. Export an environment variable for the chain ID you want to run on:
 
-   **Mainnet Beta:**
-   ```bash
-   export CHAIN_ID={{constants['mainnetChainId']}}
-   ```
-
-   **Mocha:**
-   ```bash
-   export CHAIN_ID={{constants['mochaChainId']}}
-   ```
-
-   **Arabica:**
-   ```bash
-   export CHAIN_ID={{constants['arabicaChainId']}}
-   ```
+   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+     <Tabs.Tab>
+       ```bash
+       export CHAIN_ID={{constants['mainnetChainId']}}
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       export CHAIN_ID={{constants['mochaChainId']}}
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       export CHAIN_ID={{constants['arabicaChainId']}}
+       ```
+     </Tabs.Tab>
+   </Tabs>
 
 1. Export more environment variables.
 
@@ -140,59 +144,62 @@ In order to create a validator on-chain, follow the steps below.
 
 1. Create a validator
 
-   **Mainnet Beta:**
-   ```bash
-   celestia-appd tx staking create-validator \
-       --amount=1000000utia \
-       --pubkey=$VALIDATOR_PUBKEY \
-       --moniker=$MONIKER \
-       --identity=<optional_identity_signature> \
-       --website="<optional_validator_website>" \
-       --security-contact="<optional_email_address_for_security_contact>" \
-       --details="A short and optional description of the validator." \
-       --chain-id=$CHAIN_ID \
-       --commission-rate=0.1 \
-       --commission-max-rate=0.2 \
-       --commission-max-change-rate=0.01 \
-       --min-self-delegation=1000000 \
-       --from=$VALIDATOR_WALLET \
-       --keyring-backend=test \
-       --fees=21000utia \
-       --gas=220000 \
-       --yes
-   ```
-
-   **Mocha:**
-   ```bash
-   celestia-appd tx staking create-validator \
-       --amount=1000000utia \
-       --pubkey=$VALIDATOR_PUBKEY \
-       --moniker=$MONIKER \
-       --identity=<optional_identity_signature> \
-       --website="<optional_validator_website>" \
-       --security-contact="<optional_email_address_for_security_contact>" \
-       --details="A short and optional description of the validator." \
-       --chain-id=$CHAIN_ID \
-       --commission-rate=0.1 \
-       --commission-max-rate=0.2 \
-       --commission-max-change-rate=0.01 \
-       --min-self-delegation=1000000 \
-       --from=$VALIDATOR_WALLET \
-       --keyring-backend=test \
-       --fees=21000utia \
-       --gas=220000
-       --yes
-   ```
-
-   **Arabica:**
-   ```bash
-   celestia-appd tx staking create-validator validator.json \
-     --from $VALIDATOR_WALLET \
-     --keyring-backend test \
-     --fees 21000utia \
-     --gas=220000 \
-     --yes
-   ```
+   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+     <Tabs.Tab>
+       ```bash
+       celestia-appd tx staking create-validator \
+           --amount=1000000utia \
+           --pubkey=$VALIDATOR_PUBKEY \
+           --moniker=$MONIKER \
+           --identity=<optional_identity_signature> \
+           --website="<optional_validator_website>" \
+           --security-contact="<optional_email_address_for_security_contact>" \
+           --details="A short and optional description of the validator." \
+           --chain-id=$CHAIN_ID \
+           --commission-rate=0.1 \
+           --commission-max-rate=0.2 \
+           --commission-max-change-rate=0.01 \
+           --min-self-delegation=1000000 \
+           --from=$VALIDATOR_WALLET \
+           --keyring-backend=test \
+           --fees=21000utia \
+           --gas=220000 \
+           --yes
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       celestia-appd tx staking create-validator \
+           --amount=1000000utia \
+           --pubkey=$VALIDATOR_PUBKEY \
+           --moniker=$MONIKER \
+           --identity=<optional_identity_signature> \
+           --website="<optional_validator_website>" \
+           --security-contact="<optional_email_address_for_security_contact>" \
+           --details="A short and optional description of the validator." \
+           --chain-id=$CHAIN_ID \
+           --commission-rate=0.1 \
+           --commission-max-rate=0.2 \
+           --commission-max-change-rate=0.01 \
+           --min-self-delegation=1000000 \
+           --from=$VALIDATOR_WALLET \
+           --keyring-backend=test \
+           --fees=21000utia \
+           --gas=220000 \
+           --yes
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       celestia-appd tx staking create-validator validator.json \
+           --from $VALIDATOR_WALLET \
+           --keyring-backend test \
+           --fees 21000utia \
+           --gas=220000 \
+           --yes
+       ```
+     </Tabs.Tab>
+   </Tabs>
 
 You should see output like:
 

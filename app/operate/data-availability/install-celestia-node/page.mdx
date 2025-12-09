@@ -2,6 +2,8 @@
 description: Learn to build and install celestia-node.
 ---
 
+import { Callout, Tabs } from 'nextra/components'
+
 # Install celestia-node
 
 ## Supported architectures
@@ -36,20 +38,23 @@ commands:
 
 2. Check out to the desired version, based on the network you will use:
 
-   **Mainnet Beta:**
-   ```bash
-   git checkout tags/{{mainnetVersions['node-latest-tag']}}
-   ```
-
-   **Mocha:**
-   ```bash
-   git checkout tags/{{mochaVersions['node-latest-tag']}}
-   ```
-
-   **Arabica:**
-   ```bash
-   git checkout tags/{{arabicaVersions['node-latest-tag']}}
-   ```
+   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/{{mainnetVersions['node-latest-tag']}}
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/{{mochaVersions['node-latest-tag']}}
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/{{arabicaVersions['node-latest-tag']}}
+       ```
+     </Tabs.Tab>
+   </Tabs>
 
 3. Build the `celestia` binary:
 
@@ -61,7 +66,9 @@ commands:
 
    b. Experimental build (optional)
 
-   > **Tip:** If you're a node operator comfortable with experimental features and seeking optimal performance with minimal RAM usage, this option is recommended for you.
+   <Callout type="info">
+   If you're a node operator comfortable with experimental features and seeking optimal performance with minimal RAM usage, this option is recommended for you.
+   </Callout>
 
    ```bash
    make build-jemalloc

@@ -2,6 +2,8 @@
 description: Use the cel-key utility to generate a wallet on celestia-node.
 ---
 
+import { Callout } from 'nextra/components'
+
 # Create a wallet with celestia-node
 
 This tutorial will go over using the `cel-key` utility
@@ -53,7 +55,9 @@ For the purpose of this guide, we will use the `make cel-key` command.
 To generate a key for a Celestia node, select
 the tab for your node type:
 
-> **Tip:** You do not need to declare a network for Mainnet Beta. Refer to [the chain ID section on the troubleshooting page for more information](/operate/maintenance/troubleshooting).
+<Callout type="info">
+You do not need to declare a network for Mainnet Beta. Refer to [the chain ID section on the troubleshooting page for more information](/operate/maintenance/troubleshooting).
+</Callout>
 
 ```bash
 ./cel-key add <key-name> --keyring-backend test --node.type bridge \
@@ -253,7 +257,9 @@ ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} celestia 
 --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
 ```
 
-> **Tip:** Refer to [the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports) for information on which ports are required to be open on your machine. You do not need to declare a network for Mainnet Beta. Refer to [the chain ID section on the troubleshooting page for more information](/operate/maintenance/troubleshooting).
+<Callout type="info">
+Refer to [the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports) for information on which ports are required to be open on your machine. You do not need to declare a network for Mainnet Beta. Refer to [the chain ID section on the troubleshooting page for more information](/operate/maintenance/troubleshooting).
+</Callout>
 
 List active containers in another window with:
 

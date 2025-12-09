@@ -3,6 +3,8 @@ sidebar_label: Docker images
 description: Running Celestia Node using Docker.
 ---
 
+import { Tabs } from 'nextra/components'
+
 # 🐳 Docker setup
 
 This page has instructions to run celestia-node using Docker. If you are
@@ -36,20 +38,23 @@ Ubuntu. You can
 
 1. Set [the network](/operate/networks/overview) you would like to run your node on:
 
-   **Mainnet Beta**
-   ```bash
-   export NETWORK=celestia
-   ```
-
-   **Mocha**
-   ```bash
-   export NETWORK=mocha
-   ```
-
-   **Arabica**
-   ```bash
-   export NETWORK=arabica
-   ```
+   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+     <Tabs.Tab>
+       ```bash
+       export NETWORK=celestia
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       export NETWORK=mocha
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       export NETWORK=arabica
+       ```
+     </Tabs.Tab>
+   </Tabs>
 
 2. Set the node type
 
@@ -85,26 +90,29 @@ Ubuntu. You can
 
 4. Run the image from the command line:
 
-   **Mainnet Beta**
-   ```bash
-   docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-       ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
-       celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
-   ```
-
-   **Mocha**
-   ```bash
-   docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-       ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
-       celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
-   ```
-
-   **Arabica**
-   ```bash
-   docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-       ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
-       celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
-   ```
+   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+     <Tabs.Tab>
+       ```bash
+       docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+           ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
+           celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+           ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
+           celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+           ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
+           celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
+       ```
+     </Tabs.Tab>
+   </Tabs>
 
 Congratulations! You now have a celestia-node running!
 
@@ -162,29 +170,32 @@ docker run [args...] -v $HOME/my-node-store:/home/celestia \
 
 An example init command will look similar to below:
 
-**Mainnet Beta**
-```bash
-docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
-    ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
-    celestia light init --p2p.network $NETWORK
-```
-
-**Mocha**
-```bash
-docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
-    ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
-    celestia light init --p2p.network $NETWORK
-```
-
-**Arabica**
-```bash
-docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
-    ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
-    celestia light init --p2p.network $NETWORK
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+        -v $HOME/my-node-store:/home/celestia \
+        ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
+        celestia light init --p2p.network $NETWORK
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+        -v $HOME/my-node-store:/home/celestia \
+        ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
+        celestia light init --p2p.network $NETWORK
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+        -v $HOME/my-node-store:/home/celestia \
+        ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
+        celestia light init --p2p.network $NETWORK
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 ### Start the node
 
@@ -198,29 +209,32 @@ docker run [...args] -v $HOME/my-node-store:/home/celestia \
 
 A full start command will look similar to below.
 
-**Mainnet Beta**
-```bash
-docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
-    ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
-    celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
-```
-
-**Mocha**
-```bash
-docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
-    ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
-    celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
-```
-
-**Arabica**
-```bash
-docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
-    -v $HOME/my-node-store:/home/celestia \
-    ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
-    celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+        -v $HOME/my-node-store:/home/celestia \
+        ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
+        celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+        -v $HOME/my-node-store:/home/celestia \
+        ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
+        celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+        -v $HOME/my-node-store:/home/celestia \
+        ghcr.io/celestiaorg/celestia-node:{{arabicaVersions['node-latest-tag']}} \
+        celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 Congratulations! You now have a node running with persistent storage.
 

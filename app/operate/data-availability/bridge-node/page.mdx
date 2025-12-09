@@ -2,6 +2,8 @@
 description: Learn how to set up your Celestia bridge node.
 ---
 
+import { Callout, Tabs } from 'nextra/components'
+
 # Setting up a Celestia bridge node
 
 This tutorial will go over the steps to set up your Celestia bridge node.
@@ -91,22 +93,25 @@ transactions, and other state-related queries).
 Here is an example of initializing the bridge node:
 
 
-**Mainnet Beta:**
-```sh
-celestia bridge init --core.ip <URI> --core.port <port>
-```
-
-**Mocha:**
-```sh
-celestia bridge init --core.ip <URI> --core.port <port> \
-    --p2p.network mocha
-```
-
-**Arabica:**
-```sh
-celestia bridge init --core.ip <URI> --core.port <port> \
-    --p2p.network arabica
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge init --core.ip <URI> --core.port <port>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge init --core.ip <URI> --core.port <port> \
+        --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge init --core.ip <URI> --core.port <port> \
+        --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 
 ### Run the bridge node
@@ -129,8 +134,9 @@ And on Arabica:
 celestia bridge start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
   --p2p.network arabica --core.port 9090
 ```
-
-> **Tip:** If you're connecting your bridge node to a localhost consensus node (`--core.ip localhost` or `--core.ip 127.0.0.1`), ensure that gRPC is enabled in your consensus node's `app.toml` configuration file. Look for the `[grpc]` section and verify that `enable = true` is set:
+<Callout type="info">
+If you're connecting your bridge node to a localhost consensus node (`--core.ip localhost` or `--core.ip 127.0.0.1`), ensure that gRPC is enabled in your consensus node's `app.toml` configuration file. Look for the `[grpc]` section and verify that `enable = true` is set:
+</Callout>
 
 ```toml
 [grpc]
@@ -153,9 +159,10 @@ You can find the address by running the following command:
 ./cel-key list --node.type bridge --keyring-backend test --p2p.network <network>
 ```
 
-> **Tip:**
+<Callout type="info">
 You do not need to declare a network for Mainnet Beta. Refer to
-[the chain ID section on the troubleshooting page for more information](/operate/maintenance/troubleshooting)
+[the chain ID section on the troubleshooting page for more information](/operate/maintenance/troubleshooting).
+</Callout>
 
 You can get testnet tokens from:
 
@@ -173,23 +180,26 @@ In order to run a bridge node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 
-**Mainnet Beta:**
-```sh
-celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-    --core.port <port>
-```
-
-**Mocha:**
-```sh
-celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-    --p2p.network mocha --core.port <port>
-```
-
-**Arabica:**
-```sh
-celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-  --p2p.network arabica --core.port <port>
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
+        --core.port <port>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
+        --p2p.network mocha --core.port <port>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
+        --p2p.network arabica --core.port <port>
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 
 #### Optional: Migrate node id to another server
