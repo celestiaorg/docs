@@ -31,7 +31,7 @@ jobs:
         env:
           BASE: /docs-preview/new_docs/
           NEXT_PUBLIC_BASE_PATH: /docs-preview/new_docs
-        run: yarn build
+        run: yarn build:static
 
       - name: Checkout docs-preview repository
         uses: actions/checkout@v4.1.7

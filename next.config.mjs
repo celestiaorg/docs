@@ -24,6 +24,7 @@ export default withNextra({
   // Add regular Next.js options here
   basePath: basePath,
   assetPrefix: base || undefined, // Keep trailing slash for assets
+  output: process.env.STATIC_EXPORT === 'true' ? 'export' : undefined,
   trailingSlash: true,
   images: {
     unoptimized: true,
@@ -39,6 +40,10 @@ export default withNextra({
     return config
   },
   async redirects() {
+    if (process.env.STATIC_EXPORT === 'true') {
+      return []
+    }
+    
     try {
       const redirectsPath = path.join(process.cwd(), 'redirects.json')
       const redirectsData = fs.readFileSync(redirectsPath, 'utf8')
