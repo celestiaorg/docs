@@ -1,8 +1,10 @@
 # Participate in the Celestia networks
 
+import { mainnetVersions, mochaVersions, arabicaVersions } from '@/constants';
+
 ## Mainnet Beta
 
-Celestia’s [Mainnet Beta](/operate/networks/mainnet-beta) is the production network
+Celestia's [Mainnet Beta](/operate/networks/mainnet-beta) is the production network
 for deploying Mainnet Beta rollups and applications. This marks the
 culmination of years of development and community testing. While
 the network is stable and continues to receive updates, it remains
@@ -13,8 +15,8 @@ reduced performance.
 
 | Software       | Version                                                             |
 | -------------- | ------------------------------------------------------------------- |
-| celestia-node  | [v0.28.4](https://github.com/celestiaorg/celestia-node/releases/tag/v0.28.4) |
-| celestia-app   | [v6.3.0](https://github.com/celestiaorg/celestia-app/releases/tag/v6.3.0)   |
+| celestia-node  | [{mainnetVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{mainnetVersions['node-latest-tag']}) |
+| celestia-app   | [{mainnetVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{mainnetVersions['app-latest-tag']})   |
 
 ## Testnets
 
@@ -32,8 +34,8 @@ validators to participate.
 
 | Software       | Version                                                                  |
 | -------------- | ------------------------------------------------------------------------ |
-| celestia-node  | [v0.28.4-arabica](https://github.com/celestiaorg/celestia-node/releases/tag/v0.28.4-arabica) |
-| celestia-app   | [v6.4.0-arabica](https://github.com/celestiaorg/celestia-app/releases/tag/v6.4.0-arabica)     |
+| celestia-node  | [{arabicaVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{arabicaVersions['node-latest-tag']}) |
+| celestia-app   | [{arabicaVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{arabicaVersions['app-latest-tag']})     |
 
 ### Mocha testnet
 
@@ -47,8 +49,8 @@ in coordination with the validator community on Mocha.
 
 | Software       | Version                                                                           |
 | -------------- | --------------------------------------------------------------------------------- |
-| celestia-node  | [v0.28.4-mocha](https://github.com/celestiaorg/celestia-node/releases/tag/v0.28.4-mocha) |
-| celestia-app   | [v6.3.0-mocha](https://github.com/celestiaorg/celestia-app/releases/tag/v6.3.0-mocha)   |
+| celestia-node  | [{mochaVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{mochaVersions['node-latest-tag']}) |
+| celestia-app   | [{mochaVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{mochaVersions['app-latest-tag']})   |
 
 ## Network upgrades
 

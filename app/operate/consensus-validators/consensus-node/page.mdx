@@ -37,56 +37,54 @@ node. Keep in mind that this might change if a new testnet is deployed.
 <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
   <Tabs.Tab>
     ```bash
-    celestia-appd init "node-name" --chain-id celestia
+    celestia-appd init "node-name" --chain-id {{constants['mainnetChainId']}}
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    celestia-appd init "node-name" --chain-id mocha-4
+    celestia-appd init "node-name" --chain-id {{constants['mochaChainId']}}
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    celestia-appd init "node-name" --chain-id arabica-11
+    celestia-appd init "node-name" --chain-id {{constants['arabicaChainId']}}
     ```
   </Tabs.Tab>
 </Tabs>
-
 
 Download the `genesis.json` file:
 
 <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
   <Tabs.Tab>
     ```bash
-    celestia-appd download-genesis celestia
+    celestia-appd download-genesis {{constants['mainnetChainId']}}
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    celestia-appd download-genesis mocha-4
+    celestia-appd download-genesis {{constants['mochaChainId']}}
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    celestia-appd download-genesis arabica-11
+    celestia-appd download-genesis {{constants['arabicaChainId']}}
     ```
   </Tabs.Tab>
 </Tabs>
-
 
 Set seeds in the `$HOME/.celestia-app/config/config.toml` file:
 
 <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
   <Tabs.Tab>
     ```bash
-    SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/celestia/seeds.txt | tr '\n' ',')
+    SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mainnetChainId']}}/seeds.txt | tr '\n' ',')
     echo $SEEDS
     sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.celestia-app/config/config.toml
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha-4/seeds.txt | tr '\n' ',')
+    SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/seeds.txt | tr '\n' ',')
     echo $SEEDS
     sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.celestia-app/config/config.toml
     ```
@@ -101,7 +99,6 @@ Set seeds in the `$HOME/.celestia-app/config/config.toml` file:
   </Tabs.Tab>
 </Tabs>
 
-
 ### Optional: Set persistent peers
 
 You can set persistent peers in your `config.toml` file. If you set persistent peers, your node will **always** try to connect to these peers. This is useful when running a local devnet, for example, when you would always want to connect to the same local nodes in your devnet. In production, setting persistent peers is advised only if you are running a [sentry node](https://hub.cosmos.network/main/validators/security.html#sentry-nodes-ddos-protection).
@@ -111,21 +108,21 @@ You can get the persistent peers from the [@cosmos/chain-registry](https://githu
 <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
   <Tabs.Tab>
     ```bash
-    PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/celestia/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
+    PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants['mainnetChainId']}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
     echo $PERSISTENT_PEERS
     sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/mocha-4/peers.txt | tr '\n' ',')
+    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/peers.txt | tr '\n' ',')
     echo $PERSISTENT_PEERS
     sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/arabica-11/peers.txt | tr '\n' ',')
+    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['arabicaChainId']}}/peers.txt | tr '\n' ',')
     echo $PERSISTENT_PEERS
     sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
     ```
@@ -278,7 +275,7 @@ Run the following command to quick-sync from a snapshot:
     rm -rf ~/.celestia-app/data
     mkdir -p ~/.celestia-app/data
     SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-        egrep -o ">celestia.*tar" | tr -d ">")
+        egrep -o ">{{constants['mainnetChainId']}}.*tar" | tr -d ">")
     aria2c -x 16 -s 16 -o celestia-snap.tar "https://snaps.qubelabs.io/celestia/${SNAP_NAME}"
     tar xf celestia-snap.tar -C ~/.celestia-app/data/
     ```
@@ -289,7 +286,7 @@ Run the following command to quick-sync from a snapshot:
     rm -rf ~/.celestia-app/data
     mkdir -p ~/.celestia-app/data
     SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-        egrep -o ">mocha-4.*tar" | tr -d ">")
+        egrep -o ">{{constants['mochaChainId']}}.*tar" | tr -d ">")
     aria2c -x 16 -s 16 -o celestia-snap.tar "https://snaps.qubelabs.io/celestia/${SNAP_NAME}"
     tar xf celestia-snap.tar -C ~/.celestia-app/data/
     ```
@@ -300,13 +297,12 @@ Run the following command to quick-sync from a snapshot:
     rm -rf ~/.celestia-app/data
     mkdir -p ~/.celestia-app/data
     SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-        egrep -o ">arabica-11.*tar" | tr -d ">")
+        egrep -o ">{{constants['arabicaChainId']}}.*tar" | tr -d ">")
     aria2c -x 16 -s 16 -o celestia-snap.tar "https://snaps.qubelabs.io/celestia/${SNAP_NAME}"
     tar xf celestia-snap.tar -C ~/.celestia-app/data/
     ```
   </Tabs.Tab>
 </Tabs>
-
 
 > **Tip:**
 

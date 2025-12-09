@@ -98,17 +98,17 @@ In order to create a validator on-chain, follow the steps below.
    <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
      <Tabs.Tab>
        ```bash
-       export CHAIN_ID=celestia
+       export CHAIN_ID={{constants['mainnetChainId']}}
        ```
      </Tabs.Tab>
      <Tabs.Tab>
        ```bash
-       export CHAIN_ID=mocha-4
+       export CHAIN_ID={{constants['mochaChainId']}}
        ```
      </Tabs.Tab>
      <Tabs.Tab>
        ```bash
-       export CHAIN_ID=arabica-11
+       export CHAIN_ID={{constants['arabicaChainId']}}
        ```
      </Tabs.Tab>
    </Tabs>
@@ -272,7 +272,7 @@ example you can run:
 ```bash
 celestia-appd tx staking delegate \
 <the_valoper_address_starts_with_celestiavaloper1...> 1000000utia \
---from=$VALIDATOR_WALLET --chain-id=mocha-4 \
+--from=$VALIDATOR_WALLET --chain-id={{constants['mochaChainId']}} \
 --fees=21000utia
 ```
 

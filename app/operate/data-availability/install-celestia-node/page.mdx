@@ -41,17 +41,17 @@ commands:
    <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
      <Tabs.Tab>
        ```bash
-       git checkout tags/v0.28.4
+       git checkout tags/{{mainnetVersions['node-latest-tag']}}
        ```
      </Tabs.Tab>
      <Tabs.Tab>
        ```bash
-       git checkout tags/v0.28.4-mocha
+       git checkout tags/{{mochaVersions['node-latest-tag']}}
        ```
      </Tabs.Tab>
      <Tabs.Tab>
        ```bash
-       git checkout tags/v0.28.4-arabica
+       git checkout tags/{{arabicaVersions['node-latest-tag']}}
        ```
      </Tabs.Tab>
    </Tabs>
@@ -120,7 +120,7 @@ You can install the latest version or specify a particular version:
 bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)"
 
 # Install specific version, Mainnet Beta in this example
-bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)" -- -v v0.28.4
+bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
 ```
 
 The script will:

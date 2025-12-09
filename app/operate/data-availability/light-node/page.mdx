@@ -110,12 +110,11 @@ for information on which ports are required to be open on your machine.
   </Tabs.Tab>
   <Tabs.Tab>
     ```sh
-    celestia light start --core.ip validator-1.celestia-arabica-11.com \
+    celestia light start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
         --core.port 9090 --p2p.network arabica
     ```
   </Tabs.Tab>
 </Tabs>
-
 
 Tip: you can replace the core.ip with a consensus node RPC endpoint from [Mainnet Beta](/operate/networks/mainnet-beta#integrations), [Mocha testnet](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes), or [Arabica devnet](/operate/networks/arabica-devnet#integrations).
 
@@ -132,7 +131,6 @@ You can create your key for your node by running the following command with the
 
 You can start your light node with the key created above by running the
 following command:
-
 
 <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
   <Tabs.Tab>
@@ -151,12 +149,11 @@ following command:
   <Tabs.Tab>
     ```sh
     celestia light start --keyring.keyname my_celes_key \
-        --core.ip validator-1.celestia-arabica-11.com \
+        --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
         --core.port 9090 --p2p.network arabica
     ```
   </Tabs.Tab>
 </Tabs>
-
 
 Once you start the light node, a wallet key will be generated for you.
 You will need to fund that address with testnet tokens to pay for
