@@ -2,7 +2,7 @@
 description: Learn how to set up a Celestia validator node.
 ---
 
-import { Tabs } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
 
 # Setting up a Celestia validator node
 
@@ -52,10 +52,9 @@ Run the following:
 celestia bridge init --core.ip <URI> --core.port <port>
 ```
 
-> **Tip:**
-Refer to
-[the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports)
-for information on which ports are required to be open on your machine.
+<Callout type="info">
+Refer to [the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports) for information on which ports are required to be open on your machine.
+</Callout>
 
 When connecting your bridge node to a localhost consensus node, ensure that gRPC
 is properly configured in your consensus node's `app.toml` file. The `[grpc]`
@@ -193,11 +192,11 @@ In order to create a validator on-chain, follow the steps below.
      <Tabs.Tab>
        ```bash
        celestia-appd tx staking create-validator validator.json \
-         --from $VALIDATOR_WALLET \
-         --keyring-backend test \
-         --fees 21000utia \
-         --gas=220000 \
-         --yes
+           --from $VALIDATOR_WALLET \
+           --keyring-backend test \
+           --fees 21000utia \
+           --gas=220000 \
+           --yes
        ```
      </Tabs.Tab>
    </Tabs>

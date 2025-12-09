@@ -2,7 +2,7 @@
 description: This tutorial covers setting up a Celestia light node.
 ---
 
-import { Tabs } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
 
 # Setting up a Celestia light node
 
@@ -52,9 +52,10 @@ Install the `celestia` binary by
 
 ## Initialize the light node
 
-> **Tip:**
+<Callout type="info">
 If you would like to skip sampling the entire chain's headers, you can
 [initialize the light node from a trusted hash](/operate/maintenance/trusted-hash-recovery).
+</Callout>
 
 Run the following command:
 
@@ -116,7 +117,9 @@ for information on which ports are required to be open on your machine.
   </Tabs.Tab>
 </Tabs>
 
-Tip: you can replace the core.ip with a consensus node RPC endpoint from [Mainnet Beta](/operate/networks/mainnet-beta#integrations), [Mocha testnet](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes), or [Arabica devnet](/operate/networks/arabica-devnet#integrations).
+<Callout type="info">
+You can replace the core.ip with a consensus node RPC endpoint from [Mainnet Beta](/operate/networks/mainnet-beta#integrations), [Mocha testnet](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes), or [Arabica devnet](/operate/networks/arabica-devnet#integrations).
+</Callout>
 
 ### Keys and wallets
 

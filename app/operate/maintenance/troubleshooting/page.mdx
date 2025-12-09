@@ -2,6 +2,7 @@
 description: A guide to troubleshooting common issues with Celestia Node.
 ---
 
+import { Callout } from 'nextra/components';
 import { constants } from "@/constants";
 
 # Troubleshooting
@@ -16,7 +17,9 @@ celestia <node-type> start --p2p.network <network> \
     --core.ip <URI> --core.port <port>
 ```
 
-> **Tip:** Refer to [the ports section of this page](#ports) for information on which ports are required to be open on your machine.
+<Callout type="info">
+Refer to [the ports section of this page](#ports) for information on which ports are required to be open on your machine.
+</Callout>
 
 > **Note:** It is advised before switching networks to reinitialize your node via `init` command. This is due to an old config being present. Re-initialisation will reset the config.
 
@@ -188,7 +191,9 @@ Error: nodebuilder/share: interval must be positive
 
 You can re-initialize your node's config with the following commands:
 
-> **Tip:** Save your config so custom values are not lost.
+<Callout type="info">
+Save your config so custom values are not lost.
+</Callout>
 
 Run the following command to update your config:
 
@@ -199,7 +204,9 @@ celestia <node-type> config-update --p2p.network <network>
 This will pull in any new values from new configuration
 and merge them into the existing configuration.
 
-> **Tip:** After using the `config-update` command, double-check that your custom values are preserved.
+<Callout type="info">
+After using the `config-update` command, double-check that your custom values are preserved.
+</Callout>
 
 Then, to start your node again:
 

@@ -2,6 +2,7 @@
 description: A guide to Arabica devnet.
 ---
 
+import { Callout } from 'nextra/components';
 import { constants, arabicaVersions } from '@/constants';
 
 # Arabica devnet
@@ -115,11 +116,13 @@ Celestia network. For users, they will need to provide a `–core.ip string`
 from a consensus node’s URL or IP that populates a default gRPC port at 9090
 to their respective DA node.
 
-> **Tip: Example**
+<Callout type="info">
+Example command for starting a DA node with a consensus endpoint:
 
 ```bash
 celestia <da_type> start --core.ip <url> --core.port <port>
 ```
+</Callout>
 
 RPCs for DA nodes to initialise or start your celestia-node to
 Arabica devnet with can be found in the table in the
@@ -133,7 +136,9 @@ celestia light start --p2p.network arabica \
   --core.port 9090
 ```
 
-> **Tip for bridge node runners:** Not all RPC endpoints guarantee full block history. Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/) or run your own consensus node with no pruning for your bridge node.
+<Callout type="info">
+Not all RPC endpoints guarantee full block history. Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/) or run your own consensus node with no pruning for your bridge node.
+</Callout>
 
 ## Arabica devnet faucet
 

@@ -2,7 +2,7 @@
 description: Learn how to set up your Celestia bridge node.
 ---
 
-import { Tabs } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
 
 # Setting up a Celestia bridge node
 
@@ -134,8 +134,9 @@ And on Arabica:
 celestia bridge start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
   --p2p.network arabica --core.port 9090
 ```
-
-> **Tip:** If you're connecting your bridge node to a localhost consensus node (`--core.ip localhost` or `--core.ip 127.0.0.1`), ensure that gRPC is enabled in your consensus node's `app.toml` configuration file. Look for the `[grpc]` section and verify that `enable = true` is set:
+<Callout type="info">
+If you're connecting your bridge node to a localhost consensus node (`--core.ip localhost` or `--core.ip 127.0.0.1`), ensure that gRPC is enabled in your consensus node's `app.toml` configuration file. Look for the `[grpc]` section and verify that `enable = true` is set:
+</Callout>
 
 ```toml
 [grpc]
@@ -158,9 +159,10 @@ You can find the address by running the following command:
 ./cel-key list --node.type bridge --keyring-backend test --p2p.network <network>
 ```
 
-> **Tip:**
+<Callout type="info">
 You do not need to declare a network for Mainnet Beta. Refer to
-[the chain ID section on the troubleshooting page for more information](/operate/maintenance/troubleshooting)
+[the chain ID section on the troubleshooting page for more information](/operate/maintenance/troubleshooting).
+</Callout>
 
 You can get testnet tokens from:
 

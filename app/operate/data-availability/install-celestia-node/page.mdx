@@ -2,7 +2,7 @@
 description: Learn to build and install celestia-node.
 ---
 
-import { Tabs } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
 
 # Install celestia-node
 
@@ -66,7 +66,9 @@ commands:
 
    b. Experimental build (optional)
 
-   > **Tip:** If you're a node operator comfortable with experimental features and seeking optimal performance with minimal RAM usage, this option is recommended for you.
+   <Callout type="info">
+   If you're a node operator comfortable with experimental features and seeking optimal performance with minimal RAM usage, this option is recommended for you.
+   </Callout>
 
    ```bash
    make build-jemalloc

@@ -2,7 +2,7 @@
 description: Learn how to set up a Celestia consensus node.
 ---
 
-import { Tabs } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
 
 # Consensus node
 
@@ -304,13 +304,13 @@ Run the following command to quick-sync from a snapshot:
   </Tabs.Tab>
 </Tabs>
 
-> **Tip:**
-
+<Callout type="info">
 The [Node snapshots guide](/operate/maintenance/snapshots) provides everything you need to quick sync your node:
 
 - Details about pruned and archive snapshots
 - A list of snapshot providers for different node types
 - Installation and usage instructions for `celestia-snapshot-finder` - a tool that automatically finds and downloads the fastest snapshot for your server location
+</Callout>
 
 
 ## Start the consensus node
@@ -428,7 +428,9 @@ You can configure your consensus node to be a public RPC endpoint.
 This allows it to accept connections from data availability nodes and
 serve requests for the data availability API.
 
-> **Tip:** If you're running a bridge node that connects to your consensus node, ensure that gRPC is properly configured in your `app.toml` file. Bridge nodes require gRPC access (typically on port 9090) to communicate with the consensus layer.
+<Callout type="info">
+If you're running a bridge node that connects to your consensus node, ensure that gRPC is properly configured in your `app.toml` file. Bridge nodes require gRPC access (typically on port 9090) to communicate with the consensus layer.
+</Callout>
 
 #### Expose RPC
 
