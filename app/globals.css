@@ -23,3 +23,42 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+/* Fix content wrapping inside Nextra Details component */
+details {
+  /* Override Nextra's overflow-hidden */
+  overflow: visible;
+}
+
+/* The grid container inside details needs constraints */
+details > div[class*="x:grid"] {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* The inner content div */
+details > div > div {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Text paragraphs inside details */
+details p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Code blocks - allow horizontal scroll */
+details pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Nextra code container */
+details .nextra-code {
+  max-width: 100%;
+  overflow-x: auto;
+}
