@@ -9,7 +9,7 @@ const RAW_BASE = 'https://raw.githubusercontent.com/celestiaorg/docs/main/';
 const header = [
   '# Celestia documentation',
   '',
-  '> Official documentation for Celestia, the modular data availability network for building scalable, sovereign rollups and applications.',
+  '> Official documentation for Celestia, the modular blockchain powering unstoppable apps with full-stack control.',
   '',
   'These docs are built with Next.js + Nextra and exported statically. Links below point to the raw MDX sources in `main` so tools and LLMs can ingest clean text.',
 ];
