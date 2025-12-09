@@ -1,0 +1,103 @@
+# Celestia documentation
+
+> Official documentation for Celestia, the modular data availability network for building scalable, sovereign rollups and applications.
+
+These docs are built with Next.js + Nextra and exported statically. Links below point to the raw MDX sources in `main` so tools and LLMs can ingest clean text.
+
+## Learn: Celestia 101
+
+- [Data availability primer](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/celestia-101/data-availability/page.mdx): Celestia's modular data availability model and blob format.
+- [Data availability FAQ](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/celestia-101/data-availability-faq/page.mdx): Common questions on sampling, erasure coding, and blobs.
+- [Retrievability](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/celestia-101/retrievability/page.mdx): How light, full, and bridge nodes retrieve data.
+- [Transaction lifecycle](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/celestia-101/transaction-lifecycle/page.mdx): End-to-end path for Celestia transactions.
+- [Resources](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/celestia-101/resources/page.mdx): Additional reading and community links.
+
+## Learn: Features
+
+- [Private blockspace](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/features/private-blockspace/page.mdx): Overview of private rollups using Celestia DA.
+- [Bridging with IBC](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/features/bridging/ibc/page.mdx): IBC bridge architecture and flows.
+- [Bridging with Hyperlane](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/features/bridging/hyperlane/page.mdx): Using Hyperlane to connect rollups.
+
+## Learn: TIA
+
+- [TIA overview](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/TIA/overview/page.mdx): Token utility and economics.
+- [Paying for blobspace](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/TIA/paying-for-blobspace/page.mdx): How fees work for DA.
+- [Submit data](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/TIA/submit-data/page.mdx): Steps to post data to Celestia.
+- [Staking](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/TIA/staking/page.mdx): Delegation and rewards.
+- [Staking, governance, supply](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/TIA/staking-governance-supply/page.mdx): Token supply, governance, and slashing considerations.
+
+## Build
+
+- [Post/retrieve blob overview](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/post-retrieve-blob/overview/page.mdx): Entry point for writing and fetching blobs.
+- [Light node quickstart](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/post-retrieve-blob/light-node/quickstart/page.mdx): Quick blob workflow on a light node.
+- [Light node advanced](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/post-retrieve-blob/light-node/advanced/page.mdx): Advanced blob posting and retrieval patterns.
+- [Go client](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/post-retrieve-blob/client/go/page.mdx): Go examples for blob operations.
+- [Rust client](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/post-retrieve-blob/client/rust/page.mdx): Rust examples for blob operations.
+- [Node RPC API](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/rpc/node-api/page.mdx): RPC methods, params, and responses.
+- [Client libraries](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/rpc/clients/page.mdx): Supported SDKs and setup.
+- [Private blockspace about](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/private-blockspace/about/page.mdx): What private blockspace provides.
+- [Private blockspace quickstart](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/private-blockspace/quickstart/page.mdx): Launching a private rollup.
+- [Stack: op-alt-da](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/stacks/op-alt-da/page.mdx): OP stack with Celestia DA.
+- [Stack: nitro-das-server](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/stacks/nitro-das-server/page.mdx): Nitro DA server setup.
+
+## Operate: Getting started
+
+- [Overview](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/getting-started/overview/page.mdx): Operator prerequisites and workflow.
+- [Hardware requirements](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/getting-started/hardware-requirements/page.mdx): Recommended specs by node type.
+- [Environment setup](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/getting-started/environment-setup/page.mdx): Tooling and dependencies.
+- [Docker](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/getting-started/docker/page.mdx): Containerized setup.
+
+## Operate: Data availability nodes
+
+- [Install celestia-node](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/install-celestia-node/page.mdx): Installation steps.
+- [Light node](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/light-node/page.mdx): Running and monitoring a light node.
+- [Bridge node](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/bridge-node/page.mdx): Bridge node setup and responsibilities.
+- [Custom networks](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/custom-networks/page.mdx): Connecting to non-default networks.
+- [Config reference](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/config-reference/page.mdx): Node configuration options and defaults.
+- [Metrics](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/metrics/page.mdx): Telemetry endpoints and key signals.
+- [Storage optimization](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/storage-optimization/page.mdx): Pruning and storage tuning.
+
+## Operate: Consensus validators
+
+- [Install celestia-app](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/install-celestia-app/page.mdx): Installing the consensus client.
+- [Validator node](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/validator-node/page.mdx): Running a validator.
+- [Consensus node](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/consensus-node/page.mdx): Non-validator consensus nodes.
+- [CLI reference](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/cli-reference/page.mdx): celestia-app CLI commands and flags.
+- [Slashing](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/slashing/page.mdx): Conditions and prevention.
+- [Upgrade monitor](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/upgrade-monitor/page.mdx): Tracking network upgrades.
+- [Metrics](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/metrics/page.mdx): Validator observability.
+
+## Operate: Keys and wallets
+
+- [Celestia app wallet](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/keys-wallets/celestia-app-wallet/page.mdx): Wallet management.
+- [Celestia node key](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/keys-wallets/celestia-node-key/page.mdx): Node key handling.
+- [Multisig](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/keys-wallets/multisig/page.mdx): Multisig setup.
+- [Vesting](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/keys-wallets/vesting/page.mdx): Vesting accounts.
+
+## Operate: Maintenance
+
+- [Network upgrades](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/network-upgrades/page.mdx): Upgrade procedures.
+- [Snapshots](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/snapshots/page.mdx): Restoring from community snapshots.
+- [Systemd](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/systemd/page.mdx): Service management.
+- [Datastore structure](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/datastore-structure/page.mdx): Node data layout.
+- [Trusted hash recovery](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/trusted-hash-recovery/page.mdx): Recovering trusted hashes.
+- [Troubleshooting](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/troubleshooting/page.mdx): Common operational fixes.
+
+## Operate: Optional services
+
+- [Audits](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/optional-services/audits/page.mdx): Audit service integration.
+- [IBC relayer](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/optional-services/ibc-relayer/page.mdx): Running a relayer.
+- [Instantiate testnet](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/optional-services/instantiate-testnet/page.mdx): Spinning up a testnet.
+
+## Networks
+
+- [Network overview](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/networks/overview/page.mdx): Network matrix and roles.
+- [Mainnet beta](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/networks/mainnet-beta/page.mdx): Endpoints and config for mainnet-beta.
+- [Mocha testnet](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/networks/mocha-testnet/page.mdx): Mocha testnet participation details.
+- [Arabica devnet](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/networks/arabica-devnet/page.mdx): Devnet access and reset cadence.
+- [Local devnet](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/networks/local-devnet/page.mdx): Running a local network for testing.
+
+## Optional
+
+- [Storage optimization](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/storage-optimization/page.mdx): Extra tuning for storage footprint.
+- [Advanced light node](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/post-retrieve-blob/light-node/advanced/page.mdx): Deeper blob workflows (can skip for short contexts).
