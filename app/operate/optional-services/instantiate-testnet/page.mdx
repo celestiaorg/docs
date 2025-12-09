@@ -2,7 +2,7 @@
 description: A guide that helps you instantiate a new testnetwork with Celestia App.
 ---
 
-import { Callout } from 'nextra/components'
+import { Callout, Steps } from 'nextra/components'
 
 # Celestia App network instantiation guide
 
@@ -26,7 +26,9 @@ If you want to spin up a quick testnet with your friends, you can follow these s
 Unless otherwise noted, every step must be done by everyone who wants to
 participate in this testnet.
 
-### Optional: Reset working directory
+<Steps>
+
+### (Optional) Reset working directory
 
 If you have already initialized a working directory for `celestia-appd` in the past,
 you must clean up before reinitializing a new directory. You can do so by running
@@ -184,3 +186,4 @@ Refer to the ports section of the troubleshooting page for information on which 
 </Callout>
 
 Now you have a new Celestia testnet to play around with!
+</Steps>

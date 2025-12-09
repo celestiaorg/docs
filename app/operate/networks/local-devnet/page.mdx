@@ -2,6 +2,8 @@
 description: Learn how to set up a local devnet with Celestia consensus and bridge nodes.
 ---
 
+import { Steps } from 'nextra/components'
+
 # Local devnet setup
 
 This guide covers how to set up a local devnet with both consensus and bridge
@@ -65,7 +67,11 @@ To set up both a consensus node and a bridge node together:
 For a containerized setup using Docker Compose, you can use a simplified
 configuration based on the Celestia ZKEVM IBC demo repository.
 
-1. Create a `docker-compose.yml` file with the following content:
+<Steps>
+
+### Create a Docker Compose file
+
+Create a `docker-compose.yml` file with the following content:
 
    ```yaml
    version: "3.8"
@@ -116,19 +122,20 @@ configuration based on the Celestia ZKEVM IBC demo repository.
        driver: bridge
    ```
 
-2. Start the services:
+### Start the services
 
    ```bash
    docker-compose up -d
    ```
 
-3. Check the status:
+### Check the status
 
    ```bash
    docker-compose ps
    docker-compose logs celestia-validator
    docker-compose logs celestia-bridge
    ```
+</Steps>
 
 ## Default endpoints
 

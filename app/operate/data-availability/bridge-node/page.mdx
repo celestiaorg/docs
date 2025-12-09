@@ -2,7 +2,7 @@
 description: Learn how to set up your Celestia bridge node.
 ---
 
-import { Callout, Tabs } from 'nextra/components'
+import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Setting up a Celestia bridge node
 
@@ -52,11 +52,13 @@ See [hardware requirements](/operate/getting-started/hardware-requirements).
 
 The following tutorial is done on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
+Deploy the Celestia bridge node with the following steps.
+
+<Steps>
+
 ### Setup the dependencies
 
 Follow the tutorial for [installing the dependencies](/operate/getting-started/environment-setup).
-
-## Deploy the Celestia bridge node
 
 ### Install Celestia Node
 
@@ -147,6 +149,7 @@ address = "localhost:9090"
 ```
 
 Without proper gRPC configuration, the bridge node will not be able to connect to the consensus node.
+</Steps>
 
 You can create your key for your node by [following the `cel-key` instructions](/operate/keys-wallets/celestia-node-key).
 

@@ -2,7 +2,7 @@
 description: This tutorial covers setting up a Celestia light node.
 ---
 
-import { Callout, Tabs } from 'nextra/components'
+import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Setting up a Celestia light node
 
@@ -44,6 +44,10 @@ You can also run Lumina on the first decentralized block explorer,
 This tutorial was performed on an Ubuntu Linux 20.04 (LTS) x64 instance machine.
 
 Set up dependencies on the [setting up environment](/operate/getting-started/environment-setup) page.
+
+Follow these steps to install and start your node.
+
+<Steps>
 
 ### Install celestia-node
 
@@ -169,6 +173,8 @@ in the `celestia-node` directory:
 ./cel-key list --node.type light --keyring-backend test \
     --p2p.network <network>
 ```
+
+</Steps>
 
 #### Testnet tokens
 
