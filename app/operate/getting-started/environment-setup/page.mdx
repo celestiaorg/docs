@@ -2,6 +2,8 @@
 description: Learn to set up your development environment to run Celestia software.
 ---
 
+import { Callout } from 'nextra/components'
+
 # Development environment
 
 This page will go over setting up your development environment
@@ -118,7 +120,9 @@ and run our node.
    echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
    source $HOME/.zshrc
    ```
-   > Tip: Use `echo $SHELL` to figure out what type of shell you are using!
+   <Callout type="info">
+   Use `echo $SHELL` to figure out what type of shell you are using.
+   </Callout>
 
 4. To verify that the correct version of Go was installed correctly run:
 

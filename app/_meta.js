@@ -10,10 +10,10 @@ const meta = {
   },
   operate: {
     title: 'Operate',
-    type: 'page'
+    type: 'page',
+    href: 'http://localhost:4269/operate/getting-started/overview/'
   }
 }
 
 export default meta
-
 

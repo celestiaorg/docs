@@ -2,6 +2,8 @@
 description: Learn how to set up a Celestia consensus node.
 ---
 
+import { Callout, Tabs } from 'nextra/components'
+
 # Consensus node
 
 This guide covers how to set up a consensus node on Celestia.
@@ -32,67 +34,70 @@ Follow the tutorial on [installing `celestia-app`](/operate/consensus-validators
 To initialize the network, pick a "node-name" that describes your
 node. Keep in mind that this might change if a new testnet is deployed.
 
-
-**Mainnet Beta:**
-```bash
-celestia-appd init "node-name" --chain-id {{constants['mainnetChainId']}}
-```
-
-**Mocha:**
-```bash
-celestia-appd init "node-name" --chain-id {{constants['mochaChainId']}}
-```
-
-**Arabica:**
-```bash
-celestia-appd init "node-name" --chain-id {{constants['arabicaChainId']}}
-```
-
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    celestia-appd init "node-name" --chain-id {{constants['mainnetChainId']}}
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia-appd init "node-name" --chain-id {{constants['mochaChainId']}}
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia-appd init "node-name" --chain-id {{constants['arabicaChainId']}}
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 Download the `genesis.json` file:
 
-
-**Mainnet Beta:**
-```bash
-celestia-appd download-genesis {{constants['mainnetChainId']}}
-```
-
-**Mocha:**
-```bash
-celestia-appd download-genesis {{constants['mochaChainId']}}
-```
-
-**Arabica:**
-```bash
-celestia-appd download-genesis {{constants['arabicaChainId']}}
-```
-
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    celestia-appd download-genesis {{constants['mainnetChainId']}}
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia-appd download-genesis {{constants['mochaChainId']}}
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia-appd download-genesis {{constants['arabicaChainId']}}
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 Set seeds in the `$HOME/.celestia-app/config/config.toml` file:
 
-
-**Mainnet Beta:**
-```bash
-SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mainnetChainId']}}/seeds.txt | tr '\n' ',')
-echo $SEEDS
-sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.celestia-app/config/config.toml
-```
-
-**Mocha:**
-```bash
-SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/seeds.txt | tr '\n' ',')
-echo $SEEDS
-sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.celestia-app/config/config.toml
-```
-
-**Arabica:**
-```bash
-# For Arabica, you can set seeds manually in the
-# `$HOME/.celestia-app/config/config.toml` file:
-# Comma separated list of seed nodes to connect to
-seeds = ""
-```
-
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mainnetChainId']}}/seeds.txt | tr '\n' ',')
+    echo $SEEDS
+    sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.celestia-app/config/config.toml
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/seeds.txt | tr '\n' ',')
+    echo $SEEDS
+    sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/.celestia-app/config/config.toml
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    # For Arabica, you can set seeds manually in the
+    # `$HOME/.celestia-app/config/config.toml` file:
+    # Comma separated list of seed nodes to connect to
+    seeds = ""
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 ### Optional: Set persistent peers
 
@@ -100,26 +105,29 @@ You can set persistent peers in your `config.toml` file. If you set persistent p
 
 You can get the persistent peers from the [@cosmos/chain-registry](https://github.com/cosmos/chain-registry) repository (for Mainnet Beta) or [@celestiaorg/networks repository](https://github.com/celestiaorg/networks) repo (for Mocha and Arabica) with the following commands:
 
-**Mainnet Beta:**
-```bash
-PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants['mainnetChainId']}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
-echo $PERSISTENT_PEERS
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
-```
-
-**Mocha:**
-```bash
-PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/peers.txt | tr '\n' ',')
-echo $PERSISTENT_PEERS
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
-```
-
-**Arabica:**
-```bash
-PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['arabicaChainId']}}/peers.txt | tr '\n' ',')
-echo $PERSISTENT_PEERS
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants['mainnetChainId']}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
+    echo $PERSISTENT_PEERS
+    sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/peers.txt | tr '\n' ',')
+    echo $PERSISTENT_PEERS
+    sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['arabicaChainId']}}/peers.txt | tr '\n' ',')
+    echo $PERSISTENT_PEERS
+    sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/.celestia-app/config/config.toml
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 ## Storage and pruning configurations
 
@@ -260,48 +268,49 @@ copied from.
 
 Run the following command to quick-sync from a snapshot:
 
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    cd $HOME
+    rm -rf ~/.celestia-app/data
+    mkdir -p ~/.celestia-app/data
+    SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
+        egrep -o ">{{constants['mainnetChainId']}}.*tar" | tr -d ">")
+    aria2c -x 16 -s 16 -o celestia-snap.tar "https://snaps.qubelabs.io/celestia/${SNAP_NAME}"
+    tar xf celestia-snap.tar -C ~/.celestia-app/data/
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    cd $HOME
+    rm -rf ~/.celestia-app/data
+    mkdir -p ~/.celestia-app/data
+    SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
+        egrep -o ">{{constants['mochaChainId']}}.*tar" | tr -d ">")
+    aria2c -x 16 -s 16 -o celestia-snap.tar "https://snaps.qubelabs.io/celestia/${SNAP_NAME}"
+    tar xf celestia-snap.tar -C ~/.celestia-app/data/
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    cd $HOME
+    rm -rf ~/.celestia-app/data
+    mkdir -p ~/.celestia-app/data
+    SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
+        egrep -o ">{{constants['arabicaChainId']}}.*tar" | tr -d ">")
+    aria2c -x 16 -s 16 -o celestia-snap.tar "https://snaps.qubelabs.io/celestia/${SNAP_NAME}"
+    tar xf celestia-snap.tar -C ~/.celestia-app/data/
+    ```
+  </Tabs.Tab>
+</Tabs>
 
-**Mainnet Beta:**
-```bash
-cd $HOME
-rm -rf ~/.celestia-app/data
-mkdir -p ~/.celestia-app/data
-SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-    egrep -o ">{{constants['mainnetChainId']}}.*tar" | tr -d ">")
-aria2c -x 16 -s 16 -o celestia-snap.tar "https://snaps.qubelabs.io/celestia/${SNAP_NAME}"
-tar xf celestia-snap.tar -C ~/.celestia-app/data/
-```
-
-**Mocha:**
-```bash
-cd $HOME
-rm -rf ~/.celestia-app/data
-mkdir -p ~/.celestia-app/data
-SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-    egrep -o ">{{constants['mochaChainId']}}.*tar" | tr -d ">")
-aria2c -x 16 -s 16 -o celestia-snap.tar "https://snaps.qubelabs.io/celestia/${SNAP_NAME}"
-tar xf celestia-snap.tar -C ~/.celestia-app/data/
-```
-
-**Arabica:**
-```bash
-cd $HOME
-rm -rf ~/.celestia-app/data
-mkdir -p ~/.celestia-app/data
-SNAP_NAME=$(curl -s https://snaps.qubelabs.io/celestia/ | \
-    egrep -o ">{{constants['arabicaChainId']}}.*tar" | tr -d ">")
-aria2c -x 16 -s 16 -o celestia-snap.tar "https://snaps.qubelabs.io/celestia/${SNAP_NAME}"
-tar xf celestia-snap.tar -C ~/.celestia-app/data/
-```
-
-
-> **Tip:**
-
+<Callout type="info">
 The [Node snapshots guide](/operate/maintenance/snapshots) provides everything you need to quick sync your node:
 
 - Details about pruned and archive snapshots
 - A list of snapshot providers for different node types
 - Installation and usage instructions for `celestia-snapshot-finder` - a tool that automatically finds and downloads the fastest snapshot for your server location
+</Callout>
 
 
 ## Start the consensus node
@@ -314,21 +323,23 @@ celestia-appd start --rpc.grpc_laddr tcp://0.0.0.0:9098
 
 If you are running celestia-app v2.x.x then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
 
-
-**Mainnet Beta:**
-```sh
-celestia-appd start --v2-upgrade-height 2371495
-```
-
-**Mocha:**
-```sh
-celestia-appd start --v2-upgrade-height 2585031
-```
-
-**Arabica:**
-```sh
-celestia-appd start --v2-upgrade-height 1751707
-```
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```sh
+    celestia-appd start --v2-upgrade-height 2371495
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia-appd start --v2-upgrade-height 2585031
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia-appd start --v2-upgrade-height 1751707
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 
 Optional: If you would like celestia-app to run as a background process, you can follow the [SystemD tutorial](/operate/maintenance/systemd).
@@ -417,7 +428,9 @@ You can configure your consensus node to be a public RPC endpoint.
 This allows it to accept connections from data availability nodes and
 serve requests for the data availability API.
 
-> **Tip:** If you're running a bridge node that connects to your consensus node, ensure that gRPC is properly configured in your `app.toml` file. Bridge nodes require gRPC access (typically on port 9090) to communicate with the consensus layer.
+<Callout type="info">
+If you're running a bridge node that connects to your consensus node, ensure that gRPC is properly configured in your `app.toml` file. Bridge nodes require gRPC access (typically on port 9090) to communicate with the consensus layer.
+</Callout>
 
 #### Expose RPC
 

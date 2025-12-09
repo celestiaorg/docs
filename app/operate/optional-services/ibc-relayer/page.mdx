@@ -2,6 +2,8 @@
 description: Learn how to establish IBC connections and relay packets.
 ---
 
+import { Callout } from 'nextra/components'
+
 # IBC relaying guide
 
 Celestia uses [IBC](https://ibcprotocol.dev/) to enable cross-chain token transfers. Relayers scan for outbound packets on one chain and submit them with proofs on the destination chain. This guide shows how to set up a relayer and create connections using Hermes between Celestia Mocha testnet and Cosmos Hub theta-testnet-001.
@@ -17,7 +19,9 @@ Check the [latest celestia-app release's `go.mod`](https://github.com/celestiaor
 
 [Hermes](https://github.com/informalsystems/hermes) is an open-source Rust relayer. Follow the [Hermes Quick Start](https://hermes.informal.systems/quick-start/) to install, then verify with `hermes version`.
 
-> **Tip:** Hermes currently doesn't support configuring Tendermint `CompatMode` in chain config. Use Hermes [v1.7.0+](https://github.com/informalsystems/hermes/releases/tag/v1.7.0), which falls back to Tendermint `CompatMode` v0.34 (compatible with Celestia).
+<Callout type="info">
+Hermes currently doesn't support configuring Tendermint `CompatMode` in chain config. Use Hermes [v1.7.0+](https://github.com/informalsystems/hermes/releases/tag/v1.7.0), which falls back to Tendermint `CompatMode` v0.34 (compatible with Celestia).
+</Callout>
 
 ### Configuration
 

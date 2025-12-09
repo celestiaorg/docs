@@ -2,6 +2,8 @@
 description: Learn how to generate a Celestia wallet using celestia-app.
 ---
 
+import { Callout } from 'nextra/components'
+
 # Create a wallet with celestia-app
 
 For this guide, we will go over how you can generate a Celestia
@@ -108,4 +110,6 @@ celestia-appd start
 celestia-appd query bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-> **Tip:** Refer to the ports section of the celestia-node troubleshooting page for information on which ports are required to be open on your machine.
+<Callout type="info">
+Refer to the ports section of the celestia-node troubleshooting page for information on which ports are required to be open on your machine.
+</Callout>
