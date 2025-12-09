@@ -1,0 +1,47 @@
+[
+  {
+    "source": "/how-to-guides/nodes-overview",
+    "destination": "/operate/getting-started/overview",
+    "permanent": true
+  },
+  {
+    "source": "/how-to-guides/quick-start",
+    "destination": "/build/post-retrieve-blob/overview/",
+    "permanent": true
+  },
+  {
+    "source": "/learn/how-celestia-works/overview",
+    "destination": "/learn/celestia-101/data-availability/",
+    "permanent": true
+  },
+  {
+    "source": "/learn/staking-governance-supply",
+    "destination": "/learn/TIA/staking-governance-supply/",
+    "permanent": true
+  },
+  {
+    "source": "/how-to-guides/arbitrum-integration",
+    "destination": "/build/stacks/nitro-das-server/",
+    "permanent": true
+  },
+  {
+    "source": "/learn/how-celestia-works/monolithic-vs-modular",
+    "destination": "/learn/celestia-101/data-availability/#monolithic-vs-modular-blockchains",
+    "permanent": true
+  },
+  {
+    "source": "/how-to-guides/mocha-testnet",
+    "destination": "/operate/networks/mocha-testnet/",
+    "permanent": true
+  },
+  {
+    "source": "/learn/how-to-stake-tia",
+    "destination": "/learn/TIA/staking/",
+    "permanent": true
+  },
+  {
+    "source": "/learn/how-celestia-works/data-availability-layer",
+    "destination": "/learn/celestia-101/data-availability/",
+    "permanent": true
+  }
+]
