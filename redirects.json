@@ -43,5 +43,10 @@
     "source": "/learn/how-celestia-works/data-availability-layer",
     "destination": "/learn/celestia-101/data-availability/",
     "permanent": true
+  },
+  {
+    "source": "/community/foundation-delegation-program",
+    "destination": "/operate/consensus-validators/foundation-delegation-program/",
+    "permanent": true
   }
 ]
