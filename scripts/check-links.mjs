@@ -266,7 +266,7 @@ function extractLinksFromAST(tree) {
     // MDX JSX: <Link href="..."> or <a href="...">
     if (node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') {
       const hrefAttr = node.attributes?.find(attr => 
-        attr.name === 'href' || attr.name === 'href'
+        attr.name === 'href'
       );
       if (hrefAttr && hrefAttr.value) {
         let url;
@@ -506,13 +506,17 @@ async function checkExternalLink(url, skipPatterns = [], timeout = DEFAULT_TIMEO
  */
 async function processLinksConcurrently(links, checkFn, concurrency) {
   const results = [];
-  const queue = [...links];
   const total = links.length;
+  let nextIndex = 0;
   let processed = 0;
   
   async function worker() {
-    while (queue.length > 0) {
-      const link = queue.shift();
+    while (true) {
+      // atomic-like claim of next item
+      const index = nextIndex++;
+      if (index >= total) break;
+      
+      const link = links[index];
       const result = await checkFn(link);
       results.push({ ...link, ...result });
       
@@ -777,27 +781,25 @@ async function main() {
   
   // Print console summary if no output files specified OR as a general summary
   // We always print this now for CI logs visibility
-  if (true) {
-    console.log('\n=== LINK CHECK SUMMARY ===\n');
-    console.log(`Total Links: ${report.summary.totalLinks}`);
-    console.log(`Internal: ${report.summary.internalLinks} (Broken: ${report.summary.brokenInternal})`);
-    console.log(`External: ${report.summary.externalLinks} (Broken: ${report.summary.brokenExternal})`);
-    
-    if (report.summary.brokenInternal > 0) {
-      console.log('\n--- Broken Internal Links ---');
-      report.internal.forEach(l => {
-        console.log(`[${l.reason}] ${l.url} (in ${l.sourceFile})`);
-      });
-    }
-    
-    if (report.summary.brokenExternal > 0) {
-      console.log('\n--- Broken External Links ---');
-      report.external.forEach(l => {
-        console.log(`[${l.status || 'ERR'} - ${l.error || l.statusText}] ${l.url} (in ${l.sourceFile})`);
-      });
-    }
-    console.log('\n==========================\n');
+  console.log('\n=== LINK CHECK SUMMARY ===\n');
+  console.log(`Total Links: ${report.summary.totalLinks}`);
+  console.log(`Internal: ${report.summary.internalLinks} (Broken: ${report.summary.brokenInternal})`);
+  console.log(`External: ${report.summary.externalLinks} (Broken: ${report.summary.brokenExternal})`);
+  
+  if (report.summary.brokenInternal > 0) {
+    console.log('\n--- Broken Internal Links ---');
+    report.internal.forEach(l => {
+      console.log(`[${l.reason}] ${l.url} (in ${l.sourceFile})`);
+    });
   }
+  
+  if (report.summary.brokenExternal > 0) {
+    console.log('\n--- Broken External Links ---');
+    report.external.forEach(l => {
+      console.log(`[${l.status || 'ERR'} - ${l.error || l.statusText}] ${l.url} (in ${l.sourceFile})`);
+    });
+  }
+  console.log('\n==========================\n');
   
   // Exit with error code if broken links found
   const totalBroken = report.summary.brokenInternal + report.summary.brokenExternal;
