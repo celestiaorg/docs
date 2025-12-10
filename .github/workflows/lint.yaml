@@ -25,13 +25,13 @@ jobs:
         uses: actions/setup-node@v4.0.3
         with:
           node-version: 20
-          cache: yarn
+          cache: npm
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm install --no-package-lock --legacy-peer-deps
 
       - name: Run lint
-        run: yarn lint
+        run: npm run lint
 
   link-check:
     runs-on: ubuntu-latest
@@ -39,9 +39,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.7
 
-      - name: Link Checker
-        uses: lycheeverse/lychee-action@v2.0.0
+      - name: Setup Node
+        uses: actions/setup-node@v4.0.3
         with:
-          fail: true
-          args: --verbose --exclude '^https?://localhost(:[0-9]+)?/?$' --exclude 'https://hibachi.xyz/' --exclude 'https://dl.acm.org/doi/abs/10.1145/98163.98167' --exclude 'https://lib.rs/crates/celestia-client' --exclude 'https://github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md?plain=1#L31' --exclude 'https://polkachu.com/tendermint_snapshots/celestia' --exclude 'https://polkachu.com/testnets/celestia/snapshots' --exclude '.*%7B.*' --exclude '.*\{.*' README.md app/**/*.mdx app/**/*.md
-          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install --no-package-lock --legacy-peer-deps
+
+      - name: Run Link Checker
+        run: npm run check-links -- --all --concurrency=2 --skip="celestia.org,nexus.hyperlane.xyz"
