@@ -1,7 +1,8 @@
+---
 description: Learn to set up your development environment to run Celestia software.
 ---
 
-import { Callout, Steps } from 'nextra/components'
+import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Development environment
 
@@ -22,114 +23,113 @@ Only these four architectures are officially tested and supported.
 
 <Steps>
 
-## Install dependencies
+### Install dependencies
 
-1. If you are on Ubuntu, first update and upgrade your OS:
+Select your platform to update the OS and install required packages:
 
-   **APT**
-   ```bash
-   sudo apt update && sudo apt upgrade -y
-   ```
+<Tabs items={['Ubuntu (APT)', 'RHEL/CentOS (YUM)', 'macOS']}>
+  <Tabs.Tab>
+    ```bash
+    sudo apt update && sudo apt upgrade -y
+    sudo apt install curl tar wget aria2 clang pkg-config libssl-dev jq build-essential \
+    git make ncdu -y
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    sudo yum update
+    sudo yum install curl tar wget aria2 clang pkg-config libssl-dev jq build-essential \
+    git make ncdu -y
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    # install Homebrew, then wget & jq
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew install wget && brew install jq
+    ```
+  </Tabs.Tab>
+</Tabs>
 
-   **YUM**
-   ```bash
-   sudo yum update
-   ```
-
-2. Install essential packages that are necessary to execute many tasks like
-   downloading files, compiling, and monitoring the node:
-
-   **APT**
-   ```bash
-   sudo apt install curl tar wget aria2 clang pkg-config libssl-dev jq build-essential \
-   git make ncdu -y
-   ```
-
-   **YUM**
-   ```bash
-   sudo yum install curl tar wget aria2 clang pkg-config libssl-dev jq build-essential \
-   git make ncdu -y
-   ```
-
-   **Mac**
-   ```bash
-   # install Homebrew, then wget & jq
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   brew install wget && brew install jq
-   ```
-
-## Install Golang
+### Install Golang
 
 celestia-node is written in Golang so we must install Golang to build
 and run our node.
 
-1. Set the version for your desired network:
+Set the version for your desired network:
 
-   - Mainnet Beta: `ver="{{constants['golangNodeMainnet']}}"`
-   - Mocha: `ver="{{constants['golangNodeMocha']}}"`
-   - Arabica: `ver="{{constants['golangNodeArabica']}}"`
+- Mainnet Beta: `ver="{{constants['golangNodeMainnet']}}"`
+- Mocha: `ver="{{constants['golangNodeMocha']}}"`
+- Arabica: `ver="{{constants['golangNodeArabica']}}"`
 
-2. Download and install Golang:
+Download and install Golang:
 
-   **Ubuntu (AMD)**
-   ```bash
-   cd $HOME
-   wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
-   sudo rm -rf /usr/local/go
-   sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
-   rm "go$ver.linux-amd64.tar.gz"
-   ```
+<Tabs items={['Linux (AMD)', 'Linux (ARM)', 'macOS (Apple)', 'macOS (Intel)']}>
+  <Tabs.Tab>
+    ```bash
+    cd $HOME
+    wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+    sudo rm -rf /usr/local/go
+    sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
+    rm "go$ver.linux-amd64.tar.gz"
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    cd $HOME
+    wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
+    sudo rm -rf /usr/local/go
+    sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
+    rm "go$ver.linux-arm64.tar.gz"
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    cd $HOME
+    wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
+    sudo rm -rf /usr/local/go
+    sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
+    rm "go$ver.darwin-arm64.tar.gz"
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    cd $HOME
+    wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
+    sudo rm -rf /usr/local/go
+    sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
+    rm "go$ver.darwin-amd64.tar.gz"
+    ```
+  </Tabs.Tab>
+</Tabs>
 
-   **Ubuntu (ARM)**
-   ```bash
-   cd $HOME
-   wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
-   sudo rm -rf /usr/local/go
-   sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
-   rm "go$ver.linux-arm64.tar.gz"
-   ```
+### Configure Go and verify
 
-   **Mac (Apple)**
-   ```bash
-   cd $HOME
-   wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
-   sudo rm -rf /usr/local/go
-   sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
-   rm "go$ver.darwin-arm64.tar.gz"
-   ```
+Add your `/usr/local/go/bin` directory to your `$PATH` if you have not already:
 
-   **Mac (Intel)**
-   ```bash
-   cd $HOME
-   wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
-   sudo rm -rf /usr/local/go
-   sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
-   rm "go$ver.darwin-amd64.tar.gz"
-   ```
+<Tabs items={['bash', 'zsh']}>
+  <Tabs.Tab>
+    ```bash
+    echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
+    source $HOME/.bash_profile
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
+    source $HOME/.zshrc
+    ```
+  </Tabs.Tab>
+</Tabs>
+<Callout type="info">
+Use `echo $SHELL` to figure out what type of shell you are using.
+</Callout>
 
-3. Add your `/usr/local/go/bin` directory to
-   your `$PATH` if you have not already:
+To verify that the correct version of Go was installed correctly run:
 
-   **bash**
-   ```bash
-   echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
-   source $HOME/.bash_profile
-   ```
-
-   **zsh**
-   ```bash
-   echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.zshrc
-   source $HOME/.zshrc
-   ```
-   <Callout type="info">
-   Use `echo $SHELL` to figure out what type of shell you are using.
-   </Callout>
-
-4. To verify that the correct version of Go was installed correctly run:
-
-   ```bash
-   go version
-   ```
+```bash
+go version
+```
 
 The output will show the version installed.
 </Steps>
