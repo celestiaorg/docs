@@ -45,6 +45,16 @@
     "permanent": true
   },
   {
+    "source": "/how-to-guides/celestia-node-metrics",
+    "destination": "/operate/data-availability/metrics",
+    "permanent": true
+  },
+  {
+    "source": "/community/coc",
+    "destination": "/learn/code-of-conduct",
+    "permanent": true
+  },
+  {
     "source": "/community/foundation-delegation-program",
     "destination": "/operate/consensus-validators/foundation-delegation-program/",
     "permanent": true
