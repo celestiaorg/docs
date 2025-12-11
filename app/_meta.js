@@ -1,19 +1,17 @@
 const meta = {
-  index: 'Home',
+  index: "Home",
   learn: {
-    title: 'Learn',
-    type: 'page'
+    title: "Learn",
+    type: "page",
   },
   build: {
-    title: 'Build',
-    type: 'page'
+    title: "Build",
+    type: "page",
   },
   operate: {
-    title: 'Operate',
-    type: 'page',
-    href: 'http://localhost:4269/operate/getting-started/overview/'
-  }
-}
+    title: "Operate",
+    type: "page",
+  },
+};
 
-export default meta
-
+export default meta;

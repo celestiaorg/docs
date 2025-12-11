@@ -6,6 +6,7 @@ const meta = {
   slashing: "Slashing & jailing",
   metrics: "Metrics & monitoring",
   "upgrade-monitor": "Upgrade monitoring",
+  "foundation-delegation-program": "Foundation delegation program",
 };
 
 export default meta;
