@@ -2,7 +2,7 @@
 description: Learn how you can build celestia-app.
 ---
 
-import { Tabs } from 'nextra/components'
+import { Steps, Tabs } from 'nextra/components'
 
 # Install celestia-app
 
@@ -33,8 +33,9 @@ The steps below will create a binary file named `celestia-appd`
 inside `$HOME/go/bin` folder which will be used later to run the node.
 Be sure to select the correct network to install the binary for.
 
-1. Remove any existing copy of celestia-app, clone the repository,
-   and change into the directory:
+<Steps>
+
+### Remove any existing copy and clone the repository
 
    ```bash
    cd $HOME
@@ -43,7 +44,7 @@ Be sure to select the correct network to install the binary for.
    cd celestia-app
    ```
 
-2. Check out to the desired version, based on the network you will use:
+### Check out the desired version
 
    <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
      <Tabs.Tab>
@@ -63,14 +64,16 @@ Be sure to select the correct network to install the binary for.
      </Tabs.Tab>
    </Tabs>
 
-3. Build and install the `celestia-appd` binary with multiplexer support:
+### Build and install the `celestia-appd` binary with multiplexer support
 
    ```bash
    make install
    ```
 
-4. To check if the binary was successfully installed you can run the binary
-   using the `--help` flag:
+### Verify the installation
+
+To check if the binary was successfully installed you can run the binary
+using the `--help` flag:
 
    ```sh
    celestia-appd --help
@@ -78,6 +81,7 @@ Be sure to select the correct network to install the binary for.
 
 You will see an output with the menu for `celestia-appd`. Learn more
 on the [helpful CLI commands page](/operate/consensus-validators/cli-reference)
+</Steps>
 
 ## Installing a pre-built binary
 

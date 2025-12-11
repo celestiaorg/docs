@@ -3,7 +3,7 @@ sidebar_label: Docker images
 description: Running Celestia Node using Docker.
 ---
 
-import { Tabs } from 'nextra/components'
+import { Steps, Tabs } from 'nextra/components'
 
 # 🐳 Docker setup
 
@@ -36,7 +36,11 @@ Ubuntu. You can
 
 ## Quick start
 
-1. Set [the network](/operate/networks/overview) you would like to run your node on:
+<Steps>
+
+### Set the network
+
+Choose [the network](/operate/networks/overview) you would like to run your node on:
 
    <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
      <Tabs.Tab>
@@ -56,24 +60,29 @@ Ubuntu. You can
      </Tabs.Tab>
    </Tabs>
 
-2. Set the node type
+### Set the node type
 
-   **Light**
-   ```bash
-   export NODE_TYPE=light
-   ```
+   <Tabs items={['Light', 'Bridge', 'Full']}>
+     <Tabs.Tab>
+       ```bash
+       export NODE_TYPE=light
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       export NODE_TYPE=bridge
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       export NODE_TYPE=full
+       ```
+     </Tabs.Tab>
+   </Tabs>
 
-   **Bridge**
-   ```bash
-   export NODE_TYPE=bridge
-   ```
+### Configure the RPC endpoint
 
-   **Full**
-   ```bash
-   export NODE_TYPE=full
-   ```
-
-3. Set an RPC endpoint for either [Mainnet Beta](/operate/networks/mainnet-beta#integrations),
+Set an RPC endpoint for either [Mainnet Beta](/operate/networks/mainnet-beta#integrations),
    [Mocha](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes), or
    [Arabica](/operate/networks/arabica-devnet#integrations)
    using the bare URL (without http or https):
@@ -82,13 +91,13 @@ Ubuntu. You can
    export RPC_URL=this-is-an-rpc-url.com
    ```
 
-   Then set the port for the RPC_URL:
+Then set the port for the RPC_URL:
 
    ```bash
    export RPC_PORT=9090
    ```
 
-4. Run the image from the command line:
+### Run the container
 
    <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
      <Tabs.Tab>
@@ -115,6 +124,7 @@ Ubuntu. You can
    </Tabs>
 
 Congratulations! You now have a celestia-node running!
+</Steps>
 
 If you would like to run the node with custom flags,
 you can refer to the
@@ -153,6 +163,8 @@ sudo chown 10001:10001 $HOME/my-node-store
 ```
 
 > Docker Desktop on Mac users typically do not need to change permissions.
+
+<Steps>
 
 ### Initialize the node store and key
 
@@ -237,6 +249,7 @@ A full start command will look similar to below.
 </Tabs>
 
 Congratulations! You now have a node running with persistent storage.
+</Steps>
 
 ## Video walkthrough
 

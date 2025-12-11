@@ -2,7 +2,7 @@
 description: Learn to build and install celestia-node.
 ---
 
-import { Callout, Tabs } from 'nextra/components'
+import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Install celestia-node
 
@@ -26,8 +26,9 @@ tutorial assumes you completed the steps in
 Install the celestia-node binary by running the following
 commands:
 
-1. Remove any existing copy of celestia-node, clone the repository,
-   and change into the directory:
+<Steps>
+
+### Remove any existing copy and clone
 
    ```bash
    cd $HOME
@@ -36,7 +37,7 @@ commands:
    cd celestia-node/
    ```
 
-2. Check out to the desired version, based on the network you will use:
+### Check out the desired version
 
    <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
      <Tabs.Tab>
@@ -56,7 +57,7 @@ commands:
      </Tabs.Tab>
    </Tabs>
 
-3. Build the `celestia` binary:
+### Build the `celestia` binary
 
    a. Standard build
 
@@ -76,20 +77,20 @@ commands:
 
    This build option enables CGO, and downloads and installs [jemalloc](https://jemalloc.net/). [Learn more about the build command](https://github.com/celestiaorg/celestia-node/releases/tag/v0.12.1#:~:text=%F0%9F%8F%97%EF%B8%8F-,New%20build%20option,-%3A%20Makefile%20now%20has).
 
-4. Install the binary:
+### Install the binary
 
    ```bash
    make install
    ```
 
-5. Build and install the `cel-key` utility:
+### Build and install the `cel-key` utility
 
    ```bash
    make cel-key
    make install-key
    ```
 
-6. Verify that the binary is working and check the version:
+### Verify the installation
 
    ```bash
    celestia version
@@ -97,6 +98,7 @@ commands:
 
 The output will show the semantic version of celestia-node,
 commit hash, build date, system version, and Golang version.
+</Steps>
 
 ## Installing a pre-built binary
 
