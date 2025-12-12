@@ -7,7 +7,7 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "postbuild": "pagefind --site out --output-path out/_pagefind",
-    "start": "npx serve out",
+    "start": "serve out",
     "lint": "eslint",
     "prepare": "simple-git-hooks",
     "generate:llms": "node scripts/generate-llms.js",
