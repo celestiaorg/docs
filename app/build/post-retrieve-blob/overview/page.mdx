@@ -1,8 +1,10 @@
 # Overview to posting and retrieving blobs on Celestia
 
-There are multiple ways to post and retrieve blobs from Celestia, each with different requirements. Pick the flow that matches how you want to connect and authenticate. This checklist covers what you need to configure and where to start.
+This section will show you how to post and retrieve blobs on Celestia using the transaction client in Golang and Rust.
 
-| Option                     | What you need                       | Endpoints to set                      | Guides                                                                                                  |
-| -------------------------- | ----------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| **Tx client (Go/Rust)**    | Local keyring handled by the client | **2** — DA bridge RPC + Core gRPC     | [Go client](/build/post-retrieve-blob/client/go) · [Rust client](/build/post-retrieve-blob/client/rust) |
-| **Self-hosted light node** | celestia-node with its auth token   | **1** — your node's Core RPC endpoint | [Light node quickstart](/build/post-retrieve-blob/light-node/quickstart)                                |
+There are two client libraries available:
+
+| Option               | What you need                       | Endpoints to set                  | Guides                                               |
+| -------------------- | ----------------------------------- | --------------------------------- | ---------------------------------------------------- |
+| **Tx client (Go)**   | Local keyring handled by the client | **2** — DA bridge RPC + Core gRPC | [Go client](/build/post-retrieve-blob/client/go)     |
+| **Tx client (Rust)** | Local keyring handled by the client | **2** — DA bridge RPC + Core gRPC | [Rust client](/build/post-retrieve-blob/client/rust) |
