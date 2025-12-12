@@ -1,91 +1,145 @@
-# Quickstart: post and retrieve your first blob
+---
+description: Run a Celestia light node and post/retrieve your first blob.
+---
 
-Celestia light nodes use data availability sampling (DAS) to verify that block data is available without downloading it all. They can also post and retrieve blobs (data) from the Celestia network.
+import { Callout, Steps, Tabs } from 'nextra/components'
 
-import { Steps, Callout } from 'nextra/components'
+# Light node: overview & quickstart
+
+Celestia light nodes perform data availability sampling (DAS) to verify that
+block data is available without downloading it all. They can also post and
+retrieve blobs (data) from the Celestia network.
+
+## Overview
+
+Light nodes are the most common way to interact with Celestia networks.
+
+![light-node](/img/nodes/LightNodes.png)
+
+Light nodes:
+
+1. Listen for `ExtendedHeaders` (block headers + DA metadata).
+2. Perform DAS on received headers.
+
+## Optional: run a light node in your browser
+
+The easiest way to try a light node is with [Lumina.rs](https://lumina.rs) in
+your browser.
+
+<img
+  width="1000"
+  alt="Lumina.rs in browser"
+  src="https://github.com/user-attachments/assets/5c6ae717-503e-4b83-844f-8716f33ec76c"
+/>
+
+You can also run Lumina on the decentralized explorer,
+[Celenium](https://celenium.io).
+
+<img
+  width="1000"
+  alt="Celenium running a light node with Lumina.rs"
+  src="https://github.com/user-attachments/assets/28183a24-8bb1-4f77-850c-d0528de075c7"
+/>
+
+## Run a light node (CLI)
+
+This guide assumes you've completed:
+
+- [Hardware requirements](/operate/getting-started/hardware-requirements)
+- [Environment setup](/operate/getting-started/environment-setup)
 
 <Steps>
 
-## Install the binary
+### Install `celestia-node`
 
-To post and retrieve blobs with your light node, use this script to install celestia-node:
+Follow the [Install celestia-node](/operate/data-availability/install-celestia-node)
+guide (from source or using the pre-built binary installer).
 
-```
-bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)" -- -v v0.28.2-mocha
-```
+### Initialize the node store
 
-Check the version of celestia-node installed:
-```
-celestia version
-```
-
-Use `celestia --help` to see the CLI menu.
+This creates the node store and a key for the network you choose.
 
 <Callout type="info">
-You can visit the repo to build from source at https://github.com/celestiaorg/celestia-node.
+Want to sync faster (skip sampling from genesis)? See
+[Fast sync with a trusted hash](/operate/data-availability/light-node/advanced#fast-sync-with-a-trusted-hash).
 </Callout>
 
-## Initialize the node store
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    celestia light init
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia light init --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia light init --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
 
-This step sets up configuration files and creates a keypair for your node. The `p2p.network` flag is used to specify the network you want to connect to. Use `mocha` for Mocha testnet. You'll see a new keypair that's created in your terminal. Be sure to save your mnemonic somewhere safe for future use!
+### Start the light node
 
+Light nodes connect to a consensus node **gRPC** endpoint (usually port `9090`)
+for state access (balances, submitting `PayForBlobs`, etc.).
+
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    celestia light start --core.ip rpc.celestia.pops.one \
+      --core.port 9090 --p2p.network celestia
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia light start --core.ip rpc-mocha.pops.one \
+      --core.port 9090 --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia light start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
+      --core.port 9090 --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+<Callout type="info">
+You can use any consensus node gRPC endpoint listed on
+[Mainnet Beta](/operate/networks/mainnet-beta#integrations),
+[Mocha testnet](/operate/networks/mocha-testnet#community-data-availability-da-grpc-endpoints-for-state-access),
+or [Arabica devnet](/operate/networks/arabica-devnet#integrations).
+</Callout>
+
+If you're running on a server, make sure required ports are open. See
+[Troubleshooting ports](/operate/maintenance/troubleshooting#ports).
+
+### Get some testnet tokens (for blob posting)
+
+To submit blobs on testnets, fund your light node address:
+
+```bash
+celestia state account-address
 ```
-celestia light init --p2p.network mocha
-```
 
-**Visit the [faucet](https://mocha.celenium.io/faucet)** and fund your key from the output. The address begins with `celestia1`.
+Then use a faucet:
 
-## Set the trusted height and hash
+- [Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet)
+- [Arabica faucet](/operate/networks/arabica-devnet#arabica-devnet-faucet)
 
-Setting and syncing to a trusted hash and height means your light node will not sample the entire chain. This is useful when you want to sync your light node quickly. However, it's important to note that this adds the trust assumption that you trust the entity where you get the hash and height from, in this case, the [P-OPS](https://pops.one) team's consensus endpoint.
+On Mainnet Beta, fund this address with TIA to submit blobs.
 
-Let's set the trusted hash!
+### Check your balance (optional)
 
-1. Get trusted height & hash from the P-OPS consensus endpoint:
-
-   ```bash
-   read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH && echo "Height: $TRUSTED_HEIGHT" && echo "Hash:   $TRUSTED_HASH"
-   ```
-
-1. Set the trusted height & hash
-   1. Open your `config.toml` at `~/.celestia-light-mocha-4/config.toml`
-   1. Set `Header.Syncer.SyncFromHeight` to the trusted height (e.g. `SyncFromHeight = 123456`)
-   1. Set `Header.Syncer.SyncFromHash` to the trusted hash (e.g. `SyncFromHash = "E8BD0C48260C496BB7A4D8D1E7BDBF1F26A2FE3CF5714DECE1741B2FFB3C095C"`, with **no `0x` prefix**)
-
-If you don't do this, when trying to retrieve data in a few minutes, you'll see a response saying `"result": "header: syncing in progress: localHeadHeight: 8458501, requestedHeight: 8554059"`. You'll either need to let the node sync to the `requestedHeight`, or use quick sync with trusted hash to do this.
-
-## Start the node
-
-Start the light node with:
-
-```
-celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
-```
-
-The `core.ip` flag is used to specify a consensus RPC endpoint you want to connect to.
-
-Once you see this, your node is ready to go!
-
-```
-/_____/  /_____/  /_____/  /_____/  /_____/
-
-Started celestia DA node
-node version:  0.28.2-mocha
-node type:  light
-network:  mocha-4
-
-/_____/  /_____/  /_____/  /_____/  /_____/
-```
-
-## Check your balance
-
-```
+```bash
 celestia state balance
 ```
 
-Your balance will return in utia, where 1 TIA = 1000000 utia.
-
-## Post your first blob
+### Post your first blob
 
 Use `celestia blob submit [namespace] [data]` to post your first blob.
 
@@ -93,52 +147,22 @@ Use `celestia blob submit [namespace] [data]` to post your first blob.
 celestia blob submit 0x676d 0x676d
 ```
 
-The namespace and data are hex-encoded strings. Namespaces are a way to permissionlessly categorize your data in Celestia. In other words, its a channel for you to post your data. You will keep track of blobs by their namespace, height, and commitment.
+Save the returned `height` and the first value in `commitments`.
 
-The response will look similar to:
+### Retrieve your first blob
 
-```
-{
-  "result": {
-    "height": 8554059,
-    "commitments": [
-      "0x457e23252db8edaa9a08d092ec1814ae9fadd47929b99bcceed947298613c94a"
-    ]
-  }
-}
-```
-
-## Retrieve your first blob
-
-Use `celestia blob get [height] [namespace] [commitment]` to retrieve your first blob.
+Replace `<height>` and `<commitment>` with the values from `blob submit`:
 
 ```bash
-celestia blob get 8554059 0x676d 0x457e23252db8edaa9a08d092ec1814ae9fadd47929b99bcceed947298613c94a
-```
-
-Where the response is similar to:
-```
-{
-  "result": {
-    "namespace": "0x676d",
-    "data": "gm",
-    "share_version": 0,
-    "commitment": "0x457e23252db8edaa9a08d092ec1814ae9fadd47929b99bcceed947298613c94a",
-    "index": 132
-  }
-}
+celestia blob get <height> 0x676d <commitment>
 ```
 
 </Steps>
 
-You can also inspect this example on celenium explorer [here](https://mocha.celenium.io/blob?commitment=RX4jJS247aqaCNCS7BgUrp+t1HkpuZvM7tlHKYYTyUo=&hash=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ20=&height=8554059).
+If you see `header: syncing in progress`, wait for the node to sync or use
+[fast sync](/operate/data-availability/light-node/advanced#fast-sync-with-a-trusted-hash).
 
-Let's break it down:
+## Next steps
 
-- `namespace`: The [namespace](https://celestiaorg.github.io/celestia-app/namespace.html) you used to categorize your data.
-- `data`: The data blob you posted to the network.
-- `share_version`: The version of the [share](https://celestiaorg.github.io/celestia-app/shares.html). A share is a fixed-size data chunk that is associated with exactly one namespace.
-- `commitment`: The commitment of the data (see [Blob Share Commitment Rules](https://celestiaorg.github.io/celestia-app/data_square_layout.html#blob-share-commitment-rules)).
-- `index`: The [index](https://celestiaorg.github.io/celestia-app/shares.html#overview) of the data share in the square.
-
-Congratulations! You've successfully learned how to run a light node to post and retrieve data from Celestia's Mocha testnet.
+- More operations and configuration: [Advanced](/operate/data-availability/light-node/advanced)
+- Submitting blobs from an app: [Submit data](/learn/TIA/submit-data)

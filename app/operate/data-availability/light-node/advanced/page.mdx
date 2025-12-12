@@ -1,54 +1,137 @@
-# Optional: Diving deeper into the stack
+---
+description: Advanced topics for operating a Celestia light node.
+---
 
-This section covers some more in-depth topics that you may find useful when working with your Celestia light node.
+import { Steps, Callout, Tabs } from 'nextra/components'
 
-import { Steps, Callout } from "nextra/components";
+# Advanced
 
-## Node store contents
+This page collects advanced topics for Celestia light nodes. For
+setup and blob posting, see
+[Getting started](/operate/data-availability/light-node/quickstart).
 
-Elaborating on the [initialize the node store](#initialize-the-node-store) section above, the node store is created in the `~/.celestia-<node-type>-<network>` directory.
+---
 
-In this guide, the node store for `~/.celestia-light-mocha-4` contains the following directories and file types:
+## Start light node with consensus endpoint authentication
 
-- `config.toml`: Node configuration settings
-- `data/`: Contains database files
-  - `.vlog` files: Value log files storing actual data
-  - `.sst` files: Static sorted tables containing indexed data
-  - System files: `DISCARD`, `KEYREGISTRY`, and `MANIFEST` for database management
-- `keys/`: Stores node identity and account keys
-  - Contains encoded node identifiers
-  - `keyring-test/`: Test keyring directory
-    - `.address` files: Account addresses
-    - `.info` files: Key metadata and information
-
-## Get your auth token
-
-Your auth token may be useful when you want to interact with your Celestia light node from a client application. You can get your auth token by running:
+If the consensus node gRPC endpoint you connect to requires authentication, pass
+a directory containing `xtoken.json`:
 
 ```bash
-celestia light auth admin --p2p.network mocha
+celestia light start \
+  --core.ip snowy-methodical-leaf.celestia-mainnet.quiknode.pro \
+  --core.tls \
+  --core.xtoken.path /path-to-directory \
+  --core.port 9090
 ```
 
-Each time you run this, you will receive a new token. It's not possible to revoke tokens once they are issued.
+Where `/path-to-directory` contains `xtoken.json` (recommended: `chmod 600`):
 
-Use `celestia light auth --help` to learn more about the available options.
+```json
+{
+  "x-token": "<YOUR-SECRET-X-TOKEN>"
+}
+```
 
-## Advanced key management with `cel-key`
+---
 
-For more advanced key management beyond the built-in capabilities of the light node, use the separate `cel-key` utility. This dedicated tool allows you to:
+## Run the light node with a custom key
 
-- Create, import, and manage keys.
-- Backup, verify and select the active key used by your node
+To use a non-default key, make sure the key exists in your node store and pass
+`--keyring.keyname` on `start`:
 
-To utilize `cel-key`, you'll need to build it separately from the binary with `make cel-key`.
+<Callout type="info">
+For key creation, backup, import/recover, and Docker setups, see
+[Create a wallet with celestia-node](/operate/keys-wallets/celestia-node-key).
+</Callout>
 
-## Advanced: High throughput transaction submission
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    celestia light start --core.ip <URI> --core.port <port> \
+      --keyring.keyname <name-of-custom-key>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia light start --core.ip <URI> --core.port <port> \
+      --keyring.keyname <name-of-custom-key> --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia light start --core.ip <URI> --core.port <port> \
+      --keyring.keyname <name-of-custom-key> --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
 
-Celestia supports three transaction submission modes that affect how transactions are queued and submitted, impacting throughput and ordering guarantees. These modes are controlled by the `TxWorkerAccounts` setting in your light node's `config.toml` file.
+---
+
+## Run the light node with SystemD
+
+Follow the tutorial for running Celestia Node as a background process with
+SystemD:
+[/operate/maintenance/systemd#celestia-light-node](/operate/maintenance/systemd#celestia-light-node).
+
+---
+
+## Fast sync with a trusted hash
+
+Setting and syncing to a trusted height and hash means your light node will not
+sample the entire chain from genesis. This is useful when you want to sync your
+light node quickly.
+
+<Callout type="warning">
+This adds the trust assumption that you trust the source of the height and
+hash.
+</Callout>
+
+Celestia also supports initializing from a trusted hash via
+[trusted hash recovery](/operate/maintenance/trusted-hash-recovery).
+
+<Steps>
+
+### Get a trusted height and hash
+
+This example uses the P-OPS Mocha endpoint:
+
+```bash
+read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
+```
+
+### Set `SyncFromHeight` and `SyncFromHash`
+
+Edit your config file at `~/.celestia-light-{{constants['mochaChainId']}}/config.toml` and set:
+
+```toml
+SyncFromHeight = 123456
+SyncFromHash = "E8BD0C48260C496BB7A4D8D1E7BDBF1F26A2FE3CF5714DECE1741B2FFB3C095C"
+```
+
+Ensure `SyncFromHash` has **no `0x` prefix**.
+
+### Start the node
+
+```bash
+celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+```
+
+</Steps>
+
+---
+
+## High throughput transaction submission
+
+Celestia supports three transaction submission modes that affect how
+transactions are queued and submitted, impacting throughput and ordering
+guarantees. These modes are controlled by the `TxWorkerAccounts` setting in your
+light node's `config.toml` file.
 
 ### Default mode (TxWorkerAccounts = 0)
 
-This is the default behavior. Transactions are submitted immediately without a queue.
+This is the default behavior. Transactions are submitted immediately without a
+queue.
 
 **Characteristics:**
 
@@ -59,14 +142,15 @@ This is the default behavior. Transactions are submitted immediately without a q
 
 ### Queued mode (TxWorkerAccounts = 1)
 
-Enable synchronous, ordered submission by setting `TxWorkerAccounts` to `1` in your `config.toml`.
+Enable synchronous, ordered submission by setting `TxWorkerAccounts` to `1` in
+your `config.toml`.
 
 <Steps>
 
 #### Open your config file
 
 ```bash
-nano ~/.celestia-light-mocha-4/config.toml
+nano ~/.celestia-light-{{constants['mochaChainId']}}/config.toml
 ```
 
 #### Set TxWorkerAccounts to 1
@@ -97,14 +181,15 @@ celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.por
 
 ### Parallel mode (TxWorkerAccounts > 1)
 
-For high-throughput applications that don't require sequential ordering, enable parallel submission by setting `TxWorkerAccounts` to a value greater than 1.
+For high-throughput applications that don't require sequential ordering, enable
+parallel submission by setting `TxWorkerAccounts` to a value greater than 1.
 
 <Steps>
 
 #### Open your config file
 
 ```bash
-nano ~/.celestia-light-mocha-4/config.toml
+nano ~/.celestia-light-{{constants['mochaChainId']}}/config.toml
 ```
 
 #### Set TxWorkerAccounts to desired number of lanes
@@ -162,59 +247,75 @@ celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.por
 | Queued   | 1                | Guaranteed     | ~1 tx per block  | Applications requiring strict ordering   |
 | Parallel | >1               | Not guaranteed | ≥N txs per block | High-throughput, unordered workflows     |
 
+---
+
+## Node store contents
+
+The node store is created during `celestia light init` and lives under
+`~/.celestia-<node-type>-<network>`.
+
+For example, a Mocha light node store at `~/.celestia-light-{{constants['mochaChainId']}}` contains:
+
+- `config.toml`: Node configuration settings
+- `data/`: Database files
+- `keys/`: Node identity and account keys
+
+---
+
+## Get your auth token
+
+Your auth token is useful when you want to interact with your Celestia light
+node from another machine or a client application. Generate an admin token with:
+
+```bash
+celestia light auth admin --p2p.network mocha
+```
+
+Each time you run this, you will receive a new token. It's not possible to
+revoke tokens once they are issued.
+
+Use `celestia light auth --help` to learn more about the available options.
+
+---
+
+## Find your node ID
+
+Your node ID is your libp2p peer ID. You’ll need it when creating multiaddrs
+(for example, `.../p2p/<node-ID>`).
+
+While your node is running, run:
+
+```bash
+celestia p2p info
+```
+
+See also `p2p.Info` in the [celestia-node API docs](https://node-rpc-docs.celestia.org/#p2p.Info).
+
+---
+
+## Migrate node ID to another server
+
+If you want the new machine to keep the same node identity, back up the
+identity material from your node store (for example, the `keys/` directory under
+`~/.celestia-light-<network>/`) and restore it on the new machine before
+starting the node.
+
+---
+
 ## Pruning windows
 
-if you want data older than the pruning window, you can use the SyncFromHash = "" and SyncFromHeight = "" in config.toml
+If you need data older than your current pruning windows, use
+`SyncFromHeight`/`SyncFromHash` to re-sync from an earlier point in time.
 
-Sampling window is 7 days as per release notes https://github.com/celestiaorg/celestia-node/releases/tag/v0.25.3
-Header pruning window is 14 days as per release notes https://github.com/celestiaorg/celestia-node/releases/tag/v0.26.4
+- Sampling window: 7 days ([v0.25.3 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.25.3))
+- Header pruning window: 14 days ([v0.26.4 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.26.4))
 
-## Set a trusted height and hash
+---
 
-This allows you to retain data from a specific height and hash.
+## Advanced key management with `cel-key`
 
-If you're using multiple light nodes for similar services like tracking the same rollup, it is recommended to use the same hash and height for all services using the same starting height.
+For key management beyond the built-in capabilities of the light node, use the
+separate `cel-key` utility. This dedicated tool allows you to create, import,
+and manage keys, and to select which key your node uses.
 
-<Steps>
-
-### Initialize the node store 
-
-If not done already:
-```
-celestia light init --p2p.network mocha
-```
-
-### Get and set the trusted height and hash
-
-```
-# Get both the height and hash values in a single call
-read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
-
-# Use sed to find and replace the SyncFromHeight value in the config file (macOS version)
-sed -i '' "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
-
-# Add/update the SyncFromHash value
-sed -i '' "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
-
-# Display the updated values to confirm
-echo "SyncFromHeight updated to: $TRUSTED_HEIGHT"
-echo "SyncFromHash updated to: $TRUSTED_HASH"
-```
-
-### Start the node
-
-```
-celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
-```
-
-<Callout>
-For Linux users, remove the empty string (`''`) after `-i` in the `sed` commands:
-
-```
-sed -i "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-mocha-4/config.toml
-sed -i "s/SyncFromHash = .*/SyncFromHash = \"$TRUSTED_HASH\"/" ~/.celestia-light-mocha-4/config.toml
-```
-
-</Callout>
-
-</Steps>
+See [Create a wallet with celestia-node](/operate/keys-wallets/celestia-node-key).
