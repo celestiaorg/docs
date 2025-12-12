@@ -10,7 +10,7 @@
  * @breaking-change-risk MEDIUM - Relies on Nextra's CSS class structure and selectors
  * 
  * === HOW IT WORKS ===
- * 1. MDX has a hidden "## Loading" heading → Nextra renders a TOC with one item
+ * 1. MDX has a hidden "## Celestia Node API" heading → Nextra renders a TOC with one item
  * 2. This component finds that TOC list, caches its styling, and replaces items with dynamic content
  * 3. MutationObserver watches for content changes (e.g., version switches) and updates the TOC
  * 4. IntersectionObserver provides scroll-spy functionality for active highlighting
@@ -36,7 +36,7 @@
  * 
  * 2. **Selector Changes** (see TOC_CONFIG below):
  *    - .nextra-toc ul (the TOC list container)
- *    - .nextra-toc a[href="#loading"] (placeholder item)
+ *    - .nextra-toc a[href="#celestia-node-api"] (placeholder item)
  *    - main h2[id] (content headings)
  * 
  * 3. **New Nextra TOC API**:
@@ -67,10 +67,10 @@ interface Heading {
 
 // Configuration - centralized to reduce brittleness
 const TOC_CONFIG = {
-  placeholderHeadingId: 'loading',
+  placeholderHeadingId: 'celestia-node-api',
   selectors: {
     tocList: '.nextra-toc ul',
-    placeholderItem: '.nextra-toc a[href="#loading"]',
+    placeholderItem: '.nextra-toc a[href="#celestia-node-api"]',
     contentHeadings: 'main h2[id]',
     scrollButton: '.nextra-toc button[type="button"]',
     mainContent: 'main',
@@ -110,7 +110,7 @@ const toggleScrollButton = (button: HTMLButtonElement, show: boolean) => {
 
 export function DynamicRPCTOC() {
   useEffect(() => {
-    // Cache the classes from Nextra's rendered "Loading" item
+    // Cache the classes from Nextra's rendered "celestia-node-api" item
     // We need to grab these ONCE before we remove it
     let cachedLinkClasses = ''
     let cachedLiClasses = ''

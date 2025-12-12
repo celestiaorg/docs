@@ -280,7 +280,7 @@ export default function RPCDocumentation() {
           <div className="x:text-sm x:text-gray-600 x:dark:text-gray-200 x:mb-8">
             The Celestia Node API is the collection of RPC methods that can be used to interact with the services provided by Celestia Data Availability Nodes. Node API uses auth tokens to control access to this API.{' '}
             <a
-              href={`https://node-rpc-docs.celestia.org/?version=${spec.info.version}`}
+              href={`https://github.com/celestiaorg/celestia-node/releases/tag/${spec.info.version}`}
               target='_blank'
               rel='noopener noreferrer'
               className="x:text-primary-600 x:dark:text-primary-500 x:no-underline x:hover:underline"
