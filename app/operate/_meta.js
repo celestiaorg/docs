@@ -5,7 +5,6 @@ const meta = {
   "consensus-validators": "Consensus & validators",
   maintenance: "Maintenance",
   "keys-wallets": "Keys & wallets",
-  "optional-services": "Optional operator services",
 };
 
 export default meta;

@@ -3,6 +3,7 @@ const meta = {
   features: "Features",
   TIA: "TIA",
   "code-of-conduct": "Code of Conduct",
+  audits: "Audits",
 };
 
 export default meta;
