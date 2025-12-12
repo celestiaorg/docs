@@ -162,7 +162,7 @@ function checkInternalLink(href, routes, redirects) {
   }
   
   // Check case-insensitive redirects
-  for (const [source, dest] of redirects.entries()) {
+  for (const [source] of redirects.entries()) {
     if (source.toLowerCase() === normalizedLower || source.toLowerCase() === withSlashLower || source.toLowerCase() === withoutSlashLower) {
       return { valid: true, redirected: true, note: `Case mismatch in redirect` };
     }
@@ -293,7 +293,7 @@ function extractLinksFromAST(tree) {
 /**
  * Process a single MDX file and extract links
  */
-async function processFile(filePath, routes, redirects) {
+async function processFile(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
   
   // Parse with remark and replace variables
@@ -451,7 +451,7 @@ async function checkExternalLink(url, skipPatterns = [], timeout = DEFAULT_TIMEO
              method: 'GET',
              waitTime: waitTimeGet || waitTime
            };
-         } catch (e) {
+        } catch {
            // Ignore GET error and return original HEAD error
          }
       }
@@ -612,7 +612,7 @@ async function main() {
   // Process all files
   console.log('Processing files and extracting links...');
   const fileResults = await Promise.all([
-    ...mdxFiles.map(file => processFile(path.join(rootDir, file), routes, redirects)),
+    ...mdxFiles.map(file => processFile(path.join(rootDir, file))),
     ...metaFiles.map(file => processMetaFile(path.join(rootDir, file)))
   ]);
   

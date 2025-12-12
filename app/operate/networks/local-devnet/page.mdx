@@ -2,7 +2,7 @@
 description: Learn how to set up a local devnet with Celestia consensus and bridge nodes.
 ---
 
-import { Steps } from 'nextra/components'
+import { Steps, Tabs } from 'nextra/components'
 
 # Local devnet setup
 
@@ -10,64 +10,17 @@ This guide covers how to set up a local devnet with both consensus and bridge
 nodes for development and testing purposes. A local devnet allows you to run a
 complete Celestia network environment on your local machine.
 
-## Prerequisites
+## Choose your setup method
 
-- [Install celestia-app](/operate/consensus-validators/install-celestia-app)
-- [Install celestia-node](/operate/data-availability/install-celestia-node)
-- [Install Docker and Docker Compose](https://docs.docker.com/get-docker)
-  (for Docker setup)
+Pick the approach you want to follow:
 
-## Script-based setup
+<Tabs items={['Docker Compose', 'From source (scripts)']}>
+  <Tabs.Tab>
+    <Steps>
 
-### Single consensus node
+### Install Docker
 
-To start a local consensus node using the provided script:
-
-1. Clone and build celestia-app:
-
-   ```bash
-   git clone https://github.com/celestiaorg/celestia-app.git
-   cd celestia-app
-   make install
-   ```
-
-2. Run the single node script:
-
-   ```bash
-   ./scripts/single-node.sh
-   ```
-
-   This script will:
-
-   - Initialize a new chain with a single validator
-   - Create a genesis file with pre-funded accounts
-   - Start the consensus node
-   - Make RPC endpoints available at `localhost:26657`
-
-### Single consensus node + bridge node
-
-To set up both a consensus node and a bridge node together:
-
-1. Follow the consensus node setup above
-
-2. In a new terminal, run the bridge node script:
-
-   ```bash
-   ./scripts/single-bridge-node.sh
-   ```
-
-   This will:
-
-   - Start a bridge node that connects to your local consensus node
-   - Enable data availability sampling
-   - Make the bridge node API available at `localhost:26658`
-
-## Docker setup
-
-For a containerized setup using Docker Compose, you can use a simplified
-configuration based on the Celestia ZKEVM IBC demo repository.
-
-<Steps>
+Install [Docker and Docker Compose](https://docs.docker.com/get-docker).
 
 ### Create a Docker Compose file
 
@@ -135,7 +88,116 @@ Create a `docker-compose.yml` file with the following content:
    docker-compose logs celestia-validator
    docker-compose logs celestia-bridge
    ```
-</Steps>
+### Test your setup
+
+1. Check consensus node status:
+
+   ```bash
+   curl http://localhost:26657/status
+   ```
+
+2. Query the latest block:
+
+   ```bash
+   curl http://localhost:26657/block
+   ```
+
+3. Check the bridge node head:
+
+   ```bash
+   curl http://localhost:26658/head
+   ```
+
+### Stop the devnet
+
+Stop and remove containers:
+
+```bash
+docker-compose down
+```
+
+### Reset / start fresh
+
+Stop and remove containers **and wipe chain data** (volumes):
+
+```bash
+docker-compose down -v
+```
+
+    </Steps>
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    <Steps>
+
+### Install dependencies
+
+- [Install celestia-app](/operate/consensus-validators/install-celestia-app)
+- [Install celestia-node](/operate/data-availability/install-celestia-node)
+
+### Start a single consensus node
+
+1. Clone and build celestia-app:
+
+   ```bash
+   git clone https://github.com/celestiaorg/celestia-app.git
+   cd celestia-app
+   make install
+   ```
+
+2. Run the single node script:
+
+   ```bash
+   ./scripts/single-node.sh
+   ```
+
+### Start a bridge node
+
+In a new terminal, run the bridge node script:
+
+```bash
+./scripts/single-bridge-node.sh
+```
+
+### Test your setup
+
+1. Check consensus node status:
+
+   ```bash
+   curl http://localhost:26657/status
+   ```
+
+2. Query the latest block:
+
+   ```bash
+   curl http://localhost:26657/block
+   ```
+
+3. Check the bridge node head:
+
+   ```bash
+   curl http://localhost:26658/head
+   ```
+
+### Stop the devnet
+
+Stop the processes with `Ctrl+C` in each terminal.
+
+### Reset / start fresh
+
+Stop the node(s) with `Ctrl+C`, then reset the local chain state (be careful if you’re
+running a real validator):
+
+```bash
+celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
+```
+
+For more reset options and safety notes (especially if you are running a validator), see
+[Reset network](/operate/consensus-validators/consensus-node#optional-reset-network).
+
+    </Steps>
+  </Tabs.Tab>
+</Tabs>
 
 ## Default endpoints
 
@@ -148,45 +210,13 @@ Once your local devnet is running, you can access these endpoints:
 | Consensus P2P   | `http://localhost:26656` |
 | Bridge node API | `http://localhost:26658` |
 
-## Testing your setup
+## Multi-validator private networks (not local-only)
 
-You can test that your local devnet is working by:
+This page focuses on a single-machine devnet. If you instead want to create a private
+testnet across multiple machines/participants (genesis + gentx flow), start from:
 
-1. Checking node status:
-
-   ```bash
-   curl http://localhost:26657/status
-   ```
-
-2. Querying the latest block:
-
-   ```bash
-   curl http://localhost:26657/block
-   ```
-
-3. For bridge nodes, check the DA network info:
-
-   ```bash
-   curl http://localhost:26658/head
-   ```
-
-## Stopping the devnet
-
-### Stopping script-based setup
-
-Stop the processes with `Ctrl+C` in each terminal.
-
-### Stopping Docker setup
-
-```bash
-docker-compose down
-```
-
-To also remove the volumes:
-
-```bash
-docker-compose down -v
-```
+- [Signing genesis for a new network](/operate/consensus-validators/cli-reference#signing-genesis-for-a-new-network)
+- [Optional: Set persistent peers](/operate/consensus-validators/consensus-node#optional-set-persistent-peers)
 
 ## Next steps
 
