@@ -55,7 +55,6 @@ const DEFAULT_SKIP_PATTERNS = [
  */
 function buildRouteInventory() {
   const routes = new Set();
-  const redirects = new Map();
   
   // Add root route
   routes.add('/');
@@ -79,26 +78,8 @@ function buildRouteInventory() {
       routes.add(route.replace(/\/$/, ''));
     }
   }
-  
-  // Load redirects
-  try {
-    const redirectsPath = path.join(rootDir, 'redirects.json');
-    if (fs.existsSync(redirectsPath)) {
-      const redirectsData = JSON.parse(fs.readFileSync(redirectsPath, 'utf8'));
-      for (const redirect of redirectsData) {
-        redirects.set(redirect.source, redirect.destination);
-        // Redirects are valid targets
-        routes.add(redirect.destination);
-        if (redirect.destination !== '/') {
-          routes.add(redirect.destination.replace(/\/$/, ''));
-        }
-      }
-    }
-  } catch (error) {
-    console.warn('Warning: Could not load redirects.json:', error.message);
-  }
-  
-  return { routes, redirects };
+
+  return { routes };
 }
 
 /**
@@ -118,7 +99,7 @@ function sleep(ms) {
 /**
  * Check if an internal link is valid
  */
-function checkInternalLink(href, routes, redirects) {
+function checkInternalLink(href, routes) {
   // Remove hash fragment
   const [pathPart] = href.split('#');
   
@@ -153,18 +134,6 @@ function checkInternalLink(href, routes, redirects) {
     const routeLower = route.toLowerCase();
     if (routeLower === normalizedLower || routeLower === withSlashLower || routeLower === withoutSlashLower) {
       return { valid: true, note: `Case mismatch: found ${route} for ${normalized}` };
-    }
-  }
-  
-  // Check redirects
-  if (redirects.has(normalized) || redirects.has(withSlash) || redirects.has(withoutSlash)) {
-    return { valid: true, redirected: true };
-  }
-  
-  // Check case-insensitive redirects
-  for (const [source] of redirects.entries()) {
-    if (source.toLowerCase() === normalizedLower || source.toLowerCase() === withSlashLower || source.toLowerCase() === withoutSlashLower) {
-      return { valid: true, redirected: true, note: `Case mismatch in redirect` };
     }
   }
   
@@ -594,8 +563,8 @@ async function main() {
   const skipPatterns = skipArg ? [...DEFAULT_SKIP_PATTERNS, ...skipArg.split(',')] : DEFAULT_SKIP_PATTERNS;
   
   console.log('Building route inventory...');
-  const { routes, redirects } = buildRouteInventory();
-  console.log(`Found ${routes.size} routes and ${redirects.size} redirects`);
+  const { routes } = buildRouteInventory();
+  console.log(`Found ${routes.size} routes`);
   
   // Find all MDX files
   const mdxFiles = [
@@ -676,7 +645,7 @@ async function main() {
   if (checkInternal) {
     console.log(`\nChecking ${internalLinks.length} internal links...`);
     const checkedInternal = internalLinks.map(link => {
-      const result = checkInternalLink(link.url, routes, redirects);
+      const result = checkInternalLink(link.url, routes);
       return {
         ...link,
         ...result,
