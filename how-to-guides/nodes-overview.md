@@ -36,7 +36,7 @@ each tutorial guide.
 | Node type   | Memory     | CPU         | Disk        | Bandwidth |
 | ----------- | ---------- | ----------- | ----------- | --------- |
 | Light node  | 500 MB RAM | Single core | 20 GB SSD   | 56 Kbps   |
-| Bridge node | 64 GB RAM  | 8 cores     | 25 TiB NVME | 1 Gbps    |
+| Bridge node | 64 GB RAM  | 32 cores    | 25 TiB NVME | 1 Gbps    |
 
 Non-archival node requirements are based on the maximum possible throughput at 128MB/6s for 7 days. Operators may provision less by pruning more aggressively **at their own risk**.
 
@@ -45,7 +45,7 @@ Non-archival node requirements are based on the maximum possible throughput at 1
 | Node type                     | Memory     | CPU         | Disk           | Bandwidth |
 | ----------------------------- | ---------- | ----------- | -------------- | --------- |
 | Light node (unpruned headers) | 500 MB RAM | Single core | 7 TiB NVME\*   | 56 Kbps   |
-| Bridge node                   | 64 GB RAM  | 8 cores     | 637 TiB NVME\* | 1 Gbps    |
+| Bridge node                   | 64 GB RAM  | 32 cores    | 637 TiB NVME\* | 1 Gbps    |
 
 \*Archival disk requirement is based on the current v6 128MB/6s throughput at maximum capacity. In reality the requirement can be much lower and we advise regularly checking disk usage and having at least 1 month worth of max throughput of extra disk space.
 
