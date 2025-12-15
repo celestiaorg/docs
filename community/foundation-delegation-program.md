@@ -61,8 +61,7 @@ The minimum requirements for participation in the program are as follows:
 
 - Run an active Mainnet Beta validator **or** an active Mocha testnet validator
   for **at least 1 month before application deadline**
-- Run an archival bridge node (on Mainnet Beta if you are already an active Mainnet Beta
-  validator or on Mocha testnet if not) that is connected and reporting
+- Run an archival bridge node on Mainnet Beta that is connected and reporting
   to the Celestia Labs [OTEL collector](/how-to-guides/celestia-node-metrics.md)
   (for new applicants - on testnet, so that we can evaluate performance)
 - Not jailed more than once in the 6 months before application deadline
@@ -78,7 +77,7 @@ The minimum requirements for participation in the program are as follows:
   compliance screen
 - Dedicated email address so that the Foundation can reach you in the event
   of emergency upgrades and fixes
-- Maintain a fully archival (non-pruned) bridge node for both Mainnet Beta and Mocha if selected for the program
+- Maintain a fully archival (non-pruned) bridge node for Mainnet Beta if selected for the program
 - Not running your infrastructure in Hetzner or OVH
 
 Not adhering to any of the criteria above will automatically disqualify your
@@ -170,4 +169,4 @@ their respective delegations.
 - [Cohort 5](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=1471991269#gid=1471991269): 15 Validator Seats (Applications open June 1, 2025)
 - [Cohort 6](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=1010270944): 15 Validator Seats (Applications open October 1, 2025)
 
-IMPORTANT: Each validator selected for the program has to maintain a fully archival (non pruned) bridge node for both Mainnet Beta and Mocha.
+IMPORTANT: Each validator selected for the program has to maintain a fully archival (non pruned) bridge node for Mainnet Beta.
