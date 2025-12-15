@@ -1,0 +1,168 @@
+---
+description: Run a Celestia light node and post/retrieve your first blob.
+---
+
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# Light node: overview & quickstart
+
+Celestia light nodes perform data availability sampling (DAS) to verify that
+block data is available without downloading it all. They can also post and
+retrieve blobs (data) from the Celestia network.
+
+## Overview
+
+Light nodes are the most common way to interact with Celestia networks.
+
+![light-node](/img/nodes/LightNodes.png)
+
+Light nodes:
+
+1. Listen for `ExtendedHeaders` (block headers + DA metadata).
+2. Perform DAS on received headers.
+
+## Optional: run a light node in your browser
+
+The easiest way to try a light node is with [Lumina.rs](https://lumina.rs) in
+your browser.
+
+<img
+  width="1000"
+  alt="Lumina.rs in browser"
+  src="https://github.com/user-attachments/assets/5c6ae717-503e-4b83-844f-8716f33ec76c"
+/>
+
+You can also run Lumina on the decentralized explorer,
+[Celenium](https://celenium.io).
+
+<img
+  width="1000"
+  alt="Celenium running a light node with Lumina.rs"
+  src="https://github.com/user-attachments/assets/28183a24-8bb1-4f77-850c-d0528de075c7"
+/>
+
+## Run a light node (CLI)
+
+This guide assumes you've completed:
+
+- [Hardware requirements](/operate/getting-started/hardware-requirements)
+- [Environment setup](/operate/getting-started/environment-setup)
+
+<Steps>
+
+### Install `celestia-node`
+
+Follow the [Install celestia-node](/operate/data-availability/install-celestia-node)
+guide (from source or using the pre-built binary installer).
+
+### Initialize the node store
+
+This creates the node store and a key for the network you choose.
+
+<Callout type="info">
+Want to sync faster (skip sampling from genesis)? See
+[Fast sync with a trusted hash](/operate/data-availability/light-node/advanced#fast-sync-with-a-trusted-hash).
+</Callout>
+
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    celestia light init
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia light init --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia light init --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+### Start the light node
+
+Light nodes connect to a consensus node **gRPC** endpoint (usually port `9090`)
+for state access (balances, submitting `PayForBlobs`, etc.).
+
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    celestia light start --core.ip rpc.celestia.pops.one \
+      --core.port 9090 --p2p.network celestia
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia light start --core.ip rpc-mocha.pops.one \
+      --core.port 9090 --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    celestia light start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
+      --core.port 9090 --p2p.network arabica
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+<Callout type="info">
+You can use any consensus node gRPC endpoint listed on
+[Mainnet Beta](/operate/networks/mainnet-beta#integrations),
+[Mocha testnet](/operate/networks/mocha-testnet#community-data-availability-da-grpc-endpoints-for-state-access),
+or [Arabica devnet](/operate/networks/arabica-devnet#integrations).
+</Callout>
+
+If you're running on a server, make sure required ports are open. See
+[Troubleshooting ports](/operate/maintenance/troubleshooting#ports).
+
+### Get some testnet tokens (for blob posting)
+
+To submit blobs on testnets, fund your light node address:
+
+```bash
+celestia state account-address
+```
+
+Then use a faucet:
+
+- [Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet)
+- [Arabica faucet](/operate/networks/arabica-devnet#arabica-devnet-faucet)
+
+On Mainnet Beta, fund this address with TIA to submit blobs.
+
+### Check your balance (optional)
+
+```bash
+celestia state balance
+```
+
+### Post your first blob
+
+Use `celestia blob submit [namespace] [data]` to post your first blob.
+
+```bash
+celestia blob submit 0x676d 0x676d
+```
+
+Save the returned `height` and the first value in `commitments`.
+
+### Retrieve your first blob
+
+Replace `<height>` and `<commitment>` with the values from `blob submit`:
+
+```bash
+celestia blob get <height> 0x676d <commitment>
+```
+
+</Steps>
+
+If you see `header: syncing in progress`, wait for the node to sync or use
+[fast sync](/operate/data-availability/light-node/advanced#fast-sync-with-a-trusted-hash).
+
+## Next steps
+
+- More operations and configuration: [Advanced](/operate/data-availability/light-node/advanced)
+- Submitting blobs from an app: [Submit data](/learn/TIA/submit-data)

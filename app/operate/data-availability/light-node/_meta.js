@@ -1,5 +1,5 @@
 const meta = {
-  quickstart: "Quickstart",
+  quickstart: "Getting started",
   advanced: "Advanced",
 };
 
