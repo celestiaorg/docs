@@ -68,9 +68,9 @@ Non-archival node requirements are based on the maximum possible throughput at 1
 
 \*Archival disk requirement is based on the current v6 128MB/6s throughput at maximum capacity. In reality the requirement can be much lower and we advise regularly checking disk usage and having at least 1 month worth of max throughput of extra disk space.
 
-When upgrading to 128mb/6s, validators must use hardware that passes the [CPU benchmark](https://github.com/celestiaorg/celestia-app/blob/main/tools/cpu_requirements/README.md). If your server does not pass, upgrade to a more powerful machine.
+When upgrading to 128MB/6s, validators must use hardware that passes the [CPU benchmark](https://github.com/celestiaorg/celestia-app/blob/main/tools/cpu_requirements/README.md). If your server does not pass, upgrade to a more powerful machine.
 
-For a list of CPUs tested for 128mb/6s, see the [release notes](https://github.com/celestiaorg/celestia-app/blob/main/docs/release-notes/release-notes.md#v6---128mb6s). Other CPUs are acceptable if they pass the benchmark. Recommended CPU specs:
+For a list of CPUs tested for 128MB/6s, see the [release notes](https://github.com/celestiaorg/celestia-app/blob/main/docs/release-notes/release-notes.md#v6---128mb6s). Other CPUs are acceptable if they pass the benchmark. Recommended CPU specs:
 
 - 32 or more cores
 - GFNI (Galois Field New Instructions) support
