@@ -78,7 +78,7 @@ The minimum requirements for participation in the program are as follows:
   compliance screen
 - Dedicated email address so that the Foundation can reach you in the event
   of emergency upgrades and fixes
-- Maintain a fully archival (non-pruned) bridge node for both Mainnet Beta if selected for the program
+- Maintain a fully archival (non-pruned) bridge node for Mainnet Beta if selected for the program
 - Not running your infrastructure in Hetzner or OVH
 
 Not adhering to any of the criteria above will automatically disqualify your
@@ -170,4 +170,4 @@ their respective delegations.
 - [Cohort 5](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=1471991269#gid=1471991269): 15 Validator Seats (Applications open June 1, 2025)
 - [Cohort 6](https://docs.google.com/spreadsheets/d/1Fxu9uYJ4wxfHChEiSg5bmXAMU8IZSq7J3GYDCFgk1HA/edit?gid=1010270944): 15 Validator Seats (Applications open October 1, 2025)
 
-IMPORTANT: Each validator selected for the program has to maintain a fully archival (non pruned) bridge node for both Mainnet Beta.
+IMPORTANT: Each validator selected for the program has to maintain a fully archival (non pruned) bridge node for Mainnet Beta.
