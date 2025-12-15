@@ -72,7 +72,7 @@ The minimum requirements for participation in the program are as follows:
 - Not associated with an exchange or custodian
 - Not in the top 10 validators by delegation power, unless it enters the
   top 10 as a result of the Foundation’s delegation under this program
-- Have 20% or less commission
+- Have 25% or less commission
 - Not based within the US, within any country subject to economic sanctions,
   or within any other prohibited jurisdiction, and successfully complete a
   compliance screen
