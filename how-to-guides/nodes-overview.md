@@ -38,7 +38,7 @@ each tutorial guide.
 | Light node  | 500 MB RAM | Single core | 20 GB SSD   | 56 Kbps   |
 | Bridge node | 64 GB RAM  | 8 cores     | 25 TiB NVME | 1 Gbps    |
 
-Non-archival node requirements are based on the maximum possible throughput at 128MB/6s. Operators may provision less by pruning more aggressively **at their own risk**.
+Non-archival node requirements are based on the maximum possible throughput at 128MB/6s for 7 days. Operators may provision less by pruning more aggressively **at their own risk**.
 
 ### Archival data availability nodes
 
@@ -58,7 +58,7 @@ Non-archival node requirements are based on the maximum possible throughput at 1
 | Validator      | 32 GB RAM | 32 cores | 12 TiB NVME | 1 Gbps    |
 | Consensus node | 32 GB RAM | 32 cores | 12 TiB NVME | 1 Gbps    |
 
-Non-archival node requirements are based on the maximum possible throughput at 128MB/6s. Operators may provision less by pruning more aggressively **at their own risk**.
+Non-archival node requirements are based on the maximum possible throughput at 128MB/6s for 7 days. Operators may provision less by pruning more aggressively **at their own risk**.
 
 #### Archival consensus nodes
 
