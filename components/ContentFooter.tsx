@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const ContentFooter = () => (
   <div className="mt-12 border-t pt-8">
-    <h3 style={{ marginTop: '1.5rem' }}>
+    <h3 style={{ marginTop: "1.5rem" }}>
       Feel stuck?{" "}
       <Link
-        href="https://discord.gg/celestiacommunity"
+        href="https://discord.com/invite/YsnTPcSfWQ"
         style={{
           color: "var(--nextra-primary-color)",
           textDecoration: "underline",
