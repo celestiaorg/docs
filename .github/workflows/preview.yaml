@@ -115,6 +115,8 @@ jobs:
   cleanup-preview:
     if: github.event.action == 'closed'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout docs-preview repository
         uses: actions/checkout@v4.1.7
