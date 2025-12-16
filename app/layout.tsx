@@ -17,7 +17,7 @@ const withBasePath = (path: string) => `${basePath}${path}`;
 const THEME_CONFIG = {
   projectLink: "https://github.com/celestiaorg/docs",
   chatLink: "https://discord.gg/celestiacommunity",
-  docsRepositoryBase: "https://github.com/celestiaorg/docs",
+  docsRepositoryBase: "https://github.com/celestiaorg/docs/blob/main",
   footerText: "Celestia Documentation",
   primaryHue: 200,
   primarySaturation: 100,
