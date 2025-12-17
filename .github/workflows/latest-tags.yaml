@@ -1,0 +1,133 @@
+name: Latest Tags
+
+on:
+  workflow_dispatch:
+    inputs:
+      network:
+        description: Which network are we updating the latest tag information?
+        required: true
+        type: choice
+        options:
+          - mainnet
+          - arabica
+          - mocha
+
+permissions:
+  contents: read
+
+jobs:
+  logLatestRelease:
+    runs-on: ubuntu-latest
+    env:
+      OWNER: celestiaorg
+      NETWORK: ${{ inputs.network }}
+    outputs:
+      celestia_app_latest_tag: ${{ steps.latest.outputs.celestia_app_latest_tag }}
+      celestia_app_latest_sha: ${{ steps.latest.outputs.celestia_app_latest_sha }}
+      celestia_node_latest_tag: ${{ steps.latest.outputs.celestia_node_latest_tag }}
+      celestia_node_latest_sha: ${{ steps.latest.outputs.celestia_node_latest_sha }}
+    steps:
+      - name: Fetch latest tags and commit SHAs
+        id: latest
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = process.env.OWNER;
+            const network = process.env.NETWORK;
+
+            const networkSuffix = network === 'mainnet' ? null : `-${network}`;
+            const nonMainnetSuffixes = new Set(['-arabica', '-mocha']);
+
+            async function getLatestReleaseTag(repo) {
+              const releases = await github.paginate(github.rest.repos.listReleases, {
+                owner,
+                repo,
+                per_page: 100,
+              });
+
+              const match = releases.find((release) => {
+                if (release.draft) return false;
+                if (network === 'mainnet' && release.prerelease) return false;
+                const tag = release.tag_name;
+                if (!tag) return false;
+
+                if (networkSuffix) return tag.endsWith(networkSuffix);
+
+                for (const suffix of nonMainnetSuffixes) {
+                  if (tag.endsWith(suffix)) return false;
+                }
+                return true;
+              });
+
+              if (!match) {
+                throw new Error(`No matching release found for ${owner}/${repo} (network=${network}).`);
+              }
+
+              return match.tag_name;
+            }
+
+            async function resolveTagToCommitSha(repo, tag) {
+              try {
+                const { data } = await github.rest.repos.getCommit({ owner, repo, ref: tag });
+                return data.sha;
+              } catch (error) {
+                core.warning(
+                  `repos.getCommit failed for ${owner}/${repo}@${tag}; falling back to git refs: ${error.message}`,
+                );
+
+                let { data: refData } = await github.rest.git.getRef({ owner, repo, ref: `tags/${tag}` });
+                let sha = refData.object.sha;
+                let type = refData.object.type;
+
+                while (type === 'tag') {
+                  const { data: tagData } = await github.rest.git.getTag({ owner, repo, tag_sha: sha });
+                  sha = tagData.object.sha;
+                  type = tagData.object.type;
+                }
+
+                return sha;
+              }
+            }
+
+            const targets = [
+              { repo: 'celestia-app', prefix: 'celestia_app' },
+              { repo: 'celestia-node', prefix: 'celestia_node' },
+            ];
+
+            for (const target of targets) {
+              core.info(`Fetching latest release for ${owner}/${target.repo} (network=${network})...`);
+              const tag = await getLatestReleaseTag(target.repo);
+              const sha = await resolveTagToCommitSha(target.repo, tag);
+              core.info(`Resolved ${target.repo}: ${tag} @ ${sha}`);
+              core.setOutput(`${target.prefix}_latest_tag`, tag);
+              core.setOutput(`${target.prefix}_latest_sha`, sha);
+            }
+
+  createPR:
+    needs: logLatestRelease
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write latest tags and commit SHAs
+        run: |
+          cat > "constants/${{ inputs.network }}_versions.json" <<'EOF'
+          {
+            "app-latest-tag": "${{ needs.logLatestRelease.outputs.celestia_app_latest_tag }}",
+            "app-latest-sha": "${{ needs.logLatestRelease.outputs.celestia_app_latest_sha }}",
+            "node-latest-tag": "${{ needs.logLatestRelease.outputs.celestia_node_latest_tag }}",
+            "node-latest-sha": "${{ needs.logLatestRelease.outputs.celestia_node_latest_sha }}"
+          }
+          EOF
+
+      - name: Open PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: gh-action/latest-tags-${{ inputs.network }}
+          commit-message: "[automated GH action] update latest release tags & commit sha (${{ inputs.network }})"
+          title: "[GH Action] Update release tags and commit SHAs for ${{ inputs.network }}"
+          token: ${{ secrets.PAT_CREATE_PR }}
