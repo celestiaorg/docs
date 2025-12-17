@@ -3,6 +3,7 @@ const meta = {
   networks: "Networks",
   "data-availability": "Data availability nodes",
   "consensus-validators": "Consensus & validators",
+  "blobstream": "Blobstream",
   maintenance: "Maintenance",
   "keys-wallets": "Keys & wallets",
 };
