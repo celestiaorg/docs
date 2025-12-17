@@ -17,7 +17,7 @@ This directory contains the workflows used to lint, deploy, and keep release met
 
 ## `lint.yaml` — Lint & Link Check
 
-- **Triggers:** `push`/`pull_request` on `docs-glow-up`, plus a weekly schedule (`0 9 * * 1`).
+- **Triggers:** `push`/`pull_request` on `main`, plus a weekly schedule (`0 9 * * 1`).
 - **What it does:** runs `npm run lint` and `npm run check-links` (Node 20).
 
 ## `latest-tags.yaml` — Latest Tags
