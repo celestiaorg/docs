@@ -199,7 +199,7 @@ func (f *Fullnode) AddBlock(b Block) error {
         return fmt.Errorf("failure to add block: expected block height %d, got %d", len(f.Blocks)+1, b.Header.Height)
     }
     // Check the sequencer's signature
-    if !b.Header.SequencerSignature.IsValid(f.SequncerAddress) {
+    if !b.Header.SequencerSignature.IsValid(f.SequencerAddress) {
         return fmt.Errorf("failure to add block: invalid sequencer signature")
     }
 
