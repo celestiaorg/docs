@@ -21,14 +21,10 @@ jobs:
   syncLatestTags:
     name: Sync latest tags (${{ matrix.network }})
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.network == matrix.network }}
     strategy:
       fail-fast: false
       matrix:
-        network:
-          - mainnet
-          - arabica
-          - mocha
+        network: ${{ fromJSON(github.event_name == 'workflow_dispatch' && format('["{0}"]', github.event.inputs.network) || '["mainnet","arabica","mocha"]') }}
     permissions:
       contents: write
       pull-requests: write
