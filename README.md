@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Celestia documentation
 
-## Getting Started
+Official documentation for Celestia, the modular blockchain powering unstoppable apps with full-stack control.
 
-First, run the development server:
+- Live site: https://docs.celestia.org
+- LLMs.txt: https://docs.celestia.org/llms.txt
+- Built with: Next.js + Nextra (MDX), exported as a static site.
+
+## Local development
+
+Prereqs: Node.js 20+ and Yarn.
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build & preview the static export
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`next.config.mjs` is configured for static export (`output: 'export'`). Builds write to `out/` and generate a Pagefind search index in `out/_pagefind/`.
 
-## Learn More
+```bash
+yarn build
+yarn start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Base paths (deploying under a subpath)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For deployments that live under a subdirectory (e.g. GitHub Pages previews), set:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `BASE` with a trailing slash (used for `assetPrefix`)
+- `NEXT_PUBLIC_BASE_PATH` without a trailing slash (used by client-side components for asset URLs)
 
-## Deploy on Vercel
+```bash
+BASE=/docs-preview/new_docs/ NEXT_PUBLIC_BASE_PATH=/docs-preview/new_docs yarn build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content & structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `app/**/page.mdx`: documentation pages
+- `app/**/_meta.js`: sidebar order/titles
+- `public/`: static assets
+- `constants/*.json`: shared values referenced in MDX (e.g. `{{mainnetVersions['app-latest-tag']}}`), replaced by `plugins/remark-replace-variables.mjs`
+
+## Useful scripts
+
+- `yarn lint`: lint the codebase (also runs on `git push` via hook)
+- `yarn check-links -- --all`: validate internal + external links (see `scripts/check-links.mjs --help`)
+- `yarn generate:llms`: generate `public/llms.txt` (ignored by git) for ingestion tools/LLMs
+
+## Deployment
+
+GitHub Actions workflows in `.github/workflows/` build the site and publish `out/` for production and preview deployments.
