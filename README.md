@@ -1,9 +1,9 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/celestiaorg/docs)
+[![Discord](https://img.shields.io/discord/638338779505229824)](https://discord.com/invite/YsnTPcSfWQ)
+[![Follow on X](https://img.shields.io/twitter/follow/celestia)](https://x.com/celestia)
 [![CodeQL](https://github.com/celestiaorg/docs/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/github-code-scanning/codeql)
 [![Deploy](https://github.com/celestiaorg/docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/deploy.yml)
-[![Lint & Link Check](https://github.com/celestiaorg/docs/actions/workflows/lint.yaml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/lint.yaml)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/celestiaorg/docs)
-[![Follow on X](https://img.shields.io/twitter/follow/celestia)](https://x.com/celestia)
-[![Discord](https://img.shields.io/discord/638338779505229824)](https://discord.com/invite/YsnTPcSfWQ)
+[![Lint & link Check](https://github.com/celestiaorg/docs/actions/workflows/lint.yaml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/lint.yaml)
 
 # Celestia documentation
 
