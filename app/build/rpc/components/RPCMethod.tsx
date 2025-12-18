@@ -28,6 +28,7 @@ const RPCMethod = ({
 }) => {
   const [showRequest, setShowRequest] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
+  const [specCopied, setSpecCopied] = useState(false);
   const methodRef = useRef<HTMLDivElement>(null);
 
   const handleCopyClick = () => {
@@ -90,21 +91,47 @@ const RPCMethod = ({
         {method.description}
       </div>
       
-      <button
-        type='button'
-        onClick={() => {
-          if (pkg) {
-            setCurrentRequest(getExampleRequest(pkg, method));
-          }
-          setPlaygroundOpen(true);
-        }}
-        className="x:mt-3 x:mb-3 x:inline-flex x:w-full x:justify-center x:px-4 x:py-2 x:border x:border-gray-300 x:dark:border-gray-700 x:rounded-md x:text-sm x:font-medium x:text-gray-700 x:dark:text-gray-200 x:shadow-sm x:cursor-pointer x:hover:bg-gray-50 x:dark:hover:bg-gray-700 x:transition-colors"
-        style={{
-          backgroundColor: isDark ? 'rgb(31 41 55)' : 'white'
-        }}
-      >
-        Try it out
-      </button>
+      <div className="x:mt-3 x:mb-3 x:flex x:gap-2">
+        <button
+          type='button'
+          onClick={() => {
+            if (pkg) {
+              setCurrentRequest(getExampleRequest(pkg, method));
+            }
+            setPlaygroundOpen(true);
+          }}
+          className="x:inline-flex x:justify-center x:items-center x:px-4 x:py-2 x:border x:border-gray-300 x:dark:border-gray-700 x:rounded-md x:text-sm x:font-medium x:text-gray-700 x:dark:text-gray-200 x:shadow-sm x:cursor-pointer x:hover:bg-gray-50 x:dark:hover:bg-gray-700 x:transition-colors"
+          style={{
+            backgroundColor: isDark ? 'rgb(31 41 55)' : 'white',
+            flex: '1 1 auto'
+          }}
+        >
+          Try it out
+        </button>
+
+        <CopyToClipboard
+          text={method.rawSpec ? JSON.stringify(method.rawSpec, null, 2) : ''}
+          onCopy={() => {
+            setSpecCopied(true);
+            setTimeout(() => setSpecCopied(false), 2000);
+          }}
+        >
+          <button
+            type='button'
+            className="x:inline-flex x:items-center x:justify-center x:gap-2 x:px-4 x:py-2 x:border x:border-gray-300 x:dark:border-gray-700 x:rounded-md x:text-sm x:font-medium x:text-gray-700 x:dark:text-gray-200 x:shadow-sm x:cursor-pointer x:hover:bg-gray-50 x:dark:hover:bg-gray-700 x:transition-colors x:whitespace-nowrap"
+            style={{
+              backgroundColor: isDark ? 'rgb(31 41 55)' : 'white',
+              flex: '0 0 auto'
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16">
+              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+              <path d="M5 15H4C2.89543 15 2 14.1046 2 13V4C2 2.89543 2.89543 2 4 2H13C14.1046 2 15 2.89543 15 4V5"></path>
+            </svg>
+            {specCopied ? 'Copied!' : 'Copy Spec'}
+          </button>
+        </CopyToClipboard>
+      </div>
       
       <div 
         className="x:mt-6 x:overflow-hidden x:rounded-lg x:border x:border-gray-200 x:dark:border-gray-700 x:text-sm x:shadow-sm"
