@@ -1,6 +1,17 @@
 import NodeAPIContent from "../components/NodeAPIContent";
 import { DynamicRPCTOC } from "../components/DynamicRPCTOC";
 
+{/* Hide Nextra's copy button - doesn't work well with dynamic content on this page */}
+<style>{`
+  article button:has(svg):has(*:is(:contains("Copy page"), :contains("Copied"))) {
+    display: none !important;
+  }
+  /* Fallback: hide the container if :has() or :contains() not supported */
+  article div[class*="border"][class*="inline-flex"][class*="float-end"] {
+    display: none !important;
+  }
+`}</style>
+
 # Node API
 
 <div style={{ display: 'none' }}>
