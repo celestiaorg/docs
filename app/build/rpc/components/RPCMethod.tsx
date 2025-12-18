@@ -44,8 +44,8 @@ const RPCMethod = ({
       className="x:py-2"
       ref={methodRef}
     >
-      <div className="x:flex x:items-center x:justify-between x:mb-2">
-        <div className="x:font-mono x:text-[0.95rem]">
+      <div className="x:flex x:items-center x:justify-between x:mb-2 x:gap-2">
+        <div className="x:font-mono x:text-[0.95rem] x:break-words x:overflow-wrap-anywhere x:min-w-0">
           <span className="x:font-semibold x:text-gray-900 x:dark:text-gray-100">{method.name}</span>(
           {method.params.map((param, i, { length }) => (
             <span key={param.name} className="x:text-sm x:text-gray-600 x:dark:text-gray-400">
@@ -77,7 +77,7 @@ const RPCMethod = ({
           onCopy={handleCopyClick}
         >
           <div
-            className="x:cursor-pointer"
+            className="x:cursor-pointer x:shrink-0"
             onClick={() => {
               window.location.hash = `${pkg}.${method.name}`;
             }}
