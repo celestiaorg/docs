@@ -34,7 +34,7 @@ type Header struct {
 }
 ```
 
-Note the Celestia-specific structures in the header such as the `Namespace` and the Blobstream-specific structure called the `Span`. The goal of these structures is to locate the data in the Celestia block so that we can prove that data's inclusion via Blobstream if needed. Read more in the [namespace specifications](https://celestiaorg.github.io/celestia-app/specs/namespace.html), and you can think of this like a chain ID. Learn more [information about `shares`](https://celestiaorg.github.io/celestia-app/specs/shares.html), which are small chunks of the encoded Celestia block. We use the same encoding here so that the commitments to the rollup block match those committed to by validators in the Celestia data root.
+Note the Celestia-specific structures in the header such as the `Namespace` and the Blobstream-specific structure called the `Span`. The goal of these structures is to locate the data in the Celestia block so that we can prove that data's inclusion via Blobstream if needed. Read more in the [namespace specifications](https://celestiaorg.github.io/celestia-app/namespace.html), and you can think of this like a chain ID. Learn more [information about `shares`](https://celestiaorg.github.io/celestia-app/shares.html), which are small chunks of the encoded Celestia block. We use the same encoding here so that the commitments to the rollup block match those committed to by validators in the Celestia data root.
 
 The `Span` could take many forms, but in this demo we will use the following:
 
@@ -71,7 +71,7 @@ The rollup sequencer is responsible for creating blocks and, in this demo, writi
 
 Therefore, we can start by first defining the reading and writing interactions rollup nodes will have with both the Celestia and Ethereum networks. The actual implementations of these interfaces are left as exercises to the reader. Assume that those implementations of these interfaces are verifying the respective chain. For the connection to Celestia, this would likely mean connecting to a Celestia light node, which can detect faults in consensus such as hidden data. For the connection to Ethereum, this would likely mean running and connecting to a full node.
 
-More information on the RPC that is exposed by a Celestia light node can be found [in the RPC documentation](https://node-rpc-docs.celestia.org/?version=v0.28.4). Additionally, if you need more information on how to run a light node, you can [check out the documentation](/operate/data-availability/light-node).
+More information on the RPC that is exposed by a Celestia light node can be found [in the RPC documentation](https://node-rpc-docs.celestia.org/?version=v0.28.4). Additionally, if you need more information on how to run a light node, you can [check out the documentation](/operate/data-availability/light-node/quickstart).
 
 ```go
 // CelestiaLightNodeClient summarizes the actions that a rollup that uses
@@ -124,7 +124,7 @@ For optimistic rollups, this could be as simple as referencing the data in the C
 
 For zk rollups, this would involve creating an inclusion proof to the data root tuple root in the Blobstream contracts, and then verifying that proof in the zk proof used to verify state. Find more information in the [data root inclusion proof documentation](https://github.com/celestiaorg/blobstream-contracts/blob/master/docs/inclusion-proofs.md#1-data-root-inclusion-proof).
 
-Also see the documentation for the [data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md) and the [shares](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/specs/shares.md) of the Celestia block to see how the data is encoded in Celestia.
+Also see the documentation for the [data square layout](https://github.com/celestiaorg/celestia-app/blob/v1.1.0/specs/src/specs/data_square_layout.md) and the [shares](https://github.com/celestiaorg/celestia-app/blob/main/specs/src/shares.md) of the Celestia block to see how the data is encoded in Celestia.
 
 ### Creating blocks
 
@@ -242,7 +242,7 @@ This outline of a Blobstream rollup isn't doing execution or state transitions i
 
 ### Submitting block data to Celestia using client tx
 
-As linked above, use the [Celestia Node API](/build/rpc/node-api/?version=v0.28.4#blob.Submit) or [check out the tutorial](/build/post-retrieve-blob/client/go/) to submit the data to Celestia.
+As linked above, use the [Celestia Node API](/build/rpc/node-api) or [check out the tutorial](/build/post-retrieve-blob/client/go/) to submit the data to Celestia.
 
 ### Posting headers to Ethereum
 
