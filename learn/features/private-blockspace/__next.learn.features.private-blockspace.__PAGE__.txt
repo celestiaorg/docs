@@ -1,0 +1,40 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","5843","static/chunks/app/learn/features/private-blockspace/page-c409fab4bd5a9552.js"],"WrapperWithFooter"]
+4:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","5843","static/chunks/app/learn/features/private-blockspace/page-c409fab4bd5a9552.js"],"HeadingAnchor"]
+d:I[98500,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","5843","static/chunks/app/learn/features/private-blockspace/page-c409fab4bd5a9552.js"],""]
+e:I[90484,[],"OutletBoundary"]
+f:"$Sreact.suspense"
+3:T4f5,# Private blockspace
+
+Private blockspace lets you post **encrypted** data to Celestia while proving it's **valid and available**. You get confidentiality and verifiability, which is ideal for institutional applications that need both privacy and compliance.
+
+## How it works
+
+A lightweight proxy sits between your app and Celestia:
+
+1. **Submit**: The proxy encrypts your data, generates a zkVM proof, and posts to Celestia
+2. **Retrieve**: The proxy fetches and decrypts blobs using your encryption key
+3. **Verify**: Anyone can verify availability and correctness without seeing plaintext
+
+## Use cases
+
+- **Confidential exchanges**: Private order books with provable solvency ([Hibachi](https://hibachi.xyz/))
+- **Confidential payments**: Encrypted transactions with regulatory compliance
+- **RWA tokenization**: Private holder data with verifiable state
+- **Private backups**: Encrypted recovery without exposing plaintext
+- **Cross-chain messaging**: Verifiable encrypted data transport
+
+## Get started
+
+- [About private blockspace](/build/private-blockspace/about): Architecture and technical details
+- [Quickstart guide](/build/private-blockspace/quickstart): Run on your own
+- [PDA proxy repo](https://github.com/celestiaorg/pda-proxy): Source code and examples0:{"buildId":"YUM1a8EWqNHEJP1N8GUhN","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Private blockspace","filePath":"app/learn/features/private-blockspace/page.mdx","timestamp":1766177983000},"toc":[{"value":"How it works","id":"how-it-works","depth":2},{"value":"Use cases","id":"use-cases","depth":2},{"value":"Get started","id":"get-started","depth":2}],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Private blockspace","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Private blockspace lets you post ",["$","strong",null,{"children":"encrypted"}]," data to Celestia while proving it’s ",["$","strong",null,{"children":"valid and available"}],". You get confidentiality and verifiability, which is ideal for institutional applications that need both privacy and compliance."]}],"\n",["$","h2",null,{"id":"how-it-works","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["How it works",["$","$L4",null,{"id":"how-it-works"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"A lightweight proxy sits between your app and Celestia:"}],"\n",["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Submit"}],": The proxy encrypts your data, generates a zkVM proof, and posts to Celestia"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Retrieve"}],": The proxy fetches and decrypts blobs using your encryption key"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Verify"}],": Anyone can verify availability and correctness without seeing plaintext"]}],"\n"]}],"\n",["$","h2",null,{"id":"use-cases","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Use cases",["$","$L4",null,{"id":"use-cases"}]]}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Confidential exchanges"}],": Private order books with provable solvency (","$L5",")"]}],"\n","$L6","\n","$L7","\n","$L8","\n","$L9","\n"]}],"\n","$La","\n","$Lb"]}],null,"$Lc"]}],"loading":null,"isPartial":false}
+5:["$","a",null,{"href":"https://hibachi.xyz/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Hibachi",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]
+6:["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Confidential payments"}],": Encrypted transactions with regulatory compliance"]}]
+7:["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"RWA tokenization"}],": Private holder data with verifiable state"]}]
+8:["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Private backups"}],": Encrypted recovery without exposing plaintext"]}]
+9:["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Cross-chain messaging"}],": Verifiable encrypted data transport"]}]
+a:["$","h2",null,{"id":"get-started","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Get started",["$","$L4",null,{"id":"get-started"}]]}]
+b:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","$Ld",null,{"href":"/build/private-blockspace/about","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"About private blockspace"}],": Architecture and technical details"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","$Ld",null,{"href":"/build/private-blockspace/quickstart","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Quickstart guide"}],": Run on your own"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","a",null,{"href":"https://github.com/celestiaorg/pda-proxy","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["PDA proxy repo",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],": Source code and examples"]}],"\n"]}]
+c:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+10:null
