@@ -31,8 +31,9 @@ function getMethodsByPackage(spec: OpenRPCSpec): MethodByPkg {
       params: method.params || [],
       auth: extractAuth(method.description),
       result: method.result || { name: '', schema: {} },
+      rawSpec: method, // Pass the full raw spec for copying
     };
-    
+
     if (!methodsByPackage[pkg]) {
       methodsByPackage[pkg] = [methodData];
     } else {

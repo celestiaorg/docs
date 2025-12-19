@@ -33,6 +33,7 @@ export interface Method {
   params: Param[];
   auth: string;
   result: Param;
+  rawSpec?: RPCMethod; // Full raw spec for copying
 }
 
 export interface OpenRPCSpec {
