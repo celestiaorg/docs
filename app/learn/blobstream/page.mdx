@@ -20,7 +20,7 @@ Celestia and then verify that it was published in the target EVM chain.
 
 ![Blobstream Architecture](/img/blobstream/Blobstream.png)
 
-Data is first attested to by the Celestia validator set—they sign commitments to the data. Then, these signatures are relayed to the target EVM chain (in this case, Ethereum). Finally, the layer 2, or any party, can verify that the data was published to Celestia directly on the EVM chain via the Blobstream smart contract. You can reference [the Blobstream smart contract](https://github.com/celestiaorg/blobstream-contracts/blob/master/src/Blobstream.sol).
+Data is first attested to by the Celestia validator set—they sign commitments to the data. Then, these signatures are relayed to the target EVM chain (in this case, Ethereum). Finally, the layer 2, or any party, can verify that the data was published to Celestia directly on the EVM chain via the Blobstream smart contract. You can reference [the Blobstream smart contract](https://github.com/celestiaorg/blobstream-contracts/blob/v3.0.0/src/Blobstream.sol).
 
 The specification of Blobstream `Valset`s, which track the Celestia validator set changes, can be found in [ADR 002](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
 

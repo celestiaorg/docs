@@ -121,10 +121,10 @@ You can install the latest version or specify a particular version:
 
 ```bash
 # Install latest version
-bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)"
+bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)"
 
 # Install specific version, Mainnet Beta in this example
-bash -c "$(curl -sL https://raw.githubusercontent.com/celestiaorg/docs/main/public/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
+bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
 ```
 
 The script will:
@@ -147,7 +147,7 @@ Follow the instructions in the terminal output to choose your installation prefe
 celestia version && celestia --help
 ```
 
-View [the script](https://github.com/celestiaorg/docs/tree/main/public/celestia-node.sh) to learn more about what it is doing.
+View [the script](https://github.com/celestiaorg/docs/blob/main/public/celestia-node.sh) to learn more about what it is doing.
 
 > **Note**: The script maintains a log file at `$HOME/celestia-node-temp/logfile.log` for troubleshooting purposes.
 
