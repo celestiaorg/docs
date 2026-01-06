@@ -84,26 +84,26 @@ You can verify your signer address in the proxy logs it prints the address when 
 The published image is `amd64` only — run it under emulation:
 
 ```bash
-docker pull --platform=linux/amd64 ghcr.io/celestiaorg/pda-proxy:latest
+docker pull --platform=linux/amd64 ghcr.io/celestiaorg/pbs-proxy:latest
 mkdir -p "$PDA_DB_PATH"
 
-docker run --name pda-proxy --rm -it   --platform=linux/amd64   --env-file ./.env   -v "$PDA_DB_PATH:$PDA_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pda-proxy:latest
+docker run --name pbs-proxy --rm -it   --platform=linux/amd64   --env-file ./.env   -v "$PDA_DB_PATH:$PDA_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pbs-proxy:latest
 ```
 
 **Intel/AMD Linux or other amd64 hosts**
 
 ```bash
-docker pull ghcr.io/celestiaorg/pda-proxy:latest
+docker pull ghcr.io/celestiaorg/pbs-proxy:latest
 mkdir -p "$PDA_DB_PATH"
 
-docker run --name pda-proxy --rm -it   --env-file ./.env   -v "$PDA_DB_PATH:$PDA_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pda-proxy:latest
+docker run --name pbs-proxy --rm -it   --env-file ./.env   -v "$PDA_DB_PATH:$PDA_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pbs-proxy:latest
 ```
 
 ### Verify it’s running
 
 Check logs:
 ```bash
-docker logs -f pda-proxy
+docker logs -f pbs-proxy
 ```
 
 Or test status:
@@ -147,7 +147,7 @@ The proxy will:
 
 If the response includes `"result": { "height": "…" }`, you’re set. Jump to **Verify your blob** with that height.
 
-If you see `"[pda-proxy] Verifiable encryption processing..."`, the proxy queued the job. Two quick options:
+If you see `"[pbs-proxy] Verifiable encryption processing..."`, the proxy queued the job. Two quick options:
 
 **Option A — resend once**
 
@@ -157,7 +157,7 @@ Sometimes it finishes fast and you’ll get the height on the next call.
 
 Either tail logs:
 ```bash
-docker logs -f pda-proxy | egrep -i 'submit|height|commit|error'
+docker logs -f pbs-proxy | egrep -i 'submit|height|commit|error'
 ```
 
 Or poll a small window around the tip for your namespace:
