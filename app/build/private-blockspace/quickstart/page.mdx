@@ -26,7 +26,7 @@ Edit **only** the following items.
 
 | Key | What to do |
 | --- | --- |
-| `PDA_DB_PATH` | Absolute path for local proxy data (e.g. `/Users/you/dev/pda-db`) |
+| `PBS_DB_PATH` | Absolute path for local proxy data (e.g. `/Users/you/dev/pbs-db`) |
 | `ENCRYPTION_KEY` | 32-byte key — see command below |
 | `CELESTIA_NODE_RPC` | Your QuickNode HTTPS endpoint (includes your token) |
 | `CELESTIA_CORE_GRPC` | Same host + `:9090` (no token in path) |
@@ -85,18 +85,18 @@ The published image is `amd64` only — run it under emulation:
 
 ```bash
 docker pull --platform=linux/amd64 ghcr.io/celestiaorg/pbs-proxy:latest
-mkdir -p "$PDA_DB_PATH"
+mkdir -p "$PBS_DB_PATH"
 
-docker run --name pbs-proxy --rm -it   --platform=linux/amd64   --env-file ./.env   -v "$PDA_DB_PATH:$PDA_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pbs-proxy:latest
+docker run --name pbs-proxy --rm -it   --platform=linux/amd64   --env-file ./.env   -v "$PBS_DB_PATH:$PBS_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pbs-proxy:latest
 ```
 
 **Intel/AMD Linux or other amd64 hosts**
 
 ```bash
 docker pull ghcr.io/celestiaorg/pbs-proxy:latest
-mkdir -p "$PDA_DB_PATH"
+mkdir -p "$PBS_DB_PATH"
 
-docker run --name pbs-proxy --rm -it   --env-file ./.env   -v "$PDA_DB_PATH:$PDA_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pbs-proxy:latest
+docker run --name pbs-proxy --rm -it   --env-file ./.env   -v "$PBS_DB_PATH:$PBS_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pbs-proxy:latest
 ```
 
 ### Verify it’s running
