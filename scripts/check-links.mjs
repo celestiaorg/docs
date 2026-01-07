@@ -33,27 +33,27 @@ const RETRYABLE_STATUS_CODES = new Set([429, 500, 501, 502, 503, 504]);
 
 // Default skip patterns (can be extended via CLI)
 const DEFAULT_SKIP_PATTERNS = [
-  // Social / rate-limited
+  // Social media / communication platforms that block or rate-limit bots
   'twitter.com',
   'linkedin.com',
-  't.me', // Telegram often blocks bots
-  'discord.gg', // Discord often blocks bots
-  // Repo blob links
-  'github.com/celestiaorg/celestia-core/blob/', // GitHub blob links can be flaky or private
-  'github.com/celestiaorg/blobstream-contracts/blob/', // GitHub blob links often rate-limited
-  // Community tools that block automated checks
-  'validao.xyz',
-  'celestia.valopers.com',
-  // Etherscan explorers that can be flaky
-  'holesky.etherscan.io',
-  // Matches lychee-action excludes in .github/workflows/lint.yaml
+  't.me', // Telegram
+  'discord.gg', // Discord
+  // GitHub repository blob links (flaky, private, or rate-limited)
+  'github.com/celestiaorg/celestia-core/blob/',
+  'github.com/celestiaorg/blobstream-contracts/blob/',
+  'github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md',
+  // External tools and explorers that block automated checks
+  'validao.xyz', // Community node map visualization
+  'celestia.valopers.com', // Community explorer
+  'holesky.etherscan.io', // Testnet Etherscan (can be flaky)
   'hibachi.xyz',
+  'figment.io/',
+  // Package registries and academic resources
   'dl.acm.org/doi/abs/10.1145/98163.98167',
   'lib.rs/crates/celestia-client',
-  'github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md',
+  // Snapshot providers
   'polkachu.com/tendermint_snapshots/celestia',
   'polkachu.com/testnets/celestia/snapshots',
-  'figment.io/',
 ];
 
 /**
