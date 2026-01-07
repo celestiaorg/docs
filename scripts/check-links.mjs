@@ -40,6 +40,12 @@ const DEFAULT_SKIP_PATTERNS = [
   'discord.gg', // Discord often blocks bots
   // Repo blob links
   'github.com/celestiaorg/celestia-core/blob/', // GitHub blob links can be flaky or private
+  'github.com/celestiaorg/blobstream-contracts/blob/', // GitHub blob links often rate-limited
+  // Community tools that block automated checks
+  'validao.xyz',
+  'celestia.valopers.com',
+  // Etherscan explorers that can be flaky
+  'holesky.etherscan.io',
   // Matches lychee-action excludes in .github/workflows/lint.yaml
   'hibachi.xyz',
   'dl.acm.org/doi/abs/10.1145/98163.98167',
