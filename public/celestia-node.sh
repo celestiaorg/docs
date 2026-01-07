@@ -63,7 +63,7 @@ else
 fi
 
 # Validate version format
-if [[ ! $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+if [[ ! $VERSION =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.-]+)?$ ]]; then
     echo "Invalid version format: $VERSION" | tee -a "$LOGFILE"
     echo "Version should start with vX.X.X (e.g., v0.11.0 or v0.21.9-network)" | tee -a "$LOGFILE"
     exit 1
