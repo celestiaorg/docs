@@ -474,6 +474,11 @@ async function checkExternalLink(url, skipPatterns = [], timeout = DEFAULT_TIMEO
     }
   }
 
+  // If all retries exhausted and it's a 429 from GitHub, treat as skipped
+  if (lastResult && lastResult.status === 429 && url.includes('github.com')) {
+    return { valid: true, skipped: true, reason: 'GitHub 429 - Rate limited, skipped', status: 429 };
+  }
+
   return lastResult || { valid: false, error: 'Unknown error' };
 }
 
