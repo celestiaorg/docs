@@ -42,6 +42,7 @@ const DEFAULT_SKIP_PATTERNS = [
   'github.com/celestiaorg/celestia-core/blob/',
   'github.com/celestiaorg/blobstream-contracts/blob/',
   'github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md',
+  'github.com/celestiaorg/celestia-app/blob/main/docs/audit/', // Audit PDFs prone to 429 rate limiting
   // External tools and explorers that block automated checks
   'validao.xyz', // Community node map visualization
   'celestia.valopers.com', // Community explorer
