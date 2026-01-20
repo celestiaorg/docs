@@ -474,6 +474,22 @@ async function checkExternalLink(url, skipPatterns = [], timeout = DEFAULT_TIMEO
     }
   }
 
+  // If all retries exhausted and it's a 429 from GitHub, treat as skipped
+  if (lastResult && lastResult.status === 429) {
+    try {
+      const urlObj = new URL(url);
+      const hostname = urlObj.hostname;
+      // Check if it's GitHub or a GitHub-related domain
+      if (hostname === 'github.com' || 
+          hostname.endsWith('.github.com') || 
+          hostname.endsWith('.githubusercontent.com')) {
+        return { valid: true, skipped: true, reason: 'GitHub 429 - Rate limited, skipped', status: 429 };
+      }
+    } catch {
+      // If URL parsing fails, fall through to return lastResult
+    }
+  }
+
   return lastResult || { valid: false, error: 'Unknown error' };
 }
 
