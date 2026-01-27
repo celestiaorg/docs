@@ -1,0 +1,200 @@
+# How to run op-alt-da with AWS KMS
+
+## Overview
+
+This guide walks through running [op-alt-da](https://github.com/celestiaorg/op-alt-da) (da-server) using a Celestia key stored in Amazon Web Services (AWS) key management service (KMS). You will use the localstack, a mock of AWS, to learn how to run the da-server. Once you've done this, you can log in to AWS and use your private key in [prod](#production-aws).
+
+## Prerequisites
+
+- Docker
+- Go 1.21+
+- A Celestia RPC endpoint from [Quicknode](https://quicknode.com/)
+- [cel-key utility installed](/operate/keys-wallets/celestia-node-key/#installation)
+
+import { Steps } from "nextra/components";
+
+## Getting started
+
+<Steps>
+
+## Setup environment
+
+1. Install awscli:
+
+   ```bash
+   brew install awscli
+   ```
+
+2. Clone and build op-alt-da ([v0.11.0](https://github.com/celestiaorg/op-alt-da/releases/tag/v0.11.0)+):
+
+   ```bash
+   git clone https://github.com/celestiaorg/op-alt-da.git && cd op-alt-da
+   make
+   ```
+
+## Celestia key
+
+1. Create a key, in this example you will name it `celestia_key`:
+
+   ```bash
+   ./cel-key add celestia_key \
+     --keyring-backend test \
+     --keyring-dir ~/.celestia-light-mocha-4/keys \
+     --node.type light \
+     --p2p.network mocha
+   ```
+
+2. Show address:
+
+   ```bash
+   ./cel-key show celestia_key \
+     --keyring-backend test \
+     --keyring-dir ~/.celestia-light-mocha-4/keys
+
+   ```
+
+3. Fund the address at the faucet: https://mocha.celenium.io/faucet.
+4. Export private key hex:
+
+   ```bash
+   ./cel-key export celestia_key \
+     --keyring-dir ~/.celestia-light-mocha-4/keys \
+     --keyring-backend test \
+     --unarmored-hex \
+     --unsafe
+   ```
+
+## Localstack
+
+1. Set mock AWS credentials (required even for localstack):
+
+   ```bash
+   export AWS_ACCESS_KEY_ID=test
+   export AWS_SECRET_ACCESS_KEY=test
+   export AWS_DEFAULT_REGION=us-east-1
+   ```
+
+2. Start localstack with KMS enabled:
+
+   ```bash
+   docker run -d \
+     --name localstack \
+     -p 4566:4566 \
+     -e SERVICES=kms \
+     localstack/localstack
+   ```
+
+3. Verify it's running:
+
+   ```bash
+   aws --endpoint-url=http://localhost:4566 kms list-keys
+   # should return: { "Keys": [] }
+   ```
+
+## Configure op-alt-da
+
+1. Copy config example into `config.toml`:
+
+   ```bash
+   cp config.toml.example config.toml
+   ```
+
+2. Edit `config.toml` with the configs you gathered in the setup:
+
+   ```toml
+   [celestia]
+   namespace = "00000000000000000000000000000000000000000000000000000000acfe"
+   keyring_backend = "awskms"
+   default_key_name = "celestia_key"
+
+   bridge_addr = "https://your-endpoint.celestia-mocha.quiknode.pro/your-token/"
+   bridge_auth_token = ""
+   bridge_tls_enabled = true
+
+   core_grpc_addr = "your-endpoint.celestia-mocha.quiknode.pro:9090"
+   core_grpc_auth_token = "your-token"
+   core_grpc_tls_enabled = true
+
+   [celestia.awskms]
+   region = "us-east-1"
+   endpoint = "http://localhost:4566"
+   alias_prefix = "alias/op-alt-da/"
+   auto_create = true
+   import_key_name = "celestia_key"
+   import_key_hex = "YOUR_EXPORTED_PRIVATE_KEY_HEX"
+   ```
+
+When you run the DA server with `auto_create = true`, it will automatically create a new key in AWS KMS if it doesn't exist.
+
+## Run the DA server
+
+1. Run the op-alt-da server:
+
+   ```bash
+   AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_REGION=us-east-1 ./bin/da-server -config config.toml
+   ```
+
+   Where this is what the successful start looks like:
+
+   ```bash
+   INFO [01-20|14:53:56.130] Initializing Stateless Alt-DA server...
+   INFO [01-20|14:53:56.131] Using celestia storage                   url=https://your-endpoint.celestia-mocha.quiknode.pro/your-token/
+   INFO [01-20|14:53:56.179] Immediate submission mode (default, no queue)
+   INFO [01-20|14:53:56.992] Starting HTTP server                     addr=127.0.0.1:3100
+   INFO [01-20|14:53:56.992] Starting metrics server                  addr=:6060
+   INFO [01-20|14:53:57.004] Started DA Server
+   ```
+
+2. Test a POST request:
+
+   ```bash
+   curl -X POST http://127.0.0.1:3100/put \
+     -H "Content-Type: application/octet-stream" \
+     -d "hello celestia"
+   ```
+
+   Where the successful POST shows:
+
+   ```bash
+   INFO [01-20|14:54:15.342] celestia: blob successfully submitted    id=74a5940000000000677e645183667f4d9efe506226fd0dd0b70a4144c8fd05c0aa68407ccf886507
+   INFO [01-20|14:54:15.342] Blob submitted successfully              commitment=010c74a5940000000000677e645183667f4d9efe506226fd0dd0b70a4144c8fd05c0aa68407ccf886507 size=14 duration=11.5436025s
+   ```
+
+   Check your transaction on [Celenium](https://mocha.celenium.io) by navigating to `https://mocha.celenium.io/address/YOUR_CELESTIA_ADDRESS`.
+
+3. List your keys again, to see the key you just created:
+
+   ```bash
+   AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_REGION=us-east-1 aws --endpoint-url=http://localhost:4566 kms list-keys
+   ```
+
+   This time, you will see your new key:
+
+   ```bash
+   {
+       "Keys": [
+           {
+               "KeyId": "79b26b15-0635-4b3c-aad0-0ab4406e6754",
+               "KeyArn": "arn:aws:kms:us-east-1:000000000000:key/79b26b15-0635-4b3c-aad0-0ab4406e6754"
+           }
+       ]
+   }
+   ```
+
+Congratulations, you're set up! You should be able to see your blob has been posted successfully using op-alt-da and AWS KMS. Now you can run your OP Stack rollup with AWS KMS, using the Celestia key in AWS.
+
+</Steps>
+
+## Production (AWS)
+
+For production AWS-KMS usage, remove the endpoint, set your region, and private key:
+
+```toml
+[celestia.awskms]
+region = "us-east-2"
+endpoint = ""
+alias_prefix = "alias/op-alt-da/"
+auto_create = false
+import_key_name = "celestia_key"
+import_key_hex = "YOUR_EXPORTED_PRIVATE_KEY_HEX"
+```
