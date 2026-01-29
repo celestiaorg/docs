@@ -1,0 +1,35 @@
+# Local OP Stack Devnet
+
+Spin up a complete local OP Stack rollup with Celestia DA for testing.
+
+```bash
+# Build the bundle generator
+cd control-plane/cmd/pop-deployer
+go build -o pop-deployer .
+
+# Generate the pre-deployed bundle
+./pop-deployer
+
+# Extract and run
+tar xzf opstack-local-devnet-bundle.tar.gz
+cd bundle
+docker compose up -d
+```
+
+Verify it's running:
+
+```bash
+cast block-number --rpc-url http://localhost:8545
+# 55
+```
+
+This starts:
+- **Anvil** - L1 chain with pre-deployed OP Stack contracts
+- **OP-Geth** - L2 execution client
+- **OP-Node** - L2 consensus/derivation
+- **Localestia** - Mock Celestia DA layer
+- **POPSigner-Lite** - Local signing service
+
+The bundle comes with all contracts already deployed and configured—just extract and run.
+
+**What `pop-deployer` does:** It spins up a temporary Anvil instance, deploys all OP Stack contracts (SystemConfig, L1CrossDomainMessenger, OptimismPortal, etc.), captures the chain state to a snapshot, then packages everything into a tarball. When you run the bundle, Anvil loads the pre-deployed state instantly—no waiting for contract deployments.
