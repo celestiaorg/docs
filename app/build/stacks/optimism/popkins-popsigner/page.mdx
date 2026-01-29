@@ -2,7 +2,7 @@
 
 ## Overview
 
-OP Stack, the stack behind Optimism, allows you to run rollups that post data to Celestia instead of Ethereum by using op-alt-da. Learn more in [the overview of op-alt-da](https://docs.celestia.org/build/stacks/op-alt-da/). In this tutorial, you’ll learn how to run an OP stack rollup using:
+OP Stack, the stack behind Optimism, allows you to run rollups that post data to Celestia instead of Ethereum by using op-alt-da. Learn more in [the overview of op-alt-da](../op-alt-da/). In this tutorial, you’ll learn how to run an OP stack rollup using:
 
 - **[Popsigner](https://github.com/celestiaorg/popsigner)** for key management. Popsigner is a great way to create, manage, and revoke keys, or even export them if you’d like.
 - **[Popkins](https://popkins.popsigner.com/)** for deploying contracts and chain setup. Popkins sets up your keys from Popsigner for rollup deployment, deploys your contracts, and gives you the bundle to run your rollup locally.
@@ -68,7 +68,7 @@ Now that you’ve set the keys up, you need to fund 3 of the addresses according
     1. Here’s my example address: `0x7C7ece049b23b68D8c4a087f5252040B61F9fAe8`
     2. Fund the `deploy-1` with at least 1 sepoliaETH
 3. Batcher key: `batcher-1`
-    1. Here’s my example address: `0xDB00E7dfd960bD8C497807f07fa161016a4900F3` 
+    1. Here's my example address: `0xDB00E7dfd960bD8C497807f07fa161016a4900F3`
     2. Fund the `batcher-1` with at least 0.5 sepoliaETH
 4. Proposer key: `proposer-1`
     1. Here’s my example address: `0xd66a3047fcFd200b36F8c8Da1a4B1d4Ddb497c6C`
@@ -120,7 +120,7 @@ Next, you’re ready to sign in to [Popkins](https://popkins.popsigner.com/deplo
 
 Now that you’ve set the rollup up by deploying contracts and downloading the artifacts, you’re ready to run it on your own and start producing blocks! Let’s start by making some config changes.
 
-1. Set up API key on [Popsigner.com](http://Popsigner.com). This is different than creating a key for a blockchain account. Save this for the next step in your clipboard. You’ll only be able to see it once, for safe security practice.
+1. Set up API key on [Popsigner.com](https://popsigner.com). This is different than creating a key for a blockchain account. Save this for the next step in your clipboard. You’ll only be able to see it once, for safe security practice.
 
     ![popsigner13](/img/build/stacks/optimism/popkins-popsigner/popsigner13.png)
 
@@ -184,17 +184,17 @@ Now that you’ve set the rollup up by deploying contracts and downloading the a
             CELESTIA_GRPC_AUTH_TOKEN=8d7f3e5a9b2c4f1e6d8c9a5b7e4f2c1a6d3b9e5f
             ```
             
-        4. Lastly, the namespace will need to be set to something with this format. You’ll need to remove the `0x` prefix and use a 29 byte namespace ID:
-            
+        4. Lastly, set the namespace. Celestia namespaces are 29 bytes (58 hex characters). Version 0 namespaces require 18 leading zero bytes (36 hex zeros), leaving 11 bytes (22 hex characters) for your namespace ID:
+
             ```
-            # Celestia namespace (auto-generated from chain ID)
+            # Celestia namespace (29 bytes / 58 hex chars)
             CELESTIA_NAMESPACE=0000000000000000000000000000000000000009d94e20cae97add6d34
             ```
-            
+
         5. You can autogenerate a random namespace with:
-            
-            ```
-            export CELESTIA_NAMESPACE=00000000000000000000000000000000000000$(openssl rand -hex 10) && echo $CELESTIA_NAMESPACE
+
+            ```bash
+            export CELESTIA_NAMESPACE=$(printf '%036d' 0)$(openssl rand -hex 11) && echo $CELESTIA_NAMESPACE
             ```
             
     3. Lastly, change the Popsigner RPC URL to:
@@ -209,7 +209,7 @@ Now that you’ve set the rollup up by deploying contracts and downloading the a
         
         ```
         [celestia]
-        # Celestia namespace (29 bytes hex, version 0 requires 18 leading zeros)
+        # Celestia namespace (29 bytes / 58 hex chars, version 0 requires 18 leading zero bytes)
         namespace = "0x706f7000000000016942"
         ```
         
@@ -217,7 +217,7 @@ Now that you’ve set the rollup up by deploying contracts and downloading the a
         
         ```
         [celestia]
-        # Celestia namespace (29 bytes hex, version 0 requires 18 leading zeros)
+        # Celestia namespace (29 bytes / 58 hex chars, version 0 requires 18 leading zero bytes)
         namespace = "0000000000000000000000000000000000000009d94e20cae97add6d34"
         ```
         
