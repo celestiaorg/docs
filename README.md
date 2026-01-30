@@ -12,6 +12,11 @@ Welcome to the official documentation repository for [Celestia](https://celestia
 - Live site: https://docs.celestia.org
 - LLMs.txt: https://docs.celestia.org/llms.txt
 - Built with: Next.js + Nextra (MDX), exported as a static site.
+- DeepWikis for @celestiaorg:
+    - https://deepwiki.com/celestiaorg/docs
+    - https://deepwiki.com/celestiaorg/cips
+    - https://deepwiki.com/celestiaorg/celestia-app
+    - https://deepwiki.com/celestiaorg/celestia-node
 
 ## Local development
 

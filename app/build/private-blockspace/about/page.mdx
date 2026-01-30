@@ -1,12 +1,26 @@
-# About private blockspace
+# About Private Blockspace
 
-The foundation of the internet's financial infrastructure is shifting. For the first decade of blockchain development, transparency was the defining feature. Every transaction, balance, and state change was visible to anyone. That openness enabled auditability, but also prevented adoption by institutions that must protect sensitive data. 
+The highest-stakes onchain markets—including perpetual exchanges, order books, and institutional rails—depend on information that cannot be public. Positions, balances, liquidations, and routing logic are inherently sensitive. Yet pushing that data offchain reintroduces trusted operators and weakens the core promise of being onchain: **independent auditing, verifiability, and safe exits when it matters most.**
 
-**Private blockspace** changes that. Built on Celestia’s modular data availability layer, private blockspace introduces a new way to publish encrypted data that remains confidential while still being verifiable and retrievable. This unlocks a crucial missing capability for onchain finance: **confidentiality with compliance**. 
+**Private Blockspace** is Celestia’s approach to solving this problem: keep sensitive state **confidential**, while still making it **publicly accountable**.
 
-At a high level, private blockspace adds an encryption and proof layer that sits between client applications and Celestia’s data availability network. This layer is implemented as the private blockspace proxy, a lightweight service that encrypts, proves, and routes data without modifying the underlying Celestia protocol. In the sections that follow, we’ll look at how the proxy handles blob submission and retrieval.
+Private Blockspace enables networks to publish **encrypted state to Celestia**, allowing anyone to verify data availability and protocol commitments **without revealing the underlying contents**. The result is **private systems with public verifiability guarantees**—fault-resistant, auditable, and designed to support safe exit mechanisms.
+
+At a high level, Private Blockspace adds an encryption + proof layer between your application and Celestia’s data availability layer. This layer is implemented as the **Private Blockspace Proxy**: a lightweight service that encrypts, proves, and routes data **without modifying existing Celestia integrations**.
 
 ## Submitting a blob
+
+The Private Blockspace Proxy acts as an intermediary between your JSON-RPC client and the Celestia network.
+
+When you submit a blob:
+
+1. The proxy encrypts the data.
+2. The proxy generates a proof inside a zkVM attesting to correct encryption and any configured “anchors” about the plaintext.
+3. The proxy stores the job result in a local database and returns an acknowledgement while processing continues.
+4. Once the proof completes, the result is cached so identical submissions can return immediately.
+5. The proxy submits the verifiably encrypted blob to Celestia via `blob.Submit`.
+
+From the client’s perspective, posting encrypted data feels like a single RPC call, while the proxy handles encryption, verifiability, and coordination with Celestia behind the scenes.
 
 ```mermaid
 sequenceDiagram
@@ -24,9 +38,18 @@ sequenceDiagram
     Proxy->>-JSON RPC Client: Response{Inclusion Block Height}
 ```
 
-The private blockspace proxy acts as a intermediary between your JSON-RPC client and the Celestia network. When you submit a blob, the proxy first encrypts the data and then generates a proof inside a zkVM. Then, it records the result in a local database and returns an acknowledgment while processing continues in the background. Once the proof completes, the result is cached so identical submissions can immediately return the inclusion block height. From the client’s perspective, posting encrypted data feels like a single RPC call, even though behind the scenes, the proxy is handling encryption, verification, and coordination with Celestia.
-
 ## Retrieving a blob
+
+When retrieving a blob, the proxy behaves as a transparent relay:
+
+1. The client calls `blob.Get(height, namespace, commitment)`.
+2. The proxy forwards the request to a Celestia node.
+3. The proxy receives the raw blob response.
+4. The proxy attempts to deserialize and decrypt using the configured encryption key.
+
+If the blob was encrypted through the proxy, decryption succeeds and the proxy returns the original plaintext bytes. If it was not, the proxy passes the response through unchanged.
+
+This ensures compatibility with both encrypted and unencrypted blobs, so existing clients can adopt Private Blockspace incrementally.
 
 ```mermaid
 sequenceDiagram
@@ -42,38 +65,68 @@ sequenceDiagram
     Proxy->>JSON RPC Client: *Failure* -> <Passthrough>
 ```
 
-When retrieving a blob, the Proxy acts as a transparent relay between the client and the Celestia network. The proxy forwards the `blob.Get` request to the Celestia network, receives the raw blob data, and then attempts to deserialize and decrypt it using the configured encryption key. If the blob was encrypted through the proxy, decryption succeeds and the proxy returns the original plaintext data. If it was not, the proxy simply passes the response through unchanged. This design ensures compatibility with both encrypted and unencrypted blobs, so existing clients can retrieve data without modification.
+## Verifiable Encryption (VE)
 
-## Verifiable encryption
+With normal encryption, ciphertext should be indistinguishable from random noise. That property is what keeps data private—but it also makes it difficult to prove _anything_ about encrypted data without decrypting it.
 
-Developers can use verifiable encryption to prove facts about encrypted data without revealing the actual data. When a blob is encrypted through the proxy, the proxy can generate a proof inside a zkVM showing that the ciphertext was produced correctly and that the underlying plaintext satisfies certain conditions, such as containing a valid Merkle root or state commitment.
+Private Blockspace uses **Verifiable Encryption (VE)** to bridge this gap.
 
-This gives builders a new way to design applications that remain private yet provably correct. Anyone can verify that an encrypted blob is well-formed and available on Celestia, anyone can prove certain facts about the data, however only authorized parties can decrypt it. **The result is a foundation for financial applications that preserve confidentiality without giving up verifiability**.
+VE enables proofs of _select properties_ of fully encrypted data **without decryption**. For example, a system can prove statements like:
+
+- “This encrypted blob contains a Merkle proof whose root is `0xabc123…`”
+- “This ciphertext was produced using the expected algorithm, key format, and nonce rules”
+- “The plaintext hashes to a specific commitment”
+
+This is accomplished by running encryption inside a zkVM, producing a proof that encryption was executed correctly while also exposing application-defined “anchors” (such as hashes or commitment checks) that remain safe to reveal.
+
+**Outcome:** anyone can verify availability and correctness constraints, while only authorized parties can decrypt the underlying contents.
+
+## Key exchange and management strategies
+
+A critical design question in Private Blockspace is key management:
+
+> If keys are withheld, then the data is effectively withheld.
+
+Private Blockspace is designed to support different key exchange and reconstruction strategies depending on your application requirements and threat model.
+
+### Account-centric model
+
+A proposed account-centric model enforces that **all account state is published and available**, while also being encrypted such that only the intended party (or parties) can decrypt.
+
+Key properties of this approach:
+
+- **User-defined encryption keys:** users define keys for encrypting their own account state, ensuring they can always decrypt their data and enabling forward secrecy.
+- **Conditional selective disclosure:** users can allow decryption by specific parties using standard public key cryptography, key exchange protocols, and/or threshold schemes.
+- **User-initiated protocol progression:** applications can allow users to progress the protocol themselves by proving correct state transitions onchain, enabling “forced” state updates such as withdrawals.
+
+This model is designed to support systems that remain private during normal operation, while still enabling safe exits and recovery paths under application-defined conditions.
 
 ## Use cases
 
-**Confidential exchanges** 
+Private Blockspace is designed for applications where **privacy is required**, but **public accountability cannot be sacrificed**.
 
-Decentralized exchanges like [Hibachi](https://hibachi.xyz/) use private blockspace to keep order book and balance data private while still proving data availability and correctness. This allows traders to operate privately and safely, with public assurances of solvency and liveness. 
+### Accountable offchain exchanges
 
-**Confidential payments** 
+Operators of offchain or hybrid exchanges can keep internal state private while still being required (by protocol design) to prove state availability and commitments publicly.
 
-Institutions can use private blockspace to run stablecoin or interbank payment networks that settle onchain. Payment details remain encrypted by default, but auditors and regulators can verify proofs of correctness and availability. 
+This improves fault tolerance and auditability without forcing users to trust an opaque operator for safe exits.
 
-**Tokenization of real-world assets** 
+**In production: Hibachi**
 
-Builders can use private blockspace to tokenize deposits, treasuries, or invoices while keeping holder identities and positions private. The system provides verifiable assurance that the tokenized state exists and is recoverable. 
+Hibachi is the first independent deployment using Private Blockspace for a fast perps exchange. Hibachi publishes verifiably encrypted exchange state to Celestia, keeping balances and positions private while making data availability and correctness publicly verifiable.
 
-**Private backups and recovery** 
+### Trust-minimized data marketplaces
 
-Protocols can use private blockspace for encrypted, verifiable backups of critical state data. If operators fail, users can recover from the last published snapshot without exposing any plaintext. 
+Private Blockspace can also support trust-minimized private data markets:
 
-**Cross-chain messaging and data markets** 
+- sellers publish verifiably encrypted data to Celestia
+- buyers verify availability and integrity before payment—without seeing the plaintext
+- payment is enforced only once availability is proven
 
-Private blockspace can also serve as a verifiable transport layer for encrypted messages between blockchains or as the foundation for privacy-preserving data marketplaces. 
-
+This shifts trust away from intermediaries and toward verification, producing private exchange workflows that are auditable and fault-resistant by design.
 
 ## References and further reading
 
 - [Private Blockspace Proxy repo on GitHub](https://github.com/celestiaorg/private-blockspace-proxy/)
-- [Forum Post: Account-Centric Private Blockspace](https://forum.celestia.org/t/account-user-centric-private-data-avalibility/2155) 
+- [Verifiable Encryption (VE) in depth](https://github.com/celestiaorg/private-blockspace-proxy/blob/main/doc/verifiable_encryption.md)
+- [Forum post: Account-centric model](https://forum.celestia.org/t/account-user-centric-private-blockspace/2155)
