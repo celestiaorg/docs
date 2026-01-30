@@ -2,32 +2,32 @@ import { Callout, Steps } from 'nextra/components'
 
 # Private blockspace quickstart
 
-Private blockspace encrypts your blob data before it’s posted to Celestia using a lightweight proxy.  
-In this quickstart, you’ll use hosted Celestia nodes (like QuickNode) instead of running your own.
+Private blockspace encrypts your blob data before it's posted to Celestia using a lightweight proxy.
+In this quickstart, you'll use hosted Celestia nodes (like QuickNode) instead of running your own.
 
 <Steps>
 
 ## Get your node credentials
 
-To use Private Blockspace, you’ll need access to a hosted **Celestia Data Availability (DA) + Consensus Node**. The easiest option is [QuickNode’s Celestia service](https://www.quicknode.com/docs/celestia), which provides ready-to-use mainnet and Mocha testnet endpoints. They offer a free 30-day trial, which is enough for this quickstart.
+To use Private Blockspace, you'll need access to a hosted **Celestia Data Availability (DA) + Consensus Node**. The easiest option is [QuickNode's Celestia service](https://www.quicknode.com/docs/celestia), which provides ready-to-use mainnet and Mocha testnet endpoints. They offer a free 30-day trial, which is enough for this quickstart.
 
-1. Visit the [QuickNode Celestia dashboard](https://www.quicknode.com/docs/celestia) and log in (or create a free account).  
-2. Click **Create Endpoint**, then select:  
-   - **Chain:** `Celestia`  
+1. Visit the [QuickNode Celestia dashboard](https://www.quicknode.com/docs/celestia) and log in (or create a free account).
+2. Click **Create Endpoint**, then select:
+   - **Chain:** `Celestia`
    - **Network:** `Mainnet` or `Mocha`
 3. Copy the generated endpoint URL (it looks like this): `https://celestia-mocha.quiknode.pro/<your-token>/`
-4. Copy the token from your endpoint URL (this is your **write / read token**).  
-5. Save both the **URL** and **token** — you’ll add them to your `.env` file next.
+4. Copy the token from your endpoint URL (this is your **write / read token**).
+5. Save both the **URL** and **token** - you'll add them to your `.env` file next.
 
 ## Create your `.env`
 
-Download the repo’s `example.env` and save it as `.env`.  
+Download the repo's `example.env` and save it as `.env`.
 Edit **only** the following items.
 
 | Key | What to do |
 | --- | --- |
 | `PBS_DB_PATH` | Absolute path for local proxy data (e.g. `/Users/you/dev/pbs-db`) |
-| `ENCRYPTION_KEY` | 32-byte key — see command below |
+| `ENCRYPTION_KEY` | 32-byte key - see command below |
 | `CELESTIA_NODE_RPC` | Your QuickNode HTTPS endpoint (includes your token) |
 | `CELESTIA_CORE_GRPC` | Same host + `:9090` (no token in path) |
 | `CELESTIA_NODE_WRITE_TOKEN` | Your QuickNode token |
@@ -62,13 +62,13 @@ TLS_KEY_PATH=/app/tls/tls.key
 ```
 
 <Callout type="warning">
-Without valid certs, the proxy will exit with  
+Without valid certs, the proxy will exit with
 `TLS_CERTS_PATH required: NotPresent`.
 </Callout>
 
 ## Fund your signer
 
-Your `CELESTIA_SIGNING_KEY` corresponds to a Mocha testnet address.  
+Your `CELESTIA_SIGNING_KEY` corresponds to a Mocha testnet address.
 That address must exist and hold some test TIA.
 
 **Get funds from the [Celestia Mocha faucet](https://faucet.celestia-mocha.com).**
@@ -81,29 +81,29 @@ You can verify your signer address in the proxy logs it prints the address when 
 
 **Apple Silicon (M1/M2/M3)**
 
-The published image is `amd64` only — run it under emulation:
+The published image is `amd64` only - run it under emulation:
 
 ```bash
-docker pull --platform=linux/amd64 ghcr.io/celestiaorg/pbs-proxy:latest
+docker pull --platform=linux/amd64 ghcr.io/celestiaorg/pda-proxy:v0.3.0
 mkdir -p "$PBS_DB_PATH"
 
-docker run --name pbs-proxy --rm -it   --platform=linux/amd64   --env-file ./.env   -v "$PBS_DB_PATH:$PBS_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pbs-proxy:latest
+docker run --name pda-proxy --rm -it   --platform=linux/amd64   --env-file ./.env   -v "$PBS_DB_PATH:$PBS_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pda-proxy:v0.3.0
 ```
 
 **Intel/AMD Linux or other amd64 hosts**
 
 ```bash
-docker pull ghcr.io/celestiaorg/pbs-proxy:latest
+docker pull ghcr.io/celestiaorg/pda-proxy:v0.3.0
 mkdir -p "$PBS_DB_PATH"
 
-docker run --name pbs-proxy --rm -it   --env-file ./.env   -v "$PBS_DB_PATH:$PBS_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pbs-proxy:latest
+docker run --name pda-proxy --rm -it   --env-file ./.env   -v "$PBS_DB_PATH:$PBS_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pda-proxy:v0.3.0
 ```
 
-### Verify it’s running
+### Verify it's running
 
 Check logs:
 ```bash
-docker logs -f pbs-proxy
+docker logs -f pda-proxy
 ```
 
 Or test status:
@@ -141,23 +141,23 @@ curl -k -sS \
 ```
 
 The proxy will:
-- Encrypt your blob  
-- Submit to Celestia  
+- Encrypt your blob
+- Submit to Celestia
 - Return a `height` and `tx hash`
 
-If the response includes `"result": { "height": "…" }`, you’re set. Jump to **Verify your blob** with that height.
+If the response includes `"result": { "height": "…" }`, you're set. Jump to **Verify your blob** with that height.
 
-If you see `"[pbs-proxy] Verifiable encryption processing..."`, the proxy queued the job. Two quick options:
+If you see `"[pda-proxy] Verifiable encryption processing..."`, the proxy queued the job. Two quick options:
 
 **Option A — resend once**
 
-Sometimes it finishes fast and you’ll get the height on the next call.
+Sometimes it finishes fast and you'll get the height on the next call.
 
 **Option B — find the height**
 
 Either tail logs:
 ```bash
-docker logs -f pbs-proxy | egrep -i 'submit|height|commit|error'
+docker logs -f pda-proxy | egrep -i 'submit|height|commit|error'
 ```
 
 Or poll a small window around the tip for your namespace:
@@ -206,7 +206,7 @@ curl -k -sS   -H "Content-Type: application/json"   -H "Authorization: Bearer YO
   }" https://127.0.0.1:26657 | jq .
 ```
 
-You’ll see a `commitment` and your decrypted data:
+You'll see a `commitment` and your decrypted data:
 
 ```json
 {
@@ -250,10 +250,10 @@ node -e 'console.log(Buffer.from("SSBMb3ZlIEJpZyBCbG9icw==","base64").toString()
 | `blob: not found` | Wrong commitment | Run `blob.GetAll` to find the real one. |
 | `grpc-status header missing` | Invalid gRPC URL | Must be `https://<host>:9090`, no token. |
 
-## ✅ You’re done
+## ✅ You're done
 
-You’re running **private blockspace** end-to-end using hosted infrastructure.
+You're running **private blockspace** end-to-end using hosted infrastructure.
 
-✅ No local Celestia node  
-✅ Fully containerized  
+✅ No local Celestia node
+✅ Fully containerized
 ✅ Encrypted data posted to Celestia
