@@ -1,6 +1,6 @@
 const meta = {
-  "nitro-das-server": "Nitro DAS server",
-  "optimism": "Optimism",
+  nitro: "Arbitrum Nitro",
+  optimism: "Optimism",
 };
 
 export default meta;
