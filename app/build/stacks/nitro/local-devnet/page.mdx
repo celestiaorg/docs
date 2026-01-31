@@ -49,3 +49,63 @@ This starts:
 - **POPSigner-Lite** - Local signing service
 
 </Steps>
+
+Congratulations! You've successfully deployed a Nitro local devnet.
+
+### Testing with a smart contract
+
+<Steps>
+
+#### Fund your L2 account
+
+```bash
+cast send 0x72d8D69ae87568ab98C2A652F7B8feE62fBB862b "depositEth()" \
+  --value 1ether \
+  --rpc-url http://localhost:8545 \
+  --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+```
+
+Wait ~10 seconds for the deposit to process, then verify:
+```bash
+cast balance 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --rpc-url http://localhost:8547
+```
+
+#### Deploy a contract
+
+```bash
+rm -rf /tmp/counter && mkdir -p /tmp/counter && cd /tmp/counter
+forge init
+cat > src/Counter.sol << 'EOF'
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Counter {
+    uint256 public count;
+    function increment() public { count += 1; }
+}
+EOF
+forge create src/Counter.sol:Counter \
+  --rpc-url http://localhost:8547 \
+  --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \
+  --broadcast
+```
+
+#### Interact with it
+
+```bash
+cast call 0x5FbDB2315678afecb367f032d93F642f64180aa3 "count()" --rpc-url http://localhost:8547
+```
+
+```bash
+cast send 0x5FbDB2315678afecb367f032d93F642f64180aa3 "increment()" \
+  --rpc-url http://localhost:8547 \
+  --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+```
+
+```bash
+cast call 0x5FbDB2315678afecb367f032d93F642f64180aa3 "count()" --rpc-url http://localhost:8547
+```
+
+</Steps>
+
+You've now deployed and interacted with a smart contract on your local Nitro devnet.
