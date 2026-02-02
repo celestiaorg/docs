@@ -42,11 +42,38 @@ cast chain-id --rpc-url http://localhost:8547
 # 42069
 ```
 
-This starts:
-- **Anvil** - L1 chain with pre-deployed Nitro contracts (RollupCreator, Bridge, SequencerInbox, Outbox, etc.)
-- **Nitro Sequencer** - L2 execution and sequencing (nitro-node)
-- **Localestia** - Mock Celestia DA layer
-- **POPSigner-Lite** - Local signing service
+This starts the following services:
+
+#### Services and Ports
+
+| Service | Port | Description |
+|---------|------|-------------|
+| **Anvil** | `8545` (RPC) | L1 chain with pre-deployed Nitro contracts including:<br/>• `RollupCreator` - Factory for creating new rollups<br/>• `Bridge` - Cross-chain asset bridge<br/>• `SequencerInbox` - Receives L2 transactions<br/>• `Outbox` - Processes L2→L1 messages<br/>• Challenge manager & one-step provers for fraud proofs |
+| **Nitro Sequencer** | `8547` (RPC) | L2 execution and sequencing node (nitro-node) that:<br/>• Processes transactions<br/>• Produces blocks<br/>• Manages state transitions<br/>• Handles deposits and withdrawals |
+| **Localestia** | `26658` (Bridge API) | Mock Celestia DA layer providing:<br/>• Data availability for L2 batches<br/>• Blob storage and retrieval<br/>• DA attestations |
+| **POPSigner-Lite** | Internal | Local signing service that:<br/>• Signs batch data for Celestia DA<br/>• Manages validator keys<br/>• Provides attestation signatures |
+
+#### Default Funded Accounts (L1 Only)
+
+<Callout type="warning">
+These are standard Anvil test accounts with publicly known private keys. **NEVER use these on mainnet or testnets!** They are only for local development.
+</Callout>
+
+The following accounts are pre-funded with 10,000 ETH on **L1 only**. You must bridge funds to L2 as shown in the examples below:
+
+| Account | Address | Private Key (TEST ONLY) |
+|---------|---------|-------------------------|
+| Account #0 | `0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266` | `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80` |
+| Account #1 | `0x70997970C51812dc3A010C7d01b50e0d17dc79C8` | `0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d` |
+| Account #2 | `0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC` | `0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a` |
+| Account #3 | `0x90F79bf6EB2c4f870365E785982E1f101E93b906` | `0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6` |
+| Account #4 | `0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65` | `0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a` |
+
+<Callout type="info">
+To use these accounts on L2, you must first bridge funds from L1 using the deposit function as shown in the "Fund your L2 account" step below.
+</Callout>
+
+These are the standard Anvil development accounts and are safe to use in documentation since they're universally known test keys.
 
 </Steps>
 
