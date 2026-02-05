@@ -12,6 +12,7 @@ Welcome to the official documentation repository for [Celestia](https://celestia
 - Live site: https://docs.celestia.org
 - LLMs.txt: https://docs.celestia.org/llms.txt
 - Built with: Next.js + Nextra (MDX), exported as a static site.
+- **LLM-ready**: Add `.md` to any URL to get clean markdown (e.g., `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`)
 - DeepWikis for @celestiaorg:
     - https://deepwiki.com/celestiaorg/docs
     - https://deepwiki.com/celestiaorg/cips
@@ -60,7 +61,11 @@ BASE=/docs-preview/new_docs/ NEXT_PUBLIC_BASE_PATH=/docs-preview/new_docs yarn b
 
 - `yarn lint`: lint the codebase (also runs on `git push` via hook)
 - `yarn check-links -- --all`: validate internal + external links (see `scripts/check-links.mjs --help`)
-- `yarn generate:llms`: generate `public/llms.txt` (ignored by git) for ingestion tools/LLMs
+- `yarn generate:llms`: generate LLM-ready markdown files from MDX sources
+  - Creates clean `.md` versions of all documentation pages
+  - Removes JSX components, imports, and MDX-specific syntax
+  - Automatically runs during build process (`yarn build`)
+  - Access any doc page as markdown by adding `.md` to the URL
 
 ## Contribution guidelines
 

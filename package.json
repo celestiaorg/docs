@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "postbuild": "pagefind --site out --output-path out/_pagefind",
+    "postbuild": "npm run generate:llms && pagefind --site out --output-path out/_pagefind",
     "start": "serve out",
     "lint": "eslint",
     "prepare": "simple-git-hooks",
