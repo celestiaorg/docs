@@ -8,6 +8,10 @@ import { Callout, Steps, Tabs } from 'nextra/components'
 
 This tutorial will go over the steps to set up your Celestia bridge node.
 
+<Callout type="warning">
+**Breaking Change**: Starting from celestia-node [TODO: Add version from PR #4768], bridge nodes now have pruning enabled by default. This means they will only store a limited amount of historical data. To run an archival bridge node that stores all historical data from genesis, you must use the `--archival` flag. See the [pruning vs archival modes](#pruning-vs-archival-modes) section for details.
+</Callout>
+
 Bridge nodes connect the data availability layer and the consensus layer.
 
 ## Overview of bridge nodes
@@ -42,7 +46,42 @@ From an implementation perspective, Bridge nodes run two separate processes:
 
    - **celestia-node** augments the above with a separate libp2p network that
      serves data availability sampling requests. The team sometimes refers to
-     this as the “halo” network.
+     this as the "halo" network.
+
+## Pruning vs archival modes
+
+Bridge nodes can operate in two modes:
+
+### Pruned mode (default)
+- **Default behavior**: Bridge nodes now prune old data automatically
+- Stores only recent blocks within the availability window
+- Significantly reduces storage requirements
+- Can sync from a recent height or hash instead of genesis
+- Suitable for most use cases
+
+### Archival mode
+- Stores all historical data from genesis
+- Requires the `--archival` flag to enable
+- Much higher storage requirements (see [hardware requirements](/operate/getting-started/hardware-requirements))
+- Necessary for applications requiring full historical data access
+- Required if you need to serve data to light nodes for blocks outside the availability window
+
+<Callout type="info">
+**Routing Exchange Optimization**: Bridge nodes automatically optimize header synchronization using a routing exchange mechanism. Requests within the data availability window are routed to the core exchange for complete blocks, while requests outside the window are routed to the P2P exchange for headers only. This optimization happens automatically without any configuration needed.
+</Callout>
+
+### Choosing between modes
+
+Use **pruned mode** (default) if you:
+- Want lower storage requirements
+- Only need recent blockchain data
+- Are running a standard bridge node for the network
+
+Use **archival mode** (`--archival` flag) if you:
+- Need access to full historical data
+- Are running infrastructure that requires all blocks from genesis
+- Want to serve data for blocks outside the availability window
+- Are running a bridge node on a private network without proper genesis hash configuration
 
 ## Hardware requirements
 
@@ -74,6 +113,12 @@ Run the following:
 celestia bridge init --core.ip <URI> --core.port <port>
 ```
 
+To initialize an archival bridge node that stores all historical data:
+
+```sh
+celestia bridge init --core.ip <URI> --core.port <port> --archival
+```
+
 After v0.21.5, the `--core.port` must be specified.
 In most cases, it is port 9090 by default.
 
@@ -98,19 +143,33 @@ Here is an example of initializing the bridge node:
 <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
   <Tabs.Tab>
     ```sh
+    # Pruned mode (default)
     celestia bridge init --core.ip <URI> --core.port <port>
+
+    # Archival mode
+    celestia bridge init --core.ip <URI> --core.port <port> --archival
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```sh
+    # Pruned mode (default)
     celestia bridge init --core.ip <URI> --core.port <port> \
         --p2p.network mocha
+
+    # Archival mode
+    celestia bridge init --core.ip <URI> --core.port <port> \
+        --p2p.network mocha --archival
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```sh
+    # Pruned mode (default)
     celestia bridge init --core.ip <URI> --core.port <port> \
         --p2p.network arabica
+
+    # Archival mode
+    celestia bridge init --core.ip <URI> --core.port <port> \
+        --p2p.network arabica --archival
     ```
   </Tabs.Tab>
 </Tabs>
@@ -121,20 +180,33 @@ Here is an example of initializing the bridge node:
 Start the bridge node with a connection to a consensus node's gRPC endpoint, which is usually exposed on port 9090:
 
 ```sh
+# Pruned mode (default)
 celestia bridge start --core.ip <URI> --core.port <port>
+
+# Archival mode
+celestia bridge start --core.ip <URI> --core.port <port> --archival
 ```
 
 Here is an example of starting the bridge node on Mocha:
 
 ```sh
+# Pruned mode (default)
 celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
+
+# Archival mode
+celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha --archival
 ```
 
 And on Arabica:
 
 ```sh
+# Pruned mode (default)
 celestia bridge start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
   --p2p.network arabica --core.port 9090
+
+# Archival mode
+celestia bridge start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
+  --p2p.network arabica --core.port 9090 --archival
 ```
 <Callout type="info">
 If you're connecting your bridge node to a localhost consensus node (`--core.ip localhost` or `--core.ip 127.0.0.1`), ensure that gRPC is enabled in your consensus node's `app.toml` configuration file. Look for the `[grpc]` section and verify that `enable = true` is set:
@@ -223,3 +295,43 @@ You have successfully set up a bridge node that is syncing with the network.
 
 Follow the
 [tutorial on how to set up your DA node to use on-fly compression with ZFS](/operate/data-availability/storage-optimization).
+
+## Migration guide for existing bridge nodes
+
+If you're running an existing bridge node and upgrading to celestia-node [TODO: Add version from PR #4768] or later, you need to be aware of the pruning changes:
+
+### For nodes that need full historical data
+
+If your bridge node needs to maintain full historical data:
+
+1. Stop your existing bridge node
+2. Add the `--archival` flag to your start command
+3. Restart your node
+
+Example:
+```sh
+# Old command
+celestia bridge start --core.ip <URI> --core.port <port>
+
+# New command with archival mode
+celestia bridge start --core.ip <URI> --core.port <port> --archival
+```
+
+### For nodes that can use pruned mode
+
+If your bridge node doesn't need full historical data:
+
+1. Your node will automatically start pruning old data after the upgrade
+2. No action required - this is now the default behavior
+3. Storage usage will gradually decrease as old data is pruned
+
+### For private networks
+
+<Callout type="warning">
+**Important for Private Networks**: If you're running a bridge node on a private network without the `--archival` flag, you must provide the genesis hash. Without it, the node will fail to start. See [custom networks documentation](/operate/data-availability/custom-networks) for details on configuring the genesis hash.
+</Callout>
+
+Options for private network operators:
+1. **Use archival mode**: Add `--archival` to maintain existing behavior
+2. **Configure genesis hash**: Set up `CELESTIA_CUSTOM` environment variable with your network's genesis hash
+3. **Use SyncFromHeight or SyncFromHash**: Configure the node to sync from a specific height or hash

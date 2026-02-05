@@ -66,3 +66,25 @@ in config file.
 
 Any Celestia bridge node can be a trusted peer for the light one. However,
 the light node by design can not be a trusted peer for another light node.
+
+#### Pruning Configuration (Bridge Nodes)
+
+Starting from [TODO: Add version from PR #4768], bridge nodes support pruning configuration:
+
+- `PruningWindow`: Defines how many blocks to keep (0 = keep all, default for non-archival nodes)
+- `SyncFromHeight`: Specifies a specific height to start syncing from (for pruned nodes)
+- `SyncFromHash`: Specifies a specific block hash to start syncing from (for pruned nodes)
+- `--archival` flag: Disables pruning entirely and syncs all data from genesis
+
+Example configuration for a pruned bridge node:
+```toml
+[Services]
+TrustedHash = "580B3DFF8A7C716968161D91116A1E171F486298D582874E93714E489C9E6E88"
+SyncFromHeight = 1000000  # Start from block 1,000,000
+```
+
+For archival bridge nodes, use the `--archival` flag when initializing and starting:
+```bash
+celestia bridge init --core.ip <URI> --core.port <port> --archival
+celestia bridge start --core.ip <URI> --core.port <port> --archival
+```
