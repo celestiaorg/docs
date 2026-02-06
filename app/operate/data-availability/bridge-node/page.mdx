@@ -298,40 +298,4 @@ Follow the
 
 ## Migration guide for existing bridge nodes
 
-If you're running an existing bridge node and upgrading to celestia-node [TODO: Add version from PR #4768] or later, you need to be aware of the pruning changes:
-
-### For nodes that need full historical data
-
-If your bridge node needs to maintain full historical data:
-
-1. Stop your existing bridge node
-2. Add the `--archival` flag to your start command
-3. Restart your node
-
-Example:
-```sh
-# Old command
-celestia bridge start --core.ip <URI> --core.port <port>
-
-# New command with archival mode
-celestia bridge start --core.ip <URI> --core.port <port> --archival
-```
-
-### For nodes that can use pruned mode
-
-If your bridge node doesn't need full historical data:
-
-1. Your node will automatically start pruning old data after the upgrade
-2. No action required - this is now the default behavior
-3. Storage usage will gradually decrease as old data is pruned
-
-### For private networks
-
-<Callout type="warning">
-**Important for Private Networks**: If you're running a bridge node on a private network without the `--archival` flag, you must provide the genesis hash. Without it, the node will fail to start. See [custom networks documentation](/operate/data-availability/custom-networks) for details on configuring the genesis hash.
-</Callout>
-
-Options for private network operators:
-1. **Use archival mode**: Add `--archival` to maintain existing behavior
-2. **Configure genesis hash**: Set up `CELESTIA_CUSTOM` environment variable with your network's genesis hash
-3. **Use SyncFromHeight or SyncFromHash**: Configure the node to sync from a specific height or hash
+[TODO: Add migration guide once PR #4768 is released with specific version number and finalized migration instructions]
