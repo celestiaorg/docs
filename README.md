@@ -19,6 +19,30 @@ Welcome to the official documentation repository for [Celestia](https://celestia
     - https://deepwiki.com/celestiaorg/celestia-app
     - https://deepwiki.com/celestiaorg/celestia-node
 
+## LLM and agent support
+
+### Markdown export for AI agents
+
+The documentation site provides clean markdown exports specifically designed for LLMs and AI agents. This feature enables:
+
+- **Direct markdown access**: Append `.md` to any documentation URL to get a clean, LLM-friendly markdown version
+  - Example: `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`
+- **Clean content**: Automatically removes JSX components, imports, and MDX-specific syntax
+- **Variable replacement**: Replaces template variables (like version numbers) with actual values
+- **Automated generation**: Markdown files are automatically generated during the build process
+
+This makes it easy for:
+- AI agents to consume documentation content
+- LLMs to access clean, structured information
+- Automated tools to parse documentation
+- Building knowledge bases and training datasets
+
+The markdown export system:
+- Processes all `.mdx` files in the `app/` directory
+- Strips out React components and MDX-specific elements
+- Preserves content structure and formatting
+- Replaces variables from `constants/*.json` files with their actual values
+
 ## Local development
 
 Prereqs: Node.js 20+ and Yarn.
