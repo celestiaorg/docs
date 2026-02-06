@@ -19,7 +19,7 @@ Welcome to the official documentation repository for [Celestia](https://celestia
 Celestia Documentation Access:
 - Clean markdown: Add .md to any URL (e.g., https://docs.celestia.org/learn/TIA/overview.md)
 - LLMs.txt: https://docs.celestia.org/llms.txt
-- DeepWikis: https://deepwiki.com/celestiaorg/docs
+- DeepWikis: https://deepwiki.com/celestiaorg/docs, https://deepwiki.com/celestiaorg/cips, https://deepwiki.com/celestiaorg/celestia-app, https://deepwiki.com/celestiaorg/celestia-node
 ```
 
 ### Resources
