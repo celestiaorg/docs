@@ -107,17 +107,20 @@ Follow the tutorial for [installing `celestia-node`](/operate/data-availability/
 
 ### Initialize the bridge node
 
-Run the following:
+Choose between pruned mode (default) or archival mode:
 
-```sh
-celestia bridge init --core.ip <URI> --core.port <port>
-```
-
-To initialize an archival bridge node that stores all historical data:
-
-```sh
-celestia bridge init --core.ip <URI> --core.port <port> --archival
-```
+<Tabs items={['Pruned (default)', 'Archival']}>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge init --core.ip <URI> --core.port <port>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge init --core.ip <URI> --core.port <port> --archival
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 After v0.21.5, the `--core.port` must be specified.
 In most cases, it is port 9090 by default.
@@ -137,40 +140,54 @@ Connecting to a consensus node endpoint (flag: `--core.ip string`)
 provides the light node with access to state queries (reading balances, submitting
 transactions, and other state-related queries).
 
-Here is an example of initializing the bridge node:
-
+Here is an example of initializing the bridge node on different networks:
 
 <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
   <Tabs.Tab>
-    ```sh
-    # Pruned mode (default)
-    celestia bridge init --core.ip <URI> --core.port <port>
-
-    # Archival mode
-    celestia bridge init --core.ip <URI> --core.port <port> --archival
-    ```
+    <Tabs items={['Pruned (default)', 'Archival']}>
+      <Tabs.Tab>
+        ```sh
+        celestia bridge init --core.ip <URI> --core.port <port>
+        ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+        ```sh
+        celestia bridge init --core.ip <URI> --core.port <port> --archival
+        ```
+      </Tabs.Tab>
+    </Tabs>
   </Tabs.Tab>
   <Tabs.Tab>
-    ```sh
-    # Pruned mode (default)
-    celestia bridge init --core.ip <URI> --core.port <port> \
-        --p2p.network mocha
-
-    # Archival mode
-    celestia bridge init --core.ip <URI> --core.port <port> \
-        --p2p.network mocha --archival
-    ```
+    <Tabs items={['Pruned (default)', 'Archival']}>
+      <Tabs.Tab>
+        ```sh
+        celestia bridge init --core.ip <URI> --core.port <port> \
+            --p2p.network mocha
+        ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+        ```sh
+        celestia bridge init --core.ip <URI> --core.port <port> \
+            --p2p.network mocha --archival
+        ```
+      </Tabs.Tab>
+    </Tabs>
   </Tabs.Tab>
   <Tabs.Tab>
-    ```sh
-    # Pruned mode (default)
-    celestia bridge init --core.ip <URI> --core.port <port> \
-        --p2p.network arabica
-
-    # Archival mode
-    celestia bridge init --core.ip <URI> --core.port <port> \
-        --p2p.network arabica --archival
-    ```
+    <Tabs items={['Pruned (default)', 'Archival']}>
+      <Tabs.Tab>
+        ```sh
+        celestia bridge init --core.ip <URI> --core.port <port> \
+            --p2p.network arabica
+        ```
+      </Tabs.Tab>
+      <Tabs.Tab>
+        ```sh
+        celestia bridge init --core.ip <URI> --core.port <port> \
+            --p2p.network arabica --archival
+        ```
+      </Tabs.Tab>
+    </Tabs>
   </Tabs.Tab>
 </Tabs>
 
@@ -179,35 +196,50 @@ Here is an example of initializing the bridge node:
 
 Start the bridge node with a connection to a consensus node's gRPC endpoint, which is usually exposed on port 9090:
 
-```sh
-# Pruned mode (default)
-celestia bridge start --core.ip <URI> --core.port <port>
+<Tabs items={['Pruned (default)', 'Archival']}>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --core.port <port>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --core.port <port> --archival
+    ```
+  </Tabs.Tab>
+</Tabs>
 
-# Archival mode
-celestia bridge start --core.ip <URI> --core.port <port> --archival
-```
+Here are examples of starting the bridge node on specific networks:
 
-Here is an example of starting the bridge node on Mocha:
+**Mocha:**
+<Tabs items={['Pruned (default)', 'Archival']}>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha --archival
+    ```
+  </Tabs.Tab>
+</Tabs>
 
-```sh
-# Pruned mode (default)
-celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
-
-# Archival mode
-celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha --archival
-```
-
-And on Arabica:
-
-```sh
-# Pruned mode (default)
-celestia bridge start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
-  --p2p.network arabica --core.port 9090
-
-# Archival mode
-celestia bridge start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
-  --p2p.network arabica --core.port 9090 --archival
-```
+**Arabica:**
+<Tabs items={['Pruned (default)', 'Archival']}>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
+      --p2p.network arabica --core.port 9090
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
+      --p2p.network arabica --core.port 9090 --archival
+    ```
+  </Tabs.Tab>
+</Tabs>
 <Callout type="info">
 If you're connecting your bridge node to a localhost consensus node (`--core.ip localhost` or `--core.ip 127.0.0.1`), ensure that gRPC is enabled in your consensus node's `app.toml` configuration file. Look for the `[grpc]` section and verify that `enable = true` is set:
 </Callout>
