@@ -71,7 +71,7 @@ the light node by design can not be a trusted peer for another light node.
 
 Starting from [TODO: Add version from PR #4768], bridge nodes support pruning configuration:
 
-- `PruningWindow`: Defines how many blocks to keep (0 = keep all, default for non-archival nodes)
+- `PruningWindow`: Defines how many blocks to keep in local storage. Set to 0 to disable pruning and keep all blocks (archival mode). Non-archival nodes typically use a default window like 30 days of blocks.
 - `SyncFromHeight`: Specifies a specific height to start syncing from (for pruned nodes)
 - `SyncFromHash`: Specifies a specific block hash to start syncing from (for pruned nodes)
 - `--archival` flag: Disables pruning entirely and syncs all data from genesis
