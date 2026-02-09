@@ -13,17 +13,22 @@ import { Callout, Steps } from "nextra/components";
 </Callout>
 
 <Steps>
+### Clone Popsigner
+
+```bash
+git clone https://github.com/celestiaorg/popsigner.git
+```
 ### Build the bundle generator (coming soon to Popkins UI)
 
 ```bash
-cd control-plane/cmd/pop-deployer
+cd popsigner/control-plane/cmd/pop-deployer
 go build -o pop-deployer .
 ```
 
 ### Generate the pre-deployed bundle (coming soon to Popkins UI)
 
 ```bash
-./pop-deployer
+./pop-deployer --stack opstack
 ```
 
 ### Extract and run
