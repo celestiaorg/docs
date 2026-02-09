@@ -66,12 +66,10 @@ Create a KMS key and alias:
 KEY_ID=$(aws --endpoint-url=http://localhost:4566 kms create-key \
   --key-spec ECC_SECG_P256K1 \
   --key-usage SIGN_VERIFY \
-  --query 'KeyMetadata.KeyId' \
-  --output text)
+  --query 'KeyMetadata.KeyId' --output text)
 
 aws --endpoint-url=http://localhost:4566 kms create-alias \
-  --alias-name alias/op-alt-da/celestia_key \
-  --target-key-id $KEY_ID
+  --alias-name alias/op-alt-da/celestia_key --target-key-id $KEY_ID
 ```
 
 ## Configure op-alt-da
@@ -129,8 +127,7 @@ aws --endpoint-url=http://localhost:4566 kms create-alias \
    ```bash
    curl -s -X POST http://127.0.0.1:3100/put \
      -H "Content-Type: application/octet-stream" \
-     -d "hello celestia" \
-     -o /dev/null
+     -d "hello celestia" -o /dev/null
    ```
 
    The first request will fail because the account has no funds. Check the server logs for the error message which reveals your Celestia address:
@@ -148,8 +145,7 @@ aws --endpoint-url=http://localhost:4566 kms create-alias \
    ```bash
    curl -s -X POST http://127.0.0.1:3100/put \
      -H "Content-Type: application/octet-stream" \
-     -d "hello celestia" \
-     -o /dev/null
+     -d "hello celestia" -o /dev/null
    ```
 
    A successful POST shows in the server logs:
@@ -191,7 +187,7 @@ For production AWS KMS usage:
 
 1. Create a KMS keypair in AWS with key spec `ECC_SECG_P256K1` and key usage `SIGN_VERIFY`.
 
-2. Create an alias for your key (e.g., `alias/op-alt-da/my_celes_key`). The alias can be any name you choose.
+2. Create an alias for your key (e.g., `alias/op-alt-da/my_celes_key`). Per AWS requirements, the alias name must start with `alias/`.
 
 3. Configure your IAM policy with the minimum required permissions:
 
