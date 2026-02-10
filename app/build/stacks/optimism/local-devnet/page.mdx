@@ -2,15 +2,87 @@
 
 This guide will teach you how to spin up a complete local OP Stack rollup with Celestia DA for testing.
 
-
 **What `pop-deployer` does:** It spins up a temporary Anvil instance, deploys all OP Stack contracts (`SystemConfig`, `L1CrossDomainMessenger`, `OptimismPortal`, etc.), captures the chain state to a snapshot, then packages everything into a tarball. When you run the bundle, Anvil loads the pre-deployed state instantly - no waiting for contract deployments.
 
+import { Steps } from "nextra/components";
 
-import { Callout, Steps } from "nextra/components";
+## Prerequisites
 
-<Callout type="info">
-    The "Build the bundle generator" and "Generate the pre-deployed bundle" steps will soon be available through the Popkins UI.
-</Callout>
+See [overview of Popsigner and Popkins](/build/stacks/optimism/popkins-popsigner#overview).
+
+## Option 1: In the UI
+
+<Steps>
+
+### Log in to Popkins
+
+Go to https://popkins.popsigner.com and login.
+
+### Set up the local chain
+
+<Steps>
+
+#### New chain
+
+Click "+ NEW CHAIN" in the top right of the Popkins UI.
+
+Select "POPKINS BUNDLE" and click continue:
+
+![1.deploy-new-chain](/img/build/stacks/optimism/popkins-popsigner/1.deploy-new-chain.png)
+
+#### Pick stack
+
+Then select "OP STACK", put a chain name and chain ID into the fields, and click "🚀 CREATE BUNDLE".
+
+![2.pick_op](/img/build/stacks/optimism/popkins-popsigner/2.pick_op.png)
+
+#### Wait for bundle generation
+
+Wait for the bundle to be generated:
+
+![3.wait-for-deploy.png](/img/build/stacks/optimism/popkins-popsigner/3.wait-for-deploy.png)
+
+#### Review details
+After it has generated, review the details:
+
+![4.download-bundle](/img/build/stacks/optimism/popkins-popsigner/4.download-bundle.png)
+
+![4.1.look-at-details](/img/build/stacks/optimism/popkins-popsigner/4.1.look-at-details.png)
+
+</Steps>
+
+### Download the bundle
+
+Download the bundle by clicking the "DOWNLOAD BUNDLE" button.
+
+![5.download](/img/build/stacks/optimism/popkins-popsigner/5.download.png)
+
+### Extract the tarball
+
+Extract the tarball by running the following command:
+
+```bash
+unzip my-local-devnet-pop-bundle-artifacts.tar.gz
+cd my-local-devnet-pop-bundle-artifacts
+```
+
+Set up the `.env`:
+
+```bash
+cp .env.example .env
+```
+
+### Run the bundle
+
+Run the bundle by running the following command:
+
+```bash
+docker compose up -d
+```
+
+</Steps>
+
+## Option 2: In the terminal
 
 <Steps>
 ### Clone Popsigner
@@ -19,14 +91,14 @@ import { Callout, Steps } from "nextra/components";
 git clone https://github.com/celestiaorg/popsigner.git
 ```
 
-### Build the bundle generator (coming soon to Popkins UI)
+### Build the bundle generator
 
 ```bash
 cd popsigner/control-plane/cmd/pop-deployer
 go build -o pop-deployer .
 ```
 
-### Generate the pre-deployed bundle (coming soon to Popkins UI)
+### Generate the pre-deployed bundle
 
 ```bash
 ./pop-deployer --stack opstack
