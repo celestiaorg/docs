@@ -1,0 +1,393 @@
+# How to deploy a Nitro rollup with Docker, Popsigner, and Popkins
+
+## Overview
+
+Arbitrum Nitro allows you to run Orbit rollups that post batch data to Celestia instead of Ethereum by using a [Celestia DAS server](/build/stacks/nitro/nitro-das-server/) sidecar. In this tutorial, you'll learn how to run a Nitro rollup on Sepolia using:
+
+- **[Popsigner](https://github.com/celestiaorg/popsigner)** for key management. Popsigner is a great way to create, manage, and revoke keys, or even export them if you'd like.
+- **[Popkins](https://popkins.popsigner.com/)** for deploying contracts and chain setup. Popkins deploys the Nitro infrastructure contracts on Sepolia (RollupCreator, Bridge, SequencerInbox, etc.) and gives you the bundle to run your rollup locally.
+- **Docker** for running your rollup bundle (two services: the Nitro sequencer and the Celestia DAS server).
+
+In order to get started, you will need a basic understanding of the key roles that make up this stack:
+
+1. **batch poster**: Posts batch commitments to the SequencerInbox on L1, while the actual batch data is sent to Celestia via the DAS server. Needs ongoing ETH on Sepolia.
+2. **staker/validator**: Stakes on L2 state assertions using the BOLD protocol. Needs WETH on Sepolia.
+3. **celestia**: The signing key used by the Celestia DAS server to submit blobs to Celestia. Needs TIA on Mocha testnet.
+
+The batch poster and staker both sign L1 transactions via Popsigner using **mTLS certificates** (included in the bundle). The Celestia key signs blob transactions via a separate Popsigner **API key**. This means you'll have two different signing methods but potentially three different keys on Popsigner. With these combined, you will be able to run a Nitro rollup that posts to Celestia for data availability! Let's get started.
+
+## Environment setup
+
+This tutorial has been tested on MacOS and Linux (Ubuntu 24.04).
+
+Before you run Nitro, you'll need:
+
+1. Docker installed and running locally.
+2. An Ethereum Sepolia RPC endpoint (WSS recommended) from a provider like [Quicknode](https://www.quicknode.com/), [Alchemy](https://www.alchemy.com/), or [Infura](https://www.infura.io/)
+3. An Ethereum Sepolia Beacon Chain API endpoint (for EIP-4844 blob data). A public option is `https://ethereum-sepolia-beacon-api.publicnode.com`
+4. A Celestia Mocha testnet RPC and gRPC endpoint from [Quicknode](https://www.quicknode.com/) for posting and retrieving blobs
+
+That's it for now! Let's get everything else set up.
+
+import { Callout, Steps } from "nextra/components";
+
+<Steps>
+
+## Setting up keys on Popsigner
+
+First, you'll set up the keys for the batch poster, staker, and Celestia. This will allow us to deploy the rollup through Popkins and then start it locally, posting blobs to Celestia.
+
+1. Go to [https://popsigner.com/](https://popsigner.com/) and make an account by clicking "Deploy":
+
+    ![popsigner1](/img/build/stacks/optimism/popkins-popsigner/popsigner1.png)
+
+2. Once you're logged in, click "CREATE_KEY" in the top right:
+
+    ![popsigner2](/img/build/stacks/optimism/popkins-popsigner/popsigner2.png)
+
+3. Make 3 keys, all universal for simplicity:
+    1. deployer-1
+    2. batcher-1
+    3. validator-1
+
+    ![popsigner3](/img/build/stacks/optimism/popkins-popsigner/popsigner3.png)
+
+## Funding keys
+
+Now that you've set the keys up, you need to fund them accordingly.
+
+1. Find the addresses in your dashboard, for Ethereum Sepolia keys, copy the 0x address:
+
+    ![popsigner4](/img/build/stacks/optimism/popkins-popsigner/popsigner4.png)
+
+    and click "VIEW" to see the Celestia address:
+
+    ![popsigner5](/img/build/stacks/optimism/popkins-popsigner/popsigner5.png)
+2. Deployer key: `deployer-1`
+    1. Fund the `deployer-1` with at least 0.5 sepoliaETH
+3. Batcher key: `batcher-1`
+    1. Fund with at least 0.5 sepoliaETH
+4. Validator key: `validator-1`
+    1. Fund with at least **0.2 sepoliaETH** if you plan to run the validator/staker.
+    
+    <Callout type="warning">
+    BOLD requires WETH (not native ETH) for staking. The sequencer will automatically call `WETH.deposit()` with 0.1 ETH — if your staker only has exactly 0.1 ETH, there won't be enough left for gas and it will fail with `insufficient funds for transfer`.
+    </Callout>
+
+4. Celestia key:
+    1. Here's an example address: `celestia1su2l6v5a0cj6yg05gp9cuvfen74t8u8rvck836`
+    2. Fund the `celestia-1` address with 10 Mocha TIA from the [faucet](https://celenium.io/faucet)
+
+## Setting up deployment on Popkins
+
+Next, you're ready to sign in to [Popkins](https://popkins.popsigner.com/deployments) and begin your first rollup deployment with a Nitro chain.
+
+1. Click "+ NEW CHAIN" button in the top right corner and select Arbitrum Nitro as the stack.
+
+![pick-nitro](/img/build/stacks/nitro/popkins-popsigner/1.pick-nitro.png)
+
+2. Set up your config for the new chain! Pick a rollup name and ID that you want to use. This is where you'll also put in the Ethereum Sepolia RPC URL from the environment setup.
+
+![chain-info](/img/build/stacks/nitro/popkins-popsigner/2.chain-info.png)
+
+3. Click "CONTINUE", then assign keys accordingly:
+    1. Deployer key: `deployer-1`
+    2. Batch poster key: `batcher-1`
+    3. Validator key: `validator-1`
+    4. You'll set the Celestia key up later in the `.env` and `celestia-config.toml`
+
+![pick-keys](/img/build/stacks/nitro/popkins-popsigner/3.pick-keys.png)
+
+    Then click "CONTINUE" again.
+
+4. Once you've set up the config, double-check the values before proceeding! Make sure you have sepoliaETH in the batcher key and 10 mochaTIA in your Celestia account.
+    1. Click "🚀 DEPLOY CHAIN"
+
+![4.deploy-chain](/img/build/stacks/nitro/popkins-popsigner/4.deploy-chain.png)
+
+5. Keep an eye out on the process as it completes. Once it's finished, you will be able to download the config to run your rollup with Docker compose.
+
+![5.download-bundle](/img/build/stacks/nitro/popkins-popsigner/5.download-bundle.png)
+
+6. Download the bundle by clicking "DOWNLOAD BUNDLE":
+
+    Then extract:
+
+    ```bash
+    unzip YOUR-NITRO-BUNDLE-NAME.zip
+    ```
+
+## Running locally with Docker
+
+Now that you've set the rollup up by deploying contracts and downloading the artifacts, you're ready to run it on your own and start producing blocks! Let's start by understanding the bundle and making some config changes.
+
+### What's in the bundle
+
+```
+my-nitro-rollup-v7-nitro-bundle/
+├── config/
+│   ├── chain-info.json          # Chain configuration (from SDK)
+│   ├── core-contracts.json      # Deployed contract addresses (rollup, bridge, inbox, etc.)
+│   ├── node-config.json         # Original node config (reference only)
+│   └── celestia-config.toml     # Celestia DAS server config
+├── certs/                       # PopSigner mTLS certificates (auto-generated during deployment)
+│   ├── client.crt
+│   ├── client.key
+│   └── ca.crt
+├── docker-compose.yaml          # Main Docker Compose configuration
+├── .env.example                 # Environment template
+└── README.md
+```
+
+### Architecture
+
+The bundle uses a **ClientTX architecture** — no local Celestia node required. The two Docker services connect directly to remote Celestia infrastructure:
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                         Docker Compose                           │
+│                                                                  │
+│  ┌─────────────────┐              ┌─────────────────────┐        │
+│  │  Nitro Sequencer │  ─────────► │  Celestia DAS Server │       │
+│  │  (nitro-node)    │  daprovider │  (nitro-das-celestia)│       │
+│  │                  │  RPC        │  ClientTX            │       │
+│  └────────┬─────────┘              └──────────┬──────────┘       │
+│           │                                   │                  │
+└───────────┼───────────────────────────────────┼──────────────────┘
+            │                                   │
+            │ L1 RPC                            │ gRPC (write) + JSON-RPC (read)
+            ▼                                   ▼
+    ┌───────────────┐               ┌──────────────────────────┐
+    │   Sepolia     │               │   Celestia Mocha Testnet │
+    │   (L1)        │◄───────────── │  - Consensus (gRPC)      │
+    │               │  Blobstream   │   - DA Bridge (RPC)      │
+    │  Blobstream X │               └──────────────────────────┘
+    │  Contract     │
+    └───────────────┘
+```
+
+- **Writes (blob submission)**: The Celestia DAS server sends blobs via direct gRPC to Celestia consensus nodes, signed remotely by PopSigner.
+- **Reads (blob retrieval)**: The Celestia DAS server reads blobs via JSON-RPC from Celestia DA Bridge nodes.
+- **L1 transactions**: The Nitro sequencer posts batch commitments and staker assertions to Sepolia, signed remotely by PopSigner via mTLS.
+- **Startup order**: The Nitro sequencer waits for the Celestia DAS server's healthcheck to pass before starting.
+
+### Two PopSigner keys explained
+
+This setup uses **two separate PopSigner keys** with different authentication methods:
+
+| | L1 (Sepolia) PopSigner | Celestia PopSigner |
+|---|---|---|
+| **Used by** | Nitro batch poster and staker/validator | Celestia DAS server |
+| **Purpose** | Signing L1 transactions (batch submissions, staking) | Signing Celestia blob transactions |
+| **Auth method** | mTLS certificates (`./certs/`) | API key + Key ID |
+| **Config** | `POPSIGNER_MTLS_URL` + cert files | `POPSIGNER_CELESTIA_API_KEY` + `POPSIGNER_CELESTIA_KEY_ID` |
+| **Funds needed** | ETH on Sepolia | TIA on Celestia Mocha |
+
+The mTLS certificates in `./certs/` are **auto-generated during deployment** by Popkins — you don't need to create them manually.
+
+### Services and ports
+
+| Service | Port | Description |
+|---------|------|-------------|
+| Nitro Sequencer | `8547` | HTTP RPC |
+| Nitro Sequencer | `8548` | WebSocket RPC |
+| Nitro Sequencer | `9642` | Metrics |
+| Nitro Sequencer | `9644` | Feed (for full nodes to subscribe) |
+| Celestia DAS Server | `9876` | DA Provider RPC (Nitro connects here) |
+| Celestia DAS Server | `6060` | Metrics |
+
+### Set up Popsigner API key
+
+Set up an API key on [Popsigner.com](https://popsigner.com). This is different than creating a key for a blockchain account. Save this for the next step in your clipboard. You'll only be able to see it once, for safe security practice.
+
+![popsigner13](/img/build/stacks/optimism/popkins-popsigner/popsigner13.png)
+
+### Configure `.env`
+
+1. Copy `.env.example` into `.env`:
+
+    ```bash
+    cd my-nitro-rollup-v7-nitro-bundle && cp .env.example .env
+    ```
+
+2. Fill in the **L1 (Sepolia) RPC URL**. WSS is recommended for sequencers (real-time updates, lower latency):
+
+    ```
+    L1_RPC_URL=wss://sepolia.infura.io/ws/v3/YOUR_KEY
+    ```
+
+4. Verify the **batch poster and staker addresses** match your PopSigner keys. These were populated during deployment:
+
+    ```
+    BATCH_POSTER_ADDRESS=0xDB00E7dfd960bD8C497807f07fa161016a4900F3
+    STAKER_ADDRESS=7049e1022a543fd6b7d938c955364b0320285bd7
+    ```
+
+5. Fill in the **Celestia Popsigner credentials**:
+    1. For `POPSIGNER_CELESTIA_API_KEY`, use the API key you created in Step 1:
+
+        ```
+        POPSIGNER_CELESTIA_API_KEY=bbr_live_7Kp3xM9nR2bQ4sL8wXy6Zv1a
+        ```
+
+    2. For `POPSIGNER_CELESTIA_KEY_ID`, go to the Celestia key in Popsigner, click "View", and copy the "KEY_ID":
+
+        ```
+        POPSIGNER_CELESTIA_KEY_ID=7f4a8c21-b9e3-4d6e-ac52-1e8f9d3c7b65
+        ```
+
+6. Verify the **Docker images** are set. The defaults should work out of the box:
+
+    ```
+    NITRO_IMAGE=rg.nl-ams.scw.cloud/banhbao/nitro-node-dev:v3.10.0
+    NITRO_DAS_IMAGE=rg.nl-ams.scw.cloud/banhbao/nitro-das-server:v0.8.2
+    ```
+
+    If you've built Nitro locally from source (`make docker` in the nitro repo), you can swap `NITRO_IMAGE` to your local tag instead (e.g. `nitro-node-dev:latest`).
+
+### Configure `config/celestia-config.toml`
+
+This is the configuration for the Celestia DAS server — the sidecar that translates between Nitro's DA provider protocol and Celestia. You need to fill in the Celestia endpoints and namespace.
+
+1. **Set the namespace**. Celestia namespaces are hex strings. Generate a unique one:
+
+    ```bash
+    export NAMESPACE=$(openssl rand -hex 10) && echo $NAMESPACE
+    ```
+
+    Then update the config:
+
+    ```toml
+    [celestia]
+    namespace_id = "YOUR_GENERATED_NAMESPACE_HEX"
+    ```
+
+2. **Set the reader endpoint** (for reading blobs via JSON-RPC). Use your Quicknode Celestia Mocha endpoint:
+
+    ```toml
+    [celestia.reader]
+    rpc = "https://delicate-sleek-lambo.celestia-mocha.quiknode.pro/8d7f3e5a9b2c4f1e6d8c9a5b7e4f2c1a6d3b9e5f/"
+    auth_token = ""
+    enable_tls = true
+    ```
+
+3. **Set the writer endpoint** (for submitting blobs via gRPC). Use the same Quicknode endpoint, but as gRPC — no `https://`, add port `9090`:
+
+    ```toml
+    [celestia.writer]
+    core_grpc = "delicate-sleek-lambo.celestia-mocha.quiknode.pro:9090"
+    core_token = "8d7f3e5a9b2c4f1e6d8c9a5b7e4f2c1a6d3b9e5f"
+    enable_tls = true
+    ```
+
+4. **Set the PopSigner signer credentials**. Open the `[celestia.signer.remote]` section and replace `api_key` and `key_id` with your actual values. Use the API key from Step 1 and the Key ID from your Popsigner dashboard (click "View" on your Celestia key):
+
+    ```toml
+    [celestia.signer.remote]
+    api_key = "bbr_live_YOUR_ACTUAL_API_KEY"
+    key_id = "your-actual-key-id-uuid"
+    ```
+
+5. **Set the validator RPC endpoint**. In the `[celestia.validator]` section, replace `eth_rpc` with your Sepolia RPC URL (the same one from your `.env`):
+
+    ```toml
+    [celestia.validator]
+    eth_rpc = "wss://sepolia.infura.io/ws/v3/YOUR_KEY"
+    ```
+
+    This is used by Blobstream to query data root attestations for fraud proofs.
+
+### Run with Docker
+
+Now you're ready to run this with Docker!
+
+```bash
+docker compose up -d
+```
+
+On Linux, use `docker compose --env-file .env up -d` to load the `.env`.
+
+Check the logs to verify everything is running:
+
+```bash
+docker compose logs -f
+```
+
+You should see the Celestia DAS server start first (it has a healthcheck), followed by the Nitro sequencer connecting to it via the DA provider RPC and beginning to produce blocks.
+
+### Verify it's running
+
+Test the Celestia DAS server:
+
+```bash
+curl -X POST http://localhost:9876 \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"daprovider_getSupportedHeaderBytes","params":[],"id":1}'
+```
+
+Check the chain ID on the sequencer:
+
+```bash
+cast chain-id --rpc-url http://localhost:8547
+```
+
+</Steps>
+
+Congratulations! You're now running your first Nitro rollup with Celestia for DA.
+
+## Blobstream and fraud proofs
+
+[Blobstream](/build/blobstream/) is a bridge that relays Celestia data root attestations to Ethereum. This is critical for validators — it enables fraud proofs for batches posted to Celestia.
+
+Here's how the flow works:
+
+1. **Batch Poster** posts batch data to Celestia via the DAS server, getting back a `BlobPointer`
+2. **Batch Poster** posts the batch commitment to the Sequencer Inbox on L1
+3. **Blobstream** relays Celestia block data roots to the Blobstream X contract on L1
+4. **Validator** (during a fraud proof challenge) calls `GetProof` on the Celestia DAS server
+5. **Celestia DAS server** queries the Blobstream contract for the data root attestation
+6. **Celestia DAS server** returns proof data that can be verified on-chain
+
+The Blobstream X contract address for Sepolia is configured in `celestia-config.toml` under `[celestia.validator]`. You can check the latest deployed addresses in [the Blobstream documentation](/build/blobstream/).
+
+## Troubleshooting
+
+### Check service health
+
+```bash
+docker compose ps
+docker compose logs celestia-das-server
+docker compose logs nitro-sequencer
+```
+
+### Test Celestia DAS server
+
+```bash
+curl -X POST http://localhost:9876 \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"daprovider_getSupportedHeaderBytes","params":[],"id":1}'
+```
+
+### Celestia DAS server fails with "unauthorized: Authentication required"
+
+This usually means the PopSigner credentials in `celestia-config.toml` weren't filled in. Check the `[celestia.signer.remote]` section — if `api_key` or `key_id` still contain placeholder values like `${POPSIGNER_CELESTIA_API_KEY}`, replace them with the **actual values**. TOML does not support environment variable substitution.
+
+### Batch poster not submitting to Celestia
+
+1. Check if Celestia PopSigner key is funded with TIA
+2. Check celestia-das-server logs: `docker compose logs -f celestia-das-server`
+3. Verify Celestia endpoint connectivity in `celestia-config.toml`
+
+### Blobstream proof failures
+
+1. Verify `blobstream_addr` in `celestia-config.toml` is correct for Sepolia
+2. Check that `eth_rpc` in `[celestia.validator]` can reach the parent chain
+3. Blobstream may need time to relay attestations (~1 hour)
+
+### BOLD staker issues
+
+The BOLD protocol requires WETH (not native ETH) for staking. Before starting, ensure your `STAKER_ADDRESS` has:
+1. WETH tokens (wrap ETH via `WETH.deposit()`)
+2. Approved the ChallengeManager contract to spend WETH
+
+The stake amount is ~0.1 ETH equivalent per assertion level.
