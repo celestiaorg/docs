@@ -219,21 +219,21 @@ Set up an API key on [Popsigner.com](https://popsigner.com). This is different t
 4. Verify the **batch poster and staker addresses** match your PopSigner keys. These were populated during deployment:
 
     ```
-    BATCH_POSTER_ADDRESS=0xDB00E7dfd960bD8C497807f07fa161016a4900F3
-    STAKER_ADDRESS=7049e1022a543fd6b7d938c955364b0320285bd7
+    BATCH_POSTER_ADDRESS=0xYOUR_BATCH_POSTER_ADDRESS
+    STAKER_ADDRESS=0xYOUR_STAKER_ADDRESS
     ```
 
 5. Fill in the **Celestia Popsigner credentials**:
     1. For `POPSIGNER_CELESTIA_API_KEY`, use the API key you created in Step 1:
 
         ```
-        POPSIGNER_CELESTIA_API_KEY=bbr_live_7Kp3xM9nR2bQ4sL8wXy6Zv1a
+        POPSIGNER_CELESTIA_API_KEY=bbr_live_YOUR_API_KEY
         ```
 
     2. For `POPSIGNER_CELESTIA_KEY_ID`, go to the Celestia key in Popsigner, click "View", and copy the "KEY_ID":
 
         ```
-        POPSIGNER_CELESTIA_KEY_ID=7f4a8c21-b9e3-4d6e-ac52-1e8f9d3c7b65
+        POPSIGNER_CELESTIA_KEY_ID=YOUR_KEY_ID
         ```
 
 6. Verify the **Docker images** are set. The defaults should work out of the box:
