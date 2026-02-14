@@ -112,10 +112,6 @@ Like previous upgrades, this upgrade will use the in-protocol signaling mechanis
 
 See [parameters for v5](https://celestiaorg.github.io/celestia-app/parameters_v5.html).
 
-### Upcoming Upgrades
-
-> **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
-
 #### Matcha network upgrade
 
 The Matcha network upgrade (v6) includes several important changes defined in [CIP-42](https://cips.celestia.org/cip-042.html).
@@ -136,3 +132,23 @@ Key features include:
 | Mainnet Beta | celestia   | 2025/11/24 12:33:12 UTC | [8662012](https://celenium.io/block/8662012?tab=transactions)     | 7 days       |
 
 See [parameters for v6](https://celestiaorg.github.io/celestia-app/parameters_v6.html).
+
+### Upcoming Upgrades
+
+> **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/main/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
+
+#### Hibiscus network upgrade
+
+The Hibiscus network upgrade (v7) includes several important changes defined in [CIP-47](https://cips.celestia.org/cip-047.html).
+
+Key features include:
+
+- [CIP-44](https://cips.celestia.org/cip-044.html): Adjust Validator Commission Bounds
+- [CIP-45](https://cips.celestia.org/cip-045.html): Forwarding Module
+- [CIP-46](https://cips.celestia.org/cip-046.html): ZK Interchain Security Module
+
+| Network      | Chain ID   | Date and time | Upgrade height                                                        | Delay period |
+| ------------ | ---------- | ------------- | --------------------------------------------------------------------- | ------------ |
+| Arabica      | {constants.arabicaChainId} | 2026/02/14 02:36:26 UTC | [10133989](https://arabica.celenium.io/block/10133989?tab=transactions) | 1 day        |
+| Mocha        | {constants.mochaChainId}    | TBD           | TBD                                                                   | 2 days       |
+| Mainnet Beta | celestia   | TBD           | TBD                                                                   | 7 days       |
