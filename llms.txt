@@ -1,0 +1,129 @@
+# Celestia documentation
+
+> Official documentation for Celestia, the modular blockchain powering unstoppable apps with full-stack control.
+
+These docs are built with Next.js + Nextra and exported statically. Links below point to the raw MDX sources in `main` so tools and LLMs can ingest clean text.
+
+## Build: Blobstream
+
+- [Integrate Contracts](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/blobstream/integrate-contracts/page.mdx)
+- [Integrate Offchain](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/blobstream/integrate-offchain/page.mdx)
+- [Proof Queries](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/blobstream/proof-queries/page.mdx)
+
+## Build: Post Retrieve Blob
+
+- [Client / Go](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/post-retrieve-blob/client/go/page.mdx)
+- [Client / Rust](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/post-retrieve-blob/client/rust/page.mdx)
+- [Overview](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/post-retrieve-blob/overview/page.mdx)
+
+## Build: Private Blockspace
+
+- [About](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/private-blockspace/about/page.mdx)
+- [Quickstart](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/private-blockspace/quickstart/page.mdx)
+
+## Build: Rpc
+
+- [Clients](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/rpc/clients/page.mdx)
+- [Node Api](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/rpc/node-api/page.mdx)
+
+## Build: Stacks
+
+- [Nitro Das Server](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/stacks/nitro-das-server/page.mdx)
+- [Op Alt Da / Aws Kms Guide](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/stacks/op-alt-da/aws-kms-guide/page.mdx)
+- [Op Alt Da / Introduction](https://raw.githubusercontent.com/celestiaorg/docs/main/app/build/stacks/op-alt-da/introduction/page.mdx)
+
+## Learn: Audits
+
+- [Audits](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/audits/page.mdx)
+
+## Learn: Blobstream
+
+- [Blobstream](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/blobstream/page.mdx)
+
+## Learn: Celestia 101
+
+- [Data Availability Faq](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/celestia-101/data-availability-faq/page.mdx)
+- [Data Availability](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/celestia-101/data-availability/page.mdx)
+- [Resources](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/celestia-101/resources/page.mdx)
+- [Retrievability](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/celestia-101/retrievability/page.mdx)
+- [Transaction Lifecycle](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/celestia-101/transaction-lifecycle/page.mdx)
+
+## Learn: Code Of Conduct
+
+- [Code Of Conduct](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/code-of-conduct/page.mdx)
+
+## Learn: Features
+
+- [Bridging / Hyperlane](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/features/bridging/hyperlane/page.mdx)
+- [Bridging / Ibc](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/features/bridging/ibc/page.mdx)
+- [Private Blockspace](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/features/private-blockspace/page.mdx)
+
+## Learn: TIA
+
+- [Overview](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/TIA/overview/page.mdx)
+- [Paying For Blobspace](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/TIA/paying-for-blobspace/page.mdx)
+- [Staking Governance Supply](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/TIA/staking-governance-supply/page.mdx)
+- [Staking](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/TIA/staking/page.mdx)
+- [Submit Data](https://raw.githubusercontent.com/celestiaorg/docs/main/app/learn/TIA/submit-data/page.mdx)
+
+## Operate: Blobstream
+
+- [Deploy Contract](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/blobstream/deploy-contract/page.mdx)
+- [Install Binary](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/blobstream/install-binary/page.mdx)
+- [Key Management](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/blobstream/key-management/page.mdx)
+- [Orchestrator](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/blobstream/orchestrator/page.mdx)
+- [Relayer](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/blobstream/relayer/page.mdx)
+
+## Operate: Consensus Validators
+
+- [Cli Reference](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/cli-reference/page.mdx)
+- [Consensus Node](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/consensus-node/page.mdx)
+- [Foundation Delegation Program](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/foundation-delegation-program/page.mdx)
+- [Install Celestia App](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/install-celestia-app/page.mdx)
+- [Metrics](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/metrics/page.mdx)
+- [Slashing](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/slashing/page.mdx)
+- [Upgrade Monitor](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/upgrade-monitor/page.mdx)
+- [Validator Node](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/consensus-validators/validator-node/page.mdx)
+
+## Operate: Data Availability
+
+- [Bridge Node](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/bridge-node/page.mdx)
+- [Config Reference](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/config-reference/page.mdx)
+- [Custom Networks](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/custom-networks/page.mdx)
+- [Ibc Relayer](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/ibc-relayer/page.mdx)
+- [Install Celestia Node](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/install-celestia-node/page.mdx)
+- [Light Node / Advanced](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/light-node/advanced/page.mdx)
+- [Light Node / Quickstart](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/light-node/quickstart/page.mdx)
+- [Metrics](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/metrics/page.mdx)
+- [Storage Optimization](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/data-availability/storage-optimization/page.mdx)
+
+## Operate: Getting Started
+
+- [Docker](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/getting-started/docker/page.mdx)
+- [Environment Setup](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/getting-started/environment-setup/page.mdx)
+- [Hardware Requirements](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/getting-started/hardware-requirements/page.mdx)
+- [Overview](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/getting-started/overview/page.mdx)
+
+## Operate: Keys Wallets
+
+- [Celestia App Wallet](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/keys-wallets/celestia-app-wallet/page.mdx)
+- [Celestia Node Key](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/keys-wallets/celestia-node-key/page.mdx)
+- [Multisig](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/keys-wallets/multisig/page.mdx)
+- [Vesting](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/keys-wallets/vesting/page.mdx)
+
+## Operate: Maintenance
+
+- [Datastore Structure](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/datastore-structure/page.mdx)
+- [Network Upgrades](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/network-upgrades/page.mdx)
+- [Snapshots](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/snapshots/page.mdx)
+- [Systemd](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/systemd/page.mdx)
+- [Troubleshooting](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/troubleshooting/page.mdx)
+- [Trusted Hash Recovery](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/maintenance/trusted-hash-recovery/page.mdx)
+
+## Operate: Networks
+
+- [Arabica Devnet](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/networks/arabica-devnet/page.mdx)
+- [Local Devnet](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/networks/local-devnet/page.mdx)
+- [Mainnet Beta](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/networks/mainnet-beta/page.mdx)
+- [Mocha Testnet](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/networks/mocha-testnet/page.mdx)
+- [Overview](https://raw.githubusercontent.com/celestiaorg/docs/main/app/operate/networks/overview/page.mdx)
