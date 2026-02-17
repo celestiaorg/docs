@@ -1,6 +1,6 @@
 {
-  "app-latest-tag": "v6.4.10-mocha",
-  "app-latest-sha": "0b26ea0cf0b52406d6004cef4a36e13c30ddca85",
+  "app-latest-tag": "v7.0.2-mocha",
+  "app-latest-sha": "3c528a42424b01575333f83f11ed5754149c1b67",
   "node-latest-tag": "v0.28.5-mocha",
   "node-latest-sha": "f10991334ff261ccb88b86e17a2369d7b8218d10"
 }
