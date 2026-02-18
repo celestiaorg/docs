@@ -364,13 +364,7 @@ async function checkExternalLink(url, skipPatterns = [], onlyFailOn404Patterns =
   }
 
   // Check if this URL should only fail on 404
-  let onlyFailOn404 = false;
-  for (const pattern of onlyFailOn404Patterns) {
-    if (url.includes(pattern)) {
-      onlyFailOn404 = true;
-      break;
-    }
-  }
+  const onlyFailOn404 = onlyFailOn404Patterns.some(pattern => url.includes(pattern));
 
   async function fetchOnce() {
     try {
