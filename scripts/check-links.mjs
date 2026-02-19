@@ -57,6 +57,12 @@ const DEFAULT_SKIP_PATTERNS = [
   'polkachu.com/testnets/celestia/snapshots',
 ];
 
+// Patterns that should only fail on 404 errors
+// These URLs may have connection issues or timeouts, but should only be reported as broken if they return 404
+const ONLY_FAIL_ON_404_PATTERNS = [
+  'explorer.nodestake.top/celestia',
+];
+
 /**
  * Build route inventory from app/ directory structure
  */
@@ -349,13 +355,16 @@ async function processMetaFile(filePath) {
 /**
  * Check external link with HTTP request
  */
-async function checkExternalLink(url, skipPatterns = [], timeout = DEFAULT_TIMEOUT, retries = DEFAULT_RETRIES, backoffMs = DEFAULT_BACKOFF_MS) {
+async function checkExternalLink(url, skipPatterns = [], onlyFailOn404Patterns = [], timeout = DEFAULT_TIMEOUT, retries = DEFAULT_RETRIES, backoffMs = DEFAULT_BACKOFF_MS) {
   // Check skip list
   for (const pattern of skipPatterns) {
     if (url.includes(pattern)) {
       return { valid: true, skipped: true, reason: `Skipped by pattern: ${pattern}` };
     }
   }
+
+  // Check if this URL should only fail on 404
+  const onlyFailOn404 = onlyFailOn404Patterns.some(pattern => url.includes(pattern));
 
   async function fetchOnce() {
     try {
@@ -488,6 +497,22 @@ async function checkExternalLink(url, skipPatterns = [], timeout = DEFAULT_TIMEO
     } catch {
       // If URL parsing fails, fall through to return lastResult
     }
+  }
+
+  // If this URL should only fail on 404, ignore other errors
+  if (onlyFailOn404) {
+    // Only fail if we got a 404 status code
+    if (lastResult && lastResult.status === 404) {
+      return lastResult;
+    }
+    // For any other error (timeout, connection failure, etc.), treat as valid but skipped
+    return { 
+      valid: true, 
+      skipped: true, 
+      reason: `Only checking for 404 - got ${lastResult?.status || lastResult?.error || 'unknown error'}`,
+      originalStatus: lastResult?.status,
+      originalError: lastResult?.error
+    };
   }
 
   return lastResult || { valid: false, error: 'Unknown error' };
@@ -694,7 +719,7 @@ async function main() {
     const checkedExternal = await processLinksConcurrently(
       externalLinks,
       async (link) => {
-        const result = await checkExternalLink(link.url, skipPatterns);
+        const result = await checkExternalLink(link.url, skipPatterns, ONLY_FAIL_ON_404_PATTERNS);
         return result;
       },
       concurrency
