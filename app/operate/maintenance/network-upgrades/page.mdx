@@ -2,7 +2,7 @@
 description: Overview of the Celestia network upgrade process.
 ---
 
-import { constants } from '@/constants';
+import { constants } from "@/constants";
 
 # Network upgrades
 
@@ -43,11 +43,11 @@ The upgrade process can be broken down into a few steps:
 
 The Lemongrass network upgrade (v2) was the first consensus layer breaking change since Celestia's Mainnet Beta genesis block. The Lemongrass network upgrade included all of the CIPs listed in [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-017.md) and implemented CIP-10 for future upgrades.
 
-| Network      | Chain ID   | Date and time          | Upgrade height |
-| ------------ | ---------- | ---------------------- | -------------- |
+| Network      | Chain ID                   | Date and time          | Upgrade height |
+| ------------ | -------------------------- | ---------------------- | -------------- |
 | Arabica      | {constants.arabicaChainId} | 2024/08/19 @ 14:00 UTC | 1751707        |
-| Mocha        | {constants.mochaChainId}    | 2024/08/28 @ 14:00 UTC | 2585031        |
-| Mainnet Beta | {constants.mainnetChainId}   | 2024/09/18 @ 14:00 UTC | 2371495        |
+| Mocha        | {constants.mochaChainId}   | 2024/08/28 @ 14:00 UTC | 2585031        |
+| Mainnet Beta | {constants.mainnetChainId} | 2024/09/18 @ 14:00 UTC | 2371495        |
 
 See [parameters for v2](https://celestiaorg.github.io/celestia-app/parameters_v2.html).
 
@@ -67,11 +67,11 @@ Unlike the Lemongrass upgrade, there will not be a pre-programmed upgrade height
 
 Learn more in the [v3.0.0 release notes](https://github.com/celestiaorg/celestia-app/blob/main/docs/release-notes/release-notes.md#v300).
 
-| Network      | Chain ID   | Date and time             | Upgrade height |
-| ------------ | ---------- | ------------------------- | -------------- |
+| Network      | Chain ID                   | Date and time             | Upgrade height |
+| ------------ | -------------------------- | ------------------------- | -------------- |
 | Arabica      | {constants.arabicaChainId} | 2024/11/05 @ 21:55:13 UTC | 2348907        |
-| Mocha        | {constants.mochaChainId}    | 2024/11/14 @ 18:31:11 UTC | 3140052        |
-| Mainnet Beta | celestia   | 2024/12/12 @ 14:28:52 UTC | 2993219        |
+| Mocha        | {constants.mochaChainId}   | 2024/11/14 @ 18:31:11 UTC | 3140052        |
+| Mainnet Beta | celestia                   | 2024/12/12 @ 14:28:52 UTC | 2993219        |
 
 See [parameters for v3](https://celestiaorg.github.io/celestia-app/parameters_v3.html).
 
@@ -90,11 +90,11 @@ Like the Ginger upgrade, this upgrade used the in-protocol signaling mechanism. 
 
 The delay periods for v4 were based on [celestia-app #4413](https://github.com/celestiaorg/celestia-app/issues/4413):
 
-| Network      | Chain ID   | Date and time           | Upgrade height | Delay period |
-| ------------ | ---------- | ----------------------- | -------------- | ------------ |
+| Network      | Chain ID                   | Date and time           | Upgrade height | Delay period |
+| ------------ | -------------------------- | ----------------------- | -------------- | ------------ |
 | Arabica      | {constants.arabicaChainId} | 2025/05/16 07:51:35 UTC | 5975265        | 1 day        |
-| Mocha        | {constants.mochaChainId}    | 2025/07/01 11:51:58 UTC | 6915786        | 2 days       |
-| Mainnet Beta | celestia   | 2025/07/28 13:46:27 UTC | 6680339        | 7 days       |
+| Mocha        | {constants.mochaChainId}   | 2025/07/01 11:51:58 UTC | 6915786        | 2 days       |
+| Mainnet Beta | celestia                   | 2025/07/28 13:46:27 UTC | 6680339        | 7 days       |
 
 See [parameters for v4](https://celestiaorg.github.io/celestia-app/parameters_v4.html).
 
@@ -104,11 +104,11 @@ The v5 network upgrade included a fix to restore IBC support which was broken in
 
 Like previous upgrades, this upgrade will use the in-protocol signaling mechanism. The upgrade will automatically activate after 5/6 of voting power have signaled for a particular version and a delay period based on the network, in accordance with the table below.
 
-| Network      | Chain ID   | Date and time           | Upgrade height | Delay period |
-| ------------ | ---------- | ----------------------- | -------------- | ------------ |
+| Network      | Chain ID                   | Date and time           | Upgrade height | Delay period |
+| ------------ | -------------------------- | ----------------------- | -------------- | ------------ |
 | Arabica      | {constants.arabicaChainId} | 2025/07/29 19:59:00 UTC | 7316464        | 1 block      |
-| Mocha        | {constants.mochaChainId}    | 2025/07/30 17:07:29 UTC | 7401191        | 1 block      |
-| Mainnet Beta | celestia   | 2025/08/01 14:30:29 UTC | 6748821        | 1 block      |
+| Mocha        | {constants.mochaChainId}   | 2025/07/30 17:07:29 UTC | 7401191        | 1 block      |
+| Mainnet Beta | celestia                   | 2025/08/01 14:30:29 UTC | 6748821        | 1 block      |
 
 See [parameters for v5](https://celestiaorg.github.io/celestia-app/parameters_v5.html).
 
@@ -125,11 +125,11 @@ Key features include:
 - [CIP-40](https://cips.celestia.org/cip-040.html): Privval Interface Extension for Arbitrary Message Signing
 - [CIP-41](https://cips.celestia.org/cip-041.html): Reduce issuance to 2.5% and increase minimum commission to 10%
 
-| Network      | Chain ID   | Date and time           | Upgrade height                                                    | Delay period |
-| ------------ | ---------- | ----------------------- | ----------------------------------------------------------------- | ------------ |
+| Network      | Chain ID                   | Date and time           | Upgrade height                                                    | Delay period |
+| ------------ | -------------------------- | ----------------------- | ----------------------------------------------------------------- | ------------ |
 | Arabica      | {constants.arabicaChainId} | 2025/09/09 06:08:11 UTC | [8105605](https://arabica.celenium.io/block/8105605)              | 1 day        |
-| Mocha        | {constants.mochaChainId}    | 2025/10/03 01:25:02 UTC | [8236886](https://www.mintscan.io/celestia-testnet/block/8236886) | 2 days       |
-| Mainnet Beta | celestia   | 2025/11/24 12:33:12 UTC | [8662012](https://celenium.io/block/8662012?tab=transactions)     | 7 days       |
+| Mocha        | {constants.mochaChainId}   | 2025/10/03 01:25:02 UTC | [8236886](https://www.mintscan.io/celestia-testnet/block/8236886) | 2 days       |
+| Mainnet Beta | celestia                   | 2025/11/24 12:33:12 UTC | [8662012](https://celenium.io/block/8662012?tab=transactions)     | 7 days       |
 
 See [parameters for v6](https://celestiaorg.github.io/celestia-app/parameters_v6.html).
 
@@ -147,8 +147,8 @@ Key features include:
 - [CIP-45](https://cips.celestia.org/cip-045.html): Forwarding Module
 - [CIP-46](https://cips.celestia.org/cip-046.html): ZK Interchain Security Module
 
-| Network | Chain ID | Date and time | Upgrade height | Delay period |
-| --- | --- | --- | --- | --- |
-| Arabica | {constants.arabicaChainId} | 2026/02/14 02:36:26 UTC | [10133989](https://arabica.celenium.io/block/10133989?tab=transactions) | 1 day |
-| Mocha | {constants.mochaChainId} | TBD | [10209986](https://mocha-4.celenium.io/block/10209986) | 2 days |
-| Mainnet Beta | celestia | TBD | TBD | 7 days |
+| Network      | Chain ID                   | Date and time           | Upgrade height                                                          | Delay period |
+| ------------ | -------------------------- | ----------------------- | ----------------------------------------------------------------------- | ------------ |
+| Arabica      | {constants.arabicaChainId} | 2026/02/14 02:36:26 UTC | [10133989](https://arabica.celenium.io/block/10133989?tab=transactions) | 1 day        |
+| Mocha        | {constants.mochaChainId}   | TBD                     | [10209986](https://mocha-4.celenium.io/block/10209986)                  | 2 days       |
+| Mainnet Beta | celestia                   | TBD                     | TBD                                                                     | 7 days       |
