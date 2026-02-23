@@ -55,6 +55,7 @@ const DEFAULT_SKIP_PATTERNS = [
   // Snapshot providers
   'polkachu.com/tendermint_snapshots/celestia',
   'polkachu.com/testnets/celestia/snapshots',
+  'snaps.qubelabs.io/celestia',
 ];
 
 // Patterns that should only fail on 404 errors
