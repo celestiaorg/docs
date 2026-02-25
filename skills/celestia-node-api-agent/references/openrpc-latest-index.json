@@ -1,0 +1,2018 @@
+{
+  "generated_at": "2026-02-25T22:51:47.781Z",
+  "openrpc_version": "v0.28.4",
+  "openrpc_file": "public/specs/openrpc-v0.28.4.json",
+  "method_count": 79,
+  "auth_counts": {
+    "read": 42,
+    "write": 11,
+    "admin": 26
+  },
+  "tx_submission_methods": [
+    {
+      "name": "blob.Submit",
+      "package": "blob",
+      "short_name": "Submit",
+      "auth": "write",
+      "summary": "Submit sends Blobs and reports the height in which they were included. Allows sending multiple Blobs atomically synchronously. Uses default wallet registered on the Node.",
+      "params": [
+        "blobs",
+        "options"
+      ],
+      "result": "uint64",
+      "deprecated": false
+    },
+    {
+      "name": "da.Submit",
+      "package": "da",
+      "short_name": "Submit",
+      "auth": "write",
+      "summary": "Submit submits the Blobs to Data Availability layer. This method is synchronous. Upon successful submission to Data Availability layer, it returns the IDs identifying blobs in DA. Deprecated: This method is deprecated and will be removed in the future.",
+      "params": [
+        "blobs",
+        "gasPrice",
+        "ns"
+      ],
+      "result": "[]da.ID",
+      "deprecated": true
+    },
+    {
+      "name": "da.SubmitWithOptions",
+      "package": "da",
+      "short_name": "SubmitWithOptions",
+      "auth": "write",
+      "summary": "SubmitWithOptions submits the Blobs to Data Availability layer. This method is synchronous. Upon successful submission to Data Availability layer, it returns the IDs identifying blobs in DA. Deprecated: This method is deprecated and will be removed in the future.",
+      "params": [
+        "blobs",
+        "gasPrice",
+        "ns",
+        "options"
+      ],
+      "result": "[]da.ID",
+      "deprecated": true
+    },
+    {
+      "name": "state.SubmitPayForBlob",
+      "package": "state",
+      "short_name": "SubmitPayForBlob",
+      "auth": "write",
+      "summary": "SubmitPayForBlob builds, signs and submits a PayForBlob transaction.",
+      "params": [
+        "blobs",
+        "config"
+      ],
+      "result": "*state.TxResponse",
+      "deprecated": false
+    }
+  ],
+  "packages": {
+    "blob": [
+      {
+        "name": "blob.Get",
+        "package": "blob",
+        "short_name": "Get",
+        "auth": "read",
+        "summary": "Get retrieves the blob by commitment under the given namespace and height.",
+        "params": [
+          "height",
+          "namespace",
+          "commitment"
+        ],
+        "result": "*blob.Blob",
+        "deprecated": false
+      },
+      {
+        "name": "blob.GetAll",
+        "package": "blob",
+        "short_name": "GetAll",
+        "auth": "read",
+        "summary": "GetAll returns all blobs under the given namespaces at the given height. If all blobs were found without any errors, the user will receive a list of blobs. If the BlobService couldn't find any blobs under the requested namespaces, the user will receive an empty list of blobs along with an empty error. If some of the requested namespaces were not found, the user will receive all the found blobs and an empty error. If there were internal errors during some of the requests, the user will receive all found blobs along with a combined error message. All blobs will preserve the order of the namespaces that were requested.",
+        "params": [
+          "height",
+          "namespaces"
+        ],
+        "result": "[]*blob.Blob",
+        "deprecated": false
+      },
+      {
+        "name": "blob.GetCommitmentProof",
+        "package": "blob",
+        "short_name": "GetCommitmentProof",
+        "auth": "read",
+        "summary": "GetCommitmentProof generates a commitment proof for a share commitment.",
+        "params": [
+          "height",
+          "namespace",
+          "shareCommitment"
+        ],
+        "result": "*blob.CommitmentProof",
+        "deprecated": false
+      },
+      {
+        "name": "blob.GetProof",
+        "package": "blob",
+        "short_name": "GetProof",
+        "auth": "read",
+        "summary": "GetProof retrieves proofs in the given namespaces at the given height by commitment.",
+        "params": [
+          "height",
+          "namespace",
+          "commitment"
+        ],
+        "result": "*blob.Proof",
+        "deprecated": false
+      },
+      {
+        "name": "blob.Included",
+        "package": "blob",
+        "short_name": "Included",
+        "auth": "read",
+        "summary": "Included checks whether a blob's given commitment(Merkle subtree root) is included at given height and under the namespace.",
+        "params": [
+          "height",
+          "namespace",
+          "proof",
+          "commitment"
+        ],
+        "result": "bool",
+        "deprecated": false
+      },
+      {
+        "name": "blob.Submit",
+        "package": "blob",
+        "short_name": "Submit",
+        "auth": "write",
+        "summary": "Submit sends Blobs and reports the height in which they were included. Allows sending multiple Blobs atomically synchronously. Uses default wallet registered on the Node.",
+        "params": [
+          "blobs",
+          "options"
+        ],
+        "result": "uint64",
+        "deprecated": false
+      },
+      {
+        "name": "blob.Subscribe",
+        "package": "blob",
+        "short_name": "Subscribe",
+        "auth": "read",
+        "summary": "Subscribe to published blobs from the given namespace as they are included.",
+        "params": [
+          "namespace"
+        ],
+        "result": "<-chan *blob.SubscriptionResponse",
+        "deprecated": false
+      }
+    ],
+    "blobstream": [
+      {
+        "name": "blobstream.GetDataRootTupleInclusionProof",
+        "package": "blobstream",
+        "short_name": "GetDataRootTupleInclusionProof",
+        "auth": "read",
+        "summary": "GetDataRootTupleInclusionProof creates an inclusion proof, for the data root tuple of block height `height`, in the set of blocks defined by `start` and `end`. The range is end exclusive. It's in the header module because it only needs access to the headers to generate the proof.",
+        "params": [
+          "height",
+          "start",
+          "end"
+        ],
+        "result": "*DataRootTupleInclusionProof",
+        "deprecated": false
+      },
+      {
+        "name": "blobstream.GetDataRootTupleRoot",
+        "package": "blobstream",
+        "short_name": "GetDataRootTupleRoot",
+        "auth": "read",
+        "summary": "GetDataRootTupleRoot collects the data roots over a provided ordered range of blocks, and then creates a new Merkle root of those data roots. The range is end exclusive. It's in the header module because it only needs access to the headers to generate the proof.",
+        "params": [
+          "start",
+          "end"
+        ],
+        "result": "DataRootTupleRoot",
+        "deprecated": false
+      }
+    ],
+    "da": [
+      {
+        "name": "da.Commit",
+        "package": "da",
+        "short_name": "Commit",
+        "auth": "read",
+        "summary": "Commit creates a Commitment for each given Blob. Deprecated: This method is deprecated and will be removed in the future.",
+        "params": [
+          "blobs",
+          "ns"
+        ],
+        "result": "[]da.Commitment",
+        "deprecated": true
+      },
+      {
+        "name": "da.Get",
+        "package": "da",
+        "short_name": "Get",
+        "auth": "read",
+        "summary": "Get returns Blob for each given ID, or an error. Error should be returned if ID is not formatted properly, there is no Blob for given ID or any other client-level error occurred (dropped connection, timeout, etc). Deprecated: This method is deprecated and will be removed in the future.",
+        "params": [
+          "ids",
+          "ns"
+        ],
+        "result": "[]da.Blob",
+        "deprecated": true
+      },
+      {
+        "name": "da.GetIDs",
+        "package": "da",
+        "short_name": "GetIDs",
+        "auth": "read",
+        "summary": "GetIDs returns IDs of all Blobs located in DA at given height. Deprecated: This method is deprecated and will be removed in the future.",
+        "params": [
+          "height",
+          "ns"
+        ],
+        "result": "*da.GetIDsResult",
+        "deprecated": true
+      },
+      {
+        "name": "da.GetProofs",
+        "package": "da",
+        "short_name": "GetProofs",
+        "auth": "read",
+        "summary": "GetProofs returns inclusion Proofs for Blobs specified by their IDs. Deprecated: This method is deprecated and will be removed in the future.",
+        "params": [
+          "ids",
+          "ns"
+        ],
+        "result": "[]da.Proof",
+        "deprecated": true
+      },
+      {
+        "name": "da.MaxBlobSize",
+        "package": "da",
+        "short_name": "MaxBlobSize",
+        "auth": "read",
+        "summary": "MaxBlobSize returns the max blob size Deprecated: This method is deprecated and will be removed in the future.",
+        "params": [],
+        "result": "uint64",
+        "deprecated": true
+      },
+      {
+        "name": "da.Submit",
+        "package": "da",
+        "short_name": "Submit",
+        "auth": "write",
+        "summary": "Submit submits the Blobs to Data Availability layer. This method is synchronous. Upon successful submission to Data Availability layer, it returns the IDs identifying blobs in DA. Deprecated: This method is deprecated and will be removed in the future.",
+        "params": [
+          "blobs",
+          "gasPrice",
+          "ns"
+        ],
+        "result": "[]da.ID",
+        "deprecated": true
+      },
+      {
+        "name": "da.SubmitWithOptions",
+        "package": "da",
+        "short_name": "SubmitWithOptions",
+        "auth": "write",
+        "summary": "SubmitWithOptions submits the Blobs to Data Availability layer. This method is synchronous. Upon successful submission to Data Availability layer, it returns the IDs identifying blobs in DA. Deprecated: This method is deprecated and will be removed in the future.",
+        "params": [
+          "blobs",
+          "gasPrice",
+          "ns",
+          "options"
+        ],
+        "result": "[]da.ID",
+        "deprecated": true
+      },
+      {
+        "name": "da.Validate",
+        "package": "da",
+        "short_name": "Validate",
+        "auth": "read",
+        "summary": "Validate validates Commitments against the corresponding Proofs. This should be possible without retrieving the Blobs. Deprecated: This method is deprecated and will be removed in the future.",
+        "params": [
+          "ids",
+          "proofs",
+          "ns"
+        ],
+        "result": "[]bool",
+        "deprecated": true
+      }
+    ],
+    "das": [
+      {
+        "name": "das.SamplingStats",
+        "package": "das",
+        "short_name": "SamplingStats",
+        "auth": "read",
+        "summary": "SamplingStats returns the current statistics over the DA sampling process.",
+        "params": [],
+        "result": "das.SamplingStats",
+        "deprecated": false
+      },
+      {
+        "name": "das.WaitCatchUp",
+        "package": "das",
+        "short_name": "WaitCatchUp",
+        "auth": "read",
+        "summary": "WaitCatchUp blocks until DASer finishes catching up to the network head.",
+        "params": [],
+        "result": "Null",
+        "deprecated": false
+      }
+    ],
+    "fraud": [
+      {
+        "name": "fraud.Get",
+        "package": "fraud",
+        "short_name": "Get",
+        "auth": "read",
+        "summary": "Get fetches fraud proofs from the disk by its type.",
+        "params": [
+          "proofType"
+        ],
+        "result": "[]Proof",
+        "deprecated": false
+      },
+      {
+        "name": "fraud.Subscribe",
+        "package": "fraud",
+        "short_name": "Subscribe",
+        "auth": "read",
+        "summary": "Subscribe allows to subscribe on a Proof pub sub topic by its type.",
+        "params": [
+          "proofType"
+        ],
+        "result": "<-chan *Proof",
+        "deprecated": false
+      }
+    ],
+    "header": [
+      {
+        "name": "header.GetByHash",
+        "package": "header",
+        "short_name": "GetByHash",
+        "auth": "read",
+        "summary": "GetByHash returns the header of the given hash from the node's header store.",
+        "params": [
+          "hash"
+        ],
+        "result": "*header.ExtendedHeader",
+        "deprecated": false
+      },
+      {
+        "name": "header.GetByHeight",
+        "package": "header",
+        "short_name": "GetByHeight",
+        "auth": "read",
+        "summary": "GetByHeight returns the ExtendedHeader at the given height if it is currently available.",
+        "params": [
+          "u"
+        ],
+        "result": "*header.ExtendedHeader",
+        "deprecated": false
+      },
+      {
+        "name": "header.GetRangeByHeight",
+        "package": "header",
+        "short_name": "GetRangeByHeight",
+        "auth": "read",
+        "summary": "GetRangeByHeight returns the given range (from:to) of ExtendedHeaders from the node's header store and verifies that the returned headers are adjacent to each other.",
+        "params": [
+          "from",
+          "to"
+        ],
+        "result": "[]*header.ExtendedHeader",
+        "deprecated": false
+      },
+      {
+        "name": "header.LocalHead",
+        "package": "header",
+        "short_name": "LocalHead",
+        "auth": "read",
+        "summary": "LocalHead returns the ExtendedHeader of the chain head.",
+        "params": [],
+        "result": "*header.ExtendedHeader",
+        "deprecated": false
+      },
+      {
+        "name": "header.NetworkHead",
+        "package": "header",
+        "short_name": "NetworkHead",
+        "auth": "read",
+        "summary": "NetworkHead provides the Syncer's view of the current network head.",
+        "params": [],
+        "result": "*header.ExtendedHeader",
+        "deprecated": false
+      },
+      {
+        "name": "header.Subscribe",
+        "package": "header",
+        "short_name": "Subscribe",
+        "auth": "read",
+        "summary": "Subscribe to recent ExtendedHeaders from the network.",
+        "params": [],
+        "result": "<-chan *header.ExtendedHeader",
+        "deprecated": false
+      },
+      {
+        "name": "header.SyncState",
+        "package": "header",
+        "short_name": "SyncState",
+        "auth": "read",
+        "summary": "SyncState returns the current state of the header Syncer.",
+        "params": [],
+        "result": "sync.State",
+        "deprecated": false
+      },
+      {
+        "name": "header.SyncWait",
+        "package": "header",
+        "short_name": "SyncWait",
+        "auth": "read",
+        "summary": "SyncWait blocks until the header Syncer is synced to network head.",
+        "params": [],
+        "result": "Null",
+        "deprecated": false
+      },
+      {
+        "name": "header.Tail",
+        "package": "header",
+        "short_name": "Tail",
+        "auth": "read",
+        "summary": "Tail reports current tail header of the node. Tail header is the lowest height header known by the running node. Headers with height below Tail are not available to be requested. Subsequently, Shwap data requests for this height are not available as well. NOTE: In future, requests for headers below Tail will be supported by lazily fetching them from the network.",
+        "params": [],
+        "result": "*header.ExtendedHeader",
+        "deprecated": false
+      },
+      {
+        "name": "header.WaitForHeight",
+        "package": "header",
+        "short_name": "WaitForHeight",
+        "auth": "read",
+        "summary": "WaitForHeight blocks until the header at the given height has been processed by the store or context deadline is exceeded.",
+        "params": [
+          "u"
+        ],
+        "result": "*header.ExtendedHeader",
+        "deprecated": false
+      }
+    ],
+    "node": [
+      {
+        "name": "node.AuthNew",
+        "package": "node",
+        "short_name": "AuthNew",
+        "auth": "admin",
+        "summary": "AuthNew signs and returns a new token with the given permissions.",
+        "params": [
+          "perms"
+        ],
+        "result": "string",
+        "deprecated": false
+      },
+      {
+        "name": "node.AuthNewWithExpiry",
+        "package": "node",
+        "short_name": "AuthNewWithExpiry",
+        "auth": "admin",
+        "summary": "AuthNewWithExpiry signs and returns a new token with the given permissions and TTL.",
+        "params": [
+          "perms",
+          "ttl"
+        ],
+        "result": "string",
+        "deprecated": false
+      },
+      {
+        "name": "node.AuthVerify",
+        "package": "node",
+        "short_name": "AuthVerify",
+        "auth": "admin",
+        "summary": "AuthVerify returns the permissions assigned to the given token.",
+        "params": [
+          "token"
+        ],
+        "result": "[]auth.Permission",
+        "deprecated": false
+      },
+      {
+        "name": "node.Info",
+        "package": "node",
+        "short_name": "Info",
+        "auth": "admin",
+        "summary": "Info returns administrative information about the node.",
+        "params": [],
+        "result": "Info",
+        "deprecated": false
+      },
+      {
+        "name": "node.LogLevelSet",
+        "package": "node",
+        "short_name": "LogLevelSet",
+        "auth": "admin",
+        "summary": "LogLevelSet sets the given component log level to the given level.",
+        "params": [
+          "name",
+          "level"
+        ],
+        "result": "Null",
+        "deprecated": false
+      },
+      {
+        "name": "node.Ready",
+        "package": "node",
+        "short_name": "Ready",
+        "auth": "read",
+        "summary": "Ready returns true once the node's RPC is ready to accept requests.",
+        "params": [],
+        "result": "bool",
+        "deprecated": false
+      }
+    ],
+    "p2p": [
+      {
+        "name": "p2p.BandwidthForPeer",
+        "package": "p2p",
+        "short_name": "BandwidthForPeer",
+        "auth": "admin",
+        "summary": "BandwidthForPeer returns a Stats struct with bandwidth metrics associated with the given peer.ID. The metrics returned include all traffic sent / received for the peer, regardless of protocol.",
+        "params": [
+          "id"
+        ],
+        "result": "metrics.Stats",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.BandwidthForProtocol",
+        "package": "p2p",
+        "short_name": "BandwidthForProtocol",
+        "auth": "admin",
+        "summary": "BandwidthForProtocol returns a Stats struct with bandwidth metrics associated with the given protocol.ID.",
+        "params": [
+          "proto"
+        ],
+        "result": "metrics.Stats",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.BandwidthStats",
+        "package": "p2p",
+        "short_name": "BandwidthStats",
+        "auth": "admin",
+        "summary": "BandwidthStats returns a Stats struct with bandwidth metrics for all data sent/received by the local peer, regardless of protocol or remote peer IDs.",
+        "params": [],
+        "result": "metrics.Stats",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.BlockPeer",
+        "package": "p2p",
+        "short_name": "BlockPeer",
+        "auth": "admin",
+        "summary": "BlockPeer adds a peer to the set of blocked peers and closes any existing connection to that peer.",
+        "params": [
+          "p"
+        ],
+        "result": "Null",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.ClosePeer",
+        "package": "p2p",
+        "short_name": "ClosePeer",
+        "auth": "admin",
+        "summary": "ClosePeer closes the connection to a given peer.",
+        "params": [
+          "id"
+        ],
+        "result": "Null",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.Connect",
+        "package": "p2p",
+        "short_name": "Connect",
+        "auth": "admin",
+        "summary": "Connect ensures there is a connection between this host and the peer with given peer.",
+        "params": [
+          "pi"
+        ],
+        "result": "Null",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.Connectedness",
+        "package": "p2p",
+        "short_name": "Connectedness",
+        "auth": "admin",
+        "summary": "Connectedness returns a state signaling connection capabilities.",
+        "params": [
+          "id"
+        ],
+        "result": "network.Connectedness",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.ConnectionState",
+        "package": "p2p",
+        "short_name": "ConnectionState",
+        "auth": "admin",
+        "summary": "ConnectionState returns information about each *active* connection to the peer. NOTE: At most cases there should be only a single connection.",
+        "params": [
+          "peer"
+        ],
+        "result": "[]ConnectionState",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.Info",
+        "package": "p2p",
+        "short_name": "Info",
+        "auth": "admin",
+        "summary": "Info returns address information about the host.",
+        "params": [],
+        "result": "peer.AddrInfo",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.IsProtected",
+        "package": "p2p",
+        "short_name": "IsProtected",
+        "auth": "admin",
+        "summary": "IsProtected returns whether the given peer is protected.",
+        "params": [
+          "id",
+          "tag"
+        ],
+        "result": "bool",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.ListBlockedPeers",
+        "package": "p2p",
+        "short_name": "ListBlockedPeers",
+        "auth": "admin",
+        "summary": "ListBlockedPeers returns a list of blocked peers.",
+        "params": [],
+        "result": "[]peer.ID",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.NATStatus",
+        "package": "p2p",
+        "short_name": "NATStatus",
+        "auth": "admin",
+        "summary": "NATStatus returns the current NAT status.",
+        "params": [],
+        "result": "network.Reachability",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.PeerInfo",
+        "package": "p2p",
+        "short_name": "PeerInfo",
+        "auth": "admin",
+        "summary": "PeerInfo returns a small slice of information Peerstore has on the given peer.",
+        "params": [
+          "id"
+        ],
+        "result": "peer.AddrInfo",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.Peers",
+        "package": "p2p",
+        "short_name": "Peers",
+        "auth": "admin",
+        "summary": "Peers returns connected peers.",
+        "params": [],
+        "result": "[]peer.ID",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.Ping",
+        "package": "p2p",
+        "short_name": "Ping",
+        "auth": "admin",
+        "summary": "Ping pings the selected peer and returns time it took or error.",
+        "params": [
+          "peer"
+        ],
+        "result": "time.Duration",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.Protect",
+        "package": "p2p",
+        "short_name": "Protect",
+        "auth": "admin",
+        "summary": "Protect adds a peer to the list of peers who have a bidirectional peering agreement that they are protected from being trimmed, dropped or negatively scored.",
+        "params": [
+          "id",
+          "tag"
+        ],
+        "result": "Null",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.PubSubPeers",
+        "package": "p2p",
+        "short_name": "PubSubPeers",
+        "auth": "admin",
+        "summary": "PubSubPeers returns the peer IDs of the peers joined on the given topic.",
+        "params": [
+          "topic"
+        ],
+        "result": "[]peer.ID",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.PubSubTopics",
+        "package": "p2p",
+        "short_name": "PubSubTopics",
+        "auth": "admin",
+        "summary": "PubSubTopics reports current PubSubTopics the node participates in.",
+        "params": [],
+        "result": "[]string",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.ResourceState",
+        "package": "p2p",
+        "short_name": "ResourceState",
+        "auth": "admin",
+        "summary": "ResourceState returns the state of the resource manager.",
+        "params": [],
+        "result": "rcmgr.ResourceManagerStat",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.UnblockPeer",
+        "package": "p2p",
+        "short_name": "UnblockPeer",
+        "auth": "admin",
+        "summary": "UnblockPeer removes a peer from the set of blocked peers.",
+        "params": [
+          "p"
+        ],
+        "result": "Null",
+        "deprecated": false
+      },
+      {
+        "name": "p2p.Unprotect",
+        "package": "p2p",
+        "short_name": "Unprotect",
+        "auth": "admin",
+        "summary": "Unprotect removes a peer from the list of peers who have a bidirectional peering agreement that they are protected from being trimmed, dropped or negatively scored, returning a bool representing whether the given peer is protected or not.",
+        "params": [
+          "id",
+          "tag"
+        ],
+        "result": "bool",
+        "deprecated": false
+      }
+    ],
+    "share": [
+      {
+        "name": "share.GetEDS",
+        "package": "share",
+        "short_name": "GetEDS",
+        "auth": "read",
+        "summary": "GetEDS retrieves the complete Extended Data Square (EDS) for the specified height. The EDS contains all shares organized in a 2D matrix format with erasure coding. Returns the full EDS or an error if retrieval fails.",
+        "params": [
+          "height"
+        ],
+        "result": "*rsmt2d.ExtendedDataSquare",
+        "deprecated": false
+      },
+      {
+        "name": "share.GetNamespaceData",
+        "package": "share",
+        "short_name": "GetNamespaceData",
+        "auth": "read",
+        "summary": "GetNamespaceData retrieves all shares that belong to the specified namespace within the Extended Data Square (EDS) at the given height. The shares are returned in a row-by-row order, maintaining the original layout if the namespace spans multiple rows. Returns the namespace data or an error if retrieval fails.",
+        "params": [
+          "height",
+          "namespace"
+        ],
+        "result": "shwap.NamespaceData",
+        "deprecated": false
+      },
+      {
+        "name": "share.GetRange",
+        "package": "share",
+        "short_name": "GetRange",
+        "auth": "read",
+        "summary": "GetRange retrieves a range of the *original* shares and their corresponding proofs within a specific namespace in the Extended Data Square (EDS) at the given height. The range is defined by start and end indexes. Returns the range data with proof to the data root or an error if retrieval fails.",
+        "params": [
+          "height",
+          "from",
+          "to"
+        ],
+        "result": "*GetRangeResult",
+        "deprecated": false
+      },
+      {
+        "name": "share.GetRow",
+        "package": "share",
+        "short_name": "GetRow",
+        "auth": "read",
+        "summary": "GetRow retrieves all shares from a specific row in the Extended Data Square (EDS) at the given height. Returns the complete row of shares or an error if retrieval fails.",
+        "params": [
+          "height",
+          "rowIdx"
+        ],
+        "result": "shwap.Row",
+        "deprecated": false
+      },
+      {
+        "name": "share.GetSamples",
+        "package": "share",
+        "short_name": "GetSamples",
+        "auth": "read",
+        "summary": "GetSamples retrieves multiple shares from the Extended Data Square (EDS) specified by the header at the given sample coordinates. Returns an array of samples containing the requested shares or an error if retrieval fails.",
+        "params": [
+          "height",
+          "indices"
+        ],
+        "result": "[]shwap.Sample",
+        "deprecated": false
+      },
+      {
+        "name": "share.GetShare",
+        "package": "share",
+        "short_name": "GetShare",
+        "auth": "read",
+        "summary": "GetShare retrieves a specific share from the Extended Data Square (EDS) at the given height using its row and column coordinates. Returns the share data or an error if retrieval fails.",
+        "params": [
+          "height",
+          "row",
+          "col"
+        ],
+        "result": "libshare.Share",
+        "deprecated": false
+      },
+      {
+        "name": "share.SharesAvailable",
+        "package": "share",
+        "short_name": "SharesAvailable",
+        "auth": "read",
+        "summary": "SharesAvailable performs a subjective validation to check if the shares committed to the ExtendedHeader at the specified height are available and retrievable from the network. Returns an error if the shares are not available or if validation fails.",
+        "params": [
+          "height"
+        ],
+        "result": "Null",
+        "deprecated": false
+      }
+    ],
+    "state": [
+      {
+        "name": "state.AccountAddress",
+        "package": "state",
+        "short_name": "AccountAddress",
+        "auth": "read",
+        "summary": "AccountAddress retrieves the address of the node's account/signer",
+        "params": [],
+        "result": "state.Address",
+        "deprecated": false
+      },
+      {
+        "name": "state.Balance",
+        "package": "state",
+        "short_name": "Balance",
+        "auth": "read",
+        "summary": "Balance retrieves the Celestia coin balance for the node's account/signer and verifies it against the corresponding block's AppHash.",
+        "params": [],
+        "result": "*state.Balance",
+        "deprecated": false
+      },
+      {
+        "name": "state.BalanceForAddress",
+        "package": "state",
+        "short_name": "BalanceForAddress",
+        "auth": "read",
+        "summary": "BalanceForAddress retrieves the Celestia coin balance for the given address and verifies the returned balance against the corresponding block's AppHash. NOTE: the balance returned is the balance reported by the block right before the node's current head (head-1). This is due to the fact that for block N, the block's `AppHash` is the result of applying the previous block's transaction list.",
+        "params": [
+          "addr"
+        ],
+        "result": "*state.Balance",
+        "deprecated": false
+      },
+      {
+        "name": "state.BeginRedelegate",
+        "package": "state",
+        "short_name": "BeginRedelegate",
+        "auth": "write",
+        "summary": "BeginRedelegate sends a user's delegated tokens to a new validator for redelegation.",
+        "params": [
+          "srcValAddr",
+          "dstValAddr",
+          "amount",
+          "config"
+        ],
+        "result": "*state.TxResponse",
+        "deprecated": false
+      },
+      {
+        "name": "state.CancelUnbondingDelegation",
+        "package": "state",
+        "short_name": "CancelUnbondingDelegation",
+        "auth": "write",
+        "summary": "CancelUnbondingDelegation cancels a user's pending undelegation from a validator.",
+        "params": [
+          "valAddr",
+          "amount",
+          "height",
+          "config"
+        ],
+        "result": "*state.TxResponse",
+        "deprecated": false
+      },
+      {
+        "name": "state.Delegate",
+        "package": "state",
+        "short_name": "Delegate",
+        "auth": "write",
+        "summary": "Delegate sends a user's liquid tokens to a validator for delegation.",
+        "params": [
+          "delAddr",
+          "amount",
+          "config"
+        ],
+        "result": "*state.TxResponse",
+        "deprecated": false
+      },
+      {
+        "name": "state.GrantFee",
+        "package": "state",
+        "short_name": "GrantFee",
+        "auth": "write",
+        "summary": "No comment exists yet for this method.",
+        "params": [
+          "grantee",
+          "amount",
+          "config"
+        ],
+        "result": "*state.TxResponse",
+        "deprecated": false
+      },
+      {
+        "name": "state.QueryDelegation",
+        "package": "state",
+        "short_name": "QueryDelegation",
+        "auth": "read",
+        "summary": "QueryDelegation retrieves the delegation information between a delegator and a validator.",
+        "params": [
+          "valAddr"
+        ],
+        "result": "*types.QueryDelegationResponse",
+        "deprecated": false
+      },
+      {
+        "name": "state.QueryRedelegations",
+        "package": "state",
+        "short_name": "QueryRedelegations",
+        "auth": "read",
+        "summary": "QueryRedelegations retrieves the status of the redelegations between a delegator and a validator.",
+        "params": [
+          "srcValAddr",
+          "dstValAddr"
+        ],
+        "result": "*types.QueryRedelegationsResponse",
+        "deprecated": false
+      },
+      {
+        "name": "state.QueryUnbonding",
+        "package": "state",
+        "short_name": "QueryUnbonding",
+        "auth": "read",
+        "summary": "QueryUnbonding retrieves the unbonding status between a delegator and a validator.",
+        "params": [
+          "valAddr"
+        ],
+        "result": "*types.QueryUnbondingDelegationResponse",
+        "deprecated": false
+      },
+      {
+        "name": "state.RevokeGrantFee",
+        "package": "state",
+        "short_name": "RevokeGrantFee",
+        "auth": "write",
+        "summary": "No comment exists yet for this method.",
+        "params": [
+          "grantee",
+          "config"
+        ],
+        "result": "*state.TxResponse",
+        "deprecated": false
+      },
+      {
+        "name": "state.SubmitPayForBlob",
+        "package": "state",
+        "short_name": "SubmitPayForBlob",
+        "auth": "write",
+        "summary": "SubmitPayForBlob builds, signs and submits a PayForBlob transaction.",
+        "params": [
+          "blobs",
+          "config"
+        ],
+        "result": "*state.TxResponse",
+        "deprecated": false
+      },
+      {
+        "name": "state.Transfer",
+        "package": "state",
+        "short_name": "Transfer",
+        "auth": "write",
+        "summary": "Transfer sends the given amount of coins from default wallet of the node to the given account address.",
+        "params": [
+          "to",
+          "amount",
+          "config"
+        ],
+        "result": "*state.TxResponse",
+        "deprecated": false
+      },
+      {
+        "name": "state.Undelegate",
+        "package": "state",
+        "short_name": "Undelegate",
+        "auth": "write",
+        "summary": "Undelegate undelegates a user's delegated tokens, unbonding them from the current validator.",
+        "params": [
+          "delAddr",
+          "amount",
+          "config"
+        ],
+        "result": "*state.TxResponse",
+        "deprecated": false
+      }
+    ]
+  },
+  "methods": [
+    {
+      "name": "blob.Get",
+      "package": "blob",
+      "short_name": "Get",
+      "auth": "read",
+      "summary": "Get retrieves the blob by commitment under the given namespace and height.",
+      "params": [
+        "height",
+        "namespace",
+        "commitment"
+      ],
+      "result": "*blob.Blob",
+      "deprecated": false
+    },
+    {
+      "name": "blob.GetAll",
+      "package": "blob",
+      "short_name": "GetAll",
+      "auth": "read",
+      "summary": "GetAll returns all blobs under the given namespaces at the given height. If all blobs were found without any errors, the user will receive a list of blobs. If the BlobService couldn't find any blobs under the requested namespaces, the user will receive an empty list of blobs along with an empty error. If some of the requested namespaces were not found, the user will receive all the found blobs and an empty error. If there were internal errors during some of the requests, the user will receive all found blobs along with a combined error message. All blobs will preserve the order of the namespaces that were requested.",
+      "params": [
+        "height",
+        "namespaces"
+      ],
+      "result": "[]*blob.Blob",
+      "deprecated": false
+    },
+    {
+      "name": "blob.GetCommitmentProof",
+      "package": "blob",
+      "short_name": "GetCommitmentProof",
+      "auth": "read",
+      "summary": "GetCommitmentProof generates a commitment proof for a share commitment.",
+      "params": [
+        "height",
+        "namespace",
+        "shareCommitment"
+      ],
+      "result": "*blob.CommitmentProof",
+      "deprecated": false
+    },
+    {
+      "name": "blob.GetProof",
+      "package": "blob",
+      "short_name": "GetProof",
+      "auth": "read",
+      "summary": "GetProof retrieves proofs in the given namespaces at the given height by commitment.",
+      "params": [
+        "height",
+        "namespace",
+        "commitment"
+      ],
+      "result": "*blob.Proof",
+      "deprecated": false
+    },
+    {
+      "name": "blob.Included",
+      "package": "blob",
+      "short_name": "Included",
+      "auth": "read",
+      "summary": "Included checks whether a blob's given commitment(Merkle subtree root) is included at given height and under the namespace.",
+      "params": [
+        "height",
+        "namespace",
+        "proof",
+        "commitment"
+      ],
+      "result": "bool",
+      "deprecated": false
+    },
+    {
+      "name": "blob.Submit",
+      "package": "blob",
+      "short_name": "Submit",
+      "auth": "write",
+      "summary": "Submit sends Blobs and reports the height in which they were included. Allows sending multiple Blobs atomically synchronously. Uses default wallet registered on the Node.",
+      "params": [
+        "blobs",
+        "options"
+      ],
+      "result": "uint64",
+      "deprecated": false
+    },
+    {
+      "name": "blob.Subscribe",
+      "package": "blob",
+      "short_name": "Subscribe",
+      "auth": "read",
+      "summary": "Subscribe to published blobs from the given namespace as they are included.",
+      "params": [
+        "namespace"
+      ],
+      "result": "<-chan *blob.SubscriptionResponse",
+      "deprecated": false
+    },
+    {
+      "name": "blobstream.GetDataRootTupleInclusionProof",
+      "package": "blobstream",
+      "short_name": "GetDataRootTupleInclusionProof",
+      "auth": "read",
+      "summary": "GetDataRootTupleInclusionProof creates an inclusion proof, for the data root tuple of block height `height`, in the set of blocks defined by `start` and `end`. The range is end exclusive. It's in the header module because it only needs access to the headers to generate the proof.",
+      "params": [
+        "height",
+        "start",
+        "end"
+      ],
+      "result": "*DataRootTupleInclusionProof",
+      "deprecated": false
+    },
+    {
+      "name": "blobstream.GetDataRootTupleRoot",
+      "package": "blobstream",
+      "short_name": "GetDataRootTupleRoot",
+      "auth": "read",
+      "summary": "GetDataRootTupleRoot collects the data roots over a provided ordered range of blocks, and then creates a new Merkle root of those data roots. The range is end exclusive. It's in the header module because it only needs access to the headers to generate the proof.",
+      "params": [
+        "start",
+        "end"
+      ],
+      "result": "DataRootTupleRoot",
+      "deprecated": false
+    },
+    {
+      "name": "da.Commit",
+      "package": "da",
+      "short_name": "Commit",
+      "auth": "read",
+      "summary": "Commit creates a Commitment for each given Blob. Deprecated: This method is deprecated and will be removed in the future.",
+      "params": [
+        "blobs",
+        "ns"
+      ],
+      "result": "[]da.Commitment",
+      "deprecated": true
+    },
+    {
+      "name": "da.Get",
+      "package": "da",
+      "short_name": "Get",
+      "auth": "read",
+      "summary": "Get returns Blob for each given ID, or an error. Error should be returned if ID is not formatted properly, there is no Blob for given ID or any other client-level error occurred (dropped connection, timeout, etc). Deprecated: This method is deprecated and will be removed in the future.",
+      "params": [
+        "ids",
+        "ns"
+      ],
+      "result": "[]da.Blob",
+      "deprecated": true
+    },
+    {
+      "name": "da.GetIDs",
+      "package": "da",
+      "short_name": "GetIDs",
+      "auth": "read",
+      "summary": "GetIDs returns IDs of all Blobs located in DA at given height. Deprecated: This method is deprecated and will be removed in the future.",
+      "params": [
+        "height",
+        "ns"
+      ],
+      "result": "*da.GetIDsResult",
+      "deprecated": true
+    },
+    {
+      "name": "da.GetProofs",
+      "package": "da",
+      "short_name": "GetProofs",
+      "auth": "read",
+      "summary": "GetProofs returns inclusion Proofs for Blobs specified by their IDs. Deprecated: This method is deprecated and will be removed in the future.",
+      "params": [
+        "ids",
+        "ns"
+      ],
+      "result": "[]da.Proof",
+      "deprecated": true
+    },
+    {
+      "name": "da.MaxBlobSize",
+      "package": "da",
+      "short_name": "MaxBlobSize",
+      "auth": "read",
+      "summary": "MaxBlobSize returns the max blob size Deprecated: This method is deprecated and will be removed in the future.",
+      "params": [],
+      "result": "uint64",
+      "deprecated": true
+    },
+    {
+      "name": "da.Submit",
+      "package": "da",
+      "short_name": "Submit",
+      "auth": "write",
+      "summary": "Submit submits the Blobs to Data Availability layer. This method is synchronous. Upon successful submission to Data Availability layer, it returns the IDs identifying blobs in DA. Deprecated: This method is deprecated and will be removed in the future.",
+      "params": [
+        "blobs",
+        "gasPrice",
+        "ns"
+      ],
+      "result": "[]da.ID",
+      "deprecated": true
+    },
+    {
+      "name": "da.SubmitWithOptions",
+      "package": "da",
+      "short_name": "SubmitWithOptions",
+      "auth": "write",
+      "summary": "SubmitWithOptions submits the Blobs to Data Availability layer. This method is synchronous. Upon successful submission to Data Availability layer, it returns the IDs identifying blobs in DA. Deprecated: This method is deprecated and will be removed in the future.",
+      "params": [
+        "blobs",
+        "gasPrice",
+        "ns",
+        "options"
+      ],
+      "result": "[]da.ID",
+      "deprecated": true
+    },
+    {
+      "name": "da.Validate",
+      "package": "da",
+      "short_name": "Validate",
+      "auth": "read",
+      "summary": "Validate validates Commitments against the corresponding Proofs. This should be possible without retrieving the Blobs. Deprecated: This method is deprecated and will be removed in the future.",
+      "params": [
+        "ids",
+        "proofs",
+        "ns"
+      ],
+      "result": "[]bool",
+      "deprecated": true
+    },
+    {
+      "name": "das.SamplingStats",
+      "package": "das",
+      "short_name": "SamplingStats",
+      "auth": "read",
+      "summary": "SamplingStats returns the current statistics over the DA sampling process.",
+      "params": [],
+      "result": "das.SamplingStats",
+      "deprecated": false
+    },
+    {
+      "name": "das.WaitCatchUp",
+      "package": "das",
+      "short_name": "WaitCatchUp",
+      "auth": "read",
+      "summary": "WaitCatchUp blocks until DASer finishes catching up to the network head.",
+      "params": [],
+      "result": "Null",
+      "deprecated": false
+    },
+    {
+      "name": "fraud.Get",
+      "package": "fraud",
+      "short_name": "Get",
+      "auth": "read",
+      "summary": "Get fetches fraud proofs from the disk by its type.",
+      "params": [
+        "proofType"
+      ],
+      "result": "[]Proof",
+      "deprecated": false
+    },
+    {
+      "name": "fraud.Subscribe",
+      "package": "fraud",
+      "short_name": "Subscribe",
+      "auth": "read",
+      "summary": "Subscribe allows to subscribe on a Proof pub sub topic by its type.",
+      "params": [
+        "proofType"
+      ],
+      "result": "<-chan *Proof",
+      "deprecated": false
+    },
+    {
+      "name": "header.GetByHash",
+      "package": "header",
+      "short_name": "GetByHash",
+      "auth": "read",
+      "summary": "GetByHash returns the header of the given hash from the node's header store.",
+      "params": [
+        "hash"
+      ],
+      "result": "*header.ExtendedHeader",
+      "deprecated": false
+    },
+    {
+      "name": "header.GetByHeight",
+      "package": "header",
+      "short_name": "GetByHeight",
+      "auth": "read",
+      "summary": "GetByHeight returns the ExtendedHeader at the given height if it is currently available.",
+      "params": [
+        "u"
+      ],
+      "result": "*header.ExtendedHeader",
+      "deprecated": false
+    },
+    {
+      "name": "header.GetRangeByHeight",
+      "package": "header",
+      "short_name": "GetRangeByHeight",
+      "auth": "read",
+      "summary": "GetRangeByHeight returns the given range (from:to) of ExtendedHeaders from the node's header store and verifies that the returned headers are adjacent to each other.",
+      "params": [
+        "from",
+        "to"
+      ],
+      "result": "[]*header.ExtendedHeader",
+      "deprecated": false
+    },
+    {
+      "name": "header.LocalHead",
+      "package": "header",
+      "short_name": "LocalHead",
+      "auth": "read",
+      "summary": "LocalHead returns the ExtendedHeader of the chain head.",
+      "params": [],
+      "result": "*header.ExtendedHeader",
+      "deprecated": false
+    },
+    {
+      "name": "header.NetworkHead",
+      "package": "header",
+      "short_name": "NetworkHead",
+      "auth": "read",
+      "summary": "NetworkHead provides the Syncer's view of the current network head.",
+      "params": [],
+      "result": "*header.ExtendedHeader",
+      "deprecated": false
+    },
+    {
+      "name": "header.Subscribe",
+      "package": "header",
+      "short_name": "Subscribe",
+      "auth": "read",
+      "summary": "Subscribe to recent ExtendedHeaders from the network.",
+      "params": [],
+      "result": "<-chan *header.ExtendedHeader",
+      "deprecated": false
+    },
+    {
+      "name": "header.SyncState",
+      "package": "header",
+      "short_name": "SyncState",
+      "auth": "read",
+      "summary": "SyncState returns the current state of the header Syncer.",
+      "params": [],
+      "result": "sync.State",
+      "deprecated": false
+    },
+    {
+      "name": "header.SyncWait",
+      "package": "header",
+      "short_name": "SyncWait",
+      "auth": "read",
+      "summary": "SyncWait blocks until the header Syncer is synced to network head.",
+      "params": [],
+      "result": "Null",
+      "deprecated": false
+    },
+    {
+      "name": "header.Tail",
+      "package": "header",
+      "short_name": "Tail",
+      "auth": "read",
+      "summary": "Tail reports current tail header of the node. Tail header is the lowest height header known by the running node. Headers with height below Tail are not available to be requested. Subsequently, Shwap data requests for this height are not available as well. NOTE: In future, requests for headers below Tail will be supported by lazily fetching them from the network.",
+      "params": [],
+      "result": "*header.ExtendedHeader",
+      "deprecated": false
+    },
+    {
+      "name": "header.WaitForHeight",
+      "package": "header",
+      "short_name": "WaitForHeight",
+      "auth": "read",
+      "summary": "WaitForHeight blocks until the header at the given height has been processed by the store or context deadline is exceeded.",
+      "params": [
+        "u"
+      ],
+      "result": "*header.ExtendedHeader",
+      "deprecated": false
+    },
+    {
+      "name": "node.AuthNew",
+      "package": "node",
+      "short_name": "AuthNew",
+      "auth": "admin",
+      "summary": "AuthNew signs and returns a new token with the given permissions.",
+      "params": [
+        "perms"
+      ],
+      "result": "string",
+      "deprecated": false
+    },
+    {
+      "name": "node.AuthNewWithExpiry",
+      "package": "node",
+      "short_name": "AuthNewWithExpiry",
+      "auth": "admin",
+      "summary": "AuthNewWithExpiry signs and returns a new token with the given permissions and TTL.",
+      "params": [
+        "perms",
+        "ttl"
+      ],
+      "result": "string",
+      "deprecated": false
+    },
+    {
+      "name": "node.AuthVerify",
+      "package": "node",
+      "short_name": "AuthVerify",
+      "auth": "admin",
+      "summary": "AuthVerify returns the permissions assigned to the given token.",
+      "params": [
+        "token"
+      ],
+      "result": "[]auth.Permission",
+      "deprecated": false
+    },
+    {
+      "name": "node.Info",
+      "package": "node",
+      "short_name": "Info",
+      "auth": "admin",
+      "summary": "Info returns administrative information about the node.",
+      "params": [],
+      "result": "Info",
+      "deprecated": false
+    },
+    {
+      "name": "node.LogLevelSet",
+      "package": "node",
+      "short_name": "LogLevelSet",
+      "auth": "admin",
+      "summary": "LogLevelSet sets the given component log level to the given level.",
+      "params": [
+        "name",
+        "level"
+      ],
+      "result": "Null",
+      "deprecated": false
+    },
+    {
+      "name": "node.Ready",
+      "package": "node",
+      "short_name": "Ready",
+      "auth": "read",
+      "summary": "Ready returns true once the node's RPC is ready to accept requests.",
+      "params": [],
+      "result": "bool",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.BandwidthForPeer",
+      "package": "p2p",
+      "short_name": "BandwidthForPeer",
+      "auth": "admin",
+      "summary": "BandwidthForPeer returns a Stats struct with bandwidth metrics associated with the given peer.ID. The metrics returned include all traffic sent / received for the peer, regardless of protocol.",
+      "params": [
+        "id"
+      ],
+      "result": "metrics.Stats",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.BandwidthForProtocol",
+      "package": "p2p",
+      "short_name": "BandwidthForProtocol",
+      "auth": "admin",
+      "summary": "BandwidthForProtocol returns a Stats struct with bandwidth metrics associated with the given protocol.ID.",
+      "params": [
+        "proto"
+      ],
+      "result": "metrics.Stats",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.BandwidthStats",
+      "package": "p2p",
+      "short_name": "BandwidthStats",
+      "auth": "admin",
+      "summary": "BandwidthStats returns a Stats struct with bandwidth metrics for all data sent/received by the local peer, regardless of protocol or remote peer IDs.",
+      "params": [],
+      "result": "metrics.Stats",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.BlockPeer",
+      "package": "p2p",
+      "short_name": "BlockPeer",
+      "auth": "admin",
+      "summary": "BlockPeer adds a peer to the set of blocked peers and closes any existing connection to that peer.",
+      "params": [
+        "p"
+      ],
+      "result": "Null",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.ClosePeer",
+      "package": "p2p",
+      "short_name": "ClosePeer",
+      "auth": "admin",
+      "summary": "ClosePeer closes the connection to a given peer.",
+      "params": [
+        "id"
+      ],
+      "result": "Null",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.Connect",
+      "package": "p2p",
+      "short_name": "Connect",
+      "auth": "admin",
+      "summary": "Connect ensures there is a connection between this host and the peer with given peer.",
+      "params": [
+        "pi"
+      ],
+      "result": "Null",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.Connectedness",
+      "package": "p2p",
+      "short_name": "Connectedness",
+      "auth": "admin",
+      "summary": "Connectedness returns a state signaling connection capabilities.",
+      "params": [
+        "id"
+      ],
+      "result": "network.Connectedness",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.ConnectionState",
+      "package": "p2p",
+      "short_name": "ConnectionState",
+      "auth": "admin",
+      "summary": "ConnectionState returns information about each *active* connection to the peer. NOTE: At most cases there should be only a single connection.",
+      "params": [
+        "peer"
+      ],
+      "result": "[]ConnectionState",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.Info",
+      "package": "p2p",
+      "short_name": "Info",
+      "auth": "admin",
+      "summary": "Info returns address information about the host.",
+      "params": [],
+      "result": "peer.AddrInfo",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.IsProtected",
+      "package": "p2p",
+      "short_name": "IsProtected",
+      "auth": "admin",
+      "summary": "IsProtected returns whether the given peer is protected.",
+      "params": [
+        "id",
+        "tag"
+      ],
+      "result": "bool",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.ListBlockedPeers",
+      "package": "p2p",
+      "short_name": "ListBlockedPeers",
+      "auth": "admin",
+      "summary": "ListBlockedPeers returns a list of blocked peers.",
+      "params": [],
+      "result": "[]peer.ID",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.NATStatus",
+      "package": "p2p",
+      "short_name": "NATStatus",
+      "auth": "admin",
+      "summary": "NATStatus returns the current NAT status.",
+      "params": [],
+      "result": "network.Reachability",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.PeerInfo",
+      "package": "p2p",
+      "short_name": "PeerInfo",
+      "auth": "admin",
+      "summary": "PeerInfo returns a small slice of information Peerstore has on the given peer.",
+      "params": [
+        "id"
+      ],
+      "result": "peer.AddrInfo",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.Peers",
+      "package": "p2p",
+      "short_name": "Peers",
+      "auth": "admin",
+      "summary": "Peers returns connected peers.",
+      "params": [],
+      "result": "[]peer.ID",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.Ping",
+      "package": "p2p",
+      "short_name": "Ping",
+      "auth": "admin",
+      "summary": "Ping pings the selected peer and returns time it took or error.",
+      "params": [
+        "peer"
+      ],
+      "result": "time.Duration",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.Protect",
+      "package": "p2p",
+      "short_name": "Protect",
+      "auth": "admin",
+      "summary": "Protect adds a peer to the list of peers who have a bidirectional peering agreement that they are protected from being trimmed, dropped or negatively scored.",
+      "params": [
+        "id",
+        "tag"
+      ],
+      "result": "Null",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.PubSubPeers",
+      "package": "p2p",
+      "short_name": "PubSubPeers",
+      "auth": "admin",
+      "summary": "PubSubPeers returns the peer IDs of the peers joined on the given topic.",
+      "params": [
+        "topic"
+      ],
+      "result": "[]peer.ID",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.PubSubTopics",
+      "package": "p2p",
+      "short_name": "PubSubTopics",
+      "auth": "admin",
+      "summary": "PubSubTopics reports current PubSubTopics the node participates in.",
+      "params": [],
+      "result": "[]string",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.ResourceState",
+      "package": "p2p",
+      "short_name": "ResourceState",
+      "auth": "admin",
+      "summary": "ResourceState returns the state of the resource manager.",
+      "params": [],
+      "result": "rcmgr.ResourceManagerStat",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.UnblockPeer",
+      "package": "p2p",
+      "short_name": "UnblockPeer",
+      "auth": "admin",
+      "summary": "UnblockPeer removes a peer from the set of blocked peers.",
+      "params": [
+        "p"
+      ],
+      "result": "Null",
+      "deprecated": false
+    },
+    {
+      "name": "p2p.Unprotect",
+      "package": "p2p",
+      "short_name": "Unprotect",
+      "auth": "admin",
+      "summary": "Unprotect removes a peer from the list of peers who have a bidirectional peering agreement that they are protected from being trimmed, dropped or negatively scored, returning a bool representing whether the given peer is protected or not.",
+      "params": [
+        "id",
+        "tag"
+      ],
+      "result": "bool",
+      "deprecated": false
+    },
+    {
+      "name": "share.GetEDS",
+      "package": "share",
+      "short_name": "GetEDS",
+      "auth": "read",
+      "summary": "GetEDS retrieves the complete Extended Data Square (EDS) for the specified height. The EDS contains all shares organized in a 2D matrix format with erasure coding. Returns the full EDS or an error if retrieval fails.",
+      "params": [
+        "height"
+      ],
+      "result": "*rsmt2d.ExtendedDataSquare",
+      "deprecated": false
+    },
+    {
+      "name": "share.GetNamespaceData",
+      "package": "share",
+      "short_name": "GetNamespaceData",
+      "auth": "read",
+      "summary": "GetNamespaceData retrieves all shares that belong to the specified namespace within the Extended Data Square (EDS) at the given height. The shares are returned in a row-by-row order, maintaining the original layout if the namespace spans multiple rows. Returns the namespace data or an error if retrieval fails.",
+      "params": [
+        "height",
+        "namespace"
+      ],
+      "result": "shwap.NamespaceData",
+      "deprecated": false
+    },
+    {
+      "name": "share.GetRange",
+      "package": "share",
+      "short_name": "GetRange",
+      "auth": "read",
+      "summary": "GetRange retrieves a range of the *original* shares and their corresponding proofs within a specific namespace in the Extended Data Square (EDS) at the given height. The range is defined by start and end indexes. Returns the range data with proof to the data root or an error if retrieval fails.",
+      "params": [
+        "height",
+        "from",
+        "to"
+      ],
+      "result": "*GetRangeResult",
+      "deprecated": false
+    },
+    {
+      "name": "share.GetRow",
+      "package": "share",
+      "short_name": "GetRow",
+      "auth": "read",
+      "summary": "GetRow retrieves all shares from a specific row in the Extended Data Square (EDS) at the given height. Returns the complete row of shares or an error if retrieval fails.",
+      "params": [
+        "height",
+        "rowIdx"
+      ],
+      "result": "shwap.Row",
+      "deprecated": false
+    },
+    {
+      "name": "share.GetSamples",
+      "package": "share",
+      "short_name": "GetSamples",
+      "auth": "read",
+      "summary": "GetSamples retrieves multiple shares from the Extended Data Square (EDS) specified by the header at the given sample coordinates. Returns an array of samples containing the requested shares or an error if retrieval fails.",
+      "params": [
+        "height",
+        "indices"
+      ],
+      "result": "[]shwap.Sample",
+      "deprecated": false
+    },
+    {
+      "name": "share.GetShare",
+      "package": "share",
+      "short_name": "GetShare",
+      "auth": "read",
+      "summary": "GetShare retrieves a specific share from the Extended Data Square (EDS) at the given height using its row and column coordinates. Returns the share data or an error if retrieval fails.",
+      "params": [
+        "height",
+        "row",
+        "col"
+      ],
+      "result": "libshare.Share",
+      "deprecated": false
+    },
+    {
+      "name": "share.SharesAvailable",
+      "package": "share",
+      "short_name": "SharesAvailable",
+      "auth": "read",
+      "summary": "SharesAvailable performs a subjective validation to check if the shares committed to the ExtendedHeader at the specified height are available and retrievable from the network. Returns an error if the shares are not available or if validation fails.",
+      "params": [
+        "height"
+      ],
+      "result": "Null",
+      "deprecated": false
+    },
+    {
+      "name": "state.AccountAddress",
+      "package": "state",
+      "short_name": "AccountAddress",
+      "auth": "read",
+      "summary": "AccountAddress retrieves the address of the node's account/signer",
+      "params": [],
+      "result": "state.Address",
+      "deprecated": false
+    },
+    {
+      "name": "state.Balance",
+      "package": "state",
+      "short_name": "Balance",
+      "auth": "read",
+      "summary": "Balance retrieves the Celestia coin balance for the node's account/signer and verifies it against the corresponding block's AppHash.",
+      "params": [],
+      "result": "*state.Balance",
+      "deprecated": false
+    },
+    {
+      "name": "state.BalanceForAddress",
+      "package": "state",
+      "short_name": "BalanceForAddress",
+      "auth": "read",
+      "summary": "BalanceForAddress retrieves the Celestia coin balance for the given address and verifies the returned balance against the corresponding block's AppHash. NOTE: the balance returned is the balance reported by the block right before the node's current head (head-1). This is due to the fact that for block N, the block's `AppHash` is the result of applying the previous block's transaction list.",
+      "params": [
+        "addr"
+      ],
+      "result": "*state.Balance",
+      "deprecated": false
+    },
+    {
+      "name": "state.BeginRedelegate",
+      "package": "state",
+      "short_name": "BeginRedelegate",
+      "auth": "write",
+      "summary": "BeginRedelegate sends a user's delegated tokens to a new validator for redelegation.",
+      "params": [
+        "srcValAddr",
+        "dstValAddr",
+        "amount",
+        "config"
+      ],
+      "result": "*state.TxResponse",
+      "deprecated": false
+    },
+    {
+      "name": "state.CancelUnbondingDelegation",
+      "package": "state",
+      "short_name": "CancelUnbondingDelegation",
+      "auth": "write",
+      "summary": "CancelUnbondingDelegation cancels a user's pending undelegation from a validator.",
+      "params": [
+        "valAddr",
+        "amount",
+        "height",
+        "config"
+      ],
+      "result": "*state.TxResponse",
+      "deprecated": false
+    },
+    {
+      "name": "state.Delegate",
+      "package": "state",
+      "short_name": "Delegate",
+      "auth": "write",
+      "summary": "Delegate sends a user's liquid tokens to a validator for delegation.",
+      "params": [
+        "delAddr",
+        "amount",
+        "config"
+      ],
+      "result": "*state.TxResponse",
+      "deprecated": false
+    },
+    {
+      "name": "state.GrantFee",
+      "package": "state",
+      "short_name": "GrantFee",
+      "auth": "write",
+      "summary": "No comment exists yet for this method.",
+      "params": [
+        "grantee",
+        "amount",
+        "config"
+      ],
+      "result": "*state.TxResponse",
+      "deprecated": false
+    },
+    {
+      "name": "state.QueryDelegation",
+      "package": "state",
+      "short_name": "QueryDelegation",
+      "auth": "read",
+      "summary": "QueryDelegation retrieves the delegation information between a delegator and a validator.",
+      "params": [
+        "valAddr"
+      ],
+      "result": "*types.QueryDelegationResponse",
+      "deprecated": false
+    },
+    {
+      "name": "state.QueryRedelegations",
+      "package": "state",
+      "short_name": "QueryRedelegations",
+      "auth": "read",
+      "summary": "QueryRedelegations retrieves the status of the redelegations between a delegator and a validator.",
+      "params": [
+        "srcValAddr",
+        "dstValAddr"
+      ],
+      "result": "*types.QueryRedelegationsResponse",
+      "deprecated": false
+    },
+    {
+      "name": "state.QueryUnbonding",
+      "package": "state",
+      "short_name": "QueryUnbonding",
+      "auth": "read",
+      "summary": "QueryUnbonding retrieves the unbonding status between a delegator and a validator.",
+      "params": [
+        "valAddr"
+      ],
+      "result": "*types.QueryUnbondingDelegationResponse",
+      "deprecated": false
+    },
+    {
+      "name": "state.RevokeGrantFee",
+      "package": "state",
+      "short_name": "RevokeGrantFee",
+      "auth": "write",
+      "summary": "No comment exists yet for this method.",
+      "params": [
+        "grantee",
+        "config"
+      ],
+      "result": "*state.TxResponse",
+      "deprecated": false
+    },
+    {
+      "name": "state.SubmitPayForBlob",
+      "package": "state",
+      "short_name": "SubmitPayForBlob",
+      "auth": "write",
+      "summary": "SubmitPayForBlob builds, signs and submits a PayForBlob transaction.",
+      "params": [
+        "blobs",
+        "config"
+      ],
+      "result": "*state.TxResponse",
+      "deprecated": false
+    },
+    {
+      "name": "state.Transfer",
+      "package": "state",
+      "short_name": "Transfer",
+      "auth": "write",
+      "summary": "Transfer sends the given amount of coins from default wallet of the node to the given account address.",
+      "params": [
+        "to",
+        "amount",
+        "config"
+      ],
+      "result": "*state.TxResponse",
+      "deprecated": false
+    },
+    {
+      "name": "state.Undelegate",
+      "package": "state",
+      "short_name": "Undelegate",
+      "auth": "write",
+      "summary": "Undelegate undelegates a user's delegated tokens, unbonding them from the current validator.",
+      "params": [
+        "delAddr",
+        "amount",
+        "config"
+      ],
+      "result": "*state.TxResponse",
+      "deprecated": false
+    }
+  ]
+}

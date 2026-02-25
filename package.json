@@ -11,7 +11,8 @@
     "lint": "eslint",
     "prepare": "simple-git-hooks",
     "generate:llms": "node scripts/generate-llms.js",
-    "check-links": "node scripts/check-links.mjs"
+    "check-links": "node scripts/check-links.mjs",
+    "generate:node-api-skill-ref": "node skills/celestia-node-api-agent/scripts/generate-openrpc-reference.mjs"
   },
   "simple-git-hooks": {
     "pre-push": "npm run lint"
