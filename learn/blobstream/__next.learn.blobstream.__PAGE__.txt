@@ -1,0 +1,114 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","3955","static/chunks/app/learn/blobstream/page-e7ad7b7a98e5d4f5.js"],"WrapperWithFooter"]
+6:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","3955","static/chunks/app/learn/blobstream/page-e7ad7b7a98e5d4f5.js"],"HeadingAnchor"]
+7:I[98500,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","3955","static/chunks/app/learn/blobstream/page-e7ad7b7a98e5d4f5.js"],""]
+8:I[59263,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","3955","static/chunks/app/learn/blobstream/page-e7ad7b7a98e5d4f5.js"],"ImageZoom"]
+24:I[90484,[],"OutletBoundary"]
+25:"$Sreact.suspense"
+3:T129e,# Blobstream
+
+[Blobstream](https://blog.celestia.org/introducing-blobstream/)
+allows Ethereum developers to build high-throughput L2s using Celestia,
+the first DA layer with Data Availability Sampling.
+
+This section covers Blobstream and how validators on Celestia can run it.
+
+If you're looking to learn more, you can view
+[the `orchestrator-relayer` repository](https://github.com/celestiaorg/orchestrator-relayer),
+and [read more about Blobstream](https://github.com/celestiaorg/blobstream-contracts#how-it-works).
+
+## Overview
+
+Blobstream consists of two components: an [orchestrator](/operate/blobstream/orchestrator)
+and a [relayer](/operate/blobstream/relayer).
+
+In the following diagram, we show how a layer 2 would post data to
+Celestia and then verify that it was published in the target EVM chain.
+
+![Blobstream Architecture](/img/blobstream/Blobstream.png)
+
+Data is first attested to by the Celestia validator set—they sign commitments to the data. Then, these signatures are relayed to the target EVM chain (in this case, Ethereum). Finally, the layer 2, or any party, can verify that the data was published to Celestia directly on the EVM chain via the Blobstream smart contract. You can reference [the Blobstream smart contract](https://github.com/celestiaorg/blobstream-contracts/blob/v3.0.0/src/Blobstream.sol).
+
+The specification of Blobstream `Valset`s, which track the Celestia validator set changes, can be found in [ADR 002](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md).
+
+Blobstream data commitments, which represent commitments over sets of blocks defined by a data commitment window, are discussed more in-depth in [ADR 003](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md).
+
+The orchestrator is part of the validator setup and works as follows:
+
+- **Celestia App**: Creates an attestation on the state machine level that needs to be signed
+- **The orchestrator**: Queries the attestation, signs it, then submits the signature to the Blobstream P2P network
+
+The diagram below illustrates this process:
+
+![Blobstream Orchestrator](/img/blobstream/blobstream-orchestrator.png)
+
+The relayer submits the attestations' signatures from the Blobstream P2P network to the target EVM chain.
+
+> **Note:** If the contract is still not deployed, it needs to be deployed before it's used by the relayer. Check the [deployment documentation](/operate/blobstream/deploy-contract) for more details.
+
+The diagram below illustrates the relayer process:
+
+![Blobstream Relayer](/img/blobstream/blobstream-relayer.png)
+
+You can learn more about the mechanics behind the relayer in [ADR 004](https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-004-qgb-relayer-security.md).
+
+## Blobstream vs Data Availability Committees (DACs)
+
+### Decentralization and security
+
+Blobstream is built on Celestia, which uses a CometBFT-based proof-of-stake system. An incorrect data availability attestation in this system will ultimately be penalized (currently not implemented), ensuring validators act in good faith. Thus, Blobstream shares the same security assumptions as Celestia.
+
+In contrast, data availability committees (DACs) are typically centralized or semi-centralized, relying on a specific set of entities or individuals to vouch for data availability.
+
+### Mechanism of verification
+
+Blobstream uses data availability attestations, which are Merkle roots of the batched L2 data, to confirm that the necessary data is present on Celestia. The L2 contract on Ethereum can check directly with Blobstream if the data is published on Celestia.
+
+Similarly, a DAC would rely on attestations or confirmations from its permissioned members.
+
+### Flexibility and scalability
+
+Blobstream is designed to offer high-throughput data availability for Ethereum L2s, aiming to strike a balance between scalability and security. It operates independently of Ethereum's gas costs, as Celestia's resource pricing is more byte-focused rather than computation-centric.
+
+On the other hand, the scalability and flexibility of a DAC would depend on its specific design and implementation.
+
+In summary, both Blobstream and DACs aim to ensure offchain data availability, but Blobstream offers a more decentralized, secure, and scalable solution compared to the potential centralized nature of DACs.
+
+
+## Build with Blobstream
+
+If you are a developer looking to build on top of Blobstream, check out the [Build section](/build/blobstream/integrate-contracts).
+
+## Operate Blobstream
+
+If you are a validator or node operator looking to run Blobstream, check out the [Operate section](/operate/blobstream/install-binary) to learn how to deploy your own instance.0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Blobstream","filePath":"app/learn/blobstream/page.mdx","timestamp":1772147596000},"toc":[{"value":"Overview","id":"overview","depth":2},{"value":"Blobstream vs Data Availability Committees (DACs)","id":"blobstream-vs-data-availability-committees-dacs","depth":2},{"value":"Decentralization and security","id":"decentralization-and-security","depth":3},{"value":"Mechanism of verification","id":"mechanism-of-verification","depth":3},{"value":"Flexibility and scalability","id":"flexibility-and-scalability","depth":3},{"value":"Build with Blobstream","id":"build-with-blobstream","depth":2},{"value":"Operate Blobstream","id":"operate-blobstream","depth":2}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"loading":null,"isPartial":false}
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Blobstream","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","a",null,{"href":"https://blog.celestia.org/introducing-blobstream/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Blobstream",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nallows Ethereum developers to build high-throughput L2s using Celestia,\nthe first DA layer with Data Availability Sampling."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This section covers Blobstream and how validators on Celestia can run it."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["If you’re looking to learn more, you can view\n",["$","a",null,{"href":"https://github.com/celestiaorg/orchestrator-relayer","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":[["the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"orchestrator-relayer"}]," repository"],false]}],",\nand ",["$","a",null,{"href":"https://github.com/celestiaorg/blobstream-contracts#how-it-works","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["read more about Blobstream",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}],"\n",["$","h2",null,{"id":"overview","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Overview",["$","$L6",null,{"id":"overview"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Blobstream consists of two components: an ",["$","$L7",null,{"href":"/operate/blobstream/orchestrator","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"orchestrator"}],"\nand a ",["$","$L7",null,{"href":"/operate/blobstream/relayer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"relayer"}],"."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"In the following diagram, we show how a layer 2 would post data to\nCelestia and then verify that it was published in the target EVM chain."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["$","$L8",null,{"alt":"Blobstream Architecture","placeholder":"blur","src":{"src":"/_next/static/media/Blobstream.2bb57e67.png","height":1354,"width":2129,"blurDataURL":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAMAAABPT11nAAAARVBMVEX47+X76uvn3tT5+Pfy6dr68u7w4df57/fu0czwnr312ur1wt/l8PPz3vXf2M/uvc/k6Ofjoejkq77y4OLqwu/dguT2zNOlpPjVAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMElEQVR4nAXBhwEAIAgDsKIo4N7/n2oCNEcURADmnHeqgPfhJTmIpYzVdUJdVDO7HxqjAWSGnSNIAAAAAElFTkSuQmCC","blurWidth":8,"blurHeight":5}}]}],"\n","$L9","\n","$La","\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16","\n","$L17","\n","$L18","\n","$L19","\n","$L1a","\n","$L1b","\n","$L1c","\n","$L1d","\n","$L1e","\n","$L1f","\n","$L20","\n","$L21","\n","$L22","\n","$L23"]
+5:["$","$L24",null,{"children":["$","$25",null,{"name":"Next.MetadataOutlet","children":"$@26"}]}]
+9:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Data is first attested to by the Celestia validator set—they sign commitments to the data. Then, these signatures are relayed to the target EVM chain (in this case, Ethereum). Finally, the layer 2, or any party, can verify that the data was published to Celestia directly on the EVM chain via the Blobstream smart contract. You can reference ",["$","a",null,{"href":"https://github.com/celestiaorg/blobstream-contracts/blob/v3.0.0/src/Blobstream.sol","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["the Blobstream smart contract",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The specification of Blobstream ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Valset"}],"s, which track the Celestia validator set changes, can be found in ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-002-qgb-valset.md","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["ADR 002",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Blobstream data commitments, which represent commitments over sets of blocks defined by a data commitment window, are discussed more in-depth in ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-003-qgb-data-commitments.md","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["ADR 003",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The orchestrator is part of the validator setup and works as follows:"}]
+d:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Celestia App"}],": Creates an attestation on the state machine level that needs to be signed"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"The orchestrator"}],": Queries the attestation, signs it, then submits the signature to the Blobstream P2P network"]}],"\n"]}]
+e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The diagram below illustrates this process:"}]
+f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["$","$L8",null,{"alt":"Blobstream Orchestrator","placeholder":"blur","src":{"src":"/_next/static/media/blobstream-orchestrator.312690f4.png","height":1613,"width":3000,"blurDataURL":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAMAAACEE47CAAAAGFBMVEX5+vjp4vHh2fDc0O7w7PXx7vXVsfTzv+1R15gvAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAI0lEQVR4nGNgYGBkZmZkAAFGJjCDhYmJjZ2RmYWBFcxgYgUAA8sAS3/Y360AAAAASUVORK5CYII=","blurWidth":8,"blurHeight":4}}]}]
+10:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The relayer submits the attestations’ signatures from the Blobstream P2P network to the target EVM chain."}]
+11:["$","blockquote",null,{"className":"x:not-first:mt-[1.25em] x:border-gray-300 x:italic x:text-gray-700 x:dark:border-gray-700 x:dark:text-gray-400 x:border-s-2 x:ps-[1.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Note:"}]," If the contract is still not deployed, it needs to be deployed before it’s used by the relayer. Check the ",["$","$L7",null,{"href":"/operate/blobstream/deploy-contract","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"deployment documentation"}]," for more details."]}],"\n"]}]
+12:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The diagram below illustrates the relayer process:"}]
+13:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["$","$L8",null,{"alt":"Blobstream Relayer","placeholder":"blur","src":{"src":"/_next/static/media/blobstream-relayer.77838e01.png","height":1569,"width":3000,"blurDataURL":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAMAAACEE47CAAAAD1BMVEXczuzi1vHx7vbl6PP19/W0/5k0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAHklEQVR4nGNgYgQDJgYmBjAAMZhZWJiZWRiYGCEMAANBAD79zN7WAAAAAElFTkSuQmCC","blurWidth":8,"blurHeight":4}}]}]
+14:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["You can learn more about the mechanics behind the relayer in ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-app/blob/main/docs/architecture/adr-004-qgb-relayer-security.md","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["ADR 004",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+15:["$","h2",null,{"id":"blobstream-vs-data-availability-committees-dacs","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Blobstream vs Data Availability Committees (DACs)",["$","$L6",null,{"id":"blobstream-vs-data-availability-committees-dacs"}]]}]
+16:["$","h3",null,{"id":"decentralization-and-security","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Decentralization and security",["$","$L6",null,{"id":"decentralization-and-security"}]]}]
+17:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Blobstream is built on Celestia, which uses a CometBFT-based proof-of-stake system. An incorrect data availability attestation in this system will ultimately be penalized (currently not implemented), ensuring validators act in good faith. Thus, Blobstream shares the same security assumptions as Celestia."}]
+18:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"In contrast, data availability committees (DACs) are typically centralized or semi-centralized, relying on a specific set of entities or individuals to vouch for data availability."}]
+19:["$","h3",null,{"id":"mechanism-of-verification","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Mechanism of verification",["$","$L6",null,{"id":"mechanism-of-verification"}]]}]
+1a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Blobstream uses data availability attestations, which are Merkle roots of the batched L2 data, to confirm that the necessary data is present on Celestia. The L2 contract on Ethereum can check directly with Blobstream if the data is published on Celestia."}]
+1b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Similarly, a DAC would rely on attestations or confirmations from its permissioned members."}]
+1c:["$","h3",null,{"id":"flexibility-and-scalability","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Flexibility and scalability",["$","$L6",null,{"id":"flexibility-and-scalability"}]]}]
+1d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Blobstream is designed to offer high-throughput data availability for Ethereum L2s, aiming to strike a balance between scalability and security. It operates independently of Ethereum’s gas costs, as Celestia’s resource pricing is more byte-focused rather than computation-centric."}]
+1e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"On the other hand, the scalability and flexibility of a DAC would depend on its specific design and implementation."}]
+1f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"In summary, both Blobstream and DACs aim to ensure offchain data availability, but Blobstream offers a more decentralized, secure, and scalable solution compared to the potential centralized nature of DACs."}]
+20:["$","h2",null,{"id":"build-with-blobstream","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Build with Blobstream",["$","$L6",null,{"id":"build-with-blobstream"}]]}]
+21:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["If you are a developer looking to build on top of Blobstream, check out the ",["$","$L7",null,{"href":"/build/blobstream/integrate-contracts","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Build section"}],"."]}]
+22:["$","h2",null,{"id":"operate-blobstream","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Operate Blobstream",["$","$L6",null,{"id":"operate-blobstream"}]]}]
+23:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["If you are a validator or node operator looking to run Blobstream, check out the ",["$","$L7",null,{"href":"/operate/blobstream/install-binary","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Operate section"}]," to learn how to deploy your own instance."]}]
+26:null

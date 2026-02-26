@@ -1,0 +1,326 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","762","static/chunks/app/operate/networks/local-devnet/page-6886684af56f93a8.js"],"WrapperWithFooter"]
+6:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","762","static/chunks/app/operate/networks/local-devnet/page-6886684af56f93a8.js"],"HeadingAnchor"]
+7:I[64402,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","762","static/chunks/app/operate/networks/local-devnet/page-6886684af56f93a8.js"],"Tabs"]
+8:I[64402,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","762","static/chunks/app/operate/networks/local-devnet/page-6886684af56f93a8.js"],"Tab"]
+9:I[19023,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","762","static/chunks/app/operate/networks/local-devnet/page-6886684af56f93a8.js"],"ToggleWordWrapButton"]
+a:I[57976,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","762","static/chunks/app/operate/networks/local-devnet/page-6886684af56f93a8.js"],"CopyToClipboard"]
+4e:I[90484,[],"OutletBoundary"]
+4f:"$Sreact.suspense"
+54:I[98500,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","762","static/chunks/app/operate/networks/local-devnet/page-6886684af56f93a8.js"],""]
+3:T13e3,---
+description: Learn how to set up a local devnet with Celestia consensus and bridge nodes.
+---
+
+import { Steps, Tabs } from 'nextra/components'
+
+# Local devnet setup
+
+This guide covers how to set up a local devnet with both consensus and bridge
+nodes for development and testing purposes. A local devnet allows you to run a
+complete Celestia network environment on your local machine.
+
+## Choose your setup method
+
+Pick the approach you want to follow:
+
+<Tabs items={['Docker Compose', 'From source (scripts)']}>
+  <Tabs.Tab>
+    <Steps>
+
+### Install Docker
+
+Install [Docker and Docker Compose](https://docs.docker.com/get-docker).
+
+### Create a Docker Compose file
+
+Create a `docker-compose.yml` file with the following content:
+
+   ```yaml
+   version: "3.8"
+   services:
+     celestia-validator:
+       image: ghcr.io/celestiaorg/celestia-app:latest
+       container_name: celestia-validator
+       volumes:
+         - celestia_validator_data:/home/celestia
+       ports:
+         - "9090:9090"
+         - "26656:26656"
+         - "26657:26657"
+       command: |
+         sh -c "
+         celestia-appd init mynode --chain-id private &&
+         celestia-appd start
+         "
+       networks:
+         - celestia-network
+
+     celestia-bridge:
+       image: ghcr.io/celestiaorg/celestia-node:latest
+       container_name: celestia-bridge
+       environment:
+         - P2P_NETWORK=private
+       volumes:
+         - celestia_bridge_data:/home/celestia
+       ports:
+         - "26658:26658"
+       command: >
+         celestia bridge start
+         --p2p.network private
+         --core.ip celestia-validator
+         --rpc.addr 0.0.0.0
+         --rpc.port 26658
+       depends_on:
+         - celestia-validator
+       networks:
+         - celestia-network
+
+   volumes:
+     celestia_validator_data:
+     celestia_bridge_data:
+
+   networks:
+     celestia-network:
+       driver: bridge
+   ```
+
+### Start the services
+
+   ```bash
+   docker-compose up -d
+   ```
+
+### Check the status
+
+   ```bash
+   docker-compose ps
+   docker-compose logs celestia-validator
+   docker-compose logs celestia-bridge
+   ```
+### Test your setup
+
+1. Check consensus node status:
+
+   ```bash
+   curl http://localhost:26657/status
+   ```
+
+2. Query the latest block:
+
+   ```bash
+   curl http://localhost:26657/block
+   ```
+
+3. Check the bridge node head:
+
+   ```bash
+   curl http://localhost:26658/head
+   ```
+
+### Stop the devnet
+
+Stop and remove containers:
+
+```bash
+docker-compose down
+```
+
+### Reset / start fresh
+
+Stop and remove containers **and wipe chain data** (volumes):
+
+```bash
+docker-compose down -v
+```
+
+    </Steps>
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    <Steps>
+
+### Install dependencies
+
+- [Install celestia-app](/operate/consensus-validators/install-celestia-app)
+- [Install celestia-node](/operate/data-availability/install-celestia-node)
+
+### Start a single consensus node
+
+1. Clone and build celestia-app:
+
+   ```bash
+   git clone https://github.com/celestiaorg/celestia-app.git
+   cd celestia-app
+   make install
+   ```
+
+2. Run the single node script:
+
+   ```bash
+   ./scripts/single-node.sh
+   ```
+
+### Start a bridge node
+
+In a new terminal, run the bridge node script:
+
+```bash
+./scripts/single-bridge-node.sh
+```
+
+### Test your setup
+
+1. Check consensus node status:
+
+   ```bash
+   curl http://localhost:26657/status
+   ```
+
+2. Query the latest block:
+
+   ```bash
+   curl http://localhost:26657/block
+   ```
+
+3. Check the bridge node head:
+
+   ```bash
+   curl http://localhost:26658/head
+   ```
+
+### Stop the devnet
+
+Stop the processes with `Ctrl+C` in each terminal.
+
+### Reset / start fresh
+
+Stop the node(s) with `Ctrl+C`, then reset the local chain state (be careful if you’re
+running a real validator):
+
+```bash
+celestia-appd tendermint unsafe-reset-all --home $HOME/.celestia-app
+```
+
+For more reset options and safety notes (especially if you are running a validator), see
+[Reset network](/operate/consensus-validators/consensus-node#optional-reset-network).
+
+    </Steps>
+  </Tabs.Tab>
+</Tabs>
+
+## Default endpoints
+
+Once your local devnet is running, you can access these endpoints:
+
+| Service         | Endpoint                 |
+| --------------- | ------------------------ |
+| Consensus RPC   | `http://localhost:26657` |
+| Consensus gRPC  | `http://localhost:9090`  |
+| Consensus P2P   | `http://localhost:26656` |
+| Bridge node API | `http://localhost:26658` |
+
+## Multi-validator private networks (not local-only)
+
+This page focuses on a single-machine devnet. If you instead want to create a private
+testnet across multiple machines/participants (genesis + gentx flow), start from:
+
+- [Signing genesis for a new network](/operate/consensus-validators/cli-reference#signing-genesis-for-a-new-network)
+- [Optional: Set persistent peers](/operate/consensus-validators/consensus-node#optional-set-persistent-peers)
+
+## Next steps
+
+With your local devnet running, you can:
+
+- [Submit blob data](/learn/TIA/submit-data)
+- Test rollup integrations
+- Develop applications using the [Celestia Node API](/build/rpc/node-api)
+- Practice validator operations without risking real tokens0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"Learn how to set up a local devnet with Celestia consensus and bridge nodes.","title":"Local devnet setup","filePath":"app/operate/networks/local-devnet/page.mdx","timestamp":1772147596000},"toc":[{"value":"Choose your setup method","id":"choose-your-setup-method","depth":2},{"value":"Install Docker","id":"install-docker","depth":3},{"value":"Create a Docker Compose file","id":"create-a-docker-compose-file","depth":3},{"value":"Start the services","id":"start-the-services","depth":3},{"value":"Check the status","id":"check-the-status","depth":3},{"value":"Test your setup","id":"test-your-setup","depth":3},{"value":"Stop the devnet","id":"stop-the-devnet","depth":3},{"value":"Reset / start fresh","id":"reset--start-fresh","depth":3},{"value":"Install dependencies","id":"install-dependencies","depth":3},{"value":"Start a single consensus node","id":"start-a-single-consensus-node","depth":3},{"value":"Start a bridge node","id":"start-a-bridge-node","depth":3},{"value":"Test your setup","id":"test-your-setup-1","depth":3},{"value":"Stop the devnet","id":"stop-the-devnet-1","depth":3},{"value":"Reset / start fresh","id":"reset--start-fresh-1","depth":3},{"value":"Default endpoints","id":"default-endpoints","depth":2},{"value":"Multi-validator private networks (not local-only)","id":"multi-validator-private-networks-not-local-only","depth":2},{"value":"Next steps","id":"next-steps","depth":2}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"loading":null,"isPartial":false}
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Local devnet setup","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This guide covers how to set up a local devnet with both consensus and bridge\nnodes for development and testing purposes. A local devnet allows you to run a\ncomplete Celestia network environment on your local machine."}],"\n",["$","h2",null,{"id":"choose-your-setup-method","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Choose your setup method",["$","$L6",null,{"id":"choose-your-setup-method"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Pick the approach you want to follow:"}],"\n",["$","$L7",null,{"items":["Docker Compose","From source (scripts)"],"children":[["$","$L8",null,{"children":[["$","h3",null,{"id":"docker-compose","style":{"visibility":"hidden","width":0,"height":0},"children":"Docker Compose"}],["$","div",null,{"className":"nextra-steps x:ms-4 x:mb-12 x:border-s x:border-gray-200 x:ps-6 x:dark:border-neutral-800","style":{"--counter-id":"_S_1_"},"children":[["$","h3",null,{"id":"install-docker","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Install Docker",["$","$L6",null,{"id":"install-docker"}]]}],["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Install ",["$","a",null,{"href":"https://docs.docker.com/get-docker","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Docker and Docker Compose",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}],["$","h3",null,{"id":"create-a-docker-compose-file","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Create a Docker Compose file",["$","$L6",null,{"id":"create-a-docker-compose-file"}]]}],["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Create a ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"docker-compose.yml"}]," file with the following content:"]}],["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"version"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\"3.8\""}]]}],"\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16","\n","$L17","\n","$L18","\n","$L19","\n","$L1a","\n","$L1b","\n","$L1c","\n","$L1d","\n","$L1e","\n","$L1f","\n","$L20","\n","$L21","\n","$L22","\n","$L23","\n","$L24","\n","$L25","\n","$L26","\n","$L27","\n","$L28","\n","$L29","\n","$L2a","\n","$L2b","\n","$L2c","\n","$L2d","\n","$L2e","\n","$L2f","\n","$L30","\n","$L31","\n","$L32","\n","$L33","\n","$L34","\n","$L35","\n","$L36","\n","$L37"]}]]}]]}],"$L38","$L39","$L3a","$L3b","$L3c","$L3d","$L3e","$L3f","$L40","$L41","$L42","$L43"]}]]}],"$L44"]}],"\n","$L45","\n","$L46","\n","$L47","\n","$L48","\n","$L49","\n","$L4a","\n","$L4b","\n","$L4c","\n","$L4d"]
+5:["$","$L4e",null,{"children":["$","$4f",null,{"name":"Next.MetadataOutlet","children":"$@50"}]}]
+b:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"services"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+c:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"  celestia-validator"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+d:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    image"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"ghcr.io/celestiaorg/celestia-app:latest"}]]}]
+e:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    container_name"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"celestia-validator"}]]}]
+f:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    volumes"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+10:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"celestia_validator_data:/home/celestia"}]]}]
+11:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    ports"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+12:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\"9090:9090\""}]]}]
+13:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\"26656:26656\""}]]}]
+14:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\"26657:26657\""}]]}]
+15:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    command"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"|"}]]}]
+16:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"      sh -c \""}]}]
+17:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"      celestia-appd init mynode --chain-id private &&"}]}]
+18:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"      celestia-appd start"}]}]
+19:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"      \""}]}]
+1a:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    networks"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+1b:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"celestia-network"}]]}]
+1c:["$","span",null,{"children":" "}]
+1d:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"  celestia-bridge"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+1e:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    image"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"ghcr.io/celestiaorg/celestia-node:latest"}]]}]
+1f:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    container_name"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"celestia-bridge"}]]}]
+20:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    environment"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+21:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"P2P_NETWORK=private"}]]}]
+22:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    volumes"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+23:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"celestia_bridge_data:/home/celestia"}]]}]
+24:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    ports"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+25:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\"26658:26658\""}]]}]
+26:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    command"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":">"}]]}]
+27:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"      celestia bridge start"}]}]
+28:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"      --p2p.network private"}]}]
+29:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"      --core.ip celestia-validator"}]}]
+2a:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"      --rpc.addr 0.0.0.0"}]}]
+2b:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"      --rpc.port 26658"}]}]
+2c:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    depends_on"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+2d:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"celestia-validator"}]]}]
+2e:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    networks"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+2f:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"celestia-network"}]]}]
+30:["$","span",null,{"children":" "}]
+31:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"volumes"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+32:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"  celestia_validator_data"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+33:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"  celestia_bridge_data"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+34:["$","span",null,{"children":" "}]
+35:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"networks"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+36:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"  celestia-network"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+37:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    driver"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"bridge"}]]}]
+38:["$","h3",null,{"id":"start-the-services","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Start the services",["$","$L6",null,{"id":"start-the-services"}]]}]
+39:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"docker-compose"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" up"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -d"}]]}]}]]}]]}]
+3a:["$","h3",null,{"id":"check-the-status","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Check the status",["$","$L6",null,{"id":"check-the-status"}]]}]
+3b:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"docker-compose"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" ps"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"docker-compose"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" logs"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" celestia-validator"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"docker-compose"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" logs"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" celestia-bridge"}]]}]]}]]}]]}]
+3c:["$","h3",null,{"id":"test-your-setup","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Test your setup",["$","$L6",null,{"id":"test-your-setup"}]]}]
+3d:["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Check consensus node status:"}],"\n",["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" http://localhost:26657/status"}]]}]}]]}]]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Query the latest block:"}],"\n",["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" http://localhost:26657/block"}]]}]}]]}]]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Check the bridge node head:"}],"\n",["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":"$L51"}]}],"$L52"]}],"$L53"]}]]}],"\n"]}],"\n"]}]
+3e:["$","h3",null,{"id":"stop-the-devnet","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Stop the devnet",["$","$L6",null,{"id":"stop-the-devnet"}]]}]
+3f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Stop and remove containers:"}]
+40:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"docker-compose"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" down"}]]}]}]]}]]}]
+41:["$","h3",null,{"id":"reset--start-fresh","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Reset / start fresh",["$","$L6",null,{"id":"reset--start-fresh"}]]}]
+42:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Stop and remove containers ",["$","strong",null,{"children":"and wipe chain data"}]," (volumes):"]}]
+43:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"docker-compose"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" down"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -v"}]]}]}]]}]]}]
+44:["$","$L8",null,{"children":[["$","h3",null,{"id":"from-source-scripts","style":{"visibility":"hidden","width":0,"height":0},"children":"From source (scripts)"}],["$","div",null,{"className":"nextra-steps x:ms-4 x:mb-12 x:border-s x:border-gray-200 x:ps-6 x:dark:border-neutral-800","style":{"--counter-id":"_S_2_"},"children":[["$","h3",null,{"id":"install-dependencies","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Install dependencies",["$","$L6",null,{"id":"install-dependencies"}]]}],["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","$L54",null,{"href":"/operate/consensus-validators/install-celestia-app","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Install celestia-app"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","$L54",null,{"href":"/operate/data-availability/install-celestia-node","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Install celestia-node"}]}],"\n"]}],["$","h3",null,{"id":"start-a-single-consensus-node","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Start a single consensus node",["$","$L6",null,{"id":"start-a-single-consensus-node"}]]}],["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Clone and build celestia-app:"}],"\n",["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"git"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" clone"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://github.com/celestiaorg/celestia-app.git"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"cd"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" celestia-app"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"make"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" install"}]]}]]}]]}]]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Run the single node script:"}],"\n",["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined","$L55"]}],"\n"]}],"\n"]}],"$L56","$L57","$L58","$L59","$L5a","$L5b","$L5c","$L5d","$L5e","$L5f","$L60"]}]]}]
+45:["$","h2",null,{"id":"default-endpoints","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Default endpoints",["$","$L6",null,{"id":"default-endpoints"}]]}]
+46:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Once your local devnet is running, you can access these endpoints:"}]
+47:["$","table",null,{"className":"x:block x:overflow-x-auto nextra-scrollbar x:not-first:mt-[1.25em] x:p-0","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"Service","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"Endpoint","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":"Consensus RPC","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"http://localhost:26657"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Consensus gRPC","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"http://localhost:9090"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Consensus P2P","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"http://localhost:26656"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Bridge node API","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"http://localhost:26658"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]]}]]}]
+48:["$","h2",null,{"id":"multi-validator-private-networks-not-local-only","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Multi-validator private networks (not local-only)",["$","$L6",null,{"id":"multi-validator-private-networks-not-local-only"}]]}]
+49:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This page focuses on a single-machine devnet. If you instead want to create a private\ntestnet across multiple machines/participants (genesis + gentx flow), start from:"}]
+4a:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","$L54",null,{"href":"/operate/consensus-validators/cli-reference#signing-genesis-for-a-new-network","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Signing genesis for a new network"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","$L54",null,{"href":"/operate/consensus-validators/consensus-node#optional-set-persistent-peers","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Optional: Set persistent peers"}]}],"\n"]}]
+4b:["$","h2",null,{"id":"next-steps","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Next steps",["$","$L6",null,{"id":"next-steps"}]]}]
+4c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"With your local devnet running, you can:"}]
+4d:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","$L54",null,{"href":"/learn/TIA/submit-data","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Submit blob data"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Test rollup integrations"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["Develop applications using the ",["$","$L54",null,{"href":"/build/rpc/node-api","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Celestia Node API"}]]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Practice validator operations without risking real tokens"}],"\n"]}]
+50:null
+51:["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]
+52:["$","$La",null,{"className":""}]
+53:["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" http://localhost:26658/head"}]]}]}]
+55:["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"./scripts/single-node.sh"}]}]}]]}]
+56:["$","h3",null,{"id":"start-a-bridge-node","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Start a bridge node",["$","$L6",null,{"id":"start-a-bridge-node"}]]}]
+57:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"In a new terminal, run the bridge node script:"}]
+58:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"./scripts/single-bridge-node.sh"}]}]}]]}]]}]
+59:["$","h3",null,{"id":"test-your-setup-1","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Test your setup",["$","$L6",null,{"id":"test-your-setup-1"}]]}]
+5a:["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Check consensus node status:"}],"\n",["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" http://localhost:26657/status"}]]}]}]]}]]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Query the latest block:"}],"\n",["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" http://localhost:26657/block"}]]}]}]]}]]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Check the bridge node head:"}],"\n",["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":"$L61"}]}],"$L62"]}],"$L63"]}]]}],"\n"]}],"\n"]}]
+5b:["$","h3",null,{"id":"stop-the-devnet-1","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Stop the devnet",["$","$L6",null,{"id":"stop-the-devnet-1"}]]}]
+5c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Stop the processes with ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Ctrl+C"}]," in each terminal."]}]
+5d:["$","h3",null,{"id":"reset--start-fresh-1","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Reset / start fresh",["$","$L6",null,{"id":"reset--start-fresh-1"}]]}]
+5e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Stop the node(s) with ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Ctrl+C"}],", then reset the local chain state (be careful if you’re\nrunning a real validator):"]}]
+5f:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L9",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$La",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia-appd"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" tendermint"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" unsafe-reset-all"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" --home"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" $HOME"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"/.celestia-app"}]]}]}]]}]]}]
+60:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["For more reset options and safety notes (especially if you are running a validator), see\n",["$","$L54",null,{"href":"/operate/consensus-validators/consensus-node#optional-reset-network","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Reset network"}],"."]}]
+61:["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]
+62:["$","$La",null,{"className":""}]
+63:["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" http://localhost:26658/head"}]]}]}]

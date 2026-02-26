@@ -1,0 +1,5 @@
+:HL["/_next/static/css/fdac6bbf6bfe4fdb.css","style"]
+:HL["/_next/static/css/59683e49e5570b96.css","style"]
+:HL["https://github.com/user-attachments/assets/5c6ae717-503e-4b83-844f-8716f33ec76c","image"]
+:HL["https://github.com/user-attachments/assets/28183a24-8bb1-4f77-850c-d0528de075c7","image"]
+0:{"buildId":"5DiMonWrxPT_SwxSvZouq","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"operate","paramType":null,"paramKey":"operate","hasRuntimePrefetch":false,"slots":{"children":{"name":"data-availability","paramType":null,"paramKey":"data-availability","hasRuntimePrefetch":false,"slots":{"children":{"name":"light-node","paramType":null,"paramKey":"light-node","hasRuntimePrefetch":false,"slots":{"children":{"name":"quickstart","paramType":null,"paramKey":"quickstart","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

@@ -1,0 +1,57 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","1682","static/chunks/app/build/rpc/clients/page-a2fdc3e2bd7bd884.js"],"WrapperWithFooter"]
+4:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","1682","static/chunks/app/build/rpc/clients/page-a2fdc3e2bd7bd884.js"],"HeadingAnchor"]
+15:I[98500,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","1682","static/chunks/app/build/rpc/clients/page-a2fdc3e2bd7bd884.js"],""]
+16:I[90484,[],"OutletBoundary"]
+17:"$Sreact.suspense"
+3:T5d2,# Client Libraries
+
+Celestia Node API can be accessed through various client libraries in different programming languages.
+
+## Official Clients
+
+### Golang Client
+Official Go implementation of the Celestia Node RPC client and Transaction Client
+- **Repository**: [celestiaorg/celestia-node @ /api/client](https://github.com/celestiaorg/celestia-node/tree/main/api/client)
+- **Tutorial**: [Go Client Tutorial](/build/post-retrieve-blob/client/go/) - Learn how to submit and retrieve blobs without running your own node
+
+## Community Clients
+
+### Rust Client
+
+ Community-maintained Rust implementation of the Celestia Node RPC client
+- **Repository**: [eigerco/celestia-node-rs](https://github.com/eigerco/celestia-node-rs)
+- **Tutorial**: [Rust Client Tutorial](/build/post-retrieve-blob/client/rust/) - Submit and retrieve blobs using the Lumina Rust client
+
+### Python Client
+
+Community-maintained Python client for the Celestia Node RPC API
+- **Repository**: [grumpyp/celestia-node-client-py](https://github.com/grumpyp/celestia-node-client-py)
+
+### TypeScript Client
+
+Community-maintained TypeScript/JavaScript client for the Celestia Node RPC API
+- **Repository**: [ashishbhintade/cntsc](https://github.com/ashishbhintade/cntsc)
+
+## Getting Started
+
+Each client library provides methods to interact with the Celestia Node RPC API. Choose the language that best fits your project requirements.
+
+For API reference and method documentation, see the [Node API](/build/rpc/node-api) section.0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Client Libraries","filePath":"app/build/rpc/clients/page.mdx","timestamp":1772147596000},"toc":[{"value":"Official Clients","id":"official-clients","depth":2},{"value":"Golang Client","id":"golang-client","depth":3},{"value":"Community Clients","id":"community-clients","depth":2},{"value":"Rust Client","id":"rust-client","depth":3},{"value":"Python Client","id":"python-client","depth":3},{"value":"TypeScript Client","id":"typescript-client","depth":3},{"value":"Getting Started","id":"getting-started","depth":2}],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Client Libraries","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia Node API can be accessed through various client libraries in different programming languages."}],"\n",["$","h2",null,{"id":"official-clients","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Official Clients",["$","$L4",null,{"id":"official-clients"}]]}],"\n",["$","h3",null,{"id":"golang-client","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Golang Client",["$","$L4",null,{"id":"golang-client"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Official Go implementation of the Celestia Node RPC client and Transaction Client"}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Repository"}],": ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-node/tree/main/api/client","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["celestiaorg/celestia-node @ /api/client",[" ","$L5"]]}]]}],"\n","$L6","\n"]}],"\n","$L7","\n","$L8","\n","$L9","\n","$La","\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12","\n","$L13"]}],null,"$L14"]}],"loading":null,"isPartial":false}
+5:["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]
+6:["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Tutorial"}],": ",["$","$L15",null,{"href":"/build/post-retrieve-blob/client/go/","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Go Client Tutorial"}]," - Learn how to submit and retrieve blobs without running your own node"]}]
+7:["$","h2",null,{"id":"community-clients","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Community Clients",["$","$L4",null,{"id":"community-clients"}]]}]
+8:["$","h3",null,{"id":"rust-client","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Rust Client",["$","$L4",null,{"id":"rust-client"}]]}]
+9:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Community-maintained Rust implementation of the Celestia Node RPC client"}]
+a:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Repository"}],": ",["$","a",null,{"href":"https://github.com/eigerco/celestia-node-rs","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["eigerco/celestia-node-rs",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Tutorial"}],": ",["$","$L15",null,{"href":"/build/post-retrieve-blob/client/rust/","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Rust Client Tutorial"}]," - Submit and retrieve blobs using the Lumina Rust client"]}],"\n"]}]
+b:["$","h3",null,{"id":"python-client","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Python Client",["$","$L4",null,{"id":"python-client"}]]}]
+c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Community-maintained Python client for the Celestia Node RPC API"}]
+d:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Repository"}],": ",["$","a",null,{"href":"https://github.com/grumpyp/celestia-node-client-py","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["grumpyp/celestia-node-client-py",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]]}],"\n"]}]
+e:["$","h3",null,{"id":"typescript-client","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["TypeScript Client",["$","$L4",null,{"id":"typescript-client"}]]}]
+f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Community-maintained TypeScript/JavaScript client for the Celestia Node RPC API"}]
+10:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Repository"}],": ",["$","a",null,{"href":"https://github.com/ashishbhintade/cntsc","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["ashishbhintade/cntsc",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]]}],"\n"]}]
+11:["$","h2",null,{"id":"getting-started","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Getting Started",["$","$L4",null,{"id":"getting-started"}]]}]
+12:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Each client library provides methods to interact with the Celestia Node RPC API. Choose the language that best fits your project requirements."}]
+13:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["For API reference and method documentation, see the ",["$","$L15",null,{"href":"/build/rpc/node-api","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Node API"}]," section."]}]
+14:["$","$L16",null,{"children":["$","$17",null,{"name":"Next.MetadataOutlet","children":"$@18"}]}]
+18:null

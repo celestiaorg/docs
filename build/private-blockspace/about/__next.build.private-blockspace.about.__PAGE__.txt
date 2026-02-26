@@ -1,0 +1,177 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","835","static/chunks/app/build/private-blockspace/about/page-af9732cc9bd0fda6.js"],"WrapperWithFooter"]
+6:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","835","static/chunks/app/build/private-blockspace/about/page-af9732cc9bd0fda6.js"],"HeadingAnchor"]
+2b:I[90484,[],"OutletBoundary"]
+2c:"$Sreact.suspense"
+2e:I[16855,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","835","static/chunks/app/build/private-blockspace/about/page-af9732cc9bd0fda6.js"],"Mermaid"]
+3:T1f0f,# About Private Blockspace
+
+The highest-stakes onchain markets—including perpetual exchanges, order books, and institutional rails—depend on information that cannot be public. Positions, balances, liquidations, and routing logic are inherently sensitive. Yet pushing that data offchain reintroduces trusted operators and weakens the core promise of being onchain: **independent auditing, verifiability, and safe exits when it matters most.**
+
+**Private Blockspace** is Celestia’s approach to solving this problem: keep sensitive state **confidential**, while still making it **publicly accountable**.
+
+Private Blockspace enables networks to publish **encrypted state to Celestia**, allowing anyone to verify data availability and protocol commitments **without revealing the underlying contents**. The result is **private systems with public verifiability guarantees**—fault-resistant, auditable, and designed to support safe exit mechanisms.
+
+At a high level, Private Blockspace adds an encryption + proof layer between your application and Celestia’s data availability layer. This layer is implemented as the **Private Blockspace Proxy**: a lightweight service that encrypts, proves, and routes data **without modifying existing Celestia integrations**.
+
+## Submitting a blob
+
+The Private Blockspace Proxy acts as an intermediary between your JSON-RPC client and the Celestia network.
+
+When you submit a blob:
+
+1. The proxy encrypts the data.
+2. The proxy generates a proof inside a zkVM attesting to correct encryption and any configured “anchors” about the plaintext.
+3. The proxy stores the job result in a local database and returns an acknowledgement while processing continues.
+4. Once the proof completes, the result is cached so identical submissions can return immediately.
+5. The proxy submits the verifiably encrypted blob to Celestia via `blob.Submit`.
+
+From the client’s perspective, posting encrypted data feels like a single RPC call, while the proxy handles encryption, verifiability, and coordination with Celestia behind the scenes.
+
+```mermaid
+sequenceDiagram
+    participant JSON RPC Client
+    participant Proxy
+    participant Celestia Node
+    JSON RPC Client->>+Proxy: blob.Submit(blobs, options)<br>{AUTH_TOKEN in header}
+    Proxy->>Proxy: Job Processing...<br>{If no DB entry, start new zkVM Job}
+    Proxy->>-JSON RPC Client: Response{"Call back"}
+    Proxy->>Proxy: ...Job runs to completion...
+    JSON RPC Client->>+Proxy:  blob.Submit(blobs, options)<br>{AUTH_TOKEN in header}
+    Proxy->>Proxy: Query Job DB<br>Done!<br>{Job Result cached}
+    Proxy->>Celestia Node: blob.Submit(V. Encrypt. blobs, options)
+    Celestia Node->>Proxy: Response{Inclusion Block Height}
+    Proxy->>-JSON RPC Client: Response{Inclusion Block Height}
+```
+
+## Retrieving a blob
+
+When retrieving a blob, the proxy behaves as a transparent relay:
+
+1. The client calls `blob.Get(height, namespace, commitment)`.
+2. The proxy forwards the request to a Celestia node.
+3. The proxy receives the raw blob response.
+4. The proxy attempts to deserialize and decrypt using the configured encryption key.
+
+If the blob was encrypted through the proxy, decryption succeeds and the proxy returns the original plaintext bytes. If it was not, the proxy passes the response through unchanged.
+
+This ensures compatibility with both encrypted and unencrypted blobs, so existing clients can adopt Private Blockspace incrementally.
+
+```mermaid
+sequenceDiagram
+    participant JSON RPC Client
+    participant Proxy
+    participant Celestia Node
+
+    JSON RPC Client->>+Proxy: blob.Get(height, namespace, commitment)
+    Proxy->>Celestia Node: <Passthrough>
+    Celestia Node->>Proxy: Response{namespace,data,<br>share_version,commitment,index}
+    Proxy->>Proxy: *Try* deserialize & decrypt
+    Proxy->>-JSON RPC Client: *Success* -> Response{...,decrypted bytes,...}
+    Proxy->>JSON RPC Client: *Failure* -> <Passthrough>
+```
+
+## Verifiable Encryption (VE)
+
+With normal encryption, ciphertext should be indistinguishable from random noise. That property is what keeps data private—but it also makes it difficult to prove _anything_ about encrypted data without decrypting it.
+
+Private Blockspace uses **Verifiable Encryption (VE)** to bridge this gap.
+
+VE enables proofs of _select properties_ of fully encrypted data **without decryption**. For example, a system can prove statements like:
+
+- “This encrypted blob contains a Merkle proof whose root is `0xabc123…`”
+- “This ciphertext was produced using the expected algorithm, key format, and nonce rules”
+- “The plaintext hashes to a specific commitment”
+
+This is accomplished by running encryption inside a zkVM, producing a proof that encryption was executed correctly while also exposing application-defined “anchors” (such as hashes or commitment checks) that remain safe to reveal.
+
+**Outcome:** anyone can verify availability and correctness constraints, while only authorized parties can decrypt the underlying contents.
+
+## Key exchange and management strategies
+
+A critical design question in Private Blockspace is key management:
+
+> If keys are withheld, then the data is effectively withheld.
+
+Private Blockspace is designed to support different key exchange and reconstruction strategies depending on your application requirements and threat model.
+
+### Account-centric model
+
+A proposed account-centric model enforces that **all account state is published and available**, while also being encrypted such that only the intended party (or parties) can decrypt.
+
+Key properties of this approach:
+
+- **User-defined encryption keys:** users define keys for encrypting their own account state, ensuring they can always decrypt their data and enabling forward secrecy.
+- **Conditional selective disclosure:** users can allow decryption by specific parties using standard public key cryptography, key exchange protocols, and/or threshold schemes.
+- **User-initiated protocol progression:** applications can allow users to progress the protocol themselves by proving correct state transitions onchain, enabling “forced” state updates such as withdrawals.
+
+This model is designed to support systems that remain private during normal operation, while still enabling safe exits and recovery paths under application-defined conditions.
+
+## Use cases
+
+Private Blockspace is designed for applications where **privacy is required**, but **public accountability cannot be sacrificed**.
+
+### Accountable offchain exchanges
+
+Operators of offchain or hybrid exchanges can keep internal state private while still being required (by protocol design) to prove state availability and commitments publicly.
+
+This improves fault tolerance and auditability without forcing users to trust an opaque operator for safe exits.
+
+**In production: Hibachi**
+
+Hibachi is the first independent deployment using Private Blockspace for a fast perps exchange. Hibachi publishes verifiably encrypted exchange state to Celestia, keeping balances and positions private while making data availability and correctness publicly verifiable.
+
+### Trust-minimized data marketplaces
+
+Private Blockspace can also support trust-minimized private data markets:
+
+- sellers publish verifiably encrypted data to Celestia
+- buyers verify availability and integrity before payment—without seeing the plaintext
+- payment is enforced only once availability is proven
+
+This shifts trust away from intermediaries and toward verification, producing private exchange workflows that are auditable and fault-resistant by design.
+
+## References and further reading
+
+- [Private Blockspace Proxy repo on GitHub](https://github.com/celestiaorg/private-blockspace-proxy/)
+- [Verifiable Encryption (VE) in depth](https://github.com/celestiaorg/private-blockspace-proxy/blob/main/doc/verifiable_encryption.md)
+- [Forum post: Account-centric model](https://forum.celestia.org/t/account-user-centric-private-blockspace/2155)0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"About Private Blockspace","filePath":"app/build/private-blockspace/about/page.mdx","timestamp":1772147596000},"toc":[{"value":"Submitting a blob","id":"submitting-a-blob","depth":2},{"value":"Retrieving a blob","id":"retrieving-a-blob","depth":2},{"value":"Verifiable Encryption (VE)","id":"verifiable-encryption-ve","depth":2},{"value":"Key exchange and management strategies","id":"key-exchange-and-management-strategies","depth":2},{"value":"Account-centric model","id":"account-centric-model","depth":3},{"value":"Use cases","id":"use-cases","depth":2},{"value":"Accountable offchain exchanges","id":"accountable-offchain-exchanges","depth":3},{"value":"Trust-minimized data marketplaces","id":"trust-minimized-data-marketplaces","depth":3},{"value":"References and further reading","id":"references-and-further-reading","depth":2}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"loading":null,"isPartial":false}
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["About Private Blockspace","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The highest-stakes onchain markets—including perpetual exchanges, order books, and institutional rails—depend on information that cannot be public. Positions, balances, liquidations, and routing logic are inherently sensitive. Yet pushing that data offchain reintroduces trusted operators and weakens the core promise of being onchain: ",["$","strong",null,{"children":"independent auditing, verifiability, and safe exits when it matters most."}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Private Blockspace"}]," is Celestia’s approach to solving this problem: keep sensitive state ",["$","strong",null,{"children":"confidential"}],", while still making it ",["$","strong",null,{"children":"publicly accountable"}],"."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Private Blockspace enables networks to publish ",["$","strong",null,{"children":"encrypted state to Celestia"}],", allowing anyone to verify data availability and protocol commitments ",["$","strong",null,{"children":"without revealing the underlying contents"}],". The result is ",["$","strong",null,{"children":"private systems with public verifiability guarantees"}],"—fault-resistant, auditable, and designed to support safe exit mechanisms."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["At a high level, Private Blockspace adds an encryption + proof layer between your application and Celestia’s data availability layer. This layer is implemented as the ",["$","strong",null,{"children":"Private Blockspace Proxy"}],": a lightweight service that encrypts, proves, and routes data ",["$","strong",null,{"children":"without modifying existing Celestia integrations"}],"."]}],"\n",["$","h2",null,{"id":"submitting-a-blob","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Submitting a blob",["$","$L6",null,{"id":"submitting-a-blob"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The Private Blockspace Proxy acts as an intermediary between your JSON-RPC client and the Celestia network."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"When you submit a blob:"}],"\n",["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"The proxy encrypts the data."}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"The proxy generates a proof inside a zkVM attesting to correct encryption and any configured “anchors” about the plaintext."}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"The proxy stores the job result in a local database and returns an acknowledgement while processing continues."}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Once the proof completes, the result is cached so identical submissions can return immediately."}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["The proxy submits the verifiably encrypted blob to Celestia via ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"blob.Submit"}],"."]}],"\n"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"From the client’s perspective, posting encrypted data feels like a single RPC call, while the proxy handles encryption, verifiability, and coordination with Celestia behind the scenes."}],"\n","$L7","\n","$L8","\n","$L9","\n","$La","\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16","\n","$L17","\n","$L18","\n","$L19","\n","$L1a","\n","$L1b","\n","$L1c","\n","$L1d","\n","$L1e","\n","$L1f","\n","$L20","\n","$L21","\n","$L22","\n","$L23","\n","$L24","\n","$L25","\n","$L26","\n","$L27","\n","$L28","\n","$L29","\n","$L2a"]
+5:["$","$L2b",null,{"children":["$","$2c",null,{"name":"Next.MetadataOutlet","children":"$@2d"}]}]
+7:["$","$L2e",null,{"chart":"sequenceDiagram\\n    participant JSON RPC Client\\n    participant Proxy\\n    participant Celestia Node\\n    JSON RPC Client->>+Proxy: blob.Submit(blobs, options)<br>{AUTH_TOKEN in header}\\n    Proxy->>Proxy: Job Processing...<br>{If no DB entry, start new zkVM Job}\\n    Proxy->>-JSON RPC Client: Response{\"Call back\"}\\n    Proxy->>Proxy: ...Job runs to completion...\\n    JSON RPC Client->>+Proxy:  blob.Submit(blobs, options)<br>{AUTH_TOKEN in header}\\n    Proxy->>Proxy: Query Job DB<br>Done!<br>{Job Result cached}\\n    Proxy->>Celestia Node: blob.Submit(V. Encrypt. blobs, options)\\n    Celestia Node->>Proxy: Response{Inclusion Block Height}\\n    Proxy->>-JSON RPC Client: Response{Inclusion Block Height}"}]
+8:["$","h2",null,{"id":"retrieving-a-blob","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Retrieving a blob",["$","$L6",null,{"id":"retrieving-a-blob"}]]}]
+9:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"When retrieving a blob, the proxy behaves as a transparent relay:"}]
+a:["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["The client calls ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"blob.Get(height, namespace, commitment)"}],"."]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"The proxy forwards the request to a Celestia node."}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"The proxy receives the raw blob response."}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"The proxy attempts to deserialize and decrypt using the configured encryption key."}],"\n"]}]
+b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"If the blob was encrypted through the proxy, decryption succeeds and the proxy returns the original plaintext bytes. If it was not, the proxy passes the response through unchanged."}]
+c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This ensures compatibility with both encrypted and unencrypted blobs, so existing clients can adopt Private Blockspace incrementally."}]
+d:["$","$L2e",null,{"chart":"sequenceDiagram\\n    participant JSON RPC Client\\n    participant Proxy\\n    participant Celestia Node\\n\\n    JSON RPC Client->>+Proxy: blob.Get(height, namespace, commitment)\\n    Proxy->>Celestia Node: <Passthrough>\\n    Celestia Node->>Proxy: Response{namespace,data,<br>share_version,commitment,index}\\n    Proxy->>Proxy: *Try* deserialize & decrypt\\n    Proxy->>-JSON RPC Client: *Success* -> Response{...,decrypted bytes,...}\\n    Proxy->>JSON RPC Client: *Failure* -> <Passthrough>"}]
+e:["$","h2",null,{"id":"verifiable-encryption-ve","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Verifiable Encryption (VE)",["$","$L6",null,{"id":"verifiable-encryption-ve"}]]}]
+f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["With normal encryption, ciphertext should be indistinguishable from random noise. That property is what keeps data private—but it also makes it difficult to prove ",["$","em",null,{"children":"anything"}]," about encrypted data without decrypting it."]}]
+10:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Private Blockspace uses ",["$","strong",null,{"children":"Verifiable Encryption (VE)"}]," to bridge this gap."]}]
+11:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["VE enables proofs of ",["$","em",null,{"children":"select properties"}]," of fully encrypted data ",["$","strong",null,{"children":"without decryption"}],". For example, a system can prove statements like:"]}]
+12:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["“This encrypted blob contains a Merkle proof whose root is ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"0xabc123…"}],"”"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"“This ciphertext was produced using the expected algorithm, key format, and nonce rules”"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"“The plaintext hashes to a specific commitment”"}],"\n"]}]
+13:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This is accomplished by running encryption inside a zkVM, producing a proof that encryption was executed correctly while also exposing application-defined “anchors” (such as hashes or commitment checks) that remain safe to reveal."}]
+14:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Outcome:"}]," anyone can verify availability and correctness constraints, while only authorized parties can decrypt the underlying contents."]}]
+15:["$","h2",null,{"id":"key-exchange-and-management-strategies","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Key exchange and management strategies",["$","$L6",null,{"id":"key-exchange-and-management-strategies"}]]}]
+16:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"A critical design question in Private Blockspace is key management:"}]
+17:["$","blockquote",null,{"className":"x:not-first:mt-[1.25em] x:border-gray-300 x:italic x:text-gray-700 x:dark:border-gray-700 x:dark:text-gray-400 x:border-s-2 x:ps-[1.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"If keys are withheld, then the data is effectively withheld."}],"\n"]}]
+18:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Private Blockspace is designed to support different key exchange and reconstruction strategies depending on your application requirements and threat model."}]
+19:["$","h3",null,{"id":"account-centric-model","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Account-centric model",["$","$L6",null,{"id":"account-centric-model"}]]}]
+1a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["A proposed account-centric model enforces that ",["$","strong",null,{"children":"all account state is published and available"}],", while also being encrypted such that only the intended party (or parties) can decrypt."]}]
+1b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Key properties of this approach:"}]
+1c:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"User-defined encryption keys:"}]," users define keys for encrypting their own account state, ensuring they can always decrypt their data and enabling forward secrecy."]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Conditional selective disclosure:"}]," users can allow decryption by specific parties using standard public key cryptography, key exchange protocols, and/or threshold schemes."]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"User-initiated protocol progression:"}]," applications can allow users to progress the protocol themselves by proving correct state transitions onchain, enabling “forced” state updates such as withdrawals."]}],"\n"]}]
+1d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This model is designed to support systems that remain private during normal operation, while still enabling safe exits and recovery paths under application-defined conditions."}]
+1e:["$","h2",null,{"id":"use-cases","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Use cases",["$","$L6",null,{"id":"use-cases"}]]}]
+1f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Private Blockspace is designed for applications where ",["$","strong",null,{"children":"privacy is required"}],", but ",["$","strong",null,{"children":"public accountability cannot be sacrificed"}],"."]}]
+20:["$","h3",null,{"id":"accountable-offchain-exchanges","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Accountable offchain exchanges",["$","$L6",null,{"id":"accountable-offchain-exchanges"}]]}]
+21:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Operators of offchain or hybrid exchanges can keep internal state private while still being required (by protocol design) to prove state availability and commitments publicly."}]
+22:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This improves fault tolerance and auditability without forcing users to trust an opaque operator for safe exits."}]
+23:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["$","strong",null,{"children":"In production: Hibachi"}]}]
+24:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Hibachi is the first independent deployment using Private Blockspace for a fast perps exchange. Hibachi publishes verifiably encrypted exchange state to Celestia, keeping balances and positions private while making data availability and correctness publicly verifiable."}]
+25:["$","h3",null,{"id":"trust-minimized-data-marketplaces","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Trust-minimized data marketplaces",["$","$L6",null,{"id":"trust-minimized-data-marketplaces"}]]}]
+26:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Private Blockspace can also support trust-minimized private data markets:"}]
+27:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"sellers publish verifiably encrypted data to Celestia"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"buyers verify availability and integrity before payment—without seeing the plaintext"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"payment is enforced only once availability is proven"}],"\n"]}]
+28:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This shifts trust away from intermediaries and toward verification, producing private exchange workflows that are auditable and fault-resistant by design."}]
+29:["$","h2",null,{"id":"references-and-further-reading","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["References and further reading",["$","$L6",null,{"id":"references-and-further-reading"}]]}]
+2a:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://github.com/celestiaorg/private-blockspace-proxy/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Private Blockspace Proxy repo on GitHub",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://github.com/celestiaorg/private-blockspace-proxy/blob/main/doc/verifiable_encryption.md","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Verifiable Encryption (VE) in depth",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://forum.celestia.org/t/account-user-centric-private-blockspace/2155","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Forum post: Account-centric model",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n"]}]
+2d:null

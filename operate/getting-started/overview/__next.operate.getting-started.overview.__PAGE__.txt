@@ -1,0 +1,44 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","8004","static/chunks/app/operate/getting-started/overview/page-a2fdc3e2bd7bd884.js"],"WrapperWithFooter"]
+4:I[98500,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","8004","static/chunks/app/operate/getting-started/overview/page-a2fdc3e2bd7bd884.js"],""]
+a:I[90484,[],"OutletBoundary"]
+b:"$Sreact.suspense"
+3:T54a,---
+landingPage: true
+description: An overview on how to participate in the Celestia network.
+---
+
+# Overview to running nodes on Celestia
+
+There are many ways you can participate in the Celestia
+[networks](/operate/networks/overview).
+
+Celestia node operators can run several options on the network.
+
+Consensus:
+
+- [Validator node](/operate/consensus-validators/validator-node):
+  This type of node participates
+  in consensus by producing and voting on blocks.
+- [Consensus node](/operate/consensus-validators/consensus-node): A celestia-app full node
+  to sync blockchain history.
+
+Data Availability:
+
+- [Bridge node](/operate/data-availability/bridge-node): This node bridges blocks between the
+  Data-Availability network and the Consensus network.
+- [Light node](/operate/data-availability/light-node/quickstart): Light clients conduct data availability
+  sampling on the Data Availability network.
+
+You can learn more about how to set up each different node by going through
+each tutorial guide. If you want to get hands-on with a light node right away, follow the quickstart in the Build section: [Post/retrieve a blob → Light node quickstart](/operate/data-availability/light-node/quickstart/).
+
+Please provide any feedback on the tutorials and guides. If you notice
+a bug or issue, feel free to make a pull request or write up a Github
+issue!0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"landingPage":true,"description":"An overview on how to participate in the Celestia network.","title":"Overview to running nodes on Celestia","filePath":"app/operate/getting-started/overview/page.mdx","timestamp":1772147596000},"toc":[],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Overview to running nodes on Celestia","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["There are many ways you can participate in the Celestia\n",["$","$L4",null,{"href":"/operate/networks/overview","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"networks"}],"."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia node operators can run several options on the network."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Consensus:"}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","$L4",null,{"href":"/operate/consensus-validators/validator-node","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Validator node"}],":\nThis type of node participates\nin consensus by producing and voting on blocks."]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","$L4",null,{"href":"/operate/consensus-validators/consensus-node","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Consensus node"}],": A celestia-app full node\nto sync blockchain history."]}],"\n"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Data Availability:"}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n","$L5","\n","$L6","\n"]}],"\n","$L7","\n","$L8"]}],null,"$L9"]}],"loading":null,"isPartial":false}
+5:["$","li",null,{"className":"x:my-[.5em]","children":[["$","$L4",null,{"href":"/operate/data-availability/bridge-node","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Bridge node"}],": This node bridges blocks between the\nData-Availability network and the Consensus network."]}]
+6:["$","li",null,{"className":"x:my-[.5em]","children":[["$","$L4",null,{"href":"/operate/data-availability/light-node/quickstart","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Light node"}],": Light clients conduct data availability\nsampling on the Data Availability network."]}]
+7:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["You can learn more about how to set up each different node by going through\neach tutorial guide. If you want to get hands-on with a light node right away, follow the quickstart in the Build section: ",["$","$L4",null,{"href":"/operate/data-availability/light-node/quickstart/","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Post/retrieve a blob → Light node quickstart"}],"."]}]
+8:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Please provide any feedback on the tutorials and guides. If you notice\na bug or issue, feel free to make a pull request or write up a Github\nissue!"}]
+9:["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]
+c:null

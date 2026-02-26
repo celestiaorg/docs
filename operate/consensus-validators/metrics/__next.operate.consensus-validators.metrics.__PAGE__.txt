@@ -1,0 +1,207 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","9333","static/chunks/app/operate/consensus-validators/metrics/page-a2fdc3e2bd7bd884.js"],"WrapperWithFooter"]
+6:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","9333","static/chunks/app/operate/consensus-validators/metrics/page-a2fdc3e2bd7bd884.js"],"HeadingAnchor"]
+7:I[19023,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","9333","static/chunks/app/operate/consensus-validators/metrics/page-a2fdc3e2bd7bd884.js"],"ToggleWordWrapButton"]
+8:I[57976,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","9333","static/chunks/app/operate/consensus-validators/metrics/page-a2fdc3e2bd7bd884.js"],"CopyToClipboard"]
+2c:I[90484,[],"OutletBoundary"]
+2d:"$Sreact.suspense"
+3:T14d0,---
+description: A guide on how to monitor the health and performance of your system.
+---
+
+# Metrics
+
+Metrics are a powerful tool for monitoring the health
+and performance of a system. Celestia provides support
+for metrics to make sure, as an operator, your system
+continues to remain up and running. Metrics can also
+provide critical insight into how Celestia is used and
+how it can be improved.
+
+## Setup
+
+Celestia uses [Prometheus](https://prometheus.io/) to
+publish metrics. It can be enabled through the `config.toml` file.
+
+```bash
+#######################################################
+###       Instrumentation Configuration Options     ###
+#######################################################
+[instrumentation]
+
+# When true, Prometheus metrics are served under /metrics on
+# PrometheusListenAddr.
+# Check out the documentation for the list of available metrics.
+prometheus = true
+
+# Address to listen for Prometheus collector(s) connections
+prometheus_listen_addr = ":26660"
+
+# Maximum number of simultaneous connections.
+# If you want to accept a larger number than the default, make sure
+# you increase your OS limits.
+# 0 - unlimited.
+max_open_connections = 3
+
+# Instrumentation namespace
+namespace = "celestia"
+```
+
+If you restart your node, you can check to see it's working
+by running:
+
+```bash
+curl localhost:26660/metrics
+```
+
+## Visualization
+
+Now your nodes are publishing metrics, we need something to
+scrape it and a visualizer to create a dashboard. Commonly,
+Prometheus is paired with Grafana.
+
+First, you will need to install Prometheus either from their
+[downloads page](https://prometheus.io/download/) or through
+a package manager like `brew`.
+
+Next, create a config file `$HOME/.celestia-app/config/prometheus.yml`
+and fill out some basic settings as follows:
+
+
+```yml
+global:
+  scrape_interval: 15s # By default, scrape targets every 15 seconds.
+
+  # Attach these labels to any time series or alerts when communicating
+  # with external systems (federation, remote storage, Alertmanager).
+  external_labels:
+    monitor: "codelab-monitor"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries
+  # scraped from this config.
+  - job_name: "prometheus"
+
+    # Override the global default and scrape targets from this job every
+    # 5 seconds.
+    scrape_interval: 5s
+
+    static_configs:
+      # Point to the same endpoint that Celestia is publishing on
+      - targets: ["localhost:26660"]
+```
+
+
+Note, that Prometheus by default runs its server on `:9090`.
+If you are running this on the same machine as your consensus
+node, it will collide with gRPC which runs on the same port.
+To avoid this, either switch off gRPC (if it's not needed),
+change the gRPC port in `app.toml`, or run Prometheus on a
+different port e.g. `--web.listen-address="0.0.0.0:8000"`
+
+To run the prometheus server:
+
+```bash
+prometheus --config.file="$HOME/.celestia-app/config/prometheus.yml"
+```
+
+A prometheus server can scrape metrics from multiple nodes at once;
+a good way of bringing together information from many machines to one place.
+
+To visualize the information, you can use [Grafana](https://grafana.com/):
+either with their cloud option or run the [open source code](https://grafana.com/grafana/download?pg=graf&platform=linux&plcmt=deploy-box-1)
+yourself.
+
+Once setup, run:
+
+```bash
+grafana server
+```
+
+which will begin a server on `localhost:3000`.
+If you open the url on your browser you will
+see the Grafana login page. Use `admin` for both
+the user and password to log in.
+
+You will need to link the prometheus server as a
+data source. To do that go to "Configuration" in
+the sidebar and then "Data Sources". Add a new data
+source specifying the URL of the Prometheus instance
+(default at `localhost:9090`). Click "Save & test" to confirm.
+
+Lastly, you will need to setup a dashboard. You can
+choose to do this yourself, handpicking the metrics
+that are important or you can simply export an existing
+design. Fortunately the cosmos ecosystem has conjured a
+"Cosmos Dashboard". On the sidebar, click "Dashboards"
+and then "import". Enter the following dashboard ID: 11036
+and then link it to the "Prometheus" data source you just set up.
+Finally click the "Import" button and the "Cosmos Dashboard" should appear.
+
+## Node exporter
+
+Celestia's metrics include a plethora of application specific
+trackers but it's also important to keep an eye on system level
+metrics such as memory usage and disk space. This can be best
+achieved by running [Node Exporter](https://prometheus.io/docs/guides/node-exporter/).
+Follow the guide in the link to get set up, adding the port
+number to the `prometheus.yml` file.
+
+## Alerts
+
+The final cherry on the cake is to integrate your monitoring
+system with a mechanism for producing alerts to warn you if
+your node has crashed or is no longer able to stay at the head
+of the chain.
+
+Since we're already using Grafana, we can install the
+[Grafana OnCall](https://grafana.com/grafana/plugins/grafana-oncall-app/)
+plugin. OnCall allows you to setup integrations. It could be a
+webhook or a direct integration into Telegram or Slack.
+You can find more information on Grafana's [Docs Page](https://grafana.com/docs/oncall/latest/integrations/).0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"A guide on how to monitor the health and performance of your system.","title":"Metrics","filePath":"app/operate/consensus-validators/metrics/page.mdx","timestamp":1772147596000},"toc":[{"value":"Setup","id":"setup","depth":2},{"value":"Visualization","id":"visualization","depth":2},{"value":"Node exporter","id":"node-exporter","depth":2},{"value":"Alerts","id":"alerts","depth":2}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"loading":null,"isPartial":false}
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Metrics","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Metrics are a powerful tool for monitoring the health\nand performance of a system. Celestia provides support\nfor metrics to make sure, as an operator, your system\ncontinues to remain up and running. Metrics can also\nprovide critical insight into how Celestia is used and\nhow it can be improved."}],"\n",["$","h2",null,{"id":"setup","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Setup",["$","$L6",null,{"id":"setup"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Celestia uses ",["$","a",null,{"href":"https://prometheus.io/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Prometheus",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," to\npublish metrics. It can be enabled through the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"config.toml"}]," file."]}],"\n",["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L7",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L8",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"#######################################################"}]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"###       Instrumentation Configuration Options     ###"}]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"#######################################################"}]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"[instrumentation]"}]}],"\n",["$","span",null,{"children":" "}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# When true, Prometheus metrics are served under /metrics on"}]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# PrometheusListenAddr."}]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# Check out the documentation for the list of available metrics."}]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"prometheus"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" ="}],"$L9"]}],"\n","$La","\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15"]}]]}]]}],"\n","$L16","\n","$L17","\n","$L18","\n","$L19","\n","$L1a","\n","$L1b","\n","$L1c","\n","$L1d","\n","$L1e","\n","$L1f","\n","$L20","\n","$L21","\n","$L22","\n","$L23","\n","$L24","\n","$L25","\n","$L26","\n","$L27","\n","$L28","\n","$L29","\n","$L2a","\n","$L2b"]
+5:["$","$L2c",null,{"children":["$","$2d",null,{"name":"Next.MetadataOutlet","children":"$@2e"}]}]
+9:["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" true"}]
+a:["$","span",null,{"children":" "}]
+b:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# Address to listen for Prometheus collector(s) connections"}]}]
+c:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"prometheus_listen_addr"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" ="}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \":26660\""}]]}]
+d:["$","span",null,{"children":" "}]
+e:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# Maximum number of simultaneous connections."}]}]
+f:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# If you want to accept a larger number than the default, make sure"}]}]
+10:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# you increase your OS limits."}]}]
+11:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# 0 - unlimited."}]}]
+12:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"max_open_connections"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" ="}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" 3"}]]}]
+13:["$","span",null,{"children":" "}]
+14:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# Instrumentation namespace"}]}]
+15:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"namespace"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" ="}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \"celestia\""}]]}]
+16:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"If you restart your node, you can check to see it’s working\nby running:"}]
+17:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L7",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L8",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" localhost:26660/metrics"}]]}]}]]}]]}]
+18:["$","h2",null,{"id":"visualization","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Visualization",["$","$L6",null,{"id":"visualization"}]]}]
+19:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Now your nodes are publishing metrics, we need something to\nscrape it and a visualizer to create a dashboard. Commonly,\nPrometheus is paired with Grafana."}]
+1a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["First, you will need to install Prometheus either from their\n",["$","a",null,{"href":"https://prometheus.io/download/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["downloads page",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," or through\na package manager like ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"brew"}],"."]}]
+1b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Next, create a config file ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/.celestia-app/config/prometheus.yml"}],"\nand fill out some basic settings as follows:"]}]
+1c:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L7",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L8",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"global"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"  scrape_interval"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"15s"}],["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":" # By default, scrape targets every 15 seconds."}]]}],"\n",["$","span",null,{"children":" "}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"  # Attach these labels to any time series or alerts when communicating"}]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"  # with external systems (federation, remote storage, Alertmanager)."}]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"  external_labels"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    monitor"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\"codelab-monitor\""}]]}],"\n",["$","span",null,{"children":" "}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# A scrape configuration containing exactly one endpoint to scrape:"}]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# Here it's Prometheus itself."}]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"scrape_configs"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"  # The job name is added as a label `job=<job_name>` to any timeseries"}]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"  # scraped from this config."}]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"  - "}],["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"job_name"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\"prometheus\""}]]}],"\n",["$","span",null,{"children":" "}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"    # Override the global default and scrape targets from this job every"}]}],"\n","$L2f","\n","$L30","\n","$L31","\n","$L32","\n","$L33","\n","$L34"]}]]}]]}]
+1d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Note, that Prometheus by default runs its server on ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":":9090"}],".\nIf you are running this on the same machine as your consensus\nnode, it will collide with gRPC which runs on the same port.\nTo avoid this, either switch off gRPC (if it’s not needed),\nchange the gRPC port in ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"app.toml"}],", or run Prometheus on a\ndifferent port e.g. ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"--web.listen-address=\"0.0.0.0:8000\""}]]}]
+1e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"To run the prometheus server:"}]
+1f:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L7",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L8",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"prometheus"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" --config.file="}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\""}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"$$HOME"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"/.celestia-app/config/prometheus.yml\""}]]}]}]]}]]}]
+20:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"A prometheus server can scrape metrics from multiple nodes at once;\na good way of bringing together information from many machines to one place."}]
+21:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["To visualize the information, you can use ",["$","a",null,{"href":"https://grafana.com/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Grafana",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],":\neither with their cloud option or run the ",["$","a",null,{"href":"https://grafana.com/grafana/download?pg=graf&platform=linux&plcmt=deploy-box-1","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["open source code",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nyourself."]}]
+22:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Once setup, run:"}]
+23:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L7",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L8",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"grafana"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" server"}]]}]}]]}]]}]
+24:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["which will begin a server on ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"localhost:3000"}],".\nIf you open the url on your browser you will\nsee the Grafana login page. Use ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"admin"}]," for both\nthe user and password to log in."]}]
+25:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["You will need to link the prometheus server as a\ndata source. To do that go to “Configuration” in\nthe sidebar and then “Data Sources”. Add a new data\nsource specifying the URL of the Prometheus instance\n(default at ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"localhost:9090"}],"). Click “Save & test” to confirm."]}]
+26:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Lastly, you will need to setup a dashboard. You can\nchoose to do this yourself, handpicking the metrics\nthat are important or you can simply export an existing\ndesign. Fortunately the cosmos ecosystem has conjured a\n“Cosmos Dashboard”. On the sidebar, click “Dashboards”\nand then “import”. Enter the following dashboard ID: 11036\nand then link it to the “Prometheus” data source you just set up.\nFinally click the “Import” button and the “Cosmos Dashboard” should appear."}]
+27:["$","h2",null,{"id":"node-exporter","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Node exporter",["$","$L6",null,{"id":"node-exporter"}]]}]
+28:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Celestia’s metrics include a plethora of application specific\ntrackers but it’s also important to keep an eye on system level\nmetrics such as memory usage and disk space. This can be best\nachieved by running ",["$","a",null,{"href":"https://prometheus.io/docs/guides/node-exporter/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Node Exporter",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],".\nFollow the guide in the link to get set up, adding the port\nnumber to the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"prometheus.yml"}]," file."]}]
+29:["$","h2",null,{"id":"alerts","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Alerts",["$","$L6",null,{"id":"alerts"}]]}]
+2a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The final cherry on the cake is to integrate your monitoring\nsystem with a mechanism for producing alerts to warn you if\nyour node has crashed or is no longer able to stay at the head\nof the chain."}]
+2b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Since we’re already using Grafana, we can install the\n",["$","a",null,{"href":"https://grafana.com/grafana/plugins/grafana-oncall-app/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Grafana OnCall",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nplugin. OnCall allows you to setup integrations. It could be a\nwebhook or a direct integration into Telegram or Slack.\nYou can find more information on Grafana’s ",["$","a",null,{"href":"https://grafana.com/docs/oncall/latest/integrations/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Docs Page",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+2e:null
+2f:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"    # 5 seconds."}]}]
+30:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    scrape_interval"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": "}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"5s"}]]}]
+31:["$","span",null,{"children":" "}]
+32:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"    static_configs"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":":"}]]}]
+33:["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"      # Point to the same endpoint that Celestia is publishing on"}]}]
+34:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"      - "}],["$","span",null,{"style":{"--shiki-light":"#22863A","--shiki-dark":"#85E89D"},"children":"targets"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":": ["}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\"localhost:26660\""}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"]"}]]}]

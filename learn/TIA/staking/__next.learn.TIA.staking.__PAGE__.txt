@@ -1,0 +1,49 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","2068","static/chunks/app/learn/TIA/staking/page-a2fdc3e2bd7bd884.js"],"WrapperWithFooter"]
+d:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","2068","static/chunks/app/learn/TIA/staking/page-a2fdc3e2bd7bd884.js"],"HeadingAnchor"]
+e:I[90484,[],"OutletBoundary"]
+f:"$Sreact.suspense"
+3:T5d5,---
+description: Learn how to stake your tokens on the Celestia network.
+---
+
+# Staking on Celestia
+
+Engage with the Celestia network at a deeper level through staking. An
+essential mechanism to a proof-of-stake network, users can secure the
+network by delegating to a validator and receive a share of its
+staking rewards.
+
+As of [CIP-30](https://cips.celestia.org/cip-030.html), when delegators modify their staking positions (_e.g._, redelegate or undelegate), the distribution no longer auto-claim rewards on delegation-share changes. Instead, rewards are accrued until the user calls `MsgWithdrawDelegatorReward`.
+
+## Mainnet Beta
+
+Currently, the following staking interfaces exist for the
+Mainnet Beta.
+
+Just connect your wallet to get started!
+
+- [https://wallet.keplr.app/chains/celestia?tab=staking](https://wallet.keplr.app/chains/celestia?tab=staking)
+- [https://app.leapwallet.io/transact/stake/plain?chain=celestia](https://app.leapwallet.io/transact/stake/plain?chain=celestia)
+- [https://alphab.ai/s/m/celestia/](https://alphab.ai/s/m/celestia/)
+
+## Mocha testnet
+
+Currently, the following staking interfaces exist for the
+Mocha testnet.
+
+Just connect your wallet to get started!
+
+- [https://testnet.keplr.app/chains/celestia-mocha-testnet](https://testnet.keplr.app/chains/celestia-mocha-testnet)
+- [https://explorer.kjnodes.com/celestia-testnet](https://explorer.kjnodes.com/celestia-testnet)
+- [https://alphab.ai/s/t/celestia-mocha-4/](https://alphab.ai/s/t/celestia-mocha-4/)0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"Learn how to stake your tokens on the Celestia network.","title":"Staking on Celestia","filePath":"app/learn/TIA/staking/page.mdx","timestamp":1772147596000},"toc":[{"value":"Mainnet Beta","id":"mainnet-beta","depth":2},{"value":"Mocha testnet","id":"mocha-testnet","depth":2}],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Staking on Celestia","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Engage with the Celestia network at a deeper level through staking. An\nessential mechanism to a proof-of-stake network, users can secure the\nnetwork by delegating to a validator and receive a share of its\nstaking rewards."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["As of ",["$","a",null,{"href":"https://cips.celestia.org/cip-030.html","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["CIP-30",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],", when delegators modify their staking positions (",["$","em",null,{"children":"e.g."}],", redelegate or undelegate), the distribution no longer auto-claim rewards on delegation-share changes. Instead, rewards are accrued until the user calls ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"MsgWithdrawDelegatorReward"}],"."]}],"\n",["$","h2",null,{"id":"mainnet-beta","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Mainnet Beta","$L4"]}],"\n","$L5","\n","$L6","\n","$L7","\n","$L8","\n","$L9","\n","$La","\n","$Lb"]}],null,"$Lc"]}],"loading":null,"isPartial":false}
+4:["$","$Ld",null,{"id":"mainnet-beta"}]
+5:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Currently, the following staking interfaces exist for the\nMainnet Beta."}]
+6:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Just connect your wallet to get started!"}]
+7:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://wallet.keplr.app/chains/celestia?tab=staking","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://wallet.keplr.app/chains/celestia?tab=staking",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://app.leapwallet.io/transact/stake/plain?chain=celestia","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://app.leapwallet.io/transact/stake/plain?chain=celestia",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://alphab.ai/s/m/celestia/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://alphab.ai/s/m/celestia/",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n"]}]
+8:["$","h2",null,{"id":"mocha-testnet","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Mocha testnet",["$","$Ld",null,{"id":"mocha-testnet"}]]}]
+9:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Currently, the following staking interfaces exist for the\nMocha testnet."}]
+a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Just connect your wallet to get started!"}]
+b:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://testnet.keplr.app/chains/celestia-mocha-testnet","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://testnet.keplr.app/chains/celestia-mocha-testnet",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://explorer.kjnodes.com/celestia-testnet","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://explorer.kjnodes.com/celestia-testnet",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://alphab.ai/s/t/celestia-mocha-4/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://alphab.ai/s/t/celestia-mocha-4/",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n"]}]
+c:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+10:null

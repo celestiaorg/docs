@@ -1,0 +1,100 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","3332","static/chunks/app/learn/TIA/overview/page-a2fdc3e2bd7bd884.js"],"WrapperWithFooter"]
+6:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","3332","static/chunks/app/learn/TIA/overview/page-a2fdc3e2bd7bd884.js"],"HeadingAnchor"]
+18:I[90484,[],"OutletBoundary"]
+19:"$Sreact.suspense"
+1b:I[98500,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","3332","static/chunks/app/learn/TIA/overview/page-a2fdc3e2bd7bd884.js"],""]
+3:Td82,---
+asIndexPage: true
+---
+
+# Overview of TIA
+
+## TIA at a glance
+
+| Property                | Details                                                                                          |
+| ----------------------- | ------------------------------------------------------------------------------------------------ |
+| Abbreviation            | TIA                                                                                              |
+| Total supply at genesis | 1,000,000,000 TIA                                                                                |
+| Inflation schedule      | 8% in the first year, decreasing 10% per year until reaching an inflation floor of 1.5% annually |
+| Decimals                | 6                                                                                                |
+| Conversion              | 1 uTIA = 1 TIA × 10⁻⁶                                                                            |
+
+## Role of TIA
+
+### Paying for blobspace
+
+Celestia’s native asset, TIA, is an essential part of how developers build on
+the first modular blockchain network. To use Celestia for data availability,
+rollup developers submit PayForBlobs transactions on the network for a fee,
+denominated in TIA.
+
+### Bootstrapping new rollups
+
+A core part of the Celestia vision is that deploying a blockchain should be as
+easy as deploying a smart contract. In the modular era, developers no longer
+need to issue a token to launch their own blockchain.
+
+Similarly to ETH on Ethereum-based rollups, developers may opt to bootstrap
+their chain quickly by using TIA as a gas token and currency, in addition to
+paying for data availability. In this mode, developers can focus on creating
+their application or execution layer, instead of issuing a token right away.
+
+### Proof-of-stake
+
+As a permissionless network built with Cosmos SDK, Celestia uses proof-of-stake
+to secure its own consensus. Like in other Cosmos networks, any user can help
+secure the network by delegating their TIA to a Celestia validator for a portion
+of their validator’s staking rewards.
+
+Learn [how proof-of-stake works in Cosmos](https://docs.cosmos.network/main/modules/staking).
+
+### Decentralised governance
+
+TIA staking also allows the community to play a critical role in decentralised
+governance over key parts of Celestia, such as voting on network parameters
+through governance proposals, and governing the community pool, which receives
+2% of block rewards.
+
+Learn more about [Celestia’s decentralised governance model](/learn/tia/staking-governance-supply#decentralised-governance).
+
+### Denominations
+
+#### TIA: display token
+
+TIA is the [`DisplayDenom`](https://github.com/celestiaorg/celestia-app/blob/ada77509d7fdedf2a3e3400b720549365851454c/app/app.go#L110-L111)
+that you will typically see in wallets and user interfaces.
+
+#### utia: staking denomination
+
+`utia` is the [`BondDenom`](https://github.com/celestiaorg/celestia-app/blob/ada77509d7fdedf2a3e3400b720549365851454c/pkg/appconsts/global_consts.go#L75-L76)
+and stands for "micro TIA", with 1 TIA = 1,000,000 `utia`. This is the
+native staking denomination.
+
+In staking operations or transactions, if no denomination is specified, `utia`
+is assumed.
+
+#### microtia: staking denomination alias
+
+`microtia` is the [`BondDenomAlias`](https://github.com/celestiaorg/celestia-app/blob/ada77509d7fdedf2a3e3400b720549365851454c/app/app.go#L108-L109),
+an alias for `utia`.0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"asIndexPage":true,"title":"Overview of TIA","filePath":"app/learn/TIA/overview/page.mdx","timestamp":1772147596000},"toc":[{"value":"TIA at a glance","id":"tia-at-a-glance","depth":2},{"value":"Role of TIA","id":"role-of-tia","depth":2},{"value":"Paying for blobspace","id":"paying-for-blobspace","depth":3},{"value":"Bootstrapping new rollups","id":"bootstrapping-new-rollups","depth":3},{"value":"Proof-of-stake","id":"proof-of-stake","depth":3},{"value":"Decentralised governance","id":"decentralised-governance","depth":3},{"value":"Denominations","id":"denominations","depth":3},{"value":"TIA: display token","id":"tia-display-token","depth":4},{"value":"utia: staking denomination","id":"utia-staking-denomination","depth":4},{"value":"microtia: staking denomination alias","id":"microtia-staking-denomination-alias","depth":4}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"loading":null,"isPartial":false}
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Overview of TIA","$undefined"]}],"\n",["$","h2",null,{"id":"tia-at-a-glance","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["TIA at a glance",["$","$L6",null,{"id":"tia-at-a-glance"}]]}],"\n",["$","table",null,{"className":"x:block x:overflow-x-auto nextra-scrollbar x:not-first:mt-[1.25em] x:p-0","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"Property","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"Details","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":"Abbreviation","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"TIA","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Total supply at genesis","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"1,000,000,000 TIA","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Inflation schedule","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"8% in the first year, decreasing 10% per year until reaching an inflation floor of 1.5% annually","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Decimals","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"6","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Conversion","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"1 uTIA = 1 TIA × 10⁻⁶","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]]}]]}],"\n",["$","h2",null,{"id":"role-of-tia","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Role of TIA",["$","$L6",null,{"id":"role-of-tia"}]]}],"\n",["$","h3",null,{"id":"paying-for-blobspace","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Paying for blobspace",["$","$L6",null,{"id":"paying-for-blobspace"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia’s native asset, TIA, is an essential part of how developers build on\nthe first modular blockchain network. To use Celestia for data availability,\nrollup developers submit PayForBlobs transactions on the network for a fee,\ndenominated in TIA."}],"\n","$L7","\n","$L8","\n","$L9","\n","$La","\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16","\n","$L17"]
+5:["$","$L18",null,{"children":["$","$19",null,{"name":"Next.MetadataOutlet","children":"$@1a"}]}]
+7:["$","h3",null,{"id":"bootstrapping-new-rollups","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Bootstrapping new rollups",["$","$L6",null,{"id":"bootstrapping-new-rollups"}]]}]
+8:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"A core part of the Celestia vision is that deploying a blockchain should be as\neasy as deploying a smart contract. In the modular era, developers no longer\nneed to issue a token to launch their own blockchain."}]
+9:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Similarly to ETH on Ethereum-based rollups, developers may opt to bootstrap\ntheir chain quickly by using TIA as a gas token and currency, in addition to\npaying for data availability. In this mode, developers can focus on creating\ntheir application or execution layer, instead of issuing a token right away."}]
+a:["$","h3",null,{"id":"proof-of-stake","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Proof-of-stake",["$","$L6",null,{"id":"proof-of-stake"}]]}]
+b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"As a permissionless network built with Cosmos SDK, Celestia uses proof-of-stake\nto secure its own consensus. Like in other Cosmos networks, any user can help\nsecure the network by delegating their TIA to a Celestia validator for a portion\nof their validator’s staking rewards."}]
+c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Learn ",["$","a",null,{"href":"https://docs.cosmos.network/main/modules/staking","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["how proof-of-stake works in Cosmos",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+d:["$","h3",null,{"id":"decentralised-governance","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Decentralised governance",["$","$L6",null,{"id":"decentralised-governance"}]]}]
+e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"TIA staking also allows the community to play a critical role in decentralised\ngovernance over key parts of Celestia, such as voting on network parameters\nthrough governance proposals, and governing the community pool, which receives\n2% of block rewards."}]
+f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Learn more about ",["$","$L1b",null,{"href":"/learn/tia/staking-governance-supply#decentralised-governance","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Celestia’s decentralised governance model"}],"."]}]
+10:["$","h3",null,{"id":"denominations","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Denominations",["$","$L6",null,{"id":"denominations"}]]}]
+11:["$","h4",null,{"id":"tia-display-token","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-xl","children":["TIA: display token",["$","$L6",null,{"id":"tia-display-token"}]]}]
+12:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["TIA is the ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-app/blob/ada77509d7fdedf2a3e3400b720549365851454c/app/app.go#L110-L111","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"DisplayDenom"}],false]}],"\nthat you will typically see in wallets and user interfaces."]}]
+13:["$","h4",null,{"id":"utia-staking-denomination","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-xl","children":["utia: staking denomination",["$","$L6",null,{"id":"utia-staking-denomination"}]]}]
+14:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"utia"}]," is the ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-app/blob/ada77509d7fdedf2a3e3400b720549365851454c/pkg/appconsts/global_consts.go#L75-L76","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"BondDenom"}],false]}],"\nand stands for “micro TIA”, with 1 TIA = 1,000,000 ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"utia"}],". This is the\nnative staking denomination."]}]
+15:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["In staking operations or transactions, if no denomination is specified, ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"utia"}],"\nis assumed."]}]
+16:["$","h4",null,{"id":"microtia-staking-denomination-alias","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-xl","children":["microtia: staking denomination alias",["$","$L6",null,{"id":"microtia-staking-denomination-alias"}]]}]
+17:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"microtia"}]," is the ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-app/blob/ada77509d7fdedf2a3e3400b720549365851454c/app/app.go#L108-L109","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"BondDenomAlias"}],false]}],",\nan alias for ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"utia"}],"."]}]
+1a:null

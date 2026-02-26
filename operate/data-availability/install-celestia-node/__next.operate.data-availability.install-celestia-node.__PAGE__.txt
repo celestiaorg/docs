@@ -1,0 +1,226 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","3630","static/chunks/app/operate/data-availability/install-celestia-node/page-6886684af56f93a8.js"],"WrapperWithFooter"]
+6:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","3630","static/chunks/app/operate/data-availability/install-celestia-node/page-6886684af56f93a8.js"],"HeadingAnchor"]
+7:I[98500,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","3630","static/chunks/app/operate/data-availability/install-celestia-node/page-6886684af56f93a8.js"],""]
+8:I[19023,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","3630","static/chunks/app/operate/data-availability/install-celestia-node/page-6886684af56f93a8.js"],"ToggleWordWrapButton"]
+9:I[57976,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","3630","static/chunks/app/operate/data-availability/install-celestia-node/page-6886684af56f93a8.js"],"CopyToClipboard"]
+34:I[90484,[],"OutletBoundary"]
+35:"$Sreact.suspense"
+37:I[64402,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","3630","static/chunks/app/operate/data-availability/install-celestia-node/page-6886684af56f93a8.js"],"Tabs"]
+38:I[64402,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","3630","static/chunks/app/operate/data-availability/install-celestia-node/page-6886684af56f93a8.js"],"Tab"]
+3:T133e,---
+description: Learn to build and install celestia-node.
+---
+
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# Install celestia-node
+
+## Supported architectures
+
+Celestia-node officially supports the following architectures:
+
+- linux/amd64
+- linux/arm64
+- darwin/amd64 (macOS Intel)
+- darwin/arm64 (macOS Apple Silicon)
+
+Only these four architectures are officially tested and supported.
+
+## Installing from source
+
+This section goes over building and installing celestia-node. This
+tutorial assumes you completed the steps in
+[setting up your development environment](/operate/getting-started/environment-setup).
+
+Install the celestia-node binary by running the following
+commands:
+
+<Steps>
+
+### Remove any existing copy and clone
+
+   ```bash
+   cd $HOME
+   rm -rf celestia-node
+   git clone https://github.com/celestiaorg/celestia-node.git
+   cd celestia-node/
+   ```
+
+### Check out the desired version
+
+   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/{{mainnetVersions['node-latest-tag']}}
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/{{mochaVersions['node-latest-tag']}}
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/{{arabicaVersions['node-latest-tag']}}
+       ```
+     </Tabs.Tab>
+   </Tabs>
+
+### Build the `celestia` binary
+
+   a. Standard build
+
+   ```bash
+   make build
+   ```
+
+   b. Experimental build (optional)
+
+   <Callout type="info">
+   If you're a node operator comfortable with experimental features and seeking optimal performance with minimal RAM usage, this option is recommended for you.
+   </Callout>
+
+   ```bash
+   make build-jemalloc
+   ```
+
+   This build option enables CGO, and downloads and installs [jemalloc](https://jemalloc.net/). [Learn more about the build command](https://github.com/celestiaorg/celestia-node/releases/tag/v0.12.1#:~:text=%F0%9F%8F%97%EF%B8%8F-,New%20build%20option,-%3A%20Makefile%20now%20has).
+
+### Install the binary
+
+   ```bash
+   make install
+   ```
+
+### Build and install the `cel-key` utility
+
+   ```bash
+   make cel-key
+   make install-key
+   ```
+
+### Verify the installation
+
+   ```bash
+   celestia version
+   ```
+
+The output will show the semantic version of celestia-node,
+commit hash, build date, system version, and Golang version.
+</Steps>
+
+## Installing a pre-built binary
+
+Installing a pre-built binary is the fastest way to get started with your Celestia data availability node. Releases after celestia-node v0.13.3 have these binaries available.
+
+The installation script will download a binary file named `celestia`. Depending on your chosen installation option, the `celestia` binary will be available at one of these locations:
+
+- `$GOPATH/bin/celestia` (if Go is installed)
+- `/usr/local/bin/celestia`
+- `$HOME/celestia-node-temp/celestia`
+
+Pre-built binaries are available for:
+
+- Operating systems: Darwin (Apple), Linux
+- Architectures: x86_64 (amd64), arm64
+
+### Installation Options
+
+You can install the latest version or specify a particular version:
+
+```bash
+# Install latest version
+bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)"
+
+# Install specific version, Mainnet Beta in this example
+bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
+```
+
+The script will:
+
+1. Detect your system's operating system and architecture
+2. Download the appropriate binary
+3. Verify the checksum for security
+4. Provide installation location options based on your environment:
+   - If Go is installed:
+     - Go bin directory (`$GOPATH/bin`)
+     - System bin directory (`/usr/local/bin`)
+     - Keep in current directory
+   - If Go is not installed:
+     - System bin directory (`/usr/local/bin`)
+     - Keep in current directory
+
+Follow the instructions in the terminal output to choose your installation preferences. After installation, you can verify the setup by checking the version:
+
+```bash
+celestia version && celestia --help
+```
+
+View [the script](https://github.com/celestiaorg/docs/blob/main/public/celestia-node.sh) to learn more about what it is doing.
+
+> **Note**: The script maintains a log file at `$HOME/celestia-node-temp/logfile.log` for troubleshooting purposes.
+
+## Next steps
+
+First, we recommend [reading the overview](/operate/getting-started/hardware-requirements)
+of our node types, if you haven't yet.
+
+Now that you've installed Celestia Node, it's time to
+[pick your node type](/operate/getting-started/overview) and run your node!
+
+If you're planning to run a light node,
+we recommend the [quick-start guide](/operate/data-availability/light-node/quickstart/).
+
+## Upgrading your binary
+
+To upgrade your binary, you can install the latest version from the
+instructions above and restart your node. If you run into any issues,
+Refer to the [troubleshooting section](/operate/maintenance/troubleshooting).0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"Learn to build and install celestia-node.","title":"Install celestia-node","filePath":"app/operate/data-availability/install-celestia-node/page.mdx","timestamp":1772147596000},"toc":[{"value":"Supported architectures","id":"supported-architectures","depth":2},{"value":"Installing from source","id":"installing-from-source","depth":2},{"value":"Remove any existing copy and clone","id":"remove-any-existing-copy-and-clone","depth":3},{"value":"Check out the desired version","id":"check-out-the-desired-version","depth":3},{"value":["Build the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia"}]," binary"],"id":"build-the-celestia-binary","depth":3},{"value":"Install the binary","id":"install-the-binary","depth":3},{"value":["Build and install the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"cel-key"}]," utility"],"id":"build-and-install-the-cel-key-utility","depth":3},{"value":"Verify the installation","id":"verify-the-installation","depth":3},{"value":"Installing a pre-built binary","id":"installing-a-pre-built-binary","depth":2},{"value":"Installation Options","id":"installation-options","depth":3},{"value":"Next steps","id":"next-steps","depth":2},{"value":"Upgrading your binary","id":"upgrading-your-binary","depth":2}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"loading":null,"isPartial":false}
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Install celestia-node","$undefined"]}],"\n",["$","h2",null,{"id":"supported-architectures","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Supported architectures",["$","$L6",null,{"id":"supported-architectures"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia-node officially supports the following architectures:"}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"linux/amd64"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"linux/arm64"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"darwin/amd64 (macOS Intel)"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"darwin/arm64 (macOS Apple Silicon)"}],"\n"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Only these four architectures are officially tested and supported."}],"\n",["$","h2",null,{"id":"installing-from-source","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Installing from source",["$","$L6",null,{"id":"installing-from-source"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["This section goes over building and installing celestia-node. This\ntutorial assumes you completed the steps in\n",["$","$L7",null,{"href":"/operate/getting-started/environment-setup","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"setting up your development environment"}],"."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Install the celestia-node binary by running the following\ncommands:"}],"\n",["$","div",null,{"className":"nextra-steps x:ms-4 x:mb-12 x:border-s x:border-gray-200 x:ps-6 x:dark:border-neutral-800","style":{"--counter-id":"_S_1_"},"children":[["$","h3",null,{"id":"remove-any-existing-copy-and-clone","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Remove any existing copy and clone",["$","$L6",null,{"id":"remove-any-existing-copy-and-clone"}]]}],["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L9",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"cd"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" $HOME"}]]}],"\n",["$","span",null,{"children":["$La","$Lb","$Lc"]}],"\n","$Ld","\n","$Le"]}]]}]]}],"$Lf","$L10","$L11","$L12","$L13","$L14","$L15","$L16","$L17","$L18","$L19","$L1a","$L1b","$L1c","$L1d","$L1e"]}],"\n","$L1f","\n","$L20","\n","$L21","\n","$L22","\n","$L23","\n","$L24","\n","$L25","\n","$L26","\n","$L27","\n","$L28","\n","$L29","\n","$L2a","\n","$L2b","\n","$L2c","\n","$L2d","\n","$L2e","\n","$L2f","\n","$L30","\n","$L31","\n","$L32","\n","$L33"]
+5:["$","$L34",null,{"children":["$","$35",null,{"name":"Next.MetadataOutlet","children":"$@36"}]}]
+a:["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"rm"}]
+b:["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -rf"}]
+c:["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" celestia-node"}]
+d:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"git"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" clone"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://github.com/celestiaorg/celestia-node.git"}]]}]
+e:["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"cd"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" celestia-node/"}]]}]
+f:["$","h3",null,{"id":"check-out-the-desired-version","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Check out the desired version",["$","$L6",null,{"id":"check-out-the-desired-version"}]]}]
+10:["$","$L37",null,{"items":["Mainnet Beta","Mocha","Arabica"],"children":[["$","$L38",null,{"children":[["$","h3",null,{"id":"mainnet-beta","style":{"visibility":"hidden","width":0,"height":0},"children":"Mainnet Beta"}],["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L9",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"git"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" checkout"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" tags/v0.28.4"}]]}]}]]}]]}]]}],["$","$L38",null,{"children":[["$","h3",null,{"id":"mocha","style":{"visibility":"hidden","width":0,"height":0},"children":"Mocha"}],["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L9",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"git"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" checkout"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" tags/v0.29.1-mocha"}]]}]}]]}]]}]]}],["$","$L38",null,{"children":[["$","h3",null,{"id":"arabica","style":{"visibility":"hidden","width":0,"height":0},"children":"Arabica"}],["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],"$L39"]}],"$L3a"]}]]}]]}]]}]
+11:["$","h3",null,{"id":"build-the-celestia-binary","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["$0:rsc:props:children:0:props:toc:4:value",["$","$L6",null,{"id":"build-the-celestia-binary"}]]}]
+12:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"a. Standard build"}]
+13:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L9",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"make"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" build"}]]}]}]]}]]}]
+14:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"b. Experimental build (optional)"}]
+15:["$","div",null,{"className":"nextra-callout x:overflow-x-auto x:not-first:mt-[1.25em] x:flex x:rounded-lg x:border x:py-[.5em] x:pe-[1em] x:contrast-more:border-current! x:bg-blue-100 x:dark:bg-blue-900/30 x:text-blue-700 x:dark:text-blue-400 x:border-blue-700 x:dark:border-blue-600","children":[["$","div",null,{"className":"x:select-none x:text-[1.25em] x:ps-[.6em] x:pe-[.4em]","style":{"fontFamily":"\"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""},"data-pagefind-ignore":"all","children":["$","svg",null,{"viewBox":"0 0 16 16","fill":"currentColor","height":".8em","className":"x:mt-[.3em]","children":["$","path",null,{"d":"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"}]}]}],["$","div",null,{"className":"x:w-full x:min-w-0","children":["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"If you’re a node operator comfortable with experimental features and seeking optimal performance with minimal RAM usage, this option is recommended for you."}]}]]}]
+16:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L9",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"make"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" build-jemalloc"}]]}]}]]}]]}]
+17:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["This build option enables CGO, and downloads and installs ",["$","a",null,{"href":"https://jemalloc.net/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["jemalloc",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],". ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-node/releases/tag/v0.12.1#:~:text=%F0%9F%8F%97%EF%B8%8F-,New%20build%20option,-%3A%20Makefile%20now%20has","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Learn more about the build command",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+18:["$","h3",null,{"id":"install-the-binary","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Install the binary",["$","$L6",null,{"id":"install-the-binary"}]]}]
+19:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L9",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"make"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" install"}]]}]}]]}]]}]
+1a:["$","h3",null,{"id":"build-and-install-the-cel-key-utility","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["$0:rsc:props:children:0:props:toc:6:value",["$","$L6",null,{"id":"build-and-install-the-cel-key-utility"}]]}]
+1b:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L9",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"make"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" cel-key"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"make"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" install-key"}]]}]]}]]}]]}]
+1c:["$","h3",null,{"id":"verify-the-installation","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Verify the installation",["$","$L6",null,{"id":"verify-the-installation"}]]}]
+1d:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L9",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" version"}]]}]}]]}]]}]
+1e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The output will show the semantic version of celestia-node,\ncommit hash, build date, system version, and Golang version."}]
+1f:["$","h2",null,{"id":"installing-a-pre-built-binary","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Installing a pre-built binary",["$","$L6",null,{"id":"installing-a-pre-built-binary"}]]}]
+20:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Installing a pre-built binary is the fastest way to get started with your Celestia data availability node. Releases after celestia-node v0.13.3 have these binaries available."}]
+21:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The installation script will download a binary file named ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia"}],". Depending on your chosen installation option, the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia"}]," binary will be available at one of these locations:"]}]
+22:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$GOPATH/bin/celestia"}]," (if Go is installed)"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/usr/local/bin/celestia"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/celestia-node-temp/celestia"}]}],"\n"]}]
+23:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Pre-built binaries are available for:"}]
+24:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"Operating systems: Darwin (Apple), Linux"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Architectures: x86_64 (amd64), arm64"}],"\n"]}]
+25:["$","h3",null,{"id":"installation-options","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Installation Options",["$","$L6",null,{"id":"installation-options"}]]}]
+26:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"You can install the latest version or specify a particular version:"}]
+27:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L9",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# Install latest version"}]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"bash"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -c"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \"$("}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -sL"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://docs.celestia.org/celestia-node.sh)\""}]]}],"\n",["$","span",null,{"children":" "}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# Install specific version, Mainnet Beta in this example"}]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"bash"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -c"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \"$("}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -sL"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://docs.celestia.org/celestia-node.sh)\""}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" --"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -v"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" v0.28.4"}]]}]]}]]}]]}]
+28:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The script will:"}]
+29:["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"Detect your system’s operating system and architecture"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Download the appropriate binary"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Verify the checksum for security"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["Provide installation location options based on your environment:","\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["If Go is installed:","\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["Go bin directory (",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$GOPATH/bin"}],")"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["System bin directory (",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/usr/local/bin"}],")"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Keep in current directory"}],"\n"]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["If Go is not installed:","\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["System bin directory (",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/usr/local/bin"}],")"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Keep in current directory"}],"\n"]}],"\n"]}],"\n"]}],"\n"]}],"\n"]}]
+2a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Follow the instructions in the terminal output to choose your installation preferences. After installation, you can verify the setup by checking the version:"}]
+2b:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L8",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L9",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" version"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" && "}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" --help"}]]}]}]]}]]}]
+2c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["View ",["$","a",null,{"href":"https://github.com/celestiaorg/docs/blob/main/public/celestia-node.sh","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["the script",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," to learn more about what it is doing."]}]
+2d:["$","blockquote",null,{"className":"x:not-first:mt-[1.25em] x:border-gray-300 x:italic x:text-gray-700 x:dark:border-gray-700 x:dark:text-gray-400 x:border-s-2 x:ps-[1.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Note"}],": The script maintains a log file at ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/celestia-node-temp/logfile.log"}]," for troubleshooting purposes."]}],"\n"]}]
+2e:["$","h2",null,{"id":"next-steps","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Next steps",["$","$L6",null,{"id":"next-steps"}]]}]
+2f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["First, we recommend ",["$","$L7",null,{"href":"/operate/getting-started/hardware-requirements","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"reading the overview"}],"\nof our node types, if you haven’t yet."]}]
+30:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Now that you’ve installed Celestia Node, it’s time to\n",["$","$L7",null,{"href":"/operate/getting-started/overview","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"pick your node type"}]," and run your node!"]}]
+31:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["If you’re planning to run a light node,\nwe recommend the ",["$","$L7",null,{"href":"/operate/data-availability/light-node/quickstart/","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"quick-start guide"}],"."]}]
+32:["$","h2",null,{"id":"upgrading-your-binary","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Upgrading your binary",["$","$L6",null,{"id":"upgrading-your-binary"}]]}]
+33:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["To upgrade your binary, you can install the latest version from the\ninstructions above and restart your node. If you run into any issues,\nRefer to the ",["$","$L7",null,{"href":"/operate/maintenance/troubleshooting","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"troubleshooting section"}],"."]}]
+36:null
+39:["$","$L9",null,{"className":""}]
+3a:["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"git"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" checkout"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" tags/v0.29.1-arabica"}]]}]}]

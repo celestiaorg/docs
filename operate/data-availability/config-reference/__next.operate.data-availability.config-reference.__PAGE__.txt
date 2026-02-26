@@ -1,0 +1,97 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","473","static/chunks/app/operate/data-availability/config-reference/page-a2fdc3e2bd7bd884.js"],"WrapperWithFooter"]
+4:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","473","static/chunks/app/operate/data-availability/config-reference/page-a2fdc3e2bd7bd884.js"],"HeadingAnchor"]
+1a:I[19023,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","473","static/chunks/app/operate/data-availability/config-reference/page-a2fdc3e2bd7bd884.js"],"ToggleWordWrapButton"]
+1b:I[57976,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","473","static/chunks/app/operate/data-availability/config-reference/page-a2fdc3e2bd7bd884.js"],"CopyToClipboard"]
+1c:I[90484,[],"OutletBoundary"]
+1d:"$Sreact.suspense"
+3:T877,---
+description: A guide to the contents of the Config.toml file.
+---
+
+# config.toml guide
+
+## Pre-requisites
+
+Please, make sure that you have installed and initialized `celestia-node`
+
+## Viewing the help menu
+
+In order to view all flags and their descriptions, use:
+
+```bash
+celestia light start --help
+```
+
+## Understanding config.toml
+
+After initialization, for any type of node, you will find a
+`config.toml` in the following path (default location):
+
+- `$HOME/.celestia-bridge/config.toml` for bridge node
+- `$HOME/.celestia-light/config.toml` for light node
+
+Let's break down some of the most used sections.
+
+### Core (Consensus)
+
+This section is needed for the Celestia bridge node.
+By default, `Remote = false`. Still for devnet, we are going
+to use the remote consensus node option and this can also be set
+by the command line flag `--core.remote`.
+
+### P2P
+
+#### Bootstrap
+
+Bootstrappers help new nodes to find peers faster in the network.
+By default, the `Bootstrapper = false` and the `BootstrapPeers` is empty.
+If you want your node to be a bootstrapper, then activate `Bootstrapper = true`.
+`BootstrapPeers` are already provided by default during initialisation.
+If you want to add your own manually, you need to provide the
+multiaddresses of the peers.
+
+#### Mutual peers
+
+The purpose of this config is to set up a bidirectional communication.
+This is usually the case for Celestia bridge nodes. In addition, you
+need to change the field `PeerExchange` from false to true.
+
+### Services
+
+#### TrustedHash and TrustedPeer
+
+`TrustedHash` is needed to properly initialize a Celestia bridge
+node with an already-running `Remote` Celestia consensus node. Celestia
+light node will take a genesis hash as the trusted one, if no hash
+is manually provided during initialization phase.
+
+`TrustedPeers` is the array of bridge nodes' peers that Celestia
+light node trusts. By default, bootstrap peers becomes trusted peers
+for Celestia light nodes if a user is not setting the trusted peer params
+in config file.
+
+Any Celestia bridge node can be a trusted peer for the light one. However,
+the light node by design can not be a trusted peer for another light node.0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"A guide to the contents of the Config.toml file.","title":"config.toml guide","filePath":"app/operate/data-availability/config-reference/page.mdx","timestamp":1772147596000},"toc":[{"value":"Pre-requisites","id":"pre-requisites","depth":2},{"value":"Viewing the help menu","id":"viewing-the-help-menu","depth":2},{"value":"Understanding config.toml","id":"understanding-configtoml","depth":2},{"value":"Core (Consensus)","id":"core-consensus","depth":3},{"value":"P2P","id":"p2p","depth":3},{"value":"Bootstrap","id":"bootstrap","depth":4},{"value":"Mutual peers","id":"mutual-peers","depth":4},{"value":"Services","id":"services","depth":3},{"value":"TrustedHash and TrustedPeer","id":"trustedhash-and-trustedpeer","depth":4}],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["config.toml guide","$undefined"]}],"\n",["$","h2",null,{"id":"pre-requisites","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Pre-requisites",["$","$L4",null,{"id":"pre-requisites"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Please, make sure that you have installed and initialized ","$L5"]}],"\n","$L6","\n","$L7","\n","$L8","\n","$L9","\n","$La","\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16","\n","$L17","\n","$L18"]}],null,"$L19"]}],"loading":null,"isPartial":false}
+5:["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-node"}]
+6:["$","h2",null,{"id":"viewing-the-help-menu","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Viewing the help menu",["$","$L4",null,{"id":"viewing-the-help-menu"}]]}]
+7:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"In order to view all flags and their descriptions, use:"}]
+8:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L1a",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L1b",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" light"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" start"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" --help"}]]}]}]]}]]}]
+9:["$","h2",null,{"id":"understanding-configtoml","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Understanding config.toml",["$","$L4",null,{"id":"understanding-configtoml"}]]}]
+a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["After initialization, for any type of node, you will find a\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"config.toml"}]," in the following path (default location):"]}]
+b:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/.celestia-bridge/config.toml"}]," for bridge node"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/.celestia-light/config.toml"}]," for light node"]}],"\n"]}]
+c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Let’s break down some of the most used sections."}]
+d:["$","h3",null,{"id":"core-consensus","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Core (Consensus)",["$","$L4",null,{"id":"core-consensus"}]]}]
+e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["This section is needed for the Celestia bridge node.\nBy default, ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Remote = false"}],". Still for devnet, we are going\nto use the remote consensus node option and this can also be set\nby the command line flag ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"--core.remote"}],"."]}]
+f:["$","h3",null,{"id":"p2p","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["P2P",["$","$L4",null,{"id":"p2p"}]]}]
+10:["$","h4",null,{"id":"bootstrap","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-xl","children":["Bootstrap",["$","$L4",null,{"id":"bootstrap"}]]}]
+11:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Bootstrappers help new nodes to find peers faster in the network.\nBy default, the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Bootstrapper = false"}]," and the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"BootstrapPeers"}]," is empty.\nIf you want your node to be a bootstrapper, then activate ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Bootstrapper = true"}],".\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"BootstrapPeers"}]," are already provided by default during initialisation.\nIf you want to add your own manually, you need to provide the\nmultiaddresses of the peers."]}]
+12:["$","h4",null,{"id":"mutual-peers","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-xl","children":["Mutual peers",["$","$L4",null,{"id":"mutual-peers"}]]}]
+13:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The purpose of this config is to set up a bidirectional communication.\nThis is usually the case for Celestia bridge nodes. In addition, you\nneed to change the field ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"PeerExchange"}]," from false to true."]}]
+14:["$","h3",null,{"id":"services","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Services",["$","$L4",null,{"id":"services"}]]}]
+15:["$","h4",null,{"id":"trustedhash-and-trustedpeer","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-xl","children":["TrustedHash and TrustedPeer",["$","$L4",null,{"id":"trustedhash-and-trustedpeer"}]]}]
+16:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"TrustedHash"}]," is needed to properly initialize a Celestia bridge\nnode with an already-running ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Remote"}]," Celestia consensus node. Celestia\nlight node will take a genesis hash as the trusted one, if no hash\nis manually provided during initialization phase."]}]
+17:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"TrustedPeers"}]," is the array of bridge nodes’ peers that Celestia\nlight node trusts. By default, bootstrap peers becomes trusted peers\nfor Celestia light nodes if a user is not setting the trusted peer params\nin config file."]}]
+18:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Any Celestia bridge node can be a trusted peer for the light one. However,\nthe light node by design can not be a trusted peer for another light node."}]
+19:["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]
+1e:null

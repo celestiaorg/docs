@@ -1,0 +1,45 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","7423","static/chunks/app/operate/consensus-validators/slashing/page-a2fdc3e2bd7bd884.js"],"WrapperWithFooter"]
+7:I[90484,[],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T6c2,---
+description: This section covers the jailing and slashing mechanics for validators in Celestia.
+---
+
+# Jailing and slashing on Celestia
+
+Slashing is a mechanism employed in proof of stake blockchains
+that is used to deter and punish malicious behavior.
+It functions by removing a percentage of a validator's stake
+each time they act harmfully towards the network.
+
+Celestia is built with the Cosmos SDK and uses the `x/slashing` module.
+
+If a validator gets slashed, delegators bonded to that validator will also
+have the same percentage of their delegated funds slashed.
+
+The following are the conditions for a validator to get jailed or slashed:
+
+1. **Downtime**: If a validator is offline for more than 25% of a rolling window
+   of the last 5,000 blocks, they will be jailed for 1 minute.
+   During this period, the validator is removed from the validator set
+   temporarily, and will be unable to propose new blocks or earn rewards.
+   After the jail period, the validator can send an unjail request to
+   rejoin the validator set.
+
+2. **Double signing**: This is a more severe offense and results in getting slashed.
+   If a validator engages in double signing, the validator
+   will lose 2% of their stake and the remainder of their stake
+   will be returned to them. The validator will be permanently removed
+   from the validator set and will not have the ability to unjail.
+   Delegators bonded to that validator will automatically enter the unbonding
+   period for 21 days, and can delegate to another validator after
+   they have been unbonded.
+
+For more details on the jailing and slashing parameters, refer to the
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v6.html)
+page.0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"This section covers the jailing and slashing mechanics for validators in Celestia.","title":"Jailing and slashing on Celestia","filePath":"app/operate/consensus-validators/slashing/page.mdx","timestamp":1772147596000},"toc":[],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Jailing and slashing on Celestia","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Slashing is a mechanism employed in proof of stake blockchains\nthat is used to deter and punish malicious behavior.\nIt functions by removing a percentage of a validator’s stake\neach time they act harmfully towards the network."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Celestia is built with the Cosmos SDK and uses the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"x/slashing"}]," module."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"If a validator gets slashed, delegators bonded to that validator will also\nhave the same percentage of their delegated funds slashed."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The following are the conditions for a validator to get jailed or slashed:"}],"\n",["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Downtime"}],": If a validator is offline for more than 25% of a rolling window\nof the last 5,000 blocks, they will be jailed for 1 minute.\nDuring this period, the validator is removed from the validator set\ntemporarily, and will be unable to propose new blocks or earn rewards.\nAfter the jail period, the validator can send an unjail request to\nrejoin the validator set."]}],"\n"]}],"\n","$L4","\n"]}],"\n","$L5"]}],null,"$L6"]}],"loading":null,"isPartial":false}
+4:["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Double signing"}],": This is a more severe offense and results in getting slashed.\nIf a validator engages in double signing, the validator\nwill lose 2% of their stake and the remainder of their stake\nwill be returned to them. The validator will be permanently removed\nfrom the validator set and will not have the ability to unjail.\nDelegators bonded to that validator will automatically enter the unbonding\nperiod for 21 days, and can delegate to another validator after\nthey have been unbonded."]}],"\n"]}]
+5:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["For more details on the jailing and slashing parameters, refer to the\n",["$","a",null,{"href":"https://celestiaorg.github.io/celestia-app/parameters_v6.html","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["celestia-app specifications",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\npage."]}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

@@ -1,0 +1,83 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4661","static/chunks/app/learn/celestia-101/retrievability/page-a2fdc3e2bd7bd884.js"],"WrapperWithFooter"]
+6:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4661","static/chunks/app/learn/celestia-101/retrievability/page-a2fdc3e2bd7bd884.js"],"HeadingAnchor"]
+b:I[90484,[],"OutletBoundary"]
+c:"$Sreact.suspense"
+e:I[98500,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4661","static/chunks/app/learn/celestia-101/retrievability/page-a2fdc3e2bd7bd884.js"],""]
+3:Tff1,# Data retrievability and pruning
+
+The purpose of data availability layers such as Celestia is to ensure
+that block data is provably published, so that applications
+and rollups can know what the state of their chain is, and store that data.
+Once the data is published, data availability layers
+[do not inherently guarantee that historical data will be permanently stored](https://notes.ethereum.org/@vbuterin/proto_danksharding_faq#If-data-is-deleted-after-30-days-how-would-users-access-older-blobs)
+and remain retrievable.
+
+In this document, we discuss the state of data retrievability and
+pruning in Celestia, as well as some tips for rollup developers in
+order to ensure that syncing new rollup nodes is possible.
+
+## Data retrievability and pruning in celestia-node
+
+As of version v6 of celestia-app, celestia-node has implemented a light node
+sampling window of 7 days, as specified in
+[CIP-36](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-036.md).
+Light nodes now only sample blocks within a 7-day
+window instead of sampling all blocks from genesis. This change
+introduces the concept of pruning to celestia-node, where data
+outside of the 7-day window may not be stored by light nodes,
+marking a significant update in how data retrievability and
+storage are managed within the network.
+
+Data blobs older than the recency window will be pruned by default
+on light nodes,
+but will continue to be stored by archival nodes that do not prune data. Light
+nodes will be able to query historic blob data in namespaces from archival
+nodes, as long as archival nodes exist on the public network.
+
+## Suggested practices for rollups
+
+Rollups may need to access historic data in order to allow new rollup nodes
+to reconstruct the latest state by replaying historical blocks. Once data has
+been published on Celestia and guaranteed to have been made available, rollups
+and applications are responsible for storing their historical data.
+
+While it is possible to continue to do this by using the `GetAll` API method in
+celestia-node on historic blocks as long as archival nodes exist on the public
+Celestia network, rollup developers should not rely on this as the only method
+to access historical data, as archival nodes serving requests for historical
+data for free is not guaranteed. Below are some other suggested methods to
+access historical data.
+
+- **Use professional archival node or data providers.** It is expected that
+  professional infrastructure providers will provide paid access to archival
+  nodes, where historical data can be retrieved, for example using the `GetAll`
+  API method. Providers like QuickNode offer archival node services that maintain
+  complete historical data, ensuring reliable access to past transactions and state.
+  This provides better guarantees than solely relying on free archival nodes on the
+  public Celestia network. For a list of available providers, see the
+  [network's](/operate/networks/mainnet-beta) page, and for specific archival
+  node endpoints, refer to the [archival DA RPC endpoints](/operate/networks/mainnet-beta#archival-da-rpc-endpoints)
+  section.
+
+- **Share snapshots of rollup nodes.** Rollups could share snapshots of their
+  data directories which can be downloaded manually by users bootstrapping new
+  nodes. These snapshots could contain the latest state of the rollup, and/or
+  all the historical blocks.
+- **Add peer-to-peer support for historical block sync.** A less manual version
+  of sharing snapshots, where rollup nodes could implement built-in support for
+  block sync, where rollup nodes download historical block data from each other
+  over a peer-to-peer network.
+  - [**Namespace pinning.**](https://github.com/celestiaorg/celestia-node/issues/2830)
+    In the future, celestia-node is expected to allow nodes to choose to "pin"
+    data from selected namespaces that they wish to store and make available for
+    other nodes. This will allow rollup nodes to be responsible for storing their
+    data, without needing to implement their own peer-to-peer historical block
+    sync mechanism.0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Data retrievability and pruning","filePath":"app/learn/celestia-101/retrievability/page.mdx","timestamp":1772147596000},"toc":[{"value":"Data retrievability and pruning in celestia-node","id":"data-retrievability-and-pruning-in-celestia-node","depth":2},{"value":"Suggested practices for rollups","id":"suggested-practices-for-rollups","depth":2}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"loading":null,"isPartial":false}
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Data retrievability and pruning","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The purpose of data availability layers such as Celestia is to ensure\nthat block data is provably published, so that applications\nand rollups can know what the state of their chain is, and store that data.\nOnce the data is published, data availability layers\n",["$","a",null,{"href":"https://notes.ethereum.org/@vbuterin/proto_danksharding_faq#If-data-is-deleted-after-30-days-how-would-users-access-older-blobs","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["do not inherently guarantee that historical data will be permanently stored",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nand remain retrievable."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"In this document, we discuss the state of data retrievability and\npruning in Celestia, as well as some tips for rollup developers in\norder to ensure that syncing new rollup nodes is possible."}],"\n",["$","h2",null,{"id":"data-retrievability-and-pruning-in-celestia-node","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Data retrievability and pruning in celestia-node",["$","$L6",null,{"id":"data-retrievability-and-pruning-in-celestia-node"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["As of version v6 of celestia-app, celestia-node has implemented a light node\nsampling window of 7 days, as specified in\n",["$","a",null,{"href":"https://github.com/celestiaorg/CIPs/blob/main/cips/cip-036.md","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["CIP-36",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],".\nLight nodes now only sample blocks within a 7-day\nwindow instead of sampling all blocks from genesis. This change\nintroduces the concept of pruning to celestia-node, where data\noutside of the 7-day window may not be stored by light nodes,\nmarking a significant update in how data retrievability and\nstorage are managed within the network."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Data blobs older than the recency window will be pruned by default\non light nodes,\nbut will continue to be stored by archival nodes that do not prune data. Light\nnodes will be able to query historic blob data in namespaces from archival\nnodes, as long as archival nodes exist on the public network."}],"\n",["$","h2",null,{"id":"suggested-practices-for-rollups","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Suggested practices for rollups","$L7"]}],"\n","$L8","\n","$L9","\n","$La"]
+5:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+7:["$","$L6",null,{"id":"suggested-practices-for-rollups"}]
+8:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Rollups may need to access historic data in order to allow new rollup nodes\nto reconstruct the latest state by replaying historical blocks. Once data has\nbeen published on Celestia and guaranteed to have been made available, rollups\nand applications are responsible for storing their historical data."}]
+9:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["While it is possible to continue to do this by using the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"GetAll"}]," API method in\ncelestia-node on historic blocks as long as archival nodes exist on the public\nCelestia network, rollup developers should not rely on this as the only method\nto access historical data, as archival nodes serving requests for historical\ndata for free is not guaranteed. Below are some other suggested methods to\naccess historical data."]}]
+a:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Use professional archival node or data providers."}]," It is expected that\nprofessional infrastructure providers will provide paid access to archival\nnodes, where historical data can be retrieved, for example using the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"GetAll"}],"\nAPI method. Providers like QuickNode offer archival node services that maintain\ncomplete historical data, ensuring reliable access to past transactions and state.\nThis provides better guarantees than solely relying on free archival nodes on the\npublic Celestia network. For a list of available providers, see the\n",["$","$Le",null,{"href":"/operate/networks/mainnet-beta","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"network’s"}]," page, and for specific archival\nnode endpoints, refer to the ",["$","$Le",null,{"href":"/operate/networks/mainnet-beta#archival-da-rpc-endpoints","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"archival DA RPC endpoints"}],"\nsection."]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Share snapshots of rollup nodes."}]," Rollups could share snapshots of their\ndata directories which can be downloaded manually by users bootstrapping new\nnodes. These snapshots could contain the latest state of the rollup, and/or\nall the historical blocks."]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Add peer-to-peer support for historical block sync."}]," A less manual version\nof sharing snapshots, where rollup nodes could implement built-in support for\nblock sync, where rollup nodes download historical block data from each other\nover a peer-to-peer network."]}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","a",null,{"href":"https://github.com/celestiaorg/celestia-node/issues/2830","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":[["$","strong",null,{"children":"Namespace pinning."}],false]}],"\nIn the future, celestia-node is expected to allow nodes to choose to “pin”\ndata from selected namespaces that they wish to store and make available for\nother nodes. This will allow rollup nodes to be responsible for storing their\ndata, without needing to implement their own peer-to-peer historical block\nsync mechanism."]}],"\n"]}],"\n"]}],"\n"]}]
+d:null

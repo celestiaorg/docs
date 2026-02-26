@@ -1,0 +1,171 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","5492","static/chunks/app/learn/code-of-conduct/page-a2fdc3e2bd7bd884.js"],"WrapperWithFooter"]
+6:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","5492","static/chunks/app/learn/code-of-conduct/page-a2fdc3e2bd7bd884.js"],"HeadingAnchor"]
+21:I[90484,[],"OutletBoundary"]
+22:"$Sreact.suspense"
+3:T167b,---
+description: Fundamental shared values and special norms that distinguish Celestia's community.
+---
+
+# Celestia.org Code of Conduct
+
+## Our Pledge
+
+We as Celestia.org members, contributors, and leaders pledge to make
+participation in our community a harassment-free experience for everyone,
+regardless of age, body size, visible or invisible disability, ethnicity,
+sex characteristics, gender identity and expression, level of experience,
+education, socio-economic status, nationality, personal appearance, race,
+caste, color, religion, or sexual identity and orientation.
+
+We pledge to act and interact in ways that contribute to an open, welcoming,
+diverse, inclusive, and healthy community.
+
+## Our Standards
+
+Examples of behavior that contributes to a positive environment for our
+community include:
+
+- Demonstrating empathy and kindness toward other people
+- Being respectful of differing opinions, viewpoints, and experiences
+- Giving and gracefully accepting constructive feedback
+- Accepting responsibility and apologizing to those affected by our mistakes,
+  and learning from the experience
+- Focusing on what is best not just for us as individuals, but for the overall
+  community
+- Contributing to conversations about Celestia’s technology and ecosystem
+
+Examples of unacceptable behavior include:
+
+- The use of sexualized language or imagery, and sexual attention or advances of
+  any kind
+- Trolling, insulting or derogatory comments, and personal or political attacks
+- Public or private harassment
+- Publishing others' private information, such as a physical or email address,
+  without their explicit permission
+- Focusing on the prices of digital assets or tokens, or where they can be purchased
+- Other conduct which could reasonably be considered inappropriate in a
+  professional setting
+
+## Enforcement Responsibilities
+
+Community leaders are responsible for clarifying and enforcing our standards of
+acceptable behavior and will take appropriate and fair corrective action in
+response to any behavior that they deem inappropriate, threatening, offensive,
+or harmful.
+
+Community leaders have the right and responsibility to remove, edit, or reject
+comments, commits, code, wiki edits, issues, and other contributions that are
+not aligned to this Code of Conduct, and will communicate reasons for moderation
+decisions when appropriate.
+
+## Scope
+
+This Code of Conduct applies within all community spaces, and also applies when
+an individual is officially representing the community in public spaces.
+Examples of representing our community include using an official e-mail address,
+posting via an official social media account, or acting as an appointed
+representative at an online or offline event.
+
+## Enforcement
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may be
+reported to the community leaders responsible for enforcement at Celestia.org Discord.
+All complaints will be reviewed and investigated promptly and fairly.
+
+All community leaders are obligated to respect the privacy and security of the
+reporter of any incident.
+
+## Enforcement Guidelines
+
+Community leaders will follow these Community Impact Guidelines in determining
+the consequences for any action they deem in violation of this Code of Conduct:
+
+### 1. Correction
+
+**Community Impact**: Use of inappropriate language or other behavior deemed
+unprofessional or unwelcome in the community.
+
+**Consequence**: A private, written warning from community leaders, providing
+clarity around the nature of the violation and an explanation of why the
+behavior was inappropriate. A public apology may be requested.
+
+### 2. Warning
+
+**Community Impact**: A violation through a single incident or series of
+actions.
+
+**Consequence**: A warning with consequences for continued behavior. No
+interaction with the people involved, including unsolicited interaction with
+those enforcing the Code of Conduct, for a specified period of time. This
+includes avoiding interactions in community spaces as well as external channels
+like social media. Violating these terms may lead to a temporary or permanent
+ban.
+
+### 3. Temporary Ban
+
+**Community Impact**: A serious violation of community standards, including
+sustained inappropriate behavior.
+
+**Consequence**: A temporary ban from any sort of interaction or public
+communication with the community for a specified period of time. No public or
+private interaction with the people involved, including unsolicited interaction
+with those enforcing the Code of Conduct, is allowed during this period.
+Violating these terms may lead to a permanent ban.
+
+### 4. Permanent Ban
+
+**Community Impact**: Demonstrating a pattern of violation of community
+standards, including sustained inappropriate behavior, harassment of an
+individual, or aggression toward or disparagement of classes of individuals.
+
+**Consequence**: A permanent ban from any sort of public interaction within the
+community.
+
+## Attribution
+
+This Code of Conduct is adapted from the [Contributor Covenant][homepage],
+version 2.1, available at
+[https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][v2.1].
+
+Community Impact Guidelines were inspired by
+[Mozilla's code of conduct enforcement ladder][Mozilla CoC].
+
+For answers to common questions about this code of conduct, see the FAQ at
+[https://www.contributor-covenant.org/faq][FAQ]. Translations are available at
+[https://www.contributor-covenant.org/translations][translations].
+
+[homepage]: https://www.contributor-covenant.org
+[v2.1]: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
+[Mozilla CoC]: https://github.com/mozilla/diversity
+[FAQ]: https://www.contributor-covenant.org/faq
+[translations]: https://www.contributor-covenant.org/translations0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"Fundamental shared values and special norms that distinguish Celestia's community.","title":"Celestia.org Code of Conduct","filePath":"app/learn/code-of-conduct/page.mdx","timestamp":1772147596000},"toc":[{"value":"Our Pledge","id":"our-pledge","depth":2},{"value":"Our Standards","id":"our-standards","depth":2},{"value":"Enforcement Responsibilities","id":"enforcement-responsibilities","depth":2},{"value":"Scope","id":"scope","depth":2},{"value":"Enforcement","id":"enforcement","depth":2},{"value":"Enforcement Guidelines","id":"enforcement-guidelines","depth":2},{"value":"1. Correction","id":"1-correction","depth":3},{"value":"2. Warning","id":"2-warning","depth":3},{"value":"3. Temporary Ban","id":"3-temporary-ban","depth":3},{"value":"4. Permanent Ban","id":"4-permanent-ban","depth":3},{"value":"Attribution","id":"attribution","depth":2}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"loading":null,"isPartial":false}
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Celestia.org Code of Conduct","$undefined"]}],"\n",["$","h2",null,{"id":"our-pledge","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Our Pledge",["$","$L6",null,{"id":"our-pledge"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"We as Celestia.org members, contributors, and leaders pledge to make\nparticipation in our community a harassment-free experience for everyone,\nregardless of age, body size, visible or invisible disability, ethnicity,\nsex characteristics, gender identity and expression, level of experience,\neducation, socio-economic status, nationality, personal appearance, race,\ncaste, color, religion, or sexual identity and orientation."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"We pledge to act and interact in ways that contribute to an open, welcoming,\ndiverse, inclusive, and healthy community."}],"\n",["$","h2",null,{"id":"our-standards","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Our Standards",["$","$L6",null,{"id":"our-standards"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Examples of behavior that contributes to a positive environment for our\ncommunity include:"}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"Demonstrating empathy and kindness toward other people"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Being respectful of differing opinions, viewpoints, and experiences"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Giving and gracefully accepting constructive feedback"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Accepting responsibility and apologizing to those affected by our mistakes,\nand learning from the experience"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Focusing on what is best not just for us as individuals, but for the overall\ncommunity"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Contributing to conversations about Celestia’s technology and ecosystem"}],"\n"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Examples of unacceptable behavior include:"}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"The use of sexualized language or imagery, and sexual attention or advances of\nany kind"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Trolling, insulting or derogatory comments, and personal or political attacks"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Public or private harassment"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Publishing others’ private information, such as a physical or email address,\nwithout their explicit permission"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Focusing on the prices of digital assets or tokens, or where they can be purchased"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Other conduct which could reasonably be considered inappropriate in a\nprofessional setting"}],"\n"]}],"\n",["$","h2",null,{"id":"enforcement-responsibilities","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Enforcement Responsibilities","$L7"]}],"\n","$L8","\n","$L9","\n","$La","\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16","\n","$L17","\n","$L18","\n","$L19","\n","$L1a","\n","$L1b","\n","$L1c","\n","$L1d","\n","$L1e","\n","$L1f","\n","$L20"]
+5:["$","$L21",null,{"children":["$","$22",null,{"name":"Next.MetadataOutlet","children":"$@23"}]}]
+7:["$","$L6",null,{"id":"enforcement-responsibilities"}]
+8:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Community leaders are responsible for clarifying and enforcing our standards of\nacceptable behavior and will take appropriate and fair corrective action in\nresponse to any behavior that they deem inappropriate, threatening, offensive,\nor harmful."}]
+9:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Community leaders have the right and responsibility to remove, edit, or reject\ncomments, commits, code, wiki edits, issues, and other contributions that are\nnot aligned to this Code of Conduct, and will communicate reasons for moderation\ndecisions when appropriate."}]
+a:["$","h2",null,{"id":"scope","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Scope",["$","$L6",null,{"id":"scope"}]]}]
+b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This Code of Conduct applies within all community spaces, and also applies when\nan individual is officially representing the community in public spaces.\nExamples of representing our community include using an official e-mail address,\nposting via an official social media account, or acting as an appointed\nrepresentative at an online or offline event."}]
+c:["$","h2",null,{"id":"enforcement","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Enforcement",["$","$L6",null,{"id":"enforcement"}]]}]
+d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Instances of abusive, harassing, or otherwise unacceptable behavior may be\nreported to the community leaders responsible for enforcement at Celestia.org Discord.\nAll complaints will be reviewed and investigated promptly and fairly."}]
+e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"All community leaders are obligated to respect the privacy and security of the\nreporter of any incident."}]
+f:["$","h2",null,{"id":"enforcement-guidelines","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Enforcement Guidelines",["$","$L6",null,{"id":"enforcement-guidelines"}]]}]
+10:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Community leaders will follow these Community Impact Guidelines in determining\nthe consequences for any action they deem in violation of this Code of Conduct:"}]
+11:["$","h3",null,{"id":"1-correction","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["1. Correction",["$","$L6",null,{"id":"1-correction"}]]}]
+12:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Community Impact"}],": Use of inappropriate language or other behavior deemed\nunprofessional or unwelcome in the community."]}]
+13:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Consequence"}],": A private, written warning from community leaders, providing\nclarity around the nature of the violation and an explanation of why the\nbehavior was inappropriate. A public apology may be requested."]}]
+14:["$","h3",null,{"id":"2-warning","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["2. Warning",["$","$L6",null,{"id":"2-warning"}]]}]
+15:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Community Impact"}],": A violation through a single incident or series of\nactions."]}]
+16:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Consequence"}],": A warning with consequences for continued behavior. No\ninteraction with the people involved, including unsolicited interaction with\nthose enforcing the Code of Conduct, for a specified period of time. This\nincludes avoiding interactions in community spaces as well as external channels\nlike social media. Violating these terms may lead to a temporary or permanent\nban."]}]
+17:["$","h3",null,{"id":"3-temporary-ban","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["3. Temporary Ban",["$","$L6",null,{"id":"3-temporary-ban"}]]}]
+18:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Community Impact"}],": A serious violation of community standards, including\nsustained inappropriate behavior."]}]
+19:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Consequence"}],": A temporary ban from any sort of interaction or public\ncommunication with the community for a specified period of time. No public or\nprivate interaction with the people involved, including unsolicited interaction\nwith those enforcing the Code of Conduct, is allowed during this period.\nViolating these terms may lead to a permanent ban."]}]
+1a:["$","h3",null,{"id":"4-permanent-ban","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["4. Permanent Ban",["$","$L6",null,{"id":"4-permanent-ban"}]]}]
+1b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Community Impact"}],": Demonstrating a pattern of violation of community\nstandards, including sustained inappropriate behavior, harassment of an\nindividual, or aggression toward or disparagement of classes of individuals."]}]
+1c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Consequence"}],": A permanent ban from any sort of public interaction within the\ncommunity."]}]
+1d:["$","h2",null,{"id":"attribution","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Attribution",["$","$L6",null,{"id":"attribution"}]]}]
+1e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["This Code of Conduct is adapted from the ",["$","a",null,{"href":"https://www.contributor-covenant.org","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Contributor Covenant",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],",\nversion 2.1, available at\n",["$","a",null,{"href":"https://www.contributor-covenant.org/version/2/1/code_of_conduct.html","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://www.contributor-covenant.org/version/2/1/code_of_conduct.html",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+1f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Community Impact Guidelines were inspired by\n",["$","a",null,{"href":"https://github.com/mozilla/diversity","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Mozilla’s code of conduct enforcement ladder",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+20:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["For answers to common questions about this code of conduct, see the FAQ at\n",["$","a",null,{"href":"https://www.contributor-covenant.org/faq","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://www.contributor-covenant.org/faq",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],". Translations are available at\n",["$","a",null,{"href":"https://www.contributor-covenant.org/translations","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://www.contributor-covenant.org/translations",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+23:null

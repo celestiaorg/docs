@@ -1,0 +1,193 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","1954","static/chunks/app/operate/consensus-validators/install-celestia-app/page-6886684af56f93a8.js"],"WrapperWithFooter"]
+6:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","1954","static/chunks/app/operate/consensus-validators/install-celestia-app/page-6886684af56f93a8.js"],"HeadingAnchor"]
+7:I[98500,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","1954","static/chunks/app/operate/consensus-validators/install-celestia-app/page-6886684af56f93a8.js"],""]
+24:I[90484,[],"OutletBoundary"]
+25:"$Sreact.suspense"
+27:I[19023,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","1954","static/chunks/app/operate/consensus-validators/install-celestia-app/page-6886684af56f93a8.js"],"ToggleWordWrapButton"]
+28:I[57976,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","1954","static/chunks/app/operate/consensus-validators/install-celestia-app/page-6886684af56f93a8.js"],"CopyToClipboard"]
+29:I[64402,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","1954","static/chunks/app/operate/consensus-validators/install-celestia-app/page-6886684af56f93a8.js"],"Tabs"]
+2a:I[64402,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","4402","static/chunks/4402-e1a2223e4cae2a37.js","1954","static/chunks/app/operate/consensus-validators/install-celestia-app/page-6886684af56f93a8.js"],"Tab"]
+3:T1335,---
+description: Learn how you can build celestia-app.
+---
+
+import { Steps, Tabs } from 'nextra/components'
+
+# Install celestia-app
+
+This tutorial will guide you through installing celestia-app, both
+[from source](#building-binary-from-source) and with
+[a pre-built binary](#installing-a-pre-built-binary)
+
+Celestia-app is the software that enables you to run
+consensus nodes (including validators) and provide RPC endpoints.
+
+## Supported architectures
+
+Celestia-app officially supports the following architectures:
+
+- linux/amd64
+- linux/arm64
+- darwin/amd64 (macOS Intel)
+- darwin/arm64 (macOS Apple Silicon)
+
+Only these four architectures are officially tested and supported.
+
+## Building binary from source
+
+This section of the tutorial assumes you completed the steps in
+[setting up your own environment](/operate/getting-started/environment-setup).
+
+The steps below will create a binary file named `celestia-appd`
+inside `$HOME/go/bin` folder which will be used later to run the node.
+Be sure to select the correct network to install the binary for.
+
+<Steps>
+
+### Remove any existing copy and clone the repository
+
+   ```bash
+   cd $HOME
+   rm -rf celestia-app
+   git clone https://github.com/celestiaorg/celestia-app.git
+   cd celestia-app
+   ```
+
+### Check out the desired version
+
+   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/{{mainnetVersions['app-latest-tag']}}
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/{{mochaVersions['app-latest-tag']}}
+       ```
+     </Tabs.Tab>
+     <Tabs.Tab>
+       ```bash
+       git checkout tags/{{arabicaVersions['app-latest-tag']}}
+       ```
+     </Tabs.Tab>
+   </Tabs>
+
+### Build and install the `celestia-appd` binary with multiplexer support
+
+   ```bash
+   make install
+   ```
+
+### Verify the installation
+
+To check if the binary was successfully installed you can run the binary
+using the `--help` flag:
+
+   ```sh
+   celestia-appd --help
+   ```
+
+You will see an output with the menu for `celestia-appd`. Learn more
+on the [helpful CLI commands page](/operate/consensus-validators/cli-reference)
+</Steps>
+
+## Installing a pre-built binary
+
+Installing a pre-built binary is the fastest way to get started with your
+Celestia consensus node. Releases after celestia-app v1.3.0 should have
+these binaries available.
+
+The steps below will download a binary file named `celestia-appd`.
+Depending on the setup that you choose during installation, the `celestia-appd`
+binary will be available at either:
+
+- `$HOME/celestia-app-temp/celestia-appd`
+- `/usr/local/bin/celestia-appd`
+
+Pre-built binaries are available for:
+
+- Operating systems: Darwin (Apple), Linux
+- Architectures: x86_64 (amd64), arm64
+
+To install the latest, or a specific version of the pre-built binary you can run this command in your
+terminal:
+
+```bash
+# Install latest version
+bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)"
+
+# Install specific version, latest version for Mocha testnet in this example
+bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)" -- -v {{mochaVersions['app-latest-tag']}}
+```
+
+Follow the instructions in the terminal output to choose your installation
+preferences.
+
+You will see an output with the menu for `celestia-appd`. Learn more
+on the [helpful CLI commands page](/operate/consensus-validators/cli-reference)
+
+View [the script](https://github.com/celestiaorg/docs/blob/main/public/celestia-app.sh)
+to learn more about what it is doing.
+
+## Ports
+
+When interacting with a consensus node,
+you may need to open ports on your machine to allow
+communication between nodes, such as bridge nodes. It is essential that
+specific ports are accessible. Make sure that your firewall allows
+connections to the correct ports.
+
+If you run a node on a cloud server, make sure that the ports are open
+on the server's firewall. If you run a node at home, make sure that your
+router allows connections to the correct ports.
+
+For example, validator ports 9090
+and 26657 need to be accessible by the bridge, and port 2121 is
+required for P2P connections for all node types.
+
+The following ports are used by Celestia app nodes:
+
+| Port  | Protocol | Address   | Description | Enabled by default on node     | Flag                    |
+| ----- | -------- | --------- | ----------- | ------------------------------ | ----------------------- |
+| 2121  | TCP/UDP  | 127.0.0.1 | P2P         | true                           | N/A                     |
+| 9090  | HTTP     | 0.0.0.0   | gRPC        | true                           | `--grpc.address string` |
+| 26657 | TCP      | 127.0.0.1 | RPC         | false (only open to localhost) | `--rpc.laddr string`    |
+
+## Next steps
+
+Now that you've installed `celestia-appd`, learn how to run a [consensus](/operate/consensus-validators/consensus-node) and [validator](/operate/consensus-validators/validator-node) node.0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"Learn how you can build celestia-app.","title":"Install celestia-app","filePath":"app/operate/consensus-validators/install-celestia-app/page.mdx","timestamp":1772147596000},"toc":[{"value":"Supported architectures","id":"supported-architectures","depth":2},{"value":"Building binary from source","id":"building-binary-from-source","depth":2},{"value":"Remove any existing copy and clone the repository","id":"remove-any-existing-copy-and-clone-the-repository","depth":3},{"value":"Check out the desired version","id":"check-out-the-desired-version","depth":3},{"value":["Build and install the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-appd"}]," binary with multiplexer support"],"id":"build-and-install-the-celestia-appd-binary-with-multiplexer-support","depth":3},{"value":"Verify the installation","id":"verify-the-installation","depth":3},{"value":"Installing a pre-built binary","id":"installing-a-pre-built-binary","depth":2},{"value":"Ports","id":"ports","depth":2},{"value":"Next steps","id":"next-steps","depth":2}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"loading":null,"isPartial":false}
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Install celestia-app","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["This tutorial will guide you through installing celestia-app, both\n",["$","a",null,{"href":"#building-binary-from-source","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"from source"}]," and with\n",["$","a",null,{"href":"#installing-a-pre-built-binary","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"a pre-built binary"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia-app is the software that enables you to run\nconsensus nodes (including validators) and provide RPC endpoints."}],"\n",["$","h2",null,{"id":"supported-architectures","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Supported architectures",["$","$L6",null,{"id":"supported-architectures"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia-app officially supports the following architectures:"}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"linux/amd64"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"linux/arm64"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"darwin/amd64 (macOS Intel)"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"darwin/arm64 (macOS Apple Silicon)"}],"\n"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Only these four architectures are officially tested and supported."}],"\n",["$","h2",null,{"id":"building-binary-from-source","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Building binary from source",["$","$L6",null,{"id":"building-binary-from-source"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["This section of the tutorial assumes you completed the steps in\n",["$","$L7",null,{"href":"/operate/getting-started/environment-setup","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"setting up your own environment"}],"."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The steps below will create a binary file named ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-appd"}],"\ninside ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/go/bin"}]," folder which will be used later to run the node.\nBe sure to select the correct network to install the binary for."]}],"\n",["$","div",null,{"className":"nextra-steps x:ms-4 x:mb-12 x:border-s x:border-gray-200 x:ps-6 x:dark:border-neutral-800","style":{"--counter-id":"_S_1_"},"children":[["$","h3",null,{"id":"remove-any-existing-copy-and-clone-the-repository","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Remove any existing copy and clone the repository",["$","$L6",null,{"id":"remove-any-existing-copy-and-clone-the-repository"}]]}],["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined","$L8"]}],"$L9","$La","$Lb","$Lc","$Ld","$Le","$Lf","$L10"]}],"\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16","\n","$L17","\n","$L18","\n","$L19","\n","$L1a","\n","$L1b","\n","$L1c","\n","$L1d","\n","$L1e","\n","$L1f","\n","$L20","\n","$L21","\n","$L22","\n","$L23"]
+5:["$","$L24",null,{"children":["$","$25",null,{"name":"Next.MetadataOutlet","children":"$@26"}]}]
+8:["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L27",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L28",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"cd"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":" $HOME"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"rm"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -rf"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" celestia-app"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"git"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" clone"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://github.com/celestiaorg/celestia-app.git"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"cd"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" celestia-app"}]]}]]}]]}]
+9:["$","h3",null,{"id":"check-out-the-desired-version","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Check out the desired version",["$","$L6",null,{"id":"check-out-the-desired-version"}]]}]
+a:["$","$L29",null,{"items":["Mainnet Beta","Mocha","Arabica"],"children":[["$","$L2a",null,{"children":[["$","h3",null,{"id":"mainnet-beta","style":{"visibility":"hidden","width":0,"height":0},"children":"Mainnet Beta"}],["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L27",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L28",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"git"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" checkout"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" tags/v6.4.10"}]]}]}]]}]]}]]}],["$","$L2a",null,{"children":[["$","h3",null,{"id":"mocha","style":{"visibility":"hidden","width":0,"height":0},"children":"Mocha"}],["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L27",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L28",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"git"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" checkout"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" tags/v7.0.2-mocha"}]]}]}]]}]]}]]}],["$","$L2a",null,{"children":[["$","h3",null,{"id":"arabica","style":{"visibility":"hidden","width":0,"height":0},"children":"Arabica"}],["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L27",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],"$L2b"]}],"$L2c"]}]]}]]}]]}]
+b:["$","h3",null,{"id":"build-and-install-the-celestia-appd-binary-with-multiplexer-support","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["$0:rsc:props:children:0:props:toc:4:value",["$","$L6",null,{"id":"build-and-install-the-celestia-appd-binary-with-multiplexer-support"}]]}]
+c:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L27",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L28",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"make"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" install"}]]}]}]]}]]}]
+d:["$","h3",null,{"id":"verify-the-installation","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Verify the installation",["$","$L6",null,{"id":"verify-the-installation"}]]}]
+e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["To check if the binary was successfully installed you can run the binary\nusing the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"--help"}]," flag:"]}]
+f:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L27",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L28",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia-appd"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" --help"}]]}]}]]}]]}]
+10:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["You will see an output with the menu for ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-appd"}],". Learn more\non the ",["$","$L7",null,{"href":"/operate/consensus-validators/cli-reference","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"helpful CLI commands page"}]]}]
+11:["$","h2",null,{"id":"installing-a-pre-built-binary","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Installing a pre-built binary",["$","$L6",null,{"id":"installing-a-pre-built-binary"}]]}]
+12:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Installing a pre-built binary is the fastest way to get started with your\nCelestia consensus node. Releases after celestia-app v1.3.0 should have\nthese binaries available."}]
+13:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The steps below will download a binary file named ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-appd"}],".\nDepending on the setup that you choose during installation, the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-appd"}],"\nbinary will be available at either:"]}]
+14:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/celestia-app-temp/celestia-appd"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/usr/local/bin/celestia-appd"}]}],"\n"]}]
+15:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Pre-built binaries are available for:"}]
+16:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"Operating systems: Darwin (Apple), Linux"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Architectures: x86_64 (amd64), arm64"}],"\n"]}]
+17:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"To install the latest, or a specific version of the pre-built binary you can run this command in your\nterminal:"}]
+18:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L27",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L28",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# Install latest version"}]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"bash"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -c"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \"$("}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -sL"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://docs.celestia.org/celestia-app.sh)\""}]]}],"\n",["$","span",null,{"children":" "}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# Install specific version, latest version for Mocha testnet in this example"}]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"bash"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -c"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \"$("}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -sL"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://docs.celestia.org/celestia-app.sh)\""}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" --"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -v"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" v7.0.2-mocha"}]]}]]}]]}]]}]
+19:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Follow the instructions in the terminal output to choose your installation\npreferences."}]
+1a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["You will see an output with the menu for ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-appd"}],". Learn more\non the ",["$","$L7",null,{"href":"/operate/consensus-validators/cli-reference","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"helpful CLI commands page"}]]}]
+1b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["View ",["$","a",null,{"href":"https://github.com/celestiaorg/docs/blob/main/public/celestia-app.sh","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["the script",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nto learn more about what it is doing."]}]
+1c:["$","h2",null,{"id":"ports","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Ports",["$","$L6",null,{"id":"ports"}]]}]
+1d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"When interacting with a consensus node,\nyou may need to open ports on your machine to allow\ncommunication between nodes, such as bridge nodes. It is essential that\nspecific ports are accessible. Make sure that your firewall allows\nconnections to the correct ports."}]
+1e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"If you run a node on a cloud server, make sure that the ports are open\non the server’s firewall. If you run a node at home, make sure that your\nrouter allows connections to the correct ports."}]
+1f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"For example, validator ports 9090\nand 26657 need to be accessible by the bridge, and port 2121 is\nrequired for P2P connections for all node types."}]
+20:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The following ports are used by Celestia app nodes:"}]
+21:["$","table",null,{"className":"x:block x:overflow-x-auto nextra-scrollbar x:not-first:mt-[1.25em] x:p-0","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"Port","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"Protocol","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"Address","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"Description","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"Enabled by default on node","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"Flag","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":"2121","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"TCP/UDP","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"127.0.0.1","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"P2P","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"true","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"N/A","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"9090","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"HTTP","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"0.0.0.0","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"gRPC","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"true","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"--grpc.address string"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"26657","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"TCP","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"127.0.0.1","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"RPC","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"false (only open to localhost)","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"--rpc.laddr string"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]]}]]}]
+22:["$","h2",null,{"id":"next-steps","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Next steps",["$","$L6",null,{"id":"next-steps"}]]}]
+23:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Now that you’ve installed ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-appd"}],", learn how to run a ",["$","$L7",null,{"href":"/operate/consensus-validators/consensus-node","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"consensus"}]," and ",["$","$L7",null,{"href":"/operate/consensus-validators/validator-node","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"validator"}]," node."]}]
+26:null
+2b:["$","$L28",null,{"className":""}]
+2c:["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"git"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" checkout"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" tags/v7.0.2-arabica"}]]}]}]

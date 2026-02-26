@@ -1,0 +1,49 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","5843","static/chunks/app/learn/features/private-blockspace/page-a2fdc3e2bd7bd884.js"],"WrapperWithFooter"]
+f:I[90721,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","5843","static/chunks/app/learn/features/private-blockspace/page-a2fdc3e2bd7bd884.js"],"HeadingAnchor"]
+10:I[98500,["2545","static/chunks/c16f53c3-775488a13e945d5a.js","527","static/chunks/527-f7ee51f6296d0f68.js","5843","static/chunks/app/learn/features/private-blockspace/page-a2fdc3e2bd7bd884.js"],""]
+11:I[90484,[],"OutletBoundary"]
+12:"$Sreact.suspense"
+3:T868,# Private Blockspace
+
+Private Blockspace lets applications publish **encrypted state to Celestia** while still making it **publicly accountable**.
+
+Networks can keep sensitive data—like balances, positions, liquidations, and routing logic—confidential, without pushing trust back onto offchain operators. Anyone can verify that encrypted data is **available and properly committed to**, while only authorized parties can decrypt the underlying contents.
+
+Private Blockspace is built for systems where **privacy is required** and **verifiability is non-negotiable**.
+
+## How it works
+
+Private Blockspace is implemented as a lightweight **Private Blockspace Proxy** that sits between your application and Celestia’s data availability layer:
+
+1. **Submit**: Your app sends blobs to the proxy. The proxy encrypts the data, generates a zkVM proof (**Verifiable Encryption**), and publishes the encrypted blob to Celestia.
+
+2. **Retrieve**: Your app fetches blobs through the proxy. The proxy retrieves encrypted data from Celestia and attempts to decrypt it using the configured key material.
+
+3. **Verify**: Anyone can verify that the encrypted data is available on Celestia and that protocol-defined commitments about the plaintext hold—without revealing the plaintext itself.
+
+## Use cases
+
+Private Blockspace is designed for applications that need private execution or private state while preserving public guarantees. Here are a few novel use cases it can be applied to:
+
+- **Accountable offchain exchanges**: Keep exchange state private while making availability and commitments publicly verifiable.
+
+- **Trust-minimized data marketplaces**: Sellers can publish verifiably encrypted data to Celestia so buyers can verify availability and integrity before payment—without relying on intermediaries.
+
+## Get started
+
+- [About Private Blockspace](/build/private-blockspace/about): Architecture and technical details
+- [Quickstart guide](/build/private-blockspace/quickstart): Run it locally and submit encrypted blobs
+- [Private Blockspace Proxy](https://github.com/celestiaorg/private-blockspace-proxy/): Source code and implementation details0:{"buildId":"5DiMonWrxPT_SwxSvZouq","rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Private Blockspace","filePath":"app/learn/features/private-blockspace/page.mdx","timestamp":1772147596000},"toc":[{"value":"How it works","id":"how-it-works","depth":2},{"value":"Use cases","id":"use-cases","depth":2},{"value":"Get started","id":"get-started","depth":2}],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Private Blockspace","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Private Blockspace lets applications publish ",["$","strong",null,{"children":"encrypted state to Celestia"}]," while still making it ",["$","strong",null,{"children":"publicly accountable"}],"."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Networks can keep sensitive data—like balances, positions, liquidations, and routing logic—confidential, without pushing trust back onto offchain operators. Anyone can verify that encrypted data is ",["$","strong",null,{"children":"available and properly committed to"}],", while only authorized parties can decrypt the underlying contents."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Private Blockspace is built for systems where ","$L4"," and ","$L5","."]}],"\n","$L6","\n","$L7","\n","$L8","\n","$L9","\n","$La","\n","$Lb","\n","$Lc","\n","$Ld"]}],null,"$Le"]}],"loading":null,"isPartial":false}
+4:["$","strong",null,{"children":"privacy is required"}]
+5:["$","strong",null,{"children":"verifiability is non-negotiable"}]
+6:["$","h2",null,{"id":"how-it-works","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["How it works",["$","$Lf",null,{"id":"how-it-works"}]]}]
+7:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Private Blockspace is implemented as a lightweight ",["$","strong",null,{"children":"Private Blockspace Proxy"}]," that sits between your application and Celestia’s data availability layer:"]}]
+8:["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Submit"}],": Your app sends blobs to the proxy. The proxy encrypts the data, generates a zkVM proof (",["$","strong",null,{"children":"Verifiable Encryption"}],"), and publishes the encrypted blob to Celestia."]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Retrieve"}],": Your app fetches blobs through the proxy. The proxy retrieves encrypted data from Celestia and attempts to decrypt it using the configured key material."]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Verify"}],": Anyone can verify that the encrypted data is available on Celestia and that protocol-defined commitments about the plaintext hold—without revealing the plaintext itself."]}],"\n"]}],"\n"]}]
+9:["$","h2",null,{"id":"use-cases","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Use cases",["$","$Lf",null,{"id":"use-cases"}]]}]
+a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Private Blockspace is designed for applications that need private execution or private state while preserving public guarantees. Here are a few novel use cases it can be applied to:"}]
+b:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Accountable offchain exchanges"}],": Keep exchange state private while making availability and commitments publicly verifiable."]}],"\n"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Trust-minimized data marketplaces"}],": Sellers can publish verifiably encrypted data to Celestia so buyers can verify availability and integrity before payment—without relying on intermediaries."]}],"\n"]}],"\n"]}]
+c:["$","h2",null,{"id":"get-started","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Get started",["$","$Lf",null,{"id":"get-started"}]]}]
+d:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","$L10",null,{"href":"/build/private-blockspace/about","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"About Private Blockspace"}],": Architecture and technical details"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","$L10",null,{"href":"/build/private-blockspace/quickstart","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Quickstart guide"}],": Run it locally and submit encrypted blobs"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","a",null,{"href":"https://github.com/celestiaorg/private-blockspace-proxy/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Private Blockspace Proxy",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],": Source code and implementation details"]}],"\n"]}]
+e:["$","$L11",null,{"children":["$","$12",null,{"name":"Next.MetadataOutlet","children":"$@13"}]}]
+13:null
