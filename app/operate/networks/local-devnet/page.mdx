@@ -26,6 +26,8 @@ Install [Docker and Docker Compose](https://docs.docker.com/get-docker).
 
 Create a `docker-compose.yml` file with the following content:
 
+> **Note**: The bridge node in this example uses `--archival` mode to avoid genesis hash configuration requirements for private networks. Remove this flag if you want to use pruning mode and have configured the genesis hash.
+
    ```yaml
    version: "3.8"
    services:
@@ -61,6 +63,7 @@ Create a `docker-compose.yml` file with the following content:
          --core.ip celestia-validator
          --rpc.addr 0.0.0.0
          --rpc.port 26658
+         --archival
        depends_on:
          - celestia-validator
        networks:

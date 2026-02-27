@@ -107,7 +107,7 @@ These RPC providers are meant to be used in production environments
 and for specific use cases that require reliable access to full block
 history, such as:
 
-- Running Bridge Nodes that download data from core RPC endpoints
+- Running Bridge Nodes that download data from core RPC endpoints (Note: Bridge nodes will default to pruning mode in upcoming release - see PR #4768. Use `--archival` flag for full history)
 - Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
 - Submitting blobs in production settings (free RPC endpoints have no guarantees, even for submitting transactions)
 
@@ -175,10 +175,21 @@ celestia light start --core.ip rpc.celestia.pops.one --core.port 9090
 
 ### Bridge node requirements
 
-Not all RPC endpoints guarantee the full block history.
-Bridge nodes require access to the full historical block data, so you should use an archive endpoint to run your bridge node.
+<Callout type="warning">
+**Important Change**: Starting from [TODO: Add version from PR #4768], bridge nodes default to pruning mode. If you need full historical data, you must use the `--archival` flag when starting your bridge node.
+</Callout>
 
-Check the [production endpoints](#production-rpc-endpoints) or the [community dashboard](https://celestia-tools.brightlystake.com/) to identify which endpoints are archive nodes with full historical data.
+For archival bridge nodes (using `--archival` flag):
+- Not all RPC endpoints guarantee the full block history
+- Bridge nodes with `--archival` flag require access to the full historical block data
+- Use an archive endpoint to run your archival bridge node
+- Check the [production endpoints](#production-rpc-endpoints) or the [community dashboard](https://celestia-tools.brightlystake.com/) to identify which endpoints are archive nodes
+
+For pruned bridge nodes (default):
+- Will only store recent data within the availability window
+- Can sync from a recent height or hash
+- Significantly lower storage requirements
+- Suitable for most use cases
 
 Alternatively, you can run your own consensus node with no pruning for your bridge node.
 
