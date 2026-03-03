@@ -11,7 +11,7 @@ the network. Validators charge a fee to delegators which gives them a percentage
 of staking rewards.
 
 Learn
-[how proof of stake works on Cosmos SDK chains like Celestia](https://docs.cosmos.network/main/modules/staking).
+[how proof of stake works on Cosmos SDK chains like Celestia](https://docs.cosmos.network/sdk/v0.53/build/modules/staking).
 
 | Consensus mechanism  | Proof-of-stake |
 | -------------------- | -------------- |
@@ -52,7 +52,7 @@ Additionally, learn how to
 ### Community pool
 
 Starting at genesis, Celestia’s
-[community pool](https://docs.cosmos.network/main/modules/distribution)
+[community pool](https://docs.cosmos.network/sdk/v0.53/build/modules/distribution)
 receives 2% of all Celestia block rewards. TIA stakers may vote to fund
 ecosystem initiatives as in many other Cosmos SDK chains.
 
