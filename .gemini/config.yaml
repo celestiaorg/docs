@@ -1,0 +1,4 @@
+# Disable Gemini Code Assist for this repository
+# For more information, see: https://developers.google.com/gemini-code-assist/docs/customize-gemini-behavior-github
+code_review:
+  disable: true
