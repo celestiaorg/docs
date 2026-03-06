@@ -1,92 +1,66 @@
 ---
-name: celestia-docs-maintainer
-description: Use this skill when creating, updating, or reviewing content in the Celestia docs site (Next.js + Nextra + MDX), including style compliance, chain-id safety checks, link validation, and LLM markdown generation.
+name: celestia
+description: Use this skill for Celestia tasks across docs, node/app/core repo routing, and canonical blob posting/retrieval guidance (Go, Rust, and Node RPC).
 ---
 
-# Celestia docs maintainer
+# Celestia skill
 
-Use this skill for any task in this repository involving docs content, structure, navigation, or docs QA.
+Use this skill for broad Celestia requests, especially when deciding which repository to touch and how to handle blob submit/retrieve flows.
 
-## Constraints first
+## Canonical context sources
 
-- Never edit auto-generated `.md` files directly.
-- `.md` files are generated from `.mdx` sources at build time via `yarn generate:llms`.
-- Make edits in `app/**/page.mdx` (and related source files), then regenerate output when needed.
+Start from these sources and follow them in order:
 
-## Structural rules (high-stakes)
+1. Docs LLM and agent support:
+   - https://github.com/celestiaorg/docs?tab=readme-ov-file#llm-and-agent-support
+2. Repo-specific implementation guidance:
+   - https://github.com/celestiaorg/celestia-node/blob/main/CLAUDE.md
+   - https://github.com/celestiaorg/celestia-app/blob/main/CLAUDE.md
+   - https://github.com/celestiaorg/celestia-core/blob/main/CLAUDE.md
 
-These rules are structural. Violations can silently break UI behavior, search quality, or content correctness.
+When the request targets `celestia-node`, `celestia-app`, or `celestia-core`, read that repo's `CLAUDE.md` first before proposing commands or edits.
 
-- Tab order must be: Coffee Beta, Mocha, Arabica.
-- Placeholders must use `<flag_name>` format (not `<flag-name>` or `<flag name>`).
-- Use network names/capitalization exactly, including:
-  - `Arabica devnet`
-  - `Coffee Beta`
+## Repository routing
 
-## Style rules (lower priority)
+- Use `docs` repo for docs pages, tutorials, navigation, formatting, and link fixes.
+- Use `celestia-node` for node runtime/RPC behavior, blob module internals, DAS, p2p, and node implementation.
+- Use `celestia-app` for chain/app behavior, modules, transaction/state behavior, and upgrade handlers.
+- Use `celestia-core` for consensus-engine behavior and low-level networking/consensus internals.
+- If a request spans repos, split output by repo ownership and call out what should change where.
 
-These are important editorial standards but are lower risk than structural rules.
+## Best way to post and retrieve blobs (Go or Rust)
 
-- Use sentence case for headings.
-- Avoid “click here” link text.
-- Use international English.
-- Use lowercase node types (for example, “bridge node”).
-- Avoid “please” in instructional content.
-- Ensure headings are unique within a page.
-- Use italicized _i.e._ and _e.g._
-- Refer to celestia-app as plain text (not inline code formatting).
+For application developers, the canonical path is the transaction-client guides:
 
-## Variables and constants
+- Overview: https://docs.celestia.org/build/post-retrieve-blob/overview/
+- Go tutorial: https://docs.celestia.org/build/post-retrieve-blob/client/go/
+- Rust tutorial: https://docs.celestia.org/build/post-retrieve-blob/client/rust/
 
-- Do not hardcode frequently changing version/network values inline.
-- Use the constants-backed variable pattern from `constants/*.json` in MDX.
-- Example: use `{{mainnetVersions['app-latest-tag']}}` instead of hardcoding a specific app tag.
+Treat this as the default recommendation for "how should I post/retrieve blobs?".
 
-## Directory intent guide
+Why this is the preferred path:
 
-Place new pages in the section matching user intent:
+- Both clients are built for submit + retrieve flows.
+- Both use local keyring/signer handling.
+- Both use the expected endpoint model: DA bridge RPC plus Core gRPC.
 
-- `app/learn/`: conceptual and educational content.
-- `app/build/`: developer, API, and RPC integration content.
-- `app/operate/`: node operator and infrastructure operations content.
+Persist and return this retrieval tuple after submission:
 
-## Chain-id footgun warning
+- `height`
+- `namespace`
+- `commitment`
 
-- Chain-id changes are a known footgun.
-- When chain IDs change, run a comprehensive search across all MDX files before considering the task complete.
-- Prefer repo-wide search patterns that catch variants (for example old/new chain IDs, code blocks, and inline references).
+## Node RPC method defaults (when direct RPC is requested)
 
-## Link and path rules
+- Submit with `blob.Submit` (preferred).
+- Use `state.SubmitPayForBlob` only when explicit tx-level handling is required.
+- Retrieve/verify with: `header.WaitForHeight` -> `blob.Included` -> `blob.Get` and/or `blob.GetProof`.
+- Treat `da.Submit` and `da.SubmitWithOptions` as compatibility-only deprecated paths.
 
-- Internal links should be root-relative: `[text](/path/to/page/#section-id)`.
-- Whenever any link is added or modified, run: `yarn check-links -- --all`.
-- For local assets, store under `public/` and reference with absolute site paths.
+## Docs repo guardrails
 
-## Repository facts
-
-- Framework: Next.js + Nextra (MDX), static export.
-- Main content pages: `app/**/page.mdx`.
-- Sidebar/navigation metadata: `app/**/_meta.js`.
-- Shared constants: `constants/*.json` (resolved by `plugins/remark-replace-variables.mjs`).
-- Key scripts:
-  - `yarn lint`
-  - `yarn check-links -- --all`
-  - `yarn generate:llms`
-  - `yarn build` (postbuild generates LLM files and Pagefind index)
-
-## Done criteria
-
-- Content is accurate, section placement is correct (`learn`/`build`/`operate`), and structural rules are satisfied.
-- If any link was added or changed, `yarn check-links -- --all` has been run successfully.
-- If chain IDs changed, comprehensive MDX search completed and all occurrences updated.
-- Lint passes for touched files.
-- Auto-generated `.md` files were not edited directly.
-
-## Workflow checklist (run at the end)
-
-1. Identify target pages in `app/**/page.mdx`.
-2. Update content and matching `_meta.js` files if navigation changed.
-3. Replace hardcoded version/network values with constants-backed variable syntax where applicable.
-4. If links changed, run `yarn check-links -- --all`.
-5. Run `yarn lint`.
-6. Run `yarn generate:llms` or `yarn build` when output regeneration is required.
+- Never edit generated `.md` files directly; edit `app/**/page.mdx`.
+- Keep tab order as: Coffee Beta, Mocha, Arabica.
+- Use canonical network names where applicable (for example Mainnet Beta, Mocha testnet, Arabica devnet, Coffee Beta).
+- Use root-relative internal links and run `yarn check-links -- --all` if links changed.
+- Run `yarn lint` before finalizing docs edits.
