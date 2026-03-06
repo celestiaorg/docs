@@ -60,7 +60,7 @@ Persist and return this retrieval tuple after submission:
 ## Docs repo guardrails
 
 - Never edit generated `.md` files directly; edit `app/**/page.mdx`.
-- Keep tab order as: Coffee Beta, Mocha, Arabica.
+- Keep tab order as: Mainnet Beta, Mocha, Arabica.
 - Use canonical network names where applicable (for example Mainnet Beta, Mocha testnet, Arabica devnet, Coffee Beta).
 - Use root-relative internal links and run `yarn check-links -- --all` if links changed.
 - Run `yarn lint` before finalizing docs edits.
