@@ -1,0 +1,188 @@
+---
+sidebar_label: Docker images
+description: Running celestia-app using Docker images.
+---
+
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# 🐳 Docker setup for celestia-app
+
+This page has instructions to run `celestia-appd` using Docker images.
+
+If you are looking for instructions to run `celestia-node` using Docker, refer
+to the [celestia-node Docker page](/operate/getting-started/docker).
+
+## Prerequisites
+
+- [Docker Desktop for Mac or Windows](https://docs.docker.com/get-docker)
+- [Docker Engine for Linux](https://docs.docker.com/engine/install/)
+- `curl` and `jq`
+
+## Quick start with persistent storage
+
+<Steps>
+
+### Set network and version variables
+
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    export NETWORK=celestia
+    export CHAIN_ID={{constants['mainnetChainId']}}
+    export APP_VERSION={{mainnetVersions['app-latest-tag']}}
+    export NODE_VERSION={{mainnetVersions['node-latest-tag']}}
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    export NETWORK=mocha
+    export CHAIN_ID={{constants['mochaChainId']}}
+    export APP_VERSION={{mochaVersions['app-latest-tag']}}
+    export NODE_VERSION={{mochaVersions['node-latest-tag']}}
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    export NETWORK=arabica
+    export CHAIN_ID={{constants['arabicaChainId']}}
+    export APP_VERSION={{arabicaVersions['app-latest-tag']}}
+    export NODE_VERSION={{arabicaVersions['node-latest-tag']}}
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+<Callout type="warning">
+If you are block syncing Mainnet Beta from genesis, use
+`export APP_VERSION=v3.0.2` as a temporary workaround for
+[celestia-app issue #4370](https://github.com/celestiaorg/celestia-app/issues/4370).
+After sync completes, upgrade to the latest version.
+</Callout>
+
+### Create the node home directory
+
+```bash
+mkdir -p $HOME/celestia-app-docker
+```
+
+Before mounting this directory, Linux users may need to set permissions:
+
+```bash
+sudo chown 10001:10001 $HOME/celestia-app-docker
+```
+
+### Initialize the node home
+
+```bash
+docker run --rm \
+  -v $HOME/celestia-app-docker:/home/celestia/.celestia-app \
+  ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
+  init "docker-node" --chain-id $CHAIN_ID
+```
+
+### Download the genesis file
+
+```bash
+docker run --rm \
+  -v $HOME/celestia-app-docker:/home/celestia/.celestia-app \
+  ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
+  download-genesis $CHAIN_ID
+```
+
+### Configure persistent peers
+
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants['mainnetChainId']}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
+    sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/celestia-app-docker/config/config.toml
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/peers.txt | tr '\n' ',')
+    sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/celestia-app-docker/config/config.toml
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['arabicaChainId']}}/peers.txt | tr '\n' ',')
+    sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/celestia-app-docker/config/config.toml
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+### Start the container
+
+```bash
+docker run -d \
+  --name celestia-app \
+  --restart unless-stopped \
+  -v $HOME/celestia-app-docker:/home/celestia/.celestia-app \
+  -p 26656:26656 \
+  -p 26657:26657 \
+  -p 9090:9090 \
+  ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
+  start --home /home/celestia/.celestia-app --rpc.laddr tcp://0.0.0.0:26657
+```
+
+### Check node status
+
+```bash
+docker logs -f celestia-app
+curl -s http://localhost:26657/status | jq '.result.sync_info'
+```
+
+</Steps>
+
+## Run celestia-node in Docker against your containerized celestia-app
+
+<Callout type="info">
+If you run a bridge node, make sure your consensus node config follows the
+[bridge requirements](/operate/consensus-validators/consensus-node#optional-connect-a-consensus-node-to-a-bridge-node).
+</Callout>
+
+<Steps>
+
+### Create a shared Docker network
+
+```bash
+docker network create celestia-network
+```
+
+### Recreate celestia-app on the shared network
+
+```bash
+docker stop celestia-app && docker rm celestia-app
+
+docker run -d \
+  --name celestia-app \
+  --restart unless-stopped \
+  --network celestia-network \
+  --network-alias celestia-app \
+  -v $HOME/celestia-app-docker:/home/celestia/.celestia-app \
+  -p 26656:26656 \
+  -p 26657:26657 \
+  -p 9090:9090 \
+  ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
+  start --home /home/celestia/.celestia-app --rpc.laddr tcp://0.0.0.0:26657
+```
+
+### Start celestia-node in the same Docker network
+
+```bash
+docker run --rm -it \
+  --name celestia-node \
+  --network celestia-network \
+  -e NODE_TYPE=light \
+  -e P2P_NETWORK=$NETWORK \
+  ghcr.io/celestiaorg/celestia-node:$NODE_VERSION \
+  celestia light start --core.ip celestia-app --core.port 26657 --p2p.network $NETWORK
+```
+
+</Steps>
+
+## Next steps
+
+- [Consensus node guide](/operate/consensus-validators/consensus-node)
+- [Validator node guide](/operate/consensus-validators/validator-node)
+- [celestia-node Docker guide](/operate/getting-started/docker)
