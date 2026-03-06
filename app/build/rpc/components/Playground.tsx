@@ -138,7 +138,7 @@ const sendRequestClickHandler = async ({
   let parsedRequest;
   try {
     parsedRequest = JSON.parse(currentRequest);
-    if (!parsedRequest.method) {
+    if (parsedRequest.method) {
       setNotification({
         active: true,
         success: false,
