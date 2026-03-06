@@ -1,5 +1,6 @@
 const meta = {
   "install-celestia-app": "Install celestia-app",
+  docker: "Docker images",
   "consensus-node": "Run a consensus node",
   "validator-node": "Run a validator node",
   "cli-reference": "CLI commands reference",
