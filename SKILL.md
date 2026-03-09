@@ -30,11 +30,12 @@ When the request targets `celestia-node`, `celestia-app`, or `celestia-core`, re
 
 ## Best way to post and retrieve blobs (Go or Rust)
 
-For application developers, the canonical path is the transaction-client guides:
+For application developers, the canonical path is the transaction-client guides. Prefer the
+LLM-ready `.md` versions of docs pages when reading them:
 
-- Overview: https://docs.celestia.org/build/post-retrieve-blob/overview/
-- Go tutorial: https://docs.celestia.org/build/post-retrieve-blob/client/go/
-- Rust tutorial: https://docs.celestia.org/build/post-retrieve-blob/client/rust/
+- Overview: https://docs.celestia.org/build/post-retrieve-blob/overview.md
+- Go tutorial: https://docs.celestia.org/build/post-retrieve-blob/client/go.md
+- Rust tutorial: https://docs.celestia.org/build/post-retrieve-blob/client/rust.md
 
 Treat this as the default recommendation for "how should I post/retrieve blobs?".
 
@@ -60,7 +61,17 @@ Persist and return this retrieval tuple after submission:
 ## Docs repo guardrails
 
 - Never edit generated `.md` files directly; edit `app/**/page.mdx`.
-- Keep tab order as: Mainnet Beta, Mocha, Arabica.
-- Use canonical network names where applicable (for example Mainnet Beta, Mocha testnet, Arabica devnet).
+- Place new content in the right section:
+  - `app/learn` for conceptual and educational pages
+  - `app/build` for developer, API, and RPC content
+  - `app/operate` for node operator and infrastructure content
+- Do not hardcode frequently changing versions or network values inline; prefer the
+  constants-backed variable pattern from `constants/*.json`.
+- Keep tab order as: Coffee Beta, Mocha, Arabica.
+- Use canonical network names where applicable (for example Mainnet Beta, Mocha testnet, Arabica devnet, Coffee Beta).
+- If chain IDs or network identifiers change, run a repo-wide search across MDX files before
+  considering the task done.
+- Review release notes when a docs change may be driven by a breaking network or software change.
 - Use root-relative internal links and run `yarn check-links -- --all` if links changed.
 - Run `yarn lint` before finalizing docs edits.
+- Run `yarn generate:llms` when you need the generated LLM markdown output refreshed.
