@@ -1,0 +1,96 @@
+# Select a Celestia account in integrations
+
+## Overview
+
+One DA node can submit blobs for multiple execution environments, but each
+blob submission still needs a specific Celestia signer. Use the OpenRPC
+options on `blob.Submit` to select the account per request.
+
+## OpenRPC methods to use
+
+- `blob.Submit(blobs, options)`:
+  `options.key_name` or `options.signer_address` selects the signer for that
+  submission.
+- `state.BalanceForAddress(addr)`:
+  checks the balance for the selected signer before submission.
+- `state.AccountAddress()`:
+  returns the node's default signer, useful for fallback behavior.
+
+## JSON-RPC examples
+
+Submit using a key name:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "blob.Submit",
+  "params": [
+    [
+      {
+        "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAMJ/xGlNMdE=",
+        "data": "aGVsbG8gY2VsZXN0aWE=",
+        "share_version": 0
+      }
+    ],
+    {
+      "key_name": "rollup-a"
+    }
+  ]
+}
+```
+
+Submit using an explicit signer address:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "blob.Submit",
+  "params": [
+    [
+      {
+        "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAMJ/xGlNMdE=",
+        "data": "aGVsbG8gY2VsZXN0aWE=",
+        "share_version": 0
+      }
+    ],
+    {
+      "signer_address": "celestia1..."
+    }
+  ]
+}
+```
+
+Pre-flight balance check for a signer:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "state.BalanceForAddress",
+  "params": ["celestia1..."]
+}
+```
+
+## Integration notes
+
+| Integration | How to select the Celestia account |
+| --- | --- |
+| OP Stack (`op-alt-da`) | Set the tx-client key used by the DA server (for example `--celestia.tx-client.key-name` or `default_key_name` in config). |
+| Arbitrum (`nitro-das-celestia`) | The sidecar submits through a Celestia node RPC endpoint. Choose the node signer by running that Celestia node with the desired key (for example `--keyring.keyname`). |
+| Rollkit | If Rollkit is connected to a Celestia node endpoint, signer selection is controlled by that node account, or by passing `blob.Submit` options in the client path that submits blobs. |
+| RollApps | Same pattern as Rollkit: set signer at the Celestia node layer, or pass OpenRPC submit options where available. |
+| Sovereign SDK | For direct Node API integration, pass `key_name` or `signer_address` in `blob.Submit` options; otherwise the node default signer is used. |
+
+## Key management and node defaults
+
+If your integration uses only the node default signer, set that default account
+at node startup:
+
+```bash
+celestia <node-type> start --p2p.network <network> --keyring.keyname <key-name>
+```
+
+For wallet/key setup, see
+[Create a wallet with celestia-node](/operate/keys-wallets/celestia-node-key).
