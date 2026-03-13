@@ -1,11 +1,34 @@
 ---
 name: celestia
-description: Use this skill for Celestia tasks across docs, node/app/core repo routing, and canonical blob posting/retrieval guidance (Go, Rust, and Node RPC).
+description: Route Celestia requests to the correct repo and apply canonical blob submit/retrieve guidance (Go, Rust, and Node RPC) with docs guardrails.
 ---
 
 # Celestia skill
 
-Use this skill for broad Celestia requests, especially when deciding which repository to touch and how to handle blob submit/retrieve flows.
+Use this skill when a request needs repository routing, canonical blob submission/retrieval recommendations, or Celestia docs guardrail enforcement.
+
+## When to use this skill
+
+Use this skill when the request includes one or more of these:
+
+- Choosing whether work belongs in `docs`, `celestia-node`, `celestia-app`, or `celestia-core`.
+- Recommending the best current way to post and retrieve blobs for application developers.
+- Choosing between Node RPC methods for submit/retrieve paths.
+- Updating Celestia documentation while enforcing docs repo conventions.
+
+## When not to use this skill
+
+Do not use this skill for:
+
+- Non-Celestia tasks.
+- Purely generic writing requests that do not depend on Celestia repo/domain rules.
+- Deep single-repo implementation work after that repo's `CLAUDE.md` has already been loaded and is sufficient on its own.
+
+## First steps (priority order)
+
+1. Identify target ownership (`docs`, `celestia-node`, `celestia-app`, `celestia-core`).
+2. If target is `celestia-node`, `celestia-app`, or `celestia-core`, read that repo's `CLAUDE.md` before proposing commands or edits.
+3. If target is `docs`, enforce docs guardrails in this file before finalizing changes.
 
 ## Canonical context sources
 
@@ -17,8 +40,6 @@ Start from these sources and follow them in order:
    - https://github.com/celestiaorg/celestia-node/blob/main/CLAUDE.md
    - https://github.com/celestiaorg/celestia-app/blob/main/CLAUDE.md
    - https://github.com/celestiaorg/celestia-core/blob/main/CLAUDE.md
-
-When the request targets `celestia-node`, `celestia-app`, or `celestia-core`, read that repo's `CLAUDE.md` first before proposing commands or edits.
 
 ## Repository routing
 
@@ -53,6 +74,11 @@ Persist and return this retrieval tuple after submission:
 
 ## Node RPC method defaults (when direct RPC is requested)
 
+Version scope:
+
+- These defaults are validated against Node API OpenRPC `v0.28.4` (checked on 2026-03-13).
+- Re-check method status if the target node version changes by reviewing `https://node-rpc-docs.celestia.org/specs/openrpc-<version>.json` for deprecation notes.
+
 - Submit with `blob.Submit` (preferred).
 - Use `state.SubmitPayForBlob` only when explicit tx-level handling is required.
 - Retrieve/verify with: `header.WaitForHeight` -> `blob.Included` -> `blob.Get` and/or `blob.GetProof`.
@@ -75,3 +101,27 @@ Persist and return this retrieval tuple after submission:
 - Use root-relative internal links and run `yarn check-links -- --all` if links changed.
 - Run `yarn lint` before finalizing docs edits.
 - Run `yarn generate:llms` when you need the generated LLM markdown output refreshed.
+
+## Failure handling and conflict resolution
+
+- If any referenced upstream source is unavailable, state the missing source explicitly and continue with the remaining canonical sources.
+- If this skill conflicts with a target repo's `CLAUDE.md`, follow the target repo's `CLAUDE.md` for that repo-specific work.
+- If network/version context is unclear for RPC guidance, ask for the target network and version before asserting deprecation or method defaults.
+- If a link in this skill is stale, use the nearest canonical parent page and report the stale URL in your response.
+
+## Examples
+
+- Prompt: "I need to update a tutorial page and sidebar order."  
+  Action: Route to `docs`, edit `app/**/page.mdx` or `_meta.js`, then run docs checks.
+
+- Prompt: "Should I use da.Submit or blob.Submit for a new integration?"  
+  Action: Recommend `blob.Submit` by default, explain `state.SubmitPayForBlob` tradeoff, treat `da.Submit*` as deprecated compatibility paths.
+
+- Prompt: "I need to change blob module internals and update docs."  
+  Action: Split output by ownership (`celestia-node` code changes plus `docs` updates).
+
+- Prompt: "Where should upgrade handler behavior change?"  
+  Action: Route implementation to `celestia-app`, then identify any supporting docs changes in `docs`.
+
+- Prompt: "How should I retrieve submitted blobs later?"  
+  Action: Require and return retrieval tuple (`height`, `namespace`, `commitment`) and point to canonical Go/Rust client guides.
