@@ -88,7 +88,17 @@ Several community providers offer comprehensive node setup tools, installation s
 | -------- | -------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------- |
 | ITRocket | [Setup guide](https://itrocket.net/services/testnet/celestia/) | [State sync](https://itrocket.net/services/testnet/celestia/) | [Chain status](https://itrocket.net/services/testnet/celestia/) |
 
-### Community bridge node endpoints
+### Community consensus endpoints
+
+Use these consensus endpoints for `--core.ip` when your DA node needs both
+RPC (26657) and gRPC (9090) available from the same host.
+
+| Provider                     | Endpoint for `--core.ip`                                          | RPC port | gRPC port |
+| ---------------------------- | ------------------------------------------------------------------ | -------- | --------- |
+| Numia                        | `public-celestia-{{constants['mochaChainId']}}-consensus.numia.xyz` | 26657    | 9090      |
+| Celestia Labs (full)         | `full.consensus.{{constants['mochaChainId']}}.celestia-mocha.com`   | 26657    | 9090      |
+| Celestia Labs (consensus)    | `consensus-full-{{constants['mochaChainId']}}.celestia-mocha.com`   | 26657    | 9090      |
+| ITRocket                     | `celestia-testnet-consensus.itrocket.net`                           | 26657    | 9090      |
 
 You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
 
@@ -109,13 +119,7 @@ to their respective DA node.
 
 > **Tip for bridge nodes:** Community RPC endpoints do not guarantee full block downloads. If you are running a bridge node, also run a local [consensus node](/operate/consensus-validators/consensus-node) to download full blocks.
 
-- `public-celestia-{{constants['mochaChainId']}}-consensus.numia.xyz`
-- `full.consensus.{{constants['mochaChainId']}}.celestia-mocha.com`
-- `consensus-full-{{constants['mochaChainId']}}.celestia-mocha.com`
-- `rpc-mocha.pops.one`
-- `celestia-testnet-consensus.itrocket.net`
-  - RPC port: 26657
-  - gRPC port: 9090
+Use one of the `--core.ip` values from the [community consensus endpoints](#community-consensus-endpoints) table above to ensure both ports are available.
 
 ## Community RPC endpoints
 
