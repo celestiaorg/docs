@@ -1,0 +1,325 @@
+# How to deploy an OP Stack rollup with Docker, Popsigner, and Popkins
+
+## Overview
+
+OP Stack, the stack behind Optimism, allows you to run rollups that post data to Celestia instead of Ethereum by using op-alt-da. Learn more in [the overview of op-alt-da](/build/stacks/optimism/op-alt-da/). In this tutorial, you’ll learn how to run an OP stack rollup using:
+
+- **[Popsigner](https://github.com/celestiaorg/popsigner)** for key management. Popsigner is a great way to create, manage, and revoke keys, or even export them if you’d like.
+- **[Popkins](https://popkins.popsigner.com/)** for deploying contracts and chain setup. Popkins sets up your keys from Popsigner for rollup deployment, deploys your contracts, and gives you the bundle to run your rollup locally.
+- **Docker** for the devops of running your rollup bundle.
+
+In order to get started, you will need a basic understanding of a few components with accounts you will create that make up this stack:
+
+1. **deployer**: Deploys and configures L1 contracts. Needs most ETH for gas.
+2. **batcher**: This account submits L2 transaction batches to L1. Needs ongoing ETH.
+3. **proposer**: Submits L2 state roots to L1 for withdrawals.
+4. **celestia**: This account posts data to Celestia’s Mocha testnet
+
+With these four components and accounts combined, you will be able to run an OP Stack rollup that posts to Celestia for data availability! Let’s get started.
+
+## Environment setup
+
+This tutorial has been tested on MacOS and Linux (Ubuntu 24.04).
+
+Before you run OP stack, you’ll need:
+
+1. Docker installed and running locally.
+2. An Ethereum Sepolia RPC endpoint from a provider like [Quicknode](https://www.quicknode.com/), [Alchemy](https://www.alchemy.com/), or [Infura](https://www.infura.io/)
+3. A Celestia Mocha testnet RPC and gRPC endpoint from [Quicknode](https://www.quicknode.com/) for posting and retrieving blobs
+
+That’s it for now! Let’s get everything else set up.
+
+import { Steps } from "nextra/components";
+
+<Steps>
+
+## Setting up keys on Popsigner
+
+First, you’ll set up the keys for the batcher, deployer, proposer, and Celestia. This will allow us to deploy the rollup through Popkins and then start it locally, posting blobs to Celestia.
+
+1. Go to [https://popsigner.com/](https://popsigner.com/) and make an account by clicking “Deploy”:
+
+    ![popsigner1](/img/build/stacks/optimism/popkins-popsigner/popsigner1.png)
+
+2. Once you’re logged in, click “CREATE_KEY” in the top right:
+
+    ![popsigner2](/img/build/stacks/optimism/popkins-popsigner/popsigner2.png)
+
+3. Make 4 keys, all universal for simplicity:
+    1. deploy-1
+    2. batcher-1
+    3. proposer-1
+    4. celestia-1
+    
+    ![popsigner3](/img/build/stacks/optimism/popkins-popsigner/popsigner3.png)
+  
+## Funding keys
+
+Now that you’ve set the keys up, you need to fund 3 of the addresses accordingly.
+
+1. Find the addresses in your dashboard, for Ethereum Sepolia keys, copy the 0x address:
+
+    ![popsigner4](/img/build/stacks/optimism/popkins-popsigner/popsigner4.png)
+
+    and click “VIEW” to see the Celestia address:
+
+    ![popsigner5](/img/build/stacks/optimism/popkins-popsigner/popsigner5.png)
+2. Deployer key: `deploy-1` (or whatever you named this)
+    1. Here’s my example address: `0x7C7ece049b23b68D8c4a087f5252040B61F9fAe8`
+    2. Fund the `deploy-1` with at least 1 sepoliaETH
+3. Batcher key: `batcher-1`
+    1. Here's my example address: `0xDB00E7dfd960bD8C497807f07fa161016a4900F3`
+    2. Fund the `batcher-1` with at least 0.5 sepoliaETH
+4. Proposer key: `proposer-1`
+    1. Here’s my example address: `0xd66a3047fcFd200b36F8c8Da1a4B1d4Ddb497c6C`
+    2. You only need to fund this key if you plan to make withdrawals from the L2 to L1.
+5. Celestia key:
+    1. Here’s my example address: `celestia1su2l6v5a0cj6yg05gp9cuvfen74t8u8rvck836`
+    2. Fund the `celestia-1` address with 10 Mocha TIA from the [faucet](https://celenium.io/faucet)
+
+## Setting up deployment on Popkins
+
+Next, you’re ready to sign in to [Popkins](https://popkins.popsigner.com/deployments) and begin your first rollup deployment with an OP Stack chain.
+
+1. Click “+ NEW CHAIN” button in the top right corner and select OP Stack as the stack.
+
+    ![popsigner6](/img/build/stacks/optimism/popkins-popsigner/popsigner6.png)
+
+2. Set up your config for the new chain! Pick a rollup name and ID that you want to use. This is where you’ll also put in the Ethereum Sepolia RPC URL from the environment setup.
+
+    ![popsigner7](/img/build/stacks/optimism/popkins-popsigner/popsigner7.png)
+
+3. Click “CONTINUE”, then assign keys accordingly:
+    1. Deployer key: `deploy-1` (or whatever you setup for this)
+    2. Batcher key: `batcher-1`
+    3. Proposer key: `proposer-1`
+    4. You’ll set the Celestia key up later in the `.env`
+    
+    Then click “CONTINUE” again:
+    
+    ![popsigner8](/img/build/stacks/optimism/popkins-popsigner/popsigner8.png)
+
+4. Once you’ve set up the config, double-check the values before proceeding! Make sure you have 1 sepoliaETH in the deploy key and 0.5 sepoliaETH in the batcher key, and 10 mochaTIA in your Celestia account.
+    1. Click “🚀 DEPLOY CHAIN”
+
+    ![popsigner9](/img/build/stacks/optimism/popkins-popsigner/popsigner9.png)
+
+5. Keep an eye out on the process as it completes. Once it’s finished, you will be able to download the config to run your rollup with Docker compose.
+
+    ![popsigner10](/img/build/stacks/optimism/popkins-popsigner/popsigner10.png)
+
+6. Click “BACK TO MY CHAINS”
+
+    ![popsigner11](/img/build/stacks/optimism/popkins-popsigner/popsigner11.png)
+
+7. Go to the chain you just set up. Download the bundle by clicking “DOWNLOAD ARTIFACTS”
+
+    ![popsigner12](/img/build/stacks/optimism/popkins-popsigner/popsigner12.png)
+
+## Running locally with Docker
+
+Now that you’ve set the rollup up by deploying contracts and downloading the artifacts, you’re ready to run it on your own and start producing blocks! Let’s start by making some config changes.
+
+1. Set up API key on [Popsigner.com](https://popsigner.com). This is different than creating a key for a blockchain account. Save this for the next step in your clipboard. You’ll only be able to see it once, for safe security practice.
+
+    ![popsigner13](/img/build/stacks/optimism/popkins-popsigner/popsigner13.png)
+
+2. Copy `.env.example` into `.env` to put in your environment variables:
+    1. Fill in the Popsigner API key in your `.env` after copying it in step 1:
+        
+        ```
+        # Your POPSigner API key (get from dashboard.popsigner.com)
+        POPSIGNER_API_KEY=<REQUIRED>
+        ```
+        
+        Here’s what mine looks like:
+        
+        ```
+        POPSIGNER_API_KEY=bbr_live_7Kp3xM9nR2bQ4sL8wXy6Zv1a
+        ```
+        
+    2. Next, fill in the Celestia information:
+        1. To find your Key ID, go to the Celestia key in Popsigner, click “View”, and copy the “KEY_ID”:
+            
+            ```
+            # Your Celestia key ID from POPSigner (UUID format)
+            CELESTIA_KEY_ID=<your-celestia-key-uuid>
+            ```
+            
+            Here’s what mine looks like:
+            
+            ```
+            CELESTIA_KEY_ID=7f4a8c21-b9e3-4d6e-ac52-1e8f9d3c7b65
+            ```
+            
+        2. For the bridge/light node RPC, use Quicknode:
+            
+            ```
+            # Celestia Bridge/Light Node RPC (for reading blobs)
+            # Example: https://your-provider.celestia-mocha.quiknode.pro/your-token/
+            CELESTIA_BRIDGE_ADDR=<REQUIRED>
+            CELESTIA_BRIDGE_AUTH_TOKEN=
+            ```
+            
+            Here’s what mine looks like:
+            
+            ```
+            CELESTIA_BRIDGE_ADDR=https://delicate-sleek-lambo.celestia-mocha.quiknode.pro/8d7f3e5a9b2c4f1e6d8c9a5b7e4f2c1a6d3b9e5f/
+            CELESTIA_BRIDGE_AUTH_TOKEN=
+            ```
+            
+        3. For the core gRPC, use the same Quicknode endpoint, constructed slightly differently — no `https://`, add port 9090:
+            
+            ```
+            # Celestia Core gRPC (for submitting blobs)
+            # Example: your-provider.celestia-mocha.quiknode.pro:9090
+            CELESTIA_GRPC_ADDR=<REQUIRED>
+            CELESTIA_GRPC_AUTH_TOKEN=<your-token-if-required>
+            ```
+            
+            Here’s what mine looks like:
+            
+            ```
+            CELESTIA_GRPC_ADDR=delicate-sleek-lambo.celestia-mocha.quiknode.pro:9090
+            CELESTIA_GRPC_AUTH_TOKEN=8d7f3e5a9b2c4f1e6d8c9a5b7e4f2c1a6d3b9e5f
+            ```
+            
+        4. Lastly, set the namespace. Celestia namespaces are 29 bytes (58 hex characters). Version 0 namespaces require 18 leading zero bytes (36 hex zeros), leaving 11 bytes (22 hex characters) for your namespace ID:
+
+            ```
+            # Celestia namespace (29 bytes / 58 hex chars)
+            CELESTIA_NAMESPACE=0000000000000000000000000000000000000009d94e20cae97add6d34
+            ```
+
+        5. You can autogenerate a random namespace with:
+
+            ```bash
+            export CELESTIA_NAMESPACE=$(printf '%036d' 0)$(openssl rand -hex 11) && echo $CELESTIA_NAMESPACE
+            ```
+            
+    3. Lastly, change the Popsigner RPC URL to:
+        
+        ```
+        # POPSigner RPC endpoint (for op-node, op-batcher signing)
+        POPSIGNER_RPC_URL=https://rpc.popsigner.com
+        ```
+        
+3. Open up `config.toml` and set the variables accordingly:
+    1. For namespace, update from:
+        
+        ```
+        [celestia]
+        # Celestia namespace (29 bytes / 58 hex chars, version 0 requires 18 leading zero bytes)
+        namespace = "0x706f7000000000016942"
+        ```
+        
+        To this, the same way you did in `.env`:
+        
+        ```
+        [celestia]
+        # Celestia namespace (29 bytes / 58 hex chars, version 0 requires 18 leading zero bytes)
+        namespace = "0000000000000000000000000000000000000009d94e20cae97add6d34"
+        ```
+        
+    2. For bridge node for reading blobs, update from:
+        
+        ```
+        # ------------------------------------------------------------------------------
+        # Bridge Node (for reading blobs)
+        # ------------------------------------------------------------------------------
+        bridge_addr = "${CELESTIA_BRIDGE_ADDR}"
+        bridge_auth_token = "${CELESTIA_BRIDGE_AUTH_TOKEN}"
+        bridge_tls_enabled = false
+        ```
+        
+        To your Quicknode endpoint, similarly to how you did in `.env`:
+        
+        ```
+        # ------------------------------------------------------------------------------
+        # Bridge Node (for reading blobs)
+        # ------------------------------------------------------------------------------
+        bridge_addr = "https://delicate-sleek-lambo.celestia-mocha.quiknode.pro/8d7f3e5a9b2c4f1e6d8c9a5b7e4f2c1a6d3b9e5f/"
+        bridge_auth_token = ""
+        bridge_tls_enabled = true
+        ```
+        
+    3. For core gRPC node for submitting blobs, update from:
+        
+        ```
+        # ------------------------------------------------------------------------------
+        # Core gRPC (for submitting blobs)
+        # ------------------------------------------------------------------------------
+        core_grpc_addr = "${CELESTIA_GRPC_ADDR}"
+        core_grpc_auth_token = "${CELESTIA_GRPC_AUTH_TOKEN}"
+        core_grpc_tls_enabled = true
+        ```
+        
+        To your Quicknode endpoint, similarly to how you did in `.env`:
+        
+        ```
+        # ------------------------------------------------------------------------------
+        # Core gRPC (for submitting blobs)
+        # ------------------------------------------------------------------------------
+        core_grpc_addr = "delicate-sleek-lambo.celestia-mocha.quiknode.pro:9090"
+        core_grpc_auth_token = "8d7f3e5a9b2c4f1e6d8c9a5b7e4f2c1a6d3b9e5f"
+        core_grpc_tls_enabled = true
+        ```
+        
+    4. For POPSigner configuration update from:
+        
+        ```
+        # ------------------------------------------------------------------------------
+        # POPSigner Configuration
+        # ------------------------------------------------------------------------------
+        # Keys remain remote. You remain sovereign.
+        
+        [celestia.signer.popsigner]
+        api_key = "${POPSIGNER_API_KEY}"
+        key_id = "${CELESTIA_KEY_ID}"
+        base_url = "https://api.popsigner.com/"
+        ```
+        
+        To your API key and Key ID for your POPSigner keys, similarly to how you did in `.env`:
+        
+        ```
+        # ------------------------------------------------------------------------------
+        # POPSigner Configuration
+        # ------------------------------------------------------------------------------
+        # Keys remain remote. You remain sovereign.
+        
+        [celestia.signer.popsigner]
+        api_key = "bbr_live_7Kp3xM9nR2bQ4sL8wXy6Zv1a"
+        key_id = "7f4a8c21-b9e3-4d6e-ac52-1e8f9d3c7b65"
+        base_url = "https://api.popsigner.com/"
+        ```
+        
+4. Now you’re ready to run this with Docker!
+    1. If you are on ARM/MacOS, update the image in `docker-compose.yaml` to:
+        
+        ```
+            image: rg.nl-ams.scw.cloud/banhbao/op-alt-da:v0.10.1
+        ```
+        
+    2.  If you are on Linux/AMD64, update the image in `docker-compose.yaml` to:
+        
+        ```
+            image: rg.nl-ams.scw.cloud/banhbao/op-alt-da:v0.10.1-amd64
+        ```
+        
+5. Just run `docker-compose up` and watch the magic happen 😎
+    1. On Linux, use `docker-compose --env-file .env up` to load the `.env`
+        1. Else, you will have many missing variables:
+        
+        ```bash
+        WARNING: The L1_RPC_URL variable is not set. Defaulting to a blank string.
+        WARNING: The L1_BEACON_URL variable is not set. Defaulting to a blank string.
+        WARNING: The POPSIGNER_RPC_URL variable is not set. Defaulting to a blank string.
+        WARNING: The BATCHER_ADDRESS variable is not set. Defaulting to a blank string.
+        WARNING: The POPSIGNER_API_KEY variable is not set. Defaulting to a blank string.
+        WARNING: The DISPUTE_GAME_FACTORY_ADDRESS variable is not set. Defaulting to a blank string.
+        WARNING: The PROPOSER_ADDRESS variable is not set. Defaulting to a blank string.
+        ```
+        
+</Steps>
+
+Congratulations! You’re now running your first OP Stack rollup with Celestia for DA.
