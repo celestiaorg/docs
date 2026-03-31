@@ -260,11 +260,11 @@ unordered transaction workflows where your system requires a single signer, a.k.
 
 ### Retrieving blobs submitted via parallel lanes
 
-When using parallel submission, retrieve your blobs using the following RPC methods:
+When using parallel submission, retrieve your blobs using the following RPC methods from the [Node API `blob` section](/build/rpc/node-api/?version=v0.28.4#blob):
 
-- [blob.Get](https://node-rpc-docs.celestia.org/#blob.Get) - Get blob by namespace and commitment
-- [blob.GetProof](https://node-rpc-docs.celestia.org/#blob.GetProof) - Get inclusion proof by height, namespace, and commitment
-- [blob.GetCommitmentProof](https://node-rpc-docs.celestia.org/#blob.GetCommitmentProof) - Get commitment proof by height, namespace, and share commitment
+- `blob.Get` - Get blob by namespace and commitment
+- `blob.GetProof` - Get inclusion proof by height, namespace, and commitment
+- `blob.GetCommitmentProof` - Get commitment proof by height, namespace, and share commitment
 
 Example using blob.Get:
 
@@ -311,10 +311,10 @@ See the [Rust client tutorial](/build/post-retrieve-blob/client/rust).
 
 Using the JSON RPC API, submit data using the following methods:
 
-- [blob.Submit](https://node-rpc-docs.celestia.org/#blob.Submit)
-- [state.SubmitPayForBlob](https://node-rpc-docs.celestia.org/#state.SubmitPayForBlob)
+- [`blob.Submit`](/build/rpc/node-api/?version=v0.28.4#blob)
+- [`state.SubmitPayForBlob`](/build/rpc/node-api/?version=v0.28.4#state)
 
-Learn more in the [celestia-node API docs](https://node-rpc-docs.celestia.org/).
+Learn more in the [Node API docs](/build/rpc/node-api/?version=v0.28.4).
 
 ### Post a blob directly from Celenium
 
