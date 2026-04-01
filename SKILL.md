@@ -34,12 +34,33 @@ Do not use this skill for:
 
 Start from these sources and follow them in order:
 
-1. Docs LLM and agent support:
+1. Docs site map / LLM index:
+   - https://docs.celestia.org/llms.txt
+2. Docs LLM and agent support:
    - https://github.com/celestiaorg/docs?tab=readme-ov-file#llm-and-agent-support
-2. Repo-specific implementation guidance:
+3. Repo-specific implementation guidance:
    - https://github.com/celestiaorg/celestia-node/blob/main/CLAUDE.md
    - https://github.com/celestiaorg/celestia-app/blob/main/CLAUDE.md
    - https://github.com/celestiaorg/celestia-core/blob/main/CLAUDE.md
+
+## High-level concept grounding
+
+If the request is partly conceptual before it becomes implementation-specific,
+ground the answer in these docs first:
+
+- What Celestia is and what it does in the stack:
+  - https://docs.celestia.org/learn/celestia-101/data-availability.md
+- Token / network overview context:
+  - https://docs.celestia.org/learn/TIA/overview.md
+- Example of Celestia's role in a rollup stack:
+  - https://docs.celestia.org/build/stacks/op-alt-da/introduction.md
+
+Use this framing when helpful:
+
+- Celestia is the modular data availability layer.
+- Celestia orders blobs and keeps data available.
+- Execution and settlement can live on other layers above Celestia.
+- Rollups use Celestia to publish data, then retrieve it later by height, namespace, and commitment.
 
 ## Repository routing
 
@@ -71,7 +92,7 @@ Funding flow for agent-led examples:
 
 - After the client creates a new signer and prints an address, surface that address to the user and tell them to fund it before retrying blob submission.
 - Treat `account for signer ... not found` as an unfunded-account signal for this flow.
-- On Mocha, point users to the faucet after showing the address, then retry the same submit flow once funded.
+- On Mocha, point users to `https://mocha.celenium.io/faucet` after showing the address, then retry the same submit flow once funded.
 
 Persist and return this retrieval tuple after submission:
 
@@ -133,3 +154,6 @@ Version scope:
 
 - Prompt: "How should I retrieve submitted blobs later?"  
   Action: Require and return retrieval tuple (`height`, `namespace`, `commitment`) and point to canonical Go/Rust client guides.
+
+- Prompt: "What is Celestia and where does it fit in the onchain stack?"  
+  Action: Start with the high-level concept grounding docs, explain Celestia as the modular DA layer, then move into the relevant integration/tutorial pages.
