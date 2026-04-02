@@ -25,6 +25,7 @@ Celestia Documentation Access:
 ### Resources
 
 - LLMs.txt: https://docs.celestia.org/llms.txt
+- Skill file: https://docs.celestia.org/SKILL.md (published from root `SKILL.md`)
 - Built with: Next.js + Nextra (MDX), exported as a static site.
 - **LLM-ready**: Add `.md` to any URL to get clean markdown (e.g., `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`)
 - DeepWikis for @celestiaorg:
@@ -80,6 +81,7 @@ BASE=/docs-preview/new_docs/ NEXT_PUBLIC_BASE_PATH=/docs-preview/new_docs yarn b
   - Removes JSX components, imports, and MDX-specific syntax
   - Automatically runs during build process (`yarn build`)
   - Access any doc page as markdown by adding `.md` to the URL
+- `yarn sync:skill`: publish the single source-of-truth root `SKILL.md` to `public/SKILL.md` (also runs automatically before `yarn dev` and `yarn build`)
 
 ## Contribution guidelines
 
