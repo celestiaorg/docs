@@ -47,6 +47,8 @@ const DEFAULT_SKIP_PATTERNS = [
   'validao.xyz', // Community node map visualization
   'celestia.valopers.com', // Community explorer
   'holesky.etherscan.io', // Testnet Etherscan (can be flaky)
+  'arbiscan.io', // Cloudflare challenge blocks automated checks
+  'sepolia.arbiscan.io', // Cloudflare challenge blocks automated checks
   'hibachi.xyz',
   'figment.io/',
   // Package registries and academic resources
@@ -55,6 +57,7 @@ const DEFAULT_SKIP_PATTERNS = [
   // Snapshot providers
   'polkachu.com/tendermint_snapshots/celestia',
   'polkachu.com/testnets/celestia/snapshots',
+  'snaps.qubelabs.io/celestia',
 ];
 
 // Patterns that should only fail on 404 errors

@@ -51,5 +51,25 @@
     "typescript": "^5",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0"
+  },
+  "overrides": {
+    "@xmldom/xmldom": "0.9.9",
+    "@eslint/config-array": { "minimatch": "3.1.5" },
+    "@eslint/eslintrc": { "minimatch": "3.1.5" },
+    "eslint": { "minimatch": "3.1.5" },
+    "eslint-plugin-import": { "minimatch": "3.1.5" },
+    "eslint-plugin-jsx-a11y": { "minimatch": "3.1.5" },
+    "eslint-plugin-react": { "minimatch": "3.1.5" },
+    "serve-handler": { "minimatch": "3.1.5" },
+    "@typescript-eslint/typescript-estree": { "minimatch": "9.0.9" },
+    "@ts-morph/common": { "minimatch": "10.2.4" },
+    "glob": { "minimatch": "10.2.4" }
+  },
+  "resolutions": {
+    "@xmldom/xmldom": "0.9.9",
+    "minimatch": "3.1.5",
+    "@typescript-eslint/typescript-estree/minimatch": "9.0.9",
+    "@ts-morph/common/minimatch": "10.2.4",
+    "glob/minimatch": "10.2.4"
   }
 }
