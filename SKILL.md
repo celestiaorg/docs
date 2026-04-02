@@ -26,9 +26,16 @@ Do not use this skill for:
 
 ## First steps (priority order)
 
-1. Identify target ownership (`docs`, `celestia-node`, `celestia-app`, `celestia-core`).
-2. If target is `celestia-node`, `celestia-app`, or `celestia-core`, read that repo's `CLAUDE.md` before proposing commands or edits.
-3. If target is `docs`, enforce docs guardrails in this file before finalizing changes.
+1. Read canonical context sources in this file before proposing plans, commands, or edits.
+2. Identify target ownership (`docs`, `celestia-node`, `celestia-app`, `celestia-core`).
+3. If target is `celestia-node`, `celestia-app`, or `celestia-core`, read that repo's `CLAUDE.md` before proposing commands or edits.
+4. If target is `docs`, enforce docs guardrails in this file before finalizing changes.
+
+## Critical Rule: Avoid Stale Training Data
+
+Celestia evolves rapidly. NEVER implement or plan from pre-existing parametric memory or stale training data.
+
+Always anchor on the updated canonical sources listed in this skill (including `llms.txt` and linked docs) before writing commands or code. If retrieved sources conflict with prior memory, treat retrieved sources as the source of truth.
 
 ## Canonical context sources
 
