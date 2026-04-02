@@ -139,7 +139,7 @@ func main() {
 		if balanceStr == "0utia" || balanceStr == "0 utia" {
 			fmt.Println("Account has no funds. Fund this address at the Mocha faucet to submit blobs:")
 			fmt.Printf("Address: %s\n", address.String())
-			fmt.Println("Faucet: https://docs.celestia.org/operate/networks/mocha-testnet#mocha-testnet-faucet")
+			fmt.Println("Faucet: https://mocha.celenium.io/faucet")
 		} else {
 			if err := submitAndRetrieveBlob(ctx, c); err != nil {
 				panic(err)
