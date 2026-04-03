@@ -25,6 +25,7 @@ Celestia Documentation Access:
 ### Resources
 
 - LLMs.txt: https://docs.celestia.org/llms.txt
+- Skill file: https://docs.celestia.org/SKILL.md (published from root `SKILL.md`)
 - Built with: Next.js + Nextra (MDX), exported as a static site.
 - **LLM-ready**: Add `.md` to any URL to get clean markdown (e.g., `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`)
 - DeepWikis for @celestiaorg:
@@ -80,6 +81,7 @@ BASE=/docs-preview/new_docs/ NEXT_PUBLIC_BASE_PATH=/docs-preview/new_docs yarn b
   - Removes JSX components, imports, and MDX-specific syntax
   - Automatically runs during build process (`yarn build`)
   - Access any doc page as markdown by adding `.md` to the URL
+- `yarn sync:skill`: publish the single source-of-truth root `SKILL.md` to `public/SKILL.md` (also runs automatically before `yarn dev` and `yarn build`)
 
 ## Contribution guidelines
 
@@ -106,10 +108,11 @@ This section outlines the standards and guidelines for maintaining consistent, h
 - **Node types**: use lowercase for node types (e.g., “bridge node”, not “Bridge Node”)
 - **Politeness**: avoid using “please” in instructional content
 - **Unique headings**: ensure no duplicate headings within a document
-- **Network references**: use “Coffee Beta” network (note the specific capitalization)
+- **Network references**: use “Mainnet
+-  Beta” network (note the specific capitalization)
 - **Latin abbreviations**: use italicized _i.e._ or _e.g._ instead of plain i.e. or e.g.
 - **Code references**: use “celestia-app” in regular text (not inline code) when referring to the application name
-- **Tab ordering**: when using tabs, order them as: Coffee Beta, Mocha, Arabica
+- **Tab ordering**: when using tabs, order them as: Mainnet Beta, Mocha, Arabica
 - **Placeholders**: use angle brackets with underscores for placeholders: `<flag_name>` not `<flag-name>` or `<flag name>`
 
 ### Documentation update procedures
