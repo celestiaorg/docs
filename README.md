@@ -108,10 +108,11 @@ This section outlines the standards and guidelines for maintaining consistent, h
 - **Node types**: use lowercase for node types (e.g., “bridge node”, not “Bridge Node”)
 - **Politeness**: avoid using “please” in instructional content
 - **Unique headings**: ensure no duplicate headings within a document
-- **Network references**: use “Coffee Beta” network (note the specific capitalization)
+- **Network references**: use “Mainnet
+-  Beta” network (note the specific capitalization)
 - **Latin abbreviations**: use italicized _i.e._ or _e.g._ instead of plain i.e. or e.g.
 - **Code references**: use “celestia-app” in regular text (not inline code) when referring to the application name
-- **Tab ordering**: when using tabs, order them as: Coffee Beta, Mocha, Arabica
+- **Tab ordering**: when using tabs, order them as: Mainnet Beta, Mocha, Arabica
 - **Placeholders**: use angle brackets with underscores for placeholders: `<flag_name>` not `<flag-name>` or `<flag name>`
 
 ### Documentation update procedures
