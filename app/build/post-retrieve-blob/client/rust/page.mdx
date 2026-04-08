@@ -1,6 +1,6 @@
 # Rust client
 
-The [Lumina Rust client](https://github.com/eigerco/lumina/tree/main/client) provides a high-level API for interacting with a Celestia node over RPC and gRPC. It builds on top of the lower-level `celestia-rpc` and `celestia-grpc` crates and exposes a unified `Client` that supports both **read-only** and **submit** modes.
+The [Lumina Rust client](https://github.com/celestiaorg/lumina/tree/main/client) provides a high-level API for interacting with a Celestia node over RPC and gRPC. It builds on top of the lower-level `celestia-rpc` and `celestia-grpc` crates and exposes a unified `Client` that supports both **read-only** and **submit** modes.
 
 In read-only mode, the client connects to a node via RPC (and optionally gRPC) to query headers, blobs, and state.
 
