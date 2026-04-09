@@ -1,6 +1,6 @@
 const meta = {
   "node-api": "Node API",
-  "app-api": "App API",
+  "app-api": "Celestia-app",
   "clients": "Clients",
 };
 
