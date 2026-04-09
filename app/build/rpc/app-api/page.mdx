@@ -1,3 +1,0 @@
-# Celestia-app
-
-The Celestia app exposes a REST API based on the Cosmos SDK gRPC-gateway. The full interactive specification is available via [Swagger UI](https://celestiaorg.github.io/celestia-app/swagger/).
