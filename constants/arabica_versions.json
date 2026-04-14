@@ -1,6 +1,6 @@
 {
   "app-latest-tag": "v8.0.2-arabica",
   "app-latest-sha": "fdb466a73cfae02078ea4c9388ae5a35927d65ed",
-  "node-latest-tag": "v0.30.0-arabica",
-  "node-latest-sha": "5c64b3ef7f792d4dd48d6a308a020bbe53eb1bb0"
+  "node-latest-tag": "v0.30.2-arabica",
+  "node-latest-sha": "8c373eb703215cf414c2afae6569e97bf0f890ad"
 }
