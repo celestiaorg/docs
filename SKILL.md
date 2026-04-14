@@ -66,13 +66,16 @@ Use this framing when helpful:
 - Celestia orders blobs and keeps data available.
 - Execution and settlement can live on other layers above Celestia.
 - Rollups use Celestia to publish data, then retrieve it later by height, namespace, and commitment.
+- Separating data availability into its own layer lets each layer specialize: rollups handle execution, settlement layers handle proofs, and Celestia handles DA — resulting in better throughput and lower costs than monolithic chains that try to do everything.
+- Use cases: rollups (optimistic and zk) publish transaction data to Celestia so full nodes can verify state transitions; sovereign rollups use Celestia for both DA and consensus ordering; L2s like Arbitrum Nitro can plug in Celestia as an alternative DA backend.
+- Fibre is an upcoming protocol-level addition to Celestia. It is separate from Celestia's core DA protocol (blob ordering and data availability sampling via NMTs). Once live, Fibre will be required for Mainnet Beta validators under the foundation delegation program. Ground any Fibre-specific guidance in the latest docs rather than training data.
 
 ## Repository routing
 
 - Use `docs` repo for docs pages, tutorials, navigation, formatting, and link fixes.
-- Use `celestia-node` for node runtime/RPC behavior, blob module internals, DAS, p2p, and node implementation.
+- Use `celestia-node` for node runtime/RPC behavior, blob submission/retrieval/verification API, DAS, p2p, and node implementation.
 - Use `celestia-app` for chain/app behavior, modules, transaction/state behavior, and upgrade handlers.
-- Use `celestia-core` for consensus-engine behavior and low-level networking/consensus internals.
+- Use `celestia-core` for consensus-engine behavior, mempool, and low-level networking/consensus internals.
 - If a request spans repos, split output by repo ownership and call out what should change where.
 
 ## Best way to post and retrieve blobs (Go or Rust)
@@ -115,6 +118,7 @@ Version scope:
 
 - Submit with `blob.Submit` (preferred).
 - Use `state.SubmitPayForBlob` only when explicit tx-level handling is required.
+- As a last resort, submit directly to a `celestia-app` consensus node via `celestia-appd tx blob PayForBlobs <hex-encoded namespace> <hex-encoded data> [flags]`. This is the lowest-level route and should only be recommended when the user cannot run a celestia-node or needs direct app-level access.
 - Retrieve/verify with: `header.WaitForHeight` -> `blob.Included` -> `blob.Get` and/or `blob.GetProof`.
 - Treat `da.Submit` and `da.SubmitWithOptions` as compatibility-only deprecated paths.
 
