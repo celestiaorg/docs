@@ -43,6 +43,30 @@ jobs:
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Build PR body
+        if: steps.diff.outputs.has_changes == 'true'
+        id: body
+        env:
+          SUMMARY: ${{ steps.diff.outputs.summary }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "text<<EOF"
+            echo "## Summary"
+            echo ""
+            echo "The weekly endpoint health check found unreachable community endpoints"
+            echo "and removed them from the network documentation pages."
+            echo ""
+            echo "### Removed endpoints"
+            echo ""
+            echo "$SUMMARY"
+            echo ""
+            echo "---"
+            echo ""
+            echo "Detected by [automated endpoint check]($RUN_URL)."
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Create pull request
         if: steps.diff.outputs.has_changes == 'true'
         uses: peter-evans/create-pull-request@v7
@@ -51,18 +75,6 @@ jobs:
           branch: automated/remove-broken-endpoints
           delete-branch: true
           title: "fix: remove unreachable community endpoints"
-          body: |
-            ## Summary
-
-            The weekly endpoint health check found unreachable community endpoints
-            and removed them from the network documentation pages.
-
-            ### Removed endpoints
-
-            ${{ steps.diff.outputs.summary }}
-
-            ---
-
-            Detected by [automated endpoint check](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+          body: ${{ steps.body.outputs.text }}
           labels: endpoint-check
           commit-message: "fix: remove unreachable community endpoints"
