@@ -7,143 +7,62 @@ on:
   workflow_dispatch:
 
 permissions:
-  issues: write
+  contents: write
+  pull-requests: write
 
 jobs:
-  check-mocha-endpoints:
-    name: Check Mocha testnet community endpoints
+  check-endpoints:
+    name: Check community endpoints across all networks
     runs-on: ubuntu-latest
     steps:
-      - name: Check endpoints
-        id: check
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check endpoints and remove broken ones
+        run: node scripts/check-endpoints.mjs
+
+      - name: Read summary and check for changes
+        id: diff
         run: |
-          FAILED=()
-
-          check_tcp() {
-            local label="$1"
-            local host="$2"
-            local port="$3"
-            if ! nc -z -w 10 "$host" "$port" 2>/dev/null; then
-              echo "FAILED: $label ($host:$port)"
-              FAILED+=("$label")
-            else
-              echo "OK:     $label ($host:$port)"
-            fi
-          }
-
-          check_http() {
-            local label="$1"
-            local url="$2"
-            local http_code
-            http_code=$(curl -o /dev/null -s -w "%{http_code}" --max-time 15 "$url")
-            if [[ -z "$http_code" || "$http_code" == "000" ]]; then
-              echo "FAILED: $label ($url) - connection failed"
-              FAILED+=("$label")
-            elif [[ "$http_code" -ge 200 ]] 2>/dev/null; then
-              echo "OK:     $label ($url) - HTTP $http_code"
-            else
-              echo "FAILED: $label ($url) - HTTP $http_code"
-              FAILED+=("$label")
-            fi
-          }
-
-          echo "=== Mocha Community DA RPC endpoints for bridge node sync ==="
-          check_tcp "rpc-mocha.pops.one (RPC 26657)" "rpc-mocha.pops.one" "26657"
-          check_tcp "celestia-testnet-consensus.itrocket.net (RPC 26657)" "celestia-testnet-consensus.itrocket.net" "26657"
-
-          echo ""
-          echo "=== Mocha Community DA gRPC endpoints for state access ==="
-          check_tcp "full.consensus.mocha-4.celestia-mocha.com (gRPC 9090)" "full.consensus.mocha-4.celestia-mocha.com" "9090"
-          check_tcp "consensus-full-mocha-4.celestia-mocha.com (gRPC 9090)" "consensus-full-mocha-4.celestia-mocha.com" "9090"
-          check_tcp "celestia-testnet-consensus.itrocket.net (gRPC 9090)" "celestia-testnet-consensus.itrocket.net" "9090"
-
-          echo ""
-          echo "=== Mocha Community RPC endpoints ==="
-          check_tcp "rpc-1.testnet.celestia.nodes.guru (26657)" "rpc-1.testnet.celestia.nodes.guru" "26657"
-          check_tcp "rpc-2.testnet.celestia.nodes.guru (26657)" "rpc-2.testnet.celestia.nodes.guru" "26657"
-          check_tcp "celestia-testnet-rpc.itrocket.net (443)" "celestia-testnet-rpc.itrocket.net" "443"
-
-          echo ""
-          echo "=== Mocha Community API endpoints ==="
-          check_http "api-mocha.pops.one" "https://api-mocha.pops.one"
-          check_http "mocha.api.cumulo.me" "https://mocha.api.cumulo.me"
-          check_http "api-1.testnet.celestia.nodes.guru" "https://api-1.testnet.celestia.nodes.guru"
-          check_http "api-2.testnet.celestia.nodes.guru" "https://api-2.testnet.celestia.nodes.guru"
-          check_http "celestia-testnet-api.itrocket.net" "https://celestia-testnet-api.itrocket.net"
-
-          echo ""
-          echo "=== Mocha Community gRPC endpoints ==="
-          check_tcp "grpc-mocha.pops.one (9090)" "grpc-mocha.pops.one" "9090"
-          check_tcp "mocha.grpc.cumulo.me (443)" "mocha.grpc.cumulo.me" "443"
-          check_tcp "grpc-1.testnet.celestia.nodes.guru (10790)" "grpc-1.testnet.celestia.nodes.guru" "10790"
-          check_tcp "grpc-2.testnet.celestia.nodes.guru (10790)" "grpc-2.testnet.celestia.nodes.guru" "10790"
-          check_tcp "celestia-testnet-grpc.itrocket.net (443)" "celestia-testnet-grpc.itrocket.net" "443"
-
-          echo ""
-          if [ ${#FAILED[@]} -eq 0 ]; then
-            echo "All endpoints are reachable."
-            echo "has_failures=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "Failed endpoints (${#FAILED[@]}):"
-            for ep in "${FAILED[@]}"; do
-              echo "  - $ep"
-            done
-            FAILED_LIST=$(printf -- '- %s\n' "${FAILED[@]}")
+          if [ -f endpoint-check-summary.txt ]; then
             {
-              echo "has_failures=true"
-              echo "failed_list<<EOF"
-              echo "$FAILED_LIST"
+              echo "summary<<EOF"
+              cat endpoint-check-summary.txt
               echo "EOF"
             } >> "$GITHUB_OUTPUT"
+            rm endpoint-check-summary.txt
+          fi
+          if git diff --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Create or update issue for failed endpoints
-        if: steps.check.outputs.has_failures == 'true'
-        uses: actions/github-script@v7
+      - name: Create pull request
+        if: steps.diff.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const failedList = `${{ steps.check.outputs.failed_list }}`;
-            const runUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`;
-            const body = [
-              '## Community endpoint health check failure',
-              '',
-              'The following community endpoints are currently unreachable. ',
-              'Please verify and remove them from the documentation if they are permanently down.',
-              '',
-              '### Failing endpoints',
-              failedList,
-              '',
-              `Detected by the [automated endpoint check](${runUrl}) workflow run.`,
-              '',
-              '**Files to update:**',
-              '- `app/operate/networks/mocha-testnet/page.mdx`',
-            ].join('\n');
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automated/remove-broken-endpoints
+          delete-branch: true
+          title: "fix: remove unreachable community endpoints"
+          body: |
+            ## Summary
 
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ['endpoint-check'],
-              state: 'open',
-            });
+            The weekly endpoint health check found unreachable community endpoints
+            and removed them from the network documentation pages.
 
-            if (issues.length > 0) {
-              // Update existing open issue
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issues[0].number,
-                body,
-              });
-              console.log(`Updated existing issue #${issues[0].number}`);
-            } else {
-              // Create a new issue
-              await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title: 'bug: unreachable community endpoints detected',
-                body,
-                labels: ['endpoint-check'],
-              });
-              console.log('Created new issue');
-            }
+            ### Removed endpoints
+
+            ${{ steps.diff.outputs.summary }}
+
+            ---
+
+            Detected by [automated endpoint check](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+          labels: endpoint-check
+          commit-message: "fix: remove unreachable community endpoints"
