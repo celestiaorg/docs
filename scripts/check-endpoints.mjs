@@ -39,14 +39,39 @@ function hasTemplateVar(s) {
   return /\{\{|{constants/.test(s);
 }
 
+function getEndpointHost(raw) {
+  const value = raw.trim();
+  if (/^https?:\/\//i.test(value) || /^wss?:\/\//i.test(value)) {
+    try {
+      return new URL(value).hostname.toLowerCase();
+    } catch {
+      return "";
+    }
+  }
+
+  const withoutPath = value.split("/")[0];
+  if (withoutPath.startsWith("[")) {
+    const ipv6Match = withoutPath.match(/^\[([^\]]+)\](?::\d+)?$/);
+    return ipv6Match ? ipv6Match[1].toLowerCase() : "";
+  }
+
+  const [host] = withoutPath.split(":");
+  return host.toLowerCase();
+}
+
+function matchesHostname(hostname, suffix) {
+  return hostname === suffix || hostname.endsWith(`.${suffix}`);
+}
+
 /** True for Celestia-operated (non-community) hostnames. */
 function isOfficialEndpoint(s) {
-  return (
-    /celestia-mocha\.com/.test(s) ||
-    /celestia-arabica/.test(s) ||
-    /celestia\.com/.test(s) ||
-    /quicknode\.com/.test(s)
-  );
+  const hostname = getEndpointHost(s);
+  return [
+    "celestia-mocha.com",
+    "celestia-arabica-11.com",
+    "celestia.com",
+    "quicknode.com",
+  ].some((suffix) => matchesHostname(hostname, suffix));
 }
 
 /** TCP connect check. Resolves true (ok) or false (failed). */
@@ -306,135 +331,149 @@ async function main() {
 
   for (const relPath of NETWORK_FILES) {
     const absPath = path.join(ROOT, relPath);
-    if (!fs.existsSync(absPath)) {
-      console.log(`Skipping ${relPath} (file not found)`);
-      continue;
-    }
-    const content = fs.readFileSync(absPath, "utf-8");
-    const networkName = relPath.includes("mainnet")
-      ? "mainnet-beta"
-      : relPath.includes("mocha")
-        ? "mocha-testnet"
-        : "arabica-devnet";
-
-    console.log(`\n=== ${networkName} ===`);
-
-    // --- Determine parser based on network ---
-    let checkItems; // { raw, lineIndex, line, check }[]
-
-    if (networkName === "mocha-testnet") {
-      const eps = extractMochaBulletEndpoints(content);
-      checkItems = eps.map((ep) => ({
-        ...ep,
-        check: resolveCheck(ep.raw),
-        rowEndpoints: [ep.raw],
-      }));
-    } else if (networkName === "mainnet-beta") {
-      const rows = extractMainnetTableEndpoints(content);
-      checkItems = [];
-      for (const row of rows) {
-        for (const raw of row.rawEndpoints) {
-          checkItems.push({
-            raw,
-            lineIndex: row.lineIndex,
-            line: row.line,
-            provider: row.provider,
-            check: resolveCheck(raw),
-            rowEndpoints: row.rawEndpoints,
-          });
-        }
+    let fileHandle;
+    try {
+      fileHandle = await fs.promises.open(absPath, "r+");
+    } catch (error) {
+      if (error?.code === "ENOENT") {
+        console.log(`Skipping ${relPath} (file not found)`);
+        continue;
       }
-    } else {
-      // arabica
-      const rows = extractArabicaTableEndpoints(content);
-      checkItems = [];
-      for (const row of rows) {
-        for (const raw of row.rawEndpoints) {
-          checkItems.push({
-            raw,
-            lineIndex: row.lineIndex,
-            line: row.line,
-            check: resolveCheck(raw),
-            rowEndpoints: row.rawEndpoints,
-          });
+      throw error;
+    }
+
+    try {
+      const content = await fileHandle.readFile({ encoding: "utf-8" });
+      const networkName = relPath.includes("mainnet")
+        ? "mainnet-beta"
+        : relPath.includes("mocha")
+          ? "mocha-testnet"
+          : "arabica-devnet";
+
+      console.log(`\n=== ${networkName} ===`);
+
+      // --- Determine parser based on network ---
+      let checkItems; // { raw, lineIndex, line, check }[]
+
+      if (networkName === "mocha-testnet") {
+        const eps = extractMochaBulletEndpoints(content);
+        checkItems = eps.map((ep) => ({
+          ...ep,
+          check: resolveCheck(ep.raw),
+          rowEndpoints: [ep.raw],
+        }));
+      } else if (networkName === "mainnet-beta") {
+        const rows = extractMainnetTableEndpoints(content);
+        checkItems = [];
+        for (const row of rows) {
+          for (const raw of row.rawEndpoints) {
+            checkItems.push({
+              raw,
+              lineIndex: row.lineIndex,
+              line: row.line,
+              provider: row.provider,
+              check: resolveCheck(raw),
+              rowEndpoints: row.rawEndpoints,
+            });
+          }
         }
-      }
-    }
-
-    if (checkItems.length === 0) {
-      console.log("  No community endpoints found to check.");
-      continue;
-    }
-
-    console.log(`  Found ${checkItems.length} community endpoint(s) to check.`);
-
-    // --- Check endpoints ---
-    const results = await pMap(
-      checkItems,
-      async (item) => {
-        const { check } = item;
-        let ok;
-        if (check.type === "http") {
-          ok = await checkHttp(check.url);
-        } else {
-          ok = await checkTcp(check.host, check.port);
-        }
-        const status = ok ? "OK" : "FAILED";
-        console.log(`  ${status}: ${check.label}`);
-        return { ...item, ok };
-      },
-      CONCURRENCY,
-    );
-
-    // --- Collect failed endpoints ---
-    const failed = results.filter((r) => !r.ok);
-    if (failed.length === 0) {
-      console.log("  All endpoints reachable.");
-      continue;
-    }
-
-    // Group by lineIndex
-    const failedByLine = new Map();
-    const allByLine = new Map();
-    for (const r of results) {
-      if (!allByLine.has(r.lineIndex)) allByLine.set(r.lineIndex, []);
-      allByLine.get(r.lineIndex).push(r);
-    }
-    for (const r of failed) {
-      if (!failedByLine.has(r.lineIndex)) failedByLine.set(r.lineIndex, []);
-      failedByLine.get(r.lineIndex).push(r);
-    }
-
-    // --- Apply fixes per line ---
-    const lines = content.split("\n");
-    const linesToRemove = new Set();
-    let edits = 0;
-
-    for (const [lineIndex, lineFailures] of failedByLine) {
-      const lineAll = allByLine.get(lineIndex);
-      const allFailed = lineAll.every((r) => !r.ok);
-
-      if (allFailed) {
-        // Every endpoint in this line/row is down — remove the whole line
-        linesToRemove.add(lineIndex);
       } else {
-        // Partial failure in a table row — replace broken cells with `-`
-        let edited = lines[lineIndex];
-        for (const r of lineFailures) {
-          edited = edited.replace("`" + r.raw + "`", "-");
+        // arabica
+        const rows = extractArabicaTableEndpoints(content);
+        checkItems = [];
+        for (const row of rows) {
+          for (const raw of row.rawEndpoints) {
+            checkItems.push({
+              raw,
+              lineIndex: row.lineIndex,
+              line: row.line,
+              check: resolveCheck(raw),
+              rowEndpoints: row.rawEndpoints,
+            });
+          }
         }
-        lines[lineIndex] = edited;
       }
 
-      for (const r of lineFailures) {
-        removals.push({ network: networkName, endpoint: r.raw, file: relPath });
+      if (checkItems.length === 0) {
+        console.log("  No community endpoints found to check.");
+        continue;
       }
-      edits++;
+
+      console.log(`  Found ${checkItems.length} community endpoint(s) to check.`);
+
+      // --- Check endpoints ---
+      const results = await pMap(
+        checkItems,
+        async (item) => {
+          const { check } = item;
+          let ok;
+          if (check.type === "http") {
+            ok = await checkHttp(check.url);
+          } else {
+            ok = await checkTcp(check.host, check.port);
+          }
+          const status = ok ? "OK" : "FAILED";
+          console.log(`  ${status}: ${check.label}`);
+          return { ...item, ok };
+        },
+        CONCURRENCY,
+      );
+
+      // --- Collect failed endpoints ---
+      const failed = results.filter((r) => !r.ok);
+      if (failed.length === 0) {
+        console.log("  All endpoints reachable.");
+        continue;
+      }
+
+      // Group by lineIndex
+      const failedByLine = new Map();
+      const allByLine = new Map();
+      for (const r of results) {
+        if (!allByLine.has(r.lineIndex)) allByLine.set(r.lineIndex, []);
+        allByLine.get(r.lineIndex).push(r);
+      }
+      for (const r of failed) {
+        if (!failedByLine.has(r.lineIndex)) failedByLine.set(r.lineIndex, []);
+        failedByLine.get(r.lineIndex).push(r);
+      }
+
+      // --- Apply fixes per line ---
+      const lines = content.split("\n");
+      const linesToRemove = new Set();
+      let edits = 0;
+
+      for (const [lineIndex, lineFailures] of failedByLine) {
+        const lineAll = allByLine.get(lineIndex);
+        const allFailed = lineAll.every((r) => !r.ok);
+
+        if (allFailed) {
+          // Every endpoint in this line/row is down — remove the whole line
+          linesToRemove.add(lineIndex);
+        } else {
+          // Partial failure in a table row — replace broken cells with `-`
+          let edited = lines[lineIndex];
+          for (const r of lineFailures) {
+            edited = edited.replace("`" + r.raw + "`", "-");
+          }
+          lines[lineIndex] = edited;
+        }
+
+        for (const r of lineFailures) {
+          removals.push({ network: networkName, endpoint: r.raw, file: relPath });
+        }
+        edits++;
+      }
+
+      const newLines = lines.filter((_, idx) => !linesToRemove.has(idx));
+      await fileHandle.truncate(0);
+      await fileHandle.write(newLines.join("\n"), 0, "utf-8");
+      console.log(
+        `  Fixed ${edits} line(s) in ${relPath} (${linesToRemove.size} removed, ${edits - linesToRemove.size} edited)`,
+      );
+    } finally {
+      await fileHandle.close();
     }
-
-    const newLines = lines.filter((_, idx) => !linesToRemove.has(idx));
-    fs.writeFileSync(absPath, newLines.join("\n"));
-    console.log(`  Fixed ${edits} line(s) in ${relPath} (${linesToRemove.size} removed, ${edits - linesToRemove.size} edited)`);
   }
 
   // --- Summary ---
