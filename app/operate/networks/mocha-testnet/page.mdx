@@ -109,7 +109,6 @@ to their respective DA node.
 
 > **Tip for bridge nodes:** Community RPC endpoints do not guarantee full block downloads. If you are running a bridge node, also run a local [consensus node](/operate/consensus-validators/consensus-node) to download full blocks.
 
-- `public-celestia-{{constants['mochaChainId']}}-consensus.numia.xyz`
 - `full.consensus.{{constants['mochaChainId']}}.celestia-mocha.com`
 - `consensus-full-{{constants['mochaChainId']}}.celestia-mocha.com`
 - `rpc-mocha.pops.one`
@@ -123,11 +122,9 @@ The RPC endpoint is to allow users to interact with Celestia's nodes by
 querying the node's state and broadcasting transactions on the
 Celestia network. The default port is 26657.
 
-- `public-celestia-{{constants['mochaChainId']}}-consensus.numia.xyz:26657`
 - `rpc-1.testnet.celestia.nodes.guru`
 - `rpc-2.testnet.celestia.nodes.guru`
 - `celestia-testnet-rpc.itrocket.net:443`
-- `celestia-t-rpc.noders.services`
 
 ## Community API endpoints
 
@@ -142,7 +139,6 @@ The default port is 1317.
 - `https://api-1.testnet.celestia.nodes.guru`
 - `https://api-2.testnet.celestia.nodes.guru`
 - `https://celestia-testnet-api.itrocket.net`
-- `https://celestia-t-api.noders.services`
 
 ## Community gRPC endpoints
 
@@ -151,16 +147,13 @@ gRPC, a modern open-source and high-performance RPC framework. The default
 port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
 broadcast transactions.
 
-- `public-celestia-{{constants['mochaChainId']}}-consensus.numia.xyz:9090`
 - `grpc-mocha.pops.one`
-- `grpc.celestia-mocha.com:443`
 - `full.consensus.{{constants['mochaChainId']}}.celestia-mocha.com:9090`
 - `consensus-full-{{constants['mochaChainId']}}.celestia-mocha.com:9090`
 - `mocha.grpc.cumulo.me:443`
 - `grpc-1.testnet.celestia.nodes.guru:10790`
 - `grpc-2.testnet.celestia.nodes.guru:10790`
 - `celestia-testnet-grpc.itrocket.net:443`
-- `celestia-t-grpc.noders.services:21090`
 
 ## Community bridge node endpoints
 
