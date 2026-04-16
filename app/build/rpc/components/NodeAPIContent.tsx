@@ -107,7 +107,11 @@ export default function RPCDocumentation() {
     active: false,
   });
 
-  const [selectedVersion, setSelectedVersion] = useState(versions[0]);
+  const [selectedVersion, setSelectedVersion] = useState(() => {
+    if (typeof window === 'undefined') return versions[0];
+    const versionParam = new URLSearchParams(window.location.search).get('version');
+    return versionParam && versions.includes(versionParam) ? versionParam : versions[0];
+  });
   const [searchTerm, setSearchTerm] = useState('');
 
   // Consolidated fetch function with loading and error handling
@@ -135,31 +139,10 @@ export default function RPCDocumentation() {
     }
   }, []);
 
-  // Initialize version from URL on mount and fetch data
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const versionParam = urlParams.get('version');
-    const targetVersion = (versionParam && versions.includes(versionParam)) 
-      ? versionParam 
-      : versions[0];
-    
-    if (targetVersion !== selectedVersion) {
-      setSelectedVersion(targetVersion);
-    }
-    
-    fetchJsonData(targetVersion, true); // Mark as initial load
+    fetchJsonData(selectedVersion, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // Handle version changes after mount
-  useEffect(() => {
-    // Skip if this is the initial render
-    if (isInitialLoading) return;
-    
-    if (selectedVersion !== versions[0] || window.location.search) {
-      fetchJsonData(selectedVersion, false); // Mark as version switch
-    }
-  }, [selectedVersion, fetchJsonData, isInitialLoading]);
 
   // Scroll to hash with MutationObserver (replaces hardcoded setTimeout)
   useEffect(() => {
@@ -208,6 +191,7 @@ export default function RPCDocumentation() {
     const newVersion = event.target.value;
     setSelectedVersion(newVersion);
     window.history.pushState({}, '', `?version=${newVersion}`);
+    fetchJsonData(newVersion, false);
   };
 
   const activateSidebar = (param: Param) => {
