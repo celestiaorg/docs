@@ -107,11 +107,7 @@ export default function RPCDocumentation() {
     active: false,
   });
 
-  const [selectedVersion, setSelectedVersion] = useState(() => {
-    if (typeof window === 'undefined') return versions[0];
-    const versionParam = new URLSearchParams(window.location.search).get('version');
-    return versionParam && versions.includes(versionParam) ? versionParam : versions[0];
-  });
+  const [selectedVersion, setSelectedVersion] = useState(versions[0]);
   const [searchTerm, setSearchTerm] = useState('');
 
   // Consolidated fetch function with loading and error handling
@@ -140,9 +136,15 @@ export default function RPCDocumentation() {
   }, []);
 
   useEffect(() => {
-    // Mount-only data load; fetchJsonData owns loading/error state by design.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    fetchJsonData(selectedVersion, true);
+    // Read URL params on mount (client-only, avoids SSR hydration mismatch).
+    const versionParam = new URLSearchParams(window.location.search).get('version');
+    const targetVersion = versionParam && versions.includes(versionParam) ? versionParam : versions[0];
+
+    if (targetVersion !== selectedVersion) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSelectedVersion(targetVersion);
+    }
+    fetchJsonData(targetVersion, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
