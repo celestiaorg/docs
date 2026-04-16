@@ -140,6 +140,8 @@ export default function RPCDocumentation() {
   }, []);
 
   useEffect(() => {
+    // Mount-only data load; fetchJsonData owns loading/error state by design.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchJsonData(selectedVersion, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
