@@ -19,13 +19,14 @@ Welcome to the official documentation repository for [Celestia](https://celestia
 Celestia Documentation Access:
 - Clean markdown: Add .md to any URL (e.g., https://docs.celestia.org/learn/TIA/overview.md)
 - LLMs.txt: https://docs.celestia.org/llms.txt
+- Skill file: https://docs.celestia.org/SKILL.md
 - DeepWikis: https://deepwiki.com/celestiaorg/docs, https://deepwiki.com/celestiaorg/cips, https://deepwiki.com/celestiaorg/celestia-app, https://deepwiki.com/celestiaorg/celestia-node
 ```
 
 ### Resources
 
 - LLMs.txt: https://docs.celestia.org/llms.txt
-- Skill file: https://docs.celestia.org/SKILL.md (published from root `SKILL.md`)
+- Skill file: https://docs.celestia.org/SKILL.md (served from `public/SKILL.md`)
 - Built with: Next.js + Nextra (MDX), exported as a static site.
 - **LLM-ready**: Add `.md` to any URL to get clean markdown (e.g., `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`)
 - DeepWikis for @celestiaorg:
