@@ -135,31 +135,18 @@ export default function RPCDocumentation() {
     }
   }, []);
 
-  // Initialize version from URL on mount and fetch data
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const versionParam = urlParams.get('version');
-    const targetVersion = (versionParam && versions.includes(versionParam)) 
-      ? versionParam 
-      : versions[0];
-    
+    // Read URL params on mount (client-only, avoids SSR hydration mismatch).
+    const versionParam = new URLSearchParams(window.location.search).get('version');
+    const targetVersion = versionParam && versions.includes(versionParam) ? versionParam : versions[0];
+
     if (targetVersion !== selectedVersion) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedVersion(targetVersion);
     }
-    
-    fetchJsonData(targetVersion, true); // Mark as initial load
+    fetchJsonData(targetVersion, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // Handle version changes after mount
-  useEffect(() => {
-    // Skip if this is the initial render
-    if (isInitialLoading) return;
-    
-    if (selectedVersion !== versions[0] || window.location.search) {
-      fetchJsonData(selectedVersion, false); // Mark as version switch
-    }
-  }, [selectedVersion, fetchJsonData, isInitialLoading]);
 
   // Scroll to hash with MutationObserver (replaces hardcoded setTimeout)
   useEffect(() => {
@@ -208,6 +195,7 @@ export default function RPCDocumentation() {
     const newVersion = event.target.value;
     setSelectedVersion(newVersion);
     window.history.pushState({}, '', `?version=${newVersion}`);
+    fetchJsonData(newVersion, false);
   };
 
   const activateSidebar = (param: Param) => {
