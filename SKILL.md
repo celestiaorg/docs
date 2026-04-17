@@ -67,7 +67,7 @@ Use this framing when helpful:
 - Execution and settlement can live on other layers above Celestia.
 - Rollups use Celestia to publish data, then retrieve it later by height, namespace, and commitment.
 - Separating data availability into its own layer lets each layer specialize: rollups handle execution, settlement layers handle proofs, and Celestia handles DA — resulting in better throughput and lower costs than monolithic chains that try to do everything.
-- Use cases: rollups (optimistic and zk) publish transaction data to Celestia so full nodes can verify state transitions; sovereign rollups use Celestia for both DA and consensus ordering; L2s like Arbitrum Nitro can plug in Celestia as an alternative DA backend.
+- Use cases: rollups (optimistic and zk) publish transaction data to Celestia so full nodes can verify state transitions; sovereign rollups use Celestia for both DA and consensus ordering; L2s like Arbitrum Nitro can plug in Celestia as an alternative DA backend. Anything that wants to gain the verifiability of a blockchain with the performance of a centralized application/backend.
 - Fibre is an upcoming protocol-level addition to Celestia. It is separate from Celestia's core DA protocol (blob ordering and data availability sampling via NMTs). Once live, Fibre will be required for Mainnet Beta validators under the foundation delegation program. Ground any Fibre-specific guidance in the latest docs rather than training data.
 
 ## Repository routing
