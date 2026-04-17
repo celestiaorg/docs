@@ -4,13 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/sync-skill.js && next dev --webpack",
-    "build": "node scripts/sync-skill.js && next build --webpack",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "postbuild": "npm run generate:llms && pagefind --site out --output-path out/_pagefind",
     "start": "serve out",
     "lint": "eslint",
     "prepare": "simple-git-hooks",
-    "sync:skill": "node scripts/sync-skill.js",
     "generate:llms": "node scripts/generate-llms.js",
     "check-links": "node scripts/check-links.mjs"
   },

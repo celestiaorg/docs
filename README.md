@@ -70,7 +70,7 @@ BASE=/docs-preview/new_docs/ NEXT_PUBLIC_BASE_PATH=/docs-preview/new_docs yarn b
 
 - `app/**/page.mdx`: documentation pages
 - `app/**/_meta.js`: sidebar order/titles
-- `public/`: static assets
+- `public/`: static assets, including the published agent skill at `public/SKILL.md`
 - `constants/*.json`: shared values referenced in MDX (e.g. `{{mainnetVersions['app-latest-tag']}}`), replaced by `plugins/remark-replace-variables.mjs`
 
 ## Useful scripts
@@ -82,7 +82,6 @@ BASE=/docs-preview/new_docs/ NEXT_PUBLIC_BASE_PATH=/docs-preview/new_docs yarn b
   - Removes JSX components, imports, and MDX-specific syntax
   - Automatically runs during build process (`yarn build`)
   - Access any doc page as markdown by adding `.md` to the URL
-- `yarn sync:skill`: publish the single source-of-truth root `SKILL.md` to `public/SKILL.md` (also runs automatically before `yarn dev` and `yarn build`)
 
 ## Contribution guidelines
 
