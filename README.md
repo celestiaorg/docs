@@ -19,12 +19,14 @@ Welcome to the official documentation repository for [Celestia](https://celestia
 Celestia Documentation Access:
 - Clean markdown: Add .md to any URL (e.g., https://docs.celestia.org/learn/TIA/overview.md)
 - LLMs.txt: https://docs.celestia.org/llms.txt
+- Skill file: https://docs.celestia.org/SKILL.md
 - DeepWikis: https://deepwiki.com/celestiaorg/docs, https://deepwiki.com/celestiaorg/cips, https://deepwiki.com/celestiaorg/celestia-app, https://deepwiki.com/celestiaorg/celestia-node
 ```
 
 ### Resources
 
 - LLMs.txt: https://docs.celestia.org/llms.txt
+- Skill file: https://docs.celestia.org/SKILL.md (served from `public/SKILL.md`)
 - Built with: Next.js + Nextra (MDX), exported as a static site.
 - **LLM-ready**: Add `.md` to any URL to get clean markdown (e.g., `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`)
 - DeepWikis for @celestiaorg:
@@ -68,7 +70,7 @@ BASE=/docs-preview/new_docs/ NEXT_PUBLIC_BASE_PATH=/docs-preview/new_docs yarn b
 
 - `app/**/page.mdx`: documentation pages
 - `app/**/_meta.js`: sidebar order/titles
-- `public/`: static assets
+- `public/`: static assets, including the published agent skill at `public/SKILL.md`
 - `constants/*.json`: shared values referenced in MDX (e.g. `{{mainnetVersions['app-latest-tag']}}`), replaced by `plugins/remark-replace-variables.mjs`
 
 ## Useful scripts
@@ -106,10 +108,10 @@ This section outlines the standards and guidelines for maintaining consistent, h
 - **Node types**: use lowercase for node types (e.g., “bridge node”, not “Bridge Node”)
 - **Politeness**: avoid using “please” in instructional content
 - **Unique headings**: ensure no duplicate headings within a document
-- **Network references**: use “Coffee Beta” network (note the specific capitalization)
+- **Network references**: use "Mainnet Beta" network (note the specific capitalization)
 - **Latin abbreviations**: use italicized _i.e._ or _e.g._ instead of plain i.e. or e.g.
 - **Code references**: use “celestia-app” in regular text (not inline code) when referring to the application name
-- **Tab ordering**: when using tabs, order them as: Coffee Beta, Mocha, Arabica
+- **Tab ordering**: when using tabs, order them as: Mainnet Beta, Mocha, Arabica
 - **Placeholders**: use angle brackets with underscores for placeholders: `<flag_name>` not `<flag-name>` or `<flag name>`
 
 ### Documentation update procedures
