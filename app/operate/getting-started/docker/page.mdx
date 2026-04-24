@@ -80,18 +80,19 @@ Choose [the network](/operate/networks/overview) you would like to run your node
      </Tabs.Tab>
    </Tabs>
 
-### Configure the RPC endpoint
+### Configure the consensus endpoint
 
-Set an RPC endpoint for either [Mainnet Beta](/operate/networks/mainnet-beta#integrations),
-   [Mocha](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes), or
-   [Arabica](/operate/networks/arabica-devnet#integrations)
+Set a consensus endpoint that has both RPC (26657) and gRPC (9090) for either
+   [Mainnet Beta](/operate/networks/mainnet-beta#integrations),
+   [Mocha](/operate/networks/mocha-testnet#community-consensus-endpoints), or
+   [Arabica](/operate/networks/arabica-devnet#community-consensus-endpoints)
    using the bare URL (without http or https):
 
    ```bash
    export RPC_URL=this-is-an-rpc-url.com
    ```
 
-Then set the port for the RPC_URL:
+Then set the gRPC port for the `RPC_URL` host:
 
    ```bash
    export RPC_PORT=9090
