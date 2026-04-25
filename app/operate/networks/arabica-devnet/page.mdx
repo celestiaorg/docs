@@ -54,86 +54,8 @@ and service availability, visit the
 
 ## Network constants
 
-The table below lists the key network constants for Arabica devnet. For the live,
-current on-chain values (which may differ from defaults due to governance
-proposals), see [arabica.celenium.io/constants](https://arabica.celenium.io/constants).
-
-### auth
-
-| Parameter | Value | Description |
-| --------- | ----- | ----------- |
-| `max_memo_characters` | 256 | Maximum size of a transaction memo in bytes |
-| `tx_sig_limit` | 7 | Max number of signatures in a multisig transaction |
-| `tx_size_cost_per_byte` | 10 | Gas used per transaction byte |
-| `sig_verify_cost_ed25519` | 590 | Gas to verify an Ed25519 signature |
-| `sig_verify_cost_secp256k1` | 1000 | Gas to verify a secp256k1 signature |
-
-### blob
-
-| Parameter | Value | Description |
-| --------- | ----- | ----------- |
-| `gas_per_blob_byte` | 8 | Gas used per blob byte |
-| `gov_max_square_size` | 512 | Governance-modifiable max original data square size |
-
-### consensus
-
-| Parameter | Value | Description |
-| --------- | ----- | ----------- |
-| `block.max_bytes` | 128 MiB | Governance-modifiable maximum block size |
-| `block.max_gas` | -1 (unlimited) | Maximum gas allowed per block |
-| `evidence.max_age_num_blocks` | 242,640 | Max age of evidence in blocks |
-| `evidence.max_bytes` | 1 MiB | Max size of evidence per block |
-
-### distribution
-
-| Parameter | Value | Description |
-| --------- | ----- | ----------- |
-| `community_tax` | 2% | Percentage of inflation sent to the community pool |
-| `base_proposer_reward` | 0 | Reward for proposing a block |
-| `bonus_proposer_reward` | 0 | Extra reward for proposers based on voting power |
-| `withdraw_addr_enabled` | true | Allows delegators to withdraw funds to a different address |
-
-### gov
-
-| Parameter | Value | Description |
-| --------- | ----- | ----------- |
-| `min_deposit` | 10,000 TIA | Minimum deposit for a proposal to enter voting period |
-| `max_deposit_period` | 1 week | Maximum period for deposits on a proposal |
-| `voting_period` | 1 day | Duration of the voting period |
-| `quorum` | 33.4% | Minimum percentage of stake needed to vote for a valid result |
-| `threshold` | 50% | Minimum proportion of Yes votes for a proposal to pass |
-| `veto_threshold` | 33.4% | Minimum Veto votes ratio to veto a proposal |
-| `expedited_min_deposit` | 50,000 TIA | Minimum deposit for an expedited proposal |
-| `expedited_voting_period` | 1 day | Duration of the expedited voting period |
-| `expedited_threshold` | 66.7% | Minimum proportion of Yes votes for an expedited proposal to pass |
-
-### minfee
-
-| Parameter | Value | Description |
-| --------- | ----- | ----------- |
-| `network_min_gas_price` | 0.000001 utia | Minimum gas price for transactions to be included in a block |
-
-### slashing
-
-| Parameter | Value | Description |
-| --------- | ----- | ----------- |
-| `downtime_jail_duration` | 1 minute | Duration a validator must stay jailed after downtime |
-| `min_signed_per_window` | 75% | Minimum fraction of blocks that must be signed to avoid jailing |
-| `signed_blocks_window` | 10,000 | The window of blocks used to track validator uptime |
-| `slash_fraction_double_sign` | 2% | Percentage slashed for double signing |
-| `slash_fraction_downtime` | 0% | Percentage slashed for downtime |
-
-### staking
-
-| Parameter | Value | Description |
-| --------- | ----- | ----------- |
-| `bond_denom` | utia | Staking denomination |
-| `max_validators` | 100 | Maximum number of validators |
-| `min_commission_rate` | 5% | Minimum validator commission rate |
-| `max_commission_rate` | 25% | Maximum validator commission rate |
-| `unbonding_time` | 21 days | Duration for unbonding |
-| `max_entries` | 7 | Max simultaneous unbonding or redelegation entries per pair |
-| `historical_entries` | 10,000 | Number of historical entries to keep |
+For the current Arabica devnet network constants, see
+[arabica.celenium.io/constants](https://arabica.celenium.io/constants).
 
 ## Integrations
 
