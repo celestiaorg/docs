@@ -150,6 +150,10 @@ const header = [
   '> Official documentation for Celestia, the modular blockchain powering unstoppable apps with full-stack control.',
   '',
   'These docs are built with Next.js + Nextra and exported statically. Links below point to the raw MDX sources in `main` so tools and LLMs can ingest clean text.',
+  '',
+  '## Related resources',
+  '',
+  '- CIPs (Celestia Improvement Proposals): https://cips.celestia.org',
 ];
 
 const titleize = (segment) =>

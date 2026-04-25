@@ -20,6 +20,7 @@ Celestia Documentation Access:
 - Clean markdown: Add .md to any URL (e.g., https://docs.celestia.org/learn/TIA/overview.md)
 - LLMs.txt: https://docs.celestia.org/llms.txt
 - Skill file: https://docs.celestia.org/SKILL.md
+- CIPs: https://cips.celestia.org
 - DeepWikis: https://deepwiki.com/celestiaorg/docs, https://deepwiki.com/celestiaorg/cips, https://deepwiki.com/celestiaorg/celestia-app, https://deepwiki.com/celestiaorg/celestia-node
 ```
 
@@ -27,6 +28,7 @@ Celestia Documentation Access:
 
 - LLMs.txt: https://docs.celestia.org/llms.txt
 - Skill file: https://docs.celestia.org/SKILL.md (served from `public/SKILL.md`)
+- CIPs (Celestia Improvement Proposals): https://cips.celestia.org
 - Built with: Next.js + Nextra (MDX), exported as a static site.
 - **LLM-ready**: Add `.md` to any URL to get clean markdown (e.g., `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`)
 - DeepWikis for @celestiaorg:

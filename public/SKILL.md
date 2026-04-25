@@ -41,9 +41,11 @@ Start from these sources and follow them in order:
 
 1. Docs site map / LLM index:
    - https://docs.celestia.org/llms.txt
-2. Docs LLM and agent support:
+2. CIPs (Celestia Improvement Proposals):
+   - https://cips.celestia.org
+3. Docs LLM and agent support:
    - https://github.com/celestiaorg/docs?tab=readme-ov-file#llm-and-agent-support
-3. Repo-specific implementation guidance:
+4. Repo-specific implementation guidance:
    - https://github.com/celestiaorg/celestia-node/blob/main/CLAUDE.md
    - https://github.com/celestiaorg/celestia-app/blob/main/CLAUDE.md
    - https://github.com/celestiaorg/celestia-core/blob/main/CLAUDE.md
