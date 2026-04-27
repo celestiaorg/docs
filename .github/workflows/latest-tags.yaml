@@ -56,7 +56,7 @@ jobs:
                 per_page: 100,
               });
 
-              const match = releases.find((release) => {
+              const releaseMatch = releases.find((release) => {
                 if (release.draft) return false;
                 if (network === 'mainnet' && release.prerelease) return false;
                 const tag = release.tag_name;
@@ -70,11 +70,39 @@ jobs:
                 return true;
               });
 
-              if (!match) {
-                throw new Error(`No matching release found for ${owner}/${repo} (network=${network}).`);
+              if (releaseMatch) {
+                return releaseMatch.tag_name;
               }
 
-              return match.tag_name;
+              // Fall back to listing git tags when no matching GitHub Release is found.
+              core.warning(
+                `No matching release found for ${owner}/${repo} (network=${network}); falling back to git tags.`,
+              );
+
+              const tags = await github.paginate(github.rest.repos.listTags, {
+                owner,
+                repo,
+                per_page: 100,
+              });
+
+              const tagMatch = tags.find(({ name: tag }) => {
+                if (!tag) return false;
+
+                if (networkSuffix) return tag.endsWith(networkSuffix);
+
+                for (const suffix of nonMainnetSuffixes) {
+                  if (tag.endsWith(suffix)) return false;
+                }
+                // For mainnet, also exclude pre-release tags (rc, beta, alpha).
+                if (network === 'mainnet' && /-(rc|beta|alpha)\d*$/i.test(tag)) return false;
+                return true;
+              });
+
+              if (!tagMatch) {
+                throw new Error(`No matching tag found for ${owner}/${repo} (network=${network}).`);
+              }
+
+              return tagMatch.name;
             }
 
             async function resolveTagToCommitSha(repo, tag) {
