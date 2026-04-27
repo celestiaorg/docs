@@ -93,8 +93,9 @@ jobs:
                 for (const suffix of nonMainnetSuffixes) {
                   if (tag.endsWith(suffix)) return false;
                 }
-                // For mainnet, also exclude pre-release tags (rc, beta, alpha).
-                if (network === 'mainnet' && /-(rc|beta|alpha)\d*$/i.test(tag)) return false;
+                // For mainnet, also exclude pre-release tags (e.g. v1.0.0-rc1, v1.0.0-beta, v1.0.0-alpha2).
+                // The pattern matches a hyphen followed by the keyword and optional digits at the end of the string.
+                if (network === 'mainnet' && /^.+-(rc|beta|alpha)\d*$/i.test(tag)) return false;
                 return true;
               });
 
