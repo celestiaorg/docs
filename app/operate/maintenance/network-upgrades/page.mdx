@@ -35,11 +35,11 @@ The upgrade process can be broken down into a few steps:
    - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
    - Upgrades using in-protocol signaling (v3+) activate one week after 5/6 of the voting power has signaled for a particular version
 
-### Network upgrade history
+## Network upgrade history
 
 v7 (Hibiscus) was skipped on Mainnet Beta due to a bug discovered after testnet activation; v8 (defined in [CIP-49](https://cips.celestia.org/cip-049.html)) was activated instead.
 
-#### Arabica devnet
+### Arabica devnet
 
 | Version | Name       | Meta-CIP                                                                | Date and time           | Upgrade height                                                          | Delay period | Parameters                                                          |
 | ------- | ---------- | ----------------------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------- |
@@ -51,7 +51,7 @@ v7 (Hibiscus) was skipped on Mainnet Beta due to a bug discovered after testnet 
 | v7      | Hibiscus   | [CIP-47](https://cips.celestia.org/cip-047.html)                        | 2026/02/14 02:36:26 UTC | [10133989](https://arabica.celenium.io/block/10133989?tab=transactions) | 1 day        | [v7](https://celestiaorg.github.io/celestia-app/parameters_v7.html) |
 | v8      | —          | [CIP-49](https://cips.celestia.org/cip-049.html)                        | 2026/04/04 17:22:12 UTC | [10853352](https://arabica.celenium.io/block/10853352?tab=transactions) | 1 day        | [v8](https://celestiaorg.github.io/celestia-app/parameters_v8.html) |
 
-#### Mocha testnet
+### Mocha testnet
 
 | Version | Name       | Meta-CIP                                                                | Date and time           | Upgrade height                                                      | Delay period | Parameters                                                          |
 | ------- | ---------- | ----------------------------------------------------------------------- | ----------------------- | ------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------- |
@@ -63,7 +63,7 @@ v7 (Hibiscus) was skipped on Mainnet Beta due to a bug discovered after testnet 
 | v7      | Hibiscus   | [CIP-47](https://cips.celestia.org/cip-047.html)                        | 2026/02/23 18:21:52 UTC | [10209986](https://mocha-4.celenium.io/block/10209986)              | 2 days       | [v7](https://celestiaorg.github.io/celestia-app/parameters_v7.html) |
 | v8      | —          | [CIP-49](https://cips.celestia.org/cip-049.html)                        | 2026/04/16 14:26:21 UTC | [10941526](https://www.mintscan.io/celestia-testnet/block/10941526) | 2 days       | [v8](https://celestiaorg.github.io/celestia-app/parameters_v8.html) |
 
-#### Mainnet Beta
+### Mainnet Beta
 
 | Version | Name       | Meta-CIP                                                                | Date and time           | Upgrade height                                                | Delay period | Parameters                                                          |
 | ------- | ---------- | ----------------------------------------------------------------------- | ----------------------- | ------------------------------------------------------------- | ------------ | ------------------------------------------------------------------- |
@@ -75,7 +75,7 @@ v7 (Hibiscus) was skipped on Mainnet Beta due to a bug discovered after testnet 
 | v7      | Hibiscus   | [CIP-47](https://cips.celestia.org/cip-047.html)                        | N/A (skipped, see v8)   | N/A                                                           | —            | —                                                                   |
 | v8      | —          | [CIP-49](https://cips.celestia.org/cip-049.html)                        | 2026/05/05 16:37:35 UTC | [10960599](https://celestia.explorers.guru/block/10960599)    | 7 days       | [v8](https://celestiaorg.github.io/celestia-app/parameters_v8.html) |
 
-### Upcoming upgrades
+## Upcoming upgrades
 
 > **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/sdk/v0.53/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 
