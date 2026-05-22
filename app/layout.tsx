@@ -6,6 +6,10 @@ import "nextra-theme-docs/style.css";
 import "katex/dist/katex.min.css";
 import { FontStyles } from "@/components/FontStyles";
 
+const SITE_ORIGIN = "https://docs.celestia.org";
+const SITE_DESCRIPTION =
+  "Learn, build, and operate on Celestia - the modular data availability network.";
+
 // Use BASE env var (same as next.config.mjs) and ensure it's available client-side
 const basePath =
   process.env.NEXT_PUBLIC_BASE_PATH ||
@@ -23,9 +27,89 @@ const THEME_CONFIG = {
   primarySaturation: 100,
 };
 export const metadata = {
-  // Define your metadata here
-  // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
+  metadataBase: new URL(SITE_ORIGIN),
+  title: {
+    default: "Celestia Documentation",
+    template: "%s - Celestia Documentation",
+  },
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: SITE_ORIGIN,
+    siteName: "Celestia Documentation",
+    title: "Celestia Documentation",
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/Celestia-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Celestia Documentation",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@CelestiaOrg",
+    title: "Celestia Documentation",
+    description: SITE_DESCRIPTION,
+    images: ["/Celestia-og.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Celestia",
+  url: "https://celestia.org",
+  logo: `${SITE_ORIGIN}/logo-light.svg`,
+  sameAs: [
+    "https://github.com/celestiaorg",
+    "https://x.com/CelestiaOrg",
+    "https://discord.com/invite/YsnTPcSfWQ",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Celestia Documentation",
+  url: SITE_ORIGIN,
+  description: SITE_DESCRIPTION,
+};
+
+const documentationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: "Celestia Documentation",
+  description: SITE_DESCRIPTION,
+  url: SITE_ORIGIN,
+  publisher: {
+    "@type": "Organization",
+    name: "Celestia",
+    url: "https://celestia.org",
+  },
+  about: [
+    "Celestia",
+    "data availability",
+    "modular blockchain",
+    "blobspace",
+    "node operation",
+  ],
+};
+
+const jsonLd = [organizationJsonLd, websiteJsonLd, documentationJsonLd];
 
 const banner = (
   <Banner storageKey="some-key">Welcome to our new docs! 🎉</Banner>
@@ -86,8 +170,31 @@ export default async function RootLayout({
         <meta property="og:title" content="Celestia Documentation" />
         <meta
           property="og:description"
-          content="Learn, build, and operate on Celestia - the first modular blockchain network."
+          content={SITE_DESCRIPTION}
         />
+        <link rel="alternate" type="text/plain" href={withBasePath("/llms.txt")} />
+        <link
+          rel="alternate"
+          type="text/plain"
+          href={withBasePath("/llms-full.txt")}
+        />
+        <link
+          rel="service-desc"
+          type="application/linkset+json"
+          href={withBasePath("/.well-known/api-catalog")}
+        />
+        <link
+          rel="describedby"
+          type="application/json"
+          href={withBasePath("/.well-known/agent-skills/index.json")}
+        />
+        {jsonLd.map((data, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+          />
+        ))}
       </Head>
       <body>
         <Layout
