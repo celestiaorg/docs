@@ -249,7 +249,12 @@ const buildSections = (files) => {
   for (const file of files) {
     const rel = toPosixPath(file).replace(/^app\//, '');
     const parts = rel.split('/');
-    if (parts.length < 2) continue; // skip unexpected roots
+    if (parts.length < 2) {
+      const label = rel === 'page.mdx' ? 'Home' : titleize(rel.replace(/\.mdx$/, ''));
+      if (!grouped.has('Overview')) grouped.set('Overview', []);
+      grouped.get('Overview').push({ file, label });
+      continue;
+    }
 
     const [top, second, ...rest] = parts;
     // Section title: "Top" or "Top: Second"
@@ -265,7 +270,11 @@ const buildSections = (files) => {
   }
 
   // Sort sections and items for stability
-  const sortedSections = [...grouped.entries()].sort(([a], [b]) => a.localeCompare(b));
+  const sortedSections = [...grouped.entries()].sort(([a], [b]) => {
+    if (a === 'Overview') return -1;
+    if (b === 'Overview') return 1;
+    return a.localeCompare(b);
+  });
   return sortedSections.map(([title, items]) => ({
     title,
     items: items.sort((a, b) => a.file.localeCompare(b.file)),

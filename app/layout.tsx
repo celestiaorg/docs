@@ -33,12 +33,8 @@ export const metadata = {
     template: "%s - Celestia Documentation",
   },
   description: SITE_DESCRIPTION,
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
-    url: SITE_ORIGIN,
     siteName: "Celestia Documentation",
     title: "Celestia Documentation",
     description: SITE_DESCRIPTION,
@@ -223,11 +219,6 @@ export default async function RootLayout({
           href={withBasePath("/favicons/favicon-16x16.png")}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:title" content="Celestia Documentation" />
-        <meta
-          property="og:description"
-          content={SITE_DESCRIPTION}
-        />
         <link rel="alternate" type="text/plain" href={withBasePath("/llms.txt")} />
         <link
           rel="alternate"
