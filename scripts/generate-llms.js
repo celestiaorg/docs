@@ -419,21 +419,23 @@ const generateRobotsTxt = async (outputBase) => {
 };
 
 const generateAgentSkillsIndex = async (outputBase) => {
-  const skillPath = '/SKILL.md';
+  const skillPath = '/.well-known/agent-skills/celestia/SKILL.md';
   const skillHash = await sha256('public/SKILL.md');
   const index = {
-    $schema: 'https://docs.celestia.org/.well-known/agent-skills/schema.json',
+    $schema: 'https://schemas.agentskills.io/discovery/0.2.0/schema.json',
     skills: [
       {
         name: 'celestia',
-        type: 'codex-skill',
+        type: 'skill-md',
         description: 'Route Celestia requests to the correct repo and apply canonical blob submit/retrieve guidance with docs guardrails.',
         url: `${SITE_ORIGIN}${skillPath}`,
-        sha256: skillHash,
+        digest: `sha256:${skillHash}`,
       },
     ],
   };
 
+  await fs.mkdir(path.join(outputBase, '.well-known/agent-skills/celestia'), { recursive: true });
+  await fs.copyFile('public/SKILL.md', path.join(outputBase, '.well-known/agent-skills/celestia/SKILL.md'));
   await writeTextFile(outputBase, '.well-known/agent-skills/index.json', `${JSON.stringify(index, null, 2)}\n`);
 };
 

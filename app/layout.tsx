@@ -109,7 +109,63 @@ const documentationJsonLd = {
   ],
 };
 
-const jsonLd = [organizationJsonLd, websiteJsonLd, documentationJsonLd];
+const softwareApplicationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Celestia Node API",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: ["Linux", "macOS"],
+  url: `${SITE_ORIGIN}/build/rpc/node-api/`,
+  softwareHelp: `${SITE_ORIGIN}/operate/maintenance/troubleshooting/`,
+  isAccessibleForFree: true,
+  publisher: {
+    "@type": "Organization",
+    name: "Celestia",
+    url: "https://celestia.org",
+  },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Where can I troubleshoot Celestia node issues?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Use the Celestia troubleshooting documentation for common node, sync, network, and operational issues.",
+        url: `${SITE_ORIGIN}/operate/maintenance/troubleshooting/`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Where can I find the Celestia Node API reference?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Use the Celestia Node API reference for RPC methods and the OpenRPC specification for machine-readable API details.",
+        url: `${SITE_ORIGIN}/build/rpc/node-api/`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Where can I learn how to run a Celestia light node?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Start with the light node quickstart guide, then use the troubleshooting page if setup, sync, or connectivity issues appear.",
+        url: `${SITE_ORIGIN}/operate/data-availability/light-node/quickstart/`,
+      },
+    },
+  ],
+};
+
+const jsonLd = [
+  organizationJsonLd,
+  websiteJsonLd,
+  documentationJsonLd,
+  softwareApplicationJsonLd,
+  faqJsonLd,
+];
 
 const banner = (
   <Banner storageKey="some-key">Welcome to our new docs! 🎉</Banner>
