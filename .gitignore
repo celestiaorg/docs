@@ -46,4 +46,11 @@ _pagefind/
 # agents llms
 AGENTS.md
 /public/llms.txt
+/public/llms-full.txt
+/public/**/*.md
+!/public/SKILL.md
+/public/**/llms.txt
+/public/robots.txt
+/public/sitemap.xml
+/public/.well-known/
 package-lock.json
