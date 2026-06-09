@@ -246,4 +246,4 @@ As linked above, use the [Celestia Node API](/build/rpc/node-api) or [check out 
 
 ### Posting headers to Ethereum
 
-How headers are posted to Ethereum is entirely dependent upon how the rollup light client contracts work. For examples of interacting with the Ethereum blockchain programmatically, please see the [go-ethereum book](https://goethereumbook.org/en/transactions/) or one of the many other resources for [submitting transactions](https://github.com/ethereumbook/ethereumbook/blob/first_edition_first_print/06transactions.asciidoc) or [writing contracts](https://github.com/ethereumbook/ethereumbook/blob/first_edition_first_print/07smart-contracts-solidity.asciidoc).
+How headers are posted to Ethereum is entirely dependent upon how the rollup light client contracts work. For examples of interacting with the Ethereum blockchain programmatically, please see resources for [submitting transactions](https://github.com/ethereumbook/ethereumbook/blob/first_edition_first_print/06transactions.asciidoc) or [writing contracts](https://github.com/ethereumbook/ethereumbook/blob/first_edition_first_print/07smart-contracts-solidity.asciidoc).
