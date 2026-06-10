@@ -1,0 +1,36 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-c0ecbfaae1a667ad.js","4503","static/chunks/4503-1524e753909f4562.js","720","static/chunks/720-a01a86e1a6481a04.js","6319","static/chunks/app/build/rpc/node-api/page-754483f50eaaab8d.js"],"WrapperWithFooter"]
+4:I[90721,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-c0ecbfaae1a667ad.js","4503","static/chunks/4503-1524e753909f4562.js","720","static/chunks/720-a01a86e1a6481a04.js","6319","static/chunks/app/build/rpc/node-api/page-754483f50eaaab8d.js"],"HeadingAnchor"]
+5:I[59111,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-c0ecbfaae1a667ad.js","4503","static/chunks/4503-1524e753909f4562.js","720","static/chunks/720-a01a86e1a6481a04.js","6319","static/chunks/app/build/rpc/node-api/page-754483f50eaaab8d.js"],"default"]
+6:I[71194,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-c0ecbfaae1a667ad.js","4503","static/chunks/4503-1524e753909f4562.js","720","static/chunks/720-a01a86e1a6481a04.js","6319","static/chunks/app/build/rpc/node-api/page-754483f50eaaab8d.js"],"DynamicRPCTOC"]
+7:I[90484,[],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T58c,import NodeAPIContent from "../components/NodeAPIContent";
+import { DynamicRPCTOC } from "../components/DynamicRPCTOC";
+
+{/* Hide Nextra's copy button - doesn't work well with dynamic content on this page */}
+<style>{`
+  article button:has(svg):has(*:is(:contains("Copy page"), :contains("Copied"))) {
+    display: none !important;
+  }
+  /* Fallback: hide the container if :has() or :contains() not supported */
+  article div[class*="border"][class*="inline-flex"][class*="float-end"] {
+    display: none !important;
+  }
+`}</style>
+
+# Node API
+
+<div style={{ display: 'none' }}>
+
+## Celestia Node API
+
+The Celestia Node API is the collection of RPC methods that can be used to interact with the services provided by Celestia Data Availability Nodes. Node API uses auth tokens to control access to this API.
+
+Celestia node RPC reference for blob, blobstream, da, das, fraud, header, node, p2p, share, and state packages. Includes methods like blob.Get, blob.GetAll, blob.GetProof, blob.Submit, share.GetShare, share.GetRange, share.GetNamespaceData, share.GetEDS, share.SharesAvailable, state.SubmitPayForBlob, state.Balance, state.Transfer, header.NetworkHead, header.GetByHeight, header.Subscribe, p2p.Peers, p2p.Connect, p2p.Info, da.Submit, da.Validate, da.GetProofs, das.SamplingStats, node.AuthNew, node.Info, blobstream.GetDataRootTupleInclusionProof, fraud.Subscribe.
+
+</div>
+
+<NodeAPIContent />
+<DynamicRPCTOC />0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Node API","filePath":"app/build/rpc/node-api/page.mdx","timestamp":1781106779000},"toc":[{"value":"Celestia Node API","id":"celestia-node-api","depth":2}],"sourceCode":"$3","children":["\n",["$","style",null,{"children":"\narticle button:has(svg):has(*:is(:contains(\"Copy page\"), :contains(\"Copied\"))) {\n  display: none !important;\n}\n/* Fallback: hide the container if :has() or :contains() not supported */\narticle div[class*=\"border\"][class*=\"inline-flex\"][class*=\"float-end\"] {\n  display: none !important;\n}\n"}],"\n",["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Node API","$undefined"]}],"\n",["$","div",null,{"style":{"display":"none"},"children":[["$","h2",null,{"id":"celestia-node-api","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Celestia Node API",["$","$L4",null,{"id":"celestia-node-api"}]]}],["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The Celestia Node API is the collection of RPC methods that can be used to interact with the services provided by Celestia Data Availability Nodes. Node API uses auth tokens to control access to this API."}],["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia node RPC reference for blob, blobstream, da, das, fraud, header, node, p2p, share, and state packages. Includes methods like blob.Get, blob.GetAll, blob.GetProof, blob.Submit, share.GetShare, share.GetRange, share.GetNamespaceData, share.GetEDS, share.SharesAvailable, state.SubmitPayForBlob, state.Balance, state.Transfer, header.NetworkHead, header.GetByHeight, header.Subscribe, p2p.Peers, p2p.Connect, p2p.Info, da.Submit, da.Validate, da.GetProofs, das.SamplingStats, node.AuthNew, node.Info, blobstream.GetDataRootTupleInclusionProof, fraud.Subscribe."}]]}],"\n",["$","$L5",null,{}],"\n",["$","$L6",null,{}]]}],null,["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"XekT3rvZqmKUoJBjFcUXa"}
+9:null

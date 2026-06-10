@@ -1,0 +1,68 @@
+# Celestia Operate documentation
+
+> Section-specific LLM index for the Operate area of the Celestia docs.
+
+- Full docs index: https://docs.celestia.org/llms.txt
+- Full LLM context: https://docs.celestia.org/llms-full.txt
+
+## Blobstream
+
+- [Deploy Contract](https://docs.celestia.org/operate/blobstream/deploy-contract.md)
+- [Install Binary](https://docs.celestia.org/operate/blobstream/install-binary.md)
+- [Key Management](https://docs.celestia.org/operate/blobstream/key-management.md)
+- [Orchestrator](https://docs.celestia.org/operate/blobstream/orchestrator.md)
+- [Relayer](https://docs.celestia.org/operate/blobstream/relayer.md)
+
+## Consensus Validators
+
+- [Cli Reference](https://docs.celestia.org/operate/consensus-validators/cli-reference.md)
+- [Consensus Node](https://docs.celestia.org/operate/consensus-validators/consensus-node.md)
+- [Foundation Delegation Program](https://docs.celestia.org/operate/consensus-validators/foundation-delegation-program.md)
+- [Install Celestia App](https://docs.celestia.org/operate/consensus-validators/install-celestia-app.md)
+- [Metrics](https://docs.celestia.org/operate/consensus-validators/metrics.md)
+- [Slashing](https://docs.celestia.org/operate/consensus-validators/slashing.md)
+- [Upgrade Monitor](https://docs.celestia.org/operate/consensus-validators/upgrade-monitor.md)
+- [Validator Node](https://docs.celestia.org/operate/consensus-validators/validator-node.md)
+
+## Data Availability
+
+- [Bridge Node](https://docs.celestia.org/operate/data-availability/bridge-node.md)
+- [Config Reference](https://docs.celestia.org/operate/data-availability/config-reference.md)
+- [Custom Networks](https://docs.celestia.org/operate/data-availability/custom-networks.md)
+- [Ibc Relayer](https://docs.celestia.org/operate/data-availability/ibc-relayer.md)
+- [Install Celestia Node](https://docs.celestia.org/operate/data-availability/install-celestia-node.md)
+- [Light Node / Advanced](https://docs.celestia.org/operate/data-availability/light-node/advanced.md)
+- [Light Node / Quickstart](https://docs.celestia.org/operate/data-availability/light-node/quickstart.md)
+- [Metrics](https://docs.celestia.org/operate/data-availability/metrics.md)
+- [Storage Optimization](https://docs.celestia.org/operate/data-availability/storage-optimization.md)
+
+## Getting Started
+
+- [Docker](https://docs.celestia.org/operate/getting-started/docker.md)
+- [Environment Setup](https://docs.celestia.org/operate/getting-started/environment-setup.md)
+- [Hardware Requirements](https://docs.celestia.org/operate/getting-started/hardware-requirements.md)
+- [Overview](https://docs.celestia.org/operate/getting-started/overview.md)
+
+## Keys Wallets
+
+- [Celestia App Wallet](https://docs.celestia.org/operate/keys-wallets/celestia-app-wallet.md)
+- [Celestia Node Key](https://docs.celestia.org/operate/keys-wallets/celestia-node-key.md)
+- [Multisig](https://docs.celestia.org/operate/keys-wallets/multisig.md)
+- [Vesting](https://docs.celestia.org/operate/keys-wallets/vesting.md)
+
+## Maintenance
+
+- [Datastore Structure](https://docs.celestia.org/operate/maintenance/datastore-structure.md)
+- [Network Upgrades](https://docs.celestia.org/operate/maintenance/network-upgrades.md)
+- [Snapshots](https://docs.celestia.org/operate/maintenance/snapshots.md)
+- [Systemd](https://docs.celestia.org/operate/maintenance/systemd.md)
+- [Troubleshooting](https://docs.celestia.org/operate/maintenance/troubleshooting.md)
+- [Trusted Hash Recovery](https://docs.celestia.org/operate/maintenance/trusted-hash-recovery.md)
+
+## Networks
+
+- [Arabica Devnet](https://docs.celestia.org/operate/networks/arabica-devnet.md)
+- [Local Devnet](https://docs.celestia.org/operate/networks/local-devnet.md)
+- [Mainnet Beta](https://docs.celestia.org/operate/networks/mainnet-beta.md)
+- [Mocha Testnet](https://docs.celestia.org/operate/networks/mocha-testnet.md)
+- [Overview](https://docs.celestia.org/operate/networks/overview.md)
