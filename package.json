@@ -19,6 +19,7 @@
     "pre-push": "bun run lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.10",
     "@heroicons/react": "^2.2.0",
     "@monaco-editor/react": "^4.7.0",
     "@open-rpc/client-js": "^2.0.0",
