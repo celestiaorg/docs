@@ -157,11 +157,10 @@ nodes.
 
 #### Retain all block data
 
-And in your `app.toml`, `min-retain-blocks` should remain as the default
-setting of `3000`:
+In your `app.toml`, explicitly set `min-retain-blocks` to `0`:
 
 ```toml
-min-retain-blocks = 3000 # retain 3000 block data, this is default setting
+min-retain-blocks = 0 # retain all block data
 ```
 
 ### Query transactions by hash
@@ -190,14 +189,25 @@ pruning = "nothing"
 If you want to save on storage requirements, consider using
 `pruning = "everything"` in your `app.toml` to prune everything. If you
 select `"everything"` or `"default"`, but still want to keep the block data,
-you can do so by not changing the default value of
+you can do so by explicitly setting
 `min-retain-blocks = 0` in your `app.toml`. A value of `0` for
 `min-retain-blocks` will keep all block data. This will prune snapshots of
 the state, but it will keep block data:
 
 ```toml
 pruning = "everything"
-min-retain-blocks = 0 # this is the default setting
+min-retain-blocks = 0 # retain all block data
+```
+
+### Recommended block retention for pruned nodes
+
+The default `min-retain-blocks` value is `3000`. For non-archive nodes that
+can prune historical block data but need a longer retention window, set
+`min-retain-blocks = 600000` in your `app.toml`. This keeps a larger recent
+block history without retaining all block data:
+
+```toml
+min-retain-blocks = 600000 # retain recent block data while pruning older blocks
 ```
 
 ## Sync types
