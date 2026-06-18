@@ -11,7 +11,7 @@ This directory contains the workflows used to lint, deploy, preview, and keep re
 ## `deploy-cloudflare.yml` — Deploy to Cloudflare Pages
 
 - **Triggers:** manual `workflow_dispatch`, plus same-repo pull requests.
-- **What it does:** builds the full-static Vocs site, copies `worker/index.js` into `out/public/_worker.js` for the Pages MCP endpoint, then deploys `out/public/` to Cloudflare Pages.
+- **What it does:** builds the full-static Vocs site, copies `worker/index.js` into `out/public/_worker.js` for the Pages MCP endpoint, ensures the test Pages project exists, then deploys `out/public/` to Cloudflare Pages.
 - **Required secrets:** `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
 
 ## `preview.yaml` — Deploy PR Preview

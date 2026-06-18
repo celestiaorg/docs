@@ -59,6 +59,21 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Ensure Cloudflare Pages project exists
+        if: steps.cloudflare.outputs.skip != 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set +e
+          output="$(bunx wrangler pages project create "$CLOUDFLARE_PAGES_PROJECT" --production-branch main 2>&1)"
+          status=$?
+          set -e
+          echo "$output"
+          if [[ "$status" -ne 0 && "$output" != *"already exists"* ]]; then
+            exit "$status"
+          fi
+
       - name: Deploy
         if: steps.cloudflare.outputs.skip != 'true'
         uses: cloudflare/wrangler-action@v3
