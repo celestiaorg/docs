@@ -52,23 +52,27 @@ const RPCMethod = ({
           {params.map((param, i, { length }) => (
             <span key={param.name} className="rpc-method__param">
               <span>{param.name}</span>{' '}
-              <span
+              <button
+                type="button"
                 className="rpc-method__type"
+                aria-label={`Show schema for ${param.name}`}
                 onClick={() => activateSidebar(param)}
               >
                 {param.description}
-                {length - 1 !== i && ', '}
-              </span>
+              </button>
+              {length - 1 !== i && ', '}
             </span>
           ))}
           )
           {result.description !== 'Null' && (
-            <span
+            <button
+              type="button"
               className="rpc-method__result"
+              aria-label="Show result schema"
               onClick={() => activateSidebar(result)}
             >
               {result.description}
-            </span>
+            </button>
           )}
           <span className="rpc-method__auth">
             perms: {method.auth}

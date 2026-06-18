@@ -9,6 +9,10 @@ const siteDescription =
 
 const rawBasePath = process.env.BASE?.trim()
 const basePath = rawBasePath ? rawBasePath.replace(/\/$/, '') || '/' : '/'
+const withBasePath = (pathname: string) => {
+  const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`
+  return basePath === '/' ? normalizedPath : `${basePath}${normalizedPath}`
+}
 
 export default defineConfig({
   title: 'Celestia Documentation',
@@ -27,18 +31,23 @@ export default defineConfig({
     rehypePlugins: [rehypeKatex],
   },
   logoUrl: {
-    light: '/logo-light.svg',
-    dark: '/logo-dark.svg',
+    light: withBasePath('/logo-light.svg'),
+    dark: withBasePath('/logo-dark.svg'),
   },
-  iconUrl: '/favicons/favicon.svg',
-  ogImageUrl: '/Celestia-og.png',
+  iconUrl: withBasePath('/favicons/favicon.svg'),
+  ogImageUrl: withBasePath('/Celestia-og.png'),
   accentColor: 'light-dark(#6d3df5, #9d7cff)',
   editLink: {
     link: (filePath) => {
-      const sourcePath = filePath
-        .replace(/^src\/pages\//, 'app/')
-        .replace(/^app\/index\.mdx$/, 'app/page.mdx')
-        .replace(/\/index\.mdx$/, '/page.mdx')
+      let sourcePath = filePath.replace(/^src\/pages\//, 'app/')
+
+      if (sourcePath === 'app/index.mdx') {
+        sourcePath = 'app/page.mdx'
+      } else if (sourcePath === 'app/operate/index.mdx') {
+        sourcePath = 'app/operate/_page._mdx'
+      } else {
+        sourcePath = sourcePath.replace(/\/index\.mdx$/, '/page.mdx')
+      }
 
       return `https://github.com/celestiaorg/docs/edit/main/${sourcePath}`
     },

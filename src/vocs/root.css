@@ -5,7 +5,7 @@
   font-family: 'UntitledSans';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/untitled-sans/untitled-sans-regular.woff2') format('woff2');
+  src: url('../../public/fonts/untitled-sans/untitled-sans-regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -13,7 +13,7 @@
   font-family: 'UntitledSans';
   font-style: normal;
   font-weight: 500;
-  src: url('/fonts/untitled-sans/untitled-sans-medium.woff2') format('woff2');
+  src: url('../../public/fonts/untitled-sans/untitled-sans-medium.woff2') format('woff2');
 }
 
 @font-face {
@@ -21,7 +21,7 @@
   font-family: 'Youth';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/youth/Youth-Regular.woff2') format('woff2');
+  src: url('../../public/fonts/youth/Youth-Regular.woff2') format('woff2');
 }
 
 :root {

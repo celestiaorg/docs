@@ -165,7 +165,21 @@
 
 .rpc-method__type,
 .rpc-method__result {
+  appearance: none;
+  background: transparent;
+  border: 0;
   cursor: pointer;
+  display: inline;
+  font: inherit;
+  padding: 0;
+  text-align: inherit;
+}
+
+.rpc-method__type:focus-visible,
+.rpc-method__result:focus-visible {
+  border-radius: 0.25rem;
+  outline: 2px solid light-dark(#6d3df5, #a78bfa);
+  outline-offset: 2px;
 }
 
 .rpc-method__auth {

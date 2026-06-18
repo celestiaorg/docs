@@ -3,6 +3,10 @@ import type { ReactNode } from 'react'
 const siteOrigin = 'https://docs.celestia.org'
 const siteDescription =
   'Learn, build, and operate on Celestia - the modular data availability network.'
+const basePath = import.meta.env.BASE_URL ?? '/'
+const basePathWithTrailingSlash = basePath.endsWith('/') ? basePath : `${basePath}/`
+const withBasePath = (pathname: string) =>
+  `${basePathWithTrailingSlash}${pathname.replace(/^\//, '')}`
 
 const jsonLd = [
   {
@@ -64,10 +68,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="alternate" type="text/plain" href="/llms.txt" />
-      <link rel="alternate" type="text/plain" href="/llms-full.txt" />
-      <link rel="service-desc" type="application/linkset+json" href="/.well-known/api-catalog" />
-      <link rel="describedby" type="application/json" href="/.well-known/agent-skills/index.json" />
+      <link rel="alternate" type="text/plain" href={withBasePath('/llms.txt')} />
+      <link rel="alternate" type="text/plain" href={withBasePath('/llms-full.txt')} />
+      <link
+        rel="service-desc"
+        type="application/linkset+json"
+        href={withBasePath('/.well-known/api-catalog')}
+      />
+      <link
+        rel="describedby"
+        type="application/json"
+        href={withBasePath('/.well-known/agent-skills/index.json')}
+      />
       {jsonLd.map((data, index) => (
         <script
           key={index}

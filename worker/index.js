@@ -147,7 +147,21 @@ async function callTool(env, name, args) {
   throw { code: -32602, message: `Unknown tool: ${name}` }
 }
 
+function invalidRequest() {
+  return {
+    jsonrpc: '2.0',
+    id: null,
+    error: { code: -32600, message: 'Invalid Request' },
+  }
+}
+
+function isRpcMessage(message) {
+  return message !== null && typeof message === 'object' && !Array.isArray(message)
+}
+
 async function handleRpc(env, message) {
+  if (!isRpcMessage(message)) return invalidRequest()
+
   const { id, method, params } = message
 
   if (id === undefined || id === null) return null
