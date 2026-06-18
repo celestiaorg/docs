@@ -63,6 +63,15 @@ function matchesHostname(hostname, suffix) {
   return hostname === suffix || hostname.endsWith(`.${suffix}`);
 }
 
+function inferEndpointKind(value, fallback = "rpc") {
+  const lower = value.toLowerCase();
+  if (/websocket|wss?:/.test(lower)) return "websocket";
+  if (/\bgrpc\b/.test(lower)) return "grpc";
+  if (/\bapi\b|\blcd\b|\brest\b/.test(lower)) return "api";
+  if (/\brpc\b|\bconsensus\b/.test(lower)) return "rpc";
+  return fallback;
+}
+
 /** True for Celestia-operated (non-community) hostnames. */
 function isOfficialEndpoint(s) {
   const hostname = getEndpointHost(s);
@@ -95,21 +104,23 @@ function checkTcp(host, port) {
   });
 }
 
-/** HTTP(S) health check. Resolves true if status < 400. Falls back to GET if HEAD fails. */
+/** HTTP(S) reachability check. Resolves true when the server returns any HTTP response. */
 async function checkHttp(url) {
   for (const method of ["HEAD", "GET"]) {
+    let timer;
     try {
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), HTTP_TIMEOUT_MS);
-      const res = await fetch(url, {
+      timer = setTimeout(() => controller.abort(), HTTP_TIMEOUT_MS);
+      await fetch(url, {
         method,
         signal: controller.signal,
         redirect: "follow",
       });
-      clearTimeout(timer);
-      if (res.status < 400) return true;
+      return true;
     } catch {
       // try next method
+    } finally {
+      clearTimeout(timer);
     }
   }
   return false;
@@ -150,18 +161,18 @@ function extractMochaBulletEndpoints(content) {
   const endpoints = [];
   const lines = content.split("\n");
   let inCommunitySection = false;
+  let endpointKind = "rpc";
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     // Detect community section headers
     if (/^#{2,3}\s+Community\b/i.test(line)) {
       inCommunitySection = true;
+      endpointKind = inferEndpointKind(line, endpointKind);
       continue;
     }
     // A new heading of equal or higher level ends the section
     if (inCommunitySection && /^#{1,3}\s+/.test(line) && !/^#{2,3}\s+Community\b/i.test(line)) {
-      // Check if it's a sub-heading within the community section
-      if (/^#{4,}\s+/.test(line)) continue; // deeper subheading, stay in section
       inCommunitySection = false;
       continue;
     }
@@ -172,7 +183,12 @@ function extractMochaBulletEndpoints(content) {
     if (!m) continue;
     const raw = m[1];
     if (hasTemplateVar(raw) || isOfficialEndpoint(raw)) continue;
-    endpoints.push({ raw, lineIndex: i, line });
+    endpoints.push({
+      raw,
+      lineIndex: i,
+      line,
+      endpointKind: inferEndpointKind(raw, endpointKind),
+    });
   }
   return endpoints;
 }
@@ -224,16 +240,17 @@ function extractMainnetTableEndpoints(content) {
     if (cells.length < 4) continue;
 
     // cells: [provider, rpc, api, grpc, ws?]
-    const rowEndpoints = [];
+    const endpointKinds = ["rpc", "api", "grpc", "websocket"];
+    const endpointEntries = [];
     for (let ci = 1; ci < cells.length; ci++) {
       const m = cells[ci].match(/`([^`]+)`/);
       if (!m) continue;
       const raw = m[1];
       if (hasTemplateVar(raw) || isOfficialEndpoint(raw) || raw === "-") continue;
-      rowEndpoints.push(raw);
+      endpointEntries.push({ raw, endpointKind: endpointKinds[ci - 1] ?? "rpc" });
     }
-    if (rowEndpoints.length > 0) {
-      endpoints.push({ lineIndex: i, line, rawEndpoints: rowEndpoints, provider: cells[0] });
+    if (endpointEntries.length > 0) {
+      endpoints.push({ lineIndex: i, line, endpointEntries, provider: cells[0] });
     }
   }
   return endpoints;
@@ -249,6 +266,7 @@ function extractArabicaTableEndpoints(content) {
   const lines = content.split("\n");
   let inSection = false;
   let pastHeader = false;
+  let endpointKind = "rpc";
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -273,8 +291,14 @@ function extractArabicaTableEndpoints(content) {
     }
     if (/^\|\s*[-:]+/.test(line)) continue;
 
+    const cells = line
+      .split("|")
+      .slice(1, -1)
+      .map((c) => c.trim());
+    if (cells[1]) endpointKind = inferEndpointKind(cells[1], endpointKind);
+
     // Extract backtick-wrapped endpoints from the row
-    const rowEndpoints = [];
+    const endpointEntries = [];
     const re = /`([^`]+)`/g;
     let match;
     while ((match = re.exec(line)) !== null) {
@@ -282,10 +306,10 @@ function extractArabicaTableEndpoints(content) {
       if (hasTemplateVar(raw) || isOfficialEndpoint(raw)) continue;
       // Skip things that aren't endpoints (e.g. "–core.ip string")
       if (/^\-\-/.test(raw) || /^celestia\s/.test(raw)) continue;
-      rowEndpoints.push(raw);
+      endpointEntries.push({ raw, endpointKind });
     }
-    if (rowEndpoints.length > 0) {
-      endpoints.push({ lineIndex: i, line, rawEndpoints: rowEndpoints });
+    if (endpointEntries.length > 0) {
+      endpoints.push({ lineIndex: i, line, endpointEntries });
     }
   }
   return endpoints;
@@ -296,30 +320,62 @@ function extractArabicaTableEndpoints(content) {
 // ---------------------------------------------------------------------------
 
 /**
- * Given a raw endpoint string, return { host, port, type } for checking.
- *   - `https://...`  →  type: "http"
- *   - `wss://...`    →  type: "ws" (tcp on 443)
- *   - `host:port`    →  type: "tcp"
- *   - `host`         →  type: "tcp" on port 26657
+ * Given a raw endpoint string and endpoint kind, return a descriptor for checking.
+ *   - HTTP(S)/API endpoints  →  HTTP reachability probe
+ *   - WebSocket endpoints    →  HTTP reachability probe against the upgrade URL
+ *   - `host:port`            →  TCP probe, except scheme-less API endpoints
+ *   - bare RPC host          →  TCP probe on port 26657
+ *   - bare gRPC host         →  TCP probe on port 9090
  */
-function resolveCheck(raw) {
-  if (/^https?:\/\//i.test(raw)) {
-    // Normalise: ensure trailing-slash-less URL works with HEAD
-    const url = raw.replace(/\/+$/, "");
-    return { type: "http", url, label: raw };
+function getExplicitPort(raw) {
+  const value = raw.trim();
+  if (/^https?:\/\//i.test(value) || /^wss?:\/\//i.test(value)) {
+    try {
+      const port = new URL(value).port;
+      return port ? Number(port) : null;
+    } catch {
+      return null;
+    }
   }
+
+  const withoutPath = value.split("/")[0];
+  const ipv6Match = withoutPath.match(/^\[[^\]]+\]:(\d+)$/);
+  if (ipv6Match) return Number(ipv6Match[1]);
+
+  const portMatch = withoutPath.match(/^[^:]+:(\d+)$/);
+  return portMatch ? Number(portMatch[1]) : null;
+}
+
+function toHttpUrl(raw) {
+  const value = raw.trim().replace(/\/+$/, "");
+  if (/^https?:\/\//i.test(raw)) {
+    return value;
+  }
+
+  const port = getExplicitPort(value);
+  const scheme = port && port !== 443 ? "http" : "https";
+  return `${scheme}://${value}`;
+}
+
+function resolveCheck(raw, endpointKind = "rpc") {
   if (/^wss?:\/\//i.test(raw)) {
-    // WebSocket endpoints: check via HTTPS since they need an HTTP upgrade handshake
-    const httpUrl = raw.replace(/^wss:/, "https:").replace(/^ws:/, "http:");
+    // WebSocket endpoints: check via HTTP since they need an HTTP upgrade handshake.
+    const httpUrl = raw.replace(/^wss:/i, "https:").replace(/^ws:/i, "http:");
     return { type: "http", url: httpUrl, label: raw };
   }
+
+  if (/^https?:\/\//i.test(raw) || endpointKind === "api") {
+    return { type: "http", url: toHttpUrl(raw), label: raw };
+  }
+
   // host:port
   const colonMatch = raw.match(/^([^:]+):(\d+)(.*)$/);
   if (colonMatch) {
     return { type: "tcp", host: colonMatch[1], port: Number(colonMatch[2]), label: raw };
   }
-  // bare host — default RPC port
-  return { type: "tcp", host: raw, port: 26657, label: raw };
+
+  const defaultPort = endpointKind === "grpc" ? 9090 : 26657;
+  return { type: "tcp", host: raw, port: defaultPort, label: raw };
 }
 
 // ---------------------------------------------------------------------------
@@ -359,21 +415,22 @@ async function main() {
         const eps = extractMochaBulletEndpoints(content);
         checkItems = eps.map((ep) => ({
           ...ep,
-          check: resolveCheck(ep.raw),
+          check: resolveCheck(ep.raw, ep.endpointKind),
           rowEndpoints: [ep.raw],
         }));
       } else if (networkName === "mainnet-beta") {
         const rows = extractMainnetTableEndpoints(content);
         checkItems = [];
         for (const row of rows) {
-          for (const raw of row.rawEndpoints) {
+          for (const entry of row.endpointEntries) {
             checkItems.push({
-              raw,
+              raw: entry.raw,
+              endpointKind: entry.endpointKind,
               lineIndex: row.lineIndex,
               line: row.line,
               provider: row.provider,
-              check: resolveCheck(raw),
-              rowEndpoints: row.rawEndpoints,
+              check: resolveCheck(entry.raw, entry.endpointKind),
+              rowEndpoints: row.endpointEntries.map((ep) => ep.raw),
             });
           }
         }
@@ -382,13 +439,14 @@ async function main() {
         const rows = extractArabicaTableEndpoints(content);
         checkItems = [];
         for (const row of rows) {
-          for (const raw of row.rawEndpoints) {
+          for (const entry of row.endpointEntries) {
             checkItems.push({
-              raw,
+              raw: entry.raw,
+              endpointKind: entry.endpointKind,
               lineIndex: row.lineIndex,
               line: row.line,
-              check: resolveCheck(raw),
-              rowEndpoints: row.rawEndpoints,
+              check: resolveCheck(entry.raw, entry.endpointKind),
+              rowEndpoints: row.endpointEntries.map((ep) => ep.raw),
             });
           }
         }
@@ -441,7 +499,8 @@ async function main() {
       // --- Apply fixes per line ---
       const lines = content.split("\n");
       const linesToRemove = new Set();
-      let edits = 0;
+      let removedRows = 0;
+      let editedRows = 0;
 
       for (const [lineIndex, lineFailures] of failedByLine) {
         const lineAll = allByLine.get(lineIndex);
@@ -450,6 +509,14 @@ async function main() {
         if (allFailed) {
           // Every endpoint in this line/row is down — remove the whole line
           linesToRemove.add(lineIndex);
+          if (networkName === "mocha-testnet") {
+            let next = lineIndex + 1;
+            while (next < lines.length && /^\s+-/.test(lines[next])) {
+              linesToRemove.add(next);
+              next++;
+            }
+          }
+          removedRows++;
         } else {
           // Partial failure in a table row — replace broken cells with `-`
           let edited = lines[lineIndex];
@@ -457,19 +524,19 @@ async function main() {
             edited = edited.replace("`" + r.raw + "`", "-");
           }
           lines[lineIndex] = edited;
+          editedRows++;
         }
 
         for (const r of lineFailures) {
           removals.push({ network: networkName, endpoint: r.raw, file: relPath });
         }
-        edits++;
       }
 
       const newLines = lines.filter((_, idx) => !linesToRemove.has(idx));
       await fileHandle.truncate(0);
       await fileHandle.write(newLines.join("\n"), 0, "utf-8");
       console.log(
-        `  Fixed ${edits} line(s) in ${relPath} (${linesToRemove.size} removed, ${edits - linesToRemove.size} edited)`,
+        `  Fixed ${removedRows + editedRows} row(s) in ${relPath} (${linesToRemove.size} line(s) removed, ${editedRows} row(s) edited)`,
       );
     } finally {
       await fileHandle.close();
