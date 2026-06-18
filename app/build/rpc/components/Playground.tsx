@@ -4,8 +4,6 @@ import {
   Dialog,
   DialogPanel,
   DialogTitle,
-  Transition,
-  TransitionChild,
 } from '@headlessui/react';
 import { CommandLineIcon } from '@heroicons/react/24/solid';
 import { Editor } from '@monaco-editor/react';
@@ -208,55 +206,39 @@ const Playground = ({
   // Use shared dark mode hook
   const isDark = useDarkMode();
 
-  return (
-    <Transition show={playgroundOpen}>
-      <Dialog
-        style={{ position: 'relative', zIndex: 9999 }}
-        onClose={setPlaygroundOpen}
-      >
-        <TransitionChild
-          enter='ease-out duration-300'
-          enterFrom='opacity-0'
-          enterTo='opacity-100'
-          leave='ease-in duration-200'
-          leaveFrom='opacity-100'
-          leaveTo='opacity-0'
-        >
-          <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-              zIndex: 9999
-            }}
-          />
-        </TransitionChild>
+  if (!playgroundOpen) return null;
 
+  return (
+    <Dialog
+      style={{ position: 'relative', zIndex: 9999 }}
+      onClose={setPlaygroundOpen}
+    >
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          zIndex: 9999
+        }}
+      />
+
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 10000,
+          overflow: 'auto'
+        }}
+      >
         <div
           style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 10000,
-            overflow: 'auto'
+            display: 'flex',
+            minHeight: '100vh',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1rem'
           }}
         >
-          <div
-            style={{
-              display: 'flex',
-              minHeight: '100vh',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '1rem'
-            }}
-          >
-            <TransitionChild
-              enter='ease-out duration-300'
-              enterFrom='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
-              enterTo='opacity-100 translate-y-0 sm:scale-100'
-              leave='ease-in duration-200'
-              leaveFrom='opacity-100 translate-y-0 sm:scale-100'
-              leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
-            >
               <DialogPanel
                 style={{
                   position: 'relative',
@@ -572,13 +554,10 @@ const Playground = ({
                     Dismiss
                   </button>
                 </div>
-              </DialogPanel>
-            </TransitionChild>
-          </div>
+          </DialogPanel>
         </div>
-      </Dialog>
-    </Transition>
+      </div>
+    </Dialog>
   );
 };
 export default Playground;
-

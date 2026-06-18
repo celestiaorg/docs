@@ -1,0 +1,56 @@
+@import 'katex/dist/katex.min.css';
+
+@font-face {
+  font-display: swap;
+  font-family: 'UntitledSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/untitled-sans/untitled-sans-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'UntitledSans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/untitled-sans/untitled-sans-medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Youth';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/youth/Youth-Regular.woff2') format('woff2');
+}
+
+:root {
+  --vocs-font-family-default: 'UntitledSans', sans-serif;
+  --vocs-font-family-mono:
+    'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+body {
+  font-family: 'UntitledSans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Youth', sans-serif;
+  font-weight: 400;
+}
+
+.celestia-steps {
+  counter-reset: celestia-step;
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.celestia-steps > * {
+  margin-top: 0;
+}

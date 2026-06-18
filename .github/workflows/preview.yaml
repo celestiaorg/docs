@@ -23,23 +23,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 20
-          cache: yarn
+          bun-version: latest
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Generate llms.txt
-        run: yarn generate:llms
+        run: bun install --frozen-lockfile
 
       - name: Build static site
         env:
           BASE: /docs-preview/pr-${{ github.event.number }}/
-          NEXT_PUBLIC_BASE_PATH: /docs-preview/pr-${{ github.event.number }}
-        run: yarn build
+        run: bun run build
 
       - name: Checkout docs-preview repository
         uses: actions/checkout@v6
@@ -58,7 +53,7 @@ jobs:
           rm -rrf "$TARGET_DIR"/*
 
           # Copy built files
-          cp -r out/* "$TARGET_DIR"/
+          cp -r out/public/* "$TARGET_DIR"/
 
           # Ensure .nojekyll exists in root
           touch docs-preview/.nojekyll

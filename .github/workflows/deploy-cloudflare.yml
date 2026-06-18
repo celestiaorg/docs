@@ -1,0 +1,68 @@
+# Optional Cloudflare Pages deploy for the Vocs migration branch.
+#
+# Mirrors the Eden docs pattern: build a full-static Vocs site, copy a Pages
+# advanced-mode Worker into the output as _worker.js for /mcp and /api/mcp,
+# then deploy the output directory to Cloudflare Pages.
+#
+# Requires CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repo secrets.
+name: Deploy to Cloudflare Pages
+
+on:
+  workflow_dispatch:
+  # Temporary branch trigger for testing the Vocs migration before this
+  # workflow exists on the default branch.
+  push:
+    branches:
+      - codex/jcs/migrate-vocs-v2-bun
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+concurrency:
+  group: deploy-cloudflare-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT || 'celestia-docs-vocs-test' }}
+
+jobs:
+  deploy:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build site and add MCP worker
+        run: bun run prepare:cloudflare
+
+      - name: Check Cloudflare secrets
+        id: cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [[ -z "$CLOUDFLARE_API_TOKEN" || -z "$CLOUDFLARE_ACCOUNT_ID" ]]; then
+            echo "::notice::Cloudflare secrets are not set; skipping deploy."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deploy
+        if: steps.cloudflare.outputs.skip != 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy out/public --project-name ${{ env.CLOUDFLARE_PAGES_PROJECT }} --branch ${{ github.head_ref || github.ref_name }}
