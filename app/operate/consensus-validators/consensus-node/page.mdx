@@ -199,12 +199,12 @@ pruning = "everything"
 min-retain-blocks = 0 # retain all block data
 ```
 
-### Recommended block retention for pruned nodes
+### Recommended block retention for validators
 
-The default `min-retain-blocks` value is `3000`. For non-archive nodes that
-can prune historical block data but need a longer retention window, set
-`min-retain-blocks = 600000` in your `app.toml`. This keeps a larger recent
-block history without retaining all block data:
+The default `min-retain-blocks` value is `3000`. For validators that do not
+need to retain all block data, set `min-retain-blocks = 600000` in your
+`app.toml`. This keeps a larger recent block history without retaining all
+block data:
 
 ```toml
 min-retain-blocks = 600000 # retain recent block data while pruning older blocks
