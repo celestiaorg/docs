@@ -3,6 +3,31 @@ import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import remarkReplaceVariables from './plugins/remark-replace-variables.mjs'
 
+const stripMdxRouteMetadataLoader = new URL(
+  './loaders/strip-mdx-route-metadata.cjs',
+  import.meta.url,
+).pathname
+
+function addMdxRouteMetadataLoader(rule) {
+  if (!rule || typeof rule !== 'object') return
+
+  if (Array.isArray(rule.oneOf)) {
+    for (const childRule of rule.oneOf) {
+      addMdxRouteMetadataLoader(childRule)
+    }
+  }
+
+  if (!Array.isArray(rule.use)) return
+
+  const nextraLoaderIndex = rule.use.findIndex((loader) => {
+    const loaderPath = typeof loader === 'string' ? loader : loader?.loader
+    return loaderPath?.includes('nextra/loader')
+  })
+
+  if (nextraLoaderIndex === -1) return
+
+  rule.use.splice(nextraLoaderIndex, 0, stripMdxRouteMetadataLoader)
+}
 
 // Set up Nextra with its configuration
 const withNextra = nextra({
@@ -31,6 +56,10 @@ export default withNextra({
     // mdxRs is disabled because it doesn't support custom remark plugins
   },
   webpack: (config) => {
+    for (const rule of config.module.rules) {
+      addMdxRouteMetadataLoader(rule)
+    }
+
     config.watchOptions = {
       ...config.watchOptions,
       ignored: ['**/node_modules/**']

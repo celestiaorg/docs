@@ -71,7 +71,7 @@ The rollup sequencer is responsible for creating blocks and, in this demo, writi
 
 Therefore, we can start by first defining the reading and writing interactions rollup nodes will have with both the Celestia and Ethereum networks. The actual implementations of these interfaces are left as exercises to the reader. Assume that those implementations of these interfaces are verifying the respective chain. For the connection to Celestia, this would likely mean connecting to a Celestia light node, which can detect faults in consensus such as hidden data. For the connection to Ethereum, this would likely mean running and connecting to a full node.
 
-More information on the RPC that is exposed by a Celestia light node can be found [in the RPC documentation](https://node-rpc-docs.celestia.org/?version=v0.28.4). Additionally, if you need more information on how to run a light node, you can [check out the documentation](/operate/data-availability/light-node/quickstart).
+More information on the RPC that is exposed by a Celestia light node can be found [in the Node API docs](/build/rpc/node-api/). Additionally, if you need more information on how to run a light node, you can [check out the documentation](/operate/data-availability/light-node/quickstart).
 
 ```go
 // CelestiaLightNodeClient summarizes the actions that a rollup that uses
@@ -246,4 +246,4 @@ As linked above, use the [Celestia Node API](/build/rpc/node-api) or [check out 
 
 ### Posting headers to Ethereum
 
-How headers are posted to Ethereum is entirely dependent upon how the rollup light client contracts work. For examples of interacting with the Ethereum blockchain programmatically, please see the [go-ethereum book](https://goethereumbook.org/en/transactions/) or one of the many other resources for [submitting transactions](https://github.com/ethereumbook/ethereumbook/blob/first_edition_first_print/06transactions.asciidoc) or [writing contracts](https://github.com/ethereumbook/ethereumbook/blob/first_edition_first_print/07smart-contracts-solidity.asciidoc).
+How headers are posted to Ethereum is entirely dependent upon how the rollup light client contracts work. For examples of interacting with the Ethereum blockchain programmatically, please see resources for [submitting transactions](https://github.com/ethereumbook/ethereumbook/blob/first_edition_first_print/06transactions.asciidoc) or [writing contracts](https://github.com/ethereumbook/ethereumbook/blob/first_edition_first_print/07smart-contracts-solidity.asciidoc).

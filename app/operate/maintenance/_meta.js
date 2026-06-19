@@ -3,7 +3,7 @@ const meta = {
   "trusted-hash-recovery": "Trusted hash recovery",
   "datastore-structure": "Datastore layout",
   systemd: "Systemd service setup",
-  "network-upgrades": "Network upgrade process",
+  "network-upgrades": "Network upgrades",
   troubleshooting: "Troubleshooting",
 };
 
