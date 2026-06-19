@@ -1,0 +1,80 @@
+name: Check Community Endpoints
+
+on:
+  schedule:
+    # Run weekly on Monday at 9 AM UTC
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-endpoints:
+    name: Check community endpoints across all networks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check endpoints and remove broken ones
+        run: node scripts/check-endpoints.mjs
+
+      - name: Read summary and check for changes
+        id: diff
+        run: |
+          if [ -f endpoint-check-summary.txt ]; then
+            {
+              echo "summary<<EOF"
+              cat endpoint-check-summary.txt
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+            rm endpoint-check-summary.txt
+          fi
+          if git diff --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build PR body
+        if: steps.diff.outputs.has_changes == 'true'
+        id: body
+        env:
+          SUMMARY: ${{ steps.diff.outputs.summary }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "text<<EOF"
+            echo "## Summary"
+            echo ""
+            echo "The weekly endpoint health check found unreachable community endpoints"
+            echo "and removed them from the network documentation pages."
+            echo ""
+            echo "### Removed endpoints"
+            echo ""
+            echo "$SUMMARY"
+            echo ""
+            echo "---"
+            echo ""
+            echo "Detected by [automated endpoint check]($RUN_URL)."
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create pull request
+        if: steps.diff.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automated/remove-broken-endpoints
+          delete-branch: true
+          title: "fix: remove unreachable community endpoints"
+          body: ${{ steps.body.outputs.text }}
+          labels: endpoint-check
+          commit-message: "fix: remove unreachable community endpoints"
