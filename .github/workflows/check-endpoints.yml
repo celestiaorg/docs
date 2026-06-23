@@ -33,6 +33,7 @@ jobs:
             {
               echo "summary<<EOF"
               cat endpoint-check-summary.txt
+              echo
               echo "EOF"
             } >> "$GITHUB_OUTPUT"
             rm endpoint-check-summary.txt
