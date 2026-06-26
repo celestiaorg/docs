@@ -4,35 +4,39 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
-    "postbuild": "npm run generate:llms && pagefind --site out --output-path out/_pagefind",
-    "start": "serve out",
+    "prepare:vocs": "node scripts/prepare-vocs-pages.mjs",
+    "dev": "bun run prepare:vocs && vite dev",
+    "build": "bun run prepare:vocs && vite build && bun run generate:llms",
+    "prepare:cloudflare": "bun run build && cp worker/index.js out/public/_worker.js",
+    "deploy:cloudflare": "bun run prepare:cloudflare && wrangler pages deploy out/public",
+    "preview": "vite preview",
     "lint": "eslint",
     "prepare": "simple-git-hooks",
     "generate:llms": "node scripts/generate-llms.js",
     "check-links": "node scripts/check-links.mjs"
   },
   "simple-git-hooks": {
-    "pre-push": "npm run lint"
+    "pre-push": "bun run lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.10",
     "@heroicons/react": "^2.2.0",
     "@monaco-editor/react": "^4.7.0",
     "@open-rpc/client-js": "^2.0.0",
     "axios": "^1.16.0",
-    "next": "^16.2.6",
-    "nextra": "^4.6.0",
-    "nextra-theme-docs": "^4.6.0",
-    "react": "19.2.0",
+    "react": "19.2.4",
     "react-copy-to-clipboard": "^5.1.0",
-    "react-dom": "19.2.0",
-    "react-icons": "^5.5.0",
+    "react-dom": "19.2.4",
     "react-syntax-highlighter": "^16.1.0",
     "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0"
+    "remark-math": "^6.0.0",
+    "vite": "^8.0.16",
+    "vocs": "^2.0.15",
+    "waku": "^1.0.0-beta.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@vitejs/plugin-react": "^6.0.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -40,38 +44,20 @@
     "@types/react-dom": "^19",
     "@types/react-syntax-highlighter": "^15.5.13",
     "eslint": "^9",
-    "eslint-config-next": "^16.0.8",
     "glob": "^11.0.3",
-    "pagefind": "^1.4.0",
-    "serve": "^14.2.4",
     "remark-mdx": "^3.1.1",
     "remark-parse": "^11.0.0",
     "simple-git-hooks": "^2.13.1",
     "tailwindcss": "^4",
     "typescript": "^5",
+    "typescript-eslint": "^8.50.0",
     "unified": "^11.0.5",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "wrangler": "^4.102.0",
+    "yaml": "^2.9.0"
   },
   "overrides": {
     "@xmldom/xmldom": "0.9.10",
-    "lodash-es": "4.18.1",
-    "@eslint/config-array": { "minimatch": "3.1.5" },
-    "@eslint/eslintrc": { "minimatch": "3.1.5" },
-    "eslint": { "minimatch": "3.1.5" },
-    "eslint-plugin-import": { "minimatch": "3.1.5" },
-    "eslint-plugin-jsx-a11y": { "minimatch": "3.1.5" },
-    "eslint-plugin-react": { "minimatch": "3.1.5" },
-    "serve-handler": { "minimatch": "3.1.5" },
-    "@typescript-eslint/typescript-estree": { "minimatch": "9.0.9" },
-    "@ts-morph/common": { "minimatch": "10.2.4" },
-    "glob": { "minimatch": "10.2.4" }
-  },
-  "resolutions": {
-    "@xmldom/xmldom": "0.9.10",
-    "lodash-es": "4.18.1",
-    "minimatch": "3.1.5",
-    "@typescript-eslint/typescript-estree/minimatch": "9.0.9",
-    "@ts-morph/common/minimatch": "10.2.4",
-    "glob/minimatch": "10.2.4"
+    "lodash-es": "4.18.1"
   }
 }
