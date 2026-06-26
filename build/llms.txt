@@ -1,0 +1,34 @@
+# Celestia Build documentation
+
+> Section-specific LLM index for the Build area of the Celestia docs.
+
+- Full docs index: https://docs.celestia.org/llms.txt
+- Full LLM context: https://docs.celestia.org/llms-full.txt
+
+## Blobstream
+
+- [Integrate Contracts](https://docs.celestia.org/build/blobstream/integrate-contracts.md)
+- [Integrate Offchain](https://docs.celestia.org/build/blobstream/integrate-offchain.md)
+- [Proof Queries](https://docs.celestia.org/build/blobstream/proof-queries.md)
+
+## Post Retrieve Blob
+
+- [Client / Go](https://docs.celestia.org/build/post-retrieve-blob/client/go.md)
+- [Client / Rust](https://docs.celestia.org/build/post-retrieve-blob/client/rust.md)
+- [Overview](https://docs.celestia.org/build/post-retrieve-blob/overview.md)
+
+## Private Blockspace
+
+- [About](https://docs.celestia.org/build/private-blockspace/about.md)
+- [Quickstart](https://docs.celestia.org/build/private-blockspace/quickstart.md)
+
+## Rpc
+
+- [Clients](https://docs.celestia.org/build/rpc/clients.md)
+- [Node Api](https://docs.celestia.org/build/rpc/node-api.md)
+
+## Stacks
+
+- [Nitro Das Server](https://docs.celestia.org/build/stacks/nitro-das-server.md)
+- [Op Alt Da / Aws Kms Guide](https://docs.celestia.org/build/stacks/op-alt-da/aws-kms-guide.md)
+- [Op Alt Da / Introduction](https://docs.celestia.org/build/stacks/op-alt-da/introduction.md)
