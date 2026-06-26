@@ -620,6 +620,7 @@ async function main() {
   // Find all MDX files
   const mdxFiles = [
     ...glob.sync('app/**/*.mdx', { cwd: rootDir }),
+    ...glob.sync('app/**/_page._mdx', { cwd: rootDir }),
   ].filter(file => !file.includes('node_modules'));
   
   // Find all _meta.js files

@@ -6,25 +6,28 @@ Learn how to run and maintain Celestia infrastructure. This section covers node 
 
 ## Node types
 
-- [Full DA node](/operate/full-node): Complete blockchain data and validation
-- [Light node](/operate/light-node): Data availability sampling and verification
-- [Bridge node](/operate/bridge-node): Connects rollups to Celestia
-- [Consensus node](/operate/consensus-node): Participates in consensus and optionally validates the chain
+- [Validator node](/operate/consensus-validators/validator-node): Produces and votes on blocks.
+- [Consensus node](/operate/consensus-validators/consensus-node): Syncs Celestia consensus history.
+- [Bridge node](/operate/data-availability/bridge-node): Connects the consensus network to the DA network.
+- [Light node](/operate/data-availability/light-node/quickstart): Performs data availability sampling.
 
 ## Getting started
 
-- [Node installation](/operate/installation)
-- [Configuration](/operate/configuration)
-- [Network participation](/operate/participation)
+- [Node operation overview](/operate/getting-started/overview)
+- [Hardware requirements](/operate/getting-started/hardware-requirements)
+- [Environment setup](/operate/getting-started/environment-setup)
+- [Networks overview](/operate/networks/overview)
 
 ## Maintenance
 
-- [Monitoring](/operate/monitoring)
-- [Updates](/operate/updates)
-- [Troubleshooting](/operate/troubleshooting)
+- [Systemd service setup](/operate/maintenance/systemd)
+- [Network upgrades](/operate/maintenance/network-upgrades)
+- [Snapshots and fast sync](/operate/maintenance/snapshots)
+- [Troubleshooting](/operate/maintenance/troubleshooting)
 
 ## Advanced operations
 
-- [Validator setup of consensus node](/operate/validators)
-- [Network security](/operate/security)
-- [Performance tuning](/operate/performance)
+- [Configuration reference](/operate/data-availability/config-reference)
+- [DA node metrics](/operate/data-availability/metrics)
+- [Consensus node metrics](/operate/consensus-validators/metrics)
+- [Keys and wallets](/operate/keys-wallets/celestia-node-key)
