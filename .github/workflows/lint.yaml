@@ -49,4 +49,4 @@ jobs:
         run: npm install --no-package-lock --legacy-peer-deps
 
       - name: Run Link Checker
-        run: npm run check-links -- --all --concurrency=2 --skip="celestia.org,nexus.hyperlane.xyz"
+        run: npm run check-links -- --all --concurrency=2 --skip="celestia.org,nexus.hyperlane.xyz,infura.io"
