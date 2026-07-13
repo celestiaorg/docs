@@ -1,0 +1,83 @@
+# Network upgrades
+
+Blockchain networks often need to upgrade with new features which require coordination work among the community of developers, validators, and node operators prior to activating the upgrades. This process is called a network upgrade, which can be breaking or non-breaking. During planned network upgrades the community will coordinate to prepare for the upcoming upgrade. Breaking network upgrades are not backward-compatible with older versions of the network software, which is why it is important that validators upgrade their software to continue validating on the network. Non-breaking network upgrades are backward-compatible and require less coordination.
+
+## Network upgrade coordination
+
+As of the Lemongrass upgrade in September 2024, Celestia has implemented [CIP-10](https://cips.celestia.org/cip-010.html), which establishes two methods for coordinating network upgrades:
+
+1. **Pre-programmed height**: Used for the Lemongrass network upgrade (v2)
+2. **In-protocol signaling**: Used for all subsequent upgrades (v3+)
+
+Under the in-protocol signaling mechanism, validators submit messages to signal their readiness and preference for the next version. The upgrade activates automatically once a quorum of 5/6 of validators have signaled for the same version.
+
+### Announcement channels
+
+Follow the latest network upgrade announcements on:
+
+- Telegram: [Network-wide announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+- Discord
+  - [Mainnet Beta announcements](https://discord.com/channels/638338779505229824/1169237690114388039)
+  - [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
+
+## Upgrade process
+
+The upgrade process can be broken down into a few steps:
+
+1. [Celestia Improvement Proposals](https://cips.celestia.org) (CIPs) are created for consensus-breaking changes and features that impact user experience. These CIPs are included in a meta-CIP, which define the scope of the upgrade.
+1. Celestia core developer teams implement the features defined in the CIPs.
+1. A new binary is released with the new features to be tested on testnets.
+1. Node operators upgrade to the new binary, on [Arabica devnet](/operate/networks/arabica-devnet), [Mocha testnet](/operate/networks/mocha-testnet), and finally on Celestia [Mainnet Beta](/operate/networks/mainnet-beta).
+   - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
+   - Upgrades using in-protocol signaling (v3+) activate one week after 5/6 of the voting power has signaled for a particular version
+
+## Network upgrade history
+
+v7 (Hibiscus) was skipped on Mainnet Beta due to a bug discovered after testnet activation; v8 (defined in [CIP-49](https://cips.celestia.org/cip-049.html)) was activated instead.
+
+Version links point to Celenium upgrade status pages for signaling upgrades (v3+). v2 used a pre-programmed height and does not have a Celenium signaling page.
+
+### Arabica devnet
+
+| Version                                                                                 | Name       | CIP                                                                     | Date and time           | Upgrade height                                                          | Delay period | Parameters                                                          |
+| --------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------- |
+| v2                                                                                      | Lemongrass | [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-017.md) | 2024/08/19 14:00 UTC    | [1751707](https://arabica.celenium.io/block/1751707)                    | —            | [v2](https://celestiaorg.github.io/celestia-app/parameters_v2.html) |
+| [v3](https://arabica.celenium.io/upgrade/3?tab=signals&page=1)                          | Ginger     | [CIP-25](https://cips.celestia.org/cip-025.html)                        | 2024/11/05 21:55:13 UTC | [2348907](https://arabica.celenium.io/block/2348907)                    | —            | [v3](https://celestiaorg.github.io/celestia-app/parameters_v3.html) |
+| [v4](https://arabica.celenium.io/upgrade/4?tab=signals&page=1)                          | Lotus      | [CIP-33](https://cips.celestia.org/cip-033.html)                        | 2025/05/16 07:51:35 UTC | [5975265](https://arabica.celenium.io/block/5975265)                    | 1 day        | [v4](https://celestiaorg.github.io/celestia-app/parameters_v4.html) |
+| [v5](https://arabica.celenium.io/upgrade/5?tab=signals&page=1)                          | —          | —                                                                       | 2025/07/29 19:59:00 UTC | [7316464](https://arabica.celenium.io/block/7316464)                    | 1 block      | [v5](https://celestiaorg.github.io/celestia-app/parameters_v5.html) |
+| [v6](https://arabica.celenium.io/upgrade/6?tab=signals&page=1)                          | Matcha     | [CIP-42](https://cips.celestia.org/cip-042.html)                        | 2025/09/09 06:08:11 UTC | [8105605](https://arabica.celenium.io/block/8105605)                    | 1 day        | [v6](https://celestiaorg.github.io/celestia-app/parameters_v6.html) |
+| [v7](https://arabica.celenium.io/upgrade/7?tab=signals&page=1)                          | Hibiscus   | [CIP-47](https://cips.celestia.org/cip-047.html)                        | 2026/02/14 02:36:26 UTC | [10133989](https://arabica.celenium.io/block/10133989?tab=transactions) | 1 day        | [v7](https://celestiaorg.github.io/celestia-app/parameters_v7.html) |
+| [v8](https://arabica.celenium.io/upgrade/8?tab=signals&page=1)                          | —          | [CIP-49](https://cips.celestia.org/cip-049.html)                        | 2026/04/04 17:22:12 UTC | [10853352](https://arabica.celenium.io/block/10853352?tab=transactions) | 1 day        | [v8](https://celestiaorg.github.io/celestia-app/parameters_v8.html) |
+| [v9](https://arabica.celenium.io/upgrade/9?tab=signals&page=1)                          | —          | [CIP-50](https://cips.celestia.org/cip-050.html)                        | 2026/05/28 12:00:22 UTC | [11636100](https://arabica.celenium.io/block/11636100?tab=transactions) | 1 day        | [v9](https://celestiaorg.github.io/celestia-app/parameters_v9.html) |
+
+### Mocha testnet
+
+| Version                                                                               | Name       | CIP                                                                     | Date and time           | Upgrade height                                                        | Delay period | Parameters                                                          |
+| ------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------- | ----------------------- | --------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------- |
+| v2                                                                                    | Lemongrass | [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-017.md) | 2024/08/28 14:00 UTC    | [2585031](https://mocha.celenium.io/block/2585031)                    | —            | [v2](https://celestiaorg.github.io/celestia-app/parameters_v2.html) |
+| [v3](https://mocha.celenium.io/upgrade/3?tab=signals&page=1)                          | Ginger     | [CIP-25](https://cips.celestia.org/cip-025.html)                        | 2024/11/14 18:31:11 UTC | [3140052](https://mocha.celenium.io/block/3140052)                    | —            | [v3](https://celestiaorg.github.io/celestia-app/parameters_v3.html) |
+| [v4](https://mocha.celenium.io/upgrade/4?tab=signals&page=1)                          | Lotus      | [CIP-33](https://cips.celestia.org/cip-033.html)                        | 2025/07/01 11:51:58 UTC | [6915786](https://mocha.celenium.io/block/6915786)                    | 2 days       | [v4](https://celestiaorg.github.io/celestia-app/parameters_v4.html) |
+| [v5](https://mocha.celenium.io/upgrade/5?tab=signals&page=1)                          | —          | —                                                                       | 2025/07/30 17:07:29 UTC | [7401191](https://mocha.celenium.io/block/7401191)                    | 1 block      | [v5](https://celestiaorg.github.io/celestia-app/parameters_v5.html) |
+| [v6](https://mocha.celenium.io/upgrade/6?tab=signals&page=1)                          | Matcha     | [CIP-42](https://cips.celestia.org/cip-042.html)                        | 2025/10/03 01:25:02 UTC | [8236886](https://mocha.celenium.io/block/8236886?tab=transactions)   | 2 days       | [v6](https://celestiaorg.github.io/celestia-app/parameters_v6.html) |
+| [v7](https://mocha.celenium.io/upgrade/7?tab=signals&page=1)                          | Hibiscus   | [CIP-47](https://cips.celestia.org/cip-047.html)                        | 2026/02/23 18:21:52 UTC | [10209986](https://mocha.celenium.io/block/10209986?tab=transactions) | 2 days       | [v7](https://celestiaorg.github.io/celestia-app/parameters_v7.html) |
+| [v8](https://mocha.celenium.io/upgrade/8?tab=signals&page=1)                          | —          | [CIP-49](https://cips.celestia.org/cip-049.html)                        | 2026/04/16 14:26:21 UTC | [10941526](https://mocha.celenium.io/block/10941526?tab=transactions) | 2 days       | [v8](https://celestiaorg.github.io/celestia-app/parameters_v8.html) |
+| [v9](https://mocha.celenium.io/upgrade/9?tab=signals&page=1)                          | —          | [CIP-50](https://cips.celestia.org/cip-050.html)                        | 2026/06/05 08:16:10 UTC | [11655991](https://mocha.celenium.io/block/11655991?tab=transactions) | 2 days       | [v9](https://celestiaorg.github.io/celestia-app/parameters_v9.html) |
+
+### Mainnet Beta
+
+| Version                                                                         | Name       | CIP                                                                     | Date and time                         | Upgrade height                                                | Delay period | Parameters                                                          |
+| ------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------- | ------------------------------------- | ------------------------------------------------------------- | ------------ | ------------------------------------------------------------------- |
+| v2                                                                              | Lemongrass | [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-017.md) | 2024/09/18 14:00 UTC                  | [2371495](https://celenium.io/block/2371495)                  | —            | [v2](https://celestiaorg.github.io/celestia-app/parameters_v2.html) |
+| [v3](https://celenium.io/upgrade/3?tab=signals&page=1)                          | Ginger     | [CIP-25](https://cips.celestia.org/cip-025.html)                        | 2024/12/12 14:28:52 UTC               | [2993219](https://celenium.io/block/2993219)                  | —            | [v3](https://celestiaorg.github.io/celestia-app/parameters_v3.html) |
+| [v4](https://celenium.io/upgrade/4?tab=signals&page=1)                          | Lotus      | [CIP-33](https://cips.celestia.org/cip-033.html)                        | 2025/07/28 13:46:27 UTC               | [6680339](https://celenium.io/block/6680339)                  | 7 days       | [v4](https://celestiaorg.github.io/celestia-app/parameters_v4.html) |
+| [v5](https://celenium.io/upgrade/5?tab=signals&page=1)                          | —          | —                                                                       | 2025/08/01 14:30:29 UTC               | [6748821](https://celenium.io/block/6748821)                  | 1 block      | [v5](https://celestiaorg.github.io/celestia-app/parameters_v5.html) |
+| [v6](https://celenium.io/upgrade/6?tab=signals&page=1)                          | Matcha     | [CIP-42](https://cips.celestia.org/cip-042.html)                        | 2025/11/24 12:33:12 UTC               | [8662012](https://celenium.io/block/8662012?tab=transactions) | 7 days       | [v6](https://celestiaorg.github.io/celestia-app/parameters_v6.html) |
+| [v7](https://celenium.io/upgrade/7?tab=signals&page=1)                          | Hibiscus   | [CIP-47](https://cips.celestia.org/cip-047.html)                        | N/A (skipped, see v8)                 | N/A                                                           | —            | —                                                                   |
+| [v8](https://celenium.io/upgrade/8?tab=signals&page=1)                          | —          | [CIP-49](https://cips.celestia.org/cip-049.html)                        | 2026/05/05 16:37:35 UTC               | [10960599](https://celenium.io/block/10960599?tab=transactions) | 7 days       | [v8](https://celestiaorg.github.io/celestia-app/parameters_v8.html) |
+| [v9](https://celenium.io/upgrade/9?tab=signals&page=1)                          | —          | [CIP-50](https://cips.celestia.org/cip-050.html)                        | Signaling began 2026/06/02 14:54:21 UTC | [Monitor status](https://celenium.io/upgrade/9?tab=signals&page=1) | 7 days       | [v9](https://celestiaorg.github.io/celestia-app/parameters_v9.html) |
+
+## Upcoming upgrades
+
+> **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/sdk/v0.53/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
+
+Mainnet Beta v9, defined in [CIP-50](https://cips.celestia.org/cip-050.html), is in progress. Monitor the upgrade status on [Celenium](https://celenium.io/upgrade/9?tab=signals&page=1).

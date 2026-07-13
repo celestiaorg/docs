@@ -1,0 +1,149 @@
+# Celestia documentation
+
+> Official documentation for Celestia, the modular blockchain powering unstoppable apps with full-stack control.
+
+These docs are built with Next.js + Nextra and exported statically. Links below point to canonical markdown pages so tools and LLMs can ingest clean text.
+
+## Agent instructions
+
+- Prefer the `.md` pages linked here for retrieval and citations.
+- Use `llms-full.txt` when a single-file context snapshot is needed.
+- Use `/build/llms.txt`, `/learn/llms.txt`, and `/operate/llms.txt` for section-specific context.
+- Celestia does not currently publish an official MCP server for this documentation site.
+
+## Related resources
+
+- Full LLM context: https://docs.celestia.org/llms-full.txt
+- Agent skill: https://docs.celestia.org/SKILL.md
+- Agent skills index: https://docs.celestia.org/.well-known/agent-skills/index.json
+- API catalog: https://docs.celestia.org/.well-known/api-catalog
+- Node API OpenRPC spec: https://docs.celestia.org/specs/openrpc-v0.28.4.json
+- CIPs (Celestia Improvement Proposals): https://cips.celestia.org
+
+## Overview
+
+- [Home](https://docs.celestia.org/index.md)
+
+## Build: Blobstream
+
+- [Integrate Contracts](https://docs.celestia.org/build/blobstream/integrate-contracts.md)
+- [Integrate Offchain](https://docs.celestia.org/build/blobstream/integrate-offchain.md)
+- [Proof Queries](https://docs.celestia.org/build/blobstream/proof-queries.md)
+
+## Build: Post Retrieve Blob
+
+- [Client / Go](https://docs.celestia.org/build/post-retrieve-blob/client/go.md)
+- [Client / Rust](https://docs.celestia.org/build/post-retrieve-blob/client/rust.md)
+- [Overview](https://docs.celestia.org/build/post-retrieve-blob/overview.md)
+
+## Build: Private Blockspace
+
+- [About](https://docs.celestia.org/build/private-blockspace/about.md)
+- [Quickstart](https://docs.celestia.org/build/private-blockspace/quickstart.md)
+
+## Build: Rpc
+
+- [Clients](https://docs.celestia.org/build/rpc/clients.md)
+- [Node Api](https://docs.celestia.org/build/rpc/node-api.md)
+
+## Build: Stacks
+
+- [Nitro Das Server](https://docs.celestia.org/build/stacks/nitro-das-server.md)
+- [Op Alt Da / Aws Kms Guide](https://docs.celestia.org/build/stacks/op-alt-da/aws-kms-guide.md)
+- [Op Alt Da / Introduction](https://docs.celestia.org/build/stacks/op-alt-da/introduction.md)
+
+## Learn: Audits
+
+- [Audits](https://docs.celestia.org/learn/audits.md)
+
+## Learn: Blobstream
+
+- [Blobstream](https://docs.celestia.org/learn/blobstream.md)
+
+## Learn: Celestia 101
+
+- [Data Availability Faq](https://docs.celestia.org/learn/celestia-101/data-availability-faq.md)
+- [Data Availability](https://docs.celestia.org/learn/celestia-101/data-availability.md)
+- [Resources](https://docs.celestia.org/learn/celestia-101/resources.md)
+- [Retrievability](https://docs.celestia.org/learn/celestia-101/retrievability.md)
+- [Transaction Lifecycle](https://docs.celestia.org/learn/celestia-101/transaction-lifecycle.md)
+
+## Learn: Code Of Conduct
+
+- [Code Of Conduct](https://docs.celestia.org/learn/code-of-conduct.md)
+
+## Learn: Features
+
+- [Bridging / Hyperlane](https://docs.celestia.org/learn/features/bridging/hyperlane.md)
+- [Bridging / Ibc](https://docs.celestia.org/learn/features/bridging/ibc.md)
+- [Private Blockspace](https://docs.celestia.org/learn/features/private-blockspace.md)
+
+## Learn: TIA
+
+- [Overview](https://docs.celestia.org/learn/TIA/overview.md)
+- [Paying For Blobspace](https://docs.celestia.org/learn/TIA/paying-for-blobspace.md)
+- [Staking Governance Supply](https://docs.celestia.org/learn/TIA/staking-governance-supply.md)
+- [Staking](https://docs.celestia.org/learn/TIA/staking.md)
+- [Submit Data](https://docs.celestia.org/learn/TIA/submit-data.md)
+
+## Operate: Blobstream
+
+- [Deploy Contract](https://docs.celestia.org/operate/blobstream/deploy-contract.md)
+- [Install Binary](https://docs.celestia.org/operate/blobstream/install-binary.md)
+- [Key Management](https://docs.celestia.org/operate/blobstream/key-management.md)
+- [Orchestrator](https://docs.celestia.org/operate/blobstream/orchestrator.md)
+- [Relayer](https://docs.celestia.org/operate/blobstream/relayer.md)
+
+## Operate: Consensus Validators
+
+- [Cli Reference](https://docs.celestia.org/operate/consensus-validators/cli-reference.md)
+- [Consensus Node](https://docs.celestia.org/operate/consensus-validators/consensus-node.md)
+- [Foundation Delegation Program](https://docs.celestia.org/operate/consensus-validators/foundation-delegation-program.md)
+- [Install Celestia App](https://docs.celestia.org/operate/consensus-validators/install-celestia-app.md)
+- [Metrics](https://docs.celestia.org/operate/consensus-validators/metrics.md)
+- [Slashing](https://docs.celestia.org/operate/consensus-validators/slashing.md)
+- [Upgrade Monitor](https://docs.celestia.org/operate/consensus-validators/upgrade-monitor.md)
+- [Validator Node](https://docs.celestia.org/operate/consensus-validators/validator-node.md)
+
+## Operate: Data Availability
+
+- [Bridge Node](https://docs.celestia.org/operate/data-availability/bridge-node.md)
+- [Config Reference](https://docs.celestia.org/operate/data-availability/config-reference.md)
+- [Custom Networks](https://docs.celestia.org/operate/data-availability/custom-networks.md)
+- [Ibc Relayer](https://docs.celestia.org/operate/data-availability/ibc-relayer.md)
+- [Install Celestia Node](https://docs.celestia.org/operate/data-availability/install-celestia-node.md)
+- [Light Node / Advanced](https://docs.celestia.org/operate/data-availability/light-node/advanced.md)
+- [Light Node / Quickstart](https://docs.celestia.org/operate/data-availability/light-node/quickstart.md)
+- [Metrics](https://docs.celestia.org/operate/data-availability/metrics.md)
+- [Storage Optimization](https://docs.celestia.org/operate/data-availability/storage-optimization.md)
+
+## Operate: Getting Started
+
+- [Docker](https://docs.celestia.org/operate/getting-started/docker.md)
+- [Environment Setup](https://docs.celestia.org/operate/getting-started/environment-setup.md)
+- [Hardware Requirements](https://docs.celestia.org/operate/getting-started/hardware-requirements.md)
+- [Overview](https://docs.celestia.org/operate/getting-started/overview.md)
+
+## Operate: Keys Wallets
+
+- [Celestia App Wallet](https://docs.celestia.org/operate/keys-wallets/celestia-app-wallet.md)
+- [Celestia Node Key](https://docs.celestia.org/operate/keys-wallets/celestia-node-key.md)
+- [Multisig](https://docs.celestia.org/operate/keys-wallets/multisig.md)
+- [Vesting](https://docs.celestia.org/operate/keys-wallets/vesting.md)
+
+## Operate: Maintenance
+
+- [Datastore Structure](https://docs.celestia.org/operate/maintenance/datastore-structure.md)
+- [Network Upgrades](https://docs.celestia.org/operate/maintenance/network-upgrades.md)
+- [Snapshots](https://docs.celestia.org/operate/maintenance/snapshots.md)
+- [Systemd](https://docs.celestia.org/operate/maintenance/systemd.md)
+- [Troubleshooting](https://docs.celestia.org/operate/maintenance/troubleshooting.md)
+- [Trusted Hash Recovery](https://docs.celestia.org/operate/maintenance/trusted-hash-recovery.md)
+
+## Operate: Networks
+
+- [Arabica Devnet](https://docs.celestia.org/operate/networks/arabica-devnet.md)
+- [Local Devnet](https://docs.celestia.org/operate/networks/local-devnet.md)
+- [Mainnet Beta](https://docs.celestia.org/operate/networks/mainnet-beta.md)
+- [Mocha Testnet](https://docs.celestia.org/operate/networks/mocha-testnet.md)
+- [Overview](https://docs.celestia.org/operate/networks/overview.md)

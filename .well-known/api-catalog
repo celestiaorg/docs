@@ -1,0 +1,57 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://docs.celestia.org",
+      "service-desc": [
+        {
+          "href": "https://docs.celestia.org/specs/openrpc-v0.28.4.json",
+          "type": "application/json",
+          "title": "Celestia Node API OpenRPC specification"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://docs.celestia.org/build/rpc/node-api/",
+          "type": "text/html",
+          "title": "Celestia Node API documentation"
+        },
+        {
+          "href": "https://docs.celestia.org/build/rpc/clients/",
+          "type": "text/html",
+          "title": "Celestia RPC clients"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://docs.celestia.org/llms.txt",
+          "type": "text/plain",
+          "title": "Celestia docs LLM index"
+        },
+        {
+          "href": "https://docs.celestia.org/llms-full.txt",
+          "type": "text/plain",
+          "title": "Celestia docs full LLM context"
+        },
+        {
+          "href": "https://docs.celestia.org/SKILL.md",
+          "type": "text/markdown",
+          "title": "Celestia agent skill"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://docs.celestia.org/operate/maintenance/troubleshooting/",
+          "type": "text/html",
+          "title": "Celestia troubleshooting documentation"
+        }
+      ],
+      "source-code": [
+        {
+          "href": "https://github.com/celestiaorg/docs",
+          "type": "text/html",
+          "title": "Celestia docs repository"
+        }
+      ]
+    }
+  ]
+}
