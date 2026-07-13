@@ -4,15 +4,15 @@ import axios from 'axios';
 import { useEffect, useState, useCallback } from 'react';
 
 import { INotification, MethodByPkg, OpenRPCSpec, Param } from '../lib/types';
-import { useDarkMode } from '../hooks/useDarkMode';
 
 import NotificationModal from '../components/NotificationModal';
 import Playground from '../components/Playground';
 import RPCMethod from '../components/RPCMethod';
 import ParamModal from '../components/ParamModal';
+import './rpc-api.css';
 
 // Get base path for asset references
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const basePath = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
 
 function extractAuth(methodDescription: string | undefined): string {
   if (!methodDescription) return '';
@@ -81,12 +81,10 @@ const versions = [
   'v0.25.3',
   'v0.26.4',
   'v0.28.4',
+  'v0.31.3',
 ].reverse();
 
 export default function RPCDocumentation() {
-  // Use shared dark mode hook
-  const isDark = useDarkMode();
-  
   // State management
   const [spec, setSpec] = useState<OpenRPCSpec | null>(null);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
@@ -141,11 +139,9 @@ export default function RPCDocumentation() {
     const targetVersion = versionParam && versions.includes(versionParam) ? versionParam : versions[0];
 
     if (targetVersion !== selectedVersion) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedVersion(targetVersion);
     }
     fetchJsonData(targetVersion, true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Scroll to hash with MutationObserver (replaces hardcoded setTimeout)
@@ -206,13 +202,10 @@ export default function RPCDocumentation() {
   // Show loading state only on initial page load
   if (isInitialLoading) {
     return (
-      <div 
-        className="x:flex x:items-center x:justify-center x:py-12"
-        style={{ minHeight: '400px' }}
-      >
-        <div className="x:text-gray-600 x:dark:text-gray-400 x:text-center">
-          <div className="x:mb-4 x:text-lg">Loading API documentation...</div>
-          <div className="x:text-sm x:text-gray-500 x:dark:text-gray-500">
+      <div className="rpc-api__loading">
+        <div>
+          <div>Loading API documentation...</div>
+          <div>
             Version: {selectedVersion}
           </div>
         </div>
@@ -223,34 +216,16 @@ export default function RPCDocumentation() {
   // Show error state
   if (error) {
     return (
-      <div 
-        className="x:rounded-lg x:p-6"
-        style={{
-          backgroundColor: isDark ? 'rgba(220, 38, 38, 0.1)' : 'rgb(254, 242, 242)',
-          border: `1px solid ${isDark ? 'rgba(220, 38, 38, 0.3)' : 'rgb(252, 165, 165)'}`
-        }}
-      >
-        <h3 
-          className="x:text-lg x:font-semibold x:mb-2"
-          style={{ color: isDark ? 'rgb(252, 165, 165)' : 'rgb(153, 27, 27)' }}
-        >
+      <div className="rpc-api__error">
+        <h3>
           Error Loading Documentation
         </h3>
-        <p 
-          className="x:text-sm x:mb-4"
-          style={{ color: isDark ? 'rgb(254, 202, 202)' : 'rgb(185, 28, 28)' }}
-        >
+        <p>
           {error}
         </p>
         <button
           onClick={() => fetchJsonData(selectedVersion)}
-          className="x:px-4 x:py-2 x:rounded-md x:text-sm x:font-medium x:transition-colors"
-          style={{
-            backgroundColor: isDark ? 'rgb(185, 28, 28)' : 'rgb(220, 38, 38)',
-            color: 'white',
-            border: 'none',
-            cursor: 'pointer'
-          }}
+          className="rpc-button"
         >
           Retry
         </button>
@@ -262,53 +237,40 @@ export default function RPCDocumentation() {
   if (!spec) return null;
 
   return (
-    <>
+    <div className="rpc-api">
       {/* Description and Controls */}
-      <div className="x:mb-4">
+      <div>
         {spec && (
-          <div className="x:text-sm x:text-gray-600 x:dark:text-gray-200 x:mb-8">
-            The Celestia Node API is the collection of RPC methods that can be used to interact with the services provided by Celestia Data Availability Nodes. Node API uses auth tokens to control access to this API.{' '}
+          <div className="rpc-api__intro">
+            Showing the OpenRPC schema for{' '}
             <a
               href={`https://github.com/celestiaorg/celestia-node/releases/tag/${spec.info.version}`}
               target='_blank'
               rel='noopener noreferrer'
-              className="x:text-primary-600 x:dark:text-primary-500 x:no-underline x:hover:underline"
+              className="rpc-api__link"
             >
-              ({spec.info.version})
+              celestia-node {spec.info.version}
             </a>
+            .
           </div>
         )}
         
         {/* Search and Version Picker - Search fills space, Version floats right */}
-        <div className="x:flex x:items-center x:gap-4">
+        <div className="rpc-api__controls">
           <input
             type='text'
             placeholder='Search modules & methods...'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="x:px-3 x:py-2 x:border x:border-gray-300 x:dark:border-gray-600 x:rounded-md x:text-sm x:text-gray-900 x:dark:text-gray-100 x:placeholder-gray-500 x:dark:placeholder-gray-400 x:shadow-sm"
-            style={{
-              backgroundColor: isDark ? 'rgb(17 24 39)' : 'white',
-              flex: '1 1 0%',
-              minWidth: '0'
-            }}
+            className="rpc-api__search"
           />
           
-          <div 
-            className="x:inline-flex x:items-center x:gap-2 x:px-4 x:py-2 x:rounded-lg x:text-sm x:font-medium"
-            style={{
-              backgroundColor: isDark ? 'rgb(31 41 55)' : 'rgb(243 244 246)',
-              marginLeft: 'auto'
-            }}
-          >
-            <span className="x:whitespace-nowrap x:text-gray-700 x:dark:text-gray-200">API version:</span>
+          <div className="rpc-api__version">
+            <span className="rpc-api__version-label">API version:</span>
             <select
               value={selectedVersion}
               onChange={handleVersionChange}
-              className="x:h-8 x:px-3 x:pr-7 x:border x:border-gray-300 x:dark:border-gray-700 x:rounded-md x:text-sm x:cursor-pointer x:text-gray-900 x:dark:text-gray-100"
-              style={{
-                backgroundColor: isDark ? 'rgb(31 41 55)' : 'white'
-              }}
+              className="rpc-api__select"
             >
               {versions.map((version) => (
                 <option key={version} value={version}>
@@ -317,17 +279,7 @@ export default function RPCDocumentation() {
               ))}
             </select>
             {isSwitchingVersion && (
-              <div 
-                className="x:inline-block x:animate-spin" 
-                style={{
-                  width: '1rem',
-                  height: '1rem',
-                  border: '2px solid',
-                  borderColor: isDark ? 'rgb(156 163 175)' : 'rgb(209 213 219)',
-                  borderTopColor: isDark ? 'rgb(79 70 229)' : 'rgb(99 102 241)',
-                  borderRadius: '50%'
-                }}
-              />
+              <div className="rpc-api__spinner" />
             )}
           </div>
         </div>
@@ -335,10 +287,9 @@ export default function RPCDocumentation() {
 
       {/* Methods by Package */}
       <div 
-        className="x:flex x:flex-col x:gap-12"
+        className="rpc-api__packages"
         style={{
           opacity: isSwitchingVersion ? 0.5 : 1,
-          transition: 'opacity 0.2s ease-in-out'
         }}
       >
         {spec &&
@@ -366,38 +317,35 @@ export default function RPCDocumentation() {
                   );
 
               return (
-                <div key={pkg} className="x:border-b x:border-gray-200 x:dark:border-gray-800 x:pb-8">
-                  <h2 
+                <section key={pkg} className="rpc-package">
+                  <h2
                     id={pkg}
-                    className="x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border"
+                    className="rpc-package__title"
                   >
                     {pkg == 'p2p' ? 'P2P' : pkg}
-                    <a 
-                      href={`#${pkg}`} 
-                      className="x:focus-visible:nextra-focus subheading-anchor" 
+                    <a
+                      href={`#${pkg}`}
+                      className="rpc-package__anchor"
                       aria-label={`Permalink for ${pkg}`}
-                    />
+                    >
+                      #
+                    </a>
                   </h2>
-                  
-                  <div className="x:flex x:flex-col x:gap-6">
+
+                  <div className="rpc-package__methods">
                     {filteredMethods.map((method) => (
-                      <div
+                      <RPCMethod
                         key={`${pkg}.${method.name}`}
-                        id={`${pkg}.${method.name}`}
-                      >
-                        <RPCMethod
-                          pkg={pkg}
-                          method={method}
-                          activateSidebar={activateSidebar}
-                          selectedVersion={selectedVersion}
-                          setCurrentRequest={setCurrentRequest}
-                          setPlaygroundOpen={setPlaygroundOpen}
-                          isDark={isDark}
-                        />
-                      </div>
+                        pkg={pkg}
+                        method={method}
+                        activateSidebar={activateSidebar}
+                        selectedVersion={selectedVersion}
+                        setCurrentRequest={setCurrentRequest}
+                        setPlaygroundOpen={setPlaygroundOpen}
+                      />
                     ))}
                   </div>
-                </div>
+                </section>
               );
             })}
       </div>
@@ -418,6 +366,6 @@ export default function RPCDocumentation() {
         notification={notification}
         setNotification={setNotification}
       />
-    </>
+    </div>
   );
 }

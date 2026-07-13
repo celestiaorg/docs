@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Link checker script for Nextra documentation
+ * Link checker script for Vocs documentation
  * 
  * Scans all MDX files in app/ directory, resolves template variables,
  * and checks internal and external links for broken references.
@@ -562,7 +562,7 @@ async function processLinksConcurrently(links, checkFn, concurrency) {
  */
 function printUsage() {
   console.log(`
-Link Checker for Nextra Documentation
+Link Checker for Vocs Documentation
 
 Usage:
   node scripts/check-links.mjs [options]
