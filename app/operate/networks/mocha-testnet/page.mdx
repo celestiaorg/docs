@@ -46,16 +46,18 @@ will not carry over.
 ### Accessing mocha-4 history after the restart
 
 Because `mocha-5` starts from a new genesis, `mocha-4` history is not
-queryable on the restarted network. The Celestia Foundation will publish
-an exported copy of the final `mocha-4` state and host it until a stated
-retirement date. Individual node operators are not responsible for
-retaining `mocha-4` data; community operators who want to keep their own
-archival copies, or continue serving `mocha-4` endpoints, are welcome to,
-but this is optional.
+queryable on the restarted network. Individual node operators are not
+expected to retain `mocha-4` data. Community-hosted archives of the final
+`mocha-4` state, or community operators who continue serving `mocha-4`
+endpoints for a period after the restart, may be available, but neither
+is guaranteed.
+
+If you depend on specific `mocha-4` transaction history, export what you
+need before the restart.
 
 <Callout type="info">
-The export location and retirement date are not yet published. This
-section will be updated with both before the restart.
+Archival arrangements for `mocha-4` are still being decided. This section
+will be updated if and when copies are published.
 </Callout>
 
 ### Prepare a separate consensus-node home
