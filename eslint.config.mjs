@@ -1,20 +1,75 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+import js from '@eslint/js'
+import { defineConfig, globalIgnores } from 'eslint/config'
+import tseslint from 'typescript-eslint'
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
+const globals = Object.fromEntries(
+  [
+    'AbortController',
+    'Blob',
+    'CSSStyleDeclaration',
+    'Document',
+    'Element',
+    'Event',
+    'EventSource',
+    'File',
+    'FormData',
+    'Headers',
+    'HTMLElement',
+    'HTMLImageElement',
+    'HTMLInputElement',
+    'MouseEvent',
+    'Request',
+    'Response',
+    'URL',
+    'URLSearchParams',
+    'WebSocket',
+    'Window',
+    'clearInterval',
+    'clearTimeout',
+    'console',
+    'document',
+    'fetch',
+    'globalThis',
+    'localStorage',
+    'module',
+    'process',
+    'setInterval',
+    'setTimeout',
+    'window',
+  ].map((name) => [name, 'readonly']),
+)
+
+export default defineConfig([
   globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-    // Generated search index files:
-    "public/_pagefind/**",
+    '.vocs/**',
+    'build/**',
+    'node_modules/**',
+    'node-rpc-docs/**',
+    'out/**',
+    'public/_pagefind/**',
+    'src/pages/**',
   ]),
-]);
-
-export default eslintConfig;
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    files: ['**/*.{js,mjs,ts,tsx}'],
+    languageOptions: {
+      globals,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
+    },
+  },
+])

@@ -1,4 +1,4 @@
-name: Deploy Docs (Nextra) to GitHub Pages
+name: Deploy Docs (Vocs) to GitHub Pages
 
 on:
   push:
@@ -23,31 +23,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - name: Setup Bun
+        # oven-sh/setup-bun v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
-          node-version: 20
-          cache: yarn
+          bun-version: latest
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Generate llms.txt
-        run: yarn generate:llms
+        run: bun install --frozen-lockfile
 
       - name: Build static site
         # Note: production deploy uses the root base path (custom domain).
-        # Preview deploys may override BASE / NEXT_PUBLIC_BASE_PATH.
-        run: yarn build
+        # Preview deploys may override BASE.
+        run: bun run build
 
       - name: Disable Jekyll
-        run: touch out/.nojekyll
+        run: touch out/public/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: ./out/public
           force_orphan: true
           # The following lines assign commit authorship to the official
           # GH-Actions bot for deploys to `gh-pages` branch:

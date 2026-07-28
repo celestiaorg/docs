@@ -7,8 +7,8 @@
  * 
  * with their actual values from the constants.
  * 
- * This runs BEFORE MDX processing, so the code blocks remain as regular
- * fenced code blocks with Nextra's built-in styling.
+ * This runs before MDX processing, so the code blocks remain as regular
+ * fenced code blocks for the docs renderer.
  */
 
 import { visit } from 'unist-util-visit';

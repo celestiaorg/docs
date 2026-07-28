@@ -29,7 +29,7 @@ Celestia Documentation Access:
 - LLMs.txt: https://docs.celestia.org/llms.txt
 - Skill file: https://docs.celestia.org/SKILL.md (served from `public/SKILL.md`)
 - CIPs (Celestia Improvement Proposals): https://cips.celestia.org
-- Built with: Next.js + Nextra (MDX), exported as a static site.
+- Built with: Vocs v2 (MDX), Vite, and Bun, exported as a static site.
 - **LLM-ready**: Add `.md` to any URL to get clean markdown (e.g., `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`)
 - DeepWikis for @celestiaorg:
     - https://deepwiki.com/celestiaorg/docs
@@ -39,50 +39,63 @@ Celestia Documentation Access:
 
 ## Local development
 
-Prereqs: Node.js 20+ and Yarn.
+Prereqs: Bun 1.3+.
 
 ```bash
-yarn install
-yarn dev
+bun install
+bun run dev
 ```
 
-Open http://localhost:3000
+Open http://localhost:5173
 
 ## Build & preview the static export
 
-`next.config.mjs` is configured for static export (`output: 'export'`). Builds write to `out/` and generate a Pagefind search index in `out/_pagefind/`.
+Vocs is configured for full static rendering. Builds write the browser-ready site to `out/public/`.
 
 ```bash
-yarn build
-yarn start
+bun run build
+bun run preview
+```
+
+## Cloudflare Pages preview
+
+The Cloudflare Pages setup mirrors Eden docs: the Vocs site stays fully static,
+and `worker/index.js` is copied into the output as `_worker.js` to serve `/mcp`
+and `/api/mcp` from the same origin.
+
+```bash
+bun run prepare:cloudflare
+bun run deploy:cloudflare -- --project-name celestia-docs-vocs-test --branch <branch_name>
 ```
 
 ## Base paths (deploying under a subpath)
 
 For deployments that live under a subdirectory (e.g. GitHub Pages previews), set:
 
-- `BASE` with a trailing slash (used for `assetPrefix`)
-- `NEXT_PUBLIC_BASE_PATH` without a trailing slash (used by client-side components for asset URLs)
+- `BASE` with a trailing slash (used by Vocs as the base path)
 
 ```bash
-BASE=/docs-preview/new_docs/ NEXT_PUBLIC_BASE_PATH=/docs-preview/new_docs yarn build
+BASE=/docs-preview/new_docs/ bun run build
 ```
 
 ## Content & structure
 
 - `app/**/page.mdx`: documentation pages
 - `app/**/_meta.js`: sidebar order/titles
+- `src/vocs/`: Vocs runtime glue, compatibility components, and generated-page templates
+- `src/pages/`: generated Vocs page tree, created by `bun run prepare:vocs` and ignored by git
 - `public/`: static assets, including the published agent skill at `public/SKILL.md`
 - `constants/*.json`: shared values referenced in MDX (e.g. `{{mainnetVersions['app-latest-tag']}}`), replaced by `plugins/remark-replace-variables.mjs`
 
 ## Useful scripts
 
-- `yarn lint`: lint the codebase (also runs on `git push` via hook)
-- `yarn check-links -- --all`: validate internal + external links (see `scripts/check-links.mjs --help`)
-- `yarn generate:llms`: generate LLM-ready markdown files from MDX sources
+- `bun run prepare:vocs`: generate the Vocs `src/pages` tree from `app`
+- `bun run lint`: lint the codebase (also runs on `git push` via hook)
+- `bun run check-links -- --all`: validate internal + external links (see `scripts/check-links.mjs --help`)
+- `bun run generate:llms`: generate LLM-ready markdown files from MDX sources
   - Creates clean `.md` versions of all documentation pages
   - Removes JSX components, imports, and MDX-specific syntax
-  - Automatically runs during build process (`yarn build`)
+  - Automatically runs during build process (`bun run build`)
   - Access any doc page as markdown by adding `.md` to the URL
 
 ## Contribution guidelines

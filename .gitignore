@@ -5,16 +5,14 @@
 /.pnp
 .pnp.*
 .yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
 
 # testing
 /coverage
 
-# next.js
-/.next/
+# vocs
+/.vocs/
+/dist/
+/src/pages/
 /out/
 
 # production
@@ -29,6 +27,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+bun-debug.log*
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -36,11 +35,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# cloudflare
+.wrangler
+
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
-# nextra
+# generated search
 _pagefind/
 
 # agents llms
