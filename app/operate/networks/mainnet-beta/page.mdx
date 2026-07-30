@@ -112,7 +112,6 @@ These RPC providers are meant to be used in production environments
 and for specific use cases that require reliable access to full block
 history, such as:
 
-- Running archival bridge nodes that download full history from core RPC endpoints
 - Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
 - Submitting blobs in production settings (free RPC endpoints have no guarantees, even for submitting transactions)
 
@@ -177,14 +176,13 @@ celestia light start --core.ip rpc.celestia.pops.one --core.port 9090
 
 ### Bridge node requirements
 
-Bridge nodes run in pruned mode by default and can start from a recent point
-using a non-archival consensus endpoint.
+Bridge nodes run in pruned mode by default. Both pruned and archival bridge
+nodes can use a non-archival consensus endpoint. When the consensus endpoint
+does not have an older block, the bridge node retrieves the header and data
+from the peer-to-peer network.
 
-For full history, start the bridge node with `--archival`. The connected
-consensus endpoint must serve the historical blocks needed during sync. Use a
-[production endpoint](#production-rpc-endpoints), find an archive endpoint on
-the [community dashboard](https://celestia-tools.brightlystake.com/), or run
-your own consensus node with pruning disabled.
+To retain full history locally, start the bridge node with `--archival` and
+provision the [archival hardware requirements](/operate/getting-started/hardware-requirements#archival-data-availability-nodes).
 
 ### Archival DA RPC endpoints
 
