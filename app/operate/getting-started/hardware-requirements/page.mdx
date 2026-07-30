@@ -24,8 +24,9 @@ Pruned node requirements are based on the maximum possible throughput at 128MB/6
 
 \*Archival disk requirement is based on the current v6 128MB/6s throughput at maximum capacity for one year. In reality the requirement can be much lower and we advise regularly checking disk usage and having at least 1 month worth of max throughput of extra disk space.
 
-To run an archival bridge node, pass `--archival` every time you run
-`celestia bridge start`.
+To run an archival bridge node, start with a fresh store and pass `--archival`
+every time you run `celestia bridge start`. A store that has already pruned data
+cannot switch back to archival mode.
 
 ## Consensus nodes
 

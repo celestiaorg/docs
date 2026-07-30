@@ -154,8 +154,10 @@ Start the bridge node with a connection to a consensus node's gRPC endpoint, whi
 </Tabs>
 
 <Callout type="warning">
-`--archival` is a start-time option. Include it every time the node starts,
-including in a systemd service or another process manager.
+Choose archival mode before the node's first start and include `--archival`
+every time it starts, including in a systemd service or another process manager.
+A store that has already pruned data cannot switch back to archival mode; use a
+fresh store to sync the full history from genesis.
 </Callout>
 
 Here is an example of starting the bridge node on Mocha:
