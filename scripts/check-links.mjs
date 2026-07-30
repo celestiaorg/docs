@@ -76,17 +76,15 @@ function buildRouteInventory() {
   // Add root route
   routes.add('/');
   
-  // Scan for page.mdx and _page._mdx files
+  // Scan for page.mdx files
   const pageFiles = [
     ...glob.sync('app/**/page.mdx', { cwd: rootDir }),
-    ...glob.sync('app/**/_page._mdx', { cwd: rootDir }),
   ];
   
   for (const file of pageFiles) {
     const relativePath = path.relative(path.join(rootDir, 'app'), file);
     const route = '/' + relativePath
       .replace(/\/page\.mdx$/, '/')
-      .replace(/\/_page\._mdx$/, '/')
       .replace(/\\/g, '/');
     
     routes.add(route);
