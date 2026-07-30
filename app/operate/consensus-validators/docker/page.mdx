@@ -205,6 +205,10 @@ docker network create celestia-network
 
 ### Recreate celestia-app on the shared network
 
+RPC and gRPC are not published to the host here. `celestia-node` reaches
+`celestia-app` over the Docker network on gRPC port `9090`. Only P2P
+(`26656`) is published for peer connectivity.
+
 ```bash
 docker stop celestia-app && docker rm celestia-app
 
@@ -215,8 +219,6 @@ docker run -d \
   --network-alias celestia-app \
   -v $HOME/celestia-app-docker:/home/celestia/.celestia-app \
   -p 26656:26656 \
-  -p 127.0.0.1:26657:26657 \
-  -p 127.0.0.1:9090:9090 \
   ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
   start --home /home/celestia/.celestia-app --rpc.laddr tcp://0.0.0.0:26657
 ```
