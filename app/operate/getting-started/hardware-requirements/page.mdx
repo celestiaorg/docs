@@ -6,27 +6,26 @@ description: Recommended hardware profiles for Celestia node types.
 
 ## Data availability nodes
 
-### Non-archival data availability nodes (pruned)
+### Pruned data availability nodes
 
 | Node type   | Memory     | CPU         | Disk        | Bandwidth |
 | ----------- | ---------- | ----------- | ----------- | --------- |
 | Light node  | 500 MB RAM | Single core | 20 GB SSD   | 56 Kbps   |
 | Bridge node | 64 GB RAM  | 32 cores    | 25 TiB NVME | 1 Gbps    |
 
-Non-archival node requirements are based on the maximum possible throughput at 128MB/6s for 7 days. Operators may provision less by pruning more aggressively **at their own risk**.
-
-> **Note**: Starting from [TODO: Add version from PR #4768], bridge nodes default to pruning mode. These are the recommended specifications for pruned nodes.
+Pruned node requirements are based on the maximum possible throughput at 128MB/6s for 7 days. Operators may provision less by pruning more aggressively **at their own risk**. Bridge nodes run in pruned mode by default.
 
 ### Archival data availability nodes
 
 | Node type                     | Memory     | CPU         | Disk           | Bandwidth |
 | ----------------------------- | ---------- | ----------- | -------------- | --------- |
 | Light node (unpruned headers) | 500 MB RAM | Single core | 7 TiB NVME\*   | 56 Kbps   |
-| Bridge node (--archival flag) | 64 GB RAM  | 32 cores    | 637 TiB NVME\* | 1 Gbps    |
+| Bridge node (`--archival`)    | 64 GB RAM  | 32 cores    | 637 TiB NVME\* | 1 Gbps    |
 
 \*Archival disk requirement is based on the current v6 128MB/6s throughput at maximum capacity for one year. In reality the requirement can be much lower and we advise regularly checking disk usage and having at least 1 month worth of max throughput of extra disk space.
 
-> **Important**: To run an archival bridge node, you must use the `--archival` flag when initializing and starting the node.
+To run an archival bridge node, pass `--archival` every time you run
+`celestia bridge start`.
 
 ## Consensus nodes
 
