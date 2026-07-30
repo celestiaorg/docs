@@ -65,6 +65,8 @@ const DEFAULT_SKIP_PATTERNS = [
 const ONLY_FAIL_ON_404_PATTERNS = [
   'explorer.nodestake.top/celestia',
   'etherscan.io/address/',
+  'status.celestia.dev/status/',
+  'mammoblocks.io/',
 ];
 
 /**
@@ -463,6 +465,20 @@ async function checkExternalLink(url, skipPatterns = [], onlyFailOn404Patterns =
     const result = await fetchOnce();
     lastResult = result;
 
+    // Apply the 404-only policy before returning other non-retryable failures.
+    if (onlyFailOn404 && !result.valid) {
+      if (result.status === 404) {
+        return result;
+      }
+      return {
+        valid: true,
+        skipped: true,
+        reason: `Only checking for 404 - got ${result.status || result.error || 'unknown error'}`,
+        originalStatus: result.status,
+        originalError: result.error
+      };
+    }
+
     // Success or non-retryable error
     if (result.valid || result.skipped || (result.status && !RETRYABLE_STATUS_CODES.has(result.status))) {
       return result;
@@ -499,22 +515,6 @@ async function checkExternalLink(url, skipPatterns = [], onlyFailOn404Patterns =
     } catch {
       // If URL parsing fails, fall through to return lastResult
     }
-  }
-
-  // If this URL should only fail on 404, ignore other errors
-  if (onlyFailOn404) {
-    // Only fail if we got a 404 status code
-    if (lastResult && lastResult.status === 404) {
-      return lastResult;
-    }
-    // For any other error (timeout, connection failure, etc.), treat as valid but skipped
-    return { 
-      valid: true, 
-      skipped: true, 
-      reason: `Only checking for 404 - got ${lastResult?.status || lastResult?.error || 'unknown error'}`,
-      originalStatus: lastResult?.status,
-      originalError: lastResult?.error
-    };
   }
 
   return lastResult || { valid: false, error: 'Unknown error' };
