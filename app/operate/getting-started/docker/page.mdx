@@ -80,18 +80,19 @@ Choose [the network](/operate/networks/overview) you would like to run your node
      </Tabs.Tab>
    </Tabs>
 
-### Configure the RPC endpoint
+### Configure the consensus endpoint
 
-Set an RPC endpoint for either [Mainnet Beta](/operate/networks/mainnet-beta#integrations),
-   [Mocha](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes), or
-   [Arabica](/operate/networks/arabica-devnet#integrations)
-   using the bare URL (without http or https):
+celestia-node connects to consensus over gRPC via `--core.ip` and `--core.port`
+(default `9090`). Pick a consensus host from
+   [Mainnet Beta](/operate/networks/mainnet-beta#community-consensus-endpoints)
+   or [Mocha](/operate/networks/mocha-testnet#community-consensus-endpoints)
+   using the bare host (without `http://` or `https://`):
 
    ```bash
    export RPC_URL=this-is-an-rpc-url.com
    ```
 
-Then set the port for the RPC_URL:
+Then set the gRPC port for that host (usually `9090`):
 
    ```bash
    export RPC_PORT=9090
