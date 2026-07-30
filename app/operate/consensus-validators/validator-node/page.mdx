@@ -61,10 +61,9 @@ is properly configured in your consensus node's `app.toml` file. The `[grpc]`
 section should have `enable = true` and the appropriate address setting for the
 bridge node to connect successfully.
 
-Using an RPC of your own, or one from
-[Mainnet Beta](/operate/networks/mainnet-beta#integrations),
-[Mocha testnet](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes) or
-[Arabica devnet](/operate/networks/arabica-devnet#integrations),
+Using an RPC of your own, or one listed for
+[Mainnet Beta](/operate/networks/mainnet-beta#integrations) or
+[Mocha testnet](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes),
 initialize your node.
 
 ### Run the bridge node
@@ -94,7 +93,7 @@ In order to create a validator on-chain, follow the steps below.
 
 1. Export an environment variable for the chain ID you want to run on:
 
-   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+   <Tabs items={['Mainnet Beta', 'Mocha']}>
      <Tabs.Tab>
        ```bash
        export CHAIN_ID={{constants['mainnetChainId']}}
@@ -103,11 +102,6 @@ In order to create a validator on-chain, follow the steps below.
      <Tabs.Tab>
        ```bash
        export CHAIN_ID={{constants['mochaChainId']}}
-       ```
-     </Tabs.Tab>
-     <Tabs.Tab>
-       ```bash
-       export CHAIN_ID={{constants['arabicaChainId']}}
        ```
      </Tabs.Tab>
    </Tabs>
@@ -125,26 +119,9 @@ In order to create a validator on-chain, follow the steps below.
    export VALIDATOR_PUBKEY=$(celestia-appd tendermint show-validator)
    ```
 
-1. If you want to create a validator on a testnet that is on app version 4 (currently only Arabica), you will need to create a `validator.json` file.
-
-   **Arabica:**
-   ```bash
-   cat <<EOF > validator.json
-   {
-     "pubkey": $VALIDATOR_PUBKEY,
-     "amount": "1000000utia",
-     "moniker": "$MONIKER",
-     "commission-rate": "0.1",
-     "commission-max-rate": "0.2",
-     "commission-max-change-rate": "0.01",
-     "min-self-delegation": "1"
-   }
-   EOF
-   ```
-
 1. Create a validator
 
-   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+   <Tabs items={['Mainnet Beta', 'Mocha']}>
      <Tabs.Tab>
        ```bash
        celestia-appd tx staking create-validator \
@@ -185,16 +162,6 @@ In order to create a validator on-chain, follow the steps below.
            --from=$VALIDATOR_WALLET \
            --keyring-backend=test \
            --fees=21000utia \
-           --gas=220000 \
-           --yes
-       ```
-     </Tabs.Tab>
-     <Tabs.Tab>
-       ```bash
-       celestia-appd tx staking create-validator validator.json \
-           --from $VALIDATOR_WALLET \
-           --keyring-backend test \
-           --fees 21000utia \
            --gas=220000 \
            --yes
        ```

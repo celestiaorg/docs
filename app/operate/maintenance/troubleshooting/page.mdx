@@ -34,7 +34,6 @@ _i.e._ no `--p2p.network string` flag is required for Mainnet Beta.
 | ------------ | -------------------------- | --------------------------------------- |
 | Mainnet Beta | {constants.mainnetChainId} | not required (`--p2p.network celestia`) |
 | Mocha        | {constants.mochaChainId}   | `--p2p.network mocha`                   |
-| Arabica      | {constants.arabicaChainId} | `--p2p.network arabica`                 |
 
 ## Ports
 
@@ -73,7 +72,7 @@ manually specify the `--node.store` flag for each RPC request.
 **Assumptions:**
 
 - The presence of a lock signifies a running node.
-- Networks are ordered as Mainnet Beta, Mocha, Arabica, private, custom.
+- Networks are ordered as Mainnet Beta, Mocha, private, custom.
 - Node types are ordered as bridge and light.
 - Each network has only one running node type.
 - Multiple nodes of the same network and type are prohibited
@@ -143,26 +142,6 @@ making the request:
 The request will go to the Mainnet Beta node, and a 401 will show in
 this node's logs. Note that a 401 is expected because this blob was
 posted to Mocha and neither the namespace nor the blob exist on Mainnet Beta.
-
-#### Mocha bridge and Arabica light
-
-This example uses a Mocha bridge node and an Arabica light node. When
-making the request:
-
-```bash
-❯ celestia blob get 1318129 0x42690c204d39600fddd3 0MFhYKQUi2BU+U1jxPzG7QY2BVV1lb3kiU+zAK7nUiY=
-{
-  "result": {
-    "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAEJpDCBNOWAP3dM=",
-    "data": "0x676d",
-    "share_version": 0,
-    "commitment": "0MFhYKQUi2BU+U1jxPzG7QY2BVV1lb3kiU+zAK7nUiY=",
-    "index": 23
-  }
-}
-```
-
-The request will go to the Mocha bridge node, and result shown as expected.
 
 #### Using a custom rpc.config address
 

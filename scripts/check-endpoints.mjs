@@ -3,8 +3,8 @@
 /**
  * Community endpoint health checker.
  *
- * Parses the three network MDX pages (mainnet-beta, mocha-testnet,
- * arabica-devnet), extracts community endpoints, checks reachability,
+ * Parses the Mainnet Beta and Mocha network MDX pages, extracts community
+ * endpoints, checks reachability,
  * and removes unreachable endpoints from the files.
  *
  * Exit codes:
@@ -23,7 +23,6 @@ const ROOT = path.resolve(__dirname, "..");
 const NETWORK_FILES = [
   "app/operate/networks/mainnet-beta/page.mdx",
   "app/operate/networks/mocha-testnet/page.mdx",
-  "app/operate/networks/arabica-devnet/page.mdx",
 ];
 
 const TCP_TIMEOUT_MS = 10_000;
@@ -77,7 +76,6 @@ function isOfficialEndpoint(s) {
   const hostname = getEndpointHost(s);
   return [
     "celestia-mocha.com",
-    "celestia-arabica-11.com",
     "celestia.com",
     "quicknode.com",
   ].some((suffix) => matchesHostname(hostname, suffix));
@@ -256,65 +254,6 @@ function extractMainnetTableEndpoints(content) {
   return endpoints;
 }
 
-/**
- * Extract community endpoints from the Arabica table format.
- *
- * The table has:  | Node type | Endpoint type | Endpoint |
- */
-function extractArabicaTableEndpoints(content) {
-  const endpoints = [];
-  const lines = content.split("\n");
-  let inSection = false;
-  let pastHeader = false;
-  let endpointKind = "rpc";
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-
-    if (/^#{2,3}\s+Community RPC endpoints/i.test(line)) {
-      inSection = true;
-      pastHeader = false;
-      continue;
-    }
-    if (inSection && /^#{1,3}\s+/.test(line) && !/^#{4,}\s+/.test(line)) {
-      inSection = false;
-      continue;
-    }
-    if (!inSection) continue;
-    if (!line.startsWith("|")) continue;
-
-    if (!pastHeader) {
-      if (/Node type|Endpoint type/i.test(line)) {
-        pastHeader = true;
-      }
-      continue;
-    }
-    if (/^\|\s*[-:]+/.test(line)) continue;
-
-    const cells = line
-      .split("|")
-      .slice(1, -1)
-      .map((c) => c.trim());
-    if (cells[1]) endpointKind = inferEndpointKind(cells[1], endpointKind);
-
-    // Extract backtick-wrapped endpoints from the row
-    const endpointEntries = [];
-    const re = /`([^`]+)`/g;
-    let match;
-    while ((match = re.exec(line)) !== null) {
-      const raw = match[1];
-      if (hasTemplateVar(raw) || isOfficialEndpoint(raw)) continue;
-      // Skip things that aren't endpoints (e.g. "–core.ip string")
-      if (/^\-\-/.test(raw) || /^celestia\s/.test(raw)) continue;
-      endpointEntries.push({ raw, endpointKind });
-    }
-    if (endpointEntries.length > 0) {
-      endpoints.push({ lineIndex: i, line, endpointEntries });
-    }
-  }
-  return endpoints;
-}
-
 // ---------------------------------------------------------------------------
 // Endpoint → check descriptor
 // ---------------------------------------------------------------------------
@@ -402,9 +341,7 @@ async function main() {
       const content = await fileHandle.readFile({ encoding: "utf-8" });
       const networkName = relPath.includes("mainnet")
         ? "mainnet-beta"
-        : relPath.includes("mocha")
-          ? "mocha-testnet"
-          : "arabica-devnet";
+        : "mocha-testnet";
 
       console.log(`\n=== ${networkName} ===`);
 
@@ -429,22 +366,6 @@ async function main() {
               lineIndex: row.lineIndex,
               line: row.line,
               provider: row.provider,
-              check: resolveCheck(entry.raw, entry.endpointKind),
-              rowEndpoints: row.endpointEntries.map((ep) => ep.raw),
-            });
-          }
-        }
-      } else {
-        // arabica
-        const rows = extractArabicaTableEndpoints(content);
-        checkItems = [];
-        for (const row of rows) {
-          for (const entry of row.endpointEntries) {
-            checkItems.push({
-              raw: entry.raw,
-              endpointKind: entry.endpointKind,
-              lineIndex: row.lineIndex,
-              line: row.line,
               check: resolveCheck(entry.raw, entry.endpointKind),
               rowEndpoints: row.endpointEntries.map((ep) => ep.raw),
             });
