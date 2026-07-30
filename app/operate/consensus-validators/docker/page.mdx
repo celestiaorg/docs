@@ -88,24 +88,69 @@ docker run --rm \
   download-genesis $CHAIN_ID
 ```
 
-### Configure persistent peers
+### Configure seeds
+
+Set seeds in `$HOME/celestia-app-docker/config/config.toml`:
 
 <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
   <Tabs.Tab>
     ```bash
-    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants['mainnetChainId']}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
+    SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mainnetChainId']}}/seeds.txt | tr '\n' ',' | sed 's/,$//')
+    echo $SEEDS
+    sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/celestia-app-docker/config/config.toml
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/seeds.txt | tr '\n' ',' | sed 's/,$//')
+    echo $SEEDS
+    sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" $HOME/celestia-app-docker/config/config.toml
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    # For Arabica, you can set seeds manually in the
+    # `$HOME/celestia-app-docker/config/config.toml` file:
+    # Comma separated list of seed nodes to connect to
+    seeds = ""
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+### Optional: Configure persistent peers
+
+<Callout type="warning">
+If you set persistent peers, your node will **always** try to connect to these
+peers. This is useful for a local devnet. In production, setting persistent
+peers is advised only if you are running a
+[sentry node](https://hub.cosmos.network/main/validators/security.html#sentry-nodes-ddos-protection).
+</Callout>
+
+You can get persistent peers from the
+[@cosmos/chain-registry](https://github.com/cosmos/chain-registry) repository
+(for Mainnet Beta) or
+[@celestiaorg/networks](https://github.com/celestiaorg/networks) repository
+(for Mocha and Arabica):
+
+<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+  <Tabs.Tab>
+    ```bash
+    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants['mainnetChainId']}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$//')
+    echo $PERSISTENT_PEERS
     sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/celestia-app-docker/config/config.toml
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/peers.txt | tr '\n' ',')
+    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/peers.txt | tr '\n' ',' | sed 's/,$//')
+    echo $PERSISTENT_PEERS
     sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/celestia-app-docker/config/config.toml
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['arabicaChainId']}}/peers.txt | tr '\n' ',')
+    PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['arabicaChainId']}}/peers.txt | tr '\n' ',' | sed 's/,$//')
+    echo $PERSISTENT_PEERS
     sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" $HOME/celestia-app-docker/config/config.toml
     ```
   </Tabs.Tab>
@@ -113,14 +158,20 @@ docker run --rm \
 
 ### Start the container
 
+<Callout type="warning">
+RPC (`26657`) and gRPC (`9090`) are published to localhost only in this
+example. Do not publish these ports on all interfaces on a public host unless
+you intend to expose them. P2P (`26656`) is published for peer connectivity.
+</Callout>
+
 ```bash
 docker run -d \
   --name celestia-app \
   --restart unless-stopped \
   -v $HOME/celestia-app-docker:/home/celestia/.celestia-app \
   -p 26656:26656 \
-  -p 26657:26657 \
-  -p 9090:9090 \
+  -p 127.0.0.1:26657:26657 \
+  -p 127.0.0.1:9090:9090 \
   ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
   start --home /home/celestia/.celestia-app --rpc.laddr tcp://0.0.0.0:26657
 ```
@@ -135,6 +186,9 @@ curl -s http://localhost:26657/status | jq '.result.sync_info'
 </Steps>
 
 ## Run celestia-node in Docker against your containerized celestia-app
+
+celestia-node connects to consensus over gRPC (`--core.port`, default `9090`),
+not Tendermint RPC.
 
 <Callout type="info">
 If you run a bridge node, make sure your consensus node config follows the
@@ -161,8 +215,8 @@ docker run -d \
   --network-alias celestia-app \
   -v $HOME/celestia-app-docker:/home/celestia/.celestia-app \
   -p 26656:26656 \
-  -p 26657:26657 \
-  -p 9090:9090 \
+  -p 127.0.0.1:26657:26657 \
+  -p 127.0.0.1:9090:9090 \
   ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
   start --home /home/celestia/.celestia-app --rpc.laddr tcp://0.0.0.0:26657
 ```
@@ -176,7 +230,7 @@ docker run --rm -it \
   -e NODE_TYPE=light \
   -e P2P_NETWORK=$NETWORK \
   ghcr.io/celestiaorg/celestia-node:$NODE_VERSION \
-  celestia light start --core.ip celestia-app --core.port 26657 --p2p.network $NETWORK
+  celestia light start --core.ip celestia-app --core.port 9090 --p2p.network $NETWORK
 ```
 
 </Steps>
