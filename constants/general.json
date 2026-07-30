@@ -11,5 +11,5 @@
   "arabicaRpcUrl": "https://rpc.celestia-arabica-11.com/",
   "arabicaRestUrl": "https://api.celestia-arabica-11.com",
   "mainnetRpcUrl": "https://rpc.lunaroasis.net/",
-  "mainnetRestUrl": "https://api.lunaroasis.net/"
+  "mainnetRestUrl": "https://api.celestia.pops.one/"
 }

@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Test endpoint checker
+        run: node --test scripts/check-endpoints.test.mjs
+
       - name: Check endpoints and remove broken ones
         run: node scripts/check-endpoints.mjs
 
