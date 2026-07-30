@@ -21,10 +21,10 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4.0.3
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: yarn
@@ -42,7 +42,7 @@ jobs:
         run: yarn build
 
       - name: Checkout docs-preview repository
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v6
         with:
           repository: celestiaorg/docs-preview
           token: ${{ secrets.PR_PREVIEW_DEPLOY }}
@@ -74,11 +74,12 @@ jobs:
             echo "No changes to deploy"
           else
             git commit -m "Deploy preview for PR #${{ github.event.number }} from ${{ github.sha }}"
+            git pull --rebase
             git push
           fi
 
       - name: Post Preview Link
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
@@ -119,7 +120,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout docs-preview repository
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v6
         with:
           repository: celestiaorg/docs-preview
           token: ${{ secrets.PR_PREVIEW_DEPLOY }}
@@ -137,6 +138,7 @@ jobs:
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add .
             git commit -m "Remove preview for PR #${{ github.event.number }}"
+            git pull --rebase
             git push
           else
             echo "Preview directory $TARGET_DIR does not exist, skipping cleanup."

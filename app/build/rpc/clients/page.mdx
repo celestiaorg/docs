@@ -9,13 +9,13 @@ Official Go implementation of the Celestia Node RPC client and Transaction Clien
 - **Repository**: [celestiaorg/celestia-node @ /api/client](https://github.com/celestiaorg/celestia-node/tree/main/api/client)
 - **Tutorial**: [Go Client Tutorial](/build/post-retrieve-blob/client/go/) - Learn how to submit and retrieve blobs without running your own node
 
-## Community Clients
-
 ### Rust Client
 
- Community-maintained Rust implementation of the Celestia Node RPC client
-- **Repository**: [eigerco/celestia-node-rs](https://github.com/eigerco/celestia-node-rs)
+Official Rust implementation of the Celestia Node RPC client (Lumina)
+- **Repository**: [celestiaorg/lumina](https://github.com/celestiaorg/lumina)
 - **Tutorial**: [Rust Client Tutorial](/build/post-retrieve-blob/client/rust/) - Submit and retrieve blobs using the Lumina Rust client
+
+## Community Clients
 
 ### Python Client
 

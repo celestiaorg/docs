@@ -12,6 +12,11 @@ const meta = {
     title: "Operate",
     type: "page",
   },
+  status: {
+    title: "Status",
+    type: "page",
+    href: "https://status.celestia.org",
+  },
 };
 
 export default meta;

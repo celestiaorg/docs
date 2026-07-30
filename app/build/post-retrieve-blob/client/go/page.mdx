@@ -11,7 +11,7 @@ The Celestia Go client lets you submit and retrieve data from the Celestia netwo
 
 ## Prerequisites
 
-- Go 1.24 or later
+- Go 1.25.1 or later
 - A Celestia account (created automatically)
 - Testnet tokens from the [Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet)
 
@@ -139,7 +139,7 @@ func main() {
 		if balanceStr == "0utia" || balanceStr == "0 utia" {
 			fmt.Println("Account has no funds. Fund this address at the Mocha faucet to submit blobs:")
 			fmt.Printf("Address: %s\n", address.String())
-			fmt.Println("Faucet: https://docs.celestia.org/operate/networks/mocha-testnet#mocha-testnet-faucet")
+			fmt.Println("Faucet: https://mocha.celenium.io/faucet")
 		} else {
 			if err := submitAndRetrieveBlob(ctx, c); err != nil {
 				panic(err)
@@ -246,10 +246,23 @@ go mod tidy
 Choose your connection type:
 
 <Callout type="info">
-For QuickNode: `CELE_DA_URL` uses `https://` and no port, while `CELE_CORE_GRPC` uses a port (e.g. `:9090`) and no `https://` prefix.
+To submit blobs, you need both a DA JSON-RPC endpoint on port `26658` and a consensus gRPC endpoint on port `9090`.
+The public Mocha combination verified for this guide is ITRocket for DA JSON-RPC
+and P-OPS for consensus gRPC:
+`http://celestia-testnet-consensus.itrocket.net:26658` and
+`rpc-mocha.pops.one:9090`.
 </Callout>
 
-**QuickNode (recommended for beginners):**
+**Public community endpoints (tested on Mocha):**
+
+```bash
+export CELE_DA_URL=http://celestia-testnet-consensus.itrocket.net:26658
+export CELE_DA_TLS=false
+export CELE_CORE_GRPC=rpc-mocha.pops.one:9090
+export CELE_CORE_TLS=false
+```
+
+**Managed provider (for example QuickNode):**
 
 ```bash
 export CELE_DA_URL=https://your-quicknode-url.celestia-mocha.quiknode.pro/<your-token>
@@ -259,19 +272,19 @@ export CELE_CORE_TLS=true
 export CELE_CORE_TOKEN=<your-token>
 ```
 
-**Local bridge node:**
+**Local bridge node + local consensus node:**
 
 ```bash
 export CELE_DA_URL=http://localhost:26658
 export CELE_DA_TLS=false
-export CELE_CORE_GRPC=localhost:26657
+export CELE_CORE_GRPC=localhost:9090
 export CELE_CORE_TLS=false
 ```
 
 **Read-only mode (no blob submission):**
 
 ```bash
-export CELE_DA_URL=http://localhost:26658
+export CELE_DA_URL=http://celestia-testnet-consensus.itrocket.net:26658
 export CELE_DA_TLS=false
 # Don't set CELE_CORE_GRPC for read-only mode
 ```
@@ -282,7 +295,7 @@ export CELE_DA_TLS=false
 go run main.go
 ```
 
-**First run:** You'll see your account address. Fund it at the [Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet).
+**First run:** You'll see your account address. Fund it at [https://mocha.celenium.io/faucet](https://mocha.celenium.io/faucet).
 
 **Second run:** After funding, you'll see:
 
@@ -310,7 +323,7 @@ Connecting to Celestia...
 Balance: 0utia
 Account has no funds. Fund this address at the Mocha faucet to submit blobs:
 Address: celestia16k0wsej6rewd2pfh0taah35suzf3apj552q8c3
-Faucet: https://docs.celestia.org/operate/networks/mocha-testnet#mocha-testnet-faucet
+Faucet: https://mocha.celenium.io/faucet
 ✓ Tutorial complete!
 ```
 
@@ -340,10 +353,10 @@ Balance: 1000000utia
 
 ### Connection types
 
-| Purpose     | Node type      | Example URL              |
-| ----------- | -------------- | ------------------------ |
-| Read data   | Bridge node    | `http://localhost:26658` |
-| Submit data | Consensus node | `localhost:26657`        |
+| Purpose     | Node type               | Example URL                                   |
+| ----------- | ----------------------- | --------------------------------------------- |
+| Read data   | DA JSON-RPC             | `http://localhost:26658`                      |
+| Submit data | Consensus node gRPC     | `localhost:9090`                              |
 
 ### Read-only mode
 
