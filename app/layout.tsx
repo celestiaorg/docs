@@ -1,5 +1,5 @@
 import { Footer, Layout, Navbar } from "nextra-theme-docs";
-import { Banner, Head } from "nextra/components";
+import { Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import Image from "next/image";
 import "nextra-theme-docs/style.css";
@@ -163,9 +163,6 @@ const jsonLd = [
   faqJsonLd,
 ];
 
-const banner = (
-  <Banner storageKey="some-key">Welcome to our new docs! 🎉</Banner>
-);
 const navbar = (
   <Navbar
     logoLink="/"
@@ -245,7 +242,6 @@ export default async function RootLayout({
       </Head>
       <body>
         <Layout
-          banner={banner}
           navbar={navbar}
           pageMap={await getPageMap()}
           docsRepositoryBase={THEME_CONFIG.docsRepositoryBase}
