@@ -75,20 +75,22 @@ Choose [the network](/operate/networks/overview) you would like to run your node
      </Tabs.Tab>
    </Tabs>
 
-### Configure the RPC endpoint
+### Configure the consensus endpoint
 
-Set an RPC endpoint for either [Mainnet Beta](/operate/networks/mainnet-beta#integrations)
-   or [Mocha](/operate/networks/mocha-testnet#rpc-for-da-bridge-full-and-light-nodes)
-   using the bare URL (without http or https):
+celestia-node connects to consensus over gRPC via `--core.ip` and `--core.port`
+(default `9090`). Pick a consensus host from
+   [Mainnet Beta](/operate/networks/mainnet-beta#community-consensus-endpoints)
+   or [Mocha](/operate/networks/mocha-testnet#community-consensus-endpoints)
+   using the bare host (without `http://` or `https://`):
 
    ```bash
-   export RPC_URL=this-is-an-rpc-url.com
+   export CORE_IP=consensus.example.com
    ```
 
-Then set the port for the RPC_URL:
+Then set the gRPC port for that host (usually `9090`):
 
    ```bash
-   export RPC_PORT=9090
+   export CORE_PORT=9090
    ```
 
 ### Run the container
@@ -98,14 +100,14 @@ Then set the port for the RPC_URL:
        ```bash
        docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
            ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
-           celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
+           celestia $NODE_TYPE start --core.ip $CORE_IP --core.port $CORE_PORT --p2p.network $NETWORK
        ```
      </Tabs.Tab>
      <Tabs.Tab>
        ```bash
        docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
            ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
-           celestia $NODE_TYPE start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
+           celestia $NODE_TYPE start --core.ip $CORE_IP --core.port $CORE_PORT --p2p.network $NETWORK
        ```
      </Tabs.Tab>
    </Tabs>
@@ -206,7 +208,7 @@ A full start command will look similar to below.
     docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
         -v $HOME/my-node-store:/home/celestia \
         ghcr.io/celestiaorg/celestia-node:{{mainnetVersions['node-latest-tag']}} \
-        celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
+        celestia light start --core.ip $CORE_IP --core.port $CORE_PORT --p2p.network $NETWORK
     ```
   </Tabs.Tab>
   <Tabs.Tab>
@@ -214,7 +216,7 @@ A full start command will look similar to below.
     docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
         -v $HOME/my-node-store:/home/celestia \
         ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} \
-        celestia light start --core.ip $RPC_URL --core.port $RPC_PORT --p2p.network $NETWORK
+        celestia light start --core.ip $CORE_IP --core.port $CORE_PORT --p2p.network $NETWORK
     ```
   </Tabs.Tab>
 </Tabs>

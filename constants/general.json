@@ -7,5 +7,5 @@
   "mochaRpcUrl": "https://rpc-mocha.pops.one/",
   "mochaRestUrl": "https://api-mocha.pops.one/",
   "mainnetRpcUrl": "https://rpc.lunaroasis.net/",
-  "mainnetRestUrl": "https://api.lunaroasis.net/"
+  "mainnetRestUrl": "https://api.celestia.pops.one/"
 }
