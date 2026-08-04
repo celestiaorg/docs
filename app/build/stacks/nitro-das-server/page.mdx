@@ -26,3 +26,4 @@ Nitro's batch poster coordinates with the Celestia DAS server to store batch dat
 
 - [Nitro fork repository](https://github.com/celestiaorg/nitro)
 - [Celestia DAS server](https://github.com/celestiaorg/nitro-das-celestia)
+- [Select a Celestia account in integrations](/build/stacks/account-selection)

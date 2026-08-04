@@ -17,7 +17,8 @@ import net from "node:net";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const SCRIPT_PATH = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(SCRIPT_PATH);
 const ROOT = path.resolve(__dirname, "..");
 
 const NETWORK_FILES = [
@@ -324,7 +325,7 @@ function extractArabicaTableEndpoints(content) {
  *   - HTTP(S)/API endpoints  →  HTTP reachability probe
  *   - WebSocket endpoints    →  HTTP reachability probe against the upgrade URL
  *   - `host:port`            →  TCP probe, except scheme-less API endpoints
- *   - bare RPC host          →  TCP probe on port 26657
+ *   - bare RPC host          →  TCP probe on port 26657, then HTTPS fallback
  *   - bare gRPC host         →  TCP probe on port 9090
  */
 function getExplicitPort(raw) {
@@ -357,7 +358,7 @@ function toHttpUrl(raw) {
   return `${scheme}://${value}`;
 }
 
-function resolveCheck(raw, endpointKind = "rpc") {
+export function resolveCheck(raw, endpointKind = "rpc") {
   if (/^wss?:\/\//i.test(raw)) {
     // WebSocket endpoints: check via HTTP since they need an HTTP upgrade handshake.
     const httpUrl = raw.replace(/^wss:/i, "https:").replace(/^ws:/i, "http:");
@@ -374,8 +375,37 @@ function resolveCheck(raw, endpointKind = "rpc") {
     return { type: "tcp", host: colonMatch[1], port: Number(colonMatch[2]), label: raw };
   }
 
+  if (endpointKind === "rpc") {
+    return {
+      type: "tcp-http",
+      host: getEndpointHost(raw),
+      port: 26657,
+      url: toHttpUrl(raw),
+      label: raw,
+    };
+  }
+
   const defaultPort = endpointKind === "grpc" ? 9090 : 26657;
   return { type: "tcp", host: raw, port: defaultPort, label: raw };
+}
+
+export async function checkEndpoint(
+  check,
+  { checkHttpFn = checkHttp, checkTcpFn = checkTcp } = {},
+) {
+  if (check.type === "http") {
+    return checkHttpFn(check.url);
+  }
+  if (check.type === "tcp-http") {
+    const tcpOk = await checkTcpFn(check.host, check.port);
+    return tcpOk || checkHttpFn(check.url);
+  }
+  return checkTcpFn(check.host, check.port);
+}
+
+export function replaceEndpointWithPlaceholder(line, raw) {
+  const endpoint = "`" + raw + "`";
+  return line.replace(endpoint, "-".padEnd(endpoint.length));
 }
 
 // ---------------------------------------------------------------------------
@@ -464,12 +494,7 @@ async function main() {
         checkItems,
         async (item) => {
           const { check } = item;
-          let ok;
-          if (check.type === "http") {
-            ok = await checkHttp(check.url);
-          } else {
-            ok = await checkTcp(check.host, check.port);
-          }
+          const ok = await checkEndpoint(check);
           const status = ok ? "OK" : "FAILED";
           console.log(`  ${status}: ${check.label}`);
           return { ...item, ok };
@@ -521,7 +546,7 @@ async function main() {
           // Partial failure in a table row — replace broken cells with `-`
           let edited = lines[lineIndex];
           for (const r of lineFailures) {
-            edited = edited.replace("`" + r.raw + "`", "-");
+            edited = replaceEndpointWithPlaceholder(edited, r.raw);
           }
           lines[lineIndex] = edited;
           editedRows++;
@@ -557,7 +582,9 @@ async function main() {
   }
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_PATH) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}
