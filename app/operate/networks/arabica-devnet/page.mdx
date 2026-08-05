@@ -72,7 +72,6 @@ These RPC providers are meant to be used in production environments
 and for specific use cases that require reliable access to full block
 history, such as:
 
-- Running Bridge Nodes that download data from core RPC endpoints
 - Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
 - Submitting blobs in production settings (free RPC endpoints have no guarantees, even for submitting transactions)
 
@@ -140,7 +139,10 @@ celestia light start --p2p.network arabica \
 ```
 
 <Callout type="info">
-Not all RPC endpoints guarantee full block history. Find [an archive endpoint on the community dashboard](https://celestia-tools.brightlystake.com/) or run your own consensus node with no pruning for your bridge node.
+Bridge nodes run in pruned mode by default. Both pruned and archival bridge
+nodes can use a non-archival consensus endpoint; older headers and data are
+retrieved from the peer-to-peer network. To retain full history locally, start
+the bridge node with `--archival`.
 </Callout>
 
 ## Arabica devnet faucet

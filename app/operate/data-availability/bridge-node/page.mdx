@@ -44,6 +44,27 @@ From an implementation perspective, Bridge nodes run two separate processes:
      serves data availability sampling requests. The team sometimes refers to
      this as the “halo” network.
 
+## Pruned and archival modes
+
+Bridge nodes run in pruned mode by default. They retain recent headers and data
+within the availability window, which reduces storage requirements and allows a
+new bridge node to sync from a recent point instead of from genesis.
+
+To retain the full history, pass `--archival` every time you start the bridge
+node. Archival mode disables pruning and syncs from genesis, so it requires
+substantially more storage. The connected consensus endpoint does not need to
+retain the full history: the bridge node can retrieve older headers and data
+from the peer-to-peer network.
+
+See the [hardware requirements](/operate/getting-started/hardware-requirements)
+before choosing archival mode.
+
+<Callout type="info">
+Bridge nodes automatically route recent header requests to the connected
+consensus node and older requests to the peer-to-peer network. No additional
+routing configuration is required.
+</Callout>
+
 ## Hardware requirements
 
 See [hardware requirements](/operate/getting-started/hardware-requirements).
@@ -94,7 +115,6 @@ transactions, and other state-related queries).
 
 Here is an example of initializing the bridge node:
 
-
 <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
   <Tabs.Tab>
     ```sh
@@ -120,9 +140,25 @@ Here is an example of initializing the bridge node:
 
 Start the bridge node with a connection to a consensus node's gRPC endpoint, which is usually exposed on port 9090:
 
-```sh
-celestia bridge start --core.ip <URI> --core.port <port>
-```
+<Tabs items={['Pruned (default)', 'Archival']}>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --core.port <port>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --core.port <port> --archival
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+<Callout type="warning">
+Choose archival mode before the node's first start and include `--archival`
+every time it starts, including in a systemd service or another process manager.
+A store that has already pruned data cannot switch back to archival mode; use a
+fresh store to sync the full history from genesis.
+</Callout>
 
 Here is an example of starting the bridge node on Mocha:
 

@@ -66,3 +66,29 @@ in config file.
 
 Any Celestia bridge node can be a trusted peer for the light one. However,
 the light node by design can not be a trusted peer for another light node.
+
+### Header
+
+#### Syncer
+
+The `[Header.Syncer]` section controls where header synchronization starts and
+how long headers are retained:
+
+- `PruningWindow` is a Go duration string. Bridge nodes default to the
+  availability storage window (`169h0m0s`).
+- `SyncFromHeight` sets a starting height. Its zero value disables the setting.
+- `SyncFromHash` sets a starting header hash and takes priority over
+  `SyncFromHeight`. Its empty value disables the setting.
+
+The generated bridge-node configuration includes:
+
+```toml
+[Header.Syncer]
+PruningWindow = "169h0m0s"
+SyncFromHash = ""
+SyncFromHeight = 0
+```
+
+For most bridge nodes, keep these defaults. To disable pruning and sync from
+genesis, pass `--archival` each time you run `celestia bridge start` instead of
+setting `PruningWindow` manually.
