@@ -114,9 +114,9 @@ Persist and return this retrieval tuple after submission:
 
 Version scope:
 
-- These defaults are validated against Node API OpenRPC `v0.28.4` (checked on 2026-03-13).
-- Re-check method status if the target node version changes by reviewing `public/specs/openrpc-<version>.json` in this repo (served at `/specs/openrpc-<version>.json`) for deprecation notes.
-- Use `/build/rpc/node-api/?version=v0.28.4` as the human-facing docs page, linking to the relevant package section when possible (for example `#blob`, `#state`, or `#p2p`).
+- These defaults are validated against Node API OpenRPC `v0.31.4` (checked on 2026-08-07).
+- Re-check method status if the target node version changes by reviewing `public/specs/openrpc-<version>.json` in this repo (served at `/specs/openrpc-<version>.json`) for method availability and deprecation notes.
+- Use `/build/rpc/node-api/?version=v0.31.4` as the human-facing docs page, linking to the relevant package section when possible (for example `#blob`, `#state`, or `#p2p`).
 
 - Submit with `blob.Submit` (preferred).
 - Use `state.SubmitPayForBlob` only when explicit tx-level handling is required.

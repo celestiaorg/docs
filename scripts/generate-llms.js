@@ -7,7 +7,7 @@ import { createHash } from 'crypto';
 
 const SITE_ORIGIN = 'https://docs.celestia.org';
 const GITHUB_REPO = 'https://github.com/celestiaorg/docs';
-const LATEST_OPENRPC_SPEC = '/specs/openrpc-v0.28.4.json';
+const LATEST_OPENRPC_SPEC = '/specs/openrpc-v0.31.4.json';
 
 // Use createRequire to import JSON files in ESM context
 const require = createRequire(import.meta.url);
@@ -167,7 +167,7 @@ const header = [
   '- Agent skill: https://docs.celestia.org/SKILL.md',
   '- Agent skills index: https://docs.celestia.org/.well-known/agent-skills/index.json',
   '- API catalog: https://docs.celestia.org/.well-known/api-catalog',
-  '- Node API OpenRPC spec: https://docs.celestia.org/specs/openrpc-v0.28.4.json',
+  '- Node API OpenRPC spec: https://docs.celestia.org/specs/openrpc-v0.31.4.json',
   '- CIPs (Celestia Improvement Proposals): https://cips.celestia.org',
 ];
 
