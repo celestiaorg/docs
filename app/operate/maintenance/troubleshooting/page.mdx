@@ -179,6 +179,8 @@ node is running. It fails as expected:
 
 ## Resetting your config
 
+> **Warning:** When upgrading from a version earlier than celestia-node v0.31.3 to v0.31.3 or later, run `config-update` after replacing the binary and before starting the node. The [v0.31.3 release](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3) adds support for Mainnet Beta v9 and introduces new config fields, including RPC rate limiting. Skipping this step leaves the new options at their defaults and may cause config warnings.
+
 If you encounter an error, it is likely that an old config file is present:
 
 ```sh
