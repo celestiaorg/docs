@@ -133,8 +133,8 @@ Version scope:
   - `app/operate` for node operator and infrastructure content
 - Do not hardcode frequently changing versions or network values inline; prefer the
   constants-backed variable pattern from `constants/*.json`.
-- Keep tab order as: Mainnet Beta, Mocha, Arabica.
-- Use canonical network names where applicable (for example Mainnet Beta, Mocha testnet, Arabica devnet).
+- Keep network tab order as: Mainnet Beta, Mocha.
+- Use canonical network names where applicable (for example Mainnet Beta and Mocha testnet).
 - If chain IDs or network identifiers change, run a repo-wide search across MDX files before
   considering the task done.
 - Review release notes when a docs change may be driven by a breaking network or software change.

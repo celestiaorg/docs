@@ -23,7 +23,7 @@ This directory contains the workflows used to lint, deploy, and keep release met
 ## `latest-tags.yaml` — Latest Tags
 
 - **Triggers:** every 6 hours, or manual `workflow_dispatch` with `network`.
-- **What it does:** for each network (`mainnet`, `arabica`, `mocha`), fetches the latest matching GitHub Release tags for `celestiaorg/celestia-app` and `celestiaorg/celestia-node`, resolves them to commit SHAs, updates `constants/<network>_versions.json`, and opens a PR if values changed.
+- **What it does:** for each network (`mainnet`, `mocha`), fetches the latest matching GitHub Release tags for `celestiaorg/celestia-app` and `celestiaorg/celestia-node`, resolves them to commit SHAs, updates `constants/<network>_versions.json`, and opens a PR if values changed.
 - **Required secret:** `PAT_CREATE_PR` (token used by `peter-evans/create-pull-request` to push a branch and open a PR in this repo). Uses `GITHUB_TOKEN` for API reads.
 
 ## Notes

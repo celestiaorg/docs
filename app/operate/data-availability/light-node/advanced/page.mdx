@@ -45,7 +45,7 @@ For key creation, backup, import/recover, and Docker setups, see
 [Create a wallet with celestia-node](/operate/keys-wallets/celestia-node-key).
 </Callout>
 
-<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+<Tabs items={['Mainnet Beta', 'Mocha']}>
   <Tabs.Tab>
     ```bash
     celestia light start --core.ip <URI> --core.port <port> \
@@ -56,12 +56,6 @@ For key creation, backup, import/recover, and Docker setups, see
     ```bash
     celestia light start --core.ip <URI> --core.port <port> \
       --keyring.keyname <name-of-custom-key> --p2p.network mocha
-    ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-    ```bash
-    celestia light start --core.ip <URI> --core.port <port> \
-      --keyring.keyname <name-of-custom-key> --p2p.network arabica
     ```
   </Tabs.Tab>
 </Tabs>
