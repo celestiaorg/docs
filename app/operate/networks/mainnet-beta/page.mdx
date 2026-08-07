@@ -31,6 +31,10 @@ functional, users may encounter occasional instability or reduced performance.
 | Genesis file  | https://github.com/celestiaorg/networks/blob/master/{constants.mainnetChainId}/genesis.json        |
 | Peers file    | https://github.com/celestiaorg/networks/blob/master/{constants.mainnetChainId}/peers.txt           |
 | Validators    | 100                                                                                                |
+| Block time    | [Approximately 3 seconds](https://cips.celestia.org/cip-048.html)                                      |
+
+The happy-path cadence is approximately 2.6 seconds, so integrations should
+treat 3 seconds as an approximate target rather than an exact interval.
 
 ## Software version numbers
 
@@ -57,7 +61,8 @@ Previously, in [CIP-28](https://cips.celestia.org/cip-028.html), there was a 2 M
 
 While individual transactions are limited to 8 MiB as of v6, a block can contain multiple transactions and has a much larger capacity. The maximum block size is determined by the effective maximum square size.
 
-The current max square size on Arabica is 128 MiB, Mocha is 32 MiB, and Mainnet is 8 MiB.
+The governance square capacity on Arabica and Mocha is 128 MiB, while Mainnet
+is 32 MiB. The consensus encoded-block limit is 32 MiB across all networks.
 
 The following provides an approximation of the maximum blob capacity on Arabica:
 
@@ -86,11 +91,11 @@ These factors can cause the maximum total blob size that can be included in one
 block to vary.
 
 See the code in
-[celestia-app](https://github.com/celestiaorg/celestia-app/blob/52a3cfadbf4439e5e1bd89a8c47e14d3209ca525/pkg/appconsts/initial_consts.go#L9).
+[celestia-app](https://github.com/celestiaorg/celestia-app/blob/v9.0.4/pkg/appconsts/initial_consts.go#L13).
 
-Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/52a3cfadbf4439e5e1bd89a8c47e14d3209ca525/specs/src/parameters_v6.md?plain=1#L35),
+Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/v9.0.4/specs/src/parameters_v9.md?plain=1#L27),
 can be found in the
-[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v6.html).
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v9.html).
 
 ## Network constants
 
