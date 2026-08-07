@@ -57,20 +57,20 @@ Previously, in [CIP-28](https://cips.celestia.org/cip-028.html), there was a 2 M
 
 While individual transactions are limited to 8 MiB as of v6, a block can contain multiple transactions and has a much larger capacity. The maximum block size is determined by the effective maximum square size.
 
-The current max square size on Arabica is 128 MiB, Mocha is 32 MiB, and Mainnet is 8 MiB.
+The current max square size on Mocha and Mainnet Beta is 32 MiB.
 
-The following provides an approximation of the maximum blob capacity on Arabica:
+The following provides an approximation of the maximum blob capacity:
 
-- The maximum square size is 512x512, which gives us 262,144 shares.
-- One share is reserved for the PFB transaction, leaving us with 262,143 shares available for blob data.
+- The maximum square size is 256x256, which gives us 65,536 shares.
+- One share is reserved for the PFB transaction, leaving us with 65,535 shares available for blob data.
 - The first sparse share has 478 bytes available, and the remaining sparse shares have 482 bytes each.
 
 Approximate capacity:
 
 ```
 First share:       1 x 478 bytes
-Remaining shares:  262,142 x 482 bytes
-Total bytes:       126,352,922 bytes
+Remaining shares:  65,534 x 482 bytes
+Total bytes:       31,587,866 bytes
 ```
 
 There is no precise, static upper bound on the maximum total

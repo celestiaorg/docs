@@ -64,7 +64,7 @@ Want to sync faster (skip sampling from genesis)? See
 [Fast sync with a trusted hash](/operate/data-availability/light-node/advanced#fast-sync-with-a-trusted-hash).
 </Callout>
 
-<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+<Tabs items={['Mainnet Beta', 'Mocha']}>
   <Tabs.Tab>
     ```bash
     celestia light init
@@ -75,11 +75,6 @@ Want to sync faster (skip sampling from genesis)? See
     celestia light init --p2p.network mocha
     ```
   </Tabs.Tab>
-  <Tabs.Tab>
-    ```bash
-    celestia light init --p2p.network arabica
-    ```
-  </Tabs.Tab>
 </Tabs>
 
 ### Start the light node
@@ -87,7 +82,7 @@ Want to sync faster (skip sampling from genesis)? See
 Light nodes connect to a consensus node **gRPC** endpoint (usually port `9090`)
 for state access (balances, submitting `PayForBlobs`, etc.).
 
-<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+<Tabs items={['Mainnet Beta', 'Mocha']}>
   <Tabs.Tab>
     ```bash
     celestia light start --core.ip rpc.celestia.pops.one \
@@ -100,19 +95,12 @@ for state access (balances, submitting `PayForBlobs`, etc.).
       --core.port 9090 --p2p.network mocha
     ```
   </Tabs.Tab>
-  <Tabs.Tab>
-    ```bash
-    celestia light start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
-      --core.port 9090 --p2p.network arabica
-    ```
-  </Tabs.Tab>
 </Tabs>
 
 <Callout type="info">
 You can use any consensus node gRPC endpoint listed on
-[Mainnet Beta](/operate/networks/mainnet-beta#integrations),
-[Mocha testnet](/operate/networks/mocha-testnet#community-data-availability-da-grpc-endpoints-for-state-access),
-or [Arabica devnet](/operate/networks/arabica-devnet#integrations).
+either [Mainnet Beta](/operate/networks/mainnet-beta#integrations) or
+[Mocha testnet](/operate/networks/mocha-testnet#community-data-availability-da-grpc-endpoints-for-state-access).
 </Callout>
 
 If you're running on a server, make sure required ports are open. See
@@ -129,7 +117,6 @@ celestia state account-address
 Then use a faucet:
 
 - [Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet)
-- [Arabica faucet](/operate/networks/arabica-devnet#arabica-devnet-faucet)
 
 On Mainnet Beta, fund this address with TIA to submit blobs.
 
