@@ -63,8 +63,12 @@ While individual transactions are limited to 8 MiB as of v6, a block can contain
 
 The governance square capacity on Arabica and Mocha is 128 MiB, while Mainnet
 is 32 MiB. The consensus encoded-block limit is 32 MiB across all networks.
+Because blobs are carried inside the encoded block, the effective block
+capacity is the smaller of the square capacity and the encoded-block limit,
+so roughly 32 MiB on all networks today.
 
-The following provides an approximation of the maximum blob capacity on Arabica:
+The following provides an approximation of the blob capacity of the square
+size bound alone on Arabica, before applying the 32 MiB encoded-block limit:
 
 - The maximum square size is 512x512, which gives us 262,144 shares.
 - One share is reserved for the PFB transaction, leaving us with 262,143 shares available for blob data.
@@ -93,7 +97,7 @@ block to vary.
 See the code in
 [celestia-app](https://github.com/celestiaorg/celestia-app/blob/v9.0.4/pkg/appconsts/initial_consts.go#L13).
 
-Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/v9.0.4/specs/src/parameters_v9.md?plain=1#L27),
+Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/v9.0.4/specs/src/parameters_v9.md?plain=1#L41),
 can be found in the
 [celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v9.html).
 
