@@ -103,7 +103,7 @@ func main() {
 
 	// Add Core gRPC config if provided
 	if coreGRPC != "" {
-		network := p2p.Network("mocha-4")
+		network := p2p.Network("{{constants['mochaChainId']}}")
 		cfg.SubmitConfig.Network = network
 		cfg.SubmitConfig.CoreGRPCConfig = client.CoreGRPCConfig{
 			Addr:       coreGRPC,
@@ -446,7 +446,7 @@ cfg := client.Config{
     },
     SubmitConfig: client.SubmitConfig{
         DefaultKeyName: "my_key",
-        Network:        p2p.Network("mocha-4"),
+        Network:        p2p.Network("{{constants['mochaChainId']}}"),
         CoreGRPCConfig: client.CoreGRPCConfig{
             Addr:       coreGRPC,
             TLSEnabled: coreTLS,
