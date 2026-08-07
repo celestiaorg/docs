@@ -9,7 +9,6 @@ on:
         type: choice
         options:
           - mainnet
-          - arabica
           - mocha
   schedule:
     - cron: '0 */6 * * *'
@@ -24,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        network: ${{ fromJSON(github.event_name == 'workflow_dispatch' && format('["{0}"]', github.event.inputs.network) || '["mainnet","arabica","mocha"]') }}
+        network: ${{ fromJSON(github.event_name == 'workflow_dispatch' && format('["{0}"]', github.event.inputs.network) || '["mainnet","mocha"]') }}
     permissions:
       contents: write
       pull-requests: write
@@ -47,7 +46,6 @@ jobs:
             const network = process.env.NETWORK;
 
             const networkSuffix = network === 'mainnet' ? null : `-${network}`;
-            const nonMainnetSuffixes = new Set(['-arabica', '-mocha']);
 
             async function getLatestReleaseTag(repo) {
               const releases = await github.paginate(github.rest.repos.listReleases, {
@@ -64,10 +62,7 @@ jobs:
 
                 if (networkSuffix) return tag.endsWith(networkSuffix);
 
-                for (const suffix of nonMainnetSuffixes) {
-                  if (tag.endsWith(suffix)) return false;
-                }
-                return true;
+                return !tag.slice(1).includes('-');
               });
 
               if (!match) {

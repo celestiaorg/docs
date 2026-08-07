@@ -61,25 +61,23 @@ Previously, in [CIP-28](https://cips.celestia.org/cip-028.html), there was a 2 M
 
 While individual transactions are limited to 8 MiB as of v6, a block can contain multiple transactions and has a much larger capacity. The maximum block size is determined by the effective maximum square size.
 
-The governance square capacity on Arabica and Mocha is 128 MiB, while Mainnet
-is 32 MiB. The consensus encoded-block limit is 32 MiB across all networks.
-Because blobs are carried inside the encoded block, the effective block
-capacity is the smaller of the square capacity and the encoded-block limit,
-so roughly 32 MiB on all networks today.
+The current maximum block capacity on Mocha and Mainnet Beta is 32 MiB. On
+Mainnet Beta, the governance square size is 256 (a 32 MiB square) and the
+consensus encoded-block limit is also 32 MiB; the effective capacity is the
+smaller of the two.
 
-The following provides an approximation of the blob capacity of the square
-size bound alone on Arabica, before applying the 32 MiB encoded-block limit:
+The following provides an approximation of the maximum blob capacity:
 
-- The maximum square size is 512x512, which gives us 262,144 shares.
-- One share is reserved for the PFB transaction, leaving us with 262,143 shares available for blob data.
+- The maximum square size is 256x256, which gives us 65,536 shares.
+- One share is reserved for the PFB transaction, leaving us with 65,535 shares available for blob data.
 - The first sparse share has 478 bytes available, and the remaining sparse shares have 482 bytes each.
 
 Approximate capacity:
 
 ```
 First share:       1 x 478 bytes
-Remaining shares:  262,142 x 482 bytes
-Total bytes:       126,352,922 bytes
+Remaining shares:  65,534 x 482 bytes
+Total bytes:       31,587,866 bytes
 ```
 
 There is no precise, static upper bound on the maximum total
