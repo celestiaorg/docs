@@ -248,18 +248,18 @@ Choose your connection type:
 <Callout type="info">
 To submit blobs, you need both a DA JSON-RPC endpoint on port `26658` and a consensus gRPC endpoint on port `9090`.
 The public Mocha combination verified for this guide is ITRocket for DA JSON-RPC
-and P-OPS for consensus gRPC:
+and QuickNode for consensus gRPC:
 `http://celestia-testnet-consensus.itrocket.net:26658` and
-`rpc-mocha.pops.one:9090`.
+`public-endpoint.celestia-mocha.quiknode.pro:9090`.
 </Callout>
 
-**Public community endpoints (tested on Mocha):**
+**Public endpoints (tested on Mocha):**
 
 ```bash
 export CELE_DA_URL=http://celestia-testnet-consensus.itrocket.net:26658
 export CELE_DA_TLS=false
-export CELE_CORE_GRPC=rpc-mocha.pops.one:9090
-export CELE_CORE_TLS=false
+export CELE_CORE_GRPC=public-endpoint.celestia-mocha.quiknode.pro:9090
+export CELE_CORE_TLS=true
 ```
 
 **Managed provider (for example QuickNode):**

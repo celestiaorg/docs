@@ -74,7 +74,7 @@ celestia light init --p2p.network mocha
 
 ```sh
 # Get both the height and hash values in a single call
-read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
+read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://public-endpoint.celestia-mocha.quiknode.pro/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
 
 # Use sed to find and replace the SyncFromHeight value in the config file (macOS version)
 sed -i '' "s/SyncFromHeight = .*/SyncFromHeight = $TRUSTED_HEIGHT/" ~/.celestia-light-{{constants['mochaChainId']}}/config.toml
@@ -90,7 +90,9 @@ echo "SyncFromHash updated to: $TRUSTED_HASH"
 ### Start the node
 
 ```sh
-celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+celestia light start --p2p.network mocha \
+  --core.ip public-endpoint.celestia-mocha.quiknode.pro \
+  --core.port 9090 --core.tls
 ```
 </Steps>
 

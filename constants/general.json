@@ -4,8 +4,8 @@
   "mainnetChainId": "celestia",
   "mochaChainId": "mocha-4",
   "orchrelayVersion": "v1.0.1",
-  "mochaRpcUrl": "https://rpc-mocha.pops.one/",
-  "mochaRestUrl": "https://api-mocha.pops.one/",
-  "mainnetRpcUrl": "https://rpc.lunaroasis.net/",
-  "mainnetRestUrl": "https://api.celestia.pops.one/"
+  "mochaRpcUrl": "https://public-endpoint.celestia-mocha.quiknode.pro/",
+  "mochaRestUrl": "https://public-endpoint.celestia-mocha.quiknode.pro/",
+  "mainnetRpcUrl": "https://public-endpoint.celestia-mainnet.quiknode.pro/",
+  "mainnetRestUrl": "https://public-endpoint.celestia-mainnet.quiknode.pro/"
 }
