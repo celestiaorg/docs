@@ -64,6 +64,7 @@ const DEFAULT_SKIP_PATTERNS = [
 const ONLY_FAIL_ON_404_PATTERNS = [
   'explorer.nodestake.top/celestia',
   'etherscan.io/address/',
+  'basescan.org/address/',
   'status.celestia.dev/status/',
   'mammoblocks.io/',
 ];

@@ -159,6 +159,12 @@ we recommend the [quick-start guide](/operate/data-availability/light-node/quick
 
 ## Upgrading your binary
 
-To upgrade your binary, you can install the latest version from the
-instructions above and restart your node. If you run into any issues,
-Refer to the [troubleshooting section](/operate/maintenance/troubleshooting).
+To upgrade your binary, install the latest version using the instructions above.
+
+When upgrading from a version earlier than celestia-node v0.31.3 to v0.31.3 or later, update the node configuration after replacing the binary and before starting the node:
+
+```bash
+celestia <node_type> config-update --p2p.network <network>
+```
+
+The [v0.31.3 release](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3) adds support for Mainnet Beta v9 and introduces new config fields. The command merges those fields into the existing configuration while preserving custom values. Review your configuration after the update, then start the node. If you run into any issues, refer to the [troubleshooting section](/operate/maintenance/troubleshooting#resetting-your-config).
