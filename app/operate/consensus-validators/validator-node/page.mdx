@@ -26,6 +26,9 @@ First, follow the instructions on
 ### Wallet
 
 Follow [the tutorial on creating a wallet](/operate/keys-wallets/celestia-app-wallet).
+That page also covers the available keyring backends. Pick one before you
+create the wallet: a Mainnet Beta validator should not use the `test` backend,
+which stores the key unencrypted on disk.
 
 ## Optional: Deploy the celestia-node
 
@@ -115,6 +118,10 @@ In order to create a validator on-chain, follow the steps below.
    # Set VALIDATOR_WALLET to the same you defined previously.
    export VALIDATOR_WALLET="validator"
 
+   # Set KEYRING_BACKEND to the backend you chose when creating the wallet.
+   # Use `test` only on a testnet: it stores the key unencrypted on disk.
+   export KEYRING_BACKEND="file"
+
    # Set VALIDATOR_PUBKEY to the pubkey of your validator wallet.
    export VALIDATOR_PUBKEY=$(celestia-appd tendermint show-validator)
    ```
@@ -138,7 +145,7 @@ In order to create a validator on-chain, follow the steps below.
            --commission-max-change-rate=0.01 \
            --min-self-delegation=1000000 \
            --from=$VALIDATOR_WALLET \
-           --keyring-backend=test \
+           --keyring-backend=$KEYRING_BACKEND \
            --fees=21000utia \
            --gas=220000 \
            --yes
@@ -195,7 +202,7 @@ celestia-appd tx staking edit-validator \
     --security-contact="<email_address_for_security_contact>" \
     --details="New description of the validator." \
     --from=$VALIDATOR_WALLET \
-    --keyring-backend=test \
+    --keyring-backend=$KEYRING_BACKEND \
     --fees=21000utia \
     --gas=220000
 ```
