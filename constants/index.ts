@@ -24,8 +24,4 @@ export const constants = constantsJson as {
     mainnetChainId: string;
     mochaChainId: string;
     orchrelayVersion: string;
-    mochaRpcUrl: string;
-    mochaRestUrl: string;
-    mainnetRpcUrl: string;
-    mainnetRestUrl: string;
 };

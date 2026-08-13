@@ -3,9 +3,5 @@
   "golangNodeMocha": "1.24.1",
   "mainnetChainId": "celestia",
   "mochaChainId": "mocha-4",
-  "orchrelayVersion": "v1.0.1",
-  "mochaRpcUrl": "https://public-endpoint.celestia-mocha.quiknode.pro/",
-  "mochaRestUrl": "https://public-endpoint.celestia-mocha.quiknode.pro/",
-  "mainnetRpcUrl": "https://public-endpoint.celestia-mainnet.quiknode.pro/",
-  "mainnetRestUrl": "https://public-endpoint.celestia-mainnet.quiknode.pro/"
+  "orchrelayVersion": "v1.0.1"
 }
