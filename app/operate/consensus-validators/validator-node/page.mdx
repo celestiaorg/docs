@@ -119,7 +119,8 @@ In order to create a validator on-chain, follow the steps below.
    export VALIDATOR_WALLET="validator"
 
    # Set KEYRING_BACKEND to the backend you chose when creating the wallet.
-   # Use `test` only on a testnet: it stores the key unencrypted on disk.
+   # `test` stores the key unencrypted on disk: it is a reasonable choice on
+   # Mocha, but do not use it on Mainnet Beta.
    export KEYRING_BACKEND="file"
 
    # Set VALIDATOR_PUBKEY to the pubkey of your validator wallet.
@@ -167,7 +168,7 @@ In order to create a validator on-chain, follow the steps below.
            --commission-max-change-rate=0.01 \
            --min-self-delegation=1000000 \
            --from=$VALIDATOR_WALLET \
-           --keyring-backend=test \
+           --keyring-backend=$KEYRING_BACKEND \
            --fees=21000utia \
            --gas=220000 \
            --yes
@@ -229,7 +230,8 @@ the command below to get the `celestiavaloper` of your local validator wallet in
 case you want to delegate more to it:
 
 ```bash
-celestia-appd keys show $VALIDATOR_WALLET --bech val -a
+celestia-appd keys show $VALIDATOR_WALLET --bech val -a \
+--keyring-backend=$KEYRING_BACKEND
 ```
 
 After entering the wallet passphrase you should see a similar output:
@@ -246,6 +248,7 @@ example you can run:
 celestia-appd tx staking delegate \
 <the_valoper_address_starts_with_celestiavaloper1...> 1000000utia \
 --from=$VALIDATOR_WALLET --chain-id={{constants['mochaChainId']}} \
+--keyring-backend=$KEYRING_BACKEND \
 --fees=21000utia
 ```
 

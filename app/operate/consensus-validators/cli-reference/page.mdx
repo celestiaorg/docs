@@ -39,12 +39,17 @@ Available Commands:
 ## Creating a wallet
 
 ```sh
-celestia-appd config keyring-backend test
+celestia-appd config keyring-backend <backend>
 ```
 
 `keyring-backend` configures the keyring's backend, where the keys are stored.
 
 Options are: `os|file|kwallet|pass|test|memory`.
+
+`test` keeps the key unencrypted on disk with no password, so reserve it for
+local development and testnets. See
+[create a wallet with celestia-app](/operate/keys-wallets/celestia-app-wallet)
+for a comparison of the backends.
 
 You can learn more on the [Cosmos documentation](https://docs.cosmos.network/sdk/v0.53/user/run-node/keyring)
 or [Go Package documentation](https://pkg.go.dev/github.com/cosmos/cosmos-sdk/crypto/keyring).
