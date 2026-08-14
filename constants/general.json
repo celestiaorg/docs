@@ -3,9 +3,5 @@
   "golangNodeMocha": "1.24.1",
   "mainnetChainId": "celestia",
   "mochaChainId": "mocha-4",
-  "orchrelayVersion": "v1.0.1",
-  "mochaRpcUrl": "https://rpc-mocha.pops.one/",
-  "mochaRestUrl": "https://api-mocha.pops.one/",
-  "mainnetRpcUrl": "https://rpc.lunaroasis.net/",
-  "mainnetRestUrl": "https://api.celestia.pops.one/"
+  "orchrelayVersion": "v1.0.1"
 }

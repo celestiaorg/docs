@@ -120,8 +120,12 @@ celestia bridge start --core.ip <URI> --core.port <port>
 Here is an example of starting the bridge node on Mocha:
 
 ```sh
-celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
+celestia bridge start --core.ip <archival-consensus-endpoint> --core.port 9090 --p2p.network mocha
 ```
+
+<Callout type="warning">
+Bridge nodes sync headers from genesis and require an archival consensus node. Public RPC endpoints are typically pruned and will not work for initial sync. Use your own archival consensus node or an archival endpoint from an infrastructure provider.
+</Callout>
 
 <Callout type="info">
 If you're connecting your bridge node to a localhost consensus node (`--core.ip localhost` or `--core.ip 127.0.0.1`), ensure that gRPC is enabled in your consensus node's `app.toml` configuration file. Look for the `[grpc]` section and verify that `enable = true` is set:

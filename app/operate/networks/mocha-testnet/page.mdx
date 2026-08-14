@@ -83,6 +83,21 @@ history, such as:
 
 > **Warning:** Do not rely on the free community endpoints listed below for production deployments. Production deployments should rely on [service providers with SLAs](#production-rpc-endpoints) or your own node.
 
+### Public RPC endpoint
+
+For development, testing, and documentation examples, use the public QuickNode
+endpoint:
+
+| Interface | Endpoint |
+| --------- | -------- |
+| HTTP RPC and REST | `https://public-endpoint.celestia-mocha.quiknode.pro` |
+| WebSocket | `wss://public-endpoint.celestia-mocha.quiknode.pro/websocket` |
+| gRPC over TLS | `public-endpoint.celestia-mocha.quiknode.pro:9090` |
+| DA JSON-RPC | `https://public-endpoint.celestia-mocha.quiknode.pro` |
+
+This shared endpoint is pruned and does not provide a production SLA. Do not
+use it for historical queries or bridge node sync from genesis.
+
 ### Node setup and tools
 
 Several community providers offer comprehensive node setup tools, installation scripts, and monitoring services to help node operators get started quickly:
