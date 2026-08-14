@@ -161,9 +161,10 @@ if command -v go >/dev/null 2>&1; then
     GOBIN=$(go env GOBIN)
     GOBIN_LABEL="Go bin directory"
 
-    # Homebrew leaves GOBIN unset and defaults GOPATH to $HOME/go, which may
-    # not be in PATH. Prefer Homebrew's bin directory when it provides Go.
-    if [ -z "$GOBIN" ] && command -v brew >/dev/null 2>&1; then
+    # Honor an explicitly configured GOPATH before falling back to Homebrew's
+    # bin directory. Homebrew leaves GOBIN unset and defaults GOPATH to
+    # $HOME/go, which may not be in PATH.
+    if [ -z "$GOBIN" ] && [ -z "$GOPATH" ] && command -v brew >/dev/null 2>&1; then
         HOMEBREW_PREFIX=$(brew --prefix 2>/dev/null)
         if [ -n "$HOMEBREW_PREFIX" ] && [ "$(command -v go)" = "$HOMEBREW_PREFIX/bin/go" ]; then
             GOBIN="$HOMEBREW_PREFIX/bin"
