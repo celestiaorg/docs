@@ -2,6 +2,6 @@
   "golangNodeMainnet": "1.24.1",
   "golangNodeMocha": "1.24.1",
   "mainnetChainId": "celestia",
-  "mochaChainId": "mocha-4",
+  "mochaChainId": "mocha-5",
   "orchrelayVersion": "v1.0.1"
 }
