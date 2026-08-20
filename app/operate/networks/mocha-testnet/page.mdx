@@ -86,16 +86,16 @@ celestia-appd init "node-name" \
 
 celestia-appd download-genesis {{constants['mochaChainId']}} \
   --home "$MOCHA_5_HOME"
+# if this command doesn't exist in the binary, use this instead:
+# curl -sL "https://raw.githubusercontent.com/celestiaorg/networks/main/{{constants['mochaChainId']}}/genesis.json" -o "$MOCHA_5_HOME/config/genesis.json"
 ```
 
 Configure the new Mocha seeds and peers in that directory:
 
 ```bash
 SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/seeds.txt | tr '\n' ',')
-PERSISTENT_PEERS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/peers.txt | tr '\n' ',')
 
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" "$MOCHA_5_HOME/config/config.toml"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" "$MOCHA_5_HOME/config/config.toml"
 ```
 
 Do not copy the `mocha-4` data directory or
