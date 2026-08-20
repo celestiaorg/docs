@@ -23,37 +23,48 @@ to show you how to connect to them.
 ## Mocha-5 network restart
 
 <Callout type="warning">
-Mocha-5 is a new chain that starts at height 1; it is not an in-place
+Mocha-5 is a new chain that started at height 1; it is not an in-place
 upgrade from `mocha-4`. Existing consensus operators must initialize
 `mocha-5` in a separate home directory, as described below. You do not
 need to keep your own copy of `mocha-4` chain data.
 </Callout>
 
-Only account balances recorded at the selected `mocha-4` snapshot height
-will carry over to `mocha-5`. Transactions and balance changes after that
-height will not exist on `mocha-5`, and account sequences reset to 0.
-Existing delegations, unbonding delegations, and pending staking rewards
-will become liquid balances.
+Mocha-5 is live. It is a hardspoon of `mocha-4` at block
+[13205115](https://celestia.explorers.guru/block/13205115): only account
+balances recorded at that height carried over. Transactions and balance
+changes after that height do not exist on `mocha-5`, and account
+sequences were reset to 0. Delegations, unbonding delegations, and
+pending staking rewards were redeemed as liquid balances.
 
-The initial validator set will be created from separately coordinated
-genesis transactions. Other validators can join after launch with
-`MsgCreateValidator`. The validator set, governance proposals, IBC
-channels, Hyperlane state, community pool, and all other chain state
-will not carry over.
+The initial validator set was created from separately coordinated
+genesis transactions. Other validators can join by submitting
+`MsgCreateValidator` once their node is synced. The `mocha-4` validator
+set, governance proposals, IBC channels, Hyperlane state, community
+pool, and all other chain state did not carry over.
 
-### Accessing mocha-4 history after the restart
+`mocha-4` remains running until it is officially shut down on
+September 1, 2026. All services still pointing at `mocha-4` should move
+to `mocha-5` before then. If you operate a `mocha-4` validator, keep it
+running while you migrate if possible; if you need to stop it sooner,
+unbond it from the active set first so it does not affect `mocha-4`
+block production.
 
-Because `mocha-5` starts from a new genesis, `mocha-4` history is not
-queryable on the restarted network. Individual node operators are not
+### Accessing mocha-4 history
+
+Because `mocha-5` started from a new genesis, `mocha-4` history is not
+queryable on the new network. Blobs and rollup data posted to `mocha-4`
+are not retrievable on `mocha-5`. Individual node operators are not
 expected to retain `mocha-4` data. An exported copy of the final
-`mocha-4` state will be available for one month after the restart.
+`mocha-4` state will be available for one month after the shutdown.
 
 If you depend on specific `mocha-4` transaction history, export what you
-need before the restart.
+need before the September 1, 2026 shutdown.
 
 <Callout type="info">
 The download location for the final `mocha-4` state export will be added
-when it is published.
+when it is published. Follow the
+[status page announcement](https://status.celestia.org/incidents/nc1nkb54)
+for updates.
 </Callout>
 
 ### Prepare a separate consensus-node home
@@ -91,18 +102,16 @@ celestia-appd download-genesis {{constants['mochaChainId']}} \
 Configure the new Mocha seeds and peers in that directory:
 
 ```bash
-SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mochaChainId']}}/seeds.txt | tr '\n' ',')
+SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/main/{{constants['mochaChainId']}}/seeds.txt | tr '\n' ',')
 
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" "$MOCHA_5_HOME/config/config.toml"
 ```
 
 Do not copy the `mocha-4` data directory or
-`data/priv_validator_state.json` into the new home. Initial validators
-should restore validator and wallet keys only as directed by the
-separately coordinated genesis transaction process.
+`data/priv_validator_state.json` into the new home.
 
-At launch, run `mocha-5` under a separate service whose start command
-includes the new home:
+Run `mocha-5` under a separate service whose start command includes the
+new home:
 
 ```bash
 celestia-appd start --home "$MOCHA_5_HOME"
@@ -131,10 +140,10 @@ to the correct instructions on this page on how to connect to Mocha.
 | Detail        | Value                                                                                              |
 | ------------- | -------------------------------------------------------------------------------------------------- |
 | Chain ID      | `{{constants['mochaChainId']}}`                                                                                     |
-| Genesis hash  | `B93BBE20A0FBFDF955811B6420F8433904664D45DB4BF51022BE4200C1A1680D`                                 |
-| Genesis file  | https://github.com/celestiaorg/networks/blob/master/{constants.mochaChainId}/genesis.json                      |
-| Peers file    | https://github.com/celestiaorg/networks/blob/master/{constants.mochaChainId}/peers.txt                         |
-| Validators    | 100                                                                                                |
+| Genesis hash  | `82DB3AC5AB8485E4784054BD10457533A64563F055C0D234A3134603A9C85D33`                                 |
+| Genesis file  | https://github.com/celestiaorg/networks/blob/main/{constants.mochaChainId}/genesis.json                      |
+| Peers file    | https://github.com/celestiaorg/networks/blob/main/{constants.mochaChainId}/peers.txt                         |
+| Validators    | 100 (max)                                                                                                |
 
 ## Software version numbers
 
