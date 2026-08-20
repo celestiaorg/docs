@@ -81,6 +81,9 @@ const versions = [
   'v0.25.3',
   'v0.26.4',
   'v0.28.4',
+  'v0.30.2',
+  'v0.31.3',
+  'v0.31.4',
 ].reverse();
 
 export default function RPCDocumentation() {

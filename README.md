@@ -106,14 +106,13 @@ This section outlines the standards and guidelines for maintaining consistent, h
 - **Sentence case**: use sentence case for headings and titles (reference: https://github.com/celestiaorg/docs/issues/161)
 - **No “click here”**: avoid using “click here” for link text (reference: https://github.com/celestiaorg/docs/issues/1073)
 - **International English**: use international (common) English spelling and terminology
-- **Network names**: use “Arabica devnet”, not “Arabica Devnet”
 - **Node types**: use lowercase for node types (e.g., “bridge node”, not “Bridge Node”)
 - **Politeness**: avoid using “please” in instructional content
 - **Unique headings**: ensure no duplicate headings within a document
 - **Network references**: use "Mainnet Beta" network (note the specific capitalization)
 - **Latin abbreviations**: use italicized _i.e._ or _e.g._ instead of plain i.e. or e.g.
 - **Code references**: use “celestia-app” in regular text (not inline code) when referring to the application name
-- **Tab ordering**: when using tabs, order them as: Mainnet Beta, Mocha, Arabica
+- **Tab ordering**: when using network tabs, order them as: Mainnet Beta, Mocha
 - **Placeholders**: use angle brackets with underscores for placeholders: `<flag_name>` not `<flag-name>` or `<flag name>`
 
 ### Documentation update procedures

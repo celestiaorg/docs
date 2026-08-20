@@ -44,7 +44,6 @@ const DEFAULT_SKIP_PATTERNS = [
   'github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md',
   'github.com/celestiaorg/celestia-app/blob/main/docs/audit/', // Audit PDFs prone to 429 rate limiting
   // External tools and explorers that block automated checks
-  'validao.xyz', // Community node map visualization
   'celestia.valopers.com', // Community explorer
   'holesky.etherscan.io', // Testnet Etherscan (can be flaky)
   'arbiscan.io', // Cloudflare challenge blocks automated checks
@@ -65,6 +64,7 @@ const DEFAULT_SKIP_PATTERNS = [
 const ONLY_FAIL_ON_404_PATTERNS = [
   'explorer.nodestake.top/celestia',
   'etherscan.io/address/',
+  'basescan.org/address/',
   'status.celestia.dev/status/',
   'mammoblocks.io/',
 ];
@@ -172,13 +172,11 @@ let variableContext = {};
 try {
   const mainnetVersions = require('../constants/mainnet_versions.json');
   const mochaVersions = require('../constants/mocha_versions.json');
-  const arabicaVersions = require('../constants/arabica_versions.json');
   const constants = require('../constants/general.json');
 
   variableContext = {
     mainnetVersions,
     mochaVersions,
-    arabicaVersions,
     constants,
   };
 } catch (e) {

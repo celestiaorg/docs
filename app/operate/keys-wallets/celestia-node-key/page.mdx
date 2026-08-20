@@ -73,14 +73,14 @@ This will load the key `<key-name>` into the directory of the node.
 
 Further flags you can use to customize your key are the following:
 
-- `--p2p.network`: Specifies which network you want the key for. Values
-  are `arabica` and `mocha`. Please note the default network will be `mocha`.
+- `--p2p.network`: Specifies which network you want the key for. Use `mocha`
+  to target Mocha.
 
 Keep in mind that your celestia-node will only pick up keys that
 are inside the default directory under `/keys` so you should make
 sure to point `cel-key` utility to the correct directory via the
 `p2p.network` or `home` flags if you have specified a custom
-directory or network other than Arabica, Mocha, or Mainnet Beta.
+directory or network other than Mocha or Mainnet Beta.
 
 Also keep in mind that if you do not specify a network with `--p2p.network`,
 the default one will always be `celestia` (Mainnet Beta).
@@ -233,7 +233,9 @@ celestia <node-type> start --p2p.network <network> --keyring.keyname <key-name> 
 For example:
 
 ```bash
-celestia light start --p2p.network mocha --keyring.keyname my_celes_key --core.ip rpc-mocha.pops.one
+celestia light start --p2p.network mocha --keyring.keyname my_celes_key \
+  --core.ip public-endpoint.celestia-mocha.quiknode.pro \
+  --core.port 9090 --core.tls
 ```
 
 This ensures your node uses the specified key for all operations, including those reported by `celestia state account-address`.
@@ -254,7 +256,8 @@ testnet):
 ```bash
 docker run --name celestia-node -e NODE_TYPE=light -e P2P_NETWORK=mocha -p 26659:26659 \
 ghcr.io/celestiaorg/celestia-node:{{mochaVersions['node-latest-tag']}} celestia light start \
---core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
+--core.ip public-endpoint.celestia-mocha.quiknode.pro --core.port 9090 \
+--core.tls --p2p.network mocha
 ```
 
 <Callout type="info">
@@ -306,7 +309,7 @@ services:
     image: celestia-node
     environment:
       - NODE_TYPE=light
-    command: celestia light start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha --keyring.keyname my_celes_key
+    command: celestia light start --core.ip public-endpoint.celestia-mocha.quiknode.pro --core.port 9090 --core.tls --p2p.network mocha --keyring.keyname my_celes_key
     volumes:
       - ${PWD}/keys:/root/.celestia-light-{{constants['mochaChainId']}}/keys
     ports:

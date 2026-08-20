@@ -7,20 +7,18 @@ import { createHash } from 'crypto';
 
 const SITE_ORIGIN = 'https://docs.celestia.org';
 const GITHUB_REPO = 'https://github.com/celestiaorg/docs';
-const LATEST_OPENRPC_SPEC = '/specs/openrpc-v0.28.4.json';
+const LATEST_OPENRPC_SPEC = '/specs/openrpc-v0.31.4.json';
 
 // Use createRequire to import JSON files in ESM context
 const require = createRequire(import.meta.url);
 const mainnetVersions = require('../constants/mainnet_versions.json');
 const mochaVersions = require('../constants/mocha_versions.json');
-const arabicaVersions = require('../constants/arabica_versions.json');
 const constants = require('../constants/general.json');
 
 // Create a context object with all available variables
 const variableContext = {
   mainnetVersions,
   mochaVersions,
-  arabicaVersions,
   constants,
 };
 
@@ -28,8 +26,6 @@ const variableContext = {
  * Safely evaluates a variable expression like:
  *   mainnetVersions['app-latest-tag']
  *   mochaVersions["node-latest-tag"]
- *   constants.arabicaChainId
- *   constants['arabicaChainId']
  *
  * @param {string} expression - The expression to evaluate
  * @returns {string|null} - The resolved value or null if not found
@@ -92,7 +88,7 @@ function replaceVariables(text) {
   // First replace {{...}} patterns (double braces)
   text = text.replace(/\{\{([^{}]+)\}\}/g, (match, expression) => {
     const trimmedExpr = expression.trim();
-    if (!/^(mainnetVersions|mochaVersions|arabicaVersions|constants)(?:\[['"][^'"]+['"]\]|\.\w+)$/.test(trimmedExpr)) {
+    if (!/^(mainnetVersions|mochaVersions|constants)(?:\[['"][^'"]+['"]\]|\.\w+)$/.test(trimmedExpr)) {
       return match;
     }
 
@@ -108,7 +104,7 @@ function replaceVariables(text) {
 
   // Then replace {expression} patterns (single braces) that match our variable patterns
   // Be careful to only match patterns that look like variable references
-  text = text.replace(/\{((?:mainnetVersions|mochaVersions|arabicaVersions|constants)(?:\[['"][^'"]+['"]\]|\.\w+))\}/g, (match, expression) => {
+  text = text.replace(/\{((?:mainnetVersions|mochaVersions|constants)(?:\[['"][^'"]+['"]\]|\.\w+))\}/g, (match, expression) => {
     const trimmedExpr = expression.trim();
     const resolved = resolveExpression(trimmedExpr);
 
@@ -171,7 +167,7 @@ const header = [
   '- Agent skill: https://docs.celestia.org/SKILL.md',
   '- Agent skills index: https://docs.celestia.org/.well-known/agent-skills/index.json',
   '- API catalog: https://docs.celestia.org/.well-known/api-catalog',
-  '- Node API OpenRPC spec: https://docs.celestia.org/specs/openrpc-v0.28.4.json',
+  '- Node API OpenRPC spec: https://docs.celestia.org/specs/openrpc-v0.31.4.json',
   '- CIPs (Celestia Improvement Proposals): https://cips.celestia.org',
 ];
 

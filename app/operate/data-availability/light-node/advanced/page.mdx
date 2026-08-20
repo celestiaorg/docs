@@ -45,7 +45,7 @@ For key creation, backup, import/recover, and Docker setups, see
 [Create a wallet with celestia-node](/operate/keys-wallets/celestia-node-key).
 </Callout>
 
-<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+<Tabs items={['Mainnet Beta', 'Mocha']}>
   <Tabs.Tab>
     ```bash
     celestia light start --core.ip <URI> --core.port <port> \
@@ -56,12 +56,6 @@ For key creation, backup, import/recover, and Docker setups, see
     ```bash
     celestia light start --core.ip <URI> --core.port <port> \
       --keyring.keyname <name-of-custom-key> --p2p.network mocha
-    ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-    ```bash
-    celestia light start --core.ip <URI> --core.port <port> \
-      --keyring.keyname <name-of-custom-key> --p2p.network arabica
     ```
   </Tabs.Tab>
 </Tabs>
@@ -94,10 +88,10 @@ Celestia also supports initializing from a trusted hash via
 
 ### Get a trusted height and hash
 
-This example uses the P-OPS Mocha endpoint:
+This example uses the public QuickNode Mocha endpoint:
 
 ```bash
-read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://rpc-mocha.pops.one/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
+read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://public-endpoint.celestia-mocha.quiknode.pro/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
 ```
 
 ### Set `SyncFromHeight` and `SyncFromHash`
@@ -114,7 +108,9 @@ Ensure `SyncFromHash` has **no `0x` prefix**.
 ### Start the node
 
 ```bash
-celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+celestia light start --p2p.network mocha \
+  --core.ip public-endpoint.celestia-mocha.quiknode.pro \
+  --core.port 9090 --core.tls
 ```
 
 </Steps>
@@ -165,7 +161,9 @@ TxWorkerAccounts = 1
 #### Restart your node
 
 ```bash
-celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+celestia light start --p2p.network mocha \
+  --core.ip public-endpoint.celestia-mocha.quiknode.pro \
+  --core.port 9090 --core.tls
 ```
 
 </Steps>
@@ -204,7 +202,9 @@ TxWorkerAccounts = 8
 #### Restart your node
 
 ```bash
-celestia light start --p2p.network mocha --core.ip rpc-mocha.pops.one --core.port 9090
+celestia light start --p2p.network mocha \
+  --core.ip public-endpoint.celestia-mocha.quiknode.pro \
+  --core.port 9090 --core.tls
 ```
 
 </Steps>

@@ -96,7 +96,7 @@ Why this is the preferred path:
 - Both clients are built for submit + retrieve flows.
 - Both use local keyring/signer handling.
 - Both use the expected endpoint model: DA bridge RPC plus Core gRPC.
-- For public Mocha examples, prefer `CELE_DA_URL=http://celestia-testnet-consensus.itrocket.net:26658` and `CELE_CORE_GRPC=rpc-mocha.pops.one:9090` unless the user specifies a managed provider.
+- For public Mocha examples, prefer `CELE_DA_URL=https://public-endpoint.celestia-mocha.quiknode.pro` and `CELE_CORE_GRPC=public-endpoint.celestia-mocha.quiknode.pro:9090` with DA and Core TLS enabled unless the user specifies a managed provider.
 
 Funding flow for agent-led examples:
 
@@ -114,9 +114,9 @@ Persist and return this retrieval tuple after submission:
 
 Version scope:
 
-- These defaults are validated against Node API OpenRPC `v0.28.4` (checked on 2026-03-13).
-- Re-check method status if the target node version changes by reviewing `public/specs/openrpc-<version>.json` in this repo (served at `/specs/openrpc-<version>.json`) for deprecation notes.
-- Use `/build/rpc/node-api/?version=v0.28.4` as the human-facing docs page, linking to the relevant package section when possible (for example `#blob`, `#state`, or `#p2p`).
+- These defaults are validated against Node API OpenRPC `v0.31.4` (checked on 2026-08-07).
+- Re-check method status if the target node version changes by reviewing `public/specs/openrpc-<version>.json` in this repo (served at `/specs/openrpc-<version>.json`) for method availability and deprecation notes.
+- Use `/build/rpc/node-api/?version=v0.31.4` as the human-facing docs page, linking to the relevant package section when possible (for example `#blob`, `#state`, or `#p2p`).
 
 - Submit with `blob.Submit` (preferred).
 - Use `state.SubmitPayForBlob` only when explicit tx-level handling is required.
@@ -133,8 +133,8 @@ Version scope:
   - `app/operate` for node operator and infrastructure content
 - Do not hardcode frequently changing versions or network values inline; prefer the
   constants-backed variable pattern from `constants/*.json`.
-- Keep tab order as: Mainnet Beta, Mocha, Arabica.
-- Use canonical network names where applicable (for example Mainnet Beta, Mocha testnet, Arabica devnet).
+- Keep network tab order as: Mainnet Beta, Mocha.
+- Use canonical network names where applicable (for example Mainnet Beta and Mocha testnet).
 - If chain IDs or network identifiers change, run a repo-wide search across MDX files before
   considering the task done.
 - Review release notes when a docs change may be driven by a breaking network or software change.
