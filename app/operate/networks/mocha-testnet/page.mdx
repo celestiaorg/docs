@@ -195,6 +195,11 @@ history, such as:
 For development, testing, and documentation examples, use the public QuickNode
 endpoint:
 
+<Callout type="warning">
+This endpoint currently still serves `mocha-4`. It will migrate to
+`mocha-5` before the `mocha-4` shutdown on September 1, 2026.
+</Callout>
+
 | Interface | Endpoint |
 | --------- | -------- |
 | HTTP RPC and REST | `https://public-endpoint.celestia-mocha.quiknode.pro` |
@@ -204,11 +209,6 @@ endpoint:
 
 This shared endpoint is pruned and does not provide a production SLA. Do not
 use it for historical queries or bridge node sync from genesis.
-
-<Callout type="warning">
-This endpoint currently still serves `mocha-4`. It will migrate to
-`mocha-5` before the `mocha-4` shutdown on September 1, 2026.
-</Callout>
 
 ### Community consensus endpoints
 
@@ -299,7 +299,7 @@ The web faucet is available at [https://mocha.celenium.io/faucet](https://mocha.
 
 The following websites provide analytics for Mocha Testnet:
 
-- [https://itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Node setup, monitoring, and chain status tools
+- [https://itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Monitoring and chain status tools
 
 ## Node maps
 
