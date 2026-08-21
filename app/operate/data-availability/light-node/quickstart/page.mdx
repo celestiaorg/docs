@@ -85,14 +85,16 @@ for state access (balances, submitting `PayForBlobs`, etc.).
 <Tabs items={['Mainnet Beta', 'Mocha']}>
   <Tabs.Tab>
     ```bash
-    celestia light start --core.ip rpc.celestia.pops.one \
-      --core.port 9090 --p2p.network celestia
+    celestia light start \
+      --core.ip public-endpoint.celestia-mainnet.quiknode.pro \
+      --core.port 9090 --core.tls --p2p.network celestia
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    celestia light start --core.ip rpc-mocha.pops.one \
-      --core.port 9090 --p2p.network mocha
+    celestia light start \
+      --core.ip public-endpoint.celestia-mocha.quiknode.pro \
+      --core.port 9090 --core.tls --p2p.network mocha
     ```
   </Tabs.Tab>
 </Tabs>

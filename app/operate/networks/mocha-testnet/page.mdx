@@ -2,6 +2,7 @@
 description: Learn how to connect to the Mocha network.
 ---
 
+import { Callout } from 'nextra/components';
 import { constants, mochaVersions } from '@/constants';
 
 # Mocha testnet
@@ -18,6 +19,104 @@ core functionalities on the network. Read [the announcement](https://blog.celest
 Your best approach to participating is to first determine which node
 you would like to run. Each node's guide will link to the relevant networks,
 to show you how to connect to them.
+
+## Mocha-5 network restart
+
+<Callout type="warning">
+Mocha-5 is a new chain that started at height 1; it is not an in-place
+upgrade from `mocha-4`. Existing consensus operators must initialize
+`mocha-5` in a separate home directory, as described below. You do not
+need to keep your own copy of `mocha-4` chain data.
+</Callout>
+
+Mocha-5 is live. It is a hardspoon of `mocha-4` at block
+[13205115](https://celestia.explorers.guru/block/13205115): only account
+balances recorded at that height carried over. Transactions and balance
+changes after that height do not exist on `mocha-5`, and account
+sequences were reset to 0. Delegations, unbonding delegations, and
+pending staking rewards were redeemed as liquid balances.
+
+The initial validator set was created from separately coordinated
+genesis transactions. Other validators can join by submitting
+`MsgCreateValidator` once their node is synced. The `mocha-4` validator
+set, governance proposals, IBC channels, Hyperlane state, community
+pool, and all other chain state did not carry over.
+
+`mocha-4` remains running until it is officially shut down on
+September 1, 2026. All services still pointing at `mocha-4` should move
+to `mocha-5` before then. If you operate a `mocha-4` validator, keep it
+running while you migrate if possible; if you need to stop it sooner,
+unbond it from the active set first so it does not affect `mocha-4`
+block production.
+
+### Accessing mocha-4 history
+
+Because `mocha-5` started from a new genesis, `mocha-4` history is not
+queryable on the new network. Blobs and rollup data posted to `mocha-4`
+are not retrievable on `mocha-5`. Individual node operators are not
+expected to retain `mocha-4` data. An exported copy of the final
+`mocha-4` state will be available for one month after the shutdown.
+
+If you depend on specific `mocha-4` transaction history, export what you
+need before the September 1, 2026 shutdown.
+
+<Callout type="info">
+An archival `mocha-4` node snapshot taken on 2026-08-19 is available at
+[snaps.qubelabs.io/celestia/mocha-4_2026-08-19.tar](https://snaps.qubelabs.io/celestia/mocha-4_2026-08-19.tar).
+Note that it is approximately 12.3 TB. Follow the
+[status page announcement](https://status.celestia.org/incidents/nc1nkb54)
+for updates.
+</Callout>
+
+### Prepare a separate consensus-node home
+
+If you already operate a `mocha-4` consensus node or validator, do not
+initialize `mocha-5` in the existing `$HOME/.celestia-app` directory.
+That directory's `data/priv_validator_state.json` records the last
+`mocha-4` height you signed, and a validator will not sign at a height
+at or below that value. Because `mocha-5` restarts at height 1, a node
+reusing the old home would refuse to sign. The old `data` directory also
+holds blocks from a different chain, which will not reconcile with the
+`mocha-5` genesis.
+
+Using a separate home avoids both problems and leaves your `mocha-4`
+node runnable if you need to fall back during the cutover. Back up your
+[wallet keys](/operate/keys-wallets/celestia-app-wallet#key-management)
+and `$HOME/.celestia-app/config/priv_validator_key.json` before
+continuing.
+
+Initialize `mocha-5` with its own home directory:
+
+```bash
+MOCHA_5_HOME="$HOME/.celestia-app-mocha-5"
+
+celestia-appd init "node-name" \
+  --chain-id {{constants['mochaChainId']}} \
+  --home "$MOCHA_5_HOME"
+
+celestia-appd download-genesis {{constants['mochaChainId']}} \
+  --home "$MOCHA_5_HOME"
+# if this command doesn't exist in the binary, use this instead:
+# curl -sL "https://raw.githubusercontent.com/celestiaorg/networks/main/{{constants['mochaChainId']}}/genesis.json" -o "$MOCHA_5_HOME/config/genesis.json"
+```
+
+Configure the new Mocha seeds and peers in that directory:
+
+```bash
+SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/main/{{constants['mochaChainId']}}/seeds.txt | tr '\n' ',')
+
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" "$MOCHA_5_HOME/config/config.toml"
+```
+
+Do not copy the `mocha-4` data directory or
+`data/priv_validator_state.json` into the new home.
+
+Run `mocha-5` under a separate service whose start command includes the
+new home:
+
+```bash
+celestia-appd start --home "$MOCHA_5_HOME"
+```
 
 You have a list of options on the types of nodes you can run to
 participate in Mocha:
@@ -42,10 +141,10 @@ to the correct instructions on this page on how to connect to Mocha.
 | Detail        | Value                                                                                              |
 | ------------- | -------------------------------------------------------------------------------------------------- |
 | Chain ID      | `{{constants['mochaChainId']}}`                                                                                     |
-| Genesis hash  | `B93BBE20A0FBFDF955811B6420F8433904664D45DB4BF51022BE4200C1A1680D`                                 |
-| Genesis file  | https://github.com/celestiaorg/networks/blob/master/{constants.mochaChainId}/genesis.json                      |
-| Peers file    | https://github.com/celestiaorg/networks/blob/master/{constants.mochaChainId}/peers.txt                         |
-| Validators    | 100                                                                                                |
+| Genesis hash  | `82DB3AC5AB8485E4784054BD10457533A64563F055C0D234A3134603A9C85D33`                                 |
+| Genesis file  | https://github.com/celestiaorg/networks/blob/main/{constants.mochaChainId}/genesis.json                      |
+| Peers file    | https://github.com/celestiaorg/networks/blob/main/{constants.mochaChainId}/peers.txt                         |
+| Validators    | 100 (max)                                                                                                |
 
 ## Software version numbers
 
@@ -82,6 +181,21 @@ history, such as:
 | QuickNode | [https://www.quicknode.com/chains/celestia](https://www.quicknode.com/chains/celestia) ([docs](https://quicknode.com/docs/celestia)) |
 
 > **Warning:** Do not rely on the free community endpoints listed below for production deployments. Production deployments should rely on [service providers with SLAs](#production-rpc-endpoints) or your own node.
+
+### Public RPC endpoint
+
+For development, testing, and documentation examples, use the public QuickNode
+endpoint:
+
+| Interface | Endpoint |
+| --------- | -------- |
+| HTTP RPC and REST | `https://public-endpoint.celestia-mocha.quiknode.pro` |
+| WebSocket | `wss://public-endpoint.celestia-mocha.quiknode.pro/websocket` |
+| gRPC over TLS | `public-endpoint.celestia-mocha.quiknode.pro:9090` |
+| DA JSON-RPC | `https://public-endpoint.celestia-mocha.quiknode.pro` |
+
+This shared endpoint is pruned and does not provide a production SLA. Do not
+use it for historical queries or bridge node sync from genesis.
 
 ### Node setup and tools
 
