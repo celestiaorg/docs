@@ -158,8 +158,24 @@ echo "Temporary files cleaned up." | tee -a "$LOGFILE"
 
 # Check if Go is installed
 if command -v go >/dev/null 2>&1; then
-    GOPATH=${GOPATH:-$(go env GOPATH)}
-    GOBIN="$GOPATH/bin"
+    GOBIN=$(go env GOBIN)
+    GOBIN_LABEL="Go bin directory"
+
+    # Honor an explicitly configured GOPATH before falling back to Homebrew's
+    # bin directory. Homebrew leaves GOBIN unset and defaults GOPATH to
+    # $HOME/go, which may not be in PATH.
+    if [ -z "$GOBIN" ] && [ -z "$GOPATH" ] && command -v brew >/dev/null 2>&1; then
+        HOMEBREW_PREFIX=$(brew --prefix 2>/dev/null)
+        if [ -n "$HOMEBREW_PREFIX" ] && [ "$(command -v go)" = "$HOMEBREW_PREFIX/bin/go" ]; then
+            GOBIN="$HOMEBREW_PREFIX/bin"
+            GOBIN_LABEL="Homebrew bin directory"
+        fi
+    fi
+
+    if [ -z "$GOBIN" ]; then
+        GOPATH=${GOPATH:-$(go env GOPATH)}
+        GOBIN="$GOPATH/bin"
+    fi
     HAS_GO=true
 else
     HAS_GO=false
@@ -169,7 +185,7 @@ fi
 echo ""
 if [ "$HAS_GO" = true ]; then
     echo "Where would you like to install the celestia binary?"
-    echo "1) Go bin directory ($GOBIN) [Recommended]"
+    echo "1) $GOBIN_LABEL ($GOBIN) [Recommended]"
     echo "2) System bin directory (/usr/local/bin)"
     echo "3) Keep in current directory ($TEMP_DIR)"
 else

@@ -99,9 +99,10 @@ commit hash, build date, system version, and Golang version.
 
 Installing a pre-built binary is the fastest way to get started with your Celestia data availability node. Releases after celestia-node v0.13.3 have these binaries available.
 
-The installation script will download a binary file named `celestia`. Depending on your chosen installation option, the `celestia` binary will be available at one of these locations:
+The installation script will download a binary file named `celestia`. Depending on your environment and chosen installation option, the `celestia` binary will be available at one of these locations:
 
-- `$GOPATH/bin/celestia` (if Go is installed)
+- The Homebrew bin directory (usually `/opt/homebrew/bin/celestia` on Apple silicon or `/usr/local/bin/celestia` on Intel Macs) when Go is installed with Homebrew
+- `$GOBIN/celestia`, or `$GOPATH/bin/celestia` when `GOBIN` is unset, for other Go installations
 - `/usr/local/bin/celestia`
 - `$HOME/celestia-node-temp/celestia`
 
@@ -129,7 +130,7 @@ The script will:
 3. Verify the checksum for security
 4. Provide installation location options based on your environment:
    - If Go is installed:
-     - Go bin directory (`$GOPATH/bin`)
+     - Detected Go bin directory (the Homebrew bin directory when Go is installed with Homebrew, otherwise `$GOBIN` or `$GOPATH/bin`)
      - System bin directory (`/usr/local/bin`)
      - Keep in current directory
    - If Go is not installed:
