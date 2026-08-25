@@ -43,8 +43,7 @@ next-env.d.ts
 # nextra
 _pagefind/
 
-# agents llms
-AGENTS.md
+# generated llm files
 /public/llms.txt
 /public/llms-full.txt
 /public/**/*.md
