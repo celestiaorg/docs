@@ -24,7 +24,21 @@ Celestia node RPC reference for blob, blobstream, da, das, header, node, p2p, sh
 
 </div>
 
-> **Warning:** Starting with celestia-node v0.31.3, RPC request bodies are limited to 16 MiB. Requests larger than this limit are rejected.
+## celestia-node v0.31.3 breaking changes
+
+Starting with celestia-node v0.31.3:
+
+- The `fraud` RPC namespace was removed. Calls to `fraud.Get` and
+  `fraud.Subscribe` are no longer supported.
+- The `type` field returned by `node.Info` is a string such as `"Bridge"` or
+  `"Light"` instead of an integer.
+- RPC request bodies are limited to 16 MiB. Larger requests are rejected.
+- In the Go API, `blob.Commitment.String()` returns a hexadecimal string
+  instead of raw bytes. This does not change the JSON encoding of commitment
+  fields returned by RPC methods.
+
+See the [celestia-node v0.31.3 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3)
+for the complete list of changes.
 
 <NodeAPIContent />
 <DynamicRPCTOC />
