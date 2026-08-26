@@ -112,6 +112,14 @@ You can get the persistent peers from the [@cosmos/chain-registry](https://githu
 
 ## Storage and pruning configurations
 
+### Database backend
+
+Celestia-app v9 and later support only PebbleDB. New nodes use PebbleDB by
+default. If an existing node is configured with `db_backend = "goleveldb"`,
+stop the node and use the
+[`migrate-db` tool](https://github.com/celestiaorg/celestia-app/tree/v9.x/tools/migrate-db)
+before upgrading to v9 or later.
+
 ### Optional: Connect a consensus node to a bridge node
 
 If your consensus node is being connected to a celestia-node bridge node,
@@ -454,7 +462,7 @@ The available options are:
    transaction status. If you don't need to query transaction data,
    you can choose this option to save space.
 2. `kv`: This is the simplest indexer, backed by
-   key-value storage (defaults to levelDB; see DBBackend).
+   PebbleDB key-value storage.
    When `kv` is chosen, `tx.height` and `tx.hash` will always be
    indexed. This option is suitable for basic queries on transactions.
 3. `psql`: This indexer is backed by PostgreSQL. When psql is chosen,
