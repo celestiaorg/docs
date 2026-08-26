@@ -176,6 +176,8 @@ The following table lists community-provided consensus node endpoints that you c
 | Stakin          | `celestia.rpc.stakin-nodes.com`         | `celestia.rest.stakin-nodes.com`        | `celestia.grpc.stakin-nodes.com:443`      | -                                                        |
 | deNodes         | `celestia-mainnet-rpc.denodes.xyz`      | `celestia-mainnet-api.denodes.xyz`      | -                                         | `wss://celestia-mainnet-rpc.denodes.xyz:443/websocket`   |
 
+> Live latency benchmarks for public no-key Celestia RPC endpoints (PublicNode, Polkachu, LavenderFive — Tendermint status p50/p90/p99, 3 probe regions, updated every 60 s): [OpenChainBench Celestia RPC](https://openchainbench.com/benchmarks/celestia-rpc)
+
 ### Connecting DA nodes to consensus nodes
 
 Data availability (DA) nodes need to connect to consensus nodes to sync blocks and access state. When starting a DA node, you'll need to provide a consensus node endpoint using the `--core.ip` parameter and the port.
