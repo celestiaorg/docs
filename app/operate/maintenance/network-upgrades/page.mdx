@@ -72,3 +72,24 @@ Version links point to Celenium upgrade status pages for signaling upgrades (v3+
 > **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/sdk/v0.53/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 
 The next upgrade (v10) has not yet been scheduled. This page will be updated when a new upgrade is announced.
+
+### v10 preview
+
+[CIP-52](https://cips.celestia.org/cip-052.html), the draft v10
+meta-CIP, proposes a breaking network upgrade whose primary change is
+[CIP-51](https://cips.celestia.org/cip-051.html), the Fibre protocol. The
+current draft also includes changes to the forwarding and ZK ISM modules and
+upgrades to consensus-critical dependencies.
+
+Fibre adds the `x/fibre` module and the `x/valaddr` validator provider
+registry. Validators will run a separate Fibre server and register its public
+address through `x/valaddr` after v10 activates. The new modules and
+registration transaction are unavailable before activation.
+
+> **Warning:** The v10 scope, release, and activation details are not final.
+> Do not signal support or register a Fibre server until an official network
+> announcement provides the compatible release and activation process.
+
+Validators can prepare by reviewing the
+[Fibre server guide](/operate/consensus-validators/fibre-server), including its
+key management, network, and monitoring requirements.
