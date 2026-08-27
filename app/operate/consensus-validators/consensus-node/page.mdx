@@ -162,10 +162,10 @@ min-retain-blocks = 0
 ```
 
 <Callout type="warning">
-Fresh celestia-app v9 nodes default to `min-retain-blocks = 3000`. Any non-zero
-value enables block pruning, so archival operators must explicitly set the
-value to `0`. Changing the value from `0` to a non-zero value starts pruning the
-existing backlog when the node restarts and can temporarily increase sync time.
+`min-retain-blocks` defaults to `0`. Any non-zero value enables block pruning,
+so archival operators must keep the value at `0`. Changing the value from `0`
+to a non-zero value starts pruning the existing backlog when the node restarts
+and can temporarily increase sync time.
 </Callout>
 
 ### Save on storage requirements
