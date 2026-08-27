@@ -114,9 +114,10 @@ You can get the persistent peers from the [@cosmos/chain-registry](https://githu
 
 ### Database backend
 
-Celestia-app v9 and later support only PebbleDB. New nodes use PebbleDB by
-default. If an existing node is configured with `db_backend = "goleveldb"`,
-stop the node and use the
+Celestia-app v9 and later support only PebbleDB and will not start with any
+other database backend. New nodes use PebbleDB by default. If an existing
+node is configured with a different backend, such as
+`db_backend = "goleveldb"`, stop the node and use the
 [`migrate-db` tool](https://github.com/celestiaorg/celestia-app/tree/v9.x/tools/migrate-db)
 before upgrading to v9 or later.
 
