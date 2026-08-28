@@ -2,7 +2,7 @@
 description: Learn how you can build celestia-app.
 ---
 
-import { Steps, Tabs } from 'nextra/components'
+import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Install celestia-app
 
@@ -23,6 +23,23 @@ Celestia-app officially supports the following architectures:
 - darwin/arm64 (macOS Apple Silicon)
 
 Only these four architectures are officially tested and supported.
+
+## Linux requirements
+
+<Callout type="warning">
+celestia-app v9 multiplexer binaries require glibc 2.38 or later. Use Ubuntu
+24.04 LTS or an equivalent Linux distribution. Ubuntu 22.04 and older are not
+supported and the binary will fail to start with a glibc version mismatch.
+</Callout>
+
+Check the installed glibc version before installing or upgrading:
+
+```bash
+ldd --version
+```
+
+See the [celestia-app v9 release notes](https://github.com/celestiaorg/celestia-app/blob/v9.0.4/docs/release-notes/release-notes.md#supported-operating-systems)
+for the supported operating system details.
 
 ## Building binary from source
 
