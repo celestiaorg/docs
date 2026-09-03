@@ -1,0 +1,213 @@
+---
+description: Prepare, run, register, and monitor a Fibre server as a Celestia validator.
+---
+
+import { Callout } from 'nextra/components'
+
+# Run a Fibre server
+
+Fibre is a validator-operated protocol for publishing blobs whose payload
+bytes are distributed outside the normal block data path. It is an additional
+publication path and does not replace normal blob submission.
+
+Validators run Fibre as a separate server alongside celestia-app. The server
+stores assigned shards, signs payment promises through the validator's
+consensus signer, and serves shards to Fibre clients.
+
+<Callout type="warning">
+  v10 has not been scheduled, and its meta-CIP is still a draft. Use this guide
+  to prepare your infrastructure, but do not start or register a production
+  Fibre server until an official network announcement provides the compatible
+  release and activation process.
+</Callout>
+
+## Prerequisites
+
+Before starting a Fibre server, make sure:
+
+- The network is running celestia-app version 10 or later. The `x/fibre` and
+  `x/valaddr` modules do not exist on earlier app versions.
+- A synced celestia-app node runs on the same host or a trusted host-local
+  network.
+- The validator is bonded. Fibre derives its storage budget from validator
+  stake, and validators outside the active set receive no traffic.
+- The application and private-validator gRPC endpoints are enabled.
+- The Fibre listen port is reachable from outside the validator network.
+- The validator's key management system (KMS) meets the
+  [signing requirements](#key-management-and-signing).
+
+The default ports are:
+
+| Port | Exposure | Purpose |
+| --- | --- | --- |
+| `9090` | Loopback or trusted host-local network | celestia-app application gRPC |
+| `26669` | Loopback or trusted host-local network | Private-validator gRPC used by Fibre |
+| `7980` | Public | Fibre client gRPC |
+
+The application and private-validator gRPC links are not TLS-protected. Do not
+expose ports `9090` or `26669` to an untrusted network.
+
+## Key management and signing
+
+Fibre delegates signing to the celestia-app private-validator API instead of
+loading the validator consensus key directly. The KMS must:
+
+- Support the private-validator `SignRawBytes` message. Fibre uses it for
+  payment-promise endorsements and its TLS identity.
+- Keep median signing latency at or below 10 ms.
+
+Nodes using a remote signer expose the
+`cometbft_privval_signing_latency_*` Prometheus metrics and log a warning when
+the median latency of the last 50 signatures exceeds 10 ms. Monitor these
+metrics through the existing [validator metrics
+setup](/operate/consensus-validators/metrics), and colocate signing
+infrastructure when necessary to stay within the threshold.
+
+Any KMS may be used when it meets these requirements. Horcrux is currently
+under-maintained, and misconfigured Horcrux deployments have caused slashing
+incidents. Operators who use it accept those maintenance and configuration
+risks. Any incorrect KMS setup can cause double signing and slashing.
+
+## Install the Fibre binary
+
+Fibre release archives are published with celestia-app releases for Linux and
+macOS on `amd64` and `arm64`. Use the Fibre archive whose version matches the
+celestia-app release announced for the network.
+
+Download the archive and `checksums.txt` from the
+[celestia-app releases](https://github.com/celestiaorg/celestia-app/releases),
+then verify and extract it. For example, on Linux `amd64`:
+
+```sh
+sha256sum --ignore-missing --check checksums.txt
+tar -xvf fibre_Linux_x86_64.tar.gz
+./fibre version
+```
+
+Linux Fibre archives require glibc 2.34 or later. The celestia-app multiplexer
+has separate operating system requirements; review the release notes for the
+announced version before upgrading.
+
+## Configure and start the server
+
+Verify that the private-validator gRPC endpoint is enabled in the celestia-app
+`config.toml` file:
+
+```toml
+priv_validator_grpc_laddr = "127.0.0.1:26669"
+```
+
+Start Fibre with explicit application, signer, and public listen addresses:
+
+```sh
+fibre start \
+  --app-grpc-address 127.0.0.1:9090 \
+  --signer-grpc-address 127.0.0.1:26669 \
+  --server-listen-address 0.0.0.0:7980
+```
+
+On first start, Fibre creates `~/.celestia-fibre/server_config.toml`. Flags
+override values in the configuration file.
+
+Start the server before registering its address. A registered but unreachable
+server causes clients to time out.
+
+## Register the Fibre provider address
+
+Fibre clients discover validator servers through the on-chain `x/valaddr`
+registry. Register a publicly reachable IP address or DNS name only after v10
+has activated on the network:
+
+```sh
+celestia-appd tx valaddr set-host <public_host>:7980 \
+  --from <validator_account_key>
+```
+
+The value must use `host:port` format without a URL scheme or path. Fibre uses
+the validator's consensus key, rather than the host name, to authenticate the
+server.
+
+Display the validator consensus address and verify the registration:
+
+```sh
+celestia-appd comet show-address
+celestia-appd query valaddr provider <validator_consensus_address>
+```
+
+List all registered, bonded providers with:
+
+```sh
+celestia-appd query valaddr providers
+```
+
+Registration persists until the address changes or the entry is removed after
+the validator permanently leaves the set. Register again after returning to
+the set if the entry has been removed.
+
+## Transport security
+
+The Fibre server-to-client gRPC connection always uses TLS 1.3. The server
+creates an ephemeral TLS key and uses `SignRawBytes` once at start-up to obtain
+an endorsement from the validator consensus key. Clients verify the
+endorsement against the validator selected from the on-chain registry.
+
+The Fibre client connection is server-authenticated, not mutual TLS. Shard
+downloads are public, while uploads are checked against their payment promise.
+
+Restart Fibre after changing the signer endpoint. The endorsed certificate is
+created at start-up and is not refreshed while the server is running.
+
+## Monitoring
+
+Fibre exports traces and metrics over OTLP/HTTP. Enable both by configuring an
+OpenTelemetry-compatible collector:
+
+```sh
+fibre start --otel-endpoint http://localhost:4318
+```
+
+Monitor at least:
+
+- Fibre server availability and upload failures.
+- `fibre.server.sign.duration` for payment-promise signing latency.
+- `fibre.server.store.put.duration` and `fibre.server.store.get.duration` for
+  storage performance.
+- `cometbft_privval_signing_latency_*` on celestia-app for KMS latency.
+- Disk usage and the validator's derived Fibre storage budget.
+
+The canonical [Fibre observability
+reference](https://github.com/celestiaorg/celestia-app/blob/main/fibre/cmd/README.md#observability)
+lists the complete client and server metric inventory.
+
+## Troubleshooting
+
+### The server cannot create the signer
+
+If Fibre exits with `starting server: creating signer`, verify that
+celestia-app is running, `priv_validator_grpc_laddr` is enabled, and the Fibre
+signer address points to the same endpoint.
+
+### The derived storage budget is zero
+
+Confirm that the validator is bonded and the application gRPC endpoint points
+to a synced node on the correct network. Validators outside the active set do
+not receive Fibre traffic.
+
+### The server receives no uploads
+
+Check the provider registration, confirm the validator is bonded, and test port
+`7980` from outside the validator network. Clients only dial registered,
+bonded validators.
+
+### Clients report a TLS identity mismatch
+
+The signer endpoint may hold a different consensus key from the validator
+registered on-chain. Point Fibre to the correct private-validator endpoint and
+restart it to create a new endorsed certificate.
+
+## References
+
+- [CIP-51: Fibre protocol](https://cips.celestia.org/cip-051.html)
+- [CIP-52: v10 network upgrade](https://cips.celestia.org/cip-052.html)
+- [Canonical Fibre server guide](https://github.com/celestiaorg/celestia-app/blob/main/fibre/cmd/README.md)
+- [v10 KMS policy](https://github.com/celestiaorg/celestia-app/blob/main/docs/release-notes/release-notes.md#key-management-systems-kms)
