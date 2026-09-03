@@ -1,0 +1,440 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-c0ecbfaae1a667ad.js","4503","static/chunks/4503-1524e753909f4562.js","6642","static/chunks/app/operate/networks/mocha-testnet/page-5052a4ddf2f2c5b7.js"],"WrapperWithFooter"]
+6:I[59263,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-c0ecbfaae1a667ad.js","4503","static/chunks/4503-1524e753909f4562.js","6642","static/chunks/app/operate/networks/mocha-testnet/page-5052a4ddf2f2c5b7.js"],"ImageZoom"]
+7:I[90721,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-c0ecbfaae1a667ad.js","4503","static/chunks/4503-1524e753909f4562.js","6642","static/chunks/app/operate/networks/mocha-testnet/page-5052a4ddf2f2c5b7.js"],"HeadingAnchor"]
+61:I[90484,[],"OutletBoundary"]
+62:"$Sreact.suspense"
+64:I[98500,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-c0ecbfaae1a667ad.js","4503","static/chunks/4503-1524e753909f4562.js","6642","static/chunks/app/operate/networks/mocha-testnet/page-5052a4ddf2f2c5b7.js"],""]
+65:I[19023,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-c0ecbfaae1a667ad.js","4503","static/chunks/4503-1524e753909f4562.js","6642","static/chunks/app/operate/networks/mocha-testnet/page-5052a4ddf2f2c5b7.js"],"ToggleWordWrapButton"]
+66:I[57976,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-c0ecbfaae1a667ad.js","4503","static/chunks/4503-1524e753909f4562.js","6642","static/chunks/app/operate/networks/mocha-testnet/page-5052a4ddf2f2c5b7.js"],"CopyToClipboard"]
+3:T3a19,---
+description: Learn how to connect to the Mocha network.
+---
+
+import { Callout } from 'nextra/components';
+import { constants, mochaVersions } from '@/constants';
+
+# Mocha testnet
+
+![mocha-testnet](/img/mocha.jpg)
+
+This guide contains the relevant sections for how to connect to Mocha,
+depending on the type of node you are running. Mocha testnet is designed
+to help validators test out their infrastructure and node software.
+Developers can also deploy sovereign rollups on Mocha.
+
+Mocha is a milestone in Celestia, allowing everyone to test out
+core functionalities on the network. Read [the announcement](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api).
+Your best approach to participating is to first determine which node
+you would like to run. Each node's guide will link to the relevant networks,
+to show you how to connect to them.
+
+## Mocha-5 network restart
+
+<Callout type="warning">
+Mocha-5 is a new chain that started at height 1; it is not an in-place
+upgrade from `mocha-4`. Existing consensus operators must initialize
+`mocha-5` in a separate home directory, as described below. You do not
+need to keep your own copy of `mocha-4` chain data.
+</Callout>
+
+Mocha-5 is live. It is a hardspoon of `mocha-4` at block
+[13205115](https://celestia.explorers.guru/block/13205115): only account
+balances recorded at that height carried over. Transactions and balance
+changes after that height do not exist on `mocha-5`, and account
+sequences were reset to 0. Delegations, unbonding delegations, and
+pending staking rewards were redeemed as liquid balances.
+
+The initial validator set was created from separately coordinated
+genesis transactions. Other validators can join by submitting
+`MsgCreateValidator` once their node is synced. The `mocha-4` validator
+set, governance proposals, IBC channels, Hyperlane state, community
+pool, and all other chain state did not carry over.
+
+`mocha-4` remains running until it is officially shut down on
+September 1, 2026. All services still pointing at `mocha-4` should move
+to `mocha-5` before then. If you operate a `mocha-4` validator, keep it
+running while you migrate if possible; if you need to stop it sooner,
+unbond it from the active set first so it does not affect `mocha-4`
+block production.
+
+### Accessing mocha-4 history
+
+Because `mocha-5` started from a new genesis, `mocha-4` history is not
+queryable on the new network. Blobs and rollup data posted to `mocha-4`
+are not retrievable on `mocha-5`. Individual node operators are not
+expected to retain `mocha-4` data. An exported copy of the final
+`mocha-4` state will be available for one month after the shutdown.
+
+If you depend on specific `mocha-4` transaction history, export what you
+need before the September 1, 2026 shutdown.
+
+<Callout type="info">
+An archival `mocha-4` node snapshot taken on 2026-08-19 is available at
+[snaps.qubelabs.io/celestia/mocha-4_2026-08-19.tar](https://snaps.qubelabs.io/celestia/mocha-4_2026-08-19.tar).
+Note that it is approximately 12.3 TB. Follow the
+[status page announcement](https://status.celestia.org/incidents/nc1nkb54)
+for updates.
+</Callout>
+
+### Prepare a separate consensus-node home
+
+If you already operate a `mocha-4` consensus node or validator, do not
+initialize `mocha-5` in the existing `$HOME/.celestia-app` directory.
+That directory's `data/priv_validator_state.json` records the last
+`mocha-4` height you signed, and a validator will not sign at a height
+at or below that value. Because `mocha-5` restarts at height 1, a node
+reusing the old home would refuse to sign. The old `data` directory also
+holds blocks from a different chain, which will not reconcile with the
+`mocha-5` genesis.
+
+Using a separate home avoids both problems and leaves your `mocha-4`
+node runnable if you need to fall back during the cutover. Back up your
+[wallet keys](/operate/keys-wallets/celestia-app-wallet#key-management)
+and `$HOME/.celestia-app/config/priv_validator_key.json` before
+continuing.
+
+Initialize `mocha-5` with its own home directory:
+
+```bash
+MOCHA_5_HOME="$HOME/.celestia-app-mocha-5"
+
+celestia-appd init "node-name" \
+  --chain-id {{constants['mochaChainId']}} \
+  --home "$MOCHA_5_HOME"
+
+celestia-appd download-genesis {{constants['mochaChainId']}} \
+  --home "$MOCHA_5_HOME"
+# if this command doesn't exist in the binary, use this instead:
+# curl -sL "https://raw.githubusercontent.com/celestiaorg/networks/main/{{constants['mochaChainId']}}/genesis.json" -o "$MOCHA_5_HOME/config/genesis.json"
+```
+
+Configure the new Mocha seeds and peers in that directory:
+
+```bash
+SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/main/{{constants['mochaChainId']}}/seeds.txt | tr '\n' ',')
+
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" "$MOCHA_5_HOME/config/config.toml"
+```
+
+Do not copy the `mocha-4` data directory or
+`data/priv_validator_state.json` into the new home.
+
+Run `mocha-5` under a separate service whose start command includes the
+new home:
+
+```bash
+celestia-appd start --home "$MOCHA_5_HOME"
+```
+
+You have a list of options on the types of nodes you can run to
+participate in Mocha:
+
+Consensus:
+
+- [Consensus node](/operate/consensus-validators/consensus-node)
+- [Validator node](/operate/consensus-validators/validator-node)
+
+Data Availability:
+
+- [Bridge node](/operate/data-availability/bridge-node)
+- [Light node](/operate/data-availability/light-node/quickstart)
+
+Select the type of node you would like to run and follow the instructions
+on each respective page. Whenever you are asked to select the type of network
+you want to connect to in those guides, select `Mocha` to refer
+to the correct instructions on this page on how to connect to Mocha.
+
+## Network details
+
+| Detail        | Value                                                                                              |
+| ------------- | -------------------------------------------------------------------------------------------------- |
+| Chain ID      | `{{constants['mochaChainId']}}`                                                                                     |
+| Genesis hash  | `82DB3AC5AB8485E4784054BD10457533A64563F055C0D234A3134603A9C85D33`                                 |
+| Genesis file  | <a href={`https://github.com/celestiaorg/networks/blob/main/${constants.mochaChainId}/genesis.json`}>genesis.json</a> |
+| Peers file    | <a href={`https://github.com/celestiaorg/networks/blob/main/${constants.mochaChainId}/peers.txt`}>peers.txt</a>       |
+| Validators    | 100 (max)                                                                                                |
+
+## Software version numbers
+
+| Software       | Version                                                                           |
+| -------------- | --------------------------------------------------------------------------------- |
+| celestia-node  | [{mochaVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{mochaVersions['node-latest-tag']}) |
+| celestia-app   | [{mochaVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{mochaVersions['app-latest-tag']})   |
+
+## Network status
+
+For real-time network status information, including uptime, incident reports,
+and service availability, visit the
+[official Celestia Mocha testnet status page](https://status.celestia.dev/status/mocha).
+
+## Network constants
+
+For the current Mocha testnet network constants, see
+[mocha.celenium.io/constants](https://mocha.celenium.io/constants).
+
+<Callout type="warning">
+Some community infrastructure is still migrating from `mocha-4` to
+`mocha-5`. The endpoints listed below were verified to serve `mocha-5`
+on September 1, 2026. Services still serving `mocha-4` are omitted until
+they migrate. Explorers, faucets, indexers, and analytics services may
+also still show `mocha-4` data.
+</Callout>
+
+## RPC for DA bridge, full, and light nodes
+
+### Production RPC endpoints
+
+These RPC providers are meant to be used in production environments
+and for specific use cases that require reliable access to full block
+history, such as:
+
+- Running Bridge Nodes that download data from core RPC endpoints
+- Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
+- Submitting blobs in production settings (free RPC endpoints have no guarantees, even for submitting transactions)
+
+| Provider  | URL                                                                                       |
+| --------- | ----------------------------------------------------------------------------------------- |
+| QuickNode | [https://www.quicknode.com/chains/celestia](https://www.quicknode.com/chains/celestia) ([docs](https://quicknode.com/docs/celestia)) |
+
+> **Warning:** Do not rely on the free community endpoints listed below for production deployments. Production deployments should rely on [service providers with SLAs](#production-rpc-endpoints) or your own node.
+
+### Public RPC endpoint
+
+For development, testing, and documentation examples, use the public QuickNode
+endpoint:
+
+| Interface | Endpoint |
+| --------- | -------- |
+| HTTP RPC and REST | `https://public-endpoint.celestia-mocha.quiknode.pro` |
+| WebSocket | `wss://public-endpoint.celestia-mocha.quiknode.pro/websocket` |
+| gRPC over TLS | `public-endpoint.celestia-mocha.quiknode.pro:9090` |
+| DA JSON-RPC | `https://public-endpoint.celestia-mocha.quiknode.pro` |
+
+This shared endpoint is pruned and does not provide a production SLA. Do not
+use it for historical queries or bridge node sync from genesis.
+
+### Community consensus endpoints
+
+Use these hosts for `--core.ip`. celestia-node connects over gRPC with
+`--core.port` (default `9090`). RPC ports are listed for operators who also
+need Tendermint RPC from the same provider.
+
+| Provider      | Endpoint for `--core.ip`                                          | RPC port | gRPC port |
+| ------------- | ----------------------------------------------------------------- | -------- | --------- |
+| P-OPS         | `rpc-mocha.pops.one`                                              | 443      | 9090      |
+
+You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
+
+### Community Data availability (DA) RPC endpoints for bridge node sync
+
+These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
+For users, they will need to provide a `–core.ip string`
+from a consensus node's URL or IP that populates a default RPC port at 26657
+to their respective DA node.
+
+### Community Data availability (DA) gRPC endpoints for state access
+
+These gRPC endpoints for DA nodes provide state access for querying the
+chain's state and broadcasting transactions (balances, blobs, etc.) to the
+Celestia network. For users, they will need to provide a `–core.ip string`
+from a consensus node's URL or IP that populates a default gRPC port at 9090
+to their respective DA node.
+
+> **Tip for bridge nodes:** Community RPC endpoints do not guarantee full block downloads. If you are running a bridge node, also run a local [consensus node](/operate/consensus-validators/consensus-node) to download full blocks.
+
+Use one of the `--core.ip` values from the [community consensus endpoints](#community-consensus-endpoints) table above.
+
+## Community RPC endpoints
+
+The RPC endpoint is to allow users to interact with Celestia's nodes by
+querying the node's state and broadcasting transactions on the
+Celestia network. The default port is 26657.
+
+- `rpc-mocha.pops.one`
+- `rpc-1.testnet.celestia.nodes.guru`
+- `rpc-2.testnet.celestia.nodes.guru`
+- `celestia-testnet-rpc.itrocket.net:443`
+
+## Community API endpoints
+
+The API endpoint is to allow users to interact with the REST API in Cosmos
+SDK which is implemented using gRPC-gateway, which exposes gRPC endpoints
+as REST endpoints. This allows for communication with the node using REST
+calls, which can be useful if the client does not support gRPC or HTTP2.
+The default port is 1317.
+
+- `https://api-mocha.pops.one`
+- `https://api-1.testnet.celestia.nodes.guru`
+- `https://api-2.testnet.celestia.nodes.guru`
+- `https://celestia-testnet-api.itrocket.net`
+
+## Community gRPC endpoints
+
+The gRPC endpoint is to allow users to interact with a Celestia Node using
+gRPC, a modern open-source and high-performance RPC framework. The default
+port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
+broadcast transactions.
+
+- `grpc-mocha.pops.one`
+- `grpc-1.testnet.celestia.nodes.guru:10790`
+- `grpc-2.testnet.celestia.nodes.guru:10790`
+- `celestia-testnet-grpc.itrocket.net:443`
+
+## Community bridge node endpoints
+
+The `mocha-5` DA network is live. Community bridge node endpoints will
+be added here as providers make them available.
+
+## Mocha testnet faucet
+
+> **Warning:** Using this faucet does not entitle you to any airdrop or other distribution of mainnet Celestia tokens.
+
+### Discord
+
+You can request from Mocha testnet Faucet on the #mocha-faucet channel on
+Celestia's Discord server with the following command:
+
+```text
+$request <CELESTIA-ADDRESS>
+```
+
+Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
+
+> **Note:** Faucet has a limit of 10 tokens per week per address/Discord ID.
+
+### Web
+
+The web faucet is available at [https://mocha.celenium.io/faucet](https://mocha.celenium.io/faucet).
+
+## Analytics
+
+The following websites provide analytics for Mocha Testnet:
+
+- [https://itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Monitoring and chain status tools
+
+## Node maps
+
+The following websites provide visual maps of Celestia DA nodes:
+
+- [https://probelab.io/celestia/](https://probelab.io/celestia/) (community contribution)
+
+## Explorers
+
+<Callout type="info">
+Most explorers are still indexing `mocha-4` and will switch to `mocha-5`
+as they migrate.
+</Callout>
+
+There are several explorers you can use for Mocha:
+
+- `https://mintscan.io/celestia-testnet/`
+- `https://mocha.celenium.io`
+- `https://explorer.nodestake.top/celestia-testnet/`
+- `https://stakeflow.io/celestia-testnet`
+- `https://testnet.celestia.explorers.guru`
+- `https://testnet.itrocket.net/celestia`
+- `https://testnet.celestia.valopers.com/`
+- `https://explorer.chainroot.io/celestia-testnet-{{constants['mochaChainId']}}`
+
+## Network upgrades
+
+There are a few ways to stay informed about network upgrades on the Mocha testnet:
+
+- Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+- Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
+
+See the [network upgrades page](/operate/maintenance/network-upgrades) to learn more
+about specific upgrades like the [Ginger network upgrade](/operate/maintenance/network-upgrades#ginger-network-upgrade).0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"Learn how to connect to the Mocha network.","title":"Mocha testnet","filePath":"app/operate/networks/mocha-testnet/page.mdx","timestamp":1788453811000},"toc":[{"value":"Mocha-5 network restart","id":"mocha-5-network-restart","depth":2},{"value":"Accessing mocha-4 history","id":"accessing-mocha-4-history","depth":3},{"value":"Prepare a separate consensus-node home","id":"prepare-a-separate-consensus-node-home","depth":3},{"value":"Network details","id":"network-details","depth":2},{"value":"Software version numbers","id":"software-version-numbers","depth":2},{"value":"Network status","id":"network-status","depth":2},{"value":"Network constants","id":"network-constants","depth":2},{"value":"RPC for DA bridge, full, and light nodes","id":"rpc-for-da-bridge-full-and-light-nodes","depth":2},{"value":"Production RPC endpoints","id":"production-rpc-endpoints","depth":3},{"value":"Public RPC endpoint","id":"public-rpc-endpoint","depth":3},{"value":"Community consensus endpoints","id":"community-consensus-endpoints","depth":3},{"value":"Community Data availability (DA) RPC endpoints for bridge node sync","id":"community-data-availability-da-rpc-endpoints-for-bridge-node-sync","depth":3},{"value":"Community Data availability (DA) gRPC endpoints for state access","id":"community-data-availability-da-grpc-endpoints-for-state-access","depth":3},{"value":"Community RPC endpoints","id":"community-rpc-endpoints","depth":2},{"value":"Community API endpoints","id":"community-api-endpoints","depth":2},{"value":"Community gRPC endpoints","id":"community-grpc-endpoints","depth":2},{"value":"Community bridge node endpoints","id":"community-bridge-node-endpoints","depth":2},{"value":"Mocha testnet faucet","id":"mocha-testnet-faucet","depth":2},{"value":"Discord","id":"discord","depth":3},{"value":"Web","id":"web","depth":3},{"value":"Analytics","id":"analytics","depth":2},{"value":"Node maps","id":"node-maps","depth":2},{"value":"Explorers","id":"explorers","depth":2},{"value":"Network upgrades","id":"network-upgrades","depth":2}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"l5TuJ3U4GoFJI82y5elcs"}
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Mocha testnet","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["$","$L6",null,{"alt":"mocha-testnet","placeholder":"blur","src":{"src":"/_next/static/media/mocha.b36766f4.jpg","height":1500,"width":3000,"blurDataURL":"data:image/jpeg;base64,/9j/2wBDAAoKCgoKCgsMDAsPEA4QDxYUExMUFiIYGhgaGCIzICUgICUgMy03LCksNy1RQDg4QFFeT0pPXnFlZXGPiI+7u/v/2wBDAQoKCgoKCgsMDAsPEA4QDxYUExMUFiIYGhgaGCIzICUgICUgMy03LCksNy1RQDg4QFFeT0pPXnFlZXGPiI+7u/v/wgARCAAEAAgDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAVAQEBAAAAAAAAAAAAAAAAAAACBf/aAAwDAQACEAMQAAAAqBfP/8QAHhAAAgEDBQAAAAAAAAAAAAAAAQMCAAQSBREhI1L/2gAIAQEAAT8A1V01zRZy7FPJyz5I381//8QAGhEAAgIDAAAAAAAAAAAAAAAAAQIAAxEScf/aAAgBAgEBPwCglKl1OOT/xAAYEQEAAwEAAAAAAAAAAAAAAAABAAIRIf/aAAgBAwEBPwCi10q4cn//2Q==","blurWidth":8,"blurHeight":4}}]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This guide contains the relevant sections for how to connect to Mocha,\ndepending on the type of node you are running. Mocha testnet is designed\nto help validators test out their infrastructure and node software.\nDevelopers can also deploy sovereign rollups on Mocha."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Mocha is a milestone in Celestia, allowing everyone to test out\ncore functionalities on the network. Read ",["$","a",null,{"href":"https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["the announcement",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],".\nYour best approach to participating is to first determine which node\nyou would like to run. Each node’s guide will link to the relevant networks,\nto show you how to connect to them."]}],"\n",["$","h2",null,{"id":"mocha-5-network-restart","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Mocha-5 network restart",["$","$L7",null,{"id":"mocha-5-network-restart"}]]}],"\n",["$","div",null,{"className":"nextra-callout x:overflow-x-auto x:not-first:mt-[1.25em] x:flex x:rounded-lg x:border x:py-[.5em] x:pe-[1em] x:contrast-more:border-current! x:bg-yellow-50 x:dark:bg-yellow-700/30 x:text-yellow-700 x:dark:text-yellow-500 x:border-yellow-700","children":[["$","div",null,{"className":"x:select-none x:text-[1.25em] x:ps-[.6em] x:pe-[.4em]","style":{"fontFamily":"\"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\""},"data-pagefind-ignore":"all","children":["$","svg",null,{"viewBox":"0 0 16 16","fill":"currentColor","height":".8em","className":"x:mt-[.3em]","children":["$","path",null,{"d":"M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"}]}]}],["$","div",null,{"className":"x:w-full x:min-w-0","children":["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Mocha-5 is a new chain that started at height 1; it is not an in-place\nupgrade from ","$L8",". Existing consensus operators must initialize\n","$L9"," in a separate home directory, as described below. You do not\nneed to keep your own copy of ","$La"," chain data."]}]}]]}],"\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16","\n","$L17","\n","$L18","\n","$L19","\n","$L1a","\n","$L1b","\n","$L1c","\n","$L1d","\n","$L1e","\n","$L1f","\n","$L20","\n","$L21","\n","$L22","\n","$L23","\n","$L24","\n","$L25","\n","$L26","\n","$L27","\n","$L28","\n","$L29","\n","$L2a","\n","$L2b","\n","$L2c","\n","$L2d","\n","$L2e","\n","$L2f","\n","$L30","\n","$L31","\n","$L32","\n","$L33","\n","$L34","\n","$L35","\n","$L36","\n","$L37","\n","$L38","\n","$L39","\n","$L3a","\n","$L3b","\n","$L3c","\n","$L3d","\n","$L3e","\n","$L3f","\n","$L40","\n","$L41","\n","$L42","\n","$L43","\n","$L44","\n","$L45","\n","$L46","\n","$L47","\n","$L48","\n","$L49","\n","$L4a","\n","$L4b","\n","$L4c","\n","$L4d","\n","$L4e","\n","$L4f","\n","$L50","\n","$L51","\n","$L52","\n","$L53","\n","$L54","\n","$L55","\n","$L56","\n","$L57","\n","$L58","\n","$L59","\n","$L5a","\n","$L5b","\n","$L5c","\n","$L5d","\n","$L5e","\n","$L5f","\n","$L60"]
+5:["$","$L61",null,{"children":["$","$62",null,{"name":"Next.MetadataOutlet","children":"$@63"}]}]
+8:["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]
+9:["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}]
+a:["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]
+b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Mocha-5 is live. It is a hardspoon of ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," at block\n",["$","a",null,{"href":"https://celestia.explorers.guru/block/13205115","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["13205115",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],": only account\nbalances recorded at that height carried over. Transactions and balance\nchanges after that height do not exist on ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}],", and account\nsequences were reset to 0. Delegations, unbonding delegations, and\npending staking rewards were redeemed as liquid balances."]}]
+c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The initial validator set was created from separately coordinated\ngenesis transactions. Other validators can join by submitting\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"MsgCreateValidator"}]," once their node is synced. The ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," validator\nset, governance proposals, IBC channels, Hyperlane state, community\npool, and all other chain state did not carry over."]}]
+d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," remains running until it is officially shut down on\nSeptember 1, 2026. All services still pointing at ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," should move\nto ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}]," before then. If you operate a ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," validator, keep it\nrunning while you migrate if possible; if you need to stop it sooner,\nunbond it from the active set first so it does not affect ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}],"\nblock production."]}]
+e:["$","h3",null,{"id":"accessing-mocha-4-history","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Accessing mocha-4 history",["$","$L7",null,{"id":"accessing-mocha-4-history"}]]}]
+f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Because ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}]," started from a new genesis, ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," history is not\nqueryable on the new network. Blobs and rollup data posted to ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}],"\nare not retrievable on ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}],". Individual node operators are not\nexpected to retain ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," data. An exported copy of the final\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," state will be available for one month after the shutdown."]}]
+10:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["If you depend on specific ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," transaction history, export what you\nneed before the September 1, 2026 shutdown."]}]
+11:["$","div",null,{"className":"nextra-callout x:overflow-x-auto x:not-first:mt-[1.25em] x:flex x:rounded-lg x:border x:py-[.5em] x:pe-[1em] x:contrast-more:border-current! x:bg-blue-100 x:dark:bg-blue-900/30 x:text-blue-700 x:dark:text-blue-400 x:border-blue-700 x:dark:border-blue-600","children":[["$","div",null,{"className":"x:select-none x:text-[1.25em] x:ps-[.6em] x:pe-[.4em]","style":"$4:10:props:children:0:props:style","data-pagefind-ignore":"all","children":["$","svg",null,{"viewBox":"0 0 16 16","fill":"currentColor","height":".8em","className":"x:mt-[.3em]","children":["$","path",null,{"d":"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"}]}]}],["$","div",null,{"className":"x:w-full x:min-w-0","children":["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["An archival ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," node snapshot taken on 2026-08-19 is available at\n",["$","a",null,{"href":"https://snaps.qubelabs.io/celestia/mocha-4_2026-08-19.tar","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["snaps.qubelabs.io/celestia/mocha-4_2026-08-19.tar",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],".\nNote that it is approximately 12.3 TB. Follow the\n",["$","a",null,{"href":"https://status.celestia.org/incidents/nc1nkb54","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["status page announcement",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nfor updates."]}]}]]}]
+12:["$","h3",null,{"id":"prepare-a-separate-consensus-node-home","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Prepare a separate consensus-node home",["$","$L7",null,{"id":"prepare-a-separate-consensus-node-home"}]]}]
+13:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["If you already operate a ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," consensus node or validator, do not\ninitialize ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}]," in the existing ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/.celestia-app"}]," directory.\nThat directory’s ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"data/priv_validator_state.json"}]," records the last\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," height you signed, and a validator will not sign at a height\nat or below that value. Because ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}]," restarts at height 1, a node\nreusing the old home would refuse to sign. The old ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"data"}]," directory also\nholds blocks from a different chain, which will not reconcile with the\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}]," genesis."]}]
+14:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Using a separate home avoids both problems and leaves your ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}],"\nnode runnable if you need to fall back during the cutover. Back up your\n",["$","$L64",null,{"href":"/operate/keys-wallets/celestia-app-wallet#key-management","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"wallet keys"}],"\nand ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/.celestia-app/config/priv_validator_key.json"}]," before\ncontinuing."]}]
+15:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Initialize ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}]," with its own home directory:"]}]
+16:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L65",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L66",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"MOCHA_5_HOME"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"="}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\""}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"$$HOME"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"/.celestia-app-mocha-5\""}]]}],"\n",["$","span",null,{"children":" "}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia-appd"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" init"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \"node-name\""}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" \\"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"  --chain-id"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" mocha-5"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" \\"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"  --home"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \""}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"$$MOCHA_5_HOME"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\""}]]}],"\n",["$","span",null,{"children":" "}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia-appd"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" download-genesis"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" mocha-5"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" \\"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"  --home"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \""}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"$$MOCHA_5_HOME"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\""}]]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# if this command doesn't exist in the binary, use this instead:"}]}],"\n",["$","span",null,{"children":["$","span",null,{"style":{"--shiki-light":"#6A737D","--shiki-dark":"#6A737D"},"children":"# curl -sL \"https://raw.githubusercontent.com/celestiaorg/networks/main/mocha-5/genesis.json\" -o \"$MOCHA_5_HOME/config/genesis.json\""}]}]]}]]}]]}]
+17:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Configure the new Mocha seeds and peers in that directory:"}]
+18:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L65",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L66",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"SEEDS"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":"="}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"$$("}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -sL"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://raw.githubusercontent.com/celestiaorg/networks/main/mocha-5/seeds.txt"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":" |"}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":" tr"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" '\\n'"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" ','"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":")"}]]}],"\n",["$","span",null,{"children":" "}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"sed"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -i.bak"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -e"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \"s/^seeds *=.*/seeds = "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"\\\""}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"$$SEEDS"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"\\\""}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"/\""}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \""}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"$$MOCHA_5_HOME"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"/config/config.toml\""}]]}]]}]]}]]}]
+19:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Do not copy the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," data directory or\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"data/priv_validator_state.json"}]," into the new home."]}]
+1a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Run ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}]," under a separate service whose start command includes the\nnew home:"]}]
+1b:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L65",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L66",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia-appd"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" start"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" --home"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" \""}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"$$MOCHA_5_HOME"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"\""}]]}]}]]}]]}]
+1c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"You have a list of options on the types of nodes you can run to\nparticipate in Mocha:"}]
+1d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Consensus:"}]
+1e:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","$L64",null,{"href":"/operate/consensus-validators/consensus-node","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Consensus node"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","$L64",null,{"href":"/operate/consensus-validators/validator-node","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Validator node"}]}],"\n"]}]
+1f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Data Availability:"}]
+20:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","$L64",null,{"href":"/operate/data-availability/bridge-node","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Bridge node"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","$L64",null,{"href":"/operate/data-availability/light-node/quickstart","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Light node"}]}],"\n"]}]
+21:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Select the type of node you would like to run and follow the instructions\non each respective page. Whenever you are asked to select the type of network\nyou want to connect to in those guides, select ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Mocha"}]," to refer\nto the correct instructions on this page on how to connect to Mocha."]}]
+22:["$","h2",null,{"id":"network-details","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Network details",["$","$L7",null,{"id":"network-details"}]]}]
+23:["$","table",null,{"className":"x:block x:overflow-x-auto nextra-scrollbar x:not-first:mt-[1.25em] x:p-0","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"Detail","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"Value","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":"Chain ID","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Genesis hash","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"82DB3AC5AB8485E4784054BD10457533A64563F055C0D234A3134603A9C85D33"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Genesis file","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","a",null,{"href":"https://github.com/celestiaorg/networks/blob/main/mocha-5/genesis.json","children":"genesis.json"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Peers file","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","a",null,{"href":"https://github.com/celestiaorg/networks/blob/main/mocha-5/peers.txt","children":"peers.txt"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"Validators","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"100 (max)","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]]}]]}]
+24:["$","h2",null,{"id":"software-version-numbers","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Software version numbers",["$","$L7",null,{"id":"software-version-numbers"}]]}]
+25:["$","table",null,{"className":"x:block x:overflow-x-auto nextra-scrollbar x:not-first:mt-[1.25em] x:p-0","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"Software","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"Version","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":"celestia-node","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","a",null,{"href":"https://github.com/celestiaorg/celestia-node/releases/tag/%7BmochaVersions%5B'node-latest-tag'%5D%7D","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["v0.32.1-mocha",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"celestia-app","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","a",null,{"href":"https://github.com/celestiaorg/celestia-app/releases/tag/%7BmochaVersions%5B'app-latest-tag'%5D%7D","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["v9.0.6-mocha",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]]}]]}]
+26:["$","h2",null,{"id":"network-status","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Network status",["$","$L7",null,{"id":"network-status"}]]}]
+27:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["For real-time network status information, including uptime, incident reports,\nand service availability, visit the\n",["$","a",null,{"href":"https://status.celestia.dev/status/mocha","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["official Celestia Mocha testnet status page",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+28:["$","h2",null,{"id":"network-constants","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Network constants",["$","$L7",null,{"id":"network-constants"}]]}]
+29:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["For the current Mocha testnet network constants, see\n",["$","a",null,{"href":"https://mocha.celenium.io/constants","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["mocha.celenium.io/constants",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+2a:["$","div",null,{"className":"nextra-callout x:overflow-x-auto x:not-first:mt-[1.25em] x:flex x:rounded-lg x:border x:py-[.5em] x:pe-[1em] x:contrast-more:border-current! x:bg-yellow-50 x:dark:bg-yellow-700/30 x:text-yellow-700 x:dark:text-yellow-500 x:border-yellow-700","children":[["$","div",null,{"className":"x:select-none x:text-[1.25em] x:ps-[.6em] x:pe-[.4em]","style":"$4:10:props:children:0:props:style","data-pagefind-ignore":"all","children":"$4:10:props:children:0:props:children"}],["$","div",null,{"className":"x:w-full x:min-w-0","children":["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Some community infrastructure is still migrating from ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," to\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}],". The endpoints listed below were verified to serve ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}],"\non September 1, 2026. Services still serving ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," are omitted until\nthey migrate. Explorers, faucets, indexers, and analytics services may\nalso still show ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," data."]}]}]]}]
+2b:["$","h2",null,{"id":"rpc-for-da-bridge-full-and-light-nodes","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["RPC for DA bridge, full, and light nodes",["$","$L7",null,{"id":"rpc-for-da-bridge-full-and-light-nodes"}]]}]
+2c:["$","h3",null,{"id":"production-rpc-endpoints","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Production RPC endpoints",["$","$L7",null,{"id":"production-rpc-endpoints"}]]}]
+2d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"These RPC providers are meant to be used in production environments\nand for specific use cases that require reliable access to full block\nhistory, such as:"}]
+2e:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"Running Bridge Nodes that download data from core RPC endpoints"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Applications that need Bridge Node endpoints with guaranteed uptime and SLAs"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Submitting blobs in production settings (free RPC endpoints have no guarantees, even for submitting transactions)"}],"\n"]}]
+2f:["$","table",null,{"className":"x:block x:overflow-x-auto nextra-scrollbar x:not-first:mt-[1.25em] x:p-0","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"Provider","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"URL","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]}],["$","tbody",null,{"children":["$","tr",null,{"children":[["$","td",null,{"children":"QuickNode","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":[["$","a",null,{"href":"https://www.quicknode.com/chains/celestia","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://www.quicknode.com/chains/celestia",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," (",["$","a",null,{"href":"https://quicknode.com/docs/celestia","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["docs",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],")"],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]}]]}]
+30:["$","blockquote",null,{"className":"x:not-first:mt-[1.25em] x:border-gray-300 x:italic x:text-gray-700 x:dark:border-gray-700 x:dark:text-gray-400 x:border-s-2 x:ps-[1.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Warning:"}]," Do not rely on the free community endpoints listed below for production deployments. Production deployments should rely on ",["$","a",null,{"href":"#production-rpc-endpoints","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"service providers with SLAs"}]," or your own node."]}],"\n"]}]
+31:["$","h3",null,{"id":"public-rpc-endpoint","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Public RPC endpoint",["$","$L7",null,{"id":"public-rpc-endpoint"}]]}]
+32:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"For development, testing, and documentation examples, use the public QuickNode\nendpoint:"}]
+33:["$","table",null,{"className":"x:block x:overflow-x-auto nextra-scrollbar x:not-first:mt-[1.25em] x:p-0","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"Interface","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"Endpoint","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":"HTTP RPC and REST","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://public-endpoint.celestia-mocha.quiknode.pro"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"WebSocket","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"wss://public-endpoint.celestia-mocha.quiknode.pro/websocket"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"gRPC over TLS","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"public-endpoint.celestia-mocha.quiknode.pro:9090"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}],["$","tr",null,{"children":[["$","td",null,{"children":"DA JSON-RPC","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://public-endpoint.celestia-mocha.quiknode.pro"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]]}]]}]
+34:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"This shared endpoint is pruned and does not provide a production SLA. Do not\nuse it for historical queries or bridge node sync from genesis."}]
+35:["$","h3",null,{"id":"community-consensus-endpoints","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Community consensus endpoints",["$","$L7",null,{"id":"community-consensus-endpoints"}]]}]
+36:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Use these hosts for ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"--core.ip"}],". celestia-node connects over gRPC with\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"--core.port"}]," (default ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"9090"}],"). RPC ports are listed for operators who also\nneed Tendermint RPC from the same provider."]}]
+37:["$","table",null,{"className":"x:block x:overflow-x-auto nextra-scrollbar x:not-first:mt-[1.25em] x:p-0","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"Provider","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":["Endpoint for ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"--core.ip"}]],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"RPC port","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}],["$","th",null,{"children":"gRPC port","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:font-semibold x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]}],["$","tbody",null,{"children":["$","tr",null,{"children":[["$","td",null,{"children":"P-OPS","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"rpc-mocha.pops.one"}],"className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"443","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}],["$","td",null,{"children":"9090","className":"x:m-0 x:border x:border-gray-300 x:px-4 x:py-2 x:dark:border-gray-600"}]],"className":"x:m-0 x:border-t x:border-gray-300 x:p-0 x:dark:border-gray-600 x:even:bg-gray-100 x:even:dark:bg-gray-600/20"}]}]]}]
+38:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["You can also find the list of official Celestia bootstrappers in the ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["celestia-node GitHub repository",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+39:["$","h3",null,{"id":"community-data-availability-da-rpc-endpoints-for-bridge-node-sync","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Community Data availability (DA) RPC endpoints for bridge node sync",["$","$L7",null,{"id":"community-data-availability-da-rpc-endpoints-for-bridge-node-sync"}]]}]
+3a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.\nFor users, they will need to provide a ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"–core.ip string"}],"\nfrom a consensus node’s URL or IP that populates a default RPC port at 26657\nto their respective DA node."]}]
+3b:["$","h3",null,{"id":"community-data-availability-da-grpc-endpoints-for-state-access","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Community Data availability (DA) gRPC endpoints for state access",["$","$L7",null,{"id":"community-data-availability-da-grpc-endpoints-for-state-access"}]]}]
+3c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["These gRPC endpoints for DA nodes provide state access for querying the\nchain’s state and broadcasting transactions (balances, blobs, etc.) to the\nCelestia network. For users, they will need to provide a ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"–core.ip string"}],"\nfrom a consensus node’s URL or IP that populates a default gRPC port at 9090\nto their respective DA node."]}]
+3d:["$","blockquote",null,{"className":"x:not-first:mt-[1.25em] x:border-gray-300 x:italic x:text-gray-700 x:dark:border-gray-700 x:dark:text-gray-400 x:border-s-2 x:ps-[1.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Tip for bridge nodes:"}]," Community RPC endpoints do not guarantee full block downloads. If you are running a bridge node, also run a local ",["$","$L64",null,{"href":"/operate/consensus-validators/consensus-node","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"consensus node"}]," to download full blocks."]}],"\n"]}]
+3e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Use one of the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"--core.ip"}]," values from the ",["$","a",null,{"href":"#community-consensus-endpoints","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"community consensus endpoints"}]," table above."]}]
+3f:["$","h2",null,{"id":"community-rpc-endpoints","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Community RPC endpoints",["$","$L7",null,{"id":"community-rpc-endpoints"}]]}]
+40:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The RPC endpoint is to allow users to interact with Celestia’s nodes by\nquerying the node’s state and broadcasting transactions on the\nCelestia network. The default port is 26657."}]
+41:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"rpc-mocha.pops.one"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"rpc-1.testnet.celestia.nodes.guru"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"rpc-2.testnet.celestia.nodes.guru"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-testnet-rpc.itrocket.net:443"}]}],"\n"]}]
+42:["$","h2",null,{"id":"community-api-endpoints","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Community API endpoints",["$","$L7",null,{"id":"community-api-endpoints"}]]}]
+43:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The API endpoint is to allow users to interact with the REST API in Cosmos\nSDK which is implemented using gRPC-gateway, which exposes gRPC endpoints\nas REST endpoints. This allows for communication with the node using REST\ncalls, which can be useful if the client does not support gRPC or HTTP2.\nThe default port is 1317."}]
+44:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://api-mocha.pops.one"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://api-1.testnet.celestia.nodes.guru"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://api-2.testnet.celestia.nodes.guru"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://celestia-testnet-api.itrocket.net"}]}],"\n"]}]
+45:["$","h2",null,{"id":"community-grpc-endpoints","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Community gRPC endpoints",["$","$L7",null,{"id":"community-grpc-endpoints"}]]}]
+46:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The gRPC endpoint is to allow users to interact with a Celestia Node using\ngRPC, a modern open-source and high-performance RPC framework. The default\nport is 9090. In the Cosmos SDK, gRPC is used to define state queries and\nbroadcast transactions."}]
+47:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"grpc-mocha.pops.one"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"grpc-1.testnet.celestia.nodes.guru:10790"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"grpc-2.testnet.celestia.nodes.guru:10790"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-testnet-grpc.itrocket.net:443"}]}],"\n"]}]
+48:["$","h2",null,{"id":"community-bridge-node-endpoints","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Community bridge node endpoints",["$","$L7",null,{"id":"community-bridge-node-endpoints"}]]}]
+49:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}]," DA network is live. Community bridge node endpoints will\nbe added here as providers make them available."]}]
+4a:["$","h2",null,{"id":"mocha-testnet-faucet","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Mocha testnet faucet",["$","$L7",null,{"id":"mocha-testnet-faucet"}]]}]
+4b:["$","blockquote",null,{"className":"x:not-first:mt-[1.25em] x:border-gray-300 x:italic x:text-gray-700 x:dark:border-gray-700 x:dark:text-gray-400 x:border-s-2 x:ps-[1.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Warning:"}]," Using this faucet does not entitle you to any airdrop or other distribution of mainnet Celestia tokens."]}],"\n"]}]
+4c:["$","h3",null,{"id":"discord","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Discord",["$","$L7",null,{"id":"discord"}]]}]
+4d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"You can request from Mocha testnet Faucet on the #mocha-faucet channel on\nCelestia’s Discord server with the following command:"}]
+4e:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L65",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L66",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":["$","span",null,{"children":"$$request <CELESTIA-ADDRESS>"}]}]}]]}]]}]
+4f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Where ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"<CELESTIA-ADDRESS>"}]," is a ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia1******"}]," generated address."]}]
+50:["$","blockquote",null,{"className":"x:not-first:mt-[1.25em] x:border-gray-300 x:italic x:text-gray-700 x:dark:border-gray-700 x:dark:text-gray-400 x:border-s-2 x:ps-[1.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Note:"}]," Faucet has a limit of 10 tokens per week per address/Discord ID."]}],"\n"]}]
+51:["$","h3",null,{"id":"web","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Web",["$","$L7",null,{"id":"web"}]]}]
+52:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The web faucet is available at ",["$","a",null,{"href":"https://mocha.celenium.io/faucet","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://mocha.celenium.io/faucet",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"."]}]
+53:["$","h2",null,{"id":"analytics","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Analytics",["$","$L7",null,{"id":"analytics"}]]}]
+54:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The following websites provide analytics for Mocha Testnet:"}]
+55:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","a",null,{"href":"https://itrocket.net/services/testnet/celestia/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://itrocket.net/services/testnet/celestia/",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," - Monitoring and chain status tools"]}],"\n"]}]
+56:["$","h2",null,{"id":"node-maps","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Node maps",["$","$L7",null,{"id":"node-maps"}]]}]
+57:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The following websites provide visual maps of Celestia DA nodes:"}]
+58:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","a",null,{"href":"https://probelab.io/celestia/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["https://probelab.io/celestia/",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," (community contribution)"]}],"\n"]}]
+59:["$","h2",null,{"id":"explorers","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Explorers",["$","$L7",null,{"id":"explorers"}]]}]
+5a:["$","div",null,{"className":"nextra-callout x:overflow-x-auto x:not-first:mt-[1.25em] x:flex x:rounded-lg x:border x:py-[.5em] x:pe-[1em] x:contrast-more:border-current! x:bg-blue-100 x:dark:bg-blue-900/30 x:text-blue-700 x:dark:text-blue-400 x:border-blue-700 x:dark:border-blue-600","children":[["$","div",null,{"className":"x:select-none x:text-[1.25em] x:ps-[.6em] x:pe-[.4em]","style":"$4:10:props:children:0:props:style","data-pagefind-ignore":"all","children":"$11:props:children:0:props:children"}],["$","div",null,{"className":"x:w-full x:min-w-0","children":["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Most explorers are still indexing ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-4"}]," and will switch to ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"mocha-5"}],"\nas they migrate."]}]}]]}]
+5b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"There are several explorers you can use for Mocha:"}]
+5c:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://mintscan.io/celestia-testnet/"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://mocha.celenium.io"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://explorer.nodestake.top/celestia-testnet/"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://stakeflow.io/celestia-testnet"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://testnet.celestia.explorers.guru"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://testnet.itrocket.net/celestia"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://testnet.celestia.valopers.com/"}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://explorer.chainroot.io/celestia-testnet-mocha-5"}]}],"\n"]}]
+5d:["$","h2",null,{"id":"network-upgrades","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Network upgrades",["$","$L7",null,{"id":"network-upgrades"}]]}]
+5e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"There are a few ways to stay informed about network upgrades on the Mocha testnet:"}]
+5f:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["Telegram ",["$","a",null,{"href":"https://t.me/+smSFIA7XXLU4MjJh","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["announcement channel",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["Discord ",["$","a",null,{"href":"https://discord.com/channels/638338779505229824/979037494735691816","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Mocha announcements",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]]}],"\n"]}]
+60:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["See the ",["$","$L64",null,{"href":"/operate/maintenance/network-upgrades","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"network upgrades page"}]," to learn more\nabout specific upgrades like the ",["$","$L64",null,{"href":"/operate/maintenance/network-upgrades#ginger-network-upgrade","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Ginger network upgrade"}],"."]}]
+63:null

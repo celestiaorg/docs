@@ -1,0 +1,304 @@
+# Mocha testnet
+
+![mocha-testnet](/img/mocha.jpg)
+
+This guide contains the relevant sections for how to connect to Mocha,
+depending on the type of node you are running. Mocha testnet is designed
+to help validators test out their infrastructure and node software.
+Developers can also deploy sovereign rollups on Mocha.
+
+Mocha is a milestone in Celestia, allowing everyone to test out
+core functionalities on the network. Read [the announcement](https://blog.celestia.org/celestia-testnet-introduces-alpha-data-availability-api).
+Your best approach to participating is to first determine which node
+you would like to run. Each node's guide will link to the relevant networks,
+to show you how to connect to them.
+
+## Mocha-5 network restart
+
+Mocha-5 is live. It is a hardspoon of `mocha-4` at block
+[13205115](https://celestia.explorers.guru/block/13205115): only account
+balances recorded at that height carried over. Transactions and balance
+changes after that height do not exist on `mocha-5`, and account
+sequences were reset to 0. Delegations, unbonding delegations, and
+pending staking rewards were redeemed as liquid balances.
+
+The initial validator set was created from separately coordinated
+genesis transactions. Other validators can join by submitting
+`MsgCreateValidator` once their node is synced. The `mocha-4` validator
+set, governance proposals, IBC channels, Hyperlane state, community
+pool, and all other chain state did not carry over.
+
+`mocha-4` remains running until it is officially shut down on
+September 1, 2026. All services still pointing at `mocha-4` should move
+to `mocha-5` before then. If you operate a `mocha-4` validator, keep it
+running while you migrate if possible; if you need to stop it sooner,
+unbond it from the active set first so it does not affect `mocha-4`
+block production.
+
+### Accessing mocha-4 history
+
+Because `mocha-5` started from a new genesis, `mocha-4` history is not
+queryable on the new network. Blobs and rollup data posted to `mocha-4`
+are not retrievable on `mocha-5`. Individual node operators are not
+expected to retain `mocha-4` data. An exported copy of the final
+`mocha-4` state will be available for one month after the shutdown.
+
+If you depend on specific `mocha-4` transaction history, export what you
+need before the September 1, 2026 shutdown.
+
+### Prepare a separate consensus-node home
+
+If you already operate a `mocha-4` consensus node or validator, do not
+initialize `mocha-5` in the existing `$HOME/.celestia-app` directory.
+That directory's `data/priv_validator_state.json` records the last
+`mocha-4` height you signed, and a validator will not sign at a height
+at or below that value. Because `mocha-5` restarts at height 1, a node
+reusing the old home would refuse to sign. The old `data` directory also
+holds blocks from a different chain, which will not reconcile with the
+`mocha-5` genesis.
+
+Using a separate home avoids both problems and leaves your `mocha-4`
+node runnable if you need to fall back during the cutover. Back up your
+[wallet keys](/operate/keys-wallets/celestia-app-wallet#key-management)
+and `$HOME/.celestia-app/config/priv_validator_key.json` before
+continuing.
+
+Initialize `mocha-5` with its own home directory:
+
+```bash
+MOCHA_5_HOME="$HOME/.celestia-app-mocha-5"
+
+celestia-appd init "node-name" \
+  --chain-id mocha-5 \
+  --home "$MOCHA_5_HOME"
+
+celestia-appd download-genesis mocha-5 \
+  --home "$MOCHA_5_HOME"
+# if this command doesn't exist in the binary, use this instead:
+# curl -sL "https://raw.githubusercontent.com/celestiaorg/networks/main/mocha-5/genesis.json" -o "$MOCHA_5_HOME/config/genesis.json"
+```
+
+Configure the new Mocha seeds and peers in that directory:
+
+```bash
+SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/main/mocha-5/seeds.txt | tr '\n' ',')
+
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" "$MOCHA_5_HOME/config/config.toml"
+```
+
+Do not copy the `mocha-4` data directory or
+`data/priv_validator_state.json` into the new home.
+
+Run `mocha-5` under a separate service whose start command includes the
+new home:
+
+```bash
+celestia-appd start --home "$MOCHA_5_HOME"
+```
+
+You have a list of options on the types of nodes you can run to
+participate in Mocha:
+
+Consensus:
+
+- [Consensus node](/operate/consensus-validators/consensus-node)
+- [Validator node](/operate/consensus-validators/validator-node)
+
+Data Availability:
+
+- [Bridge node](/operate/data-availability/bridge-node)
+- [Light node](/operate/data-availability/light-node/quickstart)
+
+Select the type of node you would like to run and follow the instructions
+on each respective page. Whenever you are asked to select the type of network
+you want to connect to in those guides, select `Mocha` to refer
+to the correct instructions on this page on how to connect to Mocha.
+
+## Network details
+
+| Detail        | Value                                                                                              |
+| ------------- | -------------------------------------------------------------------------------------------------- |
+| Chain ID      | `mocha-5`                                                                                     |
+| Genesis hash  | `82DB3AC5AB8485E4784054BD10457533A64563F055C0D234A3134603A9C85D33`                                 |
+| Genesis file  | <a href={`https://github.com/celestiaorg/networks/blob/main/$mocha-5/genesis.json`}>genesis.json</a> |
+| Peers file    | <a href={`https://github.com/celestiaorg/networks/blob/main/$mocha-5/peers.txt`}>peers.txt</a>       |
+| Validators    | 100 (max)                                                                                                |
+
+## Software version numbers
+
+| Software       | Version                                                                           |
+| -------------- | --------------------------------------------------------------------------------- |
+| celestia-node  | [v0.32.1-mocha](https://github.com/celestiaorg/celestia-node/releases/tag/v0.32.1-mocha) |
+| celestia-app   | [v9.0.6-mocha](https://github.com/celestiaorg/celestia-app/releases/tag/v9.0.6-mocha)   |
+
+## Network status
+
+For real-time network status information, including uptime, incident reports,
+and service availability, visit the
+[official Celestia Mocha testnet status page](https://status.celestia.dev/status/mocha).
+
+## Network constants
+
+For the current Mocha testnet network constants, see
+[mocha.celenium.io/constants](https://mocha.celenium.io/constants).
+
+## RPC for DA bridge, full, and light nodes
+
+### Production RPC endpoints
+
+These RPC providers are meant to be used in production environments
+and for specific use cases that require reliable access to full block
+history, such as:
+
+- Running Bridge Nodes that download data from core RPC endpoints
+- Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
+- Submitting blobs in production settings (free RPC endpoints have no guarantees, even for submitting transactions)
+
+| Provider  | URL                                                                                       |
+| --------- | ----------------------------------------------------------------------------------------- |
+| QuickNode | [https://www.quicknode.com/chains/celestia](https://www.quicknode.com/chains/celestia) ([docs](https://quicknode.com/docs/celestia)) |
+
+> **Warning:** Do not rely on the free community endpoints listed below for production deployments. Production deployments should rely on [service providers with SLAs](#production-rpc-endpoints) or your own node.
+
+### Public RPC endpoint
+
+For development, testing, and documentation examples, use the public QuickNode
+endpoint:
+
+| Interface | Endpoint |
+| --------- | -------- |
+| HTTP RPC and REST | `https://public-endpoint.celestia-mocha.quiknode.pro` |
+| WebSocket | `wss://public-endpoint.celestia-mocha.quiknode.pro/websocket` |
+| gRPC over TLS | `public-endpoint.celestia-mocha.quiknode.pro:9090` |
+| DA JSON-RPC | `https://public-endpoint.celestia-mocha.quiknode.pro` |
+
+This shared endpoint is pruned and does not provide a production SLA. Do not
+use it for historical queries or bridge node sync from genesis.
+
+### Community consensus endpoints
+
+Use these hosts for `--core.ip`. celestia-node connects over gRPC with
+`--core.port` (default `9090`). RPC ports are listed for operators who also
+need Tendermint RPC from the same provider.
+
+| Provider      | Endpoint for `--core.ip`                                          | RPC port | gRPC port |
+| ------------- | ----------------------------------------------------------------- | -------- | --------- |
+| P-OPS         | `rpc-mocha.pops.one`                                              | 443      | 9090      |
+
+You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
+
+### Community Data availability (DA) RPC endpoints for bridge node sync
+
+These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
+For users, they will need to provide a `–core.ip string`
+from a consensus node's URL or IP that populates a default RPC port at 26657
+to their respective DA node.
+
+### Community Data availability (DA) gRPC endpoints for state access
+
+These gRPC endpoints for DA nodes provide state access for querying the
+chain's state and broadcasting transactions (balances, blobs, etc.) to the
+Celestia network. For users, they will need to provide a `–core.ip string`
+from a consensus node's URL or IP that populates a default gRPC port at 9090
+to their respective DA node.
+
+> **Tip for bridge nodes:** Community RPC endpoints do not guarantee full block downloads. If you are running a bridge node, also run a local [consensus node](/operate/consensus-validators/consensus-node) to download full blocks.
+
+Use one of the `--core.ip` values from the [community consensus endpoints](#community-consensus-endpoints) table above.
+
+## Community RPC endpoints
+
+The RPC endpoint is to allow users to interact with Celestia's nodes by
+querying the node's state and broadcasting transactions on the
+Celestia network. The default port is 26657.
+
+- `rpc-mocha.pops.one`
+- `rpc-1.testnet.celestia.nodes.guru`
+- `rpc-2.testnet.celestia.nodes.guru`
+- `celestia-testnet-rpc.itrocket.net:443`
+
+## Community API endpoints
+
+The API endpoint is to allow users to interact with the REST API in Cosmos
+SDK which is implemented using gRPC-gateway, which exposes gRPC endpoints
+as REST endpoints. This allows for communication with the node using REST
+calls, which can be useful if the client does not support gRPC or HTTP2.
+The default port is 1317.
+
+- `https://api-mocha.pops.one`
+- `https://api-1.testnet.celestia.nodes.guru`
+- `https://api-2.testnet.celestia.nodes.guru`
+- `https://celestia-testnet-api.itrocket.net`
+
+## Community gRPC endpoints
+
+The gRPC endpoint is to allow users to interact with a Celestia Node using
+gRPC, a modern open-source and high-performance RPC framework. The default
+port is 9090. In the Cosmos SDK, gRPC is used to define state queries and
+broadcast transactions.
+
+- `grpc-mocha.pops.one`
+- `grpc-1.testnet.celestia.nodes.guru:10790`
+- `grpc-2.testnet.celestia.nodes.guru:10790`
+- `celestia-testnet-grpc.itrocket.net:443`
+
+## Community bridge node endpoints
+
+The `mocha-5` DA network is live. Community bridge node endpoints will
+be added here as providers make them available.
+
+## Mocha testnet faucet
+
+> **Warning:** Using this faucet does not entitle you to any airdrop or other distribution of mainnet Celestia tokens.
+
+### Discord
+
+You can request from Mocha testnet Faucet on the #mocha-faucet channel on
+Celestia's Discord server with the following command:
+
+```text
+$request <CELESTIA-ADDRESS>
+```
+
+Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
+
+> **Note:** Faucet has a limit of 10 tokens per week per address/Discord ID.
+
+### Web
+
+The web faucet is available at [https://mocha.celenium.io/faucet](https://mocha.celenium.io/faucet).
+
+## Analytics
+
+The following websites provide analytics for Mocha Testnet:
+
+- [https://itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Monitoring and chain status tools
+
+## Node maps
+
+The following websites provide visual maps of Celestia DA nodes:
+
+- [https://probelab.io/celestia/](https://probelab.io/celestia/) (community contribution)
+
+## Explorers
+
+There are several explorers you can use for Mocha:
+
+- `https://mintscan.io/celestia-testnet/`
+- `https://mocha.celenium.io`
+- `https://explorer.nodestake.top/celestia-testnet/`
+- `https://stakeflow.io/celestia-testnet`
+- `https://testnet.celestia.explorers.guru`
+- `https://testnet.itrocket.net/celestia`
+- `https://testnet.celestia.valopers.com/`
+- `https://explorer.chainroot.io/celestia-testnet-mocha-5`
+
+## Network upgrades
+
+There are a few ways to stay informed about network upgrades on the Mocha testnet:
+
+- Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
+- Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
+
+See the [network upgrades page](/operate/maintenance/network-upgrades) to learn more
+about specific upgrades like the [Ginger network upgrade](/operate/maintenance/network-upgrades#ginger-network-upgrade).
