@@ -14,6 +14,7 @@ export const mainnetVersions = mainnetVersionsJson as {
 export const mochaVersions = mochaVersionsJson as {
     "app-latest-tag": string;
     "app-latest-sha": string;
+    "fibre-app-tag": string;
     "node-latest-tag": string;
     "node-latest-sha": string;
 };
