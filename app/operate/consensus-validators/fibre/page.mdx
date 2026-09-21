@@ -1,0 +1,224 @@
+---
+description: Prepare and run a validator-operated Fibre server on Mocha after app version 10 activates.
+---
+
+import { Callout } from 'nextra/components'
+
+# Run a Fibre server
+
+Fibre is a separate data availability service operated by validators alongside
+celestia-app. This guide covers Mocha using the celestia-app release
+`{{mochaVersions['app-latest-tag']}}` and its matching Fibre binary.
+
+<Callout type="info">
+Installing a v10 binary does not activate app version 10 on the chain. Prepare
+the binaries and configuration before activation, then start Fibre and register
+its address after activation. Follow the Mocha upgrade announcement for timing.
+</Callout>
+
+## Prerequisites
+
+- A running, synced [validator node](/operate/consensus-validators/validator-node)
+  in the bonded validator set. Fibre derives its storage budget from your stake.
+- The v10 multiplexer celestia-app binary installed before activation. Follow the
+  [Mocha release upgrade instructions](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
+  and check the [celestia-app installation requirements](/operate/consensus-validators/install-celestia-app#linux-requirements).
+- Separate disks for Fibre data and celestia-app data. Review the
+  [connection limits and memory requirements](#connection-limits-and-memory).
+- If using an external key management system, support for `SignRawBytes` and
+  median signing latency no higher than 10 ms. Fibre connects to the node's
+  signing service, not directly to the KMS.
+
+## Install Fibre
+
+### Prebuilt binary
+
+Download the Fibre archive and checksums from the same release as celestia-app.
+For Linux x86_64:
+
+```bash
+fibre_version={{mochaVersions['app-latest-tag']}}
+curl -fLO "https://github.com/celestiaorg/celestia-app/releases/download/$fibre_version/fibre_Linux_x86_64.tar.gz"
+curl -fLO "https://github.com/celestiaorg/celestia-app/releases/download/$fibre_version/checksums.txt"
+sha256sum --ignore-missing --check checksums.txt
+tar -xzf fibre_Linux_x86_64.tar.gz
+./fibre version
+```
+
+For Linux arm64, use `fibre_Linux_arm64.tar.gz`. macOS archives use `Darwin`
+instead of `Linux`; verify them with `shasum -a 256 --ignore-missing --check checksums.txt`.
+Place the verified binary on your executable path before using `fibre` below.
+
+### Build from source
+
+Install Git, Make, a C compiler, and the Go version required by the release's
+[`go.mod`](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/go.mod).
+Clone the same release used by your celestia-app node:
+
+```bash
+git clone --branch {{mochaVersions['app-latest-tag']}} --depth 1 https://github.com/celestiaorg/celestia-app.git celestia-app-fibre
+cd celestia-app-fibre
+make build-fibre-server VERSION={{mochaVersions['app-latest-tag']}}
+./build/fibre version
+```
+
+The binary is written to `build/fibre` with the release version and short commit
+hash. Setting `VERSION` avoids selecting another network's tag when tags share
+a commit. Place the binary on your executable path before using `fibre` below.
+
+## Configure the node connections
+
+Fibre needs the application's gRPC service and the validator's signing service.
+
+| Service | Node setting | Example address | Fibre option |
+|---|---|---|---|
+| Application gRPC | `config/app.toml`, `[grpc] address` | `127.0.0.1:9090` | `--app-grpc-address` |
+| Priv-validator gRPC | `config/config.toml`, top-level `priv_validator_grpc_laddr` | `127.0.0.1:26669` | `--signer-grpc-address` |
+
+Paths are relative to your existing node home, normally `~/.celestia-app`.
+Back up the configuration files before editing. Edit existing keys and sections
+instead of appending duplicate TOML sections.
+
+### Enable application gRPC
+
+In `config/app.toml`, edit the existing `[grpc]` section:
+
+```toml
+[grpc]
+enable = true
+address = "127.0.0.1:9090"
+```
+
+Enable it explicitly: a freshly generated app config disables application gRPC,
+even though the multiplexer enables it for its embedded v9 application.
+The setting must also be enabled when the chain switches to v10.
+
+The core RPC gRPC listener (`[rpc] grpc_laddr` in `config/config.toml`) is a
+separate service. Keep its existing address for bridge nodes and other clients;
+Fibre's `--app-grpc-address` must point to the application service above.
+
+### Configure the signing connection
+
+In `config/config.toml`, edit the top-level setting before the first section:
+
+```toml
+priv_validator_grpc_laddr = "127.0.0.1:26669"
+```
+
+Fresh v10 configs use `26669` to avoid a TMKMS port clash. Existing configs may
+still use `26659`, a custom address, or an empty value that disables the service.
+Replacing the binary does not rewrite the saved value. If you change the port,
+change Fibre's signer address to match. A working custom port can be retained
+when it does not conflict with another listener.
+
+Application and signing addresses, including Fibre's connection options, use
+`host:port` without `tcp://`.
+
+Restart the node after editing and confirm it resumes syncing and signing.
+Check service-manager flags for overrides. If deployment tooling manages the
+configuration, update its source templates too.
+
+<Callout type="warning">
+The application and signing connections are not TLS-protected. Keep them on
+loopback or a trusted private network. Make only Fibre's client port (default
+`7980`) publicly reachable; see [transport security](#transport-security-tls).
+</Callout>
+
+## Transport security (TLS)
+
+Fibre encrypts all client connections with TLS. You do not need to obtain or
+renew certificates. At startup, the server generates a certificate and asks
+the node's signing service to endorse it with your validator's consensus key.
+Clients check that endorsement against the validator set.
+
+The certificate identifies the validator by its consensus key, so the registered
+host can be an IP address or a DNS name. Each restart generates a new certificate.
+Restart Fibre after changing `--signer-grpc-address` so it uses the correct key.
+
+Downloads are public; any peer can read shards. Uploads require a valid payment
+promise. There is no plaintext fallback: all Fibre servers and clients must use
+a TLS-capable build. The application and signing connections remain unencrypted,
+so keep them on loopback or a trusted private network.
+
+## Start after activation
+
+Check the active app version through your node's HTTP RPC endpoint:
+
+```bash
+curl -s http://127.0.0.1:26657/abci_info
+```
+
+Confirm `result.response.app_version` is `10` or later. Checking the installed
+binary's version alone is insufficient.
+
+Start Fibre with its data home on the separate disk:
+
+```bash
+fibre start \
+  --home <fibre_home> \
+  --app-grpc-address 127.0.0.1:9090 \
+  --signer-grpc-address 127.0.0.1:26669 \
+  --server-listen-address 0.0.0.0:7980
+```
+
+Use your actual node addresses if different. On first start, Fibre creates
+`server_config.toml` under its home. The corresponding keys are `app_grpc_address`,
+`signer_grpc_address`, and `server_listen_address`; command-line flags override
+the file. Check the startup log for the chain ID and connected addresses.
+
+### Connection limits and memory
+
+Set connection limits in `<fibre_home>/server_config.toml`. These are the defaults:
+
+```toml
+max_connections = 16
+max_concurrent_streams = 13
+```
+
+`max_connections` limits client connections to the server.
+`max_concurrent_streams` limits concurrent gRPC streams per connection. Each
+in-flight upload stream can buffer a full message of about 132 MiB:
+
+```text
+worst-case receive buffers ≈ max_connections × max_concurrent_streams × 132 MiB
+```
+
+The defaults allow about 27 GiB of receive buffers. Leave additional RAM for
+celestia-app, Fibre's other work, and the operating system. Increase the limits
+only when the host has enough memory.
+
+Upload traffic can fill all 16 connection slots and block concurrent downloads.
+To leave slots for downloads, raise `max_connections` above 16 and check the
+memory budget again. Add either setting if it is absent from an existing config,
+then restart Fibre for changes to take effect.
+
+## Register the public address
+
+Once Fibre is running and reachable, register its public host using your
+validator account:
+
+```bash
+celestia-appd tx valaddr set-host <public_host>:7980 \
+  --from <validator_account_key> --chain-id {{constants['mochaChainId']}}
+celestia-appd query valaddr providers
+```
+
+Add your usual node, home, and transaction fee flags. The host must be `host:port`,
+without a URL scheme. Confirm your address appears in the provider list. Register
+only after the server is reachable, so clients do not discover an unavailable
+host. Registration requires active app version 10 and a bonded validator.
+
+## Troubleshoot startup
+
+| Symptom | Check |
+|---|---|
+| `unknown service cosmos.base.tendermint.v1beta1.Service` | Confirm Fibre targets application gRPC, then check the active app version. The error alone does not identify the cause. |
+| Missing Fibre or valaddr services | Wait for app version 10 to activate before starting Fibre or registering. |
+| Application connection refused | Enable `[grpc]` in `app.toml`, restart the node, and check addresses and flag overrides. |
+| Signer connection failed | Match Fibre's signer address to `priv_validator_grpc_laddr`; check for a disabled value or a port conflict. |
+| TLS identity verification failed | Check that the signing service holds your validator's consensus key, then restart Fibre after correcting the signer address. |
+
+For logging, metrics, tracing, and profiling, see
+[Fibre metrics and monitoring](/operate/consensus-validators/fibre/metrics).
+The [Fibre server reference](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/fibre/cmd/README.md)
+has further configuration details.
