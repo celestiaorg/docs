@@ -2,7 +2,7 @@ const meta = {
   "install-celestia-app": "Install celestia-app",
   "consensus-node": "Run a consensus node",
   "validator-node": "Run a validator node",
-  "fibre": "Run a Fibre server",
+  "fibre": "Fibre",
   "cli-reference": "CLI commands reference",
   slashing: "Slashing & jailing",
   metrics: "Metrics & monitoring",
