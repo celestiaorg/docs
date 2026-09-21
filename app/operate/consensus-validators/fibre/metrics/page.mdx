@@ -23,8 +23,13 @@ fibre start --log-level debug --log-format json
 ## Tracing and metrics
 
 Fibre sends traces and metrics over OTLP/HTTP to an OpenTelemetry collector,
-such as Grafana Alloy or the OTel Collector. Configure the collector to receive
-both signals and forward them to your tracing and metrics backends.
+such as Grafana Alloy or the OTel Collector. The collector must accept both
+signals and forward them to your tracing and metrics backends. The celestia-app
+repository ships a reference
+[collector configuration](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/observability/docker/otel-collector/config.yml)
+and a
+[Docker Compose stack](https://github.com/celestiaorg/celestia-app/tree/{{mochaVersions['app-latest-tag']}}/observability/docker)
+with Prometheus, Tempo, and Grafana that you can start from.
 
 | Flag | Environment variable | Default |
 |---|---|---|
@@ -36,8 +41,7 @@ fibre start --otel-endpoint http://localhost:4318
 
 Use the collector's base URL. Fibre appends `/v1/traces` and `/v1/metrics` itself.
 For example, `https://collector.example.com/otel` sends data to
-`/otel/v1/traces` and `/otel/v1/metrics`. Remove either signal suffix from an
-existing endpoint when upgrading.
+`/otel/v1/traces` and `/otel/v1/metrics`.
 
 ### Traces
 
@@ -101,7 +105,10 @@ Import the release's
 [Fibre dashboard JSON](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/observability/docker/grafana/dashboards/fibre.json)
 into Grafana. The dashboard expects a Prometheus data source with UID
 `prometheus`; use that UID or update the dashboard to match your data source.
-Client panels need telemetry from Fibre clients as well as the server.
+Client panels need telemetry from Fibre clients as well as the server. The same
+directory has a
+[Fibre runtime dashboard](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/observability/docker/grafana/dashboards/fibre-runtime.json)
+for Go runtime metrics such as memory and goroutines.
 
 ## Profiling with pprof
 

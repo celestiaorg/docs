@@ -63,9 +63,11 @@ These settings apply to celestia-app consensus nodes:
 | `[storage]` | `compact` | `false` |
 | `[storage]` | `compaction_interval` | `10000` |
 
-The RPC setting limits concurrent heavy requests. Blockstore compaction is
-optional and does not enable pruning. Stop the node before running one-off
-compaction of an existing pruned backlog.
+The RPC setting caps concurrent heavy requests such as `block_results` and
+`tx_search`; public RPC providers may want to raise it. Blockstore compaction
+is optional and does not enable pruning. When enabled, it compacts the pruned
+range in the background. To compact an existing blockstore once, stop the node
+and run `celestia-appd compact-blockstore`.
 
 See the [Mocha release upgrade instructions](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
 for details. Follow the upgrade announcement for your network before replacing
