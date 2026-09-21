@@ -35,7 +35,9 @@ The upgrade process can be broken down into a few steps:
    - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
    - Upgrades using in-protocol signaling (v3+) activate one week after 5/6 of the voting power has signaled for a particular version
 
-## Existing configuration files
+## Configuration changes in v10
+
+### Existing configuration files
 
 Replacing celestia-app does not add new settings or comments to existing
 configuration files. Missing settings use the binary's defaults.
@@ -53,7 +55,7 @@ values and creates a backup before writing changes. It does not run
 automatically on startup. Use it instead of the deprecated `update-config`
 command for v10 configuration maintenance.
 
-### RPC and storage settings in v10
+### RPC and storage settings
 
 These settings apply to celestia-app consensus nodes:
 
