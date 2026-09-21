@@ -35,6 +35,42 @@ The upgrade process can be broken down into a few steps:
    - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
    - Upgrades using in-protocol signaling (v3+) activate one week after 5/6 of the voting power has signaled for a particular version
 
+## Existing configuration files
+
+Replacing celestia-app does not add new settings or comments to existing
+configuration files. Missing settings use the binary's defaults.
+
+Starting with celestia-app v10.2, use `config sync` to add missing fields and
+their documentation to `config/config.toml`. Preview the additions first:
+
+```bash
+celestia-appd config sync --home ~/.celestia-app --dry-run
+celestia-appd config sync --home ~/.celestia-app
+```
+
+Use your node's home directory if different. The command preserves existing
+values and creates a backup before writing changes. It does not run
+automatically on startup. Use it instead of the deprecated `update-config`
+command for v10 configuration maintenance.
+
+### RPC and storage settings in v10
+
+These settings apply to celestia-app consensus nodes:
+
+| Section in `config/config.toml` | Setting | Default |
+|---|---|---|
+| `[rpc]` | `max_concurrent_heavy_requests` | `20` |
+| `[storage]` | `compact` | `false` |
+| `[storage]` | `compaction_interval` | `10000` |
+
+The RPC setting limits concurrent heavy requests. Blockstore compaction is
+optional and does not enable pruning. Stop the node before running one-off
+compaction of an existing pruned backlog.
+
+See the [Mocha release upgrade instructions](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
+for details. Follow the upgrade announcement for your network before replacing
+its binary.
+
 ## Network upgrade history
 
 v7 (Hibiscus) was skipped on Mainnet Beta due to a bug discovered after testnet activation; v8 (defined in [CIP-49](https://cips.celestia.org/cip-049.html)) was activated instead.
