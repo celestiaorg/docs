@@ -29,7 +29,10 @@ repository ships a reference
 [collector configuration](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/observability/docker/otel-collector/config.yml)
 and a
 [Docker Compose stack](https://github.com/celestiaorg/celestia-app/tree/{{mochaVersions['app-latest-tag']}}/observability/docker)
-with Prometheus, Tempo, and Grafana that you can start from.
+with Prometheus, Tempo, and Grafana that you can start from. The stack
+publishes Prometheus on host port `9090`, which the setup guide uses for
+application gRPC. When running it on the validator host, change that mapping
+in `docker-compose.yml`, for example to `9091:9090`.
 
 | Flag | Environment variable | Default |
 |---|---|---|

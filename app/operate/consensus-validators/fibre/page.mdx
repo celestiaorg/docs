@@ -226,11 +226,14 @@ Verify the registration with your consensus address, which
 celestia-appd query valaddr provider <celestiavalcons_address>
 ```
 
-`celestia-appd query valaddr providers` lists the hosts of all bonded validators.
+Confirm that `found` is `true` and that the returned host matches your public
+address. `celestia-appd query valaddr providers` lists the hosts of all bonded
+validators.
+
 Registration persists across restarts, so re-run `set-host` only when the
-address changes. The entry is removed automatically if your validator leaves
-the active set for good, for example after being jailed and unbonded for more
-than 7 days. Register again after rejoining.
+address changes. The entry is removed if the validator is removed from staking,
+or stays jailed and unbonded for more than 7 days. If your entry was removed,
+register again after rejoining the active set.
 
 ## Troubleshoot startup
 
