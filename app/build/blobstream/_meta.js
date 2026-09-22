@@ -1,7 +1,5 @@
 const meta = {
-  "integrate-contracts": "Integrate with Contracts",
-  "integrate-offchain": "Integrate Offchain",
-  "proof-queries": "Proof Queries"
+  "proof-queries": "Proof queries (legacy)"
 };
 
 export default meta;

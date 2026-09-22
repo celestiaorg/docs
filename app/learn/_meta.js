@@ -3,7 +3,6 @@ const meta = {
   features: "Features",
   TIA: "TIA",
   "code-of-conduct": "Code of Conduct",
-  blobstream: "Blobstream",
   audits: "Audits",
 };
 
