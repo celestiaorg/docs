@@ -12,6 +12,7 @@
     "prepare": "simple-git-hooks",
     "generate:llms": "node scripts/generate-llms.js",
     "check-links": "node scripts/check-links.mjs",
+    "test:releases": "node --test scripts/latest-tags.test.mjs",
     "test:endpoints": "node --test scripts/check-endpoints.test.mjs"
   },
   "simple-git-hooks": {
