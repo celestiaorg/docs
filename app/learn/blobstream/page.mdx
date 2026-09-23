@@ -1,0 +1,17 @@
+---
+description: Legacy notice for Blobstream, the Celestia data availability attestation bridge to EVM chains.
+---
+
+# Blobstream (legacy)
+
+Blobstream was a data availability attestation bridge that let EVM chains verify that data was published to Celestia. It relayed commitments to Celestia data roots to a smart contract on the target EVM chain, where rollup contracts could verify inclusion proofs against them.
+
+> **Legacy notice:** As of September 2026, the Succinct-operated SP1 Blobstream deployments are no longer maintained and do not receive new commitments, and Celenium no longer offers its Blobstream explorer. The integration and operator guides that previously lived in these docs have been removed.
+
+## What remains
+
+- [Blobstream proof queries (legacy)](/build/blobstream/proof-queries) documents how to query inclusion proofs from a Celestia consensus node and how they map to the Blobstream contract format.
+- [Audits](/learn/audits) lists the historical Blobstream X and SP1 Blobstream audit reports.
+- The [blobstream-contracts](https://github.com/celestiaorg/blobstream-contracts) and [sp1-blobstream](https://github.com/succinctlabs/sp1-blobstream) repositories remain available on GitHub.
+
+If you depend on Blobstream for dispute verification, such as with [Arbitrum Nitro with Celestia DA](/build/stacks/nitro-das-server), you must operate or source your own Blobstream verification path.

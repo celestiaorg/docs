@@ -1,6 +1,6 @@
 # Blobstream proof queries (legacy)
 
-> **Legacy reference:** Succinct stopped operating its Blobstream operator and relayer in September 2026. Celenium has also removed its Blobstream service. This page preserves the proof-query and contract-format reference; it does not imply that a maintained deployment is available or receiving new commitments.
+> **Legacy reference:** As of September 2026, the Succinct-operated SP1 Blobstream deployments are no longer maintained and do not receive new commitments, and Celenium no longer offers its Blobstream explorer. This page preserves the proof-query and contract-format reference. It does not imply that a maintained deployment is available.
 
 ## Prerequisites
 
