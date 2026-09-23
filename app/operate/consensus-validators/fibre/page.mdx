@@ -186,14 +186,14 @@ fibre start \
 ```
 
 Use your actual node addresses if different. On first start, Fibre creates
-`server_config.toml` under its home. The corresponding keys are `app_grpc_address`,
+`<fibre_home>/config/server_config.toml`. The corresponding keys are `app_grpc_address`,
 `signer_grpc_address`, and `server_listen_address`; command-line flags override
 the file. Check the startup log for the chain ID and connected addresses.
 
 ### Connection limits
 
 To change the limits sized in [Plan capacity](#plan-capacity), edit
-`<fibre_home>/server_config.toml`:
+`<fibre_home>/config/server_config.toml`:
 
 ```toml
 max_connections = 16
