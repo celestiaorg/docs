@@ -62,6 +62,15 @@ dashboard, and confirm the server panels populate once uploads or downloads
 arrive. If they stay empty, work through the [troubleshooting](#troubleshooting)
 table.
 
+## Monitor signing latency
+
+Nodes using a remote signer expose `cometbft_privval_signing_latency_*`
+Prometheus metrics on celestia-app. Monitor them through the
+[validator metrics setup](/operate/consensus-validators/metrics).
+The node logs a warning when the median latency of the last 50 signatures
+exceeds 10 ms. Keep median signing latency at or below 10 ms; colocate the
+signing infrastructure when needed to stay within that threshold.
+
 ## Metric reference
 
 ### Traces
