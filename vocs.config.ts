@@ -26,7 +26,7 @@ export default defineConfig({
   renderStrategy: 'full-static',
   checkDeadlinks: 'warn',
   mcp: {
-    enabled: true,
+    enabled: process.env.DOCS_MCP_ENABLED === '1',
   },
   markdown: {
     remarkPlugins: [remarkReplaceVariables, remarkMath, [remarkBaseImages, { basePath }]],

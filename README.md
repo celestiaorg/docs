@@ -61,7 +61,9 @@ bun run preview
 
 The Cloudflare Pages setup mirrors Eden docs: the Vocs site stays fully static,
 and `worker/index.js` is copied into the output as `_worker.js` to serve `/mcp`
-and `/api/mcp` from the same origin.
+and `/api/mcp` from the same origin. `prepare:cloudflare` enables the MCP menu
+and discovery text; ordinary static builds leave them disabled because GitHub
+Pages cannot run the Worker.
 
 ```bash
 bun run prepare:cloudflare

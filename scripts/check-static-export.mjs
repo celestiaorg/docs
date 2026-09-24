@@ -33,7 +33,8 @@ for (const section of ['learn', 'build', 'operate']) {
   }
   check(await sidebarFor(`app/${section}`, `/${section}`))
 }
-const htmlFiles = (await filesIn(output)).filter((file) => file.endsWith('.html'))
+const exportedFiles = new Set(await filesIn(output))
+const htmlFiles = [...exportedFiles].filter((file) => file.endsWith('.html'))
 const runtimePages = new Set(['404.html', '404.d/index.html', '_root.d/index.html'])
 const contentPaths = new Set(pages.map((page) => page.slice(4).replace(/page\.mdx$/, 'index.html')))
 for (const file of htmlFiles) {
@@ -49,7 +50,7 @@ for (const file of htmlFiles) {
     const pathname = decodeURIComponent(url.slice(base.length).split(/[?#]/)[0])
     if (['/mcp', '/api/mcp'].includes(pathname)) continue
     const target = path.join(output, pathname)
-    assert.ok(existsSync(target) || existsSync(path.join(target, 'index.html')), `${file}: missing asset/page ${url}`)
+    assert.ok(exportedFiles.has(target) || exportedFiles.has(path.join(target, 'index.html')), `${file}: missing asset/page ${url}`)
   }
 }
 console.log(`Verified ${pages.length} documentation pages, sidebar destinations, and all exported asset/link paths.`)

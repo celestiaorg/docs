@@ -159,7 +159,9 @@ const header = [
   '- Prefer the `.md` pages linked here for retrieval and citations.',
   '- Use `llms-full.txt` when a single-file context snapshot is needed.',
   '- Use `/build/llms.txt`, `/learn/llms.txt`, and `/operate/llms.txt` for section-specific context.',
-  '- Cloudflare Pages deployments expose documentation tools at `/api/mcp` (also `/mcp`).',
+  ...(process.env.DOCS_MCP_ENABLED === '1'
+    ? ['- Documentation MCP tools are available on this deployment at `/api/mcp` (also `/mcp`).']
+    : []),
   '',
   '## Related resources',
   '',
