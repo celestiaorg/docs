@@ -83,7 +83,19 @@ In the Mainnet Beta table, version links point to Celenium upgrade status pages 
 
 ### Mocha testnet
 
-The upgrades listed here happened on the `mocha-4` chain. Celenium now indexes `mocha-5`, so explorer pages for these upgrades and heights are no longer available.
+#### Mocha-5
+
+App version 10 activated on `mocha-5` at the height specified in the
+[activation announcement](https://status.celestia.org/incidents/vbsesey3).
+Bonded validators can now [start and register their Fibre servers](/operate/consensus-validators/fibre).
+
+| Version | Date and time | Upgrade height | Parameters |
+| ------- | ------------- | -------------- | ---------- |
+| v10 | 2026/09/24 20:20:15 UTC | [1082619](https://testnet.celestia.explorers.guru/block/1082619) | [v10](https://celestiaorg.github.io/celestia-app/parameters_v10.html) |
+
+#### Mocha-4 (historical)
+
+The upgrades below happened on the `mocha-4` chain. Celenium now indexes `mocha-5`, so explorer pages for these historical upgrades and heights are no longer available.
 
 | Version | Name       | CIP                                                                     | Date and time           | Upgrade height | Delay period | Parameters                                                          |
 | ------- | ---------- | ----------------------------------------------------------------------- | ----------------------- | -------------- | ------------ | ------------------------------------------------------------------- |
@@ -113,4 +125,6 @@ The upgrades listed here happened on the `mocha-4` chain. Celenium now indexes `
 
 > **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/sdk/v0.53/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 
-The next upgrade (v10) has not yet been scheduled. This page will be updated when a new upgrade is announced.
+Mocha has activated app version 10; see the [Mocha-5 upgrade history](#mocha-5).
+For upcoming upgrade schedules on each network, follow the
+[network announcements](https://status.celestia.org/).
