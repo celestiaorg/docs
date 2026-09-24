@@ -45,6 +45,13 @@ before choosing or upgrading a signer. It describes Horcrux's maintenance
 risks and the risk of double signing and slashing from incorrect KMS
 configuration.
 
+The 10 ms requirement is measured on celestia-app, not on Fibre. Nodes using a
+remote signer expose `cometbft_privval_signing_latency_*` Prometheus metrics,
+and the node logs a warning when the median of the last 50 signatures exceeds
+10 ms. Collect these through the
+[validator metrics setup](/operate/consensus-validators/metrics) and colocate
+the signing infrastructure if needed to stay within the threshold.
+
 ## Plan capacity
 
 Store Fibre data on a different disk from celestia-app data, so that growth in
