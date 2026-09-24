@@ -1,12 +1,18 @@
 # GitHub Actions workflows
 
-This directory contains the workflows used to lint, deploy, and keep release metadata up to date for the docs site.
+This directory contains the workflows used to lint, deploy, preview, and keep release metadata up to date for the docs site.
 
-## `deploy.yml` — Deploy Docs (Nextra) to GitHub Pages
+## `deploy.yml` — Deploy Docs (Vocs) to GitHub Pages
 
 - **Triggers:** `push` to `main`, or manual `workflow_dispatch`.
-- **What it does:** installs deps (Node 20 + Yarn), runs `yarn generate:llms`, builds the static site (`yarn build`), then publishes `out/` to the `gh-pages` branch via `peaceiris/actions-gh-pages`.
-- **Notes:** writes `out/.nojekyll` and sets `cname: docs.celestia.org`.
+- **What it does:** installs deps with Bun, builds the static site (`bun run build`), then publishes `out/public/` to the `gh-pages` branch via `peaceiris/actions-gh-pages`.
+- **Notes:** writes `out/public/.nojekyll` and sets `cname: docs.celestia.org`.
+
+## `deploy-cloudflare.yml` — Deploy to Cloudflare Pages
+
+- **Triggers:** manual `workflow_dispatch`, plus same-repo pull requests.
+- **What it does:** builds the full-static Vocs site, copies `worker/index.js` into `out/public/_worker.js` for the Pages MCP endpoint, ensures the test Pages project exists, then deploys `out/public/` to Cloudflare Pages.
+- **Required secrets:** `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
 
 ## `preview.yaml` — Deploy PR Preview
 
@@ -18,7 +24,7 @@ This directory contains the workflows used to lint, deploy, and keep release met
 ## `lint.yaml` — Lint & Link Check
 
 - **Triggers:** `push`/`pull_request` on `main`, plus a weekly schedule (`0 9 * * 1`).
-- **What it does:** runs `npm run lint` and `npm run check-links` (Node 20).
+- **What it does:** runs `bun run lint` and `bun run check-links`.
 
 ## `latest-tags.yaml` — Latest Tags
 

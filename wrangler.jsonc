@@ -1,0 +1,12 @@
+// Cloudflare Pages project for the Celestia docs.
+//
+// The Vocs build is fully static and writes browser assets to out/public.
+// The deploy step copies worker/index.js to out/public/_worker.js so the
+// Pages advanced-mode Worker serves /mcp and /api/mcp on the same origin,
+// while all other requests pass through to the static site.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "celestia-docs-vocs-test",
+  "pages_build_output_dir": "out/public",
+  "compatibility_date": "2025-11-17"
+}

@@ -152,14 +152,14 @@ const header = [
   '',
   '> Official documentation for Celestia, the modular blockchain powering unstoppable apps with full-stack control.',
   '',
-  'These docs are built with Next.js + Nextra and exported statically. Links below point to canonical markdown pages so tools and LLMs can ingest clean text.',
+  'These docs are built with Vocs and exported statically. Links below point to canonical markdown pages so tools and LLMs can ingest clean text.',
   '',
   '## Agent instructions',
   '',
   '- Prefer the `.md` pages linked here for retrieval and citations.',
   '- Use `llms-full.txt` when a single-file context snapshot is needed.',
   '- Use `/build/llms.txt`, `/learn/llms.txt`, and `/operate/llms.txt` for section-specific context.',
-  '- Celestia does not currently publish an official MCP server for this documentation site.',
+  '- Cloudflare Pages deployments expose documentation tools at `/api/mcp` (also `/mcp`).',
   '',
   '## Related resources',
   '',
@@ -507,12 +507,17 @@ const generateApiCatalog = async (outputBase) => {
 };
 
 const main = async () => {
-  // Determine output directory once - use 'out' if it exists (during build), otherwise 'public' (during dev)
-  const outputBase = await fs.access('out').then(() => 'out').catch(() => 'public');
+  // Vocs writes the browser-deployable static site to `out/public`.
+  // Fall back to `public` when running this script outside a production build.
+  const outputBase = await fs.access('out/public').then(() => 'out/public').catch(() => 'public');
   const files = (await walkPages('app')).sort();
 
   // Generate individual markdown files
   const pages = await generateMarkdownFiles(outputBase, files);
+
+  await writeTextFile(outputBase, 'mcp-search-index.json', JSON.stringify(
+    pages.map(({ htmlPath, content }) => ({ pagePath: htmlPath, text: content }))
+  ));
 
   const sections = buildSections(files);
   await fs.mkdir(outputBase, { recursive: true });

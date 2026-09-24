@@ -1,7 +1,6 @@
 import { Method, Param } from './types';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function classNames(...classes: any[]) {
+export function classNames(...classes: unknown[]) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -40,4 +39,3 @@ export const getExampleResponse = (method: Method): string => {
     2
   );
 };
-
