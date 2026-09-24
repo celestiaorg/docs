@@ -2,7 +2,7 @@
 description: Configure logging, metrics, tracing, and profiling for a Fibre server.
 ---
 
-# Fibre metrics and monitoring
+# Fibre monitoring
 
 This page covers observability in Fibre `{{mochaVersions['app-latest-tag']}}`.
 Complete the [server setup](/operate/consensus-validators/fibre) first. Add the
@@ -23,8 +23,16 @@ fibre start --log-level debug --log-format json
 ## Tracing and metrics
 
 Fibre sends traces and metrics over OTLP/HTTP to an OpenTelemetry collector,
-such as Grafana Alloy or the OTel Collector. Configure the collector to receive
-both signals and forward them to your tracing and metrics backends.
+such as Grafana Alloy or the OTel Collector. The collector must accept both
+signals and forward them to your tracing and metrics backends. The celestia-app
+repository ships a reference
+[collector configuration](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/observability/docker/otel-collector/config.yml)
+and a
+[Docker Compose stack](https://github.com/celestiaorg/celestia-app/tree/{{mochaVersions['app-latest-tag']}}/observability/docker)
+with Prometheus, Tempo, and Grafana that you can start from. The stack
+publishes Prometheus on host port `9090`, which the setup guide uses for
+application gRPC. When running it on the validator host, change that mapping
+in `docker-compose.yml`, for example to `9091:9090`.
 
 | Flag | Environment variable | Default |
 |---|---|---|
@@ -36,8 +44,31 @@ fibre start --otel-endpoint http://localhost:4318
 
 Use the collector's base URL. Fibre appends `/v1/traces` and `/v1/metrics` itself.
 For example, `https://collector.example.com/otel` sends data to
-`/otel/v1/traces` and `/otel/v1/metrics`. Remove either signal suffix from an
-existing endpoint when upgrading.
+`/otel/v1/traces` and `/otel/v1/metrics`.
+
+### Grafana dashboard
+
+Import the release's
+[Fibre dashboard JSON](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/observability/docker/grafana/dashboards/fibre.json)
+into Grafana. The dashboard expects a Prometheus data source with UID
+`prometheus`; use that UID or update the dashboard to match your data source.
+Client panels need telemetry from Fibre clients as well as the server. The same
+directory has a
+[Fibre runtime dashboard](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/observability/docker/grafana/dashboards/fibre-runtime.json)
+for Go runtime metrics such as memory and goroutines.
+
+To verify the pipeline, start Fibre with `--otel-endpoint` set, open the Fibre
+dashboard, and confirm the server panels populate once uploads or downloads
+arrive. If they stay empty, work through the [troubleshooting](#troubleshooting)
+table.
+
+## Community dashboard
+
+For a network-wide view on Mocha, use the community-maintained
+[Valopers Fibre dashboard](https://testnet.celestia.valopers.com/fibre) to inspect
+registered providers, host reachability, and validator endorsements.
+
+## Metric reference
 
 ### Traces
 
@@ -57,6 +88,28 @@ to open its trace.
 
 The tables below list the original OTLP metric names. Your collector or backend
 may convert dots to underscores and add unit suffixes.
+
+#### Server metrics
+
+| Metric | Type | Attributes | Description |
+|---|---|---|---|
+| `fibre.server.upload_shard.in_flight` | UpDownCounter | — | Concurrent UploadShard RPCs |
+| `fibre.server.upload_shard.duration` | Histogram (s) | `success`, `upload_size` | UploadShard RPC latency |
+| `fibre.server.upload_shard.bytes` | Counter (By) | — | Bytes received |
+| `fibre.server.download_shard.in_flight` | UpDownCounter | — | Concurrent DownloadShard RPCs |
+| `fibre.server.download_shard.duration` | Histogram (s) | `success`, `shard_size` | DownloadShard RPC latency |
+| `fibre.server.download_shard.bytes` | Counter (By) | — | Bytes sent |
+| `fibre.server.store.put.duration` | Histogram (s) | `success` | Store write latency |
+| `fibre.server.store.get.duration` | Histogram (s) | `success` | Store read latency |
+| `fibre.server.sign.duration` | Histogram (s) | `success` | Payment promise signing latency |
+| `fibre.server.prune.entries` | Counter | — | Entries pruned |
+| `fibre.server.prune.duration` | Histogram (s) | `success` | Prune cycle duration |
+
+`fibre.server.sign.duration` measures how long Fibre waits for payment promise
+endorsements. It is not the metric behind the 10 ms signing latency
+requirement; that is celestia-app's `cometbft_privval_signing_latency_*`, see
+[signing latency](/operate/consensus-validators/fibre#prerequisites) on the
+setup page.
 
 #### Client metrics
 
@@ -78,30 +131,6 @@ alongside server telemetry to measure end-to-end uploads and downloads.
 | `fibre.client.download.bytes` | Counter (By) | — | Downloaded bytes |
 | `fibre.client.download_from.duration` | Histogram (s) | `success`, `validator_address` | Download duration per validator |
 | `fibre.client.download_from.rpc_latency` | Histogram (s) | `success`, `validator_address` | Download RPC network latency per validator |
-
-#### Server metrics
-
-| Metric | Type | Attributes | Description |
-|---|---|---|---|
-| `fibre.server.upload_shard.in_flight` | UpDownCounter | — | Concurrent UploadShard RPCs |
-| `fibre.server.upload_shard.duration` | Histogram (s) | `success`, `upload_size` | UploadShard RPC latency |
-| `fibre.server.upload_shard.bytes` | Counter (By) | — | Bytes received |
-| `fibre.server.download_shard.in_flight` | UpDownCounter | — | Concurrent DownloadShard RPCs |
-| `fibre.server.download_shard.duration` | Histogram (s) | `success`, `shard_size` | DownloadShard RPC latency |
-| `fibre.server.download_shard.bytes` | Counter (By) | — | Bytes sent |
-| `fibre.server.store.put.duration` | Histogram (s) | `success` | Store write latency |
-| `fibre.server.store.get.duration` | Histogram (s) | `success` | Store read latency |
-| `fibre.server.sign.duration` | Histogram (s) | `success` | Payment promise signing latency |
-| `fibre.server.prune.entries` | Counter | — | Entries pruned |
-| `fibre.server.prune.duration` | Histogram (s) | `success` | Prune cycle duration |
-
-### Grafana dashboard
-
-Import the release's
-[Fibre dashboard JSON](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/observability/docker/grafana/dashboards/fibre.json)
-into Grafana. The dashboard expects a Prometheus data source with UID
-`prometheus`; use that UID or update the dashboard to match your data source.
-Client panels need telemetry from Fibre clients as well as the server.
 
 ## Profiling with pprof
 

@@ -1,6 +1,6 @@
 const meta = {
   index: "Run a Fibre server",
-  metrics: "Metrics & monitoring",
+  metrics: "Monitoring",
 };
 
 export default meta;
