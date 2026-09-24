@@ -5,7 +5,7 @@ import { defineConfig } from 'vocs/config'
 import remarkBaseImages from './plugins/remark-base-images.mjs'
 import remarkReplaceVariables from './plugins/remark-replace-variables.mjs'
 
-const siteOrigin = 'https://docs.celestia.org'
+const siteOrigin = process.env.VOCS_BASE_URL || 'https://docs.celestia.org'
 const siteDescription =
   'Learn, build, and operate on Celestia - the modular data availability network.'
 

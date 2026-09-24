@@ -1,34 +1,22 @@
-# Optional Cloudflare Pages deploy for the Vocs migration branch.
-#
-# Mirrors the Eden docs pattern: build a full-static Vocs site, copy a Pages
-# advanced-mode Worker into the output as _worker.js for /mcp and /api/mcp,
-# then deploy the output directory to Cloudflare Pages.
-#
-# Requires CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repo secrets.
 name: Deploy to Cloudflare Pages
 
 on:
-  workflow_dispatch:
-  # Temporary branch trigger for testing the Vocs migration before this
-  # workflow exists on the default branch.
   push:
-    branches:
-      - codex/jcs/migrate-vocs-v2-bun
+    branches: [main]
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
+    types: [opened, reopened, synchronize]
+  workflow_dispatch:
 
 permissions:
   contents: read
+  deployments: write
 
 concurrency:
   group: deploy-cloudflare-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 env:
-  CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT || 'celestia-docs-vocs-test' }}
+  CLOUDFLARE_PAGES_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT || 'celestia-docs' }}
 
 jobs:
   deploy:
@@ -37,6 +25,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
 
       - name: Setup Bun
         # oven-sh/setup-bun v2
@@ -47,31 +40,13 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build site and add MCP worker
-        run: bun run prepare:cloudflare
-
-      - name: Test MCP worker
-        run: bun run test:static && bun run test:mcp
-
-      - name: Check Cloudflare secrets
-        id: cloudflare
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          if [[ -z "$CLOUDFLARE_API_TOKEN" || -z "$CLOUDFLARE_ACCOUNT_ID" ]]; then
-            echo "::notice::Cloudflare secrets are not set; skipping deploy."
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "skip=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Ensure Cloudflare Pages project exists
-        if: steps.cloudflare.outputs.skip != 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
+          : "${CLOUDFLARE_API_TOKEN:?Set the Cloudflare API token repository secret}"
+          : "${CLOUDFLARE_ACCOUNT_ID:?Set the Cloudflare account ID repository secret}"
           set +e
           output="$(bunx wrangler pages project create "$CLOUDFLARE_PAGES_PROJECT" --production-branch main 2>&1)"
           status=$?
@@ -80,12 +55,57 @@ jobs:
           if [[ "$status" -ne 0 && "$output" != *"already exists"* ]]; then
             exit "$status"
           fi
+          node --input-type=module <<'JS'
+          import { appendFileSync } from 'node:fs'
+          const { CLOUDFLARE_API_TOKEN: token, CLOUDFLARE_ACCOUNT_ID: account, CLOUDFLARE_PAGES_PROJECT: project } = process.env
+          const response = await fetch(`https://api.cloudflare.com/client/v4/accounts/${account}/pages/projects/${encodeURIComponent(project)}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
+          const body = await response.json()
+          if (!response.ok || !body.success) throw new Error('Cannot verify Pages project configuration')
+          if (body.result.production_branch !== 'main') throw new Error('Pages production branch must be main')
+          const host = body.result.subdomain
+          if (!/^[a-z0-9-]+\.pages\.dev$/.test(host)) throw new Error('Unexpected Pages project hostname')
+          appendFileSync(process.env.GITHUB_ENV, `PAGES_HOST=${host}\n`)
+          JS
+
+      - name: Set deployment target
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: node scripts/cloudflare-target.mjs
+
+      - name: Build and verify Pages artifact
+        run: |
+          bun run prepare:cloudflare
+          bun run test:static
+          bun run test:mcp
+          bun run test:cloudflare
 
       - name: Deploy
-        if: steps.cloudflare.outputs.skip != 'true'
+        id: deploy
         # cloudflare/wrangler-action v3
         uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy out/public --project-name ${{ env.CLOUDFLARE_PAGES_PROJECT }} --branch ${{ github.head_ref || github.ref_name }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy out/public --project-name ${{ env.CLOUDFLARE_PAGES_PROJECT }} --branch ${{ env.PAGES_BRANCH }}
+
+      - name: Verify deployed site
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: node scripts/check-cloudflare-deployment.mjs "$DEPLOYMENT_URL"
+
+      - name: Summarize deployment
+        if: steps.deploy.outcome == 'success'
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+        run: |
+          {
+            echo '## Cloudflare Pages deployment'
+            echo "- Branch: $PAGES_BRANCH"
+            echo "- Build origin: $VOCS_BASE_URL"
+            echo "- Deployment: $DEPLOYMENT_URL"
+            echo "- Alias: $ALIAS_URL"
+          } >> "$GITHUB_STEP_SUMMARY"

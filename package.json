@@ -7,7 +7,7 @@
     "prepare:vocs": "node scripts/prepare-vocs-pages.mjs",
     "dev": "bun run prepare:vocs && vite dev",
     "build": "bun run prepare:vocs && vite build && bun run generate:llms",
-    "prepare:cloudflare": "DOCS_MCP_ENABLED=1 bun run build && cp worker/index.js out/public/_worker.js",
+    "prepare:cloudflare": "DOCS_MCP_ENABLED=1 bun run build && node scripts/prepare-cloudflare.mjs",
     "deploy:cloudflare": "bun run prepare:cloudflare && wrangler pages deploy out/public",
     "preview": "vite preview",
     "lint": "eslint",
@@ -17,7 +17,8 @@
     "test:endpoints": "node --test scripts/check-endpoints.test.mjs",
     "test:mcp": "node --test worker/index.test.js",
     "typecheck": "tsc --noEmit",
-    "test:static": "node scripts/check-static-export.mjs"
+    "test:static": "node scripts/check-static-export.mjs",
+    "test:cloudflare": "node --test scripts/cloudflare-target.test.mjs && node scripts/check-cloudflare-artifact.mjs"
   },
   "simple-git-hooks": {
     "pre-push": "bun run lint"

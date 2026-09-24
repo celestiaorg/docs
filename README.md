@@ -2,7 +2,7 @@
 [![Discord](https://img.shields.io/discord/638338779505229824)](https://discord.com/invite/YsnTPcSfWQ)
 [![Follow on X](https://img.shields.io/twitter/follow/celestia)](https://x.com/celestia)
 [![CodeQL](https://github.com/celestiaorg/docs/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/github-code-scanning/codeql)
-[![Deploy](https://github.com/celestiaorg/docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/deploy.yml)
+[![Deploy](https://github.com/celestiaorg/docs/actions/workflows/deploy-cloudflare.yml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/deploy-cloudflare.yml)
 [![Lint & link Check](https://github.com/celestiaorg/docs/actions/workflows/lint.yaml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/lint.yaml)
 
 # Celestia documentation
@@ -57,18 +57,36 @@ bun run build
 bun run preview
 ```
 
-## Cloudflare Pages preview
+## Cloudflare Pages deployment
 
-The Cloudflare Pages setup mirrors Eden docs: the Vocs site stays fully static,
-and `worker/index.js` is copied into the output as `_worker.js` to serve `/mcp`
-and `/api/mcp` from the same origin. `prepare:cloudflare` enables the MCP menu
-and discovery text; ordinary static builds leave them disabled because GitHub
-Pages cannot run the Worker.
+Cloudflare is the automatic deployment target: pushes to `main` publish production,
+and same-repository pull requests publish previews at
+`https://pr-<pr_number>.<pages_project_host>`. Fork PRs run validation without
+receiving deployment secrets. Both production and previews include `/mcp` and
+`/api/mcp`, served by `worker/index.js` alongside the static site.
+
+The workflow defaults to the permanent project `celestia-docs`. Set the repository
+variable `CLOUDFLARE_PAGES_PROJECT` to override the project name. The workflow
+creates the project if needed, verifies that its production branch is `main`,
+and obtains its actual Pages hostname before building.
+
+Required repository secrets: `CLOUDFLARE_API_TOKEN` (Cloudflare Pages Edit) and
+`CLOUDFLARE_ACCOUNT_ID`. Missing credentials fail the deployment explicitly.
 
 ```bash
-bun run prepare:cloudflare
-bun run deploy:cloudflare -- --project-name celestia-docs-vocs-test --branch <branch_name>
+# Build a preview locally; use the actual Pages project hostname.
+VOCS_BASE_URL=https://pr-2536.celestia-docs.pages.dev DOCS_PREVIEW=1 bun run prepare:cloudflare
+VOCS_BASE_URL=https://pr-2536.celestia-docs.pages.dev DOCS_PREVIEW=1 bun run test:cloudflare
 ```
+
+`VOCS_BASE_URL` sets navigation, canonical and generated discovery URLs.
+`DOCS_PREVIEW=1` adds HTML noindex metadata and a disallow-all `robots.txt`.
+Production defaults to `https://docs.celestia.org`. Deployment URLs are recorded
+in the Actions run summary and tested after upload.
+
+Follow [.github/CLOUDFLARE-CUTOVER.md](.github/CLOUDFLARE-CUTOVER.md) for the
+custom-domain switch, verification and rollback. The GitHub Pages production
+and preview workflows are manual-only until the cutover has been verified.
 
 ## Base paths (deploying under a subpath)
 

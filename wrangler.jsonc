@@ -6,7 +6,7 @@
 // while all other requests pass through to the static site.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "celestia-docs-vocs-test",
+  "name": "celestia-docs",
   "pages_build_output_dir": "out/public",
   "compatibility_date": "2025-11-17"
 }

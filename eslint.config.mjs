@@ -42,6 +42,7 @@ const globals = Object.fromEntries(
 export default defineConfig([
   globalIgnores([
     '.vocs/**',
+    '.wrangler/**',
     'build/**',
     'node_modules/**',
     'node-rpc-docs/**',

@@ -1,9 +1,6 @@
-name: Deploy Docs (Vocs) to GitHub Pages
+name: Manual GitHub Pages rollback
 
 on:
-  push:
-    branches: [main]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
