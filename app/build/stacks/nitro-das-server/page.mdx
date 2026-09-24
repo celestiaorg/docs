@@ -13,7 +13,9 @@ Nitro's batch poster coordinates with the Celestia DAS server to store batch dat
    - Creates a blob from the batch data
    - Submits it to Celestia with retry logic and gas price adjustment
    - Returns a `BlobPointer` containing block height, share indices, and data commitments
-3. **Verification**: During disputes, Blobstream (default: SP1 Blobstream) confirms batch availability on Celestia, supporting fraud proofs through the hash oracle trick
+3. **Verification dependency**: The dispute-verification design uses Blobstream (default: SP1 Blobstream) to confirm batch availability on Celestia through the hash oracle trick.
+
+> **Blobstream service status:** As of September 2026, the Succinct-operated SP1 Blobstream deployments are no longer maintained and do not receive new commitments. Do not rely on them for new batch commitments. Establish a working Blobstream verification path before relying on this integration for disputes.
 
 ## Key features
 
