@@ -16,7 +16,6 @@ const RPCMethod = ({
   selectedVersion,
   setCurrentRequest,
   setPlaygroundOpen,
-  isDark = false,
 }: {
   pkg: string;
   method: Method;
@@ -24,12 +23,15 @@ const RPCMethod = ({
   selectedVersion: string;
   setCurrentRequest: (req: string) => void;
   setPlaygroundOpen: (open: boolean) => void;
-  isDark?: boolean;
 }) => {
   const [showRequest, setShowRequest] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
   const [specCopied, setSpecCopied] = useState(false);
   const methodRef = useRef<HTMLDivElement>(null);
+  const params = method?.params ?? [];
+  const result = method?.result ?? { name: '', description: 'Null', schema: {} };
+
+  if (!method) return null;
 
   const handleCopyClick = () => {
     const hash = window.location.hash.substring(1);
@@ -38,37 +40,41 @@ const RPCMethod = ({
   };
 
   return (
-    <div
+    <article
       key={`${pkg}.${method.name}`}
       id={`${pkg}.${method.name}`}
-      className="x:py-2"
+      className="rpc-method"
       ref={methodRef}
     >
-      <div className="x:flex x:items-center x:justify-between x:mb-2 x:gap-2">
-        <div className="x:font-mono x:text-[0.95rem] x:break-words x:overflow-wrap-anywhere x:min-w-0">
-          <span className="x:font-semibold x:text-gray-900 x:dark:text-gray-100">{method.name}</span>(
-          {method.params.map((param, i, { length }) => (
-            <span key={param.name} className="x:text-sm x:text-gray-600 x:dark:text-gray-400">
+      <div className="rpc-method__header">
+        <div className="rpc-method__signature">
+          <span className="rpc-method__name">{method.name}</span>(
+          {params.map((param, i, { length }) => (
+            <span key={param.name} className="rpc-method__param">
               <span>{param.name}</span>{' '}
-              <span
-                className="x:text-primary-600 x:dark:text-primary-500 x:cursor-pointer x:hover:underline"
+              <button
+                type="button"
+                className="rpc-method__type"
+                aria-label={`Show schema for ${param.name}`}
                 onClick={() => activateSidebar(param)}
               >
                 {param.description}
-                {length - 1 !== i && ', '}
-              </span>
+              </button>
+              {length - 1 !== i && ', '}
             </span>
           ))}
           )
-          {method.result.description !== 'Null' && (
-            <span
-              className="x:ml-2 x:text-sm x:text-primary-600 x:dark:text-primary-500 x:cursor-pointer x:hover:underline"
-              onClick={() => activateSidebar(method.result)}
+          {result.description !== 'Null' && (
+            <button
+              type="button"
+              className="rpc-method__result"
+              aria-label="Show result schema"
+              onClick={() => activateSidebar(result)}
             >
-              {method.result.description}
-            </span>
+              {result.description}
+            </button>
           )}
-          <span className="x:ml-2 x:inline-flex x:items-center x:px-2.5 x:py-0.5 x:rounded-full x:bg-purple-100 x:dark:bg-purple-900/30 x:text-xs x:font-medium x:text-purple-800 x:dark:text-purple-300">
+          <span className="rpc-method__auth">
             perms: {method.auth}
           </span>
         </div>
@@ -76,22 +82,24 @@ const RPCMethod = ({
           text={`${window.location.origin}${window.location.pathname}?version=${selectedVersion}#${pkg}.${method.name}`}
           onCopy={handleCopyClick}
         >
-          <div
-            className="x:cursor-pointer x:shrink-0"
+          <button
+            type="button"
+            className="rpc-method__copy"
+            aria-label={`Copy link to ${pkg}.${method.name}`}
             onClick={() => {
               window.location.hash = `${pkg}.${method.name}`;
             }}
           >
             <CopyIcon />
-          </div>
+          </button>
         </CopyToClipboard>
       </div>
       
-      <div className="x:text-sm x:text-gray-600 x:dark:text-gray-200 x:mb-3 x:font-light">
+      <div className="rpc-method__description">
         {method.description}
       </div>
       
-      <div className="x:mt-3 x:mb-3 x:flex x:gap-2">
+      <div className="rpc-method__actions">
         <button
           type='button'
           onClick={() => {
@@ -100,11 +108,7 @@ const RPCMethod = ({
             }
             setPlaygroundOpen(true);
           }}
-          className="x:inline-flex x:justify-center x:items-center x:px-4 x:py-2 x:border x:border-gray-300 x:dark:border-gray-700 x:rounded-md x:text-sm x:font-medium x:text-gray-700 x:dark:text-gray-200 x:shadow-sm x:cursor-pointer x:hover:bg-gray-50 x:dark:hover:bg-gray-700 x:transition-colors"
-          style={{
-            backgroundColor: isDark ? 'rgb(31 41 55)' : 'white',
-            flex: '1 1 auto'
-          }}
+          className="rpc-button rpc-button--primary"
         >
           Try it out
         </button>
@@ -118,11 +122,7 @@ const RPCMethod = ({
         >
           <button
             type='button'
-            className="x:inline-flex x:items-center x:justify-center x:gap-2 x:px-4 x:py-2 x:border x:border-gray-300 x:dark:border-gray-700 x:rounded-md x:text-sm x:font-medium x:text-gray-700 x:dark:text-gray-200 x:shadow-sm x:cursor-pointer x:hover:bg-gray-50 x:dark:hover:bg-gray-700 x:transition-colors x:whitespace-nowrap"
-            style={{
-              backgroundColor: isDark ? 'rgb(31 41 55)' : 'white',
-              flex: '0 0 auto'
-            }}
+            className="rpc-button rpc-button--secondary"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16">
               <rect x="9" y="9" width="13" height="13" rx="2"></rect>
@@ -133,33 +133,22 @@ const RPCMethod = ({
         </CopyToClipboard>
       </div>
       
-      <div 
-        className="x:mt-6 x:overflow-hidden x:rounded-lg x:border x:border-gray-200 x:dark:border-gray-700 x:text-sm x:shadow-sm"
-        style={{
-          backgroundColor: isDark ? 'rgb(31 41 55)' : 'white'
-        }}
-      >
-        <div
+      <div className="rpc-method__examples">
+        <button
+          type="button"
           onClick={() => setShowRequest(!showRequest)}
-          className="x:flex x:items-center x:px-4 x:py-3 x:cursor-pointer x:transition-colors"
-          style={{
-            backgroundColor: isDark ? (showRequest ? 'rgba(31, 41, 55, 0.5)' : 'rgb(31 41 55)') : (showRequest ? 'rgb(249 250 251)' : 'white')
-          }}
+          className="rpc-method__example-toggle"
+          aria-expanded={showRequest}
         >
           {showRequest ? (
-            <ChevronDownIcon className="x:mr-2 x:h-5 x:w-5 x:text-gray-600 x:dark:text-gray-400" />
+            <ChevronDownIcon width={18} />
           ) : (
-            <ChevronRightIcon className="x:mr-2 x:h-5 x:w-5 x:text-gray-600 x:dark:text-gray-400" />
+            <ChevronRightIcon width={18} />
           )}
-          <span className="x:font-medium x:text-gray-900 x:dark:text-gray-100">Request</span>
-        </div>
+          <span>Request</span>
+        </button>
         {showRequest && (
-          <div 
-            className="x:border-t x:border-gray-200 x:dark:border-gray-700 x:p-4"
-            style={{
-              backgroundColor: isDark ? 'rgb(17 24 39)' : 'rgb(249 250 251)'
-            }}
-          >
+          <div className="rpc-method__example-body">
             <SyntaxHighlighter
               language='javascript'
               customStyle={{
@@ -173,7 +162,7 @@ const RPCMethod = ({
                   id: 1,
                   jsonrpc: '2.0',
                   method: pkg + '.' + method.name,
-                  params: method.params.map((param) => {
+                  params: params.map((param) => {
                     const examples = param.schema?.examples;
                     return (Array.isArray(examples) && examples.length > 0) 
                       ? examples[0] 
@@ -187,27 +176,21 @@ const RPCMethod = ({
           </div>
         )}
         
-        <div
+        <button
+          type="button"
           onClick={() => setShowResponse(!showResponse)}
-          className="x:flex x:items-center x:px-4 x:py-3 x:border-t x:border-gray-200 x:dark:border-gray-700 x:cursor-pointer x:transition-colors"
-          style={{
-            backgroundColor: isDark ? (showResponse ? 'rgba(31, 41, 55, 0.5)' : 'rgb(31 41 55)') : (showResponse ? 'rgb(249 250 251)' : 'white')
-          }}
+          className="rpc-method__example-toggle"
+          aria-expanded={showResponse}
         >
           {showResponse ? (
-            <ChevronDownIcon className="x:mr-2 x:h-5 x:w-5 x:text-gray-600 x:dark:text-gray-400" />
+            <ChevronDownIcon width={18} />
           ) : (
-            <ChevronRightIcon className="x:mr-2 x:h-5 x:w-5 x:text-gray-600 x:dark:text-gray-400" />
+            <ChevronRightIcon width={18} />
           )}
-          <span className="x:font-medium x:text-gray-900 x:dark:text-gray-100">Response</span>
-        </div>
+          <span>Response</span>
+        </button>
         {showResponse && (
-          <div 
-            className="x:border-t x:border-gray-200 x:dark:border-gray-700 x:p-4"
-            style={{
-              backgroundColor: isDark ? 'rgb(17 24 39)' : 'rgb(249 250 251)'
-            }}
-          >
+          <div className="rpc-method__example-body">
             <SyntaxHighlighter
               language='javascript'
               customStyle={{
@@ -221,8 +204,8 @@ const RPCMethod = ({
                   id: 1,
                   jsonrpc: '2.0',
                   result: (() => {
-                    if (method.result.description === 'Null') return [];
-                    const examples = method.result.schema?.examples;
+                    if (result.description === 'Null') return [];
+                    const examples = result.schema?.examples;
                     return (Array.isArray(examples) && examples.length > 0) 
                       ? examples[0] 
                       : [];
@@ -235,7 +218,7 @@ const RPCMethod = ({
           </div>
         )}
       </div>
-    </div>
+    </article>
   );
 };
 export default RPCMethod;

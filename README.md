@@ -2,7 +2,7 @@
 [![Discord](https://img.shields.io/discord/638338779505229824)](https://discord.com/invite/YsnTPcSfWQ)
 [![Follow on X](https://img.shields.io/twitter/follow/celestia)](https://x.com/celestia)
 [![CodeQL](https://github.com/celestiaorg/docs/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/github-code-scanning/codeql)
-[![Deploy](https://github.com/celestiaorg/docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/deploy.yml)
+[![Deploy](https://github.com/celestiaorg/docs/actions/workflows/deploy-cloudflare.yml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/deploy-cloudflare.yml)
 [![Lint & link Check](https://github.com/celestiaorg/docs/actions/workflows/lint.yaml/badge.svg)](https://github.com/celestiaorg/docs/actions/workflows/lint.yaml)
 
 # Celestia documentation
@@ -29,7 +29,7 @@ Celestia Documentation Access:
 - LLMs.txt: https://docs.celestia.org/llms.txt
 - Skill file: https://docs.celestia.org/SKILL.md (served from `public/SKILL.md`)
 - CIPs (Celestia Improvement Proposals): https://cips.celestia.org
-- Built with: Next.js + Nextra (MDX), exported as a static site.
+- Built with: Vocs v2 (MDX), Vite, and Bun, exported as a static site.
 - **LLM-ready**: Add `.md` to any URL to get clean markdown (e.g., `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`)
 - DeepWikis for @celestiaorg:
     - https://deepwiki.com/celestiaorg/docs
@@ -39,50 +39,86 @@ Celestia Documentation Access:
 
 ## Local development
 
-Prereqs: Node.js 20+ and Yarn.
+Prereqs: Node.js 22+ and Bun 1.3+.
 
 ```bash
-yarn install
-yarn dev
+bun install
+bun run dev
 ```
 
-Open http://localhost:3000
+Open http://localhost:5173
 
 ## Build & preview the static export
 
-`next.config.mjs` is configured for static export (`output: 'export'`). Builds write to `out/` and generate a Pagefind search index in `out/_pagefind/`.
+Vocs is configured for full static rendering. Builds write the browser-ready site to `out/public/`.
 
 ```bash
-yarn build
-yarn start
+bun run build
+bun run preview
 ```
+
+## Cloudflare Pages deployment
+
+Cloudflare is the automatic deployment target: pushes to `main` publish production,
+and same-repository pull requests publish previews at
+`https://pr-<pr_number>.<pages_project_host>`. Fork PRs run validation without
+receiving deployment secrets. Both production and previews include `/mcp` and
+`/api/mcp`, served by `worker/index.js` alongside the static site.
+
+The workflow defaults to the permanent project `celestia-docs`. Set the repository
+variable `CLOUDFLARE_PAGES_PROJECT` to override the project name. The workflow
+creates the project if needed, verifies that its production branch is `main`,
+and obtains its actual Pages hostname before building.
+
+Required repository secrets: `CLOUDFLARE_API_TOKEN` (Cloudflare Pages Edit) and
+`CLOUDFLARE_ACCOUNT_ID`. Missing credentials fail the deployment explicitly.
+
+```bash
+# Build a preview locally; use the actual Pages project hostname.
+VOCS_BASE_URL=https://pr-2536.celestia-docs.pages.dev DOCS_PREVIEW=1 bun run prepare:cloudflare
+VOCS_BASE_URL=https://pr-2536.celestia-docs.pages.dev DOCS_PREVIEW=1 bun run test:cloudflare
+```
+
+`VOCS_BASE_URL` sets navigation, canonical and generated discovery URLs.
+`DOCS_PREVIEW=1` adds HTML noindex metadata and a disallow-all `robots.txt`.
+Production defaults to `https://docs.celestia.org`. Deployment URLs are recorded
+in the Actions run summary and tested after upload.
+
+Follow [.github/CLOUDFLARE-CUTOVER.md](.github/CLOUDFLARE-CUTOVER.md) for the
+custom-domain switch, verification and rollback. The GitHub Pages production
+and preview workflows are manual-only until the cutover has been verified.
 
 ## Base paths (deploying under a subpath)
 
 For deployments that live under a subdirectory (e.g. GitHub Pages previews), set:
 
-- `BASE` with a trailing slash (used for `assetPrefix`)
-- `NEXT_PUBLIC_BASE_PATH` without a trailing slash (used by client-side components for asset URLs)
+- `BASE` with a trailing slash (used by Vocs as the base path)
 
 ```bash
-BASE=/docs-preview/new_docs/ NEXT_PUBLIC_BASE_PATH=/docs-preview/new_docs yarn build
+BASE=/docs-preview/new_docs/ bun run build
 ```
 
 ## Content & structure
 
 - `app/**/page.mdx`: documentation pages
 - `app/**/_meta.js`: sidebar order/titles
+- `src/vocs/`: Vocs runtime glue, compatibility components, and generated-page templates
+- `src/pages/`: generated Vocs page tree, created by `bun run prepare:vocs` and ignored by git
 - `public/`: static assets, including the published agent skill at `public/SKILL.md`
 - `constants/*.json`: shared values referenced in MDX (e.g. `{{mainnetVersions['app-latest-tag']}}`), replaced by `plugins/remark-replace-variables.mjs`
 
 ## Useful scripts
 
-- `yarn lint`: lint the codebase (also runs on `git push` via hook)
-- `yarn check-links -- --all`: validate internal + external links (see `scripts/check-links.mjs --help`)
-- `yarn generate:llms`: generate LLM-ready markdown files from MDX sources
+- `bun run prepare:vocs`: generate the Vocs `src/pages` tree from `app`
+- `bun run lint`: lint the codebase (also runs on `git push` via hook)
+- `bun run check-links -- --all`: validate internal + external links (see `scripts/check-links.mjs --help`)
+- `bun run typecheck`: check TypeScript compatibility
+- `bun run test:static`: verify exported pages, sidebar destinations, and asset paths after building (use the same `BASE` as the build)
+- `bun run test:mcp`: test the MCP worker against the generated search index after building
+- `bun run generate:llms`: generate LLM-ready markdown files from MDX sources
   - Creates clean `.md` versions of all documentation pages
   - Removes JSX components, imports, and MDX-specific syntax
-  - Automatically runs during build process (`yarn build`)
+  - Automatically runs during build process (`bun run build`)
   - Access any doc page as markdown by adding `.md` to the URL
 
 ## Contribution guidelines
@@ -149,7 +185,7 @@ When adding internal links to documentation, use root-relative links with an opt
 
 ## Deployment
 
-GitHub Actions workflows in `.github/workflows/` build the site and publish `out/` for production and preview deployments.
+GitHub Actions workflows in `.github/workflows/` build the site and publish `out/public/` for production and preview deployments.
 
 ## Feedback & suggestions
 

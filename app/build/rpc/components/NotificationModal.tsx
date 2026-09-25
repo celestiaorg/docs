@@ -8,10 +8,10 @@ import { INotification } from '../lib/types';
 import { useDarkMode } from '../hooks/useDarkMode';
 
 export default function NotificationModal({
-  notification,
+  notification = { message: '', success: true, active: false },
   setNotification,
 }: {
-  notification: INotification;
+  notification?: INotification;
   setNotification: (notification: INotification) => void;
 }) {
   // Use shared dark mode hook
@@ -120,4 +120,3 @@ export default function NotificationModal({
     </div>
   );
 }
-

@@ -138,9 +138,9 @@ Version scope:
 - If chain IDs or network identifiers change, run a repo-wide search across MDX files before
   considering the task done.
 - Review release notes when a docs change may be driven by a breaking network or software change.
-- Use root-relative internal links and run `yarn check-links -- --all` if links changed.
-- Run `yarn lint` before finalizing docs edits.
-- Run `yarn generate:llms` when you need the generated LLM markdown output refreshed.
+- Use root-relative internal links and run `bun run check-links -- --all` if links changed.
+- Run `bun run lint` before finalizing docs edits.
+- Run `bun run generate:llms` when you need the generated LLM markdown output refreshed.
 
 ## Failure handling and conflict resolution
 

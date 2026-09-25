@@ -5,7 +5,7 @@ import path from 'path';
 import { createRequire } from 'module';
 import { createHash } from 'crypto';
 
-const SITE_ORIGIN = 'https://docs.celestia.org';
+const SITE_ORIGIN = process.env.VOCS_BASE_URL || 'https://docs.celestia.org';
 const GITHUB_REPO = 'https://github.com/celestiaorg/docs';
 const LATEST_OPENRPC_SPEC = '/specs/openrpc-v0.31.4.json';
 
@@ -152,22 +152,24 @@ const header = [
   '',
   '> Official documentation for Celestia, the modular blockchain powering unstoppable apps with full-stack control.',
   '',
-  'These docs are built with Next.js + Nextra and exported statically. Links below point to canonical markdown pages so tools and LLMs can ingest clean text.',
+  'These docs are built with Vocs and exported statically. Links below point to canonical markdown pages so tools and LLMs can ingest clean text.',
   '',
   '## Agent instructions',
   '',
   '- Prefer the `.md` pages linked here for retrieval and citations.',
   '- Use `llms-full.txt` when a single-file context snapshot is needed.',
   '- Use `/build/llms.txt`, `/learn/llms.txt`, and `/operate/llms.txt` for section-specific context.',
-  '- Celestia does not currently publish an official MCP server for this documentation site.',
+  ...(process.env.DOCS_MCP_ENABLED === '1'
+    ? ['- Documentation MCP tools are available on this deployment at `/api/mcp` (also `/mcp`).']
+    : []),
   '',
   '## Related resources',
   '',
-  '- Full LLM context: https://docs.celestia.org/llms-full.txt',
-  '- Agent skill: https://docs.celestia.org/SKILL.md',
-  '- Agent skills index: https://docs.celestia.org/.well-known/agent-skills/index.json',
-  '- API catalog: https://docs.celestia.org/.well-known/api-catalog',
-  '- Node API OpenRPC spec: https://docs.celestia.org/specs/openrpc-v0.31.4.json',
+  `- Full LLM context: ${SITE_ORIGIN}/llms-full.txt`,
+  `- Agent skill: ${SITE_ORIGIN}/SKILL.md`,
+  `- Agent skills index: ${SITE_ORIGIN}/.well-known/agent-skills/index.json`,
+  `- API catalog: ${SITE_ORIGIN}/.well-known/api-catalog`,
+  `- Node API OpenRPC spec: ${SITE_ORIGIN}/specs/openrpc-v0.31.4.json`,
   '- CIPs (Celestia Improvement Proposals): https://cips.celestia.org',
 ];
 
@@ -341,8 +343,8 @@ const generateSectionLlmsTxt = async (outputBase, sections) => {
       '',
       `> Section-specific LLM index for the ${titleize(topLevel)} area of the Celestia docs.`,
       '',
-      '- Full docs index: https://docs.celestia.org/llms.txt',
-      '- Full LLM context: https://docs.celestia.org/llms-full.txt',
+      `- Full docs index: ${SITE_ORIGIN}/llms.txt`,
+      `- Full LLM context: ${SITE_ORIGIN}/llms-full.txt`,
       '',
     ];
 
@@ -507,12 +509,17 @@ const generateApiCatalog = async (outputBase) => {
 };
 
 const main = async () => {
-  // Determine output directory once - use 'out' if it exists (during build), otherwise 'public' (during dev)
-  const outputBase = await fs.access('out').then(() => 'out').catch(() => 'public');
+  // Vocs writes the browser-deployable static site to `out/public`.
+  // Fall back to `public` when running this script outside a production build.
+  const outputBase = await fs.access('out/public').then(() => 'out/public').catch(() => 'public');
   const files = (await walkPages('app')).sort();
 
   // Generate individual markdown files
   const pages = await generateMarkdownFiles(outputBase, files);
+
+  await writeTextFile(outputBase, 'mcp-search-index.json', JSON.stringify(
+    pages.map(({ htmlPath, content }) => ({ pagePath: htmlPath, text: content }))
+  ));
 
   const sections = buildSections(files);
   await fs.mkdir(outputBase, { recursive: true });

@@ -1,24 +1,36 @@
 # GitHub Actions workflows
 
-This directory contains the workflows used to lint, deploy, and keep release metadata up to date for the docs site.
+This directory contains the workflows used to lint, deploy, preview, and keep release metadata up to date for the docs site.
 
-## `deploy.yml` — Deploy Docs (Nextra) to GitHub Pages
+## `deploy-cloudflare.yml` — Deploy to Cloudflare Pages
 
-- **Triggers:** `push` to `main`, or manual `workflow_dispatch`.
-- **What it does:** installs deps (Node 20 + Yarn), runs `yarn generate:llms`, builds the static site (`yarn build`), then publishes `out/` to the `gh-pages` branch via `peaceiris/actions-gh-pages`.
-- **Notes:** writes `out/.nojekyll` and sets `cname: docs.celestia.org`.
+- **Triggers:** pushes to `main`, same-repository PRs, or manual `workflow_dispatch`.
+- **Production:** deploys `main` to the permanent Pages project (`celestia-docs` by default).
+- **Previews:** uses `pr-<pr_number>` aliases; manual non-main runs use a stable branch hash. Fork PR deployments are skipped.
+- **Build:** sets the deployment origin, enables MCP, verifies the artifact and tests the Worker. Previews get noindex HTML and a disallow-all robots file.
+- **Deploy:** verifies the project production branch is `main`, uploads with Wrangler, smoke-tests the deployed pages and MCP, and records URLs in the run summary.
+- **Required secrets:** `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Missing secrets fail the run.
+- **Optional variable:** `CLOUDFLARE_PAGES_PROJECT` overrides the project name.
+- Production runs are allowed to finish; obsolete preview runs are cancelled.
 
-## `preview.yaml` — Deploy PR Preview
+## `deploy.yml` — Manual GitHub Pages rollback
 
-- **Triggers:** pull requests (`opened`, `reopened`, `synchronize`, `closed`).
-- **What it does (PR open/updated):** builds the site with a PR-specific base path (`/docs-preview/pr-<number>/`), commits the build output into `celestiaorg/docs-preview` under `pr-<number>/`, then posts/updates a PR comment with the preview URL.
-- **What it does (PR closed):** deletes the corresponding `pr-<number>/` directory from `celestiaorg/docs-preview`.
-- **Required secret:** `PR_PREVIEW_DEPLOY` (token with write access to `celestiaorg/docs-preview`).
+- **Trigger:** manual `workflow_dispatch` only.
+- Builds the selected ref and publishes `out/public/` to `gh-pages` with `docs.celestia.org` as the CNAME.
+- Retained during the Cloudflare cutover. Ordinary merges no longer overwrite the existing GitHub Pages site.
+
+## `preview.yaml` — Manual legacy PR preview
+
+- **Trigger:** manual `workflow_dispatch` only, with `pr_number` and `action` (`publish` or `remove`).
+- Publishes the selected ref to `celestiaorg/docs-preview`, or removes an old preview.
+- Requires `PR_PREVIEW_DEPLOY`. Retained for rollback and cleanup; Cloudflare handles automatic previews.
+
+See [the cutover runbook](../CLOUDFLARE-CUTOVER.md) before switching the domain or retiring these workflows.
 
 ## `lint.yaml` — Lint & Link Check
 
 - **Triggers:** `push`/`pull_request` on `main`, plus a weekly schedule (`0 9 * * 1`).
-- **What it does:** runs `npm run lint` and `npm run check-links` (Node 20).
+- **What it does:** runs `bun run lint` and `bun run check-links`.
 
 ## `latest-tags.yaml` — Latest Tags
 
