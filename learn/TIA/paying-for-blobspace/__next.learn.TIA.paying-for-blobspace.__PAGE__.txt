@@ -1,0 +1,68 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","33","static/chunks/app/learn/TIA/paying-for-blobspace/page-35422128fde9b888.js"],"WrapperWithFooter"]
+4:I[90721,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","33","static/chunks/app/learn/TIA/paying-for-blobspace/page-35422128fde9b888.js"],"HeadingAnchor"]
+5:I[59263,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","33","static/chunks/app/learn/TIA/paying-for-blobspace/page-35422128fde9b888.js"],"ImageZoom"]
+3:T584,# Paying for blobspace
+
+## PayForBlobs transactions
+
+To publish data on Celestia, developers can submit `PayForBlobs` transactions. A
+`PayForBlobs` transaction consists of the identity of the sender, the data to be
+made available, the data size, the namespace, and a signature.
+
+Each `PayForBlobs` transaction is split into two parts: the blob or blobs which
+include the data to be made available along with the namespace, and the executable
+payment transaction which includes a commitment to the data.
+
+Both the blobs and executable payment transactions are put into the block within
+the appropriate namespace. The block data is extended using erasure coding and then
+Merkelized into a data root commitment included in the block header.
+
+![Lifecycle of a celestia-app Transaction](/img/learn/tx-lifecycle.png)
+
+See
+[the detailed life cycle of a Celestia transaction](/learn/celestia-101/transaction-lifecycle).
+
+Learn how to
+[submit data to Celestia’s data availability layer](/learn/TIA/submit-data).
+
+## Fee market overview
+
+Celestia uses a standard gas-price prioritised mempool. This means that
+transactions with higher fees will be prioritised by validators. Fees are
+comprised of a flat fee per transaction and then a variable fee based on the
+size of each blob in the transaction.
+
+Understand how fees are calculated on Celestia in
+[the overview on submitting PFB transactions](/learn/TIA/submit-data).d:X
+12:X
+12:C
+0:{"buildId":"rj6WNdNfQbJcu0PSYEnTb","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Paying for blobspace","filePath":"app/learn/TIA/paying-for-blobspace/page.mdx","timestamp":1790361480000},"toc":[{"value":"PayForBlobs transactions","id":"payforblobs-transactions","depth":2},{"value":"Fee market overview","id":"fee-market-overview","depth":2}],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Paying for blobspace","$undefined"]}],"\n",["$","h2",null,{"id":"payforblobs-transactions","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["PayForBlobs transactions",["$","$L4",null,{"id":"payforblobs-transactions"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["To publish data on Celestia, developers can submit ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"PayForBlobs"}]," transactions. A\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"PayForBlobs"}]," transaction consists of the identity of the sender, the data to be\nmade available, the data size, the namespace, and a signature."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Each ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"PayForBlobs"}]," transaction is split into two parts: the blob or blobs which\ninclude the data to be made available along with the namespace, and the executable\npayment transaction which includes a commitment to the data."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Both the blobs and executable payment transactions are put into the block within\nthe appropriate namespace. The block data is extended using erasure coding and then\nMerkelized into a data root commitment included in the block header."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["$","$L5",null,{"alt":"Lifecycle of a celestia-app Transaction","placeholder":"blur","src":{"src":"/_next/static/media/tx-lifecycle.4fdb99ab.png","height":1203,"width":3000,"blurDataURL":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAADCAMAAACZFr56AAAAG1BMVEXo6er29vbu7/Ln4e3DmvDSl+He2+nnn+v05O99QWA/AAAACXBIWXMAAAsSAAALEgHS3X78AAAAIElEQVQImWNgZGRgYGIAkQwsrMwMbMwMjEws7BxMzEwAAikAOTV76Z8AAAAASUVORK5CYII=","blurWidth":8,"blurHeight":3}}]}],"\n","$L6","\n","$L7","\n","$L8","\n","$L9","\n","$La"]}],null,"$Lb"]}],"isPartial":"$@c","staleTime":"$d","varyParams":null},{"rsc":"$Le","isPartial":"$@f","staleTime":"$d","varyParams":null},{"rsc":"$L10","isPartial":"$@11","staleTime":"$d","varyParams":"$12"},{"rsc":"$L13","isPartial":"$@14","staleTime":"$d","varyParams":"$12"},{"rsc":"$L15","isPartial":"$@16","staleTime":"$d","varyParams":"$12"}],"isUpgradeableISRFallback":false,"a":"$@17","rootVaryParams":null,"needsRuntimeRequest":"$@18"}
+19:I[98500,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","33","static/chunks/app/learn/TIA/paying-for-blobspace/page-35422128fde9b888.js"],""]
+1a:I[90484,[],"OutletBoundary"]
+1b:"$Sreact.suspense"
+1d:I[90484,[],"ViewportBoundary"]
+1e:I[90484,[],"MetadataBoundary"]
+1f:I[86869,[],"IconMark"]
+20:I[57121,[],""]
+21:I[74581,[],""]
+6:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["See\n",["$","$L19",null,{"href":"/learn/celestia-101/transaction-lifecycle","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"the detailed life cycle of a Celestia transaction"}],"."]}]
+7:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Learn how to\n",["$","$L19",null,{"href":"/learn/TIA/submit-data","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"submit data to Celestia’s data availability layer"}],"."]}]
+8:["$","h2",null,{"id":"fee-market-overview","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Fee market overview",["$","$L4",null,{"id":"fee-market-overview"}]]}]
+9:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia uses a standard gas-price prioritised mempool. This means that\ntransactions with higher fees will be prioritised by validators. Fees are\ncomprised of a flat fee per transaction and then a variable fee based on the\nsize of each blob in the transaction."}]
+a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Understand how fees are calculated on Celestia in\n",["$","$L19",null,{"href":"/learn/TIA/submit-data","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"the overview on submitting PFB transactions"}],"."]}]
+b:["$","$L1a",null,{"children":["$","$1b",null,{"name":"Next.MetadataOutlet","children":"$@1c"}]}]
+e:["$","$1","h",{"children":[null,["$","$L1d",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L1e",null,{"children":["$","$1b",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Celestia Documentation"}],["$","meta","1",{"name":"description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","meta","4",{"property":"og:title","content":"Celestia Documentation"}],["$","meta","5",{"property":"og:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","6",{"property":"og:site_name","content":"Celestia Documentation"}],["$","meta","7",{"property":"og:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","meta","8",{"property":"og:image:width","content":"1200"}],["$","meta","9",{"property":"og:image:height","content":"630"}],["$","meta","10",{"property":"og:image:alt","content":"Celestia Documentation"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:site","content":"@CelestiaOrg"}],["$","meta","14",{"name":"twitter:title","content":"Celestia Documentation"}],["$","meta","15",{"name":"twitter:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","16",{"name":"twitter:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","$L1f","18",{}]]}]}]}],null]}]
+10:["$","$1","c",{"children":[null,["$","$L20",null,{"parallelRouterKey":"children","template":["$","$L21",null,{}]}]]}]
+13:["$","$1","c",{"children":[null,["$","$L20",null,{"parallelRouterKey":"children","template":["$","$L21",null,{}]}]]}]
+15:["$","$1","c",{"children":[null,["$","$L20",null,{"parallelRouterKey":"children","template":["$","$L21",null,{}]}]]}]
+18:true
+1c:null
+d:300
+d:C
+17:0
+f:"$undefined"
+11:"$undefined"
+14:"$undefined"
+16:"$undefined"
+c:"$undefined"

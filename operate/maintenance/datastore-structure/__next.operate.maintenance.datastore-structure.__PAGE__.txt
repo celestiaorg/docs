@@ -1,0 +1,60 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","7599","static/chunks/app/operate/maintenance/datastore-structure/page-682ef72b7094c0d6.js"],"WrapperWithFooter"]
+3:T7a5,---
+description: This section contains information on the celestia-node datastore and its contents.
+---
+
+# celestia-node datastore
+
+The node's datastore refers to the storage structure
+used to manage the data that supports the node's operation.
+It consists of directories and files that contain the node's state,
+configuration, and other information relevant to the node.
+
+The following are the directories and files found in the datastore:
+
+- `/blocks`: This directory stores blocks. Each file contained in this directory
+  represents a block on Celestia and contains its associated data. This directory is present in the datastore for bridge nodes but not light nodes, as light nodes do not store blocks.
+
+- `/data`: This directory contains block headers and various files belonging to the node's log-structured merge (LSM) storage system. The LSM files (such as `DISCARD`, `KEYREGISTRY`, and `MANIFEST`) manage the efficient storage and retrieval of data.
+
+- `/index`: This directory stores the index files that handle mapping specific keys such as block heights, to the corresponding data. Similar to `/blocks`, the light node's datastore does not include this directory, as they do not perform indexing.
+
+- `/inverted_index`: This directory stores the inverted index files used for mapping queries to the corresponding data location, along with associated LSM storage system files. The light node's datastore does not contain this directory.
+- `/keys`: This directory stores the cryptographic key pairs that are used to operate the node.
+
+- `/transients`: This directory contains temporary data such as cache files
+  that are used while the node is operating, but are not a part of the permanent blockchain state.
+
+- `config.toml`: Located in the node's root directory, this is the primary configuration file that defines core settings such as network parameters, P2P configuration, and API endpoints. This file is generated during node initialization.c:X
+11:X
+11:C
+0:{"buildId":"rj6WNdNfQbJcu0PSYEnTb","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"This section contains information on the celestia-node datastore and its contents.","title":"celestia-node datastore","filePath":"app/operate/maintenance/datastore-structure/page.mdx","timestamp":1790361480000},"toc":[],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["celestia-node datastore","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The node’s datastore refers to the storage structure\nused to manage the data that supports the node’s operation.\nIt consists of directories and files that contain the node’s state,\nconfiguration, and other information relevant to the node."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The following are the directories and files found in the datastore:"}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/blocks"}],": This directory stores blocks. Each file contained in this directory\nrepresents a block on Celestia and contains its associated data. This directory is present in the datastore for bridge nodes but not light nodes, as light nodes do not store blocks."]}],"\n"]}],"\n","$L4","\n","$L5","\n","$L6","\n","$L7","\n","$L8","\n","$L9","\n"]}]]}],null,"$La"]}],"isPartial":"$@b","staleTime":"$c","varyParams":null},{"rsc":"$Ld","isPartial":"$@e","staleTime":"$c","varyParams":null},{"rsc":"$Lf","isPartial":"$@10","staleTime":"$c","varyParams":"$11"},{"rsc":"$L12","isPartial":"$@13","staleTime":"$c","varyParams":"$11"},{"rsc":"$L14","isPartial":"$@15","staleTime":"$c","varyParams":"$11"}],"isUpgradeableISRFallback":false,"a":"$@16","rootVaryParams":null,"needsRuntimeRequest":"$@17"}
+18:I[90484,[],"OutletBoundary"]
+19:"$Sreact.suspense"
+1b:I[90484,[],"ViewportBoundary"]
+1c:I[90484,[],"MetadataBoundary"]
+1d:I[86869,[],"IconMark"]
+1e:I[57121,[],""]
+1f:I[74581,[],""]
+4:["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/data"}],": This directory contains block headers and various files belonging to the node’s log-structured merge (LSM) storage system. The LSM files (such as ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"DISCARD"}],", ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"KEYREGISTRY"}],", and ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"MANIFEST"}],") manage the efficient storage and retrieval of data."]}],"\n"]}]
+5:["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/index"}],": This directory stores the index files that handle mapping specific keys such as block heights, to the corresponding data. Similar to ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/blocks"}],", the light node’s datastore does not include this directory, as they do not perform indexing."]}],"\n"]}]
+6:["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/inverted_index"}],": This directory stores the inverted index files used for mapping queries to the corresponding data location, along with associated LSM storage system files. The light node’s datastore does not contain this directory."]}],"\n"]}]
+7:["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/keys"}],": This directory stores the cryptographic key pairs that are used to operate the node."]}],"\n"]}]
+8:["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/transients"}],": This directory contains temporary data such as cache files\nthat are used while the node is operating, but are not a part of the permanent blockchain state."]}],"\n"]}]
+9:["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"config.toml"}],": Located in the node’s root directory, this is the primary configuration file that defines core settings such as network parameters, P2P configuration, and API endpoints. This file is generated during node initialization."]}],"\n"]}]
+a:["$","$L18",null,{"children":["$","$19",null,{"name":"Next.MetadataOutlet","children":"$@1a"}]}]
+d:["$","$1","h",{"children":[null,["$","$L1b",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L1c",null,{"children":["$","$19",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Celestia Documentation"}],["$","meta","1",{"name":"description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","meta","4",{"property":"og:title","content":"Celestia Documentation"}],["$","meta","5",{"property":"og:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","6",{"property":"og:site_name","content":"Celestia Documentation"}],["$","meta","7",{"property":"og:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","meta","8",{"property":"og:image:width","content":"1200"}],["$","meta","9",{"property":"og:image:height","content":"630"}],["$","meta","10",{"property":"og:image:alt","content":"Celestia Documentation"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:site","content":"@CelestiaOrg"}],["$","meta","14",{"name":"twitter:title","content":"Celestia Documentation"}],["$","meta","15",{"name":"twitter:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","16",{"name":"twitter:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","$L1d","18",{}]]}]}]}],null]}]
+f:["$","$1","c",{"children":[null,["$","$L1e",null,{"parallelRouterKey":"children","template":["$","$L1f",null,{}]}]]}]
+12:["$","$1","c",{"children":[null,["$","$L1e",null,{"parallelRouterKey":"children","template":["$","$L1f",null,{}]}]]}]
+14:["$","$1","c",{"children":[null,["$","$L1e",null,{"parallelRouterKey":"children","template":["$","$L1f",null,{}]}]]}]
+17:true
+1a:null
+c:300
+c:C
+16:0
+e:"$undefined"
+10:"$undefined"
+13:"$undefined"
+15:"$undefined"
+b:"$undefined"

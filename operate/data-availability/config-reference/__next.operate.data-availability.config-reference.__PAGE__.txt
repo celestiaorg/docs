@@ -1,0 +1,156 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","473","static/chunks/app/operate/data-availability/config-reference/page-682ef72b7094c0d6.js"],"WrapperWithFooter"]
+3:Tdbe,---
+description: A guide to the contents of the Config.toml file.
+---
+
+# config.toml guide
+
+## Pre-requisites
+
+Please, make sure that you have installed and initialized `celestia-node`
+
+## Viewing the help menu
+
+In order to view all flags and their descriptions, use:
+
+```bash
+celestia light start --help
+```
+
+## Understanding config.toml
+
+After initialization, for any type of node, you will find a
+`config.toml` in the following path (default location):
+
+- `$HOME/.celestia-bridge/config.toml` for bridge node
+- `$HOME/.celestia-light/config.toml` for light node
+
+Let's break down some of the most used sections.
+
+### Core (Consensus)
+
+This section is needed for the Celestia bridge node.
+By default, `Remote = false`. Still for devnet, we are going
+to use the remote consensus node option and this can also be set
+by the command line flag `--core.remote`.
+
+### RPC
+
+Starting with celestia-node v0.31.3, the RPC server supports optional per-IP
+rate limiting. If you upgraded an existing node from an earlier version, add
+the new fields while preserving your custom configuration by running:
+
+```bash
+celestia <node_type> config-update --p2p.network <network>
+```
+
+The default rate-limit configuration is:
+
+```toml
+[RPC.RateLimit]
+  Enabled = false
+  RequestsPerSec = 100
+  Burst = 200
+  CacheSize = 8192
+```
+
+- `Enabled` turns per-IP rate limiting on or off.
+- `RequestsPerSec` sets the sustained request rate allowed for each IP address.
+- `Burst` allows short request spikes before the sustained rate is enforced.
+- `CacheSize` limits the number of per-IP rate-limit buckets held in memory.
+
+When the limit is exceeded, the RPC server responds with HTTP status `429 Too
+Many Requests`. Leave this rate limiter disabled when the node is behind a
+reverse proxy because all requests may appear to come from the proxy's IP
+address. Apply rate limiting at the proxy instead.
+
+RPC request bodies are limited to 16 MiB, and the server accepts up to 500
+concurrent connections. These limits are enforced by the server and are not
+configurable in `config.toml`.
+
+See the [celestia-node v0.31.3 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3)
+for the complete upgrade instructions.
+
+### P2P
+
+#### Bootstrap
+
+Bootstrappers help new nodes to find peers faster in the network.
+By default, the `Bootstrapper = false` and the `BootstrapPeers` is empty.
+If you want your node to be a bootstrapper, then activate `Bootstrapper = true`.
+`BootstrapPeers` are already provided by default during initialisation.
+If you want to add your own manually, you need to provide the
+multiaddresses of the peers.
+
+#### Mutual peers
+
+The purpose of this config is to set up a bidirectional communication.
+This is usually the case for Celestia bridge nodes. In addition, you
+need to change the field `PeerExchange` from false to true.
+
+### Services
+
+#### TrustedHash and TrustedPeer
+
+`TrustedHash` is needed to properly initialize a Celestia bridge
+node with an already-running `Remote` Celestia consensus node. Celestia
+light node will take a genesis hash as the trusted one, if no hash
+is manually provided during initialization phase.
+
+`TrustedPeers` is the array of bridge nodes' peers that Celestia
+light node trusts. By default, bootstrap peers becomes trusted peers
+for Celestia light nodes if a user is not setting the trusted peer params
+in config file.
+
+Any Celestia bridge node can be a trusted peer for the light one. However,
+the light node by design can not be a trusted peer for another light node.7:X
+c:X
+c:C
+0:{"buildId":"rj6WNdNfQbJcu0PSYEnTb","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"A guide to the contents of the Config.toml file.","title":"config.toml guide","filePath":"app/operate/data-availability/config-reference/page.mdx","timestamp":1790361480000},"toc":[{"value":"Pre-requisites","id":"pre-requisites","depth":2},{"value":"Viewing the help menu","id":"viewing-the-help-menu","depth":2},{"value":"Understanding config.toml","id":"understanding-configtoml","depth":2},{"value":"Core (Consensus)","id":"core-consensus","depth":3},{"value":"RPC","id":"rpc","depth":3},{"value":"P2P","id":"p2p","depth":3},{"value":"Bootstrap","id":"bootstrap","depth":4},{"value":"Mutual peers","id":"mutual-peers","depth":4},{"value":"Services","id":"services","depth":3},{"value":"TrustedHash and TrustedPeer","id":"trustedhash-and-trustedpeer","depth":4}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":"$L8","isPartial":"$@9","staleTime":"$7","varyParams":null},{"rsc":"$La","isPartial":"$@b","staleTime":"$7","varyParams":"$c"},{"rsc":"$Ld","isPartial":"$@e","staleTime":"$7","varyParams":"$c"},{"rsc":"$Lf","isPartial":"$@10","staleTime":"$7","varyParams":"$c"}],"isUpgradeableISRFallback":false,"a":"$@11","rootVaryParams":null,"needsRuntimeRequest":"$@12"}
+13:I[90721,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","473","static/chunks/app/operate/data-availability/config-reference/page-682ef72b7094c0d6.js"],"HeadingAnchor"]
+14:I[19023,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","473","static/chunks/app/operate/data-availability/config-reference/page-682ef72b7094c0d6.js"],"ToggleWordWrapButton"]
+15:I[57976,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","473","static/chunks/app/operate/data-availability/config-reference/page-682ef72b7094c0d6.js"],"CopyToClipboard"]
+2a:I[90484,[],"OutletBoundary"]
+2b:"$Sreact.suspense"
+2d:I[90484,[],"ViewportBoundary"]
+2e:I[90484,[],"MetadataBoundary"]
+2f:I[86869,[],"IconMark"]
+30:I[57121,[],""]
+31:I[74581,[],""]
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["config.toml guide","$undefined"]}],"\n",["$","h2",null,{"id":"pre-requisites","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Pre-requisites",["$","$L13",null,{"id":"pre-requisites"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Please, make sure that you have installed and initialized ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-node"}]]}],"\n",["$","h2",null,{"id":"viewing-the-help-menu","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Viewing the help menu",["$","$L13",null,{"id":"viewing-the-help-menu"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"In order to view all flags and their descriptions, use:"}],"\n",["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L14",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L15",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" light"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" start"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" --help"}]]}]}]]}]]}],"\n",["$","h2",null,{"id":"understanding-configtoml","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Understanding config.toml",["$","$L13",null,{"id":"understanding-configtoml"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["After initialization, for any type of node, you will find a\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"config.toml"}]," in the following path (default location):"]}],"\n",["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/.celestia-bridge/config.toml"}]," for bridge node"]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"$$HOME/.celestia-light/config.toml"}]," for light node"]}],"\n"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Let’s break down some of the most used sections."}],"\n",["$","h3",null,{"id":"core-consensus","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Core (Consensus)",["$","$L13",null,{"id":"core-consensus"}]]}],"\n","$L16","\n","$L17","\n","$L18","\n","$L19","\n","$L1a","\n","$L1b","\n","$L1c","\n","$L1d","\n","$L1e","\n","$L1f","\n","$L20","\n","$L21","\n","$L22","\n","$L23","\n","$L24","\n","$L25","\n","$L26","\n","$L27","\n","$L28","\n","$L29"]
+5:["$","$L2a",null,{"children":["$","$2b",null,{"name":"Next.MetadataOutlet","children":"$@2c"}]}]
+8:["$","$1","h",{"children":[null,["$","$L2d",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L2e",null,{"children":["$","$2b",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Celestia Documentation"}],["$","meta","1",{"name":"description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","meta","4",{"property":"og:title","content":"Celestia Documentation"}],["$","meta","5",{"property":"og:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","6",{"property":"og:site_name","content":"Celestia Documentation"}],["$","meta","7",{"property":"og:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","meta","8",{"property":"og:image:width","content":"1200"}],["$","meta","9",{"property":"og:image:height","content":"630"}],["$","meta","10",{"property":"og:image:alt","content":"Celestia Documentation"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:site","content":"@CelestiaOrg"}],["$","meta","14",{"name":"twitter:title","content":"Celestia Documentation"}],["$","meta","15",{"name":"twitter:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","16",{"name":"twitter:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","$L2f","18",{}]]}]}]}],null]}]
+a:["$","$1","c",{"children":[null,["$","$L30",null,{"parallelRouterKey":"children","template":["$","$L31",null,{}]}]]}]
+d:["$","$1","c",{"children":[null,["$","$L30",null,{"parallelRouterKey":"children","template":["$","$L31",null,{}]}]]}]
+f:["$","$1","c",{"children":[null,["$","$L30",null,{"parallelRouterKey":"children","template":["$","$L31",null,{}]}]]}]
+12:true
+16:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["This section is needed for the Celestia bridge node.\nBy default, ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Remote = false"}],". Still for devnet, we are going\nto use the remote consensus node option and this can also be set\nby the command line flag ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"--core.remote"}],"."]}]
+17:["$","h3",null,{"id":"rpc","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["RPC",["$","$L13",null,{"id":"rpc"}]]}]
+18:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Starting with celestia-node v0.31.3, the RPC server supports optional per-IP\nrate limiting. If you upgraded an existing node from an earlier version, add\nthe new fields while preserving your custom configuration by running:"}]
+19:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L14",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L15",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"celestia"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":" <"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"node_typ"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"e"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":">"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" config-update"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" --p2p.network"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":" <"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":"networ"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"k"}],["$","span",null,{"style":{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"},"children":">"}]]}]}]]}]]}]
+1a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The default rate-limit configuration is:"}]
+1b:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L14",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L15",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":[["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"["}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"RPC"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"."}],["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"RateLimit"}],["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"]"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"  Enabled = "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"false"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"  RequestsPerSec = "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"100"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"  Burst = "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"200"}]]}],"\n",["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"},"children":"  CacheSize = "}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":"8192"}]]}]]}]]}]]}]
+1c:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Enabled"}]," turns per-IP rate limiting on or off."]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"RequestsPerSec"}]," sets the sustained request rate allowed for each IP address."]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Burst"}]," allows short request spikes before the sustained rate is enforced."]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"CacheSize"}]," limits the number of per-IP rate-limit buckets held in memory."]}],"\n"]}]
+1d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["When the limit is exceeded, the RPC server responds with HTTP status ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"429 Too Many Requests"}],". Leave this rate limiter disabled when the node is behind a\nreverse proxy because all requests may appear to come from the proxy’s IP\naddress. Apply rate limiting at the proxy instead."]}]
+1e:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["RPC request bodies are limited to 16 MiB, and the server accepts up to 500\nconcurrent connections. These limits are enforced by the server and are not\nconfigurable in ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"config.toml"}],"."]}]
+1f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["See the ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["celestia-node v0.31.3 release notes",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nfor the complete upgrade instructions."]}]
+20:["$","h3",null,{"id":"p2p","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["P2P",["$","$L13",null,{"id":"p2p"}]]}]
+21:["$","h4",null,{"id":"bootstrap","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-xl","children":["Bootstrap",["$","$L13",null,{"id":"bootstrap"}]]}]
+22:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Bootstrappers help new nodes to find peers faster in the network.\nBy default, the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Bootstrapper = false"}]," and the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"BootstrapPeers"}]," is empty.\nIf you want your node to be a bootstrapper, then activate ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Bootstrapper = true"}],".\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"BootstrapPeers"}]," are already provided by default during initialisation.\nIf you want to add your own manually, you need to provide the\nmultiaddresses of the peers."]}]
+23:["$","h4",null,{"id":"mutual-peers","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-xl","children":["Mutual peers",["$","$L13",null,{"id":"mutual-peers"}]]}]
+24:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The purpose of this config is to set up a bidirectional communication.\nThis is usually the case for Celestia bridge nodes. In addition, you\nneed to change the field ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"PeerExchange"}]," from false to true."]}]
+25:["$","h3",null,{"id":"services","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-2xl","children":["Services",["$","$L13",null,{"id":"services"}]]}]
+26:["$","h4",null,{"id":"trustedhash-and-trustedpeer","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-8 x:text-xl","children":["TrustedHash and TrustedPeer",["$","$L13",null,{"id":"trustedhash-and-trustedpeer"}]]}]
+27:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"TrustedHash"}]," is needed to properly initialize a Celestia bridge\nnode with an already-running ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Remote"}]," Celestia consensus node. Celestia\nlight node will take a genesis hash as the trusted one, if no hash\nis manually provided during initialization phase."]}]
+28:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"TrustedPeers"}]," is the array of bridge nodes’ peers that Celestia\nlight node trusts. By default, bootstrap peers becomes trusted peers\nfor Celestia light nodes if a user is not setting the trusted peer params\nin config file."]}]
+29:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Any Celestia bridge node can be a trusted peer for the light one. However,\nthe light node by design can not be a trusted peer for another light node."}]
+2c:null
+7:300
+7:C
+11:0
+9:"$undefined"
+b:"$undefined"
+e:"$undefined"
+10:"$undefined"
+6:"$undefined"

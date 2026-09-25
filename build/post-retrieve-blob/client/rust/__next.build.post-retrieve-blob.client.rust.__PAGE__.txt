@@ -1,0 +1,43 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","5696","static/chunks/app/build/post-retrieve-blob/client/rust/page-682ef72b7094c0d6.js"],"WrapperWithFooter"]
+3:T41a,# Rust client
+
+The [Lumina Rust client](https://github.com/celestiaorg/lumina/tree/main/client) provides a high-level API for interacting with a Celestia node over RPC and gRPC. It builds on top of the lower-level `celestia-rpc` and `celestia-grpc` crates and exposes a unified `Client` that supports both **read-only** and **submit** modes.
+
+In read-only mode, the client connects to a node via RPC (and optionally gRPC) to query headers, blobs, and state.
+
+In submit mode, it additionally uses gRPC and a local signer to build, sign, and broadcast transactions such as transfers and PayForBlobs.
+
+The crate re-exports common Celestia types (namespaces, blobs, app versions, etc.) and is designed to be the easiest way for Rust applications to integrate with Celestia nodes for data retrieval, blob submission, and general chain interaction. ([lib.rs][1], [docs.rs][2])
+
+[1]: https://lib.rs/crates/celestia-client "celestia-client, in Rust // Lib.rs"
+[2]: https://docs.rs/celestia-client/latest/celestia_client/ "celestia-client, in Rust // Docs.rs"8:X
+d:X
+d:C
+0:{"buildId":"rj6WNdNfQbJcu0PSYEnTb","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Rust client","filePath":"app/build/post-retrieve-blob/client/rust/page.mdx","timestamp":1790361480000},"toc":[],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Rust client","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The ",["$","a",null,{"href":"https://github.com/celestiaorg/lumina/tree/main/client","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Lumina Rust client",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," provides a high-level API for interacting with a Celestia node over RPC and gRPC. It builds on top of the lower-level ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-rpc"}]," and ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia-grpc"}]," crates and exposes a unified ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"Client"}]," that supports both ",["$","strong",null,{"children":"read-only"}]," and ",["$","strong",null,{"children":"submit"}]," modes."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"In read-only mode, the client connects to a node via RPC (and optionally gRPC) to query headers, blobs, and state."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"In submit mode, it additionally uses gRPC and a local signer to build, sign, and broadcast transactions such as transfers and PayForBlobs."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The crate re-exports common Celestia types (namespaces, blobs, app versions, etc.) and is designed to be the easiest way for Rust applications to integrate with Celestia nodes for data retrieval, blob submission, and general chain interaction. (",["$","a",null,{"href":"https://lib.rs/crates/celestia-client","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","title":"celestia-client, in Rust // Lib.rs","children":["lib.rs",[" ","$L4"]]}],", ","$L5",")"]}]]}],null,"$L6"]}],"isPartial":"$@7","staleTime":"$8","varyParams":null},{"rsc":"$L9","isPartial":"$@a","staleTime":"$8","varyParams":null},{"rsc":"$Lb","isPartial":"$@c","staleTime":"$8","varyParams":"$d"},{"rsc":"$Le","isPartial":"$@f","staleTime":"$8","varyParams":"$d"},{"rsc":"$L10","isPartial":"$@11","staleTime":"$8","varyParams":"$d"},{"rsc":"$L12","isPartial":"$@13","staleTime":"$8","varyParams":"$d"}],"isUpgradeableISRFallback":false,"a":"$@14","rootVaryParams":null,"needsRuntimeRequest":"$@15"}
+16:I[90484,[],"OutletBoundary"]
+17:"$Sreact.suspense"
+19:I[90484,[],"ViewportBoundary"]
+1a:I[90484,[],"MetadataBoundary"]
+1b:I[86869,[],"IconMark"]
+1c:I[57121,[],""]
+1d:I[74581,[],""]
+4:["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]
+5:["$","a",null,{"href":"https://docs.rs/celestia-client/latest/celestia_client/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","title":"celestia-client, in Rust // Docs.rs","children":["docs.rs",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]
+6:["$","$L16",null,{"children":["$","$17",null,{"name":"Next.MetadataOutlet","children":"$@18"}]}]
+9:["$","$1","h",{"children":[null,["$","$L19",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L1a",null,{"children":["$","$17",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Celestia Documentation"}],["$","meta","1",{"name":"description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","meta","4",{"property":"og:title","content":"Celestia Documentation"}],["$","meta","5",{"property":"og:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","6",{"property":"og:site_name","content":"Celestia Documentation"}],["$","meta","7",{"property":"og:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","meta","8",{"property":"og:image:width","content":"1200"}],["$","meta","9",{"property":"og:image:height","content":"630"}],["$","meta","10",{"property":"og:image:alt","content":"Celestia Documentation"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:site","content":"@CelestiaOrg"}],["$","meta","14",{"name":"twitter:title","content":"Celestia Documentation"}],["$","meta","15",{"name":"twitter:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","16",{"name":"twitter:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","$L1b","18",{}]]}]}]}],null]}]
+b:["$","$1","c",{"children":[null,["$","$L1c",null,{"parallelRouterKey":"children","template":["$","$L1d",null,{}]}]]}]
+e:["$","$1","c",{"children":[null,["$","$L1c",null,{"parallelRouterKey":"children","template":["$","$L1d",null,{}]}]]}]
+10:["$","$1","c",{"children":[null,["$","$L1c",null,{"parallelRouterKey":"children","template":["$","$L1d",null,{}]}]]}]
+12:["$","$1","c",{"children":[null,["$","$L1c",null,{"parallelRouterKey":"children","template":["$","$L1d",null,{}]}]]}]
+15:true
+18:null
+8:300
+8:C
+14:0
+a:"$undefined"
+c:"$undefined"
+f:"$undefined"
+11:"$undefined"
+13:"$undefined"
+7:"$undefined"

@@ -1,0 +1,66 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","7423","static/chunks/app/operate/consensus-validators/slashing/page-682ef72b7094c0d6.js"],"WrapperWithFooter"]
+3:T6c2,---
+description: This section covers the jailing and slashing mechanics for validators in Celestia.
+---
+
+# Jailing and slashing on Celestia
+
+Slashing is a mechanism employed in proof of stake blockchains
+that is used to deter and punish malicious behavior.
+It functions by removing a percentage of a validator's stake
+each time they act harmfully towards the network.
+
+Celestia is built with the Cosmos SDK and uses the `x/slashing` module.
+
+If a validator gets slashed, delegators bonded to that validator will also
+have the same percentage of their delegated funds slashed.
+
+The following are the conditions for a validator to get jailed or slashed:
+
+1. **Downtime**: If a validator is offline for more than 25% of a rolling window
+   of the last 5,000 blocks, they will be jailed for 1 minute.
+   During this period, the validator is removed from the validator set
+   temporarily, and will be unable to propose new blocks or earn rewards.
+   After the jail period, the validator can send an unjail request to
+   rejoin the validator set.
+
+2. **Double signing**: This is a more severe offense and results in getting slashed.
+   If a validator engages in double signing, the validator
+   will lose 2% of their stake and the remainder of their stake
+   will be returned to them. The validator will be permanently removed
+   from the validator set and will not have the ability to unjail.
+   Delegators bonded to that validator will automatically enter the unbonding
+   period for 21 days, and can delegate to another validator after
+   they have been unbonded.
+
+For more details on the jailing and slashing parameters, refer to the
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v6.html)
+page.8:X
+d:X
+d:C
+0:{"buildId":"rj6WNdNfQbJcu0PSYEnTb","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"description":"This section covers the jailing and slashing mechanics for validators in Celestia.","title":"Jailing and slashing on Celestia","filePath":"app/operate/consensus-validators/slashing/page.mdx","timestamp":1790361480000},"toc":[],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Jailing and slashing on Celestia","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Slashing is a mechanism employed in proof of stake blockchains\nthat is used to deter and punish malicious behavior.\nIt functions by removing a percentage of a validator’s stake\neach time they act harmfully towards the network."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Celestia is built with the Cosmos SDK and uses the ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"x/slashing"}]," module."]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"If a validator gets slashed, delegators bonded to that validator will also\nhave the same percentage of their delegated funds slashed."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The following are the conditions for a validator to get jailed or slashed:"}],"\n",["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Downtime"}],": If a validator is offline for more than 25% of a rolling window\nof the last 5,000 blocks, they will be jailed for 1 minute.\nDuring this period, the validator is removed from the validator set\ntemporarily, and will be unable to propose new blocks or earn rewards.\nAfter the jail period, the validator can send an unjail request to\nrejoin the validator set."]}],"\n"]}],"\n","$L4","\n"]}],"\n","$L5"]}],null,"$L6"]}],"isPartial":"$@7","staleTime":"$8","varyParams":null},{"rsc":"$L9","isPartial":"$@a","staleTime":"$8","varyParams":null},{"rsc":"$Lb","isPartial":"$@c","staleTime":"$8","varyParams":"$d"},{"rsc":"$Le","isPartial":"$@f","staleTime":"$8","varyParams":"$d"},{"rsc":"$L10","isPartial":"$@11","staleTime":"$8","varyParams":"$d"}],"isUpgradeableISRFallback":false,"a":"$@12","rootVaryParams":null,"needsRuntimeRequest":"$@13"}
+14:I[90484,[],"OutletBoundary"]
+15:"$Sreact.suspense"
+17:I[90484,[],"ViewportBoundary"]
+18:I[90484,[],"MetadataBoundary"]
+19:I[86869,[],"IconMark"]
+1a:I[57121,[],""]
+1b:I[74581,[],""]
+4:["$","li",null,{"className":"x:my-[.5em]","children":["\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","strong",null,{"children":"Double signing"}],": This is a more severe offense and results in getting slashed.\nIf a validator engages in double signing, the validator\nwill lose 2% of their stake and the remainder of their stake\nwill be returned to them. The validator will be permanently removed\nfrom the validator set and will not have the ability to unjail.\nDelegators bonded to that validator will automatically enter the unbonding\nperiod for 21 days, and can delegate to another validator after\nthey have been unbonded."]}],"\n"]}]
+5:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["For more details on the jailing and slashing parameters, refer to the\n",["$","a",null,{"href":"https://celestiaorg.github.io/celestia-app/parameters_v6.html","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["celestia-app specifications",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\npage."]}]
+6:["$","$L14",null,{"children":["$","$15",null,{"name":"Next.MetadataOutlet","children":"$@16"}]}]
+9:["$","$1","h",{"children":[null,["$","$L17",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L18",null,{"children":["$","$15",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Celestia Documentation"}],["$","meta","1",{"name":"description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","meta","4",{"property":"og:title","content":"Celestia Documentation"}],["$","meta","5",{"property":"og:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","6",{"property":"og:site_name","content":"Celestia Documentation"}],["$","meta","7",{"property":"og:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","meta","8",{"property":"og:image:width","content":"1200"}],["$","meta","9",{"property":"og:image:height","content":"630"}],["$","meta","10",{"property":"og:image:alt","content":"Celestia Documentation"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:site","content":"@CelestiaOrg"}],["$","meta","14",{"name":"twitter:title","content":"Celestia Documentation"}],["$","meta","15",{"name":"twitter:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","16",{"name":"twitter:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","$L19","18",{}]]}]}]}],null]}]
+b:["$","$1","c",{"children":[null,["$","$L1a",null,{"parallelRouterKey":"children","template":["$","$L1b",null,{}]}]]}]
+e:["$","$1","c",{"children":[null,["$","$L1a",null,{"parallelRouterKey":"children","template":["$","$L1b",null,{}]}]]}]
+10:["$","$1","c",{"children":[null,["$","$L1a",null,{"parallelRouterKey":"children","template":["$","$L1b",null,{}]}]]}]
+13:true
+16:null
+8:300
+8:C
+12:0
+a:"$undefined"
+c:"$undefined"
+f:"$undefined"
+11:"$undefined"
+7:"$undefined"

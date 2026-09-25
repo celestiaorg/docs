@@ -1,0 +1,68 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","320","static/chunks/app/build/stacks/op-alt-da/introduction/page-682ef72b7094c0d6.js"],"WrapperWithFooter"]
+4:I[90721,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","320","static/chunks/app/build/stacks/op-alt-da/introduction/page-682ef72b7094c0d6.js"],"HeadingAnchor"]
+3:T6a9,# Introduction
+
+## Overview
+
+The OP Stack integration with Celestia enables rollups to post transaction data to Celestia instead of Ethereum, while still settling on Ethereum. This reduces costs and improves scalability by using Celestia as a modular data availability layer.
+
+## How it works
+
+The `op-batcher` component batches rollup blocks and submits them to Celestia rather than posting calldata to Ethereum:
+
+1. **Data submission**: The batcher calls [`publishTxToL1`](https://github.com/ethereum-optimism/optimism/blob/develop/op-batcher/batcher/driver.go#L931) which retrieves batch data from the channel manager
+2. **Celestia storage**: For Celestia-enabled chains, [`celestia_storage.Put`](https://github.com/celestiaorg/op-alt-da/blob/main/celestia_storage.go#L200) submits the blob to Celestia using a configured namespace
+3. **Commitment recording**: A commitment identifier (version byte + blob ID) is generated and recorded on Ethereum
+4. **Data retrieval**: When `op-node` needs data, it reads the commitment from Ethereum, then fetches the actual blob from Celestia
+
+## Celestia fork differences
+
+The [Celestia fork](https://github.com/celestiaorg/optimism/blob/celestia-develop/op-batcher/batcher/driver.go#L1092) of OP Stack includes:
+
+- Direct blob submission to Celestia with namespace-based organization
+- Fallback mechanisms for DA failures (supporting both blob data and calldata alternatives)
+- Commitment-based references using Celestia block heights
+
+## Resources
+
+- [op-alt-da repository](https://github.com/celestiaorg/op-alt-da)
+- [Celestia OP Stack fork](https://github.com/celestiaorg/optimism)
+- [Select a Celestia account in integrations](/build/stacks/account-selection)10:X
+15:X
+15:C
+0:{"buildId":"rj6WNdNfQbJcu0PSYEnTb","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Introduction","filePath":"app/build/stacks/op-alt-da/introduction/page.mdx","timestamp":1790361480000},"toc":[{"value":"Overview","id":"overview","depth":2},{"value":"How it works","id":"how-it-works","depth":2},{"value":"Celestia fork differences","id":"celestia-fork-differences","depth":2},{"value":"Resources","id":"resources","depth":2}],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Introduction","$undefined"]}],"\n",["$","h2",null,{"id":"overview","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Overview",["$","$L4",null,{"id":"overview"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The OP Stack integration with Celestia enables rollups to post transaction data to Celestia instead of Ethereum, while still settling on Ethereum. This reduces costs and improves scalability by using Celestia as a modular data availability layer."}],"\n",["$","h2",null,{"id":"how-it-works","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["How it works",["$","$L4",null,{"id":"how-it-works"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"op-batcher"}]," component batches rollup blocks and submits them to Celestia rather than posting calldata to Ethereum:"]}],"\n",["$","ol",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-decimal x:ms-6","children":["\n","$L5","\n","$L6","\n","$L7","\n","$L8","\n"]}],"\n","$L9","\n","$La","\n","$Lb","\n","$Lc","\n","$Ld"]}],null,"$Le"]}],"isPartial":"$@f","staleTime":"$10","varyParams":null},{"rsc":"$L11","isPartial":"$@12","staleTime":"$10","varyParams":null},{"rsc":"$L13","isPartial":"$@14","staleTime":"$10","varyParams":"$15"},{"rsc":"$L16","isPartial":"$@17","staleTime":"$10","varyParams":"$15"},{"rsc":"$L18","isPartial":"$@19","staleTime":"$10","varyParams":"$15"},{"rsc":"$L1a","isPartial":"$@1b","staleTime":"$10","varyParams":"$15"}],"isUpgradeableISRFallback":false,"a":"$@1c","rootVaryParams":null,"needsRuntimeRequest":"$@1d"}
+1e:I[98500,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","320","static/chunks/app/build/stacks/op-alt-da/introduction/page-682ef72b7094c0d6.js"],""]
+1f:I[90484,[],"OutletBoundary"]
+20:"$Sreact.suspense"
+22:I[90484,[],"ViewportBoundary"]
+23:I[90484,[],"MetadataBoundary"]
+24:I[86869,[],"IconMark"]
+25:I[57121,[],""]
+26:I[74581,[],""]
+5:["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Data submission"}],": The batcher calls ",["$","a",null,{"href":"https://github.com/ethereum-optimism/optimism/blob/develop/op-batcher/batcher/driver.go#L931","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"publishTxToL1"}],false]}]," which retrieves batch data from the channel manager"]}]
+6:["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Celestia storage"}],": For Celestia-enabled chains, ",["$","a",null,{"href":"https://github.com/celestiaorg/op-alt-da/blob/main/celestia_storage.go#L200","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":[["$","code",null,{"className":"nextra-code","dir":"ltr","children":"celestia_storage.Put"}],false]}]," submits the blob to Celestia using a configured namespace"]}]
+7:["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Commitment recording"}],": A commitment identifier (version byte + blob ID) is generated and recorded on Ethereum"]}]
+8:["$","li",null,{"className":"x:my-[.5em]","children":[["$","strong",null,{"children":"Data retrieval"}],": When ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"op-node"}]," needs data, it reads the commitment from Ethereum, then fetches the actual blob from Celestia"]}]
+9:["$","h2",null,{"id":"celestia-fork-differences","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Celestia fork differences",["$","$L4",null,{"id":"celestia-fork-differences"}]]}]
+a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The ",["$","a",null,{"href":"https://github.com/celestiaorg/optimism/blob/celestia-develop/op-batcher/batcher/driver.go#L1092","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Celestia fork",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," of OP Stack includes:"]}]
+b:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"Direct blob submission to Celestia with namespace-based organization"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Fallback mechanisms for DA failures (supporting both blob data and calldata alternatives)"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Commitment-based references using Celestia block heights"}],"\n"]}]
+c:["$","h2",null,{"id":"resources","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Resources",["$","$L4",null,{"id":"resources"}]]}]
+d:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://github.com/celestiaorg/op-alt-da","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["op-alt-da repository",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","a",null,{"href":"https://github.com/celestiaorg/optimism","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Celestia OP Stack fork",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["$","$L1e",null,{"href":"/build/stacks/account-selection","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Select a Celestia account in integrations"}]}],"\n"]}]
+e:["$","$L1f",null,{"children":["$","$20",null,{"name":"Next.MetadataOutlet","children":"$@21"}]}]
+11:["$","$1","h",{"children":[null,["$","$L22",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L23",null,{"children":["$","$20",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Celestia Documentation"}],["$","meta","1",{"name":"description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","meta","4",{"property":"og:title","content":"Celestia Documentation"}],["$","meta","5",{"property":"og:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","6",{"property":"og:site_name","content":"Celestia Documentation"}],["$","meta","7",{"property":"og:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","meta","8",{"property":"og:image:width","content":"1200"}],["$","meta","9",{"property":"og:image:height","content":"630"}],["$","meta","10",{"property":"og:image:alt","content":"Celestia Documentation"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:site","content":"@CelestiaOrg"}],["$","meta","14",{"name":"twitter:title","content":"Celestia Documentation"}],["$","meta","15",{"name":"twitter:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","16",{"name":"twitter:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","$L24","18",{}]]}]}]}],null]}]
+13:["$","$1","c",{"children":[null,["$","$L25",null,{"parallelRouterKey":"children","template":["$","$L26",null,{}]}]]}]
+16:["$","$1","c",{"children":[null,["$","$L25",null,{"parallelRouterKey":"children","template":["$","$L26",null,{}]}]]}]
+18:["$","$1","c",{"children":[null,["$","$L25",null,{"parallelRouterKey":"children","template":["$","$L26",null,{}]}]]}]
+1a:["$","$1","c",{"children":[null,["$","$L25",null,{"parallelRouterKey":"children","template":["$","$L26",null,{}]}]]}]
+1d:true
+21:null
+10:300
+10:C
+1c:0
+12:"$undefined"
+14:"$undefined"
+17:"$undefined"
+19:"$undefined"
+1b:"$undefined"
+f:"$undefined"

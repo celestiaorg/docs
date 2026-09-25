@@ -1,0 +1,106 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","3501","static/chunks/app/learn/celestia-101/data-availability-faq/page-5f8955e5853f23e0.js"],"WrapperWithFooter"]
+3:Tdde,# Data availability FAQ
+
+# What is data availability?
+
+Data availability is about proving that a block's transactions have been published to the network. In most chains this means downloading all transaction data for a new block; in Celestia, light nodes can answer this question via DAS without full downloads.
+
+![Data availability](/img/learn/data-availability-faq/Data-availability.png)
+
+## What is the data availability problem?
+
+If a block producer withholds data for a proposed block (a data withholding attack), other nodes cannot update state or verify the chain. The risk varies by architecture—for example, rollups and validiums are especially sensitive.
+
+## How do nodes verify data availability in Celestia?
+
+Full nodes can download entire blocks as usual. Light nodes leverage DAS: they request random shares with Merkle proofs from the extended data matrix. See [Data availability sampling](#data-availability-sampling-das) for details.
+
+## What is data availability sampling?
+
+DAS lets light nodes make repeated random sampling requests for small portions of a block. As more samples succeed, confidence that the full block is available rises (e.g., to 99%+). A simple analogy is coin flips: enough successful flips (samples) give high confidence the data exists.
+
+## What security assumptions does DAS rely on?
+
+- Enough light nodes sample for the given block size so an honest bridge node can reconstruct the full block from their collected shares.
+- Light nodes connect to at least one honest bridge node to receive fraud proofs for incorrectly erasure-coded blocks; eclipse attacks can break this assumption.
+
+## Why is block reconstruction necessary for security?
+
+Blocks are erasure coded; malicious encoders could extend data incorrectly. Bridge nodes need the full block to produce fraud proofs of bad encoding. If only light nodes receive data and bridge nodes cannot reconstruct the block, the network could miss invalid encoding.
+
+## What is data storage and how is it different?
+
+Data storage concerns keeping and retrieving historical transaction data. The security assumption for storage is 1-of-N honesty—only one honest keeper of history is needed—while data availability is about new blocks being publishable and verifiable.
+
+![Data storage](/img/learn/data-availability-faq/Data-storage.png)
+
+## What problems arise around data storage?
+
+If historical data cannot be retrieved, users may lose access to transaction history and nodes cannot sync from genesis. This is a retrieval problem, not an availability problem.
+
+## Where does blockchain state fit into this?
+
+State (balances, contract storage, validator set) is a snapshot derived from transaction data. Its growth poses different challenges than DA or data retrieval.
+
+## Why doesn’t Celestia incentivize storing historical data?
+
+Guaranteeing permanent storage is not the DA layer’s role, and storage needs only 1-of-N honest providers. Celestia focuses on securely publishing data; third parties store history based on their incentives.
+
+## Who might store historical data?
+
+- Block explorers serving past transactions
+- Indexers with query APIs
+- Applications or rollups needing history for processes
+- Users who want their own transaction history
+
+## How can chains improve data retrievability?
+
+- Reward nodes for storing and serving data (e.g., storage networks like [Filecoin](https://filecoin.io)).
+- Publish transaction data to an incentivized storage layer.
+- Offer paid archival access or snapshots so others can sync from known good data.7:X
+c:X
+c:C
+0:{"buildId":"rj6WNdNfQbJcu0PSYEnTb","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Data availability FAQ","filePath":"app/learn/celestia-101/data-availability-faq/page.mdx","timestamp":1790361480000},"toc":[{"value":"What is the data availability problem?","id":"what-is-the-data-availability-problem","depth":2},{"value":"How do nodes verify data availability in Celestia?","id":"how-do-nodes-verify-data-availability-in-celestia","depth":2},{"value":"What is data availability sampling?","id":"what-is-data-availability-sampling","depth":2},{"value":"What security assumptions does DAS rely on?","id":"what-security-assumptions-does-das-rely-on","depth":2},{"value":"Why is block reconstruction necessary for security?","id":"why-is-block-reconstruction-necessary-for-security","depth":2},{"value":"What is data storage and how is it different?","id":"what-is-data-storage-and-how-is-it-different","depth":2},{"value":"What problems arise around data storage?","id":"what-problems-arise-around-data-storage","depth":2},{"value":"Where does blockchain state fit into this?","id":"where-does-blockchain-state-fit-into-this","depth":2},{"value":"Why doesn’t Celestia incentivize storing historical data?","id":"why-doesnt-celestia-incentivize-storing-historical-data","depth":2},{"value":"Who might store historical data?","id":"who-might-store-historical-data","depth":2},{"value":"How can chains improve data retrievability?","id":"how-can-chains-improve-data-retrievability","depth":2}],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":"$L8","isPartial":"$@9","staleTime":"$7","varyParams":null},{"rsc":"$La","isPartial":"$@b","staleTime":"$7","varyParams":"$c"},{"rsc":"$Ld","isPartial":"$@e","staleTime":"$7","varyParams":"$c"},{"rsc":"$Lf","isPartial":"$@10","staleTime":"$7","varyParams":"$c"}],"isUpgradeableISRFallback":false,"a":"$@11","rootVaryParams":null,"needsRuntimeRequest":"$@12"}
+13:I[59263,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","3501","static/chunks/app/learn/celestia-101/data-availability-faq/page-5f8955e5853f23e0.js"],"ImageZoom"]
+14:I[90721,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-7b62d48a686cbd77.js","4503","static/chunks/4503-f2339ca4fb610064.js","3501","static/chunks/app/learn/celestia-101/data-availability-faq/page-5f8955e5853f23e0.js"],"HeadingAnchor"]
+26:I[90484,[],"OutletBoundary"]
+27:"$Sreact.suspense"
+29:I[90484,[],"ViewportBoundary"]
+2a:I[90484,[],"MetadataBoundary"]
+2b:I[86869,[],"IconMark"]
+2c:I[57121,[],""]
+2d:I[74581,[],""]
+4:[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Data availability FAQ","$undefined"]}],"\n",["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["What is data availability?","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Data availability is about proving that a block’s transactions have been published to the network. In most chains this means downloading all transaction data for a new block; in Celestia, light nodes can answer this question via DAS without full downloads."}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["$","$L13",null,{"alt":"Data availability","placeholder":"blur","src":{"src":"/_next/static/media/Data-availability.41741e91.png","height":1500,"width":3000,"blurDataURL":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAMAAACEE47CAAAAHlBMVEX7/Pfl3fff0/TYxvnVvO/b3dfk5uHp6ub78t7579mptL1xAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAJElEQVQImR3IyQ0AMBACMQbI1X/DkdZP66ytgQ0YOUnbzN4nfQUUAEmCxGw3AAAAAElFTkSuQmCC","blurWidth":8,"blurHeight":4}}]}],"\n",["$","h2",null,{"id":"what-is-the-data-availability-problem","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["What is the data availability problem?",["$","$L14",null,{"id":"what-is-the-data-availability-problem"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"If a block producer withholds data for a proposed block (a data withholding attack), other nodes cannot update state or verify the chain. The risk varies by architecture—for example, rollups and validiums are especially sensitive."}],"\n",["$","h2",null,{"id":"how-do-nodes-verify-data-availability-in-celestia","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["How do nodes verify data availability in Celestia?",["$","$L14",null,{"id":"how-do-nodes-verify-data-availability-in-celestia"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Full nodes can download entire blocks as usual. Light nodes leverage DAS: they request random shares with Merkle proofs from the extended data matrix. See ",["$","a",null,{"href":"#data-availability-sampling-das","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Data availability sampling"}]," for details."]}],"\n",["$","h2",null,{"id":"what-is-data-availability-sampling","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["What is data availability sampling?",["$","$L14",null,{"id":"what-is-data-availability-sampling"}]]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"DAS lets light nodes make repeated random sampling requests for small portions of a block. As more samples succeed, confidence that the full block is available rises (e.g., to 99%+). A simple analogy is coin flips: enough successful flips (samples) give high confidence the data exists."}],"\n",["$","h2",null,{"id":"what-security-assumptions-does-das-rely-on","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["What security assumptions does DAS rely on?","$L15"]}],"\n","$L16","\n","$L17","\n","$L18","\n","$L19","\n","$L1a","\n","$L1b","\n","$L1c","\n","$L1d","\n","$L1e","\n","$L1f","\n","$L20","\n","$L21","\n","$L22","\n","$L23","\n","$L24","\n","$L25"]
+5:["$","$L26",null,{"children":["$","$27",null,{"name":"Next.MetadataOutlet","children":"$@28"}]}]
+8:["$","$1","h",{"children":[null,["$","$L29",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L2a",null,{"children":["$","$27",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Celestia Documentation"}],["$","meta","1",{"name":"description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","meta","4",{"property":"og:title","content":"Celestia Documentation"}],["$","meta","5",{"property":"og:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","6",{"property":"og:site_name","content":"Celestia Documentation"}],["$","meta","7",{"property":"og:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","meta","8",{"property":"og:image:width","content":"1200"}],["$","meta","9",{"property":"og:image:height","content":"630"}],["$","meta","10",{"property":"og:image:alt","content":"Celestia Documentation"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:site","content":"@CelestiaOrg"}],["$","meta","14",{"name":"twitter:title","content":"Celestia Documentation"}],["$","meta","15",{"name":"twitter:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","16",{"name":"twitter:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","$L2b","18",{}]]}]}]}],null]}]
+a:["$","$1","c",{"children":[null,["$","$L2c",null,{"parallelRouterKey":"children","template":["$","$L2d",null,{}]}]]}]
+d:["$","$1","c",{"children":[null,["$","$L2c",null,{"parallelRouterKey":"children","template":["$","$L2d",null,{}]}]]}]
+f:["$","$1","c",{"children":[null,["$","$L2c",null,{"parallelRouterKey":"children","template":["$","$L2d",null,{}]}]]}]
+12:true
+15:["$","$L14",null,{"id":"what-security-assumptions-does-das-rely-on"}]
+16:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"Enough light nodes sample for the given block size so an honest bridge node can reconstruct the full block from their collected shares."}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Light nodes connect to at least one honest bridge node to receive fraud proofs for incorrectly erasure-coded blocks; eclipse attacks can break this assumption."}],"\n"]}]
+17:["$","h2",null,{"id":"why-is-block-reconstruction-necessary-for-security","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Why is block reconstruction necessary for security?",["$","$L14",null,{"id":"why-is-block-reconstruction-necessary-for-security"}]]}]
+18:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Blocks are erasure coded; malicious encoders could extend data incorrectly. Bridge nodes need the full block to produce fraud proofs of bad encoding. If only light nodes receive data and bridge nodes cannot reconstruct the block, the network could miss invalid encoding."}]
+19:["$","h2",null,{"id":"what-is-data-storage-and-how-is-it-different","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["What is data storage and how is it different?",["$","$L14",null,{"id":"what-is-data-storage-and-how-is-it-different"}]]}]
+1a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Data storage concerns keeping and retrieving historical transaction data. The security assumption for storage is 1-of-N honesty—only one honest keeper of history is needed—while data availability is about new blocks being publishable and verifiable."}]
+1b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["$","$L13",null,{"alt":"Data storage","placeholder":"blur","src":{"src":"/_next/static/media/Data-storage.b86b2d1b.png","height":1500,"width":3000,"blurDataURL":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAMAAACEE47CAAAAG1BMVEX8+fnY8PC/6Orr7u3D4t3N5+je2dn87+L76tmLNUkQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAJElEQVQImWNgZmNmAANWFkYQYGZgZWJhYWJiYmRgYOBgB8kAAATXAEPHLKFPAAAAAElFTkSuQmCC","blurWidth":8,"blurHeight":4}}]}]
+1c:["$","h2",null,{"id":"what-problems-arise-around-data-storage","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["What problems arise around data storage?",["$","$L14",null,{"id":"what-problems-arise-around-data-storage"}]]}]
+1d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"If historical data cannot be retrieved, users may lose access to transaction history and nodes cannot sync from genesis. This is a retrieval problem, not an availability problem."}]
+1e:["$","h2",null,{"id":"where-does-blockchain-state-fit-into-this","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Where does blockchain state fit into this?",["$","$L14",null,{"id":"where-does-blockchain-state-fit-into-this"}]]}]
+1f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"State (balances, contract storage, validator set) is a snapshot derived from transaction data. Its growth poses different challenges than DA or data retrieval."}]
+20:["$","h2",null,{"id":"why-doesnt-celestia-incentivize-storing-historical-data","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Why doesn’t Celestia incentivize storing historical data?",["$","$L14",null,{"id":"why-doesnt-celestia-incentivize-storing-historical-data"}]]}]
+21:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Guaranteeing permanent storage is not the DA layer’s role, and storage needs only 1-of-N honest providers. Celestia focuses on securely publishing data; third parties store history based on their incentives."}]
+22:["$","h2",null,{"id":"who-might-store-historical-data","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Who might store historical data?",["$","$L14",null,{"id":"who-might-store-historical-data"}]]}]
+23:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":"Block explorers serving past transactions"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Indexers with query APIs"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Applications or rollups needing history for processes"}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Users who want their own transaction history"}],"\n"]}]
+24:["$","h2",null,{"id":"how-can-chains-improve-data-retrievability","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["How can chains improve data retrievability?",["$","$L14",null,{"id":"how-can-chains-improve-data-retrievability"}]]}]
+25:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["Reward nodes for storing and serving data (e.g., storage networks like ",["$","a",null,{"href":"https://filecoin.io","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Filecoin",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],")."]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Publish transaction data to an incentivized storage layer."}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"Offer paid archival access or snapshots so others can sync from known good data."}],"\n"]}]
+28:null
+7:300
+7:C
+11:0
+9:"$undefined"
+b:"$undefined"
+e:"$undefined"
+10:"$undefined"
+6:"$undefined"
