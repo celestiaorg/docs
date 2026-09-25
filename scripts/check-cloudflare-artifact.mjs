@@ -14,6 +14,7 @@ for (const file of await readdir(output, { recursive: true })) {
   }
   for (const match of html.matchAll(/<link[^>]*rel="canonical"[^>]*href="([^"]+)"/g)) {
     assert.equal(new URL(match[1]).origin, origin, `${file}: wrong canonical origin`)
+    assert.ok(new URL(match[1]).pathname.endsWith('/'), `${file}: canonical must preserve trailing slash`)
   }
   assert.equal(html.includes('name="robots" content="noindex, nofollow"'), preview, `${file}: wrong indexing policy`)
 }
