@@ -51,23 +51,30 @@ Select your platform to update the OS and install required packages:
   </Tabs.Tab>
 </Tabs>
 
-### Install Golang
+### Install Go
 
-celestia-node is written in Golang so we must install Golang to build
-and run our node.
+Install Go to build celestia-node or celestia-app from source. The versions below
+meet the Go requirements of the releases documented for each network.
+When building a different release, check the `go` and, if present, `toolchain`
+directives in that release's `go.mod` before choosing a Go version.
+
+| Network | celestia-node requirements | celestia-app requirements |
+| --- | --- | --- |
+| Mainnet Beta | [Release go.mod](https://github.com/celestiaorg/celestia-node/blob/{{mainnetVersions['node-latest-tag']}}/go.mod) | [Release go.mod](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/go.mod) |
+| Mocha | [Release go.mod](https://github.com/celestiaorg/celestia-node/blob/{{mochaVersions['node-latest-tag']}}/go.mod) | [Release go.mod](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/go.mod) |
 
 Set the version for your desired network:
 
 - Mainnet Beta: `ver="{{constants['golangNodeMainnet']}}"`
 - Mocha: `ver="{{constants['golangNodeMocha']}}"`
 
-Download and install Golang:
+Download and install Go:
 
 <Tabs items={['Linux (AMD)', 'Linux (ARM)', 'macOS (Apple)', 'macOS (Intel)']}>
   <Tabs.Tab>
     ```bash
     cd $HOME
-    wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
+    wget "https://go.dev/dl/go$ver.linux-amd64.tar.gz"
     sudo rm -rf /usr/local/go
     sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz"
     rm "go$ver.linux-amd64.tar.gz"
@@ -76,7 +83,7 @@ Download and install Golang:
   <Tabs.Tab>
     ```bash
     cd $HOME
-    wget "https://golang.org/dl/go$ver.linux-arm64.tar.gz"
+    wget "https://go.dev/dl/go$ver.linux-arm64.tar.gz"
     sudo rm -rf /usr/local/go
     sudo tar -C /usr/local -xzf "go$ver.linux-arm64.tar.gz"
     rm "go$ver.linux-arm64.tar.gz"
@@ -85,7 +92,7 @@ Download and install Golang:
   <Tabs.Tab>
     ```bash
     cd $HOME
-    wget "https://golang.org/dl/go$ver.darwin-arm64.tar.gz"
+    wget "https://go.dev/dl/go$ver.darwin-arm64.tar.gz"
     sudo rm -rf /usr/local/go
     sudo tar -C /usr/local -xzf "go$ver.darwin-arm64.tar.gz"
     rm "go$ver.darwin-arm64.tar.gz"
@@ -94,7 +101,7 @@ Download and install Golang:
   <Tabs.Tab>
     ```bash
     cd $HOME
-    wget "https://golang.org/dl/go$ver.darwin-amd64.tar.gz"
+    wget "https://go.dev/dl/go$ver.darwin-amd64.tar.gz"
     sudo rm -rf /usr/local/go
     sudo tar -C /usr/local -xzf "go$ver.darwin-amd64.tar.gz"
     rm "go$ver.darwin-amd64.tar.gz"
