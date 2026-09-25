@@ -78,7 +78,7 @@ First, create a vesting key:
 
 ```bash
 cd $HOME/celestia-app/build
-./celestia-appd keys add vesting-key --home $CELESTIA_APP_HOME
+./celestia-appd keys add vesting-key --home $CELESTIA_APP_HOME --keyring-backend test
 ```
 
 You will see the address, mnemonic, and more details about your key in the
@@ -100,7 +100,7 @@ index enter egg broken ostrich duty bitter blind all car hollow coral youth earl
 #### List your keys
 
 ```bash
-./celestia-appd keys list --home $CELESTIA_APP_HOME
+./celestia-appd keys list --home $CELESTIA_APP_HOME --keyring-backend test
 ```
 
 Output:
@@ -131,16 +131,16 @@ export TO_ADDRESS=celestia127fpaygehlsgjdknwvlr2mux7h5uvhkxktgkc5
 Create the vesting account with the following command:
 
 > **Note:** The remainder of the instructions are for a **continuous** vesting account. To create a delayed vesting account, use the `--delayed` flag. For example:  
-> `./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $CELESTIA_APP_HOME --delayed`
+> `./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $CELESTIA_APP_HOME --keyring-backend test --delayed`
 
 ```bash
-./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $CELESTIA_APP_HOME
+./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $CELESTIA_APP_HOME --keyring-backend test
 ```
 
 Select "Y" to choose "yes".
 
 > **Optional:** Add `-y` to run the transaction without an interactive prompt:  
-> `./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $CELESTIA_APP_HOME -y`
+> `./celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas auto --fees 100000utia --chain-id private --home $CELESTIA_APP_HOME --keyring-backend test -y`
 
 Output:
 
@@ -289,22 +289,25 @@ First, be sure that you have
 
 ### Create a wallet
 
-Set the keyring backend, so you don't need to use the flag for every command:
+Use the `test` backend only for these Mocha examples. It stores keys unencrypted
+on disk. Pass it explicitly rather than changing the default backend used by
+other commands:
 
 ```bash
-celestia-appd config keyring-backend test
+export KEYRING_BACKEND=test
 ```
 
 Add a new key for a full node and one for a vesting account:
 
 ```bash
-celestia-appd keys add origin && celestia-appd keys add vesting
+celestia-appd keys add origin --keyring-backend "$KEYRING_BACKEND"
+celestia-appd keys add vesting --keyring-backend "$KEYRING_BACKEND"
 ```
 
 List the keys:
 
 ```bash
-celestia-appd keys list
+celestia-appd keys list --keyring-backend "$KEYRING_BACKEND"
 ```
 
 Set your keys as variables:
@@ -348,7 +351,7 @@ celestia-appd tx vesting --help
 Here's an example command to set up the vesting account:
 
 ```bash
-celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas 100000 --fees 100000utia --node $RPC_URL --chain-id mocha --delayed
+celestia-appd tx vesting create-vesting-account $TO_ADDRESS 100000utia 1686748051 --from $FROM_ADDRESS --gas 100000 --fees 100000utia --node $RPC_URL --chain-id mocha --keyring-backend "$KEYRING_BACKEND" --delayed
 ```
 
 ### Optional: Set up a consensus node or validator
@@ -367,7 +370,8 @@ state of the chain.
 
 If you edit your client configuration in `client.toml`, you can set both the
 chain ID and the node RPC URL. This will prevent you from needing
-to run each flag for every command line that you use.
+to run each flag for every command line that you use. Keep your existing
+`keyring-backend` setting; the Mocha commands above select their backend explicitly.
 
 ```toml
 # This is a TOML config file.
@@ -379,8 +383,6 @@ to run each flag for every command line that you use.
 
 # The network chain ID
 chain-id = "mocha"
-# The keyring's backend, where the keys are stored (os|file|kwallet|pass|test|memory)
-keyring-backend = "test"
 # CLI output format (text|json)
 output = "text"
 # <host>:<port> to Tendermint RPC interface for this chain
