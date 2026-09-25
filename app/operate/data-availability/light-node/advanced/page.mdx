@@ -88,15 +88,18 @@ Celestia also supports initializing from a trusted hash via
 
 ### Get a trusted height and hash
 
-This example uses the public QuickNode Mocha endpoint:
+This example uses the public QuickNode Mocha endpoint. The `/block` response
+provides the height and hash of the same block:
 
 ```bash
-read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://public-endpoint.celestia-mocha.quiknode.pro/header | jq -r '.result.header | "\(.height) \(.last_block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
+read -r TRUSTED_HEIGHT TRUSTED_HASH <<<"$(curl -s https://public-endpoint.celestia-mocha.quiknode.pro/block | jq -r '.result | "\(.block.header.height) \(.block_id.hash)"')" && export TRUSTED_HEIGHT TRUSTED_HASH
+printf 'SyncFromHeight = %s\nSyncFromHash = "%s"\n' "$TRUSTED_HEIGHT" "$TRUSTED_HASH"
 ```
 
 ### Set `SyncFromHeight` and `SyncFromHash`
 
-Edit your config file at `~/.celestia-light-{{constants['mochaChainId']}}/config.toml` and set:
+Edit your config file at `~/.celestia-light-{{constants['mochaChainId']}}/config.toml`
+and set `SyncFromHeight` and `SyncFromHash` to the values printed above. For example:
 
 ```toml
 SyncFromHeight = 123456
