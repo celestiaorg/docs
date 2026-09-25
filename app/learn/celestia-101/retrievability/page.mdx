@@ -46,7 +46,7 @@ access historical data.
 - **Use professional archival node or data providers.** It is expected that
   professional infrastructure providers will provide paid access to archival
   nodes, where historical data can be retrieved, for example using the `GetAll`
-  API method. Providers like QuickNode offer archival node services that maintain
+  API method. Providers like Quicknode offer archival node services that maintain
   complete historical data, ensuring reliable access to past transactions and state.
   This provides better guarantees than solely relying on free archival nodes on the
   public Celestia network. For a list of available providers, see the
