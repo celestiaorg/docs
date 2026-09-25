@@ -1,4 +1,6 @@
-# Blobstream proofs queries
+# Blobstream proof queries (legacy)
+
+> **Legacy reference:** As of September 2026, the Succinct-operated SP1 Blobstream deployments are no longer maintained and do not receive new commitments, and Celenium no longer offers its Blobstream explorer. This page preserves the proof-query and contract-format reference. It does not imply that a maintained deployment is available.
 
 ## Prerequisites
 
@@ -208,7 +210,7 @@ The `min` and `max` are `Namespace` type which is:
 
 ```solidity
 /// @notice A representation of the Celestia-app namespace ID and its version.
-/// See: https://celestiaorg.github.io/celestia-app/specs/namespace.html
+/// See: https://celestiaorg.github.io/celestia-app/namespace.html
 struct Namespace {
     // The namespace version.
     bytes1 version;
@@ -230,7 +232,7 @@ Which is the namespace used by the rollup when submitting data to Celestia. As d
 
 ```solidity
 /// @notice A representation of the Celestia-app namespace ID and its version.
-/// See: https://celestiaorg.github.io/celestia-app/specs/namespace.html
+/// See: https://celestiaorg.github.io/celestia-app/namespace.html
 struct Namespace {
     // The namespace version.
     bytes1 version;

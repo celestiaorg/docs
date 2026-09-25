@@ -33,6 +33,43 @@ By default, `Remote = false`. Still for devnet, we are going
 to use the remote consensus node option and this can also be set
 by the command line flag `--core.remote`.
 
+### RPC
+
+Starting with celestia-node v0.31.3, the RPC server supports optional per-IP
+rate limiting. If you upgraded an existing node from an earlier version, add
+the new fields while preserving your custom configuration by running:
+
+```bash
+celestia <node_type> config-update --p2p.network <network>
+```
+
+The default rate-limit configuration is:
+
+```toml
+[RPC.RateLimit]
+  Enabled = false
+  RequestsPerSec = 100
+  Burst = 200
+  CacheSize = 8192
+```
+
+- `Enabled` turns per-IP rate limiting on or off.
+- `RequestsPerSec` sets the sustained request rate allowed for each IP address.
+- `Burst` allows short request spikes before the sustained rate is enforced.
+- `CacheSize` limits the number of per-IP rate-limit buckets held in memory.
+
+When the limit is exceeded, the RPC server responds with HTTP status `429 Too
+Many Requests`. Leave this rate limiter disabled when the node is behind a
+reverse proxy because all requests may appear to come from the proxy's IP
+address. Apply rate limiting at the proxy instead.
+
+RPC request bodies are limited to 16 MiB, and the server accepts up to 500
+concurrent connections. These limits are enforced by the server and are not
+configurable in `config.toml`.
+
+See the [celestia-node v0.31.3 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3)
+for the complete upgrade instructions.
+
 ### P2P
 
 #### Bootstrap

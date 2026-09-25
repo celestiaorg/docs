@@ -102,6 +102,11 @@ export default function remarkReplaceVariables() {
       if (node.type === 'text' && typeof node.value === 'string') {
         node.value = replaceVariables(node.value);
       }
+
+      // Resolve release variables in Markdown link destinations.
+      if ((node.type === 'link' || node.type === 'definition') && typeof node.url === 'string') {
+        node.url = replaceVariables(node.url);
+      }
     });
   };
 }

@@ -35,24 +35,78 @@ The upgrade process can be broken down into a few steps:
    - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
    - Upgrades using in-protocol signaling (v3+) activate one week after 5/6 of the voting power has signaled for a particular version
 
+## Configuration changes in v10
+
+### Existing configuration files
+
+Replacing celestia-app does not add new settings or comments to existing
+configuration files. Missing settings use the binary's defaults.
+
+Starting with celestia-app v10.2.0, use `config sync` to add missing fields and
+their documentation to `config/config.toml`. Preview the additions first:
+
+```bash
+celestia-appd config sync --home ~/.celestia-app --dry-run
+celestia-appd config sync --home ~/.celestia-app
+```
+
+Use your node's home directory if different. The command preserves existing
+values and creates a backup before writing changes. It does not run
+automatically on startup. Use it instead of the deprecated `update-config`
+command for v10 configuration maintenance.
+
+### RPC and storage settings
+
+These settings apply to celestia-app consensus nodes:
+
+| Section in `config/config.toml` | Setting | Default |
+|---|---|---|
+| `[rpc]` | `max_concurrent_heavy_requests` | `20` |
+| `[storage]` | `compact` | `false` |
+| `[storage]` | `compaction_interval` | `10000` |
+
+The RPC setting caps concurrent heavy requests such as `block_results` and
+`tx_search`; public RPC providers may want to raise it. Blockstore compaction
+is optional and does not enable pruning. When enabled, it compacts the pruned
+range in the background. To compact an existing blockstore once, stop the node
+and run `celestia-appd compact-blockstore`.
+
+See the [Mocha release upgrade instructions](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
+for details. Follow the upgrade announcement for your network before replacing
+its binary.
+
 ## Network upgrade history
 
 v7 (Hibiscus) was skipped on Mainnet Beta due to a bug discovered after testnet activation; v8 (defined in [CIP-49](https://cips.celestia.org/cip-049.html)) was activated instead.
 
-Version links point to Celenium upgrade status pages for signaling upgrades (v3+). v2 used a pre-programmed height and does not have a Celenium signaling page.
+In the Mainnet Beta table, version links point to Celenium upgrade status pages for signaling upgrades (v3+). v2 used a pre-programmed height and does not have a Celenium signaling page.
 
 ### Mocha testnet
 
-| Version                                                                               | Name       | CIP                                                                     | Date and time           | Upgrade height                                                        | Delay period | Parameters                                                          |
-| ------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------- | ----------------------- | --------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------- |
-| v2                                                                                    | Lemongrass | [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-017.md) | 2024/08/28 14:00 UTC    | [2585031](https://mocha.celenium.io/block/2585031)                    | —            | [v2](https://celestiaorg.github.io/celestia-app/parameters_v2.html) |
-| [v3](https://mocha.celenium.io/upgrade/3?tab=signals&page=1)                          | Ginger     | [CIP-25](https://cips.celestia.org/cip-025.html)                        | 2024/11/14 18:31:11 UTC | [3140052](https://mocha.celenium.io/block/3140052)                    | —            | [v3](https://celestiaorg.github.io/celestia-app/parameters_v3.html) |
-| [v4](https://mocha.celenium.io/upgrade/4?tab=signals&page=1)                          | Lotus      | [CIP-33](https://cips.celestia.org/cip-033.html)                        | 2025/07/01 11:51:58 UTC | [6915786](https://mocha.celenium.io/block/6915786)                    | 2 days       | [v4](https://celestiaorg.github.io/celestia-app/parameters_v4.html) |
-| [v5](https://mocha.celenium.io/upgrade/5?tab=signals&page=1)                          | —          | —                                                                       | 2025/07/30 17:07:29 UTC | [7401191](https://mocha.celenium.io/block/7401191)                    | 1 block      | [v5](https://celestiaorg.github.io/celestia-app/parameters_v5.html) |
-| [v6](https://mocha.celenium.io/upgrade/6?tab=signals&page=1)                          | Matcha     | [CIP-42](https://cips.celestia.org/cip-042.html)                        | 2025/10/03 01:25:02 UTC | [8236886](https://mocha.celenium.io/block/8236886?tab=transactions)   | 2 days       | [v6](https://celestiaorg.github.io/celestia-app/parameters_v6.html) |
-| [v7](https://mocha.celenium.io/upgrade/7?tab=signals&page=1)                          | Hibiscus   | [CIP-47](https://cips.celestia.org/cip-047.html)                        | 2026/02/23 18:21:52 UTC | [10209986](https://mocha.celenium.io/block/10209986?tab=transactions) | 2 days       | [v7](https://celestiaorg.github.io/celestia-app/parameters_v7.html) |
-| [v8](https://mocha.celenium.io/upgrade/8?tab=signals&page=1)                          | —          | [CIP-49](https://cips.celestia.org/cip-049.html)                        | 2026/04/16 14:26:21 UTC | [10941526](https://mocha.celenium.io/block/10941526?tab=transactions) | 2 days       | [v8](https://celestiaorg.github.io/celestia-app/parameters_v8.html) |
-| [v9](https://mocha.celenium.io/upgrade/9?tab=signals&page=1)                          | —          | [CIP-50](https://cips.celestia.org/cip-050.html)                        | 2026/06/05 08:16:10 UTC | [11655991](https://mocha.celenium.io/block/11655991?tab=transactions) | 2 days       | [v9](https://celestiaorg.github.io/celestia-app/parameters_v9.html) |
+#### Mocha-5
+
+App version 10 activated on `mocha-5` at the height specified in the
+[activation announcement](https://status.celestia.org/incidents/vbsesey3).
+Bonded validators can now [start and register their Fibre servers](/operate/consensus-validators/fibre).
+
+| Version | Date and time | Upgrade height | Parameters |
+| ------- | ------------- | -------------- | ---------- |
+| v10 | 2026/09/24 20:20:15 UTC | [1082619](https://testnet.celestia.explorers.guru/block/1082619) | [v10](https://celestiaorg.github.io/celestia-app/parameters_v10.html) |
+
+#### Mocha-4 (historical)
+
+The upgrades below happened on the `mocha-4` chain. Celenium now indexes `mocha-5`, so explorer pages for these historical upgrades and heights are no longer available.
+
+| Version | Name       | CIP                                                                     | Date and time           | Upgrade height | Delay period | Parameters                                                          |
+| ------- | ---------- | ----------------------------------------------------------------------- | ----------------------- | -------------- | ------------ | ------------------------------------------------------------------- |
+| v2      | Lemongrass | [CIP-17](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-017.md) | 2024/08/28 14:00 UTC    | 2585031        | —            | [v2](https://celestiaorg.github.io/celestia-app/parameters_v2.html) |
+| v3      | Ginger     | [CIP-25](https://cips.celestia.org/cip-025.html)                        | 2024/11/14 18:31:11 UTC | 3140052        | —            | [v3](https://celestiaorg.github.io/celestia-app/parameters_v3.html) |
+| v4      | Lotus      | [CIP-33](https://cips.celestia.org/cip-033.html)                        | 2025/07/01 11:51:58 UTC | 6915786        | 2 days       | [v4](https://celestiaorg.github.io/celestia-app/parameters_v4.html) |
+| v5      | —          | —                                                                       | 2025/07/30 17:07:29 UTC | 7401191        | 1 block      | [v5](https://celestiaorg.github.io/celestia-app/parameters_v5.html) |
+| v6      | Matcha     | [CIP-42](https://cips.celestia.org/cip-042.html)                        | 2025/10/03 01:25:02 UTC | 8236886        | 2 days       | [v6](https://celestiaorg.github.io/celestia-app/parameters_v6.html) |
+| v7      | Hibiscus   | [CIP-47](https://cips.celestia.org/cip-047.html)                        | 2026/02/23 18:21:52 UTC | 10209986       | 2 days       | [v7](https://celestiaorg.github.io/celestia-app/parameters_v7.html) |
+| v8      | —          | [CIP-49](https://cips.celestia.org/cip-049.html)                        | 2026/04/16 14:26:21 UTC | 10941526       | 2 days       | [v8](https://celestiaorg.github.io/celestia-app/parameters_v8.html) |
+| v9      | —          | [CIP-50](https://cips.celestia.org/cip-050.html)                        | 2026/06/05 08:16:10 UTC | 11655991       | 2 days       | [v9](https://celestiaorg.github.io/celestia-app/parameters_v9.html) |
 
 ### Mainnet Beta
 
@@ -71,4 +125,6 @@ Version links point to Celenium upgrade status pages for signaling upgrades (v3+
 
 > **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/sdk/v0.53/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 
-The next upgrade (v10) has not yet been scheduled. This page will be updated when a new upgrade is announced.
+Mocha has activated app version 10; see the [Mocha-5 upgrade history](#mocha-5).
+For upcoming upgrade schedules on each network, follow the
+[network announcements](https://status.celestia.org/).

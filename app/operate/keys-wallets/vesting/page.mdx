@@ -330,7 +330,7 @@ If you are running a production application, use a production endpoint.
 Set your RPC URL:
 
 ```bash
-export RPC_URL=https://rpc-mocha.pops.one:443
+export RPC_URL=https://public-endpoint.celestia-mocha.quiknode.pro
 ```
 
 We will use a few flags in our vesting command that are different than the
@@ -384,7 +384,7 @@ keyring-backend = "test"
 # CLI output format (text|json)
 output = "text"
 # <host>:<port> to Tendermint RPC interface for this chain
-node = "tcp://rpc-mocha.pops.one:443"
+node = "https://public-endpoint.celestia-mocha.quiknode.pro"
 # Transaction broadcasting mode (sync|async|block)
 broadcast-mode = "sync"
 ```

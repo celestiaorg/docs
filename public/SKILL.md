@@ -96,7 +96,7 @@ Why this is the preferred path:
 - Both clients are built for submit + retrieve flows.
 - Both use local keyring/signer handling.
 - Both use the expected endpoint model: DA bridge RPC plus Core gRPC.
-- For public Mocha examples, prefer `CELE_DA_URL=http://celestia-testnet-consensus.itrocket.net:26658` and `CELE_CORE_GRPC=rpc-mocha.pops.one:9090` unless the user specifies a managed provider.
+- For public Mocha examples, prefer `CELE_DA_URL=https://public-endpoint.celestia-mocha.quiknode.pro` and `CELE_CORE_GRPC=public-endpoint.celestia-mocha.quiknode.pro:9090` with DA and Core TLS enabled unless the user specifies a managed provider.
 
 Funding flow for agent-led examples:
 

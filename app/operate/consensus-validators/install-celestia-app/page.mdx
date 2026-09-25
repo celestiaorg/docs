@@ -2,7 +2,7 @@
 description: Learn how you can build celestia-app.
 ---
 
-import { Steps, Tabs } from 'nextra/components'
+import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Install celestia-app
 
@@ -23,6 +23,24 @@ Celestia-app officially supports the following architectures:
 - darwin/arm64 (macOS Apple Silicon)
 
 Only these four architectures are officially tested and supported.
+
+## Linux requirements
+
+<Callout type="warning">
+celestia-app v9 and later multiplexer binaries require glibc 2.38 or later. Use Ubuntu
+24.04 LTS or an equivalent Linux distribution. Ubuntu 22.04 and older are not
+supported and the binary will fail to start with a glibc version mismatch.
+</Callout>
+
+Check the installed glibc version before installing or upgrading:
+
+```bash
+ldd --version
+```
+
+See the [celestia-app v9 release notes](https://github.com/celestiaorg/celestia-app/blob/v9.0.4/docs/release-notes/release-notes.md#supported-operating-systems)
+and the [Mocha release requirements](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
+for the supported operating system details.
 
 ## Building binary from source
 
@@ -58,6 +76,25 @@ Be sure to select the correct network to install the binary for.
        ```
      </Tabs.Tab>
    </Tabs>
+
+On Linux, enable BBR TCP congestion control before building. Run the following
+from the checked-out `celestia-app` directory on the node's host, with sudo
+access. Skip this step on macOS.
+
+```bash
+make enable-bbr
+make check-bbr
+```
+
+The enable command loads the `tcp_bbr` kernel module, persists it in
+`/etc/modules`, and adds the `fq` queueing and `bbr` congestion control defaults
+to `/etc/sysctl.conf` before applying that file. These are host-wide network
+settings. The check command should print `BBR is enabled.`
+
+If enabling BBR fails, inspect the command output and confirm that the host's
+Linux kernel provides the `tcp_bbr` module and that you have sudo access. Run
+these commands on the host rather than inside a container, then rerun
+`make check-bbr` to verify the result.
 
 ### Build and install the `celestia-appd` binary with multiplexer support
 

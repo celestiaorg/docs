@@ -28,8 +28,8 @@ functional, users may encounter occasional instability or reduced performance.
 | ------------- | -------------------------------------------------------------------------------------------------- |
 | Chain ID      | `{{constants['mainnetChainId']}}`                                                                       |
 | Genesis hash  | `6BE39EFD10BA412A9DB5288488303F5DD32CF386707A5BEF33617F4C43301872`                                 |
-| Genesis file  | https://github.com/celestiaorg/networks/blob/master/{constants.mainnetChainId}/genesis.json        |
-| Peers file    | https://github.com/celestiaorg/networks/blob/master/{constants.mainnetChainId}/peers.txt           |
+| Genesis file  | <a href={`https://github.com/celestiaorg/networks/blob/main/${constants.mainnetChainId}/genesis.json`}>genesis.json</a> |
+| Peers file    | <a href={`https://github.com/celestiaorg/networks/blob/main/${constants.mainnetChainId}/peers.txt`}>peers.txt</a>       |
 | Validators    | 100                                                                                                |
 | Block time    | [Approximately 3 seconds](https://cips.celestia.org/cip-048.html)                                      |
 
@@ -131,6 +131,21 @@ If you are using QuickNode or another provider with authenticated endpoints,
 see [the light node guide](/operate/data-availability/light-node/advanced#optional-start-light-node-with-consensus-endpoint-authentication)
 to learn how to use an endpoint with x-token.
 
+### Public RPC endpoint
+
+For development, testing, and documentation examples, use the public QuickNode
+endpoint:
+
+| Interface | Endpoint |
+| --------- | -------- |
+| HTTP RPC and REST | `https://public-endpoint.celestia-mainnet.quiknode.pro` |
+| WebSocket | `wss://public-endpoint.celestia-mainnet.quiknode.pro/websocket` |
+| gRPC over TLS | `public-endpoint.celestia-mainnet.quiknode.pro:9090` |
+| DA JSON-RPC | `https://public-endpoint.celestia-mainnet.quiknode.pro` |
+
+This shared endpoint does not provide a production SLA. Use a [production
+provider](#production-rpc-endpoints) or your own node for production workloads.
+
 ### Node setup and tools
 
 Several community providers offer comprehensive node setup tools, installation scripts, and monitoring services to help node operators get started quickly:
@@ -151,15 +166,16 @@ The following table lists community-provided consensus node endpoints that you c
 | --------------- | --------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------------------- |
 | AlphaB          | `rpc-celestia.alphab.ai`               | `api-celestia.alphab.ai`               | `rpc-celestia.alphab.ai:9090`             | -                                                        |
 | CitizenWeb3     | `rpc.celestia.citizenweb3.com`          | `api.celestia.citizenweb3.com`          | `grpc.celestia.citizenweb3.com:443`       | -                                                        |
-| Easy2Stake      | `celestia-rpc.easy2stake.com`           | `celestia-lcd.easy2stake.com`           | -                                         | -                                                        |
 | ITRocket        | `celestia-mainnet-rpc.itrocket.net:443` | `celestia-mainnet-api.itrocket.net:443` | `celestia-mainnet-grpc.itrocket.net:443`  | -                                                        |
 | kjnodes         | `celestia.rpc.kjnodes.com`              | `celestia.api.kjnodes.com`              | `celestia.grpc.kjnodes.com:443`           | -                                                        |
 | lunaroasis      | `rpc.lunaroasis.net`                    | -                                       | `grpc.lunaroasis.net:443`                 | -                                                        |
-| Noders Services | `celestia-rpc.noders.services`          | `celestia-api.noders.services`          | -                                         | -                                                        |
+| Noders Services | `celestia-rpc.noders.services`          | -                                       | -                                         | -                                                        |
 | Numia           | `public-celestia-rpc.numia.xyz`         | `public-celestia-lcd.numia.xyz`         | `public-celestia-grpc.numia.xyz`          | `wss://public-celestia-rpc.numia.xyz/websocket`          |
 | P-OPS           | `rpc.celestia.pops.one`                 | `api.celestia.pops.one`                 | `grpc.celestia.pops.one`                  | -                                                        |
 | Stakin          | `celestia.rpc.stakin-nodes.com`         | `celestia.rest.stakin-nodes.com`        | `celestia.grpc.stakin-nodes.com:443`      | -                                                        |
 | deNodes         | `celestia-mainnet-rpc.denodes.xyz`      | `celestia-mainnet-api.denodes.xyz`      | -                                         | `wss://celestia-mainnet-rpc.denodes.xyz:443/websocket`   |
+
+> Live latency benchmarks for public no-key Celestia RPC endpoints (PublicNode, Polkachu, LavenderFive — Tendermint status p50/p90/p99, 3 probe regions, updated every 60 s): [OpenChainBench Celestia RPC](https://openchainbench.com/benchmarks/celestia-rpc)
 
 ### Connecting DA nodes to consensus nodes
 
@@ -173,12 +189,17 @@ celestia <da_type> start --core.ip <consensus_node_url> --core.port <port>
 ```
 </Callout>
 
-You can use any of the RPC endpoints from the [community consensus endpoints](#community-consensus-endpoints) table above. The default port is 9090, where gRPC is used for both block sync and state access.
+You can use the [public endpoint](#public-rpc-endpoint) or any of the RPC
+endpoints from the [community consensus endpoints](#community-consensus-endpoints)
+table above. The default port is 9090, where gRPC is used for both block sync
+and state access.
 
-For example, to connect to the P-OPS endpoint:
+For example, to connect to the public QuickNode endpoint:
 
 ```bash
-celestia light start --core.ip rpc.celestia.pops.one --core.port 9090
+celestia light start \
+  --core.ip public-endpoint.celestia-mainnet.quiknode.pro \
+  --core.port 9090 --core.tls
 ```
 
 ### Bridge node requirements
