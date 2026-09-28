@@ -10,6 +10,22 @@
 
 To prove PFBs, blobs or shares, we can use the Celestia consensus node's RPC to query proofs for them:
 
+### Heavy RPC request limit
+
+Proof queries such as `data_root_inclusion_proof` and `prove_shares` are
+memory-intensive. They share the consensus node's process-wide heavy RPC
+request limit with other heavy endpoints and transports.
+
+When the limit is reached, clients receive a temporary capacity response:
+
+- HTTP GET requests return `503 Service Unavailable`.
+- JSON-RPC and WebSocket requests return a JSON-RPC error.
+- gRPC requests return `ResourceExhausted`.
+
+These responses indicate that the node is busy, not that proof generation
+failed. Retry with exponential backoff and jitter. Where appropriate, bound the
+maximum delay or number of retries.
+
 ### 1. Data root inclusion proof
 
 To prove the data root is committed to by the Blobstream smart contract, we will need to provide a Merkle proof of the data root tuple to a data root tuple root. This can be created using the [`data_root_inclusion_proof`](https://github.com/celestiaorg/celestia-core/blob/c3ab251659f6fe0f36d10e0dbd14c29a78a85352/rpc/client/http/http.go#L492-L511) query.
