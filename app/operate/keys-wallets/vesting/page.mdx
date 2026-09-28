@@ -202,27 +202,27 @@ Check that the account has been created and works as expected by querying
 the `TO_ADDRESS` account details:
 
 ```bash
-./celestia-appd query account $TO_ADDRESS --home $CELESTIA_APP_HOME
+./celestia-appd query auth account $TO_ADDRESS --home $CELESTIA_APP_HOME
 ```
 
 In the output, you will notice that the account type is a
 `ContinuousVestingAccount`:
 
 ```bash
-'@type': /cosmos.vesting.v1beta1.ContinuousVestingAccount
-base_vesting_account:
-  base_account:
-    account_number: "7"
-    address: celestia127fpaygehlsgjdknwvlr2mux7h5uvhkxktgkc5
-    pub_key: null
-    sequence: "0"
-  delegated_free: []
-  delegated_vesting: []
-  end_time: "1686748051"
-  original_vesting:
-  - amount: "100000"
-    denom: utia
-start_time: "1686740000"
+account:
+  type: /cosmos.vesting.v1beta1.ContinuousVestingAccount
+  value:
+    base_vesting_account:
+      base_account:
+        account_number: "7"
+        address: celestia127fpaygehlsgjdknwvlr2mux7h5uvhkxktgkc5
+      delegated_free: []
+      delegated_vesting: []
+      end_time: "1686748051"
+      original_vesting:
+      - amount: "100000"
+        denom: utia
+    start_time: "1686740000"
 ```
 
 #### Query the devnet base account details
@@ -230,19 +230,20 @@ start_time: "1686740000"
 Check the `FROM_ADDRESS` account details:
 
 ```bash
-./celestia-appd query account $FROM_ADDRESS --home $CELESTIA_APP_HOME
+./celestia-appd query auth account $FROM_ADDRESS --home $CELESTIA_APP_HOME
 ```
 
 In the output, you will notice the account type is `BaseAccount`:
 
 ```bash
-'@type': /cosmos.auth.v1beta1.BaseAccount
-account_number: "0"
-address: celestia1adgkqcmzuxvg7x5avx8a8rjwpmxgzex3ztef6j
-pub_key:
-  '@type': /cosmos.crypto.secp256k1.PubKey
-  key: Ahzu6yr9XMPIxLquhgBhj9xL3wIaOz6PE3CvML/oPQym
-sequence: "2"
+account:
+  type: /cosmos.auth.v1beta1.BaseAccount
+  value:
+    address: celestia1adgkqcmzuxvg7x5avx8a8rjwpmxgzex3ztef6j
+    public_key:
+      type: /cosmos.crypto.secp256k1.PubKey
+      value: Ahzu6yr9XMPIxLquhgBhj9xL3wIaOz6PE3CvML/oPQym
+    sequence: "2"
 ```
 
 #### Query the balances of the devnet accounts
