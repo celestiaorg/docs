@@ -56,10 +56,11 @@ continuing. With `sync` broadcasting, a returned transaction hash does not yet
 confirm inclusion. Check the transaction with:
 
 ```bash
-celestia-appd query tx <funding_tx_hash> --home "$CELESTIA_APP_HOME"
+celestia-appd query tx "<funding_tx_hash>" --home "$CELESTIA_APP_HOME"
 ```
 
-Continue once the query returns the transaction with `code: 0`.
+Continue in the same terminal once the query returns the transaction with
+`code: 0`. The following commands reuse the variables set above.
 
 ```bash
 # Send some funds from the multisig account to the validator account.
