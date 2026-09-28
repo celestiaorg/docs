@@ -179,9 +179,11 @@ Check service-manager flags for overrides. If deployment tooling manages the
 configuration, update its source templates too.
 
 <Callout type="warning">
-The application and signing connections are not TLS-protected. Keep them on
-loopback or a trusted private network. Make only Fibre's client port (default
-`7980`) publicly reachable; see [transport security](#transport-security-tls).
+The loopback connections shown here use plaintext. Keep the application and
+signing services on loopback, and make only Fibre's client port (default `7980`)
+publicly reachable. A private network alone does not satisfy the signing
+service's mTLS requirement in celestia-core v0.42.2; see
+[transport security](#transport-security-tls) before using a non-localhost address.
 </Callout>
 
 ## Start after activation
@@ -266,8 +268,26 @@ rather than the address, the registered host can be an IP address or a DNS
 name. Restart Fibre after changing `--signer-grpc-address` so the certificate
 is endorsed with the right key.
 
-The application and signing connections are not encrypted. Keep them on
-loopback or a trusted private network, and expose only the client port. See the
+The application gRPC connection shown here is unencrypted. Keep it on loopback.
+The signing connection can also use plaintext on `127.0.0.1`, as in this guide.
+
+celestia-core v0.42.2 introduced mutual TLS (mTLS) for non-localhost
+`priv_validator_grpc_laddr` listeners, including private-network addresses.
+The node refuses to start without mTLS unless the operator explicitly sets
+`priv_validator_grpc_allow_insecure = true`. That override permits unauthenticated
+signing requests and is not a substitute for mTLS.
+
+This behaviour depends on the celestia-core version bundled with your
+celestia-app binary, not the chain's active app version. Check the celestia-core
+replacement in the release's
+[`go.mod`](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/go.mod).
+Before moving the signer connection off localhost, use a matching Fibre release
+with signer mTLS support and configure both ends following the
+[privval mTLS guide](https://github.com/celestiaorg/celestia-core/blob/v0.42.2/docs/guides/privval-grpc-tls.md).
+Keep the loopback setup if your Fibre release does not support signer mTLS.
+
+The signer mTLS configuration is separate from Fibre's automatic client-facing
+TLS. See the
 [Fibre server specification](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/specs/src/fibre_server.md)
 for the endorsement scheme.
 
