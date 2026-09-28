@@ -3,15 +3,15 @@ import { Callout, Steps } from 'nextra/components'
 # Private blockspace quickstart
 
 Private blockspace encrypts your blob data before it’s posted to Celestia using a lightweight proxy.  
-In this quickstart, you’ll use hosted Celestia nodes (like QuickNode) instead of running your own.
+In this quickstart, you’ll use hosted Celestia nodes (like Quicknode) instead of running your own.
 
 <Steps>
 
 ## Get your node credentials
 
-To use Private Blockspace, you’ll need access to a hosted **Celestia Data Availability (DA) + Consensus Node**. The easiest option is [QuickNode’s Celestia service](https://www.quicknode.com/docs/celestia), which provides ready-to-use mainnet and Mocha testnet endpoints. They offer a free 30-day trial, which is enough for this quickstart.
+To use Private Blockspace, you’ll need access to a hosted **Celestia Data Availability (DA) + Consensus Node**. The easiest option is [Quicknode’s Celestia service](https://www.quicknode.com/docs/celestia), which provides ready-to-use mainnet and Mocha testnet endpoints. They offer a free 30-day trial, which is enough for this quickstart.
 
-1. Visit the [QuickNode Celestia dashboard](https://www.quicknode.com/docs/celestia) and log in (or create a free account).  
+1. Visit the [Quicknode Celestia dashboard](https://www.quicknode.com/docs/celestia) and log in (or create a free account).  
 2. Click **Create Endpoint**, then select:  
    - **Chain:** `Celestia`  
    - **Network:** `Mainnet` or `Mocha`
@@ -28,9 +28,9 @@ Edit **only** the following items.
 | --- | --- |
 | `PBS_DB_PATH` | Absolute path for local proxy data (e.g. `/Users/you/dev/pbs-db`) |
 | `ENCRYPTION_KEY` | 32-byte key — see command below |
-| `CELESTIA_NODE_RPC` | Your QuickNode HTTPS endpoint (includes your token) |
+| `CELESTIA_NODE_RPC` | Your Quicknode HTTPS endpoint (includes your token) |
 | `CELESTIA_CORE_GRPC` | Same host + `:9090` (no token in path) |
-| `CELESTIA_NODE_WRITE_TOKEN` | Your QuickNode token |
+| `CELESTIA_NODE_WRITE_TOKEN` | Your Quicknode token |
 | `CELESTIA_SIGNING_KEY` | 32-byte private key for your signer (funded on Mocha) |
 | `TLS_CERTS_PATH` / `TLS_KEY_PATH` | Path to your local TLS cert + key (see next step) |
 | `CELESTIA_NETWORK` etc. | Keep defaults; ensure all paths are absolute |
