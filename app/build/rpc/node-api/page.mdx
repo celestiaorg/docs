@@ -24,6 +24,23 @@ Celestia node RPC reference for blob, blobstream, da, das, header, node, p2p, sh
 
 </div>
 
+## Fibre API on Mocha
+
+Select `v0.34.2-mocha` in the API version dropdown to browse the `fibre`
+namespace: `Submit`, `Upload`, `Download`, `Deposit`, `Withdraw`,
+`QueryEscrowAccount`, and `PendingWithdrawals`.
+
+Fibre is available on light and bridge nodes in this release. It requires a
+configured core endpoint running celestia-app v10 with the `x/fibre` and
+`x/valaddr` modules. If Fibre is unavailable, check that the core endpoint is
+configured. Fund the Fibre escrow account with `fibre.Deposit` before uploading
+blobs. `fibre.Submit` uploads and settles the payment in one call;
+`fibre.Upload` settles the payment in the background.
+
+See the [celestia-node v0.34.2-mocha release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.34.2-mocha)
+for requirements and changes. The Mainnet Beta `v0.33.2` specification does not
+include the `fibre` namespace.
+
 ## celestia-node v0.31.3 breaking changes
 
 Starting with celestia-node v0.31.3:

@@ -7,13 +7,17 @@ import { createHash } from 'crypto';
 
 const SITE_ORIGIN = 'https://docs.celestia.org';
 const GITHUB_REPO = 'https://github.com/celestiaorg/docs';
-const LATEST_OPENRPC_SPEC = '/specs/openrpc-v0.31.4.json';
 
 // Use createRequire to import JSON files in ESM context
 const require = createRequire(import.meta.url);
 const mainnetVersions = require('../constants/mainnet_versions.json');
 const mochaVersions = require('../constants/mocha_versions.json');
 const constants = require('../constants/general.json');
+const apiVersions = require('../constants/node_api_versions.json');
+const openrpcSpecs = [
+  { network: 'Mainnet Beta', version: apiVersions.mainnet },
+  { network: 'Mocha', version: apiVersions.mocha },
+];
 
 // Create a context object with all available variables
 const variableContext = {
@@ -167,7 +171,8 @@ const header = [
   '- Agent skill: https://docs.celestia.org/SKILL.md',
   '- Agent skills index: https://docs.celestia.org/.well-known/agent-skills/index.json',
   '- API catalog: https://docs.celestia.org/.well-known/api-catalog',
-  '- Node API OpenRPC spec: https://docs.celestia.org/specs/openrpc-v0.31.4.json',
+  ...openrpcSpecs.map(({ network, version }) =>
+    `- Node API OpenRPC spec (${network}): ${SITE_ORIGIN}/specs/openrpc-${version}.json`),
   '- CIPs (Celestia Improvement Proposals): https://cips.celestia.org',
 ];
 
@@ -449,13 +454,11 @@ const generateApiCatalog = async (outputBase) => {
     linkset: [
       {
         anchor: SITE_ORIGIN,
-        'service-desc': [
-          {
-            href: `${SITE_ORIGIN}${LATEST_OPENRPC_SPEC}`,
-            type: 'application/json',
-            title: 'Celestia Node API OpenRPC specification',
-          },
-        ],
+        'service-desc': openrpcSpecs.map(({ network, version }) => ({
+          href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
+          type: 'application/json',
+          title: `Celestia Node API OpenRPC specification (${network})`,
+        })),
         'service-doc': [
           {
             href: `${SITE_ORIGIN}/build/rpc/node-api/`,
