@@ -21,6 +21,7 @@ const openrpcSpecs = [
 
 // Create a context object with all available variables
 const variableContext = {
+  apiVersions,
   mainnetVersions,
   mochaVersions,
   constants,
@@ -92,7 +93,7 @@ function replaceVariables(text) {
   // First replace {{...}} patterns (double braces)
   text = text.replace(/\{\{([^{}]+)\}\}/g, (match, expression) => {
     const trimmedExpr = expression.trim();
-    if (!/^(mainnetVersions|mochaVersions|constants)(?:\[['"][^'"]+['"]\]|\.\w+)$/.test(trimmedExpr)) {
+    if (!/^(mainnetVersions|mochaVersions|constants|apiVersions)(?:\[['"][^'"]+['"]\]|\.\w+)$/.test(trimmedExpr)) {
       return match;
     }
 
@@ -108,7 +109,7 @@ function replaceVariables(text) {
 
   // Then replace {expression} patterns (single braces) that match our variable patterns
   // Be careful to only match patterns that look like variable references
-  text = text.replace(/\{((?:mainnetVersions|mochaVersions|constants)(?:\[['"][^'"]+['"]\]|\.\w+))\}/g, (match, expression) => {
+  text = text.replace(/\{((?:mainnetVersions|mochaVersions|constants|apiVersions)(?:\[['"][^'"]+['"]\]|\.\w+))\}/g, (match, expression) => {
     const trimmedExpr = expression.trim();
     const resolved = resolveExpression(trimmedExpr);
 
