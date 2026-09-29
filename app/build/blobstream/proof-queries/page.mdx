@@ -19,7 +19,10 @@ request limit with other heavy endpoints and transports.
 When the limit is reached, clients receive a temporary capacity response:
 
 - HTTP GET requests return `503 Service Unavailable`.
-- JSON-RPC and WebSocket requests return a JSON-RPC error.
+- JSON-RPC and WebSocket requests return a JSON-RPC error with
+  `server busy: too many concurrent heavy RPC requests, retry later` in the
+  error's `data` field. Use this message to distinguish temporary overload from
+  other JSON-RPC errors.
 - gRPC requests return `ResourceExhausted`.
 
 These responses indicate that the node is busy, not that proof generation
