@@ -1,0 +1,117 @@
+# Create a wallet with celestia-app
+
+For this guide, we will go over how you can generate a Celestia
+wallet using celestia-app.
+
+## Prerequisites
+
+- Gone through [quick start and installed celestia-app](/operate/consensus-validators/install-celestia-app)
+
+Note, you do not need to install celestia-node for this tutorial.
+
+## Keyring backend
+
+`keyring-backend` configures where celestia-appd stores your keys. Choose it
+before you create a wallet, because the backend you pick decides whether the
+private key is encrypted at rest.
+
+| Backend | Where keys are stored | Suitable for |
+| --- | --- | --- |
+| `os` | The operating system keychain: Keychain on macOS, Credentials Management on Windows, libsecret, kwallet or keyctl on Linux | A single-operator machine |
+| `file` | Encrypted inside the app's configuration directory; the password is requested on every access | Servers and containers |
+| `pass` | GPG-encrypted files managed by the `pass` utility | Servers with an existing GPG setup |
+| `kwallet` | KDE Wallet Manager | KDE desktops |
+| `test` | **Unencrypted on disk, with no password** | Local development and testnets |
+| `memory` | Process memory, discarded when the process exits | Throwaway scripts |
+
+You can set the backend for a single command with `--keyring-backend`, which is
+what the examples in these docs do. Pass it on every command that touches a key:
+without the flag, `celestia-appd` falls back to the default backend and will not
+find a key that was created in a different one. You can learn more on the
+[Cosmos documentation](https://docs.cosmos.network/sdk/v0.53/user/run-node/keyring)
+or [Go Package documentation](https://pkg.go.dev/github.com/cosmos/cosmos-sdk/crypto/keyring).
+
+## Create a wallet
+
+You can pick whatever wallet name you want. The examples below and the
+[validator node guide](/operate/consensus-validators/validator-node) both use
+`$VALIDATOR_WALLET`, so set it to the name you chose:
+
+```sh
+
+celestia-appd keys add $VALIDATOR_WALLET \
+  --keyring-backend=$KEYRING_BACKEND \
+  --interactive
+```
+
+Save the mnemonic output as this is the only way to
+recover your validator wallet in case you lose it!
+
+To check all your wallets you can run:
+
+```sh
+celestia-appd keys list --keyring-backend=$KEYRING_BACKEND
+```
+
+## Key management
+
+```sh
+# listing keys
+celestia-appd keys list --keyring-backend=$KEYRING_BACKEND
+
+# adding keys
+celestia-appd keys add <KEY_NAME> --keyring-backend=$KEYRING_BACKEND
+
+# deleting keys
+celestia-appd keys delete <KEY_NAME> --keyring-backend=$KEYRING_BACKEND
+
+# renaming keys
+celestia-appd keys rename <CURRENT_KEY_NAME> <NEW_KEY_NAME> \
+  --keyring-backend=$KEYRING_BACKEND
+```
+
+### Importing and exporting keys
+
+Import an encrypted and ASCII-armored private key into the local keybase.
+
+```sh
+celestia-appd keys import <KEY_NAME> <KEY_FILE> --keyring-backend=$KEYRING_BACKEND
+```
+
+Example usage:
+
+```sh
+celestia-appd keys import amanda ./keyfile.txt --keyring-backend=$KEYRING_BACKEND
+```
+
+Export a private key from the local keyring in encrypted and ASCII-armored format:
+
+```sh
+celestia-appd keys export <KEY_NAME> --keyring-backend=$KEYRING_BACKEND
+
+# you will then be prompted to set a password for the encrypted private key:
+Enter passphrase to encrypt the exported key:
+```
+
+After you set a password, your encrypted key will be displayed.
+
+## Fund a wallet
+
+For the public celestia address, you can fund the
+previously created wallet via [Discord](https://discord.com/invite/YsnTPcSfWQ)
+by sending this message to the #mocha-faucet channel:
+
+```text
+$request celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+Wait to see if you get a confirmation that the
+tokens have been successfully sent. To check if
+tokens have arrived successfully to the destination
+wallet run the command below replacing the public
+address with your own:
+
+```sh
+celestia-appd start
+celestia-appd query bank balances celestia1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```

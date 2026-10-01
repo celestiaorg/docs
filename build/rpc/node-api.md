@@ -1,0 +1,37 @@
+<style>{`
+  article button:has(svg):has(*:is(:contains("Copy page"), :contains("Copied"))) {
+    display: none !important;
+  }
+  /* Fallback: hide the container if :has() or :contains() not supported */
+  article div[class*="border"][class*="inline-flex"][class*="float-end"] {
+    display: none !important;
+  }
+`}</style>
+
+# Node API
+
+<div style={{ display: 'none' }}>
+
+## Celestia Node API
+
+The Celestia Node API is the collection of RPC methods that can be used to interact with the services provided by Celestia Data Availability Nodes. Node API uses auth tokens to control access to this API.
+
+Celestia node RPC reference for blob, blobstream, da, das, header, node, p2p, share, and state packages. Includes methods like blob.Get, blob.GetAll, blob.GetProof, blob.Submit, share.GetShare, share.GetRange, share.GetNamespaceData, share.GetEDS, share.SharesAvailable, state.SubmitPayForBlob, state.Balance, state.Transfer, header.NetworkHead, header.GetByHeight, header.Subscribe, p2p.Peers, p2p.Connect, p2p.Info, p2p.Network, da.Submit, da.Validate, da.GetProofs, das.SamplingStats, node.AuthNew, node.Info, and blobstream.GetDataRootTupleInclusionProof.
+
+</div>
+
+## celestia-node v0.31.3 breaking changes
+
+Starting with celestia-node v0.31.3:
+
+- The `fraud` RPC namespace was removed. Calls to `fraud.Get` and
+  `fraud.Subscribe` are no longer supported.
+- The `type` field returned by `node.Info` is a string such as `"Bridge"` or
+  `"Light"` instead of an integer.
+- RPC request bodies are limited to 16 MiB. Larger requests are rejected.
+- In the Go API, `blob.Commitment.String()` returns a hexadecimal string
+  instead of raw bytes. This does not change the JSON encoding of commitment
+  fields returned by RPC methods.
+
+See the [celestia-node v0.31.3 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3)
+for the complete list of changes.

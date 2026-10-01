@@ -1,0 +1,202 @@
+# Fibre monitoring
+
+This page covers observability in Fibre `v10.2.0-mocha`.
+Complete the [server setup](/operate/consensus-validators/fibre) first. Add the
+flags below to your existing start command, keeping your home and node addresses.
+All observability flags apply to every subcommand.
+
+## Logging
+
+| Flag | Environment variable | Default | Values |
+|---|---|---|---|
+| `--log-level` | `FIBRE_LOG_LEVEL` | `info` | `debug`, `info`, `warn`, `error` |
+| `--log-format` | `FIBRE_LOG_FORMAT` | `text` | `text`, `json` |
+
+```bash
+fibre start --log-level debug --log-format json
+```
+
+## Tracing and metrics
+
+Fibre sends traces and metrics over OTLP/HTTP to an OpenTelemetry collector,
+such as Grafana Alloy or the OTel Collector. The collector must accept both
+signals and forward them to your tracing and metrics backends. The celestia-app
+repository ships a reference
+[collector configuration](https://github.com/celestiaorg/celestia-app/blob/v10.2.0-mocha/observability/docker/otel-collector/config.yml)
+and a
+[Docker Compose stack](https://github.com/celestiaorg/celestia-app/tree/v10.2.0-mocha/observability/docker)
+with Prometheus, Tempo, and Grafana that you can start from. The stack
+publishes Prometheus on host port `9090`, which the setup guide uses for
+application gRPC. When running it on the validator host, change that mapping
+in `docker-compose.yml`, for example to `9091:9090`.
+
+| Flag | Environment variable | Default |
+|---|---|---|
+| `--otel-endpoint` | `FIBRE_OTEL_ENDPOINT` | Disabled |
+
+```bash
+fibre start --otel-endpoint http://localhost:4318
+```
+
+Use the collector's base URL. Fibre appends `/v1/traces` and `/v1/metrics` itself.
+For example, `https://collector.example.com/otel` sends data to
+`/otel/v1/traces` and `/otel/v1/metrics`.
+
+### Grafana dashboard
+
+Import the release's
+[Fibre dashboard JSON](https://github.com/celestiaorg/celestia-app/blob/v10.2.0-mocha/observability/docker/grafana/dashboards/fibre.json)
+into Grafana. The dashboard expects a Prometheus data source with UID
+`prometheus`; use that UID or update the dashboard to match your data source.
+Client panels need telemetry from Fibre clients as well as the server. The same
+directory has a
+[Fibre runtime dashboard](https://github.com/celestiaorg/celestia-app/blob/v10.2.0-mocha/observability/docker/grafana/dashboards/fibre-runtime.json)
+for Go runtime metrics such as memory and goroutines.
+
+To verify the pipeline, start Fibre with `--otel-endpoint` set, open the Fibre
+dashboard, and confirm the server panels populate once uploads or downloads
+arrive. If they stay empty, work through the [troubleshooting](#troubleshooting)
+table.
+
+## Community dashboards
+
+Use these community-maintained dashboards to monitor Fibre on Mocha:
+
+| Dashboard | What it monitors |
+|---|---|
+| [Valopers](https://testnet.celestia.valopers.com/fibre) | Registered providers, host reachability, and validator endorsements. |
+| [Tensile by Huginn Tech](https://tensile.huginn.tech/) | Endpoint reachability, validator TLS identity, and whether validators serve their assigned blob rows during the retention window. |
+
+See Tensile's [methodology](https://tensile.huginn.tech/methodology/) for how
+observations and verdicts are calculated.
+
+## Metric reference
+
+### Traces
+
+Fibre samples 10% of root spans and respects upstream sampling decisions, using
+`ParentBased(TraceIDRatioBased(0.1))`. W3C TraceContext and Baggage propagation
+carry trace context across gRPC and HTTP calls.
+
+Each trace includes `service.name=fibre`, `service.version`, and
+`service.instance.id` (the hostname).
+
+### Metrics
+
+Metrics are exported periodically over OTLP. Duration histograms include a
+`success` attribute, so their counts can be used to calculate error rates.
+Metric exemplars link observations to traces; in Grafana, select an exemplar
+to open its trace.
+
+The tables below list the original OTLP metric names. Your collector or backend
+may convert dots to underscores and add unit suffixes.
+
+#### Server metrics
+
+| Metric | Type | Attributes | Description |
+|---|---|---|---|
+| `fibre.server.upload_shard.in_flight` | UpDownCounter | — | Concurrent UploadShard RPCs |
+| `fibre.server.upload_shard.duration` | Histogram (s) | `success`, `upload_size` | UploadShard RPC latency |
+| `fibre.server.upload_shard.bytes` | Counter (By) | — | Bytes received |
+| `fibre.server.download_shard.in_flight` | UpDownCounter | — | Concurrent DownloadShard RPCs |
+| `fibre.server.download_shard.duration` | Histogram (s) | `success`, `shard_size` | DownloadShard RPC latency |
+| `fibre.server.download_shard.bytes` | Counter (By) | — | Bytes sent |
+| `fibre.server.store.put.duration` | Histogram (s) | `success` | Store write latency |
+| `fibre.server.store.get.duration` | Histogram (s) | `success` | Store read latency |
+| `fibre.server.sign.duration` | Histogram (s) | `success` | Payment promise signing latency |
+| `fibre.server.prune.entries` | Counter | — | Entries pruned |
+| `fibre.server.prune.duration` | Histogram (s) | `success` | Prune cycle duration |
+
+`fibre.server.sign.duration` measures how long Fibre waits for payment promise
+endorsements. It is not the metric behind the 10 ms signing latency
+requirement; that is celestia-app's `cometbft_privval_signing_latency_*`, see
+[signing latency](/operate/consensus-validators/fibre#prerequisites) on the
+setup page.
+
+#### Client metrics
+
+These metrics come from instrumented Fibre clients. Collect client telemetry
+alongside server telemetry to measure end-to-end uploads and downloads.
+
+| Metric | Type | Attributes | Description |
+|---|---|---|---|
+| `fibre.client.upload.in_flight` | UpDownCounter | — | Concurrent uploads |
+| `fibre.client.upload.duration` | Histogram (s) | `success`, `blob_size` | Upload latency |
+| `fibre.client.upload.bytes` | Counter (By) | — | Uploaded bytes, including row padding |
+| `fibre.client.upload.data_bytes` | Counter (By) | — | Original data bytes, without padding or coding overhead |
+| `fibre.client.upload.network_bytes` | Counter (By) | — | Bytes sent to all validators, including shard duplication |
+| `fibre.client.upload.signatures_collected` | Histogram | — | Signatures collected per upload |
+| `fibre.client.upload_to.duration` | Histogram (s) | `success`, `blob_size`, `validator_address` | Upload duration per validator |
+| `fibre.client.upload_to.rpc_latency` | Histogram (s) | `success`, `validator_address` | Upload RPC network latency per validator |
+| `fibre.client.download.in_flight` | UpDownCounter | — | Concurrent downloads |
+| `fibre.client.download.duration` | Histogram (s) | `success`, `blob_size` | Download latency |
+| `fibre.client.download.bytes` | Counter (By) | — | Downloaded bytes |
+| `fibre.client.download_from.duration` | Histogram (s) | `success`, `validator_address` | Download duration per validator |
+| `fibre.client.download_from.rpc_latency` | Histogram (s) | `success`, `validator_address` | Download RPC network latency per validator |
+
+## Profiling with pprof
+
+Enable the HTTP profiling server when you need to inspect CPU use, memory,
+goroutines, or contention:
+
+```bash
+fibre start --pprof
+```
+
+The default address is `localhost:6060`. To use a different local port:
+
+```bash
+fibre start --pprof=localhost:7070
+```
+
+| Endpoint | Description |
+|---|---|
+| `/debug/pprof/` | Profile index |
+| `/debug/pprof/goroutine` | Goroutine stack traces |
+| `/debug/pprof/heap` | Heap memory allocations |
+| `/debug/pprof/allocs` | Past memory allocations |
+| `/debug/pprof/block` | Goroutine blocking events |
+| `/debug/pprof/mutex` | Mutex contention |
+| `/debug/pprof/profile` | 30-second CPU profile |
+| `/debug/pprof/trace` | Execution trace |
+
+Mutex and block profiling start automatically with the pprof server, using
+mutex fraction `5` and block rate `1`.
+
+## Continuous profiling with Pyroscope
+
+Fibre can push profiles to a Pyroscope server. When tracing and Pyroscope are
+both enabled, goroutine labels include span IDs so Grafana can link traces to
+profiles. Profiles have `version` and `hostname` tags for filtering.
+
+| Flag | Environment variable | Default |
+|---|---|---|
+| `--pyroscope-endpoint` | `FIBRE_PYROSCOPE_ENDPOINT` | Disabled |
+| `--pyroscope-basic-auth-user` | `FIBRE_PYROSCOPE_BASIC_AUTH_USER` | None |
+| `--pyroscope-basic-auth-password` | `FIBRE_PYROSCOPE_BASIC_AUTH_PASSWORD` | None |
+
+```bash
+fibre start --pyroscope-endpoint http://localhost:4040
+```
+
+For an endpoint that requires authentication:
+
+```bash
+fibre start \
+  --pyroscope-endpoint https://<pyroscope_host> \
+  --pyroscope-basic-auth-user <user_id> \
+  --pyroscope-basic-auth-password <api_key>
+```
+
+## Troubleshooting
+
+| Symptom | Check |
+|---|---|
+| No metrics or traces | Set `--otel-endpoint` to the collector's base URL, confirm it is reachable, and check that both signal pipelines are configured. |
+| No client metrics on the dashboard | Enable telemetry on the Fibre clients generating traffic; server telemetry only supplies server metrics. |
+| No pprof endpoint | Add `--pprof` to the start command and connect to its configured address on the Fibre host. |
+| No continuous profiles | Check the Pyroscope endpoint, authentication values, and Fibre logs for export errors. |
+
+See the release's
+[observability reference](https://github.com/celestiaorg/celestia-app/blob/v10.2.0-mocha/fibre/cmd/README.md#observability)
+for more details.

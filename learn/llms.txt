@@ -1,0 +1,40 @@
+# Celestia Learn documentation
+
+> Section-specific LLM index for the Learn area of the Celestia docs.
+
+- Full docs index: https://docs.celestia.org/llms.txt
+- Full LLM context: https://docs.celestia.org/llms-full.txt
+
+## Audits
+
+- [Audits](https://docs.celestia.org/learn/audits.md)
+
+## Blobstream
+
+- [Blobstream](https://docs.celestia.org/learn/blobstream.md)
+
+## Celestia 101
+
+- [Data Availability Faq](https://docs.celestia.org/learn/celestia-101/data-availability-faq.md)
+- [Data Availability](https://docs.celestia.org/learn/celestia-101/data-availability.md)
+- [Resources](https://docs.celestia.org/learn/celestia-101/resources.md)
+- [Retrievability](https://docs.celestia.org/learn/celestia-101/retrievability.md)
+- [Transaction Lifecycle](https://docs.celestia.org/learn/celestia-101/transaction-lifecycle.md)
+
+## Code Of Conduct
+
+- [Code Of Conduct](https://docs.celestia.org/learn/code-of-conduct.md)
+
+## Features
+
+- [Bridging / Hyperlane](https://docs.celestia.org/learn/features/bridging/hyperlane.md)
+- [Bridging / Ibc](https://docs.celestia.org/learn/features/bridging/ibc.md)
+- [Private Blockspace](https://docs.celestia.org/learn/features/private-blockspace.md)
+
+## TIA
+
+- [Overview](https://docs.celestia.org/learn/TIA/overview.md)
+- [Paying For Blobspace](https://docs.celestia.org/learn/TIA/paying-for-blobspace.md)
+- [Staking Governance Supply](https://docs.celestia.org/learn/TIA/staking-governance-supply.md)
+- [Staking](https://docs.celestia.org/learn/TIA/staking.md)
+- [Submit Data](https://docs.celestia.org/learn/TIA/submit-data.md)
