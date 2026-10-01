@@ -10,6 +10,8 @@
     "start": "serve out",
     "lint": "eslint",
     "prepare": "simple-git-hooks",
+    "generate:skill": "node scripts/sync-skill.mjs",
+    "check:skill": "node scripts/sync-skill.mjs --check",
     "generate:llms": "node scripts/generate-llms.js",
     "check-links": "node scripts/check-links.mjs",
     "test:releases": "node --test scripts/latest-tags.test.mjs",

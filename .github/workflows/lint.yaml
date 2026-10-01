@@ -33,6 +33,9 @@ jobs:
       - name: Test release selection
         run: npm run test:releases
 
+      - name: Check skill and bundled Node API specs
+        run: npm run check:skill
+
       - name: Run lint
         run: npm run lint
 
