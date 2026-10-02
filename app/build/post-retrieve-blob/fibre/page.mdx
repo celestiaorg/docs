@@ -67,9 +67,11 @@ from the network; the core address is not a Fibre storage server address.
 
 ## Fund the signer and authenticate
 
-In a second Bash terminal, set the same store and local RPC address:
+In a second Bash terminal, enable pipeline failure reporting and set the same
+store and local RPC address:
 
 ```bash
+set -o pipefail
 export FIBRE_HOME="$HOME/.celestia-fibre-mocha-guide"
 export NODE_RPC=http://127.0.0.1:27658
 export KEY_NAME=my_celes_key
@@ -144,8 +146,11 @@ more than 2 TIA:
 jq -nc --arg key "$KEY_NAME" \
   '{jsonrpc:"2.0",id:2,method:"fibre.Deposit",
     params:[{denom:"utia",amount:"2000000"},{key_name:$key}]}' \
-  | rpc > deposit.json
-jq -e 'has("result") and (has("error") | not)' deposit.json
+  | rpc > deposit.json &&
+jq -es '
+  length == 1 and (.[0] | type == "object" and
+    (has("error") | not) and has("result") and .result == null)
+' deposit.json
 ```
 
 Success returns `{"jsonrpc":"2.0","id":2,"result":null}`, not a transaction
@@ -154,8 +159,14 @@ receipt. Query escrow again and confirm the deposit before proceeding:
 ```bash
 jq -nc --arg signer "$SIGNER" \
   '{jsonrpc:"2.0",id:3,method:"fibre.QueryEscrowAccount",params:[$signer]}' \
-  | rpc > escrow.json
-jq -e '.result.available_balance' escrow.json
+  | rpc > escrow.json &&
+jq -es '
+  length == 1 and (.[0] | type == "object" and
+    (has("error") | not) and (.result | type == "object" and
+      (.available_balance | type == "object" and .denom == "utia" and
+        (.amount | type == "string" and test("^[0-9]+$")))))
+' escrow.json &&
+jq '.result.available_balance' escrow.json
 ```
 
 A newly deposited account has these balance fields:
@@ -182,16 +193,29 @@ DATA=$(python3 -c 'import base64; print(base64.b64encode(open("original.bin","rb
 
 jq -nc --arg ns "$NS" --arg data "$DATA" --arg key "$KEY_NAME" \
   '{jsonrpc:"2.0",id:4,method:"fibre.Submit",params:[$ns,$data,{key_name:$key}]}' \
-  | rpc > submit.json
-jq -e 'has("error") | not' submit.json
-jq -e '.result | (.height > 0) and (.tx_hash | length > 0) and (.blob_id | length > 0)' submit.json
-jq '.result | {blob_id,height,tx_hash}' submit.json > receipt.json
+  | rpc > submit.json &&
+jq -es '
+  length == 1 and (.[0] | type == "object" and
+    (has("error") | not) and (.result | type == "object" and
+      (.height | type == "number" and . > 0 and . == floor) and
+      (.tx_hash | type == "string" and length > 0) and
+      (.blob_id | type == "string" and length > 0)))
+' submit.json &&
+jq '.result | {blob_id,height,tx_hash}' submit.json > receipt.json &&
 cat receipt.json
 ```
 
-Stop if any command reports an error. On success, `Submit` has uploaded the
-shards, collected signatures and confirmed the payment transaction. Save all
-three receipt fields. For example, the validated small-blob run returned:
+Stop if any command reports an error or a validation prints `false`. The
+`&&` chains run each next command only after the previous command succeeds.
+The checks require exactly one JSON response with the expected result fields,
+including when the response is empty. A failed submission or validation leaves
+any existing `receipt.json` unchanged; do not use an old receipt for this attempt.
+An empty response or timeout does not prove that payment failed. Reconcile
+settlement as described below before retrying.
+
+On success, `Submit` has uploaded the shards, collected signatures and confirmed
+the payment transaction. Save all three receipt fields. For example, the
+validated small-blob run returned:
 
 ```json
 {
