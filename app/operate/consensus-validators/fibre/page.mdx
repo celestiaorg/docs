@@ -164,6 +164,22 @@ In `config/config.toml`, edit the top-level setting before the first section:
 priv_validator_grpc_laddr = "127.0.0.1:26669"
 ```
 
+<Callout type="warning">
+**Signer address compatibility:** In celestia-app builds that include
+[celestia-core #3379](https://github.com/celestiaorg/celestia-core/pull/3379),
+the hostname `localhost` no longer counts as loopback for
+`priv_validator_grpc_laddr`. Only loopback IP literals qualify. Before upgrading,
+replace `localhost:26669` with `127.0.0.1:26669` or `[::1]:26669` for a local
+plaintext signer, preserving your configured port. Update Fibre's
+`--signer-grpc-address` or `signer_grpc_address` to match, then restart both
+services. The node refuses to start with a hostname or non-loopback address
+unless mutual TLS is fully configured or `priv_validator_grpc_allow_insecure`
+is explicitly enabled. Use loopback IPs for local signing rather than bypassing
+the check; for remote signing, follow the
+[priv-validator mutual TLS guide](https://github.com/celestiaorg/celestia-core/blob/v0.42.3/docs/guides/privval-grpc-tls.md)
+and verify TLS support in your Fibre release.
+</Callout>
+
 Fresh v10 configs use `26669` to avoid a port clash with TMKMS. Existing
 configs may still have `26659`, a custom address, or an empty value, which
 disables the service. Replacing the binary does not rewrite the saved value.
@@ -179,8 +195,9 @@ Check service-manager flags for overrides. If deployment tooling manages the
 configuration, update its source templates too.
 
 <Callout type="warning">
-The application and signing connections are not TLS-protected. Keep them on
-loopback or a trusted private network. Make only Fibre's client port (default
+The connections shown here use plaintext. Keep the signing connection on a
+loopback IP and the application connection on loopback or a trusted private
+network. Make only Fibre's client port (default
 `7980`) publicly reachable; see [transport security](#transport-security-tls).
 </Callout>
 
@@ -272,8 +289,11 @@ rather than the address, the registered host can be an IP address or a DNS
 name. Restart Fibre after changing `--signer-grpc-address` so the certificate
 is endorsed with the right key.
 
-The application and signing connections are not encrypted. Keep them on
-loopback or a trusted private network, and expose only the client port. See the
+The application and signing connections shown here use plaintext. For remote
+signing, check the mutual TLS requirements in
+[Configure the signing connection](#configure-the-signing-connection).
+Keep the application connection on loopback or a trusted private network, and
+expose only the client port. See the
 [Fibre server specification](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/specs/src/fibre_server.md)
 for the endorsement scheme.
 

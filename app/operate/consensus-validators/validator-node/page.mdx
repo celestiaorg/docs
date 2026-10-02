@@ -86,6 +86,21 @@ You have successfully set up a bridge node that is syncing with the network.
 
 ## Run the validator node
 
+<Callout type="warning">
+**Fibre signer compatibility:** Before starting an upgraded celestia-app build
+that includes
+[celestia-core #3379](https://github.com/celestiaorg/celestia-core/pull/3379),
+check `priv_validator_grpc_laddr` in `config/config.toml` if you use the signing
+service. The hostname `localhost` no longer counts as loopback. For local
+plaintext signing, replace `localhost:26669` with `127.0.0.1:26669` or
+`[::1]:26669`, preserving your port, and update Fibre's signer address to match.
+Without mutual TLS or an explicit insecure override, a hostname or non-loopback
+address prevents the node from starting. Follow the
+[Fibre signing connection guide](/operate/consensus-validators/fibre#configure-the-signing-connection)
+for configuration and restart instructions. This check applies to the
+priv-validator signing service, not application gRPC in `app.toml`.
+</Callout>
+
 In order to create a validator on-chain, follow the steps below.
 
 1. Start the consensus node
