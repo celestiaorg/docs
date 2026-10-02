@@ -209,7 +209,13 @@ fibre start \
 Use your actual node addresses if different. On first start, Fibre creates
 `<fibre_home>/config/server_config.toml`. The corresponding keys are `app_grpc_address`,
 `signer_grpc_address`, and `server_listen_address`; command-line flags override
-the file. Check the startup log for the chain ID and connected addresses.
+the file. Fibre rejects unknown keys and tables instead of silently ignoring
+them. If startup reports an unknown field, correct or remove the reported
+setting before restarting.
+
+Check the startup log for the chain ID, connected addresses, and effective
+storage backend. When object storage is configured, the log also includes its
+canonical bucket, prefix, chain ID, and validator address.
 
 ### Connection limits
 
@@ -279,6 +285,7 @@ for the endorsement scheme.
 | Missing Fibre or valaddr services | Wait for app version 10 to activate before starting Fibre or registering. |
 | Application connection refused | Enable `[grpc]` in `app.toml`, restart the node, and check addresses and flag overrides. |
 | Signer connection failed | Match Fibre's signer address to `priv_validator_grpc_laddr`; check for a disabled value or a port conflict. |
+| Configuration decode error reports an unknown field | Correct or remove the reported key or table in `<fibre_home>/config/server_config.toml`, then restart Fibre. |
 | TLS identity verification failed | Check that the signing service holds your validator's consensus key, then restart Fibre after correcting the signer address. |
 | `derived storage budget is 0` warning | The app node reports no stake for your validator. Check that the validator is bonded and that `--app-grpc-address` points at a synced node on the right network. Fibre keeps running and re-derives the budget periodically. |
 | Server runs but no uploads arrive | Check that `query valaddr provider` finds your host, that the registered `host:port` is reachable from outside your network, and that the validator is bonded. Clients only dial registered, bonded validators. |
