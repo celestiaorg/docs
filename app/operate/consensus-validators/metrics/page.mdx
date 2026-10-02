@@ -90,9 +90,10 @@ scrape_configs:
 Note, that Prometheus by default runs its server on `:9090`.
 If you are running this on the same machine as your consensus
 node, it will collide with gRPC which runs on the same port.
-To avoid this, either switch off gRPC (if it's not needed),
-change the gRPC port in `app.toml`, or run Prometheus on a
-different port e.g. `--web.listen-address="0.0.0.0:8000"`
+To avoid this, change the gRPC port in `app.toml`, or run Prometheus on a
+different port, _e.g._ `--web.listen-address="0.0.0.0:8000"`.
+When `[api]` has `enable = true` in `app.toml`, `[grpc]` must also
+have `enable = true` because the REST API uses Cosmos SDK gRPC.
 
 To run the prometheus server:
 
