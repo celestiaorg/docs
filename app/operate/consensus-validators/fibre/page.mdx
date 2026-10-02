@@ -164,6 +164,20 @@ In `config/config.toml`, edit the top-level setting before the first section:
 priv_validator_grpc_laddr = "127.0.0.1:26669"
 ```
 
+> **Signer address compatibility:** In celestia-app builds that include
+> [celestia-core #3379](https://github.com/celestiaorg/celestia-core/pull/3379),
+> the hostname `localhost` no longer counts as loopback for
+> `priv_validator_grpc_laddr`. Only loopback IP literals qualify. Before upgrading,
+> replace `localhost:26669` with `127.0.0.1:26669` or `[::1]:26669` for a local
+> plaintext signer, preserving your configured port. Update Fibre's
+> `--signer-grpc-address` or `signer_grpc_address` to match, then restart both
+> services. The node refuses to start with a hostname or non-loopback address
+> unless mutual TLS is fully configured or `priv_validator_grpc_allow_insecure`
+> is explicitly enabled. Use loopback IPs for local signing rather than bypassing
+> the check; for remote signing, follow the
+> [mutual TLS setup](#connections-between-fibre-and-your-validator)
+> and use binaries with TLS support on both sides.
+
 Fresh v10 configs use `26669` to avoid a port clash with TMKMS. Existing
 configs may still have `26659`, a custom address, or an empty value, which
 disables the service. Replacing the binary does not rewrite the saved value.
@@ -179,9 +193,11 @@ Check service-manager flags for overrides. If deployment tooling manages the
 configuration, update its source templates too.
 
 <Callout type="warning">
-The application and signing connections are not TLS-protected. Keep them on
-loopback or a trusted private network. Make only Fibre's client port (default
-`7980`) publicly reachable; see [transport security](#transport-security-tls).
+The `127.0.0.1` addresses shown above allow unencrypted connections on the
+same host. If Fibre connects from another host or through a container network,
+configure [mutual TLS for the signing connection](#connections-between-fibre-and-your-validator).
+Keep the application and signing ports private. Open Fibre's client port
+(default `7980`) so clients can reach it.
 </Callout>
 
 ## Start after activation
@@ -230,6 +246,23 @@ max_concurrent_streams = 13
 Add either key if it is missing from an existing file, then restart Fibre for
 the change to take effect.
 
+### Switching shard storage backends
+
+Fibre can store blob shards locally or in S3-compatible object storage, such
+as Amazon S3 or Cloudflare R2. Changing `storage_backend` between `local` and
+`object` changes where new shards are stored. Existing shards stay on their
+original backend.
+
+**After switching back to `local`, keep access to object storage until pruning finishes.**
+Keep `[object_storage]` configured and
+preserve access to the same bucket and prefix with valid credentials until
+all object-stored shards have been pruned. Do not delete the retained objects
+or change the bucket or prefix while those shards remain.
+
+Fibre still needs the bucket to read and prune retained shards, even in local
+mode. Removing the object storage configuration or credentials prevents
+startup while those shards remain.
+
 ## Register the public address
 
 Once Fibre is running and reachable, register its public host using your
@@ -272,10 +305,54 @@ rather than the address, the registered host can be an IP address or a DNS
 name. Restart Fibre after changing `--signer-grpc-address` so the certificate
 is endorsed with the right key.
 
-The application and signing connections are not encrypted. Keep them on
-loopback or a trusted private network, and expose only the client port. See the
+### Connections between Fibre and your validator
+
+The default signing address, `127.0.0.1:26669`, allows unencrypted connections
+from the same host. No TLS certificates or extra flags are needed when Fibre
+connects to this address.
+
+For a remote signing connection, use binaries with mTLS support. The
+[`v10.4.0-mocha` release](https://github.com/celestiaorg/celestia-app/releases/tag/v10.4.0-mocha)
+includes this support in both celestia-app and Fibre. The `v10.2.0-mocha`
+release does not; keep its signing connection on `127.0.0.1`.
+
+If Fibre connects from another host or through a container network, configure
+mutual TLS (mTLS) on both sides. mTLS encrypts the connection and uses
+certificates to authenticate the node and Fibre. Without it, the node refuses
+to start with a signing address such as `0.0.0.0:26669`, and Fibre refuses to
+connect to a remote signer.
+
+Follow the [core privval TLS guide](https://github.com/celestiaorg/celestia-core/blob/main/docs/guides/privval-grpc-tls.md)
+to generate certificates and configure the node and Fibre. The server
+certificate must match the IP address or DNS name Fibre connects to. Restart
+both services after configuring or replacing certificates.
+
+On Fibre, set all three certificate flags together when running `fibre start`,
+or set their equivalent keys in `server_config.toml`:
+
+| Fibre flag | Configuration key | File |
+|---|---|---|
+| `--signer-grpc-ca-file` | `signer_grpc_ca_file` | CA certificate used to verify the node |
+| `--signer-grpc-cert-file` | `signer_grpc_cert_file` | Fibre's client certificate |
+| `--signer-grpc-key-file` | `signer_grpc_key_file` | Private key for Fibre's client certificate |
+
+These flags configure Fibre only; configure the node's certificates using
+the guide above as well.
+
+Keep the signing port on a private network and restrict access to the Fibre
+host. For local development only, `--privval-grpc-allow-insecure` on the node
+and `--signer-grpc-allow-insecure` on Fibre allow remote connections without
+TLS. Do not use these overrides in production: anyone who can reach the
+unprotected endpoint can request signatures from the validator key.
+
+These settings protect the signing connection only. The application gRPC
+connection shown in this guide is still unencrypted; keep it on the same host
+or a trusted private network. Fibre's automatic client TLS does not protect
+either connection.
+
+See the
 [Fibre server specification](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/specs/src/fibre_server.md)
-for the endorsement scheme.
+for details of how clients verify Fibre's certificate.
 
 ## Troubleshoot startup
 
