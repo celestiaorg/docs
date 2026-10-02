@@ -84,7 +84,11 @@ const versions = [
   'v0.30.2',
   'v0.31.3',
   'v0.31.4',
+  'v0.34.2-mocha',
 ].reverse();
+
+// Keep the general reference on its existing version; Mocha is selected explicitly.
+const defaultVersion = 'v0.31.4';
 
 export default function RPCDocumentation() {
   // Use shared dark mode hook
@@ -110,7 +114,7 @@ export default function RPCDocumentation() {
     active: false,
   });
 
-  const [selectedVersion, setSelectedVersion] = useState(versions[0]);
+  const [selectedVersion, setSelectedVersion] = useState(defaultVersion);
   const [searchTerm, setSearchTerm] = useState('');
 
   // Consolidated fetch function with loading and error handling
@@ -141,7 +145,7 @@ export default function RPCDocumentation() {
   useEffect(() => {
     // Read URL params on mount (client-only, avoids SSR hydration mismatch).
     const versionParam = new URLSearchParams(window.location.search).get('version');
-    const targetVersion = versionParam && versions.includes(versionParam) ? versionParam : versions[0];
+    const targetVersion = versionParam && versions.includes(versionParam) ? versionParam : defaultVersion;
 
     if (targetVersion !== selectedVersion) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
