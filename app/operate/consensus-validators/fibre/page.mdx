@@ -233,12 +233,11 @@ as Amazon S3 or Cloudflare R2. Changing `storage_backend` between `local` and
 `object` changes where new shards are stored. Existing shards stay on their
 original backend.
 
-<Callout type="warning">
-After switching back to `local`, keep `[object_storage]` configured and
+**After switching back to `local`, keep access to object storage until pruning finishes.**
+Keep `[object_storage]` configured and
 preserve access to the same bucket and prefix with valid credentials until
 all object-stored shards have been pruned. Do not delete the retained objects
 or change the bucket or prefix while those shards remain.
-</Callout>
 
 Fibre still needs the bucket to read and prune retained shards, even in local
 mode. Removing the object storage configuration or credentials prevents
