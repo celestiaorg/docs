@@ -179,11 +179,11 @@ Check service-manager flags for overrides. If deployment tooling manages the
 configuration, update its source templates too.
 
 <Callout type="warning">
-Run Fibre on the same server as your validator and keep the `127.0.0.1`
-addresses shown above. These connections are not encrypted and should not be
-publicly accessible. Open Fibre's client port (default `7980`) so clients can
-reach it. See [transport security](#transport-security-tls) before running
-Fibre on a separate server.
+The `127.0.0.1` addresses shown above allow unencrypted connections on the
+same host. If Fibre connects from another host or through a container network,
+configure [mutual TLS for the signing connection](#connections-between-fibre-and-your-validator).
+Keep the application and signing ports private. Open Fibre's client port
+(default `7980`) so clients can reach it.
 </Callout>
 
 ## Start after activation
@@ -270,26 +270,36 @@ is endorsed with the right key.
 
 ### Connections between Fibre and your validator
 
-**On the same server:** keep the `127.0.0.1` addresses used in this guide.
-Traffic to these addresses stays on that server. No extra TLS configuration
-is needed.
+The default signing address, `127.0.0.1:26669`, allows unencrypted connections
+from the same host. No TLS certificates or extra flags are needed when Fibre
+connects to this address.
 
-**On separate servers:** Fibre's automatic TLS does not protect its connections
-to your validator. Keep the same-server setup until you have configured and
-tested security for both the application and signing connections.
+For a remote signing connection, use binaries with mTLS support. The
+[`v10.4.0-mocha` release](https://github.com/celestiaorg/celestia-app/releases/tag/v10.4.0-mocha)
+includes this support in both celestia-app and Fibre. The `v10.2.0-mocha`
+release does not; keep its signing connection on `127.0.0.1`.
 
-celestia-core v0.42.2 adds a requirement for the signing connection: by default,
-the validator will not start if its signing service is accessible from another
-server without mutual TLS (mTLS). This uses certificates to encrypt the
-connection and authenticate both ends. A private network alone is not enough.
-See the [signing connection mTLS guide](https://github.com/celestiaorg/celestia-core/blob/v0.42.2/docs/guides/privval-grpc-tls.md)
-for the certificate settings. Your Fibre release must also support those
-settings.
+If Fibre connects from another host or through a container network, configure
+mutual TLS (mTLS) on both sides. mTLS encrypts the connection and uses
+certificates to authenticate the node and Fibre. Without it, the node refuses
+to start with a signing address such as `0.0.0.0:26669`, and Fibre refuses to
+connect to a remote signer.
 
-This requirement takes effect when you install a celestia-app binary that
-includes celestia-core v0.42.2. It was introduced after the Mocha v10.2.0
-release and is not a requirement of Mocha's v10 network activation. The
-same-server setup needs no changes in either case.
+Follow the [core privval TLS guide](https://github.com/celestiaorg/celestia-core/blob/main/docs/guides/privval-grpc-tls.md)
+to generate certificates and configure the node and Fibre. The server
+certificate must match the IP address or DNS name Fibre connects to. Restart
+both services after configuring or replacing certificates.
+
+Keep the signing port on a private network and restrict access to the Fibre
+host. For local development only, `--privval-grpc-allow-insecure` on the node
+and `--signer-grpc-allow-insecure` on Fibre allow remote connections without
+TLS. Do not use these overrides in production: anyone who can reach the
+unprotected endpoint can request signatures from the validator key.
+
+These settings protect the signing connection only. The application gRPC
+connection shown in this guide is still unencrypted; keep it on the same host
+or a trusted private network. Fibre's automatic client TLS does not protect
+either connection.
 
 See the
 [Fibre server specification](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/specs/src/fibre_server.md)
