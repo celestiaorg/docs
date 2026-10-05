@@ -246,6 +246,70 @@ max_concurrent_streams = 13
 Add either key if it is missing from an existing file, then restart Fibre for
 the change to take effect.
 
+### Object storage
+
+Fibre stores blob shards on local disk by default. To store them in
+S3-compatible object storage instead, such as Amazon S3 or Cloudflare R2, set
+the backend and bucket in `<fibre_home>/config/server_config.toml`:
+
+```toml
+storage_backend = "object"
+
+[object_storage]
+endpoint = "https://s3.us-east-1.amazonaws.com"
+region = "us-east-1"
+bucket = "<bucket_name>"
+prefix = "fibre"
+```
+
+Use your bucket's endpoint and region. For Cloudflare R2, use its S3 API
+endpoint and `region = "auto"`. Fibre's metadata database still needs
+persistent local storage.
+
+Fibre reads the bucket credentials from its environment through the standard
+AWS variables and refuses to start if none are found. There is no credentials
+field in the config file. To provide them to a systemd service:
+
+1. Create an access key in your storage provider with read, write, and delete
+   permissions on the bucket. On Amazon S3, create an IAM user with
+   `s3:GetObject`, `s3:PutObject`, `s3:DeleteObject`, and `s3:ListBucket` on
+   the bucket. On Cloudflare R2, create an API token with **Object Read &
+   Write** permission scoped to the bucket.
+
+2. Save the key in a file readable only by root:
+
+   ```bash
+   sudo mkdir -p /etc/fibre
+   sudo tee /etc/fibre/s3.env > /dev/null <<'EOT'
+   AWS_ACCESS_KEY_ID=<access_key_id>
+   AWS_SECRET_ACCESS_KEY=<secret_access_key>
+   EOT
+   sudo chmod 0600 /etc/fibre/s3.env
+   ```
+
+   If AWS gave you temporary credentials, add a third line with
+   `AWS_SESSION_TOKEN=<session_token>`.
+
+3. Point the Fibre service at the file. Run `sudo systemctl edit fibre.service`,
+   using your service name if it differs, and add:
+
+   ```ini
+   [Service]
+   EnvironmentFile=/etc/fibre/s3.env
+   ```
+
+4. Restart Fibre and confirm it started:
+
+   ```bash
+   sudo systemctl daemon-reload
+   sudo systemctl restart fibre.service
+   sudo systemctl status fibre.service
+   ```
+
+To rotate keys, update the file and restart Fibre. If the host already has
+credentials from an IAM role or the shared AWS credentials file, Fibre uses
+them and you can skip the environment file.
+
 ### Switching shard storage backends
 
 Fibre can store blob shards locally or in S3-compatible object storage, such
@@ -362,6 +426,7 @@ for details of how clients verify Fibre's certificate.
 | Missing Fibre or valaddr services | Wait for app version 10 to activate before starting Fibre or registering. |
 | Application connection refused | Enable `[grpc]` in `app.toml`, restart the node, and check addresses and flag overrides. |
 | Signer connection failed | Match Fibre's signer address to `priv_validator_grpc_laddr`; check for a disabled value or a port conflict. |
+| `loading object storage credentials` | The service did not receive the bucket key. Check the environment file and the `EnvironmentFile=` override in [Object storage](#object-storage), then restart Fibre. |
 | Configuration decode error reports an unknown field | Correct or remove the reported key or table in `<fibre_home>/config/server_config.toml`, then restart Fibre. |
 | TLS identity verification failed | Check that the signing service holds your validator's consensus key, then restart Fibre after correcting the signer address. |
 | `derived storage budget is 0` warning | The app node reports no stake for your validator. Check that the validator is bonded and that `--app-grpc-address` points at a synced node on the right network. Fibre keeps running and re-derives the budget periodically. |
