@@ -54,3 +54,16 @@ h6 {
 .celestia-steps > * {
   margin-top: 0;
 }
+
+.celestia-home-title {
+  margin: 0;
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.celestia-home-links {
+  width: 100%;
+  max-width: 56rem;
+  text-align: left;
+}
