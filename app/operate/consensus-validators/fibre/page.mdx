@@ -248,6 +248,16 @@ the change to take effect.
 
 ### Object storage
 
+<Callout type="warning">
+Object storage is supported in `v10.4.0-mocha`. The older `v10.2.0-mocha`
+binary ignores `storage_backend` and `[object_storage]` and continues writing
+shards to local disk. Check `fibre version` before continuing. If upgrading,
+follow the [release upgrade instructions](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
+to replace both celestia-app and Fibre, sync their configuration, and check
+[signer TLS compatibility](#connections-between-fibre-and-your-validator).
+Use the matching binaries from [Install Fibre](#install-fibre).
+</Callout>
+
 Fibre stores blob shards on local disk by default. To store them in
 S3-compatible object storage instead, such as Amazon S3 or Cloudflare R2, set
 the backend and bucket in `<fibre_home>/config/server_config.toml`:
