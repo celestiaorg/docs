@@ -10,8 +10,10 @@
     "start": "serve out",
     "lint": "eslint",
     "prepare": "simple-git-hooks",
+    "test:llms": "node --test scripts/clean-mdx.test.mjs && mkdir -p out && node scripts/generate-llms.js && python3 scripts/test-fibre-responses.py out/build/post-retrieve-blob/fibre.md",
     "generate:llms": "node scripts/generate-llms.js",
     "check-links": "node scripts/check-links.mjs",
+    "test:fibre": "python3 scripts/test-fibre-responses.py",
     "test:releases": "node --test scripts/latest-tags.test.mjs",
     "test:endpoints": "node --test scripts/check-endpoints.test.mjs"
   },

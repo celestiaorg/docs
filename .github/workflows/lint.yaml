@@ -33,6 +33,12 @@ jobs:
       - name: Test release selection
         run: npm run test:releases
 
+      - name: Test Fibre guide response handling
+        run: npm run test:fibre
+
+      - name: Test generated Markdown walkthrough
+        run: npm run test:llms
+
       - name: Run lint
         run: npm run lint
 
