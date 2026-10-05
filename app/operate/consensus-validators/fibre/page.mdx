@@ -346,7 +346,7 @@ access. To move the shards on purpose:
    unavailable. For example, with the AWS CLI:
 
    ```bash
-   aws s3 sync s3://<old_bucket>/<prefix> s3://<new_bucket>/<prefix>
+   aws s3 sync s3://<old_bucket>/<old_prefix> s3://<new_bucket>/<new_prefix>
    ```
 
 4. Set the new endpoint, bucket, or prefix in `[object_storage]` in
@@ -468,8 +468,7 @@ for details of how clients verify Fibre's certificate.
 | Missing Fibre or valaddr services | Wait for app version 10 to activate before starting Fibre or registering. |
 | Application connection refused | Enable `[grpc]` in `app.toml`, restart the node, and check addresses and flag overrides. |
 | Signer connection failed | Match Fibre's signer address to `priv_validator_grpc_laddr`; check for a disabled value or a port conflict. |
-| `loading object storage credentials` | The service did not receive the bucket key. Check the environment file and the `EnvironmentFile=` override in [Object storage](#object-storage), then restart Fibre. |
-| `object namespace mismatch` | The object endpoint, bucket, or prefix changed while object shards remain. Restore the previous values, or follow [Migrate to another bucket](#migrate-to-another-bucket). |
+| `object namespace mismatch` | The object endpoint, bucket, prefix, chain ID, or validator address changed while object shards remain. Restore the previous bucket settings and node connections, or follow [Migrate to another bucket](#migrate-to-another-bucket) when moving objects. |
 | Configuration decode error reports an unknown field | Correct or remove the reported key or table in `<fibre_home>/config/server_config.toml`, then restart Fibre. |
 | TLS identity verification failed | Check that the signing service holds your validator's consensus key, then restart Fibre after correcting the signer address. |
 | `derived storage budget is 0` warning | The app node reports no stake for your validator. Check that the validator is bonded and that `--app-grpc-address` points at a synced node on the right network. Fibre keeps running and re-derives the budget periodically. |
