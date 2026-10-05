@@ -282,7 +282,7 @@ access. To move the shards on purpose:
    unavailable. For example, with the AWS CLI:
 
    ```bash
-   aws s3 sync s3://<old_bucket>/<prefix> s3://<new_bucket>/<prefix>
+   aws s3 sync s3://<old_bucket>/<old_prefix> s3://<new_bucket>/<new_prefix>
    ```
 
 4. Set the new endpoint, bucket, or prefix in `[object_storage]` in
