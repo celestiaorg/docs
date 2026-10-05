@@ -2,9 +2,6 @@
 
 The Celestia Go client lets you submit and retrieve data from the Celestia network without running your own node. This tutorial shows you how to get started with the basics.
 
-For the native celestia-app Fibre client and its background upload configuration,
-see [Native Go client upload configuration](/build/post-retrieve-blob/fibre#native-go-client-upload-configuration).
-
 ## What you can do
 
 - **Submit blobs**: Store data on Celestia's data availability layer

@@ -288,35 +288,25 @@ length. The release's
 explains the charge. The observations below are test results, not permanent
 prices or performance guarantees. Budget escrow and transaction gas separately.
 
-### Native Go client upload configuration
+### Native Go client background uploads
 
-For native clients built from the code merged in
-[celestia-app #8034](https://github.com/celestiaorg/celestia-app/pull/8034),
-`fibre.DefaultClientConfig()` enables `DetachBackgroundUploads`. After
-`Client.Upload` collects the required voting-power quorum, it returns while
-uploads to the remaining validators continue. Cancelling the caller's context
-after that return does not cancel those background uploads. They remain bounded
-by `RPCTimeout` and retry limits. Cancelling before quorum still aborts the upload.
+> Unreleased: this option requires a native celestia-app Fibre client built
+> from code containing [#8034](https://github.com/celestiaorg/celestia-app/pull/8034).
+> It is unavailable in v10.4.0-mocha and the v10.2.0-mocha client used below.
 
-To make background uploads stop when the caller cancels its context, set the
-option before constructing the client:
+By default, `Client.Upload` returns once it has collected signatures from
+enough validator voting power. Remaining uploads continue even if the caller
+then cancels its context, subject to RPC timeouts and retry limits. Cancelling before that
+threshold still aborts the upload.
+
+To make cancellation stop the remaining uploads, configure the client with:
 
 ```go
 cfg := fibre.DefaultClientConfig()
 cfg.DetachBackgroundUploads = false
 ```
 
-Use `Client.Await()` to wait for outstanding operations to finish. Detaching
-background uploads does not wait for every validator's signature or confirm
-payment settlement.
-
-> Compatibility: #8034's title and description refer to `WaitForAllUploads`
-> and a five-second wait, but its
-> [merged implementation](https://github.com/celestiaorg/celestia-app/blob/e679726f4df4ac88f96919ee7cd802dbf1568e44/fibre/client_config.go)
-> exposes `DetachBackgroundUploads` instead. Neither field exists in
-> v10.4.0-mocha or the v10.2.0-mocha client used for the tests below. This
-> configuration applies to the native celestia-app Fibre client, not the
-> celestia-node Go transaction client or a JSON-RPC request option.
+Use `Client.Await()` to wait for outstanding operations to finish.
 
 ### Verified Mocha results
 
