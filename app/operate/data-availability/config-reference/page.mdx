@@ -33,6 +33,37 @@ By default, `Remote = false`. Still for devnet, we are going
 to use the remote consensus node option and this can also be set
 by the command line flag `--core.remote`.
 
+### IPv6 literal endpoints
+
+IPv6 literal endpoints are supported in
+[celestia-node v0.33.2](https://github.com/celestiaorg/celestia-node/releases/tag/v0.33.2)
+and v0.34.2-mocha. Earlier releases may reject or incorrectly parse IPv6
+addresses; use a supported [release for your network](/operate/networks/overview).
+
+In your node's `config.toml`, keep the IPv6 address and port in separate fields.
+For a consensus endpoint and node RPC server on the same machine:
+
+```toml
+[Core]
+  IP = "::1"
+  Port = "9090"
+
+[RPC]
+  Address = "::1"
+  Port = "26658"
+```
+
+Edit the existing sections and restart the node to apply the changes.
+`::1` is IPv6 loopback; the consensus service must listen on that address and
+port. The equivalent Core CLI flags are `--core.ip=::1 --core.port=9090`.
+The `IP` field in each `[[Core.AdditionalCoreEndpoints]]` entry also accepts
+an IPv6 literal, with its port in the separate `Port` field.
+
+When an address includes a port in a URL, put brackets around the IPv6 literal:
+`http://[::1]:26658`. The node constructs RPC client URLs with these brackets
+automatically. This support is for literal IPv6 addresses; it does not change
+hostname resolution to use IPv6.
+
 ### RPC
 
 Starting with celestia-node v0.31.3, the RPC server supports optional per-IP
