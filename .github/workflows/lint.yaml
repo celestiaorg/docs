@@ -33,6 +33,15 @@ jobs:
       - name: Check types
         run: bun run typecheck
 
+      - name: Test release selection
+        run: bun run test:releases
+
+      - name: Test Fibre guide response handling
+        run: bun run test:fibre
+
+      - name: Test generated Markdown walkthrough
+        run: bun run test:llms
+
       - name: Run lint
         run: bun run lint
 

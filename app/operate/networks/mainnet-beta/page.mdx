@@ -125,15 +125,15 @@ history, such as:
 
 | Provider  | URL                                                                                       |
 | --------- | ----------------------------------------------------------------------------------------- |
-| QuickNode | [https://www.quicknode.com/chains/celestia](https://www.quicknode.com/chains/celestia) ([docs](https://quicknode.com/docs/celestia)) |
+| Quicknode | [https://www.quicknode.com/chains/celestia](https://www.quicknode.com/chains/celestia) ([docs](https://quicknode.com/docs/celestia)) |
 
-If you are using QuickNode or another provider with authenticated endpoints,
+If you are using Quicknode or another provider with authenticated endpoints,
 see [the light node guide](/operate/data-availability/light-node/advanced#optional-start-light-node-with-consensus-endpoint-authentication)
 to learn how to use an endpoint with x-token.
 
 ### Public RPC endpoint
 
-For development, testing, and documentation examples, use the public QuickNode
+For development, testing, and documentation examples, use the public Quicknode
 endpoint:
 
 | Interface | Endpoint |
@@ -166,6 +166,7 @@ The following table lists community-provided consensus node endpoints that you c
 | --------------- | --------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------------------- |
 | AlphaB          | `rpc-celestia.alphab.ai`               | `api-celestia.alphab.ai`               | `rpc-celestia.alphab.ai:9090`             | -                                                        |
 | CitizenWeb3     | `rpc.celestia.citizenweb3.com`          | `api.celestia.citizenweb3.com`          | `grpc.celestia.citizenweb3.com:443`       | -                                                        |
+| Cumulo          | `celestia.cumulo.org.es`                | `celestia.api.cumulo.org.es`            | `celestia.grpc.cumulo.org.es:443`         | `wss://celestia.cumulo.org.es/websocket`                 |
 | ITRocket        | `celestia-mainnet-rpc.itrocket.net:443` | `celestia-mainnet-api.itrocket.net:443` | `celestia-mainnet-grpc.itrocket.net:443`  | -                                                        |
 | kjnodes         | `celestia.rpc.kjnodes.com`              | `celestia.api.kjnodes.com`              | `celestia.grpc.kjnodes.com:443`           | -                                                        |
 | lunaroasis      | `rpc.lunaroasis.net`                    | -                                       | `grpc.lunaroasis.net:443`                 | -                                                        |
@@ -194,7 +195,7 @@ endpoints from the [community consensus endpoints](#community-consensus-endpoint
 table above. The default port is 9090, where gRPC is used for both block sync
 and state access.
 
-For example, to connect to the public QuickNode endpoint:
+For example, to connect to the public Quicknode endpoint:
 
 ```bash
 celestia light start \
@@ -220,7 +221,7 @@ pruning any data so all data available data is retrievable. You can
 
 | Provider                         | Endpoint                                                                                  | RPC Port | Gateway Port |
 | -------------------------------- | ----------------------------------------------------------------------------------------- | -------- | ------------ |
-| QuickNode                        | [https://www.quicknode.com/chains/celestia](https://www.quicknode.com/chains/celestia) ([docs](https://quicknode.com/docs/celestia)) | -        | -            |
+| Quicknode                        | [https://www.quicknode.com/chains/celestia](https://www.quicknode.com/chains/celestia) ([docs](https://quicknode.com/docs/celestia)) | -        | -            |
 | Mzonder                          | `celestia-da-full-storage.mzonder.com`                                                    | 27758    | 27759        |
 | Noders Services                  | `celestia-archive-da.noders.services`                                                     | 26658    | 26659        |
 | ITRocket                         | `celestia-mainnet-da-full-storage.itrocket.net`                                           | 26658    | 26659        |
@@ -249,6 +250,11 @@ To check the current status, uptime, and health of all community endpoints, visi
 - Last seen heights for each endpoint
 
 This is an essential resource when selecting endpoints for your nodes or applications.
+
+For a multi-region view of public consensus RPC endpoints, use
+[Cumulo's check_d Endpoint Scan](https://cumulo.pro/services/celestia/rpcscan.php).
+It shows endpoint health, block height, historical reliability, and response
+latency from probes in the United States, Europe, Canada, and Singapore.
 
 ## Analytics
 

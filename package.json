@@ -18,7 +18,10 @@
     "test:mcp": "node --test worker/index.test.js",
     "typecheck": "tsc --noEmit",
     "test:static": "node scripts/check-static-export.mjs",
-    "test:cloudflare": "node --test scripts/cloudflare-target.test.mjs && node scripts/check-cloudflare-artifact.mjs"
+    "test:cloudflare": "node --test scripts/cloudflare-target.test.mjs && node scripts/check-cloudflare-artifact.mjs",
+    "test:llms": "node --test scripts/clean-mdx.test.mjs && mkdir -p out/public && node scripts/generate-llms.js && python3 scripts/test-fibre-responses.py out/public/build/post-retrieve-blob/fibre.md",
+    "test:fibre": "python3 scripts/test-fibre-responses.py",
+    "test:releases": "node --test scripts/latest-tags.test.mjs"
   },
   "simple-git-hooks": {
     "pre-push": "bun run lint"
@@ -28,7 +31,7 @@
     "@heroicons/react": "^2.2.0",
     "@monaco-editor/react": "^4.7.0",
     "@open-rpc/client-js": "^2.0.0",
-    "axios": "^1.18.0",
+    "axios": "^1.20.0",
     "react": "19.2.4",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "19.2.4",

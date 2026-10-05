@@ -436,6 +436,29 @@ serve requests for the data availability API.
 If you're running a bridge node that connects to your consensus node, ensure that gRPC is properly configured in your `app.toml` file. Bridge nodes require gRPC access (typically on port 9090) to communicate with the consensus layer.
 </Callout>
 
+The Cosmos SDK REST API also requires application gRPC. If you enable
+`[api]` with `enable = true` in `config/app.toml`, keep `enable = true`
+in the existing `[grpc]` section. The equivalent CLI flags are
+`--api.enable=true --grpc.enable=true`. The `rpc.grpc_laddr` setting in
+`config.toml` configures a separate service and does not satisfy this
+dependency.
+
+#### Configure heavy RPC concurrency
+
+Memory-intensive RPC endpoints share a process-wide concurrency limit across
+HTTP, WebSocket and gRPC. The default limit is `20` concurrent requests. Set it
+under `[rpc]` in `config.toml`:
+
+```toml
+[rpc]
+max_concurrent_heavy_requests = 20
+```
+
+A value of `0` selects the built-in default of `20`. A negative value disables
+the limit, which is not recommended. Increasing the limit can increase peak
+memory consumption. Only raise it when the node has sufficient RAM, and monitor
+node memory usage under RPC load.
+
 #### Expose RPC
 
 By default, the RPC service listens on `localhost` which means it can't
