@@ -303,8 +303,10 @@ settlement and verified downloaded bytes against the original payload and hash.
 The maximum-size run's SHA-256 was
 `53a0a70e69fac696d73438aada6cfa989c5a36c90c3164525f262fed2775721f`.
 Its blob ID was `AJ+0/lcm8YgL/06EFKHMnnMaQfJp/ChDQskMk7rkd8FQ`;
-the [Tensile record](https://tensile.huginn.tech/blob/?hash=481498948d4e9ee30ad214ab22d1d2005c7c218e9db95dabfd5b4e42d5e88a95)
-uses the payment promise hash instead. The native test trusted the selected
+the [Tensile record](https://tensile.huginn.tech/blob/?tx=ADD4C5190131D0AFB55AF3341B347700B2ADEC2B128FAF3C7CA06495852C5C16)
+links to the settlement transaction. Tensile accepts transaction hashes, blob IDs
+(base64 or hexadecimal), and payment promise hashes. If an identifier matches
+multiple records, it shows all matches. The native test trusted the selected
 core endpoint for validator state; the light-node path uses locally verified
 headers.
 

@@ -16,6 +16,13 @@ parser.add_argument('--reproduce-original', action='store_true')
 args = parser.parse_args()
 source = args.page.read_text()
 blocks = re.findall(r'```bash\n(.*?)\n```', source, re.S)
+# Check every published shell block, including authentication and setup.
+for index, block in enumerate(blocks):
+    syntax = subprocess.run(['bash', '-n'], input=block, text=True, capture_output=True)
+    assert syntax.returncode == 0, (index, syntax.stderr)
+for name in ['FIBRE_HOME', 'NODE_RPC', 'KEY_NAME', 'AUTH_TOKEN', 'SIGNER']:
+    assert re.search(rf'^export {name}=', source, re.M), f'Missing export: {name}'
+assert 'restart the node after funding' in source, 'Missing funding restart warning'
 rpc = next(b[b.index('rpc() {'):] for b in blocks if 'rpc() {' in b)
 setup = 'set -o pipefail\n' if 'set -o pipefail' in source else ''
 mock = '''
