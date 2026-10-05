@@ -249,9 +249,10 @@ the change to take effect.
 ### Switching shard storage backends
 
 Fibre can store blob shards locally or in S3-compatible object storage, such
-as Amazon S3 or Cloudflare R2. Changing `storage_backend` between `local` and
-`object` changes where new shards are stored. Existing shards stay on their
-original backend.
+as Amazon S3 or Cloudflare R2. Create the bucket in the same region as the
+Fibre host. A bucket in another region adds latency to every upload and
+download. Changing `storage_backend` between `local` and `object` changes
+where new shards are stored. Existing shards stay on their original backend.
 
 **After switching back to `local`, keep access to object storage until pruning finishes.**
 Keep `[object_storage]` configured and
@@ -262,6 +263,47 @@ or change the bucket or prefix while those shards remain.
 Fibre still needs the bucket to read and prune retained shards, even in local
 mode. Removing the object storage configuration or credentials prevents
 startup while those shards remain.
+
+### Migrate to another bucket
+
+At startup, Fibre records the object endpoint, bucket, prefix, chain ID, and
+validator address it uses. While object shards remain, starting with a
+different endpoint, bucket, or prefix fails with `object namespace mismatch`,
+in either storage mode. This stops retained shards from becoming unreachable
+by accident. If it happens, restore the previous configuration to recover
+access. To move the shards on purpose:
+
+1. Stop Fibre, so no new shards are written to the old bucket during the copy.
+
+2. Create the new bucket in the same region as the Fibre host.
+
+3. Copy every object under the old prefix to the new bucket with the same key
+   layout. Fibre looks shards up by key, so a different layout makes them
+   unavailable. For example, with the AWS CLI:
+
+   ```bash
+   aws s3 sync s3://<old_bucket>/<prefix> s3://<new_bucket>/<prefix>
+   ```
+
+4. Set the new endpoint, bucket, or prefix in `[object_storage]` in
+   `<fibre_home>/config/server_config.toml`. If the new bucket uses different
+   keys, update Fibre's credentials too.
+
+5. Start Fibre once with `--override-object-namespace` added to your usual
+   start command. Fibre logs the old and new namespaces and records the new
+   one. The flag does not copy or verify objects, so an override before the
+   copy is complete makes shards unavailable and leaves orphaned objects after
+   pruning.
+
+6. Remove the flag and restart Fibre. The flag is not saved in the config
+   file. Leaving it in the start command would accept any future mismatch
+   without protection.
+
+7. Once Fibre serves from the new bucket, delete the old bucket and revoke its
+   credentials.
+
+After all object shards are pruned, changing the bucket or prefix needs no
+override.
 
 ## Register the public address
 
@@ -362,6 +404,7 @@ for details of how clients verify Fibre's certificate.
 | Missing Fibre or valaddr services | Wait for app version 10 to activate before starting Fibre or registering. |
 | Application connection refused | Enable `[grpc]` in `app.toml`, restart the node, and check addresses and flag overrides. |
 | Signer connection failed | Match Fibre's signer address to `priv_validator_grpc_laddr`; check for a disabled value or a port conflict. |
+| `object namespace mismatch` | The object endpoint, bucket, or prefix changed while object shards remain. Restore the previous values, or follow [Migrate to another bucket](#migrate-to-another-bucket). |
 | Configuration decode error reports an unknown field | Correct or remove the reported key or table in `<fibre_home>/config/server_config.toml`, then restart Fibre. |
 | TLS identity verification failed | Check that the signing service holds your validator's consensus key, then restart Fibre after correcting the signer address. |
 | `derived storage budget is 0` warning | The app node reports no stake for your validator. Check that the validator is bonded and that `--app-grpc-address` points at a synced node on the right network. Fibre keeps running and re-derives the budget periodically. |
