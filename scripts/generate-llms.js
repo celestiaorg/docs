@@ -4,6 +4,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
 import { createHash } from 'crypto';
+import { cleanMdxForMarkdown } from './lib/clean-mdx.mjs';
 
 const SITE_ORIGIN = 'https://docs.celestia.org';
 const GITHUB_REPO = 'https://github.com/celestiaorg/docs';
@@ -124,32 +125,9 @@ function replaceVariables(text) {
   return text;
 }
 
-// Helper function to clean MDX content for LLM consumption
+// Resolve documentation constants even inside preserved code fences.
 function cleanMdxContent(content) {
-  // Remove frontmatter if present (between --- markers)
-  // Frontmatter is not standard Markdown and could be confusing for LLMs
-  let cleanedContent = content.replace(/^---\s*\n[\s\S]*?\n---\s*\n/, '');
-
-  // Remove import statements
-  cleanedContent = cleanedContent.replace(/^import\s+.*?from\s+['"].*?['"];?\s*$/gm, '');
-
-  // Remove export statements (except export default)
-  cleanedContent = cleanedContent.replace(/^export\s+(?!default).*?;?\s*$/gm, '');
-
-  // Remove JSX/React components (custom components starting with capital letters)
-  cleanedContent = cleanedContent.replace(/<([A-Z][a-zA-Z0-9]*)\s*[^>]*\/>/g, ''); // Self-closing components
-  cleanedContent = cleanedContent.replace(/<([A-Z][a-zA-Z0-9]*)[^>]*>[\s\S]*?<\/\1>/g, ''); // Component blocks
-
-  // Remove MDX-specific syntax like {/* comments */}
-  cleanedContent = cleanedContent.replace(/\{\/\*[\s\S]*?\*\/\}/g, '');
-
-  // Replace variables AFTER removing imports but BEFORE final cleanup
-  cleanedContent = replaceVariables(cleanedContent);
-
-  // Clean up extra whitespace
-  cleanedContent = cleanedContent.replace(/\n{3,}/g, '\n\n');
-
-  return cleanedContent.trim();
+  return replaceVariables(cleanMdxForMarkdown(content));
 }
 
 const header = [

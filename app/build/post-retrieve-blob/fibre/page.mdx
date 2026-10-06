@@ -1,0 +1,364 @@
+---
+description: Deposit testnet TIA into Fibre escrow, submit a blob on Mocha, and download and verify its bytes.
+---
+
+import { Callout } from 'nextra/components'
+
+# Submit and retrieve a Fibre blob on Mocha
+
+Fibre stores blob shards on validator-operated servers and settles payment
+on-chain with `MsgPayForFibre`. This walkthrough deposits testnet TIA into
+escrow, submits a namespaced payload, waits for settlement, and downloads the
+original bytes.
+
+Use `fibre.Submit` for this first test: it waits for transaction confirmation.
+Fibre is separate from the [blob/transaction client flow](/build/post-retrieve-blob/overview)
+that uses `blob.Submit` and PayForBlob. Fibre retrieval uses a `blob_id`, rather
+than the height, namespace and commitment tuple used by `blob.Get`.
+
+## Prepare a Mocha node
+
+You need:
+
+- A Mocha light or bridge node with Fibre support. The examples use
+  celestia-node `{{mochaVersions['node-latest-tag']}}` and a core endpoint running
+  celestia-app `{{mochaVersions['app-latest-tag']}}` on `{{constants['mochaChainId']}}`.
+  Follow [Install celestia-node](/operate/data-availability/install-celestia-node).
+- Bash, `curl`, `jq` and Python 3 for the commands below.
+- A local signer funded with Mocha testnet TIA.
+- Enough reachable Fibre providers to collect signatures representing the
+  required two-thirds of voting power. Check the
+  [Mocha Fibre dashboard](https://testnet.celestia.valopers.com/fibre).
+  App v10 activation alone does not establish provider readiness.
+
+Check `celestia version` before starting. Older node releases without the
+`fibre` API cannot run these requests. The
+[released Node API reference](/build/rpc/node-api)
+covers these methods when you select `{{apiVersions['mocha']}}`.
+Select the specification that matches your node version.
+
+If you already have a synced Mocha light or bridge node with a Fibre-capable
+core endpoint, use its store, key and RPC address. Otherwise, initialise a
+separate light-node store:
+
+```bash
+export FIBRE_HOME="$HOME/.celestia-fibre-mocha-guide"
+celestia light init --p2p.network mocha --node.store "$FIBRE_HOME"
+```
+
+Initialisation creates a signer. Keep the recovery phrase private. If another
+node is running on this machine, stop it or configure different P2P listen
+ports before starting this node. For faster initial sync, see
+[Syncing from a trusted hash](/operate/maintenance/trusted-hash-recovery), including
+its checkpoint trust assumption.
+
+Start the node in one terminal and leave it running:
+
+```bash
+celestia light start --p2p.network mocha --node.store "$FIBRE_HOME" \
+  --core.ip {{constants['mochaFibreCoreHost']}} \
+  --core.port {{constants['mochaFibreCorePort']}} --core.tls \
+  --rpc.addr 127.0.0.1 --rpc.port 27658
+```
+
+This core endpoint is a public community service and may rate-limit requests.
+For repeated or large tests, use your own Fibre-capable core endpoint or a
+provider with suitable limits. Fibre discovers validator upload/download hosts
+from the network; the core address is not a Fibre storage server address.
+
+## Fund the signer and authenticate
+
+In a second Bash terminal, enable pipeline failure reporting and set the same
+store and local RPC address:
+
+```bash
+set -o pipefail
+export FIBRE_HOME="$HOME/.celestia-fibre-mocha-guide"
+export NODE_RPC=http://127.0.0.1:27658
+export KEY_NAME=my_celes_key
+
+celestia state account-address --node.store "$FIBRE_HOME" --url "$NODE_RPC"
+```
+
+Fund the returned address using the [Mocha faucet](https://mocha.celenium.io/faucet).
+Check the wallet balance:
+
+```bash
+celestia state balance --node.store "$FIBRE_HOME" --url "$NODE_RPC"
+```
+
+<Callout type="warning">
+With celestia-node v0.34.2-mocha, restart the node after funding a signer that
+was unfunded when the node started. Otherwise, `fibre.Deposit` can panic during
+gas estimation. Stop the node with Ctrl+C in the first terminal, then run the
+same start command again.
+</Callout>
+
+Wait for header sync to catch up before submitting:
+
+```bash
+celestia header sync-state --node.store "$FIBRE_HOME" --url "$NODE_RPC"
+```
+
+Check that the reported `height` has reached `to_height` and the initial sync
+has a non-zero `end` timestamp. The node should continue following new headers.
+
+Generate a token that permits writes. It also permits the read calls used here:
+
+```bash
+export AUTH_TOKEN=$(celestia light auth write \
+  --p2p.network mocha --node.store "$FIBRE_HOME")
+export SIGNER=$(celestia state account-address \
+  --node.store "$FIBRE_HOME" --url "$NODE_RPC" | jq -er '.result')
+
+rpc() {
+  curl --fail-with-body --silent --show-error \
+    --connect-timeout 10 --max-time 180 \
+    -H "Authorization: Bearer $AUTH_TOKEN" \
+    -H 'Content-Type: application/json' \
+    --data-binary @- "$NODE_RPC"
+}
+```
+
+The examples select `my_celes_key`, the default key created by initialisation.
+To use another key, start the node with `--keyring.keyname <key_name>` and set
+`KEY_NAME` to that name. `SIGNER` must be that key's public address. The key must
+exist in this node's keyring; an address alone does not give the node signing
+access. See [Node key management](/operate/keys-wallets/celestia-node-key).
+
+## Query and deposit escrow
+
+Wallet funds pay transaction gas. Fibre escrow pays for blob storage. Keep
+some TIA in the wallet when depositing; escrow cannot pay transaction gas.
+Amounts use `utia`, where 1 TIA is 1,000,000 utia.
+
+Query this signer's escrow:
+
+```bash
+jq -nc --arg signer "$SIGNER" \
+  '{jsonrpc:"2.0",id:1,method:"fibre.QueryEscrowAccount",params:[$signer]}' | rpc
+```
+
+For a new signer, `escrow account not found for signer` is expected. Deposit
+2 testnet TIA for the small example below, after confirming the wallet holds
+more than 2 TIA:
+
+```bash
+jq -nc --arg key "$KEY_NAME" \
+  '{jsonrpc:"2.0",id:2,method:"fibre.Deposit",
+    params:[{denom:"utia",amount:"2000000"},{key_name:$key}]}' \
+  | rpc > deposit.json &&
+jq -es '
+  length == 1 and (.[0] | type == "object" and
+    (has("error") | not) and has("result") and .result == null)
+' deposit.json
+```
+
+Success returns `{"jsonrpc":"2.0","id":2,"result":null}`, not a transaction
+receipt. Query escrow again and confirm the deposit before proceeding:
+
+```bash
+jq -nc --arg signer "$SIGNER" \
+  '{jsonrpc:"2.0",id:3,method:"fibre.QueryEscrowAccount",params:[$signer]}' \
+  | rpc > escrow.json &&
+jq -es '
+  length == 1 and (.[0] | type == "object" and
+    (has("error") | not) and (.result | type == "object" and
+      (.available_balance | type == "object" and .denom == "utia" and
+        (.amount | type == "string" and test("^[0-9]+$")))))
+' escrow.json &&
+jq '.result.available_balance' escrow.json
+```
+
+A newly deposited account has these balance fields:
+
+```json
+{
+  "balance": {"denom": "utia", "amount": "2000000"},
+  "available_balance": {"denom": "utia", "amount": "2000000"}
+}
+```
+
+These are fields inside `result`, alongside `signer`. Pending withdrawals
+reduce `available_balance` before they reduce the total `balance`.
+
+## Submit and save the receipt
+
+Both the full 29-byte namespace and the payload are base64 strings in JSON.
+Create a version-0 namespace with the ID `fibre-demo` and a small file:
+
+```bash
+printf 'Hello, Fibre!\n' > original.bin
+NS=$(python3 -c 'import base64; print(base64.b64encode(bytes(19)+b"fibre-demo").decode())')
+DATA=$(python3 -c 'import base64; print(base64.b64encode(open("original.bin","rb").read()).decode())')
+
+jq -nc --arg ns "$NS" --arg data "$DATA" --arg key "$KEY_NAME" \
+  '{jsonrpc:"2.0",id:4,method:"fibre.Submit",params:[$ns,$data,{key_name:$key}]}' \
+  | rpc > submit.json &&
+jq -es '
+  length == 1 and (.[0] | type == "object" and
+    (has("error") | not) and (.result | type == "object" and
+      (.height | type == "number" and . > 0 and . == floor) and
+      (.tx_hash | type == "string" and length > 0) and
+      (.blob_id | type == "string" and length > 0)))
+' submit.json &&
+jq '.result | {blob_id,height,tx_hash}' submit.json > receipt.json &&
+cat receipt.json
+```
+
+Stop if any command reports an error or a validation prints `false`. The
+`&&` chains run each next command only after the previous command succeeds.
+The checks require exactly one JSON response with the expected result fields,
+including when the response is empty. A failed submission or validation leaves
+any existing `receipt.json` unchanged; do not use an old receipt for this attempt.
+An empty response or timeout does not prove that payment failed. Reconcile
+settlement as described below before retrying.
+
+On success, `Submit` has uploaded the shards, collected signatures and confirmed
+the payment transaction. Save all three receipt fields. For example, the
+validated small-blob run returned:
+
+```json
+{
+  "blob_id": "AMGy8xgg3+lxgxQxMedurPYBoj8Q9V1eZWH05AEyeNTk",
+  "height": 1111896,
+  "tx_hash": "26E4B81DC2E88F41301F89FD36B7852B049653CFC7F03DF7153AEBDA5F3F49BE"
+}
+```
+
+Your transaction hash and height will differ. The full response also contains
+`validator_signatures` and `payment_promise`. Download your own freshly
+submitted blob rather than relying on the historical example remaining stored.
+
+## Download and verify the bytes
+
+Pass the returned `blob_id` unchanged. In JSON-RPC it is base64, whereas the
+native Go client's `BlobID.String()` prints hexadecimal. A payment promise
+hash shown by an explorer is a separate identifier, not the download blob ID.
+
+```bash
+BLOB_ID=$(jq -er '.blob_id' receipt.json)
+jq -nc --arg id "$BLOB_ID" \
+  '{jsonrpc:"2.0",id:5,method:"fibre.Download",params:[$id]}' \
+  | rpc > download.json
+
+python3 - <<'PY'
+import base64, hashlib, json
+response = json.load(open('download.json'))
+if 'error' in response:
+    raise SystemExit(response['error'])
+data = base64.b64decode(response['result']['data'], validate=True)
+if data != open('original.bin', 'rb').read():
+    raise SystemExit('Downloaded bytes differ from original')
+open('downloaded.bin', 'wb').write(data)
+print('Verified identical bytes; SHA-256:', hashlib.sha256(data).hexdigest())
+PY
+```
+
+The response's `result` is `{"data":"SGVsbG8sIEZpYnJlIQo="}` for this payload.
+The expected SHA-256 is:
+
+```text
+f0e7fdccb71e36e867930a1f6f0b55bf5cdb5d0d8eca369a8675a7c1cec64cba
+```
+
+## Larger blobs and the native client
+
+There are two different size limits in the tested releases:
+
+| Path | Limit |
+|---|---|
+| Fibre version-0 payload | 128 MiB minus the 5-byte header: 134,217,723 bytes |
+| Node HTTP JSON-RPC request | 16 MiB including JSON and base64, leaving slightly less than 12 MiB for payload |
+
+The [node RPC server](https://github.com/celestiaorg/celestia-node/blob/v0.34.2-mocha/api/rpc/server.go)
+limits the request body independently of the
+[Fibre protocol](https://github.com/celestiaorg/celestia-app/blob/v10.2.0-mocha/fibre/protocol_params.go).
+For larger blobs, use the native celestia-app
+[Fibre client](https://github.com/celestiaorg/celestia-app/blob/v10.2.0-mocha/fibre/client.go).
+Its upload sends shards directly to validators; only the payment transaction
+goes through core. See
+[`fibre.Put`](https://github.com/celestiaorg/celestia-app/blob/v10.2.0-mocha/fibre/client_put.go)
+for a combined upload/settlement example and
+[`tools/fibre-txsim`](https://github.com/celestiaorg/celestia-app/blob/v10.2.0-mocha/tools/fibre-txsim/main.go)
+for the separate upload, transaction and download steps.
+
+Storage charges use the encoded, padded size, not just the original file's
+length. The release's
+[payment calculation](https://github.com/celestiaorg/celestia-app/blob/v10.2.0-mocha/x/fibre/types/gas.go)
+explains the charge. The observations below are test results, not permanent
+prices or performance guarantees. Budget escrow and transaction gas separately.
+
+### Verified Mocha results
+
+Tests on 25 September 2026 used celestia-node v0.34.2-mocha for JSON-RPC and
+celestia-app v10.2.0-mocha for the native client. Each successful run confirmed
+settlement and verified downloaded bytes against the original payload and hash.
+
+| Payload | Path | Settlement height | Escrow charge, excluding gas |
+|---|---|---|---|
+| 14 bytes | JSON-RPC | [1,111,896](https://testnet.celestia.valopers.com/transactions/26E4B81DC2E88F41301F89FD36B7852B049653CFC7F03DF7153AEBDA5F3F49BE) | 0.695 testnet TIA |
+| 10 MiB | JSON-RPC | [1,112,086](https://testnet.celestia.valopers.com/transactions/B937331E897D90D6B50AD6F7630AF681F970D2577D1D3463A067F1D386A8832C) | 2.495 testnet TIA |
+| 128 MiB minus 5 bytes | Native Go | [1,113,071](https://testnet.celestia.valopers.com/transactions/ADD4C5190131D0AFB55AF3341B347700B2ADEC2B128FAF3C7CA06495852C5C16) | 23.69 testnet TIA |
+
+The maximum-size run's SHA-256 was
+`53a0a70e69fac696d73438aada6cfa989c5a36c90c3164525f262fed2775721f`.
+Its blob ID was `AJ+0/lcm8YgL/06EFKHMnnMaQfJp/ChDQskMk7rkd8FQ`;
+the [Tensile record](https://tensile.huginn.tech/blob/?tx=ADD4C5190131D0AFB55AF3341B347700B2ADEC2B128FAF3C7CA06495852C5C16)
+links to the settlement transaction. Tensile accepts transaction hashes, blob IDs
+(base64 or hexadecimal), and payment promise hashes. If an identifier matches
+multiple records, it shows all matches. The native test trusted the selected
+core endpoint for validator state; the light-node path uses locally verified
+headers.
+
+## Retention and withdrawals
+
+Fibre storage is time-limited. Query current Mocha parameters before planning
+retention or a withdrawal:
+
+```bash
+curl --fail --silent --show-error \
+  {{constants['mochaFibreRestUrl']}}/fibre/v1/params | jq '.params'
+```
+
+`shard_retention` determines the minimum shard-retention period;
+`payment_promise_timeout` bounds the settlement promise. Keep your own copy of
+the data: a confirmed payment is not a permanent storage guarantee.
+
+`fibre.Withdraw` requests a withdrawal, reducing available escrow. The chain
+processes it after `withdrawal_delay`; it is not an immediate wallet transfer.
+Use `fibre.PendingWithdrawals` with the signer's address to inspect the amount
+and `available_timestamp`. Do not reuse escrow committed to outstanding payment
+promises, including uploads whose settlement outcome is still unknown.
+
+## Asynchronous uploads and recovery
+
+`fibre.Upload` returns after upload and starts settlement in the background.
+In v0.34.2-mocha, background settlement errors are logged. An upload result is
+not proof of confirmed payment. Use `Submit` for the first walkthrough.
+
+A timeout or rate limit while confirming a transaction does not prove that it
+failed. In the maximum-size test, the core endpoint returned HTTP 429 during
+confirmation even though the transaction had settled. A second endpoint
+confirmed execution code `0` and the matching Fibre event.
+
+Before resubmitting, check the transaction hash, node logs and chain state
+through a working endpoint or explorer. Native clients should retain the
+broadcast transaction hash before waiting for confirmation. If the client
+returns no hash, inspect the signer's transactions and match the namespace and
+commitment. Signed promises can also be charged through the timeout path after
+an upload failure; blindly retrying can create another payment obligation.
+
+## Troubleshoot the walkthrough
+
+| Symptom | Check |
+|---|---|
+| `fibre client is not available` | Configure a Fibre-capable core endpoint, then restart the node. |
+| Missing Fibre services or method not found | Check both the node release and the core endpoint's app version and exposed services. |
+| Unfunded signer or insufficient escrow | Verify the selected key/address; fund the wallet and deposit into that signer's escrow. Retain wallet funds for gas. |
+| Deposit gas-estimation panic after faucet funding | Restart v0.34.2-mocha after the signer is funded, then query escrow before retrying. |
+| Header syncing or historical state unavailable | Wait for header sync and use a core endpoint that serves the required state. |
+| Not enough voting power, unreachable providers or TLS failures | Check registered/reachable provider stake and client logs. Some stored shards may be retrievable even when signature quorum was not reached. |
+| HTTP 429 or uncertain settlement | Back off or use another endpoint; reconcile payment status before resubmitting. |
+| Large JSON-RPC request rejected | Account for base64 and JSON overhead, or use the native client. |
+| Download fails after retention expires | Recover from your own stored copy. The on-chain receipt does not contain the blob bytes. |

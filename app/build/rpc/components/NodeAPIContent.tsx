@@ -47,6 +47,8 @@ function getMethodsByPackage(spec: OpenRPCSpec): MethodByPkg {
 // Only list versions with a bundled OpenRPC spec; default to Mainnet Beta.
 const versions = [apiVersions.mainnet, apiVersions.mocha, ...apiVersions.historical];
 
+const defaultVersion = apiVersions.mainnet;
+
 export default function RPCDocumentation() {
   // Use shared dark mode hook
   const isDark = useDarkMode();
@@ -71,7 +73,7 @@ export default function RPCDocumentation() {
     active: false,
   });
 
-  const [selectedVersion, setSelectedVersion] = useState(versions[0]);
+  const [selectedVersion, setSelectedVersion] = useState(defaultVersion);
   const [searchTerm, setSearchTerm] = useState('');
 
   // Consolidated fetch function with loading and error handling
@@ -102,7 +104,7 @@ export default function RPCDocumentation() {
   useEffect(() => {
     // Read URL params on mount (client-only, avoids SSR hydration mismatch).
     const versionParam = new URLSearchParams(window.location.search).get('version');
-    const targetVersion = versionParam && versions.includes(versionParam) ? versionParam : versions[0];
+    const targetVersion = versionParam && versions.includes(versionParam) ? versionParam : defaultVersion;
 
     if (targetVersion !== selectedVersion) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -276,7 +278,9 @@ export default function RPCDocumentation() {
             >
               {versions.map((version) => (
                 <option key={version} value={version}>
-                  {version}{version === apiVersions.mainnet ? ' (Mainnet Beta)' : version === apiVersions.mocha ? ' (Mocha)' : ''}
+                  {version}
+                  {version === apiVersions.mainnet && ' (Mainnet Beta)'}
+                  {version === apiVersions.mocha && ' (Mocha)'}
                 </option>
               ))}
             </select>

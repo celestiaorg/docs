@@ -111,17 +111,29 @@ Pre-built binaries are available for:
 - Operating systems: Darwin (Apple), Linux
 - Architectures: x86_64 (amd64), arm64
 
-### Installation Options
+### Installation options
 
-You can install the latest version or specify a particular version:
+Pass the `-v` flag to install the recommended version for your network:
 
-```bash
-# Install latest version
-bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)"
+<Tabs items={['Mainnet Beta', 'Mocha']}>
+  <Tabs.Tab>
+    ```bash
+    bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mochaVersions['node-latest-tag']}}
+    ```
+  </Tabs.Tab>
+</Tabs>
 
-# Install specific version, Mainnet Beta in this example
-bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
-```
+<Callout type="warning">
+If you omit `-v`, the script installs the
+[latest stable GitHub release](https://github.com/celestiaorg/celestia-node/releases/latest).
+This does not select a version for your network and excludes releases marked as
+pre-releases, including Mocha releases. Use the network-specific command above.
+</Callout>
 
 The script will:
 
@@ -160,7 +172,8 @@ we recommend the [quick-start guide](/operate/data-availability/light-node/quick
 
 ## Upgrading your binary
 
-To upgrade your binary, install the latest version using the instructions above.
+To upgrade your binary, install the recommended version for your network using
+the instructions above.
 
 When upgrading from a version earlier than celestia-node v0.31.3 to v0.31.3 or later, update the node configuration after replacing the binary and before starting the node:
 

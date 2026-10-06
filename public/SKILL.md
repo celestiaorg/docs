@@ -121,7 +121,7 @@ Version scope:
 <!-- END GENERATED NODE API VERSIONS -->
 
 - Re-check method availability and deprecation notes in the target version's OpenRPC spec before using these defaults. Bundled versions do not establish network activation or behavioural compatibility.
-- For Fibre, use the Mocha specification and the [Fibre API guidance](https://docs.celestia.org/build/rpc/node-api/#fibre-api-on-mocha), including its core endpoint and escrow requirements.
+- For Fibre, use the Mocha specification. Follow the [Fibre walkthrough](https://docs.celestia.org/build/post-retrieve-blob/fibre) for core endpoint and escrow requirements.
 
 - Submit with `blob.Submit` (preferred).
 - Use `state.SubmitPayForBlob` only when explicit tx-level handling is required.
