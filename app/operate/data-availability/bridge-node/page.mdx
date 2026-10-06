@@ -47,23 +47,26 @@ From an implementation perspective, Bridge nodes run two separate processes:
 ## Pruned and archival modes
 
 Bridge nodes run in pruned mode by default. They retain recent headers and data
-within the availability window, which reduces storage requirements and allows a
-new bridge node to sync from a recent point instead of from genesis.
+within the storage window and can begin syncing from a recent point instead of
+from genesis.
 
-To retain the full history, pass `--archival` every time you start the bridge
-node. Archival mode disables pruning and syncs from genesis, so it requires
-substantially more storage. The connected consensus endpoint does not need to
-retain the full history: the bridge node can retrieve older headers and data
-from the peer-to-peer network.
+To retain historical headers and data, pass `--archival` every time you start
+the bridge node. A new archival node syncs from genesis, so it needs more storage
+and access to peers that still hold the historical headers and data. Archival
+nodes can still log pruning activity: they remove redundant erasure-coded data
+while keeping the original data and headers.
 
-See the [hardware requirements](/operate/getting-started/hardware-requirements)
-before choosing archival mode.
+> **Warning:** Choose archival mode before the node's first start and include
+> `--archival` every time it starts, including in a systemd service or another
+> process manager. A store previously started in pruned mode cannot switch to
+> archival mode; initialise a fresh store to sync from genesis.
 
-<Callout type="info">
-Bridge nodes automatically route recent header requests to the connected
-consensus node and older requests to the peer-to-peer network. No additional
-routing configuration is required.
-</Callout>
+Both modes can use a non-archival consensus endpoint, provided it retains the
+recent blocks needed for syncing. During header sync, the bridge node routes
+recent ranges to the consensus endpoint and older ranges to the peer-to-peer
+network. Historical data is fetched separately from DA peers. This routing is
+automatic, but it does not replace missing recent blocks at the consensus
+endpoint or guarantee that peers retain the full history.
 
 ## Hardware requirements
 
@@ -105,8 +108,7 @@ Refer to
 for information on which ports are required to be open on your machine.
 
 Using an RPC of your own, or one from the
-[list on the Mocha testnet page](/operate/networks/mocha-testnet#community-rpc-endpoints) or
-[list on the Arabica devnet page](/operate/networks/arabica-devnet#community-rpc-endpoints),
+[list on the Mocha testnet page](/operate/networks/mocha-testnet#community-rpc-endpoints),
 start your node.
 
 Connecting to a consensus node endpoint (flag: `--core.ip string`)
@@ -115,7 +117,7 @@ transactions, and other state-related queries).
 
 Here is an example of initializing the bridge node:
 
-<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+<Tabs items={['Mainnet Beta', 'Mocha']}>
   <Tabs.Tab>
     ```sh
     celestia bridge init --core.ip <URI> --core.port <port>
@@ -125,12 +127,6 @@ Here is an example of initializing the bridge node:
     ```sh
     celestia bridge init --core.ip <URI> --core.port <port> \
         --p2p.network mocha
-    ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-    ```sh
-    celestia bridge init --core.ip <URI> --core.port <port> \
-        --p2p.network arabica
     ```
   </Tabs.Tab>
 </Tabs>
@@ -153,25 +149,15 @@ Start the bridge node with a connection to a consensus node's gRPC endpoint, whi
   </Tabs.Tab>
 </Tabs>
 
-<Callout type="warning">
-Choose archival mode before the node's first start and include `--archival`
-every time it starts, including in a systemd service or another process manager.
-A store that has already pruned data cannot switch back to archival mode; use a
-fresh store to sync the full history from genesis.
-</Callout>
-
 Here is an example of starting the bridge node on Mocha:
 
 ```sh
-celestia bridge start --core.ip rpc-mocha.pops.one --core.port 9090 --p2p.network mocha
+celestia bridge start --core.ip <consensus_endpoint> --core.port 9090 --p2p.network mocha
 ```
 
-And on Arabica:
+Add `--archival` to this command if you need to retain historical headers and
+data.
 
-```sh
-celestia bridge start --core.ip validator-1.celestia-{{constants['arabicaChainId']}}.com \
-  --p2p.network arabica --core.port 9090
-```
 <Callout type="info">
 If you're connecting your bridge node to a localhost consensus node (`--core.ip localhost` or `--core.ip 127.0.0.1`), ensure that gRPC is enabled in your consensus node's `app.toml` configuration file. Look for the `[grpc]` section and verify that `enable = true` is set:
 </Callout>
@@ -206,7 +192,6 @@ You do not need to declare a network for Mainnet Beta. Refer to
 You can get testnet tokens from:
 
 - [Mocha](/operate/networks/mocha-testnet)
-- [Arabica](/operate/networks/arabica-devnet)
 
 > **Note:** If you are running a bridge node for your validator, it is highly recommended to request Mocha testnet tokens as this is the testnet used to test out validator operations.
 
@@ -219,7 +204,7 @@ In order to run a bridge node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 
-<Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+<Tabs items={['Mainnet Beta', 'Mocha']}>
   <Tabs.Tab>
     ```sh
     celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
@@ -230,12 +215,6 @@ In order to run a bridge node using a custom key:
     ```sh
     celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
         --p2p.network mocha --core.port <port>
-    ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-    ```sh
-    celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
-        --p2p.network arabica --core.port <port>
     ```
   </Tabs.Tab>
 </Tabs>

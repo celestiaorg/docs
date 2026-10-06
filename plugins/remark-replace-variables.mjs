@@ -18,14 +18,12 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const mainnetVersions = require('../constants/mainnet_versions.json');
 const mochaVersions = require('../constants/mocha_versions.json');
-const arabicaVersions = require('../constants/arabica_versions.json');
 const constants = require('../constants/general.json');
 
 // Create a context object with all available variables
 const variableContext = {
   mainnetVersions,
   mochaVersions,
-  arabicaVersions,
   constants,
 };
 
@@ -103,6 +101,11 @@ export default function remarkReplaceVariables() {
       // Handle regular text nodes (paragraphs, etc.)
       if (node.type === 'text' && typeof node.value === 'string') {
         node.value = replaceVariables(node.value);
+      }
+
+      // Resolve release variables in Markdown link destinations.
+      if ((node.type === 'link' || node.type === 'definition') && typeof node.url === 'string') {
+        node.url = replaceVariables(node.url);
       }
     });
   };

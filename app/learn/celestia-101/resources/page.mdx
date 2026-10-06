@@ -16,7 +16,7 @@ A collection of useful tools, dashboards, and analytics platforms for exploring 
 | **Celenium**      | Blockchain explorer and analytics platform for Celestia      | [celenium.io](https://celenium.io/)                                            |
 | **Celestia Data** | Comprehensive analytics and metrics for the Celestia network | [celestiadata.com](https://celestiadata.com/)                                  |
 | **L2 Beat**       | Data availability tracking and metrics by L2BEAT             | [l2beat.com](https://l2beat.com/data-availability/projects/celestia/no-bridge) |
-| **Validao**       | Validator and network visualization tools                    | [validao.xyz](https://validao.xyz/#maps-celestia-da)                           |
+| **ProbeLab**      | Network monitoring and topology analytics for Celestia       | [probelab.io](https://probelab.io/celestia/)                                   |
 
 ## Bridge & node data
 
@@ -28,7 +28,7 @@ A collection of useful tools, dashboards, and analytics platforms for exploring 
 
 | Resource                       | Description                                                     | URL                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| **Blockworks research (paid)** | In-depth analytics and research on TIA and the Celestia network | [View analytics](https://app.blockworksresearch.com/analytics/tia?dashboard=celestia&interval=weekly)                  |
+| **Blockworks research (paid)** | In-depth analytics and research on TIA and the Celestia network | [View analytics](https://app.blockworks.com/analytics/celestia)                  |
 | **Numia blocks dashboard**     | Blocks analytics dashboard                                      | [View dashboard](https://lookerstudio.google.com/u/0/reporting/6d5530fd-4115-4951-8a79-644842f6a2b3/page/Tn17D)        |
 | **Numia rollups dashboard**    | Rollups analytics dashboard                                     | [View dashboard](https://lookerstudio.google.com/u/0/reporting/8853db32-fe0b-4a39-b4d7-3b9efd9e5226/page/p_da0hhwxfjd) |
 

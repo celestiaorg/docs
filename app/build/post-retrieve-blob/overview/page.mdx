@@ -8,3 +8,5 @@ There are two transaction clients available:
 | ---------- | ----------------------------------- | --------------------------------- | --------------------------------------------------------- |
 | **Golang** | Local keyring handled by the client | **2** — DA bridge RPC + Core gRPC | [Go client tutorial](/build/post-retrieve-blob/client/go) |
 | **Rust**   | Local keyring handled by the client | **2** — DA bridge RPC + Core gRPC | [Rust client](/build/post-retrieve-blob/client/rust)      |
+
+For Fibre storage on Mocha, follow [Submit and retrieve a Fibre blob](/build/post-retrieve-blob/fibre). That guide covers escrow, on-chain settlement, retrieval and the separate Fibre size limits.

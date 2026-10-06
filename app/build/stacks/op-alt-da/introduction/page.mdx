@@ -25,3 +25,4 @@ The [Celestia fork](https://github.com/celestiaorg/optimism/blob/celestia-develo
 
 - [op-alt-da repository](https://github.com/celestiaorg/op-alt-da)
 - [Celestia OP Stack fork](https://github.com/celestiaorg/optimism)
+- [Select a Celestia account in integrations](/build/stacks/account-selection)

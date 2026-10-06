@@ -3,8 +3,8 @@
 /**
  * Community endpoint health checker.
  *
- * Parses the three network MDX pages (mainnet-beta, mocha-testnet,
- * arabica-devnet), extracts community endpoints, checks reachability,
+ * Parses the Mainnet Beta and Mocha network MDX pages, extracts community
+ * endpoints, checks reachability,
  * and removes unreachable endpoints from the files.
  *
  * Exit codes:
@@ -17,13 +17,13 @@ import net from "node:net";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const SCRIPT_PATH = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(SCRIPT_PATH);
 const ROOT = path.resolve(__dirname, "..");
 
 const NETWORK_FILES = [
   "app/operate/networks/mainnet-beta/page.mdx",
   "app/operate/networks/mocha-testnet/page.mdx",
-  "app/operate/networks/arabica-devnet/page.mdx",
 ];
 
 const TCP_TIMEOUT_MS = 10_000;
@@ -77,7 +77,6 @@ function isOfficialEndpoint(s) {
   const hostname = getEndpointHost(s);
   return [
     "celestia-mocha.com",
-    "celestia-arabica-11.com",
     "celestia.com",
     "quicknode.com",
   ].some((suffix) => matchesHostname(hostname, suffix));
@@ -256,65 +255,6 @@ function extractMainnetTableEndpoints(content) {
   return endpoints;
 }
 
-/**
- * Extract community endpoints from the Arabica table format.
- *
- * The table has:  | Node type | Endpoint type | Endpoint |
- */
-function extractArabicaTableEndpoints(content) {
-  const endpoints = [];
-  const lines = content.split("\n");
-  let inSection = false;
-  let pastHeader = false;
-  let endpointKind = "rpc";
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-
-    if (/^#{2,3}\s+Community RPC endpoints/i.test(line)) {
-      inSection = true;
-      pastHeader = false;
-      continue;
-    }
-    if (inSection && /^#{1,3}\s+/.test(line) && !/^#{4,}\s+/.test(line)) {
-      inSection = false;
-      continue;
-    }
-    if (!inSection) continue;
-    if (!line.startsWith("|")) continue;
-
-    if (!pastHeader) {
-      if (/Node type|Endpoint type/i.test(line)) {
-        pastHeader = true;
-      }
-      continue;
-    }
-    if (/^\|\s*[-:]+/.test(line)) continue;
-
-    const cells = line
-      .split("|")
-      .slice(1, -1)
-      .map((c) => c.trim());
-    if (cells[1]) endpointKind = inferEndpointKind(cells[1], endpointKind);
-
-    // Extract backtick-wrapped endpoints from the row
-    const endpointEntries = [];
-    const re = /`([^`]+)`/g;
-    let match;
-    while ((match = re.exec(line)) !== null) {
-      const raw = match[1];
-      if (hasTemplateVar(raw) || isOfficialEndpoint(raw)) continue;
-      // Skip things that aren't endpoints (e.g. "–core.ip string")
-      if (/^\-\-/.test(raw) || /^celestia\s/.test(raw)) continue;
-      endpointEntries.push({ raw, endpointKind });
-    }
-    if (endpointEntries.length > 0) {
-      endpoints.push({ lineIndex: i, line, endpointEntries });
-    }
-  }
-  return endpoints;
-}
-
 // ---------------------------------------------------------------------------
 // Endpoint → check descriptor
 // ---------------------------------------------------------------------------
@@ -324,7 +264,7 @@ function extractArabicaTableEndpoints(content) {
  *   - HTTP(S)/API endpoints  →  HTTP reachability probe
  *   - WebSocket endpoints    →  HTTP reachability probe against the upgrade URL
  *   - `host:port`            →  TCP probe, except scheme-less API endpoints
- *   - bare RPC host          →  TCP probe on port 26657
+ *   - bare RPC host          →  TCP probe on port 26657, then HTTPS fallback
  *   - bare gRPC host         →  TCP probe on port 9090
  */
 function getExplicitPort(raw) {
@@ -357,7 +297,7 @@ function toHttpUrl(raw) {
   return `${scheme}://${value}`;
 }
 
-function resolveCheck(raw, endpointKind = "rpc") {
+export function resolveCheck(raw, endpointKind = "rpc") {
   if (/^wss?:\/\//i.test(raw)) {
     // WebSocket endpoints: check via HTTP since they need an HTTP upgrade handshake.
     const httpUrl = raw.replace(/^wss:/i, "https:").replace(/^ws:/i, "http:");
@@ -374,8 +314,37 @@ function resolveCheck(raw, endpointKind = "rpc") {
     return { type: "tcp", host: colonMatch[1], port: Number(colonMatch[2]), label: raw };
   }
 
+  if (endpointKind === "rpc") {
+    return {
+      type: "tcp-http",
+      host: getEndpointHost(raw),
+      port: 26657,
+      url: toHttpUrl(raw),
+      label: raw,
+    };
+  }
+
   const defaultPort = endpointKind === "grpc" ? 9090 : 26657;
   return { type: "tcp", host: raw, port: defaultPort, label: raw };
+}
+
+export async function checkEndpoint(
+  check,
+  { checkHttpFn = checkHttp, checkTcpFn = checkTcp } = {},
+) {
+  if (check.type === "http") {
+    return checkHttpFn(check.url);
+  }
+  if (check.type === "tcp-http") {
+    const tcpOk = await checkTcpFn(check.host, check.port);
+    return tcpOk || checkHttpFn(check.url);
+  }
+  return checkTcpFn(check.host, check.port);
+}
+
+export function replaceEndpointWithPlaceholder(line, raw) {
+  const endpoint = "`" + raw + "`";
+  return line.replace(endpoint, "-".padEnd(endpoint.length));
 }
 
 // ---------------------------------------------------------------------------
@@ -402,9 +371,7 @@ async function main() {
       const content = await fileHandle.readFile({ encoding: "utf-8" });
       const networkName = relPath.includes("mainnet")
         ? "mainnet-beta"
-        : relPath.includes("mocha")
-          ? "mocha-testnet"
-          : "arabica-devnet";
+        : "mocha-testnet";
 
       console.log(`\n=== ${networkName} ===`);
 
@@ -434,22 +401,6 @@ async function main() {
             });
           }
         }
-      } else {
-        // arabica
-        const rows = extractArabicaTableEndpoints(content);
-        checkItems = [];
-        for (const row of rows) {
-          for (const entry of row.endpointEntries) {
-            checkItems.push({
-              raw: entry.raw,
-              endpointKind: entry.endpointKind,
-              lineIndex: row.lineIndex,
-              line: row.line,
-              check: resolveCheck(entry.raw, entry.endpointKind),
-              rowEndpoints: row.endpointEntries.map((ep) => ep.raw),
-            });
-          }
-        }
       }
 
       if (checkItems.length === 0) {
@@ -464,12 +415,7 @@ async function main() {
         checkItems,
         async (item) => {
           const { check } = item;
-          let ok;
-          if (check.type === "http") {
-            ok = await checkHttp(check.url);
-          } else {
-            ok = await checkTcp(check.host, check.port);
-          }
+          const ok = await checkEndpoint(check);
           const status = ok ? "OK" : "FAILED";
           console.log(`  ${status}: ${check.label}`);
           return { ...item, ok };
@@ -521,7 +467,7 @@ async function main() {
           // Partial failure in a table row — replace broken cells with `-`
           let edited = lines[lineIndex];
           for (const r of lineFailures) {
-            edited = edited.replace("`" + r.raw + "`", "-");
+            edited = replaceEndpointWithPlaceholder(edited, r.raw);
           }
           lines[lineIndex] = edited;
           editedRows++;
@@ -557,7 +503,9 @@ async function main() {
   }
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_PATH) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}
