@@ -112,7 +112,7 @@ The `[Header.Syncer]` section controls where header synchronization starts and
 how long headers are retained:
 
 - `PruningWindow` is a Go duration string. Bridge nodes default to the
-  availability storage window (`169h0m0s`).
+  availability storage window (`{{constants['bridgeStorageWindowHours']}}h0m0s`).
 - `SyncFromHeight` sets a starting height. Its zero value disables the setting.
 - `SyncFromHash` sets a starting header hash and takes priority over
   `SyncFromHeight`. Its empty value disables the setting.
@@ -121,7 +121,7 @@ These fields have the following defaults in a generated bridge-node configuratio
 
 ```toml
 [Header.Syncer]
-PruningWindow = "169h0m0s"
+PruningWindow = "{{constants['bridgeStorageWindowHours']}}h0m0s"
 SyncFromHash = ""
 SyncFromHeight = 0
 ```

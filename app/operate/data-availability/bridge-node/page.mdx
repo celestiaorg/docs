@@ -59,14 +59,23 @@ while keeping the original data and headers.
 > **Warning:** Choose archival mode before the node's first start and include
 > `--archival` every time it starts, including in a systemd service or another
 > process manager. A store previously started in pruned mode cannot switch to
-> archival mode; initialise a fresh store to sync from genesis.
+> archival mode; initialise a fresh store to sync from genesis. Omitting
+> `--archival` on a later start converts an archival store to pruned mode
+> without refusing startup. It deletes historical headers and original data
+> outside the storage window, not just redundant erasure-coded data. Adding
+> `--archival` again does not restore the deleted history or reverse the conversion.
 
-Both modes can use a non-archival consensus endpoint, provided it retains the
-recent blocks needed for syncing. During header sync, the bridge node routes
-recent ranges to the consensus endpoint and older ranges to the peer-to-peer
-network. Historical data is fetched separately from DA peers. This routing is
-automatic, but it does not replace missing recent blocks at the consensus
-endpoint or guarantee that peers retain the full history.
+Both modes can use a non-archival consensus endpoint. Provision it to retain
+blocks within the storage window (`{{constants['bridgeStorageWindowHours']}}h`)
+so the bridge node can fetch recent blocks from consensus. The live block
+listener still fetches newly announced blocks from that endpoint.
+
+During header sync, the bridge node routes recent ranges to the consensus
+endpoint and older ranges to the header peer exchange. Header fetches can also
+fall back to peers when the consensus endpoint lacks a requested height.
+The data availability sampler (DASer) retrieves the corresponding share data
+separately from DA peers. This fallback does not guarantee that peers retain
+the full history.
 
 ## Hardware requirements
 

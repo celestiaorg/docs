@@ -105,9 +105,15 @@ celestia <node-type> init --node.store /home/user/celestia-<node-type>-location/
 Next, start your node:
 
 ```bash
-celestia bridge start --core.ip <archival-consensus-endpoint> --p2p.network mocha \
+celestia bridge start --core.ip <consensus_endpoint> --p2p.network mocha \
     --node.store /home/user/celestia-bridge-location/ --core.port <port>
 ```
+
+The consensus endpoint can be pruned, but should retain blocks within the
+bridge storage window (`{{constants['bridgeStorageWindowHours']}}h`). If this
+fresh store is intended to be archival, add `--archival` on its first start
+and every subsequent start. Older headers and share data still require peers
+that retain them.
 
 If you choose to change the location of your node store,
 you will need to execute each command on your node with

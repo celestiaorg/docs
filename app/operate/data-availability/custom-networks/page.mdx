@@ -28,9 +28,17 @@ export NETWORK=custom
 export CELESTIA_CUSTOM="${NETWORK}:${GENESIS_HASH}:${BRIDGE}"
 ```
 
-If you provide `GENESIS_HASH`, make sure it matches the network genesis. Bridge
-nodes prune by default. To run the bridge node without pruning, pass
-`--archival` every time you start it.
+For an archival bridge node, include the genesis field in `CELESTIA_CUSTOM`.
+Setting only `CELESTIA_CUSTOM="${NETWORK}"` omits that field and prevents
+archival startup with a `genesis hash not found` error. A non-empty
+`GENESIS_HASH` must identify the network's genesis block: archival startup
+uses it as `SyncFromHash`, so an incorrect hash prevents syncing from the
+correct starting point. An explicitly empty field, as in
+`CELESTIA_CUSTOM="${NETWORK}:"`, starts archival sync from height 1 instead.
+
+Bridge nodes prune by default. To retain historical headers and original
+data, pass `--archival` every time you start the node. Archival nodes still
+trim redundant erasure-coded data outside the storage window.
 
 Then, start your node with:
 
