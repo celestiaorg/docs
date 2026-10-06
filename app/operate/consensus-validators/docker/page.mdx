@@ -108,14 +108,11 @@ P2P (`26656`) is published for peer connectivity. The separate consensus gRPC
 listener (`9098`) stays inside the container.
 
 The `--sysctl` option enables BBR in the container's network namespace. The
-Linux host must provide the BBR kernel module. For local Mocha testing on
+Linux host must provide the BBR kernel module. For local testing on
 Docker Desktop where BBR is unavailable, omit `--sysctl` and append
 `--force-no-bbr` to the `start` command. This bypass reduces P2P performance;
 use BBR in production.
 
-For Mainnet Beta genesis sync, use a Linux host with BBR. The recommended
-Mainnet Beta image forwards start flags to older embedded binaries, which do
-not accept `--force-no-bbr`.
 
 ```bash
 docker run -d \
