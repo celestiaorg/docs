@@ -1,4 +1,6 @@
-# Blobstream proofs queries
+# Blobstream proof queries (legacy)
+
+> **Legacy reference:** As of September 2026, the Succinct-operated SP1 Blobstream deployments are no longer maintained and do not receive new commitments, and Celenium no longer offers its Blobstream explorer. This page preserves the proof-query and contract-format reference. It does not imply that a maintained deployment is available.
 
 ## Prerequisites
 
@@ -7,6 +9,25 @@
 ## Querying the proofs
 
 To prove PFBs, blobs or shares, we can use the Celestia consensus node's RPC to query proofs for them:
+
+### Heavy RPC request limit
+
+Proof queries such as `data_root_inclusion_proof` and `prove_shares` are
+memory-intensive. They share the consensus node's process-wide heavy RPC
+request limit with other heavy endpoints and transports.
+
+When the limit is reached, clients receive a temporary capacity response:
+
+- HTTP GET requests return `503 Service Unavailable`.
+- JSON-RPC and WebSocket requests return a JSON-RPC error with
+  `server busy: too many concurrent heavy RPC requests, retry later` in the
+  error's `data` field. Use this message to distinguish temporary overload from
+  other JSON-RPC errors.
+- gRPC requests return `ResourceExhausted`.
+
+These responses indicate that the node is busy, not that proof generation
+failed. Retry with exponential backoff and jitter. Where appropriate, bound the
+maximum delay or number of retries.
 
 ### 1. Data root inclusion proof
 
@@ -208,7 +229,7 @@ The `min` and `max` are `Namespace` type which is:
 
 ```solidity
 /// @notice A representation of the Celestia-app namespace ID and its version.
-/// See: https://celestiaorg.github.io/celestia-app/specs/namespace.html
+/// See: https://celestiaorg.github.io/celestia-app/namespace.html
 struct Namespace {
     // The namespace version.
     bytes1 version;
@@ -230,7 +251,7 @@ Which is the namespace used by the rollup when submitting data to Celestia. As d
 
 ```solidity
 /// @notice A representation of the Celestia-app namespace ID and its version.
-/// See: https://celestiaorg.github.io/celestia-app/specs/namespace.html
+/// See: https://celestiaorg.github.io/celestia-app/namespace.html
 struct Namespace {
     // The namespace version.
     bytes1 version;

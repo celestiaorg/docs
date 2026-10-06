@@ -39,7 +39,7 @@ commands:
 
 ### Check out the desired version
 
-   <Tabs items={['Mainnet Beta', 'Mocha', 'Arabica']}>
+   <Tabs items={['Mainnet Beta', 'Mocha']}>
      <Tabs.Tab>
        ```bash
        git checkout tags/{{mainnetVersions['node-latest-tag']}}
@@ -48,11 +48,6 @@ commands:
      <Tabs.Tab>
        ```bash
        git checkout tags/{{mochaVersions['node-latest-tag']}}
-       ```
-     </Tabs.Tab>
-     <Tabs.Tab>
-       ```bash
-       git checkout tags/{{arabicaVersions['node-latest-tag']}}
        ```
      </Tabs.Tab>
    </Tabs>
@@ -104,9 +99,10 @@ commit hash, build date, system version, and Golang version.
 
 Installing a pre-built binary is the fastest way to get started with your Celestia data availability node. Releases after celestia-node v0.13.3 have these binaries available.
 
-The installation script will download a binary file named `celestia`. Depending on your chosen installation option, the `celestia` binary will be available at one of these locations:
+The installation script will download a binary file named `celestia`. Depending on your environment and chosen installation option, the `celestia` binary will be available at one of these locations:
 
-- `$GOPATH/bin/celestia` (if Go is installed)
+- The Homebrew bin directory (usually `/opt/homebrew/bin/celestia` on Apple silicon or `/usr/local/bin/celestia` on Intel Macs) when Go is installed with Homebrew
+- `$GOBIN/celestia`, or `$GOPATH/bin/celestia` when `GOBIN` is unset, for other Go installations
 - `/usr/local/bin/celestia`
 - `$HOME/celestia-node-temp/celestia`
 
@@ -115,17 +111,29 @@ Pre-built binaries are available for:
 - Operating systems: Darwin (Apple), Linux
 - Architectures: x86_64 (amd64), arm64
 
-### Installation Options
+### Installation options
 
-You can install the latest version or specify a particular version:
+Pass the `-v` flag to install the recommended version for your network:
 
-```bash
-# Install latest version
-bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)"
+<Tabs items={['Mainnet Beta', 'Mocha']}>
+  <Tabs.Tab>
+    ```bash
+    bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mochaVersions['node-latest-tag']}}
+    ```
+  </Tabs.Tab>
+</Tabs>
 
-# Install specific version, Mainnet Beta in this example
-bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
-```
+<Callout type="warning">
+If you omit `-v`, the script installs the
+[latest stable GitHub release](https://github.com/celestiaorg/celestia-node/releases/latest).
+This does not select a version for your network and excludes releases marked as
+pre-releases, including Mocha releases. Use the network-specific command above.
+</Callout>
 
 The script will:
 
@@ -134,7 +142,7 @@ The script will:
 3. Verify the checksum for security
 4. Provide installation location options based on your environment:
    - If Go is installed:
-     - Go bin directory (`$GOPATH/bin`)
+     - Detected Go bin directory (the Homebrew bin directory when Go is installed with Homebrew, otherwise `$GOBIN` or `$GOPATH/bin`)
      - System bin directory (`/usr/local/bin`)
      - Keep in current directory
    - If Go is not installed:
@@ -164,6 +172,13 @@ we recommend the [quick-start guide](/operate/data-availability/light-node/quick
 
 ## Upgrading your binary
 
-To upgrade your binary, you can install the latest version from the
-instructions above and restart your node. If you run into any issues,
-Refer to the [troubleshooting section](/operate/maintenance/troubleshooting).
+To upgrade your binary, install the recommended version for your network using
+the instructions above.
+
+When upgrading from a version earlier than celestia-node v0.31.3 to v0.31.3 or later, update the node configuration after replacing the binary and before starting the node:
+
+```bash
+celestia <node_type> config-update --p2p.network <network>
+```
+
+The [v0.31.3 release](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3) adds support for Mainnet Beta v9 and introduces new config fields. The command merges those fields into the existing configuration while preserving custom values. Review your configuration after the update, then start the node. If you run into any issues, refer to the [troubleshooting section](/operate/maintenance/troubleshooting#resetting-your-config).

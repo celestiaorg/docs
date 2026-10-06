@@ -3,6 +3,7 @@ const meta = {
   docker: "Docker images",
   "consensus-node": "Run a consensus node",
   "validator-node": "Run a validator node",
+  "fibre": "Fibre",
   "cli-reference": "CLI commands reference",
   slashing: "Slashing & jailing",
   metrics: "Metrics & monitoring",
