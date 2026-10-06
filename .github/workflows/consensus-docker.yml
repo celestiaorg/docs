@@ -1,0 +1,31 @@
+name: Consensus Docker smoke test
+
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - app/operate/consensus-validators/docker/page.mdx
+      - constants/general.json
+      - constants/mainnet_versions.json
+      - constants/mocha_versions.json
+      - scripts/test-consensus-docker.py
+      - .github/workflows/consensus-docker.yml
+
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        network: [mainnet, mocha]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Run the documented Linux setup with BBR
+        run: python3 scripts/test-consensus-docker.py ${{ matrix.network }}

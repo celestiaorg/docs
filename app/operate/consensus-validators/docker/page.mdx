@@ -19,8 +19,32 @@ to the [celestia-node Docker page](/operate/getting-started/docker).
 - A Bash-compatible shell, `curl` and `jq`. On Windows, use WSL.
 - Enough CPU, memory and disk for a
   [consensus node](/operate/getting-started/hardware-requirements).
-- For production, a Linux host with BBR enabled. See
-  [the BBR setup instructions](/operate/consensus-validators/install-celestia-app#building-binary-from-source).
+- For production, a Linux host whose kernel provides BBR. Follow
+  [the host setup below](#prepare-a-linux-host-for-bbr).
+
+## Prepare a Linux host for BBR
+
+Run these commands on the Linux host running Docker Engine:
+
+```bash
+sudo modprobe tcp_bbr
+sysctl net.ipv4.tcp_available_congestion_control
+```
+
+Confirm that the output includes `bbr`. On hosts using systemd, load the module
+automatically after a reboot:
+
+```bash
+printf 'tcp_bbr\n' | sudo tee /etc/modules-load.d/celestia-bbr.conf
+```
+
+The start command below selects BBR inside the container with `--sysctl`.
+Changing the host's default congestion control alone does not configure the
+container's network namespace. If the module is unavailable, use a Linux kernel
+that supports BBR before running a production node.
+
+Docker Desktop uses its own Linux VM. For local testing on Mac or Windows,
+skip these host commands and use the complete Docker Desktop start command below.
 
 ## Quick start with persistent storage
 
@@ -107,12 +131,12 @@ RPC (`26657`) and application gRPC (`9090`) are published to localhost only.
 P2P (`26656`) is published for peer connectivity. The separate consensus gRPC
 listener (`9098`) stays inside the container.
 
-The `--sysctl` option enables BBR in the container's network namespace. The
-Linux host must provide the BBR kernel module. For local testing on
-Docker Desktop where BBR is unavailable, omit `--sysctl` and append
-`--force-no-bbr` to the `start` command. This bypass reduces P2P performance;
-use BBR in production.
+Choose one of the following commands for your Docker environment.
 
+#### Linux with BBR
+
+After preparing the Linux host, use `--sysctl` to enable BBR in the container's
+network namespace:
 
 ```bash
 docker run -d \
@@ -129,6 +153,37 @@ docker run -d \
   --rpc.laddr tcp://0.0.0.0:26657 \
   --rpc.grpc_laddr tcp://0.0.0.0:9098 \
   --grpc.enable=true --grpc.address 0.0.0.0:9090
+```
+
+Confirm that the running container uses BBR:
+
+```bash
+docker exec celestia-app cat /proc/sys/net/ipv4/tcp_congestion_control
+```
+
+The output must be `bbr`.
+
+#### Docker Desktop for local testing
+
+When BBR is unavailable in Docker Desktop's Linux VM, use this command. It
+bypasses the BBR check with `--force-no-bbr`, which reduces P2P performance.
+Use the Linux BBR setup for production.
+
+```bash
+docker run -d \
+  --user "$(id -u):$(id -g)" \
+  --name celestia-app \
+  --restart unless-stopped \
+  -v "$APP_HOME:/home/celestia/.celestia-app" \
+  -p 26656:26656 \
+  -p 127.0.0.1:26657:26657 \
+  -p 127.0.0.1:9090:9090 \
+  ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
+  start --home /home/celestia/.celestia-app \
+  --rpc.laddr tcp://0.0.0.0:26657 \
+  --rpc.grpc_laddr tcp://0.0.0.0:9098 \
+  --grpc.enable=true --grpc.address 0.0.0.0:9090 \
+  --force-no-bbr
 ```
 
 ### Check node status
@@ -195,6 +250,7 @@ stop the container and review the [network upgrade instructions](/operate/mainte
 set `APP_VERSION` to the recommended release and pull the new image:
 
 ```bash
+docker stop celestia-app
 docker pull "ghcr.io/celestiaorg/celestia-app:$APP_VERSION"
 docker rm celestia-app
 ```
@@ -207,9 +263,10 @@ container preserves the bind-mounted data; do not delete `$APP_HOME`.
 
 - **Permission denied:** ensure `$APP_HOME` is writable by your host user and
   use the same `--user` option for initialization and startup.
-- **BBR not enabled, or Docker rejects the BBR sysctl:** enable BBR on the Linux
-  host. Docker Desktop uses a Linux VM, so the macOS or Windows host setting does
-  not enable BBR there. Use the local-testing bypass described above if needed.
+- **BBR not enabled, or Docker rejects the BBR sysctl:** confirm the Linux host
+  provides `tcp_bbr` and your Docker daemon permits the sysctl. Docker Desktop
+  uses a Linux VM, so the macOS or Windows host setting does not enable BBR there.
+  Use the Docker Desktop start command above for local testing.
 - **The node exits immediately:** inspect `docker logs celestia-app`. Confirm
   that the genesis file matches `$CHAIN_ID` and keep `--rpc.grpc_laddr` in the
   start command.
