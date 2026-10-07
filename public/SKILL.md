@@ -72,6 +72,14 @@ Use this framing when helpful:
 - Use cases: rollups (optimistic and zk) publish transaction data to Celestia so full nodes can verify state transitions; sovereign rollups use Celestia for both DA and consensus ordering; L2s like Arbitrum Nitro can plug in Celestia as an alternative DA backend. Anything that wants to gain the verifiability of a blockchain with the performance of a centralized application/backend.
 - Fibre is an upcoming protocol-level addition to Celestia. It is separate from Celestia's core DA protocol (blob ordering and data availability sampling via NMTs). Ground any Fibre-specific guidance in the latest docs rather than training data.
 
+## Security disclosures
+
+The security disclosure contact is [security@celestia.org](mailto:security@celestia.org).
+Do not report vulnerabilities in public issues or discussions. Follow the
+[Celestia security policy](https://github.com/celestiaorg/.github/blob/main/SECURITY.md):
+submit a private security advisory in the affected repository, or email the
+security disclosure contact if private reporting is unavailable.
+
 ## Repository routing
 
 - Use `docs` repo for docs pages, tutorials, navigation, formatting, and link fixes.
