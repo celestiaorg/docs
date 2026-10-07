@@ -87,12 +87,18 @@ BASE=/docs-preview/new_docs/ NEXT_PUBLIC_BASE_PATH=/docs-preview/new_docs yarn b
 
 ### Updating bundled Node API specs
 
-Add the release asset to `public/specs/`, update `constants/node_api_versions.json`,
-and run `yarn generate:skill`. The manifest drives the API dropdown, Fibre reference links,
-LLM index, API catalog, and the version links in `public/SKILL.md`.
-Keep bundled spec versions separate from automated network version updates.
+The Latest Tags workflow includes the matching upstream `openrpc.json`, API manifest,
+and generated skill links in each release update PR. It also repairs stale specs
+when the network versions have already been updated.
 
-CI runs `yarn check:skill` to reject stale skill links, missing or invalid specs,
+After manually updating the node tag and SHA in `constants/<network>_versions.json`,
+run `yarn sync:node-api`. This downloads the published release spec, preserves the
+previous version in the API dropdown, updates `constants/node_api_versions.json`,
+and runs `yarn generate:skill`. Missing or invalid release assets fail the update.
+The manifest drives the API dropdown, Fibre reference links, LLM index, API catalog,
+and the version links in `public/SKILL.md`.
+
+CI runs `yarn check:skill` to reject network/API version drift, stale skill links, missing or invalid specs,
 and RPC methods in the skill that are absent from either current spec. It checks
 availability, not behavioural compatibility or network activation; review method
 guidance and release requirements when updating specs. Edit the skill's prose

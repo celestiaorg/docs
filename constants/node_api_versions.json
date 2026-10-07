@@ -1,7 +1,8 @@
 {
   "mainnet": "v0.33.2",
-  "mocha": "v0.34.2-mocha",
+  "mocha": "v0.34.3-mocha",
   "historical": [
+    "v0.34.2-mocha",
     "v0.31.4",
     "v0.31.3",
     "v0.30.2",

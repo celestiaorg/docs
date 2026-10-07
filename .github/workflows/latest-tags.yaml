@@ -34,7 +34,6 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Fetch latest tags and commit SHAs
-        id: latest
         uses: actions/github-script@v9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -52,18 +51,25 @@ jobs:
             const result = await planUpdates({ github, owner: process.env.OWNER, network, current, policy });
             await core.summary.addHeading(`Release selection: ${network}`)
               .addCodeBlock(result.summary.join('\n'))
-              .addRaw(result.changed ? 'Eligible patch update found.' : 'No eligible update; no PR created.')
+              .addRaw(result.changed ? 'Eligible patch update found.' : 'No eligible tag update; checking bundled Node API specs.')
               .write();
             if (result.changed) {
               fs.writeFileSync(versionsPath, JSON.stringify(result.next, null, 2) + '\n');
             }
-            core.setOutput('should_update', String(result.changed));
 
+      - name: Sync bundled Node API specs and skill links
+        run: |
+          node scripts/sync-node-api.mjs
+          node scripts/sync-skill.mjs
+          node scripts/sync-skill.mjs --check
+
+      # Also repairs spec drift when the selected release tags have not changed.
+      # create-pull-request is a no-op when the checkout has no changes.
       - name: Open PR
-        if: steps.latest.outputs.should_update == 'true'
         uses: peter-evans/create-pull-request@v8
         with:
+          base: main
           branch: gh-action/latest-tags-${{ matrix.network }}
-          commit-message: "[automated GH action] update latest release tags & commit sha (${{ matrix.network }})"
-          title: "[GH Action] Update release tags and commit SHAs for ${{ matrix.network }}"
+          commit-message: "[automated GH action] sync release versions and Node API specs (${{ matrix.network }})"
+          title: "[GH Action] Sync release versions and Node API specs for ${{ matrix.network }}"
           token: ${{ secrets.PAT_CREATE_PR }}
