@@ -206,6 +206,9 @@ You can get testnet tokens from:
 
 #### Optional: run the bridge node with a custom key
 
+For an archival bridge node, append `--archival` to either start command below
+to preserve archival mode.
+
 In order to run a bridge node using a custom key:
 
 1. The custom key must exist inside the celestia bridge node directory at the
@@ -240,6 +243,9 @@ To migrate a bridge node ID:
 
 Follow the
 [tutorial on setting up the bridge node as a background process with SystemD](/operate/maintenance/systemd).
+
+For an archival bridge node, use the archival `ExecStart` from that tutorial
+before starting the service, and keep `--archival` on every restart.
 
 You have successfully set up a bridge node that is syncing with the network.
 
