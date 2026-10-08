@@ -12,6 +12,13 @@ on:
           - mocha
   schedule:
     - cron: '0 */6 * * *'
+  # Refresh the other network's open PR right after a release PR merges, so the
+  # two per-network PRs never conflict on the shared API manifest and skill links.
+  push:
+    branches: [main]
+    paths:
+      - constants/*_versions.json
+      - constants/release-policy.json
 
 permissions:
   contents: read
