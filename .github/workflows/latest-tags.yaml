@@ -24,6 +24,9 @@ jobs:
       fail-fast: false
       matrix:
         network: ${{ fromJSON(github.event_name == 'workflow_dispatch' && format('["{0}"]', github.event.inputs.network) || '["mainnet","mocha"]') }}
+    concurrency:
+      group: latest-tags-${{ matrix.network }}
+      cancel-in-progress: false
     permissions:
       contents: write
       pull-requests: write
@@ -48,16 +51,16 @@ jobs:
             const network = process.env.NETWORK;
             const versionsPath = path.join(root, 'constants', `${network}_versions.json`);
             const current = JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
-            const policy = JSON.parse(fs.readFileSync(path.join(root, 'constants/release-policy.json'), 'utf8'));
-            const result = await planUpdates({ github, owner: process.env.OWNER, network, current, policy });
+            const result = await planUpdates({ github, owner: process.env.OWNER, network, current });
             await core.summary.addHeading(`Release selection: ${network}`)
               .addCodeBlock(result.summary.join('\n'))
-              .addRaw(result.changed ? 'Eligible patch update found.' : 'No eligible update; no PR created.')
+              .addRaw(result.changed ? 'Newer release found; review compatibility before merging.' : 'No eligible update; no PR created.')
               .write();
             if (result.changed) {
               fs.writeFileSync(versionsPath, JSON.stringify(result.next, null, 2) + '\n');
             }
             core.setOutput('should_update', String(result.changed));
+            core.setOutput('selection_summary', result.summary.join('\n'));
 
       - name: Open PR
         if: steps.latest.outputs.should_update == 'true'
@@ -66,4 +69,13 @@ jobs:
           branch: gh-action/latest-tags-${{ matrix.network }}
           commit-message: "[automated GH action] update latest release tags & commit sha (${{ matrix.network }})"
           title: "[GH Action] Update release tags and commit SHAs for ${{ matrix.network }}"
+          body: |
+            Proposes newer releases for ${{ matrix.network }} using numeric major/minor/patch ordering.
+            Mainnet uses stable releases; Mocha uses only `-mocha` releases.
+
+            Review upstream release notes and network compatibility before merging, especially for major/minor upgrades. A published binary does not establish network activation.
+
+            ```text
+            ${{ steps.latest.outputs.selection_summary }}
+            ```
           token: ${{ secrets.PAT_CREATE_PR }}
