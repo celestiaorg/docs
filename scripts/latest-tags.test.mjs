@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { readFile } from 'node:fs/promises';
 import { planUpdates, selectRelease } from './latest-tags.mjs';
 
 const release = (tag_name, extra = {}) => ({ tag_name, draft: false, prerelease: false, ...extra });
@@ -89,4 +90,27 @@ test('missing constants, invalid SHAs and API failures cannot produce an update'
   const input = fixture();
   input.github.paginate = async () => { throw new Error('API unavailable'); };
   await assert.rejects(planUpdates(input), /API unavailable/);
+});
+
+test('Mainnet node minor upgrade requires updating policy and constants together', () => {
+  const tags = ['v0.34.3', 'v0.33.2'];
+  const blocked = select(tags, { currentTag: 'v0.33.2', series: '0.33' });
+  assert.equal(blocked.tag, 'v0.33.2');
+  assert.ok(blocked.skipped.includes('v0.34.3: outside approved series 0.33'));
+  assert.throws(() => select(tags, { currentTag: 'v0.33.2', series: '0.34' }),
+    /update policy and constants together/);
+  assert.equal(select(tags, { currentTag: 'v0.34.3', series: '0.34' }).tag, 'v0.34.3');
+});
+
+test('checked-in versions match the approved series for both workflow networks', async () => {
+  const read = async (file) => JSON.parse(await readFile(new URL(`../constants/${file}`, import.meta.url), 'utf8'));
+  const policy = await read('release-policy.json');
+  for (const network of ['mainnet', 'mocha']) {
+    const current = await read(`${network}_versions.json`);
+    for (const key of ['app', 'node']) {
+      const currentTag = current[`${key}-latest-tag`];
+      assert.equal(selectRelease({ releases: [release(currentTag)], currentTag,
+        series: policy[network][key], network }).tag, currentTag);
+    }
+  }
 });
