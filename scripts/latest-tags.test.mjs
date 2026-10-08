@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { planUpdates, selectRelease } from './latest-tags.mjs';
 
@@ -75,6 +76,27 @@ test('valid patch updates tag and SHA together and preserves other fields', asyn
   assert.equal(result.next['app-latest-sha'], newSha);
   assert.equal(result.next.preserved, 'value');
   assert.equal(input.current['app-latest-tag'], 'v9.0.8');
+});
+
+test('Mainnet node policy and constants allow subsequent patch updates', async () => {
+  const input = fixture();
+  input.current = JSON.parse(readFileSync(new URL('../constants/mainnet_versions.json', import.meta.url)));
+  input.policy = JSON.parse(readFileSync(new URL('../constants/release-policy.json', import.meta.url)));
+  const currentTag = input.current['node-latest-tag'];
+  const [, major, minor, patch] = currentTag.match(/^v(\d+)\.(\d+)\.(\d+)$/);
+  const nextTag = `v${major}.${minor}.${BigInt(patch) + 1n}`;
+  const nextSeriesTag = `v${major}.${BigInt(minor) + 1n}.0`;
+  input.github.paginate = async (_method, { repo }) => (repo === 'celestia-app'
+    ? [input.current['app-latest-tag']]
+    : [nextSeriesTag, `${nextTag}-mocha`, `${nextTag}-rc.1`, nextTag, currentTag, 'v0.33.2'])
+    .map(tag => release(tag));
+  input.github.rest.repos.getCommit = async ({ repo, ref }) => ({ data: {
+    sha: ref === nextTag ? newSha : input.current[repo === 'celestia-app' ? 'app-latest-sha' : 'node-latest-sha'],
+  } });
+  const result = await planUpdates(input);
+  assert.equal(result.changed, true);
+  assert.deepEqual(result.next, { ...input.current, 'node-latest-tag': nextTag, 'node-latest-sha': newSha });
+  assert.ok(result.summary.some(line => line.includes(`${nextSeriesTag}: outside approved series`)));
 });
 
 test('retagging fails even when a newer patch exists', async () => {
