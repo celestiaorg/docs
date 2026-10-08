@@ -121,6 +121,19 @@ BASE=/docs-preview/new_docs/ bun run build
   - Automatically runs during build process (`bun run build`)
   - Access any doc page as markdown by adding `.md` to the URL
 
+### Updating bundled Node API specs
+
+Add the release asset to `public/specs/`, update `constants/node_api_versions.json`,
+and run `yarn generate:skill`. The manifest drives the API dropdown, Fibre reference links,
+LLM index, API catalog, and the version links in `public/SKILL.md`.
+Keep bundled spec versions separate from automated network version updates.
+
+CI runs `yarn check:skill` to reject stale skill links, missing or invalid specs,
+and RPC methods in the skill that are absent from either current spec. It checks
+availability, not behavioural compatibility or network activation; review method
+guidance and release requirements when updating specs. Edit the skill's prose
+outside the generated markers; its existing symlink remains the shared source.
+
 ## Contribution guidelines
 
 We love contributions from the community! Whether you're fixing typos, improving clarity, or adding new topics, every contribution helps.

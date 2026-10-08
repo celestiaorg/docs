@@ -36,6 +36,9 @@ jobs:
       - name: Test release selection
         run: bun run test:releases
 
+      - name: Check skill and bundled Node API specs
+        run: npm run check:skill
+
       - name: Test Fibre guide response handling
         run: bun run test:fibre
 

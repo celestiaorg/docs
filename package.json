@@ -12,6 +12,8 @@
     "preview": "vite preview",
     "lint": "eslint",
     "prepare": "simple-git-hooks",
+    "generate:skill": "node scripts/sync-skill.mjs",
+    "check:skill": "node scripts/sync-skill.mjs --check",
     "generate:llms": "node scripts/generate-llms.js",
     "check-links": "node scripts/check-links.mjs",
     "test:endpoints": "node --test scripts/check-endpoints.test.mjs",

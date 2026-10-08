@@ -170,11 +170,13 @@ const require = createRequire(import.meta.url);
 let variableContext = {};
 
 try {
+  const apiVersions = require('../constants/node_api_versions.json');
   const mainnetVersions = require('../constants/mainnet_versions.json');
   const mochaVersions = require('../constants/mocha_versions.json');
   const constants = require('../constants/general.json');
 
   variableContext = {
+    apiVersions,
     mainnetVersions,
     mochaVersions,
     constants,

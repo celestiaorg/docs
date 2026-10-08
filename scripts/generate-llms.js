@@ -8,16 +8,21 @@ import { cleanMdxForMarkdown } from './lib/clean-mdx.mjs';
 
 const SITE_ORIGIN = process.env.VOCS_BASE_URL || 'https://docs.celestia.org';
 const GITHUB_REPO = 'https://github.com/celestiaorg/docs';
-const LATEST_OPENRPC_SPEC = '/specs/openrpc-v0.31.4.json';
 
 // Use createRequire to import JSON files in ESM context
 const require = createRequire(import.meta.url);
 const mainnetVersions = require('../constants/mainnet_versions.json');
 const mochaVersions = require('../constants/mocha_versions.json');
 const constants = require('../constants/general.json');
+const apiVersions = require('../constants/node_api_versions.json');
+const openrpcSpecs = [
+  { network: 'Mainnet Beta', version: apiVersions.mainnet },
+  { network: 'Mocha', version: apiVersions.mocha },
+];
 
 // Create a context object with all available variables
 const variableContext = {
+  apiVersions,
   mainnetVersions,
   mochaVersions,
   constants,
@@ -89,7 +94,7 @@ function replaceVariables(text) {
   // First replace {{...}} patterns (double braces)
   text = text.replace(/\{\{([^{}]+)\}\}/g, (match, expression) => {
     const trimmedExpr = expression.trim();
-    if (!/^(mainnetVersions|mochaVersions|constants)(?:\[['"][^'"]+['"]\]|\.\w+)$/.test(trimmedExpr)) {
+    if (!/^(mainnetVersions|mochaVersions|constants|apiVersions)(?:\[['"][^'"]+['"]\]|\.\w+)$/.test(trimmedExpr)) {
       return match;
     }
 
@@ -105,7 +110,7 @@ function replaceVariables(text) {
 
   // Then replace {expression} patterns (single braces) that match our variable patterns
   // Be careful to only match patterns that look like variable references
-  text = text.replace(/\{((?:mainnetVersions|mochaVersions|constants)(?:\[['"][^'"]+['"]\]|\.\w+))\}/g, (match, expression) => {
+  text = text.replace(/\{((?:mainnetVersions|mochaVersions|constants|apiVersions)(?:\[['"][^'"]+['"]\]|\.\w+))\}/g, (match, expression) => {
     const trimmedExpr = expression.trim();
     const resolved = resolveExpression(trimmedExpr);
 
@@ -147,7 +152,8 @@ const header = [
   `- Agent skill: ${SITE_ORIGIN}/SKILL.md`,
   `- Agent skills index: ${SITE_ORIGIN}/.well-known/agent-skills/index.json`,
   `- API catalog: ${SITE_ORIGIN}/.well-known/api-catalog`,
-  `- Node API OpenRPC spec: ${SITE_ORIGIN}/specs/openrpc-v0.31.4.json`,
+  ...openrpcSpecs.map(({ network, version }) =>
+    `- Node API OpenRPC spec (${network}): ${SITE_ORIGIN}/specs/openrpc-${version}.json`),
   '- CIPs (Celestia Improvement Proposals): https://cips.celestia.org',
 ];
 
@@ -429,13 +435,11 @@ const generateApiCatalog = async (outputBase) => {
     linkset: [
       {
         anchor: SITE_ORIGIN,
-        'service-desc': [
-          {
-            href: `${SITE_ORIGIN}${LATEST_OPENRPC_SPEC}`,
-            type: 'application/json',
-            title: 'Celestia Node API OpenRPC specification',
-          },
-        ],
+        'service-desc': openrpcSpecs.map(({ network, version }) => ({
+          href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
+          type: 'application/json',
+          title: `Celestia Node API OpenRPC specification (${network})`,
+        })),
         'service-doc': [
           {
             href: `${SITE_ORIGIN}/build/rpc/node-api/`,

@@ -1,6 +1,7 @@
 'use client';
 
 import axios from 'axios';
+import apiVersions from '@/constants/node_api_versions.json';
 import { useEffect, useState, useCallback } from 'react';
 
 import { INotification, MethodByPkg, OpenRPCSpec, Param } from '../lib/types';
@@ -43,52 +44,10 @@ function getMethodsByPackage(spec: OpenRPCSpec): MethodByPkg {
   return methodsByPackage;
 }
 
-const versions = [
-  'v0.11.0-rc8',
-  'rc8-0cf4a49',
-  'v0.11.0-rc11',
-  'v0.11.0-rc12',
-  'v0.11.0-rc13',
-  'v0.11.0-rc14',
-  'v0.11.0',
-  'v0.12.0',
-  'v0.12.1',
-  'v0.12.2',
-  'v0.12.3',
-  'v0.12.4',
-  'v0.13.0',
-  'v0.13.1',
-  'v0.13.2',
-  'v0.13.3',
-  'v0.13.4',
-  'v0.13.5',
-  'v0.13.6',
-  'v0.13.7',
-  'v0.14.0',
-  'v0.14.1',
-  'v0.15.0',
-  'v0.16.0',
-  'v0.17.1',
-  'v0.17.2',
-  'v0.20.2',
-  'v0.20.3',
-  'v0.20.4',
-  'v0.21.9',
-  'v0.22.1',
-  'v0.22.2',
-  'v0.22.3',
-  'v0.23.5',
-  'v0.25.3',
-  'v0.26.4',
-  'v0.28.4',
-  'v0.30.2',
-  'v0.31.3',
-  'v0.31.4',
-  'v0.34.2-mocha',
-].reverse();
+// Only list versions with a bundled OpenRPC spec; default to Mainnet Beta.
+const versions = [apiVersions.mainnet, apiVersions.mocha, ...apiVersions.historical];
 
-// Keep the general reference on its existing version; Mocha is selected explicitly.
-const defaultVersion = 'v0.31.4';
+const defaultVersion = apiVersions.mainnet;
 
 export default function RPCDocumentation() {
   // State management
@@ -281,6 +240,8 @@ export default function RPCDocumentation() {
               {versions.map((version) => (
                 <option key={version} value={version}>
                   {version}
+                  {version === apiVersions.mainnet && ' (Mainnet Beta)'}
+                  {version === apiVersions.mocha && ' (Mocha)'}
                 </option>
               ))}
             </select>

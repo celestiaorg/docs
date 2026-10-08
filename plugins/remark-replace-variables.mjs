@@ -16,12 +16,14 @@ import { createRequire } from 'module';
 
 // Use createRequire to import JSON files in ESM context
 const require = createRequire(import.meta.url);
+const apiVersions = require('../constants/node_api_versions.json');
 const mainnetVersions = require('../constants/mainnet_versions.json');
 const mochaVersions = require('../constants/mocha_versions.json');
 const constants = require('../constants/general.json');
 
 // Create a context object with all available variables
 const variableContext = {
+  apiVersions,
   mainnetVersions,
   mochaVersions,
   constants,
