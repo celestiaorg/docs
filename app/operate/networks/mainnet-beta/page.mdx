@@ -115,12 +115,9 @@ to connect to them. Learn about the different endpoint types
 
 ### Production RPC endpoints
 
-These RPC providers are meant to be used in production environments
-and for specific use cases that require reliable access to full block
-history, such as:
+Use production RPC providers for workloads that need reliable service, such as:
 
-- Running Bridge Nodes that download data from core RPC endpoints
-- Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
+- Applications that need bridge node endpoints with uptime commitments and SLAs
 - Submitting blobs in production settings (free RPC endpoints have no guarantees, even for submitting transactions)
 
 | Provider  | URL                                                                                       |
@@ -205,18 +202,24 @@ celestia light start \
 
 ### Bridge node requirements
 
-Not all RPC endpoints guarantee the full block history.
-Bridge nodes require access to the full historical block data, so you should use an archive endpoint to run your bridge node.
+Bridge nodes run in pruned mode by default. Both pruned and archival bridge
+nodes can use a non-archival consensus endpoint. Provision it to retain blocks
+within the storage window (`{{constants['bridgeStorageWindowHours']}}h`);
+the live block listener still fetches newly announced blocks from consensus.
+Older header ranges come from the header peer exchange. Header fetches can
+also fall back to peers when consensus lacks a requested height, and the
+data availability sampler (DASer) retrieves share data from DA peers.
+Full historical availability depends on peers retaining that history.
 
-Check the [production endpoints](#production-rpc-endpoints) or the [community dashboard](https://celestia-tools.brightlystake.com/) to identify which endpoints are archive nodes with full historical data.
-
-Alternatively, you can run your own consensus node with no pruning for your bridge node.
+To retain full history locally, start the bridge node with `--archival` and
+provision the [archival hardware requirements](/operate/getting-started/hardware-requirements#archival-data-availability-nodes).
 
 ### Archival DA RPC endpoints
 
-By default, light nodes prune recent data to save on storage space. Archival
-data availability (DA) nodes store the entire history of the chain without
-pruning any data so all data available data is retrievable. You can
+By default, light nodes prune data outside their sampling window to save
+storage space. Archival data availability (DA) nodes retain historical headers
+and original data, while trimming redundant erasure-coded data outside the
+storage window. This trimming preserves the original data for retrieval. You can
 [read more about light vs archival nodes](/learn/celestia-101/retrievability/).
 
 | Provider                         | Endpoint                                                                                  | RPC Port | Gateway Port |

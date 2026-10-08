@@ -176,12 +176,9 @@ also still show `mocha-4` data.
 
 ### Production RPC endpoints
 
-These RPC providers are meant to be used in production environments
-and for specific use cases that require reliable access to full block
-history, such as:
+Use production RPC providers for workloads that need reliable service, such as:
 
-- Running Bridge Nodes that download data from core RPC endpoints
-- Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
+- Applications that need bridge node endpoints with uptime commitments and SLAs
 - Submitting blobs in production settings (free RPC endpoints have no guarantees, even for submitting transactions)
 
 | Provider  | URL                                                                                       |
@@ -203,7 +200,11 @@ endpoint:
 | DA JSON-RPC | `https://public-endpoint.celestia-mocha.quiknode.pro` |
 
 This shared endpoint is pruned and does not provide a production SLA. Do not
-use it for historical queries or bridge node sync from genesis.
+rely on it for historical queries. Bridge nodes can use a pruned consensus
+endpoint, but operators should confirm that it retains blocks within the
+storage window (`{{constants['bridgeStorageWindowHours']}}h`). Archival bridge
+nodes retrieve older header ranges and share data from peers that still hold
+them; a pruned consensus endpoint alone does not guarantee sync from genesis.
 
 ### Community consensus endpoints
 

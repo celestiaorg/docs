@@ -44,6 +44,39 @@ From an implementation perspective, Bridge nodes run two separate processes:
      serves data availability sampling requests. The team sometimes refers to
      this as the “halo” network.
 
+## Pruned and archival modes
+
+Bridge nodes run in pruned mode by default. They retain recent headers and data
+within the storage window and can begin syncing from a recent point instead of
+from genesis.
+
+To retain historical headers and data, pass `--archival` every time you start
+the bridge node. A new archival node syncs from genesis, so it needs more storage
+and access to peers that still hold the historical headers and data. Archival
+nodes can still log pruning activity: they remove redundant erasure-coded data
+while keeping the original data and headers.
+
+> **Warning:** Choose archival mode before the node's first start and include
+> `--archival` every time it starts, including in a systemd service or another
+> process manager. A store previously started in pruned mode cannot switch to
+> archival mode; initialise a fresh store to sync from genesis. Omitting
+> `--archival` on a later start converts an archival store to pruned mode
+> without refusing startup. It deletes historical headers and original data
+> outside the storage window, not just redundant erasure-coded data. Adding
+> `--archival` again does not restore the deleted history or reverse the conversion.
+
+Both modes can use a non-archival consensus endpoint. Provision it to retain
+blocks within the storage window (`{{constants['bridgeStorageWindowHours']}}h`)
+so the bridge node can fetch recent blocks from consensus. The live block
+listener still fetches newly announced blocks from that endpoint.
+
+During header sync, the bridge node routes recent ranges to the consensus
+endpoint and older ranges to the header peer exchange. Header fetches can also
+fall back to peers when the consensus endpoint lacks a requested height.
+The data availability sampler (DASer) retrieves the corresponding share data
+separately from DA peers. This fallback does not guarantee that peers retain
+the full history.
+
 ## Hardware requirements
 
 See [hardware requirements](/operate/getting-started/hardware-requirements).
@@ -93,7 +126,6 @@ transactions, and other state-related queries).
 
 Here is an example of initializing the bridge node:
 
-
 <Tabs items={['Mainnet Beta', 'Mocha']}>
   <Tabs.Tab>
     ```sh
@@ -113,19 +145,27 @@ Here is an example of initializing the bridge node:
 
 Start the bridge node with a connection to a consensus node's gRPC endpoint, which is usually exposed on port 9090:
 
-```sh
-celestia bridge start --core.ip <URI> --core.port <port>
-```
+<Tabs items={['Pruned (default)', 'Archival']}>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --core.port <port>
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```sh
+    celestia bridge start --core.ip <URI> --core.port <port> --archival
+    ```
+  </Tabs.Tab>
+</Tabs>
 
 Here is an example of starting the bridge node on Mocha:
 
 ```sh
-celestia bridge start --core.ip <archival-consensus-endpoint> --core.port 9090 --p2p.network mocha
+celestia bridge start --core.ip <consensus_endpoint> --core.port 9090 --p2p.network mocha
 ```
 
-<Callout type="warning">
-Bridge nodes sync headers from genesis and require an archival consensus node. Public RPC endpoints are typically pruned and will not work for initial sync. Use your own archival consensus node or an archival endpoint from an infrastructure provider.
-</Callout>
+Add `--archival` to this command if you need to retain historical headers and
+data.
 
 <Callout type="info">
 If you're connecting your bridge node to a localhost consensus node (`--core.ip localhost` or `--core.ip 127.0.0.1`), ensure that gRPC is enabled in your consensus node's `app.toml` configuration file. Look for the `[grpc]` section and verify that `enable = true` is set:
@@ -166,6 +206,9 @@ You can get testnet tokens from:
 
 #### Optional: run the bridge node with a custom key
 
+For an archival bridge node, append `--archival` to either start command below
+to preserve archival mode.
+
 In order to run a bridge node using a custom key:
 
 1. The custom key must exist inside the celestia bridge node directory at the
@@ -200,6 +243,9 @@ To migrate a bridge node ID:
 
 Follow the
 [tutorial on setting up the bridge node as a background process with SystemD](/operate/maintenance/systemd).
+
+For an archival bridge node, use the archival `ExecStart` from that tutorial
+before starting the service, and keep `--archival` on every restart.
 
 You have successfully set up a bridge node that is syncing with the network.
 
