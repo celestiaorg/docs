@@ -121,13 +121,21 @@ celestia state balance
 
 ### Post your first blob
 
-Use `celestia blob submit [namespace] [data]` to post your first blob.
+Use `celestia blob submit <namespace> <data>` to post your first blob.
+The example below uses a hex-encoded namespace and `0x`-prefixed hex data
+to submit the text `gm`:
 
 ```bash
 celestia blob submit 0x676d 0x676d
 ```
 
-Save the returned `height` and the first value in `commitments`.
+Keep the `0x` prefix when passing hex-encoded data. This explicit-hex form
+works both before and after the blob submission fix in celestia-node #5262.
+On builds containing that fix, unprefixed data is submitted as literal text:
+`hello` submits `hello`, and `cafe` submits the four characters `cafe`.
+
+Save the returned `height` and the first value in `commitments`. Commitments
+are still returned as `0x`-prefixed hex strings.
 
 ### Retrieve your first blob
 
@@ -136,6 +144,8 @@ Replace `<height>` and `<commitment>` with the values from `blob submit`:
 ```bash
 celestia blob get <height> 0x676d <commitment>
 ```
+
+The returned `data` field should be `"gm"`.
 
 </Steps>
 
