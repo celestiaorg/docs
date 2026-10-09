@@ -20,6 +20,13 @@ This directory contains the workflows used to lint, deploy, and keep release met
 - **Triggers:** `push`/`pull_request` on `main`, plus a weekly schedule (`0 9 * * 1`).
 - **What it does:** runs `npm run lint`, `npm run test:releases`, and `npm run check-links` (Node 20).
 
+## `consensus-docker.yml` — Consensus Docker smoke test
+
+- **Triggers:** pull requests changing the consensus Docker guide, its smoke test, or network/version constants; manual `workflow_dispatch`.
+- **What it does:** runs the guide's commands on Ubuntu 24.04 for Mainnet Beta and Mocha. Loads BBR, completes the verified genesis download, starts the container with `--sysctl`, and checks container BBR, the RPC chain ID, and application gRPC TCP connectivity from the host and a second container.
+- **Scope:** startup and connectivity only; does not complete chain sync or connect a light node. Uses disposable node homes and removes its containers and network.
+- **Local testing:** `python3 scripts/test-consensus-docker.py mainnet --desktop` tests the guide's Docker Desktop bypass. Omit `--desktop` on a Linux Docker host with sudo and BBR support. The test requires the names `celestia-app` and `celestia-network` to be unused.
+
 ## `latest-tags.yaml` — Latest Tags
 
 - **Triggers:** every 6 hours, or manual `workflow_dispatch` with `network`.

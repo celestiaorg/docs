@@ -1,0 +1,281 @@
+---
+sidebar_label: Docker images
+description: Running celestia-app using Docker images.
+---
+
+# 🐳 Docker setup for celestia-app
+
+Run a consensus node with the official celestia-app Docker image. This guide
+uses persistent storage and the network versions recommended by these docs.
+It does not create a validator.
+
+If you are looking for instructions to run `celestia-node` using Docker, refer
+to the [celestia-node Docker page](/operate/getting-started/docker).
+
+## Prerequisites
+
+- [Docker Desktop for Mac or Windows](https://docs.docker.com/get-docker)
+- [Docker Engine for Linux](https://docs.docker.com/engine/install/)
+- A Bash-compatible shell, `curl` and `jq`. On Windows, use WSL.
+- Enough CPU, memory and disk for a
+  [consensus node](/operate/getting-started/hardware-requirements).
+- For production, a Linux host whose kernel provides BBR. Follow
+  [the host setup below](#prepare-a-linux-host-for-bbr).
+
+## Prepare a Linux host for BBR
+
+Run these commands on the Linux host running Docker Engine:
+
+```bash
+sudo modprobe tcp_bbr
+sysctl net.ipv4.tcp_available_congestion_control
+```
+
+Confirm that the output includes `bbr`. On hosts using systemd, load the module
+automatically after a reboot:
+
+```bash
+printf 'tcp_bbr\n' | sudo tee /etc/modules-load.d/celestia-bbr.conf
+```
+
+The start command below selects BBR inside the container with `--sysctl`.
+Changing the host's default congestion control alone does not configure the
+container's network namespace. If the module is unavailable, use a Linux kernel
+that supports BBR before running a production node.
+
+Docker Desktop uses its own Linux VM. For local testing on Mac or Windows,
+skip these host commands and use the complete Docker Desktop start command below.
+
+## Quick start with persistent storage
+
+### Set network and version variables
+
+Choose one network:
+
+**Mainnet Beta**
+
+```bash
+export NETWORK=celestia
+export CHAIN_ID={{constants['mainnetChainId']}}
+export APP_VERSION={{mainnetVersions['app-latest-tag']}}
+export NODE_VERSION={{mainnetVersions['node-latest-tag']}}
+```
+
+**Mocha**
+
+```bash
+export NETWORK=mocha
+export CHAIN_ID={{constants['mochaChainId']}}
+export APP_VERSION={{mochaVersions['app-latest-tag']}}
+export NODE_VERSION={{mochaVersions['node-latest-tag']}}
+```
+
+Use the `ghcr.io/celestiaorg/celestia-app` image, which bundles earlier
+application versions for syncing through network upgrades.
+
+### Create the node home directory
+
+Use a separate directory for each network. The commands run as your host user
+so you can edit the generated configuration without changing file ownership.
+
+```bash
+export APP_HOME="$HOME/celestia-app-docker/$CHAIN_ID"
+mkdir -p "$APP_HOME"
+```
+
+### Initialize the node home
+
+```bash
+docker run --rm \
+  --user "$(id -u):$(id -g)" \
+  -v "$APP_HOME:/home/celestia/.celestia-app" \
+  ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
+  init docker-node --chain-id "$CHAIN_ID" --home /home/celestia/.celestia-app
+```
+
+### Download the genesis file
+
+```bash
+docker run --rm \
+  --user "$(id -u):$(id -g)" \
+  -v "$APP_HOME:/home/celestia/.celestia-app" \
+  ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
+  download-genesis "$CHAIN_ID" --home /home/celestia/.celestia-app
+```
+
+### Configure seeds
+
+Download the seed list for the selected network and update
+`$APP_HOME/config/config.toml`:
+
+```bash
+SEEDS=$(curl -fsSL "https://raw.githubusercontent.com/celestiaorg/networks/master/$CHAIN_ID/seeds.txt" | tr '\n' ',' | sed 's/,$//')
+test -n "$SEEDS" && sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" "$APP_HOME/config/config.toml"
+```
+
+Confirm that the download succeeded and `seeds` contains the downloaded peers
+before continuing. For optional persistent peers, see the
+[consensus node guide](/operate/consensus-validators/consensus-node#set-up-the-p2p-networks).
+
+### Choose storage and sync settings
+
+Review the [storage settings](/operate/consensus-validators/consensus-node#storage-and-pruning-configurations)
+before starting. Edit `config/app.toml` and `config/config.toml` under `$APP_HOME`.
+By default, the node syncs from genesis. For state sync or a snapshot, follow
+[the sync options](/operate/consensus-validators/consensus-node#sync-types)
+using `$APP_HOME` wherever that guide refers to `~/.celestia-app`.
+
+### Start the container
+
+RPC (`26657`) and application gRPC (`9090`) are published to localhost only.
+P2P (`26656`) is published for peer connectivity. The separate consensus gRPC
+listener (`9098`) stays inside the container.
+
+Choose one of the following commands for your Docker environment.
+
+#### Linux with BBR
+
+After preparing the Linux host, use `--sysctl` to enable BBR in the container's
+network namespace:
+
+```bash
+docker run -d \
+  --user "$(id -u):$(id -g)" \
+  --sysctl net.ipv4.tcp_congestion_control=bbr \
+  --name celestia-app \
+  --restart unless-stopped \
+  -v "$APP_HOME:/home/celestia/.celestia-app" \
+  -p 26656:26656 \
+  -p 127.0.0.1:26657:26657 \
+  -p 127.0.0.1:9090:9090 \
+  ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
+  start --home /home/celestia/.celestia-app \
+  --rpc.laddr tcp://0.0.0.0:26657 \
+  --rpc.grpc_laddr tcp://0.0.0.0:9098 \
+  --grpc.enable=true --grpc.address 0.0.0.0:9090
+```
+
+Confirm that the running container uses BBR:
+
+```bash
+docker exec celestia-app cat /proc/sys/net/ipv4/tcp_congestion_control
+```
+
+The output must be `bbr`.
+
+#### Docker Desktop for local testing
+
+When BBR is unavailable in Docker Desktop's Linux VM, use this command. It
+bypasses the BBR check with `--force-no-bbr`, which reduces P2P performance.
+Use the Linux BBR setup for production.
+
+```bash
+docker run -d \
+  --user "$(id -u):$(id -g)" \
+  --name celestia-app \
+  --restart unless-stopped \
+  -v "$APP_HOME:/home/celestia/.celestia-app" \
+  -p 26656:26656 \
+  -p 127.0.0.1:26657:26657 \
+  -p 127.0.0.1:9090:9090 \
+  ghcr.io/celestiaorg/celestia-app:$APP_VERSION \
+  start --home /home/celestia/.celestia-app \
+  --rpc.laddr tcp://0.0.0.0:26657 \
+  --rpc.grpc_laddr tcp://0.0.0.0:9098 \
+  --grpc.enable=true --grpc.address 0.0.0.0:9090 \
+  --force-no-bbr
+```
+
+### Check node status
+
+```bash
+docker logs --tail 100 celestia-app
+curl -fsS http://localhost:26657/status | jq '.result.sync_info'
+```
+
+Wait until `catching_up` is `false` before using this node as a synced consensus
+endpoint. Reaching the chain tip can take a long time when syncing from genesis.
+
+## Connect a light node
+
+celestia-node connects to consensus over gRPC (`--core.port`, default `9090`),
+not the consensus gRPC listener on `9098`. Wait for the consensus node to sync
+before starting the light node below.
+
+If you run a bridge node, make sure your consensus node config follows the
+[bridge requirements](/operate/consensus-validators/consensus-node#optional-connect-a-consensus-node-to-a-bridge-node).
+
+### Create a shared Docker network
+
+```bash
+docker network create celestia-network
+```
+
+### Connect celestia-app to the shared network
+
+```bash
+docker network connect celestia-network celestia-app
+```
+
+celestia-node can now reach `celestia-app:9090` by container name. The existing
+localhost port bindings stay in place.
+
+### Start celestia-node in the same Docker network
+
+This example creates a temporary light node. Its data and key are removed when
+it exits. For a persistent node store, follow the
+[celestia-node storage instructions](/operate/getting-started/docker#light-node-setup-with-persistent-storage)
+and add `--network celestia-network` to the run command.
+
+```bash
+docker run --rm -it \
+  --name celestia-node \
+  --network celestia-network \
+  -e NODE_TYPE=light \
+  -e P2P_NETWORK=$NETWORK \
+  ghcr.io/celestiaorg/celestia-node:$NODE_VERSION \
+  celestia light start --core.ip celestia-app --core.port 9090 --p2p.network $NETWORK
+```
+
+## Stop or upgrade the consensus container
+
+Stop the container before changing its configuration:
+
+```bash
+docker stop celestia-app
+```
+
+Restart it with `docker start celestia-app` after configuration edits. To upgrade,
+stop the container and review the [network upgrade instructions](/operate/maintenance/network-upgrades),
+set `APP_VERSION` to the recommended release and pull the new image:
+
+```bash
+docker stop celestia-app
+docker pull "ghcr.io/celestiaorg/celestia-app:$APP_VERSION"
+docker rm celestia-app
+```
+
+Repeat the start command with the same `$APP_HOME`. If you connected a light
+node, reconnect the replacement container to `celestia-network`. Removing the
+container preserves the bind-mounted data; do not delete `$APP_HOME`.
+
+## Troubleshooting
+
+- **Permission denied:** ensure `$APP_HOME` is writable by your host user and
+  use the same `--user` option for initialization and startup.
+- **BBR not enabled, or Docker rejects the BBR sysctl:** confirm the Linux host
+  provides `tcp_bbr` and your Docker daemon permits the sysctl. Docker Desktop
+  uses a Linux VM, so the macOS or Windows host setting does not enable BBR there.
+  Use the Docker Desktop start command above for local testing.
+- **The node exits immediately:** inspect `docker logs celestia-app`. Confirm
+  that the genesis file matches `$CHAIN_ID` and keep `--rpc.grpc_laddr` in the
+  start command.
+- **A light or bridge node cannot connect:** confirm both containers are on
+  `celestia-network`, application gRPC listens on `0.0.0.0:9090`, and the
+  consensus node has finished syncing.
+
+## Next steps
+
+- [Consensus node guide](/operate/consensus-validators/consensus-node)
+- [Validator node guide](/operate/consensus-validators/validator-node)
+- [celestia-node Docker guide](/operate/getting-started/docker)
