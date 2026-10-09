@@ -38,5 +38,7 @@ export function cleanMdxForMarkdown(content) {
   cleaned = cleaned.replace(/<([A-Z][a-zA-Z0-9]*)[^>]*>[\s\S]*?<\/\1>/g, '');
   cleaned = cleaned.replace(/\{\/\*[\s\S]*?\*\/\}/g, '');
   cleaned = cleaned.replace(/\n{3,}/g, '\n\n').trim();
+  // Null delimiters mark the fenced examples protected above.
+  // eslint-disable-next-line no-control-regex
   return cleaned.replace(/\u0000FENCE(\d+)\u0000/g, (_, index) => fences[Number(index)]);
 }

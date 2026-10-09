@@ -8,7 +8,8 @@ export default function CopyIcon() {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className='nx-h-6 w-6 text-gray-500 hover:text-blue-500'
+      width={22}
+      height={22}
     >
       <path
         strokeLinecap='round'
@@ -18,4 +19,3 @@ export default function CopyIcon() {
     </svg>
   );
 }
-

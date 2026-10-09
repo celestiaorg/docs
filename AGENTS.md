@@ -11,7 +11,7 @@ skill is also published from `public/SKILL.md`; keep one source of truth.
 
 ## Repository overview
 
-This repository builds the Celestia documentation site with Next.js and Nextra.
+This repository builds the Celestia documentation site with Vocs v2 and Vite.
 The site uses a static export.
 
 - `app/**/page.mdx`: documentation source pages.
@@ -25,28 +25,28 @@ Do not edit generated files in `out/`. Edit the source MDX or JavaScript file.
 
 ## Setup and commands
 
-Use Node.js 20 or later and Yarn.
+Use Node.js 22 or later and Bun.
 
 ```bash
-yarn install
-yarn dev
+bun install --frozen-lockfile
+bun run dev
 ```
 
 Use these checks as needed:
 
 ```bash
-yarn lint
-yarn build
-yarn check-links -- --all
-yarn test:endpoints
-yarn generate:llms
+bun run lint
+bun run build
+bun run check-links -- --all
+bun run test:endpoints
+bun run generate:llms
 ```
 
-- Run `yarn lint` before finalizing a change.
-- Run `yarn build` for changes that can affect rendering or static export.
-- Run `yarn check-links -- --all` when links change.
-- Run `yarn test:endpoints` when endpoint validation code changes.
-- Run `yarn generate:llms` when generated LLM markdown must be inspected.
+- Run `bun run lint` before finalizing a change.
+- Run `bun run build` for changes that can affect rendering or static export.
+- Run `bun run check-links -- --all` when links change.
+- Run `bun run test:endpoints` when endpoint validation code changes.
+- Run `bun run generate:llms` when generated LLM markdown must be inspected.
 
 ## Documentation conventions
 
