@@ -1,0 +1,98 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","2298","static/chunks/2298-a293ccc880c03f04.js","6319","static/chunks/app/build/rpc/node-api/page-cf287a252718e277.js"],"WrapperWithFooter"]
+3:Tabc,import NodeAPIContent from "../components/NodeAPIContent";
+import { DynamicRPCTOC } from "../components/DynamicRPCTOC";
+
+{/* Hide Nextra's copy button - doesn't work well with dynamic content on this page */}
+<style>{`
+  article button:has(svg):has(*:is(:contains("Copy page"), :contains("Copied"))) {
+    display: none !important;
+  }
+  /* Fallback: hide the container if :has() or :contains() not supported */
+  article div[class*="border"][class*="inline-flex"][class*="float-end"] {
+    display: none !important;
+  }
+`}</style>
+
+# Node API
+
+<div style={{ display: 'none' }}>
+
+## Celestia Node API
+
+The Celestia Node API is the collection of RPC methods that can be used to interact with the services provided by Celestia Data Availability Nodes. Node API uses auth tokens to control access to this API.
+
+Celestia node RPC reference for blob, blobstream, da, das, header, node, p2p, share, and state packages. Includes methods like blob.Get, blob.GetAll, blob.GetProof, blob.Submit, share.GetShare, share.GetRange, share.GetNamespaceData, share.GetEDS, share.SharesAvailable, state.SubmitPayForBlob, state.Balance, state.Transfer, header.NetworkHead, header.GetByHeight, header.Subscribe, p2p.Peers, p2p.Connect, p2p.Info, p2p.Network, da.Submit, da.Validate, da.GetProofs, das.SamplingStats, node.AuthNew, node.Info, and blobstream.GetDataRootTupleInclusionProof.
+
+</div>
+
+## Fibre on Mocha
+
+Select `{{apiVersions['mocha']}}` in the version selector below for the
+released Fibre API, or download its [OpenRPC specification](/specs/openrpc-{{apiVersions['mocha']}}.json).
+The [Mocha Fibre walkthrough](/build/post-retrieve-blob/fibre) covers node setup,
+escrow funding, submission and retrieval, including tested request encodings
+and the JSON-RPC size limit. The Mainnet Beta `{{apiVersions['mainnet']}}`
+specification does not include Fibre.
+
+The Mocha specification also includes `blob.SubscribeFromStartHeight`, which
+replays blobs for a namespace from a start height, then streams new blobs.
+
+## celestia-node v0.31.3 breaking changes
+
+Starting with celestia-node v0.31.3:
+
+- The `fraud` RPC namespace was removed. Calls to `fraud.Get` and
+  `fraud.Subscribe` are no longer supported.
+- The `type` field returned by `node.Info` is a string such as `"Bridge"` or
+  `"Light"` instead of an integer.
+- RPC request bodies are limited to 16 MiB. Larger requests are rejected.
+- In the Go API, `blob.Commitment.String()` returns a hexadecimal string
+  instead of raw bytes. This does not change the JSON encoding of commitment
+  fields returned by RPC methods.
+
+See the [celestia-node v0.31.3 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3)
+for the complete list of changes.
+
+<NodeAPIContent />
+<DynamicRPCTOC />11:X
+16:X
+16:C
+0:{"buildId":"TwYjPaWi6oZIe1BE7UJLE","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Node API","filePath":"app/build/rpc/node-api/page.mdx","timestamp":1791545200000},"toc":[{"value":"Celestia Node API","id":"celestia-node-api","depth":2},{"value":"Fibre on Mocha","id":"fibre-on-mocha","depth":2},{"value":"celestia-node v0.31.3 breaking changes","id":"celestia-node-v0313-breaking-changes","depth":2}],"sourceCode":"$3","children":["\n",["$","style",null,{"children":"\narticle button:has(svg):has(*:is(:contains(\"Copy page\"), :contains(\"Copied\"))) {\n  display: none !important;\n}\n/* Fallback: hide the container if :has() or :contains() not supported */\narticle div[class*=\"border\"][class*=\"inline-flex\"][class*=\"float-end\"] {\n  display: none !important;\n}\n"}],"\n","$L4","\n","$L5","\n","$L6","\n","$L7","\n","$L8","\n","$L9","\n","$La","\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le"]}],null,"$Lf"]}],"isPartial":"$@10","staleTime":"$11","varyParams":null},{"rsc":"$L12","isPartial":"$@13","staleTime":"$11","varyParams":null},{"rsc":"$L14","isPartial":"$@15","staleTime":"$11","varyParams":"$16"},{"rsc":"$L17","isPartial":"$@18","staleTime":"$11","varyParams":"$16"},{"rsc":"$L19","isPartial":"$@1a","staleTime":"$11","varyParams":"$16"}],"isUpgradeableISRFallback":false,"a":"$@1b","rootVaryParams":null,"needsRuntimeRequest":"$@1c"}
+1d:I[90721,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","2298","static/chunks/2298-a293ccc880c03f04.js","6319","static/chunks/app/build/rpc/node-api/page-cf287a252718e277.js"],"HeadingAnchor"]
+1e:I[98500,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","2298","static/chunks/2298-a293ccc880c03f04.js","6319","static/chunks/app/build/rpc/node-api/page-cf287a252718e277.js"],""]
+1f:I[44458,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","2298","static/chunks/2298-a293ccc880c03f04.js","6319","static/chunks/app/build/rpc/node-api/page-cf287a252718e277.js"],"default"]
+20:I[71194,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","2298","static/chunks/2298-a293ccc880c03f04.js","6319","static/chunks/app/build/rpc/node-api/page-cf287a252718e277.js"],"DynamicRPCTOC"]
+21:I[90484,[],"OutletBoundary"]
+22:"$Sreact.suspense"
+24:I[90484,[],"ViewportBoundary"]
+25:I[90484,[],"MetadataBoundary"]
+26:I[86869,[],"IconMark"]
+27:I[57121,[],""]
+28:I[74581,[],""]
+4:["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Node API","$undefined"]}]
+5:["$","div",null,{"style":{"display":"none"},"children":[["$","h2",null,{"id":"celestia-node-api","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Celestia Node API",["$","$L1d",null,{"id":"celestia-node-api"}]]}],["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"The Celestia Node API is the collection of RPC methods that can be used to interact with the services provided by Celestia Data Availability Nodes. Node API uses auth tokens to control access to this API."}],["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia node RPC reference for blob, blobstream, da, das, header, node, p2p, share, and state packages. Includes methods like blob.Get, blob.GetAll, blob.GetProof, blob.Submit, share.GetShare, share.GetRange, share.GetNamespaceData, share.GetEDS, share.SharesAvailable, state.SubmitPayForBlob, state.Balance, state.Transfer, header.NetworkHead, header.GetByHeight, header.Subscribe, p2p.Peers, p2p.Connect, p2p.Info, p2p.Network, da.Submit, da.Validate, da.GetProofs, das.SamplingStats, node.AuthNew, node.Info, and blobstream.GetDataRootTupleInclusionProof."}]]}]
+6:["$","h2",null,{"id":"fibre-on-mocha","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Fibre on Mocha",["$","$L1d",null,{"id":"fibre-on-mocha"}]]}]
+7:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Select ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"v0.34.2-mocha"}]," in the version selector below for the\nreleased Fibre API, or download its ",["$","$L1e",null,{"href":"/specs/openrpc-v0.34.2-mocha.json","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"OpenRPC specification"}],".\nThe ",["$","$L1e",null,{"href":"/build/post-retrieve-blob/fibre","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"Mocha Fibre walkthrough"}]," covers node setup,\nescrow funding, submission and retrieval, including tested request encodings\nand the JSON-RPC size limit. The Mainnet Beta ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"v0.33.2"}],"\nspecification does not include Fibre."]}]
+8:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The Mocha specification also includes ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"blob.SubscribeFromStartHeight"}],", which\nreplays blobs for a namespace from a start height, then streams new blobs."]}]
+9:["$","h2",null,{"id":"celestia-node-v0313-breaking-changes","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["celestia-node v0.31.3 breaking changes",["$","$L1d",null,{"id":"celestia-node-v0313-breaking-changes"}]]}]
+a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Starting with celestia-node v0.31.3:"}]
+b:["$","ul",null,{"className":"x:[:is(ol,ul)_&]:my-[.75em] x:not-first:mt-[1.25em] x:list-disc x:ms-[1.5em]","children":["\n",["$","li",null,{"className":"x:my-[.5em]","children":["The ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"fraud"}]," RPC namespace was removed. Calls to ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"fraud.Get"}]," and\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"fraud.Subscribe"}]," are no longer supported."]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["The ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"type"}]," field returned by ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"node.Info"}]," is a string such as ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"\"Bridge\""}]," or\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"\"Light\""}]," instead of an integer."]}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":"RPC request bodies are limited to 16 MiB. Larger requests are rejected."}],"\n",["$","li",null,{"className":"x:my-[.5em]","children":["In the Go API, ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"blob.Commitment.String()"}]," returns a hexadecimal string\ninstead of raw bytes. This does not change the JSON encoding of commitment\nfields returned by RPC methods."]}],"\n"]}]
+c:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["See the ",["$","a",null,{"href":"https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["celestia-node v0.31.3 release notes",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nfor the complete list of changes."]}]
+d:["$","$L1f",null,{}]
+e:["$","$L20",null,{}]
+f:["$","$L21",null,{"children":["$","$22",null,{"name":"Next.MetadataOutlet","children":"$@23"}]}]
+12:["$","$1","h",{"children":[null,["$","$L24",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L25",null,{"children":["$","$22",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Celestia Documentation"}],["$","meta","1",{"name":"description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","meta","4",{"property":"og:title","content":"Celestia Documentation"}],["$","meta","5",{"property":"og:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","6",{"property":"og:site_name","content":"Celestia Documentation"}],["$","meta","7",{"property":"og:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","meta","8",{"property":"og:image:width","content":"1200"}],["$","meta","9",{"property":"og:image:height","content":"630"}],["$","meta","10",{"property":"og:image:alt","content":"Celestia Documentation"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","13",{"name":"twitter:site","content":"@CelestiaOrg"}],["$","meta","14",{"name":"twitter:title","content":"Celestia Documentation"}],["$","meta","15",{"name":"twitter:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","16",{"name":"twitter:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","$L26","18",{}]]}]}]}],null]}]
+14:["$","$1","c",{"children":[null,["$","$L27",null,{"parallelRouterKey":"children","template":["$","$L28",null,{}]}]]}]
+17:["$","$1","c",{"children":[null,["$","$L27",null,{"parallelRouterKey":"children","template":["$","$L28",null,{}]}]]}]
+19:["$","$1","c",{"children":[null,["$","$L27",null,{"parallelRouterKey":"children","template":["$","$L28",null,{}]}]]}]
+1c:true
+23:null
+11:300
+11:C
+1b:0
+13:"$undefined"
+15:"$undefined"
+18:"$undefined"
+1a:"$undefined"
+10:"$undefined"
