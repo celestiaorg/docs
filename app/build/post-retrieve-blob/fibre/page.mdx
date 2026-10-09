@@ -289,6 +289,29 @@ length. The release's
 explains the charge. The observations below are test results, not permanent
 prices or performance guarantees. Budget escrow and transaction gas separately.
 
+### Native Go client background uploads
+
+> Unreleased: this option requires a native celestia-app Fibre client built
+> from code containing [#8034](https://github.com/celestiaorg/celestia-app/pull/8034).
+> It is unavailable in v10.4.0-mocha and the v10.2.0-mocha client used below.
+
+By default, `Client.Upload` returns once it has collected signatures from
+enough validator voting power. Remaining uploads continue even if the caller
+then cancels its context, subject to RPC timeouts and retry limits. Cancelling before that
+threshold still aborts the upload.
+
+The same background-upload cancellation behaviour applies to `fibre.Put`,
+which calls `Client.Upload` with the caller's context.
+
+To make cancellation stop the remaining uploads, configure the client with:
+
+```go
+cfg := fibre.DefaultClientConfig()
+cfg.DetachBackgroundUploads = false
+```
+
+Use `Client.Await()` to wait for outstanding operations to finish.
+
 ### Verified Mocha results
 
 Tests on 25 September 2026 used celestia-node v0.34.2-mocha for JSON-RPC and
