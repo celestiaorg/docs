@@ -299,7 +299,7 @@ enough validator voting power. Remaining uploads continue even if the caller
 then cancels its context, subject to RPC timeouts and retry limits. Cancelling before that
 threshold still aborts the upload.
 
-The same background-upload cancellation behaviour applies to `Client.Put`,
+The same background-upload cancellation behaviour applies to `fibre.Put`,
 which calls `Client.Upload` with the caller's context.
 
 To make cancellation stop the remaining uploads, configure the client with:
