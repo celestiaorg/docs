@@ -81,6 +81,30 @@ celestia <node-type> start --metrics.tls=false --metrics \
     --p2p.network <network> --core.ip <URI> --core.port <port>
 ```
 
+## DAS sampling head lag
+
+Use `das_sampling_head_lag` to monitor how far data availability sampling (DAS)
+is behind the network head known to your node. Enable metrics with the flags
+above and view the gauge in your metrics backend.
+
+> This metric requires a celestia-node build that includes
+> [celestia-node #5307](https://github.com/celestiaorg/celestia-node/pull/5307).
+> The change is merged but is not included in a published release as of
+> 5 October 2026.
+
+The gauge reports `max(NetworkHead - SampledChainHead, 0)` in headers.
+`SampledChainHead` is the head of the continuously sampled chain. For example,
+a network head of 100 and a sampled chain head of 90 produce a lag of 10.
+This measures a difference in height, not elapsed time.
+
+A sustained or growing positive value means sampling remains behind the node's
+known network head; check the node logs for sampling errors. A value of zero means
+the sampled chain head has reached or exceeded that known head. It does not
+by itself prove the node has the latest network header.
+
+If the metric is missing, check that your build includes the change and that
+metrics are enabled and reaching your collector.
+
 ## Metrics endpoint design considerations
 
 At the moment, the architecture of celestia-node metrics

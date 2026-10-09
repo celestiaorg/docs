@@ -26,11 +26,15 @@ Celestia node RPC reference for blob, blobstream, da, das, header, node, p2p, sh
 
 ## Fibre on Mocha
 
-Select `v0.34.2-mocha` in the version selector below for the
-released Fibre API, or download its [OpenRPC specification](/specs/openrpc-v0.34.2-mocha.json).
-The [Mocha Fibre walkthrough](/build/post-retrieve-blob/fibre) provides tested
-request encodings and explains the JSON-RPC size limit. The older v0.31.4
+Select `{{apiVersions['mocha']}}` in the version selector below for the
+released Fibre API, or download its [OpenRPC specification](/specs/openrpc-{{apiVersions['mocha']}}.json).
+The [Mocha Fibre walkthrough](/build/post-retrieve-blob/fibre) covers node setup,
+escrow funding, submission and retrieval, including tested request encodings
+and the JSON-RPC size limit. The Mainnet Beta `{{apiVersions['mainnet']}}`
 specification does not include Fibre.
+
+The Mocha specification also includes `blob.SubscribeFromStartHeight`, which
+replays blobs for a namespace from a start height, then streams new blobs.
 
 ## celestia-node v0.31.3 breaking changes
 
