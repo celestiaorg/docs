@@ -62,14 +62,22 @@ These settings apply to celestia-app consensus nodes:
 | Section in `config/config.toml` | Setting | Default |
 |---|---|---|
 | `[rpc]` | `max_concurrent_heavy_requests` | `20` |
+| `[tx_index]` | `max_search_results` | `100000` |
 | `[storage]` | `compact` | `false` |
 | `[storage]` | `compaction_interval` | `10000` |
 
 The RPC setting caps concurrent heavy requests such as `block_results` and
-`tx_search`; public RPC providers may want to raise it. Blockstore compaction
-is optional and does not enable pruning. When enabled, it compacts the pruned
-range in the background. To compact an existing blockstore once, stop the node
-and run `celestia-appd compact-blockstore`.
+`tx_search`. In celestia-app v10.4.0 and v10.4.0-mocha, this also
+includes `genesis` and `genesis_chunked`. These releases include the
+`max_search_results` cap for `kv` searches and a fixed 512-byte query-length
+limit for both `tx_search` and `block_search`. See
+[RPC search limits](/operate/consensus-validators/consensus-node#configure-rpc-search-limits)
+for configuration and handling rejected queries. These protections apply
+when running these binaries, without waiting for v10 network activation.
+
+Blockstore compaction is optional and does not enable pruning. When enabled,
+it compacts the pruned range in the background. To compact an existing
+blockstore once, stop the node and run `celestia-appd compact-blockstore`.
 
 See the [Mocha release upgrade instructions](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
 for details. Follow the upgrade announcement for your network before replacing

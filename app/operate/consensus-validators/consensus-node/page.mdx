@@ -459,6 +459,58 @@ the limit, which is not recommended. Increasing the limit can increase peak
 memory consumption. Only raise it when the node has sufficient RAM, and monitor
 node memory usage under RPC load.
 
+With celestia-core v0.42.3, `genesis` and `genesis_chunked` also share this
+budget. This is included in celestia-app v10.4.0 and v10.4.0-mocha, including
+when the multiplexer serves an earlier application version.
+
+When the budget is full, HTTP URI requests return `503`; JSON-RPC and
+WebSocket requests return an error with
+`server busy: too many concurrent heavy RPC requests, retry later` in
+`error.data`. Reduce concurrent requests and retry with backoff.
+
+#### Configure RPC search limits
+
+For nodes using the `kv` indexer, `max_search_results` limits how many matches
+a `tx_search` or `block_search` query can accumulate in memory before
+pagination. The default is `100000`. To configure it, edit the existing
+`[tx_index]` section in `$HOME/.celestia-app/config/config.toml`:
+
+```toml
+[tx_index]
+indexer = "kv"
+max_search_results = 100000
+```
+
+Restart `celestia-appd` after changing the setting. A value of `0` or a negative
+value removes the cap, allowing broad searches to consume more memory. This
+setting applies to the key-value indexer, not the PostgreSQL indexer.
+
+If a query exceeds the cap, it fails with `search query too broad: narrow the
+query` instead of returning a truncated page. Narrow the query, for example
+by searching a smaller height range. Reducing `per_page` or requesting a
+different page does not avoid the cap because matching happens before
+pagination.
+
+This setting requires a celestia-app binary that includes the search cap from
+[celestia-core #3329](https://github.com/celestiaorg/celestia-core/pull/3329),
+released in the v0.40 line in
+[v0.40.11](https://github.com/celestiaorg/celestia-core/releases/tag/v0.40.11)
+and in the v0.42 line in
+[v0.42.2](https://github.com/celestiaorg/celestia-core/releases/tag/v0.42.2).
+For example, celestia-app v9.0.8 uses celestia-core v0.40.9 and does not support
+this setting; v10.4.0 and v10.4.0-mocha use v0.42.3 and do. Check the celestia-core
+dependency in your celestia-app release's `go.mod` before configuring it, and
+use the [release for your network](/operate/networks/overview).
+
+Both methods also reject query strings longer than **512 bytes** with
+`maximum query length exceeded`. This limit is fixed, not a configuration
+setting. Shorten the query before retrying.
+
+`tx_search` already enforced this query-length limit;
+[celestia-core v0.42.3](https://github.com/celestiaorg/celestia-core/releases/tag/v0.42.3)
+extended it to `block_search`. These RPC protections apply when running
+celestia-app v10.4.0 or v10.4.0-mocha, without waiting for v10 network activation.
+
 #### Expose RPC
 
 By default, the RPC service listens on `localhost` which means it can't
