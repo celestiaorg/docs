@@ -13,7 +13,7 @@ the validator's stake. Starting with app version 10, every bonded validator is
 expected to run one. Select your network below and use the matching release
 of celestia-app and Fibre throughout this guide.
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="fibre-network">
   <Tabs.Tab>
     Use `{{mainnetVersions['app-latest-tag']}}` for chain ID `{{constants['mainnetChainId']}}`.
     Read the [release upgrade instructions](https://github.com/celestiaorg/celestia-app/releases/tag/{{mainnetVersions['app-latest-tag']}})
@@ -106,7 +106,7 @@ check both when choosing the operating system for your validator.
 Download the Fibre archive and checksums from the same release as celestia-app.
 For Linux x86_64:
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="fibre-network">
   <Tabs.Tab>
     ```bash
     fibre_version={{mainnetVersions['app-latest-tag']}}
@@ -138,7 +138,7 @@ Place the verified binary on your executable path before using `fibre` below.
 Install Git, Make, a C compiler, and the Go version required by your release.
 Clone the same release used by your celestia-app node:
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="fibre-network">
   <Tabs.Tab>
     Check the Go version required by the release's
     [`go.mod`](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/go.mod).
@@ -429,7 +429,7 @@ override.
 Once Fibre is running and reachable, register its public host using your
 validator account:
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="fibre-network">
   <Tabs.Tab>
     ```bash
     celestia-appd tx valaddr set-host <public_host>:7980 \
