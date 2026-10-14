@@ -94,7 +94,7 @@ transactions, and other state-related queries).
 Here is an example of initializing the bridge node:
 
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="bridge-node-network">
   <Tabs.Tab>
     ```sh
     celestia bridge init --core.ip <URI> --core.port <port>
@@ -173,7 +173,7 @@ In order to run a bridge node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="bridge-node-network">
   <Tabs.Tab>
     ```sh
     celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \

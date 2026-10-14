@@ -36,7 +36,7 @@ Follow the tutorial on [installing `celestia-app`](/operate/consensus-validators
 To initialize the network, pick a "node-name" that describes your
 node. Keep in mind that this might change if a new testnet is deployed.
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="consensus-node-network">
   <Tabs.Tab>
     ```bash
     celestia-appd init "node-name" --chain-id {{constants['mainnetChainId']}}
@@ -51,7 +51,7 @@ node. Keep in mind that this might change if a new testnet is deployed.
 
 Download the `genesis.json` file:
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="consensus-node-network">
   <Tabs.Tab>
     ```bash
     celestia-appd download-genesis {{constants['mainnetChainId']}}
@@ -66,7 +66,7 @@ Download the `genesis.json` file:
 
 Set seeds in the `$HOME/.celestia-app/config/config.toml` file:
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="consensus-node-network">
   <Tabs.Tab>
     ```bash
     SEEDS=$(curl -sL https://raw.githubusercontent.com/celestiaorg/networks/master/{{constants['mainnetChainId']}}/seeds.txt | tr '\n' ',')
@@ -93,7 +93,7 @@ You can set persistent peers in your `config.toml` file. If you set persistent p
 
 You can get the persistent peers from the [@cosmos/chain-registry](https://github.com/cosmos/chain-registry) repository (for Mainnet Beta) or [@celestiaorg/networks repository](https://github.com/celestiaorg/networks) repo (for Mocha) with the following commands:
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="consensus-node-network">
   <Tabs.Tab>
     ```bash
     PERSISTENT_PEERS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/{{constants['mainnetChainId']}}/chain.json | jq -r '.peers.persistent_peers[].address' | tr '\n' ',' | sed 's/,$/\n/')
@@ -288,7 +288,7 @@ copied from.
 
 Run the following command to quick-sync from a snapshot:
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="consensus-node-network">
   <Tabs.Tab>
     ```bash
     cd $HOME
@@ -332,7 +332,7 @@ celestia-appd start --rpc.grpc_laddr tcp://0.0.0.0:9098
 
 If you are running celestia-app v2.x.x then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="consensus-node-network">
   <Tabs.Tab>
     ```sh
     celestia-appd start --v2-upgrade-height 2371495

@@ -55,7 +55,7 @@ Want to sync faster (skip sampling from genesis)? See
 [Fast sync with a trusted hash](/operate/data-availability/light-node/advanced#fast-sync-with-a-trusted-hash).
 </Callout>
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="light-node-quickstart-network">
   <Tabs.Tab>
     ```bash
     celestia light init
@@ -73,7 +73,7 @@ Want to sync faster (skip sampling from genesis)? See
 Light nodes connect to a consensus node **gRPC** endpoint (usually port `9090`)
 for state access (balances, submitting `PayForBlobs`, etc.).
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="light-node-quickstart-network">
   <Tabs.Tab>
     ```bash
     celestia light start \

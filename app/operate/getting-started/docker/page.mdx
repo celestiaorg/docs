@@ -42,7 +42,7 @@ Ubuntu. You can
 
 Choose [the network](/operate/networks/overview) you would like to run your node on:
 
-   <Tabs items={['Mainnet Beta', 'Mocha']}>
+   <Tabs items={['Mainnet Beta', 'Mocha']} storageKey="docker-network">
      <Tabs.Tab>
        ```bash
        export NETWORK=celestia
@@ -95,7 +95,7 @@ Then set the gRPC port for that host (usually `9090`):
 
 ### Run the container
 
-   <Tabs items={['Mainnet Beta', 'Mocha']}>
+   <Tabs items={['Mainnet Beta', 'Mocha']} storageKey="docker-network">
      <Tabs.Tab>
        ```bash
        docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
@@ -171,7 +171,7 @@ docker run [args...] -v $HOME/my-node-store:/home/celestia \
 
 An example init command will look similar to below:
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="docker-network">
   <Tabs.Tab>
     ```bash
     docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
@@ -202,7 +202,7 @@ docker run [...args] -v $HOME/my-node-store:/home/celestia \
 
 A full start command will look similar to below.
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="docker-network">
   <Tabs.Tab>
     ```bash
     docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \

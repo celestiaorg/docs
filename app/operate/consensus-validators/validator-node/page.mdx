@@ -109,7 +109,7 @@ In order to create a validator on-chain, follow the steps below.
 
 1. Export an environment variable for the chain ID you want to run on:
 
-   <Tabs items={['Mainnet Beta', 'Mocha']}>
+   <Tabs items={['Mainnet Beta', 'Mocha']} storageKey="validator-node-network">
      <Tabs.Tab>
        ```bash
        export CHAIN_ID={{constants['mainnetChainId']}}
@@ -142,7 +142,7 @@ In order to create a validator on-chain, follow the steps below.
 
 1. Create a validator
 
-   <Tabs items={['Mainnet Beta', 'Mocha']}>
+   <Tabs items={['Mainnet Beta', 'Mocha']} storageKey="validator-node-network">
      <Tabs.Tab>
        ```bash
        celestia-appd tx staking create-validator \

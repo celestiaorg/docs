@@ -39,7 +39,7 @@ commands:
 
 ### Check out the desired version
 
-   <Tabs items={['Mainnet Beta', 'Mocha']}>
+   <Tabs items={['Mainnet Beta', 'Mocha']} storageKey="install-celestia-node-network">
      <Tabs.Tab>
        ```bash
        git checkout tags/{{mainnetVersions['node-latest-tag']}}
@@ -115,7 +115,7 @@ Pre-built binaries are available for:
 
 Pass the `-v` flag to install the recommended version for your network:
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="install-celestia-node-network">
   <Tabs.Tab>
     ```bash
     bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
