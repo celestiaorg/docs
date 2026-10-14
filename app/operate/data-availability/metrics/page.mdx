@@ -105,8 +105,12 @@ For metric definitions in source, search `metrics.go` under
 | `das_sampled_chain_head` | Highest height through which continuous DAS has succeeded. | Should catch up to `das_network_head` over time. |
 | `das_sampling_head_lag` | `max(network_head - sampled_chain_head, 0)` in headers. | Prefer `0` when fully caught up; see [DAS sampling head lag](#das-sampling-head-lag). |
 | `das_busy_workers_amount` | Active parallel DAS workers (labeled by job type). | Non-zero while sampling backlog exists; idle when caught up. |
-| `das_sampled_headers_counter` | Count of headers that completed sampling. | Should increase while the node is sampling. |
-| `das_latest_sampled_ts` | Unix timestamp of the latest successful sample. | Recent (within your scrape interval) on a healthy node. |
+| `das_sampled_headers_counter` | Count of recorded sampling attempts, including failures (`failed=true`). | The `failed=false` series should increase when sampling succeeds. |
+| `das_latest_sampled_ts` | Unix timestamp of the latest recorded sampling attempt, including failures. | Recent while sampling is active; freshness alone does not show success. |
+
+Failed attempts can keep both metrics advancing. Use the `failed=false` series
+of `das_sampled_headers_counter` to track successes, and
+`das_sampled_chain_head` or `das_sampling_head_lag` to check catch-up.
 
 ### Peers and ShareX (shrex)
 
@@ -114,15 +118,19 @@ For metric definitions in source, search `metrics.go` under
 |--------|-------------|------------------|
 | `shrex_client_total_requests` | Client ShareX requests, labeled by protocol and status. | Mix of `success`; spikes of `not_found` / errors warrant investigation. |
 | `shrex_client_request_duration` | Client ShareX request latency (seconds). | Stable; rising p99 under load may indicate peer or network pressure. |
-| `shrex_server_total_responses` | Server ShareX responses sent, labeled by protocol and status. | Increases on bridge/full nodes serving peers. |
-| `shrex_server_request_duration` | Server ShareX handler latency (seconds). | Stable under expected peer load. |
+| `shrex_server_total_responses` | Bridge-node ShareX responses sent, labeled by protocol and status. | Increases on bridge nodes serving peers. |
+| `shrex_server_request_duration` | Bridge-node ShareX handler latency (seconds). | Stable under expected peer load. |
 
 Peer count panels on operator dashboards (full vs archival DA peers) are typically
 derived from libp2p / discovery metrics bridged into OTEL. Aim for **> 0** full
-peers on a light node that needs to fetch shares; bridge and full nodes should
+peers on a light node that needs to fetch shares; bridge nodes should
 also retain healthy peer connectivity.
 
 ### EDS store and caches
+
+These metrics are available only on bridge nodes. Light nodes do not have an
+EDS store and do not export `eds_store_*` or `eds_cache_*` metrics; their absence
+on a light node is expected.
 
 | Metric | Description | Acceptable value |
 |--------|-------------|------------------|
@@ -153,9 +161,9 @@ map to these `eds_cache_*` counters for the corresponding cache name.
   header sync, store, or DAS is behind.
 - **DAS catch-up:** watch `das_sampling_head_lag` first, then
   `das_busy_workers_amount` and sample error logs if lag does not trend to zero.
-- **Serving load (bridge/full):** shrex server totals and store put/get latency
+- **Serving load (bridge nodes):** shrex server totals and store put/get latency
   show whether you are healthy under peer demand.
-- **Acceptable values** depend on node type (light vs bridge vs full), network,
+- **Acceptable values** depend on node type (light vs bridge), network,
   and hardware. Use the table as a starting point and baseline your own node
   after a clean sync.
 
