@@ -19,3 +19,27 @@ test('shorter or different fences do not close a code example', () => {
   const code = '````md\n```bash\nexport X=1\n```\n~~~\n````';
   assert.equal(cleanMdxForMarkdown(code), code);
 });
+
+test('retains labelled network tabs with indented shell commands and literal JSX', () => {
+  const input = `<Tabs items={['Mainnet Beta', 'Mocha']}>
+  <Tabs.Tab>
+    Mainnet instructions.
+
+    \`\`\`bash
+    export CHAIN_ID=celestia
+    <Example>keep me</Example>
+    \`\`\`
+  </Tabs.Tab>
+  <Tabs.Tab>
+    \`\`\`bash
+    export CHAIN_ID=mocha-5
+    \`\`\`
+  </Tabs.Tab>
+</Tabs>`;
+  assert.equal(cleanMdxForMarkdown(input), '**Mainnet Beta**\n\nMainnet instructions.\n\n```bash\nexport CHAIN_ID=celestia\n<Example>keep me</Example>\n```\n\n**Mocha**\n\n```bash\nexport CHAIN_ID=mocha-5\n```');
+});
+
+test('does not interpret tabs inside a fenced example', () => {
+  const code = '```mdx\n<Tabs items={["Example"]}>\n<Tabs.Tab>Keep me</Tabs.Tab>\n</Tabs>\n```';
+  assert.equal(cleanMdxForMarkdown(code), code);
+});
