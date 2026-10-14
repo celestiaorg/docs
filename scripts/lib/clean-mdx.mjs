@@ -48,8 +48,8 @@ export function cleanMdxForMarkdown(content) {
   });
   cleaned = cleaned.replace(/^import\s+.*?from\s+['"].*?['"];?\s*$/gm, '');
   cleaned = cleaned.replace(/^export\s+(?!default).*?;?\s*$/gm, '');
-  // Retain admonition text; removing the whole component loses critical instructions.
-  cleaned = cleaned.replace(/<Callout\b[^>]*>/g, '\n').replace(/<\/Callout>/g, '\n');
+  // Retain content wrappers; removing the whole component loses critical instructions.
+  cleaned = cleaned.replace(/<(?:Callout|Steps)\b[^>]*>/g, '\n').replace(/<\/(?:Callout|Steps)>/g, '\n');
   cleaned = cleaned.replace(/<([A-Z][a-zA-Z0-9]*)\s*[^>]*\/>/g, '');
   cleaned = cleaned.replace(/<([A-Z][a-zA-Z0-9]*)[^>]*>[\s\S]*?<\/\1>/g, '');
   cleaned = cleaned.replace(/\{\/\*[\s\S]*?\*\/\}/g, '');

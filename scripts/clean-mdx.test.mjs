@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { readFileSync } from 'node:fs';
 import { cleanMdxForMarkdown } from './lib/clean-mdx.mjs';
 
 test('preserves fenced exports, JSX examples and whitespace while removing MDX imports', () => {
@@ -43,3 +44,15 @@ test('does not interpret tabs inside a fenced example', () => {
   const code = '```mdx\n<Tabs items={["Example"]}>\n<Tabs.Tab>Keep me</Tabs.Tab>\n</Tabs>\n```';
   assert.equal(cleanMdxForMarkdown(code), code);
 });
+
+for (const [page, expected] of [
+  ['operate/networks/local-devnet', ['**Docker Compose**', '**From source (scripts)**', 'docker-compose up -d', 'make install', '**and wipe chain data**']],
+  ['operate/getting-started/docker', ['**Mainnet Beta**', '**Mocha**', 'export NETWORK=celestia', 'export NETWORK=mocha', 'docker run -e NODE_TYPE=$NODE_TYPE']],
+]) {
+  test(`preserves Steps inside and around tabs in ${page}`, () => {
+    const source = readFileSync(new URL(`../app/${page}/page.mdx`, import.meta.url), 'utf8');
+    const markdown = cleanMdxForMarkdown(source);
+    for (const text of expected) assert.ok(markdown.includes(text), `Missing ${text}`);
+    assert.doesNotMatch(markdown, /<\/?(?:Steps|Tabs)(?:[. >])/);
+  });
+}
