@@ -6,6 +6,11 @@ import { readFile, writeFile } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = (file) => readFile(new URL(file, root), 'utf8');
 const versions = JSON.parse(await read('constants/node_api_versions.json'));
+for (const network of ['mainnet', 'mocha']) {
+  const current = JSON.parse(await read(`constants/${network}_versions.json`));
+  assert.equal(versions[network], current['node-latest-tag'],
+    `${network} Node API spec does not match the selected node version. Run yarn sync:node-api.`);
+}
 const skill = await read('public/SKILL.md');
 const start = '<!-- BEGIN GENERATED NODE API VERSIONS -->';
 const end = '<!-- END GENERATED NODE API VERSIONS -->';
@@ -24,6 +29,9 @@ for (const version of allVersions) {
     `Invalid OpenRPC spec: ${version}`);
   assert.ok(spec.methods.every((method) => typeof method.name === 'string'),
     `Invalid method name in ${version}`);
+  if (networks.some(([, current]) => current === version)) {
+    assert.equal(spec.info?.version, version, `Spec version mismatch: ${version}`);
+  }
   specs.set(version, new Set(spec.methods.map((method) => method.name)));
 }
 
