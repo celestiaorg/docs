@@ -79,3 +79,36 @@ test('rejects invalid network tags and corrupt existing assets', async (t) => {
   await write('public/specs/openrpc-v0.33.2.json', spec('v0.33.1'));
   await assert.rejects(syncNodeApi({ root }), /Spec version mismatch/);
 });
+
+test('refreshing from main preserves the first network update in either merge order', async (t) => {
+  for (const first of ['mainnet', 'mocha']) {
+    const branches = { mainnet: await fixture(t), mocha: await fixture(t) };
+    const tags = { mainnet: 'v0.33.3', mocha: 'v0.34.3-mocha' };
+    const fetchImpl = async (url) => new Response(spec(url.split('/').at(-2)));
+    const select = (branch, network, tag) => branch.write(`constants/${network}_versions.json`,
+      JSON.stringify({ 'node-latest-tag': tag }));
+    for (const [network, branch] of Object.entries(branches)) {
+      await select(branch, 'mocha', 'v0.34.2-mocha');
+      await select(branch, network, tags[network]);
+      await syncNodeApi({ root: branch.root, fetchImpl });
+    }
+    const second = first === 'mainnet' ? 'mocha' : 'mainnet';
+    const stale = JSON.parse(await branches[second].read('constants/node_api_versions.json'));
+    assert.notEqual(stale[first], tags[first], 'The second PR initially lacks the first update');
+
+    // The push run starts from the merged first PR and reapplies the second update.
+    const refreshed = branches[first];
+    await select(refreshed, second, tags[second]);
+    await syncNodeApi({ root: refreshed.root, fetchImpl });
+    const manifest = await refreshed.read('constants/node_api_versions.json');
+    const versions = JSON.parse(manifest);
+    assert.equal(versions.mainnet, tags.mainnet);
+    assert.equal(versions.mocha, tags.mocha);
+    assert.deepEqual(versions.historical.slice().sort(), ['v0.31.4', 'v0.33.2', 'v0.34.2-mocha']);
+    for (const tag of Object.values(tags)) {
+      assert.equal(await refreshed.read(`public/specs/openrpc-${tag}.json`), spec(tag));
+    }
+    await syncNodeApi({ root: refreshed.root, fetchImpl: () => assert.fail('No download needed') });
+    assert.equal(await refreshed.read('constants/node_api_versions.json'), manifest);
+  }
+});

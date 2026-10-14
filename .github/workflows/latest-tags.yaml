@@ -12,13 +12,11 @@ on:
           - mocha
   schedule:
     - cron: '0 */6 * * *'
-  # Refresh the other network's open PR right after a release PR merges, so the
-  # two per-network PRs never conflict on the shared API manifest and skill links.
+  # Regenerate the other network's PR after a constants merge.
   push:
     branches: [main]
     paths:
       - constants/*_versions.json
-      - constants/release-policy.json
 
 permissions:
   contents: read
@@ -31,6 +29,9 @@ jobs:
       fail-fast: false
       matrix:
         network: ${{ fromJSON(github.event_name == 'workflow_dispatch' && format('["{0}"]', github.event.inputs.network) || '["mainnet","mocha"]') }}
+    concurrency:
+      group: latest-tags-${{ matrix.network }}
+      cancel-in-progress: false
     permissions:
       contents: write
       pull-requests: write
@@ -39,8 +40,12 @@ jobs:
       NETWORK: ${{ matrix.network }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          # Queued push runs must regenerate from current main, not the event SHA.
+          ref: main
 
       - name: Fetch latest tags and commit SHAs
+        id: latest
         uses: actions/github-script@v9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -54,15 +59,15 @@ jobs:
             const network = process.env.NETWORK;
             const versionsPath = path.join(root, 'constants', `${network}_versions.json`);
             const current = JSON.parse(fs.readFileSync(versionsPath, 'utf8'));
-            const policy = JSON.parse(fs.readFileSync(path.join(root, 'constants/release-policy.json'), 'utf8'));
-            const result = await planUpdates({ github, owner: process.env.OWNER, network, current, policy });
+            const result = await planUpdates({ github, owner: process.env.OWNER, network, current });
             await core.summary.addHeading(`Release selection: ${network}`)
               .addCodeBlock(result.summary.join('\n'))
-              .addRaw(result.changed ? 'Eligible patch update found.' : 'No eligible tag update; checking bundled Node API specs.')
+              .addRaw(result.changed ? 'Newer release found; review compatibility before merging.' : 'No eligible tag update; checking bundled Node API specs.')
               .write();
             if (result.changed) {
               fs.writeFileSync(versionsPath, JSON.stringify(result.next, null, 2) + '\n');
             }
+            core.setOutput('selection_summary', result.summary.join('\n'));
 
       - name: Sync bundled Node API specs and skill links
         run: |
@@ -79,4 +84,14 @@ jobs:
           branch: gh-action/latest-tags-${{ matrix.network }}
           commit-message: "[automated GH action] sync release versions and Node API specs (${{ matrix.network }})"
           title: "[GH Action] Sync release versions and Node API specs for ${{ matrix.network }}"
+          body: |
+            Proposes newer releases for ${{ matrix.network }} using numeric major/minor/patch ordering.
+            Includes matching Node API specs and generated skill links, and repairs API version drift even without a new release.
+            Mainnet uses stable releases; Mocha uses only `-mocha` releases.
+
+            Review upstream release notes and network compatibility before merging, especially for major/minor upgrades. A published binary does not establish network activation.
+
+            ```text
+            ${{ steps.latest.outputs.selection_summary }}
+            ```
           token: ${{ secrets.PAT_CREATE_PR }}
