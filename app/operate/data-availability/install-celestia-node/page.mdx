@@ -2,6 +2,7 @@
 description: Learn to build and install celestia-node.
 ---
 
+import { NetworkTabs } from '@/components/NetworkTabs'
 import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Install celestia-node
@@ -39,7 +40,7 @@ commands:
 
 ### Check out the desired version
 
-   <Tabs items={['Mainnet Beta', 'Mocha']} storageKey="install-celestia-node-network">
+   <NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="install-celestia-node-network">
      <Tabs.Tab>
        ```bash
        git checkout tags/{{mainnetVersions['node-latest-tag']}}
@@ -50,7 +51,7 @@ commands:
        git checkout tags/{{mochaVersions['node-latest-tag']}}
        ```
      </Tabs.Tab>
-   </Tabs>
+   </NetworkTabs>
 
 ### Build the `celestia` binary
 
@@ -115,7 +116,7 @@ Pre-built binaries are available for:
 
 Pass the `-v` flag to install the recommended version for your network:
 
-<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="install-celestia-node-network">
+<NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="install-celestia-node-network">
   <Tabs.Tab>
     ```bash
     bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mainnetVersions['node-latest-tag']}}
@@ -126,7 +127,7 @@ Pass the `-v` flag to install the recommended version for your network:
     bash -c "$(curl -sL https://docs.celestia.org/celestia-node.sh)" -- -v {{mochaVersions['node-latest-tag']}}
     ```
   </Tabs.Tab>
-</Tabs>
+</NetworkTabs>
 
 <Callout type="warning">
 If you omit `-v`, the script installs the

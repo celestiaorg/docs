@@ -2,6 +2,7 @@
 description: Learn how to set up your Celestia bridge node.
 ---
 
+import { NetworkTabs } from '@/components/NetworkTabs'
 import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Setting up a Celestia bridge node
@@ -94,7 +95,7 @@ transactions, and other state-related queries).
 Here is an example of initializing the bridge node:
 
 
-<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="bridge-node-network">
+<NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="bridge-node-network">
   <Tabs.Tab>
     ```sh
     celestia bridge init --core.ip <URI> --core.port <port>
@@ -106,7 +107,7 @@ Here is an example of initializing the bridge node:
         --p2p.network mocha
     ```
   </Tabs.Tab>
-</Tabs>
+</NetworkTabs>
 
 
 ### Run the bridge node
@@ -173,7 +174,7 @@ In order to run a bridge node using a custom key:
 2. The name of the custom key must be passed upon `start`, like so:
 
 
-<Tabs items={['Mainnet Beta', 'Mocha']} storageKey="bridge-node-network">
+<NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="bridge-node-network">
   <Tabs.Tab>
     ```sh
     celestia bridge start --core.ip <URI> --keyring.keyname <name-of-custom-key> \
@@ -186,7 +187,7 @@ In order to run a bridge node using a custom key:
         --p2p.network mocha --core.port <port>
     ```
   </Tabs.Tab>
-</Tabs>
+</NetworkTabs>
 
 
 #### Optional: Migrate node id to another server
