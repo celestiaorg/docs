@@ -83,17 +83,16 @@ celestia <node-type> start --metrics.tls=false --metrics \
 
 ## Key metrics reference
 
-Node metrics come from celestia-node and dependencies such as
-[go-header](https://github.com/celestiaorg/go-header).
+Node metrics come from celestia-node and dependencies such as go-header.
 Exact panel names on community Grafana dashboards may differ from the
 OpenTelemetry metric names below. Prefer the metric names from the codebase
 when wiring alerts.
 
-For metric definitions in source, search `metrics.go` under
-[celestia-node](https://github.com/celestiaorg/celestia-node) and
-[go-header](https://github.com/celestiaorg/go-header).
-
 ### Overview and sync health
+
+Source: [header store metrics](https://github.com/celestiaorg/go-header/blob/main/store/metrics.go),
+[header sync metrics](https://github.com/celestiaorg/go-header/blob/main/sync/metrics.go),
+and [DAS metrics](https://github.com/celestiaorg/celestia-node/blob/main/das/metrics.go).
 
 | Metric | Description | Acceptable value |
 |--------|-------------|------------------|
@@ -114,6 +113,8 @@ of `das_sampled_headers_counter` to track successes, and
 
 ### Peers and ShareX (shrex)
 
+Source: [ShareX metrics](https://github.com/celestiaorg/celestia-node/blob/main/share/shwap/p2p/shrex/metrics.go).
+
 | Metric | Description | Acceptable value |
 |--------|-------------|------------------|
 | `shrex_client_total_requests` | Client ShareX requests, labeled by protocol and status. | Mix of `success`; spikes of `not_found` / errors warrant investigation. |
@@ -127,6 +128,9 @@ peers on a light node that needs to fetch shares; bridge nodes should
 also retain healthy peer connectivity.
 
 ### EDS store and caches
+
+Source: [EDS store metrics](https://github.com/celestiaorg/celestia-node/blob/main/store/metrics.go)
+and [EDS cache metrics](https://github.com/celestiaorg/celestia-node/blob/main/store/cache/metrics.go).
 
 These metrics are available only on bridge nodes. Light nodes do not have an
 EDS store and do not export `eds_store_*` or `eds_cache_*` metrics; their absence
@@ -146,6 +150,8 @@ Dashboard labels such as “BlockStore cache hit/miss” or “Recent cache hit/
 map to these `eds_cache_*` counters for the corresponding cache name.
 
 ### Blobs
+
+Source: [blob metrics](https://github.com/celestiaorg/celestia-node/blob/main/blob/metrics.go).
 
 | Metric | Description | Acceptable value |
 |--------|-------------|------------------|
