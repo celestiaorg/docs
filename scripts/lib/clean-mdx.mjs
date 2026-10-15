@@ -32,7 +32,7 @@ export function cleanMdxForMarkdown(content) {
   let cleaned = protectedLines.join('\n');
   const restoreFences = value => value.replace(/\u0000FENCE(\d+)\u0000/g, (_, index) => fences[Number(index)]);
   // Export each static tab as labelled Markdown without losing its fenced commands.
-  cleaned = cleaned.replace(/<Tabs\s+items=\{\[([^\]]*)\]\}[^>]*>([\s\S]*?)<\/Tabs>/g, (_, items, body) => {
+  cleaned = cleaned.replace(/<(Tabs|NetworkTabs)\s+items=\{\[([^\]]*)\]\}[^>]*>([\s\S]*?)<\/\1>/g, (_, wrapper, items, body) => {
     const labels = [...items.matchAll(/(['"])(.*?)\1/g)].map(match => match[2]);
     let tabIndex = 0;
     return body.replace(/[ \t]*<Tabs\.Tab\b[^>]*>([\s\S]*?)<\/Tabs\.Tab>/g, (_, panel) => {

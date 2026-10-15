@@ -21,8 +21,9 @@ test('shorter or different fences do not close a code example', () => {
   assert.equal(cleanMdxForMarkdown(code), code);
 });
 
-test('retains labelled network tabs with indented shell commands and literal JSX', () => {
-  const input = `<Tabs items={['Mainnet Beta', 'Mocha']}>
+for (const wrapper of ['Tabs', 'NetworkTabs']) {
+  test(`retains labelled ${wrapper} with indented shell commands and literal JSX`, () => {
+    const input = `<${wrapper} items={['Mainnet Beta', 'Mocha']} storageKey="test-network">
   <Tabs.Tab>
     Mainnet instructions.
 
@@ -36,9 +37,10 @@ test('retains labelled network tabs with indented shell commands and literal JSX
     export CHAIN_ID=mocha-5
     \`\`\`
   </Tabs.Tab>
-</Tabs>`;
-  assert.equal(cleanMdxForMarkdown(input), '**Mainnet Beta**\n\nMainnet instructions.\n\n```bash\nexport CHAIN_ID=celestia\n<Example>keep me</Example>\n```\n\n**Mocha**\n\n```bash\nexport CHAIN_ID=mocha-5\n```');
-});
+</${wrapper}>`;
+    assert.equal(cleanMdxForMarkdown(input), '**Mainnet Beta**\n\nMainnet instructions.\n\n```bash\nexport CHAIN_ID=celestia\n<Example>keep me</Example>\n```\n\n**Mocha**\n\n```bash\nexport CHAIN_ID=mocha-5\n```');
+  });
+}
 
 test('does not interpret tabs inside a fenced example', () => {
   const code = '```mdx\n<Tabs items={["Example"]}>\n<Tabs.Tab>Keep me</Tabs.Tab>\n</Tabs>\n```';
@@ -53,6 +55,6 @@ for (const [page, expected] of [
     const source = readFileSync(new URL(`../app/${page}/page.mdx`, import.meta.url), 'utf8');
     const markdown = cleanMdxForMarkdown(source);
     for (const text of expected) assert.ok(markdown.includes(text), `Missing ${text}`);
-    assert.doesNotMatch(markdown, /<\/?(?:Steps|Tabs)(?:[. >])/);
+    assert.doesNotMatch(markdown, /<\/?(?:Steps|Tabs|NetworkTabs)(?:[. >])/);
   });
 }
