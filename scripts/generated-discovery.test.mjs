@@ -10,6 +10,11 @@ test('generated discovery resources point to real exported content', () => {
   assert.match(read('index.md'), /^# Celestia docs/);
   assert.match(read('llms.md'), /^# Celestia documentation/);
   assert.equal(read('llms.md'), read('llms.txt'));
+  assert.deepEqual(JSON.parse(read('.well-known/poppy.json')), {
+    protocol_version: '0.1',
+    organization: { name: 'Celestia', domain: 'docs.celestia.org' },
+    web: {},
+  });
 
   const { entries } = JSON.parse(read('.well-known/ard.json'));
   const aiCatalog = JSON.parse(read('.well-known/ai-catalog.json'));
@@ -42,6 +47,7 @@ test('exported HTML advertises matching Markdown pages', { skip: !existsSync(new
     const pathname = new URL(url).pathname;
     const markdownPath = pathname === '/' ? 'index.md' : `${pathname.slice(1, -1)}.md`;
     const html = read(path.join(pathname, 'index.html'));
+    assert.match(html, /<meta name="is-agentic-site-type" content="content"\s*\/>/);
     const alternates = [...html.matchAll(/<link rel="alternate" type="text\/markdown" href="([^"]+)"\s*\/>/g)];
     assert.equal(alternates.length, 1, url);
     // Relative href must resolve under any deployment base, including previews.

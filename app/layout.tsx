@@ -33,6 +33,9 @@ export const metadata = {
     template: "%s - Celestia Documentation",
   },
   description: SITE_DESCRIPTION,
+  other: {
+    "is-agentic-site-type": "content",
+  },
   openGraph: {
     type: "website",
     siteName: "Celestia Documentation",
