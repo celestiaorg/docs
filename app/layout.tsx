@@ -223,9 +223,14 @@ export default async function RootLayout({
           href={withBasePath("/llms-full.txt")}
         />
         <link
-          rel="service-desc"
+          rel="api-catalog"
           type="application/linkset+json"
           href={withBasePath("/.well-known/api-catalog")}
+        />
+        <link
+          rel="describedby"
+          type="application/json"
+          href={withBasePath("/.well-known/ard.json")}
         />
         <link
           rel="describedby"

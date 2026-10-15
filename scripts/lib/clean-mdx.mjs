@@ -48,11 +48,19 @@ export function cleanMdxForMarkdown(content) {
   });
   cleaned = cleaned.replace(/^import\s+.*?from\s+['"].*?['"];?\s*$/gm, '');
   cleaned = cleaned.replace(/^export\s+(?!default).*?;?\s*$/gm, '');
+  // Preserve static landing-page navigation before removing custom components.
+  cleaned = cleaned.replace(/<Link\b[^>]*\bhref="([^"]+)"[^>]*>([\s\S]*?)<\/Link>/g, (_, href, body) => {
+    const label = cleanMdxForMarkdown(body).replace(/^#{1,6}\s+/gm, '').replace(/\s+/g, ' ').trim();
+    return `\n\n[${label}](${href})\n\n`;
+  });
+  cleaned = cleaned.replace(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/g, (_, level, text) => `\n\n${'#'.repeat(Number(level))} ${text.trim()}\n\n`);
+  cleaned = cleaned.replace(/<\/?(?:div|p|span)\b[^>]*>/g, '\n');
   // Retain content wrappers; removing the whole component loses critical instructions.
   cleaned = cleaned.replace(/<(?:Callout|Steps)\b[^>]*>/g, '\n').replace(/<\/(?:Callout|Steps)>/g, '\n');
   cleaned = cleaned.replace(/<([A-Z][a-zA-Z0-9]*)\s*[^>]*\/>/g, '');
   cleaned = cleaned.replace(/<([A-Z][a-zA-Z0-9]*)[^>]*>[\s\S]*?<\/\1>/g, '');
   cleaned = cleaned.replace(/\{\/\*[\s\S]*?\*\/\}/g, '');
+  cleaned = cleaned.replace(/^[ \t]+$/gm, '');
   cleaned = cleaned.replace(/\n{3,}/g, '\n\n').trim();
   return restoreFences(cleaned);
 }

@@ -149,6 +149,7 @@ const header = [
   '- Full LLM context: https://docs.celestia.org/llms-full.txt',
   '- Agent skill: https://docs.celestia.org/SKILL.md',
   '- Agent skills index: https://docs.celestia.org/.well-known/agent-skills/index.json',
+  '- Agent resource discovery: https://docs.celestia.org/.well-known/ard.json',
   '- API catalog: https://docs.celestia.org/.well-known/api-catalog',
   ...openrpcSpecs.map(({ network, version }) =>
     `- Node API OpenRPC spec (${network}): ${SITE_ORIGIN}/specs/openrpc-${version}.json`),
@@ -282,6 +283,19 @@ const generateMarkdownFiles = async (outputBase, files) => {
 
     // Write the cleaned markdown file
     await fs.writeFile(outputFullPath, cleanedContent, 'utf-8');
+    // Static exports cannot negotiate Accept headers; advertise each Markdown URL in HTML.
+    const htmlPath = htmlPathForFile(file);
+    if (outputBase === 'out' && htmlPath) {
+      const htmlFile = path.join(outputBase, htmlPath, 'index.html');
+      const html = await fs.readFile(htmlFile, 'utf8').catch(error => {
+        if (error.code === 'ENOENT') return null;
+        throw error;
+      });
+      const alternate = `<link rel="alternate" type="text/markdown" href="${canonicalMarkdownUrl(file)}"/>`;
+      if (html && !html.includes(alternate)) {
+        await fs.writeFile(htmlFile, html.replace('</head>', `${alternate}</head>`));
+      }
+    }
     console.log(`✅ Generated: ${outputPath}`);
 
     pages.push({
@@ -314,6 +328,7 @@ const generateLlmsTxt = async (outputBase, sections, filePath = 'llms.txt') => {
 
   const output = lines.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
   await writeTextFile(outputBase, filePath, output);
+  if (filePath === 'llms.txt') await writeTextFile(outputBase, 'llms.md', output);
 };
 
 const generateSectionLlmsTxt = async (outputBase, sections) => {
@@ -396,10 +411,10 @@ const generateRobotsTxt = async (outputBase) => {
 
   const lines = [
     'User-agent: *',
+    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
     'Allow: /',
     '',
     ...aiBots.flatMap((bot) => [`User-agent: ${bot}`, 'Allow: /', '']),
-    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
     `Sitemap: ${SITE_ORIGIN}/sitemap.xml`,
     '',
   ];
@@ -433,6 +448,11 @@ const generateApiCatalog = async (outputBase) => {
     linkset: [
       {
         anchor: SITE_ORIGIN,
+        item: openrpcSpecs.map(({ network, version }) => ({
+          href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
+          type: 'application/json',
+          title: `Celestia Node API (${network})`,
+        })),
         'service-desc': openrpcSpecs.map(({ network, version }) => ({
           href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
           type: 'application/json',
@@ -488,6 +508,24 @@ const generateApiCatalog = async (outputBase) => {
   await writeTextFile(outputBase, '.well-known/api-catalog', `${JSON.stringify(linkset, null, 2)}\n`);
 };
 
+const generateArdManifest = async (outputBase) => {
+  const manifest = {
+    entries: [{
+      identifier: 'urn:air:docs.celestia.org:skill:celestia',
+      displayName: 'Celestia documentation skill',
+      type: 'application/agent-skills+md',
+      url: `${SITE_ORIGIN}/.well-known/agent-skills/celestia/SKILL.md`,
+      description: 'Official guidance for building on Celestia, posting and retrieving blobs, and routing repository changes.',
+      capabilities: ['CelestiaDocumentation', 'BlobSubmission', 'BlobRetrieval'],
+      representativeQueries: [
+        'How do I post and retrieve blobs on Celestia?',
+        'Which Celestia repository should I change?',
+      ],
+    }],
+  };
+  await writeTextFile(outputBase, '.well-known/ard.json', `${JSON.stringify(manifest, null, 2)}\n`);
+};
+
 const main = async () => {
   // Determine output directory once - use 'out' if it exists (during build), otherwise 'public' (during dev)
   const outputBase = await fs.access('out').then(() => 'out').catch(() => 'public');
@@ -505,6 +543,7 @@ const main = async () => {
   await generateRobotsTxt(outputBase);
   await generateAgentSkillsIndex(outputBase);
   await generateApiCatalog(outputBase);
+  await generateArdManifest(outputBase);
 
   console.log(`Agent-ready assets generated (${outputBase}/)`);
   console.log('✨ LLM-ready markdown and discovery asset generation complete!');
