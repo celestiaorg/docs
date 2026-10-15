@@ -3,6 +3,17 @@ import test from 'node:test';
 import { readFileSync } from 'node:fs';
 import { cleanMdxForMarkdown } from './lib/clean-mdx.mjs';
 
+test('exports homepage headings and navigation without JSX or styles', () => {
+  const source = readFileSync(new URL('../app/page.mdx', import.meta.url), 'utf8');
+  const markdown = cleanMdxForMarkdown(source);
+  assert.match(markdown, /^# Celestia docs/);
+  assert.ok(markdown.includes("[Learn](/learn/celestia-101/data-availability): Understand modular blockchains and Celestia's architecture"), markdown);
+  for (const href of [...source.matchAll(/<Link href="([^"]+)"/g)].map(match => match[1])) {
+    assert.ok(markdown.includes(`](${href})`), `Missing homepage link: ${href}`);
+  }
+  assert.doesNotMatch(markdown, /<\/?(?:div|span|h[1-6]|p|Link)\b|style=|fontSize/);
+});
+
 test('preserves fenced exports, JSX examples and whitespace while removing MDX imports', () => {
   for (const delimiter of ['```', '~~~~']) {
     const code = `${delimiter}bash\nexport AUTH_TOKEN=$(celestia light auth write \\\n  --node.store "$FIBRE_HOME")\n\n\nimport example from 'literal'\n<Example>keep me</Example>\n{/* literal */}\n${delimiter}`;

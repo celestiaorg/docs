@@ -30,12 +30,40 @@ Celestia Documentation Access:
 - Skill file: https://docs.celestia.org/SKILL.md (served from `public/SKILL.md`)
 - CIPs (Celestia Improvement Proposals): https://cips.celestia.org
 - Built with: Next.js + Nextra (MDX), exported as a static site.
+- Resource manifest: `/.well-known/ard.json` advertises the existing Celestia skill using Agentic Resource Discovery.
+- API catalog: `/.well-known/api-catalog` lists bundled Node API specifications as `item` links.
+- Each exported HTML page advertises its Markdown URL with `rel="alternate"` and `type="text/markdown"`. The root page uses `/index.md`; `/llms.md` provides a Markdown discovery index.
 - **LLM-ready**: Add `.md` to any URL to get clean markdown (e.g., `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`)
 - DeepWikis for @celestiaorg:
     - https://deepwiki.com/celestiaorg/docs
     - https://deepwiki.com/celestiaorg/cips
     - https://deepwiki.com/celestiaorg/celestia-app
     - https://deepwiki.com/celestiaorg/celestia-node
+
+### Checking agent readiness
+
+Run `yarn test:llms` to check Markdown conversion, generated discovery resources,
+and the Fibre walkthrough. Every `yarn build` also checks that each sitemap page
+advertises its matching Markdown file and the ARD manifest. Markdown links stay
+on the current deployment, including previews. These checks run in the lint and
+deployment workflows.
+
+Compare production using both [Is Agentic](https://is-agentic.com/scan/docs.celestia.org)
+and [Is Your Site Agent-Ready?](https://isitagentready.com/docs.celestia.org?profile=content).
+Use Cloudflare's Content Site profile for this public documentation site. Record
+scan dates, failed URLs, response codes, and individual checks alongside scores;
+the scanners use different criteria and can receive different bot challenges.
+
+The current GitHub Pages static export cannot implement HTTP `Link` response
+headers or `Accept: text/markdown` negotiation. These need hosting or edge
+configuration; HTML alternate links and static `.md` files provide discovery
+without that configuration. If a scan reports HTTP 403 responses, inspect the
+corresponding Cloudflare security events before changing bot rules. Allowing a
+crawler in `robots.txt` does not exempt it from a security challenge.
+
+OAuth, payments, and agent execution protocols should only be advertised when
+those services actually exist. Node RPC specifications use OpenRPC; they are not
+OpenAPI specifications for a REST API hosted on the documentation domain.
 
 ## Local development
 
