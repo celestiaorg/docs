@@ -546,6 +546,11 @@ const main = async () => {
   await generateAgentSkillsIndex(outputBase);
   await generateApiCatalog(outputBase);
   await generateArdManifest(outputBase);
+  await writeTextFile(outputBase, '.well-known/poppy.json', `${JSON.stringify({
+    protocol_version: '0.1',
+    organization: { name: 'Celestia', domain: new URL(SITE_ORIGIN).hostname },
+    web: {},
+  }, null, 2)}\n`);
 
   console.log(`Agent-ready assets generated (${outputBase}/)`);
   console.log('✨ LLM-ready markdown and discovery asset generation complete!');

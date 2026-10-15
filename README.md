@@ -53,13 +53,16 @@ and [Is Your Site Agent-Ready?](https://isitagentready.com/docs.celestia.org?pro
 Use Cloudflare's Content Site profile for this public documentation site. Record
 scan dates, failed URLs, response codes, and individual checks alongside scores;
 the scanners use different criteria and can receive different bot challenges.
+The HTML declares `is-agentic-site-type=content` for Is Agentic's default view.
+The website-only `/.well-known/poppy.json` manifest describes public browsing;
+it does not advertise authenticated sessions or an agent service.
 
-The current GitHub Pages static export cannot implement HTTP `Link` response
-headers or `Accept: text/markdown` negotiation. These need hosting or edge
-configuration; HTML alternate links and static `.md` files provide discovery
-without that configuration. If a scan reports HTTP 403 responses, inspect the
-corresponding Cloudflare security events before changing bot rules. Allowing a
-crawler in `robots.txt` does not exempt it from a security challenge.
+The GitHub Pages static export cannot implement HTTP `Link` response headers or
+`Accept: text/markdown` negotiation. Apply the two native Cloudflare rules in
+[the agent readiness setup guide](config/cloudflare/README.md) to enable these
+at the edge. Committing those rule definitions does not deploy them. The guide
+also covers verification, crawler challenges, and the applicability of every
+scanner suggestion.
 
 OAuth, payments, and agent execution protocols should only be advertised when
 those services actually exist. Node RPC specifications use OpenRPC; they are not
