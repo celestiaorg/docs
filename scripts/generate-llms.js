@@ -505,6 +505,11 @@ const generateApiCatalog = async (outputBase) => {
 
 const generateArdManifest = async (outputBase) => {
   const manifest = {
+    specVersion: '1.0',
+    host: {
+      displayName: 'Celestia docs',
+      identifier: 'did:web:docs.celestia.org',
+    },
     entries: [{
       identifier: 'urn:air:docs.celestia.org:skill:celestia',
       displayName: 'Celestia documentation skill',
@@ -519,6 +524,7 @@ const generateArdManifest = async (outputBase) => {
     }],
   };
   await writeTextFile(outputBase, '.well-known/ard.json', `${JSON.stringify(manifest, null, 2)}\n`);
+  await writeTextFile(outputBase, '.well-known/ai-catalog.json', `${JSON.stringify(manifest, null, 2)}\n`);
 };
 
 const main = async () => {

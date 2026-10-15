@@ -233,6 +233,11 @@ export default async function RootLayout({
           href={withBasePath("/.well-known/ard.json")}
         />
         <link
+          rel="ai-catalog"
+          type="application/json"
+          href={withBasePath("/.well-known/ai-catalog.json")}
+        />
+        <link
           rel="describedby"
           type="application/json"
           href={withBasePath("/.well-known/agent-skills/index.json")}

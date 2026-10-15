@@ -12,6 +12,10 @@ test('generated discovery resources point to real exported content', () => {
   assert.equal(read('llms.md'), read('llms.txt'));
 
   const { entries } = JSON.parse(read('.well-known/ard.json'));
+  const aiCatalog = JSON.parse(read('.well-known/ai-catalog.json'));
+  assert.equal(aiCatalog.specVersion, '1.0');
+  assert.deepEqual(aiCatalog.entries, entries);
+  assert.equal(aiCatalog.host.identifier, 'did:web:docs.celestia.org');
   assert.equal(entries[0].type, 'application/agent-skills+md');
   assert.equal(readFileSync(localFile(entries[0].url), 'utf8'), readFileSync(new URL('../public/SKILL.md', import.meta.url), 'utf8'));
 
@@ -44,6 +48,10 @@ test('exported HTML advertises matching Markdown pages', { skip: !existsSync(new
     const base = 'https://example.com/sub/path/';
     assert.equal(new URL(alternates[0][1], new URL(pathname.slice(1), base)).href, new URL(markdownPath, base).href);
     assert.match(html, /<link rel="ard" type="application\/json" href="[^"]*\/\.well-known\/ard\.json"\s*\/>/);
+    const aiCatalogLink = html.match(/<link rel="ai-catalog" type="application\/json" href="([^"]+)"\s*\/>/);
+    assert.ok(aiCatalogLink, url);
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.BASE || '').replace(/\/$/, '');
+    assert.equal(aiCatalogLink[1], `${basePath}/.well-known/ai-catalog.json`);
     assert.ok(read(markdownPath).trim(), markdownPath);
   }
 });
