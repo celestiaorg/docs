@@ -16,8 +16,9 @@ test('generated discovery resources point to real exported content', () => {
   assert.equal(readFileSync(localFile(entries[0].url), 'utf8'), readFileSync(new URL('../public/SKILL.md', import.meta.url), 'utf8'));
 
   const { linkset } = JSON.parse(read('.well-known/api-catalog'));
-  assert.equal(linkset[0].item.length, 2);
-  for (const item of linkset[0].item) {
+  const catalog = linkset.find(link => link.anchor === 'https://docs.celestia.org/.well-known/api-catalog');
+  assert.equal(catalog?.item.length, 2);
+  for (const item of catalog.item) {
     const spec = JSON.parse(readFileSync(new URL(`../public/specs/${path.basename(new URL(item.href).pathname)}`, import.meta.url), 'utf8'));
     assert.ok(spec.openrpc);
     assert.ok(spec.methods.length);
@@ -35,8 +36,13 @@ test('exported HTML advertises matching Markdown pages', { skip: !existsSync(new
     const pathname = new URL(url).pathname;
     const markdownPath = pathname === '/' ? 'index.md' : `${pathname.slice(1, -1)}.md`;
     const html = read(path.join(pathname, 'index.html'));
-    const alternate = `<link rel="alternate" type="text/markdown" href="https://docs.celestia.org/${markdownPath}"/>`;
-    assert.equal(html.split(alternate).length - 1, 1, url);
+    const alternates = [...html.matchAll(/<link rel="alternate" type="text\/markdown" href="([^"]+)"\s*\/>/g)];
+    assert.equal(alternates.length, 1, url);
+    for (const base of ['https://docs.celestia.org/', 'https://celestiaorg.github.io/docs-preview/pr-2650/']) {
+      const pageUrl = new URL(pathname.slice(1), base);
+      assert.equal(new URL(alternates[0][1], pageUrl).href, new URL(markdownPath, base).href);
+    }
+    assert.match(html, /<link rel="ard" type="application\/json" href="[^"]*\/\.well-known\/ard\.json"\s*\/>/);
     assert.ok(read(markdownPath).trim(), markdownPath);
   }
 });

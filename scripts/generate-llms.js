@@ -291,7 +291,8 @@ const generateMarkdownFiles = async (outputBase, files) => {
         if (error.code === 'ENOENT') return null;
         throw error;
       });
-      const alternate = `<link rel="alternate" type="text/markdown" href="${canonicalMarkdownUrl(file)}"/>`;
+      const markdownHref = path.posix.relative(htmlPath.slice(1), outputPath);
+      const alternate = `<link rel="alternate" type="text/markdown" href="${markdownHref}"/>`;
       if (html && !html.includes(alternate)) {
         await fs.writeFile(htmlFile, html.replace('</head>', `${alternate}</head>`));
       }
@@ -447,12 +448,15 @@ const generateApiCatalog = async (outputBase) => {
   const linkset = {
     linkset: [
       {
-        anchor: SITE_ORIGIN,
+        anchor: `${SITE_ORIGIN}/.well-known/api-catalog`,
         item: openrpcSpecs.map(({ network, version }) => ({
           href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
           type: 'application/json',
           title: `Celestia Node API (${network})`,
         })),
+      },
+      {
+        anchor: SITE_ORIGIN,
         'service-desc': openrpcSpecs.map(({ network, version }) => ({
           href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
           type: 'application/json',

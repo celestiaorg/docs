@@ -50,15 +50,15 @@ jobs:
 
       - name: Deploy to docs-preview
         run: |
-          # Create target directory
           TARGET_DIR="docs-preview/pr-${{ github.event.number }}"
-          mkdir -p "$TARGET_DIR"
 
           # Remove existing content in target directory to ensure clean deploy
-          rm -rrf "$TARGET_DIR"/*
+          rm -rf "$TARGET_DIR"
+          mkdir -p "$TARGET_DIR"
 
-          # Copy built files
-          cp -r out/* "$TARGET_DIR"/
+          # Include discovery manifests under .well-known.
+          cp -r out/. "$TARGET_DIR"/
+          test -s "$TARGET_DIR/.well-known/ard.json"
 
           # Ensure .nojekyll exists in root
           touch docs-preview/.nojekyll

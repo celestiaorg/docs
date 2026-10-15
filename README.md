@@ -38,13 +38,15 @@ Celestia Documentation Access:
     - https://deepwiki.com/celestiaorg/docs
     - https://deepwiki.com/celestiaorg/cips
     - https://deepwiki.com/celestiaorg/celestia-app
+    - https://deepwiki.com/celestiaorg/celestia-node
 
 ### Checking agent readiness
 
 Run `yarn test:llms` to check Markdown conversion, generated discovery resources,
-and the Fibre walkthrough. After `yarn build`, it also checks that every sitemap
-page advertises an existing Markdown file. These checks run in the existing lint
-workflow.
+and the Fibre walkthrough. Every `yarn build` also checks that each sitemap page
+advertises its matching Markdown file and the ARD manifest. Markdown links stay
+on the current deployment, including previews. These checks run in the lint and
+deployment workflows.
 
 Compare production using both [Is Agentic](https://is-agentic.com/scan/docs.celestia.org)
 and [Is Your Site Agent-Ready?](https://isitagentready.com/docs.celestia.org?profile=content).
@@ -62,7 +64,6 @@ crawler in `robots.txt` does not exempt it from a security challenge.
 OAuth, payments, and agent execution protocols should only be advertised when
 those services actually exist. Node RPC specifications use OpenRPC; they are not
 OpenAPI specifications for a REST API hosted on the documentation domain.
-    - https://deepwiki.com/celestiaorg/celestia-node
 
 ## Local development
 
