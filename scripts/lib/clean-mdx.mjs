@@ -50,8 +50,11 @@ export function cleanMdxForMarkdown(content) {
   cleaned = cleaned.replace(/^export\s+(?!default).*?;?\s*$/gm, '');
   // Preserve static landing-page navigation before removing custom components.
   cleaned = cleaned.replace(/<Link\b[^>]*\bhref="([^"]+)"[^>]*>([\s\S]*?)<\/Link>/g, (_, href, body) => {
-    const label = cleanMdxForMarkdown(body).replace(/^#{1,6}\s+/gm, '').replace(/\s+/g, ' ').trim();
-    return `\n\n[${label}](${href})\n\n`;
+    const lines = cleanMdxForMarkdown(body).split('\n').map(line => line.trim()).filter(Boolean);
+    const heading = lines.find(line => /^#{1,6}\s/.test(line));
+    const label = (heading ?? lines.join(' ')).replace(/^#{1,6}\s+/, '');
+    const description = heading ? lines.filter(line => line !== heading && !/^[\p{Extended_Pictographic}\uFE0F]+$/u.test(line)).join(' ') : '';
+    return `\n\n[${label}](${href})${description ? `: ${description}` : ''}\n\n`;
   });
   cleaned = cleaned.replace(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/g, (_, level, text) => `\n\n${'#'.repeat(Number(level))} ${text.trim()}\n\n`);
   cleaned = cleaned.replace(/<\/?(?:div|p|span)\b[^>]*>/g, '\n');

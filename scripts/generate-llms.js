@@ -406,12 +406,10 @@ const generateRobotsTxt = async (outputBase) => {
     'CCBot',
   ];
 
+  // Each named crawler reads only its own group, so every group carries the signal.
+  const contentSignal = 'Content-Signal: ai-train=yes, search=yes, ai-input=yes';
   const lines = [
-    'User-agent: *',
-    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
-    'Allow: /',
-    '',
-    ...aiBots.flatMap((bot) => [`User-agent: ${bot}`, 'Allow: /', '']),
+    ...['*', ...aiBots].flatMap((bot) => [`User-agent: ${bot}`, contentSignal, 'Allow: /', '']),
     `Sitemap: ${SITE_ORIGIN}/sitemap.xml`,
     '',
   ];

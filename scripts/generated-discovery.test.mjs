@@ -17,15 +17,17 @@ test('generated discovery resources point to real exported content', () => {
 
   const { linkset } = JSON.parse(read('.well-known/api-catalog'));
   const catalog = linkset.find(link => link.anchor === 'https://docs.celestia.org/.well-known/api-catalog');
-  assert.equal(catalog?.item.length, 2);
+  assert.ok(catalog, 'api-catalog anchor');
+  assert.equal(catalog.item.length, 2);
   for (const item of catalog.item) {
     const spec = JSON.parse(readFileSync(new URL(`../public/specs/${path.basename(new URL(item.href).pathname)}`, import.meta.url), 'utf8'));
     assert.ok(spec.openrpc);
     assert.ok(spec.methods.length);
   }
 
-  const wildcardGroup = read('robots.txt').split('User-agent: GPTBot')[0];
-  assert.match(wildcardGroup, /Content-Signal: ai-train=yes, search=yes, ai-input=yes/);
+  const groups = read('robots.txt').split('\n\n').filter(group => group.startsWith('User-agent:'));
+  assert.ok(groups.length > 1);
+  for (const group of groups) assert.match(group, /Content-Signal: ai-train=yes, search=yes, ai-input=yes/, group);
 });
 
 // Run after a build to check every HTML-to-Markdown discovery link as well.
