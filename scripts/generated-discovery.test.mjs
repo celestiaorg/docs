@@ -76,7 +76,8 @@ test('homepage HTML is usable without JavaScript', { skip: !existsSync(new URL('
   const html = read('index.html');
   const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
   assert.ok(main, 'Rendered main content');
-  const text = main.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  assert.doesNotMatch(main, /<script\b/i, 'Homepage main content must not contain scripts');
+  const text = main.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   assert.ok(text.length >= 500, `Only ${text.length} characters of homepage content`);
   assert.equal([...main.matchAll(/<h1\b/g)].length, 1);
   assert.deepEqual([...main.matchAll(/<h([1-6])\b/g)].map(match => Number(match[1])), [1, 2, 2, 2, 2]);
