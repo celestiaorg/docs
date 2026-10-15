@@ -283,15 +283,17 @@ const generateMarkdownFiles = async (outputBase, files) => {
 
     // Write the cleaned markdown file
     await fs.writeFile(outputFullPath, cleanedContent, 'utf-8');
-    // Static exports cannot negotiate Accept headers; advertise each Markdown URL in HTML.
+    // Add route-specific discovery metadata to the static export.
     const htmlPath = htmlPathForFile(file);
     if (outputBase === 'out' && htmlPath) {
       const htmlFile = path.join(outputBase, htmlPath, 'index.html');
       const html = await fs.readFile(htmlFile, 'utf8').catch(error => { if (error.code !== 'ENOENT') throw error; });
       const markdownHref = path.posix.relative(htmlPath.slice(1), outputPath);
       const alternate = `<link rel="alternate" type="text/markdown" href="${markdownHref}"/>`;
-      if (html && !html.includes(alternate)) {
-        await fs.writeFile(htmlFile, html.replace('</head>', `${alternate}</head>`));
+      const canonical = `<link rel="canonical" href="${canonicalUrl(htmlPath)}"/>`;
+      if (html) {
+        const links = [canonical, alternate].filter(link => !html.includes(link)).join('');
+        if (links) await fs.writeFile(htmlFile, html.replace('</head>', `${links}</head>`));
       }
     }
     console.log(`✅ Generated: ${outputPath}`);

@@ -44,7 +44,8 @@ Celestia Documentation Access:
 
 Run `yarn test:llms` to check Markdown conversion, generated discovery resources,
 and the Fibre walkthrough. Every `yarn build` also checks that each sitemap page
-advertises its matching Markdown file and the ARD manifest. Markdown links stay
+advertises its matching Markdown file, canonical production URL, and the ARD manifest.
+Homepage checks cover raw HTML content, heading order, metadata, and JSON-LD. Markdown links stay
 on the current deployment, including previews. These checks run in the lint and
 deployment workflows.
 
@@ -58,9 +59,9 @@ The website-only `/.well-known/poppy.json` manifest describes public browsing;
 it does not advertise authenticated sessions or an agent service.
 
 The GitHub Pages static export cannot implement HTTP `Link` response headers or
-`Accept: text/markdown` negotiation. Apply the two native Cloudflare rules in
+`Accept: text/markdown` negotiation. Apply the native Cloudflare rules in
 [the agent readiness setup guide](config/cloudflare/README.md) to enable these
-at the edge. Committing those rule definitions does not deploy them. The guide
+at the edge, including the API catalog media type. Committing those rule definitions does not deploy them. The guide
 also covers verification, crawler challenges, and the applicability of every
 scanner suggestion.
 

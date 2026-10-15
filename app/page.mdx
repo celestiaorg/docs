@@ -1,6 +1,6 @@
 ---
 landingPage: true
-title: Celestia docs
+title: Celestia docs - Modular data availability
 theme:
   sidebar: false
   toc: false
@@ -30,8 +30,10 @@ import Link from "next/link";
     textAlign: "center",
   }}
 >
-  Celestia is the modular blockchain powering unstoppable apps with full-stack
-  control.
+  Celestia is a modular data availability network. Rollups publish transaction
+  data to Celestia while choosing their own execution and settlement layers.
+  Use these docs to learn how data availability works, post and retrieve blobs,
+  and run a node on Mainnet Beta or the Mocha testnet.
 </div>
 
   <div style={{
@@ -49,8 +51,8 @@ import Link from "next/link";
       gap: '0.75rem'
     }}>
       <span style={{ fontSize: '2rem' }}>📚</span>
-      <h3 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Learn</h3>
-      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Understand modular blockchains and Celestia's architecture</p>
+      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Learn</h2>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Understand modular blockchains and Celestia's architecture, including data availability sampling and how rollups use blobspace.</p>
     </Link>
 
     <Link href="/build/post-retrieve-blob/overview/" style={{
@@ -63,8 +65,8 @@ import Link from "next/link";
       gap: '0.75rem'
     }}>
       <span style={{ fontSize: '2rem' }}>🛠️</span>
-      <h3 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Build</h3>
-      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Start building applications on Celestia's data availability layer</p>
+      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Build</h2>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Post and retrieve your first blob with Go and Rust transaction clients. Follow the guides for signer setup, funding, and testnet examples.</p>
     </Link>
 
     <Link href="/operate/getting-started/overview/" style={{
@@ -77,8 +79,8 @@ import Link from "next/link";
       gap: '0.75rem'
     }}>
       <span style={{ fontSize: '2rem' }}>⚙️</span>
-      <h3 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Operate</h3>
-      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Run and maintain Celestia nodes and infrastructure</p>
+      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Operate</h2>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Choose a node type, check hardware requirements, and install Celestia software. Find guides for maintenance, monitoring, and troubleshooting.</p>
     </Link>
 
     <Link href="/build/rpc/node-api" style={{
@@ -91,8 +93,8 @@ import Link from "next/link";
       gap: '0.75rem'
     }}>
       <span style={{ fontSize: '2rem' }}>🔌</span>
-      <h3 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>API</h3>
-      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Reference for Celestia's node RPC methods and client libraries</p>
+      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>API</h2>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Explore Celestia Node JSON-RPC methods, authentication, and client libraries. Download versioned OpenRPC specifications from the API reference.</p>
     </Link>
 
   </div>

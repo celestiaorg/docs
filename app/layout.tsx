@@ -29,7 +29,7 @@ const THEME_CONFIG = {
 export const metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   title: {
-    default: "Celestia Documentation",
+    default: "Celestia docs - Modular data availability",
     template: "%s - Celestia Documentation",
   },
   description: SITE_DESCRIPTION,
