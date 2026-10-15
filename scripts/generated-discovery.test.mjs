@@ -38,10 +38,9 @@ test('exported HTML advertises matching Markdown pages', { skip: !existsSync(new
     const html = read(path.join(pathname, 'index.html'));
     const alternates = [...html.matchAll(/<link rel="alternate" type="text\/markdown" href="([^"]+)"\s*\/>/g)];
     assert.equal(alternates.length, 1, url);
-    for (const base of ['https://docs.celestia.org/', 'https://celestiaorg.github.io/docs-preview/pr-2650/']) {
-      const pageUrl = new URL(pathname.slice(1), base);
-      assert.equal(new URL(alternates[0][1], pageUrl).href, new URL(markdownPath, base).href);
-    }
+    // Relative href must resolve under any deployment base, including previews.
+    const base = 'https://example.com/sub/path/';
+    assert.equal(new URL(alternates[0][1], new URL(pathname.slice(1), base)).href, new URL(markdownPath, base).href);
     assert.match(html, /<link rel="ard" type="application\/json" href="[^"]*\/\.well-known\/ard\.json"\s*\/>/);
     assert.ok(read(markdownPath).trim(), markdownPath);
   }

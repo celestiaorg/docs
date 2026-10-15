@@ -287,10 +287,7 @@ const generateMarkdownFiles = async (outputBase, files) => {
     const htmlPath = htmlPathForFile(file);
     if (outputBase === 'out' && htmlPath) {
       const htmlFile = path.join(outputBase, htmlPath, 'index.html');
-      const html = await fs.readFile(htmlFile, 'utf8').catch(error => {
-        if (error.code === 'ENOENT') return null;
-        throw error;
-      });
+      const html = await fs.readFile(htmlFile, 'utf8').catch(error => { if (error.code !== 'ENOENT') throw error; });
       const markdownHref = path.posix.relative(htmlPath.slice(1), outputPath);
       const alternate = `<link rel="alternate" type="text/markdown" href="${markdownHref}"/>`;
       if (html && !html.includes(alternate)) {
@@ -303,7 +300,7 @@ const generateMarkdownFiles = async (outputBase, files) => {
       file,
       markdownPath: outputPath,
       markdownUrl: canonicalMarkdownUrl(file),
-      htmlPath: htmlPathForFile(file),
+      htmlPath,
       content: cleanedContent,
       title: extractTitle(cleanedContent, titleize(path.basename(path.dirname(file)))),
     });
@@ -329,7 +326,6 @@ const generateLlmsTxt = async (outputBase, sections, filePath = 'llms.txt') => {
 
   const output = lines.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
   await writeTextFile(outputBase, filePath, output);
-  if (filePath === 'llms.txt') await writeTextFile(outputBase, 'llms.md', output);
 };
 
 const generateSectionLlmsTxt = async (outputBase, sections) => {
@@ -445,23 +441,20 @@ const generateAgentSkillsIndex = async (outputBase) => {
 };
 
 const generateApiCatalog = async (outputBase) => {
+  const specLinks = (title) => openrpcSpecs.map(({ network, version }) => ({
+    href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
+    type: 'application/json',
+    title: `${title} (${network})`,
+  }));
   const linkset = {
     linkset: [
       {
         anchor: `${SITE_ORIGIN}/.well-known/api-catalog`,
-        item: openrpcSpecs.map(({ network, version }) => ({
-          href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
-          type: 'application/json',
-          title: `Celestia Node API (${network})`,
-        })),
+        item: specLinks('Celestia Node API'),
       },
       {
         anchor: SITE_ORIGIN,
-        'service-desc': openrpcSpecs.map(({ network, version }) => ({
-          href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
-          type: 'application/json',
-          title: `Celestia Node API OpenRPC specification (${network})`,
-        })),
+        'service-desc': specLinks('Celestia Node API OpenRPC specification'),
         'service-doc': [
           {
             href: `${SITE_ORIGIN}/build/rpc/node-api/`,
@@ -541,6 +534,7 @@ const main = async () => {
   const sections = buildSections(files);
   await fs.mkdir(outputBase, { recursive: true });
   await generateLlmsTxt(outputBase, sections);
+  await fs.copyFile(path.join(outputBase, 'llms.txt'), path.join(outputBase, 'llms.md'));
   await generateSectionLlmsTxt(outputBase, sections);
   await generateLlmsFullTxt(outputBase, pages);
   await generateSitemap(outputBase, pages);
