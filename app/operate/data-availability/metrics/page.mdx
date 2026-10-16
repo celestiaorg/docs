@@ -81,6 +81,98 @@ celestia <node-type> start --metrics.tls=false --metrics \
     --p2p.network <network> --core.ip <URI> --core.port <port>
 ```
 
+## Key metrics reference
+
+Node metrics come from celestia-node and dependencies such as go-header.
+Exact panel names on community Grafana dashboards may differ from the
+OpenTelemetry metric names below. Prefer the metric names from the codebase
+when wiring alerts.
+
+### Overview and sync health
+
+Source: [header store metrics](https://github.com/celestiaorg/go-header/blob/main/store/metrics.go),
+[header sync metrics](https://github.com/celestiaorg/go-header/blob/main/sync/metrics.go),
+and [DAS metrics](https://github.com/celestiaorg/celestia-node/blob/main/das/metrics.go).
+
+| Metric | Description | Acceptable value |
+|--------|-------------|------------------|
+| `hdr_store_head_height_gauge` | Local header store head height (subjective height of stored headers). | Near network tip for a synced node. |
+| `hdr_store_tail_height_gauge` | Lowest header height retained in the local store. | Depends on pruning / retention; should not unexpectedly jump up. |
+| `hdr_sync_subjective_head_gauge` | Syncer’s subjective head height (what the node treats as latest). | At or very near network tip when synced. Can look ahead of a lagging RPC/core peer. |
+| `hdr_sync_subjective_head_lag_seconds` | Seconds between a header’s BFT timestamp and when syncer adopted it as subjective head. | Low and stable; sustained growth suggests sync or peer issues. |
+| `das_network_head` | Most recent network head observed by the DAS’er. | Near chain tip. |
+| `das_sampled_chain_head` | Highest height through which continuous DAS has succeeded. | Should catch up to `das_network_head` over time. |
+| `das_sampling_head_lag` | `max(network_head - sampled_chain_head, 0)` in headers. | Prefer `0` when fully caught up; see [DAS sampling head lag](#das-sampling-head-lag). |
+| `das_busy_workers_amount` | Active parallel DAS workers (labeled by job type). | Non-zero while sampling backlog exists; idle when caught up. |
+| `das_sampled_headers_counter` | Count of recorded sampling attempts, including failures (`failed=true`). | The `failed=false` series should increase when sampling succeeds. |
+| `das_latest_sampled_ts` | Unix timestamp of the latest recorded sampling attempt, including failures. | Recent while sampling is active; freshness alone does not show success. |
+
+Failed attempts can keep both metrics advancing. Use the `failed=false` series
+of `das_sampled_headers_counter` to track successes, and
+`das_sampled_chain_head` or `das_sampling_head_lag` to check catch-up.
+
+### Peers and ShareX (shrex)
+
+Source: [ShareX metrics](https://github.com/celestiaorg/celestia-node/blob/main/share/shwap/p2p/shrex/metrics.go).
+
+| Metric | Description | Acceptable value |
+|--------|-------------|------------------|
+| `shrex_client_total_requests` | Client ShareX requests, labeled by protocol and status. | Mix of `success`; spikes of `not_found` / errors warrant investigation. |
+| `shrex_client_request_duration` | Client ShareX request latency (seconds). | Stable; rising p99 under load may indicate peer or network pressure. |
+| `shrex_server_total_responses` | Bridge-node ShareX responses sent, labeled by protocol and status. | Increases on bridge nodes serving peers. |
+| `shrex_server_request_duration` | Bridge-node ShareX handler latency (seconds). | Stable under expected peer load. |
+
+Peer count panels on operator dashboards (full vs archival DA peers) are typically
+derived from libp2p / discovery metrics bridged into OTEL. Aim for **> 0** full
+peers on a light node that needs to fetch shares; bridge nodes should
+also retain healthy peer connectivity.
+
+### EDS store and caches
+
+Source: [EDS store metrics](https://github.com/celestiaorg/celestia-node/blob/main/store/metrics.go)
+and [EDS cache metrics](https://github.com/celestiaorg/celestia-node/blob/main/store/cache/metrics.go).
+
+These metrics are available only on bridge nodes. Light nodes do not have an
+EDS store and do not export `eds_store_*` or `eds_cache_*` metrics; their absence
+on a light node is expected.
+
+| Metric | Description | Acceptable value |
+|--------|-------------|------------------|
+| `eds_store_put_time_histogram` | Time to put an EDS into the store (seconds). | Stable histogram; sustained elevation may mean disk pressure. |
+| `eds_store_get_time_histogram` | Time to get an EDS from the store (seconds). | Stable; correlate with cache hit rates below. |
+| `eds_store_has_time_histogram` | Time for store `Has` checks (seconds). | Stable. |
+| `eds_store_put_exists_counter` | Puts skipped because the file already existed. | Can be non-zero during retries; large sustained rates may indicate duplicate work. |
+| `eds_cache_<name>_get_counter` | Cache get events (attribute `found=true/false`). | Healthy hit ratio: most gets with `found=true`. |
+| `eds_cache_<name>_evicted_counter` | Cache eviction events. | Expected under memory limits; correlate with miss rate. |
+| `eds_cache_<name>_size` | Items currently in the named cache. | Within configured cache capacity. |
+
+Dashboard labels such as “BlockStore cache hit/miss” or “Recent cache hit/miss”
+map to these `eds_cache_*` counters for the corresponding cache name.
+
+### Blobs
+
+Source: [blob metrics](https://github.com/celestiaorg/celestia-node/blob/main/blob/metrics.go).
+
+| Metric | Description | Acceptable value |
+|--------|-------------|------------------|
+| `blob_retrieval_total` | Blob retrieval attempts (error type labeled on failure). | Successes should dominate; investigate rising `not_found` / `timeout`. |
+| `blob_retrieval_duration_seconds` | Blob retrieval latency. | Stable for your workload. |
+| `blob_proof_total` | Blob proof operations. | Increases when serving or verifying proofs. |
+| `blob_proof_duration_seconds` | Blob proof latency. | Stable. |
+
+### Operator tips
+
+- **Synced tip:** compare `hdr_sync_subjective_head_gauge`,
+  `hdr_store_head_height_gauge`, and `das_network_head`. Large lasting gaps mean
+  header sync, store, or DAS is behind.
+- **DAS catch-up:** watch `das_sampling_head_lag` first, then
+  `das_busy_workers_amount` and sample error logs if lag does not trend to zero.
+- **Serving load (bridge nodes):** shrex server totals and store put/get latency
+  show whether you are healthy under peer demand.
+- **Acceptable values** depend on node type (light vs bridge), network,
+  and hardware. Use the table as a starting point and baseline your own node
+  after a clean sync.
+
 ## DAS sampling head lag
 
 Use `das_sampling_head_lag` to monitor how far data availability sampling (DAS)
