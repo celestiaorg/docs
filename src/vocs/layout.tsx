@@ -67,11 +67,13 @@ const jsonLd = [
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="is-agentic-site-type" content="content" />
+      <link rel="ard" type="application/json" href={withBasePath('/.well-known/ard.json')} />
+      <link rel="ai-catalog" type="application/json" href={withBasePath('/.well-known/ai-catalog.json')} />
       <link rel="alternate" type="text/plain" href={withBasePath('/llms.txt')} />
       <link rel="alternate" type="text/plain" href={withBasePath('/llms-full.txt')} />
       <link
-        rel="service-desc"
+        rel="api-catalog"
         type="application/linkset+json"
         href={withBasePath('/.well-known/api-catalog')}
       />

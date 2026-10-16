@@ -16,6 +16,30 @@ for (const path of ['/', '/learn/TIA/overview', '/build/rpc/node-api', '/operate
   const response = await request(path)
   assert.ok((await response.text()).length > 0, `${path}: empty response`)
 }
+for (const path of ['/', '/build/post-retrieve-blob/client/go/']) {
+  const markdownPath = path === '/' ? '/index.md' : `${path.slice(0, -1)}.md`
+  const expected = await (await request(markdownPath)).text()
+  for (const accept of ['text/html', 'text/markdown', 'text/html']) {
+    const response = await request(path, { headers: { Accept: accept } })
+    const body = await response.text()
+    assert.match(response.headers.get('Content-Type') || '', new RegExp(`^${accept}\\b`))
+    assert.ok(response.headers.get('Vary')?.split(',').some(value => value.trim().toLowerCase() === 'accept'), `${path}: missing Vary: Accept`)
+    assert.match(response.headers.get('Link') || '', /rel="api-catalog"/)
+    assert.match(response.headers.get('Cache-Control') || '', /no-store/)
+    if (accept === 'text/markdown') {
+      assert.equal(body, expected, `${path}: negotiated Markdown differs from static export`)
+      assert.doesNotMatch(body, /<html|<script/i)
+    } else assert.match(body, /<html/i)
+  }
+  const head = await request(path, { method: 'HEAD', headers: { Accept: 'text/markdown' } })
+  assert.match(head.headers.get('Content-Type') || '', /^text\/markdown/)
+  assert.equal(await head.text(), '')
+}
+for (const method of ['GET', 'HEAD']) {
+  const catalog = await request('/.well-known/api-catalog', { method })
+  assert.equal(catalog.headers.get('Content-Type'), 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"')
+  if (method === 'GET') assert.ok((await catalog.json()).linkset.length)
+}
 for (const endpoint of ['/mcp', '/api/mcp']) {
   for (const [method, params] of [
     ['initialize', { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'deploy-smoke', version: '1' } }],
@@ -32,4 +56,4 @@ for (const endpoint of ['/mcp', '/api/mcp']) {
     if (params.name === 'search_docs') assert.ok(JSON.parse(body.result.content[0].text).length > 0)
   }
 }
-console.log(`Verified deployed pages, assets, markdown, search and MCP: ${origin}`)
+console.log(`Verified deployed pages, assets, negotiated Markdown, discovery, search and MCP: ${origin}`)

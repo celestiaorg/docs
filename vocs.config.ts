@@ -37,7 +37,7 @@ export default defineConfig({
     dark: withBasePath('/logo-dark.svg'),
   },
   iconUrl: withBasePath('/favicons/favicon.svg'),
-  ogImageUrl: withBasePath('/Celestia-og.png'),
+  ogImageUrl: new URL(withBasePath('/Celestia-og.png'), siteOrigin).href,
   accentColor: 'light-dark(#6d3df5, #9d7cff)',
   editLink: {
     link: (filePath) => {

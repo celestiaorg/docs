@@ -8,7 +8,7 @@ export function cleanMdxForMarkdown(content) {
   for (const line of lines) {
     if (fence) {
       code.push(line);
-      const close = line.match(/^ {0,3}(`{3,}|~{3,})[ \t]*$/);
+      const close = line.match(/^ *(`{3,}|~{3,})[ \t]*$/);
       if (close && close[1][0] === fence[0] && close[1].length >= fence.length) {
         protectedLines.push(`\u0000FENCE${fences.length}\u0000`);
         fences.push(code.join('\n'));
@@ -16,7 +16,7 @@ export function cleanMdxForMarkdown(content) {
         code = [];
       }
     } else {
-      const open = line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
+      const open = line.match(/^ *(`{3,}|~{3,})(.*)$/);
       if (open) {
         fence = open[1];
         code = [line];
@@ -30,15 +30,47 @@ export function cleanMdxForMarkdown(content) {
     fences.push(code.join('\n'));
   }
   let cleaned = protectedLines.join('\n');
+  // Null delimiters protect fenced examples from JSX cleanup.
+  // eslint-disable-next-line no-control-regex
+  const restoreFences = value => value.replace(/\u0000FENCE(\d+)\u0000/g, (_, index) => fences[Number(index)]);
+  // Export each static tab as labelled Markdown without losing its fenced commands.
+  cleaned = cleaned.replace(/<(Tabs|NetworkTabs)\s+items=\{\[([^\]]*)\]\}[^>]*>([\s\S]*?)<\/\1>/g, (_, wrapper, items, body) => {
+    const labels = [...items.matchAll(/(['"])(.*?)\1/g)].map(match => match[2]);
+    let tabIndex = 0;
+    return body.replace(/[ \t]*<Tabs\.Tab\b[^>]*>([\s\S]*?)<\/Tabs\.Tab>/g, (_, panel) => {
+      const lines = restoreFences(panel).split('\n');
+      const indents = lines.filter(line => line.trim()).map(line => line.match(/^ */)[0].length);
+      const indent = indents.length ? Math.min(...indents) : 0;
+      const markdown = cleanMdxForMarkdown(lines.map(line => line.slice(indent)).join('\n'));
+      const label = labels[tabIndex++] || `Tab ${tabIndex}`;
+      const placeholder = `\u0000FENCE${fences.length}\u0000`;
+      fences.push(`**${label}**\n\n${markdown}`);
+      return `\n\n${placeholder}\n\n`;
+    });
+  });
   cleaned = cleaned.replace(/^import\s+.*?from\s+['"].*?['"];?\s*$/gm, '');
   cleaned = cleaned.replace(/^export\s+(?!default).*?;?\s*$/gm, '');
-  // Retain admonition text; removing the whole component loses critical instructions.
-  cleaned = cleaned.replace(/<Callout\b[^>]*>/g, '\n').replace(/<\/Callout>/g, '\n');
+  // Preserve static landing-page navigation before removing custom components.
+  cleaned = cleaned.replace(/<Card\s+([^>]*?)\/>/g, (_, attributes) => {
+    const props = Object.fromEntries([...attributes.matchAll(/(title|description|to)="([^"]*)"/g)].map(match => [match[1], match[2]]));
+    return props.title && props.to ? `\n\n[${props.title}](${props.to}): ${props.description ?? ''}\n\n` : '';
+  });
+  cleaned = cleaned.replace(/<\/?(?:Cards|HomePage\.(?:Root|Tagline|Description|Buttons))\b[^>]*>/g, '\n');
+  cleaned = cleaned.replace(/<(Link|HomePage\.Button)\b[^>]*\bhref="([^"]+)"[^>]*>([\s\S]*?)<\/\1>/g, (_, _component, href, body) => {
+    const lines = cleanMdxForMarkdown(body).split('\n').map(line => line.trim()).filter(Boolean);
+    const heading = lines.find(line => /^#{1,6}\s/.test(line));
+    const label = (heading ?? lines.join(' ')).replace(/^#{1,6}\s+/, '');
+    const description = heading ? lines.filter(line => line !== heading && !/^[\p{Extended_Pictographic}\uFE0F]+$/u.test(line)).join(' ') : '';
+    return `\n\n[${label}](${href})${description ? `: ${description}` : ''}\n\n`;
+  });
+  cleaned = cleaned.replace(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/g, (_, level, text) => `\n\n${'#'.repeat(Number(level))} ${text.trim()}\n\n`);
+  cleaned = cleaned.replace(/<\/?(?:div|p|span)\b[^>]*>/g, '\n');
+  // Retain content wrappers; removing the whole component loses critical instructions.
+  cleaned = cleaned.replace(/<(?:Callout|Steps)\b[^>]*>/g, '\n').replace(/<\/(?:Callout|Steps)>/g, '\n');
   cleaned = cleaned.replace(/<([A-Z][a-zA-Z0-9]*)\s*[^>]*\/>/g, '');
   cleaned = cleaned.replace(/<([A-Z][a-zA-Z0-9]*)[^>]*>[\s\S]*?<\/\1>/g, '');
   cleaned = cleaned.replace(/\{\/\*[\s\S]*?\*\/\}/g, '');
+  cleaned = cleaned.replace(/^[ \t]+$/gm, '');
   cleaned = cleaned.replace(/\n{3,}/g, '\n\n').trim();
-  // Null delimiters mark the fenced examples protected above.
-  // eslint-disable-next-line no-control-regex
-  return cleaned.replace(/\u0000FENCE(\d+)\u0000/g, (_, index) => fences[Number(index)]);
+  return restoreFences(cleaned);
 }

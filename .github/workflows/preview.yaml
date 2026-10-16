@@ -61,6 +61,7 @@ jobs:
 
           # Copy built files
           cp -r out/public/. "$TARGET_DIR"/
+          test -s "$TARGET_DIR/.well-known/ard.json"
 
           # Ensure .nojekyll exists in root
           touch docs-preview/.nojekyll

@@ -30,12 +30,44 @@ Celestia Documentation Access:
 - Skill file: https://docs.celestia.org/SKILL.md (served from `public/SKILL.md`)
 - CIPs (Celestia Improvement Proposals): https://cips.celestia.org
 - Built with: Vocs v2 (MDX), Vite, and Bun, exported as a static site.
+- Resource manifest: `/.well-known/ard.json` advertises the existing Celestia skill using Agentic Resource Discovery.
+- API catalog: `/.well-known/api-catalog` lists bundled Node API specifications as `item` links.
+- Each exported HTML page advertises its Markdown URL with `rel="alternate"` and `type="text/markdown"`. The root page uses `/index.md`; `/llms.md` provides a Markdown discovery index.
 - **LLM-ready**: Add `.md` to any URL to get clean markdown (e.g., `https://docs.celestia.org/learn/TIA/overview` → `https://docs.celestia.org/learn/TIA/overview.md`)
 - DeepWikis for @celestiaorg:
     - https://deepwiki.com/celestiaorg/docs
     - https://deepwiki.com/celestiaorg/cips
     - https://deepwiki.com/celestiaorg/celestia-app
     - https://deepwiki.com/celestiaorg/celestia-node
+
+### Checking agent readiness
+
+Run `bun run test:llms` to check Markdown conversion, generated discovery resources,
+and the Fibre walkthrough. Every `bun run build` also checks that each sitemap page
+advertises its matching Markdown file, canonical production URL, and the ARD manifest.
+Homepage checks cover raw HTML content, heading order, metadata, and JSON-LD. Markdown links stay
+on the current deployment, including previews. These checks run in the lint and
+deployment workflows.
+
+Compare production using both [Is Agentic](https://is-agentic.com/scan/docs.celestia.org)
+and [Is Your Site Agent-Ready?](https://isitagentready.com/docs.celestia.org?profile=content).
+Use Cloudflare's Content Site profile for this public documentation site. Record
+scan dates, failed URLs, response codes, and individual checks alongside scores;
+the scanners use different criteria and can receive different bot challenges.
+The HTML declares `is-agentic-site-type=content` for Is Agentic's default view.
+The website-only `/.well-known/poppy.json` manifest describes public browsing;
+it does not advertise authenticated sessions or an agent service.
+
+The Pages Worker serves generated Markdown at normal page URLs when clients
+prefer `Accept: text/markdown`, adds discovery `Link` headers, and sets the API
+catalog media type. This does not require Cloudflare's paid Markdown converter.
+Follow the [cutover runbook](.github/CLOUDFLARE-CUTOVER.md) to deploy it on the
+production domain. The [agent readiness guide](config/cloudflare/README.md)
+covers verification, crawler challenges, and scanner applicability.
+
+OAuth, payments, and agent execution protocols should only be advertised when
+those services actually exist. Node RPC specifications use OpenRPC; they are not
+OpenAPI specifications for a REST API hosted on the documentation domain.
 
 ## Local development
 
@@ -123,12 +155,18 @@ BASE=/docs-preview/new_docs/ bun run build
 
 ### Updating bundled Node API specs
 
-Add the release asset to `public/specs/`, update `constants/node_api_versions.json`,
-and run `yarn generate:skill`. The manifest drives the API dropdown, Fibre reference links,
-LLM index, API catalog, and the version links in `public/SKILL.md`.
-Keep bundled spec versions separate from automated network version updates.
+The Latest Tags workflow includes the matching upstream `openrpc.json`, API manifest,
+and generated skill links in each release update PR. It also repairs stale specs
+when the network versions have already been updated.
 
-CI runs `yarn check:skill` to reject stale skill links, missing or invalid specs,
+After manually updating the node tag and SHA in `constants/<network>_versions.json`,
+run `bun run sync:node-api`. This downloads the published release spec, preserves the
+previous version in the API dropdown, updates `constants/node_api_versions.json`,
+and runs `bun run generate:skill`. Missing or invalid release assets fail the update.
+The manifest drives the API dropdown, Fibre reference links, LLM index, API catalog,
+and the version links in `public/SKILL.md`.
+
+CI runs `bun run check:skill` to reject network/API version drift, stale skill links, missing or invalid specs,
 and RPC methods in the skill that are absent from either current spec. It checks
 availability, not behavioural compatibility or network activation; review method
 guidance and release requirements when updating specs. Edit the skill's prose

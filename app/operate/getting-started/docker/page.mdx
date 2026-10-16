@@ -3,6 +3,7 @@ sidebar_label: Docker images
 description: Running Celestia Node using Docker.
 ---
 
+import { NetworkTabs } from '@/components/NetworkTabs'
 import { Steps, Tabs } from 'nextra/components'
 
 # 🐳 Docker setup
@@ -42,7 +43,7 @@ Ubuntu. You can
 
 Choose [the network](/operate/networks/overview) you would like to run your node on:
 
-   <Tabs items={['Mainnet Beta', 'Mocha']}>
+   <NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="docker-network">
      <Tabs.Tab>
        ```bash
        export NETWORK=celestia
@@ -53,7 +54,7 @@ Choose [the network](/operate/networks/overview) you would like to run your node
        export NETWORK=mocha
        ```
      </Tabs.Tab>
-   </Tabs>
+   </NetworkTabs>
 
 ### Set the node type
 
@@ -95,7 +96,7 @@ Then set the gRPC port for that host (usually `9090`):
 
 ### Run the container
 
-   <Tabs items={['Mainnet Beta', 'Mocha']}>
+   <NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="docker-network">
      <Tabs.Tab>
        ```bash
        docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
@@ -110,7 +111,7 @@ Then set the gRPC port for that host (usually `9090`):
            celestia $NODE_TYPE start --core.ip $CORE_IP --core.port $CORE_PORT --p2p.network $NETWORK
        ```
      </Tabs.Tab>
-   </Tabs>
+   </NetworkTabs>
 
 Congratulations! You now have a celestia-node running!
 </Steps>
@@ -171,7 +172,7 @@ docker run [args...] -v $HOME/my-node-store:/home/celestia \
 
 An example init command will look similar to below:
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="docker-network">
   <Tabs.Tab>
     ```bash
     docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
@@ -188,7 +189,7 @@ An example init command will look similar to below:
         celestia light init --p2p.network $NETWORK
     ```
   </Tabs.Tab>
-</Tabs>
+</NetworkTabs>
 
 ### Start the node
 
@@ -202,7 +203,7 @@ docker run [...args] -v $HOME/my-node-store:/home/celestia \
 
 A full start command will look similar to below.
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="docker-network">
   <Tabs.Tab>
     ```bash
     docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
@@ -219,7 +220,7 @@ A full start command will look similar to below.
         celestia light start --core.ip $CORE_IP --core.port $CORE_PORT --p2p.network $NETWORK
     ```
   </Tabs.Tab>
-</Tabs>
+</NetworkTabs>
 
 Congratulations! You now have a node running with persistent storage.
 </Steps>

@@ -1,4 +1,4 @@
-// Release publication order does not establish network compatibility.
+// Propose newer releases for review; publication does not establish network compatibility.
 const targets = [
   { repo: 'celestia-app', key: 'app' },
   { repo: 'celestia-node', key: 'node' },
@@ -9,7 +9,14 @@ function parseTag(tag, network) {
   const suffix = network === 'mocha' ? '-mocha' : '';
   const match = typeof tag === 'string' && tag.match(new RegExp(`^v(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)${suffix}$`));
   if (!match) throw new Error(`Unrecognised ${network} release tag: ${tag}`);
-  return { series: `${match[1]}.${match[2]}`, patch: BigInt(match[3]) };
+  return { major: BigInt(match[1]), minor: BigInt(match[2]), patch: BigInt(match[3]) };
+}
+
+function compareVersions(left, right) {
+  for (const part of ['major', 'minor', 'patch']) {
+    if (left[part] !== right[part]) return left[part] > right[part] ? 1 : -1;
+  }
+  return 0;
 }
 
 function validateSha(sha, tag) {
@@ -18,13 +25,10 @@ function validateSha(sha, tag) {
   }
 }
 
-export function selectRelease({ releases, currentTag, series, network }) {
+export function selectRelease({ releases, currentTag, network }) {
   const current = parseTag(currentTag, network);
-  if (series !== current.series) {
-    throw new Error(`Approved series ${series} does not match current ${currentTag}; update policy and constants together`);
-  }
   let selected = currentTag;
-  let selectedPatch = current.patch;
+  let selectedVersion = current;
   let currentFound = false;
   const skipped = [];
   for (const release of releases) {
@@ -34,24 +38,21 @@ export function selectRelease({ releases, currentTag, series, network }) {
     if (tag?.includes('/')) continue;
     // Other channels and release candidates are not eligible for this network.
     if (network === 'mocha' ? !tag?.endsWith('-mocha') : tag?.includes('-')) continue;
+    if (network === 'mocha' && tag.slice(0, -'-mocha'.length).includes('-')) continue;
     const version = parseTag(tag, network);
-    if (version.series !== series) {
-      skipped.push(`${tag}: outside approved series ${series}`);
-      continue;
-    }
     if (tag === currentTag) currentFound = true;
-    if (version.patch < current.patch) {
+    if (compareVersions(version, current) < 0) {
       skipped.push(`${tag}: older than ${currentTag}`);
-    } else if (version.patch > selectedPatch) {
+    } else if (compareVersions(version, selectedVersion) > 0) {
       selected = tag;
-      selectedPatch = version.patch;
+      selectedVersion = version;
     }
   }
   if (!currentFound) throw new Error(`Current release ${currentTag} is missing or ineligible`);
   return { tag: selected, skipped };
 }
 
-export async function planUpdates({ github, owner, network, current, policy }) {
+export async function planUpdates({ github, owner, network, current }) {
   const next = { ...current };
   const summary = [];
   for (const { repo, key } of targets) {
@@ -60,8 +61,8 @@ export async function planUpdates({ github, owner, network, current, policy }) {
     const currentTag = current?.[tagKey];
     validateSha(current?.[shaKey], currentTag);
     const releases = await github.paginate(github.rest.repos.listReleases, { owner, repo, per_page: 100 });
-    const { tag, skipped } = selectRelease({ releases, currentTag, series: policy?.[network]?.[key], network });
-    // Check the existing tag too, even when a newer patch is available.
+    const { tag, skipped } = selectRelease({ releases, currentTag, network });
+    // Check the existing tag too, even when a newer release is available.
     const { data: existing } = await github.rest.repos.getCommit({ owner, repo, ref: currentTag });
     validateSha(existing.sha, currentTag);
     if (existing.sha !== current[shaKey]) throw new Error(`Commit SHA changed for ${repo}@${currentTag}; manual investigation required`);
@@ -71,7 +72,10 @@ export async function planUpdates({ github, owner, network, current, policy }) {
     validateSha(selected.sha, tag);
     next[tagKey] = tag;
     next[shaKey] = selected.sha;
-    summary.push(`${repo}: ${currentTag} -> ${tag}`, ...skipped.map(reason => `${repo}: skipped ${reason}`));
+    const previousVersion = parseTag(currentTag, network);
+    const nextVersion = parseTag(tag, network);
+    const seriesChanged = previousVersion.major !== nextVersion.major || previousVersion.minor !== nextVersion.minor;
+    summary.push(`${repo}: ${currentTag} -> ${tag}${seriesChanged ? ' (major/minor upgrade: review release notes and network compatibility)' : ''}`, ...skipped.map(reason => `${repo}: skipped ${reason}`));
   }
   return { next, summary, changed: targets.some(({ key }) => current[`${key}-latest-tag`] !== next[`${key}-latest-tag`]) };
 }

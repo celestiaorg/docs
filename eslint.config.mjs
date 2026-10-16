@@ -5,12 +5,14 @@ import tseslint from 'typescript-eslint'
 const globals = Object.fromEntries(
   [
     'AbortController',
+    'AbortSignal',
     'Blob',
     'CSSStyleDeclaration',
     'Document',
     'Element',
     'Event',
     'EventSource',
+    'EventTarget',
     'File',
     'FormData',
     'Headers',
@@ -41,6 +43,7 @@ const globals = Object.fromEntries(
 
 export default defineConfig([
   globalIgnores([
+    '.context/**',
     '.vocs/**',
     '.wrangler/**',
     'build/**',

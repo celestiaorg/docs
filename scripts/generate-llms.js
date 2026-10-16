@@ -151,6 +151,7 @@ const header = [
   `- Full LLM context: ${SITE_ORIGIN}/llms-full.txt`,
   `- Agent skill: ${SITE_ORIGIN}/SKILL.md`,
   `- Agent skills index: ${SITE_ORIGIN}/.well-known/agent-skills/index.json`,
+  `- Agent resource discovery: ${SITE_ORIGIN}/.well-known/ard.json`,
   `- API catalog: ${SITE_ORIGIN}/.well-known/api-catalog`,
   ...openrpcSpecs.map(({ network, version }) =>
     `- Node API OpenRPC spec (${network}): ${SITE_ORIGIN}/specs/openrpc-${version}.json`),
@@ -284,13 +285,28 @@ const generateMarkdownFiles = async (outputBase, files) => {
 
     // Write the cleaned markdown file
     await fs.writeFile(outputFullPath, cleanedContent, 'utf-8');
+    // Add route-specific discovery metadata to the static export.
+    const htmlPath = htmlPathForFile(file);
+    if (outputBase === 'out/public' && htmlPath) {
+      const htmlFile = path.join(outputBase, htmlPath, 'index.html');
+      const html = await fs.readFile(htmlFile, 'utf8').catch(error => { if (error.code !== 'ENOENT') throw error; });
+      const markdownHref = `${(process.env.BASE || '').replace(/\/$/, '')}/${outputPath}`;
+      const alternate = `<link rel="alternate" type="text/markdown" href="${markdownHref}"/>`;
+      const canonical = `<link rel="canonical" href="${canonicalUrl(htmlPath)}"/>`;
+      if (html) {
+        const withoutLinks = html
+          .replace(/<link\b(?=[^>]*\brel="canonical")[^>]*>/g, '')
+          .replace(/<link\b(?=[^>]*\brel="alternate")(?=[^>]*\btype="text\/markdown")[^>]*>/g, '');
+        await fs.writeFile(htmlFile, withoutLinks.replace('</head>', `${canonical}${alternate}</head>`));
+      }
+    }
     console.log(`✅ Generated: ${outputPath}`);
 
     pages.push({
       file,
       markdownPath: outputPath,
       markdownUrl: canonicalMarkdownUrl(file),
-      htmlPath: htmlPathForFile(file),
+      htmlPath,
       content: cleanedContent,
       title: extractTitle(cleanedContent, titleize(path.basename(path.dirname(file)))),
     });
@@ -396,12 +412,10 @@ const generateRobotsTxt = async (outputBase) => {
     'CCBot',
   ];
 
+  // Each named crawler reads only its own group, so every group carries the signal.
+  const contentSignal = 'Content-Signal: ai-train=yes, search=yes, ai-input=yes';
   const lines = [
-    'User-agent: *',
-    'Allow: /',
-    '',
-    ...aiBots.flatMap((bot) => [`User-agent: ${bot}`, 'Allow: /', '']),
-    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    ...['*', ...aiBots].flatMap((bot) => [`User-agent: ${bot}`, contentSignal, 'Allow: /', '']),
     `Sitemap: ${SITE_ORIGIN}/sitemap.xml`,
     '',
   ];
@@ -431,15 +445,20 @@ const generateAgentSkillsIndex = async (outputBase) => {
 };
 
 const generateApiCatalog = async (outputBase) => {
+  const specLinks = (title) => openrpcSpecs.map(({ network, version }) => ({
+    href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
+    type: 'application/json',
+    title: `${title} (${network})`,
+  }));
   const linkset = {
     linkset: [
       {
+        anchor: `${SITE_ORIGIN}/.well-known/api-catalog`,
+        item: specLinks('Celestia Node API'),
+      },
+      {
         anchor: SITE_ORIGIN,
-        'service-desc': openrpcSpecs.map(({ network, version }) => ({
-          href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
-          type: 'application/json',
-          title: `Celestia Node API OpenRPC specification (${network})`,
-        })),
+        'service-desc': specLinks('Celestia Node API OpenRPC specification'),
         'service-doc': [
           {
             href: `${SITE_ORIGIN}/build/rpc/node-api/`,
@@ -490,6 +509,30 @@ const generateApiCatalog = async (outputBase) => {
   await writeTextFile(outputBase, '.well-known/api-catalog', `${JSON.stringify(linkset, null, 2)}\n`);
 };
 
+const generateArdManifest = async (outputBase) => {
+  const manifest = {
+    specVersion: '1.0',
+    host: {
+      displayName: 'Celestia docs',
+      identifier: 'did:web:docs.celestia.org',
+    },
+    entries: [{
+      identifier: 'urn:air:docs.celestia.org:skill:celestia',
+      displayName: 'Celestia documentation skill',
+      type: 'application/agent-skills+md',
+      url: `${SITE_ORIGIN}/.well-known/agent-skills/celestia/SKILL.md`,
+      description: 'Official guidance for building on Celestia, posting and retrieving blobs, and routing repository changes.',
+      capabilities: ['CelestiaDocumentation', 'BlobSubmission', 'BlobRetrieval'],
+      representativeQueries: [
+        'How do I post and retrieve blobs on Celestia?',
+        'Which Celestia repository should I change?',
+      ],
+    }],
+  };
+  await writeTextFile(outputBase, '.well-known/ard.json', `${JSON.stringify(manifest, null, 2)}\n`);
+  await writeTextFile(outputBase, '.well-known/ai-catalog.json', `${JSON.stringify(manifest, null, 2)}\n`);
+};
+
 const main = async () => {
   // Vocs writes the browser-deployable static site to `out/public`.
   // Fall back to `public` when running this script outside a production build.
@@ -506,12 +549,19 @@ const main = async () => {
   const sections = buildSections(files);
   await fs.mkdir(outputBase, { recursive: true });
   await generateLlmsTxt(outputBase, sections);
+  await fs.copyFile(path.join(outputBase, 'llms.txt'), path.join(outputBase, 'llms.md'));
   await generateSectionLlmsTxt(outputBase, sections);
   await generateLlmsFullTxt(outputBase, pages);
   await generateSitemap(outputBase, pages);
   await generateRobotsTxt(outputBase);
   await generateAgentSkillsIndex(outputBase);
   await generateApiCatalog(outputBase);
+  await generateArdManifest(outputBase);
+  await writeTextFile(outputBase, '.well-known/poppy.json', `${JSON.stringify({
+    protocol_version: '0.1',
+    organization: { name: 'Celestia', domain: new URL(SITE_ORIGIN).hostname },
+    web: {},
+  }, null, 2)}\n`);
 
   console.log(`Agent-ready assets generated (${outputBase}/)`);
   console.log('✨ LLM-ready markdown and discovery asset generation complete!');

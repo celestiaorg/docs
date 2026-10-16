@@ -1,0 +1,60 @@
+# Community services
+
+Community providers offer paid RPC reads, indexed data APIs, and Model Context
+Protocol (MCP) connections for Celestia Mainnet Beta. These services are operated
+by their respective providers. Follow their documentation for current pricing,
+supported methods, and client compatibility.
+
+## NODERS paid archive RPC
+
+[NODERS archive RPC](https://noders.services/mainnet/celestia/archive-rpc/)
+provides paid reads from a Celestia archive consensus node through CometBFT RPC.
+Paid requests use the x402 payment protocol with TIA. This is a consensus RPC
+service; for blob retrieval through the DA node API, see
+[archival DA RPC endpoints](/operate/networks/mainnet-beta#archival-da-rpc-endpoints).
+
+Check connectivity with the free `status` method:
+
+```bash
+curl -s https://celestia-archive-rpc.noders.services/status
+```
+
+Paid methods return HTTP `402 Payment Required` until payment is supplied.
+To make paid calls, follow the provider's
+[setup guide](https://noders.services/mainnet/celestia/archive-rpc/#quick-start)
+for `x402-celestia-rpc-payer`, fund its wallet with TIA, and configure spending
+limits. Each paid call also incurs a network transaction fee. The provider's
+guide covers current prices and payment troubleshooting.
+
+## NODERS MCP server
+
+The [NODERS MCP server](https://noders.services/mainnet/celestia/mcp/) lets AI
+clients query indexed Mainnet Beta data, including validators, delegations,
+staking metrics, account balances, and transactions. Its tools are read-only.
+
+In a client that supports remote MCP servers, add this URL with the
+**Streamable HTTP** transport:
+
+```text
+https://celestia-mcp.noders.services/mcp
+```
+
+After connecting, ask the client to list five bonded Celestia validators and
+include their addresses. If the connection fails, check that the URL ends in
+`/mcp` and the client uses Streamable HTTP. See the
+[connection guide](https://noders.services/mainnet/celestia/mcp/) for client-specific
+setup and local installation options.
+
+## Celenium paid API
+
+[Celenium's paid API](https://www.mppscan.com/server/ac886177d1fcc678779495d697f5a5000fca922337cb70c8bed1a5d182c2181a)
+provides REST access to indexed Celestia data, including blocks, transactions,
+blobs, namespaces, validators, rollups, and network statistics. It supports
+pay-per-request access through the Machine Payments Protocol (MPP), without an
+account or API key.
+
+Use an MPP-compatible client with `https://mpp.celenium.io`. The
+[OpenAPI specification](https://mpp.celenium.io/openapi.json) lists supported
+routes and payment requirements; the MPPscan listing includes an AgentCash setup
+command. Requests to paid routes without payment return HTTP
+`402 Payment Required`.

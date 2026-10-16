@@ -15,7 +15,7 @@ for (const file of await readdir(output, { recursive: true })) {
   })
   if (process.env.DOCS_PREVIEW === '1') {
     // Also protects previews served outside Pages, such as local review.
-    html = html.replace('<head>', '<head><meta name="robots" content="noindex, nofollow">')
+    html = html.replace(/<meta name="robots"[^>]*>/g, '').replace('<head>', '<head><meta name="robots" content="noindex, nofollow">')
   }
   await writeFile(target, html)
 }

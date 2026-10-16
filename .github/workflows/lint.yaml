@@ -37,7 +37,10 @@ jobs:
         run: bun run test:releases
 
       - name: Check skill and bundled Node API specs
-        run: npm run check:skill
+        run: bun run check:skill
+
+      - name: Test synchronized network tabs
+        run: bun run test:tabs
 
       - name: Test Fibre guide response handling
         run: bun run test:fibre
