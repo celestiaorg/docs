@@ -1,0 +1,727 @@
+# Go client tutorial
+
+The Celestia Go client lets you submit and retrieve data from the Celestia network without running your own node. This tutorial shows you how to get started with the basics.
+
+## What you can do
+
+- **Submit blobs**: Store data on Celestia's data availability layer
+- **Retrieve blobs**: Get data back from the network
+- **Check balance**: See your account's token balance
+- **Read-only mode**: Just retrieve data without submitting
+
+## Prerequisites
+
+- Go 1.25.x (Go 1.26 is not yet supported by a transitive dependency,
+  `bytedance/sonic`; if your default toolchain is newer, run the tutorial with
+  `GOTOOLCHAIN=go1.25.1 go run main.go`)
+- A Celestia account (created automatically)
+- Testnet tokens from the [Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet)
+
+## Quick setup
+
+### Create your project
+
+```bash
+mkdir celestia-client-example
+cd celestia-client-example
+go mod init celestia-client-example
+```
+
+### Create main.go
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	"time"
+
+	"github.com/celestiaorg/celestia-node/api/client"
+	"github.com/celestiaorg/celestia-node/blob"
+	"github.com/celestiaorg/celestia-node/nodebuilder/p2p"
+	"github.com/celestiaorg/go-square/v3/share"
+	"github.com/cosmos/cosmos-sdk/crypto/keyring"
+)
+
+func main() {
+	ctx := context.Background()
+
+	// Get connection details from environment
+	daURL := os.Getenv("CELE_DA_URL")
+	coreGRPC := os.Getenv("CELE_CORE_GRPC")
+	daTLS := os.Getenv("CELE_DA_TLS") == "true"
+	daToken := os.Getenv("CELE_DA_TOKEN")
+	coreTLS := os.Getenv("CELE_CORE_TLS") == "true"
+	coreToken := os.Getenv("CELE_CORE_TOKEN")
+
+	if daURL == "" {
+		fmt.Println("Error: Set CELE_DA_URL environment variable")
+		fmt.Println("Example: export CELE_DA_URL=http://localhost:26658")
+		return
+	}
+
+	// Create a new account
+	fmt.Println("Creating account...")
+	kr, err := client.KeyringWithNewKey(client.KeyringConfig{
+		KeyName:     "my_key",
+		BackendName: keyring.BackendTest,
+	}, "./keys")
+	if err != nil {
+		panic(err)
+	}
+
+	// Show your address
+	keyInfo, err := kr.Key("my_key")
+	if err != nil {
+		panic(err)
+	}
+	address, err := keyInfo.GetAddress()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Your address: %s\n", address.String())
+
+	// Connect to Celestia (read-only or full client)
+	cfg := client.Config{
+		ReadConfig: client.ReadConfig{
+			BridgeDAAddr: daURL,
+			EnableDATLS:  daTLS,
+		},
+		SubmitConfig: client.SubmitConfig{
+			DefaultKeyName: "my_key",
+		},
+	}
+
+	// Add DA auth token if provided
+	if daToken != "" {
+		cfg.ReadConfig.DAAuthToken = daToken
+	}
+
+	// Add Core gRPC config if provided
+	if coreGRPC != "" {
+		network := p2p.Network("mocha-5")
+		cfg.SubmitConfig.Network = network
+		cfg.SubmitConfig.CoreGRPCConfig = client.CoreGRPCConfig{
+			Addr:       coreGRPC,
+			TLSEnabled: coreTLS,
+		}
+		if coreToken != "" {
+			cfg.SubmitConfig.CoreGRPCConfig.AuthToken = coreToken
+		}
+		fmt.Println("Full client mode (can submit blobs)")
+	} else {
+		fmt.Println("Read-only mode (cannot submit blobs)")
+		fmt.Println("To submit blobs, set CELE_CORE_GRPC environment variable")
+	}
+
+	fmt.Println("Connecting to Celestia...")
+	c, err := client.New(ctx, cfg, kr)
+	if err != nil {
+		panic(err)
+	}
+	defer c.Close()
+
+	// Check your balance
+	balance, err := c.State.Balance(ctx)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Balance: %s\n", balance.String())
+
+	// Submit a blob only if in full mode
+	if coreGRPC != "" {
+		// Check if account has funds before trying to submit
+		balanceStr := balance.String()
+		if balanceStr == "0utia" || balanceStr == "0 utia" {
+			fmt.Println("Account has no funds. Fund this address at the Mocha faucet to submit blobs:")
+			fmt.Printf("Address: %s\n", address.String())
+			fmt.Println("Faucet: https://mocha.celenium.io/faucet")
+		} else {
+			if err := submitAndRetrieveBlob(ctx, c); err != nil {
+				panic(err)
+			}
+		}
+	}
+
+	fmt.Println("✓ Tutorial complete!")
+}
+
+func submitAndRetrieveBlob(ctx context.Context, c *client.Client) error {
+	// Set timeout for network operations
+	ctx, cancel := context.WithTimeout(ctx, time.Minute)
+	defer cancel()
+
+	// Create namespace (groups your data)
+	ns, err := share.NewV0Namespace([]byte("tutorial"))
+	if err != nil {
+		return err
+	}
+
+	// Create blob with your data
+	message := "Hello Celestia!"
+	blobData := []byte(message)
+	b, err := blob.NewBlob(share.ShareVersionZero, ns, blobData, nil)
+	if err != nil {
+		return err
+	}
+
+	// Submit to network
+	fmt.Println("Submitting blob...")
+	height, err := c.Blob.Submit(ctx, []*blob.Blob{b}, nil)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("✓ Blob submitted at block %d\n", height)
+
+	// Retrieve it back
+	fmt.Println("Retrieving blob...")
+	retrieved, err := c.Blob.Get(ctx, height, ns, b.Commitment)
+	if err != nil {
+		return err
+	}
+
+	// Verify the data
+	retrievedData := string(retrieved.Data())
+	fmt.Printf("✓ Retrieved: %s\n", retrievedData)
+
+	if retrievedData != message {
+		return fmt.Errorf("data mismatch!")
+	}
+
+	fmt.Println("✓ Data verified!")
+	return nil
+}
+```
+
+### Set up your go.mod
+
+Create `go.mod` with these dependencies:
+
+```go
+module celestia-client-example
+
+go 1.25.1
+
+require (
+	github.com/celestiaorg/celestia-node v0.28.2-mocha
+	github.com/celestiaorg/go-square/v3 v3.0.2
+	github.com/cosmos/cosmos-sdk v0.50.13
+)
+
+replace (
+	cosmossdk.io/x/upgrade => github.com/celestiaorg/cosmos-sdk/x/upgrade v0.2.0
+	github.com/cometbft/cometbft => github.com/celestiaorg/celestia-core v0.39.10
+	github.com/cosmos/cosmos-sdk => github.com/celestiaorg/cosmos-sdk v0.51.4
+	github.com/cosmos/ibc-go/v8 => github.com/celestiaorg/ibc-go/v8 v8.7.2
+	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
+	// broken goleveldb needs to be replaced for the cosmos-sdk and celestia-app
+	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
+	// celestia-core(v0.34.x): used for multiplexing abci v1 requests
+	github.com/tendermint/tendermint => github.com/celestiaorg/celestia-core v1.55.0-tm-v0.34.35
+)
+
+replace github.com/ipfs/boxo => github.com/celestiaorg/boxo v0.29.0-fork-4
+
+replace github.com/ipfs/go-datastore => github.com/celestiaorg/go-datastore v0.0.0-20250801131506-48a63ae531e4
+```
+
+Then run:
+
+```bash
+go mod tidy
+```
+
+## Running the tutorial
+
+### Set environment variables
+
+Choose your connection type:
+
+To submit blobs, you need both a DA JSON-RPC endpoint and a consensus gRPC endpoint.
+The public Quicknode Mocha endpoint serves both, and the full submit and
+retrieve flow in this guide was verified against it:
+`https://public-endpoint.celestia-mocha.quiknode.pro` for DA JSON-RPC and
+`public-endpoint.celestia-mocha.quiknode.pro:9090` for consensus gRPC.
+
+**Public endpoints (tested on Mocha):**
+
+```bash
+export CELE_DA_URL=https://public-endpoint.celestia-mocha.quiknode.pro
+export CELE_DA_TLS=true
+export CELE_CORE_GRPC=public-endpoint.celestia-mocha.quiknode.pro:9090
+export CELE_CORE_TLS=true
+```
+
+**Managed provider (for example Quicknode):**
+
+```bash
+export CELE_DA_URL=https://your-quicknode-url.celestia-mocha.quiknode.pro/<your-token>
+export CELE_DA_TLS=true
+export CELE_CORE_GRPC=your-quicknode-url:9090
+export CELE_CORE_TLS=true
+export CELE_CORE_TOKEN=<your-token>
+```
+
+**Local bridge node + local consensus node:**
+
+```bash
+export CELE_DA_URL=http://localhost:26658
+export CELE_DA_TLS=false
+export CELE_CORE_GRPC=localhost:9090
+export CELE_CORE_TLS=false
+```
+
+**Read-only mode (no blob submission):**
+
+```bash
+export CELE_DA_URL=https://public-endpoint.celestia-mocha.quiknode.pro
+export CELE_DA_TLS=true
+# Don't set CELE_CORE_GRPC for read-only mode
+```
+
+### Run the program
+
+```bash
+go run main.go
+```
+
+**First run:** You'll see your account address. Fund it at [https://mocha.celenium.io/faucet](https://mocha.celenium.io/faucet).
+
+**Second run:** After funding, you'll see:
+
+```
+Creating account...
+Your address: celestia16k0wsej6rewd2pfh0taah35suzf3apj552q8c3
+Full client mode (can submit blobs)
+Connecting to Celestia...
+Balance: 1000000utia
+Submitting blob...
+✓ Blob submitted at block 1234567
+Retrieving blob...
+✓ Retrieved: Hello Celestia!
+✓ Data verified!
+✓ Tutorial complete!
+```
+
+**First run (unfunded account):**
+
+```
+Creating account...
+Your address: celestia16k0wsej6rewd2pfh0taah35suzf3apj552q8c3
+Full client mode (can submit blobs)
+Connecting to Celestia...
+Balance: 0utia
+Account has no funds. Fund this address at the Mocha faucet to submit blobs:
+Address: celestia16k0wsej6rewd2pfh0taah35suzf3apj552q8c3
+Faucet: https://mocha.celenium.io/faucet
+✓ Tutorial complete!
+```
+
+**Read-only mode output:**
+
+```
+Creating account...
+Your address: celestia16k0wsej6rewd2pfh0taah35suzf3apj552q8c3
+Read-only mode (cannot submit blobs)
+To submit blobs, set CELE_CORE_GRPC environment variable
+Connecting to Celestia...
+Balance: 1000000utia
+✓ Tutorial complete!
+```
+
+## Understanding the code
+
+### Key components
+
+- **Keyring**: Manages your Celestia account keys
+- **Client**: Connects to Celestia nodes for read/write operations
+- **Namespace**: Groups related data together (like a folder)
+- **Blob**: The data structure you submit to the network
+- **Commitment**: A hash that uniquely identifies your blob
+
+### Connection types
+
+| Purpose     | Node type               | Example URL                                   |
+| ----------- | ----------------------- | --------------------------------------------- |
+| Read data   | DA JSON-RPC             | `http://localhost:26658`                      |
+| Submit data | Consensus node gRPC     | `localhost:9090`                              |
+
+### Read-only mode
+
+To only retrieve data (no submission), remove the `SubmitConfig` from your client configuration:
+
+```go
+cfg := client.Config{
+    ReadConfig: client.ReadConfig{
+        BridgeDAAddr: daURL,
+    },
+    // No SubmitConfig for read-only
+}
+```
+
+## Advanced features
+
+### Submitting multiple blobs
+
+You can submit multiple blobs in a single transaction. All blobs are included atomically at the same block height, which is useful for grouping related data together.
+
+```go
+func submitMultipleBlobs(ctx context.Context, c *client.Client) error {
+	ctx, cancel := context.WithTimeout(ctx, 2*time.Minute)
+	defer cancel()
+
+	// Create namespace
+	ns, err := share.NewV0Namespace([]byte("tutorial"))
+	if err != nil {
+		return err
+	}
+
+	// Create multiple blobs (can use same namespace, or different namespaces)
+	blob1, err := blob.NewBlob(share.ShareVersionZero, ns, []byte("First blob"), nil)
+	if err != nil {
+		return err
+	}
+	blob2, err := blob.NewBlob(share.ShareVersionZero, ns, []byte("Second blob"), nil)
+	if err != nil {
+		return err
+	}
+	blob3, err := blob.NewBlob(share.ShareVersionZero, ns, []byte("Third blob"), nil)
+	if err != nil {
+		return err
+	}
+
+	// Submit all blobs in a single transaction
+	height, err := c.Blob.Submit(ctx, []*blob.Blob{blob1, blob2, blob3}, nil)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("✓ All 3 blobs submitted at block %d\n", height)
+
+	// Retrieve each blob using its unique commitment
+	retrieved1, _ := c.Blob.Get(ctx, height, ns, blob1.Commitment)
+	retrieved2, _ := c.Blob.Get(ctx, height, ns, blob2.Commitment)
+	retrieved3, _ := c.Blob.Get(ctx, height, ns, blob3.Commitment)
+
+	fmt.Printf("✓ Retrieved: %s, %s, %s\n",
+		string(retrieved1.Data()),
+		string(retrieved2.Data()),
+		string(retrieved3.Data()))
+
+	return nil
+}
+```
+
+**Key points:**
+
+- All blobs in the array are included in a single `PayForBlobs` transaction
+- They all appear at the same block height
+- Each blob can have a different namespace
+- Retrieve blobs individually using their namespace and commitment
+
+### Transaction submission modes
+
+Celestia supports three transaction submission modes controlled by `TxWorkerAccounts` in your client configuration. This setting affects how transactions are queued and submitted, impacting throughput and ordering guarantees.
+
+#### Default mode (TxWorkerAccounts = 0)
+
+This is the default behavior (same as the basic tutorial). Transactions are submitted immediately without a queue:
+
+```go
+cfg := client.Config{
+    ReadConfig: client.ReadConfig{
+        BridgeDAAddr: daURL,
+        EnableDATLS:  daTLS,
+    },
+    SubmitConfig: client.SubmitConfig{
+        DefaultKeyName: "my_key",
+        Network:        p2p.Network("mocha-5"),
+        CoreGRPCConfig: client.CoreGRPCConfig{
+            Addr:       coreGRPC,
+            TLSEnabled: coreTLS,
+        },
+        // TxWorkerAccounts defaults to 0 (immediate submission)
+    },
+}
+```
+
+**Characteristics:**
+
+- Transactions enter the mempool immediately
+- No queuing or waiting for confirmations
+- Potential sequence number conflicts if submitting multiple transactions quickly
+- Same behavior as versions prior to v0.28.2
+
+#### Queued mode (TxWorkerAccounts = 1)
+
+Enable synchronous, ordered submission by setting `TxWorkerAccounts` to `1`:
+
+```go
+cfg.SubmitConfig.TxWorkerAccounts = 1
+```
+
+**Characteristics:**
+
+- Each transaction queues until the previous one is confirmed
+- Preserves strict ordering of transactions based on submission time
+- Works with both sequential and concurrent submission patterns
+- Avoids sequence mismatch errors
+- Throughput: approximately 1 PayForBlobs transaction every other block
+
+**Example:** Submitting 5 blobs in queued mode:
+
+```go
+import (
+    "golang.org/x/sync/errgroup"
+)
+
+func submitBlobsQueued(ctx context.Context, c *client.Client) error {
+    // Create 5 blobs
+    blobs := make([]*blob.Blob, 5)
+    namespaces := make([]share.Namespace, 5)
+    commitments := make([][]byte, 5)
+
+    for i := 0; i < 5; i++ {
+        nsBytes := make([]byte, 10)
+        copy(nsBytes, fmt.Sprintf("blob-%d", i))
+        ns, _ := share.NewV0Namespace(nsBytes)
+        namespaces[i] = ns
+        blobs[i], _ = blob.NewBlob(share.ShareVersionZero, ns,
+            []byte(fmt.Sprintf("Data %d", i)), nil)
+        commitments[i] = blobs[i].Commitment
+    }
+
+    heights := make([]uint64, 5)
+    var g errgroup.Group
+
+    for i := 0; i < 5; i++ {
+        idx := i
+        g.Go(func() error {
+            height, err := c.Blob.Submit(ctx, []*blob.Blob{blobs[idx]}, nil)
+            if err != nil {
+                return err
+            }
+            heights[idx] = height
+            fmt.Printf("Blob %d submitted at height %d\n", idx+1, height)
+            return nil
+        })
+    }
+
+    if err := g.Wait(); err != nil {
+        return err
+    }
+
+    // Retrieve and verify all blobs
+    for i := 0; i < 5; i++ {
+        retrieved, err := c.Blob.Get(ctx, heights[i], namespaces[i], commitments[i])
+        if err != nil {
+            return err
+        }
+        fmt.Printf("✓ Blob %d retrieved: %s\n", i+1, string(retrieved.Data()))
+    }
+
+    return nil
+}
+```
+
+**Expected output:**
+
+```
+Blob 3 submitted at height 1234567  // First to call Submit()
+Blob 1 submitted at height 1234568  // Second to call Submit()
+Blob 5 submitted at height 1234569  // Third to call Submit()
+Blob 2 submitted at height 1234570  // Fourth to call Submit()
+Blob 4 submitted at height 1234571  // Fifth to call Submit()
+✓ Blob 1 retrieved: Data 0
+✓ Blob 2 retrieved: Data 1
+✓ Blob 3 retrieved: Data 2
+✓ Blob 4 retrieved: Data 3
+✓ Blob 5 retrieved: Data 4
+```
+
+Note: With concurrent submission, blobs may print in any order, but their heights will always reflect their submission order (first submitted = lowest height).
+
+#### Parallel mode (TxWorkerAccounts > 1)
+
+For high-throughput applications that don't require sequential ordering, enable parallel submission:
+
+```go
+cfg.SubmitConfig.TxWorkerAccounts = 8  // Creates 8 parallel lanes
+```
+
+**How it works:**
+
+- Creates `TxWorkerAccounts` parallel submission lanes
+- Each lane is a subaccount automatically created and funded from your default account
+- Example: `TxWorkerAccounts = 8` creates 7 subaccounts + 1 default account = 8 parallel lanes
+- Enables at least 8 PayForBlobs transactions per block
+
+**Important:** To actually utilize parallel lanes, you must submit blobs concurrently (using goroutines). Each `Blob.Submit()` call blocks until the transaction is confirmed, so sequential calls will still be processed sequentially even with `TxWorkerAccounts > 1`. Concurrent submission allows multiple transactions to be processed simultaneously across different parallel lanes.
+
+**Example:** Submitting 8 blobs concurrently in parallel mode:
+
+```go
+import (
+    "golang.org/x/sync/errgroup"
+)
+
+func submitBlobsParallel(ctx context.Context, c *client.Client) error {
+    // Create 8 blobs
+    blobs := make([]*blob.Blob, 8)
+    namespaces := make([]share.Namespace, 8)
+    commitments := make([][]byte, 8)
+
+    for i := 0; i < 8; i++ {
+        nsBytes := make([]byte, 10)
+        copy(nsBytes, fmt.Sprintf("parallel-%d", i))
+        ns, _ := share.NewV0Namespace(nsBytes)
+        namespaces[i] = ns
+        blobs[i], _ = blob.NewBlob(share.ShareVersionZero, ns,
+            []byte(fmt.Sprintf("Parallel data %d", i)), nil)
+        commitments[i] = blobs[i].Commitment
+    }
+
+    heights := make([]uint64, 8)
+    var g errgroup.Group
+
+    for i := 0; i < 8; i++ {
+        idx := i
+        g.Go(func() error {
+            height, err := c.Blob.Submit(ctx, []*blob.Blob{blobs[idx]}, nil)
+            if err != nil {
+                return err
+            }
+            heights[idx] = height
+            fmt.Printf("Blob %d submitted at height %d\n", idx+1, height)
+            return nil
+        })
+    }
+
+    if err := g.Wait(); err != nil {
+        return err
+    }
+
+    // Retrieve and verify all blobs
+    for i := 0; i < 8; i++ {
+        retrieved, err := c.Blob.Get(ctx, heights[i], namespaces[i], commitments[i])
+        if err != nil {
+            return err
+        }
+        fmt.Printf("✓ Blob %d retrieved: %s\n", i+1, string(retrieved.Data()))
+    }
+
+    return nil
+}
+```
+
+**Expected output (unordered):**
+
+```
+Blob 1 submitted at height 1234567
+Blob 2 submitted at height 1234567  // Same block!
+Blob 3 submitted at height 1234568
+Blob 4 submitted at height 1234567  // Same block as 1 and 2!
+Blob 5 submitted at height 1234568
+Blob 6 submitted at height 1234568
+Blob 7 submitted at height 1234569
+Blob 8 submitted at height 1234568
+✓ Blob 1 retrieved: Parallel data 0
+✓ Blob 2 retrieved: Parallel data 1
+✓ Blob 3 retrieved: Parallel data 2
+✓ Blob 4 retrieved: Parallel data 3
+✓ Blob 5 retrieved: Parallel data 4
+✓ Blob 6 retrieved: Parallel data 5
+✓ Blob 7 retrieved: Parallel data 6
+✓ Blob 8 retrieved: Parallel data 7
+```
+
+**Important considerations:**
+
+**Ordering**: Parallel submission does NOT guarantee transaction ordering. Blobs may be included in blocks in a different order than submitted.
+
+**Default account only**: Queued and parallel submission modes always use your default account (`DefaultKeyName`). If you specify a different account in `TxConfig` (via `WithKeyName` or `WithSignerAddress`), it will be ignored and the default account will be used instead.
+
+**Retrieving blobs from parallel submission:**
+
+Since you don't know which subaccount submitted each blob, retrieve them using namespace, height, and commitment:
+
+```go
+// Store these when submitting
+height, err := c.Blob.Submit(ctx, []*blob.Blob{myBlob}, nil)
+commitment := myBlob.Commitment
+namespace := myBlob.Namespace()
+
+// Later, retrieve using stored values
+retrieved, err := c.Blob.Get(ctx, height, namespace, commitment)
+```
+
+**Subaccount management:**
+
+- Subaccounts are automatically created and funded from your default account
+- They are named `parallel-worker-1`, `parallel-worker-2`, etc. in your keyring
+- Subaccounts are reused across node restarts if `TxWorkerAccounts` value remains the same
+- If you decrease `TxWorkerAccounts`, only the first N workers are used
+- If you increase `TxWorkerAccounts`, additional workers are created
+
+#### Comparison table
+
+| Mode     | TxWorkerAccounts | Ordering       | Throughput       | Use case                                 |
+| -------- | ---------------- | -------------- | ---------------- | ---------------------------------------- |
+| Default  | 0                | Not guaranteed | Immediate        | Simple applications, single transactions |
+| Queued   | 1                | Guaranteed     | ~1 tx per block  | Applications requiring strict ordering   |
+| Parallel | >1               | Not guaranteed | ≥N txs per block | High-throughput, unordered workflows     |
+
+## Next steps
+
+- **Production**: Use `keyring.BackendFile` instead of `keyring.BackendTest`
+- **Security**: Enable TLS with authentication tokens for production
+- **Advanced**: Read the [full client documentation](https://github.com/celestiaorg/celestia-node/blob/main/api/client#readme)
+
+## Troubleshooting
+
+Common errors and solutions:
+
+### Connection errors
+
+**`failed to initialize [share|header|blob] client`**
+- Check that your `CELE_DA_URL` is correct and accessible
+- Verify the bridge node is running and reachable
+- Ensure TLS settings match your node configuration
+
+**`couldn't connect to core endpoint`**
+- Verify your `CELE_CORE_GRPC` address is correct
+- Check that the consensus node is running
+- Ensure firewall rules allow the connection
+
+### Configuration errors
+
+**`default key name should not be empty`**
+- Ensure `DefaultKeyName` is set in your `SubmitConfig`
+
+**`keyring is nil`**
+- Pass a valid keyring to `client.New()` (cannot be `nil`)
+
+### Blob submission errors
+
+**`blob: not found`**
+- The blob doesn't exist at the specified height/namespace/commitment
+- Verify the height, namespace, and commitment are correct
+
+**`not allowed namespace ... were used to build the blob`**
+- The namespace is reserved or invalid
+- Use `share.NewV0Namespace()` with valid user namespaces
+
+**`account for signer ... not found`**
+- The account has not been funded yet
+- Fund your account at the [Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet)
+
+**`failed to submit blobs due to insufficient gas price`**
+- The estimated or configured gas price is too low
+- Either increase `MaxGasPrice` in `TxConfig` or let the client estimate
+- Check network congestion (gas prices may be elevated)
+
+**`context deadline exceeded`**
+- Network timeout occurred
+- Increase the context timeout: `context.WithTimeout(ctx, 5*time.Minute)`
+- Check network connectivity to the node

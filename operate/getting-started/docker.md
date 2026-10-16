@@ -1,0 +1,236 @@
+# 🐳 Docker setup
+
+This page has instructions to run celestia-node using Docker. If you are
+looking for instructions to run celestia-node using a binary, please
+refer to the [celestia-node page](/operate/data-availability/install-celestia-node).
+
+Using Docker is the easiest way to run celestia-node for most
+users. Docker is a containerization platform that allows you to run celestia-node
+in an isolated environment.
+
+This means that you can run celestia-node on your machine without having
+to worry about installing and configuring all of the dependencies required
+to run the node.
+
+If you would like to learn more about
+key management in Docker, visit the
+[Docker and `cel-key` section](/operate/keys-wallets/celestia-node-key#docker-and-cel-key).
+
+The easiest way to install Docker is to use the Docker Desktop installer or
+Ubuntu. You can
+[follow the instructions for your operating system](https://docs.docker.com/engine/install).
+
+## Prerequisites
+
+- [Docker Desktop for Mac or Windows](https://docs.docker.com/get-docker) and a basic
+  understanding of Docker
+- [Docker Engine for Linux](https://docs.docker.com/engine/install/) and a
+  basic understanding of Docker
+
+## Quick start
+
+### Set the network
+
+Choose [the network](/operate/networks/overview) you would like to run your node on:
+
+**Mainnet Beta**
+
+```bash
+export NETWORK=celestia
+```
+
+**Mocha**
+
+```bash
+export NETWORK=mocha
+```
+
+### Set the node type
+
+**Light**
+
+```bash
+export NODE_TYPE=light
+```
+
+**Bridge**
+
+```bash
+export NODE_TYPE=bridge
+```
+
+**Full**
+
+```bash
+export NODE_TYPE=full
+```
+
+### Configure the consensus endpoint
+
+celestia-node connects to consensus over gRPC via `--core.ip` and `--core.port`
+(default `9090`). Pick a consensus host from
+   [Mainnet Beta](/operate/networks/mainnet-beta#community-consensus-endpoints)
+   or [Mocha](/operate/networks/mocha-testnet#community-consensus-endpoints)
+   using the bare host (without `http://` or `https://`):
+
+   ```bash
+   export CORE_IP=consensus.example.com
+   ```
+
+Then set the gRPC port for that host (usually `9090`):
+
+   ```bash
+   export CORE_PORT=9090
+   ```
+
+### Run the container
+
+**Mainnet Beta**
+
+```bash
+docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+    ghcr.io/celestiaorg/celestia-node:v0.34.3 \
+    celestia $NODE_TYPE start --core.ip $CORE_IP --core.port $CORE_PORT --p2p.network $NETWORK
+```
+
+**Mocha**
+
+```bash
+docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+    ghcr.io/celestiaorg/celestia-node:v0.34.3-mocha \
+    celestia $NODE_TYPE start --core.ip $CORE_IP --core.port $CORE_PORT --p2p.network $NETWORK
+```
+
+Congratulations! You now have a celestia-node running!
+
+If you would like to run the node with custom flags,
+you can refer to the
+[celestia-node tutorial](/operate/data-availability/light-node/quickstart#start-the-light-node) page. Refer to
+[the ports section of the celestia-node troubleshooting page](/operate/maintenance/troubleshooting#ports)
+for information on which ports are required to be open on your machine.
+
+## Light node setup with persistent storage
+
+If you delete a container that you started above, all data will be lost.
+To avoid this, you can mount a volume to the container.
+This will allow you to persist data even after the container is deleted.
+
+First, you will need to create a directory on your host machine.
+This directory will be used to store the data for the container.
+Create a directory on your host machine and give it a name.
+For example, you can name it `my-node-store`:
+
+```bash
+cd $HOME
+mkdir my-node-store
+```
+
+Now, you can mount this directory to the container.
+Before mounting a volume, you _may_ need to set permissions for
+the user on the host machine by running:
+
+**Docker Engine on Linux**
+```bash
+sudo chown 10001:10001 $HOME/my-node-store
+```
+
+**Docker Desktop on Mac**
+```bash
+# you're good to go 😎
+```
+
+> Docker Desktop on Mac users typically do not need to change permissions.
+
+### Initialize the node store and key
+
+In order to mount a volume to the container, you need to specify
+the path to the volume. When you run your container, you can specify
+the path to the volume using the `--volume` (or `-v` for short) flag.
+In this command, we'll create our key and initialize the node store,
+using the variables we set in the [quick start](#quick-start) section:
+
+```bash
+# --volume == -v [local path]:[container path]
+docker run [args...] -v $HOME/my-node-store:/home/celestia \
+    celestia $NODE_TYPE init [args...]
+```
+
+An example init command will look similar to below:
+
+**Mainnet Beta**
+
+```bash
+docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+    -v $HOME/my-node-store:/home/celestia \
+    ghcr.io/celestiaorg/celestia-node:v0.34.3 \
+    celestia light init --p2p.network $NETWORK
+```
+
+**Mocha**
+
+```bash
+docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+    -v $HOME/my-node-store:/home/celestia \
+    ghcr.io/celestiaorg/celestia-node:v0.34.3-mocha \
+    celestia light init --p2p.network $NETWORK
+```
+
+### Start the node
+
+Run the following command to start the node:
+
+```bash
+# --volume == -v [local path]:[container path]
+docker run [...args] -v $HOME/my-node-store:/home/celestia \
+    celestia <node-type> start [...args]
+```
+
+A full start command will look similar to below.
+
+**Mainnet Beta**
+
+```bash
+docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+    -v $HOME/my-node-store:/home/celestia \
+    ghcr.io/celestiaorg/celestia-node:v0.34.3 \
+    celestia light start --core.ip $CORE_IP --core.port $CORE_PORT --p2p.network $NETWORK
+```
+
+**Mocha**
+
+```bash
+docker run -e NODE_TYPE=$NODE_TYPE -e P2P_NETWORK=$NETWORK \
+    -v $HOME/my-node-store:/home/celestia \
+    ghcr.io/celestiaorg/celestia-node:v0.34.3-mocha \
+    celestia light start --core.ip $CORE_IP --core.port $CORE_PORT --p2p.network $NETWORK
+```
+
+Congratulations! You now have a node running with persistent storage.
+
+## Video walkthrough
+
+  <iframe
+    class="youtube-video"
+    title="Running a Celestia light node"
+    src="https://youtube.com/embed/WFubhQc8tGk"
+    allowfullscreen
+  ></iframe>
+
+### 2.5 minute version
+
+  <iframe
+    class="youtube-video"
+    title="Running a Celestia light node"
+    src="https://youtube.com/embed/ROZv871Q7RM"
+    allowfullscreen
+  ></iframe>
+
+## Troubleshooting
+
+For security purposes Celestia expects to interact with your node's
+keys in a read-only manner. This is enforced using linux style permissions
+on the filesystem. Windows NTFS does not support these types of permissions.
+As a result the recommended path for Windows users to mount a persisted
+volume is to do so within WSL.
+You can find
+[instructions for installing WSL](https://learn.microsoft.com/en-us/windows/wsl/install).

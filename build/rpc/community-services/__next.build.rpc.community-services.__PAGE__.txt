@@ -1,0 +1,104 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","9526","static/chunks/app/build/rpc/community-services/page-b80ebdc5162435bd.js"],"WrapperWithFooter"]
+3:Ta8a,# Community services
+
+Community providers offer paid RPC reads, indexed data APIs, and Model Context
+Protocol (MCP) connections for Celestia Mainnet Beta. These services are operated
+by their respective providers. Follow their documentation for current pricing,
+supported methods, and client compatibility.
+
+## NODERS paid archive RPC
+
+[NODERS archive RPC](https://noders.services/mainnet/celestia/archive-rpc/)
+provides paid reads from a Celestia archive consensus node through CometBFT RPC.
+Paid requests use the x402 payment protocol with TIA. This is a consensus RPC
+service; for blob retrieval through the DA node API, see
+[archival DA RPC endpoints](/operate/networks/mainnet-beta#archival-da-rpc-endpoints).
+
+Check connectivity with the free `status` method:
+
+```bash
+curl -s https://celestia-archive-rpc.noders.services/status
+```
+
+Paid methods return HTTP `402 Payment Required` until payment is supplied.
+To make paid calls, follow the provider's
+[setup guide](https://noders.services/mainnet/celestia/archive-rpc/#quick-start)
+for `x402-celestia-rpc-payer`, fund its wallet with TIA, and configure spending
+limits. Each paid call also incurs a network transaction fee. The provider's
+guide covers current prices and payment troubleshooting.
+
+## NODERS MCP server
+
+The [NODERS MCP server](https://noders.services/mainnet/celestia/mcp/) lets AI
+clients query indexed Mainnet Beta data, including validators, delegations,
+staking metrics, account balances, and transactions. Its tools are read-only.
+
+In a client that supports remote MCP servers, add this URL with the
+**Streamable HTTP** transport:
+
+```text
+https://celestia-mcp.noders.services/mcp
+```
+
+After connecting, ask the client to list five bonded Celestia validators and
+include their addresses. If the connection fails, check that the URL ends in
+`/mcp` and the client uses Streamable HTTP. See the
+[connection guide](https://noders.services/mainnet/celestia/mcp/) for client-specific
+setup and local installation options.
+
+## Celenium paid API
+
+[Celenium's paid API](https://www.mppscan.com/server/ac886177d1fcc678779495d697f5a5000fca922337cb70c8bed1a5d182c2181a)
+provides REST access to indexed Celestia data, including blocks, transactions,
+blobs, namespaces, validators, rollups, and network statistics. It supports
+pay-per-request access through the Machine Payments Protocol (MPP), without an
+account or API key.
+
+Use an MPP-compatible client with `https://mpp.celenium.io`. The
+[OpenAPI specification](https://mpp.celenium.io/openapi.json) lists supported
+routes and payment requirements; the MPPscan listing includes an AgentCash setup
+command. Requests to paid routes without payment return HTTP
+`402 Payment Required`.13:X
+18:X
+18:C
+0:{"buildId":"3D9J215jiGyi7JWNd8CLA","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"title":"Community services","filePath":"app/build/rpc/community-services/page.mdx","timestamp":1792161262000},"toc":[{"value":"NODERS paid archive RPC","id":"noders-paid-archive-rpc","depth":2},{"value":"NODERS MCP server","id":"noders-mcp-server","depth":2},{"value":"Celenium paid API","id":"celenium-paid-api","depth":2}],"sourceCode":"$3","children":[["$","h1",null,{"className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-bold x:mt-2 x:text-4xl","children":["Community services","$undefined"]}],"\n",["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Community providers offer paid RPC reads, indexed data APIs, and Model Context\nProtocol (MCP) connections for Celestia Mainnet Beta. These services are operated\nby their respective providers. Follow their documentation for current pricing,\nsupported methods, and client compatibility."}],"\n","$L4","\n","$L5","\n","$L6","\n","$L7","\n","$L8","\n","$L9","\n","$La","\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10"]}],null,"$L11"]}],"isPartial":"$@12","staleTime":"$13","varyParams":null},{"rsc":"$L14","isPartial":"$@15","staleTime":"$13","varyParams":null},{"rsc":"$L16","isPartial":"$@17","staleTime":"$13","varyParams":"$18"},{"rsc":"$L19","isPartial":"$@1a","staleTime":"$13","varyParams":"$18"},{"rsc":"$L1b","isPartial":"$@1c","staleTime":"$13","varyParams":"$18"}],"isUpgradeableISRFallback":false,"a":"$@1d","rootVaryParams":null,"needsRuntimeRequest":"$@1e"}
+1f:I[90721,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","9526","static/chunks/app/build/rpc/community-services/page-b80ebdc5162435bd.js"],"HeadingAnchor"]
+20:I[98500,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","9526","static/chunks/app/build/rpc/community-services/page-b80ebdc5162435bd.js"],""]
+21:I[19023,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","9526","static/chunks/app/build/rpc/community-services/page-b80ebdc5162435bd.js"],"ToggleWordWrapButton"]
+22:I[57976,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","9526","static/chunks/app/build/rpc/community-services/page-b80ebdc5162435bd.js"],"CopyToClipboard"]
+23:I[90484,[],"OutletBoundary"]
+24:"$Sreact.suspense"
+26:I[90484,[],"ViewportBoundary"]
+27:I[90484,[],"MetadataBoundary"]
+28:I[86869,[],"IconMark"]
+29:I[57121,[],""]
+2a:I[74581,[],""]
+4:["$","h2",null,{"id":"noders-paid-archive-rpc","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["NODERS paid archive RPC",["$","$L1f",null,{"id":"noders-paid-archive-rpc"}]]}]
+5:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","a",null,{"href":"https://noders.services/mainnet/celestia/archive-rpc/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["NODERS archive RPC",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nprovides paid reads from a Celestia archive consensus node through CometBFT RPC.\nPaid requests use the x402 payment protocol with TIA. This is a consensus RPC\nservice; for blob retrieval through the DA node API, see\n",["$","$L20",null,{"href":"/operate/networks/mainnet-beta#archival-da-rpc-endpoints","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":"archival DA RPC endpoints"}],"."]}]
+6:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Check connectivity with the free ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"status"}]," method:"]}]
+7:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L21",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L22",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":[["$","span",null,{"style":{"--shiki-light":"#6F42C1","--shiki-dark":"#B392F0"},"children":"curl"}],["$","span",null,{"style":{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"},"children":" -s"}],["$","span",null,{"style":{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"},"children":" https://celestia-archive-rpc.noders.services/status"}]]}]}]]}]]}]
+8:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Paid methods return HTTP ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"402 Payment Required"}]," until payment is supplied.\nTo make paid calls, follow the provider’s\n",["$","a",null,{"href":"https://noders.services/mainnet/celestia/archive-rpc/#quick-start","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["setup guide",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nfor ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"x402-celestia-rpc-payer"}],", fund its wallet with TIA, and configure spending\nlimits. Each paid call also incurs a network transaction fee. The provider’s\nguide covers current prices and payment troubleshooting."]}]
+9:["$","h2",null,{"id":"noders-mcp-server","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["NODERS MCP server",["$","$L1f",null,{"id":"noders-mcp-server"}]]}]
+a:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["The ",["$","a",null,{"href":"https://noders.services/mainnet/celestia/mcp/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["NODERS MCP server",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," lets AI\nclients query indexed Mainnet Beta data, including validators, delegations,\nstaking metrics, account balances, and transactions. Its tools are read-only."]}]
+b:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["In a client that supports remote MCP servers, add this URL with the\n",["$","strong",null,{"children":"Streamable HTTP"}]," transport:"]}]
+c:["$","div",null,{"data-pagefind-ignore":"all","className":"nextra-code x:relative x:not-first:mt-[1.25em]","children":["$undefined",["$","pre",null,{"className":"x:group x:focus-visible:nextra-focus x:overflow-x-auto x:subpixel-antialiased x:text-[.9em] x:bg-white x:dark:bg-black x:py-4 x:ring-1 x:ring-inset x:ring-gray-300 x:dark:ring-neutral-700 x:contrast-more:ring-gray-900 x:contrast-more:dark:ring-gray-50 x:contrast-more:contrast-150 x:rounded-md not-prose","tabIndex":"0","children":[["$","div",null,{"className":"x:group-hover:opacity-100 x:group-focus:opacity-100 x:opacity-0 x:transition x:focus-within:opacity-100 x:flex x:gap-1 x:absolute x:right-4 x:top-2","children":[["$","$L21",null,{"children":["$","svg",null,{"viewBox":"0 0 24 24","fill":"currentColor","height":"1em","children":["$","path",null,{"d":"M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"}]}]}],["$","$L22",null,{"className":""}]]}],["$","code",null,{"className":"nextra-code","dir":"ltr","children":["$","span",null,{"children":["$","span",null,{"children":"https://celestia-mcp.noders.services/mcp"}]}]}]]}]]}]
+d:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["After connecting, ask the client to list five bonded Celestia validators and\ninclude their addresses. If the connection fails, check that the URL ends in\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"/mcp"}]," and the client uses Streamable HTTP. See the\n",["$","a",null,{"href":"https://noders.services/mainnet/celestia/mcp/","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["connection guide",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," for client-specific\nsetup and local installation options."]}]
+e:["$","h2",null,{"id":"celenium-paid-api","className":"x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border","children":["Celenium paid API",["$","$L1f",null,{"id":"celenium-paid-api"}]]}]
+f:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":[["$","a",null,{"href":"https://www.mppscan.com/server/ac886177d1fcc678779495d697f5a5000fca922337cb70c8bed1a5d182c2181a","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["Celenium’s paid API",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}],"\nprovides REST access to indexed Celestia data, including blocks, transactions,\nblobs, namespaces, validators, rollups, and network statistics. It supports\npay-per-request access through the Machine Payments Protocol (MPP), without an\naccount or API key."]}]
+10:["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":["Use an MPP-compatible client with ",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"https://mpp.celenium.io"}],". The\n",["$","a",null,{"href":"https://mpp.celenium.io/openapi.json","target":"_blank","rel":"noreferrer","className":"x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]","children":["OpenAPI specification",[" ",["$","svg",null,{"fill":"none","stroke":"currentColor","strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.7,"viewBox":"0 0 24 24","height":"1em","className":"x:inline x:align-baseline x:shrink-0","children":[["$","path",null,{"d":"M7 17L17 7"}],["$","path",null,{"d":"M7 7h10v10"}]]}]]]}]," lists supported\nroutes and payment requirements; the MPPscan listing includes an AgentCash setup\ncommand. Requests to paid routes without payment return HTTP\n",["$","code",null,{"className":"nextra-code","dir":"ltr","children":"402 Payment Required"}],"."]}]
+11:["$","$L23",null,{"children":["$","$24",null,{"name":"Next.MetadataOutlet","children":"$@25"}]}]
+14:["$","$1","h",{"children":[null,["$","$L26",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L27",null,{"children":["$","$24",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Celestia docs - Modular data availability"}],["$","meta","1",{"name":"description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","meta","4",{"name":"is-agentic-site-type","content":"content"}],["$","meta","5",{"property":"og:title","content":"Celestia Documentation"}],["$","meta","6",{"property":"og:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","7",{"property":"og:site_name","content":"Celestia Documentation"}],["$","meta","8",{"property":"og:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","meta","9",{"property":"og:image:width","content":"1200"}],["$","meta","10",{"property":"og:image:height","content":"630"}],["$","meta","11",{"property":"og:image:alt","content":"Celestia Documentation"}],["$","meta","12",{"property":"og:type","content":"website"}],["$","meta","13",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","14",{"name":"twitter:site","content":"@CelestiaOrg"}],["$","meta","15",{"name":"twitter:title","content":"Celestia Documentation"}],["$","meta","16",{"name":"twitter:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","17",{"name":"twitter:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","link","18",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","$L28","19",{}]]}]}]}],null]}]
+16:["$","$1","c",{"children":[null,["$","$L29",null,{"parallelRouterKey":"children","template":["$","$L2a",null,{}]}]]}]
+19:["$","$1","c",{"children":[null,["$","$L29",null,{"parallelRouterKey":"children","template":["$","$L2a",null,{}]}]]}]
+1b:["$","$1","c",{"children":[null,["$","$L29",null,{"parallelRouterKey":"children","template":["$","$L2a",null,{}]}]]}]
+1e:true
+25:null
+13:300
+13:C
+1d:0
+15:"$undefined"
+17:"$undefined"
+1a:"$undefined"
+1c:"$undefined"
+12:"$undefined"

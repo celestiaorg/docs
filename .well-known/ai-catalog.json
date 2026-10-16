@@ -1,0 +1,25 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Celestia docs",
+    "identifier": "did:web:docs.celestia.org"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:docs.celestia.org:skill:celestia",
+      "displayName": "Celestia documentation skill",
+      "type": "application/agent-skills+md",
+      "url": "https://docs.celestia.org/.well-known/agent-skills/celestia/SKILL.md",
+      "description": "Official guidance for building on Celestia, posting and retrieving blobs, and routing repository changes.",
+      "capabilities": [
+        "CelestiaDocumentation",
+        "BlobSubmission",
+        "BlobRetrieval"
+      ],
+      "representativeQueries": [
+        "How do I post and retrieve blobs on Celestia?",
+        "Which Celestia repository should I change?"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+# How to run op-alt-da with AWS KMS
+
+## Overview
+
+This guide walks through running [op-alt-da](https://github.com/celestiaorg/op-alt-da) (da-server) using a Celestia key stored in Amazon Web Services (AWS) key management service (KMS). You will use the localstack, a mock of AWS, to learn how to run the da-server. Once you've done this, you can log in to AWS and use your private key in [prod](#production-aws).
+
+## Prerequisites
+
+- Docker
+- Go 1.21+
+- A Celestia RPC endpoint from [Quicknode](https://quicknode.com/)
+
+## Getting started
+
+## Setup environment
+
+1. Install awscli:
+
+   ```bash
+   brew install awscli
+   ```
+
+2. Clone and build op-alt-da ([v0.12.0](https://github.com/celestiaorg/op-alt-da/releases/tag/v0.12.0)+):
+
+   ```bash
+   git clone https://github.com/celestiaorg/op-alt-da.git && cd op-alt-da
+   make
+   ```
+
+## Localstack
+
+1. Set mock AWS credentials (required even for localstack):
+
+   ```bash
+   export AWS_ACCESS_KEY_ID=test
+   export AWS_SECRET_ACCESS_KEY=test
+   export AWS_DEFAULT_REGION=us-east-1
+   ```
+
+2. Start localstack with KMS enabled:
+
+   ```bash
+   docker run -d \
+     --name localstack \
+     -p 4566:4566 \
+     -e SERVICES=kms \
+     localstack/localstack
+   ```
+
+3. Verify it's running:
+
+   ```bash
+   aws --endpoint-url=http://localhost:4566 kms list-keys
+   # should return: { "Keys": [] }
+   ```
+
+## Create KMS key
+
+Create a KMS key and alias:
+
+```bash
+KEY_ID=$(aws --endpoint-url=http://localhost:4566 kms create-key \
+  --key-spec ECC_SECG_P256K1 \
+  --key-usage SIGN_VERIFY \
+  --query 'KeyMetadata.KeyId' --output text)
+
+aws --endpoint-url=http://localhost:4566 kms create-alias \
+  --alias-name alias/op-alt-da/celestia_key --target-key-id $KEY_ID
+```
+
+## Configure op-alt-da
+
+1. Copy config example into `config.toml`:
+
+   ```bash
+   cp config.toml.example config.toml
+   ```
+
+2. Edit `config.toml` with the configs you gathered in the setup:
+
+   ```toml
+   [celestia]
+   namespace = "000000000000000000000000000000000000000000000000000000acfe"
+   keyring_backend = "awskms"
+   default_key_name = "alias/op-alt-da/celestia_key"
+
+   bridge_addr = "https://your-endpoint.celestia-mocha.quiknode.pro/your-token/"
+   bridge_auth_token = ""
+   bridge_tls_enabled = true
+
+   core_grpc_addr = "your-endpoint.celestia-mocha.quiknode.pro:9090"
+   core_grpc_auth_token = "your-token"
+   core_grpc_tls_enabled = true
+
+   [celestia.awskms]
+   region = "us-east-1"
+   endpoint = "http://localhost:4566"
+   ```
+
+   Note: In v0.12.0+, the `default_key_name` must include the full alias path (e.g., `alias/op-alt-da/celestia_key`).
+
+## Run the DA server
+
+1. Run the op-alt-da server:
+
+   ```bash
+   AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_REGION=us-east-1 ./bin/da-server -config config.toml
+   ```
+
+   Where this is what the successful start looks like:
+
+   ```bash
+   INFO [01-20|14:53:56.130] Initializing Stateless Alt-DA server...
+   INFO [01-20|14:53:56.131] Using celestia storage                   url=https://your-endpoint.celestia-mocha.quiknode.pro/your-token/
+   INFO [01-20|14:53:56.179] Immediate submission mode (default, no queue)
+   INFO [01-20|14:53:56.992] Starting HTTP server                     addr=127.0.0.1:3100
+   INFO [01-20|14:53:56.992] Starting metrics server                  addr=:6060
+   INFO [01-20|14:53:57.004] Started DA Server
+   ```
+
+2. Test a POST request to get your Celestia address:
+
+   ```bash
+   curl -s -X POST http://127.0.0.1:3100/put \
+     -H "Content-Type: application/octet-stream" \
+     -d "hello celestia" -o /dev/null
+   ```
+
+   The first request will fail because the account has no funds. Check the server logs for the error message which reveals your Celestia address:
+
+   ```
+   submission failed: account for signer celestia1rwuklcs36jm6wqxk8w9cx9vyja93856nz3sdlf not found
+   ```
+
+3. Fund your address at the faucet: https://mocha.celenium.io/faucet
+
+   Copy the `celestia1...` address from the error message and request testnet tokens.
+
+4. Retry the POST request:
+
+   ```bash
+   curl -s -X POST http://127.0.0.1:3100/put \
+     -H "Content-Type: application/octet-stream" \
+     -d "hello celestia" -o /dev/null
+   ```
+
+   A successful POST shows in the server logs:
+
+   ```bash
+   INFO [01-20|14:54:15.342] celestia: blob successfully submitted    id=74a5940000000000677e645183667f4d9efe506226fd0dd0b70a4144c8fd05c0aa68407ccf886507
+   INFO [01-20|14:54:15.342] Blob submitted successfully              commitment=010c74a5940000000000677e645183667f4d9efe506226fd0dd0b70a4144c8fd05c0aa68407ccf886507 size=14 duration=11.5436025s
+   ```
+
+   Check your transaction on [Celenium](https://mocha.celenium.io) by navigating to `https://mocha.celenium.io/address/YOUR_CELESTIA_ADDRESS`.
+
+5. Verify your key and alias:
+
+   ```bash
+   AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_REGION=us-east-1 aws --endpoint-url=http://localhost:4566 kms list-aliases
+   ```
+
+   You should see your alias pointing to the key:
+
+   ```bash
+   {
+       "Aliases": [
+           {
+               "AliasName": "alias/op-alt-da/celestia_key",
+               "AliasArn": "arn:aws:kms:us-east-1:000000000000:alias/op-alt-da/celestia_key",
+               "TargetKeyId": "79b26b15-0635-4b3c-aad0-0ab4406e6754"
+           }
+       ]
+   }
+   ```
+
+Congratulations, you're set up! You should be able to see your blob has been posted successfully using op-alt-da and AWS KMS. Now you can run your OP Stack rollup with AWS KMS, using the Celestia key in AWS.
+
+## Production (AWS)
+
+For production AWS KMS usage:
+
+1. Create a KMS keypair in AWS with key spec `ECC_SECG_P256K1` and key usage `SIGN_VERIFY`.
+
+2. Create an alias for your key (e.g., `alias/op-alt-da/my_celes_key`). Per AWS requirements, the alias name must start with `alias/`.
+
+3. Configure your IAM policy with the minimum required permissions:
+
+   ```json
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Action": [
+           "kms:GetPublicKey",
+           "kms:Sign"
+         ],
+         "Resource": "arn:aws:kms:REGION:ACCOUNT_ID:key/KEY_ID"
+       }
+     ]
+   }
+   ```
+
+4. Update your `config.toml`:
+
+   ```toml
+   [celestia]
+   keyring_backend = "awskms"
+   default_key_name = "alias/op-alt-da/my_celes_key"
+
+   [celestia.awskms]
+   region = "us-east-2"
+   endpoint = ""
+   ```
+
+   Note: Leave `endpoint` empty for production AWS. The `default_key_name` must include the full alias path (e.g., `alias/my_celes_key` or `alias/op-alt-da/my_celes_key`).

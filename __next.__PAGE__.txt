@@ -1,0 +1,120 @@
+1:"$Sreact.fragment"
+2:I[27603,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","8974","static/chunks/app/page-b80ebdc5162435bd.js"],"WrapperWithFooter"]
+3:Tda4,---
+landingPage: true
+title: Celestia docs - Modular data availability
+theme:
+  sidebar: false
+  toc: false
+  breadcrumb: false
+---
+
+import Link from "next/link";
+
+<div style={{
+  maxWidth: '900px',
+  margin: '4rem auto',
+  padding: '2rem'
+}}>
+  <h1 style={{
+    fontSize: '2.5rem',
+    fontWeight: '700',
+    marginBottom: '1rem',
+    textAlign: 'center'
+  }}>
+    Celestia docs
+  </h1>
+
+<div
+  style={{
+    fontSize: "1.125rem",
+    marginBottom: "3rem",
+    textAlign: "center",
+  }}
+>
+  Celestia is a modular data availability network. Rollups publish transaction
+  data to Celestia while choosing their own execution and settlement layers.
+  Use these docs to learn how data availability works, post and retrieve blobs,
+  and run a node on Mainnet Beta or the Mocha testnet.
+</div>
+
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '1.5rem'
+  }}>
+    <Link href="/learn/celestia-101/data-availability" style={{
+      padding: '2rem',
+      borderRadius: '8px',
+      border: '1px solid var(--border-color, #e5e7eb)',
+      textDecoration: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.75rem'
+    }}>
+      <span style={{ fontSize: '2rem' }}>📚</span>
+      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Learn</h2>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Understand modular blockchains and Celestia's architecture, including data availability sampling and how rollups use blobspace.</p>
+    </Link>
+
+    <Link href="/build/post-retrieve-blob/overview/" style={{
+      padding: '2rem',
+      borderRadius: '8px',
+      border: '1px solid var(--border-color, #e5e7eb)',
+      textDecoration: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.75rem'
+    }}>
+      <span style={{ fontSize: '2rem' }}>🛠️</span>
+      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Build</h2>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Post and retrieve your first blob with Go and Rust transaction clients. Follow the guides for signer setup, funding, and testnet examples.</p>
+    </Link>
+
+    <Link href="/operate/getting-started/overview/" style={{
+      padding: '2rem',
+      borderRadius: '8px',
+      border: '1px solid var(--border-color, #e5e7eb)',
+      textDecoration: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.75rem'
+    }}>
+      <span style={{ fontSize: '2rem' }}>⚙️</span>
+      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Operate</h2>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Choose a node type, check hardware requirements, and install Celestia software. Find guides for maintenance, monitoring, and troubleshooting.</p>
+    </Link>
+
+    <Link href="/build/rpc/node-api" style={{
+      padding: '2rem',
+      borderRadius: '8px',
+      border: '1px solid var(--border-color, #e5e7eb)',
+      textDecoration: 'none',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.75rem'
+    }}>
+      <span style={{ fontSize: '2rem' }}>🔌</span>
+      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>API</h2>
+      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Explore Celestia Node JSON-RPC methods, authentication, and client libraries. Download versioned OpenRPC specifications from the API reference.</p>
+    </Link>
+
+  </div>
+</div>7:X
+0:{"buildId":"3D9J215jiGyi7JWNd8CLA","data":[{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"metadata":{"landingPage":true,"title":"Celestia docs - Modular data availability","theme":{"sidebar":false,"toc":false,"breadcrumb":false},"filePath":"app/page.mdx","timestamp":1792161262000},"toc":[],"sourceCode":"$3","children":"$L4"}],null,"$L5"]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":"$L8","isPartial":"$@9","staleTime":"$7","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@a","rootVaryParams":null,"needsRuntimeRequest":"$@b"}
+c:I[98500,["2545","static/chunks/c16f53c3-91823fac9848ebbe.js","9300","static/chunks/9300-17e1884816545551.js","4503","static/chunks/4503-f2339ca4fb610064.js","8974","static/chunks/app/page-b80ebdc5162435bd.js"],""]
+d:I[90484,[],"OutletBoundary"]
+e:"$Sreact.suspense"
+10:I[90484,[],"ViewportBoundary"]
+11:I[90484,[],"MetadataBoundary"]
+12:I[86869,[],"IconMark"]
+4:["$","div",null,{"style":{"maxWidth":"900px","margin":"4rem auto","padding":"2rem"},"children":[["$","h1",null,{"style":{"fontSize":"2.5rem","fontWeight":"700","marginBottom":"1rem","textAlign":"center"},"children":["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia docs"}]}],["$","div",null,{"style":{"fontSize":"1.125rem","marginBottom":"3rem","textAlign":"center"},"children":["$","p",null,{"className":"x:not-first:mt-[1.25em] x:leading-7","children":"Celestia is a modular data availability network. Rollups publish transaction\ndata to Celestia while choosing their own execution and settlement layers.\nUse these docs to learn how data availability works, post and retrieve blobs,\nand run a node on Mainnet Beta or the Mocha testnet."}]}],["$","div",null,{"style":{"display":"grid","gridTemplateColumns":"repeat(auto-fit, minmax(250px, 1fr))","gap":"1.5rem"},"children":[["$","$Lc",null,{"href":"/learn/celestia-101/data-availability","style":{"padding":"2rem","borderRadius":"8px","border":"1px solid var(--border-color, #e5e7eb)","textDecoration":"none","display":"flex","flexDirection":"column","gap":"0.75rem"},"children":[["$","span",null,{"style":{"fontSize":"2rem"},"children":"📚"}],["$","h2",null,{"style":{"fontSize":"1.25rem","fontWeight":"600","margin":"0"},"children":"Learn"}],["$","p",null,{"style":{"margin":"0","fontSize":"0.9rem","opacity":"0.7"},"children":"Understand modular blockchains and Celestia’s architecture, including data availability sampling and how rollups use blobspace."}]]}],["$","$Lc",null,{"href":"/build/post-retrieve-blob/overview/","style":{"padding":"2rem","borderRadius":"8px","border":"1px solid var(--border-color, #e5e7eb)","textDecoration":"none","display":"flex","flexDirection":"column","gap":"0.75rem"},"children":[["$","span",null,{"style":{"fontSize":"2rem"},"children":"🛠️"}],["$","h2",null,{"style":{"fontSize":"1.25rem","fontWeight":"600","margin":"0"},"children":"Build"}],["$","p",null,{"style":{"margin":"0","fontSize":"0.9rem","opacity":"0.7"},"children":"Post and retrieve your first blob with Go and Rust transaction clients. Follow the guides for signer setup, funding, and testnet examples."}]]}],["$","$Lc",null,{"href":"/operate/getting-started/overview/","style":{"padding":"2rem","borderRadius":"8px","border":"1px solid var(--border-color, #e5e7eb)","textDecoration":"none","display":"flex","flexDirection":"column","gap":"0.75rem"},"children":[["$","span",null,{"style":{"fontSize":"2rem"},"children":"⚙️"}],["$","h2",null,{"style":{"fontSize":"1.25rem","fontWeight":"600","margin":"0"},"children":"Operate"}],["$","p",null,{"style":{"margin":"0","fontSize":"0.9rem","opacity":"0.7"},"children":"Choose a node type, check hardware requirements, and install Celestia software. Find guides for maintenance, monitoring, and troubleshooting."}]]}],["$","$Lc",null,{"href":"/build/rpc/node-api","style":{"padding":"2rem","borderRadius":"8px","border":"1px solid var(--border-color, #e5e7eb)","textDecoration":"none","display":"flex","flexDirection":"column","gap":"0.75rem"},"children":[["$","span",null,{"style":{"fontSize":"2rem"},"children":"🔌"}],["$","h2",null,{"style":{"fontSize":"1.25rem","fontWeight":"600","margin":"0"},"children":"API"}],["$","p",null,{"style":{"margin":"0","fontSize":"0.9rem","opacity":"0.7"},"children":"Explore Celestia Node JSON-RPC methods, authentication, and client libraries. Download versioned OpenRPC specifications from the API reference."}]]}]]}]]}]
+5:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
+8:["$","$1","h",{"children":[null,["$","$L10",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L11",null,{"children":["$","$e",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Celestia docs - Modular data availability"}],["$","meta","1",{"name":"description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"name":"googlebot","content":"index, follow"}],["$","meta","4",{"name":"is-agentic-site-type","content":"content"}],["$","meta","5",{"property":"og:title","content":"Celestia Documentation"}],["$","meta","6",{"property":"og:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","7",{"property":"og:site_name","content":"Celestia Documentation"}],["$","meta","8",{"property":"og:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","meta","9",{"property":"og:image:width","content":"1200"}],["$","meta","10",{"property":"og:image:height","content":"630"}],["$","meta","11",{"property":"og:image:alt","content":"Celestia Documentation"}],["$","meta","12",{"property":"og:type","content":"website"}],["$","meta","13",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","14",{"name":"twitter:site","content":"@CelestiaOrg"}],["$","meta","15",{"name":"twitter:title","content":"Celestia Documentation"}],["$","meta","16",{"name":"twitter:description","content":"Learn, build, and operate on Celestia - the modular data availability network."}],["$","meta","17",{"name":"twitter:image","content":"https://docs.celestia.org/Celestia-og.png"}],["$","link","18",{"rel":"icon","href":"/favicon.ico?603d046c9a6fdfbb","type":"image/x-icon","sizes":"16x16"}],["$","$L12","19",{}]]}]}]}],null]}]
+b:true
+f:null
+7:300
+7:C
+a:0
+9:"$undefined"
+6:"$undefined"

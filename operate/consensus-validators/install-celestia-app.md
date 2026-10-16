@@ -1,0 +1,170 @@
+# Install celestia-app
+
+This tutorial will guide you through installing celestia-app, both
+[from source](#building-binary-from-source) and with
+[a pre-built binary](#installing-a-pre-built-binary)
+
+Celestia-app is the software that enables you to run
+consensus nodes (including validators) and provide RPC endpoints.
+
+## Supported architectures
+
+Celestia-app officially supports the following architectures:
+
+- linux/amd64
+- linux/arm64
+- darwin/amd64 (macOS Intel)
+- darwin/arm64 (macOS Apple Silicon)
+
+Only these four architectures are officially tested and supported.
+
+## Linux requirements
+
+celestia-app v9 and later multiplexer binaries require glibc 2.38 or later. Use Ubuntu
+24.04 LTS or an equivalent Linux distribution. Ubuntu 22.04 and older are not
+supported and the binary will fail to start with a glibc version mismatch.
+
+Check the installed glibc version before installing or upgrading:
+
+```bash
+ldd --version
+```
+
+See the [celestia-app v9 release notes](https://github.com/celestiaorg/celestia-app/blob/v9.0.4/docs/release-notes/release-notes.md#supported-operating-systems)
+and the [Mocha release requirements](https://github.com/celestiaorg/celestia-app/releases/tag/v10.4.0-mocha)
+for the supported operating system details.
+
+## Building binary from source
+
+This section of the tutorial assumes you completed the steps in
+[setting up your own environment](/operate/getting-started/environment-setup).
+
+The steps below will create a binary file named `celestia-appd`
+inside `$HOME/go/bin` folder which will be used later to run the node.
+Be sure to select the correct network to install the binary for.
+
+### Remove any existing copy and clone the repository
+
+   ```bash
+   cd $HOME
+   rm -rf celestia-app
+   git clone https://github.com/celestiaorg/celestia-app.git
+   cd celestia-app
+   ```
+
+### Check out the desired version
+
+**Mainnet Beta**
+
+```bash
+git checkout tags/v10.4.0
+```
+
+**Mocha**
+
+```bash
+git checkout tags/v10.4.0-mocha
+```
+
+On Linux, enable BBR TCP congestion control before building. Run the following
+from the checked-out `celestia-app` directory on the node's host, with sudo
+access. Skip this step on macOS.
+
+```bash
+make enable-bbr
+make check-bbr
+```
+
+The enable command loads the `tcp_bbr` kernel module, persists it in
+`/etc/modules`, and adds the `fq` queueing and `bbr` congestion control defaults
+to `/etc/sysctl.conf` before applying that file. These are host-wide network
+settings. The check command should print `BBR is enabled.`
+
+If enabling BBR fails, inspect the command output and confirm that the host's
+Linux kernel provides the `tcp_bbr` module and that you have sudo access. Run
+these commands on the host rather than inside a container, then rerun
+`make check-bbr` to verify the result.
+
+### Build and install the `celestia-appd` binary with multiplexer support
+
+   ```bash
+   make install
+   ```
+
+### Verify the installation
+
+To check if the binary was successfully installed you can run the binary
+using the `--help` flag:
+
+   ```sh
+   celestia-appd --help
+   ```
+
+You will see an output with the menu for `celestia-appd`. Learn more
+on the [helpful CLI commands page](/operate/consensus-validators/cli-reference)
+
+## Installing a pre-built binary
+
+Installing a pre-built binary is the fastest way to get started with your
+Celestia consensus node. Releases after celestia-app v1.3.0 should have
+these binaries available.
+
+The steps below will download a binary file named `celestia-appd`.
+Depending on the setup that you choose during installation, the `celestia-appd`
+binary will be available at either:
+
+- `$HOME/celestia-app-temp/celestia-appd`
+- `/usr/local/bin/celestia-appd`
+
+Pre-built binaries are available for:
+
+- Operating systems: Darwin (Apple), Linux
+- Architectures: x86_64 (amd64), arm64
+
+To install the latest, or a specific version of the pre-built binary you can run this command in your
+terminal:
+
+```bash
+# Install latest version
+bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)"
+
+# Install specific version, latest version for Mocha testnet in this example
+bash -c "$(curl -sL https://docs.celestia.org/celestia-app.sh)" -- -v v10.4.0-mocha
+```
+
+Follow the instructions in the terminal output to choose your installation
+preferences.
+
+You will see an output with the menu for `celestia-appd`. Learn more
+on the [helpful CLI commands page](/operate/consensus-validators/cli-reference)
+
+View [the script](https://github.com/celestiaorg/docs/blob/main/public/celestia-app.sh)
+to learn more about what it is doing.
+
+## Ports
+
+When interacting with a consensus node,
+you may need to open ports on your machine to allow
+communication between nodes, such as bridge nodes. It is essential that
+specific ports are accessible. Make sure that your firewall allows
+connections to the correct ports.
+
+If you run a node on a cloud server, make sure that the ports are open
+on the server's firewall. If you run a node at home, make sure that your
+router allows connections to the correct ports.
+
+For example, validator ports 9090
+and 26657 need to be accessible by the bridge, and port 2121 is
+required for P2P connections for all node types.
+
+The following ports are used by Celestia app nodes:
+
+| Port  | Protocol | Address   | Description | Enabled by default on node     | Flag                    |
+| ----- | -------- | --------- | ----------- | ------------------------------ | ----------------------- |
+| 2121  | TCP/UDP  | 127.0.0.1 | P2P         | true                           | N/A                     |
+| 9090  | HTTP     | 0.0.0.0   | gRPC        | true                           | `--grpc.address string` |
+| 26657 | TCP      | 127.0.0.1 | RPC         | false (only open to localhost) | `--rpc.laddr string`    |
+
+## Next steps
+
+Now that you've installed `celestia-appd`, learn how to run a [consensus](/operate/consensus-validators/consensus-node) and [validator](/operate/consensus-validators/validator-node) node.
