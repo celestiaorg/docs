@@ -5,6 +5,7 @@ const meta = {
     href: "https://celestiaorg.github.io/celestia-app/swagger/",
   },
   "clients": "Clients",
+  "community-services": "Community services",
 };
 
 export default meta;
