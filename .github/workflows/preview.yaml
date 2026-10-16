@@ -1,12 +1,18 @@
 name: Deploy PR Preview
 
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - closed
+  # Retained for rollback; Cloudflare owns automatic previews.
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: PR number to publish from the selected branch
+        required: true
+        type: number
+      action:
+        description: Publish or remove the legacy preview
+        type: choice
+        options: [publish, remove]
+        default: publish
 
 concurrency:
   group: preview-${{ github.ref }}
@@ -14,7 +20,7 @@ concurrency:
 
 jobs:
   deploy-preview:
-    if: github.event.action != 'closed'
+    if: inputs.action == 'publish'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -23,23 +29,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - name: Setup Bun
+        # oven-sh/setup-bun v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
-          node-version: 20
-          cache: yarn
+          bun-version: latest
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Generate llms.txt
-        run: yarn generate:llms
+        run: bun install --frozen-lockfile
 
       - name: Build static site
         env:
-          BASE: /docs-preview/pr-${{ github.event.number }}/
-          NEXT_PUBLIC_BASE_PATH: /docs-preview/pr-${{ github.event.number }}
-        run: yarn build
+          BASE: /docs-preview/pr-${{ inputs.pr_number }}/
+        run: bun run build && bun run test:static
 
       - name: Checkout docs-preview repository
         uses: actions/checkout@v6
@@ -50,14 +52,15 @@ jobs:
 
       - name: Deploy to docs-preview
         run: |
-          TARGET_DIR="docs-preview/pr-${{ github.event.number }}"
+          # Create target directory
+          TARGET_DIR="docs-preview/pr-${{ inputs.pr_number }}"
 
           # Remove existing content in target directory to ensure clean deploy
           rm -rf "$TARGET_DIR"
           mkdir -p "$TARGET_DIR"
 
-          # Include discovery manifests under .well-known.
-          cp -r out/. "$TARGET_DIR"/
+          # Copy built files
+          cp -r out/public/. "$TARGET_DIR"/
           test -s "$TARGET_DIR/.well-known/ard.json"
 
           # Ensure .nojekyll exists in root
@@ -73,7 +76,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to deploy"
           else
-            git commit -m "Deploy preview for PR #${{ github.event.number }} from ${{ github.sha }}"
+            git commit -m "Deploy preview for PR #${{ inputs.pr_number }} from ${{ github.sha }}"
             git pull --rebase
             git push
           fi
@@ -82,7 +85,7 @@ jobs:
         uses: actions/github-script@v9
         with:
           script: |
-            const prNumber = context.payload.pull_request.number;
+            const prNumber = Number(context.payload.inputs.pr_number);
             const previewUrl = `https://celestiaorg.github.io/docs-preview/pr-${prNumber}/`;
             const body = `🚀 **Preview Deployment**\n\nYour preview is ready: [${previewUrl}](${previewUrl})`;
 
@@ -114,7 +117,7 @@ jobs:
             }
 
   cleanup-preview:
-    if: github.event.action == 'closed'
+    if: inputs.action == 'remove'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -128,7 +131,7 @@ jobs:
 
       - name: Remove preview
         run: |
-          TARGET_DIR="docs-preview/pr-${{ github.event.number }}"
+          TARGET_DIR="docs-preview/pr-${{ inputs.pr_number }}"
           
           if [ -d "$TARGET_DIR" ]; then
             rm -rf "$TARGET_DIR"
@@ -137,7 +140,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add .
-            git commit -m "Remove preview for PR #${{ github.event.number }}"
+            git commit -m "Remove preview for PR #${{ inputs.pr_number }}"
             git pull --rebase
             git push
           else
