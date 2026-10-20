@@ -18,6 +18,7 @@
     "check-links": "node scripts/check-links.mjs",
     "test:endpoints": "node --test scripts/check-endpoints.test.mjs",
     "test:mcp": "node --test worker/index.test.js",
+    "test:rpc": "bun test scripts/rpc-playground.test.tsx",
     "typecheck": "tsc --noEmit",
     "test:static": "node scripts/check-static-export.mjs",
     "test:cloudflare": "node --test scripts/cloudflare-target.test.mjs && node scripts/check-cloudflare-artifact.mjs",

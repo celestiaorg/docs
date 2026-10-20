@@ -210,6 +210,7 @@ const Playground = ({
 
   return (
     <Dialog
+      open={playgroundOpen}
       style={{ position: 'relative', zIndex: 9999 }}
       onClose={setPlaygroundOpen}
     >

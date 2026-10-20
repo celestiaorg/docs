@@ -42,6 +42,9 @@ jobs:
       - name: Test synchronized network tabs
         run: bun run test:tabs
 
+      - name: Test RPC playground rendering
+        run: bun run test:rpc
+
       - name: Test Fibre guide response handling
         run: bun run test:fibre
 
