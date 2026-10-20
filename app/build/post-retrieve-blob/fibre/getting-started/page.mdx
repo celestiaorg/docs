@@ -1,0 +1,197 @@
+---
+description: Choose a Fibre integration, set up keys and escrow, estimate costs, and upload your first blob.
+---
+
+# Getting started: from Mocha to Mainnet Beta
+
+Start on **Mocha**, the test network. Move to Mainnet Beta when your
+integration works on Mocha.
+
+## 1. Choose how to integrate
+
+| Option | Max blob size | Use it when |
+|---|---|---|
+| celestia-node JSON-RPC (`fibre.Submit`, `fibre.Download`) | Just under 12 MiB | You already run a light or bridge node and use JSON-RPC |
+| celestia-node Go client (`client.New` in `api/client`) | 128 MiB minus 5 bytes | You write Go and want node-style APIs without running a node |
+| celestia-app Go package (`fibre`) | 128 MiB minus 5 bytes | You need full control over upload and settlement |
+
+The JSON-RPC limit is lower because the node caps each request body at 16 MiB,
+including base64 and JSON overhead. See
+[Larger blobs and the native client](/build/post-retrieve-blob/fibre#larger-blobs-and-the-native-client).
+
+All three options use the same Fibre client underneath. A light or bridge node
+checks validator sets against headers it has verified itself. The Go options
+trust the core endpoint you connect to.
+
+{/* src: node@v0.34.3:api/rpc/server.go (maxRequestSize = 2 x MaxTxSize = 16 MiB) */}
+{/* src: node@v0.34.3:api/client/client.go New -> initTxClient (builds a local appfibre.Client; SubmitConfig.Fibre is *appfibre.ClientConfig); node@v0.34.3:api/client/read_client.go NewReadClient (Fibre over JSON-RPC) */}
+{/* src: node@v0.34.3:nodebuilder/fibre/constructor.go (light/bridge use stateclient over verified headers) */}
+{/* src: docs:/build/post-retrieve-blob/fibre "Larger blobs and the native client" */}
+
+## 2. Set up a key
+
+- The key that signs payment promises **owns the escrow**. Payments are taken
+  from that key's escrow account.
+- The key must be a secp256k1 key in a Cosmos SDK keyring.
+- The same key normally signs the `MsgPayForFibre` transaction. With the node
+  API, you choose it with `key_name` or `signer_address` in the transaction
+  options.
+- Back up the recovery phrase. Losing the key means losing access to the
+  escrow funds.
+
+{/* src: app@v10.4.0:fibre/client_upload.go signerKey (requires secp256k1) */}
+{/* src: app@v10.4.0:specs/src/fibre_module.md "Stateful Validation" (escrow account = address of signer_public_key) */}
+{/* src: node@v0.34.3:state/txclient/tx_config.go (key_name, signer_address, fee_granter_address) */}
+
+## 3. Fund the wallet and the escrow
+
+You need two balances:
+
+| Balance | Pays for | How to fund it |
+|---|---|---|
+| Wallet | Gas for deposits and `MsgPayForFibre` transactions | A normal transfer. On Mocha, use the [faucet](https://mocha.celenium.io/faucet). |
+| Escrow | Fibre storage charges | A deposit from the wallet |
+
+Deposit with the node API (`fibre.Deposit`), as shown in
+[Query and deposit escrow](/build/post-retrieve-blob/fibre#query-and-deposit-escrow), or with celestia-appd:
+
+```bash
+celestia-appd tx fibre deposit-to-escrow <amount>utia --from <key_name>
+```
+
+Check the escrow:
+
+```bash
+celestia-appd query fibre escrow-account <account_address>
+```
+
+The response has two balances:
+
+- `balance` is the total held in escrow.
+- `available_balance` is what remains after pending withdrawals.
+
+Uploads are checked against `available_balance`. 1 TIA is 1,000,000 utia.
+
+The native Go client can top up escrow automatically (`Escrow.AutoFund`).
+This is off by default and only works with `fibre.Put`.
+
+{/* src: app@v10.4.0:x/fibre/README.md "Usage" */}
+{/* src: app@v10.4.0:x/fibre/keeper/local_promise_cache.go (validators reserve against AvailableBalance) */}
+{/* src: app@v10.4.0:fibre/client_config.go defaultEscrowConfig (AutoFund false); app@v10.4.0:fibre/client_put.go admitEscrow (only in Put) */}
+
+## 4. Estimate the cost
+
+Each blob is charged:
+
+```text
+charge (utia) = 650,000 + 45,000 × ceil(upload_size / 262,144)
+```
+
+`upload_size` is the **padded** size, not your file size. Work it out like
+this:
+
+1. `row_size = ceil((data_length + 5) / 4096)`, rounded up to a multiple of 64.
+2. `upload_size = row_size × 4096`.
+
+The smallest possible `upload_size` is 262,144 bytes (256 KiB). So every blob
+costs at least 695,000 utia.
+
+| Payload | `upload_size` | Charge |
+|---|---|---|
+| 14 bytes | 262,144 B | 0.695 TIA |
+| 10 MiB | 10,747,904 B | 2.495 TIA |
+| 128 MiB minus 5 bytes | 134,217,728 B | 23.69 TIA |
+
+These match the [verified Mocha results](/build/post-retrieve-blob/fibre#verified-mocha-results). The settlement
+transaction's gas is paid separately from the wallet.
+
+The charge is a fixed formula in utia. It does not depend on gas prices.
+The formula's numbers are constants in celestia-app, not governance
+parameters. They are the same on Mainnet Beta and Mocha, and change only with
+a network upgrade.
+
+{/* src: app@v10.4.0:x/fibre/types/gas.go EstimateGasForPayForFibre, PaymentAmount */}
+{/* src: app@v10.4.0:pkg/appconsts/fibre_gas_consts.go (PFBFibreGasFixedCost 650000, PFBFibreGasPerChunk 45000, PFBFibreChunkSize 262144); app@v10.4.0:x/fibre/types/params.go (not a param) */}
+{/* src: app@v10.4.0:fibre/protocol_params.go RowSize (ceil to Rows=4096, round up to MinRowSize=64) */}
+{/* src: app@v10.4.0:specs/src/fibre_client.md section 4 (UploadSize = row_size × original_rows) */}
+{/* src: docs:/build/post-retrieve-blob/fibre "Verified Mocha results" (0.695 / 2.495 / 23.69 TIA) */}
+
+## 5. Upload and download
+
+### With the node JSON-RPC API
+
+Follow the tested walkthrough:
+[Submit and retrieve a Fibre blob on Mocha](/build/post-retrieve-blob/fibre).
+It covers node setup, auth tokens, escrow, submitting, and checking the
+downloaded bytes.
+
+The core calls are:
+
+| Method | What it does |
+|---|---|
+| `fibre.Submit` | Uploads, collects signatures, settles on chain, and waits for confirmation. Use this first. |
+| `fibre.Upload` | Uploads and collects signatures, then settles **in the background**. Settlement errors only appear in node logs. |
+| `fibre.Download` | Downloads a blob by blob ID |
+| `fibre.QueryEscrowAccount`, `fibre.Deposit`, `fibre.Withdraw`, `fibre.PendingWithdrawals` | Escrow management |
+
+{/* src: node@v0.34.3:nodebuilder/fibre/fibre.go (Module interface) */}
+{/* src: node@v0.34.3:fibre/service.go Upload -> go asyncSubmitPayForFibre (errors logged only, 2 min timeout) */}
+
+### With the celestia-app Go package
+
+This is the quickstart from the package README. `Put` uploads, settles and
+waits for confirmation in one call.
+
+```go
+cfg := fibre.DefaultClientConfig()
+cfg.StateAddress = "<core_grpc_address>"
+cfg.DefaultKeyName = "<key_name>"
+
+client, err := fibre.NewClient(kr, cfg)
+if err != nil { return err }
+if err := client.Start(ctx); err != nil { return err }
+defer client.Stop(ctx)
+
+// The tx client signs and broadcasts MsgPayForFibre.
+txClient, err := user.SetupTxClient(ctx, kr, grpcConn, encCfg, user.WithDefaultAccount("<key_name>"))
+if err != nil { return err }
+
+ns := share.MustNewV0Namespace([]byte("example"))
+result, err := fibre.Put(ctx, client, txClient, ns, data)
+if err != nil { return err }
+// Save result.BlobID, result.TxHash and result.Height.
+
+blob, err := client.Download(ctx, result.BlobID)
+if err != nil { return err }
+defer blob.Free()
+_ = blob.Data()
+```
+
+See the full example with imports in the
+[Fibre package README](https://github.com/celestiaorg/celestia-app/blob/v10.4.0/fibre/README.md).
+
+For production, prefer `Client.Upload` followed by your own transaction
+submission. `Put` only returns the transaction hash after confirmation. If
+confirmation fails, you don't get the hash, which makes it harder to check
+whether the blob was paid for.
+
+{/* src: app@v10.4.0:fibre/README.md Quickstart */}
+{/* src: app@v10.4.0:fibre/client_put.go Put (hash returned only after ConfirmTx; doc comment recommends Upload with custom tx logic) */}
+
+## 6. Save a receipt for every blob
+
+Store these for every blob you submit:
+
+| Field | Why you need it |
+|---|---|
+| `blob_id` | To download the blob |
+| `tx_hash` | To check settlement |
+| `height` | To find the settlement on chain |
+| Payment promise hash (native Go: `PaymentPromise.Hash()`) | To check settlement with `is-payment-processed` |
+| Your own copy of the data, or its hash | To recover after retention ends, and to check downloads |
+
+The JSON-RPC API returns `blob_id` as base64. The Go client's
+`BlobID.String()` returns hex. They are the same ID.
+
+{/* src: docs:/build/post-retrieve-blob/fibre "Download and verify the bytes" (base64 vs hex) */}
+{/* src: app@v10.4.0:x/fibre/client/cli/query.go (is-payment-processed takes hex hash) */}

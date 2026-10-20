@@ -1,0 +1,117 @@
+---
+description: Common Fibre client errors and their fixes, plus answers to frequent questions.
+---
+
+# FAQ and common errors
+
+## Common errors
+
+Error text is quoted from the code. The node API may add a prefix such as
+`failed to upload blob:`.
+
+### Setup and connection
+
+| Error | Cause | Fix |
+|---|---|---|
+| `fibre client is not available: node is not connected to a core endpoint` or `fibre module is not available: ...` | The node started without a core endpoint | Start the node with `--core.ip` and `--core.port` for a Fibre-capable endpoint |
+| `fibre: client is not started` or `fibre client is not started` | Go client used before `Start` | Call `client.Start(ctx)` first |
+| `fibre: client is closed` | Go client used after `Stop` | Create a new client |
+| `fibre: key not found in keyring` | The configured key name doesn't exist | Check `DefaultKeyName` or `key_name` |
+| `fibre: keyring is required for uploads` | Client created with a nil keyring | Pass a keyring. A nil keyring only allows downloads. |
+| `payment promise chain ID mismatch` | Client and endpoint are on different networks | Point both at the same network |
+
+{/* src: node@v0.34.3:fibre/service.go ErrClientNotAvailable; node@v0.34.3:nodebuilder/fibre/stub.go */}
+{/* src: app@v10.4.0:fibre/client.go (ErrClientClosed, ErrNoKeyring, ErrKeyNotFound); app@v10.4.0:fibre/client_upload.go Upload ("fibre: client is not started"); app@v10.4.0:fibre/client_download.go Download ("fibre client is not started") */}
+{/* src: app@v10.4.0:fibre/server_upload.go verifyPromise (chain ID mismatch) */}
+
+### Uploads
+
+When a validator rejects an upload, its error is logged as a warning
+(`failed to upload rows`) in the Go client or node logs, once per validator.
+If too few validators accept, the upload itself returns
+`not enough voting power`. Errors from the settlement transaction come back
+in the transaction result.
+
+{/* src: app@v10.4.0:fibre/client_upload.go uploadTo (WarnContext "failed to upload rows"), Upload (sigSet.Signatures -> NotEnoughSignaturesError) */}
+
+| Error | Cause | Fix |
+|---|---|---|
+| `blob size exceeds maximum allowed size` | Blob is over 128 MiB minus 5 bytes | Split the data |
+| Request rejected by the node RPC (too large) | JSON-RPC request is over 16 MiB | Use a Go client for blobs over about 12 MiB |
+| `not enough voting power: collected X, required Y` | Quorum not reached | See [your problem or the network's](/build/post-retrieve-blob/fibre/monitoring#your-problem-or-the-networks). Check whether the blob settled before retrying. |
+| `escrow account not found for signer` | No escrow for this key | Deposit first |
+| `insufficient balance in escrow account` | Escrow too low for this blob | Top up |
+| `insufficient available balance for signer` | In-flight promises use up the balance | Top up, or lower concurrency |
+| `upload size ... is below local minimum` | One validator requires bigger uploads | No action if quorum is still reached |
+| `fibre storage budget exceeded` | A validator's storage is full | The client retries automatically |
+| `creation_timestamp ... must not be after ...` | Your clock is ahead, or the chain has stalled | Sync the clock (NTP). Check the status page. |
+| `payment promise expired` | Normal settlement came `payment_promise_timeout` (default 1 hour) or more after promise creation, by chain time. Or your clock is behind. | Sync the clock. Upload again if you still need the blob. The expired promise can still be charged through the timeout path. |
+| `payment promise height ... is too far in the past` | Normal settlement came more than `payment_promise_height_window` (default 1000) blocks after the promise height | Upload again if you still need the blob. The old promise can still be charged through the timeout path. |
+| `payment promise has already been processed` | This promise was already settled | Nothing. Check your receipt. |
+| `failed to get historical validator set` | Settlement sent before the app caught up with that height | `fibre.Put` retries briefly. If it persists, retry the settlement. |
+
+{/* src: app@v10.4.0:fibre/blob.go ErrBlobTooLarge; node@v0.34.3:api/rpc/server.go maxRequestSize */}
+{/* src: app@v10.4.0:fibre/validator/signature_set.go; app@v10.4.0:x/fibre/keeper/keeper.go:398-453 (expiry and height window skipped when isTimeout); app@v10.4.0:x/fibre/keeper/local_promise_cache.go:146 */}
+{/* src: app@v10.4.0:fibre/server_upload.go (min upload size, storage budget) */}
+{/* src: app@v10.4.0:fibre/client_put.go isMissingHistoricalInfo / retryPFFBroadcast (4 attempts, 500ms) */}
+
+### Downloads
+
+| Error | Cause | Fix |
+|---|---|---|
+| `blob not found: no shards retrieved` | No usable shards came back. Either retention has ended, or the validators couldn't be reached (network, TLS or provider errors, logged as `failed to download shard`). | Within retention, check your network and retry. After retention, use your own copy. |
+| `not enough shards to reconstruct blob` | Too few shards came back | Retry later |
+| `invalid blob ID` | Malformed ID | Pass it unchanged. JSON-RPC uses base64. In Go, pass the `BlobID` as returned; `String()` gives hex and `BlobIDFromString` parses it back. |
+
+{/* src: app@v10.4.0:fibre/client_download.go (ErrNotFound, ErrNotEnoughShards; downloadFrom logs "failed to download shard"); app@v10.4.0:fibre/download.go reconstruct (0 rows -> ErrNotFound) */}
+{/* src: app@v10.4.0:fibre/blob_id.go (BlobID []byte; String hex; BlobIDFromString) */}
+
+## FAQ
+
+**How long can I download my blob?**
+Until the later of promise creation plus `shard_retention` (default 4 hours),
+or promise expiry. Servers may keep it longer, but don't rely on that.
+{/* src: app@v10.4.0:fibre/server_upload.go shardPruneAt; app@v10.4.0:fibre/README.md Notes; app@v10.4.0:x/fibre/types/params.go DefaultShardRetention */}
+
+**Can I get my blob back with `blob.Get`?**
+No. Use `fibre.Download` with the blob ID. The on-chain record holds only the
+commitment, not your data.
+
+**Do I pay if an upload fails?**
+You can. Once your signed promise reaches any validator, it can be charged
+through the timeout path once `payment_promise_timeout` (default 1 hour) has
+passed, even if the upload failed.
+{/* src: app@v10.4.0:fibre/client_upload.go beforeDispatch comment; app@v10.4.0:x/fibre/README.md MsgPaymentPromiseTimeout */}
+
+**Does retrying the same data create a duplicate charge?**
+It can. Each upload signs a new promise with a new timestamp. Each promise is
+a separate payment obligation, charged when it settles through
+`MsgPayForFibre` or the timeout path. Check whether the first upload settled
+before retrying.
+{/* src: app@v10.4.0:fibre/client_upload.go signedPromise (CreationTimestamp = now); app@v10.4.0:specs/src/fibre_module.md (hash covers timestamp; replay protection per hash) */}
+
+**Can someone else pay the gas for my settlement transaction?**
+Yes. The node API supports `fee_granter_address`. Escrow charges always come
+from the escrow of the key that signed the promise.
+{/* src: node@v0.34.3:state/txclient/tx_config.go; app@v10.4.0:specs/src/fibre_module.md "Payment Settlement Destination" */}
+
+**Can I put several blobs in one `MsgPayForFibre`?**
+No. Each `MsgPayForFibre` carries one promise, and a transaction may contain
+only one `MsgPayForFibre`.
+{/* src: app@v10.4.0:specs/src/fibre_module.md MsgPayForFibre (exactly one payment promise) and "Data Square Construction" */}
+
+**Who receives my escrow payments?**
+They go to the fee collector and are shared with validators and delegators,
+like regular transaction fees.
+{/* src: app@v10.4.0:specs/src/fibre_module.md "Payment Settlement Destination" */}
+
+**How do I get my escrow back?**
+Request a withdrawal (`fibre.Withdraw` or `tx fibre request-withdrawal`). It
+is paid out after `withdrawal_delay`: 24 hours by default. Keep enough in
+escrow for blobs that haven't settled yet.
+{/* src: app@v10.4.0:x/fibre/README.md MsgRequestWithdrawal; app@v10.4.0:x/fibre/types/params.go DefaultWithdrawalDelay */}
+
+**Is my data private?**
+No. Anyone with the blob ID can download it. Encrypt sensitive data before
+you upload it.
+{/* src: app@v10.4.0:fibre/README.md ("Anyone who knows the BlobID can download the blob") */}
