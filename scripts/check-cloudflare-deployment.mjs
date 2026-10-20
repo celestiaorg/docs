@@ -16,6 +16,26 @@ for (const path of ['/', '/learn/TIA/overview', '/build/rpc/node-api', '/operate
   const response = await request(path)
   assert.ok((await response.text()).length > 0, `${path}: empty response`)
 }
+// A normal GET does not catch the browser's cross-origin navigation preflight.
+const homepage = await (await request('/')).text()
+const navigationOrigin = new URL(homepage.match(/<base href="([^"]+)"/)?.[1] || origin).origin
+const navigationUrl = `${navigationOrigin}/RSC/R/build/post-retrieve-blob/overview.txt?query=`
+const preflight = await fetch(navigationUrl, {
+  method: 'OPTIONS',
+  headers: { Origin: origin, 'Access-Control-Request-Method': 'GET', 'Access-Control-Request-Headers': 'x-waku-router-skip' },
+  signal: AbortSignal.timeout(20000),
+})
+assert.ok(preflight.ok, `Navigation preflight: HTTP ${preflight.status}`)
+assert.equal(preflight.headers.get('Access-Control-Allow-Origin'), '*')
+assert.ok(preflight.headers.get('Access-Control-Allow-Methods')?.split(',').some(value => value.trim() === 'GET'))
+assert.ok(preflight.headers.get('Access-Control-Allow-Headers')?.toLowerCase().split(',').some(value => value.trim() === 'x-waku-router-skip'))
+const navigation = await fetch(navigationUrl, {
+  headers: { Origin: origin, 'X-Waku-Router-Skip': '[]' },
+  signal: AbortSignal.timeout(20000),
+})
+assert.ok(navigation.ok, `Navigation data: HTTP ${navigation.status}`)
+assert.equal(navigation.headers.get('Access-Control-Allow-Origin'), '*')
+assert.doesNotMatch(await navigation.text(), /<html/i, 'Navigation data must not be an HTML fallback')
 for (const path of ['/', '/build/post-retrieve-blob/client/go/']) {
   const markdownPath = path === '/' ? '/index.md' : `${path.slice(0, -1)}.md`
   const expected = await (await request(markdownPath)).text()

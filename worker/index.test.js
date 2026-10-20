@@ -27,6 +27,21 @@ function rpc(body, pathname = '/api/mcp') {
   })
 }
 
+test('preview navigation permits the Waku router preflight header', async () => {
+  const response = await worker.fetch(new Request('https://pr-2658.docs.pages.dev/RSC/R/build/post-retrieve-blob/overview.txt?query=', {
+    method: 'OPTIONS',
+    headers: {
+      Origin: 'https://deployment.docs.pages.dev',
+      'Access-Control-Request-Method': 'GET',
+      'Access-Control-Request-Headers': 'x-waku-router-skip',
+    },
+  }), assets())
+  assert.equal(response.status, 204)
+  assert.equal(response.headers.get('Access-Control-Allow-Origin'), '*')
+  assert.ok(response.headers.get('Access-Control-Allow-Methods').split(',').map(value => value.trim()).includes('GET'))
+  assert.ok(response.headers.get('Access-Control-Allow-Headers').toLowerCase().split(',').map(value => value.trim()).includes('x-waku-router-skip'))
+})
+
 for (const pathname of ['/api/mcp', '/api/mcp/', '/mcp', '/mcp/']) {
   test(`initialize works at ${pathname}`, async () => {
     const env = assets()
