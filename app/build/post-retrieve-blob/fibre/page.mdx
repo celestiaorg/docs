@@ -230,6 +230,25 @@ Your transaction hash and height will differ. The full response also contains
 `validator_signatures` and `payment_promise`. Download your own freshly
 submitted blob rather than relying on the historical example remaining stored.
 
+## Verify the availability attestation
+
+A payment transaction or escrow charge alone does not attest that Fibre data is
+available. Two settlement paths can put a transaction on-chain:
+
+- A successful `MsgPayForFibre` includes the transaction in the reserved
+  PayForFibre namespace and creates a version-2 system blob in the namespace
+  from the payment promise. The system blob contains the Fibre blob version and
+  commitment, and attests that the validator signature threshold was met.
+- An expired promise can be charged through `MsgPaymentPromiseTimeout`. This
+  timeout path does not require validator signatures and does not create the
+  system blob, because the signature threshold was not established.
+
+When verifying a Fibre submission, check for the system blob in the payment
+promise's namespace and match its commitment. Do not infer availability from a
+Fibre transaction, processed payment or escrow deduction without that system
+blob. Keep the namespace, commitment, transaction hash and height needed for
+this check.
+
 ## Download and verify the bytes
 
 Pass the returned `blob_id` unchanged. In JSON-RPC it is base64, whereas the
