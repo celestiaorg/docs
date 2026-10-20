@@ -46,8 +46,9 @@ const TOOLS = [
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+  // Vocs fetches navigation data from the PR alias when viewing an immutable preview URL.
   'Access-Control-Allow-Headers':
-    'Content-Type, Accept, Authorization, Mcp-Session-Id, Mcp-Protocol-Version',
+    'Content-Type, Accept, Authorization, Mcp-Session-Id, Mcp-Protocol-Version, X-Waku-Router-Skip',
 }
 
 function prefersMarkdown(accept = '') {
