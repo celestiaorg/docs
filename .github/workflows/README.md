@@ -13,19 +13,11 @@ This directory contains the workflows used to lint, deploy, preview, and keep re
 - **Optional variable:** `CLOUDFLARE_PAGES_PROJECT` overrides the project name.
 - Production runs are allowed to finish; obsolete preview runs are cancelled.
 
-## `deploy.yml` — Manual GitHub Pages rollback
+The legacy GitHub Pages deployment and preview workflows have been removed.
+`gh-pages`, `celestiaorg/docs-preview` and `PR_PREVIEW_DEPLOY` are no longer used
+by these workflows. Cloudflare handles both production and previews.
 
-- **Trigger:** manual `workflow_dispatch` only.
-- Builds the selected ref and publishes `out/public/` to `gh-pages` with `docs.celestia.org` as the CNAME.
-- Retained during the Cloudflare cutover. Ordinary merges no longer overwrite the existing GitHub Pages site.
-
-## `preview.yaml` — Manual legacy PR preview
-
-- **Trigger:** manual `workflow_dispatch` only, with `pr_number` and `action` (`publish` or `remove`).
-- Publishes the selected ref to `celestiaorg/docs-preview`, or removes an old preview.
-- Requires `PR_PREVIEW_DEPLOY`. Retained for rollback and cleanup; Cloudflare handles automatic previews.
-
-See [the cutover runbook](../CLOUDFLARE-CUTOVER.md) before switching the domain or retiring these workflows.
+See [the cutover runbook](../CLOUDFLARE-CUTOVER.md) for migration history and production verification.
 
 ## `lint.yaml` — Lint & Link Check
 

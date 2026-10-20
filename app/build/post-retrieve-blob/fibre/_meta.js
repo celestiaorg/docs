@@ -1,5 +1,5 @@
 const meta = {
-  index: "Fibre on Mocha",
+  index: "Mocha walkthrough",
   "when-to-use": "When to use Fibre",
   "getting-started": "Getting started",
   limits: "Limits and expectations",

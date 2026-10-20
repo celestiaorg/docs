@@ -1,10 +1,24 @@
 # Cloudflare Pages cutover
 
+## Current status
+
+The custom-domain cutover is complete. The production smoke test passed on
+20 October 2026. GitHub Pages is disabled, and the legacy deployment and preview
+workflows have been removed. GitHub Pages rollback is no longer required;
+`gh-pages` can be deleted without archiving it. Cloudflare deployments do not
+depend on that branch.
+
+The original cutover procedure below is retained as historical context.
+Its GitHub Pages preservation and manual-workflow instructions no longer apply.
+The production verification command remains useful after Cloudflare deployments.
+
+## Original cutover procedure
+
 The workflow change prepares Cloudflare production; merging it does not switch
 `docs.celestia.org`. Complete the steps below in order. Do not remove the existing
 GitHub Pages deployment until the custom domain has been verified.
 
-## Prepare and deploy
+### Prepare and deploy
 
 1. Confirm the repository secrets `CLOUDFLARE_API_TOKEN` and
    `CLOUDFLARE_ACCOUNT_ID` can manage Pages in the intended account. The token needs
@@ -26,7 +40,7 @@ GitHub Pages deployment until the custom domain has been verified.
    DNS. Its HTML intentionally uses the future custom-domain origin; use the PR
    preview for isolated navigation tests until the domain switches.
 
-## Switch and verify the domain
+### Switch and verify the domain
 
 1. In the intended Pages project, select **Custom domains → Set up a domain** and
    associate `docs.celestia.org`. Cloudflare-managed DNS can update the record
@@ -56,7 +70,7 @@ GitHub Pages deployment until the custom domain has been verified.
    artifacts and retire the unused preview secret/project. Preserve the rollback
    artifact and DNS record details through the agreed rollback window.
 
-## Rollback and troubleshooting
+### Rollback and troubleshooting
 
 - **Before DNS changes:** the old GitHub site still serves production. Fix the
   Cloudflare workflow and rerun it; do not switch traffic on a failed smoke test.
