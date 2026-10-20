@@ -55,10 +55,17 @@ h6 {
   margin-top: 0;
 }
 
+/* The landing page needs the viewport width, not the docs article's 70ch column. */
+[data-v-content]:has(> .celestia-home) {
+  max-width: none;
+  padding: 0;
+}
+
 .celestia-home {
-  max-width: 80rem;
+  width: 100%;
+  max-width: 100rem;
   margin-inline: auto;
-  padding: 2rem 2rem 5rem;
+  padding: 2rem clamp(1rem, 3vw, 4rem) 5rem;
   gap: 3.5rem;
   text-align: left;
 }
