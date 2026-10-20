@@ -55,6 +55,16 @@ h6 {
   margin-top: 0;
 }
 
+/* Keep diagram labels readable on small screens; scroll instead of shrinking. */
+[data-v-mermaid] {
+  display: block;
+}
+
+[data-v-mermaid] svg {
+  min-width: 40rem;
+  margin-inline: auto;
+}
+
 /* The landing page needs the viewport width, not the docs article's 70ch column. */
 [data-v-content]:has(> .celestia-home) {
   max-width: none;

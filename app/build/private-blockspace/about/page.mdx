@@ -23,19 +23,27 @@ When you submit a blob:
 From the client’s perspective, posting encrypted data feels like a single RPC call, while the proxy handles encryption, verifiability, and coordination with Celestia behind the scenes.
 
 ```mermaid
+---
+config:
+  sequence:
+    mirrorActors: false
+    actorMargin: 50
+    messageMargin: 30
+---
 sequenceDiagram
-    participant JSON RPC Client
+    participant Client as JSON RPC client
     participant Proxy
-    participant Celestia Node
-    JSON RPC Client->>+Proxy: blob.Submit(blobs, options)<br>{AUTH_TOKEN in header}
-    Proxy->>Proxy: Job Processing...<br>{If no DB entry, start new zkVM Job}
-    Proxy->>-JSON RPC Client: Response{"Call back"}
-    Proxy->>Proxy: ...Job runs to completion...
-    JSON RPC Client->>+Proxy:  blob.Submit(blobs, options)<br>{AUTH_TOKEN in header}
-    Proxy->>Proxy: Query Job DB<br>Done!<br>{Job Result cached}
-    Proxy->>Celestia Node: blob.Submit(V. Encrypt. blobs, options)
-    Celestia Node->>Proxy: Response{Inclusion Block Height}
-    Proxy->>-JSON RPC Client: Response{Inclusion Block Height}
+    participant Node as Celestia node
+
+    Client->>+Proxy: blob.Submit(blobs, options)<br/>Auth token in header
+    Note over Proxy: Check job cache<br/>Start zkVM job if absent
+    Proxy-->>-Client: Acknowledge and retry later
+    Note over Proxy: Job runs to completion
+    Client->>+Proxy: blob.Submit(blobs, options)<br/>Auth token in header
+    Note over Proxy: Read completed job<br/>from cache
+    Proxy->>Node: Submit verifiably encrypted blob
+    Node-->>Proxy: Inclusion block height
+    Proxy-->>-Client: Inclusion block height
 ```
 
 ## Retrieving a blob
@@ -52,17 +60,28 @@ If the blob was encrypted through the proxy, decryption succeeds and the proxy r
 This ensures compatibility with both encrypted and unencrypted blobs, so existing clients can adopt Private Blockspace incrementally.
 
 ```mermaid
+---
+config:
+  sequence:
+    mirrorActors: false
+    actorMargin: 50
+    messageMargin: 30
+---
 sequenceDiagram
-    participant JSON RPC Client
+    participant Client as JSON RPC client
     participant Proxy
-    participant Celestia Node
+    participant Node as Celestia node
 
-    JSON RPC Client->>+Proxy: blob.Get(height, namespace, commitment)
-    Proxy->>Celestia Node: <Passthrough>
-    Celestia Node->>Proxy: Response{namespace,data,<br>share_version,commitment,index}
-    Proxy->>Proxy: *Try* deserialize & decrypt
-    Proxy->>-JSON RPC Client: *Success* -> Response{...,decrypted bytes,...}
-    Proxy->>JSON RPC Client: *Failure* -> <Passthrough>
+    Client->>+Proxy: blob.Get(height, namespace, commitment)
+    Proxy->>Node: Forward request
+    Node-->>Proxy: Blob response
+    Note over Proxy: Try to deserialise<br/>and decrypt the blob
+    alt Decryption succeeds
+        Proxy-->>Client: Decrypted blob response
+    else Decryption fails
+        Proxy-->>Client: Original blob response
+    end
+    deactivate Proxy
 ```
 
 ## Verifiable Encryption (VE)
