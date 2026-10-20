@@ -117,17 +117,17 @@ Production defaults to `https://docs.celestia.org`. Deployment URLs are recorded
 in the Actions run summary and tested after upload.
 
 Follow [.github/CLOUDFLARE-CUTOVER.md](.github/CLOUDFLARE-CUTOVER.md) for the
-custom-domain switch, verification and rollback. The GitHub Pages production
-and preview workflows are manual-only until the cutover has been verified.
+cutover history and verification procedure. Cloudflare now serves production
+and previews; the legacy GitHub Pages workflows have been removed.
 
 ## Base paths (deploying under a subpath)
 
-For deployments that live under a subdirectory (e.g. GitHub Pages previews), set:
+For deployments that live under a subdirectory, set:
 
 - `BASE` with a trailing slash (used by Vocs as the base path)
 
 ```bash
-BASE=/docs-preview/new_docs/ bun run build
+BASE=/docs/ bun run build
 ```
 
 ## Content & structure
