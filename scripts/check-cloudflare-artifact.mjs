@@ -7,6 +7,10 @@ assert.ok((await readFile(`${output}/_worker.js`, 'utf8')).includes('async fetch
 const homepage = await readFile(`${output}/index.html`, 'utf8')
 assert.ok(homepage.includes(`<base href="${origin}"`), 'Missing homepage navigation origin')
 for (const file of await readdir(output, { recursive: true })) {
+  if (file.endsWith('.js')) {
+    const script = await readFile(`${output}/${file}`, 'utf8')
+    assert.ok(!script.includes('Could not resolve "mermaid"'), `${file}: missing Mermaid dependency causes a browser reload loop`)
+  }
   if (!file.endsWith('.html')) continue
   const html = await readFile(`${output}/${file}`, 'utf8')
   for (const match of html.matchAll(/<base href="([^"]+)"/g)) {
