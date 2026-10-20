@@ -37,6 +37,7 @@
     "@monaco-editor/react": "^4.7.0",
     "@open-rpc/client-js": "^2.0.0",
     "axios": "^1.20.0",
+    "mermaid": "^11",
     "react": "19.2.4",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "19.2.4",
