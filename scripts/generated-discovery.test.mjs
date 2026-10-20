@@ -84,7 +84,7 @@ test('homepage HTML is usable without JavaScript', { skip: !existsSync(new URL('
   assert.equal([...main.matchAll(/<h1\b/g)].length, 1);
   // Vocs cards use labelled links rather than heading elements.
   assert.deepEqual([...main.matchAll(/<h([1-6])\b/g)].map(match => Number(match[1])), [1]);
-  assert.match(html, /<title>Celestia docs - Celestia Documentation<\/title>/);
+  assert.match(html, /<title>Celestia documentation<\/title>/);
   assert.match(html, /<html[^>]*lang="en"/);
   assert.match(html, /<meta property="og:type" content="website"/);
   assert.ok(html.includes(`<meta property="og:image" content="${siteOrigin}${(process.env.BASE || '').replace(/\/$/, '')}/Celestia-og.png"`));
