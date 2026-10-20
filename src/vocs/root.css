@@ -55,21 +55,162 @@ h6 {
   margin-top: 0;
 }
 
-.celestia-home-title {
-  margin: 0;
-  font-size: clamp(2.75rem, 7vw, 4.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
+/* The landing page needs the viewport width, not the docs article's 70ch column. */
+[data-v-content]:has(> .celestia-home) {
+  max-width: none;
+  padding: 0;
 }
 
-.celestia-home-links {
+.celestia-home {
   width: 100%;
-  max-width: 56rem;
+  max-width: 100rem;
+  margin-inline: auto;
+  padding: 2rem clamp(1rem, 3vw, 4rem) 5rem;
+  gap: 2rem;
   text-align: left;
 }
 
+.celestia-home-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  padding: clamp(2rem, 5vw, 4.5rem);
+  border: 1px solid #332745;
+  border-radius: 1.5rem;
+  background: #0c0911;
+  color: #fff;
+}
+
+.celestia-home-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+}
+
+.celestia-home-title {
+  max-width: 9em;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(3rem, 6vw, 5.25rem);
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+}
+
+.celestia-home-description {
+  max-width: 31rem;
+  margin: 1.75rem 0 2rem;
+  color: #c9c3d3;
+  font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+  line-height: 1.7;
+}
+
+.celestia-home-actions {
+  justify-content: flex-start;
+}
+
+.celestia-home-actions a {
+  min-height: 3rem;
+  padding-inline: 1.5rem;
+  border-radius: 999px;
+  gap: 1rem;
+}
+
 .celestia-home-primary {
-  color: light-dark(#fff, #111);
+  background: #fff;
+  color: #17121e;
+}
+
+.celestia-home-secondary {
+  border-color: #665a78;
+  background: #211929;
+  color: #fff;
+}
+
+.celestia-home-secondary:hover {
+  background: #362944;
+}
+
+.celestia-home a:focus-visible {
+  outline: 3px solid light-dark(#6d3df5, #c5b2ff);
+  outline-offset: 5px;
+}
+
+.celestia-home-hero a:focus-visible {
+  outline-color: #c5b2ff;
+}
+
+/* Static orbital lines echo the Celestia mark without animation or an image download. */
+.celestia-home-orbit {
+  position: absolute;
+  z-index: -1;
+  width: 34rem;
+  aspect-ratio: 1;
+  right: -6rem;
+  top: -1rem;
+  border: 1px solid #9475c2;
+  border-radius: 50%;
+  transform: rotate(-28deg);
+  opacity: 0.55;
+  background: radial-gradient(ellipse at 70% 30%, #aa7dec55, #6d3df51a 45%, transparent 70%);
+  box-shadow: 0 0 90px #9565f528, inset 0 0 70px #9565f528;
+}
+
+.celestia-home-orbit::before,
+.celestia-home-orbit::after,
+.celestia-home-orbit div {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid #9475c2;
+  border-radius: 50%;
+}
+
+.celestia-home-orbit::before { transform: scaleX(0.65); }
+.celestia-home-orbit::after { transform: scaleX(0.25); }
+.celestia-home-orbit div:nth-child(1) { transform: scaleY(0.65); }
+.celestia-home-orbit div:nth-child(2) { transform: scaleY(0.25); }
+.celestia-home-orbit div:nth-child(3) { transform: rotate(55deg) scaleX(0.5); }
+
+.celestia-home-paths {
+  width: 100%;
+}
+
+.celestia-home-paths a {
+  min-height: 11rem;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  background: light-dark(#f7f4fc, #1b1623);
+  border-color: light-dark(#e4dcef, #393045);
+}
+
+.celestia-home-paths a:hover {
+  background: light-dark(#eee7fa, #292034);
+  border-color: light-dark(#a78bc9, #80629e);
+}
+
+.celestia-home-paths a > div:first-child {
+  margin-bottom: 1rem;
+  font-family: 'Youth', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+@media (max-width: 1000px) {
+  .celestia-home-orbit {
+    right: -18rem;
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 600px) {
+  .celestia-home {
+    padding: 1rem 1rem 3rem;
+  }
+
+  .celestia-home-hero { padding: 2rem 1.5rem; }
+  .celestia-home-orbit { display: none; }
+  .celestia-home-paths a { min-height: auto; }
 }
 
 .celestia-network-tabs {

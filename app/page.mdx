@@ -1,33 +1,28 @@
 ---
 layout: minimal
-title: Celestia docs - Modular data availability
-description: Learn how Celestia works, publish data, and run a node.
+title: Celestia docs
+description: Scalable, custom blockchain infrastructure for the most ambitious applications.
 showSidebar: false
 outline: false
 ---
 
 import { Card, Cards, HomePage } from 'vocs'
 
-<HomePage.Root>
-  <h1 className="celestia-home-title">Celestia docs</h1>
-  <HomePage.Tagline>
-    Build with modular data availability.
-  </HomePage.Tagline>
-  <HomePage.Description>
-    Celestia is a modular data availability network. Rollups publish transaction
-    data to Celestia while choosing their own execution and settlement layers.
-    Use these docs to learn how data availability works, post and retrieve blobs,
-    and run a node on Mainnet Beta or the Mocha testnet.
-  </HomePage.Description>
-  <HomePage.Buttons>
-    <HomePage.Button href="/build/post-retrieve-blob/overview/" variant="accent" className="celestia-home-primary">
-      Start building
-    </HomePage.Button>
-    <HomePage.Button href="/build/rpc/node-api/">
-      Explore the API
-    </HomePage.Button>
-  </HomePage.Buttons>
-  <div className="celestia-home-links">
+<HomePage.Root className="celestia-home">
+  <div className="celestia-home-hero">
+    <div className="celestia-home-copy">
+      <h1 className="celestia-home-title">Celestia docs</h1>
+      <p className="celestia-home-description">Scalable, custom blockchain infrastructure for the most ambitious applications.</p>
+      <HomePage.Buttons className="celestia-home-actions">
+        <HomePage.Button href="/build/post-retrieve-blob/overview/" variant="accent" className="celestia-home-primary">Start building</HomePage.Button>
+        <HomePage.Button href="/build/rpc/node-api/" className="celestia-home-secondary">Explore the API</HomePage.Button>
+      </HomePage.Buttons>
+    </div>
+    <div className="celestia-home-orbit" aria-hidden="true">
+      <div /><div /><div />
+    </div>
+  </div>
+  <div className="celestia-home-paths">
     <Cards>
       <Card
         title="Learn"
