@@ -19,20 +19,25 @@ You can use Hyperlane to bridge TIA between Celestia and other EVM-compatible ch
 ## How bridging works
 
 ```mermaid
+---
+config:
+  flowchart:
+    useMaxWidth: false
+---
 flowchart TB
 
     %% --- Chain A ---
     subgraph ChainA["Chain A"]
         A_App["Application"]
         A_Mailbox["Mailbox contract"]
-        A_ISM["Interchain security<br/>module"]
+        A_ISM["Interchain Security<br/>Module"]
     end
 
     %% --- Chain B ---
     subgraph ChainB["Chain B"]
         B_App["Application"]
         B_Mailbox["Mailbox contract"]
-        B_ISM["Interchain security<br/>module"]
+        B_ISM["Interchain Security<br/>Module"]
     end
 
     %% Internal flows (Chain A)

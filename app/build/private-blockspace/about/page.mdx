@@ -27,8 +27,7 @@ From the client’s perspective, posting encrypted data feels like a single RPC 
 config:
   sequence:
     mirrorActors: false
-    actorMargin: 50
-    messageMargin: 30
+    useMaxWidth: false
 ---
 sequenceDiagram
     participant Client as JSON RPC client
@@ -64,8 +63,7 @@ This ensures compatibility with both encrypted and unencrypted blobs, so existin
 config:
   sequence:
     mirrorActors: false
-    actorMargin: 50
-    messageMargin: 30
+    useMaxWidth: false
 ---
 sequenceDiagram
     participant Client as JSON RPC client
@@ -75,7 +73,7 @@ sequenceDiagram
     Client->>+Proxy: blob.Get(height, namespace, commitment)
     Proxy->>Node: Forward request
     Node-->>Proxy: Blob response
-    Note over Proxy: Try to deserialise<br/>and decrypt the blob
+    Note over Proxy: Try to deserialize<br/>and decrypt the blob
     alt Decryption succeeds
         Proxy-->>Client: Decrypted blob response
     else Decryption fails

@@ -55,14 +55,14 @@ h6 {
   margin-top: 0;
 }
 
-/* Keep diagram labels readable on small screens; scroll instead of shrinking. */
+/* Diagrams shrink to fit the column but never below 40rem; narrower screens scroll. */
 [data-v-mermaid] {
-  display: block;
+  justify-content: safe center;
 }
 
 [data-v-mermaid] svg {
-  min-width: 40rem;
-  margin-inline: auto;
+  flex-shrink: 0;
+  max-width: max(100%, 40rem);
 }
 
 /* The landing page needs the viewport width, not the docs article's 70ch column. */
