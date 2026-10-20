@@ -20,7 +20,7 @@
     "test:mcp": "node --test worker/index.test.js",
     "test:rpc": "bun test scripts/rpc-playground.test.tsx",
     "typecheck": "tsc --noEmit",
-    "test:static": "node scripts/check-static-export.mjs",
+    "test:static": "node --test scripts/vocs-sidebar.test.mjs && node scripts/check-static-export.mjs",
     "test:cloudflare": "node --test scripts/cloudflare-target.test.mjs && node scripts/check-cloudflare-artifact.mjs",
     "test:llms": "node --test scripts/clean-mdx.test.mjs && mkdir -p out/public && node scripts/generate-llms.js && node --test scripts/generated-discovery.test.mjs && python3 scripts/test-fibre-responses.py out/public/build/post-retrieve-blob/fibre.md",
     "test:fibre": "python3 scripts/test-fibre-responses.py",
