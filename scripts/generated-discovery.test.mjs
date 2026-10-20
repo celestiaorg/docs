@@ -8,8 +8,8 @@ const siteOrigin = process.env.VOCS_BASE_URL || 'https://docs.celestia.org';
 const localFile = url => new URL(`../out/public/${new URL(url).pathname.slice(1)}`, import.meta.url);
 
 test('generated discovery resources point to real exported content', () => {
-  assert.match(read('index.md'), /Celestia docs/);
-  assert.match(read('index.md'), /^# Build with modular data availability\./m);
+  assert.match(read('index.md'), /^# Celestia docs$/m);
+  assert.ok(read('index.md').includes('Scalable, custom blockchain infrastructure for the most ambitious applications.'));
   assert.match(read('llms.md'), /^# Celestia documentation/);
   assert.equal(read('llms.md'), read('llms.txt'));
   assert.deepEqual(JSON.parse(read('.well-known/poppy.json')), {
@@ -84,7 +84,7 @@ test('homepage HTML is usable without JavaScript', { skip: !existsSync(new URL('
   assert.equal([...main.matchAll(/<h1\b/g)].length, 1);
   // Vocs cards use labelled links rather than heading elements.
   assert.deepEqual([...main.matchAll(/<h([1-6])\b/g)].map(match => Number(match[1])), [1]);
-  assert.match(html, /<title>[^<]*Celestia[^<]*data availability[^<]*<\/title>/i);
+  assert.match(html, /<title>Celestia docs - Celestia Documentation<\/title>/);
   assert.match(html, /<html[^>]*lang="en"/);
   assert.match(html, /<meta property="og:type" content="website"/);
   assert.ok(html.includes(`<meta property="og:image" content="${siteOrigin}${(process.env.BASE || '').replace(/\/$/, '')}/Celestia-og.png"`));
