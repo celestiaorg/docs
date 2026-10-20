@@ -152,6 +152,7 @@ h6 {
   border: 1px solid #9475c2;
   border-radius: 50%;
   transform: rotate(-28deg);
+  opacity: 0.55;
   background: radial-gradient(ellipse at 70% 30%, #aa7dec55, #6d3df51a 45%, transparent 70%);
   box-shadow: 0 0 90px #9565f528, inset 0 0 70px #9565f528;
 }
