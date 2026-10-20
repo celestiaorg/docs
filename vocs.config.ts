@@ -17,9 +17,9 @@ const withBasePath = (pathname: string) => {
 }
 
 export default defineConfig({
-  title: 'Celestia Documentation',
+  title: 'Celestia documentation',
   description: siteDescription,
-  titleTemplate: '%s - Celestia Documentation',
+  titleTemplate: '%s - Celestia documentation',
   basePath,
   baseUrl: siteOrigin,
   outDir: 'out',
