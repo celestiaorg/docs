@@ -172,49 +172,14 @@ h6 {
 .celestia-home-orbit div:nth-child(2) { transform: scaleY(0.25); }
 .celestia-home-orbit div:nth-child(3) { transform: rotate(55deg) scaleX(0.5); }
 
-.celestia-home-hero-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 3.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid #ffffff26;
-  color: #c3b5dc;
-  font-size: 0.75rem;
-}
-
-.celestia-home-section {
+.celestia-home-paths {
   width: 100%;
 }
 
-.celestia-home-section-heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.celestia-home-section-heading h2 {
-  margin: 0;
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  letter-spacing: -0.035em;
-}
-
-.celestia-home-section-heading p {
-  margin: 0;
-  color: light-dark(#62596d, #b4aabd);
-  font-size: 0.875rem;
-}
-
-.celestia-home-section a {
+.celestia-home-paths a {
+  min-height: 11rem;
   padding: 1.75rem;
   border-radius: 1rem;
-}
-
-.celestia-home-paths a {
-  min-height: 13rem;
   background: light-dark(#f7f4fc, #1b1623);
   border-color: light-dark(#e4dcef, #393045);
 }
@@ -229,18 +194,6 @@ h6 {
   font-family: 'Youth', sans-serif;
   font-size: 1.75rem;
   font-weight: 400;
-}
-
-.celestia-home-resources {
-  padding-top: 2.5rem;
-  border-top: 1px solid light-dark(#e4dcef, #393045);
-}
-
-@media (min-width: 768px) {
-  .celestia-home-section > div:last-child,
-  .celestia-home-paths > div {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 1000px) {
@@ -258,7 +211,6 @@ h6 {
 
   .celestia-home-hero { padding: 2rem 1.5rem; }
   .celestia-home-orbit { display: none; }
-  .celestia-home-hero-footer { flex-direction: column; margin-top: 2.5rem; }
   .celestia-home-paths a { min-height: auto; }
 }
 

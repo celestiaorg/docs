@@ -12,70 +12,38 @@ import { Card, Cards, HomePage } from 'vocs'
   <div className="celestia-home-hero">
     <div className="celestia-home-copy">
       <p className="celestia-home-eyebrow">Celestia docs</p>
-      <h1 className="celestia-home-title">Your next idea. Full-stack freedom.</h1>
-      <p className="celestia-home-description">Build with modular data availability. Publish your data to Celestia, choose your execution and settlement layers, and make your next idea real.</p>
+      <h1 className="celestia-home-title">Build with modular data availability.</h1>
+      <p className="celestia-home-description">Celestia is a modular data availability network. Rollups publish transaction data to Celestia while choosing their own execution and settlement layers. Use these docs to learn how data availability works, post and retrieve blobs, and run a node on Mainnet Beta or the Mocha testnet.</p>
       <HomePage.Buttons className="celestia-home-actions">
-        <HomePage.Button href="/build/post-retrieve-blob/overview/" variant="accent" className="celestia-home-primary">
-          Start building <span aria-hidden="true">↗</span>
-        </HomePage.Button>
-        <HomePage.Button href="/build/rpc/node-api/" className="celestia-home-secondary">
-          Explore the API
-        </HomePage.Button>
+        <HomePage.Button href="/build/post-retrieve-blob/overview/" variant="accent" className="celestia-home-primary">Start building</HomePage.Button>
+        <HomePage.Button href="/build/rpc/node-api/" className="celestia-home-secondary">Explore the API</HomePage.Button>
       </HomePage.Buttons>
     </div>
     <div className="celestia-home-orbit" aria-hidden="true">
       <div /><div /><div />
     </div>
-    <div className="celestia-home-hero-footer">
-      <span>Learn the fundamentals. Build your application. Run the network.</span>
-      <span>Modular by design.</span>
-    </div>
   </div>
-  <div className="celestia-home-section">
-    <div className="celestia-home-section-heading">
-      <h2>Start here. Go anywhere.</h2>
-      <p>Find your path through Celestia.</p>
-    </div>
-    <div className="celestia-home-paths">
-      <Cards>
-        <Card
-          title="Learn"
-          description="Start with data availability. Explore modular blockchains, data availability sampling, and how Celestia fits into the stack."
-          to="/learn/celestia-101/data-availability/"
-        />
-        <Card
-          title="Build"
-          description="Take an idea onchain. Post and retrieve your first blob with our Go and Rust guides, then connect Celestia to your application."
-          to="/build/post-retrieve-blob/overview/"
-        />
-        <Card
-          title="Operate"
-          description="Help power the network. Choose a node, get set up on Mainnet Beta or Mocha, and keep your infrastructure running."
-          to="/operate/getting-started/overview/"
-        />
-      </Cards>
-    </div>
-  </div>
-  <div className="celestia-home-section celestia-home-resources">
-    <div className="celestia-home-section-heading">
-      <h2>Keep exploring</h2>
-      <p>The tools and guides for your next step.</p>
-    </div>
+  <div className="celestia-home-paths">
     <Cards>
       <Card
+        title="Learn"
+        description="Understand modular blockchains and Celestia's architecture, including data availability sampling and how rollups use blobspace."
+        to="/learn/celestia-101/data-availability/"
+      />
+      <Card
+        title="Build"
+        description="Post and retrieve your first blob with Go and Rust transaction clients. Follow the guides for signer setup, funding, and testnet examples."
+        to="/build/post-retrieve-blob/overview/"
+      />
+      <Card
+        title="Operate"
+        description="Choose a node type, check hardware requirements, and install Celestia software. Find guides for maintenance, monitoring, and troubleshooting."
+        to="/operate/getting-started/overview/"
+      />
+      <Card
         title="Node API"
-        description="Find JSON-RPC methods, authentication details, and versioned OpenRPC specifications."
+        description="Explore Celestia Node JSON-RPC methods, authentication, and client libraries. Download versioned OpenRPC specifications from the API reference."
         to="/build/rpc/node-api/"
-      />
-      <Card
-        title="Fibre"
-        description="Follow the Mocha walkthrough to submit, download, and verify a Fibre blob."
-        to="/build/post-retrieve-blob/fibre/"
-      />
-      <Card
-        title="Private blockspace"
-        description="Explore verifiable encryption and publish confidential data to Celestia."
-        to="/build/private-blockspace/about/"
       />
     </Cards>
   </div>

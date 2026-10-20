@@ -9,7 +9,7 @@ const localFile = url => new URL(`../out/public/${new URL(url).pathname.slice(1)
 
 test('generated discovery resources point to real exported content', () => {
   assert.match(read('index.md'), /Celestia docs/);
-  assert.match(read('index.md'), /^# Your next idea\. Full-stack freedom\./m);
+  assert.match(read('index.md'), /^# Build with modular data availability\./m);
   assert.match(read('llms.md'), /^# Celestia documentation/);
   assert.equal(read('llms.md'), read('llms.txt'));
   assert.deepEqual(JSON.parse(read('.well-known/poppy.json')), {
@@ -72,9 +72,6 @@ test('homepage Markdown provides meaningful product and developer guidance', () 
   assert.ok(prose.length >= 500, `Only ${prose.length} characters of homepage prose`);
   assert.match(markdown, /data availability/);
   assert.match(markdown, /Go and Rust/);
-  for (const route of ['/build/post-retrieve-blob/fibre/', '/build/private-blockspace/about/']) {
-    assert.ok(markdown.includes(`](${route})`), route);
-  }
 });
 
 test('homepage HTML is usable without JavaScript', { skip: !existsSync(new URL('../out/public/index.html', import.meta.url)) }, () => {
@@ -85,8 +82,8 @@ test('homepage HTML is usable without JavaScript', { skip: !existsSync(new URL('
   const text = main.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   assert.ok(text.length >= 500, `Only ${text.length} characters of homepage content`);
   assert.equal([...main.matchAll(/<h1\b/g)].length, 1);
-  // One page heading, followed by the two navigation sections.
-  assert.deepEqual([...main.matchAll(/<h([1-6])\b/g)].map(match => Number(match[1])), [1, 2, 2]);
+  // Vocs cards use labelled links rather than heading elements.
+  assert.deepEqual([...main.matchAll(/<h([1-6])\b/g)].map(match => Number(match[1])), [1]);
   assert.match(html, /<title>[^<]*Celestia[^<]*data availability[^<]*<\/title>/i);
   assert.match(html, /<html[^>]*lang="en"/);
   assert.match(html, /<meta property="og:type" content="website"/);
