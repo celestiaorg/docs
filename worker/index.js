@@ -166,6 +166,9 @@ async function callTool(env, name, args) {
   }
 
   if (name === 'read_page') {
+    if (typeof args?.pagePath !== 'string' || !args.pagePath) {
+      throw { code: -32602, message: 'pagePath is required' }
+    }
     const text = await readPageMarkdown(env, args?.pagePath)
     if (text === null) {
       return {
@@ -294,6 +297,13 @@ export default {
     } catch {
       return Response.json(
         { jsonrpc: '2.0', id: null, error: { code: -32700, message: 'Parse error' } },
+        { status: 400, headers: CORS_HEADERS },
+      )
+    }
+
+    if (Array.isArray(body) && body.length === 0) {
+      return Response.json(
+        { jsonrpc: '2.0', id: null, error: { code: -32600, message: 'Invalid Request' } },
         { status: 400, headers: CORS_HEADERS },
       )
     }

@@ -30,6 +30,7 @@ type LegacyTabsProps = {
   children: ReactNode
   items?: string[]
   stateKey?: string
+  storageKey?: string
 }
 
 type LegacyTabProps = {
@@ -41,7 +42,7 @@ function LegacyTab({ children }: LegacyTabProps) {
   return <>{children}</>
 }
 
-function LegacyTabs({ children, items = [], stateKey }: LegacyTabsProps) {
+function LegacyTabs({ children, items = [], stateKey, storageKey }: LegacyTabsProps) {
   const tabs = Children.toArray(children).map((child, index) => {
     if (!isValidElement<LegacyTabProps>(child)) {
       return (
@@ -58,7 +59,7 @@ function LegacyTabs({ children, items = [], stateKey }: LegacyTabsProps) {
     )
   })
 
-  return <VocsTabs stateKey={stateKey}>{tabs}</VocsTabs>
+  return <VocsTabs stateKey={stateKey ?? storageKey}>{tabs}</VocsTabs>
 }
 
 export const Tabs = Object.assign(LegacyTabs, { Tab: LegacyTab })

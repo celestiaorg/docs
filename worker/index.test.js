@@ -65,6 +65,19 @@ test('read_page returns markdown and reports missing pages', async () => {
   }
 })
 
+test('read_page without pagePath returns an argument error', async () => {
+  const response = await worker.fetch(rpc({ jsonrpc: '2.0', id: 4, method: 'tools/call',
+    params: { name: 'read_page', arguments: {} },
+  }), assets({ '/index.md': '# Home' }))
+  assert.equal((await response.json()).error.code, -32602)
+})
+
+test('empty batches are invalid requests', async () => {
+  const response = await worker.fetch(rpc([]), assets())
+  assert.equal(response.status, 400)
+  assert.equal((await response.json()).error.code, -32600)
+})
+
 test('malformed requests produce JSON-RPC errors; notifications return 202', async () => {
   const env = assets()
   for (const message of [null, 'invalid', {}, { id: 1, method: 'ping' }]) {
