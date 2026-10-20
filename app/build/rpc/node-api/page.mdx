@@ -10,16 +10,15 @@ The Celestia Node API is the collection of RPC methods that can be used to
 interact with the services provided by Celestia data availability nodes.
 Node API uses auth tokens to control access to this API.
 
-## Fibre on Mocha
+## Fibre
 
-Select `{{apiVersions['mocha']}}` in the version selector below for the
-released Fibre API, or download its [OpenRPC specification](/specs/openrpc-{{apiVersions['mocha']}}.json).
+The Mainnet Beta `{{apiVersions['mainnet']}}` and Mocha `{{apiVersions['mocha']}}`
+specifications include the Fibre API.
 The [Mocha Fibre walkthrough](/build/post-retrieve-blob/fibre) covers node setup,
 escrow funding, submission and retrieval, including tested request encodings
-and the JSON-RPC size limit. The Mainnet Beta `{{apiVersions['mainnet']}}`
-specification does not include Fibre.
+and the JSON-RPC size limit.
 
-The Mocha specification also includes `blob.SubscribeFromStartHeight`, which
+Both specifications also include `blob.SubscribeFromStartHeight`, which
 replays blobs for a namespace from a start height, then streams new blobs.
 
 ## celestia-node v0.31.3 breaking changes

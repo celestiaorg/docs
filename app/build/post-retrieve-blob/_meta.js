@@ -1,6 +1,6 @@
 const meta = {
   overview: "Overview",
-  fibre: "Fibre on Mocha",
+  fibre: "Fibre",
   client: "Blob/transaction client",
 };
 
