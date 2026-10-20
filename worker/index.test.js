@@ -1,0 +1,177 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import { readFile } from 'node:fs/promises'
+import worker from './index.js'
+
+function assets(files = {}) {
+  const requests = []
+  return {
+    requests,
+    ASSETS: {
+      async fetch(request) {
+        const pathname = new URL(request.url ?? request).pathname
+        requests.push(pathname)
+        return pathname in files
+          ? (files[pathname] instanceof Response ? new Response(files[pathname].body ? await files[pathname].clone().arrayBuffer() : null, files[pathname]) : new Response(files[pathname]))
+          : new Response('Not found', { status: 404 })
+      },
+    },
+  }
+}
+
+function rpc(body, pathname = '/api/mcp') {
+  return new Request(`https://docs.example${pathname}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  })
+}
+
+for (const pathname of ['/api/mcp', '/api/mcp/', '/mcp', '/mcp/']) {
+  test(`initialize works at ${pathname}`, async () => {
+    const env = assets()
+    const response = await worker.fetch(rpc({
+      jsonrpc: '2.0', id: 1, method: 'initialize',
+      params: { protocolVersion: '2025-06-18' },
+    }, pathname), env)
+    assert.equal(response.status, 200)
+    assert.equal((await response.json()).result.serverInfo.name, 'celestia-docs')
+    assert.equal(env.requests.length, 0)
+  })
+}
+
+test('search uses one asset request even with hundreds of pages', async () => {
+  const index = Array.from({ length: 300 }, (_, i) => ({
+    pagePath: `/page-${i}`, text: i === 299 ? '# Fibre\nMonitor the server.' : 'Unrelated',
+  }))
+  const env = assets({ '/mcp-search-index.json': JSON.stringify(index) })
+  const response = await worker.fetch(rpc({ jsonrpc: '2.0', id: 2, method: 'tools/call',
+    params: { name: 'search_docs', arguments: { query: 'FIBRE' } },
+  }), env)
+  const result = (await response.json()).result
+  assert.deepEqual(JSON.parse(result.content[0].text), [{ path: '/page-299', snippet: '# Fibre' }])
+  assert.deepEqual(env.requests, ['/mcp-search-index.json'])
+})
+
+test('read_page returns markdown and reports missing pages', async () => {
+  const env = assets({ '/build/rpc/node-api.md': '# Node API' })
+  for (const [pagePath, missing] of [['/build/rpc/node-api/', false], ['/missing', true]]) {
+    const response = await worker.fetch(rpc({ jsonrpc: '2.0', id: 3, method: 'tools/call',
+      params: { name: 'read_page', arguments: { pagePath } },
+    }), env)
+    const result = (await response.json()).result
+    assert.equal(Boolean(result.isError), missing)
+    if (!missing) assert.equal(result.content[0].text, '# Node API')
+  }
+})
+
+test('read_page without pagePath returns an argument error', async () => {
+  const response = await worker.fetch(rpc({ jsonrpc: '2.0', id: 4, method: 'tools/call',
+    params: { name: 'read_page', arguments: {} },
+  }), assets({ '/index.md': '# Home' }))
+  assert.equal((await response.json()).error.code, -32602)
+})
+
+test('empty batches are invalid requests', async () => {
+  const response = await worker.fetch(rpc([]), assets())
+  assert.equal(response.status, 400)
+  assert.equal((await response.json()).error.code, -32600)
+})
+
+test('malformed requests produce JSON-RPC errors; notifications return 202', async () => {
+  const env = assets()
+  for (const message of [null, 'invalid', {}, { id: 1, method: 'ping' }]) {
+    const response = await worker.fetch(rpc(message), env)
+    assert.equal((await response.json()).error.code, -32600)
+  }
+  const response = await worker.fetch(rpc({ jsonrpc: '2.0', method: 'notifications/initialized' }), env)
+  assert.equal(response.status, 202)
+})
+
+test('non-MCP routes pass through to static assets', async () => {
+  const env = assets({ '/learn/example': 'static page' })
+  const response = await worker.fetch(new Request('https://docs.example/learn/example'), env)
+  assert.equal(await response.text(), 'static page')
+})
+
+test('generated search index covers the current documentation', async () => {
+  const index = JSON.parse(await readFile('out/public/mcp-search-index.json', 'utf8'))
+  assert.ok(index.length > 50)
+  assert.ok(index.some(({ pagePath }) => pagePath.replace(/\/$/, '') === '/operate/consensus-validators/fibre'))
+  assert.ok(!index.some(({ pagePath }) => pagePath.includes('/components/')))
+})
+
+for (const pathname of ['/', '/learn/TIA/overview/']) {
+  test(`negotiates HTML and Markdown at ${pathname} without mixing representations`, async () => {
+    const mdPath = pathname === '/' ? '/index.md' : '/learn/TIA/overview.md'
+    const env = assets({
+      [pathname]: new Response('<h1>Celestia</h1>', { headers: { 'Content-Type': 'text/html', Vary: 'Accept-Encoding', Link: '</logo.svg>; rel="preload"' } }),
+      [mdPath]: '# Celestia',
+    })
+    for (const [accept, markdown] of [
+      ['text/html', false], ['text/markdown', true], ['text/html', false],
+      ['text/markdown;q=0, text/html', false], ['text/markdown;q=0.5, text/html', false],
+      ['text/markdown;q=1, text/html;q=0.5', true], ['*/*', false],
+      ['TEXT/MARKDOWN; q=1', true], ['text/markdown;q=invalid', false],
+    ]) {
+      const response = await worker.fetch(new Request(`https://docs.example${pathname}`, { headers: { Accept: accept } }), env)
+      assert.equal(response.status, 200)
+      assert.match(response.headers.get('Content-Type'), markdown ? /^text\/markdown/ : /^text\/html/)
+      assert.match(response.headers.get('Vary'), /Accept/)
+      assert.match(response.headers.get('Cache-Control'), /no-store/)
+      assert.match(response.headers.get('Link'), /rel="api-catalog"/)
+      if (!markdown) {
+        assert.match(response.headers.get('Vary'), /Accept-Encoding/)
+        assert.match(response.headers.get('Link'), /rel="preload"/)
+      }
+      assert.equal(await response.text(), markdown ? '# Celestia' : '<h1>Celestia</h1>')
+    }
+    for (const accept of ['text/markdown', 'text/html']) {
+      const response = await worker.fetch(new Request(`https://docs.example${pathname}`, { method: 'HEAD', headers: { Accept: accept } }), env)
+      assert.equal(await response.text(), '')
+      assert.match(response.headers.get('Content-Type'), new RegExp('^' + accept))
+    }
+  })
+}
+
+test('Markdown ignores HTML conditional headers and byte ranges', async () => {
+  const env = { ASSETS: { async fetch(request) {
+    assert.equal(request.headers.get('If-None-Match'), null)
+    assert.equal(request.headers.get('If-Modified-Since'), null)
+    assert.equal(request.headers.get('Range'), null)
+    assert.equal(request.headers.get('If-Range'), null)
+    return new URL(request.url).pathname === '/index.md'
+      ? new Response('# Docs')
+      : new Response('<h1>Docs</h1>', { headers: { 'Content-Type': 'text/html' } })
+  } } }
+  const response = await worker.fetch(new Request('https://docs.example/', { headers: {
+    Accept: 'text/markdown', 'If-None-Match': '"html"', 'If-Modified-Since': 'Wed, 01 Jan 2025 00:00:00 GMT', Range: 'bytes=0-5', 'If-Range': '"html"',
+  } }), env)
+  assert.equal(response.status, 200)
+  assert.equal(await response.text(), '# Docs')
+})
+
+test('preserves redirects, errors and non-HTML assets; catalog type applies only on success', async () => {
+  for (const status of [200, 404, 500]) {
+    const env = assets({ '/.well-known/api-catalog': new Response('{}', { status }) })
+    const response = await worker.fetch(new Request('https://docs.example/.well-known/api-catalog'), env)
+    assert.equal(response.status, status)
+    if (status === 200) assert.equal(response.headers.get('Content-Type'), 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"')
+    else assert.doesNotMatch(response.headers.get('Content-Type'), /linkset/)
+  }
+  for (const [path, response] of [
+    ['/guide', new Response(null, { status: 301, headers: { Location: '/guide/' } })],
+    ['/missing', new Response('Missing', { status: 404, headers: { 'Content-Type': 'text/html' } })],
+    ['/image.svg', new Response('<svg/>', { headers: { 'Content-Type': 'image/svg+xml', 'Cache-Control': 'public, max-age=3600' } })],
+    ['/missing.md', new Response('<h1>HTML fallback</h1>', { headers: { 'Content-Type': 'text/html' } })],
+    ['/fallback/', new Response('<h1>HTML</h1>', { headers: { 'Content-Type': 'text/html' } })],
+  ]) {
+    const env = assets({ [path]: response })
+    const result = await worker.fetch(new Request(`https://docs.example${path}`, { headers: { Accept: 'text/markdown' } }), env)
+    assert.equal(result.status, response.status)
+    assert.equal(result.headers.get('Content-Type'), response.headers.get('Content-Type'))
+    assert.equal(result.headers.get('Location'), response.headers.get('Location'))
+    assert.equal(await result.text(), await response.text())
+    if (path.endsWith('.svg')) assert.equal(result.headers.get('Cache-Control'), 'public, max-age=3600')
+  }
+})

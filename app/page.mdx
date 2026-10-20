@@ -1,101 +1,54 @@
 ---
-landingPage: true
+layout: minimal
 title: Celestia docs - Modular data availability
-theme:
-  sidebar: false
-  toc: false
-  breadcrumb: false
+description: Learn how Celestia works, publish data, and run a node.
+showSidebar: false
+outline: false
 ---
 
-import Link from "next/link";
+import { Card, Cards, HomePage } from 'vocs'
 
-<div style={{
-  maxWidth: '900px',
-  margin: '4rem auto',
-  padding: '2rem'
-}}>
-  <h1 style={{
-    fontSize: '2.5rem',
-    fontWeight: '700',
-    marginBottom: '1rem',
-    textAlign: 'center'
-  }}>
-    Celestia docs
-  </h1>
-
-<div
-  style={{
-    fontSize: "1.125rem",
-    marginBottom: "3rem",
-    textAlign: "center",
-  }}
->
-  Celestia is a modular data availability network. Rollups publish transaction
-  data to Celestia while choosing their own execution and settlement layers.
-  Use these docs to learn how data availability works, post and retrieve blobs,
-  and run a node on Mainnet Beta or the Mocha testnet.
-</div>
-
-  <div style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-    gap: '1.5rem'
-  }}>
-    <Link href="/learn/celestia-101/data-availability" style={{
-      padding: '2rem',
-      borderRadius: '8px',
-      border: '1px solid var(--border-color, #e5e7eb)',
-      textDecoration: 'none',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '0.75rem'
-    }}>
-      <span style={{ fontSize: '2rem' }}>📚</span>
-      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Learn</h2>
-      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Understand modular blockchains and Celestia's architecture, including data availability sampling and how rollups use blobspace.</p>
-    </Link>
-
-    <Link href="/build/post-retrieve-blob/overview/" style={{
-      padding: '2rem',
-      borderRadius: '8px',
-      border: '1px solid var(--border-color, #e5e7eb)',
-      textDecoration: 'none',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '0.75rem'
-    }}>
-      <span style={{ fontSize: '2rem' }}>🛠️</span>
-      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Build</h2>
-      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Post and retrieve your first blob with Go and Rust transaction clients. Follow the guides for signer setup, funding, and testnet examples.</p>
-    </Link>
-
-    <Link href="/operate/getting-started/overview/" style={{
-      padding: '2rem',
-      borderRadius: '8px',
-      border: '1px solid var(--border-color, #e5e7eb)',
-      textDecoration: 'none',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '0.75rem'
-    }}>
-      <span style={{ fontSize: '2rem' }}>⚙️</span>
-      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>Operate</h2>
-      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Choose a node type, check hardware requirements, and install Celestia software. Find guides for maintenance, monitoring, and troubleshooting.</p>
-    </Link>
-
-    <Link href="/build/rpc/node-api" style={{
-      padding: '2rem',
-      borderRadius: '8px',
-      border: '1px solid var(--border-color, #e5e7eb)',
-      textDecoration: 'none',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '0.75rem'
-    }}>
-      <span style={{ fontSize: '2rem' }}>🔌</span>
-      <h2 style={{ fontSize: '1.25rem', fontWeight: '600', margin: '0' }}>API</h2>
-      <p style={{ margin: '0', fontSize: '0.9rem', opacity: '0.7' }}>Explore Celestia Node JSON-RPC methods, authentication, and client libraries. Download versioned OpenRPC specifications from the API reference.</p>
-    </Link>
-
+<HomePage.Root>
+  <h1 className="celestia-home-title">Celestia docs</h1>
+  <HomePage.Tagline>
+    Build with modular data availability.
+  </HomePage.Tagline>
+  <HomePage.Description>
+    Celestia is a modular data availability network. Rollups publish transaction
+    data to Celestia while choosing their own execution and settlement layers.
+    Use these docs to learn how data availability works, post and retrieve blobs,
+    and run a node on Mainnet Beta or the Mocha testnet.
+  </HomePage.Description>
+  <HomePage.Buttons>
+    <HomePage.Button href="/build/post-retrieve-blob/overview/" variant="accent" className="celestia-home-primary">
+      Start building
+    </HomePage.Button>
+    <HomePage.Button href="/build/rpc/node-api/">
+      Explore the API
+    </HomePage.Button>
+  </HomePage.Buttons>
+  <div className="celestia-home-links">
+    <Cards>
+      <Card
+        title="Learn"
+        description="Understand modular blockchains and Celestia's architecture, including data availability sampling and how rollups use blobspace."
+        to="/learn/celestia-101/data-availability/"
+      />
+      <Card
+        title="Build"
+        description="Post and retrieve your first blob with Go and Rust transaction clients. Follow the guides for signer setup, funding, and testnet examples."
+        to="/build/post-retrieve-blob/overview/"
+      />
+      <Card
+        title="Operate"
+        description="Choose a node type, check hardware requirements, and install Celestia software. Find guides for maintenance, monitoring, and troubleshooting."
+        to="/operate/getting-started/overview/"
+      />
+      <Card
+        title="Node API"
+        description="Explore Celestia Node JSON-RPC methods, authentication, and client libraries. Download versioned OpenRPC specifications from the API reference."
+        to="/build/rpc/node-api/"
+      />
+    </Cards>
   </div>
-</div>
+</HomePage.Root>
