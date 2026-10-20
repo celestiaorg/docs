@@ -22,6 +22,8 @@ export async function sidebarFor(directory, route) {
     if (slug !== 'index') {
       const children = await sidebarFor(childDirectory, childRoute)
       if (children.length) item.items = children
+      // An explicit index child owns the page link; the parent is a group label.
+      if (children.some((child) => child.link === item.link)) delete item.link
     }
     if (item.link || item.items) items.push(item)
   }
