@@ -19,34 +19,39 @@ You can use Hyperlane to bridge TIA between Celestia and other EVM-compatible ch
 ## How bridging works
 
 ```mermaid
-flowchart LR
+---
+config:
+  flowchart:
+    useMaxWidth: false
+---
+flowchart TB
 
     %% --- Chain A ---
     subgraph ChainA["Chain A"]
         A_App["Application"]
-        A_Mailbox["Mailbox Contract"]
-        A_ISM["Interchain Security Module"]
+        A_Mailbox["Mailbox contract"]
+        A_ISM["Interchain Security<br/>Module"]
     end
 
     %% --- Chain B ---
     subgraph ChainB["Chain B"]
         B_App["Application"]
-        B_Mailbox["Mailbox Contract"]
-        B_ISM["Interchain Security Module"]
+        B_Mailbox["Mailbox contract"]
+        B_ISM["Interchain Security<br/>Module"]
     end
 
     %% Internal flows (Chain A)
     A_App --> A_Mailbox
     A_Mailbox --> A_ISM
-    A_ISM -->|Verify Message| A_Mailbox
+    A_ISM -->|Verify message| A_Mailbox
 
     %% Internal flows (Chain B)
     B_App --> B_Mailbox
     B_Mailbox --> B_ISM
-    B_ISM -->|Verify Message| B_Mailbox
+    B_ISM -->|Verify message| B_Mailbox
 
     %% Cross-chain relayer messages
-    A_Mailbox <-->|Relayers<br/>Messages + Proofs| B_Mailbox
+    A_Mailbox <-->|Relayers<br/>Messages + proofs| B_Mailbox
 ```
 
 - **Mailbox** — the core contract on each chain that dispatches and processes messages.

@@ -55,6 +55,16 @@ h6 {
   margin-top: 0;
 }
 
+/* Diagrams shrink to fit the column but never below 40rem; narrower screens scroll. */
+[data-v-mermaid] {
+  justify-content: safe center;
+}
+
+[data-v-mermaid] svg {
+  flex-shrink: 0;
+  max-width: max(100%, 40rem);
+}
+
 /* The landing page needs the viewport width, not the docs article's 70ch column. */
 [data-v-content]:has(> .celestia-home) {
   max-width: none;
