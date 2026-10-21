@@ -153,6 +153,7 @@ const header = [
   `- Agent skills index: ${SITE_ORIGIN}/.well-known/agent-skills/index.json`,
   `- Agent resource discovery: ${SITE_ORIGIN}/.well-known/ard.json`,
   `- API catalog: ${SITE_ORIGIN}/.well-known/api-catalog`,
+  `- Celestia-app REST API OpenAPI spec (Swagger 2.0): ${SITE_ORIGIN}/openapi.json`,
   ...openrpcSpecs.map(({ network, version }) =>
     `- Node API OpenRPC spec (${network}): ${SITE_ORIGIN}/specs/openrpc-${version}.json`),
   '- CIPs (Celestia Improvement Proposals): https://cips.celestia.org',
@@ -450,15 +451,16 @@ const generateApiCatalog = async (outputBase) => {
     type: 'application/json',
     title: `${title} (${network})`,
   }));
+  const restSpec = { href: `${SITE_ORIGIN}/openapi.json`, type: 'application/json', title: 'Celestia-app REST API OpenAPI specification (Swagger 2.0)' };
   const linkset = {
     linkset: [
       {
         anchor: `${SITE_ORIGIN}/.well-known/api-catalog`,
-        item: specLinks('Celestia Node API'),
+        item: [...specLinks('Celestia Node API'), restSpec],
       },
       {
         anchor: SITE_ORIGIN,
-        'service-desc': specLinks('Celestia Node API OpenRPC specification'),
+        'service-desc': [...specLinks('Celestia Node API OpenRPC specification'), restSpec],
         'service-doc': [
           {
             href: `${SITE_ORIGIN}/build/rpc/node-api/`,

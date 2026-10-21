@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import test from 'node:test';
 import path from 'node:path';
 
@@ -29,8 +29,8 @@ test('generated discovery resources point to real exported content', () => {
   const { linkset } = JSON.parse(read('.well-known/api-catalog'));
   const catalog = linkset.find(link => link.anchor === `${siteOrigin}/.well-known/api-catalog`);
   assert.ok(catalog, 'api-catalog anchor');
-  assert.equal(catalog.item.length, 2);
-  for (const item of catalog.item) {
+  assert.equal(catalog.item.length, 3);
+  for (const item of catalog.item.filter(item => item.href.includes('/specs/openrpc-'))) {
     const spec = JSON.parse(readFileSync(new URL(`../public/specs/${path.basename(new URL(item.href).pathname)}`, import.meta.url), 'utf8'));
     assert.ok(spec.openrpc);
     assert.ok(spec.methods.length);
@@ -106,4 +106,61 @@ test('GitHub Pages rollback rules scope discovery to docs', () => {
     operation: 'set',
     value: 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"',
   });
+});
+
+
+test('sitemap covers every source page exactly once and robots advertises it', () => {
+  const sitemap = read('sitemap.xml');
+  assert.match(sitemap, /^<\?xml version="1.0" encoding="UTF-8"\?>/);
+  assert.match(sitemap, /<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/);
+  const actual = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]).sort();
+  const expected = readdirSync(new URL('../app/', import.meta.url), { recursive: true })
+    .filter(file => file === 'page.mdx' || file.endsWith('/page.mdx'))
+    .map(file => `${siteOrigin}/${file.replace(/page\.mdx$/, '')}`).sort();
+  assert.deepEqual(actual, expected);
+  assert.equal(new Set(actual).size, actual.length);
+  assert.ok(read('robots.txt').includes(`Sitemap: ${siteOrigin}/sitemap.xml`));
+});
+
+test('OpenAPI is a real upstream contract with resolvable references and discovery links', () => {
+  const spec = JSON.parse(readFileSync(new URL('../public/openapi.json', import.meta.url), 'utf8'));
+  assert.equal(spec.swagger, '2.0');
+  assert.ok(spec.paths['/blob/v1/params'].get);
+  const ids = Object.values(spec.paths).flatMap(item => Object.values(item).map(operation => operation.operationId));
+  assert.ok(ids.every(Boolean));
+  assert.equal(new Set(ids).size, ids.length, 'Operation IDs must be unique');
+  for (const match of JSON.stringify(spec).matchAll(/"\$ref":"#\/([^" ]+)"/g)) {
+    const value = match[1].split('/').reduce((value, key) => value?.[key.replaceAll('~1', '/').replaceAll('~0', '~')], spec);
+    assert.ok(value, `Unresolved reference: ${match[0]}`);
+  }
+  assert.ok(read('llms.txt').includes(`${siteOrigin}/openapi.json`));
+  assert.ok(JSON.parse(read('.well-known/api-catalog')).linkset[0].item.some(item => item.href === `${siteOrigin}/openapi.json`));
+});
+
+test('security.txt provides the canonical private disclosure channel and a future expiry', () => {
+  const security = readFileSync(new URL('../public/.well-known/security.txt', import.meta.url), 'utf8');
+  assert.match(security, /^Contact: mailto:security@celestia\.org$/m);
+  assert.match(security, /^Canonical: https:\/\/docs.celestia.org\/\.well-known\/security.txt$/m);
+  assert.ok(Date.parse(security.match(/^Expires: (.+)$/m)?.[1]) > Date.now());
+});
+
+test('every rendered page has trust links and page-specific structured data', { skip: !existsSync(new URL('../out/public/index.html', import.meta.url)) }, () => {
+  for (const [, url] of read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)) {
+    const pathname = new URL(url).pathname;
+    const html = read(path.join(pathname, 'index.html'));
+    for (const href of ['https://celestia.org/about/', 'https://celestia.org/contact/', 'https://celestia.org/privacy/', 'https://celestia.org/tos/', 'https://github.com/celestiaorg/.github/blob/main/SECURITY.md']) {
+      assert.ok(html.includes(`href="${href}"`), `${url}: missing ${href}`);
+    }
+    assert.match(html, /rel="service-desc"[^>]*href="[^" ]*\/openapi.json"/);
+    const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+    assert.ok(schemas.some(schema => schema['@type'] === 'Organization' && schema.description));
+    const articles = schemas.filter(schema => schema['@type'] === 'TechArticle');
+    assert.equal(articles.length, pathname === '/' ? 0 : 1, url);
+    if (pathname === '/') continue;
+    const title = html.match(/<meta property="og:title" content="([^"]+)"/)?.[1];
+    assert.equal(articles[0].headline.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;').replaceAll('<', '&lt;').replaceAll('>', '&gt;'), title, url);
+    assert.equal(articles[0].url, url);
+    const crumbs = schemas.find(schema => schema['@type'] === 'BreadcrumbList');
+    assert.equal(crumbs.itemListElement.at(-1).item, url);
+  }
 });

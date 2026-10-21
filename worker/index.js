@@ -93,8 +93,11 @@ async function serveDocs(request, env) {
     if (!vary?.split(',').some(value => value.trim().toLowerCase() === 'accept')) {
       headers.set('Vary', vary ? `${vary}, Accept` : 'Accept')
     }
-    // Pages caches source assets separately; never cache a negotiated URL as one shared body.
-    headers.set('Cache-Control', 'private, no-store')
+    // Browsers may revalidate HTML; shared caches must not mix HTML and Markdown.
+    // Pages still caches the source assets independently of this negotiated response.
+    headers.set('Cache-Control', !markdown && [200, 304].includes(response.status)
+      ? 'private, no-cache'
+      : 'private, no-store')
   }
   if (response.status === 200) {
     if (url.pathname.endsWith('.md') && !html) headers.set('Content-Type', 'text/markdown; charset=utf-8')

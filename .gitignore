@@ -50,10 +50,12 @@ _pagefind/
 /public/**/*.md
 !/public/SKILL.md
 !/public/fibre-client.md
+!/public/specs/README.md
 /public/**/llms.txt
 /public/robots.txt
 /public/sitemap.xml
-/public/.well-known/
+/public/.well-known/*
+!/public/.well-known/security.txt
 package-lock.json
 
 /src/pages.gen.ts

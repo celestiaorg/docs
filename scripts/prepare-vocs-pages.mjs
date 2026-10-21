@@ -88,6 +88,8 @@ async function copyVocsRuntimeFiles() {
   const runtimeFiles = [
     ['root.css', '_root.css'],
     ['layout.tsx', '_layout.tsx'],
+    ['mdx-wrapper.tsx', '_mdx-wrapper.tsx'],
+    ['slots.tsx', '_slots.tsx'],
   ]
 
   for (const [sourceName, targetName] of runtimeFiles) {

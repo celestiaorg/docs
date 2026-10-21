@@ -240,3 +240,18 @@ h6 {
   color: var(--vocs-color-accent);
   border-bottom-color: currentColor;
 }
+
+.celestia-docs-footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  font-size: 0.875rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+}
+
+.celestia-docs-footer a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
