@@ -45,7 +45,7 @@ for (const path of ['/', '/build/post-retrieve-blob/client/go/']) {
     assert.match(response.headers.get('Content-Type') || '', new RegExp(`^${accept}\\b`))
     assert.ok(response.headers.get('Vary')?.split(',').some(value => value.trim().toLowerCase() === 'accept'), `${path}: missing Vary: Accept`)
     assert.match(response.headers.get('Link') || '', /rel="api-catalog"/)
-    assert.match(response.headers.get('Cache-Control') || '', /no-store/)
+    assert.equal(response.headers.get('Cache-Control'), accept === 'text/html' ? 'private, no-cache' : 'private, no-store')
     if (accept === 'text/markdown') {
       assert.equal(body, expected, `${path}: negotiated Markdown differs from static export`)
       assert.doesNotMatch(body, /<html|<script/i)
@@ -54,6 +54,18 @@ for (const path of ['/', '/build/post-retrieve-blob/client/go/']) {
   const head = await request(path, { method: 'HEAD', headers: { Accept: 'text/markdown' } })
   assert.match(head.headers.get('Content-Type') || '', /^text\/markdown/)
   assert.equal(await head.text(), '')
+}
+const spec = await (await request('/openapi.json')).json()
+assert.equal(spec.swagger, '2.0')
+assert.ok(spec.paths['/blob/v1/params'].get)
+const security = await (await request('/.well-known/security.txt')).text()
+assert.match(security, /^Contact: mailto:security@celestia\.org$/m)
+assert.ok(Date.parse(security.match(/^Expires: (.+)$/m)?.[1]) > Date.now())
+const sitemap = await (await request('/sitemap.xml')).text()
+assert.match(sitemap, /<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/)
+assert.ok([...sitemap.matchAll(/<loc>/g)].length > 50)
+for (const href of ['https://celestia.org/about/', 'https://celestia.org/contact/', 'https://celestia.org/privacy/', 'https://celestia.org/tos/']) {
+  assert.ok(homepage.includes(`href="${href}"`), `Missing trust link: ${href}`)
 }
 for (const method of ['GET', 'HEAD']) {
   const catalog = await request('/.well-known/api-catalog', { method })

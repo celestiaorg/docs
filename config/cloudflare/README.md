@@ -18,9 +18,12 @@ node scripts/check-cloudflare-deployment.mjs https://docs.celestia.org
 The smoke test checks real pages, assets, MCP tools, the API catalog, and
 HTML → Markdown → HTML requests to the homepage and a nested Go guide.
 Negotiated Markdown must match the static `.md` file, with `Content-Type:
-text/markdown` and `Vary: Accept`. Negotiated page URLs use `Cache-Control:
-private, no-store` to prevent a shared cache from mixing representations;
-static assets retain their normal caching. Explicit `.md` URLs remain available.
+text/markdown` and `Vary: Accept`. Successful HTML responses use `Cache-Control:
+private, no-cache`: browsers may store HTML and revalidate it with the asset ETag
+before reuse. Negotiated Markdown and HTML errors keep `private, no-store`.
+Shared caches must not store either representation at negotiated URLs;
+`Vary: Accept` alone does not isolate the Cloudflare cache. Pages source assets
+retain their normal caching. Explicit `.md` URLs remain available.
 
 Run a fresh [Content Site scan](https://isitagentready.com/docs.celestia.org?profile=content)
 and [Is Agentic scan](https://is-agentic.com/scan/docs.celestia.org) after cutover.

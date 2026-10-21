@@ -23,7 +23,7 @@ for (const [section, route, title, previous, next] of [
     '/build/post-retrieve-blob/fibre',
     'Mocha walkthrough',
     '/build/post-retrieve-blob/overview',
-    '/build/private-blockspace/about',
+    '/build/post-retrieve-blob/fibre/when-to-use',
   ],
   [
     'operate',

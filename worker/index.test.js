@@ -133,7 +133,7 @@ for (const pathname of ['/', '/learn/TIA/overview/']) {
       assert.equal(response.status, 200)
       assert.match(response.headers.get('Content-Type'), markdown ? /^text\/markdown/ : /^text\/html/)
       assert.match(response.headers.get('Vary'), /Accept/)
-      assert.match(response.headers.get('Cache-Control'), /no-store/)
+      assert.equal(response.headers.get('Cache-Control'), markdown ? 'private, no-store' : 'private, no-cache')
       assert.match(response.headers.get('Link'), /rel="api-catalog"/)
       if (!markdown) {
         assert.match(response.headers.get('Vary'), /Accept-Encoding/)
@@ -190,3 +190,18 @@ test('preserves redirects, errors and non-HTML assets; catalog type applies only
     if (path.endsWith('.svg')) assert.equal(result.headers.get('Cache-Control'), 'public, max-age=3600')
   }
 })
+
+
+test('HTML conditional requests preserve validators and require browser revalidation', async () => {
+  const env = { ASSETS: { async fetch(request) {
+    assert.equal(request.headers.get('If-None-Match'), '"html"');
+    return new Response(null, { status: 304, headers: { ETag: '"html"' } });
+  } } };
+  const response = await worker.fetch(new Request('https://docs.example/', {
+    headers: { Accept: 'text/html', 'If-None-Match': '"html"' },
+  }), env);
+  assert.equal(response.status, 304);
+  assert.equal(response.headers.get('ETag'), '"html"');
+  assert.equal(response.headers.get('Cache-Control'), 'private, no-cache');
+  assert.equal(response.headers.get('Vary'), 'Accept');
+});

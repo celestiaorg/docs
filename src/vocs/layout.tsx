@@ -13,6 +13,13 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Celestia',
+    description: siteDescription,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'security disclosures',
+      email: 'security@celestia.org',
+      url: 'https://github.com/celestiaorg/.github/blob/main/SECURITY.md',
+    },
     url: 'https://celestia.org',
     logo: `${siteOrigin}/logo-light.svg`,
     sameAs: [
@@ -27,25 +34,6 @@ const jsonLd = [
     name: 'Celestia Documentation',
     url: siteOrigin,
     description: siteDescription,
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'TechArticle',
-    headline: 'Celestia Documentation',
-    description: siteDescription,
-    url: siteOrigin,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Celestia',
-      url: 'https://celestia.org',
-    },
-    about: [
-      'Celestia',
-      'data availability',
-      'modular blockchain',
-      'blobspace',
-      'node operation',
-    ],
   },
   {
     '@context': 'https://schema.org',
@@ -70,6 +58,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <meta name="is-agentic-site-type" content="content" />
       <link rel="ard" type="application/json" href={withBasePath('/.well-known/ard.json')} />
       <link rel="ai-catalog" type="application/json" href={withBasePath('/.well-known/ai-catalog.json')} />
+      <link rel="service-desc" type="application/json" href={withBasePath('/openapi.json')} />
       <link rel="alternate" type="text/plain" href={withBasePath('/llms.txt')} />
       <link rel="alternate" type="text/plain" href={withBasePath('/llms-full.txt')} />
       <link
