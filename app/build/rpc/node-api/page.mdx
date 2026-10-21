@@ -18,13 +18,15 @@ linked in the API explorer below.
 For the separate celestia-app HTTP REST API, download the
 [OpenAPI specification (Swagger 2.0)](/openapi.json) or use the
 [upstream Swagger UI](https://celestiaorg.github.io/celestia-app/swagger/).
-This is the upstream v10 gRPC-gateway contract, not the node JSON-RPC API or an
+This gRPC-gateway contract is generated from the documented Mainnet Beta
+celestia-app `{{mainnetVersions['app-latest-tag']}}` release. It is not the node JSON-RPC API or an
 API hosted by this documentation site. Configure your client's base URL for your
 celestia-app REST provider; the upstream specification does not set a host.
 Provider and software versions determine which endpoints are available.
 
-The file follows this [upstream snapshot](https://github.com/celestiaorg/celestia-app/blob/3dd6e22d076ac2131156c98f20c1fda7df195d9c/swagger/swagger.json).
-Only duplicate operation IDs are made unique; endpoints and schemas are unchanged.
+Release automation updates this file alongside the Mainnet Beta version constants.
+Its `info.version` and `x-celestia-app-commit` identify the source release.
+Duplicate operation IDs are made unique for API client compatibility.
 
 ## Fibre
 

@@ -3,7 +3,7 @@
   "info": {
     "title": "Celestia App - REST API",
     "description": "Auto-generated OpenAPI spec for celestia-app gRPC-gateway endpoints.",
-    "version": "v10"
+    "version": "v10.4.0"
   },
   "consumes": [
     "application/json"
@@ -1080,6 +1080,7 @@
     "/cosmos/auth/v1beta1/account_info/{address}": {
       "get": {
         "summary": "AccountInfo queries account info which is common to all account types.",
+        "description": "Since: cosmos-sdk 0.47",
         "operationId": "AccountInfo",
         "responses": {
           "200": {
@@ -1112,7 +1113,7 @@
     "/cosmos/auth/v1beta1/accounts": {
       "get": {
         "summary": "Accounts returns all the existing accounts.",
-        "description": "When called from another module, this query might consume a high amount of\ngas if the pagination field is incorrectly set.",
+        "description": "When called from another module, this query might consume a high amount of\ngas if the pagination field is incorrectly set.\n\nSince: cosmos-sdk 0.43",
         "operationId": "Accounts",
         "responses": {
           "200": {
@@ -1162,7 +1163,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -1208,6 +1209,7 @@
     "/cosmos/auth/v1beta1/address_by_id/{id}": {
       "get": {
         "summary": "AccountAddressByID returns account address based on account number.",
+        "description": "Since: cosmos-sdk 0.46.2",
         "operationId": "AccountAddressByID",
         "responses": {
           "200": {
@@ -1234,7 +1236,7 @@
           },
           {
             "name": "accountId",
-            "description": "account_id is the account number of the address to be queried.",
+            "description": "account_id is the account number of the address to be queried.\n\nSince: cosmos-sdk 0.47",
             "in": "query",
             "required": false,
             "type": "string",
@@ -1249,6 +1251,7 @@
     "/cosmos/auth/v1beta1/bech32": {
       "get": {
         "summary": "Bech32Prefix queries bech32Prefix",
+        "description": "Since: cosmos-sdk 0.46",
         "operationId": "Bech32Prefix",
         "responses": {
           "200": {
@@ -1272,6 +1275,7 @@
     "/cosmos/auth/v1beta1/bech32/{addressBytes}": {
       "get": {
         "summary": "AddressBytesToString converts Account Address bytes to string",
+        "description": "Since: cosmos-sdk 0.46",
         "operationId": "AddressBytesToString",
         "responses": {
           "200": {
@@ -1304,6 +1308,7 @@
     "/cosmos/auth/v1beta1/bech32/{addressString}": {
       "get": {
         "summary": "AddressStringToBytes converts Address string to bytes",
+        "description": "Since: cosmos-sdk 0.46",
         "operationId": "AddressStringToBytes",
         "responses": {
           "200": {
@@ -1335,6 +1340,7 @@
     "/cosmos/auth/v1beta1/module_accounts": {
       "get": {
         "summary": "ModuleAccounts returns all the existing module accounts.",
+        "description": "Since: cosmos-sdk 0.46",
         "operationId": "ModuleAccounts",
         "responses": {
           "200": {
@@ -1480,7 +1486,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -1494,6 +1500,7 @@
     "/cosmos/authz/v1beta1/grants/grantee/{grantee}": {
       "get": {
         "summary": "GranteeGrants returns a list of `GrantAuthorization` by grantee.",
+        "description": "Since: cosmos-sdk 0.46",
         "operationId": "GranteeGrants",
         "responses": {
           "200": {
@@ -1549,7 +1556,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -1563,6 +1570,7 @@
     "/cosmos/authz/v1beta1/grants/granter/{granter}": {
       "get": {
         "summary": "GranterGrants returns list of `GrantAuthorization`, granted by granter.",
+        "description": "Since: cosmos-sdk 0.46",
         "operationId": "GranterGrants",
         "responses": {
           "200": {
@@ -1618,7 +1626,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -1689,14 +1697,14 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
           },
           {
             "name": "resolveDenom",
-            "description": "resolve_denom is the flag to resolve the denom into a human-readable form from the metadata.",
+            "description": "resolve_denom is the flag to resolve the denom into a human-readable form from the metadata.\n\nSince: cosmos-sdk 0.50",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -1749,7 +1757,7 @@
     "/cosmos/bank/v1beta1/denom_owners/{denom}": {
       "get": {
         "summary": "DenomOwners queries for all account addresses that own a particular token\ndenomination.",
-        "description": "When called from another module, this query might consume a high amount of\ngas if the pagination field is incorrectly set.",
+        "description": "When called from another module, this query might consume a high amount of\ngas if the pagination field is incorrectly set.\n\nSince: cosmos-sdk 0.46",
         "operationId": "DenomOwners",
         "responses": {
           "200": {
@@ -1771,77 +1779,6 @@
             "description": "denom defines the coin denomination to query all account holders for.",
             "in": "path",
             "required": true,
-            "type": "string",
-            "pattern": ".+"
-          },
-          {
-            "name": "pagination.key",
-            "description": "key is a value returned in PageResponse.next_key to begin\nquerying the next page most efficiently. Only one of offset or key\nshould be set.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "byte"
-          },
-          {
-            "name": "pagination.offset",
-            "description": "offset is a numeric offset that can be used when key is unavailable.\nIt is less efficient than using key. Only one of offset or key should\nbe set.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "uint64"
-          },
-          {
-            "name": "pagination.limit",
-            "description": "limit is the total number of results to be returned in the result page.\nIf left empty it will default to a value to be set by each app.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "uint64"
-          },
-          {
-            "name": "pagination.countTotal",
-            "description": "count_total is set to true  to indicate that the result set should include\na count of the total number of items available for pagination in UIs.\ncount_total is only respected when offset is used. It is ignored when key\nis set.",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          },
-          {
-            "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
-          }
-        ],
-        "tags": [
-          "Query"
-        ]
-      }
-    },
-    "/cosmos/bank/v1beta1/denom_owners_by_query": {
-      "get": {
-        "summary": "DenomOwnersByQuery queries for all account addresses that own a particular token\ndenomination.",
-        "operationId": "DenomOwnersByQuery",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1beta1QueryDenomOwnersByQueryResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "denom",
-            "description": "denom defines the coin denomination to query all account holders for.",
-            "in": "query",
-            "required": false,
             "type": "string"
           },
           {
@@ -1877,7 +1814,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -1940,7 +1877,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -1953,7 +1890,7 @@
     },
     "/cosmos/bank/v1beta1/denoms_metadata/{denom}": {
       "get": {
-        "summary": "DenomMetadata queries the client metadata of a given coin denomination.",
+        "summary": "DenomsMetadata queries the client metadata of a given coin denomination.",
         "operationId": "DenomMetadata",
         "responses": {
           "200": {
@@ -1975,39 +1912,6 @@
             "description": "denom is the coin denom to query the metadata for.",
             "in": "path",
             "required": true,
-            "type": "string",
-            "pattern": ".+"
-          }
-        ],
-        "tags": [
-          "Query"
-        ]
-      }
-    },
-    "/cosmos/bank/v1beta1/denoms_metadata_by_query_string": {
-      "get": {
-        "summary": "DenomMetadataByQueryString queries the client metadata of a given coin denomination.",
-        "operationId": "DenomMetadataByQueryString",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1beta1QueryDenomMetadataByQueryStringResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "denom",
-            "description": "denom is the coin denom to query the metadata for.",
-            "in": "query",
-            "required": false,
             "type": "string"
           }
         ],
@@ -2042,7 +1946,7 @@
     "/cosmos/bank/v1beta1/send_enabled": {
       "get": {
         "summary": "SendEnabled queries for SendEnabled entries.",
-        "description": "This query only returns denominations that have specific SendEnabled settings.\nAny denomination that does not have a specific setting will use the default\nparams.default_send_enabled, and will not be returned by this query.",
+        "description": "This query only returns denominations that have specific SendEnabled settings.\nAny denomination that does not have a specific setting will use the default\nparams.default_send_enabled, and will not be returned by this query.\n\nSince: cosmos-sdk 0.47",
         "operationId": "SendEnabled",
         "responses": {
           "200": {
@@ -2103,7 +2007,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -2117,7 +2021,7 @@
     "/cosmos/bank/v1beta1/spendable_balances/{address}": {
       "get": {
         "summary": "SpendableBalances queries the spendable balance of all coins for a single\naccount.",
-        "description": "When called from another module, this query might consume a high amount of\ngas if the pagination field is incorrectly set.",
+        "description": "When called from another module, this query might consume a high amount of\ngas if the pagination field is incorrectly set.\n\nSince: cosmos-sdk 0.46",
         "operationId": "SpendableBalances",
         "responses": {
           "200": {
@@ -2174,7 +2078,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -2188,7 +2092,7 @@
     "/cosmos/bank/v1beta1/spendable_balances/{address}/by_denom": {
       "get": {
         "summary": "SpendableBalanceByDenom queries the spendable balance of a single denom for\na single account.",
-        "description": "When called from another module, this query might consume a high amount of\ngas if the pagination field is incorrectly set.",
+        "description": "When called from another module, this query might consume a high amount of\ngas if the pagination field is incorrectly set.\n\nSince: cosmos-sdk 0.47",
         "operationId": "SpendableBalanceByDenom",
         "responses": {
           "200": {
@@ -2278,7 +2182,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -2348,7 +2252,6 @@
     "/cosmos/distribution/v1beta1/community_pool": {
       "get": {
         "summary": "CommunityPool queries the community pool coins.",
-        "description": "WARNING: This query will fail if an external community pool is used.",
         "operationId": "CommunityPool",
         "responses": {
           "200": {
@@ -2410,45 +2313,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v1beta1QueryDelegationRewardsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "delegatorAddress",
-            "description": "delegator_address defines the delegator address to query for.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "validatorAddress",
-            "description": "validator_address defines the validator address to query for.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Query"
-        ]
-      }
-    },
-    "/cosmos/distribution/v1beta1/delegators/{delegatorAddress}/starting_info/{validatorAddress}": {
-      "get": {
-        "summary": "DelegatorStartingInfo queries the starting info for a delegator.",
-        "operationId": "DelegatorStartingInfo",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1beta1QueryDelegatorStartingInfoResponse"
             }
           },
           "default": {
@@ -2630,78 +2494,6 @@
         ]
       }
     },
-    "/cosmos/distribution/v1beta1/validators/{validatorAddress}/current_rewards": {
-      "get": {
-        "summary": "ValidatorCurrentRewards queries current rewards for a validator.",
-        "operationId": "ValidatorCurrentRewards",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1beta1QueryValidatorCurrentRewardsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "validatorAddress",
-            "description": "validator_address defines the validator address to query for.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Query"
-        ]
-      }
-    },
-    "/cosmos/distribution/v1beta1/validators/{validatorAddress}/historical_rewards/{period}": {
-      "get": {
-        "summary": "ValidatorHistoricalRewards queries historical rewards for a validator at a specific period.",
-        "operationId": "ValidatorHistoricalRewards",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1beta1QueryValidatorHistoricalRewardsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "validatorAddress",
-            "description": "validator_address defines the validator address to query for.",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "period",
-            "description": "period defines the period to query historical rewards for.",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "uint64"
-          }
-        ],
-        "tags": [
-          "Query"
-        ]
-      }
-    },
     "/cosmos/distribution/v1beta1/validators/{validatorAddress}/outstanding_rewards": {
       "get": {
         "summary": "ValidatorOutstandingRewards queries rewards of a validator address.",
@@ -2809,7 +2601,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -2872,7 +2664,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -2904,7 +2696,7 @@
         "parameters": [
           {
             "name": "hash",
-            "description": "hash defines the evidence hash of the requested evidence.",
+            "description": "hash defines the evidence hash of the requested evidence.\n\nSince: cosmos-sdk 0.47",
             "in": "path",
             "required": true,
             "type": "string"
@@ -2925,7 +2717,7 @@
     },
     "/cosmos/feegrant/v1beta1/allowance/{granter}/{grantee}": {
       "get": {
-        "summary": "Allowance returns granted allowance to the grantee by the granter.",
+        "summary": "Allowance returns granted allwance to the grantee by the granter.",
         "operationId": "Allowance",
         "responses": {
           "200": {
@@ -3020,7 +2812,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -3034,6 +2826,7 @@
     "/cosmos/feegrant/v1beta1/issued/{granter}": {
       "get": {
         "summary": "AllowancesByGranter returns all the grants given by an address",
+        "description": "Since: cosmos-sdk 0.46",
         "operationId": "AllowancesByGranter",
         "responses": {
           "200": {
@@ -3089,7 +2882,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -3237,7 +3030,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -3341,7 +3134,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -3485,7 +3278,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -3650,7 +3443,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -3754,7 +3547,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -3898,7 +3691,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -3991,6 +3784,7 @@
     "/cosmos/params/v1beta1/subspaces": {
       "get": {
         "summary": "Subspaces queries for all registered subspaces and all keys for a subspace.",
+        "description": "Since: cosmos-sdk 0.46",
         "operationId": "Subspaces",
         "responses": {
           "200": {
@@ -4086,7 +3880,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -4189,7 +3983,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -4274,7 +4068,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -4345,7 +4139,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -4416,7 +4210,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -4605,7 +4399,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -4708,7 +4502,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -4857,7 +4651,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -4871,6 +4665,7 @@
     "/cosmos/tx/v1beta1/decode": {
       "post": {
         "summary": "TxDecode decodes the transaction.",
+        "description": "Since: cosmos-sdk 0.47",
         "operationId": "TxDecode",
         "responses": {
           "200": {
@@ -4889,7 +4684,7 @@
         "parameters": [
           {
             "name": "body",
-            "description": "TxDecodeRequest is the request type for the Service.TxDecode\nRPC method.",
+            "description": "TxDecodeRequest is the request type for the Service.TxDecode\nRPC method.\n\nSince: cosmos-sdk 0.47",
             "in": "body",
             "required": true,
             "schema": {
@@ -4905,6 +4700,7 @@
     "/cosmos/tx/v1beta1/decode/amino": {
       "post": {
         "summary": "TxDecodeAmino decodes an Amino transaction from encoded bytes to JSON.",
+        "description": "Since: cosmos-sdk 0.47",
         "operationId": "TxDecodeAmino",
         "responses": {
           "200": {
@@ -4923,7 +4719,7 @@
         "parameters": [
           {
             "name": "body",
-            "description": "TxDecodeAminoRequest is the request type for the Service.TxDecodeAmino\nRPC method.",
+            "description": "TxDecodeAminoRequest is the request type for the Service.TxDecodeAmino\nRPC method.\n\nSince: cosmos-sdk 0.47",
             "in": "body",
             "required": true,
             "schema": {
@@ -4939,6 +4735,7 @@
     "/cosmos/tx/v1beta1/encode": {
       "post": {
         "summary": "TxEncode encodes the transaction.",
+        "description": "Since: cosmos-sdk 0.47",
         "operationId": "TxEncode",
         "responses": {
           "200": {
@@ -4957,7 +4754,7 @@
         "parameters": [
           {
             "name": "body",
-            "description": "TxEncodeRequest is the request type for the Service.TxEncode\nRPC method.",
+            "description": "TxEncodeRequest is the request type for the Service.TxEncode\nRPC method.\n\nSince: cosmos-sdk 0.47",
             "in": "body",
             "required": true,
             "schema": {
@@ -4973,6 +4770,7 @@
     "/cosmos/tx/v1beta1/encode/amino": {
       "post": {
         "summary": "TxEncodeAmino encodes an Amino transaction from JSON to encoded bytes.",
+        "description": "Since: cosmos-sdk 0.47",
         "operationId": "TxEncodeAmino",
         "responses": {
           "200": {
@@ -4991,7 +4789,7 @@
         "parameters": [
           {
             "name": "body",
-            "description": "TxEncodeAminoRequest is the request type for the Service.TxEncodeAmino\nRPC method.",
+            "description": "TxEncodeAminoRequest is the request type for the Service.TxEncodeAmino\nRPC method.\n\nSince: cosmos-sdk 0.47",
             "in": "body",
             "required": true,
             "schema": {
@@ -5101,7 +4899,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -5137,7 +4935,7 @@
           },
           {
             "name": "query",
-            "description": "query defines the transaction event query that is proxied to Tendermint's\nTxSearch RPC method. The query must be valid.",
+            "description": "query defines the transaction event query that is proxied to Tendermint's\nTxSearch RPC method. The query must be valid.\n\nSince cosmos-sdk 0.50",
             "in": "query",
             "required": false,
             "type": "string"
@@ -5183,6 +4981,7 @@
     "/cosmos/tx/v1beta1/txs/block/{height}": {
       "get": {
         "summary": "GetBlockWithTxs fetches a block with decoded txs.",
+        "description": "Since: cosmos-sdk 0.45.2",
         "operationId": "GetBlockWithTxs",
         "responses": {
           "200": {
@@ -5240,7 +5039,7 @@
           },
           {
             "name": "pagination.reverse",
-            "description": "reverse is set to true if results are to be returned in the descending order.",
+            "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -5318,6 +5117,7 @@
     "/cosmos/upgrade/v1beta1/authority": {
       "get": {
         "summary": "Returns the account with authority to conduct upgrades",
+        "description": "Since: cosmos-sdk 0.46",
         "operationId": "Authority",
         "responses": {
           "200": {
@@ -5364,6 +5164,7 @@
     "/cosmos/upgrade/v1beta1/module_versions": {
       "get": {
         "summary": "ModuleVersions queries the list of module versions from state.",
+        "description": "Since: cosmos-sdk 0.43",
         "operationId": "ModuleVersions",
         "responses": {
           "200": {
@@ -5489,7 +5290,7 @@
         },
         "params": {
           "$ref": "#/definitions/govv1Params",
-          "description": "params defines all the parameters of x/gov module."
+          "description": "params defines all the paramaters of x/gov module.\n\nSince: cosmos-sdk 0.47"
         }
       },
       "description": "QueryParamsResponse is the response type for the Query/Params RPC method."
@@ -5892,7 +5693,7 @@
         },
         "reverse": {
           "type": "boolean",
-          "description": "reverse is set to true if results are to be returned in the descending order."
+          "description": "reverse is set to true if results are to be returned in the descending order.\n\nSince: cosmos-sdk 0.43"
         }
       },
       "description": "message SomeRequest {\n         Foo some_parameter = 1;\n         PageRequest pagination = 2;\n }",
@@ -6438,7 +6239,7 @@
           "type": "string"
         }
       },
-      "description": "AddressBytesToStringResponse is the response type for AddressString rpc method."
+      "description": "AddressBytesToStringResponse is the response type for AddressString rpc method.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1AddressStringToBytesResponse": {
       "type": "object",
@@ -6448,7 +6249,7 @@
           "format": "byte"
         }
       },
-      "description": "AddressStringToBytesResponse is the response type for AddressBytes rpc method."
+      "description": "AddressStringToBytesResponse is the response type for AddressBytes rpc method.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1BaseAccount": {
       "type": "object",
@@ -6477,7 +6278,7 @@
           "type": "string"
         }
       },
-      "description": "Bech32PrefixResponse is the response type for Bech32Prefix rpc method."
+      "description": "Bech32PrefixResponse is the response type for Bech32Prefix rpc method.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1QueryAccountAddressByIDResponse": {
       "type": "object",
@@ -6486,6 +6287,7 @@
           "type": "string"
         }
       },
+      "description": "Since: cosmos-sdk 0.46.2",
       "title": "QueryAccountAddressByIDResponse is the response type for AccountAddressByID rpc method"
     },
     "v1beta1QueryAccountInfoResponse": {
@@ -6496,7 +6298,7 @@
           "description": "info is the account info which is represented by BaseAccount."
         }
       },
-      "description": "QueryAccountInfoResponse is the Query/AccountInfo response type."
+      "description": "QueryAccountInfoResponse is the Query/AccountInfo response type.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1QueryAccountResponse": {
       "type": "object",
@@ -6524,7 +6326,7 @@
           "description": "pagination defines the pagination in the response."
         }
       },
-      "description": "QueryAccountsResponse is the response type for the Query/Accounts RPC method."
+      "description": "QueryAccountsResponse is the response type for the Query/Accounts RPC method.\n\nSince: cosmos-sdk 0.43"
     },
     "v1beta1QueryModuleAccountByNameResponse": {
       "type": "object",
@@ -6546,7 +6348,7 @@
           }
         }
       },
-      "description": "QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method."
+      "description": "QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1QueryParamsResponse": {
       "type": "object",
@@ -6560,7 +6362,7 @@
     },
     "v1beta1MsgUpdateParamsResponse": {
       "type": "object",
-      "description": "MsgUpdateParamsResponse defines the response structure for executing a\nMsgUpdateParams message."
+      "description": "MsgUpdateParamsResponse defines the response structure for executing a\nMsgUpdateParams message.\n\nSince: cosmos-sdk 0.47"
     },
     "authzv1beta1Grant": {
       "type": "object",
@@ -6608,7 +6410,7 @@
         },
         "pagination": {
           "$ref": "#/definitions/v1beta1PageResponse",
-          "description": "pagination defines a pagination for the response."
+          "description": "pagination defines an pagination for the response."
         }
       },
       "description": "QueryGranteeGrantsResponse is the response type for the Query/GranteeGrants RPC method."
@@ -6626,7 +6428,7 @@
         },
         "pagination": {
           "$ref": "#/definitions/v1beta1PageResponse",
-          "description": "pagination defines a pagination for the response."
+          "description": "pagination defines an pagination for the response."
         }
       },
       "description": "QueryGranterGrantsResponse is the response type for the Query/GranterGrants RPC method."
@@ -6644,7 +6446,7 @@
         },
         "pagination": {
           "$ref": "#/definitions/v1beta1PageResponse",
-          "description": "pagination defines a pagination for the response."
+          "description": "pagination defines an pagination for the response."
         }
       },
       "description": "QueryGrantsResponse is the response type for the Query/Authorizations RPC method."
@@ -6711,7 +6513,7 @@
           "description": "balance is the balance of the denominated coin for an account."
         }
       },
-      "description": "DenomOwner defines structure representing an account that owns or holds a\nparticular denominated token. It contains the account address and account\nbalance of the denominated token."
+      "description": "DenomOwner defines structure representing an account that owns or holds a\nparticular denominated token. It contains the account address and account\nbalance of the denominated token.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1DenomUnit": {
       "type": "object",
@@ -6759,19 +6561,20 @@
         },
         "name": {
           "type": "string",
+          "description": "Since: cosmos-sdk 0.43",
           "title": "name defines the name of the token (eg: Cosmos Atom)"
         },
         "symbol": {
           "type": "string",
-          "description": "symbol is the token symbol usually shown on exchanges (eg: ATOM). This can\nbe the same as the display."
+          "description": "symbol is the token symbol usually shown on exchanges (eg: ATOM). This can\nbe the same as the display.\n\nSince: cosmos-sdk 0.43"
         },
         "uri": {
           "type": "string",
-          "description": "URI to a document (on or off-chain) that contains additional information. Optional."
+          "description": "URI to a document (on or off-chain) that contains additional information. Optional.\n\nSince: cosmos-sdk 0.46"
         },
         "uriHash": {
           "type": "string",
-          "description": "URIHash is a sha256 hash of a document pointed by URI. It's used to verify that\nthe document didn't change. Optional."
+          "description": "URIHash is a sha256 hash of a document pointed by URI. It's used to verify that\nthe document didn't change. Optional.\n\nSince: cosmos-sdk 0.46"
         }
       },
       "description": "Metadata represents a struct that describes\na basic token."
@@ -6804,16 +6607,6 @@
       },
       "description": "QueryBalanceResponse is the response type for the Query/Balance RPC method."
     },
-    "v1beta1QueryDenomMetadataByQueryStringResponse": {
-      "type": "object",
-      "properties": {
-        "metadata": {
-          "$ref": "#/definitions/v1beta1Metadata",
-          "description": "metadata describes and provides all the client information for the requested token."
-        }
-      },
-      "description": "QueryDenomMetadataByQueryStringResponse is the response type for the Query/DenomMetadata RPC\nmethod. Identical with QueryDenomMetadataResponse but receives denom as query string in request."
-    },
     "v1beta1QueryDenomMetadataResponse": {
       "type": "object",
       "properties": {
@@ -6823,23 +6616,6 @@
         }
       },
       "description": "QueryDenomMetadataResponse is the response type for the Query/DenomMetadata RPC\nmethod."
-    },
-    "v1beta1QueryDenomOwnersByQueryResponse": {
-      "type": "object",
-      "properties": {
-        "denomOwners": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1beta1DenomOwner"
-          }
-        },
-        "pagination": {
-          "$ref": "#/definitions/v1beta1PageResponse",
-          "description": "pagination defines the pagination in the response."
-        }
-      },
-      "description": "QueryDenomOwnersByQueryResponse defines the RPC response of a DenomOwnersByQuery RPC query."
     },
     "v1beta1QueryDenomOwnersResponse": {
       "type": "object",
@@ -6856,7 +6632,7 @@
           "description": "pagination defines the pagination in the response."
         }
       },
-      "description": "QueryDenomOwnersResponse defines the RPC response of a DenomOwners RPC query."
+      "description": "QueryDenomOwnersResponse defines the RPC response of a DenomOwners RPC query.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1QueryDenomsMetadataResponse": {
       "type": "object",
@@ -6891,7 +6667,7 @@
           "description": "pagination defines the pagination in the response. This field is only\npopulated if the denoms field in the request is empty."
         }
       },
-      "description": "QuerySendEnabledResponse defines the RPC response of a SendEnable query."
+      "description": "QuerySendEnabledResponse defines the RPC response of a SendEnable query.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1QuerySpendableBalanceByDenomResponse": {
       "type": "object",
@@ -6901,7 +6677,7 @@
           "description": "balance is the balance of the coin."
         }
       },
-      "description": "QuerySpendableBalanceByDenomResponse defines the gRPC response structure for\nquerying an account's spendable balance for a specific denom."
+      "description": "QuerySpendableBalanceByDenomResponse defines the gRPC response structure for\nquerying an account's spendable balance for a specific denom.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1QuerySpendableBalancesResponse": {
       "type": "object",
@@ -6919,7 +6695,7 @@
           "description": "pagination defines the pagination in the response."
         }
       },
-      "description": "QuerySpendableBalancesResponse defines the gRPC response structure for querying\nan account's spendable balances."
+      "description": "QuerySpendableBalancesResponse defines the gRPC response structure for querying\nan account's spendable balances.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1QuerySupplyOfResponse": {
       "type": "object",
@@ -6944,7 +6720,7 @@
         },
         "pagination": {
           "$ref": "#/definitions/v1beta1PageResponse",
-          "description": "pagination defines the pagination in the response."
+          "description": "pagination defines the pagination in the response.\n\nSince: cosmos-sdk 0.43"
         }
       },
       "title": "QueryTotalSupplyResponse is the response type for the Query/TotalSupply RPC\nmethod"
@@ -6975,7 +6751,7 @@
     },
     "v1beta1MsgSetSendEnabledResponse": {
       "type": "object",
-      "description": "MsgSetSendEnabledResponse defines the Msg/SetSendEnabled response type."
+      "description": "MsgSetSendEnabledResponse defines the Msg/SetSendEnabled response type.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1Output": {
       "type": "object",
@@ -7085,24 +6861,7 @@
     },
     "v1MsgUpdateParamsResponse": {
       "type": "object",
-      "description": "MsgUpdateParamsResponse defines the response structure for executing a\nMsgUpdateParams message."
-    },
-    "distributionv1beta1DelegatorStartingInfo": {
-      "type": "object",
-      "properties": {
-        "previousPeriod": {
-          "type": "string",
-          "format": "uint64"
-        },
-        "stake": {
-          "type": "string"
-        },
-        "height": {
-          "type": "string",
-          "format": "uint64"
-        }
-      },
-      "description": "DelegatorStartingInfo represents the starting info for a delegator reward\nperiod. It tracks the previous validator period, the delegation's amount of\nstaking token, and the creation height (to check later on if any slashes have\noccurred). NOTE: Even though validators are slashed to whole staking tokens,\nthe delegators within the validator may be left with less than a full token,\nthus sdk.Dec is used."
+      "description": "MsgUpdateParamsResponse defines the response structure for executing a\nMsgUpdateParams message.\n\nSince: cosmos-sdk 0.47"
     },
     "distributionv1beta1Params": {
       "type": "object",
@@ -7123,40 +6882,6 @@
         }
       },
       "description": "Params defines the set of params for the distribution module."
-    },
-    "distributionv1beta1ValidatorCurrentRewards": {
-      "type": "object",
-      "properties": {
-        "rewards": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1beta1DecCoin"
-          }
-        },
-        "period": {
-          "type": "string",
-          "format": "uint64"
-        }
-      },
-      "description": "ValidatorCurrentRewards represents current rewards and current\nperiod for a validator kept as a running counter and incremented\neach block as long as the validator's tokens remain constant."
-    },
-    "distributionv1beta1ValidatorHistoricalRewards": {
-      "type": "object",
-      "properties": {
-        "cumulativeRewardRatio": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1beta1DecCoin"
-          }
-        },
-        "referenceCount": {
-          "type": "integer",
-          "format": "int64"
-        }
-      },
-      "title": "ValidatorHistoricalRewards represents historical rewards for a validator.\nHeight is implicit within the store key.\nCumulative reward ratio is the sum from the zeroeth period\nuntil this period of rewards / tokens, per the spec.\nThe reference count indicates the number of objects\nwhich might need to reference this historical entry at any point.\nReferenceCount =\n   number of outstanding delegations which ended the associated period (and\n   might need to read that record)\n + number of slashes which ended the associated period (and might need to\n read that record)\n + one per validator for the zeroeth period, set on initialization"
     },
     "distributionv1beta1ValidatorOutstandingRewards": {
       "type": "object",
@@ -7181,7 +6906,7 @@
           "type": "string"
         }
       },
-      "description": "DecCoin defines a token with a denomination and a decimal amount.\n\nNOTE: The amount field is a Dec which implements the custom method\nsignatures required by gogoproto."
+      "description": "DecCoin defines a token with a denomination and a decimal amount.\n\nNOTE: The amount field is an Dec which implements the custom method\nsignatures required by gogoproto."
     },
     "v1beta1DelegationDelegatorReward": {
       "type": "object",
@@ -7249,16 +6974,6 @@
       },
       "description": "QueryDelegationTotalRewardsResponse is the response type for the\nQuery/DelegationTotalRewards RPC method."
     },
-    "v1beta1QueryDelegatorStartingInfoResponse": {
-      "type": "object",
-      "properties": {
-        "startingInfo": {
-          "$ref": "#/definitions/distributionv1beta1DelegatorStartingInfo",
-          "description": "starting_info defines the starting info of a delegator."
-        }
-      },
-      "description": "QueryDelegatorStartingInfoResponse is the response type for the\nQuery/DelegatorStartingInfo RPC method."
-    },
     "v1beta1QueryDelegatorValidatorsResponse": {
       "type": "object",
       "properties": {
@@ -7297,16 +7012,6 @@
       },
       "title": "QueryValidatorCommissionResponse is the response type for the\nQuery/ValidatorCommission RPC method"
     },
-    "v1beta1QueryValidatorCurrentRewardsResponse": {
-      "type": "object",
-      "properties": {
-        "rewards": {
-          "$ref": "#/definitions/distributionv1beta1ValidatorCurrentRewards",
-          "description": "rewards defines the current rewards of a validator."
-        }
-      },
-      "description": "QueryValidatorCurrentRewardsResponse is the response type for the\nQuery/ValidatorCurrentRewards RPC method."
-    },
     "v1beta1QueryValidatorDistributionInfoResponse": {
       "type": "object",
       "properties": {
@@ -7332,16 +7037,6 @@
         }
       },
       "description": "QueryValidatorDistributionInfoResponse is the response type for the Query/ValidatorDistributionInfo RPC method."
-    },
-    "v1beta1QueryValidatorHistoricalRewardsResponse": {
-      "type": "object",
-      "properties": {
-        "rewards": {
-          "$ref": "#/definitions/distributionv1beta1ValidatorHistoricalRewards",
-          "description": "rewards defines the historical rewards of a validator."
-        }
-      },
-      "description": "QueryValidatorHistoricalRewardsResponse is the response type for the\nQuery/ValidatorHistoricalRewards RPC method."
     },
     "v1beta1QueryValidatorOutstandingRewardsResponse": {
       "type": "object",
@@ -7398,11 +7093,11 @@
     },
     "v1beta1MsgCommunityPoolSpendResponse": {
       "type": "object",
-      "description": "MsgCommunityPoolSpendResponse defines the response to executing a\nMsgCommunityPoolSpend message."
+      "description": "MsgCommunityPoolSpendResponse defines the response to executing a\nMsgCommunityPoolSpend message.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1MsgDepositValidatorRewardsPoolResponse": {
       "type": "object",
-      "description": "MsgDepositValidatorRewardsPoolResponse defines the response to executing a\nMsgDepositValidatorRewardsPool message."
+      "description": "MsgDepositValidatorRewardsPoolResponse defines the response to executing a\nMsgDepositValidatorRewardsPool message.\n\nSince: cosmos-sdk 0.50"
     },
     "v1beta1MsgFundCommunityPoolResponse": {
       "type": "object",
@@ -7420,7 +7115,8 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/v1beta1Coin"
-          }
+          },
+          "title": "Since: cosmos-sdk 0.46"
         }
       },
       "description": "MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward\nresponse type."
@@ -7433,7 +7129,8 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/v1beta1Coin"
-          }
+          },
+          "title": "Since: cosmos-sdk 0.46"
         }
       },
       "description": "MsgWithdrawValidatorCommissionResponse defines the\nMsg/WithdrawValidatorCommission response type."
@@ -7500,7 +7197,7 @@
       "properties": {
         "allowance": {
           "$ref": "#/definitions/v1beta1Grant",
-          "description": "allowance is an allowance granted for grantee by granter."
+          "description": "allowance is a allowance granted for grantee by granter."
         }
       },
       "description": "QueryAllowanceResponse is the response type for the Query/Allowance RPC method."
@@ -7518,10 +7215,10 @@
         },
         "pagination": {
           "$ref": "#/definitions/v1beta1PageResponse",
-          "description": "pagination defines a pagination for the response."
+          "description": "pagination defines an pagination for the response."
         }
       },
-      "description": "QueryAllowancesByGranterResponse is the response type for the Query/AllowancesByGranter RPC method."
+      "description": "QueryAllowancesByGranterResponse is the response type for the Query/AllowancesByGranter RPC method.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1QueryAllowancesResponse": {
       "type": "object",
@@ -7536,7 +7233,7 @@
         },
         "pagination": {
           "$ref": "#/definitions/v1beta1PageResponse",
-          "description": "pagination defines a pagination for the response."
+          "description": "pagination defines an pagination for the response."
         }
       },
       "description": "QueryAllowancesResponse is the response type for the Query/Allowances RPC method."
@@ -7544,10 +7241,6 @@
     "v1beta1MsgGrantAllowanceResponse": {
       "type": "object",
       "description": "MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type."
-    },
-    "v1beta1MsgPruneAllowancesResponse": {
-      "type": "object",
-      "description": "MsgPruneAllowancesResponse defines the Msg/PruneAllowancesResponse response type."
     },
     "v1beta1MsgRevokeAllowanceResponse": {
       "type": "object",
@@ -7613,19 +7306,19 @@
         },
         "proposalCancelRatio": {
           "type": "string",
-          "description": "The cancel ratio which will not be returned back to the depositors when a proposal is cancelled."
+          "description": "The cancel ratio which will not be returned back to the depositors when a proposal is cancelled.\n\nSince: cosmos-sdk 0.50"
         },
         "proposalCancelDest": {
           "type": "string",
-          "description": "The address which will receive (proposal_cancel_ratio * deposit) proposal deposits.\nIf empty, the (proposal_cancel_ratio * deposit) proposal deposits will be burned."
+          "description": "The address which will receive (proposal_cancel_ratio * deposit) proposal deposits.\nIf empty, the (proposal_cancel_ratio * deposit) proposal deposits will be burned.\n\nSince: cosmos-sdk 0.50"
         },
         "expeditedVotingPeriod": {
           "type": "string",
-          "description": "Duration of the voting period of an expedited proposal."
+          "description": "Duration of the voting period of an expedited proposal.\n\nSince: cosmos-sdk 0.50"
         },
         "expeditedThreshold": {
           "type": "string",
-          "description": "Minimum proportion of Yes votes for proposal to pass. Default value: 0.67."
+          "description": "Minimum proportion of Yes votes for proposal to pass. Default value: 0.67.\n\nSince: cosmos-sdk 0.50"
         },
         "expeditedMinDeposit": {
           "type": "array",
@@ -7646,13 +7339,9 @@
         "burnVoteVeto": {
           "type": "boolean",
           "title": "burn deposits if quorum with vote type no_veto is met"
-        },
-        "minDepositRatio": {
-          "type": "string",
-          "description": "The ratio representing the proportion of the deposit value minimum that must be met when making a deposit.\nDefault value: 0.01. Meaning that for a chain with a min_deposit of 100stake, a deposit of 1stake would be\nrequired."
         }
       },
-      "description": "Params defines the parameters for the x/gov module."
+      "description": "Params defines the parameters for the x/gov module.\n\nSince: cosmos-sdk 0.47"
     },
     "govv1Proposal": {
       "type": "object",
@@ -7708,26 +7397,31 @@
         },
         "metadata": {
           "type": "string",
-          "title": "metadata is any arbitrary metadata attached to the proposal.\nthe recommended format of the metadata is to be found here:\nhttps://docs.cosmos.network/v0.47/modules/gov#proposal-3"
+          "title": "metadata is any arbitrary metadata attached to the proposal.\nthe recommended format of the metadata is to be found here: https://docs.cosmos.network/v0.47/modules/gov#proposal-3"
         },
         "title": {
           "type": "string",
+          "description": "Since: cosmos-sdk 0.47",
           "title": "title is the title of the proposal"
         },
         "summary": {
           "type": "string",
+          "description": "Since: cosmos-sdk 0.47",
           "title": "summary is a short summary of the proposal"
         },
         "proposer": {
           "type": "string",
-          "title": "proposer is the address of the proposal submitter"
+          "description": "Since: cosmos-sdk 0.47",
+          "title": "proposer is the address of the proposal sumbitter"
         },
         "expedited": {
           "type": "boolean",
+          "description": "Since: cosmos-sdk 0.50",
           "title": "expedited defines if the proposal is expedited"
         },
         "failedReason": {
           "type": "string",
+          "description": "Since: cosmos-sdk 0.50",
           "title": "failed_reason defines the reason why the proposal failed"
         }
       },
@@ -7989,7 +7683,7 @@
           "description": "canceled_height defines the block height at which the proposal is canceled."
         }
       },
-      "description": "MsgCancelProposalResponse defines the response structure for executing a\nMsgCancelProposal message."
+      "description": "MsgCancelProposalResponse defines the response structure for executing a\nMsgCancelProposal message.\n\nSince: cosmos-sdk 0.50"
     },
     "v1MsgDepositResponse": {
       "type": "object",
@@ -8136,7 +7830,7 @@
             "type": "object",
             "$ref": "#/definitions/v1beta1WeightedVoteOption"
           },
-          "description": "options is the weighted vote options."
+          "description": "options is the weighted vote options.\n\nSince: cosmos-sdk 0.43"
         }
       },
       "description": "Vote defines a vote on a governance proposal.\nA Vote consists of a proposal ID, the voter, and the vote option."
@@ -8320,7 +8014,7 @@
           "description": "weight is the vote weight associated with the vote option."
         }
       },
-      "description": "WeightedVoteOption defines a unit of vote for vote split."
+      "description": "WeightedVoteOption defines a unit of vote for vote split.\n\nSince: cosmos-sdk 0.43"
     },
     "v1beta1MsgDepositResponse": {
       "type": "object",
@@ -8343,7 +8037,7 @@
     },
     "v1beta1MsgVoteWeightedResponse": {
       "type": "object",
-      "description": "MsgVoteWeightedResponse defines the Msg/VoteWeighted response type."
+      "description": "MsgVoteWeightedResponse defines the Msg/VoteWeighted response type.\n\nSince: cosmos-sdk 0.43"
     },
     "v1beta1ParamChange": {
       "type": "object",
@@ -8371,7 +8065,7 @@
           }
         }
       },
-      "description": "QuerySubspacesResponse defines the response types for querying for all\nregistered subspaces and all keys for a subspace."
+      "description": "QuerySubspacesResponse defines the response types for querying for all\nregistered subspaces and all keys for a subspace.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1Subspace": {
       "type": "object",
@@ -8386,7 +8080,7 @@
           }
         }
       },
-      "description": "Subspace defines a parameter subspace name and all the keys that exist for\nthe subspace."
+      "description": "Subspace defines a parameter subspace name and all the keys that exist for\nthe subspace.\n\nSince: cosmos-sdk 0.46"
     },
     "slashingv1beta1Params": {
       "type": "object",
@@ -8625,7 +8319,7 @@
         },
         "minSelfDelegation": {
           "type": "string",
-          "description": "min_self_delegation is the validator's self declared minimum self delegation."
+          "description": "min_self_delegation is the validator's self declared minimum self delegation.\n\nSince: cosmos-sdk 0.46"
         },
         "unbondingOnHoldRefCount": {
           "type": "string",
@@ -8638,7 +8332,7 @@
             "type": "string",
             "format": "uint64"
           },
-          "title": "list of unbonding ids, each uniquely identifying an unbonding of this validator"
+          "title": "list of unbonding ids, each uniquely identifing an unbonding of this validator"
         }
       },
       "description": "Validator defines a validator, together with the total amount of the\nValidator's bond shares and their exchange rate to coins. Slashing results in\na decrease in the exchange rate, allowing correct calculation of future\nundelegations without iterating over delegators. When coins are delegated to\nthis validator, the validator is credited with a delegation whose number of\nbond shares is based on the amount of coins delegated divided by the current\nexchange rate. Voting power can be calculated as total bonded shares\nmultiplied by exchange rate."
@@ -9137,6 +8831,7 @@
     },
     "v1beta1MsgCancelUnbondingDelegationResponse": {
       "type": "object",
+      "description": "Since: cosmos-sdk 0.46",
       "title": "MsgCancelUnbondingDelegationResponse"
     },
     "v1beta1MsgCreateValidatorResponse": {
@@ -9160,6 +8855,7 @@
         },
         "amount": {
           "$ref": "#/definitions/v1beta1Coin",
+          "description": "Since: cosmos-sdk 0.50",
           "title": "amount returns the amount of undelegated coins"
         }
       },
@@ -9223,7 +8919,7 @@
             "type": "object",
             "$ref": "#/definitions/protobufAny"
           },
-          "description": "msg_responses contains the Msg handler responses type packed in Anys."
+          "description": "msg_responses contains the Msg handler responses type packed in Anys.\n\nSince: cosmos-sdk 0.46"
         }
       },
       "description": "Result is the union of ResponseFormat and ResponseCheckTx."
@@ -9575,7 +9271,7 @@
         },
         "tip": {
           "$ref": "#/definitions/v1beta1Tip",
-          "description": "Tip is the optional tip used for transactions fees paid in another denom.\n\nThis field is ignored if the chain didn't enable tips, i.e. didn't add the\n`TipDecorator` in its posthandler."
+          "description": "Tip is the optional tip used for transactions fees paid in another denom.\n\nThis field is ignored if the chain didn't enable tips, i.e. didn't add the\n`TipDecorator` in its posthandler.\n\nSince: cosmos-sdk 0.46"
         }
       },
       "description": "AuthInfo describes the fee and signer modes that are used to sign a\ntransaction."
@@ -9647,14 +9343,14 @@
         },
         "payer": {
           "type": "string",
-          "description": "if unset, the first signer is responsible for paying the fees. If set, the\nspecified account must pay the fees. the payer must be a tx signer (and\nthus have signed this field in AuthInfo). setting this field does *not*\nchange the ordering of required signers for the transaction."
+          "description": "if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.\nthe payer must be a tx signer (and thus have signed this field in AuthInfo).\nsetting this field does *not* change the ordering of required signers for the transaction."
         },
         "granter": {
           "type": "string",
-          "title": "if set, the fee payer (either the first signer or the value of the payer\nfield) requests that a fee grant be used to pay fees instead of the fee\npayer's own balance. If an appropriate fee grant does not exist or the\nchain does not support fee grants, this will fail"
+          "title": "if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used\nto pay fees instead of the fee payer's own balance. If an appropriate fee grant does not exist or the chain does\nnot support fee grants, this will fail"
         }
       },
-      "description": "Fee includes the amount of coins paid in fees and the maximum\ngas to be used by the transaction. The ratio yields an effective \"gasprice\",\nwhich must be above some minimum to be accepted into the mempool."
+      "description": "Fee includes the amount of coins paid in fees and the maximum\ngas to be used by the transaction. The ratio yields an effective \"gasprice\",\nwhich must be above some miminum to be accepted into the mempool."
     },
     "v1beta1GasInfo": {
       "type": "object",
@@ -9694,7 +9390,7 @@
           "description": "pagination defines a pagination for the response."
         }
       },
-      "description": "GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs\nmethod."
+      "description": "GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs\nmethod.\n\nSince: cosmos-sdk 0.45.2"
     },
     "v1beta1GetTxResponse": {
       "type": "object",
@@ -9805,7 +9501,7 @@
         "SIGN_MODE_EIP_191"
       ],
       "default": "SIGN_MODE_UNSPECIFIED",
-      "description": "SignMode represents a signing mode with its own security guarantees.\n\nThis enum should be considered a registry of all known sign modes\nin the Cosmos ecosystem. Apps are not expected to support all known\nsign modes. Apps that would like to support custom  sign modes are\nencouraged to open a small PR against this file to add a new case\nto this SignMode enum describing their sign mode so that different\napps have a consistent version of this enum.\n\n - SIGN_MODE_UNSPECIFIED: SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be\nrejected.\n - SIGN_MODE_DIRECT: SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is\nverified with raw bytes from Tx.\n - SIGN_MODE_TEXTUAL: SIGN_MODE_TEXTUAL is a future signing mode that will verify some\nhuman-readable textual representation on top of the binary representation\nfrom SIGN_MODE_DIRECT.\n\nSince: cosmos-sdk 0.50\n - SIGN_MODE_DIRECT_AUX: SIGN_MODE_DIRECT_AUX specifies a signing mode which uses\nSignDocDirectAux. As opposed to SIGN_MODE_DIRECT, this sign mode does not\nrequire signers signing over other signers' `signer_info`.\n\nSince: cosmos-sdk 0.46\n - SIGN_MODE_LEGACY_AMINO_JSON: SIGN_MODE_LEGACY_AMINO_JSON is a backwards compatibility mode which uses\nAmino JSON and will be removed in the future.\n - SIGN_MODE_EIP_191: SIGN_MODE_EIP_191 specifies the sign mode for EIP 191 signing on the Cosmos\nSDK. Ref: https://eips.ethereum.org/EIPS/eip-191\n\nCurrently, SIGN_MODE_EIP_191 is registered as a SignMode enum variant,\nbut is not implemented on the SDK by default. To enable EIP-191, you need\nto pass a custom `TxConfig` that has an implementation of\n`SignModeHandler` for EIP-191. The SDK may decide to fully support\nEIP-191 in the future.\n\nSince: cosmos-sdk 0.45.2"
+      "description": "SignMode represents a signing mode with its own security guarantees.\n\nThis enum should be considered a registry of all known sign modes\nin the Cosmos ecosystem. Apps are not expected to support all known\nsign modes. Apps that would like to support custom  sign modes are\nencouraged to open a small PR against this file to add a new case\nto this SignMode enum describing their sign mode so that different\napps have a consistent version of this enum.\n\n - SIGN_MODE_UNSPECIFIED: SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be\nrejected.\n - SIGN_MODE_DIRECT: SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is\nverified with raw bytes from Tx.\n - SIGN_MODE_TEXTUAL: SIGN_MODE_TEXTUAL is a future signing mode that will verify some\nhuman-readable textual representation on top of the binary representation\nfrom SIGN_MODE_DIRECT. It is currently experimental, and should be used\nfor testing purposes only, until Textual is fully released. Please follow\nthe tracking issue https://github.com/cosmos/cosmos-sdk/issues/11970.\n - SIGN_MODE_DIRECT_AUX: SIGN_MODE_DIRECT_AUX specifies a signing mode which uses\nSignDocDirectAux. As opposed to SIGN_MODE_DIRECT, this sign mode does not\nrequire signers signing over other signers' `signer_info`. It also allows\nfor adding Tips in transactions.\n\nSince: cosmos-sdk 0.46\n - SIGN_MODE_LEGACY_AMINO_JSON: SIGN_MODE_LEGACY_AMINO_JSON is a backwards compatibility mode which uses\nAmino JSON and will be removed in the future.\n - SIGN_MODE_EIP_191: SIGN_MODE_EIP_191 specifies the sign mode for EIP 191 signing on the Cosmos\nSDK. Ref: https://eips.ethereum.org/EIPS/eip-191\n\nCurrently, SIGN_MODE_EIP_191 is registered as a SignMode enum variant,\nbut is not implemented on the SDK by default. To enable EIP-191, you need\nto pass a custom `TxConfig` that has an implementation of\n`SignModeHandler` for EIP-191. The SDK may decide to fully support\nEIP-191 in the future.\n\nSince: cosmos-sdk 0.45.2"
     },
     "v1beta1SignerInfo": {
       "type": "object",
@@ -9836,7 +9532,7 @@
         "txBytes": {
           "type": "string",
           "format": "byte",
-          "description": "tx_bytes is the raw transaction."
+          "description": "tx_bytes is the raw transaction.\n\nSince: cosmos-sdk 0.43"
         }
       },
       "description": "SimulateRequest is the request type for the Service.Simulate\nRPC method."
@@ -9887,7 +9583,7 @@
           "title": "tipper is the address of the account paying for the tip"
         }
       },
-      "description": "Tip is the tip used for meta-transactions."
+      "description": "Tip is the tip used for meta-transactions.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1Tx": {
       "type": "object",
@@ -9924,21 +9620,12 @@
         },
         "memo": {
           "type": "string",
-          "description": "memo is any arbitrary note/comment to be added to the transaction.\nWARNING: in clients, any publicly exposed text should not be called memo,\nbut should be called `note` instead (see\nhttps://github.com/cosmos/cosmos-sdk/issues/9122)."
+          "description": "memo is any arbitrary note/comment to be added to the transaction.\nWARNING: in clients, any publicly exposed text should not be called memo,\nbut should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122)."
         },
         "timeoutHeight": {
           "type": "string",
           "format": "uint64",
-          "description": "timeout_height is the block height after which this transaction will not\nbe processed by the chain."
-        },
-        "unordered": {
-          "type": "boolean",
-          "description": "unordered, when set to true, indicates that the transaction signer(s)\nintend for the transaction to be evaluated and executed in an un-ordered\nfashion. Specifically, the account's nonce will NOT be checked or\nincremented, which allows for fire-and-forget as well as concurrent\ntransaction execution.\n\nNote, when set to true, the existing 'timeout_timestamp' value must\nbe set and will be used to correspond to a timestamp in which the transaction is deemed\nvalid.\n\nWhen true, the sequence value MUST be 0, and any transaction with unordered=true and a non-zero sequence value will\nbe rejected.\nExternal services that make assumptions about sequence values may need to be updated because of this."
-        },
-        "timeoutTimestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "timeout_timestamp is the block time after which this transaction will not\nbe processed by the chain.\n\nNote, if unordered=true this value MUST be set\nand will act as a short-lived TTL in which the transaction is deemed valid\nand kept in memory to prevent duplicates."
+          "title": "timeout is the block height after which this transaction will not\nbe processed by the chain"
         },
         "extensionOptions": {
           "type": "array",
@@ -9967,7 +9654,7 @@
           "format": "byte"
         }
       },
-      "description": "TxDecodeAminoRequest is the request type for the Service.TxDecodeAmino\nRPC method."
+      "description": "TxDecodeAminoRequest is the request type for the Service.TxDecodeAmino\nRPC method.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1TxDecodeAminoResponse": {
       "type": "object",
@@ -9976,7 +9663,7 @@
           "type": "string"
         }
       },
-      "description": "TxDecodeAminoResponse is the response type for the Service.TxDecodeAmino\nRPC method."
+      "description": "TxDecodeAminoResponse is the response type for the Service.TxDecodeAmino\nRPC method.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1TxDecodeRequest": {
       "type": "object",
@@ -9987,7 +9674,7 @@
           "description": "tx_bytes is the raw transaction."
         }
       },
-      "description": "TxDecodeRequest is the request type for the Service.TxDecode\nRPC method."
+      "description": "TxDecodeRequest is the request type for the Service.TxDecode\nRPC method.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1TxDecodeResponse": {
       "type": "object",
@@ -9997,7 +9684,7 @@
           "description": "tx is the decoded transaction."
         }
       },
-      "description": "TxDecodeResponse is the response type for the\nService.TxDecode method."
+      "description": "TxDecodeResponse is the response type for the\nService.TxDecode method.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1TxEncodeAminoRequest": {
       "type": "object",
@@ -10006,7 +9693,7 @@
           "type": "string"
         }
       },
-      "description": "TxEncodeAminoRequest is the request type for the Service.TxEncodeAmino\nRPC method."
+      "description": "TxEncodeAminoRequest is the request type for the Service.TxEncodeAmino\nRPC method.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1TxEncodeAminoResponse": {
       "type": "object",
@@ -10016,7 +9703,7 @@
           "format": "byte"
         }
       },
-      "description": "TxEncodeAminoResponse is the response type for the Service.TxEncodeAmino\nRPC method."
+      "description": "TxEncodeAminoResponse is the response type for the Service.TxEncodeAmino\nRPC method.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1TxEncodeRequest": {
       "type": "object",
@@ -10026,7 +9713,7 @@
           "description": "tx is the transaction to encode."
         }
       },
-      "description": "TxEncodeRequest is the request type for the Service.TxEncode\nRPC method."
+      "description": "TxEncodeRequest is the request type for the Service.TxEncode\nRPC method.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1TxEncodeResponse": {
       "type": "object",
@@ -10037,7 +9724,7 @@
           "description": "tx_bytes is the encoded transaction bytes."
         }
       },
-      "description": "TxEncodeResponse is the response type for the\nService.TxEncode method."
+      "description": "TxEncodeResponse is the response type for the\nService.TxEncode method.\n\nSince: cosmos-sdk 0.47"
     },
     "v1beta1TxResponse": {
       "type": "object",
@@ -10104,7 +9791,7 @@
             "type": "object",
             "$ref": "#/definitions/abciEvent"
           },
-          "description": "Events defines all the events emitted by processing a transaction. Note,\nthese events include those emitted by processing all the messages and those\nemitted from the ante. Whereas Logs contains the events, with\nadditional metadata, emitted only by processing the messages."
+          "description": "Events defines all the events emitted by processing a transaction. Note,\nthese events include those emitted by processing all the messages and those\nemitted from the ante. Whereas Logs contains the events, with\nadditional metadata, emitted only by processing the messages.\n\nSince: cosmos-sdk 0.42.11, 0.44.5, 0.45"
         }
       },
       "description": "TxResponse defines a structure containing relevant tx data and metadata. The\ntags are stringified and the log is JSON decoded."
@@ -10122,7 +9809,7 @@
           "title": "consensus version of the app module"
         }
       },
-      "description": "ModuleVersion specifies a module and its consensus version."
+      "description": "ModuleVersion specifies a module and its consensus version.\n\nSince: cosmos-sdk 0.43"
     },
     "v1beta1Plan": {
       "type": "object",
@@ -10170,6 +9857,7 @@
           "type": "string"
         }
       },
+      "description": "Since: cosmos-sdk 0.46",
       "title": "QueryAuthorityResponse is the response type for Query/Authority"
     },
     "v1beta1QueryCurrentPlanResponse": {
@@ -10194,25 +9882,27 @@
           "description": "module_versions is a list of module names with their consensus versions."
         }
       },
-      "description": "QueryModuleVersionsResponse is the response type for the Query/ModuleVersions\nRPC method."
+      "description": "QueryModuleVersionsResponse is the response type for the Query/ModuleVersions\nRPC method.\n\nSince: cosmos-sdk 0.43"
     },
     "v1beta1QueryUpgradedConsensusStateResponse": {
       "type": "object",
       "properties": {
         "upgradedConsensusState": {
           "type": "string",
-          "format": "byte"
+          "format": "byte",
+          "title": "Since: cosmos-sdk 0.43"
         }
       },
       "description": "QueryUpgradedConsensusStateResponse is the response type for the Query/UpgradedConsensusState\nRPC method."
     },
     "v1beta1MsgCancelUpgradeResponse": {
       "type": "object",
-      "description": "MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type."
+      "description": "MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type.\n\nSince: cosmos-sdk 0.46"
     },
     "v1beta1MsgSoftwareUpgradeResponse": {
       "type": "object",
-      "description": "MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type."
+      "description": "MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type.\n\nSince: cosmos-sdk 0.46"
     }
-  }
+  },
+  "x-celestia-app-commit": "5187d2fb5eb8bc4b534c74724882943c54253ae9"
 }

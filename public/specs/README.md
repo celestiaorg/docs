@@ -1,26 +1,41 @@
 # API specifications
 
-`/openapi.json` is a copy of the celestia-app v10 REST API
-specification (OpenAPI/Swagger 2.0), published by the upstream gRPC-gateway build.
-The upstream file repeats operation IDs across modules. This copy makes only
-those duplicate IDs unique using the HTTP method and path; endpoints, parameters,
-and response schemas are unchanged. It is separate from the versioned
-celestia-node OpenRPC files in this directory.
-The docs host serves the contract, not the REST endpoints. Set your API client's
-base URL to your celestia-app REST provider and confirm its software version.
-The upstream file deliberately has no `host` or `schemes` field.
+`/openapi.json` is generated from the celestia-app release selected by
+`app-latest-tag` and `app-latest-sha` in `constants/mainnet_versions.json`.
+The existing Latest Tags workflow refreshes it in the same pull request as the
+version constants, including repairs when the bundled spec is missing or stale.
+Mocha version changes do not select the OpenAPI version.
 
-- Source: https://github.com/celestiaorg/celestia-app/blob/3dd6e22d076ac2131156c98f20c1fda7df195d9c/swagger/swagger.json
-- Published upstream: https://celestiaorg.github.io/celestia-app/swagger/swagger.json
-- Retrieved: 2026-10-21
-- Upstream SHA-256: `90fbd20e7242536f605568a973e93dfb80398cb700cdf667371c359d0f7f5625`
+The generator checks out that release tag and verifies its commit before running
+the upstream Swagger generator. It uses the tool versions from that release's
+Makefile and pins the Cosmos SDK input to its `proto/buf.lock` revision, rather
+than the upstream script's floating registry reference.
 
-To refresh, review the upstream release and generated specification, copy its
-`swagger/swagger.json` from a pinned `celestia-app` `gh-pages` commit to
-`public/openapi.json`, and update this provenance. For each repeated operation
-ID, use `<method>_<path>` with non-alphanumeric path characters collapsed to `_`
-and leading/trailing underscores removed. Validate with
-`bunx @apidevtools/swagger-cli validate public/openapi.json`, then run
-`bun run build` to validate local references and discovery links. Builds use the checked-in snapshot and do
-not depend on upstream network availability. This snapshot does not establish
-network activation or provider compatibility.
+The generated contract has three metadata adjustments: duplicate operation IDs
+become unique HTTP method/path IDs, `info.version` records the exact app tag, and
+`x-celestia-app-commit` records its source commit. Endpoints and schemas come from
+the selected release's protobuf sources and locked dependencies.
+
+## Update and validation
+
+```bash
+bun run sync:app-api
+bun run check:app-api
+```
+
+Generation needs Git, Go 1.26 or later, Bash, jq, and network access to GitHub,
+Go modules, and the Buf registry. The release workflow installs the prerequisites.
+The script installs the release's pinned Buf and OpenAPI plugin in a temporary
+directory and removes that directory afterwards.
+
+A matching, valid spec is left unchanged. Generation or validation failure leaves
+the previous file intact and stops the release workflow before it opens a PR.
+`check:app-api` runs in CI and every build; it validates the contract and requires
+its version and source commit to match the Mainnet Beta constants. Checks and
+normal documentation builds are offline with respect to upstream APIs.
+
+The docs host serves the contract, not REST endpoints. Set your API client's base
+URL to your celestia-app REST provider and confirm its software version. The
+upstream specification has no `host` or `schemes` field. The versioned
+celestia-node OpenRPC files remain separate. A published release does not
+establish network activation or provider compatibility.

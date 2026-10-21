@@ -36,8 +36,10 @@ jobs:
       - name: Test release selection
         run: bun run test:releases
 
-      - name: Check skill and bundled Node API specs
-        run: bun run check:skill
+      - name: Check skill and bundled API specs
+        run: |
+          bun run check:skill
+          bun run check:app-api
 
       - name: Test synchronized network tabs
         run: bun run test:tabs

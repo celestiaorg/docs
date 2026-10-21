@@ -62,15 +62,31 @@ jobs:
             const result = await planUpdates({ github, owner: process.env.OWNER, network, current });
             await core.summary.addHeading(`Release selection: ${network}`)
               .addCodeBlock(result.summary.join('\n'))
-              .addRaw(result.changed ? 'Newer release found; review compatibility before merging.' : 'No eligible tag update; checking bundled Node API specs.')
+              .addRaw(result.changed ? 'Newer release found; review compatibility before merging.' : 'No eligible tag update; checking bundled API specs.')
               .write();
             if (result.changed) {
               fs.writeFileSync(versionsPath, JSON.stringify(result.next, null, 2) + '\n');
             }
             core.setOutput('selection_summary', result.summary.join('\n'));
 
-      - name: Sync bundled Node API specs and skill links
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: latest
+
+      - name: Setup Go for release-matched OpenAPI generation
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
+        with:
+          go-version: '1.26'
+          cache: false
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Sync bundled API specs and skill links
         run: |
+          bun run sync:app-api
+          bun run check:app-api
           node scripts/sync-node-api.mjs
           node scripts/sync-skill.mjs
           node scripts/sync-skill.mjs --check
@@ -82,11 +98,12 @@ jobs:
         with:
           base: main
           branch: gh-action/latest-tags-${{ matrix.network }}
-          commit-message: "[automated GH action] sync release versions and Node API specs (${{ matrix.network }})"
-          title: "[GH Action] Sync release versions and Node API specs for ${{ matrix.network }}"
+          commit-message: "[automated GH action] sync release versions and API specs (${{ matrix.network }})"
+          title: "[GH Action] Sync release versions and API specs for ${{ matrix.network }}"
           body: |
             Proposes newer releases for ${{ matrix.network }} using numeric major/minor/patch ordering.
-            Includes matching Node API specs and generated skill links, and repairs API version drift even without a new release.
+            Includes matching Node API specs, Mainnet Beta celestia-app OpenAPI, and generated skill links. Repairs API version drift even without a new release.
+            OpenAPI is generated from the exact Mainnet Beta app tag and commit in the docs constants, including during Mocha updates.
             Mainnet uses stable releases; Mocha uses only `-mocha` releases.
 
             Review upstream release notes and network compatibility before merging, especially for major/minor upgrades. A published binary does not establish network activation.
