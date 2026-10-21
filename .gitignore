@@ -49,6 +49,7 @@ _pagefind/
 /public/llms-full.txt
 /public/**/*.md
 !/public/SKILL.md
+!/public/fibre-client.md
 /public/**/llms.txt
 /public/robots.txt
 /public/sitemap.xml
