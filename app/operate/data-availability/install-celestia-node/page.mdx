@@ -92,8 +92,19 @@ commands:
    celestia version
    ```
 
-The output will show the semantic version of celestia-node,
+By default, the command prints text showing the semantic version of celestia-node,
 commit hash, build date, system version, and Golang version.
+
+In celestia-node v0.32.1 and later, use `--output json` to return this build
+information as structured JSON for scripts and automation:
+
+```bash
+celestia version --output json
+```
+
+The shorthand `celestia version -o json` produces the same output. If the command
+reports an unknown output flag, check `celestia version` and install the
+recommended version for your network using this guide.
 </Steps>
 
 ## Installing a pre-built binary
