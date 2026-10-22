@@ -3,7 +3,7 @@
   "info": {
     "title": "Celestia App - REST API",
     "description": "Auto-generated OpenAPI spec for celestia-app gRPC-gateway endpoints.",
-    "version": "v10.4.0"
+    "version": "v10.5.0"
   },
   "consumes": [
     "application/json"
@@ -9904,5 +9904,5 @@
       "description": "MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type.\n\nSince: cosmos-sdk 0.46"
     }
   },
-  "x-celestia-app-commit": "5187d2fb5eb8bc4b534c74724882943c54253ae9"
+  "x-celestia-app-commit": "6013e758d5dceb75827ad191c8d739d7c43cfa04"
 }
