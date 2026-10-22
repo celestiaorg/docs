@@ -126,6 +126,15 @@ test('OpenAPI is a real upstream contract with resolvable references and discove
   const spec = JSON.parse(readFileSync(new URL('../public/openapi.json', import.meta.url), 'utf8'));
   assert.equal(spec.swagger, '2.0');
   assert.ok(spec.paths['/blob/v1/params'].get);
+  assert.ok(spec.produces.includes('application/json'));
+  for (const item of Object.values(spec.paths)) {
+    for (const operation of Object.values(item)) {
+      assert.ok(operation.responses['200'].schema, operation.operationId);
+      assert.equal(operation.responses.default.schema.$ref, '#/definitions/rpcStatus');
+    }
+  }
+  assert.equal(spec.definitions.rpcStatus.properties.code.type, 'integer');
+  assert.equal(spec.definitions.rpcStatus.properties.message.type, 'string');
   const ids = Object.values(spec.paths).flatMap(item => Object.values(item).map(operation => operation.operationId));
   assert.ok(ids.every(Boolean));
   assert.equal(new Set(ids).size, ids.length, 'Operation IDs must be unique');
@@ -148,7 +157,8 @@ test('every rendered page has trust links and page-specific structured data', { 
   for (const [, url] of read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)) {
     const pathname = new URL(url).pathname;
     const html = read(path.join(pathname, 'index.html'));
-    for (const href of ['https://celestia.org/about/', 'https://celestia.org/contact/', 'https://celestia.org/privacy/', 'https://celestia.org/tos/', 'https://github.com/celestiaorg/.github/blob/main/SECURITY.md']) {
+    const base = (process.env.BASE || '').replace(/\/$/, '');
+    for (const href of [`${base}/about/`, `${base}/contact/`, `${base}/privacy/`, `${base}/developers/`, 'https://celestia.org/tos/', 'https://github.com/celestiaorg/.github/blob/main/SECURITY.md']) {
       assert.ok(html.includes(`href="${href}"`), `${url}: missing ${href}`);
     }
     assert.match(html, /rel="service-desc"[^>]*href="[^" ]*\/openapi.json"/);
@@ -163,4 +173,20 @@ test('every rendered page has trust links and page-specific structured data', { 
     const crumbs = schemas.find(schema => schema['@type'] === 'BreadcrumbList');
     assert.equal(crumbs.itemListElement.at(-1).item, url);
   }
+});
+
+test('developer and trust pages are useful, indexed and linked to canonical resources', () => {
+  for (const route of ['developers', 'about', 'contact', 'privacy', 'build/rpc/authentication', 'build/rpc/clients']) {
+    const markdown = read(`${route}.md`);
+    assert.match(markdown, /# .*Celestia/);
+    assert.ok(markdown.replace(/\[[^\]]*\]\([^)]*\)/g, '').length > 500, route);
+    assert.ok(read('llms.txt').includes(`${siteOrigin}/${route}.md`), route);
+    assert.ok(read('sitemap.xml').includes(`${siteOrigin}/${route}/`), route);
+  }
+  const portal = read('developers.md');
+  for (const target of ['/openapi.json', '/build/rpc/authentication', '/build/rpc/clients', '/build/post-retrieve-blob/client/go', '/build/post-retrieve-blob/client/rust']) {
+    assert.ok(portal.includes(`](${target})`), target);
+  }
+  assert.ok(read('privacy.md').includes('https://celestia.org/privacy/'));
+  assert.ok(read('contact.md').includes('mailto:security@celestia.org'));
 });

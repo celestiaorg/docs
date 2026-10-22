@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 const origin = new URL(process.argv[2]).origin
-async function request(path, options) {
+async function request(path, options, expectedStatus = 200) {
   for (let attempt = 0; attempt < 5; attempt++) {
     try {
       const response = await fetch(`${origin}${path}`, { ...options, signal: globalThis.AbortSignal.timeout(20000) })
-      assert.ok(response.ok, `${path}: HTTP ${response.status}`)
+      assert.equal(response.status, expectedStatus, `${path}: HTTP ${response.status}`)
       return response
     } catch (error) {
       if (attempt === 4) throw error
@@ -15,6 +16,52 @@ async function request(path, options) {
 for (const path of ['/', '/learn/TIA/overview', '/build/rpc/node-api', '/operate/getting-started/overview', '/logo-light.svg', '/llms.txt', '/learn/TIA/overview.md', '/mcp-search-index.json']) {
   const response = await request(path)
   assert.ok((await response.text()).length > 0, `${path}: empty response`)
+}
+for (const route of ['/developers', '/about', '/contact', '/privacy', '/build/rpc/authentication', '/build/rpc/clients']) {
+  const html = await (await request(`${route}/`)).text()
+  assert.match(html, /<h1\b/)
+  const markdown = await (await request(`${route}.md`)).text()
+  assert.ok(markdown.length > 500, `${route}: insufficient content`)
+  const negotiated = await request(`${route}/`, { headers: { Accept: 'text/markdown' } })
+  assert.match(negotiated.headers.get('Content-Type'), /^text\/markdown/)
+  assert.equal(await negotiated.text(), markdown)
+}
+for (const path of ['/llms.md', '/llms-full.txt', '/build/llms.txt', '/learn/llms.txt', '/operate/llms.txt', '/SKILL.md']) {
+  assert.ok((await (await request(path)).text()).length > 100, path)
+}
+for (const path of ['/.well-known/ard.json', '/.well-known/ai-catalog.json', '/.well-known/agent-skills/index.json', '/.well-known/poppy.json']) {
+  const response = await request(path)
+  assert.match(response.headers.get('Content-Type'), /application\/json/)
+  assert.ok(await response.json(), path)
+}
+const skills = await (await request('/.well-known/agent-skills/index.json')).json()
+for (const skill of skills.skills) {
+  const response = await request(new URL(skill.url).pathname)
+  assert.match(response.headers.get('Content-Type'), /^text\/markdown/)
+  const body = await response.text()
+  assert.equal(`sha256:${createHash('sha256').update(body).digest('hex')}`, skill.digest)
+}
+for (const method of ['GET', 'HEAD']) {
+  for (const accept of ['text/html', 'text/markdown', 'application/json', 'application/problem+json']) {
+    const response = await request('/__agent-readiness-missing-page', { method, headers: { Accept: accept } }, 404)
+    assert.ok(response.headers.get('Vary')?.includes('Accept'))
+    assert.equal(response.headers.get('Cache-Control'), 'private, no-store')
+    const type = accept.startsWith('application/') ? 'application/problem+json' : accept
+    assert.ok(response.headers.get('Content-Type')?.startsWith(type))
+    const body = await response.text()
+    if (method === 'HEAD') assert.equal(body, '')
+    else if (accept === 'text/markdown') assert.match(body, /^# Page not found\n[\s\S]+\]\(\/llms.txt\)/)
+    else if (accept.startsWith('application/')) {
+      const error = JSON.parse(body)
+      assert.equal(error.status, 404)
+      assert.equal(error.code, 'NOT_FOUND')
+      assert.ok(error.detail && error.hint)
+    } else assert.match(body, /<html/i)
+  }
+}
+for (const method of ['GET', 'POST']) {
+  const response = await request('/api/__agent-readiness-missing', { method }, method === 'GET' ? 404 : 405)
+  assert.equal((await response.json()).code, method === 'GET' ? 'NOT_FOUND' : 'METHOD_NOT_ALLOWED')
 }
 // A normal GET does not catch the browser's cross-origin navigation preflight.
 const homepage = await (await request('/')).text()
@@ -58,21 +105,38 @@ for (const path of ['/', '/build/post-retrieve-blob/client/go/']) {
 const spec = await (await request('/openapi.json')).json()
 assert.equal(spec.swagger, '2.0')
 assert.ok(spec.paths['/blob/v1/params'].get)
+assert.ok(spec.produces.includes('application/json'))
+for (const operation of Object.values(spec.paths).flatMap(Object.values)) {
+  assert.ok(operation.responses['200'].schema, operation.operationId)
+  assert.equal(operation.responses.default.schema.$ref, '#/definitions/rpcStatus')
+}
 const security = await (await request('/.well-known/security.txt')).text()
 assert.match(security, /^Contact: mailto:security@celestia\.org$/m)
 assert.ok(Date.parse(security.match(/^Expires: (.+)$/m)?.[1]) > Date.now())
 const sitemap = await (await request('/sitemap.xml')).text()
 assert.match(sitemap, /<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/)
 assert.ok([...sitemap.matchAll(/<loc>/g)].length > 50)
-for (const href of ['https://celestia.org/about/', 'https://celestia.org/contact/', 'https://celestia.org/privacy/', 'https://celestia.org/tos/']) {
+for (const href of ['/about/', '/contact/', '/privacy/', '/developers/', 'https://celestia.org/tos/']) {
   assert.ok(homepage.includes(`href="${href}"`), `Missing trust link: ${href}`)
 }
 for (const method of ['GET', 'HEAD']) {
   const catalog = await request('/.well-known/api-catalog', { method })
   assert.equal(catalog.headers.get('Content-Type'), 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"')
-  if (method === 'GET') assert.ok((await catalog.json()).linkset.length)
+  if (method === 'GET') {
+    const { linkset } = await catalog.json()
+    assert.ok(linkset.length)
+    for (const item of linkset.flatMap(link => link.item || [])) {
+      const response = await request(new URL(item.href).pathname)
+      assert.match(response.headers.get('Content-Type'), /application\/json/)
+      const contract = await response.json()
+      assert.ok(contract.paths || contract.methods?.length, item.href)
+    }
+  }
 }
 for (const endpoint of ['/mcp', '/api/mcp']) {
+  const invalidMethod = await request(endpoint, {}, 405)
+  assert.equal(invalidMethod.headers.get('Allow'), 'POST, DELETE, OPTIONS')
+  assert.match((await invalidMethod.json()).error.data.hint, /POST JSON-RPC/)
   for (const [method, params] of [
     ['initialize', { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'deploy-smoke', version: '1' } }],
     ['tools/list', {}],

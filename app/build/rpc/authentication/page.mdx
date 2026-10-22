@@ -1,0 +1,38 @@
+---
+title: Celestia API authentication
+description: Find authentication requirements for Celestia Node RPC, provider APIs, and public documentation tools.
+---
+
+# Celestia API authentication
+
+Authentication depends on the service you call. Reading these docs, downloading
+the API specifications, and using the documentation MCP server do not require an
+account or API key. The documentation site does not register agents or issue
+credentials for node providers.
+
+## Node RPC tokens
+
+The [Celestia Node API](/build/rpc/node-api) uses auth tokens to control access.
+Use the authentication instructions for your node type and software version.
+Keep tokens out of source control, shared request examples, and public bug reports.
+
+## Provider credentials
+
+Choose a service from the [RPC provider directory](/build/rpc/community-services)
+and follow that provider's authentication instructions. Credentials for a managed
+endpoint come from its operator, not this documentation portal. Do not assume
+that one provider's credential format or permissions apply to another provider.
+
+For a light node connecting to an authenticated consensus gRPC endpoint, see
+[consensus endpoint authentication](/operate/data-availability/light-node/advanced#start-light-node-with-consensus-endpoint-authentication).
+
+## Transaction signing
+
+A transaction signer is separate from an endpoint credential. The
+[Go](/build/post-retrieve-blob/client/go) and
+[Rust](/build/post-retrieve-blob/client/rust) quickstarts explain signer setup
+and funding. A valid endpoint credential does not fund the signer's account.
+
+If a request fails, check the target host, network, and required permission with
+the provider. Use the [developer portal](/developers) to find the relevant API
+contract and testnet guide.
