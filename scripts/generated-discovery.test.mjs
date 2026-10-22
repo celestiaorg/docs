@@ -158,7 +158,7 @@ test('every rendered page has trust links and page-specific structured data', { 
     const pathname = new URL(url).pathname;
     const html = read(path.join(pathname, 'index.html'));
     const base = (process.env.BASE || '').replace(/\/$/, '');
-    for (const href of [`${base}/about/`, `${base}/contact/`, `${base}/privacy/`, `${base}/developers/`, 'https://celestia.org/tos/', 'https://github.com/celestiaorg/.github/blob/main/SECURITY.md']) {
+    for (const href of [`${base}/about/`, `${base}/contact/`, `${base}/privacy/`, `${base}/build/developers/`, 'https://celestia.org/tos/', 'https://github.com/celestiaorg/.github/blob/main/SECURITY.md']) {
       assert.ok(html.includes(`href="${href}"`), `${url}: missing ${href}`);
     }
     assert.match(html, /rel="service-desc"[^>]*href="[^" ]*\/openapi.json"/);
@@ -176,14 +176,14 @@ test('every rendered page has trust links and page-specific structured data', { 
 });
 
 test('developer and trust pages are useful, indexed and linked to canonical resources', () => {
-  for (const route of ['developers', 'about', 'contact', 'privacy', 'build/rpc/authentication', 'build/rpc/clients']) {
+  for (const route of ['build/developers', 'about', 'contact', 'privacy', 'build/rpc/authentication', 'build/rpc/clients']) {
     const markdown = read(`${route}.md`);
     assert.match(markdown, /# .*Celestia/);
     assert.ok(markdown.replace(/\[[^\]]*\]\([^)]*\)/g, '').length > 500, route);
     assert.ok(read('llms.txt').includes(`${siteOrigin}/${route}.md`), route);
     assert.ok(read('sitemap.xml').includes(`${siteOrigin}/${route}/`), route);
   }
-  const portal = read('developers.md');
+  const portal = read('build/developers.md');
   for (const target of ['/openapi.json', '/build/rpc/authentication', '/build/rpc/clients', '/build/post-retrieve-blob/client/go', '/build/post-retrieve-blob/client/rust']) {
     assert.ok(portal.includes(`](${target})`), target);
   }

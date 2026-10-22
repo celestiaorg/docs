@@ -1,4 +1,5 @@
 const meta = {
+  developers: "Developer portal",
   "post-retrieve-blob": "Post/retrieve a blob",
   "private-blockspace": "Private blockspace",
   blobstream: "Blobstream (legacy)",

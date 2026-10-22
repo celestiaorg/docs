@@ -66,7 +66,7 @@ export default defineConfig({
   ],
   sidebar: {
     '/': [
-      { text: 'Developer portal', link: '/developers' },
+      { text: 'Developer portal', link: '/build/developers' },
       { text: 'Learn', link: '/learn/celestia-101/data-availability' },
       { text: 'Build', link: '/build/post-retrieve-blob/overview' },
       { text: 'Operate', link: '/operate/getting-started/overview' },

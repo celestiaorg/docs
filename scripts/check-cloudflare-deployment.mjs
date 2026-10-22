@@ -17,7 +17,7 @@ for (const path of ['/', '/learn/TIA/overview', '/build/rpc/node-api', '/operate
   const response = await request(path)
   assert.ok((await response.text()).length > 0, `${path}: empty response`)
 }
-for (const route of ['/developers', '/about', '/contact', '/privacy', '/build/rpc/authentication', '/build/rpc/clients']) {
+for (const route of ['/build/developers', '/about', '/contact', '/privacy', '/build/rpc/authentication', '/build/rpc/clients']) {
   const html = await (await request(`${route}/`)).text()
   assert.match(html, /<h1\b/)
   const markdown = await (await request(`${route}.md`)).text()
@@ -25,6 +25,10 @@ for (const route of ['/developers', '/about', '/contact', '/privacy', '/build/rp
   const negotiated = await request(`${route}/`, { headers: { Accept: 'text/markdown' } })
   assert.match(negotiated.headers.get('Content-Type'), /^text\/markdown/)
   assert.equal(await negotiated.text(), markdown)
+}
+for (const path of ['/developers', '/developers/', '/developers.md']) {
+  const redirect = await request(path, { redirect: 'manual' }, 301)
+  assert.equal(new URL(redirect.headers.get('Location'), origin).pathname, path.endsWith('.md') ? '/build/developers.md' : '/build/developers/')
 }
 for (const path of ['/llms.md', '/llms-full.txt', '/build/llms.txt', '/learn/llms.txt', '/operate/llms.txt', '/SKILL.md']) {
   assert.ok((await (await request(path)).text()).length > 100, path)
@@ -116,7 +120,7 @@ assert.ok(Date.parse(security.match(/^Expires: (.+)$/m)?.[1]) > Date.now())
 const sitemap = await (await request('/sitemap.xml')).text()
 assert.match(sitemap, /<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/)
 assert.ok([...sitemap.matchAll(/<loc>/g)].length > 50)
-for (const href of ['/about/', '/contact/', '/privacy/', '/developers/', 'https://celestia.org/tos/']) {
+for (const href of ['/about/', '/contact/', '/privacy/', '/build/developers/', 'https://celestia.org/tos/']) {
   assert.ok(homepage.includes(`href="${href}"`), `Missing trust link: ${href}`)
 }
 for (const method of ['GET', 'HEAD']) {

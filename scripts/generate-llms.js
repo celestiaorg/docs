@@ -148,7 +148,7 @@ const header = [
   '',
   '## Related resources',
   '',
-  `- Celestia developer portal: ${SITE_ORIGIN}/developers.md`,
+  `- Celestia developer portal: ${SITE_ORIGIN}/build/developers.md`,
   `- Celestia API documentation: ${SITE_ORIGIN}/build/rpc/node-api.md`,
   `- Celestia API authentication: ${SITE_ORIGIN}/build/rpc/authentication.md`,
   `- Celestia SDK documentation: ${SITE_ORIGIN}/build/rpc/clients.md`,
