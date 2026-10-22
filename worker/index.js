@@ -124,6 +124,7 @@ async function serveDocs(request, env) {
   }
   if (response.status === 200) {
     if (url.pathname.endsWith('.md') && !html) headers.set('Content-Type', 'text/markdown; charset=utf-8')
+    if (url.pathname === '/mcp/server-card') headers.set('Content-Type', 'application/mcp-server-card+json')
     if (url.pathname === '/.well-known/api-catalog') {
       headers.set('Content-Type', 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"')
     }

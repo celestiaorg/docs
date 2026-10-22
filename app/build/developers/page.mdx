@@ -50,6 +50,8 @@ The public documentation MCP server accepts JSON-RPC POST requests at `/mcp`
 (also `/api/mcp`). It provides `list_pages`, `read_page`, and `search_docs`.
 MCP errors use JSON-RPC error objects; unsupported HTTP methods return HTTP 405
 with an `Allow` header and a hint to use POST. It does not require an API key.
+The [MCP server card](/mcp/server-card) describes the endpoint and supported
+protocol versions.
 
 ## Rate limits and troubleshooting
 

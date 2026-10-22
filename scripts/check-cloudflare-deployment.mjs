@@ -26,10 +26,14 @@ for (const route of ['/build/developers', '/about', '/contact', '/privacy', '/bu
   assert.match(negotiated.headers.get('Content-Type'), /^text\/markdown/)
   assert.equal(await negotiated.text(), markdown)
 }
-for (const path of ['/developers', '/developers/', '/developers.md']) {
+for (const [path, target] of [['/developers', '/build/developers/'], ['/developers/', '/build/developers/'], ['/developers.md', '/build/developers.md'], ['/build/rpc/node-api/authentication', '/build/rpc/authentication/'], ['/docs', '/build/developers/']]) {
   const redirect = await request(path, { redirect: 'manual' }, 301)
-  assert.equal(new URL(redirect.headers.get('Location'), origin).pathname, path.endsWith('.md') ? '/build/developers.md' : '/build/developers/')
+  assert.equal(new URL(redirect.headers.get('Location'), origin).pathname, target, path)
 }
+const card = await request('/mcp/server-card')
+assert.equal(card.headers.get('Content-Type'), 'application/mcp-server-card+json')
+assert.equal((await card.json()).remotes[0].url, `${origin}/mcp`)
+assert.ok((await (await request('/.well-known/ai-catalog.json')).json()).entries.some(entry => entry.type === 'application/mcp-server-card+json'))
 for (const path of ['/llms.md', '/llms-full.txt', '/build/llms.txt', '/learn/llms.txt', '/operate/llms.txt', '/SKILL.md']) {
   assert.ok((await (await request(path)).text()).length > 100, path)
 }

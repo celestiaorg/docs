@@ -1,3 +1,5 @@
 /developers /build/developers/ 301
 /developers/ /build/developers/ 301
 /developers.md /build/developers.md 301
+/build/rpc/node-api/authentication /build/rpc/authentication/ 301
+/docs /build/developers/ 301

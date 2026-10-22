@@ -24,6 +24,13 @@ test('generated discovery resources point to real exported content', () => {
   assert.deepEqual(aiCatalog.entries, entries);
   assert.equal(aiCatalog.host.identifier, 'did:web:docs.celestia.org');
   assert.equal(entries[0].type, 'application/agent-skills+md');
+  if (process.env.DOCS_MCP_ENABLED === '1') {
+    const card = JSON.parse(read('mcp/server-card'));
+    assert.equal(card.name, 'org.celestia/docs');
+    assert.equal(card.remotes[0].url, `${siteOrigin}/mcp`);
+    assert.equal(entries[1].type, 'application/mcp-server-card+json');
+    assert.equal(entries[1].url, `${siteOrigin}/mcp/server-card`);
+  } else assert.equal(entries.length, 1);
   assert.equal(readFileSync(localFile(entries[0].url), 'utf8'), readFileSync(new URL('../public/SKILL.md', import.meta.url), 'utf8'));
 
   const { linkset } = JSON.parse(read('.well-known/api-catalog'));

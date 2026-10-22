@@ -12,10 +12,31 @@ credentials for node providers.
 
 ## Node RPC tokens
 
-The [Celestia Node API](/build/rpc/node-api) uses auth tokens to control access.
-Generate a token on the node that serves the API, for example with
-[`celestia light auth admin`](/operate/data-availability/light-node/advanced#get-your-auth-token).
-Use the instructions for your node type and software version.
+The [Celestia Node API](/build/rpc/node-api) listens on port `26658` by default
+and requires a JWT auth token on every request. Generate a token on the node that
+serves the API, using the node type and `--p2p.network` value of the running node:
+
+```bash
+celestia light auth admin --p2p.network mocha
+```
+
+`auth admin` grants every permission. Use `auth read` for read-only access or
+`auth write` to allow blob submission without node administration. Each run
+issues a new token, and issued tokens cannot be revoked. See
+[get your auth token](/operate/data-availability/light-node/advanced#get-your-auth-token)
+for the node setup around this command.
+
+Send the token in the `Authorization` header as a bearer token:
+
+```bash
+curl -X POST http://localhost:26658 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <auth_token>" \
+  --data '{"jsonrpc":"2.0","id":1,"method":"node.Info","params":[]}'
+```
+
+The [Go quickstart](/build/post-retrieve-blob/client/go) reads the same token from
+`CELE_DA_TOKEN`, and a consensus endpoint token from `CELE_CORE_TOKEN`.
 Keep tokens out of source control, shared request examples, and public bug reports.
 
 ## Provider credentials
