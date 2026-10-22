@@ -60,13 +60,12 @@ export default defineConfig({
   ],
   topNav: [
     { text: 'Learn', link: '/learn/celestia-101/data-availability', match: '/learn' },
-    { text: 'Build', link: '/build/post-retrieve-blob/overview', match: '/build' },
+    { text: 'Build', link: '/build/developers', match: '/build' },
     { text: 'Operate', link: '/operate/getting-started/overview', match: '/operate' },
     { text: 'Status', link: 'https://status.celestia.org', external: true },
   ],
   sidebar: {
     '/': [
-      { text: 'Developer portal', link: '/build/developers' },
       { text: 'Learn', link: '/learn/celestia-101/data-availability' },
       { text: 'Build', link: '/build/post-retrieve-blob/overview' },
       { text: 'Operate', link: '/operate/getting-started/overview' },
