@@ -1,0 +1,45 @@
+---
+title: Celestia pricing and fees
+description: Understand free documentation access, Celestia network fees, and provider pricing before integrating.
+---
+
+# Celestia pricing and fees
+
+Celestia documentation, downloadable API specifications, and the
+[documentation MCP server](/build/mcp) are free to access. No account, API key,
+subscription, or payment is required for these documentation resources.
+
+## Network fees
+
+Posting a blob to Mainnet Beta costs TIA. Transaction fees depend on the gas
+limit and gas price; this documentation site does not sell a fixed-price blob
+submission plan. Use the client's fee estimation and read
+[paying for blobspace](/learn/TIA/submit-data) for the fee model and controls.
+
+For testing, use Mocha and obtain testnet tokens from the
+[Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet).
+Follow the [getting-started guide](/build/post-retrieve-blob/overview) to create
+and fund a signer before submitting your first blob.
+
+Fibre has a separate escrow and storage-charge model. Consult the
+[Fibre pricing and escrow guidance](/build/post-retrieve-blob/fibre/getting-started)
+for its current calculation and requirements.
+
+## RPC and infrastructure providers
+
+RPC access, indexing, archival data, and hosting may have separate provider fees
+or quotas. A network transaction fee does not pay for a provider subscription.
+Check the provider's current pricing, authentication, and rate limits before
+connecting. The [community services directory](/build/rpc/community-services)
+links to provider pricing and payment instructions.
+
+Running your own node also has infrastructure costs. Use the
+[node overview](/operate/getting-started/overview) to choose a node type and find
+its hardware and operational requirements.
+
+## Request limits
+
+This docs site does not publish a fixed request quota. Provider APIs set their
+own limits. Honour `Retry-After` on HTTP 429 responses when supplied; otherwise
+back off before retrying. See the [developer portal](/build/developers#rate-limits-and-troubleshooting)
+for error handling and the distinction between documentation and provider APIs.

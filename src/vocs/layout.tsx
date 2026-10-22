@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import DocsWebMCP from '@/components/DocsWebMCP'
 
 const siteOrigin = 'https://docs.celestia.org'
 const siteDescription =
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       ))}
       {children}
+      <DocsWebMCP />
     </>
   )
 }

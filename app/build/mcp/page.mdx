@@ -1,0 +1,67 @@
+---
+title: Celestia documentation MCP server
+description: Connect an AI client to the official Celestia documentation MCP server for free search and page retrieval.
+---
+
+# Celestia documentation MCP server
+
+The official Celestia documentation MCP server searches and reads this docs
+site. It is public, read-only, and free. It does not require an account, API key,
+OAuth login, or agent registration.
+
+## Connect your client
+
+Add a remote MCP server in a client that supports **Streamable HTTP**:
+
+```text
+https://docs.celestia.org/mcp
+```
+
+The same service is available at `/api/mcp`. It accepts JSON-RPC POST requests;
+it does not offer a standalone SSE stream. Opening `/mcp` in a browser sends a
+GET and returns HTTP 405, which does not mean the server is unavailable.
+
+Available tools:
+
+| Tool | Input | Result |
+| --- | --- | --- |
+| `list_pages` | No arguments | Documentation page paths |
+| `search_docs` | `query`: search text | Matching paths and snippets |
+| `read_page` | `pagePath`: a documentation path | Markdown page content |
+
+After connecting, ask the client to search for `Celestia API authentication`
+and read the matching page. For a direct connectivity check:
+
+```bash
+curl https://docs.celestia.org/mcp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"docs-check","version":"1.0"}}}'
+```
+
+The response identifies `celestia-docs` and advertises the `tools` capability.
+MCP clients complete initialization before listing or calling tools.
+
+## Discovery and browser access
+
+The [MCP server card](/mcp/server-card) describes the transport endpoint and
+supported protocol versions. The [AI catalog](/.well-known/ai-catalog.json)
+links to that card. For HTTP-only access, start with [llms.txt](/llms.txt) and
+follow the `.md` links.
+
+Browsers with WebMCP support also expose `search_docs` and `read_current_page`
+on documentation pages. These read the site's public search index and Markdown;
+they do not access wallets or submit transactions. Browsers without WebMCP
+continue to use the normal documentation interface.
+
+## Documentation tools and network tools
+
+This server returns documentation, not live account balances, chain data, or
+transaction results. The [community MCP services](/build/rpc/community-services#noders-mcp-server)
+are operated separately and have their own capabilities and terms.
+
+For application integration, use the [blob getting-started guide](/build/post-retrieve-blob/overview)
+and [Node API reference](/build/rpc/node-api). For a failed MCP connection, check
+the endpoint, transport, and the client's negotiated protocol version against
+the server card. HTTP and JSON-RPC errors are described in the
+[developer portal](/build/developers#agent-access-and-errors).

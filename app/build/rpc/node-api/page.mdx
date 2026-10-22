@@ -4,13 +4,19 @@ outline: false
 
 import NodeAPIContent from "../components/NodeAPIContent";
 
-# Node API
+# Celestia Node API
 
 The Celestia Node API is the collection of RPC methods that can be used to
 interact with the services provided by Celestia data availability nodes.
 Node API uses auth tokens to control access to this API. See
 [API authentication](/build/rpc/authentication) for the token command and
-request header.
+request header. A self-hosted node listens at `http://localhost:26658` by default;
+send its token as `Authorization: Bearer <auth_token>`. Managed providers define
+their own endpoint and credential requirements.
+
+For a first integration, follow the [blob setup checklist](/build/post-retrieve-blob/overview).
+For AI-assisted documentation search, connect to the
+[Celestia documentation MCP server](/build/mcp).
 
 ## Machine-readable API specifications
 

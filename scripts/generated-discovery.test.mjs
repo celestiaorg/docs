@@ -165,7 +165,7 @@ test('every rendered page has trust links and page-specific structured data', { 
     const pathname = new URL(url).pathname;
     const html = read(path.join(pathname, 'index.html'));
     const base = (process.env.BASE || '').replace(/\/$/, '');
-    for (const href of [`${base}/about/`, `${base}/contact/`, `${base}/privacy/`, `${base}/build/developers/`, 'https://celestia.org/tos/', 'https://github.com/celestiaorg/.github/blob/main/SECURITY.md']) {
+    for (const href of [`${base}/about/`, `${base}/contact/`, `${base}/privacy/`, `${base}/build/developers/`, `${base}/build/pricing/`, 'https://celestia.org/tos/', 'https://github.com/celestiaorg/.github/blob/main/SECURITY.md']) {
       assert.ok(html.includes(`href="${href}"`), `${url}: missing ${href}`);
     }
     assert.match(html, /rel="service-desc"[^>]*href="[^" ]*\/openapi.json"/);
@@ -183,7 +183,7 @@ test('every rendered page has trust links and page-specific structured data', { 
 });
 
 test('developer and trust pages are useful, indexed and linked to canonical resources', () => {
-  for (const route of ['build/developers', 'about', 'contact', 'privacy', 'build/rpc/authentication', 'build/rpc/clients']) {
+  for (const route of ['build/developers', 'about', 'contact', 'privacy', 'build/rpc/authentication', 'build/rpc/clients', 'build/mcp', 'build/pricing']) {
     const markdown = read(`${route}.md`);
     assert.match(markdown, /# .*Celestia/);
     assert.ok(markdown.replace(/\[[^\]]*\]\([^)]*\)/g, '').length > 500, route);
@@ -191,10 +191,29 @@ test('developer and trust pages are useful, indexed and linked to canonical reso
     assert.ok(read('sitemap.xml').includes(`${siteOrigin}/${route}/`), route);
   }
   const portal = read('build/developers.md');
-  for (const target of ['/openapi.json', '/build/rpc/authentication', '/build/rpc/clients', '/build/post-retrieve-blob/client/go', '/build/post-retrieve-blob/client/rust']) {
+  for (const target of ['/openapi.json', '/build/rpc/authentication', '/build/rpc/clients', '/build/post-retrieve-blob/client/go', '/build/post-retrieve-blob/client/rust', '/build/mcp', '/build/pricing']) {
     assert.ok(portal.includes(`](${target})`), target);
   }
   const hasLink = (file, target) => [...read(file).matchAll(/\]\(([^)]+)\)/g)].some(match => match[1] === target);
   assert.ok(hasLink('privacy.md', 'https://celestia.org/privacy/'));
   assert.ok(hasLink('contact.md', 'mailto:security@celestia.org'));
+});
+
+test('integration entry points expose setup, pricing and documentation MCP without a search detour', () => {
+  const overview = read('build/post-retrieve-blob/overview.md');
+  for (const value of ['CELE_DA_URL=', 'CELE_CORE_GRPC=', 'height, namespace, and commitment', '](/build/rpc/authentication)', '](/build/mcp)', '](/build/pricing)']) {
+    assert.ok(overview.includes(value), value);
+  }
+  const mcp = read('build/mcp.md');
+  for (const value of ['Streamable HTTP', 'https://docs.celestia.org/mcp', 'list_pages', 'read_page', 'search_docs', '](/mcp/server-card)', '](/.well-known/ai-catalog.json)']) {
+    assert.ok(mcp.includes(value), value);
+  }
+  assert.match(mcp, /does not require an account, API key/);
+  assert.match(read('build/pricing.md'), /free to access/);
+  assert.ok(read('build/pricing.md').includes('](/learn/TIA/submit-data)'));
+  assert.ok(read('build/rpc/community-services.md').includes('](/build/mcp)'));
+  assert.match(read('build/rpc/node-api.md'), /^# Celestia Node API/m);
+  assert.match(read('build/rpc/node-api.md'), /Authorization: Bearer <auth_token>/);
+  const redirects = readFileSync(new URL('../public/_redirects', import.meta.url), 'utf8');
+  assert.match(redirects, /^\/pricing \/build\/pricing\/ 301$/m);
 });
