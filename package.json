@@ -15,7 +15,7 @@
     "generate:skill": "node scripts/sync-skill.mjs",
     "check:skill": "node scripts/sync-skill.mjs --check",
     "generate:llms": "node scripts/generate-llms.js",
-    "check-links": "node scripts/check-links.mjs",
+    "check-links": "node --test scripts/check-links.test.mjs && node scripts/check-links.mjs",
     "test:endpoints": "node --test scripts/check-endpoints.test.mjs",
     "test:mcp": "node --test worker/index.test.js",
     "test:rpc": "bun test scripts/rpc-playground.test.tsx",

@@ -51,22 +51,24 @@ const CORS_HEADERS = {
     'Content-Type, Accept, Authorization, Mcp-Session-Id, Mcp-Protocol-Version, X-Waku-Router-Skip',
 }
 
-function prefersMarkdown(accept = '') {
+function prefersType(accept = '', preferred = 'text/markdown') {
   const types = new Map(accept.toLowerCase().split(',').map(entry => {
     const [type, ...parameters] = entry.trim().split(';')
     const quality = parameters.find(value => value.trim().startsWith('q='))
     const q = quality ? Number(quality.trim().slice(2)) : 1
     return [type.trim(), Number.isFinite(q) && q >= 0 && q <= 1 ? q : 0]
   }))
-  const markdown = types.get('text/markdown') ?? 0
+  const quality = types.get(preferred) ?? 0
   const html = types.get('text/html') ?? types.get('text/*') ?? types.get('*/*') ?? 0
-  return markdown > 0 && markdown >= html
+  return quality > 0 && quality >= Math.max(html,
+    ...['text/markdown', 'application/json', 'application/problem+json'].map(type => types.get(type) ?? 0))
 }
 
 async function serveDocs(request, env) {
-  if (!['GET', 'HEAD'].includes(request.method)) return env.ASSETS.fetch(request)
   const url = new URL(request.url)
-  const markdown = prefersMarkdown(request.headers.get('Accept') ?? '')
+  const accept = request.headers.get('Accept') ?? ''
+  const markdown = prefersType(accept)
+  const json = prefersType(accept, 'application/json') || prefersType(accept, 'application/problem+json')
   let assetRequest = request
   if (markdown) {
     // HTML validators and byte ranges cannot validate the Markdown representation.
@@ -76,7 +78,28 @@ async function serveDocs(request, env) {
   }
   let response = await env.ASSETS.fetch(assetRequest)
   const html = response.headers.get('Content-Type')?.includes('text/html')
-  if (markdown && html && response.status === 200) {
+  const apiPath = url.pathname.startsWith('/api/')
+  // Agents following .md links rarely send Accept: text/markdown.
+  const markdownPath = url.pathname.endsWith('.md')
+  if ((response.status === 404 && (markdown || markdownPath || json || apiPath))
+    || (response.status === 405 && (json || apiPath))) {
+    await response.body?.cancel()
+    const headers = new Headers(response.headers)
+    for (const name of ['Content-Length', 'Content-Encoding', 'ETag', 'Last-Modified', 'Content-Range', 'Accept-Ranges']) headers.delete(name)
+    const useMarkdown = (markdown || (markdownPath && !json)) && !apiPath && response.status === 404
+    const notFound = response.status === 404
+    headers.set('Content-Type', useMarkdown ? 'text/markdown; charset=utf-8' : 'application/problem+json')
+    if (!notFound) headers.set('Allow', response.headers.get('Allow') || 'GET, HEAD, OPTIONS')
+    response = new Response(useMarkdown
+      ? '# Page not found\n\nThe requested resource does not exist in the Celestia documentation. Find a current page in the [documentation index](/llms.txt) or return to [Celestia docs](/).\n'
+      : JSON.stringify({
+        type: 'about:blank', title: notFound ? 'Not Found' : 'Method Not Allowed',
+        status: response.status, code: notFound ? 'NOT_FOUND' : 'METHOD_NOT_ALLOWED',
+        detail: notFound ? 'The requested resource does not exist on the Celestia documentation site.' : 'This resource does not support the requested HTTP method.',
+        hint: 'Use /llms.txt to find documentation or POST JSON-RPC messages to /mcp. Node REST APIs run on your provider host.',
+      }), { status: response.status, headers })
+  }
+  if (markdown && html && response.status === 200 && ['GET', 'HEAD'].includes(request.method)) {
     const asset = await env.ASSETS.fetch(new Request(new URL(markdownPathForPage(url.pathname), url), {
       method: request.method,
     }))
@@ -88,7 +111,7 @@ async function serveDocs(request, env) {
   }
 
   const headers = new Headers(response.headers)
-  if (html || response.status === 304) {
+  if (html || [304, 404, 405].includes(response.status)) {
     const vary = headers.get('Vary')
     if (!vary?.split(',').some(value => value.trim().toLowerCase() === 'accept')) {
       headers.set('Vary', vary ? `${vary}, Accept` : 'Accept')
@@ -101,6 +124,7 @@ async function serveDocs(request, env) {
   }
   if (response.status === 200) {
     if (url.pathname.endsWith('.md') && !html) headers.set('Content-Type', 'text/markdown; charset=utf-8')
+    if (url.pathname === '/mcp/server-card') headers.set('Content-Type', 'application/mcp-server-card+json')
     if (url.pathname === '/.well-known/api-catalog') {
       headers.set('Content-Type', 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"')
     }
@@ -280,19 +304,15 @@ export default {
 
     if (!isMcpPath) return serveDocs(request, env)
 
-    if (request.method === 'GET') {
-      return new Response('SSE is not supported; POST JSON-RPC messages instead', {
-        status: 405,
-        headers: { ...CORS_HEADERS, Allow: 'POST, DELETE, OPTIONS' },
-      })
-    }
-
     if (request.method === 'DELETE') {
       return new Response(null, { status: 204, headers: CORS_HEADERS })
     }
 
     if (request.method !== 'POST') {
-      return new Response('Method not allowed', { status: 405, headers: CORS_HEADERS })
+      return new Response(request.method === 'HEAD' ? null : JSON.stringify({
+        jsonrpc: '2.0', id: null,
+        error: { code: -32600, message: 'Method not allowed', data: { hint: 'POST JSON-RPC messages to this endpoint. SSE is not supported.' } },
+      }), { status: 405, headers: { ...CORS_HEADERS, 'Content-Type': 'application/json', Allow: 'POST, DELETE, OPTIONS' } })
     }
 
     let body

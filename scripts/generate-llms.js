@@ -143,11 +143,15 @@ const header = [
   '- Use `llms-full.txt` when a single-file context snapshot is needed.',
   '- Use `/build/llms.txt`, `/learn/llms.txt`, and `/operate/llms.txt` for section-specific context.',
   ...(process.env.DOCS_MCP_ENABLED === '1'
-    ? ['- Documentation MCP tools are available on this deployment at `/api/mcp` (also `/mcp`).']
+    ? [`- Documentation MCP tools are available on this deployment at \`/api/mcp\` (also \`/mcp\`). Server card: ${SITE_ORIGIN}/mcp/server-card`]
     : []),
   '',
   '## Related resources',
   '',
+  `- Celestia developer portal: ${SITE_ORIGIN}/build/developers.md`,
+  `- Celestia API documentation: ${SITE_ORIGIN}/build/rpc/node-api.md`,
+  `- Celestia API authentication: ${SITE_ORIGIN}/build/rpc/authentication.md`,
+  `- Celestia SDK documentation: ${SITE_ORIGIN}/build/rpc/clients.md`,
   `- Full LLM context: ${SITE_ORIGIN}/llms-full.txt`,
   `- Agent skill: ${SITE_ORIGIN}/SKILL.md`,
   `- Agent skills index: ${SITE_ORIGIN}/.well-known/agent-skills/index.json`,
@@ -531,6 +535,26 @@ const generateArdManifest = async (outputBase) => {
       ],
     }],
   };
+  if (process.env.DOCS_MCP_ENABLED === '1') {
+    // SEP-2127 server card at the recommended <streamable-http-url>/server-card location.
+    await writeTextFile(outputBase, 'mcp/server-card', `${JSON.stringify({
+      $schema: 'https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json',
+      name: 'org.celestia/docs',
+      version: '1.0.0',
+      title: 'Celestia documentation',
+      description: 'Search and read Celestia documentation pages.',
+      websiteUrl: `${SITE_ORIGIN}/build/developers/`,
+      repository: { url: GITHUB_REPO, source: 'github' },
+      remotes: [{ type: 'streamable-http', url: `${SITE_ORIGIN}/mcp`, supportedProtocolVersions: ['2024-11-05', '2025-03-26', '2025-06-18'] }],
+    }, null, 2)}\n`);
+    manifest.entries.push({
+      identifier: 'urn:mcp:server:org.celestia/docs',
+      displayName: 'Celestia documentation MCP server',
+      type: 'application/mcp-server-card+json',
+      url: `${SITE_ORIGIN}/mcp/server-card`,
+      description: 'Search and read Celestia documentation pages over MCP.',
+    });
+  }
   await writeTextFile(outputBase, '.well-known/ard.json', `${JSON.stringify(manifest, null, 2)}\n`);
   await writeTextFile(outputBase, '.well-known/ai-catalog.json', `${JSON.stringify(manifest, null, 2)}\n`);
 };
