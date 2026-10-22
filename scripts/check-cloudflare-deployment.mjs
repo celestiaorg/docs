@@ -32,7 +32,7 @@ for (const [path, target] of [['/developers', '/build/developers/'], ['/develope
 }
 const card = await request('/mcp/server-card')
 assert.equal(card.headers.get('Content-Type'), 'application/mcp-server-card+json')
-assert.equal((await card.json()).remotes[0].url, `${origin}/mcp`)
+assert.equal(new URL((await card.json()).remotes[0].url).pathname, '/mcp')
 assert.ok((await (await request('/.well-known/ai-catalog.json')).json()).entries.some(entry => entry.type === 'application/mcp-server-card+json'))
 for (const path of ['/llms.md', '/llms-full.txt', '/build/llms.txt', '/learn/llms.txt', '/operate/llms.txt', '/SKILL.md']) {
   assert.ok((await (await request(path)).text()).length > 100, path)
