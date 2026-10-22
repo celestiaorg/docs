@@ -23,10 +23,8 @@ documentation site does not issue API keys or host a node REST API.
 - [RPC providers and community services](/build/rpc/community-services): choose an endpoint for your network and API.
 
 The REST specification describes a provider's API, not endpoints on
-`docs.celestia.org`. Configure the provider host explicitly. Its success responses
-have JSON schemas; its default error responses reference `rpcStatus`, with
-`code`, `message`, and `details`. Swagger 2.0 declares JSON through `produces` and
-response shapes through `schema`.
+`docs.celestia.org`. Configure the provider host explicitly. Error responses use
+the `rpcStatus` shape with `code`, `message`, and `details`.
 
 ## Test environment
 

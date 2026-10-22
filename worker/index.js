@@ -79,12 +79,14 @@ async function serveDocs(request, env) {
   let response = await env.ASSETS.fetch(assetRequest)
   const html = response.headers.get('Content-Type')?.includes('text/html')
   const apiPath = url.pathname.startsWith('/api/')
-  if ((response.status === 404 && (markdown || json || apiPath))
+  // Agents following .md links rarely send Accept: text/markdown.
+  const markdownPath = url.pathname.endsWith('.md')
+  if ((response.status === 404 && (markdown || markdownPath || json || apiPath))
     || (response.status === 405 && (json || apiPath))) {
     await response.body?.cancel()
     const headers = new Headers(response.headers)
     for (const name of ['Content-Length', 'Content-Encoding', 'ETag', 'Last-Modified', 'Content-Range', 'Accept-Ranges']) headers.delete(name)
-    const useMarkdown = markdown && !apiPath && response.status === 404
+    const useMarkdown = (markdown || (markdownPath && !json)) && !apiPath && response.status === 404
     const notFound = response.status === 404
     headers.set('Content-Type', useMarkdown ? 'text/markdown; charset=utf-8' : 'application/problem+json')
     if (!notFound) headers.set('Allow', response.headers.get('Allow') || 'GET, HEAD, OPTIONS')

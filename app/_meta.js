@@ -1,9 +1,5 @@
 const meta = {
   index: "Home",
-  developers: "Developer portal",
-  about: "About",
-  contact: "Contact",
-  privacy: "Privacy",
   learn: {
     title: "Learn",
     type: "page",

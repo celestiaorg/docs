@@ -234,7 +234,17 @@ test('missing resources negotiate Markdown and problem JSON without stale entity
   }
 })
 
+test('missing .md pages return Markdown without an Accept header', async () => {
+  for (const [accept, type] of [['', 'text/markdown'], ['*/*', 'text/markdown'], ['application/json', 'application/problem+json']]) {
+    const response = await worker.fetch(new Request('https://docs.example/missing.md', { headers: accept ? { Accept: accept } : {} }), assets())
+    assert.equal(response.status, 404)
+    assert.ok(response.headers.get('Content-Type').startsWith(type))
+    if (type === 'text/markdown') assert.match(await response.text(), /^# Page not found/)
+  }
+})
+
 test('unknown API routes return JSON errors for GET and POST while existing assets remain available', async () => {
+  // Live Pages answers POST on a missing path with 405; the 405 path is covered by the next test.
   for (const method of ['GET', 'POST']) {
     const response = await worker.fetch(new Request('https://docs.example/api/missing', { method }), assets())
     assert.equal(response.status, 404)
