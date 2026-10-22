@@ -24,7 +24,9 @@ export default defineConfig({
   baseUrl: siteOrigin,
   outDir: 'out',
   renderStrategy: 'full-static',
-  checkDeadlinks: 'warn',
+  // Vocs resolves links against src/pages only, so links to public or generated
+  // files render with a dead-link underline. `bun run check-links` covers routes.
+  checkDeadlinks: false,
   mcp: {
     enabled: process.env.DOCS_MCP_ENABLED === '1',
   },
