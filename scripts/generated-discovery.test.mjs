@@ -187,7 +187,7 @@ test('developer and trust pages are useful, indexed and linked to canonical reso
   for (const target of ['/openapi.json', '/build/rpc/authentication', '/build/rpc/clients', '/build/post-retrieve-blob/client/go', '/build/post-retrieve-blob/client/rust']) {
     assert.ok(portal.includes(`](${target})`), target);
   }
-  const links = file => [...read(file).matchAll(/\]\(([^)]+)\)/g)].map(match => match[1]);
-  assert.ok(links('privacy.md').includes('https://celestia.org/privacy/'));
-  assert.ok(links('contact.md').includes('mailto:security@celestia.org'));
+  const hasLink = (file, target) => [...read(file).matchAll(/\]\(([^)]+)\)/g)].some(match => match[1] === target);
+  assert.ok(hasLink('privacy.md', 'https://celestia.org/privacy/'));
+  assert.ok(hasLink('contact.md', 'mailto:security@celestia.org'));
 });
