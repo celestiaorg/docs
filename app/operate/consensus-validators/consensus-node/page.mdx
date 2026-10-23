@@ -125,8 +125,9 @@ to migrate its databases.
 ### Optional: Connect a consensus node to a bridge node
 
 If your consensus node is being connected to a celestia-node bridge node,
-you will need to enable transaction indexing and retain all block
-data. This can be achieved with the following settings in your `config.toml`.
+configure indexing in `config.toml` and block retention in `app.toml` as
+described below. The consensus node does not need to retain the full block
+history for either a pruned or an archival bridge node.
 
 #### Enable transaction indexing
 
@@ -140,12 +141,28 @@ indexer = "null"
 The `null` indexer is a lightweight indexer that is sufficient for bridge
 nodes.
 
-#### Retain all block data
+#### Retain blocks for bridge nodes
 
-In your `app.toml`, explicitly set `min-retain-blocks` to `0`:
+Keep blocks that fall inside the bridge storage window
+(`{{constants['bridgeStorageWindowHours']}}h`). The bridge node's live listener
+fetches newly announced blocks from this consensus node. During header sync,
+recent ranges come from consensus and older ranges come from the header peer
+exchange. The data availability sampler retrieves share data from DA peers.
+Peers may not retain a complete history.
+
+`min-retain-blocks` in `app.toml` is a block count, not a duration. Cover the
+storage window at the network's block rate. On Mainnet Beta, a 3-second target
+is 202,800 blocks over 169 hours, and the documented 2.6-second happy-path
+cadence is 234,000 blocks. Use at least the count for the faster rate, increase
+it if blocks are produced faster, and recalculate when another network uses a
+different block time. A value of `0` retains every block. Neither a pruned nor
+an archival bridge node requires that.
 
 ```toml
-min-retain-blocks = 0 # retain all block data
+# Mainnet Beta: 169 hours at a 2.6-second block time.
+# Increase this if blocks are produced faster, and recalculate for a different block time.
+# 0 keeps the entire chain and is not required.
+min-retain-blocks = 234000
 ```
 
 ### Query transactions by hash
