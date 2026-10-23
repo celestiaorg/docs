@@ -40,8 +40,8 @@ treat 3 seconds as an approximate target rather than an exact interval.
 
 | Software       | Version                                                             |
 | -------------- | ------------------------------------------------------------------- |
-| celestia-node  | [{mainnetVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{mainnetVersions['node-latest-tag']}) |
-| celestia-app   | [{mainnetVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{mainnetVersions['app-latest-tag']})   |
+| celestia-node  | [{mainnetVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{{mainnetVersions['node-latest-tag']}}) |
+| celestia-app   | [{mainnetVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{{mainnetVersions['app-latest-tag']}})   |
 
 ## Network status
 
@@ -147,6 +147,9 @@ This shared endpoint does not provide a production SLA. Use a [production
 provider](#production-rpc-endpoints) or your own node for production workloads.
 
 ### Node setup and tools
+
+For paid archive RPC reads, indexed data APIs, and MCP access, see
+[community services](/build/rpc/community-services).
 
 Several community providers offer comprehensive node setup tools, installation scripts, and monitoring services to help node operators get started quickly:
 

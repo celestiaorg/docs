@@ -289,8 +289,14 @@ celestia-appd tx blob PayForBlobs <hex-encoded namespace> <hex-encoded data> [fl
 Using `blob.Submit`:
 
 ```bash
-celestia blob submit <hex-encoded namespace> <hex-encoded data> [flags]
+celestia blob submit <hex_namespace> <data> [flags]
 ```
+
+For hex-encoded data, include the `0x` prefix: `0x676d` submits the text `gm`.
+On builds containing the blob submission fix in celestia-node #5262, data
+without that prefix is literal text, even if it looks like hex: `cafe` submits
+`cafe`. Use explicit `0x`-prefixed hex data for compatibility with earlier builds.
+The namespace remains hex-encoded.
 
 Available flags:
 
@@ -309,7 +315,11 @@ See the [Rust client tutorial](/build/post-retrieve-blob/client/rust).
 
 ### RPC to a celestia-node
 
-Using the JSON RPC API, submit data using the following methods:
+With the JSON-RPC API, encode blob `data` as base64, rather than using the
+CLI data argument format. For example, the text `gm` is `"Z20="` in a
+JSON-RPC blob's `data` field. The CLI prefix change does not change this encoding.
+
+Submit data using the following methods:
 
 - [`blob.Submit`](/build/rpc/node-api/#blob.Submit)
 - [`state.SubmitPayForBlob`](/build/rpc/node-api/#state.SubmitPayForBlob)
