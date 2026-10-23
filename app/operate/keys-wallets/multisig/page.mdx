@@ -92,7 +92,22 @@ celestia-appd tx multisign unsignedTx.json multisig \
     --output-document signedTx.json \
     --chain-id $CHAIN_ID \
     --home "$CELESTIA_APP_HOME" --keyring-backend "$KEYRING_BACKEND"
+
+# Submit signedTx.json. sync returns a hash before the transaction is included.
+celestia-appd tx broadcast signedTx.json \
+    --home "$CELESTIA_APP_HOME" \
+    --chain-id "$CHAIN_ID" \
+    --broadcast-mode "$BROADCAST_MODE"
 ```
+
+`tx broadcast` reads the signed file and submits it. With `sync` broadcasting,
+the returned hash does not yet confirm inclusion. Check the transaction with:
+
+```bash
+celestia-appd query tx "<signed_tx_hash>" --home "$CELESTIA_APP_HOME"
+```
+
+Continue once the query returns the transaction with `code: 0`.
 
 ## Resources
 
