@@ -71,8 +71,9 @@ LLM index and community directory link the dedicated documentation MCP guide.
   follow-up extends JSON negotiation to non-JSON upstream 4xx/5xx errors,
   preserving status codes and existing retry headers. Errors generated before
   the Worker, including WAF challenges, remain an edge configuration concern.
-- **Pricing:** `/pricing` redirects to `/build/pricing/`. The page distinguishes
-  free documentation/MCP from network fees and separately priced providers.
+- **Pricing:** `/pricing` redirects to `/learn/TIA/paying-for-blobspace/`.
+  The existing paying-for-blobspace page distinguishes network fees from
+  separately priced providers.
 - **REST error schema:** all 120 operations in the inspected production
   `/openapi.json` already referenced typed `rpcStatus` default responses.
   Swagger 2.0 `default` covers statuses without an explicit response entry.

@@ -153,7 +153,7 @@ const header = [
   `- Celestia API authentication: ${SITE_ORIGIN}/build/rpc/authentication.md`,
   `- Celestia SDK documentation: ${SITE_ORIGIN}/build/rpc/clients.md`,
   `- Celestia getting started: ${SITE_ORIGIN}/build/post-retrieve-blob/overview.md`,
-  `- Celestia pricing and fees: ${SITE_ORIGIN}/build/pricing.md`,
+  `- Celestia blobspace fees: ${SITE_ORIGIN}/learn/TIA/paying-for-blobspace.md`,
   `- Celestia documentation MCP server setup: ${SITE_ORIGIN}/build/mcp.md`,
   `- Full LLM context: ${SITE_ORIGIN}/llms-full.txt`,
   `- Agent skill: ${SITE_ORIGIN}/SKILL.md`,
