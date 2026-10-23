@@ -24,6 +24,13 @@ See [the cutover runbook](../CLOUDFLARE-CUTOVER.md) for migration history and pr
 - **Triggers:** `push`/`pull_request` on `main`, plus a weekly schedule (`0 9 * * 1`).
 - **What it does:** runs Bun type, lint, release-selection, Fibre response, generated Markdown, and link checks.
 
+## `consensus-docker.yml` — Consensus Docker smoke test
+
+- **Triggers:** pull requests changing the consensus Docker guide, its smoke test, or network/version constants; manual `workflow_dispatch`.
+- **What it does:** runs the guide's commands on Ubuntu 24.04 for Mainnet Beta and Mocha. Loads BBR, completes the verified genesis download, starts the container with `--sysctl`, and checks container BBR, the RPC chain ID, and application gRPC TCP connectivity from the host and a second container.
+- **Scope:** startup and connectivity only; does not complete chain sync or connect a light node. Uses disposable node homes and removes its containers and network.
+- **Local testing:** `python3 scripts/test-consensus-docker.py mainnet --desktop` tests the guide's Docker Desktop bypass. Omit `--desktop` on a Linux Docker host with sudo and BBR support. The test requires the names `celestia-app` and `celestia-network` to be unused.
+
 ## `latest-tags.yaml` — Latest Tags
 
 - **Triggers:** every 6 hours, manual `workflow_dispatch` with `network`, or a `push` to `main` that changes `constants/*_versions.json`. After one network PR merges, the push run regenerates the other network's PR from current `main` to repair conflicts in the shared API manifest and skill links.
