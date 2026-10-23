@@ -137,7 +137,12 @@ access. See [Node key management](/operate/keys-wallets/celestia-node-key).
 
 Wallet funds pay transaction gas. Fibre escrow pays for blob storage. Keep
 some TIA in the wallet when depositing; escrow cannot pay transaction gas.
-Amounts use `utia`, where 1 TIA is 1,000,000 utia.
+Amounts use `utia`, where 1 TIA is 1,000,000 utia. Use this denomination for
+both deposits and withdrawal requests.
+
+> **Unreleased v11:** escrow deposits and withdrawal requests reject every
+> denomination other than `utia`, including `TIA`. See the
+> [v11 message validation](https://github.com/celestiaorg/celestia-app/blob/686fbd9f3a1bf8d73235eef4e58b8b816511ea69/x/fibre/types/msgs.go).
 
 Query this signer's escrow:
 
@@ -353,6 +358,7 @@ waits for the same operations unless the context passed to it is cancelled.
 Tests on 25 September 2026 used celestia-node v0.34.2-mocha for JSON-RPC and
 celestia-app v10.2.0-mocha for the native client. Each successful run confirmed
 settlement and verified downloaded bytes against the original payload and hash.
+These are historical v10 charges, not measurements of the unreleased v11 pricing.
 
 | Payload | Path | Settlement height | Escrow charge, excluding gas |
 |---|---|---|---|
@@ -369,6 +375,28 @@ links to the settlement transaction. Tensile accepts transaction hashes, blob ID
 multiple records, it shows all matches. The native test trusted the selected
 core endpoint for validator state; the light-node path uses locally verified
 headers.
+
+### Unreleased v11 escrow estimates
+
+> App version 11 is not released or active on Mainnet Beta or Mocha. The prices
+> below are upstream estimates, not new Mocha measurements. Continue to budget
+> using v10 charges until your network activates v11.
+
+The [v11 payment calculation](https://github.com/celestiaorg/celestia-app/blob/686fbd9f3a1bf8d73235eef4e58b8b816511ea69/x/fibre/types/gas.go)
+uses 0.004 utia per gas instead of 1 utia per gas, rounding the escrow charge
+up to whole utia. The following values come from
+[celestia-app#7931](https://github.com/celestiaorg/celestia-app/pull/7931):
+
+| Payload | v10 escrow charge (TIA) | Unreleased v11 escrow estimate (TIA) |
+|---|---|---|
+| 1 MiB | 0.875000 | 0.003500 |
+| 10 MiB | 2.495000 | 0.009980 |
+| 100 MiB | 18.695000 | 0.074780 |
+
+Transaction gas is separate. These estimates do not replace the historical
+settlement records above. See the
+[cost formula](/build/post-retrieve-blob/fibre/getting-started#4-estimate-the-cost)
+for padded upload sizes.
 
 ## Retention and withdrawals
 
@@ -389,6 +417,17 @@ processes it after `withdrawal_delay`; it is not an immediate wallet transfer.
 Use `fibre.PendingWithdrawals` with the signer's address to inspect the amount
 and `available_timestamp`. Do not reuse escrow committed to outstanding payment
 promises, including uploads whose settlement outcome is still unknown.
+
+For example, request a withdrawal of 1 TIA with celestia-appd:
+
+```bash
+celestia-appd tx fibre request-withdrawal 1000000utia --from "$KEY_NAME"
+```
+
+Use the keyring containing the same signer as the walkthrough. Add your
+network's chain ID, node, home and transaction fee flags. The amount
+must fit within your available balance after reserving funds for outstanding
+payment promises.
 
 ## Asynchronous uploads and recovery
 
