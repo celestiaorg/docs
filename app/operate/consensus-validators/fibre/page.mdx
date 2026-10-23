@@ -292,10 +292,14 @@ the change to take effect.
 ### Object storage
 
 <Callout type="warning">
-Object storage is supported in `v10.4.0` for Mainnet Beta and `v10.4.0-mocha`
-for Mocha. The older `v10.2.0-mocha` binary ignores `storage_backend` and
-`[object_storage]` and continues writing shards to local disk. Check `fibre version` before continuing. If upgrading,
-follow the release upgrade instructions for
+Starting with `v10.5.0` for Mainnet Beta and `v10.5.0-mocha` for Mocha,
+`object_storage.endpoint` must use `https://`; an `http://` endpoint fails
+validation at startup. Fibre also checks bucket reachability with the
+configured credentials and refuses to start if the check fails. Review the
+endpoint, bucket, and credentials before restarting, including when local
+mode still needs access to retained object shards.
+
+Check `fibre version` and follow the release upgrade instructions for
 [Mainnet Beta](https://github.com/celestiaorg/celestia-app/releases/tag/{{mainnetVersions['app-latest-tag']}})
 or [Mocha](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
 to replace both celestia-app and Fibre, sync their configuration, and check
@@ -466,6 +470,112 @@ address changes. The entry is removed if the validator is removed from staking,
 or stays jailed and unbonded for more than 7 days. If your entry was removed,
 register again after rejoining the active set.
 
+## Health and readiness
+
+Starting with celestia-app `v10.5.0` / `v10.5.0-mocha`, Fibre exposes the
+standard gRPC health service on `server_listen_address` (default port `7980`).
+The service name selects the check:
+
+| Service name | Meaning |
+|---|---|
+| `fibre-liveness` | Liveness: the process is running and answering requests. |
+| `""` (default) or `celestia.fibre.v1.Fibre` | Readiness: startup completed and all dependency checks passed. |
+
+Readiness reports whether dependencies for new uploads and discovery are
+healthy. It is diagnostic: a not-ready status does not gate uploads or
+downloads. Downloads of stored shards can continue while the app node or
+signer is unavailable.
+
+### Run health probes
+
+Install `grpc_health_probe` if needed:
+
+```bash
+go install github.com/grpc-ecosystem/grpc-health-probe@latest
+```
+
+Probe the local Fibre listener, adjusting the address if configured differently:
+
+```bash
+# Readiness
+grpc_health_probe -addr=127.0.0.1:7980 -tls -tls-no-verify
+
+# Liveness
+grpc_health_probe -addr=127.0.0.1:7980 -tls -tls-no-verify -service=fibre-liveness
+```
+
+Fibre uses TLS with a self-signed identity certificate, so these probes skip
+certificate verification. They do not verify the validator's TLS identity.
+The probe exits with status `0` for `SERVING`. The server supports the gRPC
+health `Check` method, not `Watch`.
+
+### Readiness checks and actions
+
+Checks run sequentially in the order below. Each check has a `probe_timeout`;
+after a cycle, Fibre waits `check_interval` before starting the next one.
+Health requests read the latest results without rerunning the checks. All six
+checks must pass. Logs report changes with the check name, reason code, and
+an action message.
+
+| Check | Failure reason codes | Action |
+|---|---|---|
+| `app` | `app_unreachable`, `app_syncing`, `chain_stalled`, `chain_id_mismatch` | Check `app_grpc_address`, node availability, sync progress, and latest block time. Confirm the chain ID matches the one at Fibre startup. |
+| `fibre_module` | `fibre_module_unavailable`, `app_unreachable` | Point `app_grpc_address` at application gRPC on a chain with Fibre enabled; check the node can answer module queries. |
+| `signer` | `signer_unreachable`, `signer_key_changed` | Check the signer and its connection settings. If the public key changed, confirm the validator key and restart Fibre. |
+| `validator` | `validator_not_active`, `app_unreachable` | Confirm the validator is bonded in the active set and the app node can return that set. |
+| `registration` | `provider_not_registered`, `provider_host_invalid`, `app_unreachable` | Check the app connection and [register a valid public host](#register-the-public-address) in `host:port` form. |
+| `store` | `store_failed` | A small metadata-store write or read failed. Check free disk space and store-directory permissions. |
+
+The `signer` check retrieves the public key; it does not test signing a
+payment promise. The `store` check tests the local metadata database, not a
+full shard upload to the storage backend.
+
+### Health configuration
+
+The `[health]` table in `<fibre_home>/config/server_config.toml` accepts
+duration strings. These are the defaults:
+
+```toml
+[health]
+check_interval = "10s"
+probe_timeout = "3s"
+max_block_age = "2m"
+```
+
+`max_block_age` is the oldest acceptable latest block before `app` reports
+`chain_stalled`. Set it according to the network's block time.
+
+On upgrade, use the new celestia-app binary to add the table and other missing
+settings. Substitute your actual home directories:
+
+```bash
+celestia-appd config sync --home <app_home> --fibre-home <fibre_home> --dry-run
+celestia-appd config sync --home <app_home> --fibre-home <fibre_home>
+```
+
+Config sync preserves existing values and creates backups before changes;
+missing files are skipped. Sync is recommended, but the health defaults also
+apply when the table is absent. Restart Fibre after editing its configuration.
+
+### Probe limits and process lifecycle
+
+Local probes cannot confirm that the registered public `host:port` is
+reachable from outside your network or that a real upload succeeds. Check
+the public address from another machine and separately run a small upload
+canary with a funded escrow account.
+
+In these releases, the server's idle connection timeout decreases from
+5 minutes to 30 seconds; the client idle timeout is 20 seconds. Clients
+reconnect on the next request, so custom clients must tolerate idle disconnects.
+
+An unexpected gRPC server exit now terminates Fibre with a non-zero exit
+status. Use `Restart=on-failure` in the Fibre systemd service, as in the
+[systemd examples](/operate/maintenance/systemd), so the supervisor restarts
+it. Graceful shutdown publishes `NOT_SERVING` before draining requests.
+
+See the [v10.5.0 health reference](https://github.com/celestiaorg/celestia-app/blob/v10.5.0/fibre/cmd/README.md#health)
+for the release-specific behaviour.
+
 ## Transport security (TLS)
 
 Client connections to Fibre are always TLS-encrypted, with no certificates to
@@ -535,11 +645,14 @@ for details of how clients verify Fibre's certificate.
 | Missing Fibre or valaddr services | Wait for app version 10 to activate before starting Fibre or registering. |
 | Application connection refused | Enable `[grpc]` in `app.toml`, restart the node, and check addresses and flag overrides. |
 | Signer connection failed | Match Fibre's signer address to `priv_validator_grpc_laddr`; check for a disabled value or a port conflict. |
+| `object_storage.endpoint must be an absolute HTTPS URL without credentials, query, or fragment` | An `http://` endpoint is rejected from v10.5.0. Set `object_storage.endpoint` to the provider's `https://` URL without embedded credentials, a query, or a fragment. |
 | `loading object storage credentials` | The service did not receive the bucket key. Check the environment file and the `EnvironmentFile=` override in [Object storage](#object-storage), then restart Fibre. |
+| Bucket check fails with `checking object storage bucket` in the error | The startup `HeadBucket` request failed. Check the endpoint, region, bucket name, network access, and credentials and bucket permissions available to the Fibre process. |
 | `object namespace mismatch` | The object endpoint, bucket, prefix, chain ID, or validator address changed while object shards remain. Restore the previous bucket settings and node connections, or follow [Migrate to another bucket](#migrate-to-another-bucket) when moving objects. |
 | Configuration decode error reports an unknown field | Correct or remove the reported key or table in `<fibre_home>/config/server_config.toml`, then restart Fibre. |
 | TLS identity verification failed | Check that the signing service holds your validator's consensus key, then restart Fibre after correcting the signer address. |
 | `derived storage budget is 0` warning | The app node reports no stake for your validator. Check that the validator is bonded and that `--app-grpc-address` points at a synced node on the right network. Fibre keeps running and re-derives the budget periodically. |
+| `server not ready failed_checks=[registration]` (check names vary) | Read the accompanying `health check failed` entries for each check's `reason` and `message`, then follow [Readiness checks and actions](#readiness-checks-and-actions). A running process can be alive without being ready. |
 | Server runs but no uploads arrive | Check that `query valaddr provider` finds your host, that the registered `host:port` is reachable from outside your network, and that the validator is bonded. Clients only dial registered, bonded validators. |
 | `payment promise verification failed` | A chain ID mismatch means `--app-grpc-address` points at a different network than the client used. Other causes, such as an underfunded escrow, are on the uploader's side. |
 
