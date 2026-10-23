@@ -6,12 +6,13 @@ import { cleanMdxForMarkdown } from './lib/clean-mdx.mjs';
 test('exports homepage headings and navigation without JSX or styles', () => {
   const source = readFileSync(new URL('../app/page.mdx', import.meta.url), 'utf8');
   const markdown = cleanMdxForMarkdown(source);
-  assert.match(markdown, /^# Celestia docs/);
-  assert.ok(markdown.includes("[Learn](/learn/celestia-101/data-availability): Understand modular blockchains and Celestia's architecture, including data availability sampling and how rollups use blobspace."), markdown);
-  for (const href of [...source.matchAll(/<Link href="([^"]+)"/g)].map(match => match[1])) {
+  assert.match(markdown, /^# Celestia docs$/m);
+  assert.ok(markdown.includes('Scalable, custom blockchain infrastructure for the most ambitious applications.'));
+  assert.ok(markdown.includes("[Learn](/learn/celestia-101/data-availability/): Understand modular blockchains and Celestia's architecture, including data availability sampling and how rollups use blobspace."), markdown);
+  for (const href of [...source.matchAll(/\b(?:href|to)="([^"]+)"/g)].map(match => match[1])) {
     assert.ok(markdown.includes(`](${href})`), `Missing homepage link: ${href}`);
   }
-  assert.doesNotMatch(markdown, /<\/?(?:div|span|h[1-6]|p|Link)\b|style=|fontSize/);
+  assert.doesNotMatch(markdown, /<\/?(?:div|span|h[1-6]|p|Link|HomePage|Card)\b|style=|fontSize/);
 });
 
 test('preserves fenced exports, JSX examples and whitespace while removing MDX imports', () => {
@@ -69,3 +70,8 @@ for (const [page, expected] of [
     assert.doesNotMatch(markdown, /<\/?(?:Steps|Tabs|NetworkTabs)(?:[. >])/);
   });
 }
+
+test('preserves Vocs landing page wrappers, buttons and card content', () => {
+  const source = '<HomePage.Root><h1>Docs</h1><HomePage.Description>Read this.</HomePage.Description><HomePage.Buttons><HomePage.Button href="/build/">Build</HomePage.Button></HomePage.Buttons><Cards><Card title="Learn" to="/learn/" description="Learn the protocol." /></Cards></HomePage.Root>';
+  assert.equal(cleanMdxForMarkdown(source), '# Docs\n\nRead this.\n\n[Build](/build/)\n\n[Learn](/learn/): Learn the protocol.');
+});

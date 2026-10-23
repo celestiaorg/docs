@@ -30,6 +30,8 @@ export function cleanMdxForMarkdown(content) {
     fences.push(code.join('\n'));
   }
   let cleaned = protectedLines.join('\n');
+  // Null delimiters protect fenced examples from JSX cleanup.
+  // eslint-disable-next-line no-control-regex
   const restoreFences = value => value.replace(/\u0000FENCE(\d+)\u0000/g, (_, index) => fences[Number(index)]);
   // Export each static tab as labelled Markdown without losing its fenced commands.
   cleaned = cleaned.replace(/<(Tabs|NetworkTabs)\s+items=\{\[([^\]]*)\]\}[^>]*>([\s\S]*?)<\/\1>/g, (_, wrapper, items, body) => {
@@ -49,7 +51,12 @@ export function cleanMdxForMarkdown(content) {
   cleaned = cleaned.replace(/^import\s+.*?from\s+['"].*?['"];?\s*$/gm, '');
   cleaned = cleaned.replace(/^export\s+(?!default).*?;?\s*$/gm, '');
   // Preserve static landing-page navigation before removing custom components.
-  cleaned = cleaned.replace(/<Link\b[^>]*\bhref="([^"]+)"[^>]*>([\s\S]*?)<\/Link>/g, (_, href, body) => {
+  cleaned = cleaned.replace(/<Card\s+([^>]*?)\/>/g, (_, attributes) => {
+    const props = Object.fromEntries([...attributes.matchAll(/(title|description|to)="([^"]*)"/g)].map(match => [match[1], match[2]]));
+    return props.title && props.to ? `\n\n[${props.title}](${props.to}): ${props.description ?? ''}\n\n` : '';
+  });
+  cleaned = cleaned.replace(/<\/?(?:Cards|HomePage\.(?:Root|Tagline|Description|Buttons))\b[^>]*>/g, '\n');
+  cleaned = cleaned.replace(/<(Link|HomePage\.Button)\b[^>]*\bhref="([^"]+)"[^>]*>([\s\S]*?)<\/\1>/g, (_, _component, href, body) => {
     const lines = cleanMdxForMarkdown(body).split('\n').map(line => line.trim()).filter(Boolean);
     const heading = lines.find(line => /^#{1,6}\s/.test(line));
     const label = (heading ?? lines.join(' ')).replace(/^#{1,6}\s+/, '');

@@ -1,0 +1,61 @@
+---
+title: Celestia API authentication
+description: Find authentication requirements for Celestia Node RPC, provider APIs, and public documentation tools.
+---
+
+# Celestia API authentication
+
+Authentication depends on the service you call. Reading these docs, downloading
+the API specifications, and using the documentation MCP server do not require an
+account or API key. The documentation site does not register agents or issue
+credentials for node providers.
+
+## Node RPC tokens
+
+The [Celestia Node API](/build/rpc/node-api) listens on port `26658` by default
+and requires a JWT auth token on every request. Generate a token on the node that
+serves the API, using the node type and `--p2p.network` value of the running node:
+
+```bash
+celestia light auth admin --p2p.network mocha
+```
+
+`auth admin` grants every permission. Use `auth read` for read-only access or
+`auth write` to allow blob submission without node administration. Each run
+issues a new token, and issued tokens cannot be revoked. See
+[get your auth token](/operate/data-availability/light-node/advanced#get-your-auth-token)
+for the node setup around this command.
+
+Send the token in the `Authorization` header as a bearer token:
+
+```bash
+curl -X POST http://localhost:26658 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <auth_token>" \
+  --data '{"jsonrpc":"2.0","id":1,"method":"node.Info","params":[]}'
+```
+
+The [Go quickstart](/build/post-retrieve-blob/client/go) reads the same token from
+`CELE_DA_TOKEN`, and a consensus endpoint token from `CELE_CORE_TOKEN`.
+Keep tokens out of source control, shared request examples, and public bug reports.
+
+## Provider credentials
+
+Choose a service from the [RPC provider directory](/build/rpc/community-services)
+and follow that provider's authentication instructions. Credentials for a managed
+endpoint come from its operator, not this documentation portal. Do not assume
+that one provider's credential format or permissions apply to another provider.
+
+For a light node connecting to an authenticated consensus gRPC endpoint, see
+[consensus endpoint authentication](/operate/data-availability/light-node/advanced#start-light-node-with-consensus-endpoint-authentication).
+
+## Transaction signing
+
+A transaction signer is separate from an endpoint credential. The
+[Go](/build/post-retrieve-blob/client/go) and
+[Rust](/build/post-retrieve-blob/client/rust) quickstarts explain signer setup
+and funding. A valid endpoint credential does not fund the signer's account.
+
+If a request fails, check the target host, network, and required permission with
+the provider. Use the [developer portal](/build/developers) to find the relevant API
+contract and testnet guide.

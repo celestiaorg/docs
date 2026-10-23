@@ -23,5 +23,6 @@ export const constants = constantsJson as {
     golangNodeMocha: string;
     mainnetChainId: string;
     mochaChainId: string;
+    bridgeStorageWindowHours: number;
     orchrelayVersion: string;
 };
