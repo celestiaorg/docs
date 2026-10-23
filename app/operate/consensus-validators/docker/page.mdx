@@ -22,6 +22,9 @@ to the [celestia-node Docker page](/operate/getting-started/docker).
 - For production, a Linux host whose kernel provides BBR. Follow
   [the host setup below](#prepare-a-linux-host-for-bbr).
 
+The image is a static binary. It does not need the host glibc version required
+by a pre-built `celestia-appd` binary.
+
 ## Prepare a Linux host for BBR
 
 Run these commands on the Linux host running Docker Engine:
@@ -70,8 +73,10 @@ export APP_VERSION={{mochaVersions['app-latest-tag']}}
 export NODE_VERSION={{mochaVersions['node-latest-tag']}}
 ```
 
-Use the `ghcr.io/celestiaorg/celestia-app` image, which bundles earlier
-application versions for syncing through network upgrades.
+Use the `ghcr.io/celestiaorg/celestia-app` image. It is the multiplexer build
+and includes earlier application versions so the node can sync through network
+upgrades. Do not use `ghcr.io/celestiaorg/celestia-app-standalone` for a node
+that still has to pass those upgrades.
 
 ### Create the node home directory
 
@@ -109,12 +114,15 @@ Download the seed list for the selected network and update
 `$APP_HOME/config/config.toml`:
 
 ```bash
-SEEDS=$(curl -fsSL "https://raw.githubusercontent.com/celestiaorg/networks/master/$CHAIN_ID/seeds.txt" | tr '\n' ',' | sed 's/,$//')
-test -n "$SEEDS" && sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" "$APP_HOME/config/config.toml"
+SEEDS=$(curl -fsSL "https://raw.githubusercontent.com/celestiaorg/networks/master/${CHAIN_ID}/seeds.txt" | tr '\n' ',' | sed 's/,$//')
+printf '%s' "$SEEDS" | grep -Eq '^[A-Za-z0-9@:,._-]+$' &&
+  sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" "$APP_HOME/config/config.toml"
 ```
 
-Confirm that the download succeeded and `seeds` contains the downloaded peers
-before continuing. For optional persistent peers, see the
+The `grep` check rejects an empty list and any character that is not part of a
+peer address, so the downloaded text is not executed by the shell. Confirm that
+the command succeeded and `seeds` contains the downloaded peers before
+continuing. For optional persistent peers, see the
 [consensus node guide](/operate/consensus-validators/consensus-node#set-up-the-p2p-networks).
 
 ### Choose storage and sync settings
@@ -228,13 +236,13 @@ it exits. For a persistent node store, follow the
 and add `--network celestia-network` to the run command.
 
 ```bash
-docker run --rm -it \
+docker run --rm \
   --name celestia-node \
   --network celestia-network \
   -e NODE_TYPE=light \
-  -e P2P_NETWORK=$NETWORK \
+  -e P2P_NETWORK="$NETWORK" \
   ghcr.io/celestiaorg/celestia-node:$NODE_VERSION \
-  celestia light start --core.ip celestia-app --core.port 9090 --p2p.network $NETWORK
+  celestia light start --core.ip celestia-app --core.port 9090 --p2p.network "$NETWORK"
 ```
 
 ## Stop or upgrade the consensus container
@@ -278,4 +286,5 @@ container preserves the bind-mounted data; do not delete `$APP_HOME`.
 
 - [Consensus node guide](/operate/consensus-validators/consensus-node)
 - [Validator node guide](/operate/consensus-validators/validator-node)
+- [Fibre](/operate/consensus-validators/fibre), for validator operators
 - [celestia-node Docker guide](/operate/getting-started/docker)
