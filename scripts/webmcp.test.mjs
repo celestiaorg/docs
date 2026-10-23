@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { registerDocsTools } from '../src/lib/webmcp.js'
+import { markdownPathFor, registerDocsTools } from '../src/lib/webmcp.js'
 
 function setup(fetcher, page = '/docs/index.md') {
   const tools = new Map()
@@ -55,4 +55,12 @@ test('WebMCP reports HTTP and HTML errors and prevents off-site reads', async ()
     })
     await assert.rejects(tools.get('read_current_page').execute({}), /Only documentation|does not advertise/)
   }
+})
+
+test('WebMCP derives the Markdown path from the current route', () => {
+  assert.equal(markdownPathFor('/', '/'), '/index.md')
+  assert.equal(markdownPathFor('/build/mcp/', '/'), '/build/mcp.md')
+  assert.equal(markdownPathFor('/build/mcp', '/'), '/build/mcp.md')
+  assert.equal(markdownPathFor('/docs/', '/docs/'), '/docs/index.md')
+  assert.equal(markdownPathFor('/docs/build/mcp/', '/docs'), '/docs/build/mcp.md')
 })

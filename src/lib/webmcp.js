@@ -1,4 +1,8 @@
 // WebMCP uses the same public Markdown and search index as the docs MCP server.
+// Mirrors markdownPathForFile in scripts/generate-llms.js: "/" reads index.md, "/a/b/" reads a/b.md.
+export const markdownPathFor = (pathname, basePath = '/') =>
+  `${basePath.replace(/\/$/, '')}/${pathname.slice(basePath.length).replace(/^\/|\/$/g, '') || 'index'}.md`
+
 export function registerDocsTools(modelContext, { baseUrl, getMarkdownUrl, fetcher = fetch }) {
   const controller = new AbortController()
   const base = new URL(baseUrl)
