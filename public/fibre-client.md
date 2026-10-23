@@ -35,6 +35,7 @@ deposit escrow → client encodes blob, signs payment promise → uploads shards
 
 Node methods: `Submit` (upload+settle+wait; use first), `Upload` (settles in background; errors only in node logs), `Download`, `QueryEscrowAccount`, `Deposit`, `Withdraw`, `PendingWithdrawals`.
 Go: `fibre.Put` = upload+settle+wait, returns `tx_hash` only after confirmation. For production prefer `Client.Upload` + own broadcast, saving the hash before confirming. Call `Start` first; call `Stop` on shutdown; `blob.Free()`. A nil keyring allows downloads only.
+From celestia-app v10.5.0, `DetachBackgroundUploads` defaults to true. Cancelling after `Client.Upload` or `fibre.Put` returns leaves uploads past quorum running, bounded by the RPC timeout and retry limits. Set it false so cancellation stops them. Cancelling before quorum aborts the upload either way. `Client.Await`, or `Client.Stop` unless its context is cancelled, waits for the rest.
 Blob ID: base64 in JSON-RPC. In Go, pass the `BlobID` ([]byte) as returned; `String()` = hex, `BlobIDFromString` parses hex. Same ID.
 
 ## Money
