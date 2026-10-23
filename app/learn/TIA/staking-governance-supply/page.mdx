@@ -20,7 +20,7 @@ Learn
 | Delegation support   | Yes            |
 
 Learn how to
-[stake on your own at the community dashboards](/learn/tia/staking).
+[stake on your own at the community dashboards](/learn/TIA/staking).
 
 ## Inflation
 

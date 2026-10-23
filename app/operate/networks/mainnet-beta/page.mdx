@@ -40,8 +40,8 @@ treat 3 seconds as an approximate target rather than an exact interval.
 
 | Software       | Version                                                             |
 | -------------- | ------------------------------------------------------------------- |
-| celestia-node  | [{mainnetVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{mainnetVersions['node-latest-tag']}) |
-| celestia-app   | [{mainnetVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{mainnetVersions['app-latest-tag']})   |
+| celestia-node  | [{mainnetVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{{mainnetVersions['node-latest-tag']}}) |
+| celestia-app   | [{mainnetVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{{mainnetVersions['app-latest-tag']}})   |
 
 ## Network status
 
@@ -148,6 +148,9 @@ provider](#production-rpc-endpoints) or your own node for production workloads.
 
 ### Node setup and tools
 
+For paid archive RPC reads, indexed data APIs, and MCP access, see
+[community services](/build/rpc/community-services).
+
 Several community providers offer comprehensive node setup tools, installation scripts, and monitoring services to help node operators get started quickly:
 
 | Provider | Installation guide                                             | State sync                                                    | Monitoring tools                                                |
@@ -166,6 +169,7 @@ The following table lists community-provided consensus node endpoints that you c
 | --------------- | --------------------------------------- | --------------------------------------- | ----------------------------------------- | -------------------------------------------------------- |
 | AlphaB          | `rpc-celestia.alphab.ai`               | `api-celestia.alphab.ai`               | `rpc-celestia.alphab.ai:9090`             | -                                                        |
 | CitizenWeb3     | `rpc.celestia.citizenweb3.com`          | `api.celestia.citizenweb3.com`          | `grpc.celestia.citizenweb3.com:443`       | -                                                        |
+| Cumulo          | `celestia.cumulo.org.es`                | `celestia.api.cumulo.org.es`            | `celestia.grpc.cumulo.org.es:443`         | `wss://celestia.cumulo.org.es/websocket`                 |
 | ITRocket        | `celestia-mainnet-rpc.itrocket.net:443` | `celestia-mainnet-api.itrocket.net:443` | `celestia-mainnet-grpc.itrocket.net:443`  | -                                                        |
 | kjnodes         | `celestia.rpc.kjnodes.com`              | `celestia.api.kjnodes.com`              | `celestia.grpc.kjnodes.com:443`           | -                                                        |
 | lunaroasis      | `rpc.lunaroasis.net`                    | -                                       | `grpc.lunaroasis.net:443`                 | -                                                        |
@@ -249,6 +253,11 @@ To check the current status, uptime, and health of all community endpoints, visi
 - Last seen heights for each endpoint
 
 This is an essential resource when selecting endpoints for your nodes or applications.
+
+For a multi-region view of public consensus RPC endpoints, use
+[Cumulo's check_d Endpoint Scan](https://cumulo.pro/services/celestia/rpcscan.php).
+It shows endpoint health, block height, historical reliability, and response
+latency from probes in the United States, Europe, Canada, and Singapore.
 
 ## Analytics
 

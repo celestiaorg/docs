@@ -1,0 +1,65 @@
+---
+description: Monitor a Fibre client and tell your own problems from network problems.
+---
+
+# Monitoring from the client side
+
+## Turn on metrics
+
+- **celestia-app Go client:** metrics use OpenTelemetry. Set a global
+  `MeterProvider` in your process, or pass `ClientConfig.Meter`. With
+  neither, nothing is exported.
+- **celestia-node:** start the node with `--metrics --metrics.endpoint <metrics_endpoint>`.
+  See [node metrics](/operate/data-availability/metrics).
+
+{/* src: app@v10.4.0:fibre/client_config.go Validate (Meter defaults to otel.Meter("fibre-client")) */}
+{/* src: node@v0.34.3:nodebuilder/settings.go (otel.SetMeterProvider) */}
+{/* src: docs:/operate/data-availability/metrics */}
+
+## What to watch
+
+| Signal | Where to get it | Alert when |
+|---|---|---|
+| Escrow `available_balance` | `fibre.QueryEscrowAccount`, or `GET /fibre/v1/escrow-account/<address>` | Below your threshold |
+| Wallet balance | `state.Balance`, or the bank query | Too low to pay gas |
+| Upload success rate and latency | `fibre.client.upload.duration` (attribute `success`). Node: `fibre_submit_duration_seconds`, `fibre_upload_duration_seconds` | Error rate or latency rises |
+| Failures per validator | `fibre.client.upload_to.duration` with `success=false`, by `validator_address` | Many validators fail at once |
+| Download success rate and latency | `fibre.client.download.duration` | Error rate rises |
+| Settlement | Transaction result for each `tx_hash`, or `EventPayForFibre` | Any blob unsettled after a few blocks |
+| Unexpected charges | `EventPaymentPromiseTimeout` where `escrow_signer` is your address | Any occurrence |
+| Core endpoint health | Your client logs: HTTP 429, timeouts, connection errors | Sustained errors |
+
+`EventPaymentPromiseTimeout` means one of your promises was charged without a
+normal settlement. Usually an upload failed after the promise had already
+reached validators.
+
+{/* src: app@v10.4.0:fibre/client_metrics.go; docs:/operate/consensus-validators/fibre/metrics "Client metrics" */}
+{/* src: node@v0.34.3:fibre/metrics.go, fibre/account_metrics.go */}
+{/* src: app@v10.4.0:x/fibre/README.md "Events" */}
+
+## Your problem or the network's?
+
+| What you see | Likely cause | What to do |
+|---|---|---|
+| Every upload fails with an escrow or balance error | Yours: escrow empty, or too many promises in flight | Top up escrow. Lower concurrency. |
+| `payment promise chain ID mismatch` | Yours: client and endpoint are on different networks | Fix the endpoint or chain config |
+| `creation_timestamp ... must not be after` | Yours: host clock is ahead. Or the chain has stalled. | Sync the clock. Check the status page. |
+| Failures spread across most validators, all timeouts | Usually yours: outbound bandwidth or network | Check egress. Compare with a second host. |
+| Failures on a few specific validators only | Those validators | Nothing, while quorum still holds |
+| `not enough voting power` and many validators unreachable | Often the network | Check the dashboards and status page. |
+| `fibre storage budget exceeded` from many validators | Network capacity | The client retries on its own. |
+| HTTP 429 from the core endpoint | Endpoint provider | Back off. Use your own endpoint. Check whether the blob settled before resubmitting. |
+| Download returns `blob not found` after retention | Expected behaviour | Recover from your own copy |
+
+Cross-check with:
+
+- the [network status page](https://status.celestia.org)
+- the Mainnet Beta and Mocha
+  [community dashboards](/operate/consensus-validators/fibre/metrics#community-dashboards):
+  Valopers (registered providers and reachability) and Tensile (endpoint
+  reachability and whether validators serve their rows)
+
+{/* src: app@v10.4.0:fibre/server_upload.go verifyPromise ("payment promise chain ID mismatch"); app@v10.4.0:x/fibre/keeper/keeper.go:405 (creation_timestamp future) */}
+{/* src: app@v10.4.0:fibre/validator/signature_set.go NotEnoughSignaturesError */}
+{/* src: app@v10.4.0:fibre/server_upload.go ("fibre storage budget exceeded", RetryInfo) */}
+{/* src: docs:/operate/consensus-validators/fibre/metrics "Community dashboards"; docs: app/_meta.js (status.celestia.org) */}

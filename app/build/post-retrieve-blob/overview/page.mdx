@@ -1,12 +1,43 @@
-# Overview to posting and retrieving blobs on Celestia
+# Get started with Celestia blobs
 
-This section will show you how to post and retrieve blobs on Celestia using the transaction client in Golang and Rust.
+Post and retrieve your first blob with a transaction client. You can use public
+or managed endpoints without running your own node. Start on Mocha and use
+endpoints from the same network for both reading and submission.
 
 There are two transaction clients available:
 
 | Option     | What you need                       | Endpoints to set                  | Guides                                                    |
 | ---------- | ----------------------------------- | --------------------------------- | --------------------------------------------------------- |
 | **Golang** | Local keyring handled by the client | **2** — DA bridge RPC + Core gRPC | [Go client tutorial](/build/post-retrieve-blob/client/go) |
-| **Rust**   | Local keyring handled by the client | **2** — DA bridge RPC + Core gRPC | [Rust client](/build/post-retrieve-blob/client/rust)      |
+| **Rust**   | Local signer | **2** — DA bridge RPC + Core gRPC | [Lumina Rust client and API documentation](/build/post-retrieve-blob/client/rust) |
+
+## Setup checklist
+
+1. Follow the [Go tutorial prerequisites and project setup](/build/post-retrieve-blob/client/go#prerequisites), including its toolchain and dependency versions. For Rust, use the Lumina client documentation linked above.
+2. Configure a DA bridge JSON-RPC URL for reads and a consensus Core gRPC address for submission. The Go tutorial uses these public Mocha endpoints:
+
+   ```bash
+   export CELE_DA_URL=https://public-endpoint.celestia-mocha.quiknode.pro
+   export CELE_DA_TLS=true
+   export CELE_CORE_GRPC=public-endpoint.celestia-mocha.quiknode.pro:9090
+   export CELE_CORE_TLS=true
+   ```
+
+3. Check [API authentication](/build/rpc/authentication) if using a self-hosted node or managed provider. Endpoint credentials and transaction signing keys serve different purposes. The public endpoints above do not require a provider credential.
+4. Run the Go tutorial to create a signer and print its address. Fund that address through the [Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet), then rerun the same project. An `account for signer ... not found` error means the new account needs funding.
+5. Confirm that the retrieved data matches the submitted blob. Save the **height, namespace, and commitment** for later retrieval.
+
+The environment variables above belong to the Go example; configure equivalent
+endpoints in the Rust client. For connection errors, check the network, TLS
+settings and endpoint credentials before retrying. The Go tutorial includes
+[troubleshooting](/build/post-retrieve-blob/client/go#troubleshooting).
+
+## Costs and agent tools
+
+Reading the docs and using the [Celestia documentation MCP server](/build/mcp)
+are free. Blob submissions incur network fees; providers may charge separately.
+See [Celestia blobspace fees](/learn/TIA/paying-for-blobspace) before choosing a provider.
+The documentation MCP server searches these guides; it does not submit blobs or
+manage signing keys.
 
 For Fibre storage on Mocha, follow [Submit and retrieve a Fibre blob](/build/post-retrieve-blob/fibre). That guide covers escrow, on-chain settlement, retrieval and the separate Fibre size limits.

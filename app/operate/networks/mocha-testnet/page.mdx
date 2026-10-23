@@ -150,8 +150,8 @@ to the correct instructions on this page on how to connect to Mocha.
 
 | Software       | Version                                                                           |
 | -------------- | --------------------------------------------------------------------------------- |
-| celestia-node  | [{mochaVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{mochaVersions['node-latest-tag']}) |
-| celestia-app   | [{mochaVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{mochaVersions['app-latest-tag']})   |
+| celestia-node  | [{mochaVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{{mochaVersions['node-latest-tag']}}) |
+| celestia-app   | [{mochaVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})   |
 
 ## Network status
 
@@ -246,6 +246,11 @@ Celestia network. The default port is 26657.
 - `rpc-1.testnet.celestia.nodes.guru`
 - `rpc-2.testnet.celestia.nodes.guru`
 - `celestia-testnet-rpc.itrocket.net:443`
+
+For a multi-region view of public consensus RPC endpoints, use
+[Cumulo's check_d Endpoint Scan for Mocha](https://cumulo.pro/services/celestia_mocha/rpcscan.php).
+It shows endpoint health, block height, historical reliability, and response
+latency from probes in the United States, Europe, Canada, and Singapore.
 
 ## Community API endpoints
 

@@ -6,5 +6,9 @@
   "orchrelayVersion": "v1.0.1",
   "mochaFibreCoreHost": "grpc-mocha.pops.one",
   "mochaFibreCorePort": 443,
-  "mochaFibreRestUrl": "https://api-mocha.pops.one"
+  "mochaFibreRestUrl": "https://api-mocha.pops.one",
+  "mainnetPrunedConsensusDiskTB": 2,
+  "mainnetPrunedBridgeDiskTB": 2,
+  "mainnetArchivalConsensusDiskTB": 16,
+  "mainnetArchivalBridgeDiskTB": 12
 }

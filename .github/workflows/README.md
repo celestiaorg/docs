@@ -1,32 +1,37 @@
 # GitHub Actions workflows
 
-This directory contains the workflows used to lint, deploy, and keep release metadata up to date for the docs site.
+This directory contains the workflows used to lint, deploy, preview, and keep release metadata up to date for the docs site.
 
-## `deploy.yml` — Deploy Docs (Nextra) to GitHub Pages
+## `deploy-cloudflare.yml` — Deploy to Cloudflare Pages
 
-- **Triggers:** `push` to `main`, or manual `workflow_dispatch`.
-- **What it does:** installs deps (Node 20 + Yarn), runs `yarn generate:llms`, builds the static site (`yarn build`), then publishes `out/` to the `gh-pages` branch via `peaceiris/actions-gh-pages`.
-- **Notes:** writes `out/.nojekyll` and sets `cname: docs.celestia.org`.
+- **Triggers:** pushes to `main`, same-repository PRs, or manual `workflow_dispatch`.
+- **Production:** deploys `main` to the permanent Pages project (`celestia-docs` by default).
+- **Previews:** uses `pr-<pr_number>` aliases; manual non-main runs use a stable branch hash. Fork PR deployments are skipped.
+- **Build:** sets the deployment origin, enables MCP, verifies the artifact and tests the Worker. Previews get noindex HTML and a disallow-all robots file.
+- **Deploy:** verifies the project production branch is `main`, uploads with Wrangler, smoke-tests the deployed pages and MCP, and records URLs in the run summary.
+- **Required secrets:** `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Missing secrets fail the run.
+- **Optional variable:** `CLOUDFLARE_PAGES_PROJECT` overrides the project name.
+- Production runs are allowed to finish; obsolete preview runs are cancelled.
 
-## `preview.yaml` — Deploy PR Preview
+The legacy GitHub Pages deployment and preview workflows have been removed.
+`gh-pages`, `celestiaorg/docs-preview` and `PR_PREVIEW_DEPLOY` are no longer used
+by these workflows. Cloudflare handles both production and previews.
 
-- **Triggers:** pull requests (`opened`, `reopened`, `synchronize`, `closed`).
-- **What it does (PR open/updated):** builds the site with a PR-specific base path (`/docs-preview/pr-<number>/`), commits the build output into `celestiaorg/docs-preview` under `pr-<number>/`, then posts/updates a PR comment with the preview URL.
-- **What it does (PR closed):** deletes the corresponding `pr-<number>/` directory from `celestiaorg/docs-preview`.
-- **Required secret:** `PR_PREVIEW_DEPLOY` (token with write access to `celestiaorg/docs-preview`).
+See [the cutover runbook](../CLOUDFLARE-CUTOVER.md) for migration history and production verification.
 
 ## `lint.yaml` — Lint & Link Check
 
 - **Triggers:** `push`/`pull_request` on `main`, plus a weekly schedule (`0 9 * * 1`).
-- **What it does:** runs `npm run lint`, `npm run test:releases`, and `npm run check-links` (Node 20).
+- **What it does:** runs Bun type, lint, release-selection, Fibre response, generated Markdown, and link checks.
 
 ## `latest-tags.yaml` — Latest Tags
 
-- **Triggers:** every 6 hours, or manual `workflow_dispatch` with `network`.
-- **What it does:** for each network (`mainnet`, `mocha`), selects the highest numeric patch release within the approved major/minor series in `constants/release-policy.json` for celestia-app and celestia-node. Updates `constants/<network>_versions.json` and opens a PR only for an eligible upgrade. GitHub release ordering does not determine eligibility.
-- **Compatibility policy:** the initial series match the existing documented versions; this does not independently establish compatibility of every future patch. Review release notes and network compatibility before merging patch PRs. To move to a new major/minor series, verify network activation and software compatibility, then update the policy and the corresponding version constants (tag and commit SHA) together in a maintainer-reviewed PR. Manual workflow runs use the same safeguards. Intentional rollbacks also require a manual constants change.
-- **Safeguards:** never downgrade; keep Mainnet and Mocha channels separate; reject missing or malformed current metadata, policy mismatches, unavailable current releases, API errors, and changed SHAs for existing tags. Files are written only after both components validate. Skipped releases and no-op runs are recorded in the Actions summary without creating PRs.
-- **Tests:** `npm run test:releases` exercises selection and update planning with API fixtures; it also runs in PR CI.
+- **Triggers:** every 6 hours, manual `workflow_dispatch` with `network`, or a `push` to `main` that changes `constants/*_versions.json`. After one network PR merges, the push run regenerates the other network's PR from current `main` to repair conflicts in the shared API manifest and skill links.
+- **What it does:** for each network (`mainnet`, `mocha`), selects the highest numeric major/minor/patch release for celestia-app and celestia-node. Updates `constants/<network>_versions.json`, downloads the matching published OpenRPC asset, generates celestia-app OpenAPI from the Mainnet Beta tag and commit (with its locked protobuf dependencies), updates `constants/node_api_versions.json`, and regenerates `public/SKILL.md` in the same PR. Previous API versions remain in the dropdown. It also repairs API spec drift without a new tag update; unchanged runs create no PR. GitHub release ordering does not determine eligibility. Runs for the same network are serialised, check out current `main`, and reuse the same PR branch.
+- **Review policy:** minor and major upgrades are proposed automatically, rather than silently excluded by a series pin. Review upstream release notes and network compatibility before merging any release PR; published software does not establish network activation. The PR body and Actions summary flag major/minor transitions. Intentional rollbacks require a manual constants change.
+- **Channels:** Mainnet Beta follows unsuffixed stable releases; Mocha follows only `-mocha` releases (including releases marked as prereleases on GitHub). For example, `v0.33.4-mocha` can advance to `v0.34.0-mocha`, but never to `v0.34.0`. Drafts, release candidates and other network channels are not selected.
+- **Safeguards:** never downgrade; reject missing or malformed current metadata, unavailable current releases, API errors, and changed SHAs for existing tags. Network constants are written only after both components validate. Missing, malformed, or wrong-version OpenRPC assets, failed OpenAPI generation, and OpenAPI validation errors stop the job before it can open or update a PR. `bun run check:app-api` also prevents a constants/spec mismatch in CI and builds. Skipped releases and no-op runs are recorded in the Actions summary without creating PRs.
+- **Tests:** `bun run test:releases` exercises release selection, update planning, spec synchronisation, and refresh after either network merges with API fixtures; it also runs in PR CI.
 - **Required secret:** `PAT_CREATE_PR` (token used by `peter-evans/create-pull-request` to push a branch and open a PR in this repo). Uses `GITHUB_TOKEN` for API reads.
 
 ## Notes
