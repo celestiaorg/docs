@@ -243,6 +243,47 @@ test('missing .md pages return Markdown without an Accept header', async () => {
   }
 })
 
+test('JSON clients receive structured upstream errors with real retry headers', async () => {
+  for (const status of [400, 403, 429, 500, 502, 503]) {
+    for (const pathname of ['/api/example', '/guide']) {
+      const env = assets({ [pathname]: new Response('<h1>Upstream error</h1>', { status, headers: {
+        'Content-Type': 'text/html', 'Retry-After': '30',
+        'RateLimit': '"docs";r=0;t=30', 'RateLimit-Policy': '"docs";q=100;w=60',
+        ETag: '"error-html"',
+      } }) })
+      const response = await worker.fetch(new Request(`https://docs.example${pathname}`, {
+        headers: pathname.startsWith('/api/') ? {} : { Accept: 'application/json' },
+      }), env)
+      assert.equal(response.status, status)
+      assert.equal(response.headers.get('Content-Type'), 'application/problem+json')
+      const problem = await response.json()
+      assert.equal(problem.status, status)
+      assert.ok(problem.code && problem.title && problem.detail && problem.hint)
+      assert.equal(response.headers.get('Retry-After'), '30')
+      assert.equal(response.headers.get('RateLimit'), '"docs";r=0;t=30')
+      assert.equal(response.headers.get('RateLimit-Policy'), '"docs";q=100;w=60')
+      assert.equal(response.headers.get('ETag'), null)
+      assert.equal(response.headers.get('Cache-Control'), 'private, no-store')
+      assert.ok(response.headers.get('Vary').includes('Accept'))
+    }
+  }
+})
+
+test('upstream JSON errors and browser HTML errors retain their bodies', async () => {
+  for (const [contentType, accept, body] of [
+    ['application/problem+json', 'application/json', '{"type":"https://example.com/problem","status":429,"detail":"Quota exceeded"}'],
+    ['application/json', 'application/json', '{"error":{"code":"UPSTREAM_LIMIT"}}'],
+    ['text/html', 'text/html', '<h1>Unavailable</h1>'],
+  ]) {
+    const response = await worker.fetch(new Request('https://docs.example/guide', { headers: { Accept: accept } }),
+      assets({ '/guide': new Response(body, { status: 429, headers: { 'Content-Type': contentType } }) }))
+    assert.equal(await response.text(), body)
+    assert.equal(response.headers.get('Content-Type'), contentType)
+    assert.equal(response.headers.get('Retry-After'), null)
+    assert.equal(response.headers.get('RateLimit'), null)
+  }
+})
+
 test('unknown API routes return JSON errors for GET and POST while existing assets remain available', async () => {
   // Live Pages answers POST on a missing path with 405; the 405 path is covered by the next test.
   for (const method of ['GET', 'POST']) {

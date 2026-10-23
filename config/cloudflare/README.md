@@ -53,6 +53,8 @@ entry does not bypass a challenge, and waiting for DNS cannot fix a WAF rule.
 This public documentation site has no sign-in, protected API, registration or
 checkout. OAuth metadata, Auth.md and payment protocols do not apply. The Node
 API uses OpenRPC; do not publish fictional REST operations for scanner points.
-The Pages deployment has real read-only MCP tools at `/mcp` and `/api/mcp`;
-additional service cards, DNS-AID records and browser tools are separate work.
-Publish them only against verified services and current protocol requirements.
+The Pages deployment has real read-only MCP tools at `/mcp` and `/api/mcp`.
+Its server card is at `/mcp/server-card`, linked from `/.well-known/ai-catalog.json`.
+Browsers that implement WebMCP expose documentation search and current-page
+retrieval using the same public files. DNS publication remains an owner task;
+see the [DNS-AID handoff](DNS-AID.md) for the proposed record and DNSSEC checks.

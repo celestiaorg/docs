@@ -81,22 +81,31 @@ async function serveDocs(request, env) {
   const apiPath = url.pathname.startsWith('/api/')
   // Agents following .md links rarely send Accept: text/markdown.
   const markdownPath = url.pathname.endsWith('.md')
-  if ((response.status === 404 && (markdown || markdownPath || json || apiPath))
-    || (response.status === 405 && (json || apiPath))) {
+  const jsonResponse = /\bapplication\/(?:[\w.-]+\+)?json\b/i.test(response.headers.get('Content-Type') || '')
+  if ((response.status === 404 && (markdown || markdownPath) && !jsonResponse)
+    || (response.status >= 400 && (json || apiPath) && !jsonResponse)) {
     await response.body?.cancel()
     const headers = new Headers(response.headers)
     for (const name of ['Content-Length', 'Content-Encoding', 'ETag', 'Last-Modified', 'Content-Range', 'Accept-Ranges']) headers.delete(name)
     const useMarkdown = (markdown || (markdownPath && !json)) && !apiPath && response.status === 404
     const notFound = response.status === 404
+    const methodNotAllowed = response.status === 405
+    const retryable = response.status === 429 || response.status >= 500
+    const title = ({ 400: 'Bad Request', 401: 'Unauthorized', 403: 'Forbidden', 404: 'Not Found',
+      405: 'Method Not Allowed', 429: 'Too Many Requests', 500: 'Internal Server Error',
+      502: 'Bad Gateway', 503: 'Service Unavailable', 504: 'Gateway Timeout' })[response.status]
+      || response.statusText || 'HTTP error'
     headers.set('Content-Type', useMarkdown ? 'text/markdown; charset=utf-8' : 'application/problem+json')
-    if (!notFound) headers.set('Allow', response.headers.get('Allow') || 'GET, HEAD, OPTIONS')
+    if (methodNotAllowed) headers.set('Allow', response.headers.get('Allow') || 'GET, HEAD, OPTIONS')
     response = new Response(useMarkdown
       ? '# Page not found\n\nThe requested resource does not exist in the Celestia documentation. Find a current page in the [documentation index](/llms.txt) or return to [Celestia docs](/).\n'
       : JSON.stringify({
-        type: 'about:blank', title: notFound ? 'Not Found' : 'Method Not Allowed',
-        status: response.status, code: notFound ? 'NOT_FOUND' : 'METHOD_NOT_ALLOWED',
-        detail: notFound ? 'The requested resource does not exist on the Celestia documentation site.' : 'This resource does not support the requested HTTP method.',
-        hint: 'Use /llms.txt to find documentation or POST JSON-RPC messages to /mcp. Node REST APIs run on your provider host.',
+        type: 'about:blank', title,
+        status: response.status, code: notFound ? 'NOT_FOUND' : methodNotAllowed ? 'METHOD_NOT_ALLOWED' : `HTTP_${response.status}`,
+        detail: notFound ? 'The requested resource does not exist on the Celestia documentation site.'
+          : methodNotAllowed ? 'This resource does not support the requested HTTP method.' : `The documentation request failed: ${title}.`,
+        hint: retryable ? 'Honour Retry-After when supplied; otherwise back off before retrying. Check https://status.celestia.org for service updates.'
+          : 'Use /llms.txt to find documentation or POST JSON-RPC messages to /mcp. Node REST APIs run on your provider host.',
       }), { status: response.status, headers })
   }
   if (markdown && html && response.status === 200 && ['GET', 'HEAD'].includes(request.method)) {
@@ -111,7 +120,7 @@ async function serveDocs(request, env) {
   }
 
   const headers = new Headers(response.headers)
-  if (html || [304, 404, 405].includes(response.status)) {
+  if (html || response.status === 304 || response.status >= 400) {
     const vary = headers.get('Vary')
     if (!vary?.split(',').some(value => value.trim().toLowerCase() === 'accept')) {
       headers.set('Vary', vary ? `${vary}, Accept` : 'Accept')

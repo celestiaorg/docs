@@ -8,6 +8,7 @@ export function Footer() {
       <a href="https://github.com/celestiaorg/.github/blob/main/SECURITY.md">Security policy</a>
       <a href={`${import.meta.env.BASE_URL}openapi.json`}>OpenAPI specification</a>
       <a href={`${import.meta.env.BASE_URL}build/developers/`}>Developer portal</a>
+      <a href={`${import.meta.env.BASE_URL}learn/TIA/paying-for-blobspace/`}>Paying for blobspace</a>
     </nav>
   )
 }

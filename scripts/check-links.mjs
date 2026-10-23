@@ -127,7 +127,7 @@ export function checkInternalLink(href, routes) {
   }
 
   // Public files and build-generated discovery files are links, not page routes.
-  if (checkPublicAsset(normalized) || ['/llms.txt', '/llms-full.txt', '/sitemap.xml', '/mcp/server-card'].includes(normalized)) {
+  if (checkPublicAsset(normalized) || ['/llms.txt', '/llms-full.txt', '/sitemap.xml', '/mcp/server-card', '/.well-known/ai-catalog.json'].includes(normalized)) {
     return { valid: true };
   }
   

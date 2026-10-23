@@ -17,7 +17,7 @@ for (const path of ['/', '/learn/TIA/overview', '/build/rpc/node-api', '/operate
   const response = await request(path)
   assert.ok((await response.text()).length > 0, `${path}: empty response`)
 }
-for (const route of ['/build/developers', '/about', '/contact', '/privacy', '/build/rpc/authentication', '/build/rpc/clients']) {
+for (const route of ['/build/developers', '/about', '/contact', '/privacy', '/build/rpc/authentication', '/build/rpc/clients', '/build/mcp', '/learn/TIA/paying-for-blobspace', '/build/post-retrieve-blob/overview']) {
   const html = await (await request(`${route}/`)).text()
   assert.match(html, /<h1\b/)
   const markdown = await (await request(`${route}.md`)).text()
@@ -26,7 +26,7 @@ for (const route of ['/build/developers', '/about', '/contact', '/privacy', '/bu
   assert.match(negotiated.headers.get('Content-Type'), /^text\/markdown/)
   assert.equal(await negotiated.text(), markdown)
 }
-for (const [path, target] of [['/developers', '/build/developers/'], ['/developers/', '/build/developers/'], ['/developers.md', '/build/developers.md'], ['/build/rpc/node-api/authentication', '/build/rpc/authentication/'], ['/docs', '/build/developers/']]) {
+for (const [path, target] of [['/developers', '/build/developers/'], ['/developers/', '/build/developers/'], ['/developers.md', '/build/developers.md'], ['/build/rpc/node-api/authentication', '/build/rpc/authentication/'], ['/docs', '/build/developers/'], ['/pricing', '/learn/TIA/paying-for-blobspace/'], ['/pricing/', '/learn/TIA/paying-for-blobspace/'], ['/pricing.md', '/learn/TIA/paying-for-blobspace.md']]) {
   const redirect = await request(path, { redirect: 'manual' }, 301)
   assert.equal(new URL(redirect.headers.get('Location'), origin).pathname, target, path)
 }

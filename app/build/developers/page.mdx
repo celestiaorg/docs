@@ -21,6 +21,8 @@ documentation site does not issue API keys or host a node REST API.
 - [Celestia REST API OpenAPI specification](/openapi.json): the celestia-app gRPC-gateway contract in Swagger 2.0 format.
 - [Celestia API authentication](/build/rpc/authentication): node tokens, provider credentials, and public documentation access.
 - [RPC providers and community services](/build/rpc/community-services): choose an endpoint for your network and API.
+- [Celestia blobspace fees](/learn/TIA/paying-for-blobspace): network fees and provider charges.
+- [Celestia documentation MCP server](/build/mcp): endpoint, transport, available tools, and a connectivity check.
 
 The REST specification describes a provider's API, not endpoints on
 `docs.celestia.org`. Configure the provider host explicitly. Error responses use
@@ -43,6 +45,9 @@ pages retain HTTP 404 and return a Markdown explanation when requested.
 Requests accepting JSON receive an RFC 9457 `application/problem+json` error
 with `status`, `code`, `detail`, and a resolution `hint`. Unknown `/api/` paths
 also return this JSON error.
+Upstream non-JSON 4xx and 5xx errors receive the same structure for JSON clients;
+existing upstream JSON error bodies are preserved. A failure blocked by edge
+security before reaching the Worker can still have a different response format.
 Unsupported methods on static resources retain HTTP 405; JSON errors include
 `METHOD_NOT_ALLOWED` and an `Allow` header lists supported methods.
 
@@ -53,6 +58,11 @@ with an `Allow` header and a hint to use POST. It does not require an API key.
 The [MCP server card](/mcp/server-card) describes the endpoint and supported
 protocol versions.
 
+The REST specification already defines a typed `rpcStatus` schema for each
+operation's `default` error response, covering HTTP statuses without an explicit
+response entry. Its numeric `code` is a gRPC status code, not an HTTP status.
+Use the provider's HTTP status alongside `code`, `message`, and `details`.
+
 ## Rate limits and troubleshooting
 
 Node providers control their own quotas, credentials, and response headers.
@@ -61,6 +71,8 @@ Check the selected provider's documentation before automating requests. On HTTP
 in a tight loop. This docs site does not advertise a fixed request quota or
 remaining-request counter. Edge security rules can reject a request before it
 reaches the documentation Worker.
+The Worker preserves upstream `RateLimit`, `RateLimit-Policy`, and `Retry-After`
+headers when present; it does not invent quota values for a provider or edge rule.
 
 For a missing page, use the [sitemap](/sitemap.xml) or [documentation index](/llms.txt).
 For node failures, check the endpoint's network, software version, and
