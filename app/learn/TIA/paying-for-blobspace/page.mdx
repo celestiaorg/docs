@@ -1,5 +1,11 @@
 # Paying for blobspace
 
+Posting blobs to Mainnet Beta costs TIA. Transaction fees depend on the gas
+limit and gas price. Use your client's fee estimation when submitting data.
+For testing on Mocha, obtain testnet tokens from the
+[Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet) and follow the
+[getting-started guide](/build/post-retrieve-blob/overview) to create and fund a signer.
+
 ## PayForBlobs transactions
 
 To publish data on Celestia, developers can submit `PayForBlobs` transactions. A
@@ -31,3 +37,21 @@ size of each blob in the transaction.
 
 Understand how fees are calculated on Celestia in
 [the overview on submitting PFB transactions](/learn/TIA/submit-data).
+
+## Fibre fees
+
+Fibre has a separate escrow and storage-charge model. See the
+[Fibre pricing and escrow guidance](/build/post-retrieve-blob/fibre/getting-started)
+for its calculation and requirements.
+
+## RPC and infrastructure costs
+
+RPC access, indexing, archival data, and hosting may have separate provider fees
+or quotas. Network transaction fees do not pay for a provider subscription.
+Check the provider's pricing, authentication, and rate limits before connecting.
+The [community services directory](/build/rpc/community-services) links to provider
+pricing and payment instructions.
+
+Running your own node also has infrastructure costs. Use the
+[node overview](/operate/getting-started/overview) to choose a node type and find
+its hardware and operational requirements.

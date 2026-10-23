@@ -9,7 +9,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { glob } from 'glob';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
@@ -106,7 +106,7 @@ function checkPublicAsset(assetPath) {
   // Remove leading slash
   const cleanPath = assetPath.startsWith('/') ? assetPath.slice(1) : assetPath;
   const fullPath = path.join(rootDir, 'public', cleanPath);
-  return fs.existsSync(fullPath);
+  return fs.existsSync(fullPath) && fs.statSync(fullPath).isFile();
 }
 
 function sleep(ms) {
@@ -116,7 +116,7 @@ function sleep(ms) {
 /**
  * Check if an internal link is valid
  */
-function checkInternalLink(href, routes) {
+export function checkInternalLink(href, routes) {
   // Remove hash fragment
   const [pathPart] = href.split('#');
   
@@ -124,6 +124,11 @@ function checkInternalLink(href, routes) {
   let normalized = pathPart;
   if (!normalized.startsWith('/')) {
     return { valid: false, reason: 'Relative path (not starting with /)' };
+  }
+
+  // Public files and build-generated discovery files are links, not page routes.
+  if (checkPublicAsset(normalized) || ['/llms.txt', '/llms-full.txt', '/sitemap.xml', '/mcp/server-card', '/.well-known/ai-catalog.json'].includes(normalized)) {
+    return { valid: true };
   }
   
   // Remove .md or .mdx extension if present (common mistake)
@@ -832,7 +837,9 @@ async function main() {
 }
 
 // Run main function
-main().catch(error => {
-  console.error('Fatal error:', error);
-  process.exit(1);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch(error => {
+    console.error('Fatal error:', error);
+    process.exit(1);
+  });
+}

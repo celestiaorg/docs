@@ -24,7 +24,9 @@ export default defineConfig({
   baseUrl: siteOrigin,
   outDir: 'out',
   renderStrategy: 'full-static',
-  checkDeadlinks: 'warn',
+  // Vocs resolves links against src/pages only, so links to public or generated
+  // files render with a dead-link underline. `bun run check-links` covers routes.
+  checkDeadlinks: false,
   mcp: {
     enabled: process.env.DOCS_MCP_ENABLED === '1',
   },
@@ -60,7 +62,7 @@ export default defineConfig({
   ],
   topNav: [
     { text: 'Learn', link: '/learn/celestia-101/data-availability', match: '/learn' },
-    { text: 'Build', link: '/build/post-retrieve-blob/overview', match: '/build' },
+    { text: 'Build', link: '/build/developers', match: '/build' },
     { text: 'Operate', link: '/operate/getting-started/overview', match: '/operate' },
     { text: 'Status', link: 'https://status.celestia.org', external: true },
   ],

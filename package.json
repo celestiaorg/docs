@@ -6,7 +6,7 @@
   "scripts": {
     "prepare:vocs": "node scripts/prepare-vocs-pages.mjs",
     "dev": "bun run prepare:vocs && vite dev",
-    "build": "bun run prepare:vocs && vite build && bun run generate:llms && node --test scripts/generated-discovery.test.mjs",
+    "build": "bun run check:app-api && bun run prepare:vocs && vite build && bun run generate:llms && node --test scripts/generated-discovery.test.mjs",
     "prepare:cloudflare": "DOCS_MCP_ENABLED=1 bun run build && node scripts/prepare-cloudflare.mjs",
     "deploy:cloudflare": "bun run prepare:cloudflare && wrangler pages deploy out/public",
     "preview": "vite preview",
@@ -15,18 +15,20 @@
     "generate:skill": "node scripts/sync-skill.mjs",
     "check:skill": "node scripts/sync-skill.mjs --check",
     "generate:llms": "node scripts/generate-llms.js",
-    "check-links": "node scripts/check-links.mjs",
+    "check-links": "node --test scripts/check-links.test.mjs && node scripts/check-links.mjs",
     "test:endpoints": "node --test scripts/check-endpoints.test.mjs",
-    "test:mcp": "node --test worker/index.test.js",
+    "test:mcp": "node --test worker/index.test.js scripts/webmcp.test.mjs",
     "test:rpc": "bun test scripts/rpc-playground.test.tsx",
     "typecheck": "tsc --noEmit",
     "test:static": "node --test scripts/vocs-sidebar.test.mjs && node scripts/check-static-export.mjs",
     "test:cloudflare": "node --test scripts/cloudflare-target.test.mjs && node scripts/check-cloudflare-artifact.mjs",
     "test:llms": "node --test scripts/clean-mdx.test.mjs && mkdir -p out/public && node scripts/generate-llms.js && node --test scripts/generated-discovery.test.mjs && python3 scripts/test-fibre-responses.py out/public/build/post-retrieve-blob/fibre.md",
     "test:fibre": "python3 scripts/test-fibre-responses.py",
-    "test:releases": "node --test scripts/latest-tags.test.mjs scripts/sync-node-api.test.mjs",
+    "test:releases": "node --test scripts/latest-tags.test.mjs scripts/sync-node-api.test.mjs scripts/sync-app-api.test.mjs",
     "sync:node-api": "node scripts/sync-node-api.mjs && bun run generate:skill",
-    "test:tabs": "node --test scripts/network-tabs.test.mjs"
+    "test:tabs": "node --test scripts/network-tabs.test.mjs",
+    "sync:app-api": "node scripts/sync-app-api.mjs",
+    "check:app-api": "node scripts/sync-app-api.mjs --check"
   },
   "simple-git-hooks": {
     "pre-push": "bun run lint"
@@ -49,6 +51,7 @@
     "waku": "^1.0.0-beta.3"
   },
   "devDependencies": {
+    "@apidevtools/swagger-parser": "^13.1.0",
     "@eslint/js": "^9.39.2",
     "@vitejs/plugin-react": "^6.0.2",
     "@tailwindcss/postcss": "^4",

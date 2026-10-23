@@ -18,9 +18,12 @@ node scripts/check-cloudflare-deployment.mjs https://docs.celestia.org
 The smoke test checks real pages, assets, MCP tools, the API catalog, and
 HTML → Markdown → HTML requests to the homepage and a nested Go guide.
 Negotiated Markdown must match the static `.md` file, with `Content-Type:
-text/markdown` and `Vary: Accept`. Negotiated page URLs use `Cache-Control:
-private, no-store` to prevent a shared cache from mixing representations;
-static assets retain their normal caching. Explicit `.md` URLs remain available.
+text/markdown` and `Vary: Accept`. Successful HTML responses use `Cache-Control:
+private, no-cache`: browsers may store HTML and revalidate it with the asset ETag
+before reuse. Negotiated Markdown and HTML errors keep `private, no-store`.
+Shared caches must not store either representation at negotiated URLs;
+`Vary: Accept` alone does not isolate the Cloudflare cache. Pages source assets
+retain their normal caching. Explicit `.md` URLs remain available.
 
 Run a fresh [Content Site scan](https://isitagentready.com/docs.celestia.org?profile=content)
 and [Is Agentic scan](https://is-agentic.com/scan/docs.celestia.org) after cutover.
@@ -50,6 +53,8 @@ entry does not bypass a challenge, and waiting for DNS cannot fix a WAF rule.
 This public documentation site has no sign-in, protected API, registration or
 checkout. OAuth metadata, Auth.md and payment protocols do not apply. The Node
 API uses OpenRPC; do not publish fictional REST operations for scanner points.
-The Pages deployment has real read-only MCP tools at `/mcp` and `/api/mcp`;
-additional service cards, DNS-AID records and browser tools are separate work.
-Publish them only against verified services and current protocol requirements.
+The Pages deployment has real read-only MCP tools at `/mcp` and `/api/mcp`.
+Its server card is at `/mcp/server-card`, linked from `/.well-known/ai-catalog.json`.
+Browsers that implement WebMCP expose documentation search and current-page
+retrieval using the same public files. DNS publication remains an owner task;
+see the [DNS-AID handoff](DNS-AID.md) for the proposed record and DNSSEC checks.

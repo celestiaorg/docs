@@ -3,6 +3,7 @@ description: Learn how to set up a Celestia consensus node.
 ---
 
 import { NetworkTabs } from '@/components/NetworkTabs'
+import { mainnetVersions, mochaVersions } from '@/constants'
 import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Consensus node
@@ -124,8 +125,9 @@ to migrate its databases.
 ### Optional: Connect a consensus node to a bridge node
 
 If your consensus node is being connected to a celestia-node bridge node,
-you will need to enable transaction indexing and retain all block
-data. This can be achieved with the following settings in your `config.toml`.
+configure indexing in `config.toml` and block retention in `app.toml` as
+described below. The consensus node does not need to retain the full block
+history for either a pruned or an archival bridge node.
 
 #### Enable transaction indexing
 
@@ -139,12 +141,28 @@ indexer = "null"
 The `null` indexer is a lightweight indexer that is sufficient for bridge
 nodes.
 
-#### Retain all block data
+#### Retain blocks for bridge nodes
 
-In your `app.toml`, explicitly set `min-retain-blocks` to `0`:
+Keep blocks that fall inside the bridge storage window
+(`{{constants['bridgeStorageWindowHours']}}h`). The bridge node's live listener
+fetches newly announced blocks from this consensus node. During header sync,
+recent ranges come from consensus and older ranges come from the header peer
+exchange. The data availability sampler retrieves share data from DA peers.
+Peers may not retain a complete history.
+
+`min-retain-blocks` in `app.toml` is a block count, not a duration. Cover the
+storage window at the network's block rate. On Mainnet Beta, a 3-second target
+is 202,800 blocks over 169 hours, and the documented 2.6-second happy-path
+cadence is 234,000 blocks. Use at least the count for the faster rate, increase
+it if blocks are produced faster, and recalculate when another network uses a
+different block time. A value of `0` retains every block. Neither a pruned nor
+an archival bridge node requires that.
 
 ```toml
-min-retain-blocks = 0 # retain all block data
+# Mainnet Beta: 169 hours at a 2.6-second block time.
+# Increase this if blocks are produced faster, and recalculate for a different block time.
+# 0 keeps the entire chain and is not required.
+min-retain-blocks = 234000
 ```
 
 ### Query transactions by hash
@@ -459,6 +477,65 @@ A value of `0` selects the built-in default of `20`. A negative value disables
 the limit, which is not recommended. Increasing the limit can increase peak
 memory consumption. Only raise it when the node has sufficient RAM, and monitor
 node memory usage under RPC load.
+
+With celestia-core v0.42.3, `genesis` and `genesis_chunked` also share this
+budget. celestia-app has included that core since v10.4.0 and v10.4.0-mocha,
+including the current {mainnetVersions['app-latest-tag']} and
+{mochaVersions['app-latest-tag']} releases. The multiplexer uses that core
+even while it serves an earlier application version.
+
+When the budget is full, HTTP URI requests return `503`. JSON-RPC and
+WebSocket requests return an error with
+`server busy: too many concurrent heavy RPC requests, retry later` in
+`error.data`. gRPC heavy methods return status `ResourceExhausted` with the
+same message. Reduce concurrent requests and retry with backoff.
+
+#### Configure RPC search limits
+
+For nodes using the `kv` indexer, `max_search_results` limits how many matches
+a `tx_search` or `block_search` query can accumulate in memory before
+pagination. The default is `100000`. To configure it, edit the existing
+`[tx_index]` section in `$HOME/.celestia-app/config/config.toml`:
+
+```toml
+[tx_index]
+indexer = "kv"
+max_search_results = 100000
+```
+
+Restart `celestia-appd` after changing the setting. A value of `0` or a negative
+value removes the cap, allowing broad searches to consume more memory. This
+setting applies to the key-value indexer, not the PostgreSQL indexer.
+
+If a query exceeds the cap, it fails with `search query too broad: narrow the
+query` instead of returning a truncated page. Narrow the query, for example
+by searching a smaller height range. Reducing `per_page` or requesting a
+different page does not avoid the cap because matching happens before
+pagination.
+
+This setting requires a celestia-app binary that includes the search cap from
+[celestia-core #3329](https://github.com/celestiaorg/celestia-core/pull/3329),
+released in the v0.40 line in
+[v0.40.11](https://github.com/celestiaorg/celestia-core/releases/tag/v0.40.11)
+and in the v0.42 line in
+[v0.42.2](https://github.com/celestiaorg/celestia-core/releases/tag/v0.42.2).
+For example, celestia-app v9.0.8 uses celestia-core v0.40.9 and does not support
+this setting. v10.4.0, v10.4.0-mocha, and later releases that include
+celestia-core v0.42.3 do, including the current
+{mainnetVersions['app-latest-tag']} and {mochaVersions['app-latest-tag']}
+binaries. Check the celestia-core dependency in your celestia-app release's
+`go.mod` before configuring it, and use the
+[release for your network](/operate/networks/overview).
+
+Both methods also reject query strings longer than **512 bytes** with
+`maximum query length exceeded`. This limit is fixed, not a configuration
+setting. Shorten the query before retrying.
+
+`tx_search` already enforced this query-length limit;
+[celestia-core v0.42.3](https://github.com/celestiaorg/celestia-core/releases/tag/v0.42.3)
+extended it to `block_search`. These protections follow the binary, starting
+with celestia-app v10.4.0 and v10.4.0-mocha, and do not wait for app version
+10 to activate on the network.
 
 #### Expose RPC
 

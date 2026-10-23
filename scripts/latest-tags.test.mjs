@@ -78,6 +78,45 @@ test('valid patch updates tag and SHA together and preserves other fields', asyn
   assert.equal(input.current['app-latest-tag'], 'v9.0.8');
 });
 
+test('retries empty and incomplete release listings before selecting an upgrade', async () => {
+  const input = fixture({ tags: ['v9.0.9', 'v9.0.8'] });
+  const paginate = input.github.paginate;
+  let attempts = 0;
+  input.github.paginate = async (method, args) => {
+    if (args.repo === 'celestia-app') {
+      attempts++;
+      if (attempts === 1) return [];
+      if (attempts === 2) return [release('v9.0.9')];
+    }
+    return paginate(method, args);
+  };
+  const result = await planUpdates(input);
+  assert.equal(attempts, 3);
+  assert.equal(result.next['app-latest-tag'], 'v9.0.9');
+  assert.equal(result.next['app-latest-sha'], newSha);
+});
+
+test('persistent missing releases fail after bounded retries without changing constants', async () => {
+  const input = fixture();
+  const original = { ...input.current };
+  let attempts = 0;
+  input.github.paginate = async () => { attempts++; return []; };
+  await assert.rejects(planUpdates(input), /celestia-app.*v9\.0\.8.*3 attempts/);
+  assert.equal(attempts, 3);
+  assert.deepEqual(input.current, original);
+});
+
+test('an ineligible current release still fails without retrying', async () => {
+  const input = fixture();
+  let attempts = 0;
+  input.github.paginate = async () => {
+    attempts++;
+    return [release('v9.0.8', { prerelease: true })];
+  };
+  await assert.rejects(planUpdates(input), /missing or ineligible/);
+  assert.equal(attempts, 1);
+});
+
 test('repository constants allow subsequent minor upgrades on both networks', async () => {
   for (const network of ['mainnet', 'mocha']) {
     const input = fixture();

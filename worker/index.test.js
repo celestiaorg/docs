@@ -133,7 +133,7 @@ for (const pathname of ['/', '/learn/TIA/overview/']) {
       assert.equal(response.status, 200)
       assert.match(response.headers.get('Content-Type'), markdown ? /^text\/markdown/ : /^text\/html/)
       assert.match(response.headers.get('Vary'), /Accept/)
-      assert.match(response.headers.get('Cache-Control'), /no-store/)
+      assert.equal(response.headers.get('Cache-Control'), markdown ? 'private, no-store' : 'private, no-cache')
       assert.match(response.headers.get('Link'), /rel="api-catalog"/)
       if (!markdown) {
         assert.match(response.headers.get('Vary'), /Accept-Encoding/)
@@ -176,7 +176,7 @@ test('preserves redirects, errors and non-HTML assets; catalog type applies only
   }
   for (const [path, response] of [
     ['/guide', new Response(null, { status: 301, headers: { Location: '/guide/' } })],
-    ['/missing', new Response('Missing', { status: 404, headers: { 'Content-Type': 'text/html' } })],
+    ['/error', new Response('Unavailable', { status: 503, headers: { 'Content-Type': 'text/html' } })],
     ['/image.svg', new Response('<svg/>', { headers: { 'Content-Type': 'image/svg+xml', 'Cache-Control': 'public, max-age=3600' } })],
     ['/missing.md', new Response('<h1>HTML fallback</h1>', { headers: { 'Content-Type': 'text/html' } })],
     ['/fallback/', new Response('<h1>HTML</h1>', { headers: { 'Content-Type': 'text/html' } })],
@@ -190,3 +190,160 @@ test('preserves redirects, errors and non-HTML assets; catalog type applies only
     if (path.endsWith('.svg')) assert.equal(result.headers.get('Cache-Control'), 'public, max-age=3600')
   }
 })
+
+test('missing resources negotiate Markdown and problem JSON without stale entity headers', async () => {
+  for (const sourceType of ['text/html', 'text/plain']) {
+    const env = assets({ '/missing': new Response('Missing', { status: 404, headers: {
+      'Content-Type': sourceType, ETag: '"html"', 'Content-Length': '7',
+      'Last-Modified': 'Wed, 01 Jan 2025 00:00:00 GMT', Vary: 'Accept-Encoding',
+    } }) })
+    for (const [accept, type] of [
+      ['text/markdown', 'text/markdown'],
+      ['application/json', 'application/problem+json'],
+      ['application/problem+json', 'application/problem+json'],
+      ['text/markdown;q=0.5, application/json', 'application/problem+json'],
+      ['application/json;q=0.5, text/markdown', 'text/markdown'],
+      ['text/html', sourceType],
+      ['text/markdown;q=0, application/json;q=0', sourceType],
+      ['text/markdown;q=0.5, text/html', sourceType],
+      ['*/*', sourceType],
+    ]) {
+      for (const method of ['GET', 'HEAD']) {
+        const response = await worker.fetch(new Request('https://docs.example/missing', {
+          method, headers: { Accept: accept },
+        }), env)
+        assert.equal(response.status, 404)
+        assert.ok(response.headers.get('Content-Type').startsWith(type))
+        assert.equal(response.headers.get('Vary'), 'Accept-Encoding, Accept')
+        assert.equal(response.headers.get('Cache-Control'), 'private, no-store')
+        if (type !== sourceType) {
+          for (const name of ['ETag', 'Content-Length', 'Last-Modified']) assert.equal(response.headers.get(name), null)
+        }
+        const body = await response.text()
+        if (method === 'HEAD') assert.equal(body, '')
+        else if (type === 'text/markdown') assert.match(body, /^# Page not found\n[\s\S]+\[documentation index\]\(\/llms.txt\)/)
+        else if (type === 'application/problem+json') {
+          const problem = JSON.parse(body)
+          assert.equal(problem.type, 'about:blank')
+          assert.equal(problem.status, response.status)
+          assert.equal(problem.code, 'NOT_FOUND')
+          assert.ok(problem.detail.length > 20 && problem.hint.includes('/llms.txt'))
+        } else assert.equal(body, 'Missing')
+      }
+    }
+  }
+})
+
+test('missing .md pages return Markdown without an Accept header', async () => {
+  for (const [accept, type] of [['', 'text/markdown'], ['*/*', 'text/markdown'], ['application/json', 'application/problem+json']]) {
+    const response = await worker.fetch(new Request('https://docs.example/missing.md', { headers: accept ? { Accept: accept } : {} }), assets())
+    assert.equal(response.status, 404)
+    assert.ok(response.headers.get('Content-Type').startsWith(type))
+    if (type === 'text/markdown') assert.match(await response.text(), /^# Page not found/)
+  }
+})
+
+test('JSON clients receive structured upstream errors with real retry headers', async () => {
+  for (const status of [400, 403, 429, 500, 502, 503]) {
+    for (const pathname of ['/api/example', '/guide']) {
+      const env = assets({ [pathname]: new Response('<h1>Upstream error</h1>', { status, headers: {
+        'Content-Type': 'text/html', 'Retry-After': '30',
+        'RateLimit': '"docs";r=0;t=30', 'RateLimit-Policy': '"docs";q=100;w=60',
+        ETag: '"error-html"',
+      } }) })
+      const response = await worker.fetch(new Request(`https://docs.example${pathname}`, {
+        headers: pathname.startsWith('/api/') ? {} : { Accept: 'application/json' },
+      }), env)
+      assert.equal(response.status, status)
+      assert.equal(response.headers.get('Content-Type'), 'application/problem+json')
+      const problem = await response.json()
+      assert.equal(problem.status, status)
+      assert.ok(problem.code && problem.title && problem.detail && problem.hint)
+      assert.equal(response.headers.get('Retry-After'), '30')
+      assert.equal(response.headers.get('RateLimit'), '"docs";r=0;t=30')
+      assert.equal(response.headers.get('RateLimit-Policy'), '"docs";q=100;w=60')
+      assert.equal(response.headers.get('ETag'), null)
+      assert.equal(response.headers.get('Cache-Control'), 'private, no-store')
+      assert.ok(response.headers.get('Vary').includes('Accept'))
+    }
+  }
+})
+
+test('upstream JSON errors and browser HTML errors retain their bodies', async () => {
+  for (const [contentType, accept, body] of [
+    ['application/problem+json', 'application/json', '{"type":"https://example.com/problem","status":429,"detail":"Quota exceeded"}'],
+    ['application/json', 'application/json', '{"error":{"code":"UPSTREAM_LIMIT"}}'],
+    ['text/html', 'text/html', '<h1>Unavailable</h1>'],
+  ]) {
+    const response = await worker.fetch(new Request('https://docs.example/guide', { headers: { Accept: accept } }),
+      assets({ '/guide': new Response(body, { status: 429, headers: { 'Content-Type': contentType } }) }))
+    assert.equal(await response.text(), body)
+    assert.equal(response.headers.get('Content-Type'), contentType)
+    assert.equal(response.headers.get('Retry-After'), null)
+    assert.equal(response.headers.get('RateLimit'), null)
+  }
+})
+
+test('unknown API routes return JSON errors for GET and POST while existing assets remain available', async () => {
+  // Live Pages answers POST on a missing path with 405; the 405 path is covered by the next test.
+  for (const method of ['GET', 'POST']) {
+    const response = await worker.fetch(new Request('https://docs.example/api/missing', { method }), assets())
+    assert.equal(response.status, 404)
+    assert.equal(response.headers.get('Content-Type'), 'application/problem+json')
+    assert.equal((await response.json()).code, 'NOT_FOUND')
+  }
+  const response = await worker.fetch(new Request('https://docs.example/api/example.json'), assets({ '/api/example.json': '{"ok":true}' }))
+  assert.equal(response.status, 200)
+  assert.deepEqual(await response.json(), { ok: true })
+})
+
+test('Pages asset method errors retain HTTP 405 and become problem JSON', async () => {
+  const env = assets({ '/api/missing': new Response('Method not allowed', {
+    status: 405, headers: { 'Content-Type': 'text/html', Allow: 'GET, HEAD, OPTIONS' },
+  }) })
+  const response = await worker.fetch(new Request('https://docs.example/api/missing', { method: 'POST' }), env)
+  assert.equal(response.status, 405)
+  assert.equal(response.headers.get('Content-Type'), 'application/problem+json')
+  assert.equal(response.headers.get('Allow'), 'GET, HEAD, OPTIONS')
+  assert.equal(response.headers.get('Cache-Control'), 'private, no-store')
+  assert.equal(response.headers.get('Vary'), 'Accept')
+  const problem = await response.json()
+  assert.equal(problem.status, 405)
+  assert.equal(problem.code, 'METHOD_NOT_ALLOWED')
+  assert.ok(problem.hint)
+})
+
+test('MCP method errors retain JSON-RPC format, status, allowed methods and a resolution hint', async () => {
+  for (const path of ['/mcp', '/api/mcp']) {
+    for (const method of ['GET', 'HEAD', 'PUT', 'PATCH']) {
+      const response = await worker.fetch(new Request(`https://docs.example${path}`, { method }), assets())
+      assert.equal(response.status, 405)
+      assert.equal(response.headers.get('Content-Type'), 'application/json')
+      assert.equal(response.headers.get('Allow'), 'POST, DELETE, OPTIONS')
+      assert.equal(response.headers.get('Access-Control-Allow-Origin'), '*')
+      if (method === 'HEAD') assert.equal(await response.text(), '')
+      else {
+        const body = await response.json()
+        assert.equal(body.jsonrpc, '2.0')
+        assert.equal(body.id, null)
+        assert.equal(body.error.code, -32600)
+        assert.match(body.error.data.hint, /POST JSON-RPC/)
+      }
+    }
+  }
+})
+
+
+test('HTML conditional requests preserve validators and require browser revalidation', async () => {
+  const env = { ASSETS: { async fetch(request) {
+    assert.equal(request.headers.get('If-None-Match'), '"html"');
+    return new Response(null, { status: 304, headers: { ETag: '"html"' } });
+  } } };
+  const response = await worker.fetch(new Request('https://docs.example/', {
+    headers: { Accept: 'text/html', 'If-None-Match': '"html"' },
+  }), env);
+  assert.equal(response.status, 304);
+  assert.equal(response.headers.get('ETag'), '"html"');
+  assert.equal(response.headers.get('Cache-Control'), 'private, no-cache');
+  assert.equal(response.headers.get('Vary'), 'Accept');
+});

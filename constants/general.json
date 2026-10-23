@@ -3,6 +3,7 @@
   "golangNodeMocha": "1.26.8",
   "mainnetChainId": "celestia",
   "mochaChainId": "mocha-5",
+  "bridgeStorageWindowHours": 169,
   "orchrelayVersion": "v1.0.1",
   "mochaFibreCoreHost": "grpc-mocha.pops.one",
   "mochaFibreCorePort": 443,

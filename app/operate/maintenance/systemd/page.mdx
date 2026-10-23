@@ -81,6 +81,9 @@ Mainnet Beta, which may leave the service looking for an uninitialised store.
 
 ### Celestia bridge node
 
+The service below starts in pruned mode. For an archival bridge node, use the
+archival `ExecStart` shown below before starting the service.
+
 Create Celestia Bridge systemd file:
 
 ```sh
@@ -100,6 +103,21 @@ LimitNOFILE=1400000
 WantedBy=multi-user.target
 EOF
 ```
+
+For an archival bridge node, replace the service's `ExecStart` line with:
+
+```ini
+ExecStart=<celestia_binary_path> bridge start --p2p.network <network> --archival
+```
+
+Replace `<celestia_binary_path>` with the output of `which celestia` and
+`<network>` with `mainnet` or `mocha`.
+
+> **Warning:** Keep `--archival` in `ExecStart` on every start and restart of an
+> archival bridge node. Omitting it converts the store to pruned mode and deletes
+> historical headers and original data outside the storage window. Adding the
+> flag later cannot restore that history or reverse the conversion. A store
+> previously started in pruned mode requires a fresh store to run in archival mode.
 
 If the file was created successfully you will be able to see its content:
 

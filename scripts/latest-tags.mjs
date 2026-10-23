@@ -1,4 +1,6 @@
 // Propose newer releases for review; publication does not establish network compatibility.
+import { setTimeout } from 'node:timers/promises';
+
 const targets = [
   { repo: 'celestia-app', key: 'app' },
   { repo: 'celestia-node', key: 'node' },
@@ -60,7 +62,16 @@ export async function planUpdates({ github, owner, network, current }) {
     const shaKey = `${key}-latest-sha`;
     const currentTag = current?.[tagKey];
     validateSha(current?.[shaKey], currentTag);
-    const releases = await github.paginate(github.rest.repos.listReleases, { owner, repo, per_page: 100 });
+    let releases;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      releases = await github.paginate(github.rest.repos.listReleases, { owner, repo, per_page: 100 });
+      if (releases.some(release => release.tag_name === currentTag)) break;
+      // GitHub can return HTTP 200 with an empty or incomplete release listing.
+      if (attempt === 3) {
+        throw new Error(`${repo}: current release ${currentTag} missing from GitHub release listings after 3 attempts; verify the release and retry`);
+      }
+      await setTimeout(1000);
+    }
     const { tag, skipped } = selectRelease({ releases, currentTag, network });
     // Check the existing tag too, even when a newer release is available.
     const { data: existing } = await github.rest.repos.getCommit({ owner, repo, ref: currentTag });

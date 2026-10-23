@@ -21,7 +21,7 @@ for (const page of pages) {
   assert.ok(existsSync(path.join(output, route)), `Missing exported page: ${route}`)
 }
 const generated = await filesIn('src/pages')
-assert.ok(generated.every((file) => file.endsWith('/index.mdx') || /\/_(layout\.tsx|root\.css)$/.test(file)), 'Implementation files became routes')
+assert.ok(generated.every((file) => file.endsWith('/index.mdx') || /\/_(layout\.tsx|mdx-wrapper\.tsx|slots\.tsx|root\.css)$/.test(file)), 'Implementation files became routes')
 for (const section of ['learn', 'build', 'operate']) {
   const check = (items) => {
     for (const item of items) {
