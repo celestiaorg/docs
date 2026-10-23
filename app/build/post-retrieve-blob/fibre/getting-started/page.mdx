@@ -81,7 +81,7 @@ This is off by default and only works with `fibre.Put`.
 
 ## 4. Estimate the cost
 
-Each blob is charged:
+On app version 10, each blob is charged:
 
 ```text
 charge (utia) = 650,000 + 45,000 × ceil(upload_size / 262,144)
@@ -105,7 +105,8 @@ costs at least 695,000 utia.
 These match the [verified Mocha results](/build/post-retrieve-blob/fibre#verified-mocha-results). The settlement
 transaction's gas is paid separately from the wallet.
 
-The charge is a fixed formula in utia. It does not depend on gas prices.
+The v10 charge is a fixed formula in utia at 1 utia per gas. It does not depend
+on your node's configured transaction gas price.
 The formula's numbers are constants in celestia-app, not governance
 parameters. They are the same on Mainnet Beta and Mocha, and change only with
 a network upgrade.
@@ -115,6 +116,24 @@ a network upgrade.
 {/* src: app@v10.4.0:fibre/protocol_params.go RowSize (ceil to Rows=4096, round up to MinRowSize=64) */}
 {/* src: app@v10.4.0:specs/src/fibre_client.md section 4 (UploadSize = row_size × original_rows) */}
 {/* src: docs:/build/post-retrieve-blob/fibre "Verified Mocha results" (0.695 / 2.495 / 23.69 TIA) */}
+
+### Unreleased v11 pricing
+
+> App version 11 is not released or active on Mainnet Beta or Mocha. Keep using
+> the v10 table above until your network activates v11.
+
+The [v11 payment calculation](https://github.com/celestiaorg/celestia-app/blob/686fbd9f3a1bf8d73235eef4e58b8b816511ea69/x/fibre/types/gas.go)
+applies 0.004 utia per gas and rounds up to whole utia:
+
+```text
+gas = 650,000 + 45,000 × ceil(upload_size / 262,144)
+charge (utia) = ceil(gas × 0.004)
+```
+
+The padded-size calculation is unchanged. Use the
+[upstream v11 estimates](/build/post-retrieve-blob/fibre#unreleased-v11-escrow-estimates)
+for comparison; they are not verified Mocha results. The settlement
+transaction's gas is still paid separately from the wallet.
 
 ## 5. Upload and download
 
@@ -187,6 +206,21 @@ cancellation should stop them. See
 {/* src: app@v10.5.0:fibre/client_upload.go Upload (cancel after return does not stop past-quorum uploads when DetachBackgroundUploads is set; cancel before quorum aborts) */}
 {/* src: app@v10.5.0:fibre/client_put.go Put calls c.Upload with the caller's context */}
 {/* src: app@v10.5.0:fibre/client.go Await waits; Stop waits unless its context is cancelled */}
+
+### Unreleased v11 Go compatibility
+
+> There is no v11 release tag yet. Keep the released client for your network;
+> these changes describe the upcoming major version.
+
+The [v11 module definition](https://github.com/celestiaorg/celestia-app/blob/686fbd9f3a1bf8d73235eef4e58b8b816511ea69/go.mod)
+uses `github.com/celestiaorg/celestia-app/v11` and requires Go 1.26.10.
+When migrating the native client, update celestia-app imports, including
+`github.com/celestiaorg/celestia-app/v11/fibre` and
+`github.com/celestiaorg/celestia-app/v11/pkg/user`, together with the module
+dependency. Recheck the selected release's `go.mod` for required replacements;
+the v11 source replaces Cosmos SDK with `github.com/celestiaorg/cosmos-sdk v0.53.0`.
+Do not mix these types with a celestia-node Go client that still imports
+celestia-app/v10.
 
 ## 6. Save a receipt for every blob
 

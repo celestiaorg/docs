@@ -446,7 +446,7 @@ validator account:
 
 Add your usual node, home, and transaction fee flags. The host must be
 `host:port`, either an IP address or a DNS name, without a URL scheme or path.
-Registration requires active app version 10 and a bonded validator. Register
+Fibre requires active app version 10 or later. Register as a bonded validator
 only after the server is reachable, so clients do not discover an unavailable
 host and time out against it.
 
@@ -462,9 +462,30 @@ address. `celestia-appd query valaddr providers` lists the hosts of all bonded
 validators.
 
 Registration persists across restarts, so re-run `set-host` only when the
-address changes. The entry is removed if the validator is removed from staking,
-or stays jailed and unbonded for more than 7 days. If your entry was removed,
-register again after rejoining the active set.
+address changes. In app version 10, the entry is removed if the validator is
+removed from staking, or stays jailed and unbonded for more than 7 days. If your
+entry was removed, register again after rejoining the active set.
+
+### Unreleased: app version 11 registration
+
+> These changes are merged for app version 11 but are not released or active
+> on Mainnet Beta or Mocha. Installing a future v11 multiplexer does not activate
+> the v11 rules before the network upgrade.
+
+The [v11 registration handler](https://github.com/celestiaorg/celestia-app/blob/686fbd9f3a1bf8d73235eef4e58b8b816511ea69/x/valaddr/keeper/msg_server.go)
+enforces bonding on-chain. Both initial registration and host updates fail with
+`validator must be bonded` when the validator is not bonded. Wait until your
+validator joins or rejoins the bonded set; you cannot register before bonding
+or while jailed.
+
+The [v11 provider sweep](https://github.com/celestiaorg/celestia-app/blob/686fbd9f3a1bf8d73235eef4e58b8b816511ea69/x/valaddr/keeper/keeper.go)
+removes entries for validators removed from staking, or for any validator that
+is not bonded once block time is later than `UnbondingTime + UnbondedGracePeriod`.
+`UnbondedGracePeriod` replaces `JailedGracePeriod` and remains seven days.
+Entries remain during unbonding and for seven days after unbonding completes,
+whether or not the validator is jailed. A never-bonded validator has a zero
+`UnbondingTime`, so its existing entry is removed on the next sweep. Register
+again after rejoining the bonded set if your entry was removed.
 
 ## Transport security (TLS)
 
