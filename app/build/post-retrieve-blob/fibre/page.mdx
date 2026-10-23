@@ -207,9 +207,15 @@ jq -es '
     (has("error") | not) and (.result | type == "object" and
       (.height | type == "number" and . > 0 and . == floor) and
       (.tx_hash | type == "string" and length > 0) and
-      (.blob_id | type == "string" and length > 0)))
+      (.blob_id | type == "string" and length > 0) and
+      (.payment_promise | type == "object" and
+        has("namespace") and (.namespace != null) and
+        has("commitment") and (.commitment != null))))
 ' submit.json &&
-jq '.result | {blob_id,height,tx_hash}' submit.json > receipt.json &&
+jq '.result | {blob_id,
+  namespace: .payment_promise.namespace,
+  commitment: .payment_promise.commitment,
+  height,tx_hash}' submit.json > receipt.json &&
 cat receipt.json
 ```
 
@@ -222,20 +228,42 @@ An empty response or timeout does not prove that payment failed. Reconcile
 settlement as described below before retrying.
 
 On success, `Submit` has uploaded the shards, collected signatures and confirmed
-the payment transaction. Save all three receipt fields. For example, the
+the payment transaction. Save all five receipt fields. For example, the
 validated small-blob run returned:
 
 ```json
 {
   "blob_id": "AMGy8xgg3+lxgxQxMedurPYBoj8Q9V1eZWH05AEyeNTk",
+  "namespace": "AAAAAAAAAAAAAAAAAAAAAAAAAGZpYnJlLWRlbW8=",
+  "commitment": "c1b2f31820dfe97183143131e76eacf601a23f10f55d5e6561f4e4013278d4e4",
   "height": 1111896,
   "tx_hash": "26E4B81DC2E88F41301F89FD36B7852B049653CFC7F03DF7153AEBDA5F3F49BE"
 }
 ```
 
-Your transaction hash and height will differ. The full response also contains
-`validator_signatures` and `payment_promise`. Download your own freshly
-submitted blob rather than relying on the historical example remaining stored.
+Your commitment, transaction hash and height will differ. The receipt copies
+the namespace and commitment from `payment_promise`; the full response also
+contains `validator_signatures`. Download your own freshly submitted blob
+rather than relying on the historical example remaining stored.
+
+## Verify the availability attestation
+
+A payment transaction or escrow charge alone does not attest that Fibre data is
+available. Two settlement paths can put a transaction on-chain:
+
+- A successful `MsgPayForFibre` includes the transaction in the reserved
+  PayForFibre namespace and creates a version-2 system blob in the namespace
+  from the payment promise. The system blob contains the Fibre blob version and
+  commitment, and attests that the validator signature threshold was met.
+- An expired promise can be charged through `MsgPaymentPromiseTimeout`. This
+  timeout path does not require validator signatures and does not create the
+  system blob, because the signature threshold was not established.
+
+When verifying a Fibre submission, check for the system blob in the payment
+promise's namespace and match its commitment. Do not infer availability from a
+Fibre transaction, processed payment or escrow deduction without that system
+blob. Keep the namespace, commitment, transaction hash and height needed for
+this check.
 
 ## Download and verify the bytes
 
