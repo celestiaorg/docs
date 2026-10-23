@@ -2,6 +2,8 @@
 description: A guide to the contents of the Config.toml file.
 ---
 
+import { mainnetVersions, mochaVersions } from '@/constants'
+
 # config.toml guide
 
 ## Pre-requisites
@@ -35,10 +37,13 @@ by the command line flag `--core.remote`.
 
 ### IPv6 literal endpoints
 
-IPv6 literal endpoints are supported in
+IPv6 literal endpoints are supported starting with
 [celestia-node v0.33.2](https://github.com/celestiaorg/celestia-node/releases/tag/v0.33.2)
-and v0.34.2-mocha. Earlier releases may reject or incorrectly parse IPv6
-addresses; use a supported [release for your network](/operate/networks/overview).
+and [v0.34.2-mocha](https://github.com/celestiaorg/celestia-node/releases/tag/v0.34.2-mocha),
+including the current {mainnetVersions['node-latest-tag']} and
+{mochaVersions['node-latest-tag']} releases. Earlier releases may reject or
+incorrectly parse IPv6 addresses; use a supported
+[release for your network](/operate/networks/overview).
 
 In your node's `config.toml`, keep the IPv6 address and port in separate fields.
 For a consensus endpoint and node RPC server on the same machine:
