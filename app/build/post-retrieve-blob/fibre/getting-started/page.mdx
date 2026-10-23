@@ -175,8 +175,18 @@ submission. `Put` only returns the transaction hash after confirmation. If
 confirmation fails, you don't get the hash, which makes it harder to check
 whether the blob was paid for.
 
+From celestia-app v10.5.0 and v10.5.0-mocha, cancelling the context after
+`Client.Upload` or `fibre.Put` returns does not stop uploads that are still
+running past quorum. Set `DetachBackgroundUploads` to `false` when
+cancellation should stop them. See
+[Native Go client background uploads](/build/post-retrieve-blob/fibre#native-go-client-background-uploads).
+
 {/* src: app@v10.4.0:fibre/README.md Quickstart */}
 {/* src: app@v10.4.0:fibre/client_put.go Put (hash returned only after ConfirmTx; doc comment recommends Upload with custom tx logic) */}
+{/* src: app@v10.5.0:fibre/client_config.go DetachBackgroundUploads (default true in DefaultClientConfig) */}
+{/* src: app@v10.5.0:fibre/client_upload.go Upload (cancel after return does not stop past-quorum uploads when DetachBackgroundUploads is set; cancel before quorum aborts) */}
+{/* src: app@v10.5.0:fibre/client_put.go Put calls c.Upload with the caller's context */}
+{/* src: app@v10.5.0:fibre/client.go Await waits; Stop waits unless its context is cancelled */}
 
 ## 6. Save a receipt for every blob
 
