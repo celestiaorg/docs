@@ -2,6 +2,7 @@
 description: Learn how to set up a Celestia validator node.
 ---
 
+import { NetworkTabs } from '@/components/NetworkTabs'
 import { Callout, Tabs } from 'nextra/components'
 
 # Setting up a Celestia validator node
@@ -109,7 +110,7 @@ In order to create a validator on-chain, follow the steps below.
 
 1. Export an environment variable for the chain ID you want to run on:
 
-   <Tabs items={['Mainnet Beta', 'Mocha']}>
+   <NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="validator-node-network">
      <Tabs.Tab>
        ```bash
        export CHAIN_ID={{constants['mainnetChainId']}}
@@ -120,7 +121,7 @@ In order to create a validator on-chain, follow the steps below.
        export CHAIN_ID={{constants['mochaChainId']}}
        ```
      </Tabs.Tab>
-   </Tabs>
+   </NetworkTabs>
 
 1. Export more environment variables.
 
@@ -142,7 +143,7 @@ In order to create a validator on-chain, follow the steps below.
 
 1. Create a validator
 
-   <Tabs items={['Mainnet Beta', 'Mocha']}>
+   <NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="validator-node-network">
      <Tabs.Tab>
        ```bash
        celestia-appd tx staking create-validator \
@@ -187,7 +188,7 @@ In order to create a validator on-chain, follow the steps below.
            --yes
        ```
      </Tabs.Tab>
-   </Tabs>
+   </NetworkTabs>
 
 You should see output like:
 

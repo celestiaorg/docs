@@ -1,0 +1,79 @@
+---
+title: Celestia developer portal
+description: Celestia API documentation, SDKs, authentication, quickstarts, and Mocha testnet resources.
+---
+
+# Celestia developer portal
+
+Start a Celestia integration with the [post and retrieve a blob overview](/build/post-retrieve-blob/overview).
+This portal brings together the existing developer tools and documentation. The
+documentation site does not issue API keys or host a node REST API.
+
+## Quickstarts and SDK documentation
+
+- [Go transaction client quickstart](/build/post-retrieve-blob/client/go): submit and retrieve blobs with a local signer.
+- [Rust transaction client quickstart](/build/post-retrieve-blob/client/rust): use the Lumina Rust client.
+- [Celestia SDKs and client libraries](/build/rpc/clients): official and community clients, with links to their source repositories.
+
+## API documentation and authentication
+
+- [Celestia Node API](/build/rpc/node-api): interactive JSON-RPC reference and versioned OpenRPC specifications.
+- [Celestia REST API OpenAPI specification](/openapi.json): the celestia-app gRPC-gateway contract in Swagger 2.0 format.
+- [Celestia API authentication](/build/rpc/authentication): node tokens, provider credentials, and public documentation access.
+- [RPC providers and community services](/build/rpc/community-services): choose an endpoint for your network and API.
+- [Celestia blobspace fees](/learn/TIA/paying-for-blobspace): network fees and provider charges.
+- [Celestia documentation MCP server](/build/mcp): endpoint, transport, available tools, and a connectivity check.
+
+The REST specification describes a provider's API, not endpoints on
+`docs.celestia.org`. Configure the provider host explicitly. Error responses use
+the `rpcStatus` shape with `code`, `message`, and `details`.
+
+## Test environment
+
+Use Mocha for testnet integrations. Follow the network-specific setup and funding
+steps in the Go or Rust quickstart before submitting a blob. Keep the returned
+height, namespace, and commitment to retrieve the same blob later. The
+[Node API playground](/build/rpc/node-api) lets you inspect and send JSON-RPC
+requests to your selected endpoint; requests use that endpoint's permissions and
+can have effects on the selected network.
+
+## Agent access and errors
+
+Start with [llms.txt](/llms.txt), which also links the Celestia agent skill. Request
+`Accept: text/markdown` on a documentation URL, or use its `.md` link. Missing
+pages retain HTTP 404 and return a Markdown explanation when requested.
+Requests accepting JSON receive an RFC 9457 `application/problem+json` error
+with `status`, `code`, `detail`, and a resolution `hint`. Unknown `/api/` paths
+also return this JSON error.
+Upstream non-JSON 4xx and 5xx errors receive the same structure for JSON clients;
+existing upstream JSON error bodies are preserved. A failure blocked by edge
+security before reaching the Worker can still have a different response format.
+Unsupported methods on static resources retain HTTP 405; JSON errors include
+`METHOD_NOT_ALLOWED` and an `Allow` header lists supported methods.
+
+The public documentation MCP server accepts JSON-RPC POST requests at `/mcp`
+(also `/api/mcp`). It provides `list_pages`, `read_page`, and `search_docs`.
+MCP errors use JSON-RPC error objects; unsupported HTTP methods return HTTP 405
+with an `Allow` header and a hint to use POST. It does not require an API key.
+The [MCP server card](/mcp/server-card) describes the endpoint and supported
+protocol versions.
+
+The REST specification already defines a typed `rpcStatus` schema for each
+operation's `default` error response, covering HTTP statuses without an explicit
+response entry. Its numeric `code` is a gRPC status code, not an HTTP status.
+Use the provider's HTTP status alongside `code`, `message`, and `details`.
+
+## Rate limits and troubleshooting
+
+Node providers control their own quotas, credentials, and response headers.
+Check the selected provider's documentation before automating requests. On HTTP
+429, honour `Retry-After` when supplied; otherwise back off rather than retrying
+in a tight loop. This docs site does not advertise a fixed request quota or
+remaining-request counter. Edge security rules can reject a request before it
+reaches the documentation Worker.
+The Worker preserves upstream `RateLimit`, `RateLimit-Policy`, and `Retry-After`
+headers when present; it does not invent quota values for a provider or edge rule.
+
+For a missing page, use the [sitemap](/sitemap.xml) or [documentation index](/llms.txt).
+For node failures, check the endpoint's network, software version, and
+authentication requirements before changing your request.

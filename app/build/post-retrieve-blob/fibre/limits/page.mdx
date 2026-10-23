@@ -1,0 +1,82 @@
+---
+description: Fibre size limits, timeouts, chain parameters, and what the protocol does and does not guarantee.
+---
+
+# Limits and expectations
+
+## Sizes
+
+| Limit | Value | Type |
+|---|---|---|
+| Maximum blob size | 128 MiB minus 5 bytes (134,217,723 bytes) | Protocol constant |
+| Node JSON-RPC request body | 16 MiB, which leaves slightly less than 12 MiB of payload | celestia-node setting |
+| Minimum charged size | 262,144 bytes (256 KiB), padded | Protocol constant |
+| Minimum upload size accepted by a server | 262,144 bytes padded by default. **Each validator can raise it.** | Validator-local setting |
+| Namespace | 29 bytes, version 0 | Protocol |
+| Blob version | Only `0` is supported | Protocol |
+
+If a validator raises its minimum upload size, it rejects smaller blobs. Your
+upload still succeeds as long as validators holding at least 2/3 of total
+voting power (rounded down) accept it.
+
+{/* src: app@v10.4.0:fibre/protocol_params.go (MaxBlobSize 1<<27, Rows 4096, MinRowSize = LeopardChunkSize 64) */}
+{/* src: app@v10.4.0:fibre/server_config.go (MinUploadSize default p.Rows*p.MinRowSize, "min_upload_size" toml key) */}
+{/* src: app@v10.4.0:fibre/server_upload.go verifyPromise ("upload size %d is below local minimum") */}
+{/* src: node@v0.34.3:api/rpc/server.go maxRequestSize */}
+{/* src: app@v10.4.0:specs/src/fibre_module.md "Stateless Validation" */}
+
+## Timing and quorum
+
+| Limit | Value | Type |
+|---|---|---|
+| Quorum to settle a blob | Signatures from validators holding at least 2/3 of total voting power (rounded down) | Protocol |
+| Timeout per validator request | 15 s | Client setting (`RPCTimeout`) |
+| Retries when a validator's storage is full | Up to 3 retries per validator. Each wait follows the server's hint, capped at 2 min. | Client constant |
+| Payment promise timestamp | No more than 10 minutes ahead of chain time | Protocol constant |
+| `MsgPayForFibre` per block | At most 200 | Protocol constant |
+| `MsgPayForFibre` per transaction | Exactly one, with no other messages | Protocol |
+
+{/* src: app@v10.4.0:x/fibre/keeper/msg_server.go validateValidatorSignatures (NewSignatureSet 2/3); app@v10.4.0:fibre/validator/signature_set.go NewSignatureSet (min = total*2/3, integer division) */}
+{/* src: app@v10.4.0:fibre/client_config.go (RPCTimeout 15s) */}
+{/* src: app@v10.4.0:fibre/client_upload.go (maxUploadRetries 3, maxRetryDelay 2m, defaultRetryDelay 1s) */}
+{/* src: app@v10.4.0:x/fibre/types/params.go MaxPromiseClockSkew */}
+{/* src: app@v10.4.0:specs/src/fibre_module.md "Data Square Construction" (MaxPayForFibreMessages 200; exactly one MsgPayForFibre per tx) */}
+
+## Chain parameters
+
+Governance can change these at any time, without a network upgrade. Read
+them when your client starts, and check them regularly.
+
+```bash
+celestia-appd query fibre params
+# or REST: GET <rest_endpoint>/fibre/v1/params
+```
+
+| Parameter | Default | What it means for you |
+|---|---|---|
+| `shard_retention` | 4h | Servers keep your shards until the later of promise creation plus this value, or promise expiry |
+| `payment_promise_timeout` | 1h | Normal settlement (`MsgPayForFibre`) must land before this much time has passed since promise creation. After it, anyone can charge the promise through the timeout path. |
+| `payment_promise_height_window` | 1000 blocks | Normal settlement must land within this many blocks of the promise height. The timeout path skips this check. |
+| `withdrawal_delay` | 24h | How long a withdrawal waits before it is paid out |
+| `full_stake_storage_budget` | 2 TiB | Sets each validator's storage limit: this value × its assigned rows / 4,096. Assigned rows grow with stake, within fixed bounds. A validator can turn the limit off. Full servers ask clients to retry later. |
+
+Mainnet Beta and Mocha both started Fibre with these defaults at the app
+version 10 upgrade.
+
+{/* src: app@v10.4.0:x/fibre/types/params.go DefaultParams; app@v10.4.0:x/fibre/types/genesis.go DefaultGenesis */}
+{/* src: app@v10.4.0:app/upgrades.go (v10 handler RunMigrations; new fibre store added) -> cosmos-sdk RunMigrations runs InitGenesis(DefaultGenesis) for a module missing from fromVM */}
+{/* src: app@v10.4.0:x/fibre/README.md "Parameters" (defaults and bounds; changeable by governance) */}
+{/* src: app@v10.4.0:fibre/server_upload.go shardPruneAt (max(creation_timestamp + shard_retention, promise expiration)); app@v10.4.0:x/fibre/keeper/keeper.go validatePaymentPromiseStatefulInternal (expiration = creation_timestamp + payment_promise_timeout) */}
+{/* src: app@v10.4.0:x/fibre/keeper/keeper.go validatePaymentPromiseStatefulInternal (expiry and height window skipped when isTimeout) */}
+{/* src: app@v10.4.0:fibre/server.go recomputeBudget, deriveBudget (fullStake × assignedRows / originalRows; UnlimitedBudget); app@v10.4.0:fibre/validator/set.go AssignedRows (min/max bounds); app@v10.4.0:fibre/server_config.go unlimited_budget */}
+
+## What is and isn't guaranteed
+
+| Guaranteed by the protocol | Not guaranteed |
+|---|---|
+| A settled blob carries signed storage attestations from validators holding at least 2/3 of total voting power (rounded down) | Storage after `shard_retention` |
+| Honest downloaders of one blob ID get identical bytes | That the content is what your app expects |
+| You are charged only by settling a promise your key signed | — |
+| A promise can be settled only once | That every validator accepts every upload |
+
+{/* src: app@v10.4.0:specs/src/fibre_module.md (replay protection via ProcessedPayment; escrow signer = promise signer key) */}

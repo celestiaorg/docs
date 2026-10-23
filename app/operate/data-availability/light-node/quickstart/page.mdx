@@ -2,6 +2,7 @@
 description: Run a Celestia light node and post/retrieve your first blob.
 ---
 
+import { NetworkTabs } from '@/components/NetworkTabs'
 import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Light node: overview & quickstart
@@ -55,7 +56,7 @@ Want to sync faster (skip sampling from genesis)? See
 [Fast sync with a trusted hash](/operate/data-availability/light-node/advanced#fast-sync-with-a-trusted-hash).
 </Callout>
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="light-node-quickstart-network">
   <Tabs.Tab>
     ```bash
     celestia light init
@@ -66,14 +67,14 @@ Want to sync faster (skip sampling from genesis)? See
     celestia light init --p2p.network mocha
     ```
   </Tabs.Tab>
-</Tabs>
+</NetworkTabs>
 
 ### Start the light node
 
 Light nodes connect to a consensus node **gRPC** endpoint (usually port `9090`)
 for state access (balances, submitting `PayForBlobs`, etc.).
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="light-node-quickstart-network">
   <Tabs.Tab>
     ```bash
     celestia light start \
@@ -88,7 +89,7 @@ for state access (balances, submitting `PayForBlobs`, etc.).
       --core.port 9090 --core.tls --p2p.network mocha
     ```
   </Tabs.Tab>
-</Tabs>
+</NetworkTabs>
 
 <Callout type="info">
 You can use any consensus node gRPC endpoint listed on
@@ -121,13 +122,21 @@ celestia state balance
 
 ### Post your first blob
 
-Use `celestia blob submit [namespace] [data]` to post your first blob.
+Use `celestia blob submit <namespace> <data>` to post your first blob.
+The example below uses a hex-encoded namespace and `0x`-prefixed hex data
+to submit the text `gm`:
 
 ```bash
 celestia blob submit 0x676d 0x676d
 ```
 
-Save the returned `height` and the first value in `commitments`.
+Keep the `0x` prefix when passing hex-encoded data. This explicit-hex form
+works both before and after the blob submission fix in celestia-node #5262.
+On builds containing that fix, unprefixed data is submitted as literal text:
+`hello` submits `hello`, and `cafe` submits the four characters `cafe`.
+
+Save the returned `height` and the first value in `commitments`. Commitments
+are still returned as `0x`-prefixed hex strings.
 
 ### Retrieve your first blob
 
@@ -136,6 +145,8 @@ Replace `<height>` and `<commitment>` with the values from `blob submit`:
 ```bash
 celestia blob get <height> 0x676d <commitment>
 ```
+
+The returned `data` field should be `"gm"`.
 
 </Steps>
 

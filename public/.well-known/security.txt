@@ -1,0 +1,6 @@
+Contact: https://github.com/celestiaorg/.github/blob/main/SECURITY.md
+Contact: mailto:security@celestia.org
+Expires: 2027-10-01T00:00:00Z
+Preferred-Languages: en
+Canonical: https://docs.celestia.org/.well-known/security.txt
+Policy: https://github.com/celestiaorg/.github/blob/main/SECURITY.md

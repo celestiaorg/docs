@@ -150,8 +150,8 @@ to the correct instructions on this page on how to connect to Mocha.
 
 | Software       | Version                                                                           |
 | -------------- | --------------------------------------------------------------------------------- |
-| celestia-node  | [{mochaVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{mochaVersions['node-latest-tag']}) |
-| celestia-app   | [{mochaVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{mochaVersions['app-latest-tag']})   |
+| celestia-node  | [{mochaVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{{mochaVersions['node-latest-tag']}}) |
+| celestia-app   | [{mochaVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})   |
 
 ## Network status
 
@@ -233,7 +233,7 @@ Celestia network. For users, they will need to provide a `–core.ip string`
 from a consensus node's URL or IP that populates a default gRPC port at 9090
 to their respective DA node.
 
-> **Tip for bridge nodes:** Community RPC endpoints do not guarantee full block downloads. If you are running a bridge node, also run a local [consensus node](/operate/consensus-validators/consensus-node) to download full blocks.
+> **Tip for bridge nodes:** Community endpoints do not guarantee blocks inside the bridge storage window (`{{constants['bridgeStorageWindowHours']}}h`). Run a local [consensus node](/operate/consensus-validators/consensus-node) that retains that window. It does not need to store the full chain.
 
 Use one of the `--core.ip` values from the [community consensus endpoints](#community-consensus-endpoints) table above.
 

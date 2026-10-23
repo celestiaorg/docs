@@ -1,0 +1,15 @@
+{
+  "ref": "docs_api_catalog_content_type",
+  "description": "Serve the Celestia API catalog as an RFC 9727 linkset",
+  "expression": "http.host eq \"docs.celestia.org\" and http.request.uri.path eq \"/.well-known/api-catalog\" and http.response.code eq 200",
+  "action": "rewrite",
+  "action_parameters": {
+    "headers": {
+      "content-type": {
+        "operation": "set",
+        "value": "application/linkset+json; profile=\"https://www.rfc-editor.org/info/rfc9727\""
+      }
+    }
+  },
+  "enabled": true
+}
