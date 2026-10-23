@@ -16,6 +16,13 @@ Fibre is separate from the [blob/transaction client flow](/build/post-retrieve-b
 that uses `blob.Submit` and PayForBlob. Fibre retrieval uses a `blob_id`, rather
 than the height, namespace and commitment tuple used by `blob.Get`.
 
+To run a Fibre client in production, see
+[When to use Fibre](/build/post-retrieve-blob/fibre/when-to-use),
+[Getting started](/build/post-retrieve-blob/fibre/getting-started),
+[Limits and expectations](/build/post-retrieve-blob/fibre/limits),
+[Monitoring](/build/post-retrieve-blob/fibre/monitoring) and
+[FAQ and errors](/build/post-retrieve-blob/fibre/faq).
+
 ## Prepare a Mocha node
 
 You need:
@@ -34,7 +41,8 @@ You need:
 Check `celestia version` before starting. Older node releases without the
 `fibre` API cannot run these requests. The
 [released Node API reference](/build/rpc/node-api)
-covers these methods when you select `v0.34.2-mocha`; the older v0.31.4 specification does not.
+covers these methods when you select `{{apiVersions['mocha']}}`.
+Select the specification that matches your node version.
 
 If you already have a synced Mocha light or bridge node with a Fibre-capable
 core endpoint, use its store, key and RPC address. Otherwise, initialise a
@@ -303,7 +311,7 @@ settlement and verified downloaded bytes against the original payload and hash.
 The maximum-size run's SHA-256 was
 `53a0a70e69fac696d73438aada6cfa989c5a36c90c3164525f262fed2775721f`.
 Its blob ID was `AJ+0/lcm8YgL/06EFKHMnnMaQfJp/ChDQskMk7rkd8FQ`;
-the [Tensile record](https://tensile.huginn.tech/blob/?tx=ADD4C5190131D0AFB55AF3341B347700B2ADEC2B128FAF3C7CA06495852C5C16)
+the [Tensile record](https://tensile-mocha.huginn.tech/blob/?tx=ADD4C5190131D0AFB55AF3341B347700B2ADEC2B128FAF3C7CA06495852C5C16)
 links to the settlement transaction. Tensile accepts transaction hashes, blob IDs
 (base64 or hexadecimal), and payment promise hashes. If an identifier matches
 multiple records, it shows all matches. The native test trusted the selected

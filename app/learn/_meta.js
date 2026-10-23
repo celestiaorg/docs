@@ -4,7 +4,7 @@ const meta = {
   TIA: "TIA",
   "code-of-conduct": "Code of Conduct",
   blobstream: "Blobstream (legacy)",
-  audits: "Audits",
+  audits: "Security and audits",
 };
 
 export default meta;

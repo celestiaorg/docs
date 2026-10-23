@@ -1,0 +1,4 @@
+; Proposed DNS-AID experiment. Not deployed by the documentation build.
+; key65400 is a PRIVATE-USE mapping for the capability/index URL (cap).
+; Agree this mapping with the consuming resolver/client before publishing.
+_index._agents.docs.celestia.org. 3600 IN SVCB 1 docs.celestia.org. mandatory=alpn,port,key65400 alpn="h2" port=443 key65400="https://docs.celestia.org/.well-known/ai-catalog.json"
