@@ -35,6 +35,11 @@ test('WebMCP searches the public index with bounded results and reads Markdown o
   assert.equal(tools.size, 0)
 })
 
+test('WebMCP tolerates multi-line matches and entries without text', async () => {
+  const { tools } = setup(async () => Response.json([{ pagePath: '/a', text: 'foo\nbar' }, { pagePath: '/b', text: null }]))
+  assert.deepEqual(await tools.get('search_docs').execute({ query: 'foo\nbar' }), [{ path: '/a', snippet: '' }])
+})
+
 test('WebMCP rejects invalid input without fetching', async () => {
   const { tools } = setup(() => assert.fail('Unexpected fetch'))
   for (const query of ['', ' ', 1, 'x'.repeat(257)]) {

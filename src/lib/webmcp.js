@@ -30,10 +30,10 @@ export function registerDocsTools(modelContext, { baseUrl, getMarkdownUrl, fetch
         }
         const needle = query.trim().toLowerCase()
         const index = await (await read('mcp-search-index.json', signal)).json()
-        return index.filter(({ text }) => text.toLowerCase().includes(needle)).slice(0, 20)
+        return index.filter(({ text }) => text?.toLowerCase().includes(needle)).slice(0, 20)
           .map(({ pagePath, text }) => ({
             path: pagePath,
-            snippet: text.split('\n').find(line => line.toLowerCase().includes(needle)).trim().slice(0, 200),
+            snippet: text.split('\n').find(line => line.toLowerCase().includes(needle))?.trim().slice(0, 200) || '',
           }))
       },
     },
