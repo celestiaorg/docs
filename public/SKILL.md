@@ -139,7 +139,7 @@ Version scope:
 
 ### Legacy RPC compatibility
 
-- The bundled Mainnet Beta and Mocha specs do not expose the `da` namespace. Do not recommend its submit methods for those versions. For older nodes, inspect that version's spec before using `da.Submit` or `da.SubmitWithOptions`; prefer `blob.Submit`.
+- The `da` RPC namespace was removed from celestia-node and is absent from the bundled Mainnet Beta and Mocha specs. Use `blob.Submit` for submissions. Historical specs retain `da.Submit` and `da.SubmitWithOptions` only for older node versions that exposed them.
 
 ## Docs repo guardrails
 
@@ -172,7 +172,7 @@ Version scope:
   Action: Route to `docs`, edit `app/**/page.mdx` or `_meta.js`, then run docs checks.
 
 - Prompt: "Should I use da.Submit or blob.Submit for a new integration?"  
-  Action: Recommend `blob.Submit` by default, explain `state.SubmitPayForBlob` tradeoff, treat `da.Submit*` as deprecated compatibility paths.
+  Action: Recommend `blob.Submit`, explain the `state.SubmitPayForBlob` tradeoff, and state that the `da` RPC namespace has been removed.
 
 - Prompt: "I need to change blob module internals and update docs."  
   Action: Split output by ownership (`celestia-node` code changes plus `docs` updates).
