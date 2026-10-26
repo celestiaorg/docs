@@ -53,7 +53,11 @@ def run(kind, payload, curl_status=0, request_status=0, old_receipt=False):
         receipt = (p/'receipt.json').read_text() if (p/'receipt.json').exists() else None
         return result, receipt
 
-valid_result = {'height': 42, 'tx_hash': 'ABC123', 'blob_id': 'test-blob'}
+valid_receipt = {'height': 42, 'tx_hash': 'ABC123', 'blob_id': 'test-blob',
+                 'namespace': 'AAAAAAAAAAAAAAAAAAAAAAAAAGZpYnJlLWRlbW8=',
+                 'commitment': 'c1b2f31820dfe97183143131e76eacf601a23f10f55d5e6561f4e4013278d4e4'}
+valid_result = {key: valid_receipt[key] for key in ['height', 'tx_hash', 'blob_id']}
+valid_result['payment_promise'] = {key: valid_receipt[key] for key in ['namespace', 'commitment']}
 def response(result):
     return json.dumps({'jsonrpc':'2.0', 'id':4, 'result':result})
 valid = {'submit': response(valid_result), 'deposit': response(None),
@@ -88,18 +92,25 @@ for kind in valid:
             cases.append(('bad balance ' + repr(value), response({'available_balance':value}),0,0,False))
     if kind == 'submit':
         for field, values in [('height', [None,0,-1,1.5,'42']),
-                              ('tx_hash', [None,'',[],{}]), ('blob_id', [None,'',[],{}])]:
+                              ('tx_hash', [None,'',[],{}]), ('blob_id', [None,'',[],{}]),
+                              ('payment_promise', [None,{},[],42,'bad',True])]:
             for value in values:
                 cases.append((f'bad {field} {value!r}', response(dict(valid_result, **{field:value})),0,0,False))
         for field in valid_result:
             cases.append((f'missing {field}', response({k:v for k,v in valid_result.items() if k != field}),0,0,False))
+        for field in ['namespace', 'commitment']:
+            promise = valid_result['payment_promise']
+            for name, invalid in [('missing', {k:v for k,v in promise.items() if k != field}),
+                                  ('null', dict(promise, **{field:None}))]:
+                cases.append((f'{name} payment_promise.{field}',
+                              response(dict(valid_result, payment_promise=invalid)),0,0,False))
     for name, payload, curl_status, request_status, succeeds in cases:
         for old_receipt in ([False,True] if kind == 'submit' else [False]):
             result, receipt = run(kind, payload, curl_status, request_status, old_receipt)
             assert (result.returncode == 0) == succeeds, (kind,name,result.returncode,result.stderr)
             if kind == 'submit':
                 if succeeds:
-                    assert json.loads(receipt) == valid_result, (kind,name,receipt)
+                    assert json.loads(receipt) == valid_receipt, (kind,name,receipt)
                 else:
                     assert receipt == ('previous receipt\n' if old_receipt else None), (kind,name,receipt)
             count += 1

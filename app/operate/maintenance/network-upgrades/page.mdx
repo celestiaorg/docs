@@ -2,6 +2,8 @@
 description: Overview of the Celestia network upgrade process.
 ---
 
+import { mainnetVersions, mochaVersions } from '@/constants'
+
 # Network upgrades
 
 Blockchain networks often need to upgrade with new features which require coordination work among the community of developers, validators, and node operators prior to activating the upgrades. This process is called a network upgrade, which can be breaking or non-breaking. During planned network upgrades the community will coordinate to prepare for the upcoming upgrade. Breaking network upgrades are not backward-compatible with older versions of the network software, which is why it is important that validators upgrade their software to continue validating on the network. Non-breaking network upgrades are backward-compatible and require less coordination.
@@ -62,14 +64,24 @@ These settings apply to celestia-app consensus nodes:
 | Section in `config/config.toml` | Setting | Default |
 |---|---|---|
 | `[rpc]` | `max_concurrent_heavy_requests` | `20` |
+| `[tx_index]` | `max_search_results` | `100000` |
 | `[storage]` | `compact` | `false` |
 | `[storage]` | `compaction_interval` | `10000` |
 
 The RPC setting caps concurrent heavy requests such as `block_results` and
-`tx_search`; public RPC providers may want to raise it. Blockstore compaction
-is optional and does not enable pruning. When enabled, it compacts the pruned
-range in the background. To compact an existing blockstore once, stop the node
-and run `celestia-appd compact-blockstore`.
+`tx_search`. Starting with celestia-app v10.4.0 and v10.4.0-mocha, including
+the current {mainnetVersions['app-latest-tag']} and
+{mochaVersions['app-latest-tag']} releases, this budget also includes
+`genesis` and `genesis_chunked`. Those releases include the
+`max_search_results` cap for `kv` searches and a fixed 512-byte query-length
+limit for both `tx_search` and `block_search`. See
+[RPC search limits](/operate/consensus-validators/consensus-node#configure-rpc-search-limits)
+for configuration and handling rejected queries. These protections follow the
+binary and do not wait for app version 10 to activate on the network.
+
+Blockstore compaction is optional and does not enable pruning. When enabled,
+it compacts the pruned range in the background. To compact an existing
+blockstore once, stop the node and run `celestia-appd compact-blockstore`.
 
 See the [Mocha release upgrade instructions](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
 for details. Follow the upgrade announcement for your network before replacing

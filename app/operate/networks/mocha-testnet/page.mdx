@@ -150,8 +150,8 @@ to the correct instructions on this page on how to connect to Mocha.
 
 | Software       | Version                                                                           |
 | -------------- | --------------------------------------------------------------------------------- |
-| celestia-node  | [{mochaVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{mochaVersions['node-latest-tag']}) |
-| celestia-app   | [{mochaVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{mochaVersions['app-latest-tag']})   |
+| celestia-node  | [{mochaVersions['node-latest-tag']}](https://github.com/celestiaorg/celestia-node/releases/tag/{{mochaVersions['node-latest-tag']}}) |
+| celestia-app   | [{mochaVersions['app-latest-tag']}](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})   |
 
 ## Network status
 
@@ -176,12 +176,9 @@ also still show `mocha-4` data.
 
 ### Production RPC endpoints
 
-These RPC providers are meant to be used in production environments
-and for specific use cases that require reliable access to full block
-history, such as:
+Use production RPC providers for workloads that need reliable service, such as:
 
-- Running Bridge Nodes that download data from core RPC endpoints
-- Applications that need Bridge Node endpoints with guaranteed uptime and SLAs
+- Applications that need bridge node endpoints with uptime commitments and SLAs
 - Submitting blobs in production settings (free RPC endpoints have no guarantees, even for submitting transactions)
 
 | Provider  | URL                                                                                       |
@@ -203,7 +200,11 @@ endpoint:
 | DA JSON-RPC | `https://public-endpoint.celestia-mocha.quiknode.pro` |
 
 This shared endpoint is pruned and does not provide a production SLA. Do not
-use it for historical queries or bridge node sync from genesis.
+rely on it for historical queries. Bridge nodes can use a pruned consensus
+endpoint, but operators should confirm that it retains blocks within the
+storage window (`{{constants['bridgeStorageWindowHours']}}h`). Archival bridge
+nodes retrieve older header ranges and share data from peers that still hold
+them; a pruned consensus endpoint alone does not guarantee sync from genesis.
 
 ### Community consensus endpoints
 
@@ -232,7 +233,7 @@ Celestia network. For users, they will need to provide a `–core.ip string`
 from a consensus node's URL or IP that populates a default gRPC port at 9090
 to their respective DA node.
 
-> **Tip for bridge nodes:** Community RPC endpoints do not guarantee full block downloads. If you are running a bridge node, also run a local [consensus node](/operate/consensus-validators/consensus-node) to download full blocks.
+> **Tip for bridge nodes:** Community endpoints do not guarantee blocks inside the bridge storage window (`{{constants['bridgeStorageWindowHours']}}h`). Run a local [consensus node](/operate/consensus-validators/consensus-node) that retains that window. It does not need to store the full chain.
 
 Use one of the `--core.ip` values from the [community consensus endpoints](#community-consensus-endpoints) table above.
 

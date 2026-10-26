@@ -6,7 +6,7 @@ import { createRequire } from 'module';
 import { createHash } from 'crypto';
 import { cleanMdxForMarkdown } from './lib/clean-mdx.mjs';
 
-const SITE_ORIGIN = 'https://docs.celestia.org';
+const SITE_ORIGIN = process.env.VOCS_BASE_URL || 'https://docs.celestia.org';
 const GITHUB_REPO = 'https://github.com/celestiaorg/docs';
 
 // Use createRequire to import JSON files in ESM context
@@ -135,21 +135,32 @@ const header = [
   '',
   '> Official documentation for Celestia, the modular blockchain powering unstoppable apps with full-stack control.',
   '',
-  'These docs are built with Next.js + Nextra and exported statically. Links below point to canonical markdown pages so tools and LLMs can ingest clean text.',
+  'These docs are built with Vocs and exported statically. Links below point to canonical markdown pages so tools and LLMs can ingest clean text.',
   '',
   '## Agent instructions',
   '',
   '- Prefer the `.md` pages linked here for retrieval and citations.',
   '- Use `llms-full.txt` when a single-file context snapshot is needed.',
   '- Use `/build/llms.txt`, `/learn/llms.txt`, and `/operate/llms.txt` for section-specific context.',
-  '- Celestia does not currently publish an official MCP server for this documentation site.',
+  ...(process.env.DOCS_MCP_ENABLED === '1'
+    ? [`- Documentation MCP tools are available on this deployment at \`/api/mcp\` (also \`/mcp\`). Server card: ${SITE_ORIGIN}/mcp/server-card`]
+    : []),
   '',
   '## Related resources',
   '',
-  '- Full LLM context: https://docs.celestia.org/llms-full.txt',
-  '- Agent skill: https://docs.celestia.org/SKILL.md',
-  '- Agent skills index: https://docs.celestia.org/.well-known/agent-skills/index.json',
-  '- API catalog: https://docs.celestia.org/.well-known/api-catalog',
+  `- Celestia developer portal: ${SITE_ORIGIN}/build/developers.md`,
+  `- Celestia API documentation: ${SITE_ORIGIN}/build/rpc/node-api.md`,
+  `- Celestia API authentication: ${SITE_ORIGIN}/build/rpc/authentication.md`,
+  `- Celestia SDK documentation: ${SITE_ORIGIN}/build/rpc/clients.md`,
+  `- Celestia getting started: ${SITE_ORIGIN}/build/post-retrieve-blob/overview.md`,
+  `- Celestia blobspace fees: ${SITE_ORIGIN}/learn/TIA/paying-for-blobspace.md`,
+  `- Celestia documentation MCP server setup: ${SITE_ORIGIN}/build/mcp.md`,
+  `- Full LLM context: ${SITE_ORIGIN}/llms-full.txt`,
+  `- Agent skill: ${SITE_ORIGIN}/SKILL.md`,
+  `- Agent skills index: ${SITE_ORIGIN}/.well-known/agent-skills/index.json`,
+  `- Agent resource discovery: ${SITE_ORIGIN}/.well-known/ard.json`,
+  `- API catalog: ${SITE_ORIGIN}/.well-known/api-catalog`,
+  `- Celestia-app REST API OpenAPI spec (Swagger 2.0): ${SITE_ORIGIN}/openapi.json`,
   ...openrpcSpecs.map(({ network, version }) =>
     `- Node API OpenRPC spec (${network}): ${SITE_ORIGIN}/specs/openrpc-${version}.json`),
   '- CIPs (Celestia Improvement Proposals): https://cips.celestia.org',
@@ -282,13 +293,28 @@ const generateMarkdownFiles = async (outputBase, files) => {
 
     // Write the cleaned markdown file
     await fs.writeFile(outputFullPath, cleanedContent, 'utf-8');
+    // Add route-specific discovery metadata to the static export.
+    const htmlPath = htmlPathForFile(file);
+    if (outputBase === 'out/public' && htmlPath) {
+      const htmlFile = path.join(outputBase, htmlPath, 'index.html');
+      const html = await fs.readFile(htmlFile, 'utf8').catch(error => { if (error.code !== 'ENOENT') throw error; });
+      const markdownHref = `${(process.env.BASE || '').replace(/\/$/, '')}/${outputPath}`;
+      const alternate = `<link rel="alternate" type="text/markdown" href="${markdownHref}"/>`;
+      const canonical = `<link rel="canonical" href="${canonicalUrl(htmlPath)}"/>`;
+      if (html) {
+        const withoutLinks = html
+          .replace(/<link\b(?=[^>]*\brel="canonical")[^>]*>/g, '')
+          .replace(/<link\b(?=[^>]*\brel="alternate")(?=[^>]*\btype="text\/markdown")[^>]*>/g, '');
+        await fs.writeFile(htmlFile, withoutLinks.replace('</head>', `${canonical}${alternate}</head>`));
+      }
+    }
     console.log(`✅ Generated: ${outputPath}`);
 
     pages.push({
       file,
       markdownPath: outputPath,
       markdownUrl: canonicalMarkdownUrl(file),
-      htmlPath: htmlPathForFile(file),
+      htmlPath,
       content: cleanedContent,
       title: extractTitle(cleanedContent, titleize(path.basename(path.dirname(file)))),
     });
@@ -325,8 +351,8 @@ const generateSectionLlmsTxt = async (outputBase, sections) => {
       '',
       `> Section-specific LLM index for the ${titleize(topLevel)} area of the Celestia docs.`,
       '',
-      '- Full docs index: https://docs.celestia.org/llms.txt',
-      '- Full LLM context: https://docs.celestia.org/llms-full.txt',
+      `- Full docs index: ${SITE_ORIGIN}/llms.txt`,
+      `- Full LLM context: ${SITE_ORIGIN}/llms-full.txt`,
       '',
     ];
 
@@ -394,12 +420,10 @@ const generateRobotsTxt = async (outputBase) => {
     'CCBot',
   ];
 
+  // Each named crawler reads only its own group, so every group carries the signal.
+  const contentSignal = 'Content-Signal: ai-train=yes, search=yes, ai-input=yes';
   const lines = [
-    'User-agent: *',
-    'Allow: /',
-    '',
-    ...aiBots.flatMap((bot) => [`User-agent: ${bot}`, 'Allow: /', '']),
-    'Content-Signal: ai-train=yes, search=yes, ai-input=yes',
+    ...['*', ...aiBots].flatMap((bot) => [`User-agent: ${bot}`, contentSignal, 'Allow: /', '']),
     `Sitemap: ${SITE_ORIGIN}/sitemap.xml`,
     '',
   ];
@@ -429,15 +453,21 @@ const generateAgentSkillsIndex = async (outputBase) => {
 };
 
 const generateApiCatalog = async (outputBase) => {
+  const specLinks = (title) => openrpcSpecs.map(({ network, version }) => ({
+    href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
+    type: 'application/json',
+    title: `${title} (${network})`,
+  }));
+  const restSpec = { href: `${SITE_ORIGIN}/openapi.json`, type: 'application/json', title: 'Celestia-app REST API OpenAPI specification (Swagger 2.0)' };
   const linkset = {
     linkset: [
       {
+        anchor: `${SITE_ORIGIN}/.well-known/api-catalog`,
+        item: [...specLinks('Celestia Node API'), restSpec],
+      },
+      {
         anchor: SITE_ORIGIN,
-        'service-desc': openrpcSpecs.map(({ network, version }) => ({
-          href: `${SITE_ORIGIN}/specs/openrpc-${version}.json`,
-          type: 'application/json',
-          title: `Celestia Node API OpenRPC specification (${network})`,
-        })),
+        'service-desc': [...specLinks('Celestia Node API OpenRPC specification'), restSpec],
         'service-doc': [
           {
             href: `${SITE_ORIGIN}/build/rpc/node-api/`,
@@ -488,23 +518,79 @@ const generateApiCatalog = async (outputBase) => {
   await writeTextFile(outputBase, '.well-known/api-catalog', `${JSON.stringify(linkset, null, 2)}\n`);
 };
 
+const generateArdManifest = async (outputBase) => {
+  const manifest = {
+    specVersion: '1.0',
+    host: {
+      displayName: 'Celestia docs',
+      identifier: 'did:web:docs.celestia.org',
+    },
+    entries: [{
+      identifier: 'urn:air:docs.celestia.org:skill:celestia',
+      displayName: 'Celestia documentation skill',
+      type: 'application/agent-skills+md',
+      url: `${SITE_ORIGIN}/.well-known/agent-skills/celestia/SKILL.md`,
+      description: 'Official guidance for building on Celestia, posting and retrieving blobs, and routing repository changes.',
+      capabilities: ['CelestiaDocumentation', 'BlobSubmission', 'BlobRetrieval'],
+      representativeQueries: [
+        'How do I post and retrieve blobs on Celestia?',
+        'Which Celestia repository should I change?',
+      ],
+    }],
+  };
+  if (process.env.DOCS_MCP_ENABLED === '1') {
+    // SEP-2127 server card at the recommended <streamable-http-url>/server-card location.
+    await writeTextFile(outputBase, 'mcp/server-card', `${JSON.stringify({
+      $schema: 'https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json',
+      name: 'org.celestia/docs',
+      version: '1.0.0',
+      title: 'Celestia documentation',
+      description: 'Search and read Celestia documentation pages.',
+      websiteUrl: `${SITE_ORIGIN}/build/developers/`,
+      repository: { url: GITHUB_REPO, source: 'github' },
+      remotes: [{ type: 'streamable-http', url: `${SITE_ORIGIN}/mcp`, supportedProtocolVersions: ['2024-11-05', '2025-03-26', '2025-06-18'] }],
+    }, null, 2)}\n`);
+    manifest.entries.push({
+      identifier: 'urn:mcp:server:org.celestia/docs',
+      displayName: 'Celestia documentation MCP server',
+      type: 'application/mcp-server-card+json',
+      url: `${SITE_ORIGIN}/mcp/server-card`,
+      description: 'Search and read Celestia documentation pages over MCP.',
+    });
+  }
+  await writeTextFile(outputBase, '.well-known/ard.json', `${JSON.stringify(manifest, null, 2)}\n`);
+  await writeTextFile(outputBase, '.well-known/ai-catalog.json', `${JSON.stringify(manifest, null, 2)}\n`);
+};
+
 const main = async () => {
-  // Determine output directory once - use 'out' if it exists (during build), otherwise 'public' (during dev)
-  const outputBase = await fs.access('out').then(() => 'out').catch(() => 'public');
+  // Vocs writes the browser-deployable static site to `out/public`.
+  // Fall back to `public` when running this script outside a production build.
+  const outputBase = await fs.access('out/public').then(() => 'out/public').catch(() => 'public');
   const files = (await walkPages('app')).sort();
 
   // Generate individual markdown files
   const pages = await generateMarkdownFiles(outputBase, files);
 
+  await writeTextFile(outputBase, 'mcp-search-index.json', JSON.stringify(
+    pages.map(({ htmlPath, content }) => ({ pagePath: htmlPath, text: content }))
+  ));
+
   const sections = buildSections(files);
   await fs.mkdir(outputBase, { recursive: true });
   await generateLlmsTxt(outputBase, sections);
+  await fs.copyFile(path.join(outputBase, 'llms.txt'), path.join(outputBase, 'llms.md'));
   await generateSectionLlmsTxt(outputBase, sections);
   await generateLlmsFullTxt(outputBase, pages);
   await generateSitemap(outputBase, pages);
   await generateRobotsTxt(outputBase);
   await generateAgentSkillsIndex(outputBase);
   await generateApiCatalog(outputBase);
+  await generateArdManifest(outputBase);
+  await writeTextFile(outputBase, '.well-known/poppy.json', `${JSON.stringify({
+    protocol_version: '0.1',
+    organization: { name: 'Celestia', domain: new URL(SITE_ORIGIN).hostname },
+    web: {},
+  }, null, 2)}\n`);
 
   console.log(`Agent-ready assets generated (${outputBase}/)`);
   console.log('✨ LLM-ready markdown and discovery asset generation complete!');

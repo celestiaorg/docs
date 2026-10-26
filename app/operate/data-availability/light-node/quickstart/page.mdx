@@ -2,6 +2,7 @@
 description: Run a Celestia light node and post/retrieve your first blob.
 ---
 
+import { NetworkTabs } from '@/components/NetworkTabs'
 import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Light node: overview & quickstart
@@ -55,7 +56,7 @@ Want to sync faster (skip sampling from genesis)? See
 [Fast sync with a trusted hash](/operate/data-availability/light-node/advanced#fast-sync-with-a-trusted-hash).
 </Callout>
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="light-node-quickstart-network">
   <Tabs.Tab>
     ```bash
     celestia light init
@@ -66,14 +67,14 @@ Want to sync faster (skip sampling from genesis)? See
     celestia light init --p2p.network mocha
     ```
   </Tabs.Tab>
-</Tabs>
+</NetworkTabs>
 
 ### Start the light node
 
 Light nodes connect to a consensus node **gRPC** endpoint (usually port `9090`)
 for state access (balances, submitting `PayForBlobs`, etc.).
 
-<Tabs items={['Mainnet Beta', 'Mocha']}>
+<NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="light-node-quickstart-network">
   <Tabs.Tab>
     ```bash
     celestia light start \
@@ -88,7 +89,7 @@ for state access (balances, submitting `PayForBlobs`, etc.).
       --core.port 9090 --core.tls --p2p.network mocha
     ```
   </Tabs.Tab>
-</Tabs>
+</NetworkTabs>
 
 <Callout type="info">
 You can use any consensus node gRPC endpoint listed on

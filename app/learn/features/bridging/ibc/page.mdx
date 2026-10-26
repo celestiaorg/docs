@@ -23,34 +23,37 @@ Celestia uses relayers to forward packets between chains. Relayers are processes
 ## How bridging works
 
 ```mermaid
-flowchart LR
+---
+config:
+  flowchart:
+    useMaxWidth: false
+---
+flowchart TB
 
     %% --- Chain A ---
     subgraph ChainA["Chain A"]
         A_App["Application"]
-        A_Router["Router (Core)"]
-        A_Light["Light Client of Chain B"]
+        A_Router["Router (core)"]
+        A_Light["Light client<br/>of Chain B"]
     end
 
     %% --- Chain B ---
     subgraph ChainB["Chain B"]
         B_App["Application"]
-        B_Router["Router (Core)"]
-        B_Light["Light Client of Chain A"]
+        B_Router["Router (core)"]
+        B_Light["Light client<br/>of Chain A"]
     end
 
     %% Internal flows (Chain A)
     A_App --> A_Router
-    A_Router --> A_Light
-    A_Router -->|Verify Membership / Verify Non-Membership| A_Light
+    A_Router -->|Verify membership<br/>or non-membership| A_Light
 
     %% Internal flows (Chain B)
     B_App --> B_Router
-    B_Router --> B_Light
-    B_Router -->|Verify Membership / Verify Non-Membership| B_Light
+    B_Router -->|Verify membership<br/>or non-membership| B_Light
 
     %% Cross-chain relayer packets
-    A_Router <-->|Relayers<br/>Data Packets| B_Router
+    A_Router <-->|Relayers<br/>Data packets| B_Router
 ```
 
 - **Light client** — a lightweight representation of a destination chain that lives within the state machine of a source chain.
