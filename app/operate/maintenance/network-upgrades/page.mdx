@@ -37,6 +37,23 @@ The upgrade process can be broken down into a few steps:
    - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
    - Upgrades using in-protocol signaling (v3+) activate one week after 5/6 of the voting power has signaled for a particular version
 
+## Unreleased v11 breaking changes
+
+### Fibre certificates and staking historical info
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. The change ships with the v11 upgrade, with no separate in-binary
+> gate.
+
+In v11, staking's BeginBlocker (`TrackHistoricalInfo`) runs before slashing
+and evidence. The historical info for height `H-1` therefore contains the
+tokens and ordering of the validator set CometBFT signs height `H` with,
+matching the snapshot used to verify a Fibre certificate for promise height `H`.
+In a block containing a slash, the gRPC `HistoricalInfo` query for that height
+returns pre-slash tokens. See
+[celestia-app#8342](https://github.com/celestiaorg/celestia-app/pull/8342) and
+[Fibre certificate verification](/build/post-retrieve-blob/fibre/when-to-use#unreleased-v11-certificate-verification).
+
 ## Configuration changes in v10
 
 ### Existing configuration files

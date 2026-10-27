@@ -25,6 +25,13 @@ voting power (rounded down) accept it.
 {/* src: node@v0.34.3:api/rpc/server.go maxRequestSize */}
 {/* src: app@v10.4.0:specs/src/fibre_module.md "Stateless Validation" */}
 
+### Unreleased v11 gRPC header limit
+
+> In unreleased celestia-app v11, the Fibre gRPC server limits request header
+> lists to 16 KiB with `grpc.MaxHeaderListSize`. Clients or proxies sending
+> metadata over this limit have their requests rejected. See
+> [celestia-app#8358](https://github.com/celestiaorg/celestia-app/pull/8358).
+
 ## Timing and quorum
 
 | Limit | Value | Type |

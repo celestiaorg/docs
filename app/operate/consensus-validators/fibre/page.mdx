@@ -487,6 +487,13 @@ whether or not the validator is jailed. A never-bonded validator has a zero
 `UnbondingTime`, so its existing entry is removed on the next sweep. Register
 again after rejoining the bonded set if your entry was removed.
 
+## Unreleased v11 gRPC header limit
+
+> In unreleased celestia-app v11, the Fibre gRPC server caps request header
+> lists at 16 KiB using `grpc.MaxHeaderListSize`. Requests from clients or
+> proxies whose metadata exceeds this limit are rejected. See
+> [celestia-app#8358](https://github.com/celestiaorg/celestia-app/pull/8358).
+
 ## Transport security (TLS)
 
 Client connections to Fibre are always TLS-encrypted, with no certificates to
