@@ -1,6 +1,6 @@
 # Fibre client brief for agents
 
-Valid for: celestia-app v10.4.0 / v10.4.0-mocha, celestia-node v0.34.3.
+Valid for: celestia-app v10.4.0 / v10.4.0-mocha, celestia-node v0.34.4.
 Generated from this guide on 2026-10-20. Human guide = source of truth. Sources live in the
 guide pages' source comments. If guide and brief differ, trust the guide.
 

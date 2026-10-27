@@ -23,9 +23,9 @@ All three options use the same Fibre client underneath. A light or bridge node
 checks validator sets against headers it has verified itself. The Go options
 trust the core endpoint you connect to.
 
-{/* src: node@v0.34.3:api/rpc/server.go (maxRequestSize = 2 x MaxTxSize = 16 MiB) */}
-{/* src: node@v0.34.3:api/client/client.go New -> initTxClient (builds a local appfibre.Client; SubmitConfig.Fibre is *appfibre.ClientConfig); node@v0.34.3:api/client/read_client.go NewReadClient (Fibre over JSON-RPC) */}
-{/* src: node@v0.34.3:nodebuilder/fibre/constructor.go (light/bridge use stateclient over verified headers) */}
+{/* src: node@v0.34.4:api/rpc/server.go (maxRequestSize = 2 x MaxTxSize = 16 MiB) */}
+{/* src: node@v0.34.4:api/client/client.go New -> initTxClient (builds a local appfibre.Client; SubmitConfig.Fibre is *appfibre.ClientConfig); node@v0.34.4:api/client/read_client.go NewReadClient (Fibre over JSON-RPC) */}
+{/* src: node@v0.34.4:nodebuilder/fibre/constructor.go (light/bridge use stateclient over verified headers) */}
 {/* src: docs:/build/post-retrieve-blob/fibre "Larger blobs and the native client" */}
 
 ## 2. Set up a key
@@ -41,7 +41,7 @@ trust the core endpoint you connect to.
 
 {/* src: app@v10.4.0:fibre/client_upload.go signerKey (requires secp256k1) */}
 {/* src: app@v10.4.0:specs/src/fibre_module.md "Stateful Validation" (escrow account = address of signer_public_key) */}
-{/* src: node@v0.34.3:state/txclient/tx_config.go (key_name, signer_address, fee_granter_address) */}
+{/* src: node@v0.34.4:state/txclient/tx_config.go (key_name, signer_address, fee_granter_address) */}
 
 ## 3. Fund the wallet and the escrow
 
@@ -134,8 +134,8 @@ The core calls are:
 | `fibre.Download` | Downloads a blob by blob ID |
 | `fibre.QueryEscrowAccount`, `fibre.Deposit`, `fibre.Withdraw`, `fibre.PendingWithdrawals` | Escrow management |
 
-{/* src: node@v0.34.3:nodebuilder/fibre/fibre.go (Module interface) */}
-{/* src: node@v0.34.3:fibre/service.go Upload -> go asyncSubmitPayForFibre (errors logged only, 2 min timeout) */}
+{/* src: node@v0.34.4:nodebuilder/fibre/fibre.go (Module interface) */}
+{/* src: node@v0.34.4:fibre/service.go Upload -> go asyncSubmitPayForFibre (errors logged only, 2 min timeout) */}
 
 ### With the celestia-app Go package
 
