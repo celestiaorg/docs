@@ -20,7 +20,7 @@ Error text is quoted from the code. The node API may add a prefix such as
 | `fibre: keyring is required for uploads` | Client created with a nil keyring | Pass a keyring. A nil keyring only allows downloads. |
 | `payment promise chain ID mismatch` | Client and endpoint are on different networks | Point both at the same network |
 
-{/* src: node@v0.34.3:fibre/service.go ErrClientNotAvailable; node@v0.34.3:nodebuilder/fibre/stub.go */}
+{/* src: node@v0.34.4:fibre/service.go ErrClientNotAvailable; node@v0.34.4:nodebuilder/fibre/stub.go */}
 {/* src: app@v10.4.0:fibre/client.go (ErrClientClosed, ErrNoKeyring, ErrKeyNotFound); app@v10.4.0:fibre/client_upload.go Upload ("fibre: client is not started"); app@v10.4.0:fibre/client_download.go Download ("fibre client is not started") */}
 {/* src: app@v10.4.0:fibre/server_upload.go verifyPromise (chain ID mismatch) */}
 
@@ -50,7 +50,7 @@ in the transaction result.
 | `payment promise has already been processed` | This promise was already settled | Nothing. Check your receipt. |
 | `failed to get historical validator set` | Settlement sent before the app caught up with that height | `fibre.Put` retries briefly. If it persists, retry the settlement. |
 
-{/* src: app@v10.4.0:fibre/blob.go ErrBlobTooLarge; node@v0.34.3:api/rpc/server.go maxRequestSize */}
+{/* src: app@v10.4.0:fibre/blob.go ErrBlobTooLarge; node@v0.34.4:api/rpc/server.go maxRequestSize */}
 {/* src: app@v10.4.0:fibre/validator/signature_set.go; app@v10.4.0:x/fibre/keeper/keeper.go:398-453 (expiry and height window skipped when isTimeout); app@v10.4.0:x/fibre/keeper/local_promise_cache.go:146 */}
 {/* src: app@v10.4.0:fibre/server_upload.go (min upload size, storage budget) */}
 {/* src: app@v10.4.0:fibre/client_put.go isMissingHistoricalInfo / retryPFFBroadcast (4 attempts, 500ms) */}
@@ -93,7 +93,7 @@ before retrying.
 **Can someone else pay the gas for my settlement transaction?**
 Yes. The node API supports `fee_granter_address`. Escrow charges always come
 from the escrow of the key that signed the promise.
-{/* src: node@v0.34.3:state/txclient/tx_config.go; app@v10.4.0:specs/src/fibre_module.md "Payment Settlement Destination" */}
+{/* src: node@v0.34.4:state/txclient/tx_config.go; app@v10.4.0:specs/src/fibre_module.md "Payment Settlement Destination" */}
 
 **Can I put several blobs in one `MsgPayForFibre`?**
 No. Each `MsgPayForFibre` carries one promise, and a transaction may contain
