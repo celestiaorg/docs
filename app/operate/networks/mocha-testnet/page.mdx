@@ -215,6 +215,7 @@ need Tendermint RPC from the same provider.
 | Provider      | Endpoint for `--core.ip`                                          | RPC port | gRPC port |
 | ------------- | ----------------------------------------------------------------- | -------- | --------- |
 | P-OPS         | `rpc-mocha.pops.one`                                              | 443      | 9090      |
+| ITRocket      | `celestia-testnet-consensus.itrocket.net`                         | -        | 9090      |
 
 You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
 
@@ -248,7 +249,7 @@ storage window. This trimming preserves the original data for retrieval. You can
 | Provider        | Endpoint                                        | RPC Port | Gateway Port |
 | --------------- | ----------------------------------------------- | -------- | ------------ |
 | Noders Services | `https://celestia-t-archive-da.noders.services` | 443      | -            |
-| ITRocket        | `celestia-testnet-da-full-storage.itrocket.net` | 26658    | 26659        |
+| ITRocket        | `https://celestia-testnet-da.itrocket.net`      | 443      | -            |
 
 ## Community RPC endpoints
 
@@ -281,6 +282,7 @@ The default port is 1317.
 - `https://celestia-testnet-api.itrocket.net`
 - `https://celestia-t-api.noders.services`
 - `https://celestia-t-archive-api.noders.services` (archival)
+- `https://celestia-testnet-api.itrocket.net` (archival)
 
 ## Community gRPC endpoints
 
@@ -295,6 +297,7 @@ broadcast transactions.
 - `celestia-testnet-grpc.itrocket.net:443`
 - `celestia-t-grpc.noders.services:443`
 - `celestia-t-archive-grpc.noders.services:443` (archival)
+- `celestia-testnet-grpc.itrocket.net:443` (archival)
 
 ## Community bridge node endpoints
 
@@ -303,7 +306,7 @@ be added here as providers make them available.
 
 | Provider | Endpoint                                        | RPC Port | Gateway Port |
 | -------- | ----------------------------------------------- | -------- | ------------ |
-| ITRocket | `celestia-testnet-da-full-storage.itrocket.net` | 26658    | 26659        |
+| ITRocket | `celestia-testnet-da-full-storage.itrocket.net` | 26658    | -        |
 
 ## Mocha testnet faucet
 
@@ -335,16 +338,13 @@ The following websites provide analytics for Mocha Testnet:
 
 - [https://itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Monitoring and chain status tools
 - [https://itrocket.net/services/testnet/celestia/analytics/consensus-signal-tracker/](https://itrocket.net/services/testnet/celestia/analytics/consensus-signal-tracker/) - Consensus signal tracker
-- [https://itrocket.net/services/testnet/celestia/decentralization/](https://itrocket.net/services/testnet/celestia/decentralization/) - Decentralization analytics for validators, RPC, and all nodes
 - [https://itrocket.net/services/testnet/celestia/analytics/validators-performance/](https://itrocket.net/services/testnet/celestia/analytics/validators-performance/) - Validators performance
-- [https://itrocket.net/services/testnet/celestia/analytics/fibre-monitor/](https://itrocket.net/services/testnet/celestia/analytics/fibre-monitor/) - Fibre explorer and analytics
 
 ## Node maps
 
 The following websites provide visual maps of Celestia DA nodes:
 
 - [https://probelab.io/celestia/](https://probelab.io/celestia/) (community contribution)
-- [https://itrocket.net/services/testnet/celestia/decentralization/](https://itrocket.net/services/testnet/celestia/decentralization/) - ITRocket map of validator, RPC, and all nodes
 
 ## Explorers
 
