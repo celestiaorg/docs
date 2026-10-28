@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": [
+    "/assets/*.js",
+    "/assets/*.css",
+    "/assets/*.json",
+    "/assets/*.wasm",
+    "/assets/*.woff",
+    "/assets/*.woff2",
+    "/assets/*.ttf",
+    "/img/*",
+    "/fonts/*",
+    "/favicons/*",
+    "/audits/*",
+    "/logo-light.svg",
+    "/logo-dark.svg",
+    "/modular.svg",
+    "/Celestia-og.png",
+    "/underConstruction.png"
+  ]
+}

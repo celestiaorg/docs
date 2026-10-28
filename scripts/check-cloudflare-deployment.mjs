@@ -71,8 +71,20 @@ for (const method of ['GET', 'POST']) {
   const response = await request('/api/__agent-readiness-missing', { method }, method === 'GET' ? 404 : 405)
   assert.equal((await response.json()).code, method === 'GET' ? 'NOT_FOUND' : 'METHOD_NOT_ALLOWED')
 }
-// A normal GET does not catch the browser's cross-origin navigation preflight.
 const homepage = await (await request('/')).text()
+const bundledAssets = [...homepage.matchAll(/(?:src|href)="(\/assets\/[^"?#]+\.(?:js|css))"/g)].map(match => match[1])
+assert.ok(bundledAssets.some(path => path.endsWith('.js')) && bundledAssets.some(path => path.endsWith('.css')), 'Missing bundled assets')
+for (const path of [...new Set(bundledAssets), '/logo-light.svg', '/logo-dark.svg', '/modular.svg', '/Celestia-og.png', '/underConstruction.png',
+  '/img/nitrogen-testnet.jpg', '/fonts/youth/Youth-Regular.woff2', '/favicons/favicon.ico', '/audits/Celestia_OP_Stack_Audit.pdf']) {
+  const response = await request(path, { method: 'HEAD' })
+  assert.doesNotMatch(response.headers.get('Content-Type') || '', /text\/html/, `${path}: expected a static asset`)
+  // The Worker adds this discovery link to every asset it serves.
+  assert.doesNotMatch(response.headers.get('Link') || '', /rel="api-catalog"/, `${path}: still invokes the Worker`)
+}
+const bundledMarkdown = await request('/assets/md/about.md')
+assert.match(bundledMarkdown.headers.get('Content-Type') || '', /^text\/markdown/)
+assert.match(bundledMarkdown.headers.get('Link') || '', /rel="api-catalog"/)
+// A normal GET does not catch the browser's cross-origin navigation preflight.
 const navigationOrigin = new URL(homepage.match(/<base href="([^"]+)"/)?.[1] || origin).origin
 const navigationUrl = `${navigationOrigin}/RSC/R/build/post-retrieve-blob/overview.txt?query=`
 const preflight = await fetch(navigationUrl, {

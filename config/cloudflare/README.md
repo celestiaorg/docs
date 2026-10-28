@@ -30,6 +30,27 @@ and [Is Agentic scan](https://is-agentic.com/scan/docs.celestia.org) after cutov
 Record timestamps and failed requests alongside scores. These scanners measure
 different capabilities; local tests do not establish production scores.
 
+## Reduce Worker usage
+
+`public/_routes.json` is copied into the build output and excludes bundled assets,
+images, fonts, favicons, and audit PDFs from the Pages Worker. These requests are
+served directly by Pages and do not consume the Workers request allowance.
+The `/assets/` exclusions match file types because Vocs also puts Markdown there.
+HTML, navigation data under `/RSC/`, Markdown, discovery files, and MCP endpoints
+continue through the Worker. Excluded assets no longer receive its discovery
+headers or custom error responses.
+
+The artifact check verifies the exclusions against the actual build output. The
+deployment smoke test checks that assets lack the Worker's discovery header while
+navigation, content negotiation, discovery, and MCP still work.
+
+Asset exclusions reduce usage but do not remove the shared daily quota. The
+account owner can separately select **Workers & Pages → celestia-docs → Settings
+→ Runtime → Fail open / closed → Fail open** to serve static files when the free
+allowance is exhausted. Test static navigation before relying on this fallback:
+MCP, same-URL Markdown negotiation, and Worker-added headers are unavailable while
+the Worker is bypassed. This repository does not change the account setting.
+
 ## Existing GitHub Pages rules
 
 The two JSON files are rollback inputs for the old GitHub Pages origin:
