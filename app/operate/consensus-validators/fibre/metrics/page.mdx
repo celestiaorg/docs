@@ -20,6 +20,16 @@ All observability flags apply to every subcommand.
 fibre start --log-level debug --log-format json
 ```
 
+### Health probes
+
+From `v10.5.0` / `v10.5.0-mocha`, Fibre exposes gRPC liveness and readiness
+checks on its normal TLS listener (default port `7980`). Use readiness for
+dependency monitoring; liveness only confirms that the process answers.
+When a check fails, logs identify its name, reason code, and suggested action.
+See [Health and readiness](/operate/consensus-validators/fibre#health-and-readiness)
+for probe commands, configuration, and limits. These probes do not replace
+external reachability checks or real upload canaries.
+
 ## Tracing and metrics
 
 Fibre sends traces and metrics over OTLP/HTTP to an OpenTelemetry collector,
