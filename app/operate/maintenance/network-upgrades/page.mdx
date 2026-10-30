@@ -54,6 +54,89 @@ returns pre-slash tokens. See
 [celestia-app#8342](https://github.com/celestiaorg/celestia-app/pull/8342) and
 [Fibre certificate verification](/build/post-retrieve-blob/fibre/when-to-use#unreleased-v11-certificate-verification).
 
+### Fibre escrow migration
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. See
+> [celestia-app#8396](https://github.com/celestiaorg/celestia-app/pull/8396).
+
+The v11 upgrade handler runs the `x/fibre` module migration `Migrate1to2`,
+moving its consensus version from 1 to 2. v10 accepted uppercase escrow keys
+and non-`utia` balances. v11 canonicalises the signer keys and merges `utia`
+accounts and both withdrawal indexes. Withdrawal requests that collide at
+the same requested timestamp combine their amounts and retain the later
+availability time.
+
+The full escrow balance of every unsupported denomination, including funds
+reserved for withdrawals, is refunded to the account. Its pending withdrawals
+are removed without paying twice. Parameters, processed payments, and the
+module account are preserved. Users do not need to take any action. See the
+[utia-only escrow notice](/build/post-retrieve-blob/fibre#query-and-deposit-escrow)
+and the pinned [migration implementation](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/x/fibre/keeper/migrations.go).
+
+{/* src: app@3968e04a:app/upgrades.go */}
+{/* src: app@3968e04a:x/fibre/module.go */}
+{/* src: app@3968e04a:x/fibre/keeper/migrations.go */}
+
+### Non-blob block gas limit, CIP-53
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. See [CIP-53](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-053.md),
+> [celestia-app#8399](https://github.com/celestiaorg/celestia-app/pull/8399), and
+> [CIPs#411](https://github.com/celestiaorg/CIPs/pull/411).
+
+`appconsts.MaxSDKGas` caps the sum of **declared gas limits** of non-blob,
+non-PayForFibre transactions in a block at **100,000,000**. These are the same
+transactions covered by the `MaxSDKMessages` limit of 600 messages.
+`PrepareProposal` skips transactions that would exceed the gas budget, and
+`ProcessProposal` rejects over-limit blocks. Blob and PayForFibre transactions
+are excluded; `ConsensusParams.Block.MaxGas` remains `-1`.
+
+`CheckTx` rejects a single non-blob, non-PayForFibre transaction whose gas limit
+exceeds 100,000,000 with `ErrTxExceedsMaxSDKGas`: codespace `app`, code
+**11150**, and the message "transaction gas limit exceeds maximum allowed SDK
+gas per block". See the pinned [gas budget](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/pkg/appconsts/prepare_proposal_consts.go)
+and [CheckTx implementation](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/app/check_tx.go).
+
+For context, the upstream PR reports that the busiest block in its sample of
+3,500 Mainnet Beta blocks declared 3.3 million non-blob gas. This is an
+upstream sample, not a network maximum or a new measurement.
+
+{/* src: app@3968e04a:pkg/appconsts/prepare_proposal_consts.go */}
+{/* src: app@3968e04a:app/filtered_square_builder.go */}
+{/* src: app@3968e04a:app/process_proposal.go */}
+{/* src: app@3968e04a:app/check_tx.go */}
+{/* src: app@3968e04a:app/errors/errors.go */}
+
+### Hyperlane ISM limits
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. See
+> [celestia-app#8389](https://github.com/celestiaorg/celestia-app/pull/8389) and
+> [#8400](https://github.com/celestiaorg/celestia-app/pull/8400).
+
+An ante decorator charges **36,000 gas** (`appconsts.GasPerISMSignature`) for
+each multisig ISM signature in a Hyperlane `MsgProcessMessage`, in addition
+to the Hyperlane module's own charge. A block may contain at most **2048**
+multisig ISM signatures (`MaxISMSignatures`). Only metadata whose length
+exactly matches a multisig layout counts: a 68-byte message-id header or a
+1096-byte merkle-root header, followed by whole 65-byte signatures. ZK ISM
+metadata counts zero towards this signature budget.
+
+`MsgCreateMessageIdMultisigIsm` and `MsgCreateMerkleRootMultisigIsm` with more
+than **100 validators** (`MaxMultisigISMValidators`) are rejected at the top
+level, inside `MsgExec`, and inside `MsgSubmitProposal`. `MsgRecvPacket` inside
+`MsgSubmitProposal` is also rejected.
+
+See the pinned [signature gas accounting](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/app/ante/ism_signature_gas.go)
+and [multisig validator limit](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/app/ante/multisig_ism.go).
+
+{/* src: app@3968e04a:pkg/appconsts/app_consts.go */}
+{/* src: app@3968e04a:pkg/appconsts/prepare_proposal_consts.go */}
+{/* src: app@3968e04a:app/ante/ism_signature_gas.go */}
+{/* src: app@3968e04a:app/ante/multisig_ism.go */}
+{/* src: app@3968e04a:app/ante/nested_msg.go */}
+
 ## Configuration changes in v10
 
 ### Existing configuration files

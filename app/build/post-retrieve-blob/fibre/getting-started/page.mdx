@@ -194,6 +194,20 @@ submission. `Put` only returns the transaction hash after confirmation. If
 confirmation fails, you don't get the hash, which makes it harder to check
 whether the blob was paid for.
 
+> **Unreleased v11 transaction confirmation:** `TxClient.ConfirmTxSubscription(ctx, txHash)`
+> in `pkg/user` has the same confirmation contract as `ConfirmTx`, but checks
+> status on every new block through one shared `SubscribeNewHeights` feed per
+> client. It fetches statuses with `TxStatusBatch` and falls back to a direct
+> per-transaction check if no status arrives for 30 seconds. It reports a
+> committed result only after the node's committed query height covers the
+> inclusion height. `ConfirmTx` is unchanged. Callers submitting their own
+> `MsgPayForFibre` after `Client.Upload` can use this method to reduce
+> confirmation latency. See
+> [celestia-app#7888](https://github.com/celestiaorg/celestia-app/pull/7888) and
+> the pinned [confirmation implementation](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/pkg/user/confirmation.go).
+
+{/* src: app@3968e04a:pkg/user/confirmation.go */}
+
 From celestia-app v10.5.0 and v10.5.0-mocha, cancelling the context after
 `Client.Upload` or `fibre.Put` returns does not stop uploads that are still
 running past quorum. Set `DetachBackgroundUploads` to `false` when

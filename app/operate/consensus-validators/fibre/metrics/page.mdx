@@ -119,6 +119,24 @@ requirement; that is celestia-app's `cometbft_privval_signing_latency_*`, see
 [signing latency](/operate/consensus-validators/fibre#prerequisites) on the
 setup page.
 
+##### Unreleased v11 server metrics
+
+> These additional OTLP metrics describe unreleased celestia-app v11. See
+> [celestia-app#8250](https://github.com/celestiaorg/celestia-app/pull/8250),
+> [#8253](https://github.com/celestiaorg/celestia-app/pull/8253), and the pinned
+> [server metrics reference](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/fibre/cmd/README.md#server-metrics).
+> Use them to monitor [v11 request memory and connection caps](/operate/consensus-validators/fibre#unreleased-v11-request-memory-and-connection-caps).
+
+| Metric | Type | Attributes | Description |
+|---|---|---|---|
+| `fibre.server.request.rejected` | Counter | `method`, `reason` | gRPC requests rejected by memory admission (`per_ip`, `memory_timeout`, `memory_overflow`) |
+| `fibre.server.request.reserved_bytes` | Gauge (By) | — | Request bytes reserved against `max_request_memory` |
+| `fibre.server.request.admission.waiting` | Gauge | — | Requests waiting for memory budget |
+| `fibre.server.connections.open` | Gauge | — | Open gRPC connections |
+| `fibre.server.connections.rejected` | Counter | `reason` | Connections rejected by the global (`global`) or per-IP (`per_ip`) cap |
+
+{/* src: app@3968e04a:fibre/cmd/README.md Server metrics */}
+
 #### Client metrics
 
 These metrics come from instrumented Fibre clients. Collect client telemetry

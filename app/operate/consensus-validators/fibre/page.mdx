@@ -289,6 +289,71 @@ max_concurrent_streams = 13
 Add either key if it is missing from an existing file, then restart Fibre for
 the change to take effect.
 
+For the upcoming version, see
+[Unreleased v11 request memory and connection caps](#unreleased-v11-request-memory-and-connection-caps).
+
+### Unreleased v11 request memory and connection caps
+
+> These settings describe unreleased celestia-app v11. Continue using the v10
+> capacity guidance above for current releases. See
+> [celestia-app#8250](https://github.com/celestiaorg/celestia-app/pull/8250),
+> [#8251](https://github.com/celestiaorg/celestia-app/pull/8251), and
+> [#8252](https://github.com/celestiaorg/celestia-app/pull/8252).
+
+In v11, every gRPC request, including `UploadShard`, `DownloadShard`, and health
+requests, is admitted against a global byte budget before its body is read.
+`max_request_memory` sets that budget in bytes: the default is 16 GiB
+(`17179869184`), and it must fit at least one maximum message (about 132 MiB).
+It bounds buffered request bytes only, **not process RSS**. Decoding and
+verification allocate additional memory, so leave host headroom.
+
+Each request reserves one maximum message while being received, then shrinks
+its reservation to the decoded size. `DownloadShard` keeps the maximum
+reservation until its handler returns. Requests wait FIFO for memory for up
+to 3 seconds, then receive `ResourceExhausted` with a roughly 1–2 second
+`RetryInfo` hint; Fibre uploads retry automatically. The queue holds at most 256
+waiters; further requests are rejected immediately. A per-IP limit of 8
+requests applies while bodies are being received, with IPv6 grouped by `/64`.
+Each stream also has a 60-second deadline to limit stalled senders.
+
+`max_connections_per_ip` defaults to `16`, groups IPv6 addresses by `/64`, and
+can be disabled with `0`. A fixed internal limit of 4096 connections applies
+globally. Connections above either cap are closed immediately instead of
+being parked in the accept backlog. This removes the v10 global 16-slot
+bottleneck where one upload blocked downloads.
+
+`max_connections` is deprecated and ignored in v11. The key still loads
+because the decoder rejects unknown keys. Fibre logs:
+
+```text
+max_connections is deprecated and ignored; connections are capped per IP by max_connections_per_ip
+```
+
+The `max_concurrent_streams` default rises from `13` to `100`. Existing config
+files retain their written `13`; edit it to use the new default. In
+`<fibre_home>/config/server_config.toml`, the v11 defaults are:
+
+```toml
+max_request_memory = 17179869184
+max_connections_per_ip = 16
+max_concurrent_streams = 100
+```
+
+Run `celestia-appd config sync --fibre-home <fibre_home>` to add missing keys
+while preserving existing values; add `--dry-run` to preview. Restart Fibre
+after editing. In v11, the `max_connections × max_concurrent_streams × 132 MiB`
+formula no longer sizes memory. Size the host for `max_request_memory` plus
+decode and verification overhead, celestia-app, and the operating system.
+
+See the pinned [server configuration](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/fibre/server_config.go)
+and [request memory and connection reference](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/fibre/cmd/README.md#request-memory-and-connection-caps).
+
+{/* src: app@3968e04a:fibre/server_config.go */}
+{/* src: app@3968e04a:fibre/internal/grpc/admission.go */}
+{/* src: app@3968e04a:fibre/internal/grpc/server.go */}
+{/* src: app@3968e04a:fibre/client_upload.go retryAfter and maxUploadRetries */}
+{/* src: app@3968e04a:fibre/cmd/README.md Request memory and connection caps */}
+
 ### Object storage
 
 <Callout type="warning">
@@ -364,6 +429,45 @@ field in the config file. To provide them to a systemd service:
 To rotate keys, update the file and restart Fibre. If the host already has
 credentials from an IAM role or the shared AWS credentials file, Fibre uses
 them and you can skip the environment file.
+
+#### Unreleased v11: check bucket access
+
+> This command is available in unreleased celestia-app v11. See
+> [celestia-app#8277](https://github.com/celestiaorg/celestia-app/pull/8277).
+
+`fibre store check-bucket` checks the configured object-storage destination
+and credentials. It reports `HeadBucket`, a canary `PUT`, and a canary `DELETE`
+separately, along with the AWS credential source and the last four characters
+of the access key ID. By default, the canary is written under
+`<prefix>/.fibre-check/`. The command does not open Pebble, so it can run while
+Fibre is running, unlike `fibre store stats` and `fibre store markers`.
+
+For credentials restricted to a validator's shard path, pass both namespace
+flags to write under
+`<prefix>/<chain-id>/<validator-address>/shards/.fibre-check/`:
+
+```bash
+fibre store check-bucket --home <fibre_home> \
+  --chain-id <chain_id> --validator-address celestiavalcons1...
+```
+
+Run without `sudo` only when your shell has the same AWS credentials as the
+service. If `/etc/fibre/s3.env` is readable only by root, load it explicitly
+and pass the service's actual Fibre home:
+
+```bash
+sudo -i
+set -a; . /etc/fibre/s3.env; set +a
+/path/to/fibre store check-bucket --home <fibre_home>
+```
+
+Add both namespace flags here too if the credentials are path-scoped. Exit
+the root shell after the check. See the pinned
+[command reference](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/fibre/cmd/README.md#object-storage-credentials)
+and [implementation](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/fibre/cmd/store_cmd.go).
+
+{/* src: app@3968e04a:fibre/cmd/README.md */}
+{/* src: app@3968e04a:fibre/cmd/store_cmd.go */}
 
 ### Switching shard storage backends
 
@@ -487,6 +591,26 @@ whether or not the validator is jailed. A never-bonded validator has a zero
 `UnbondingTime`, so its existing entry is removed on the next sweep. Register
 again after rejoining the bonded set if your entry was removed.
 
+### Unreleased v11 connection warm-up
+
+> In unreleased celestia-app v11, Fibre clients pre-dial every validator in
+> `Client.Start`, and again in `Upload` when the validator set changes. At 80%
+> of the server's maximum connection age, clients begin rotating connections
+> by swapping in a ready replacement. Your registered host therefore receives
+> connections as soon as clients start, not only on the first upload.
+>
+> The deployment note in
+> [celestia-app#8341](https://github.com/celestiaorg/celestia-app/pull/8341)
+> recommends `net.ipv4.tcp_rmem = 4096 4194304 33554432` on validators as the
+> main cold-start improvement. This is an upstream recommendation, not a
+> requirement. See the pinned
+> [client startup](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/fibre/client.go)
+> and [connection cache](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/fibre/internal/grpc/client_cache.go).
+
+{/* src: app@3968e04a:fibre/client.go */}
+{/* src: app@3968e04a:fibre/client_upload.go */}
+{/* src: app@3968e04a:fibre/internal/grpc/client_cache.go */}
+
 ## Unreleased v11 gRPC header limit
 
 > In unreleased celestia-app v11, the Fibre gRPC server caps request header
@@ -566,6 +690,8 @@ for details of how clients verify Fibre's certificate.
 | `loading object storage credentials` | The service did not receive the bucket key. Check the environment file and the `EnvironmentFile=` override in [Object storage](#object-storage), then restart Fibre. |
 | `object namespace mismatch` | The object endpoint, bucket, prefix, chain ID, or validator address changed while object shards remain. Restore the previous bucket settings and node connections, or follow [Migrate to another bucket](#migrate-to-another-bucket) when moving objects. |
 | Configuration decode error reports an unknown field | Correct or remove the reported key or table in `<fibre_home>/config/server_config.toml`, then restart Fibre. |
+| Unreleased v11: `max_connections is deprecated and ignored…` warning | Harmless: remove the key and set `max_connections_per_ip` if needed. See [v11 connection caps](#unreleased-v11-request-memory-and-connection-caps). |
+| Unreleased v11: clients see `ResourceExhausted` under load | The request-memory budget may be full or the per-IP receive limit reached. Check `fibre.server.request.rejected` and `fibre.server.request.admission.waiting` in [v11 server metrics](/operate/consensus-validators/fibre/metrics#unreleased-v11-server-metrics), and host memory before raising `max_request_memory`. |
 | TLS identity verification failed | Check that the signing service holds your validator's consensus key, then restart Fibre after correcting the signer address. |
 | `derived storage budget is 0` warning | The app node reports no stake for your validator. Check that the validator is bonded and that `--app-grpc-address` points at a synced node on the right network. Fibre keeps running and re-derives the budget periodically. |
 | Server runs but no uploads arrive | Check that `query valaddr provider` finds your host, that the registered `host:port` is reachable from outside your network, and that the validator is bonded. Clients only dial registered, bonded validators. |
