@@ -49,6 +49,17 @@ When using third-party estimation, the consensus endpoint must be running celest
 
 ### Fees and gas limits
 
+> **Unreleased v11:** non-blob transactions, excluding PayForBlobs and
+> PayForFibre, must declare a gas limit of at most 100,000,000. `CheckTx`
+> rejects a larger limit with code 11150 (`ErrTxExceedsMaxSDKGas`). Their
+> combined declared gas per block is also capped at 100,000,000. See
+> [CIP-53 upgrade guidance](/operate/maintenance/network-upgrades#non-blob-block-gas-limit-cip-53)
+> and [celestia-app#8399](https://github.com/celestiaorg/celestia-app/pull/8399).
+
+{/* src: app@3968e04a:pkg/appconsts/prepare_proposal_consts.go */}
+{/* src: app@3968e04a:app/check_tx.go */}
+{/* src: app@3968e04a:app/errors/errors.go */}
+
 As of version v1.0.0 of the application (celestia-app), there is no protocol
 enforced minimum fee (similar to EIP-1559 in Ethereum). Instead, each
 consensus node running a mempool uses a locally configured gas price threshold

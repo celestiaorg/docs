@@ -25,6 +25,24 @@ voting power (rounded down) accept it.
 {/* src: node@v0.34.4:api/rpc/server.go maxRequestSize */}
 {/* src: app@v10.4.0:specs/src/fibre_module.md "Stateless Validation" */}
 
+### Unreleased v11 gRPC header limit
+
+> In unreleased celestia-app v11, the Fibre gRPC server limits request header
+> lists to 16 KiB with `grpc.MaxHeaderListSize`. Clients or proxies sending
+> metadata over this limit have their requests rejected. See
+> [celestia-app#8358](https://github.com/celestiaorg/celestia-app/pull/8358).
+
+In unreleased v11, validators can also reject requests with retryable
+`ResourceExhausted` when their request-memory budget (`max_request_memory`)
+or per-IP request limits are reached. Fibre uploads retry these automatically;
+downloads try other validators when a shard request fails.
+See [v11 request memory and connection caps](/operate/consensus-validators/fibre#unreleased-v11-request-memory-and-connection-caps)
+and [celestia-app#8250](https://github.com/celestiaorg/celestia-app/pull/8250).
+
+{/* src: app@3968e04a:fibre/internal/grpc/admission.go */}
+{/* src: app@3968e04a:fibre/client_upload.go retryAfter and maxUploadRetries */}
+{/* src: app@3968e04a:fibre/client_download.go downloadBlob */}
+
 ## Timing and quorum
 
 | Limit | Value | Type |
