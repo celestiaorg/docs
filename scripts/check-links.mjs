@@ -63,6 +63,7 @@ const DEFAULT_SKIP_PATTERNS = [
 // These URLs may have connection issues or timeouts, but should only be reported as broken if they return 404
 const ONLY_FAIL_ON_404_PATTERNS = [
   'explorer.nodestake.top/celestia',
+  'celestiahub.org/',
   'etherscan.io/address/',
   'basescan.org/address/',
   'status.celestia.dev/status/',
