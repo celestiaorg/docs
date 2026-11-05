@@ -1,6 +1,6 @@
 {
   "golangNodeMainnet": "1.26.8",
-  "golangNodeMocha": "1.26.8",
+  "golangNodeMocha": "1.26.10",
   "mainnetChainId": "celestia",
   "mochaChainId": "mocha-5",
   "bridgeStorageWindowHours": 169,
