@@ -71,3 +71,14 @@ flowchart TB
 4. **Destination chain** — the ISM verifies the message using the provided metadata (proofs, signatures, etc.), and if valid, the Mailbox delivers the message to the recipient application.
 
 5. **Recipient application** — the destination application receives and processes the message (for example, mints tokens, executes a function call, etc.).
+
+> **Unreleased v11 ISM limits:** relayers and ISM deployers should plan for a
+> maximum of 100 validators per multisig ISM, an additional ante charge of
+> 36,000 gas per relayed multisig signature, and a per-block budget of 2048
+> ISM signatures. See the [Hyperlane ISM upgrade guidance](/operate/maintenance/network-upgrades#hyperlane-ism-limits),
+> [celestia-app#8389](https://github.com/celestiaorg/celestia-app/pull/8389), and
+> [#8400](https://github.com/celestiaorg/celestia-app/pull/8400).
+
+{/* src: app@3968e04a:pkg/appconsts/app_consts.go */}
+{/* src: app@3968e04a:pkg/appconsts/prepare_proposal_consts.go */}
+{/* src: app@3968e04a:app/ante/multisig_ism.go */}
