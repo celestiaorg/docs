@@ -43,15 +43,16 @@ export default defineConfig({
   accentColor: 'light-dark(#6d3df5, #9d7cff)',
   editLink: {
     link: (filePath) => {
-      let sourcePath = filePath.replace(/^src\/pages\//, 'app/')
+      // Vocs passes the path relative to src/pages; the sources live in app/
+      let sourcePath = filePath.replace(/^src\/pages\//, '')
 
-      if (sourcePath === 'app/index.mdx') {
-        sourcePath = 'app/page.mdx'
+      if (sourcePath === 'index.mdx') {
+        sourcePath = 'page.mdx'
       } else {
         sourcePath = sourcePath.replace(/\/index\.mdx$/, '/page.mdx')
       }
 
-      return `https://github.com/celestiaorg/docs/edit/main/${sourcePath}`
+      return `https://github.com/celestiaorg/docs/edit/main/app/${sourcePath}`
     },
     text: 'Edit this page',
   },
