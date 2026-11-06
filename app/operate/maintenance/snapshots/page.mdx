@@ -52,6 +52,7 @@ Their services include installation scripts, state sync, snapshots, RPC endpoint
 | kjnodes     | [Pruned](https://services.kjnodes.com/mainnet/celestia/snapshot/) • [Archive](https://services.kjnodes.com/mainnet/celestia/snapshot-archive/) | -                                                                          |
 | Noders      | [Pruned](https://noders.services/mainnet-networks/celestia/snapshot/)                                                                          | -                                                                          |
 | QubeLabs    | [Archive](https://snaps.qubelabs.io/celestia/)                                                                                                 | -                                                                          |
+| deNodes     | [Pruned](https://celestia.deportal.io/snapshots)                                                                                               | -                                                                          |
 
 ### Mocha testnet
 
@@ -132,3 +133,16 @@ In manual mode (`--manual` flag), the tool will:
 2. Show you a list of providers with their download speed, snapshot size, and estimated download time
 3. Let you select your preferred provider from the list
 4. Start downloading from your selected provider
+
+## Using SnapsVault
+
+[SnapsVault](https://snapsvault.xyz) is an open snapshot marketplace that lists Celestia snapshots from several providers in one catalog, in one format. Each listing shows the snapshot type, block height, creation time, size and, when the provider publishes it, the SHA256 checksum. Snapshot files are downloaded directly from each provider's server. SnapsVault covers Mainnet Beta and Mocha.
+
+### Features
+
+- [Marketplace](https://celestia.snapsvault.xyz) to filter snapshots by chain and type, compare providers and copy the download command
+- SnapsOS CLI to find, download and verify a snapshot from the terminal
+- Public REST API with the same data, no key required
+- Providers list their snapshots with a JSON feed and a pull request to the [registry](https://github.com/denodesxyz/snapsvault-registry)
+
+The [SnapsVault docs](https://docs.snapsvault.xyz) cover the Marketplace, the CLI flags, every API route and how providers list their snapshots.
