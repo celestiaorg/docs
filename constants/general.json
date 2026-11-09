@@ -1,5 +1,5 @@
 {
-  "golangNodeMainnet": "1.26.8",
+  "golangNodeMainnet": "1.26.10",
   "golangNodeMocha": "1.26.10",
   "mainnetChainId": "celestia",
   "mochaChainId": "mocha-5",
