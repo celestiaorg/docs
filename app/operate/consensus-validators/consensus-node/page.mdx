@@ -189,8 +189,8 @@ min-retain-blocks = 0
 ```
 
 <Callout type="warning">
-`min-retain-blocks` defaults to `0`. Any non-zero value enables block pruning,
-so archival operators must keep the value at `0`. Changing the value from `0`
+`min-retain-blocks` defaults to `3000`. Any non-zero value enables block pruning,
+so archival operators must explicitly set the value to `0`. Changing the value from `0`
 to a non-zero value starts pruning the existing backlog when the node restarts
 and can temporarily increase sync time.
 </Callout>
@@ -343,26 +343,15 @@ The [Node snapshots guide](/operate/maintenance/snapshots) provides everything y
 
 ## Start the consensus node
 
-If you are running celestia-app >= v4.0.0, the `rpc.grpc_laddr` config option is required. This option can be set via the CLI flag `--rpc.grpc_laddr tcp://0.0.0.0:9098` or in the `config.toml`.
-
 ```sh
-celestia-appd start --rpc.grpc_laddr tcp://0.0.0.0:9098
+celestia-appd start
 ```
 
-If you are running celestia-app v2.x.x then you'll want to start the node with a `--v2-upgrade-height` that is dependent on the network. The `--v2-upgrade-height` flag is only needed during the v2 upgrade height so after your node has executed the upgrade (e.g. you see the log `upgraded from app version 1 to 2`), you don't need to provide this flag for future `celestia-appd start` invocations.
+The `rpc.grpc_laddr` config option must not be empty. New configurations default to `tcp://127.0.0.1:9098`. If your `config.toml` was created by an older version and has an empty value, set it in `config.toml` or with the CLI flag:
 
-<NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="consensus-node-network">
-  <Tabs.Tab>
-    ```sh
-    celestia-appd start --v2-upgrade-height 2371495
-    ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-    ```sh
-    celestia-appd start --v2-upgrade-height 2585031
-    ```
-  </Tabs.Tab>
-</NetworkTabs>
+```sh
+celestia-appd start --rpc.grpc_laddr tcp://127.0.0.1:9098
+```
 
 
 Optional: If you would like celestia-app to run as a background process, you can follow the [SystemD tutorial](/operate/maintenance/systemd).
@@ -385,7 +374,9 @@ This preserves your configuration, validator state (`priv_validator_state.json`)
 
 - blockstore.db
 - state.db
+- cs.wal
 - evidence.db
+- tx_index.db
 
 This option is safe for validator nodes and was created specifically for validators who need to reset their node's blockchain data without risking double signing. Use this when you need to resync your node but want to maintain your validator's signing state and peer connections.
 
@@ -553,16 +544,16 @@ sed -i 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' ~/.celestia-app/confi
 This command replaces the `localhost` IP address with `0.0.0.0`, making the
 RPC service listen on all available network interfaces.
 
-#### Note on `external-address`
+#### Note on `external_address`
 
-The `external-address` field in the configuration is used when your node
+The `external_address` field in the configuration is used when your node
 is behind a NAT and you need to advertise a different address for peers
 to dial. Populating this field is not necessary for making the RPC
 endpoint public.
 
 ```sh
-EXTERNAL-ADDRESS=$(wget -qO- eth0.me)
-sed -i.bak -e "s/^external-address = ""/external-address = "$EXTERNAL-ADDRESS:26656"/" \
+EXTERNAL_ADDRESS=$(wget -qO- eth0.me)
+sed -i.bak -e "s/^external_address = \"\"/external_address = \"$EXTERNAL_ADDRESS:26656\"/" \
     $HOME/.celestia-app/config/config.toml
 ```
 
@@ -610,11 +601,11 @@ queries and to reindex events in the command-line tool.
 The `discard_abci_responses` option allows you to control whether these
 responses are persisted in the state store:
 
-- `false` (default): ABCI responses are stored in the state store. This
+- `false`: ABCI responses are stored in the state store. This
   ensures that ABCI responses are available for `/block_results` RPC queries
   and for reindexing events. However, it can consume a significant amount
   of disk space.
-- `true`: ABCI responses are not stored in the state store. This can
+- `true` (default): ABCI responses are not stored in the state store. This can
   save a considerable amount of disk space, but `/block_results` RPC queries
   and event reindexing will not be available.
 
@@ -657,27 +648,27 @@ celestia-appd passthrough [app-version] [command] [flags]
 
 Where:
 
-- `[app-version]` is the historical app version you want to query against (e.g., `v1`, `v2`, `v3`)
+- `[app-version]` is the historical app version you want to query against (e.g., `v3`, `v4`, `v9`). The binary embeds app versions 3 to 9; a lower version runs the v3 binary
 - `[command]` is the command you want to execute using that app version's format
 
 #### Examples
 
-Query account balance using app version 1 format:
+Query account balance using app version 3 format:
 
 ```sh
-celestia-appd passthrough v1 query bank balances [address]
+celestia-appd passthrough v3 query bank balances [address]
 ```
 
-Query validator information using app version 2 format:
+Query validator information using app version 4 format:
 
 ```sh
-celestia-appd passthrough v2 query staking validator [validator-address]
+celestia-appd passthrough v4 query staking validator [validator-address]
 ```
 
-Query transaction using app version 3 format:
+Query transaction using app version 9 format:
 
 ```sh
-celestia-appd passthrough v3 query tx [transaction-hash]
+celestia-appd passthrough v9 query tx [transaction-hash]
 ```
 
 #### Important considerations

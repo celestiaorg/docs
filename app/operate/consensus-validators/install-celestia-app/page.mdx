@@ -168,15 +168,15 @@ on the server's firewall. If you run a node at home, make sure that your
 router allows connections to the correct ports.
 
 For example, validator ports 9090
-and 26657 need to be accessible by the bridge, and port 2121 is
-required for P2P connections for all node types.
+and 26657 need to be accessible by the bridge, and port 26656 is
+required for P2P connections between consensus nodes.
 
 The following ports are used by Celestia app nodes:
 
 | Port  | Protocol | Address   | Description | Enabled by default on node     | Flag                    |
 | ----- | -------- | --------- | ----------- | ------------------------------ | ----------------------- |
-| 2121  | TCP/UDP  | 127.0.0.1 | P2P         | true                           | N/A                     |
-| 9090  | HTTP     | 0.0.0.0   | gRPC        | true                           | `--grpc.address string` |
+| 26656 | TCP      | 0.0.0.0   | P2P         | true                           | `--p2p.laddr string`    |
+| 9090  | HTTP     | localhost | gRPC        | false (enable with `--grpc.enable`) | `--grpc.address string` |
 | 26657 | TCP      | 127.0.0.1 | RPC         | false (only open to localhost) | `--rpc.laddr string`    |
 
 ## Next steps

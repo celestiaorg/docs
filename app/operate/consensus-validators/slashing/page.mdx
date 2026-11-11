@@ -16,8 +16,8 @@ have the same percentage of their delegated funds slashed.
 
 The following are the conditions for a validator to get jailed or slashed:
 
-1. **Downtime**: If a validator is offline for more than 25% of a rolling window
-   of the last 5,000 blocks, they will be jailed for 1 minute.
+1. **Downtime**: If a validator misses more than 25% of a rolling window
+   of the last 10,000 blocks (more than 2,500 blocks), they will be jailed for 1 minute.
    During this period, the validator is removed from the validator set
    temporarily, and will be unable to propose new blocks or earn rewards.
    After the jail period, the validator can send an unjail request to
@@ -29,9 +29,9 @@ The following are the conditions for a validator to get jailed or slashed:
    will be returned to them. The validator will be permanently removed
    from the validator set and will not have the ability to unjail.
    Delegators bonded to that validator will automatically enter the unbonding
-   period for 21 days, and can delegate to another validator after
+   period for 14 days and 1 hour (337 hours), and can delegate to another validator after
    they have been unbonded.
 
 For more details on the jailing and slashing parameters, refer to the
-[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v6.html)
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v10.html)
 page.
