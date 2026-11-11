@@ -7,7 +7,7 @@ This guide walks through running [op-alt-da](https://github.com/celestiaorg/op-a
 ## Prerequisites
 
 - Docker
-- Go 1.26+
+- Go 1.26+ for current releases (v0.12.0 builds with Go 1.25)
 - A Celestia RPC endpoint from [Quicknode](https://quicknode.com/)
 
 import { Steps } from "nextra/components";
@@ -85,6 +85,9 @@ aws --endpoint-url=http://localhost:4566 kms create-alias \
    ```toml
    [celestia]
    namespace = "000000000000000000000000000000000000000000000000000000acfe"
+   keyring_backend = "awskms"
+   default_key_name = "alias/op-alt-da/celestia_key"
+
    bridge_addr = "https://your-endpoint.celestia-mocha.quiknode.pro/your-token/"
    bridge_auth_token = ""
    bridge_tls_enabled = true
@@ -93,16 +96,12 @@ aws --endpoint-url=http://localhost:4566 kms create-alias \
    core_grpc_auth_token = "your-token"
    core_grpc_tls_enabled = true
 
-   [celestia.signer]
-   mode = "aws_kms"
-
-   [celestia.signer.aws_kms]
+   [celestia.awskms]
    region = "us-east-1"
    endpoint = "http://localhost:4566"
-   key_id = "alias/op-alt-da/celestia_key"
    ```
 
-   Note: In v0.12.0+, the key must include the full alias path (_e.g._, `alias/op-alt-da/celestia_key`). Set it as `key_id`. Releases that predate the `[celestia.signer]` table use the legacy keys `keyring_backend = "awskms"`, `default_key_name`, and `[celestia.awskms]`, which are deprecated but still accepted.
+   Note: In v0.12.0+, the `default_key_name` must include the full alias path (_e.g._, `alias/op-alt-da/celestia_key`). From v0.16.0, these keys are deprecated but still accepted; the current form is `[celestia.signer]` with `mode = "aws_kms"` and a `[celestia.signer.aws_kms]` table that takes `region`, `endpoint` and `key_id`.
 
 ## Run the DA server
 
@@ -146,7 +145,7 @@ aws --endpoint-url=http://localhost:4566 kms create-alias \
    ```bash
    curl -s -X POST http://127.0.0.1:3100/put \
      -H "Content-Type: application/octet-stream" \
-     -d "hello celestia" -o /dev/null
+     -d "hello celestia"
    ```
 
    A successful POST shows in the server logs:
@@ -211,13 +210,13 @@ For production AWS KMS usage:
 4. Update your `config.toml`:
 
    ```toml
-   [celestia.signer]
-   mode = "aws_kms"
+   [celestia]
+   keyring_backend = "awskms"
+   default_key_name = "alias/op-alt-da/my_celes_key"
 
-   [celestia.signer.aws_kms]
+   [celestia.awskms]
    region = "us-east-2"
    endpoint = ""
-   key_id = "alias/op-alt-da/my_celes_key"
    ```
 
-   Note: Leave `endpoint` empty for production AWS. The `key_id` must include the full alias path (e.g., `alias/my_celes_key` or `alias/op-alt-da/my_celes_key`).
+   Note: Leave `endpoint` empty for production AWS. The `default_key_name` must include the full alias path (e.g., `alias/my_celes_key` or `alias/op-alt-da/my_celes_key`).

@@ -32,7 +32,7 @@ Edit **only** the following items.
 | `CELESTIA_CORE_GRPC` | Same host + `:9090` (no token in path) |
 | `CELESTIA_NODE_WRITE_TOKEN` | Your Quicknode token |
 | `CELESTIA_SIGNING_KEY` | 32-byte private key for your signer (funded on Mocha) |
-| `SP1_PROVER` | Defaults to `cuda`, which needs an NVIDIA GPU with 20 GB or more of VRAM and CUDA 12+. Without one, set `cpu`, or `mock` for mock proofs. `network` uses the Succinct prover network |
+| `SP1_PROVER` | Defaults to `cuda`, which needs an NVIDIA GPU with 20 GB or more of VRAM and CUDA 12+. Without one, set `cpu`, or `mock` for mock proofs. Do not set `network` for private data: the external Succinct prover network receives the plaintext |
 | `TLS_CERTS_PATH` / `TLS_KEY_PATH` | Path to your local TLS cert + key (see next step) |
 | `CELESTIA_NETWORK` etc. | Keep defaults; ensure all paths are absolute |
 
@@ -81,26 +81,26 @@ That address must exist and hold some test TIA.
 The published image is `amd64` only — run it under emulation:
 
 ```bash
-docker pull --platform=linux/amd64 ghcr.io/celestiaorg/private-blockspace-proxy:latest
+docker pull --platform=linux/amd64 ghcr.io/celestiaorg/pda-proxy:latest
 mkdir -p "$PBS_DB_PATH"
 
-docker run --name pbs-proxy --rm -it   --platform=linux/amd64   --env-file ./.env   -v "$PBS_DB_PATH:$PBS_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/private-blockspace-proxy:latest
+docker run --name pda-proxy --rm -it   --platform=linux/amd64   --env-file ./.env   -v "$PBS_DB_PATH:$PBS_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pda-proxy:latest
 ```
 
 **Intel/AMD Linux or other amd64 hosts**
 
 ```bash
-docker pull ghcr.io/celestiaorg/private-blockspace-proxy:latest
+docker pull ghcr.io/celestiaorg/pda-proxy:latest
 mkdir -p "$PBS_DB_PATH"
 
-docker run --name pbs-proxy --rm -it   --env-file ./.env   -v "$PBS_DB_PATH:$PBS_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/private-blockspace-proxy:latest
+docker run --name pda-proxy --rm -it   --env-file ./.env   -v "$PBS_DB_PATH:$PBS_DB_PATH"   -v "./tls:/app/tls"   -p 26657:26657   ghcr.io/celestiaorg/pda-proxy:latest
 ```
 
 ### Verify it’s running
 
 Check logs:
 ```bash
-docker logs -f pbs-proxy
+docker logs -f pda-proxy
 ```
 
 Or test status:
@@ -144,7 +144,7 @@ The proxy will:
 
 If the response includes `"result": { "height": "…" }`, you’re set. Jump to **Verify your blob** with that height.
 
-If the response has a top-level `status` field with `"[pbs-proxy] Verifiable encryption processing..."`, the proxy queued the job. Two quick options:
+If the response has a top-level `status` field containing `Verifiable encryption processing...`, the proxy queued the job. Two quick options:
 
 **Option A — resend once**
 
@@ -154,7 +154,7 @@ Sometimes it finishes fast and you’ll get the height on the next call.
 
 Either tail logs:
 ```bash
-docker logs -f pbs-proxy | egrep -i 'submit|height|commit|error'
+docker logs -f pda-proxy | egrep -i 'submit|height|commit|error'
 ```
 
 Or poll a small window around the tip for your namespace:

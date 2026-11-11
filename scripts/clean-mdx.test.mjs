@@ -60,7 +60,7 @@ test('does not interpret tabs inside a fenced example', () => {
 });
 
 for (const [page, expected] of [
-  ['operate/networks/local-devnet', ['**Docker Compose**', '**From source (scripts)**', 'docker-compose up -d', 'make install', '**and wipe chain data**']],
+  ['operate/networks/local-devnet', ['make install', './scripts/single-node-bridge.sh']],
   ['operate/getting-started/docker', ['**Mainnet Beta**', '**Mocha**', 'export NETWORK=celestia', 'export NETWORK=mocha', 'docker run -e NODE_TYPE=$NODE_TYPE']],
 ]) {
   test(`preserves Steps inside and around tabs in ${page}`, () => {
