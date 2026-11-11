@@ -190,7 +190,8 @@ min-retain-blocks = 0
 
 <Callout type="warning">
 `min-retain-blocks` defaults to `3000`. Any non-zero value enables block pruning,
-so archival operators must explicitly set the value to `0`. Changing the value from `0`
+so archival operators must explicitly set the value to `0`. A non-zero value
+below `3000` is raised to `3000` at startup. Changing the value from `0`
 to a non-zero value starts pruning the existing backlog when the node restarts
 and can temporarily increase sync time.
 </Callout>
@@ -648,7 +649,7 @@ celestia-appd passthrough [app-version] [command] [flags]
 
 Where:
 
-- `[app-version]` is the historical app version you want to query against (e.g., `v3`, `v4`, `v9`). The binary embeds app versions 3 to 9; a lower version runs the v3 binary
+- `[app-version]` is the historical app version you want to query against (_e.g._, `v3`, `v4`, `v9`). The binary embeds app versions 3 to 9; a lower version runs the v3 binary
 - `[command]` is the command you want to execute using that app version's format
 
 #### Examples

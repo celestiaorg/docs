@@ -51,13 +51,13 @@ keys that hold real funds.
 
 ```sh
 # listing keys
-celestia-appd keys list
+celestia-appd keys list --keyring-backend <backend>
 
 # adding keys
 celestia-appd keys add <KEY_NAME> --keyring-backend <backend>
 
 # deleting keys
-celestia-appd keys delete <KEY_NAME>
+celestia-appd keys delete <KEY_NAME> --keyring-backend <backend>
 
 # renaming keys
 celestia-appd keys rename <CURRENT_KEY_NAME> <NEW_KEY_NAME>
@@ -343,8 +343,8 @@ STAKING_AMOUNT=5000000000000utia
 celestia-appd genesis gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
     --pubkey=$(celestia-appd tendermint show-validator) \
     --moniker=$MONIKER \
-    --commission-rate=0.1 \
-    --commission-max-rate=0.2 \
+    --commission-rate=0.2 \
+    --commission-max-rate=0.6 \
     --commission-max-change-rate=0.01 \
     --min-self-delegation=1
 ```
