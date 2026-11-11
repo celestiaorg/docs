@@ -106,6 +106,29 @@ configurable in `config.toml`.
 See the [celestia-node v0.31.3 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3)
 for the complete upgrade instructions.
 
+### Mocha v0.35.0 upgrade
+
+Starting with [celestia-node v0.35.0-mocha](https://github.com/celestiaorg/celestia-node/releases/tag/v0.35.0-mocha),
+Bitswap is removed on Mocha and shrex is the only share exchange protocol.
+The `Share.UseShareExchange`, `Share.UseBitswap`, and
+`Share.BlockStoreCacheSize` configuration keys are removed and ignored if
+present. Mainnet Beta (v0.34.x) retains its existing Bitswap fallback and
+these configuration keys.
+
+Stop the node, upgrade the binary, and run `config-update` before restarting.
+Use the command for your node type:
+
+```bash
+celestia bridge config-update --p2p.network mocha
+# Or, for a light node:
+celestia light config-update --p2p.network mocha
+```
+
+This removes the obsolete keys while preserving other custom values. Review
+`config.toml` before restarting. Light nodes delete the old Bitswap samples
+once on their first start after upgrading. No coordinated upgrade is needed:
+v0.35.0 Mocha nodes remain compatible with v0.34.x peers.
+
 ### P2P
 
 #### Bootstrap
