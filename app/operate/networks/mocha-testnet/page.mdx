@@ -42,26 +42,21 @@ genesis transactions. Other validators can join by submitting
 set, governance proposals, IBC channels, Hyperlane state, community
 pool, and all other chain state did not carry over.
 
-`mocha-4` remained running until it was officially shut down on
-September 1, 2026. It is retired and historical. All services still
-pointing at `mocha-4` should move to `mocha-5`.
+`mocha-4` was shut down on
+[September 10, 2026](https://status.celestia.org/incidents/01M25X4RKXKN9XHS5N0D76QFF1).
+Move any service still pointing at `mocha-4` to `mocha-5`.
 
 ### Accessing mocha-4 history
 
 Because `mocha-5` started from a new genesis, `mocha-4` history is not
 queryable on the new network. Blobs and rollup data posted to `mocha-4`
 are not retrievable on `mocha-5`. Individual node operators are not
-expected to retain `mocha-4` data. An exported copy of the final
-`mocha-4` state was to be available for one month after the
-September 1, 2026 shutdown. That window has passed, and `mocha-4`
-transaction history is no longer available from the live network.
+expected to retain `mocha-4` data.
 
 <Callout type="info">
 An archival `mocha-4` node snapshot taken on 2026-08-19 is available at
 [snaps.qubelabs.io/celestia/mocha-4_2026-08-19.tar](https://snaps.qubelabs.io/celestia/mocha-4_2026-08-19.tar).
-Note that it is approximately 12.3 TB. Follow the
-[status page announcement](https://status.celestia.org/incidents/nc1nkb54)
-for updates.
+Note that it is approximately 12.3 TB.
 </Callout>
 
 ### Prepare a separate consensus-node home
