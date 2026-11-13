@@ -151,7 +151,7 @@ exchange. The data availability sampler retrieves share data from DA peers.
 Peers may not retain a complete history.
 
 `min-retain-blocks` in `app.toml` is a block count, not a duration. Cover the
-storage window at the network's block rate. On Mainnet Beta, a 3-second target
+storage window at the network's block rate. On Mainnet Beta with v10, a 3-second target
 is 202,800 blocks over 169 hours, and the documented 2.6-second happy-path
 cadence is 234,000 blocks. Use at least the count for the faster rate, increase
 it if blocks are produced faster, and recalculate when another network uses a
@@ -159,10 +159,26 @@ different block time. A value of `0` retains every block. Neither a pruned nor
 an archival bridge node requires that.
 
 ```toml
-# Mainnet Beta: 169 hours at a 2.6-second block time.
+# Mainnet Beta on v10: 169 hours at a 2.6-second block time.
 # Increase this if blocks are produced faster, and recalculate for a different block time.
 # 0 keeps the entire chain and is not required.
 min-retain-blocks = 234000
+```
+
+> **Unreleased v11:** when a network activates celestia-app v11, the minimum
+> interval between block starts becomes 800 ms. At that interval, 169 hours is
+> 760,500 blocks. Upstream does not state a v11 average block time for
+> retention, so size for the 800 ms minimum: actual blocks cannot be faster.
+> Raise the value before the upgrade activates. A higher count only retains
+> more blocks on v10. The v11 binary also raises the default and the non-zero
+> minimum for `min-retain-blocks` from 3,000 to 9,750 as soon as you install
+> it. It overrides lower non-zero values at startup, and `0` still retains
+> every block. See
+> [block time and block-count parameters](/operate/maintenance/network-upgrades#block-time-and-block-count-parameters).
+
+```toml
+# Unreleased v11: 169 hours at the 800 ms minimum block interval.
+min-retain-blocks = 760500
 ```
 
 ### Query transactions by hash
@@ -191,7 +207,8 @@ min-retain-blocks = 0
 <Callout type="warning">
 `min-retain-blocks` defaults to `3000`. Any non-zero value enables block pruning,
 so archival operators must explicitly set the value to `0`. A non-zero value
-below `3000` is raised to `3000` at startup. Changing the value from `0`
+below `3000` is raised to `3000` at startup. In unreleased v11, both the default
+and that minimum become `9750`. Changing the value from `0`
 to a non-zero value starts pruning the existing backlog when the node restarts
 and can temporarily increase sync time.
 </Callout>
@@ -213,7 +230,7 @@ min-retain-blocks = 0 # retain all block data
 
 ### Recommended block retention for validators
 
-The default `min-retain-blocks` value is `3000`. For validators that do not
+The default `min-retain-blocks` value is `3000` in v10. For validators that do not
 need to retain all block data, set `min-retain-blocks = 600000` in your
 `app.toml`. This keeps a larger recent block history without retaining all
 block data:
@@ -221,6 +238,13 @@ block data:
 ```toml
 min-retain-blocks = 600000 # retain recent block data while pruning older blocks
 ```
+
+> **Unreleased v11:** the default becomes `9750`, and lower non-zero values are
+> raised to it at startup. At the 2.6-second v10 block time, 600,000 blocks
+> cover approximately 433 hours. At the 800 ms v11 minimum block interval, they
+> cover at least 133 hours. Recalculate the value if you need the same
+> duration after the upgrade. See
+> [block time and block-count parameters](/operate/maintenance/network-upgrades#block-time-and-block-count-parameters).
 
 ## Sync types
 

@@ -47,6 +47,25 @@ When using third-party estimation, the consensus endpoint must be running celest
 
 ### Fees and gas limits
 
+> **Unreleased v11:** non-blob transactions, excluding PayForBlobs and
+> PayForFibre, must declare a gas limit of at most 100,000,000. `CheckTx`
+> rejects a larger limit with code 11150 (`ErrTxExceedsMaxSDKGas`). Their
+> combined declared gas per block is also capped at 100,000,000. See
+> [CIP-53 upgrade guidance](/operate/maintenance/network-upgrades#non-blob-block-gas-limit-cip-53)
+> and [celestia-app#8399](https://github.com/celestiaorg/celestia-app/pull/8399).
+
+{/* src: app@3968e04a:pkg/appconsts/prepare_proposal_consts.go */}
+{/* src: app@3968e04a:app/check_tx.go */}
+
+> **Unreleased v11:** a transaction pays an extra 10,000 gas for each counted
+> message after the first. The count includes the inner messages of an authz
+> `MsgExec` and the entries of an interchain accounts (ICA) packet.
+> Single-message transactions are unaffected. See
+> [gas for additional messages](/operate/maintenance/network-upgrades#gas-for-additional-messages).
+
+{/* src: app@6137d6c9:app/ante/sdk_message_gas.go */}
+{/* src: app@3968e04a:app/errors/errors.go */}
+
 Two gas price floors apply to every transaction:
 
 - A network minimum gas price, enforced in consensus by the `minfee` module.
@@ -194,6 +213,12 @@ a block) or dropped after timing out.
 
 By default, nodes will drop a transaction if it does not get included in 36 blocks (roughly 95 seconds). At this point, you must
 resubmit your transaction if you want it to eventually be included.
+
+> **Unreleased v11:** the default and minimum mempool TTL becomes 117 blocks, which is at least 93.6 seconds at the 800 ms minimum
+> block interval. See
+> [block time and block-count parameters](/operate/maintenance/network-upgrades#block-time-and-block-count-parameters).
+
+{/* src: app@6137d6c9:pkg/appconsts/app_consts.go */}
 
 <Callout type="warning" title="No replace-by-fee">
 As of v1.0.0 of celestia-app, you cannot replace an existing transaction with a higher-fee version. You must wait 5 blocks from the

@@ -37,6 +37,195 @@ The upgrade process can be broken down into a few steps:
    - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
    - Upgrades using in-protocol signaling (v3+) activate after a delay once 5/6 of the voting power has signaled for a particular version and a `MsgTryUpgrade` transaction has succeeded. The delay is about 7 days on Mainnet Beta and about 2 days on Mocha.
 
+## Unreleased v11 breaking changes
+
+### Fibre certificates and staking historical info
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. The change ships with the v11 upgrade, with no separate in-binary
+> gate.
+
+In v11, staking's BeginBlocker (`TrackHistoricalInfo`) runs before slashing
+and evidence. The historical info for height `H-1` therefore contains the
+tokens and ordering of the validator set CometBFT signs height `H` with,
+matching the snapshot used to verify a Fibre certificate for promise height `H`.
+In a block containing a slash, the gRPC `HistoricalInfo` query for that height
+returns pre-slash tokens. See
+[celestia-app#8342](https://github.com/celestiaorg/celestia-app/pull/8342) and
+[Fibre certificate verification](/build/post-retrieve-blob/fibre/when-to-use#unreleased-v11-certificate-verification).
+
+### Fibre escrow migration
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. See
+> [celestia-app#8396](https://github.com/celestiaorg/celestia-app/pull/8396).
+
+The v11 upgrade handler runs the `x/fibre` module migration `Migrate1to2`,
+moving its consensus version from 1 to 2. v10 accepted uppercase escrow keys
+and non-`utia` balances. v11 canonicalises the signer keys and merges `utia`
+accounts and both withdrawal indexes. Withdrawal requests that collide at
+the same requested timestamp combine their amounts and retain the later
+availability time.
+
+The full escrow balance of every unsupported denomination, including funds
+reserved for withdrawals, is refunded to the account. Its pending withdrawals
+are removed without paying twice. Parameters, processed payments, and the
+module account are preserved. Users do not need to take any action. See the
+[utia-only escrow notice](/build/post-retrieve-blob/fibre#query-and-deposit-escrow)
+and the pinned [migration implementation](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/x/fibre/keeper/migrations.go).
+
+{/* src: app@3968e04a:app/upgrades.go */}
+{/* src: app@3968e04a:x/fibre/module.go */}
+{/* src: app@3968e04a:x/fibre/keeper/migrations.go */}
+
+### Non-blob block gas limit, CIP-53
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. See [CIP-53](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-053.md),
+> [celestia-app#8399](https://github.com/celestiaorg/celestia-app/pull/8399), and
+> [CIPs#411](https://github.com/celestiaorg/CIPs/pull/411).
+
+`appconsts.MaxSDKGas` caps the sum of **declared gas limits** of non-blob,
+non-PayForFibre transactions in a block at **100,000,000**. These are the same
+transactions covered by the `MaxSDKMessages` limit of 600 messages.
+`PrepareProposal` skips transactions that would exceed the gas budget, and
+`ProcessProposal` rejects over-limit blocks. Blob and PayForFibre transactions
+are excluded; `ConsensusParams.Block.MaxGas` remains `-1`.
+
+`CheckTx` rejects a single non-blob, non-PayForFibre transaction whose gas limit
+exceeds 100,000,000 with `ErrTxExceedsMaxSDKGas`: codespace `app`, code
+**11150**, and the message "transaction gas limit exceeds maximum allowed SDK
+gas per block". See the pinned [gas budget](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/pkg/appconsts/prepare_proposal_consts.go)
+and [CheckTx implementation](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/app/check_tx.go).
+
+For context, the upstream PR reports that the busiest block in its sample of
+3,500 Mainnet Beta blocks declared 3.3 million non-blob gas. This is an
+upstream sample, not a network maximum or a new measurement.
+
+{/* src: app@3968e04a:pkg/appconsts/prepare_proposal_consts.go */}
+{/* src: app@3968e04a:app/filtered_square_builder.go */}
+{/* src: app@3968e04a:app/process_proposal.go */}
+{/* src: app@3968e04a:app/check_tx.go */}
+{/* src: app@3968e04a:app/errors/errors.go */}
+
+### Hyperlane ISM limits
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. See
+> [celestia-app#8389](https://github.com/celestiaorg/celestia-app/pull/8389) and
+> [#8400](https://github.com/celestiaorg/celestia-app/pull/8400).
+
+An ante decorator charges **36,000 gas** (`appconsts.GasPerISMSignature`) for
+each multisig ISM signature in a Hyperlane `MsgProcessMessage`, in addition
+to the Hyperlane module's own charge. A block may contain at most **2048**
+multisig ISM signatures (`MaxISMSignatures`). Only metadata whose length
+exactly matches a multisig layout counts: a 68-byte message-id header or a
+1096-byte merkle-root header, followed by whole 65-byte signatures. ZK ISM
+metadata counts zero towards this signature budget.
+
+`MsgCreateMessageIdMultisigIsm` and `MsgCreateMerkleRootMultisigIsm` with more
+than **100 validators** (`MaxMultisigISMValidators`) are rejected at the top
+level, inside `MsgExec`, and inside `MsgSubmitProposal`. `MsgRecvPacket` inside
+`MsgSubmitProposal` is also rejected.
+
+See the pinned [signature gas accounting](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/app/ante/ism_signature_gas.go)
+and [multisig validator limit](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/app/ante/multisig_ism.go).
+
+{/* src: app@3968e04a:pkg/appconsts/app_consts.go */}
+{/* src: app@3968e04a:pkg/appconsts/prepare_proposal_consts.go */}
+{/* src: app@3968e04a:app/ante/ism_signature_gas.go */}
+{/* src: app@3968e04a:app/ante/multisig_ism.go */}
+{/* src: app@3968e04a:app/ante/nested_msg.go */}
+
+### Block time and block-count parameters
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. v10 networks keep blocks of approximately 2.6 seconds. See
+> [celestia-app#8411](https://github.com/celestiaorg/celestia-app/pull/8411),
+> [celestia-app#8416](https://github.com/celestiaorg/celestia-app/pull/8416), and
+> [CIPs#412](https://github.com/celestiaorg/CIPs/pull/412).
+
+From app version 11, a new `DynamicTimeoutCommit` of **800 ms** sets the
+minimum interval between block starts. `TimeoutCommit` drops from 500 ms to
+100 ms, and the precommit timeout drops from 3000 ms to 2000 ms. The timeouts
+follow the app version in state, so they change when the network activates
+v11, not when you install the binary. See the pinned
+[consensus timeouts](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/pkg/appconsts/versioned_consts.go).
+
+The v11 upgrade handler and the genesis defaults rescale parameters that are
+counted in blocks. Most are multiplied by 3.25 (2.6 s / 0.8 s) to keep their
+duration. `MaxAgeNumBlocks` instead covers the 337-hour unbonding period at an
+assumed average block time of 1.2 seconds, which upstream describes as an upper
+bound. The handler writes fixed values, so it replaces any value set by
+governance. The v10 values are those reported in celestia-app#8416.
+
+| Parameter | v10 | v11 |
+| --- | --- | --- |
+| `Evidence.MaxAgeNumBlocks` | 404,400 | 1,011,000 |
+| `slashing.SignedBlocksWindow` | 10,000 | 32,500 |
+| `staking.HistoricalEntries` | 10,000 | 32,500 |
+| `fibre.PaymentPromiseHeightWindow` | 1,000 | 3,250 |
+| IBC `MaxExpectedTimePerBlock` | 13 s | 4 s |
+
+These node-local values change when you install the v11 binary, which is before
+the network activates v11:
+
+| Setting | v10 | v11 |
+| --- | --- | --- |
+| Mempool `ttl-num-blocks` minimum | 36 | 117 |
+| `min-retain-blocks` default and non-zero minimum | 3,000 | 9,750 |
+| `snapshot-interval` default | 1,500 | 4,875 |
+
+Time-based parameters, such as the unbonding period and `MaxAgeDuration`, do
+not change. Recalculate any block count in your own configuration or tooling
+that assumes a block time of 2.6 or 3 seconds, such as
+[block retention for bridge nodes](/operate/consensus-validators/consensus-node#retain-blocks-for-bridge-nodes).
+
+{/* src: app@6137d6c9:pkg/appconsts/versioned_consts.go */}
+{/* src: app@6137d6c9:pkg/appconsts/app_consts.go */}
+{/* src: app@6137d6c9:pkg/appconsts/consensus_consts.go */}
+{/* src: app@6137d6c9:pkg/appconsts/initial_consts.go */}
+{/* src: app@6137d6c9:x/fibre/types/params.go */}
+
+### Gas for additional messages
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. See
+> [celestia-app#8583](https://github.com/celestiaorg/celestia-app/pull/8583).
+
+An ante decorator charges **10,000 gas** (`appconsts.GasPerAdditionalSDKMessage`)
+for each counted message after the first. The count includes top-level
+messages, the inner messages of an authz `MsgExec`, and the entries of an
+interchain accounts (ICA) packet. Single-message transactions pay the same gas
+as before. Clients that simulate gas include the charge; add it to any fixed
+gas limit for multi-message, `MsgExec`, or batched relayer transactions. See
+the pinned
+[message gas decorator](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/app/ante/sdk_message_gas.go).
+
+{/* src: app@6137d6c9:app/ante/sdk_message_gas.go */}
+{/* src: app@6137d6c9:pkg/appconsts/app_consts.go */}
+
+### Rejected message types
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. See
+> [celestia-app#8600](https://github.com/celestiaorg/celestia-app/pull/8600).
+
+An ante decorator rejects seven message types that can never succeed with
+Celestia's configuration. On v10 these transactions fail during execution and
+pay their fee. On v11 they fail before entering the mempool and pay no fee:
+
+- `MsgSubmitEvidence`
+- `MsgExecLegacyContent` and gov v1beta1 `MsgSubmitProposal`
+- `MsgCreatePeriodicVestingAccount` and `MsgCreatePermanentLockedAccount`
+- `MsgChannelCloseInit` and `MsgChannelUpgradeInit`
+
+The check covers top-level messages and messages one level inside `MsgExec` or
+a gov v1 `MsgSubmitProposal`. See the pinned
+[unsupported message decorator](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/app/ante/unsupported_msg.go).
+
+{/* src: app@6137d6c9:app/ante/unsupported_msg.go */}
+
 ## Configuration changes in v10
 
 ### Existing configuration files

@@ -33,6 +33,20 @@ does not establish that enough Fibre servers are ready to accept uploads.
 
 {/* src: app@v10.4.0:x/fibre/README.md (flow); app@v10.4.0:specs/src/fibre_client.md sections 8-10 */}
 
+### Unreleased v11 certificate verification
+
+> This is unreleased celestia-app v11 behaviour. It ships with the v11 upgrade
+> and needs no separate in-binary gate.
+
+In v11, a Fibre certificate for promise height `H` is verified against
+staking historical info for `H-1`. Staking's BeginBlocker
+(`TrackHistoricalInfo`) runs before slashing and evidence, so that snapshot
+has the validator tokens and ordering of the set CometBFT signs height `H`
+with. In a block containing a slash, the gRPC `HistoricalInfo` query for that
+height returns pre-slash tokens. See
+[celestia-app#8342](https://github.com/celestiaorg/celestia-app/pull/8342) and the
+[v11 upgrade notes](/operate/maintenance/network-upgrades#unreleased-v11-breaking-changes).
+
 ## Key terms
 
 | Term | Meaning |
