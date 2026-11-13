@@ -2,6 +2,8 @@
 description: A guide to using node snapshots and snapshot providers for quick node setup, including how to use the celestia-snapshot-finder tool
 ---
 
+import { Callout } from 'nextra/components'
+
 # Node snapshots
 
 ## What are node snapshots?
@@ -43,25 +45,50 @@ Their services include installation scripts, state sync, snapshots, RPC endpoint
 
 ## Available snapshot providers
 
-### Mainnet beta
+<Callout type="warning">
+Most snapshot providers now serve PebbleDB snapshots. The node's configured
+database backend must match the snapshot. Set `db_backend` in `config.toml`
+to the snapshot's backend. If `app.toml` sets `app-db-backend`, set that to
+the same value. When `app-db-backend` is unset, the application database uses
+`db_backend`. Use `"pebbledb"` or `"goleveldb"`. A mismatch typically shows up
+on startup as `failed to initialize database: EOF`. celestia-app v9 and later
+use PebbleDB for new nodes. Read
+[Database backend](/operate/consensus-validators/consensus-node#database-backend)
+before changing an existing node from `"goleveldb"` to `"pebbledb"`.
+</Callout>
 
-| Provider    | Consensus Node                                                                                                                                 | Bridge Node                                                                |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| ITRocket    | [Pruned](https://itrocket.net/services/mainnet/celestia)                                                                                       | - |
-| Polkachu    | [Pruned](https://polkachu.com/tendermint_snapshots/celestia)                                                                                   | -                                                                          |
-| kjnodes     | [Pruned](https://services.kjnodes.com/mainnet/celestia/snapshot/) • [Archive](https://services.kjnodes.com/mainnet/celestia/snapshot-archive/) | -                                                                          |
-| Noders      | [Pruned](https://noders.services/mainnet-networks/celestia/snapshot/)                                                                          | -                                                                          |
-| QubeLabs    | [Archive](https://snaps.qubelabs.io/celestia/)                                                                                                 | -                                                                          |
+On Mainnet Beta, the Noders pruned snapshot is still GoLevelDB
+(`"goleveldb"`). The ITRocket, Polkachu, and kjnodes pruned snapshots below
+are PebbleDB (`"pebbledb"`). On Mocha, the pruned snapshots from those
+providers, including Noders, are PebbleDB.
+
+The database backend column comes from the files in the provider's current
+snapshot. PebbleDB snapshots contain `.sst` tables. GoLevelDB snapshots
+contain `.ldb` tables. Provider pages usually do not name the backend.
+
+### Mainnet Beta
+
+| Provider | Consensus node | Bridge node | Database backend |
+| --- | --- | --- | --- |
+| ITRocket | [Pruned](https://itrocket.net/services/mainnet/celestia/) | - | PebbleDB (`"pebbledb"`) |
+| Polkachu | [Pruned](https://polkachu.com/tendermint_snapshots/celestia) | - | PebbleDB (`"pebbledb"`) |
+| kjnodes | [Pruned](https://services.kjnodes.com/mainnet/celestia/snapshot/) • [Archive](https://services.kjnodes.com/mainnet/celestia/snapshot-archive/) | - | PebbleDB (`"pebbledb"`) for the pruned snapshot. The archive snapshot was not verified. |
+| Noders | [Pruned](https://noders.services/mainnet/celestia/snapshot/) | - | GoLevelDB (`"goleveldb"`) |
+| QubeLabs | [Archive](https://snaps.qubelabs.io/celestia/) | - | Not verified |
 
 ### Mocha testnet
 
-| Provider    | Consensus Node                                                                                                         | Bridge Node                                                                |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| ITRocket    | [Pruned](https://itrocket.net/services/testnet/celestia/)                                                              | - |
-| Polkachu    | [Pruned](https://polkachu.com/testnets/celestia/snapshots)                                                             | -                                                                          |
-| kjnodes     | [Pruned](https://services.kjnodes.com/testnet/celestia/snapshot/)                                                      | -                                                                          |
-| Noders      | [Pruned](https://noders.services/testnet/celestia/snapshot/)                                                  | -                                                                          |
-| QubeLabs    | [Archive](https://snaps.qubelabs.io/celestia/)                                                                         | -                                                                          |
+| Provider | Consensus node | Bridge node | Database backend |
+| --- | --- | --- | --- |
+| ITRocket | [Pruned](https://itrocket.net/services/testnet/celestia/) | - | PebbleDB (`"pebbledb"`) |
+| Polkachu | [Pruned](https://polkachu.com/testnets/celestia/snapshots) | - | PebbleDB (`"pebbledb"`) |
+| kjnodes | [Pruned](https://services.kjnodes.com/testnet/celestia/snapshot/) | - | PebbleDB (`"pebbledb"`) |
+| Noders | [Pruned](https://noders.services/testnet/celestia/snapshot/) | - | PebbleDB (`"pebbledb"`) |
+| QubeLabs | [Archive](https://snaps.qubelabs.io/celestia/) | - | Not verified |
+
+Qube Labs publishes Mainnet Beta, `mocha-4`, and `mocha-5` archive tarballs
+in the [same directory](https://snaps.qubelabs.io/celestia/). The `mocha-4`
+archive is being removed. Use the `mocha-5` archive for Mocha.
 
 ## Using celestia-snapshot-finder
 

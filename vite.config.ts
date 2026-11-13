@@ -11,8 +11,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': root,
-      'next/image': path.join(root, 'src/vocs/compat/next-image.tsx'),
-      'next/link': path.join(root, 'src/vocs/compat/next-link.tsx'),
       'nextra/components': path.join(root, 'src/vocs/compat/nextra-components.tsx'),
     },
   },

@@ -107,7 +107,7 @@ Each trace includes `service.name=fibre`, `service.version`, and
 ### Metrics
 
 Metrics are exported periodically over OTLP. Duration histograms include a
-`success` attribute, so their counts can be used to calculate error rates.
+`success` or `outcome` attribute, so their counts can be used to calculate error rates.
 Metric exemplars link observations to traces; in Grafana, select an exemplar
 to open its trace.
 
@@ -121,11 +121,18 @@ may convert dots to underscores and add unit suffixes.
 | `fibre.server.upload_shard.in_flight` | UpDownCounter | — | Concurrent UploadShard RPCs |
 | `fibre.server.upload_shard.duration` | Histogram (s) | `success`, `upload_size` | UploadShard RPC latency |
 | `fibre.server.upload_shard.bytes` | Counter (By) | — | Bytes received |
+| `fibre.server.upload_shard.rejected` | Counter | `reason` | UploadShard RPCs rejected by the storage limiter |
+| `fibre.server.upload_shard.last_success_timestamp` | Gauge (s) | — | Unix time of the last successful UploadShard RPC; not reported before the first one |
+| `fibre.server.upload_shard.occupancy_bytes` | Gauge (By) | — | Shard bytes tracked by the storage limiter: on disk plus in-flight reserved |
+| `fibre.server.upload_shard.budget_bytes` | Gauge (By) | — | Current per-node storage budget of the limiter |
 | `fibre.server.download_shard.in_flight` | UpDownCounter | — | Concurrent DownloadShard RPCs |
 | `fibre.server.download_shard.duration` | Histogram (s) | `success`, `shard_size` | DownloadShard RPC latency |
 | `fibre.server.download_shard.bytes` | Counter (By) | — | Bytes sent |
 | `fibre.server.store.put.duration` | Histogram (s) | `success` | Store write latency |
 | `fibre.server.store.get.duration` | Histogram (s) | `success` | Store read latency |
+| `fibre.server.backend.get.duration` | Histogram (s) | `backend`, `outcome` | Backend GET latency, through payload reading, decoding and closing |
+| `fibre.server.backend.get.in_flight` | UpDownCounter | `backend` | Backend GET calls in progress |
+| `fibre.server.backend.get.bytes` | Counter (By) | `backend` | Encoded bytes read from backend payloads, including partial failures |
 | `fibre.server.sign.duration` | Histogram (s) | `success` | Payment promise signing latency |
 | `fibre.server.prune.entries` | Counter | — | Entries pruned |
 | `fibre.server.prune.duration` | Histogram (s) | `success` | Prune cycle duration |

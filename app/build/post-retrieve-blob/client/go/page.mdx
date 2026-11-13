@@ -11,10 +11,8 @@ The Celestia Go client lets you submit and retrieve data from the Celestia netwo
 
 ## Prerequisites
 
-- Go 1.25.x (Go 1.26 is not yet supported by a transitive dependency,
-  `bytedance/sonic`; if your default toolchain is newer, run the tutorial with
-  `GOTOOLCHAIN=go1.25.1 go run main.go`)
-- A Celestia account (created automatically)
+- Go `{{constants['golangNodeMocha']}}` or later
+- A Celestia account (created automatically in full client mode)
 - Testnet tokens from the [Mocha faucet](/operate/networks/mocha-testnet#mocha-testnet-faucet)
 
 ## Quick setup
@@ -45,7 +43,7 @@ import (
 	"github.com/celestiaorg/celestia-node/api/client"
 	"github.com/celestiaorg/celestia-node/blob"
 	"github.com/celestiaorg/celestia-node/nodebuilder/p2p"
-	"github.com/celestiaorg/go-square/v3/share"
+	"github.com/celestiaorg/go-square/v4/share"
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 )
 
@@ -63,6 +61,32 @@ func main() {
 	if daURL == "" {
 		fmt.Println("Error: Set CELE_DA_URL environment variable")
 		fmt.Println("Example: export CELE_DA_URL=http://localhost:26658")
+		return
+	}
+
+	readCfg := client.ReadConfig{
+		BridgeDAAddr: daURL,
+		EnableDATLS:  daTLS,
+		DAAuthToken:  daToken,
+	}
+
+	// Read-only mode: no account or consensus endpoint needed
+	if coreGRPC == "" {
+		fmt.Println("Read-only mode (cannot submit blobs)")
+		fmt.Println("To submit blobs, set CELE_CORE_GRPC environment variable")
+		fmt.Println("Connecting to Celestia...")
+		rc, err := client.NewReadClient(ctx, readCfg)
+		if err != nil {
+			panic(err)
+		}
+		defer rc.Close()
+
+		head, err := rc.Header.NetworkHead(ctx)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Printf("Network head: %d\n", head.Height())
+		fmt.Println("✓ Tutorial complete!")
 		return
 	}
 
@@ -87,38 +111,20 @@ func main() {
 	}
 	fmt.Printf("Your address: %s\n", address.String())
 
-	// Connect to Celestia (read-only or full client)
+	// Connect to Celestia with a full client
 	cfg := client.Config{
-		ReadConfig: client.ReadConfig{
-			BridgeDAAddr: daURL,
-			EnableDATLS:  daTLS,
-		},
+		ReadConfig: readCfg,
 		SubmitConfig: client.SubmitConfig{
 			DefaultKeyName: "my_key",
+			Network:        p2p.Network("{{constants['mochaChainId']}}"),
+			CoreGRPCConfig: client.CoreGRPCConfig{
+				Addr:       coreGRPC,
+				TLSEnabled: coreTLS,
+				AuthToken:  coreToken,
+			},
 		},
 	}
-
-	// Add DA auth token if provided
-	if daToken != "" {
-		cfg.ReadConfig.DAAuthToken = daToken
-	}
-
-	// Add Core gRPC config if provided
-	if coreGRPC != "" {
-		network := p2p.Network("{{constants['mochaChainId']}}")
-		cfg.SubmitConfig.Network = network
-		cfg.SubmitConfig.CoreGRPCConfig = client.CoreGRPCConfig{
-			Addr:       coreGRPC,
-			TLSEnabled: coreTLS,
-		}
-		if coreToken != "" {
-			cfg.SubmitConfig.CoreGRPCConfig.AuthToken = coreToken
-		}
-		fmt.Println("Full client mode (can submit blobs)")
-	} else {
-		fmt.Println("Read-only mode (cannot submit blobs)")
-		fmt.Println("To submit blobs, set CELE_CORE_GRPC environment variable")
-	}
+	fmt.Println("Full client mode (can submit blobs)")
 
 	fmt.Println("Connecting to Celestia...")
 	c, err := client.New(ctx, cfg, kr)
@@ -134,18 +140,15 @@ func main() {
 	}
 	fmt.Printf("Balance: %s\n", balance.String())
 
-	// Submit a blob only if in full mode
-	if coreGRPC != "" {
-		// Check if account has funds before trying to submit
-		balanceStr := balance.String()
-		if balanceStr == "0utia" || balanceStr == "0 utia" {
-			fmt.Println("Account has no funds. Fund this address at the Mocha faucet to submit blobs:")
-			fmt.Printf("Address: %s\n", address.String())
-			fmt.Println("Faucet: https://mocha.celenium.io/faucet")
-		} else {
-			if err := submitAndRetrieveBlob(ctx, c); err != nil {
-				panic(err)
-			}
+	// Check if account has funds before trying to submit
+	balanceStr := balance.String()
+	if balanceStr == "0utia" || balanceStr == "0 utia" {
+		fmt.Println("Account has no funds. Fund this address at the Mocha faucet to submit blobs:")
+		fmt.Printf("Address: %s\n", address.String())
+		fmt.Println("Faucet: https://mocha.celenium.io/faucet")
+	} else {
+		if err := submitAndRetrieveBlob(ctx, c); err != nil {
+			panic(err)
 		}
 	}
 
@@ -201,34 +204,54 @@ func submitAndRetrieveBlob(ctx context.Context, c *client.Client) error {
 
 ### Set up your go.mod
 
-Create `go.mod` with these dependencies:
+Create `go.mod` with these dependencies. The `replace` directives match the
+[celestia-node `go.mod`](https://github.com/celestiaorg/celestia-node/blob/{{mochaVersions['node-latest-tag']}}/go.mod)
+at this version; copy them from there if you use a different version:
 
 ```go
 module celestia-client-example
 
-go 1.25.1
+go {{constants['golangNodeMocha']}}
 
 require (
-	github.com/celestiaorg/celestia-node v0.28.2-mocha
-	github.com/celestiaorg/go-square/v3 v3.0.2
+	github.com/celestiaorg/celestia-node {{mochaVersions['node-latest-tag']}}
+	github.com/celestiaorg/go-square/v4 v4.0.1
 	github.com/cosmos/cosmos-sdk v0.50.13
 )
 
 replace (
+	cosmossdk.io/api => github.com/celestiaorg/cosmos-sdk/api v0.7.7
+	cosmossdk.io/log => github.com/celestiaorg/cosmos-sdk/log v1.3.0
+	cosmossdk.io/store => github.com/celestiaorg/cosmos-sdk/store v1.1.3-celestia.3
+	cosmossdk.io/x/tx => github.com/celestiaorg/cosmos-sdk/x/tx v0.13.9
 	cosmossdk.io/x/upgrade => github.com/celestiaorg/cosmos-sdk/x/upgrade v0.2.0
-	github.com/cometbft/cometbft => github.com/celestiaorg/celestia-core v0.39.10
-	github.com/cosmos/cosmos-sdk => github.com/celestiaorg/cosmos-sdk v0.51.4
+	github.com/bcp-innovations/hyperlane-cosmos => github.com/celestiaorg/hyperlane-cosmos v1.3.0
+	github.com/cometbft/cometbft => github.com/celestiaorg/celestia-core v0.42.3
+	github.com/cosmos/cosmos-sdk => github.com/celestiaorg/cosmos-sdk v0.52.12
 	github.com/cosmos/ibc-go/v8 => github.com/celestiaorg/ibc-go/v8 v8.7.2
+	github.com/cosmos/ledger-cosmos-go => github.com/cosmos/ledger-cosmos-go v0.16.0
+	github.com/etclabscore/go-jsonschema-walk => github.com/LexLuthr/go-jsonschema-walk v1.0.0
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
-	// broken goleveldb needs to be replaced for the cosmos-sdk and celestia-app
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
-	// celestia-core(v0.34.x): used for multiplexing abci v1 requests
 	github.com/tendermint/tendermint => github.com/celestiaorg/celestia-core v1.55.0-tm-v0.34.35
+	nhooyr.io/websocket => github.com/coder/websocket v1.8.6
 )
 
 replace github.com/ipfs/boxo => github.com/celestiaorg/boxo v0.29.0-fork-4
 
 replace github.com/ipfs/go-datastore => github.com/celestiaorg/go-datastore v0.0.0-20250801131506-48a63ae531e4
+
+replace github.com/moby/term => github.com/moby/term v0.5.2
+
+replace github.com/docker/go-connections => github.com/docker/go-connections v0.7.0
+
+replace github.com/bytedance/sonic => github.com/bytedance/sonic v1.15.0
+
+replace github.com/bytedance/sonic/loader => github.com/bytedance/sonic/loader v0.5.0
+
+replace github.com/cloudwego/base64x => github.com/cloudwego/base64x v0.1.6
+
+replace github.com/creack/pty => github.com/creack/pty v1.1.24
 ```
 
 Then run:
@@ -332,12 +355,10 @@ Faucet: https://mocha.celenium.io/faucet
 **Read-only mode output:**
 
 ```
-Creating account...
-Your address: celestia16k0wsej6rewd2pfh0taah35suzf3apj552q8c3
 Read-only mode (cannot submit blobs)
 To submit blobs, set CELE_CORE_GRPC environment variable
 Connecting to Celestia...
-Balance: 1000000utia
+Network head: 1234567
 ✓ Tutorial complete!
 ```
 
@@ -362,15 +383,14 @@ Balance: 1000000utia
 
 ### Read-only mode
 
-To only retrieve data (no submission), remove the `SubmitConfig` from your client configuration:
+To only retrieve data (no submission), create a read client. It needs no
+keyring or consensus endpoint, and has no `State` module, so it cannot query
+balances or submit transactions:
 
 ```go
-cfg := client.Config{
-    ReadConfig: client.ReadConfig{
-        BridgeDAAddr: daURL,
-    },
-    // No SubmitConfig for read-only
-}
+rc, err := client.NewReadClient(ctx, client.ReadConfig{
+    BridgeDAAddr: daURL,
+})
 ```
 
 ## Advanced features
@@ -565,7 +585,7 @@ cfg.SubmitConfig.TxWorkerAccounts = 8  // Creates 8 parallel lanes
 **How it works:**
 
 - Creates `TxWorkerAccounts` parallel submission lanes
-- Each lane is a subaccount automatically created and funded from your default account
+- Each lane is a subaccount automatically created in your keyring, funded with a small balance, and granted a fee allowance by your default account
 - Example: `TxWorkerAccounts = 8` creates 7 subaccounts + 1 default account = 8 parallel lanes
 - Enables at least 8 PayForBlobs transactions per block
 
@@ -655,7 +675,7 @@ Blob 8 submitted at height 1234568
 </Callout>
 
 <Callout type="warning">
-**Default account only**: Queued and parallel submission modes always use your default account (`DefaultKeyName`). If you specify a different account in `TxConfig` (via `WithKeyName` or `WithSignerAddress`), it will be ignored and the default account will be used instead.
+**Default account only**: Queued and parallel submission modes only apply to your default account (`DefaultKeyName`). If you specify a different account in `TxConfig` (via `WithKeyName` or `WithSignerAddress`), the queue and parallel lanes are bypassed and that account submits the transaction directly.
 </Callout>
 
 **Retrieving blobs from parallel submission:**
@@ -674,7 +694,7 @@ retrieved, err := c.Blob.Get(ctx, height, namespace, commitment)
 
 **Subaccount management:**
 
-- Subaccounts are automatically created and funded from your default account
+- Subaccounts are automatically created, funded with a small balance, and granted a fee allowance by your default account
 - They are named `parallel-worker-1`, `parallel-worker-2`, etc. in your keyring
 - Subaccounts are reused across node restarts if `TxWorkerAccounts` value remains the same
 - If you decrease `TxWorkerAccounts`, only the first N workers are used
@@ -704,11 +724,6 @@ Common errors and solutions:
 - Check that your `CELE_DA_URL` is correct and accessible
 - Verify the bridge node is running and reachable
 - Ensure TLS settings match your node configuration
-
-**`couldn't connect to core endpoint`**
-- Verify your `CELE_CORE_GRPC` address is correct
-- Check that the consensus node is running
-- Ensure firewall rules allow the connection
 
 ### Configuration errors
 

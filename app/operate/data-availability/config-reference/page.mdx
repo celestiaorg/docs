@@ -30,10 +30,11 @@ Let's break down some of the most used sections.
 
 ### Core (Consensus)
 
-This section is needed for the Celestia bridge node.
-By default, `Remote = false`. Still for devnet, we are going
-to use the remote consensus node option and this can also be set
-by the command line flag `--core.remote`.
+This section sets the consensus node endpoint that the node connects
+to over gRPC. A bridge node requires it. The fields are `IP`, `Port`
+(default `9090`), `TLSEnabled` and `XTokenPath`. You can also set them
+with the command line flags `--core.ip`, `--core.port`, `--core.tls`
+and `--core.xtoken.path`.
 
 ### IPv6 literal endpoints
 
@@ -135,34 +136,19 @@ v0.35.0 nodes remain compatible with v0.34.x peers.
 #### Bootstrap
 
 Bootstrappers help new nodes to find peers faster in the network.
-By default, the `Bootstrapper = false` and the `BootstrapPeers` is empty.
-If you want your node to be a bootstrapper, then activate `Bootstrapper = true`.
-`BootstrapPeers` are already provided by default during initialisation.
-If you want to add your own manually, you need to provide the
-multiaddresses of the peers.
+Bootstrap peers are built in for each network and are not set in
+`config.toml`. If you want your node to be a bootstrapper, start it
+with the environment variable `CELESTIA_BOOTSTRAPPER=true`.
+To provide your own bootstrap peers for a custom network, set their
+multiaddresses in the
+[`CELESTIA_CUSTOM` environment variable](/operate/data-availability/custom-networks).
 
 #### Mutual peers
 
 The purpose of this config is to set up a bidirectional communication.
-This is usually the case for Celestia bridge nodes. In addition, you
-need to change the field `PeerExchange` from false to true.
-
-### Services
-
-#### TrustedHash and TrustedPeer
-
-`TrustedHash` is needed to properly initialize a Celestia bridge
-node with an already-running `Remote` Celestia consensus node. Celestia
-light node will take a genesis hash as the trusted one, if no hash
-is manually provided during initialization phase.
-
-`TrustedPeers` is the array of bridge nodes' peers that Celestia
-light node trusts. By default, bootstrap peers becomes trusted peers
-for Celestia light nodes if a user is not setting the trusted peer params
-in config file.
-
-Any Celestia bridge node can be a trusted peer for the light one. However,
-the light node by design can not be a trusted peer for another light node.
+This is usually the case for Celestia bridge nodes. The field
+`PeerExchange` defaults to `true` on bridge nodes and `false` on
+light nodes.
 
 ### Header
 
@@ -190,3 +176,13 @@ For most bridge nodes, keep these defaults. To disable pruning and sync from
 genesis, pass `--archival` each time you run `celestia bridge start` instead of
 setting `PruningWindow` manually. `PruningWindow` controls header retention;
 changing it alone does not disable data pruning or make the node archival.
+
+#### Trusted peers
+
+`TrustedPeers` is the array of bridge nodes' peers that Celestia
+light node trusts. By default, bootstrap peers becomes trusted peers
+for Celestia light nodes if a user is not setting the trusted peer params
+in config file.
+
+Any Celestia bridge node can be a trusted peer for the light one. However,
+the light node by design can not be a trusted peer for another light node.

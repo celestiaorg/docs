@@ -268,13 +268,12 @@ fibre start \
 Use your actual node addresses if different. On first start, Fibre creates
 `<fibre_home>/config/server_config.toml`. The corresponding keys are `app_grpc_address`,
 `signer_grpc_address`, and `server_listen_address`; command-line flags override
-the file. Fibre rejects unknown keys and tables instead of silently ignoring
-them. If startup reports an unknown field, correct or remove the reported
-setting before restarting.
+the file. Fibre silently ignores unknown keys and tables, so check the spelling of each
+setting.
 
-Check the startup log for the chain ID, connected addresses, and effective
-storage backend. When object storage is configured, the log also includes its
-canonical bucket, prefix, chain ID, and validator address.
+Check the `server started` log line for the listen address, connected
+addresses, chain ID, and store path. The object storage namespace (bucket,
+prefix, chain ID, and validator address) is logged only when it changes.
 
 ### Connection limits
 
@@ -357,7 +356,7 @@ and [request memory and connection reference](https://github.com/celestiaorg/cel
 ### Object storage
 
 <Callout type="warning">
-Starting with `v10.5.0` for Mainnet Beta and `v10.5.0-mocha` for Mocha,
+Object storage is experimental. Starting with `v10.5.0` for Mainnet Beta and `v10.5.0-mocha` for Mocha,
 `object_storage.endpoint` must use `https://`; an `http://` endpoint fails
 validation at startup. Fibre also checks bucket reachability with the
 configured credentials and refuses to start if the check fails. Review the
@@ -554,7 +553,8 @@ validator account:
 
 Add your usual node, home, and transaction fee flags. The host must be
 `host:port`, either an IP address or a DNS name, without a URL scheme or path.
-Fibre requires active app version 10 or later. Register as a bonded validator
+Registration requires active app version 10 or later and an existing validator.
+Only bonded validators are listed to clients. Register
 only after the server is reachable, so clients do not discover an unavailable
 host and time out against it.
 
@@ -801,7 +801,6 @@ for details of how clients verify Fibre's certificate.
 | `loading object storage credentials` | The service did not receive the bucket key. Check the environment file and the `EnvironmentFile=` override in [Object storage](#object-storage), then restart Fibre. |
 | Bucket check fails with `checking object storage bucket` in the error | The startup `HeadBucket` request failed. Check the endpoint, region, bucket name, network access, and credentials and bucket permissions available to the Fibre process. |
 | `object namespace mismatch` | The object endpoint, bucket, prefix, chain ID, or validator address changed while object shards remain. Restore the previous bucket settings and node connections, or follow [Migrate to another bucket](#migrate-to-another-bucket) when moving objects. |
-| Configuration decode error reports an unknown field | Correct or remove the reported key or table in `<fibre_home>/config/server_config.toml`, then restart Fibre. |
 | Unreleased v11: `max_connections is deprecated and ignored…` warning | Harmless: remove the key and set `max_connections_per_ip` if needed. See [v11 connection caps](#unreleased-v11-request-memory-and-connection-caps). |
 | Unreleased v11: clients see `ResourceExhausted` under load | The request-memory budget may be full or the per-IP receive limit reached. Check `fibre.server.request.rejected` and `fibre.server.request.admission.waiting` in [v11 server metrics](/operate/consensus-validators/fibre/metrics#unreleased-v11-server-metrics), and host memory before raising `max_request_memory`. |
 | TLS identity verification failed | Check that the signing service holds your validator's consensus key, then restart Fibre after correcting the signer address. |

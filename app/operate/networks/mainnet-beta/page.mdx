@@ -89,7 +89,7 @@ There is no precise, static upper bound on the maximum total
 blob size. It depends on several factors:
 
 - The maximum square size, which is determined by a governance parameter
-  and a versioned constant.
+  and a hard-coded upper bound (512).
 - The maximum bytes in a block, which is determined by a governance parameter
   and a hard-coded constant in CometBFT.
 - The number of shares occupied by the PFB transaction share.
@@ -98,11 +98,11 @@ These factors can cause the maximum total blob size that can be included in one
 block to vary.
 
 See the code in
-[celestia-app](https://github.com/celestiaorg/celestia-app/blob/v9.0.4/pkg/appconsts/initial_consts.go#L13).
+[celestia-app](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/pkg/appconsts/app_consts.go#L78-L84).
 
-Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/v9.0.4/specs/src/parameters_v9.md?plain=1#L41),
+Full network parameters, such as [max bytes](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/specs/src/parameters_v10.md?plain=1#L41),
 can be found in the
-[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v9.html).
+[celestia-app specifications](https://celestiaorg.github.io/celestia-app/parameters_v10.html).
 
 ## Network constants
 

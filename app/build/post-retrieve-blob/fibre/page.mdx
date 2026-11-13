@@ -451,7 +451,7 @@ an upload failure; blindly retrying can create another payment obligation.
 
 | Symptom | Check |
 |---|---|
-| `fibre client is not available` | Configure a Fibre-capable core endpoint, then restart the node. |
+| `fibre client is not available` or `fibre module is not available` | Configure a Fibre-capable core endpoint, then restart the node. |
 | Missing Fibre services or method not found | Check both the node release and the core endpoint's app version and exposed services. |
 | Unfunded signer or insufficient escrow | Verify the selected key/address; fund the wallet and deposit into that signer's escrow. Retain wallet funds for gas. |
 | Deposit gas-estimation panic after faucet funding | Restart v0.34.2-mocha after the signer is funded, then query escrow before retrying. |

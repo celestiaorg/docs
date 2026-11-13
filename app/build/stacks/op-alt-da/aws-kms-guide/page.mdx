@@ -7,7 +7,7 @@ This guide walks through running [op-alt-da](https://github.com/celestiaorg/op-a
 ## Prerequisites
 
 - Docker
-- Go 1.21+
+- Go 1.26+ for current releases (v0.12.0 builds with Go 1.25)
 - A Celestia RPC endpoint from [Quicknode](https://quicknode.com/)
 
 import { Steps } from "nextra/components";
@@ -101,7 +101,7 @@ aws --endpoint-url=http://localhost:4566 kms create-alias \
    endpoint = "http://localhost:4566"
    ```
 
-   Note: In v0.12.0+, the `default_key_name` must include the full alias path (e.g., `alias/op-alt-da/celestia_key`).
+   Note: In v0.12.0+, the `default_key_name` must include the full alias path (_e.g._, `alias/op-alt-da/celestia_key`). From v0.16.0, these keys are deprecated but still accepted; the current form is `[celestia.signer]` with `mode = "aws_kms"` and a `[celestia.signer.aws_kms]` table that takes `region`, `endpoint` and `key_id`.
 
 ## Run the DA server
 
@@ -127,10 +127,10 @@ aws --endpoint-url=http://localhost:4566 kms create-alias \
    ```bash
    curl -s -X POST http://127.0.0.1:3100/put \
      -H "Content-Type: application/octet-stream" \
-     -d "hello celestia" -o /dev/null
+     -d "hello celestia"
    ```
 
-   The first request will fail because the account has no funds. Check the server logs for the error message which reveals your Celestia address:
+   The first request will fail because the account has no funds. The response body contains the error message, which reveals your Celestia address:
 
    ```
    submission failed: account for signer celestia1rwuklcs36jm6wqxk8w9cx9vyja93856nz3sdlf not found
@@ -145,7 +145,7 @@ aws --endpoint-url=http://localhost:4566 kms create-alias \
    ```bash
    curl -s -X POST http://127.0.0.1:3100/put \
      -H "Content-Type: application/octet-stream" \
-     -d "hello celestia" -o /dev/null
+     -d "hello celestia"
    ```
 
    A successful POST shows in the server logs:

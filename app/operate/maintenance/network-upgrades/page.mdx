@@ -15,7 +15,7 @@ As of the Lemongrass upgrade in September 2024, Celestia has implemented [CIP-10
 1. **Pre-programmed height**: Used for the Lemongrass network upgrade (v2)
 2. **In-protocol signaling**: Used for all subsequent upgrades (v3+)
 
-Under the in-protocol signaling mechanism, validators submit messages to signal their readiness and preference for the next version. The upgrade activates automatically once a quorum of 5/6 of validators have signaled for the same version.
+Under the in-protocol signaling mechanism, validators submit messages to signal their readiness and preference for the next version. Once 5/6 of the voting power has signaled for the same version, anyone can submit a `MsgTryUpgrade` transaction (`celestia-appd tx signal try-upgrade`) to tally the signals and schedule the upgrade.
 
 ### Announcement channels
 
@@ -35,7 +35,7 @@ The upgrade process can be broken down into a few steps:
 1. A new binary is released with the new features to be tested on testnets.
 1. Node operators upgrade to the new binary on [Mocha testnet](/operate/networks/mocha-testnet), and finally on Celestia [Mainnet Beta](/operate/networks/mainnet-beta).
    - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
-   - Upgrades using in-protocol signaling (v3+) activate one week after 5/6 of the voting power has signaled for a particular version
+   - Upgrades using in-protocol signaling (v3+) activate after a delay once 5/6 of the voting power has signaled for a particular version and a `MsgTryUpgrade` transaction has succeeded. The delay is about 7 days on Mainnet Beta and about 2 days on Mocha.
 
 ## Unreleased v11 breaking changes
 
@@ -234,7 +234,8 @@ Replacing celestia-app does not add new settings or comments to existing
 configuration files. Missing settings use the binary's defaults.
 
 Starting with celestia-app v10.2.0, use `config sync` to add missing fields and
-their documentation to `config/config.toml`. Preview the additions first:
+their documentation to `config/config.toml` and, if present, the Fibre
+`server_config.toml` (set its location with `--fibre-home`). Preview the additions first:
 
 ```bash
 celestia-appd config sync --home ~/.celestia-app --dry-run
