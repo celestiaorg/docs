@@ -30,6 +30,12 @@ over 169 hours, before storage overhead. This is a planning scenario, not measur
 network utilisation: a 2 TB bridge cannot be assumed to cover it. Size for your
 expected traffic and retention rather than treating observed usage as a limit.
 
+> **Unreleased v11:** this scenario and the `min-retain-blocks = 3000`
+> measurement below use v10 block times. celestia-app v11 targets an 800 ms
+> block interval and raises the `min-retain-blocks` minimum to 9,750, so
+> reassess capacity before the upgrade. See
+> [block time and block-count parameters](/operate/maintenance/network-upgrades#block-time-and-block-count-parameters).
+
 ## Data availability nodes
 
 ### Non-archival data availability nodes

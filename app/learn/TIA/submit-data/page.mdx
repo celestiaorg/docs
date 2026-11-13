@@ -58,6 +58,14 @@ When using third-party estimation, the consensus endpoint must be running celest
 
 {/* src: app@3968e04a:pkg/appconsts/prepare_proposal_consts.go */}
 {/* src: app@3968e04a:app/check_tx.go */}
+
+> **Unreleased v11:** a transaction pays an extra 10,000 gas for each counted
+> message after the first. The count includes the inner messages of an authz
+> `MsgExec` and the entries of an interchain accounts (ICA) packet.
+> Single-message transactions are unaffected. See
+> [gas for additional messages](/operate/maintenance/network-upgrades#gas-for-additional-messages).
+
+{/* src: app@6137d6c9:app/ante/sdk_message_gas.go */}
 {/* src: app@3968e04a:app/errors/errors.go */}
 
 As of version v1.0.0 of the application (celestia-app), there is no protocol

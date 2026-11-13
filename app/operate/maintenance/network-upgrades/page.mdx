@@ -137,6 +137,95 @@ and [multisig validator limit](https://github.com/celestiaorg/celestia-app/blob/
 {/* src: app@3968e04a:app/ante/multisig_ism.go */}
 {/* src: app@3968e04a:app/ante/nested_msg.go */}
 
+### Block time and block-count parameters
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. v10 networks keep blocks of approximately 2.6 seconds. See
+> [celestia-app#8411](https://github.com/celestiaorg/celestia-app/pull/8411),
+> [celestia-app#8416](https://github.com/celestiaorg/celestia-app/pull/8416), and
+> [CIPs#412](https://github.com/celestiaorg/CIPs/pull/412).
+
+From app version 11, a new `DynamicTimeoutCommit` of **800 ms** sets the
+minimum interval between block starts. `TimeoutCommit` drops from 500 ms to
+100 ms, and the precommit timeout drops from 3000 ms to 2000 ms. The timeouts
+follow the app version in state, so they change when the network activates
+v11, not when you install the binary. See the pinned
+[consensus timeouts](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/pkg/appconsts/versioned_consts.go).
+
+The v11 upgrade handler and the genesis defaults rescale parameters that are
+counted in blocks. Most are multiplied by 3.25 (2.6 s / 0.8 s) to keep their
+duration. `MaxAgeNumBlocks` instead covers the 337-hour unbonding period at an
+assumed average block time of 1.2 seconds, which upstream describes as an upper
+bound. The handler writes fixed values, so it replaces any value set by
+governance. The v10 values are those reported in celestia-app#8416.
+
+| Parameter | v10 | v11 |
+| --- | --- | --- |
+| `Evidence.MaxAgeNumBlocks` | 404,400 | 1,011,000 |
+| `slashing.SignedBlocksWindow` | 10,000 | 32,500 |
+| `staking.HistoricalEntries` | 10,000 | 32,500 |
+| `fibre.PaymentPromiseHeightWindow` | 1,000 | 3,250 |
+| IBC `MaxExpectedTimePerBlock` | 13 s | 4 s |
+
+These node-local values change when you install the v11 binary, which is before
+the network activates v11:
+
+| Setting | v10 | v11 |
+| --- | --- | --- |
+| Mempool `ttl-num-blocks` minimum | 36 | 117 |
+| `min-retain-blocks` default and non-zero minimum | 3,000 | 9,750 |
+| `snapshot-interval` default | 1,500 | 4,875 |
+
+Time-based parameters, such as the unbonding period and `MaxAgeDuration`, do
+not change. Recalculate any block count in your own configuration or tooling
+that assumes a block time of 2.6 or 3 seconds, such as
+[block retention for bridge nodes](/operate/consensus-validators/consensus-node#retain-blocks-for-bridge-nodes).
+
+{/* src: app@6137d6c9:pkg/appconsts/versioned_consts.go */}
+{/* src: app@6137d6c9:pkg/appconsts/app_consts.go */}
+{/* src: app@6137d6c9:pkg/appconsts/consensus_consts.go */}
+{/* src: app@6137d6c9:pkg/appconsts/initial_consts.go */}
+{/* src: app@6137d6c9:x/fibre/types/params.go */}
+
+### Gas for additional messages
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. See
+> [celestia-app#8583](https://github.com/celestiaorg/celestia-app/pull/8583).
+
+An ante decorator charges **10,000 gas** (`appconsts.GasPerAdditionalSDKMessage`)
+for each counted message after the first. The count includes top-level
+messages, the inner messages of an authz `MsgExec`, and the entries of an
+interchain accounts (ICA) packet. Single-message transactions pay the same gas
+as before. Clients that simulate gas include the charge; add it to any fixed
+gas limit for multi-message, `MsgExec`, or batched relayer transactions. See
+the pinned
+[message gas decorator](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/app/ante/sdk_message_gas.go).
+
+{/* src: app@6137d6c9:app/ante/sdk_message_gas.go */}
+{/* src: app@6137d6c9:pkg/appconsts/app_consts.go */}
+
+### Rejected message types
+
+> This describes unreleased celestia-app v11 behaviour, not current network
+> behaviour. See
+> [celestia-app#8600](https://github.com/celestiaorg/celestia-app/pull/8600).
+
+An ante decorator rejects seven message types that can never succeed with
+Celestia's configuration. On v10 these transactions fail during execution and
+pay their fee. On v11 they fail before entering the mempool and pay no fee:
+
+- `MsgSubmitEvidence`
+- `MsgExecLegacyContent` and gov v1beta1 `MsgSubmitProposal`
+- `MsgCreatePeriodicVestingAccount` and `MsgCreatePermanentLockedAccount`
+- `MsgChannelCloseInit` and `MsgChannelUpgradeInit`
+
+The check covers top-level messages and messages one level inside `MsgExec` or
+a gov v1 `MsgSubmitProposal`. See the pinned
+[unsupported message decorator](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/app/ante/unsupported_msg.go).
+
+{/* src: app@6137d6c9:app/ante/unsupported_msg.go */}
+
 ## Configuration changes in v10
 
 ### Existing configuration files

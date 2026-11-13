@@ -409,6 +409,12 @@ Not all vesting accounts can be created with a message, some need to be
 set at genesis. You can
 [learn more in the Cosmos Network documentation](https://docs.cosmos.network/sdk/v0.53/build/modules/auth/vesting).
 
+> **Unreleased v11:** celestia-app v11 rejects `MsgCreatePeriodicVestingAccount`
+> and `MsgCreatePermanentLockedAccount` in the ante handler. The continuous
+> and delayed accounts in this guide use `MsgCreateVestingAccount`, which is
+> not affected. See
+> [rejected message types](/operate/maintenance/network-upgrades#rejected-message-types).
+
 ## Conclusion
 
 Congratulations! You've learned how to create a local devnet, create a

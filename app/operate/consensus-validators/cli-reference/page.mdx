@@ -193,6 +193,12 @@ celestia-appd tx gov vote <proposal id> <option> \
     --from <wallet> --chain-id <chain-id>
 ```
 
+> **Unreleased v11:** celestia-app v11 rejects gov v1beta1 `MsgSubmitProposal`
+> and `MsgExecLegacyContent` in the ante handler, including inside a gov v1
+> `MsgSubmitProposal`. See
+> [rejected message types](/operate/maintenance/network-upgrades#rejected-message-types)
+> before using `submit-legacy-proposal` or the v1beta1 examples below.
+
 To submit a proposal, there are two commands that can be used. The first is the
 legacy command, which is the recommended way to submit a proposal.
 
