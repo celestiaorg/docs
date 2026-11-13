@@ -207,7 +207,8 @@ min-retain-blocks = 0
 <Callout type="warning">
 `min-retain-blocks` defaults to `3000`. Any non-zero value enables block pruning,
 so archival operators must explicitly set the value to `0`. A non-zero value
-below `3000` is raised to `3000` at startup. Changing the value from `0`
+below `3000` is raised to `3000` at startup. In unreleased v11, both the default
+and that minimum become `9750`. Changing the value from `0`
 to a non-zero value starts pruning the existing backlog when the node restarts
 and can temporarily increase sync time.
 </Callout>
