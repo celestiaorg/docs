@@ -171,6 +171,10 @@ For example, validator ports 9090
 and 26657 need to be accessible by the bridge, and port 26656 is
 required for P2P connections between consensus nodes.
 
+gRPC is disabled by default and binds to localhost. Before a bridge node
+can connect, enable it with `--grpc.enable` and set `--grpc.address` to an
+address that the bridge node can reach, such as `0.0.0.0:9090`.
+
 The following ports are used by Celestia app nodes:
 
 | Port  | Protocol | Address   | Description | Enabled by default on node     | Flag                    |
