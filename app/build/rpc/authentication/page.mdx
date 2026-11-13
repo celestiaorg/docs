@@ -22,7 +22,7 @@ celestia light auth admin --p2p.network mocha
 
 `auth admin` grants every permission. Use `auth read` for read-only access or
 `auth write` to allow blob submission without node administration. Each run
-issues a new token, and issued tokens cannot be revoked. See
+issues a new token. See
 [get your auth token](/operate/data-availability/light-node/advanced#get-your-auth-token)
 for the node setup around this command.
 
@@ -38,6 +38,20 @@ curl -X POST http://localhost:26658 \
 The [Go quickstart](/build/post-retrieve-blob/client/go) reads the same token from
 `CELE_DA_TOKEN`, and a consensus endpoint token from `CELE_CORE_TOKEN`.
 Keep tokens out of source control, shared request examples, and public bug reports.
+
+### Revoke a token
+
+On Mainnet Beta and Mocha with celestia-node v0.35.0 or later, the admin-only
+`node.AuthRevoke` RPC method or `celestia node revoke-token` command revokes a
+single token:
+
+```bash
+celestia node revoke-token "$TOKEN_TO_REVOKE" --url http://localhost:26658 --token "$ADMIN_TOKEN"
+```
+
+Use an admin token for `ADMIN_TOKEN`. Revoked tokens stop authenticating, and
+their open WebSocket sessions and subscriptions are closed. Revocations
+persist across restarts. Nodes older than v0.35.0 cannot revoke tokens.
 
 ## Provider credentials
 

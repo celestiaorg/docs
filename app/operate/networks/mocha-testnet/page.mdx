@@ -215,6 +215,7 @@ need Tendermint RPC from the same provider.
 | Provider      | Endpoint for `--core.ip`                                          | RPC port | gRPC port |
 | ------------- | ----------------------------------------------------------------- | -------- | --------- |
 | P-OPS         | `rpc-mocha.pops.one`                                              | 443      | 9090      |
+| ITRocket      | `celestia-testnet-consensus.itrocket.net`                         | -        | 9090      |
 
 You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
 
@@ -237,6 +238,19 @@ to their respective DA node.
 
 Use one of the `--core.ip` values from the [community consensus endpoints](#community-consensus-endpoints) table above.
 
+### Archival DA RPC endpoints
+
+By default, light nodes prune data outside their sampling window to save
+storage space. Archival data availability (DA) nodes retain historical headers
+and original data, while trimming redundant erasure-coded data outside the
+storage window. This trimming preserves the original data for retrieval. You can
+[read more about light vs archival nodes](/learn/celestia-101/retrievability/).
+
+| Provider        | Endpoint                                        | RPC Port | Gateway Port |
+| --------------- | ----------------------------------------------- | -------- | ------------ |
+| Noders Services | `https://celestia-t-archive-da.noders.services` | 443      | -            |
+| ITRocket        | `https://celestia-testnet-da.itrocket.net`      | 443      | -            |
+
 ## Community RPC endpoints
 
 The RPC endpoint is to allow users to interact with Celestia's nodes by
@@ -247,6 +261,7 @@ Celestia network. The default port is 26657.
 - `rpc-1.testnet.celestia.nodes.guru`
 - `rpc-2.testnet.celestia.nodes.guru`
 - `celestia-testnet-rpc.itrocket.net:443`
+- `https://celestia-t-rpc.noders.services:443`
 
 For a multi-region view of public consensus RPC endpoints, use
 [Cumulo's check_d Endpoint Scan for Mocha](https://cumulo.pro/services/celestia_mocha/rpcscan.php).
@@ -264,7 +279,9 @@ The default port is 1317.
 - `https://api-mocha.pops.one`
 - `https://api-1.testnet.celestia.nodes.guru`
 - `https://api-2.testnet.celestia.nodes.guru`
-- `https://celestia-testnet-api.itrocket.net`
+- `https://celestia-testnet-api.itrocket.net` (archival)
+- `https://celestia-t-api.noders.services`
+- `https://celestia-t-archive-api.noders.services` (archival)
 
 ## Community gRPC endpoints
 
@@ -276,12 +293,18 @@ broadcast transactions.
 - `grpc-mocha.pops.one`
 - `grpc-1.testnet.celestia.nodes.guru:10790`
 - `grpc-2.testnet.celestia.nodes.guru:10790`
-- `celestia-testnet-grpc.itrocket.net:443`
+- `celestia-testnet-grpc.itrocket.net:443` (archival)
+- `celestia-t-grpc.noders.services:443`
+- `celestia-t-archive-grpc.noders.services:443` (archival)
 
 ## Community bridge node endpoints
 
-The `mocha-5` DA network is live. Community bridge node endpoints will
-be added here as providers make them available.
+The `mocha-5` DA network is live. The following community bridge node
+endpoints are available:
+
+| Provider | Endpoint                                        | RPC Port | Gateway Port |
+| -------- | ----------------------------------------------- | -------- | ------------ |
+| ITRocket | `celestia-testnet-da-full-storage.itrocket.net` | 26658    | -        |
 
 ## Mocha testnet faucet
 
@@ -302,13 +325,18 @@ Where `<CELESTIA-ADDRESS>` is a `celestia1******` generated address.
 
 ### Web
 
-The web faucet is available at [https://mocha.celenium.io/faucet](https://mocha.celenium.io/faucet).
+Web faucets are available at:
+
+- [https://mocha.celenium.io/faucet](https://mocha.celenium.io/faucet)
+- [https://faucet.noders.services/celestia](https://faucet.noders.services/celestia) (NODERS): 0.1 TIA per address every 12 hours
 
 ## Analytics
 
 The following websites provide analytics for Mocha Testnet:
 
 - [https://itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Monitoring and chain status tools
+- [https://itrocket.net/services/testnet/celestia/analytics/consensus-signal-tracker/](https://itrocket.net/services/testnet/celestia/analytics/consensus-signal-tracker/) - Consensus signal tracker
+- [https://itrocket.net/services/testnet/celestia/analytics/validators-performance/](https://itrocket.net/services/testnet/celestia/analytics/validators-performance/) - Validators performance
 
 ## Node maps
 
@@ -330,8 +358,9 @@ There are several explorers you can use for Mocha:
 - `https://explorer.nodestake.top/celestia-testnet/`
 - `https://stakeflow.io/celestia-testnet`
 - `https://testnet.celestia.explorers.guru`
-- `https://testnet.itrocket.net/celestia`
+- `https://itrocket.net/services/testnet/celestia/explorer/`
 - `https://testnet.celestia.valopers.com/`
+- `https://celestiahub.org/explorer` (select `{{constants['mochaChainId']}}` in the network menu)
 - `https://explorer.chainroot.io/celestia-testnet-{{constants['mochaChainId']}}`
 
 ## Network upgrades

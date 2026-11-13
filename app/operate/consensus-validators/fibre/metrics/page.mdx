@@ -20,6 +20,16 @@ All observability flags apply to every subcommand.
 fibre start --log-level debug --log-format json
 ```
 
+### Health probes
+
+From `v10.5.0` / `v10.5.0-mocha`, Fibre exposes gRPC liveness and readiness
+checks on its normal TLS listener (default port `7980`). Use readiness for
+dependency monitoring; liveness only confirms that the process answers.
+When a check fails, logs identify its name, reason code, and suggested action.
+See [Health and readiness](/operate/consensus-validators/fibre#health-and-readiness)
+for probe commands, configuration, and limits. These probes do not replace
+external reachability checks or real upload canaries.
+
 ## Tracing and metrics
 
 Fibre sends traces and metrics over OTLP/HTTP to an OpenTelemetry collector,
@@ -71,10 +81,17 @@ Use these community-maintained dashboards to monitor Fibre on Mainnet Beta and M
 | Valopers | [Mainnet Beta](https://celestia.valopers.com/fibre) | [Mocha](https://testnet.celestia.valopers.com/fibre) | Registered providers, host reachability, and validator endorsements. |
 | Tensile by Huginn Tech | [Mainnet Beta](https://tensile.huginn.tech/) | [Mocha](https://tensile-mocha.huginn.tech/) | Endpoint reachability, validator TLS identity, and whether validators serve their assigned blob rows during the retention window. |
 | FibreScan by easy2stake | [Mainnet Beta](https://fibrescan.easy2stake.com/celestia) | [Mocha](https://fibrescan.easy2stake.com/mocha-5) | Blob activity, payments, validator endorsements, and endpoint reachability. |
+| celestiahub by NODERS | [Mainnet Beta](https://celestiahub.org/explorer/fibre) | [Mocha](https://celestiahub.org/explorer/fibre) | Endorsement and availability rates per validator with history, Fibre blobs, and blobs a validator did not endorse. Select the network in the page header. |
+| ITRocket | [Mainnet Beta](https://itrocket.net/services/mainnet/celestia/analytics/fibre-monitor/) | [Mocha](https://itrocket.net/services/testnet/celestia/analytics/fibre-monitor/) | Registered providers, server readiness and multi-region host reachability, last signed block, blob activity, and a public API. |
 
 See Tensile's [methodology](https://tensile-mocha.huginn.tech/methodology/) and
 FibreScan's [methodology](https://fibrescan.easy2stake.com/celestia/methodology) for how
 observations and verdicts are calculated.
+
+## Community tools
+
+- [Fibre Doctor Kit](https://github.com/ttt-labs/fibre-doctor-kit)
+- [celestia-validator-monitoring by Huginn Tech](https://github.com/Huginn-Tech/celestia-validator-monitoring): alerting and a Grafana dashboard for validators running Fibre and a remote signer
 
 ## Metric reference
 
