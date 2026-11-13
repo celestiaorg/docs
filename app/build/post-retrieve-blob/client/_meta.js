@@ -1,5 +1,5 @@
 const meta = {
-  go: "Go client tutorial",
+  go: "Go client",
   rust: "Rust client",
 };
 
