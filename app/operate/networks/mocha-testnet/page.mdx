@@ -42,12 +42,9 @@ genesis transactions. Other validators can join by submitting
 set, governance proposals, IBC channels, Hyperlane state, community
 pool, and all other chain state did not carry over.
 
-`mocha-4` remains running until it is officially shut down on
-September 1, 2026. All services still pointing at `mocha-4` should move
-to `mocha-5` before then. If you operate a `mocha-4` validator, keep it
-running while you migrate if possible; if you need to stop it sooner,
-unbond it from the active set first so it does not affect `mocha-4`
-block production.
+`mocha-4` remained running until it was officially shut down on
+September 1, 2026. It is retired and historical. All services still
+pointing at `mocha-4` should move to `mocha-5`.
 
 ### Accessing mocha-4 history
 
@@ -55,10 +52,9 @@ Because `mocha-5` started from a new genesis, `mocha-4` history is not
 queryable on the new network. Blobs and rollup data posted to `mocha-4`
 are not retrievable on `mocha-5`. Individual node operators are not
 expected to retain `mocha-4` data. An exported copy of the final
-`mocha-4` state will be available for one month after the shutdown.
-
-If you depend on specific `mocha-4` transaction history, export what you
-need before the September 1, 2026 shutdown.
+`mocha-4` state was to be available for one month after the
+September 1, 2026 shutdown. That window has passed, and `mocha-4`
+transaction history is no longer available from the live network.
 
 <Callout type="info">
 An archival `mocha-4` node snapshot taken on 2026-08-19 is available at
