@@ -130,10 +130,9 @@ to submit the text `gm`:
 celestia blob submit 0x676d 0x676d
 ```
 
-Keep the `0x` prefix when passing hex-encoded data. This explicit-hex form
-works both before and after the blob submission fix in celestia-node #5262.
-On builds containing that fix, unprefixed data is submitted as literal text:
-`hello` submits `hello`, and `cafe` submits the four characters `cafe`.
+Keep the `0x` prefix when passing hex-encoded data. Unprefixed data is
+submitted as literal text: `hello` submits `hello`, and `cafe` submits the
+four characters `cafe`.
 
 Save the returned `height` and the first value in `commitments`. Commitments
 are still returned as `0x`-prefixed hex strings.

@@ -154,10 +154,10 @@ nano ~/.celestia-light-{{constants['mochaChainId']}}/config.toml
 
 #### Set TxWorkerAccounts to 1
 
-Find the `[SubmitClient]` section and add or update:
+Find the `[State]` section and add or update:
 
 ```toml
-[SubmitClient]
+[State]
 TxWorkerAccounts = 1
 ```
 
@@ -195,10 +195,10 @@ nano ~/.celestia-light-{{constants['mochaChainId']}}/config.toml
 
 #### Set TxWorkerAccounts to desired number of lanes
 
-Find the `[SubmitClient]` section and add or update:
+Find the `[State]` section and add or update:
 
 ```toml
-[SubmitClient]
+[State]
 TxWorkerAccounts = 8
 ```
 
@@ -322,7 +322,7 @@ If you need data older than your current pruning windows, use
 `SyncFromHeight`/`SyncFromHash` to re-sync from an earlier point in time.
 
 - Sampling window: 7 days ([v0.25.3 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.25.3))
-- Header pruning window: 14 days ([v0.26.4 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.26.4))
+- Header pruning window: `{{constants['bridgeStorageWindowHours']}}h` (7 days plus 1 hour) ([v0.26.4 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.26.4))
 
 ---
 

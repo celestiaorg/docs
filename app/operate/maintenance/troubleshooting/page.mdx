@@ -53,13 +53,12 @@ required for P2P connections for all node types.
 
 The following ports are used by Celestia nodes:
 
-| Port  | Protocol | Address   | Description  | Enabled by default on node | Flag                    |
-| ----- | -------- | --------- | ------------ | -------------------------- | ----------------------- |
-| 2121  | TCP/UDP  | localhost | P2P          | true                       | N/A                     |
-| 26658 | HTTP     | localhost | RPC          | true                       | `--rpc.port string`     |
-| 26659 | HTTP     | localhost | REST Gateway | false                      | `--gateway.port string` |
+| Port  | Protocol | Address   | Description | Enabled by default on node | Flag                |
+| ----- | -------- | --------- | ----------- | -------------------------- | ------------------- |
+| 2121  | TCP/UDP  | 0.0.0.0   | P2P         | true                       | N/A                 |
+| 26658 | HTTP     | localhost | RPC         | true                       | `--rpc.port string` |
 
-> **Warning:** The gateway endpoints have been deprecated and will be removed in the future. If you would like to use them anyway, you can [find more details on GitHub](https://github.com/celestiaorg/celestia-node/pull/2360).
+> **Warning:** The REST gateway on port 26659 and its `--gateway.port` flag have been removed from celestia-node. Use the RPC on port 26658 instead.
 
 ## Changing the location of your node store
 
@@ -72,7 +71,7 @@ manually specify the `--node.store` flag for each RPC request.
 **Assumptions:**
 
 - The presence of a lock signifies a running node.
-- Networks are ordered as Mainnet Beta, Mocha, private, custom.
+- Networks are ordered as Mainnet Beta, Mocha, Corto, private, custom.
 - Node types are ordered as bridge and light.
 - Each network has only one running node type.
 - Multiple nodes of the same network and type are prohibited

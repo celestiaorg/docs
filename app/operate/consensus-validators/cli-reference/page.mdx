@@ -8,34 +8,8 @@ import { Callout } from 'nextra/components'
 
 View all options:
 
-```console
-$ celestia-appd --help
-Start celestia-app
-
-Usage:
-  celestia-appd [command]
-
-Available Commands:
-  add-genesis-account Add a genesis account to genesis.json
-  collect-gentxs      Collect genesis txs and output a genesis.json file
-  config              Create or query an application CLI configuration file
-  debug               Tool for helping with debugging your application
-  export              Export state to JSON
-  gentx               Generate a genesis tx carrying a self delegation
-  help                Help about any command
-  init                Initialize private validator, p2p, genesis,
-  and application configuration files
-  keys                Manage your application's keys
-  migrate             Migrate genesis to a specified target version
-  query               Querying subcommands
-  rollback            rollback cosmos-sdk and tendermint state by one height
-  start               Run the full node
-  status              Query remote node for status
-  tendermint          Tendermint subcommands
-  tx                  Transactions subcommands
-  validate-genesis    validates the genesis file at the default
-  location or at the location passed as an arg
-  version             Print the application binary version information
+```sh
+celestia-appd --help
 ```
 
 ## Updating node configuration
@@ -70,15 +44,20 @@ or [Go Package documentation](https://pkg.go.dev/github.com/cosmos/cosmos-sdk/cr
 
 ## Key management
 
+If you do not set a keyring backend, `celestia-appd` uses the `test` backend,
+which stores keys unencrypted on disk. Pass `--keyring-backend <backend>` to
+the key commands, or configure a backend as shown above, before you create
+keys that hold real funds.
+
 ```sh
 # listing keys
-celestia-appd keys list
+celestia-appd keys list --keyring-backend <backend>
 
 # adding keys
-celestia-appd keys add <KEY_NAME>
+celestia-appd keys add <KEY_NAME> --keyring-backend <backend>
 
 # deleting keys
-celestia-appd keys delete <KEY_NAME>
+celestia-appd keys delete <KEY_NAME> --keyring-backend <backend>
 
 # renaming keys
 celestia-appd keys rename <CURRENT_KEY_NAME> <NEW_KEY_NAME>
@@ -166,15 +145,14 @@ celestia-appd tx bank send --help
 
 
 Governance proposals on Celestia are limited as there are no text proposals,
-upgrades occur via social consensus, and some params are not modifiable.
+upgrades are coordinated through validator signalling, and some params are not modifiable.
 However, one can submit governance proposals to change certain parameters and
 spend community funds. More detailed information on this topic can be found in
 the [cosmos-sdk documentation for submitting
 proposals](https://docs.cosmos.network/sdk/v0.53/build/modules/gov),
-the list of [parameter defaults in the
-specs](https://github.com/celestiaorg/celestia-app/blob/0012451c4dc118767dd59bc8d341878b7a7cacdf/specs/src/specs/params.md),
-and the [x/paramfilter module
-specs](https://github.com/celestiaorg/celestia-app/tree/1570b3d4937ac4418b3ecf77365d47c5f094ad8f/x/paramfilter).
+and the list of [parameters in the
+specs](https://celestiaorg.github.io/celestia-app/parameters_v10.html), which
+shows the parameters that governance can change.
 
 Viewing the available proposals can be done with the query command:
 
@@ -193,58 +171,43 @@ celestia-appd tx gov vote <proposal id> <option> \
     --from <wallet> --chain-id <chain-id>
 ```
 
-To submit a proposal, there are two commands that can be used. The first is the
-legacy command, which is the recommended way to submit a proposal.
-
-To change the max validators to 105, one would first save this JSON file:
-
-```json
-{
-  "title": "Staking Param Change",
-  "description": "Update max validators",
-  "changes": [
-    {
-      "subspace": "staking",
-      "key": "MaxValidators",
-      "value": 105
-    }
-  ],
-  "deposit": "1000000000utia"
-}
-```
-
-Then you can submit the proposal with:
+To submit a proposal, save the proposal and its `sdk.Msg` messages in a JSON
+file. Parameter changes use the `MsgUpdateParams` message of the module that
+owns the parameter. The message replaces all of the module's parameters, so
+query the current values first and change only the ones you need:
 
 ```sh
-celestia-appd tx gov submit-legacy-proposal \
-    parameter-change <path to json file> \
-    --from <wallet> --chain-id <chain-id>
+celestia-appd q staking params
 ```
 
-If we want to use the newer api, we can submit a proposal by first saving the
-`sdk.Msg` proposal in the json encoded format to a json.
+For example, to change the max validators to 105, save this JSON file. Use the
+current on-chain values for the other fields. Governance cannot change
+`bond_denom` or `unbonding_time`.
 
 ```json
 {
   "messages": [
     {
-      "@type": "/cosmos.gov.v1beta1.MsgSubmitProposal",
-      "content": {
-        "@type": "/cosmos.params.v1beta1.ParameterChangeProposal",
-        "title": "title",
-        "description": "description",
-        "changes": [
-          { "subspace": "staking", "key": "MaxValidators", "value": "103" }
-        ]
-      },
-      "initial_deposit": [{ "denom": "utia", "amount": "1000000000" }],
-      "proposer": "celestia10d07y265gmmuvt4z0w9aw880jnsr700jtgz4v7"
+      "@type": "/cosmos.staking.v1beta1.MsgUpdateParams",
+      "authority": "celestia10d07y265gmmuvt4z0w9aw880jnsr700jtgz4v7",
+      "params": {
+        "unbonding_time": "1213200s",
+        "max_validators": 105,
+        "max_entries": 7,
+        "historical_entries": 10000,
+        "bond_denom": "utia",
+        "min_commission_rate": "0.200000000000000000"
+      }
     }
-  ]
+  ],
+  "metadata": "",
+  "deposit": "10000000000utia",
+  "title": "Staking param change",
+  "summary": "Update max validators to 105"
 }
 ```
 
-Note that the proposer here must be the gov module
+Note that the authority here must be the gov module
 account. That account can be found by using this command:
 
 ```sh
@@ -275,20 +238,26 @@ that contains the proposal.
 
 ```json
 {
-  "title": "Community Pool Spend",
-  "description": "Fund an open source project.",
-  "recipient": "celestia17adsjkuecgjheugrdrwdqv9uh3qkrfmj9xzawx",
-  "amount": "100000000000utia",
-  "deposit": "1000000000utia"
+  "messages": [
+    {
+      "@type": "/cosmos.distribution.v1beta1.MsgCommunityPoolSpend",
+      "authority": "celestia10d07y265gmmuvt4z0w9aw880jnsr700jtgz4v7",
+      "recipient": "celestia17adsjkuecgjheugrdrwdqv9uh3qkrfmj9xzawx",
+      "amount": [{ "denom": "utia", "amount": "100000000000" }]
+    }
+  ],
+  "metadata": "",
+  "deposit": "10000000000utia",
+  "title": "Community pool spend",
+  "summary": "Fund an open source project."
 }
 ```
 
-The json file can be submitted using a similar proposal submission command as above:
+The JSON file can be submitted using the same proposal submission command as above:
 
 ```sh
-celestia-appd tx gov submit-legacy-proposal \
-    community-pool-spend <path to json file> \
-    --from <wallet>
+celestia-appd tx gov submit-proposal <path to json file> \
+    --from <wallet> --chain-id <chain-id>
 ```
 
 ## Claim validator rewards
@@ -360,12 +329,6 @@ KEY_NAME=validator
 celestia-appd keys add $KEY_NAME
 ```
 
-Create or assign an EVM address:
-
-```sh
-EVM_ADDRESS=<EVM_ADDRESS>
-```
-
 Then add genesis account:
 
 ```sh
@@ -377,14 +340,13 @@ Then generate your gentx:
 
 ```sh
 STAKING_AMOUNT=5000000000000utia
-celestia-appd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
+celestia-appd genesis gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID \
     --pubkey=$(celestia-appd tendermint show-validator) \
     --moniker=$MONIKER \
-    --commission-rate=0.1 \
-    --commission-max-rate=0.2 \
+    --commission-rate=0.2 \
+    --commission-max-rate=0.6 \
     --commission-max-change-rate=0.01 \
-    --min-self-delegation=1 \
-    --evm-address=$EVM_ADDRESS
+    --min-self-delegation=1
 ```
 
 You can then share your gentx JSON file on
