@@ -117,7 +117,8 @@ The `Share.UseShareExchange`, `Share.UseBitswap`, and
 `Share.BlockStoreCacheSize` configuration keys are removed and ignored if
 present.
 
-Stop the node, upgrade the binary, and run `config-update` before restarting.
+When moving onto v0.35.0 or v0.35.0-mocha from an earlier release, stop the
+node, upgrade the binary, and run `config-update` before restarting.
 Use the command for your node type, replacing `<network>` with `mainnet` or `mocha`:
 
 ```bash
@@ -130,6 +131,19 @@ This removes the obsolete keys while preserving other custom values. Review
 `config.toml` before restarting. Light nodes delete the old Bitswap samples
 once on their first start after upgrading. No coordinated upgrade is needed:
 v0.35.0 nodes remain compatible with v0.34.x peers.
+
+### celestia-node v0.36.0-mocha
+
+[celestia-node v0.36.0-mocha](https://github.com/celestiaorg/celestia-node/releases/tag/v0.36.0-mocha)
+accepts headers with app version 11. Mocha nodes on v0.35.x and earlier reject
+those headers and stop syncing once app version 11 activates, so upgrade
+before that height. The release adds only that support on top of v0.35.0.
+Configuration and storage are unchanged. A node already on v0.35.0-mocha does
+not need `config-update`. Mainnet Beta stays on {mainnetVersions['node-latest-tag']}.
+
+See [Mocha app version 11](/operate/maintenance/network-upgrades#mocha-app-version-11).
+
+{/* src: https://github.com/celestiaorg/celestia-node/releases/tag/v0.36.0-mocha */}
 
 ### P2P
 

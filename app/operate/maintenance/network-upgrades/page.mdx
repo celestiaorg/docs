@@ -2,7 +2,7 @@
 description: Overview of the Celestia network upgrade process.
 ---
 
-import { mainnetVersions, mochaVersions } from '@/constants'
+import { constants, mainnetVersions, mochaVersions } from '@/constants'
 
 # Network upgrades
 
@@ -37,194 +37,100 @@ The upgrade process can be broken down into a few steps:
    - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
    - Upgrades using in-protocol signaling (v3+) activate after a delay once 5/6 of the voting power has signaled for a particular version and a `MsgTryUpgrade` transaction has succeeded. The delay is about 7 days on Mainnet Beta and about 2 days on Mocha.
 
-## Unreleased v11 breaking changes
+## Mocha app version 11
 
-### Fibre certificates and staking historical info
+[celestia-app v11.0.0-mocha](https://github.com/celestiaorg/celestia-app/releases/tag/v11.0.0-mocha), including the Fibre binaries in that release, and [celestia-node v0.36.0-mocha](https://github.com/celestiaorg/celestia-node/releases/tag/v0.36.0-mocha) were published on 16 November 2026. This is an emergency release cut from the v10.x line. It introduces app version 11 and is built from the same commit as celestia-app `v11.0.0-corto`.
 
-> This describes unreleased celestia-app v11 behaviour, not current network
-> behaviour. The change ships with the v11 upgrade, with no separate in-binary
-> gate.
+Mainnet Beta has no v11 tag. Keep Mainnet Beta on celestia-app {mainnetVersions['app-latest-tag']} and celestia-node {mainnetVersions['node-latest-tag']}. The behaviour below applies to Mocha after app version 11 activates, and to the new binaries as soon as they are installed where noted.
 
-In v11, staking's BeginBlocker (`TrackHistoricalInfo`) runs before slashing
-and evidence. The historical info for height `H-1` therefore contains the
-tokens and ordering of the validator set CometBFT signs height `H` with,
-matching the snapshot used to verify a Fibre certificate for promise height `H`.
-In a block containing a slash, the gRPC `HistoricalInfo` query for that height
-returns pre-slash tokens. See
-[celestia-app#8342](https://github.com/celestiaorg/celestia-app/pull/8342) and
-[Fibre certificate verification](/build/post-retrieve-blob/fibre/when-to-use#unreleased-v11-certificate-verification).
+Installing the binary does not change the app version. The node keeps running app version 10 until the upgrade height. The multiplexer embeds celestia-app v10.6.0 for earlier heights. Supported operating systems are unchanged from v10.6.0: Linux multiplexer builds need glibc 2.38 or later, and the separate Fibre binary needs glibc 2.34 or later.
 
-### Fibre escrow migration
+{/* src: https://github.com/celestiaorg/celestia-app/releases/tag/v11.0.0-mocha */}
+{/* src: app@v11.0.0-mocha:docs/release-notes/release-notes.md */}
+{/* src: https://github.com/celestiaorg/celestia-node/releases/tag/v0.36.0-mocha */}
 
-> This describes unreleased celestia-app v11 behaviour, not current network
-> behaviour. See
-> [celestia-app#8396](https://github.com/celestiaorg/celestia-app/pull/8396).
+### Upgrade consensus nodes and Fibre
 
-The v11 upgrade handler runs the `x/fibre` module migration `Migrate1to2`,
-moving its consensus version from 1 to 2. v10 accepted uppercase escrow keys
-and non-`utia` balances. v11 canonicalises the signer keys and merges `utia`
-accounts and both withdrawal indexes. Withdrawal requests that collide at
-the same requested timestamp combine their amounts and retain the later
-availability time.
+No configuration changes are required. Keep the existing home directories and databases.
 
-The full escrow balance of every unsupported denomination, including funds
-reserved for withdrawals, is refunded to the account. Its pending withdrawals
-are removed without paying twice. Parameters, processed payments, and the
-module account are preserved. Users do not need to take any action. See the
-[utia-only escrow notice](/build/post-retrieve-blob/fibre#query-and-deposit-escrow)
-and the pinned [migration implementation](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/x/fibre/keeper/migrations.go).
+1. Download the `celestia-app` archive for your platform from the [v11.0.0-mocha release](https://github.com/celestiaorg/celestia-app/releases/tag/v11.0.0-mocha) and verify it against `checksums.txt`. Validators also download the matching `fibre` archive from that release.
+1. For a source build, use Go 1.26.10. The Makefile sets `GOTOOLCHAIN` from the `go` directive in [`go.mod`](https://github.com/celestiaorg/celestia-app/blob/v11.0.0-mocha/go.mod), so the `go` command downloads 1.26.10 when another version is installed. Build the multiplexer with `make install` and the Fibre server with `make build-fibre-server`.
+1. Stop the consensus node and, for validators, the Fibre server. Replace both binaries and start them again with the existing homes.
 
-{/* src: app@3968e04a:app/upgrades.go */}
-{/* src: app@3968e04a:x/fibre/module.go */}
-{/* src: app@3968e04a:x/fibre/keeper/migrations.go */}
+The new binary also includes these fixes, which apply before app version 11 activates:
 
-### Non-blob block gas limit, CIP-53
+- Proof queries are validated before the block is decoded.
+- `TxStatusBatch` bounds transaction IDs while decoding.
+- `MsgModuleQuerySafe` requests are bounded when they enter the mempool.
+- The multiplexer answers ABCI Info from the previous embedded app until the new app commits.
 
-> This describes unreleased celestia-app v11 behaviour, not current network
-> behaviour. See [CIP-53](https://github.com/celestiaorg/CIPs/blob/main/cips/cip-053.md),
-> [celestia-app#8399](https://github.com/celestiaorg/celestia-app/pull/8399), and
-> [CIPs#411](https://github.com/celestiaorg/CIPs/pull/411).
+### Signal for app version 11
 
-`appconsts.MaxSDKGas` caps the sum of **declared gas limits** of non-blob,
-non-PayForFibre transactions in a block at **100,000,000**. These are the same
-transactions covered by the `MaxSDKMessages` limit of 600 messages.
-`PrepareProposal` skips transactions that would exceed the gas budget, and
-`ProcessProposal` rejects over-limit blocks. Blob and PayForFibre transactions
-are excluded; `ConsensusParams.Block.MaxGas` remains `-1`.
+Each validator in the active set signals for version 11. Replace `<tx_flags>` with the chain ID, key, and fees for your node:
 
-`CheckTx` rejects a single non-blob, non-PayForFibre transaction whose gas limit
-exceeds 100,000,000 with `ErrTxExceedsMaxSDKGas`: codespace `app`, code
-**11150**, and the message "transaction gas limit exceeds maximum allowed SDK
-gas per block". See the pinned [gas budget](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/pkg/appconsts/prepare_proposal_consts.go)
-and [CheckTx implementation](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/app/check_tx.go).
+```bash
+celestia-appd tx signal signal 11 <tx_flags>
+```
 
-For context, the upstream PR reports that the busiest block in its sample of
-3,500 Mainnet Beta blocks declared 3.3 million non-blob gas. This is an
-upstream sample, not a network maximum or a new measurement.
+Check the tally, and read the scheduled height after `MsgTryUpgrade` succeeds:
 
-{/* src: app@3968e04a:pkg/appconsts/prepare_proposal_consts.go */}
-{/* src: app@3968e04a:app/filtered_square_builder.go */}
-{/* src: app@3968e04a:app/process_proposal.go */}
-{/* src: app@3968e04a:app/check_tx.go */}
-{/* src: app@3968e04a:app/errors/errors.go */}
+```bash
+celestia-appd query signal tally 11
+celestia-appd query signal upgrade
+```
 
-### Hyperlane ISM limits
+Once at least 5/6 of the voting power has signalled, anyone can submit:
 
-> This describes unreleased celestia-app v11 behaviour, not current network
-> behaviour. See
-> [celestia-app#8389](https://github.com/celestiaorg/celestia-app/pull/8389) and
-> [#8400](https://github.com/celestiaorg/celestia-app/pull/8400).
+```bash
+celestia-appd tx signal try-upgrade <tx_flags>
+```
 
-An ante decorator charges **36,000 gas** (`appconsts.GasPerISMSignature`) for
-each multisig ISM signature in a Hyperlane `MsgProcessMessage`, in addition
-to the Hyperlane module's own charge. A block may contain at most **2048**
-multisig ISM signatures (`MaxISMSignatures`). Only metadata whose length
-exactly matches a multisig layout counts: a 68-byte message-id header or a
-1096-byte merkle-root header, followed by whole 65-byte signatures. ZK ISM
-metadata counts zero towards this signature budget.
+The upgrade then activates 66,462 blocks later (`MochaUpgradeHeightDelay`). The v11.0.0-mocha release describes that delay as about 53 hours at Mocha's block time on 16 November 2026. The constant's comment assumes about two days at a 2.6 second block interval.
 
-`MsgCreateMessageIdMultisigIsm` and `MsgCreateMerkleRootMultisigIsm` with more
-than **100 validators** (`MaxMultisigISMValidators`) are rejected at the top
-level, inside `MsgExec`, and inside `MsgSubmitProposal`. `MsgRecvPacket` inside
-`MsgSubmitProposal` is also rejected.
+{/* src: app@v11.0.0-mocha:pkg/appconsts/app_consts.go MochaUpgradeHeightDelay */}
 
-See the pinned [signature gas accounting](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/app/ante/ism_signature_gas.go)
-and [multisig validator limit](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/app/ante/multisig_ism.go).
+### Data availability nodes
 
-{/* src: app@3968e04a:pkg/appconsts/app_consts.go */}
-{/* src: app@3968e04a:pkg/appconsts/prepare_proposal_consts.go */}
-{/* src: app@3968e04a:app/ante/ism_signature_gas.go */}
-{/* src: app@3968e04a:app/ante/multisig_ism.go */}
-{/* src: app@3968e04a:app/ante/nested_msg.go */}
+Upgrade every Mocha bridge, full, and light node to celestia-node [v0.36.0-mocha](https://github.com/celestiaorg/celestia-node/releases/tag/v0.36.0-mocha) before the activation height. Nodes on v0.35.x and earlier reject headers with app version 11 and stop syncing once v11 activates. The node's core endpoint must be running celestia-app v11.0.0-mocha by that height.
 
-### Block time and block-count parameters
+This node release only adds that app-version support on top of v0.35.0. Configuration and storage are unchanged. A node already on v0.35.0-mocha does not need `config-update`. Source builds use Go {constants['golangNodeMocha']}, the same requirement as celestia-node v0.35.0-mocha.
 
-> This describes unreleased celestia-app v11 behaviour, not current network
-> behaviour. v10 networks keep blocks of approximately 2.6 seconds. See
-> [celestia-app#8411](https://github.com/celestiaorg/celestia-app/pull/8411),
-> [celestia-app#8416](https://github.com/celestiaorg/celestia-app/pull/8416), and
-> [CIPs#412](https://github.com/celestiaorg/CIPs/pull/412).
+{/* src: node@v0.36.0-mocha:go.mod */}
 
-From app version 11, a new `DynamicTimeoutCommit` of **800 ms** sets the
-minimum interval between block starts. `TimeoutCommit` drops from 500 ms to
-100 ms, and the precommit timeout drops from 3000 ms to 2000 ms. The timeouts
-follow the app version in state, so they change when the network activates
-v11, not when you install the binary. See the pinned
-[consensus timeouts](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/pkg/appconsts/versioned_consts.go).
+### Restricted accounts
 
-The v11 upgrade handler and the genesis defaults rescale parameters that are
-counted in blocks. Most are multiplied by 3.25 (2.6 s / 0.8 s) to keep their
-duration. `MaxAgeNumBlocks` instead covers the 337-hour unbonding period at an
-assumed average block time of 1.2 seconds, which upstream describes as an upper
-bound. The handler writes fixed values, so it replaces any value set by
-governance. The v10 values are those reported in celestia-app#8416.
+From app version 11, accounts whose keys were exposed in the Keplr/Web3Auth social-login incident can move funds only to one recovery address. On Mocha the list holds three test accounts. Every other account is unchanged. The rules are off until app version 11 is active, and each chain uses its own list.
 
-| Parameter | v10 | v11 |
-| --- | --- | --- |
-| `Evidence.MaxAgeNumBlocks` | 404,400 | 1,011,000 |
-| `slashing.SignedBlocksWindow` | 10,000 | 32,500 |
-| `staking.HistoricalEntries` | 10,000 | 32,500 |
-| `fibre.PaymentPromiseHeightWindow` | 1,000 | 3,250 |
-| IBC `MaxExpectedTimePerBlock` | 13 s | 4 s |
+The Mocha recovery address in v11.0.0-mocha is `celestia1xk4tasrhcr3w6jyq4xzd8x6aapv9hmfuh8mcxn`. The source comment labels it a test key. The listed accounts are:
 
-These node-local values change when you install the v11 binary, which is before
-the network activates v11:
+- `celestia1kuzawt83w7uxtf5uthv9lssrt8fk7y09sqfucf`
+- `celestia1s04naks7e0x786e78zue3s0w9ckeg5tq5qkry0`
+- `celestia1k78zw3ht35kwaxj2zm2n8v478v3ex0jwgjjlfn`
 
-| Setting | v10 | v11 |
-| --- | --- | --- |
-| Mempool `ttl-num-blocks` minimum | 36 | 117 |
-| `min-retain-blocks` default and non-zero minimum | 3,000 | 9,750 |
-| `snapshot-interval` default | 1,500 | 4,875 |
+A transaction signed by a listed account may contain only:
 
-Time-based parameters, such as the unbonding period and `MaxAgeDuration`, do
-not change. Recalculate any block count in your own configuration or tooling
-that assumes a block time of 2.6 or 3 seconds, such as
-[block retention for bridge nodes](/operate/consensus-validators/consensus-node#retain-blocks-for-bridge-nodes).
+- `MsgSend`. The bank send restriction allows the recovery address and the fee collector.
+- `MsgUndelegate`.
+- `MsgWithdrawDelegatorReward`, and only when the withdraw address is the delegator or the recovery address.
+- `MsgSetWithdrawAddress`, and only when the new withdraw address is the recovery address.
 
-{/* src: app@6137d6c9:pkg/appconsts/versioned_consts.go */}
-{/* src: app@6137d6c9:pkg/appconsts/app_consts.go */}
-{/* src: app@6137d6c9:pkg/appconsts/consensus_consts.go */}
-{/* src: app@6137d6c9:pkg/appconsts/initial_consts.go */}
-{/* src: app@6137d6c9:x/fibre/types/params.go */}
+The same checks apply to messages inside `MsgExec`. A listed signer cannot pay more than 1,000,000 utia in fees. A listed fee granter is rejected. A Fibre payment promise signed by a listed account is rejected.
 
-### Gas for additional messages
+The v11.0.0-mocha binary also contains a Mainnet Beta list. That list stays inactive until a Mainnet Beta release activates app version 11. The mainnet recovery address in source is still marked unconfirmed, so it is not listed here.
 
-> This describes unreleased celestia-app v11 behaviour, not current network
-> behaviour. See
-> [celestia-app#8583](https://github.com/celestiaorg/celestia-app/pull/8583).
+{/* src: app@v11.0.0-mocha:app/frozen/frozen.go */}
+{/* src: app@v11.0.0-mocha:app/frozen/addresses/mocha-5.txt */}
 
-An ante decorator charges **10,000 gas** (`appconsts.GasPerAdditionalSDKMessage`)
-for each counted message after the first. The count includes top-level
-messages, the inner messages of an authz `MsgExec`, and the entries of an
-interchain accounts (ICA) packet. Single-message transactions pay the same gas
-as before. Clients that simulate gas include the charge; add it to any fixed
-gas limit for multi-message, `MsgExec`, or batched relayer transactions. See
-the pinned
-[message gas decorator](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/app/ante/sdk_message_gas.go).
+### Scope of v11.0.0-mocha
 
-{/* src: app@6137d6c9:app/ante/sdk_message_gas.go */}
-{/* src: app@6137d6c9:pkg/appconsts/app_consts.go */}
+Fibre pricing, host registration, escrow rules, block times, and pruning defaults stay as they are on v10. Replacing the binary does not rewrite `config.toml` or Fibre's `server_config.toml`.
 
-### Rejected message types
+The v11 upgrade handler sets the unbonding period to 10 minutes only on Corto. Mocha's unbonding period is unchanged.
 
-> This describes unreleased celestia-app v11 behaviour, not current network
-> behaviour. See
-> [celestia-app#8600](https://github.com/celestiaorg/celestia-app/pull/8600).
+Go library consumers move from `github.com/celestiaorg/celestia-app/v10` to `github.com/celestiaorg/celestia-app/v11`. Go 1.26.10 is unchanged from v10.6.0-mocha. The Cosmos SDK replacement remains `github.com/celestiaorg/cosmos-sdk v0.52.12`. celestia-node v0.36.0-mocha imports `celestia-app/v11`. Mainnet Beta imports stay on `celestia-app/v10` until a mainnet tag exists. Do not mix v11 types with a module that still imports v10.
 
-An ante decorator rejects seven message types that can never succeed with
-Celestia's configuration. On v10 these transactions fail during execution and
-pay their fee. On v11 they fail before entering the mempool and pay no fee:
-
-- `MsgSubmitEvidence`
-- `MsgExecLegacyContent` and gov v1beta1 `MsgSubmitProposal`
-- `MsgCreatePeriodicVestingAccount` and `MsgCreatePermanentLockedAccount`
-- `MsgChannelCloseInit` and `MsgChannelUpgradeInit`
-
-The check covers top-level messages and messages one level inside `MsgExec` or
-a gov v1 `MsgSubmitProposal`. See the pinned
-[unsupported message decorator](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/app/ante/unsupported_msg.go).
-
-{/* src: app@6137d6c9:app/ante/unsupported_msg.go */}
+{/* src: app@v11.0.0-mocha:go.mod */}
+{/* src: app@v11.0.0-mocha:app/upgrades.go */}
 
 ## Configuration changes in v10
 
@@ -290,6 +196,8 @@ In the Mainnet Beta table, version links point to Celenium upgrade status pages 
 App version 10 activated on `mocha-5` at the height specified in the
 [activation announcement](https://status.celestia.org/incidents/vbsesey3).
 Bonded validators can now [start and register their Fibre servers](/operate/consensus-validators/fibre).
+App version 11 is published and is not listed below until it activates. Follow
+[Mocha app version 11](#mocha-app-version-11).
 
 | Version | Date and time | Upgrade height | Parameters |
 | ------- | ------------- | -------------- | ---------- |
@@ -327,6 +235,10 @@ The upgrades below happened on the `mocha-4` chain. Celenium now indexes `mocha-
 
 > **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/sdk/v0.53/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 
-Mocha has activated app version 10; see the [Mocha-5 upgrade history](#mocha-5).
-For upcoming upgrade schedules on each network, follow the
+App version 10 is the active Mocha version. Install celestia-app
+{mochaVersions['app-latest-tag']} and celestia-node
+{mochaVersions['node-latest-tag']} before app version 11 activates, as
+described in [Mocha app version 11](#mocha-app-version-11). Mainnet Beta has
+no v11 tag. Its current releases stay {mainnetVersions['app-latest-tag']} and
+{mainnetVersions['node-latest-tag']}. For upgrade schedules, follow the
 [network announcements](https://status.celestia.org/).
