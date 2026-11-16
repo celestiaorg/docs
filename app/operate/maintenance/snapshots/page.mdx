@@ -75,6 +75,7 @@ contain `.ldb` tables. Provider pages usually do not name the backend.
 | kjnodes | [Pruned](https://services.kjnodes.com/mainnet/celestia/snapshot/) • [Archive](https://services.kjnodes.com/mainnet/celestia/snapshot-archive/) | - | PebbleDB (`"pebbledb"`) for the pruned snapshot. The archive snapshot was not verified. |
 | Noders | [Pruned](https://noders.services/mainnet/celestia/snapshot/) | - | GoLevelDB (`"goleveldb"`) |
 | QubeLabs | [Archive](https://snaps.qubelabs.io/celestia/) | - | Not verified |
+| deNodes | [Pruned](https://celestia.deportal.io/snapshots) | - | Not verified |
 
 ### Mocha testnet
 
@@ -159,3 +160,8 @@ In manual mode (`--manual` flag), the tool will:
 2. Show you a list of providers with their download speed, snapshot size, and estimated download time
 3. Let you select your preferred provider from the list
 4. Start downloading from your selected provider
+
+## Using SnapsVault
+
+[SnapsVault](https://celestia.snapsvault.xyz) lists snapshots from multiple providers for Mainnet Beta and Mocha.
+See the [SnapsVault docs](https://docs.snapsvault.xyz) for downloading snapshots and contributing provider feeds.
