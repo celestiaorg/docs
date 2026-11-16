@@ -16,9 +16,7 @@ The _exact_ maximum total blob size in a transaction depends on:
 - the share version and layout rules,
 - and the fact that the **first sparse share has 478 bytes**, while **all subsequent sparse shares have 482 bytes**.
 
-The current max square size on Mocha and Mainnet Beta is 32 MiB.
-
-Under v6 and future upgrades, networks will use larger square sizes, so the absolute maximum blob capacity per transaction will increase correspondingly—up to the global **8 MiB transaction size limit**, which is now the binding constraint.
+The current max square size on Mocha and Mainnet Beta is 256 shares per side, and the maximum block size is 32 MiB. The global **8 MiB transaction size limit** is the binding constraint on blob capacity per transaction.
 
 See the [Mainnet Beta page under “Transaction size limit”](/operate/networks/mainnet-beta#transaction-size-limit) for details.
 
@@ -34,9 +32,9 @@ Celestia-node provides flexible fee estimation options for submitting transactio
 
 1. **Default estimation**: By default, fee estimation relies on the consensus node to which the node is connected.
 
-2. **Third-party estimation**: Users can specify a separate endpoint for fee estimation using the `--core.estimator.address` flag in the CLI. This allows using a dedicated service for fee estimation.
+2. **Third-party estimation**: Users can specify a separate endpoint for fee estimation using the `--estimator.service.address` flag when starting the node (add `--estimator.service.tls` if the service uses TLS). This allows using a dedicated service for fee estimation.
 
-3. **Maximum gas price**: Users can set a maximum gas price they're willing to pay for transactions using the `--max.gas.price` flag. If the estimated gas price exceeds this maximum, the transaction will not be submitted. The default maximum is set to 100 times the minimum gas price (0.2 TIA).
+3. **Maximum gas price**: Users can set a maximum gas price they're willing to pay for transactions using the `--max.gas.price` flag. If the estimated gas price exceeds this maximum, the transaction will not be submitted. The default maximum is 100 times the default minimum gas price (0.4 utia per unit of gas).
 
 <Callout type="info" title="Fee estimation differs by transaction type">
 - PayForBlobs (PFB) transactions: Only the gas price (cost per unit) is dynamically estimated. The gas usage (number of units) uses a fixed calculation method.
@@ -49,11 +47,13 @@ When using third-party estimation, the consensus endpoint must be running celest
 
 ### Fees and gas limits
 
-As of version v1.0.0 of the application (celestia-app), there is no protocol
-enforced minimum fee (similar to EIP-1559 in Ethereum). Instead, each
-consensus node running a mempool uses a locally configured gas price threshold
-that must be met in order for that node to accept a transaction, either directly
-from a user or gossiped from another node, into its mempool.
+Two gas price floors apply to every transaction:
+
+- A network minimum gas price, enforced in consensus by the `minfee` module.
+  The default is 0.000001 utia, and governance can change it.
+- A locally configured minimum gas price on each consensus node, which must be
+  met for that node to accept a transaction into its mempool, either directly
+  from a user or gossiped from another node. The default is 0.004 utia.
 
 As of version v1.0.0 of the application (celestia-app), gas is not refunded.
 Instead, transaction fees are deducted by a flat fee, originally specified by
@@ -80,12 +80,12 @@ vesting account or the `feegrant` modules are used, then these static costs chan
 
 The fixed cost is an approximation of the gas consumed by operations outside
 the function `GasToConsume` (for example, signature verification, tx size, read
-access to accounts), which has a default value of 65,000 gas.
+access to accounts), which has a default value of 75,000 gas.
 
 <Callout type="info" title="First transaction costs more">
 The first transaction sent by an account (sequence number == 0) has an
-additional one time gas cost of 10,000 gas. If this is the case, this
-should be accounted for.
+additional one time gas cost of 10,000 gas. The 75,000 gas fixed cost already
+includes this amount.
 </Callout>
 
 Each blob in the PFB contributes to the total gas cost based on its size. The
@@ -93,13 +93,13 @@ function `GasToConsume` calculates the total gas consumed by all the blobs
 involved in a PFB, where each blob's gas cost is computed by first determining
 how many shares are needed to store the blob size. Then, it computes the product
 of the number of shares, the number of bytes per share, and the `gasPerByte`
-parameter. Finally, it adds a static amount per blob.
+parameter. The `EstimateGas` function then adds a static amount per blob
+and the fixed cost.
 
-The [`blob.GasPerBlobByte`](https://github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md?plain=1#L33)
-and [`auth.TxSizeCostPerByte`](https://github.com/celestiaorg/celestia-app/blob/29906a468910184f221b42be0a15898722a2b08f/specs/src/parameters_v6.md?plain=1#L31)
-are parameters that
-could potentially be adjusted through the system's governance mechanisms. Hence,
-actual costs may vary depending on the current state of these parameters.
+The [`blob.GasPerBlobByte`](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/specs/src/parameters_v10.md?plain=1#L39)
+(8) and [`auth.TxSizeCostPerByte`](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/specs/src/parameters_v10.md?plain=1#L37)
+(10) are hard-coded constants. Governance cannot change them; they change only
+through a network upgrade.
 
 #### Gas fee calculation
 
@@ -116,15 +116,18 @@ fixed cost (FC) and a variable dynamic cost based on the size of each blob invol
 in the transaction:
 
 $$
-\text{Gas Limit} = FC + \sum_{i=1}^{n} \text{SSN}(B_i) \times SS \times GCPBB
+\text{Gas Limit} = FC + \sum_{i=1}^{n} \text{SSN}(B_i) \times SS \times GCPBB + n \times TSCPB \times BPBI
 $$
 
 Where:
 
-- $FC$ = Fixed Cost, is a static value (65,000 gas)
+- $FC$ = Fixed Cost, is a static value (75,000 gas)
 - $\sum_{i=1}^{n} \text{SSN}(B_i)$ = SparseSharesNeeded for the ith Blob, is the number of shares needed for the ith blob in the transaction
 - $SS$ = Share Size, is the size of each share
-- $GCPBB$ = Gas Cost Per Blob Byte, is a parameter that could potentially be adjusted through the system's governance mechanisms.
+- $GCPBB$ = Gas Cost Per Blob Byte, is a hard-coded constant (8)
+- $n$ = the number of blobs in the transaction
+- $TSCPB$ = Tx Size Cost Per Byte, is a hard-coded constant (10)
+- $BPBI$ = Bytes Per Blob Info, is an estimate of the extra transaction bytes each blob adds (70)
 
 The gas fee is set by the user when they submit a transaction. The fee is often
 specified by users directly. The total cost for the transaction is then
@@ -134,17 +137,17 @@ it's important for users to estimate the gas limit accurately to
 avoid overpaying.
 
 For more details on how gas is calculated per blob, refer to the
-[`PayForBlobs` function](https://github.com/celestiaorg/celestia-app/blob/32d247971386c1944d44bec1faeb000b1ff1dd51/x/blob/keeper/keeper.go#L53)
+[`PayForBlobs` function](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/x/blob/keeper/keeper.go#L52)
 that consumes gas based on the blob sizes. This function uses the
-[`GasToConsume` function](https://github.com/celestiaorg/celestia-app/blob/32d247971386c1944d44bec1faeb000b1ff1dd51/x/blob/types/payforblob.go#L157-L167)
+[`GasToConsume` function](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/x/blob/types/payforblob.go#L144-L156)
 to calculate the extra gas charged to pay for a set of blobs in a `MsgPayForBlobs`
 transaction. This function calculates the total shares used by all blobs and
 multiplies it by the `ShareSize` and `gasPerByte` to get the total gas to consume.
 
 For estimating the total gas required for a set of blobs, refer to the
-[`EstimateGas` function](https://github.com/celestiaorg/celestia-app/blob/32d247971386c1944d44bec1faeb000b1ff1dd51/x/blob/types/payforblob.go#L169-L181).
+[`EstimateGas` function](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/x/blob/types/payforblob.go#L158-L164).
 This function estimates the gas based on a linear model that is dependent on
-the governance parameters: `gasPerByte` and `txSizeCost`. It assumes other
+the constants `gasPerByte` and `txSizeCost`. It assumes other
 variables are constant, including the assumption that the `MsgPayForBlobs`
 is the only message in the transaction. The `DefaultEstimateGas` function
 runs `EstimateGas` with the system defaults.
@@ -155,9 +158,13 @@ Users can estimate an efficient gas limit by using this function:
 
 ```go
 import (
-    blobtypes "github.com/celestiaorg/celestia-app/x/blob/types"
+    blobtypes "github.com/celestiaorg/celestia-app/v10/x/blob/types"
+    "github.com/celestiaorg/go-square/v4/share"
 )
-gasLimit := blobtypes.DefaultEstimateGas([]uint32{uint32(sizeOfDataInBytes)})
+gasLimit := blobtypes.DefaultEstimateGas(&blobtypes.MsgPayForBlobs{
+    BlobSizes:     []uint32{uint32(sizeOfDataInBytes)},
+    ShareVersions: []uint32{uint32(share.ShareVersionZero)},
+})
 ```
 
 If using a celestia-node light client, then this function is automatically
@@ -166,9 +173,9 @@ components of calculating gas for a blob transaction. These components consist
 of a flat costs for all PFBs, the size of each blob and how many shares each
 uses and the parameter for gas used per byte. More information about how gas is
 used can be found in the [gas
-specs](https://github.com/celestiaorg/celestia-app/blob/d17e231ae3a0150b50a1854f3e9a268c34502b6b/specs/src/specs/resource_pricing.md)
+specs](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/specs/src/resource_pricing.md)
 and the exact formula can be found in the [blob
-module](https://github.com/celestiaorg/celestia-app/blob/d17e231ae3a0150b50a1854f3e9a268c34502b6b/x/blob/types/payforblob.go#L157-L181).
+module](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/x/blob/types/payforblob.go#L144-L170).
 
 ## Transaction submission strategies
 
@@ -185,7 +192,7 @@ transaction. If you wish to submit multiple transactions from the same account i
 manually. Otherwise, subsequent transactions will not be accepted until the first transaction is reaped from the mempool (included in
 a block) or dropped after timing out.
 
-By default, nodes will drop a transaction if it does not get included in 12 blocks (roughly 72 seconds). At this point, you must
+By default, nodes will drop a transaction if it does not get included in 36 blocks (roughly 95 seconds). At this point, you must
 resubmit your transaction if you want it to eventually be included.
 
 <Callout type="warning" title="No replace-by-fee">
@@ -235,9 +242,9 @@ by setting `TxWorkerAccounts` to a value > 1:
 `TxWorkerAccounts` defines how many parallel lanes the node will initialize for submitting transactions. These lanes are implemented as
 subaccounts that are automatically:
 
-1. Created and derived from your default account
-2. Funded by your default account
-3. Added to your node's keyring
+1. Created as new keys in your node's keyring
+2. Funded with a small balance by your default account
+3. Granted a fee allowance by your default account
 
 This bypasses account sequence limits and enables significantly higher throughput.
 
@@ -298,10 +305,13 @@ without that prefix is literal text, even if it looks like hex: `cafe` submits
 `cafe`. Use explicit `0x`-prefixed hex data for compatibility with earlier builds.
 The namespace remains hex-encoded.
 
-Available flags:
+Available flags include:
 
-- `--core.estimator.address string`: Specifies the endpoint of the third-party service for gas price and gas estimation. Format: `<address>:<port>`. If not provided, the default connection to the consensus node will be used.
-- `--max.gas.price`: Sets the maximum gas price you're willing to pay for the transaction. If the estimated gas price exceeds this value, the transaction will not be submitted. Default is 0.2 TIA (100x the minimum gas price).
+- `--max.gas.price`: Sets the maximum gas price you're willing to pay for the transaction. If the estimated gas price exceeds this value, the transaction will not be submitted. Default is 0.4 utia per unit of gas (100x the default minimum gas price).
+
+To use a third-party service for gas price and gas estimation, start the node
+with `--estimator.service.address <address>:<port>`. If not provided, the node
+uses its connection to the consensus node.
 
 Learn more in the [light node tutorial](/operate/data-availability/light-node/quickstart).
 

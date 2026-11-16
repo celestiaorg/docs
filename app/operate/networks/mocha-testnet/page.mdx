@@ -42,31 +42,17 @@ genesis transactions. Other validators can join by submitting
 set, governance proposals, IBC channels, Hyperlane state, community
 pool, and all other chain state did not carry over.
 
-`mocha-4` remains running until it is officially shut down on
-September 1, 2026. All services still pointing at `mocha-4` should move
-to `mocha-5` before then. If you operate a `mocha-4` validator, keep it
-running while you migrate if possible; if you need to stop it sooner,
-unbond it from the active set first so it does not affect `mocha-4`
-block production.
+`mocha-4` was shut down on
+[September 10, 2026](https://status.celestia.org/incidents/01M25X4RKXKN9XHS5N0D76QFF1).
+Move any service still pointing at `mocha-4` to `mocha-5`.
 
 ### Accessing mocha-4 history
 
 Because `mocha-5` started from a new genesis, `mocha-4` history is not
 queryable on the new network. Blobs and rollup data posted to `mocha-4`
 are not retrievable on `mocha-5`. Individual node operators are not
-expected to retain `mocha-4` data. An exported copy of the final
-`mocha-4` state will be available for one month after the shutdown.
-
-If you depend on specific `mocha-4` transaction history, export what you
-need before the September 1, 2026 shutdown.
-
-<Callout type="info">
-An archival `mocha-4` node snapshot taken on 2026-08-19 is available at
-[snaps.qubelabs.io/celestia/mocha-4_2026-08-19.tar](https://snaps.qubelabs.io/celestia/mocha-4_2026-08-19.tar).
-Note that it is approximately 12.3 TB. Follow the
-[status page announcement](https://status.celestia.org/incidents/nc1nkb54)
-for updates.
-</Callout>
+expected to retain `mocha-4` data. No public `mocha-4` snapshot is
+maintained.
 
 ### Prepare a separate consensus-node home
 
@@ -215,6 +201,7 @@ need Tendermint RPC from the same provider.
 | Provider      | Endpoint for `--core.ip`                                          | RPC port | gRPC port |
 | ------------- | ----------------------------------------------------------------- | -------- | --------- |
 | P-OPS         | `rpc-mocha.pops.one`                                              | 443      | 9090      |
+| ITRocket      | `celestia-testnet-consensus.itrocket.net`                         | -        | 9090      |
 
 You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
 
@@ -248,6 +235,7 @@ storage window. This trimming preserves the original data for retrieval. You can
 | Provider        | Endpoint                                        | RPC Port | Gateway Port |
 | --------------- | ----------------------------------------------- | -------- | ------------ |
 | Noders Services | `https://celestia-t-archive-da.noders.services` | 443      | -            |
+| ITRocket        | `https://celestia-testnet-da.itrocket.net`      | 443      | -            |
 
 ## Community RPC endpoints
 
@@ -277,7 +265,7 @@ The default port is 1317.
 - `https://api-mocha.pops.one`
 - `https://api-1.testnet.celestia.nodes.guru`
 - `https://api-2.testnet.celestia.nodes.guru`
-- `https://celestia-testnet-api.itrocket.net`
+- `https://celestia-testnet-api.itrocket.net` (archival)
 - `https://celestia-t-api.noders.services`
 - `https://celestia-t-archive-api.noders.services` (archival)
 
@@ -291,14 +279,18 @@ broadcast transactions.
 - `grpc-mocha.pops.one`
 - `grpc-1.testnet.celestia.nodes.guru:10790`
 - `grpc-2.testnet.celestia.nodes.guru:10790`
-- `celestia-testnet-grpc.itrocket.net:443`
+- `celestia-testnet-grpc.itrocket.net:443` (archival)
 - `celestia-t-grpc.noders.services:443`
 - `celestia-t-archive-grpc.noders.services:443` (archival)
 
 ## Community bridge node endpoints
 
-The `mocha-5` DA network is live. Community bridge node endpoints will
-be added here as providers make them available.
+The `mocha-5` DA network is live. The following community bridge node
+endpoints are available:
+
+| Provider | Endpoint                                        | RPC Port | Gateway Port |
+| -------- | ----------------------------------------------- | -------- | ------------ |
+| ITRocket | `celestia-testnet-da-full-storage.itrocket.net` | 26658    | -        |
 
 ## Mocha testnet faucet
 
@@ -329,6 +321,8 @@ Web faucets are available at:
 The following websites provide analytics for Mocha Testnet:
 
 - [https://itrocket.net/services/testnet/celestia/](https://itrocket.net/services/testnet/celestia/) - Monitoring and chain status tools
+- [https://itrocket.net/services/testnet/celestia/analytics/consensus-signal-tracker/](https://itrocket.net/services/testnet/celestia/analytics/consensus-signal-tracker/) - Consensus signal tracker
+- [https://itrocket.net/services/testnet/celestia/analytics/validators-performance/](https://itrocket.net/services/testnet/celestia/analytics/validators-performance/) - Validators performance
 
 ## Node maps
 
@@ -350,7 +344,7 @@ There are several explorers you can use for Mocha:
 - `https://explorer.nodestake.top/celestia-testnet/`
 - `https://stakeflow.io/celestia-testnet`
 - `https://testnet.celestia.explorers.guru`
-- `https://testnet.itrocket.net/celestia`
+- `https://itrocket.net/services/testnet/celestia/explorer/`
 - `https://testnet.celestia.valopers.com/`
 - `https://celestiahub.org/explorer` (select `{{constants['mochaChainId']}}` in the network menu)
 - `https://explorer.chainroot.io/celestia-testnet-{{constants['mochaChainId']}}`
@@ -362,7 +356,8 @@ There are a few ways to stay informed about network upgrades on the Mocha testne
 - Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 - Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
 
-Mocha has activated app version 10. See the
-[Mocha-5 upgrade history](/operate/maintenance/network-upgrades#mocha-5) for the
-activation height and date, and the [Fibre server guide](/operate/consensus-validators/fibre)
-for validator setup and registration.
+Mocha is rolling out app version 11. Activation is pending, with no height
+yet. See [v11 (emergency release)](/operate/maintenance/network-upgrades#v11-emergency-release)
+for consensus node, validator, and DA node upgrade steps, and the
+[Fibre server guide](/operate/consensus-validators/fibre) for validator setup
+and registration.

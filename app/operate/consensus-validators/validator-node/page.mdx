@@ -141,54 +141,40 @@ In order to create a validator on-chain, follow the steps below.
    export VALIDATOR_PUBKEY=$(celestia-appd tendermint show-validator)
    ```
 
+1. Create a `validator.json` file with your validator details. The commission
+   rate must be at least 20% (`0.2`) and the maximum commission rate cannot
+   exceed 60% (`0.6`). Replace the placeholder values, or set the optional
+   fields to an empty string.
+
+   ```bash
+   cat > validator.json <<EOF
+   {
+     "pubkey": $VALIDATOR_PUBKEY,
+     "amount": "1000000utia",
+     "moniker": "$MONIKER",
+     "identity": "<optional_identity_signature>",
+     "website": "<optional_validator_website>",
+     "security": "<optional_email_address_for_security_contact>",
+     "details": "A short and optional description of the validator.",
+     "commission-rate": "0.2",
+     "commission-max-rate": "0.6",
+     "commission-max-change-rate": "0.01",
+     "min-self-delegation": "1000000"
+   }
+   EOF
+   ```
+
 1. Create a validator
 
-   <NetworkTabs items={['Mainnet Beta', 'Mocha']} storageKey="validator-node-network">
-     <Tabs.Tab>
-       ```bash
-       celestia-appd tx staking create-validator \
-           --amount=1000000utia \
-           --pubkey=$VALIDATOR_PUBKEY \
-           --moniker=$MONIKER \
-           --identity=<optional_identity_signature> \
-           --website="<optional_validator_website>" \
-           --security-contact="<optional_email_address_for_security_contact>" \
-           --details="A short and optional description of the validator." \
-           --chain-id=$CHAIN_ID \
-           --commission-rate=0.1 \
-           --commission-max-rate=0.2 \
-           --commission-max-change-rate=0.01 \
-           --min-self-delegation=1000000 \
-           --from=$VALIDATOR_WALLET \
-           --keyring-backend=$KEYRING_BACKEND \
-           --fees=21000utia \
-           --gas=220000 \
-           --yes
-       ```
-     </Tabs.Tab>
-     <Tabs.Tab>
-       ```bash
-       celestia-appd tx staking create-validator \
-           --amount=1000000utia \
-           --pubkey=$VALIDATOR_PUBKEY \
-           --moniker=$MONIKER \
-           --identity=<optional_identity_signature> \
-           --website="<optional_validator_website>" \
-           --security-contact="<optional_email_address_for_security_contact>" \
-           --details="A short and optional description of the validator." \
-           --chain-id=$CHAIN_ID \
-           --commission-rate=0.1 \
-           --commission-max-rate=0.2 \
-           --commission-max-change-rate=0.01 \
-           --min-self-delegation=1000000 \
-           --from=$VALIDATOR_WALLET \
-           --keyring-backend=$KEYRING_BACKEND \
-           --fees=21000utia \
-           --gas=220000 \
-           --yes
-       ```
-     </Tabs.Tab>
-   </NetworkTabs>
+   ```bash
+   celestia-appd tx staking create-validator validator.json \
+       --chain-id=$CHAIN_ID \
+       --from=$VALIDATOR_WALLET \
+       --keyring-backend=$KEYRING_BACKEND \
+       --fees=21000utia \
+       --gas=220000 \
+       --yes
+   ```
 
 You should see output like:
 
@@ -294,14 +280,14 @@ to configure your `config.toml` file to select which transactions to index.
 
 ## Migrating a validator to another machine
 
-> **Warning:** Moving a validator to a new machine is a sensitive process that needs to be done carefully. If the transfer isn’t handled properly, it could result in double signing, which will permanently slash your validator, wipe out delegated tokens, and remove you from the active validator set. To avoid this, make sure to follow the steps closely and stop the old node completely before starting the migration.
+> **Warning:** Moving a validator to a new machine is a sensitive process that needs to be done carefully. If the transfer isn’t handled properly, it could result in double signing, which will slash 2% of your validator's stake, including delegated tokens, and permanently remove you from the active validator set. To avoid this, make sure to follow the steps closely and stop the old node completely before starting the migration.
 
 ### Step 1: Set up a new full consensus node
 
 First, set up a new [consensus node](/operate/consensus-validators/consensus-node) on the new server and make sure the node is fully synced with the chain. To check whether your node is synced, you can check the `catching_up` status using:
 
 ```bash
-celestia-appd status | jq '{ "catching_up": .SyncInfo.catching_up }'
+celestia-appd status | jq '{ "catching_up": .sync_info.catching_up }'
 ```
 
 If the node is synced, the output will look like this:
@@ -371,14 +357,14 @@ If you encounter an error like:
 2024-04-25 14:48:24 6:48PM ERR CONSENSUS FAILURE!!! err="+2/3 committed an invalid block: wrong Block.Header.Version. Expected {11 1}, got {11 2}" module=consensus stack="goroutine 214 [running]:\nruntime/debug.Stack()\n\t/usr/local/go/src/runtime/debug/stack.go:24 +0x64\ngithub.com/tendermint/tendermint/consensus.(*State).receiveRoutine.func2()\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:746 +0x44\npanic({0x1b91180?, 0x400153b240?})\n\t/usr/local/go/src/runtime/panic.go:770 +0x124\ngithub.com/tendermint/tendermint/consensus.(*State).finalizeCommit(0x400065ea88, 0x3)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:1637 +0xd30\ngithub.com/tendermint/tendermint/consensus.(*State).tryFinalizeCommit(0x400065ea88, 0x3)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:1606 +0x26c\ngithub.com/tendermint/tendermint/consensus.(*State).handleCompleteProposal(0x400065ea88, 0x3)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:2001 +0x2d8\ngithub.com/tendermint/tendermint/consensus.(*State).handleMsg(0x400065ea88, {{0x2b30a00, 0x400143e048}, {0x40002a61b0, 0x28}})\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:856 +0x1c8\ngithub.com/tendermint/tendermint/consensus.(*State).receiveRoutine(0x400065ea88, 0x0)\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:782 +0x2c4\ncreated by github.com/tendermint/tendermint/consensus.(*State).OnStart in goroutine 169\n\t/go/pkg/mod/github.com/celestiaorg/celestia-core@v1.35.0-tm-v0.34.29/consensus/state.go:391 +0x110\n"
 ```
 
-then it is likely that the network has upgraded to a new app version but your consensus node was not prepared for the upgrade. To fix this, you'll need to update your binary to the latest version and restart your node with the relevant `--v2-upgrade-height` for the network you're running on. If your node still can't sync to the tip of the chain after the above steps, consider a `celestia-appd tendermint reset-state` to reset your node and start syncing from the genesis block.
+then it is likely that the network has upgraded to a new app version but your consensus node was not prepared for the upgrade. To fix this, you'll need to update your binary to the latest version and restart your node. If your node still can't sync to the tip of the chain after the above steps, consider a `celestia-appd tendermint reset-state` to reset your node and start syncing from the genesis block.
 
 1. [Optional] Back up your validator keys.
 1. [Optional] Back up the `data/priv_validator_state.json` inside your CELESTIA_HOME directory.
 1. Remove DBs from your CELESTIA_HOME directory via: `celestia-appd tendermint reset-state`.
 1. Remove the `data/application.db` inside your CELESTIA_HOME directory.
 1. Download the latest binary for your network.
-1. Restart your consensus node with the relevant `--v2-upgrade-height` for the network you're running on.
+1. Restart your consensus node.
 
 ### `App cannot be started without CometBFT when using the multiplexer`
 
@@ -394,10 +380,10 @@ It is possible that one of the historical celestia-app binaries you have downloa
 rm -rf ~/.celestia-app/bin
 ```
 
-Re-download all historical binaries:
+Re-download all historical binaries and reinstall from the celestia-app repository:
 
 ```bash
-make download-v3-binaries download-v4-binaries download-v5-binaries
+make install
 ```
 
 ### `ERR failed to LoadFinalizeBlockResponse err="node is not persisting finalize block responses"`

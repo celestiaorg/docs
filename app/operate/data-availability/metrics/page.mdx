@@ -179,11 +179,6 @@ Use `das_sampling_head_lag` to monitor how far data availability sampling (DAS)
 is behind the network head known to your node. Enable metrics with the flags
 above and view the gauge in your metrics backend.
 
-> This metric requires a celestia-node build that includes
-> [celestia-node #5307](https://github.com/celestiaorg/celestia-node/pull/5307).
-> The change is merged but is not included in a published release as of
-> 5 October 2026.
-
 The gauge reports `max(NetworkHead - SampledChainHead, 0)` in headers.
 `SampledChainHead` is the head of the continuously sampled chain. For example,
 a network head of 100 and a sampled chain head of 90 produce a lag of 10.

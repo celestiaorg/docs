@@ -39,10 +39,11 @@ The [Go quickstart](/build/post-retrieve-blob/client/go) reads the same token fr
 `CELE_DA_TOKEN`, and a consensus endpoint token from `CELE_CORE_TOKEN`.
 Keep tokens out of source control, shared request examples, and public bug reports.
 
-### Revoke a token on Mocha
+### Revoke a token
 
-On Mocha with celestia-node v0.35.0 or later, the admin-only `node.AuthRevoke`
-RPC method or `celestia node revoke-token` command revokes a single token:
+On Mainnet Beta and Mocha with celestia-node v0.35.0 or later, the admin-only
+`node.AuthRevoke` RPC method or `celestia node revoke-token` command revokes a
+single token:
 
 ```bash
 celestia node revoke-token "$TOKEN_TO_REVOKE" --url http://localhost:26658 --token "$ADMIN_TOKEN"
@@ -50,8 +51,7 @@ celestia node revoke-token "$TOKEN_TO_REVOKE" --url http://localhost:26658 --tok
 
 Use an admin token for `ADMIN_TOKEN`. Revoked tokens stop authenticating, and
 their open WebSocket sessions and subscriptions are closed. Revocations
-persist across restarts. On Mainnet Beta (v0.34.x), issued tokens still cannot
-be revoked.
+persist across restarts. Nodes older than v0.35.0 cannot revoke tokens.
 
 ## Provider credentials
 

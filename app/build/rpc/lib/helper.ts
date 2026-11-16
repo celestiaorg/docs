@@ -1,5 +1,10 @@
 import { Method, Param } from './types';
 
+export function extractAuth(methodDescription: string | undefined): string {
+  // Newer specs append authentication instructions after the permission name.
+  return methodDescription?.match(/\bAuth level:[ \t]*(public|read|write|admin)(?=[.\s]|$)/)?.[1] || '';
+}
+
 export function classNames(...classes: unknown[]) {
   return classes.filter(Boolean).join(' ');
 }

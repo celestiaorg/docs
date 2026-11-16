@@ -58,8 +58,6 @@ function withVocsMdxCompatibility(content, sourcePath) {
       /from\s+['"]nextra\/components['"]/g,
       "from '@/src/vocs/compat/nextra-components'",
     )
-    .replaceAll(/from\s+['"]next\/link['"]/g, "from '@/src/vocs/compat/next-link'")
-    .replaceAll(/from\s+['"]next\/image['"]/g, "from '@/src/vocs/compat/next-image'")
 }
 
 async function copyAppTree(currentDir = appDir) {

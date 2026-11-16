@@ -32,6 +32,7 @@ Edit **only** the following items.
 | `CELESTIA_CORE_GRPC` | Same host + `:9090` (no token in path) |
 | `CELESTIA_NODE_WRITE_TOKEN` | Your Quicknode token |
 | `CELESTIA_SIGNING_KEY` | 32-byte private key for your signer (funded on Mocha) |
+| `SP1_PROVER` | Defaults to `cuda`, which needs an NVIDIA GPU with 20 GB or more of VRAM and CUDA 12+. Without one, set `cpu`, or `mock` for mock proofs. Do not set `network` for private data: the external Succinct prover network receives the plaintext |
 | `TLS_CERTS_PATH` / `TLS_KEY_PATH` | Path to your local TLS cert + key (see next step) |
 | `CELESTIA_NETWORK` etc. | Keep defaults; ensure all paths are absolute |
 
@@ -73,10 +74,6 @@ That address must exist and hold some test TIA.
 
 **Get funds from the [Celestia Mocha faucet](https://faucet.celestia-mocha.com).**
 
-<Callout type="info">
-You can verify your signer address in the proxy logs it prints the address when starting.
-</Callout>
-
 ## Run the proxy container
 
 **Apple Silicon (M1/M2/M3)**
@@ -108,7 +105,7 @@ docker logs -f pda-proxy
 
 Or test status:
 ```bash
-curl -k -sS -X POST   -H "Content-Type: application/json"   -H "Authorization: Bearer YOUR_TOKEN"   --data '{"jsonrpc":"2.0","id":1,"method":"status","params":[]}'   https://127.0.0.1:26657 | jq .
+curl -k -sS -X POST   -H "Content-Type: application/json"   -H "Authorization: Bearer YOUR_TOKEN"   --data '{"jsonrpc":"2.0","id":1,"method":"header.NetworkHead","params":[]}'   https://127.0.0.1:26657 | jq .
 ```
 
 <Callout type="info">
@@ -147,7 +144,7 @@ The proxy will:
 
 If the response includes `"result": { "height": "…" }`, you’re set. Jump to **Verify your blob** with that height.
 
-If you see `"[pda-proxy] Verifiable encryption processing..."`, the proxy queued the job. Two quick options:
+If the response has a top-level `status` field containing `Verifiable encryption processing...`, the proxy queued the job. Two quick options:
 
 **Option A — resend once**
 
@@ -166,9 +163,9 @@ LATEST=$(
   curl -k -sS \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer YOUR_TOKEN" \
-    -X POST --data '{"jsonrpc":"2.0","id":1,"method":"status","params":[]}' \
+    -X POST --data '{"jsonrpc":"2.0","id":1,"method":"header.NetworkHead","params":[]}' \
     https://127.0.0.1:26657 |
-  jq -r '.result.sync_info.latest_block_height'
+  jq -r '.result.header.height'
 )
 
 for h in $(seq $((LATEST-2)) $((LATEST+2))); do

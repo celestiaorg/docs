@@ -15,7 +15,7 @@ As of the Lemongrass upgrade in September 2024, Celestia has implemented [CIP-10
 1. **Pre-programmed height**: Used for the Lemongrass network upgrade (v2)
 2. **In-protocol signaling**: Used for all subsequent upgrades (v3+)
 
-Under the in-protocol signaling mechanism, validators submit messages to signal their readiness and preference for the next version. The upgrade activates automatically once a quorum of 5/6 of validators have signaled for the same version.
+Under the in-protocol signaling mechanism, validators submit messages to signal their readiness and preference for the next version. Once 5/6 of the voting power has signaled for the same version, anyone can submit a `MsgTryUpgrade` transaction (`celestia-appd tx signal try-upgrade`) to tally the signals and schedule the upgrade.
 
 ### Announcement channels
 
@@ -35,7 +35,78 @@ The upgrade process can be broken down into a few steps:
 1. A new binary is released with the new features to be tested on testnets.
 1. Node operators upgrade to the new binary on [Mocha testnet](/operate/networks/mocha-testnet), and finally on Celestia [Mainnet Beta](/operate/networks/mainnet-beta).
    - Upgrades using pre-programmed height (v2) activate at a predetermined block number.
-   - Upgrades using in-protocol signaling (v3+) activate one week after 5/6 of the voting power has signaled for a particular version
+   - Upgrades using in-protocol signaling (v3+) activate after a delay once 5/6 of the voting power has signaled for a particular version and a `MsgTryUpgrade` transaction has succeeded. The delay is about 7 days on Mainnet Beta and about 2 days on Mocha.
+
+## v11 (emergency release)
+
+Mocha is rolling out celestia-app `{{mochaVersions['app-latest-tag']}}`.
+App version 11 is pending on Mocha, with no activation height yet. The
+[emergency release](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
+was cut from `v10.x`, not `main`; see
+[celestia-app#8617](https://github.com/celestiaorg/celestia-app/pull/8617).
+The block pacing and Fibre registration changes on `main` belong to v12.
+Mainnet Beta v11 has not been released.
+
+### Account recovery restrictions
+
+From app version 11, a fixed per-chain list of accounts whose keys were
+exposed in the Keplr/Web3Auth social-login incident can only move funds to
+one whitehat recovery address. On Mocha, the list contains three test
+accounts. Listed accounts may submit only:
+
+- `MsgSend` to the whitehat recovery address.
+- `MsgUndelegate`.
+- `MsgWithdrawDelegatorReward`, while the withdrawal address is the delegator
+  or the whitehat recovery address.
+- `MsgSetWithdrawAddress` to the whitehat recovery address.
+
+Their transaction fee must be at most 1 TIA. These restrictions take effect
+when app version 11 activates, not when the binary is installed. See
+[celestia-app#8618](https://github.com/celestiaorg/celestia-app/pull/8618).
+
+### Upgrade Mocha consensus nodes and validators
+
+No configuration changes are required.
+
+1. Download the `celestia-app` archive for your platform from the
+   [Mocha release](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}}).
+   Validators must also download the matching `fibre` archive from the same
+   release.
+2. Verify each downloaded archive against the release's `checksums.txt`
+   before extracting it. For Linux, run `sha256sum --ignore-missing --check checksums.txt`
+   in the download directory and confirm each archive reports `OK`.
+3. Stop the node and, for validators, Fibre. Replace `celestia-appd` and the
+   validator's `fibre` binary with the verified binaries.
+4. Restart with the existing home directories and database. The node
+   continues running app version 10 until the upgrade activates.
+
+For source builds, use Go 1.26.10. The release's Makefile downloads that
+toolchain automatically if a different Go version is installed.
+
+After installing the binaries, each validator signals for version 11:
+
+```bash
+celestia-appd tx signal signal 11
+```
+
+Once at least 5/6 of voting power has signalled, anyone can submit:
+
+```bash
+celestia-appd tx signal try-upgrade
+```
+
+Append your transaction flags to both commands, including the signing key,
+chain ID, fees, and home directory as needed. After a successful
+`try-upgrade` transaction, activation occurs 66,462 blocks later, about
+53 hours at Mocha's current block time.
+
+### Upgrade Mocha DA nodes before activation
+
+DA nodes must run celestia-node `{{mochaVersions['node-latest-tag']}}` and use
+a core endpoint running celestia-app v11 before activation. Older DA nodes
+reject app version 11 headers and stop syncing when v11 activates. No
+`config-update` is needed; configuration and storage are unchanged. See the
+[celestia-node release notes](https://github.com/celestiaorg/celestia-node/releases/tag/{{mochaVersions['node-latest-tag']}}).
 
 ## Configuration changes in v10
 
@@ -45,7 +116,8 @@ Replacing celestia-app does not add new settings or comments to existing
 configuration files. Missing settings use the binary's defaults.
 
 Starting with celestia-app v10.2.0, use `config sync` to add missing fields and
-their documentation to `config/config.toml`. Preview the additions first:
+their documentation to `config/config.toml` and, if present, the Fibre
+`server_config.toml` (set its location with `--fibre-home`). Preview the additions first:
 
 ```bash
 celestia-appd config sync --home ~/.celestia-app --dry-run
@@ -97,9 +169,12 @@ In the Mainnet Beta table, version links point to Celenium upgrade status pages 
 
 #### Mocha-5
 
-App version 10 activated on `mocha-5` at the height specified in the
-[activation announcement](https://status.celestia.org/incidents/vbsesey3).
-Bonded validators can now [start and register their Fibre servers](/operate/consensus-validators/fibre).
+Mocha is rolling out [v11 (emergency release)](#v11-emergency-release).
+Activation is pending, with no height yet. The table records completed
+upgrades; see the [Fibre server guide](/operate/consensus-validators/fibre)
+for validator setup and registration.
+
+{/* TODO: Add the v11 row once the Mocha activation height and date are confirmed. */}
 
 | Version | Date and time | Upgrade height | Parameters |
 | ------- | ------------- | -------------- | ---------- |
@@ -137,6 +212,7 @@ The upgrades below happened on the `mocha-4` chain. Celenium now indexes `mocha-
 
 > **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/sdk/v0.53/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 
-Mocha has activated app version 10; see the [Mocha-5 upgrade history](#mocha-5).
+Mocha is rolling out [v11 (emergency release)](#v11-emergency-release);
+activation is pending, with no height yet.
 For upcoming upgrade schedules on each network, follow the
 [network announcements](https://status.celestia.org/).

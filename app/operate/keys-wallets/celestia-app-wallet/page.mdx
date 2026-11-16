@@ -44,8 +44,9 @@ move funds on its own.
 
 You can set the backend for a single command with `--keyring-backend`, which is
 what the examples in these docs do. Pass it on every command that touches a key:
-without the flag, `celestia-appd` falls back to the default backend and will not
-find a key that was created in a different one. You can learn more on the
+without the flag, `celestia-appd` falls back to the default backend, `test`,
+which stores keys unencrypted on disk, and will not find a key that was created
+in a different one. You can learn more on the
 [Cosmos documentation](https://docs.cosmos.network/sdk/v0.53/user/run-node/keyring)
 or [Go Package documentation](https://pkg.go.dev/github.com/cosmos/cosmos-sdk/crypto/keyring).
 

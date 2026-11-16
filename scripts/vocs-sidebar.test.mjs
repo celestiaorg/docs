@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { readdirSync } from 'node:fs'
 import { test } from 'node:test'
 import { sidebarFor } from './vocs-sidebar.mjs'
 
@@ -14,6 +15,16 @@ for (const section of ['learn', 'build', 'operate']) {
     const items = flatten(await sidebarFor(`app/${section}`, `/${section}`))
     const links = items.map((item) => item.link)
     assert.equal(new Set(links).size, links.length)
+  })
+}
+
+for (const section of ['learn', 'build', 'operate']) {
+  test(`${section} sidebar lists every page`, async () => {
+    const links = new Set(flatten(await sidebarFor(`app/${section}`, `/${section}`)).map((item) => item.link))
+    const routes = readdirSync(`app/${section}`, { recursive: true })
+      .filter((file) => file.endsWith('page.mdx'))
+      .map((file) => `/${section}/${file}`.replace(/\/page\.mdx$/, ''))
+    assert.deepEqual(routes.filter((route) => !links.has(route)), [])
   })
 }
 

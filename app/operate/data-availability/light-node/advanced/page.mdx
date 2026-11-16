@@ -154,10 +154,10 @@ nano ~/.celestia-light-{{constants['mochaChainId']}}/config.toml
 
 #### Set TxWorkerAccounts to 1
 
-Find the `[SubmitClient]` section and add or update:
+Find the `[State]` section and add or update:
 
 ```toml
-[SubmitClient]
+[State]
 TxWorkerAccounts = 1
 ```
 
@@ -195,10 +195,10 @@ nano ~/.celestia-light-{{constants['mochaChainId']}}/config.toml
 
 #### Set TxWorkerAccounts to desired number of lanes
 
-Find the `[SubmitClient]` section and add or update:
+Find the `[State]` section and add or update:
 
 ```toml
-[SubmitClient]
+[State]
 TxWorkerAccounts = 8
 ```
 
@@ -274,10 +274,9 @@ node from another machine or a client application. Generate an admin token with:
 celestia light auth admin --p2p.network mocha
 ```
 
-Each time you run this, you will receive a new token. On Mainnet Beta
-(v0.34.x), issued tokens still cannot be revoked.
+Each time you run this, you will receive a new token.
 
-On Mocha with celestia-node v0.35.0 or later, use the admin-only
+On Mainnet Beta and Mocha with celestia-node v0.35.0 or later, use the admin-only
 `node.AuthRevoke` RPC method or `celestia node revoke-token` command to revoke
 a single token:
 
@@ -287,7 +286,7 @@ celestia node revoke-token "$TOKEN_TO_REVOKE" --url http://localhost:26658 --tok
 
 Use an admin token for `ADMIN_TOKEN`. Revoked tokens stop authenticating, and
 their open WebSocket sessions and subscriptions are closed. Revocations
-persist across restarts.
+persist across restarts. Nodes older than v0.35.0 cannot revoke tokens.
 
 Use `celestia light auth --help` to learn more about the available options.
 
@@ -323,7 +322,7 @@ If you need data older than your current pruning windows, use
 `SyncFromHeight`/`SyncFromHash` to re-sync from an earlier point in time.
 
 - Sampling window: 7 days ([v0.25.3 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.25.3))
-- Header pruning window: 14 days ([v0.26.4 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.26.4))
+- Header pruning window: `{{constants['bridgeStorageWindowHours']}}h` (7 days plus 1 hour) ([v0.26.4 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.26.4))
 
 ---
 

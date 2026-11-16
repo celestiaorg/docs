@@ -5,6 +5,7 @@ import apiVersions from '@/constants/node_api_versions.json';
 import { useEffect, useState, useCallback } from 'react';
 
 import { INotification, MethodByPkg, OpenRPCSpec, Param } from '../lib/types';
+import { extractAuth } from '../lib/helper';
 
 import NotificationModal from '../components/NotificationModal';
 import Playground from '../components/Playground';
@@ -14,11 +15,6 @@ import './rpc-api.css';
 
 // Get base path for asset references
 const basePath = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
-
-function extractAuth(methodDescription: string | undefined): string {
-  if (!methodDescription) return '';
-  return methodDescription.split('Auth level: ')[1] || '';
-}
 
 function getMethodsByPackage(spec: OpenRPCSpec): MethodByPkg {
   const methodsByPackage: MethodByPkg = {};

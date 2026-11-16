@@ -18,7 +18,7 @@
     "check-links": "node --test scripts/check-links.test.mjs && node scripts/check-links.mjs",
     "test:endpoints": "node --test scripts/check-endpoints.test.mjs",
     "test:mcp": "node --test worker/index.test.js scripts/webmcp.test.mjs",
-    "test:rpc": "bun test scripts/rpc-playground.test.tsx",
+    "test:rpc": "bun test scripts/rpc-playground.test.tsx scripts/rpc-auth.test.tsx",
     "typecheck": "tsc --noEmit",
     "test:static": "node --test scripts/vocs-sidebar.test.mjs && node scripts/check-static-export.mjs",
     "test:cloudflare": "node --test scripts/cloudflare-target.test.mjs && node scripts/check-cloudflare-artifact.mjs",
