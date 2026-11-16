@@ -83,15 +83,13 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Sync bundled API specs, skill links and Fibre client versions
+      - name: Sync bundled API specs and skill links
         run: |
           bun run sync:app-api
           bun run check:app-api
           node scripts/sync-node-api.mjs
           node scripts/sync-skill.mjs
           node scripts/sync-skill.mjs --check
-          node scripts/sync-fibre-client.mjs
-          node scripts/sync-fibre-client.mjs --check
 
       # Also repairs spec drift when the selected release tags have not changed.
       # create-pull-request is a no-op when the checkout has no changes.
@@ -104,7 +102,7 @@ jobs:
           title: "[GH Action] Sync release versions and API specs for ${{ matrix.network }}"
           body: |
             Proposes newer releases for ${{ matrix.network }} using numeric major/minor/patch ordering.
-            Includes matching Node API specs, Mainnet Beta celestia-app OpenAPI, generated skill links, and the Fibre client brief version line. Repairs API version drift even without a new release.
+            Includes matching Node API specs, Mainnet Beta celestia-app OpenAPI, and generated skill links. Repairs API version drift even without a new release.
             OpenAPI is generated from the exact Mainnet Beta app tag and commit in the docs constants, including during Mocha updates.
             Mainnet uses stable releases; Mocha uses only `-mocha` releases.
 

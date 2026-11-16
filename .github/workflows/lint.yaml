@@ -39,7 +39,6 @@ jobs:
       - name: Check skill and bundled API specs
         run: |
           bun run check:skill
-          bun run check:fibre-client
           bun run check:app-api
 
       - name: Test synchronized network tabs

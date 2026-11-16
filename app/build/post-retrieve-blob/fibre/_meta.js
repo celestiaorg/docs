@@ -5,6 +5,7 @@ const meta = {
   limits: "Limits and expectations",
   monitoring: "Monitoring",
   faq: "FAQ and errors",
+  "client-brief": "Client brief",
 };
 
 export default meta;
