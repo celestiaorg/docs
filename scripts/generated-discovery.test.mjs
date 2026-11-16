@@ -73,6 +73,14 @@ test('exported HTML advertises matching Markdown pages', { skip: !existsSync(new
   }
 });
 
+test('exported Fibre client brief uses the version constants', { skip: !existsSync(new URL('../out/public/index.html', import.meta.url)) }, () => {
+  const mainnet = JSON.parse(readFileSync(new URL('../constants/mainnet_versions.json', import.meta.url), 'utf8'));
+  const mocha = JSON.parse(readFileSync(new URL('../constants/mocha_versions.json', import.meta.url), 'utf8'));
+  const line = `Valid for: celestia-app ${mainnet['app-latest-tag']} / ${mocha['app-latest-tag']}, celestia-node ${mainnet['node-latest-tag']} / ${mocha['node-latest-tag']}.`;
+  assert.ok(read('fibre-client.md').includes(line), 'built /fibre-client.md is missing the constants version line');
+  assert.equal(read('fibre-client.md'), readFileSync(new URL('../public/fibre-client.md', import.meta.url), 'utf8'));
+});
+
 test('homepage Markdown provides meaningful product and developer guidance', () => {
   const markdown = read('index.md');
   const prose = markdown.replace(/\[[^\]]+\]\([^)]*\)/g, '').replace(/[#*]/g, '').replace(/\s+/g, ' ').trim();

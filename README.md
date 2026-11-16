@@ -172,6 +172,13 @@ availability, not behavioural compatibility or network activation; review method
 guidance and release requirements when updating specs. Edit the skill's prose
 outside the generated markers; its existing symlink remains the shared source.
 
+`public/fibre-client.md` is served at `/fibre-client.md`. Its version line is
+generated from `constants/mainnet_versions.json` and `constants/mocha_versions.json`.
+After those constants change, run `bun run generate:fibre-client`. The Latest Tags
+workflow does this in the same PR as a version update. CI runs
+`bun run check:fibre-client` and rejects a stale line. Edit the brief outside the
+generated markers; the skill-directory symlink remains the shared source.
+
 ## Contribution guidelines
 
 We love contributions from the community! Whether you're fixing typos, improving clarity, or adding new topics, every contribution helps.
