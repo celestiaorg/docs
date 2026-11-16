@@ -97,6 +97,13 @@ and recompute the memory budget. How to change these settings is covered in
 
 ## Install Fibre
 
+When upgrading to v11 on Mocha, replace the `fibre` binary alongside
+`celestia-appd`, using the matching archives from the
+[Mocha release](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}}).
+Stop both services before replacing the binaries, then restart with the
+existing home directories. No configuration changes are required. See
+[v11 upgrade steps](/operate/maintenance/network-upgrades#v11-emergency-release).
+
 ### Prebuilt binary
 
 Linux Fibre archives require glibc 2.34 or later. The celestia-app multiplexer
