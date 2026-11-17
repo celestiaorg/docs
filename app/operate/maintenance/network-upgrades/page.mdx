@@ -40,7 +40,8 @@ The upgrade process can be broken down into a few steps:
 ## v11 (emergency release)
 
 Mocha is rolling out celestia-app `{{mochaVersions['app-latest-tag']}}`.
-App version 11 is pending on Mocha, with no activation height yet. The
+App version 11 is scheduled to activate on Mocha at
+[height 2,760,280](https://testnet.celestia.explorers.guru/block/2760280). The
 [emergency release](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
 was cut from `v10.x`, not `main`; see
 [celestia-app#8617](https://github.com/celestiaorg/celestia-app/pull/8617).
@@ -103,7 +104,7 @@ chain ID, fees, and home directory as needed. After a successful
 ### Upgrade Mocha DA nodes before activation
 
 DA nodes must run celestia-node `{{mochaVersions['node-latest-tag']}}` and use
-a core endpoint running celestia-app v11 before activation. Older DA nodes
+a core endpoint running celestia-app v11 before activation at height 2,760,280. Older DA nodes
 reject app version 11 headers and stop syncing when v11 activates. No
 `config-update` is needed; configuration and storage are unchanged. See the
 [celestia-node release notes](https://github.com/celestiaorg/celestia-node/releases/tag/{{mochaVersions['node-latest-tag']}}).
@@ -169,16 +170,15 @@ In the Mainnet Beta table, version links point to Celenium upgrade status pages 
 
 #### Mocha-5
 
-Mocha is rolling out [v11 (emergency release)](#v11-emergency-release).
-Activation is pending, with no height yet. The table records completed
-upgrades; see the [Fibre server guide](/operate/consensus-validators/fibre)
+Mocha has scheduled [v11 (emergency release)](#v11-emergency-release)
+for [height 2,760,280](https://testnet.celestia.explorers.guru/block/2760280).
+The table includes the scheduled v11 upgrade alongside completed upgrades; see the [Fibre server guide](/operate/consensus-validators/fibre)
 for validator setup and registration.
-
-{/* TODO: Add the v11 row once the Mocha activation height and date are confirmed. */}
 
 | Version | Date and time | Upgrade height | Parameters |
 | ------- | ------------- | -------------- | ---------- |
 | v10 | 2026/09/24 20:20:15 UTC | [1082619](https://testnet.celestia.explorers.guru/block/1082619) | [v10](https://celestiaorg.github.io/celestia-app/parameters_v10.html) |
+| v11 (scheduled) | TBD (approximately 2026/11/19 UTC) | [2760280](https://testnet.celestia.explorers.guru/block/2760280) | TBD |
 
 #### Mocha-4 (historical)
 
@@ -212,7 +212,7 @@ The upgrades below happened on the `mocha-4` chain. Celenium now indexes `mocha-
 
 > **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/sdk/v0.53/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 
-Mocha is rolling out [v11 (emergency release)](#v11-emergency-release);
-activation is pending, with no height yet.
+Mocha [v11 (emergency release)](#v11-emergency-release) is scheduled to
+activate at [height 2,760,280](https://testnet.celestia.explorers.guru/block/2760280).
 For upcoming upgrade schedules on each network, follow the
 [network announcements](https://status.celestia.org/).
