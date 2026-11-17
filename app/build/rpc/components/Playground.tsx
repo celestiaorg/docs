@@ -29,7 +29,6 @@ const sendRequest = async (
   hostname: string
 ): Promise<object> => {
   return new Promise((resolve, reject) => {
-    // Determine the WebSocket URL
     const wsUrl = hostname === '' ? 'ws://localhost:26658' : `ws://${hostname}`;
 
     const transport = new WebSocketTransport(wsUrl);
@@ -120,7 +119,6 @@ const sendRequestClickHandler = async ({
   setCurrentTab: (tab: number) => void;
   hostname: string;
 }) => {
-  // Validate JSON request
   try {
     JSON.parse(currentRequest);
   } catch {
@@ -132,7 +130,6 @@ const sendRequestClickHandler = async ({
     return;
   }
 
-  // Check if request has required fields
   let parsedRequest;
   try {
     parsedRequest = JSON.parse(currentRequest);
@@ -149,7 +146,6 @@ const sendRequestClickHandler = async ({
     return;
   }
 
-  // Show loading notification
   setNotification({
     active: true,
     success: true,
@@ -203,7 +199,6 @@ const Playground = ({
   const [currentTab, setCurrentTab] = useState(0);
   const [currentResponse, setCurrentResponse] = useState<string>('');
 
-  // Use shared dark mode hook
   const isDark = useDarkMode();
 
   if (!playgroundOpen) return null;
