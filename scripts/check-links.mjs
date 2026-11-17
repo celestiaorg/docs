@@ -365,7 +365,7 @@ async function processMetaFile(filePath) {
 /**
  * Check external link with HTTP request
  */
-async function checkExternalLink(url, skipPatterns = [], onlyFailOn404Patterns = [], timeout = DEFAULT_TIMEOUT, retries = DEFAULT_RETRIES, backoffMs = DEFAULT_BACKOFF_MS) {
+export async function checkExternalLink(url, skipPatterns = [], onlyFailOn404Patterns = [], timeout = DEFAULT_TIMEOUT, retries = DEFAULT_RETRIES, backoffMs = DEFAULT_BACKOFF_MS) {
   // Check skip list
   for (const pattern of skipPatterns) {
     if (url.includes(pattern)) {
@@ -507,8 +507,8 @@ async function checkExternalLink(url, skipPatterns = [], onlyFailOn404Patterns =
     }
   }
 
-  // If all retries exhausted and it's a 429 from GitHub, treat as skipped
-  if (lastResult && lastResult.status === 429) {
+  // If all retries exhausted and GitHub is still throttling (429, or 5xx under load), treat as skipped
+  if (lastResult && RETRYABLE_STATUS_CODES.has(lastResult.status)) {
     try {
       const urlObj = new URL(url);
       const hostname = urlObj.hostname;
@@ -516,7 +516,7 @@ async function checkExternalLink(url, skipPatterns = [], onlyFailOn404Patterns =
       if (hostname === 'github.com' || 
           hostname.endsWith('.github.com') || 
           hostname.endsWith('.githubusercontent.com')) {
-        return { valid: true, skipped: true, reason: 'GitHub 429 - Rate limited, skipped', status: 429 };
+        return { valid: true, skipped: true, reason: `GitHub ${lastResult.status} - Rate limited or unavailable, skipped`, status: lastResult.status };
       }
     } catch {
       // If URL parsing fails, fall through to return lastResult
