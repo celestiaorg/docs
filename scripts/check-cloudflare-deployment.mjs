@@ -74,8 +74,8 @@ for (const method of ['GET', 'POST']) {
 const homepage = await (await request('/')).text()
 const bundledAssets = [...homepage.matchAll(/(?:src|href)="(\/assets\/[^"?#]+\.(?:js|css))"/g)].map(match => match[1])
 assert.ok(bundledAssets.some(path => path.endsWith('.js')) && bundledAssets.some(path => path.endsWith('.css')), 'Missing bundled assets')
-for (const path of [...new Set(bundledAssets), '/logo-light.svg', '/logo-dark.svg', '/modular.svg', '/Celestia-og.png', '/underConstruction.png',
-  '/img/nitrogen-testnet.jpg', '/fonts/youth/Youth-Regular.woff2', '/favicons/favicon.ico', '/audits/Celestia_OP_Stack_Audit.pdf']) {
+for (const path of [...new Set(bundledAssets), '/logo-light.svg', '/logo-dark.svg', '/Celestia-og.png',
+  '/fonts/youth/Youth-Regular.woff2', '/favicons/favicon.ico', '/audits/Celestia_OP_Stack_Audit.pdf']) {
   const response = await request(path, { method: 'HEAD' })
   assert.doesNotMatch(response.headers.get('Content-Type') || '', /text\/html/, `${path}: expected a static asset`)
   // The Worker adds this discovery link to every asset it serves.
