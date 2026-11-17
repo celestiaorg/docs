@@ -187,7 +187,7 @@ parallel submission by setting `TxWorkerAccounts` to a value greater than 1.
 
 <Steps>
 
-#### Open your config file
+#### Open your parallel config file
 
 ```bash
 nano ~/.celestia-light-{{constants['mochaChainId']}}/config.toml
@@ -202,7 +202,7 @@ Find the `[State]` section and add or update:
 TxWorkerAccounts = 8
 ```
 
-#### Restart your node
+#### Restart your parallel node
 
 ```bash
 celestia light start --p2p.network mocha \
