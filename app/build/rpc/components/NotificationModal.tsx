@@ -14,7 +14,6 @@ export default function NotificationModal({
   notification?: INotification;
   setNotification: (notification: INotification) => void;
 }) {
-  // Use shared dark mode hook
   const isDark = useDarkMode();
 
   useEffect(() => {

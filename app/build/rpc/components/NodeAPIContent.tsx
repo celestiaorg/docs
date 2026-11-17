@@ -46,7 +46,6 @@ const versions = [apiVersions.mainnet, apiVersions.mocha, ...apiVersions.histori
 const defaultVersion = apiVersions.mainnet;
 
 export default function RPCDocumentation() {
-  // State management
   const [spec, setSpec] = useState<OpenRPCSpec | null>(null);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [isSwitchingVersion, setIsSwitchingVersion] = useState(false);
@@ -69,7 +68,6 @@ export default function RPCDocumentation() {
   const [selectedVersion, setSelectedVersion] = useState(defaultVersion);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Consolidated fetch function with loading and error handling
   const fetchJsonData = useCallback(async (version: string, isInitial = false) => {
     if (isInitial) {
       setIsInitialLoading(true);
@@ -125,10 +123,8 @@ export default function RPCDocumentation() {
       return false;
     };
     
-    // Try immediately
     if (scrollToHash()) return;
     
-    // Watch for content to appear
     const observer = new MutationObserver(() => {
       if (scrollToHash()) {
         observer.disconnect();
@@ -160,7 +156,6 @@ export default function RPCDocumentation() {
     setCurrentParam(param);
   };
 
-  // Show loading state only on initial page load
   if (isInitialLoading) {
     return (
       <div className="rpc-api__loading">
@@ -174,7 +169,6 @@ export default function RPCDocumentation() {
     );
   }
 
-  // Show error state
   if (error) {
     return (
       <div className="rpc-api__error">
@@ -194,7 +188,6 @@ export default function RPCDocumentation() {
     );
   }
 
-  // Ensure spec is not null before rendering
   if (!spec) return null;
 
   return (
