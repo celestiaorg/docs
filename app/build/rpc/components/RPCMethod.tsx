@@ -157,21 +157,7 @@ const RPCMethod = ({
                 fontSize: '0.8125rem'
               }}
             >
-              {JSON.stringify(
-                {
-                  id: 1,
-                  jsonrpc: '2.0',
-                  method: pkg + '.' + method.name,
-                  params: params.map((param) => {
-                    const examples = param.schema?.examples;
-                    return (Array.isArray(examples) && examples.length > 0) 
-                      ? examples[0] 
-                      : undefined;
-                  }),
-                },
-                null,
-                2
-              )}
+              {getExampleRequest(pkg, method)}
             </SyntaxHighlighter>
           </div>
         )}
