@@ -36,8 +36,8 @@ test('the Blockworks 429 exception waits for all retries and emits an explicit w
   assert.equal(result.status, 429);
   assert.match(result.reason, /after 3 attempts.*link not verified/);
   assert.equal(warn.mock.callCount(), 1);
-  assert.ok(warn.mock.calls[0].arguments[0].includes(blockworksUrl));
-  assert.ok(warn.mock.calls[0].arguments[0].includes(result.reason));
+  const prefix = process.env.GITHUB_ACTIONS === 'true' ? '::warning::' : 'Warning: ';
+  assert.equal(warn.mock.calls[0].arguments[0], `${prefix}${blockworksUrl}: ${result.reason}`);
 });
 
 test('a successful Blockworks response, including recovery after a retry, is verified', async (t) => {
