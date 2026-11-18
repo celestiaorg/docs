@@ -15,8 +15,6 @@
     "/audits/*",
     "/logo-light.svg",
     "/logo-dark.svg",
-    "/modular.svg",
-    "/Celestia-og.png",
-    "/underConstruction.png"
+    "/Celestia-og.png"
   ]
 }

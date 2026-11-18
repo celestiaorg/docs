@@ -1,35 +1,48 @@
-# Fibre client brief for agents
+---
+description: Condensed Fibre client guidance for agents, covering escrow, pricing, limits, and errors.
+---
 
-Valid for: celestia-app v10.4.0 / v10.4.0-mocha, celestia-node v0.34.4.
-Generated from this guide on 2026-10-20. Human guide = source of truth. Sources live in the
-guide pages' source comments. If guide and brief differ, trust the guide.
+# Fibre client brief
+
+This brief covers Fibre clients on celestia-app
+`{{mainnetVersions['app-latest-tag']}}` (Mocha: `{{mochaVersions['app-latest-tag']}}`)
+and celestia-node `{{mainnetVersions['node-latest-tag']}}`
+(Mocha: `{{mochaVersions['node-latest-tag']}}`).
+The rest of this brief was generated from the guide on 2026-10-20. The human
+guide is the source of truth. Sources live in the guide pages' source comments.
+If the guide and this brief differ, trust the guide.
 
 ## How to use this brief
+
 - Answer only from this brief or the guide files. If it isn't in the guide, say it's unknown. Never invent numbers, SLAs, dates, contacts.
 - Parameters below are the defaults both networks started with at the app v10 upgrade. Governance can change them. Tell users to run `celestia-appd query fibre params` (REST `/fibre/v1/params`).
 
 ## Status
-- Mainnet Beta (`celestia`): Fibre live (app v10).
-- Mocha (`mocha-5`, test network): Fibre live (app v10).
+
+- Mainnet Beta (`{{constants['mainnetChainId']}}`): Fibre live (app v10).
+- Mocha (`{{constants['mochaChainId']}}`, test network): Fibre live (app v10).
 - Activation sources: [Mainnet Beta](https://status.celestia.org/incidents/s6mnv21p) and [Mocha](https://status.celestia.org/incidents/vbsesey3). Uploads also require registered, reachable Fibre servers with enough voting power for quorum; activation alone does not prove provider readiness.
 
 ## Never / always
+
 - NEVER retry a failed or uncertain upload before checking whether it settled. Each upload = new signed promise = new payment obligation, charged when it settles (PFF or timeout). A promise that reached any validator can be charged via timeout even if the upload failed.
 - NEVER treat a timeout or HTTP 429 during confirmation as a failure. Check settlement first.
 - NEVER describe Fibre as permanent storage. Shards are kept until max(promise creation + `shard_retention` (4h), promise expiry), then may be deleted. Counted from promise creation, not upload. User must keep their own copy.
 - NEVER claim Fibre checks content correctness. Blob ID binds bytes, not meaning.
 - ALWAYS size escrow ≥ max blobs in flight × charge per blob, plus margin. Validators reserve each accepted promise against `available_balance` until it settles.
-- ALWAYS save per blob: `blob_id`, `tx_hash`, `height`, promise hash (Go), own copy of data.
+- ALWAYS save per blob: `blob_id`, `tx_hash`, `height`, namespace, commitment, promise hash (Go), own copy of data.
 - ALWAYS keep the host clock synced. Promise timestamp > 10 min ahead of chain time → rejected.
 - Data is public to anyone with the blob ID. Encrypt sensitive data.
 
 ## Flow
+
 deposit escrow → client encodes blob, signs payment promise → uploads shards to validators' Fibre servers → each validator stores and signs → at ≥ floor(2/3 × total voting power), client submits `MsgPayForFibre` (PFF) → chain charges escrow, writes small on-chain blob holding the commitment → anyone downloads by blob ID until retention ends (needs shards from ~1/3 voting power).
 
 ## Integration options
+
 | Option | Max blob | Notes |
 |---|---|---|
-| node JSON-RPC `fibre.*` | <12 MiB (16 MiB request cap, base64) | light/bridge node verifies headers |
+| node JSON-RPC `fibre.*` | under 12 MiB (16 MiB request cap, base64) | light/bridge node verifies headers |
 | node Go `api/client.New` | 128 MiB − 5 B | builds a local native client (`NewReadClient` uses JSON-RPC instead) |
 | celestia-app Go `fibre` package | 128 MiB − 5 B | full control |
 
@@ -39,6 +52,7 @@ From celestia-app v10.5.0, `DetachBackgroundUploads` defaults to true. Cancellin
 Blob ID: base64 in JSON-RPC. In Go, pass the `BlobID` ([]byte) as returned; `String()` = hex, `BlobIDFromString` parses hex. Same ID.
 
 ## Money
+
 - Wallet pays gas. Escrow pays storage. Escrow can't pay gas.
 - Escrow owner = key that signs the promise (secp256k1). Gas for PFF can use `fee_granter_address` (node).
 - Charge (utia) = 650,000 + 45,000 × ceil(upload_size / 262,144). Fixed formula, not tied to gas price.
@@ -49,6 +63,7 @@ Blob ID: base64 in JSON-RPC. In Go, pass the `BlobID` ([]byte) as returned; `Str
 - Payments go to the fee collector → validators and delegators.
 
 ## Limits
+
 | Item | Value |
 |---|---|
 | Max blob | 134,217,723 B |
@@ -63,7 +78,8 @@ Blob ID: base64 in JSON-RPC. In Go, pass the `BlobID` ([]byte) as returned; `Str
 | `withdrawal_delay` | 24h |
 | Promise clock skew | ≤ 10 min ahead |
 
-## Errors → action
+## Errors and action
+
 Validator rejections (escrow, clock, chain ID, min size, storage) appear per validator in client/node logs as `failed to upload rows`. The upload itself then returns `not enough voting power`.
 
 | Error text contains | Action |
@@ -89,21 +105,25 @@ Validator rejections (escrow, clock, chain ID, min size, storage) appear per val
 | `invalid blob ID` | pass ID unchanged (base64 in JSON-RPC; `BlobID` value in Go) |
 
 ## Diagnose: user's side or network's?
+
 - All uploads fail with escrow/balance/chain-ID/clock errors → user.
 - Failures across most validators, all timeouts → usually user's egress. Compare from another host.
 - Failures on a few validators only → those validators; ignore while quorum holds.
-- Many validators unreachable, or budget exceeded everywhere → network. Check status.celestia.org and, on Mocha, the Valopers and Tensile dashboards.
+- Many validators unreachable, or budget exceeded everywhere → network. Check status.celestia.org and the Mainnet Beta and Mocha Valopers and Tensile dashboards.
 - HTTP 429 from core endpoint → endpoint provider; use own endpoint; check settlement before resubmitting.
 
 ## Check whether a blob was paid for
+
 - Have `tx_hash` → look up the transaction. `EventPayForFibre` = settled.
 - Have promise hash (hex, Go `PaymentPromise.Hash()`) → `celestia-appd query fibre is-payment-processed <hash>`. `found: true` = charged (normal or timeout).
 - `EventPaymentPromiseTimeout` with user's `escrow_signer` = charged without normal settlement.
+- A payment or timeout charge does not by itself attest that the data is available. A successful `MsgPayForFibre` creates a version-2 system blob in the promise namespace; match its commitment. A timeout charge does not create that blob.
 
 ## Where details live
-- Walkthrough on Mocha: https://docs.celestia.org/build/post-retrieve-blob/fibre
-- When to use: https://docs.celestia.org/build/post-retrieve-blob/fibre/when-to-use
-- Getting started: https://docs.celestia.org/build/post-retrieve-blob/fibre/getting-started
-- Limits: https://docs.celestia.org/build/post-retrieve-blob/fibre/limits
-- Monitoring: https://docs.celestia.org/build/post-retrieve-blob/fibre/monitoring
-- Errors and FAQ: https://docs.celestia.org/build/post-retrieve-blob/fibre/faq
+
+- [Mocha walkthrough](/build/post-retrieve-blob/fibre)
+- [When to use Fibre](/build/post-retrieve-blob/fibre/when-to-use)
+- [Getting started](/build/post-retrieve-blob/fibre/getting-started)
+- [Limits and expectations](/build/post-retrieve-blob/fibre/limits)
+- [Monitoring](/build/post-retrieve-blob/fibre/monitoring)
+- [FAQ and errors](/build/post-retrieve-blob/fibre/faq)

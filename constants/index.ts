@@ -24,5 +24,4 @@ export const constants = constantsJson as {
     mainnetChainId: string;
     mochaChainId: string;
     bridgeStorageWindowHours: number;
-    orchrelayVersion: string;
 };

@@ -32,7 +32,7 @@ of celestia-app and Fibre throughout this guide.
     celestia-app and Fibre with `{{mochaVersions['app-latest-tag']}}`. That
     release does not change Fibre configuration, pricing, or registration, and
     it keeps the existing Fibre home and data. See
-    [Mocha app version 11](/operate/maintenance/network-upgrades#mocha-app-version-11).
+    [Mocha app version 11](/operate/maintenance/network-upgrades#v11-emergency-release).
   </Tabs.Tab>
 </Tabs>
 
@@ -103,6 +103,13 @@ and recompute the memory budget. How to change these settings is covered in
 [Connection limits](#connection-limits) below.
 
 ## Install Fibre
+
+When upgrading to v11 on Mocha, replace the `fibre` binary alongside
+`celestia-appd`, using the matching archives from the
+[Mocha release](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}}).
+Stop both services before replacing the binaries, then restart with the
+existing home directories. No configuration changes are required. See
+[v11 upgrade steps](/operate/maintenance/network-upgrades#v11-emergency-release).
 
 ### Prebuilt binary
 

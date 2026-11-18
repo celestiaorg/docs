@@ -3,7 +3,6 @@
 import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { parseDocument } from 'yaml'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -25,31 +24,8 @@ async function pathExists(filePath) {
   }
 }
 
-function withVocsFrontmatter(content) {
-  const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n?/)
-  if (!frontmatterMatch) return content
-
-  const document = parseDocument(frontmatterMatch[1])
-  const frontmatter = document.toJS() ?? {}
-  const legacyTheme = frontmatter.theme ?? {}
-
-  if (legacyTheme.sidebar === false && !document.has('layout')) {
-    document.set('layout', 'minimal')
-  }
-
-  if (legacyTheme.sidebar === false && !document.has('showSidebar')) {
-    document.set('showSidebar', false)
-  }
-
-  if (legacyTheme.toc === false && !document.has('outline')) {
-    document.set('outline', false)
-  }
-
-  return `---\n${String(document).trimEnd()}\n---\n${content.slice(frontmatterMatch[0].length)}`
-}
-
 function withVocsMdxCompatibility(content, sourcePath) {
-  return withVocsFrontmatter(content)
+  return content
     .replace(/(from\s+['"])(\.[^'"]+)(['"])/g, (_match, before, specifier, after) => {
       const resolved = path.resolve(path.dirname(sourcePath), specifier)
       return `${before}@/${toPosix(path.relative(rootDir, resolved))}${after}`
