@@ -507,6 +507,14 @@ export async function checkExternalLink(url, skipPatterns = [], onlyFailOn404Pat
     }
   }
 
+  // This dashboard serves a Vercel challenge to automated requests. Keep the
+  // exception URL- and status-specific, and only apply it after normal retries.
+  if (url === 'https://app.blockworks.com/analytics/celestia' && lastResult?.status === 429) {
+    const reason = `HTTP 429 after ${retries} attempts; known Blockworks rate limit, link not verified`;
+    console.warn(`${process.env.GITHUB_ACTIONS === 'true' ? '::warning::' : 'Warning: '}${url}: ${reason}`);
+    return { ...lastResult, valid: true, skipped: true, reason };
+  }
+
   // If all retries exhausted and GitHub is still throttling (429, or 5xx under load), treat as skipped
   if (lastResult && RETRYABLE_STATUS_CODES.has(lastResult.status)) {
     try {
