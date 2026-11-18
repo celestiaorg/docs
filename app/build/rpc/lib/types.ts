@@ -64,11 +64,6 @@ export interface INotification {
   active: boolean;
 }
 
-export interface NotificationState {
-  type: 'success' | 'error' | 'info';
-  message: string;
-}
-
 export interface NodeError {
   code: number;
   message: string;

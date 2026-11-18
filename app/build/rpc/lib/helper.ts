@@ -5,10 +5,6 @@ export function extractAuth(methodDescription: string | undefined): string {
   return methodDescription?.match(/\bAuth level:[ \t]*(public|read|write|admin)(?=[.\s]|$)/)?.[1] || '';
 }
 
-export function classNames(...classes: unknown[]) {
-  return classes.filter(Boolean).join(' ');
-}
-
 export const getExampleRequest = (pkg: string, method: Method): string => {
   return JSON.stringify(
     {
@@ -21,24 +17,6 @@ export const getExampleRequest = (pkg: string, method: Method): string => {
           ? examples[0] 
           : undefined;
       }),
-    },
-    null,
-    2
-  );
-};
-
-export const getExampleResponse = (method: Method): string => {
-  return JSON.stringify(
-    {
-      id: 1,
-      jsonrpc: '2.0',
-      result: (() => {
-        if (method.result.description === 'Null') return [];
-        const examples = method.result.schema?.examples;
-        return (Array.isArray(examples) && examples.length > 0) 
-          ? [examples[0]] 
-          : [];
-      })(),
     },
     null,
     2
