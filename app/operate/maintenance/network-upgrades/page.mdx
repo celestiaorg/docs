@@ -281,8 +281,17 @@ gas limit for multi-message, `MsgExec`, or batched relayer transactions. See
 the pinned
 [message gas decorator](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/app/ante/sdk_message_gas.go).
 
+On celestia-app `main`, and not in v11.0.0-mocha, that ICA count is the larger
+of the packet's proto3 and proto3json counts. It no longer depends on the
+channel encoding. A payload that decodes as neither counts as over the limit,
+so `ProcessProposal` can reject packets it previously accepted. The same count
+feeds the block's SDK message limit and this gas charge. No v12 release
+includes it yet. See
+[celestia-app#8605](https://github.com/celestiaorg/celestia-app/pull/8605).
+
 {/* src: app@6137d6c9:app/ante/sdk_message_gas.go */}
 {/* src: app@6137d6c9:pkg/appconsts/app_consts.go */}
+{/* src: app@9bb0fd00:app/msg_count.go countICAPacketMsgs (celestia-app#8605; not in v11.0.0-mocha) */}
 
 ### Rejected message types
 

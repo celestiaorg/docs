@@ -63,8 +63,17 @@ When using third-party estimation, the consensus endpoint must be running celest
 > Single-message transactions are unaffected. See
 > [gas for additional messages](/operate/maintenance/network-upgrades#gas-for-additional-messages).
 
+> **Unreleased v12:** the ICA packet count, which feeds block limits and the
+> gas charge above, is the larger of its proto3 and proto3json counts. It no
+> longer depends on the channel encoding. A payload that decodes as neither
+> counts as over the limit, so `ProcessProposal` can reject packets it
+> previously accepted. This is on celestia-app `main` only and is not in
+> v11.0.0-mocha. See
+> [celestia-app#8605](https://github.com/celestiaorg/celestia-app/pull/8605).
+
 {/* src: app@6137d6c9:app/ante/sdk_message_gas.go */}
 {/* src: app@3968e04a:app/errors/errors.go */}
+{/* src: app@9bb0fd00:app/msg_count.go countICAPacketMsgs (celestia-app#8605; not in v11.0.0-mocha) */}
 
 Two gas price floors apply to every transaction:
 
