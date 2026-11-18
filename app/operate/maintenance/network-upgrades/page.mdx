@@ -231,6 +231,16 @@ follow the app version in state, so they change when the network activates
 v12, not when you install the binary. See the pinned
 [consensus timeouts](https://github.com/celestiaorg/celestia-app/blob/6137d6c990a917381ce6766fed6ccfadf790a154/pkg/appconsts/versioned_consts.go).
 
+celestia-core [v0.43.0-rc0](https://github.com/celestiaorg/celestia-core/releases/tag/v0.43.0-rc0)
+adds disaster-recovery keys under `[consensus]`: `legacy_pacing`,
+`legacy_pacing_timeout_commit` (100 ms), and
+`legacy_pacing_delayed_precommit_timeout` (550 ms). Enabling `legacy_pacing`
+makes the node ignore the app's `dynamic_timeout_commit` and pace with those
+two timeouts. The chain slows only once validators with more than 1/3 of the
+stake enable it. This remains unreleased. Mocha v11.0.0-mocha embeds
+celestia-core v0.42.8 and does not use these keys. See
+[celestia-core#3664](https://github.com/celestiaorg/celestia-core/pull/3664).
+
 The v12 upgrade handler and the genesis defaults rescale parameters that are
 counted in blocks. Most are multiplied by 3.25 (2.6 s / 0.8 s) to keep their
 duration. `MaxAgeNumBlocks` instead covers the 337-hour unbonding period at an
@@ -265,6 +275,8 @@ that assumes a block time of 2.6 or 3 seconds, such as
 {/* src: app@6137d6c9:pkg/appconsts/consensus_consts.go */}
 {/* src: app@6137d6c9:pkg/appconsts/initial_consts.go */}
 {/* src: app@6137d6c9:x/fibre/types/params.go */}
+{/* src: core@v0.43.0-rc0:config/config.go LegacyPacing (celestia-core#3664; not in core v0.42.8) */}
+{/* src: app@v11.0.0-mocha:go.mod replace celestia-core v0.42.8 */}
 
 ### Gas for additional messages
 
