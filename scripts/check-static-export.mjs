@@ -34,6 +34,9 @@ for (const section of ['learn', 'build', 'operate']) {
   check(await sidebarFor(`app/${section}`, `/${section}`))
 }
 const exportedFiles = new Set(await filesIn(output))
+// Read the build's manifest because its environment flags may not be set during this check.
+const { entries } = JSON.parse(await readFile(`${output}/.well-known/ai-catalog.json`, 'utf8'))
+const mcpEnabled = entries.some(entry => entry.type === 'application/mcp-server-card+json')
 const htmlFiles = [...exportedFiles].filter((file) => file.endsWith('.html'))
 const runtimePages = new Set(['404.html', '404.d/index.html', '_root.d/index.html'])
 const contentPaths = new Set(pages.map((page) => page.slice(4).replace(/page\.mdx$/, 'index.html')))
@@ -48,7 +51,7 @@ for (const file of htmlFiles) {
     if (url.startsWith('//')) continue
     assert.ok(!base || url.startsWith(`${base}/`), `${file}: missing preview base in ${url}`)
     const pathname = decodeURIComponent(url.slice(base.length).split(/[?#]/)[0])
-    if (['/mcp', '/api/mcp'].includes(pathname)) continue
+    if (['/mcp', '/api/mcp'].includes(pathname) || (pathname === '/mcp/server-card' && !mcpEnabled)) continue
     const target = path.join(output, pathname)
     assert.ok(exportedFiles.has(target) || exportedFiles.has(path.join(target, 'index.html')), `${file}: missing asset/page ${url}`)
   }
