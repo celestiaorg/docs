@@ -242,17 +242,16 @@ match v10.6.0-mocha. See
 > There is no v12 release tag yet. Keep the released client for your network;
 > these changes describe the upcoming major version.
 
-The planned v12 module path is `github.com/celestiaorg/celestia-app/v12`.
-The [release plan](https://github.com/celestiaorg/celestia-app/pull/8616)
-tracks source renumbering separately; the pinned source predates it.
-Once v12 is released, update native-client imports, including
-`github.com/celestiaorg/celestia-app/v12/fibre` and
-`github.com/celestiaorg/celestia-app/v12/pkg/user`, together with the module
-dependency. The [pinned module definition](https://github.com/celestiaorg/celestia-app/blob/686fbd9f3a1bf8d73235eef4e58b8b816511ea69/go.mod)
-requires Go 1.26.10 and replaces Cosmos SDK with
-`github.com/celestiaorg/cosmos-sdk v0.53.0`. Recheck both against the selected
-release's `go.mod`; these are source-snapshot values, not released v12
-requirements. Do not mix types from different celestia-app major versions.
+The v12 module path is not confirmed. celestia-app `main` still declares
+`github.com/celestiaorg/celestia-app/v11`, and the
+[release plan](https://github.com/celestiaorg/celestia-app/pull/8616) does not
+name a new path. If v12 follows the usual major-version convention, the path
+becomes `github.com/celestiaorg/celestia-app/v12`, and native-client imports
+such as `/fibre` and `/pkg/user` change with the module dependency. Read the
+module path, Go version, and Cosmos SDK replacement from the selected
+release's [`go.mod`](https://github.com/celestiaorg/celestia-app/blob/main/go.mod);
+they change on `main` between releases. Do not mix types from different
+celestia-app major versions.
 
 ## 6. Save a receipt for every blob
 
