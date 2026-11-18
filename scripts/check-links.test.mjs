@@ -71,6 +71,8 @@ test('429 responses from any other URL still fail', async (t) => {
     `${blockworksUrl}/`,
     `${blockworksUrl}?other=1`,
     'https://app.blockworks.com.example.com/analytics/celestia',
+    'https://app.blockworks.com@evil.example/analytics/celestia',
+    'https://evil.example/https://app.blockworks.com/analytics/celestia',
   ]) {
     const result = await checkExternalLink(url, [], [], 1000, 1);
     assert.equal(result.valid, false, url);
