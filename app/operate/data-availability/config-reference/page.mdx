@@ -21,10 +21,23 @@ celestia light start --help
 ## Understanding config.toml
 
 After initialization, for any type of node, you will find a
-`config.toml` in the following path (default location):
+`config.toml` in the node store. The default node store depends on the
+node type and the network:
 
-- `$HOME/.celestia-bridge/config.toml` for bridge node
-- `$HOME/.celestia-light/config.toml` for light node
+| Node type | Mainnet Beta | Mocha |
+| --- | --- | --- |
+| bridge node | `$HOME/.celestia-bridge/config.toml` | `$HOME/.celestia-bridge-{{constants['mochaChainId']}}/config.toml` |
+| light node | `$HOME/.celestia-light/config.toml` | `$HOME/.celestia-light-{{constants['mochaChainId']}}/config.toml` |
+
+Only Mainnet Beta uses a path without a network suffix. Every other
+network, including custom networks, uses `$HOME/.celestia-<node_type>-<network>`.
+
+Two settings override the default location:
+
+- The `--node.store <path>` flag sets the node store for a single command.
+- The `CELESTIA_HOME` environment variable replaces the default path. The
+  node uses the value as the node store itself and does not append the
+  node type or network.
 
 Let's break down some of the most used sections.
 
@@ -106,6 +119,30 @@ configurable in `config.toml`.
 
 See the [celestia-node v0.31.3 release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3)
 for the complete upgrade instructions.
+
+#### RPC TLS
+
+The RPC server can serve HTTPS directly. TLS is disabled by default. To
+enable it, set the certificate and private key paths in `config.toml`.
+Both files must be in PEM format:
+
+```toml
+[RPC]
+  TLSEnabled = true
+  TLSCertPath = "<cert_path>"
+  TLSKeyPath = "<key_path>"
+```
+
+The equivalent command line flags are:
+
+```bash
+celestia <node_type> start --rpc.tls --rpc.tls-cert <cert_path> --rpc.tls-key <key_path>
+```
+
+The node does not start if TLS is enabled and either path is missing or
+does not point to an existing file. The `--rpc.tls-cert` and `--rpc.tls-key`
+flags return an error unless TLS is also enabled. With TLS enabled, clients
+must connect with `https://` instead of `http://`.
 
 ### celestia-node v0.35.0 upgrade
 
