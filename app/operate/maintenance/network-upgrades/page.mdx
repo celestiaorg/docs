@@ -39,21 +39,28 @@ The upgrade process can be broken down into a few steps:
 
 ## v11 (emergency release)
 
-Mocha is rolling out celestia-app `{{mochaVersions['app-latest-tag']}}`.
-App version 11 is scheduled to activate on Mocha at
-[height 2,760,280](https://testnet.celestia.explorers.guru/block/2760280). The
+Mocha activated celestia-app `{{mochaVersions['app-latest-tag']}}` at
+[height 2,760,281](https://testnet.celestia.explorers.guru/block/2760281)
+on 2026/11/19 10:11:55 UTC. The
 [emergency release](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
 was cut from `v10.x`, not `main`; see
 [celestia-app#8617](https://github.com/celestiaorg/celestia-app/pull/8617).
 The block pacing and Fibre registration changes on `main` belong to v12.
-Mainnet Beta v11 has not been released.
+
+Mainnet Beta is rolling out celestia-app `{{mainnetVersions['app-latest-tag']}}`.
+See the
+[Mainnet Beta release](https://github.com/celestiaorg/celestia-app/releases/tag/{{mainnetVersions['app-latest-tag']}}).
+Validators are signalling for version 11, and the activation height is TBD
+until `try-upgrade` succeeds.
 
 ### Account recovery restrictions
 
 From app version 11, a fixed per-chain list of accounts whose keys were
 exposed in the Keplr/Web3Auth social-login incident can only move funds to
 one whitehat recovery address. On Mocha, the list contains three test
-accounts. Listed accounts may submit only:
+accounts. On Mainnet Beta, the list contains 41,963 accounts, and the
+recovery address is `celestia1atuap9kfnt6y8ykvn3437e7j3z8qffh33pzt53`.
+Listed accounts may submit only:
 
 - `MsgSend` to the whitehat recovery address.
 - `MsgUndelegate`.
@@ -104,10 +111,72 @@ chain ID, fees, and home directory as needed. After a successful
 ### Upgrade Mocha DA nodes before activation
 
 DA nodes must run celestia-node `{{mochaVersions['node-latest-tag']}}` and use
-a core endpoint running celestia-app v11 before activation at height 2,760,280. Older DA nodes
-reject app version 11 headers and stop syncing when v11 activates. No
-`config-update` is needed; configuration and storage are unchanged. See the
+a core endpoint running celestia-app v11. App version 11 activated at
+[height 2,760,281](https://testnet.celestia.explorers.guru/block/2760281).
+Older DA nodes reject app version 11 headers and stop syncing from that
+height. No `config-update` is needed; configuration and storage are unchanged.
+See the
 [celestia-node release notes](https://github.com/celestiaorg/celestia-node/releases/tag/{{mochaVersions['node-latest-tag']}}).
+
+### Upgrade Mainnet Beta consensus nodes and validators
+
+No configuration changes are required. The multiplexer embeds v10.6.0 to
+serve heights before the upgrade.
+
+1. Download the `celestia-app` archive for your platform from the
+   [Mainnet Beta release](https://github.com/celestiaorg/celestia-app/releases/tag/{{mainnetVersions['app-latest-tag']}}).
+   Validators should also download the matching `fibre` archive from the same
+   release.
+2. Verify each downloaded archive against the release's `checksums.txt`
+   before extracting it. For Linux, run `sha256sum --ignore-missing --check checksums.txt`
+   in the download directory and confirm each archive reports `OK`.
+3. Stop the node and, for validators, Fibre. Replace `celestia-appd` and the
+   validator's `fibre` binary with the verified binaries.
+4. Restart with the existing home directories and database. The node
+   continues running app version 10 until the upgrade activates.
+
+For source builds, use Go 1.26.10. The release's Makefile downloads that
+toolchain automatically if a different Go version is installed.
+
+Signalling is in progress, and the activation height is TBD until
+`try-upgrade` succeeds. After installing the binaries, each validator signals
+for version 11:
+
+```bash
+celestia-appd tx signal signal 11 --chain-id celestia --gas 1000000
+```
+
+Once at least 5/6 of voting power has signalled, anyone can submit:
+
+```bash
+celestia-appd tx signal try-upgrade --chain-id celestia --gas 1000000
+```
+
+`try-upgrade` needs about 300,000 gas. The release notes set `--gas 1000000`
+for that transaction, and the signal command above uses the same flag.
+Append the signing key, fees, and home directory to both
+commands as needed. After a successful `try-upgrade` transaction, activation
+occurs 232,616 blocks later, about 7.6 days at Mainnet Beta's current block
+time.
+
+Check the version 11 tally with:
+
+```bash
+celestia-appd query signal tally 11
+```
+
+A consensus node's REST API serves the same query at `GET /signal/v1/tally/11`.
+The response includes the signalled voting power, the quorum threshold, and
+the total voting power. The threshold is 5/6 of voting power.
+
+### Upgrade Mainnet Beta DA nodes before activation
+
+DA nodes must run celestia-node `{{mainnetVersions['node-latest-tag']}}` and use
+a core endpoint running celestia-app v11 before activation. The activation
+height is not set yet. Older DA nodes reject app version 11 headers and stop
+syncing when v11 activates. No `config-update` is needed; configuration and
+storage are unchanged. See the
+[celestia-node release notes](https://github.com/celestiaorg/celestia-node/releases/tag/{{mainnetVersions['node-latest-tag']}}).
 
 ## Configuration changes in v10
 
@@ -170,15 +239,15 @@ In the Mainnet Beta table, version links point to Celenium upgrade status pages 
 
 #### Mocha-5
 
-Mocha has scheduled [v11 (emergency release)](#v11-emergency-release)
-for [height 2,760,280](https://testnet.celestia.explorers.guru/block/2760280).
-The table includes the scheduled v11 upgrade alongside completed upgrades; see the [Fibre server guide](/operate/consensus-validators/fibre)
+Mocha activated [v11 (emergency release)](#v11-emergency-release) at
+[height 2,760,281](https://testnet.celestia.explorers.guru/block/2760281)
+on 2026/11/19 10:11:55 UTC. See the [Fibre server guide](/operate/consensus-validators/fibre)
 for validator setup and registration.
 
 | Version | Date and time | Upgrade height | Parameters |
 | ------- | ------------- | -------------- | ---------- |
 | v10 | 2026/09/24 20:20:15 UTC | [1082619](https://testnet.celestia.explorers.guru/block/1082619) | [v10](https://celestiaorg.github.io/celestia-app/parameters_v10.html) |
-| v11 (scheduled) | TBD (approximately 2026/11/19 UTC) | [2760280](https://testnet.celestia.explorers.guru/block/2760280) | TBD |
+| v11 | 2026/11/19 10:11:55 UTC | [2760281](https://testnet.celestia.explorers.guru/block/2760281) | [v11](https://celestiaorg.github.io/celestia-app/parameters_v11.html) |
 
 #### Mocha-4 (historical)
 
@@ -207,12 +276,16 @@ The upgrades below happened on the `mocha-4` chain. Celenium now indexes `mocha-
 | [v7](https://celenium.io/upgrade/7?tab=signals&page=1)                          | Hibiscus   | [CIP-47](https://cips.celestia.org/cip-047.html)                        | N/A (skipped, see v8)                 | N/A                                                           | —            | —                                                                   |
 | [v8](https://celenium.io/upgrade/8?tab=signals&page=1)                          | —          | [CIP-49](https://cips.celestia.org/cip-049.html)                        | 2026/05/05 16:37:35 UTC               | [10960599](https://celenium.io/block/10960599?tab=transactions) | 7 days       | [v8](https://celestiaorg.github.io/celestia-app/parameters_v8.html) |
 | [v9](https://celenium.io/upgrade/9?tab=signals&page=1)                          | —          | [CIP-50](https://cips.celestia.org/cip-050.html)                        | 2026/07/01 18:53:25 UTC            | [11771699](https://celenium.io/block/11771699)              | 7 days       | [v9](https://celestiaorg.github.io/celestia-app/parameters_v9.html) |
+| [v11](https://celenium.io/upgrade/11?tab=signals&page=1) (scheduled)            | —          | —                                                                       | TBD                                | TBD                                                         | 232,616 blocks | [v11](https://celestiaorg.github.io/celestia-app/parameters_v11.html) |
 
 ## Upcoming upgrades
 
 > **Warning:** You do not need to use a tool like [cosmovisor](https://docs.cosmos.network/sdk/v0.53/build/tooling/cosmovisor) to upgrade the binary. Please upgrade your binary before signaling support for the new version.
 
-Mocha [v11 (emergency release)](#v11-emergency-release) is scheduled to
-activate at [height 2,760,280](https://testnet.celestia.explorers.guru/block/2760280).
-For upcoming upgrade schedules on each network, follow the
+Mocha [v11 (emergency release)](#v11-emergency-release) activated at
+[height 2,760,281](https://testnet.celestia.explorers.guru/block/2760281)
+on 2026/11/19 10:11:55 UTC. Mainnet Beta
+[v11 (emergency release)](#v11-emergency-release) is in signalling. Its
+activation height is TBD until `try-upgrade` succeeds. For upcoming upgrade
+schedules on each network, follow the
 [network announcements](https://status.celestia.org/).
