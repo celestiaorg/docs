@@ -195,8 +195,7 @@ celestia <node_type> config-update --p2p.network <network>
 
 The [v0.31.3 release](https://github.com/celestiaorg/celestia-node/releases/tag/v0.31.3) adds support for Mainnet Beta v9 and introduces new config fields. The command merges those fields into the existing configuration while preserving custom values. Review your configuration after the update, then start the node. If you run into any issues, refer to the [troubleshooting section](/operate/maintenance/troubleshooting#resetting-your-config).
 
-Mocha nodes moving from v0.35.0-mocha to
-`{{mochaVersions['node-latest-tag']}}` do not need `config-update`. That
-release only adds support for celestia-app v11 headers. Upgrade before app
-version 11 activates, or the node stops syncing. See
-[Mocha app version 11](/operate/maintenance/network-upgrades#v11-emergency-release).
+For the v11 upgrade on Mocha, install the recommended DA node release and
+connect it to a core endpoint that supports app version 11. Upgrading from
+v0.35.0-mocha to v0.36.0-mocha keeps the existing configuration. See the
+[Mocha DA node upgrade instructions](/operate/maintenance/network-upgrades#upgrade-mocha-da-nodes).

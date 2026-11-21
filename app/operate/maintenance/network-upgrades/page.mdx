@@ -2,7 +2,7 @@
 description: Overview of the Celestia network upgrade process.
 ---
 
-import { constants, mainnetVersions, mochaVersions } from '@/constants'
+import { mainnetVersions, mochaVersions } from '@/constants'
 
 # Network upgrades
 
@@ -55,7 +55,7 @@ until `try-upgrade` succeeds.
 
 ### Account recovery restrictions
 
-From app version 11, a fixed per-chain list of accounts whose keys were
+During app version 11, a fixed per-chain list of accounts whose keys were
 exposed in the Keplr/Web3Auth social-login incident can only move funds to
 one whitehat recovery address. On Mocha, the list contains three test
 accounts. On Mainnet Beta, the list contains 41,963 accounts, and the
@@ -167,10 +167,13 @@ storage are unchanged. See the
 
 No v12 release tag exists. The features below were developed on `main` and
 now target v12, as described in [celestia-app#8616](https://github.com/celestiaorg/celestia-app/pull/8616)
-and [CIPs#421](https://github.com/celestiaorg/CIPs/pull/421). They are not part
-of the [Mocha emergency release](#v11-emergency-release), which keeps v10
-Fibre behaviour, block times, and parameter values. The pinned source below
-predates the release renumbering; its version identifiers may differ.
+and [CIPs#421](https://github.com/celestiaorg/CIPs/pull/421). The
+[v11 emergency release](#v11-emergency-release) on Mainnet Beta and Mocha
+retains v10 Fibre behaviour and block pacing. Some source links below
+predate the release renumbering.
+
+The v12 upgrade removes the [v11 account recovery restrictions](#account-recovery-restrictions)
+when a network activates v12. See [celestia-app#8646](https://github.com/celestiaorg/celestia-app/pull/8646).
 
 ### Fibre certificates and staking historical info
 
@@ -295,9 +298,9 @@ stake enable it. This remains unreleased. Mocha v11.0.0-mocha embeds
 celestia-core v0.42.8 and does not use these keys. See
 [celestia-core#3664](https://github.com/celestiaorg/celestia-core/pull/3664).
 
-The v12 upgrade handler and the genesis defaults rescale parameters that are
-counted in blocks. Most are multiplied by 3.25 (2.6 s / 0.8 s) to keep their
-duration. `MaxAgeNumBlocks` instead covers the 337-hour unbonding period at an
+On Mainnet Beta and Mocha, the v12 upgrade handler and genesis defaults
+rescale parameters measured in blocks. Most increase by a factor of 3.25
+(2.6 s / 0.8 s) to keep their duration. `MaxAgeNumBlocks` instead covers the 337-hour unbonding period at an
 assumed average block time of 1.2 seconds, which upstream describes as an upper
 bound. The handler writes fixed values, so it replaces any value set by
 governance. The v10 values are those reported in celestia-app#8416.
@@ -319,8 +322,12 @@ the network activates v12:
 | `min-retain-blocks` default and non-zero minimum | 3,000 | 9,750 |
 | `snapshot-interval` default | 1,500 | 4,875 |
 
-Time-based parameters, such as the unbonding period and `MaxAgeDuration`, do
-not change. Recalculate any block count in your own configuration or tooling
+Mainnet Beta and Mocha retain their unbonding period and evidence
+`MaxAgeDuration`. On Corto (`corto-1`), v12 sets both durations to 10 minutes
+and `Evidence.MaxAgeNumBlocks` to 500. See
+[celestia-app#8652](https://github.com/celestiaorg/celestia-app/pull/8652).
+
+Recalculate any block count in your own configuration or tooling
 that assumes a block time of 2.6 or 3 seconds, such as
 [block retention for bridge nodes](/operate/consensus-validators/consensus-node#retain-blocks-for-bridge-nodes).
 

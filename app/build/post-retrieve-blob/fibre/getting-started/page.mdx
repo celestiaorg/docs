@@ -81,7 +81,7 @@ This is off by default and only works with `fibre.Put`.
 
 ## 4. Estimate the cost
 
-On app version 10, each blob is charged:
+App versions 10 and 11 use the same escrow charge per blob:
 
 ```text
 charge (utia) = 650,000 + 45,000 × ceil(upload_size / 262,144)
@@ -105,7 +105,7 @@ costs at least 695,000 utia.
 These match the [verified Mocha results](/build/post-retrieve-blob/fibre#verified-mocha-results). The settlement
 transaction's gas is paid separately from the wallet.
 
-The v10 charge is a fixed formula in utia at 1 utia per gas. It does not depend
+The charge is a fixed formula in utia at 1 utia per gas. It does not depend
 on your node's configured transaction gas price.
 The formula's numbers are constants in celestia-app, not governance
 parameters. They are the same on Mainnet Beta and Mocha, and change only with
@@ -120,7 +120,7 @@ a network upgrade.
 ### Unreleased v12 pricing
 
 > App version 12 is not released or active on Mainnet Beta or Mocha. Keep using
-> the v10 table above until your network activates v12.
+> the table above until your network activates v12.
 
 The [v12 payment calculation](https://github.com/celestiaorg/celestia-app/blob/686fbd9f3a1bf8d73235eef4e58b8b816511ea69/x/fibre/types/gas.go)
 applies 0.004 utia per gas and rounds up to whole utia:
@@ -158,8 +158,13 @@ The core calls are:
 
 ### With the celestia-app Go package
 
-This is the quickstart from the package README. `Put` uploads, settles and
-waits for confirmation in one call.
+For celestia-app v11 on Mainnet Beta and Mocha, use the Go module
+`github.com/celestiaorg/celestia-app/v11`. Import `fibre` and `pkg/user`
+from that module. Both releases specify Go 1.26.10 and replace Cosmos SDK
+with `github.com/celestiaorg/cosmos-sdk v0.52.12`. See the
+[tagged module definition](https://github.com/celestiaorg/celestia-app/blob/v11.0.0/go.mod).
+
+`Put` uploads, settles and waits for confirmation in one call.
 
 ```go
 cfg := fibre.DefaultClientConfig()
@@ -187,7 +192,7 @@ _ = blob.Data()
 ```
 
 See the full example with imports in the
-[Fibre package README](https://github.com/celestiaorg/celestia-app/blob/v10.4.0/fibre/README.md).
+[Fibre package README](https://github.com/celestiaorg/celestia-app/blob/v11.0.0/fibre/README.md#quickstart).
 
 For production, prefer `Client.Upload` followed by your own transaction
 submission. `Put` only returns the transaction hash after confirmation. If
@@ -214,23 +219,6 @@ running past quorum. Set `DetachBackgroundUploads` to `false` when
 cancellation should stop them. See
 [Native Go client background uploads](/build/post-retrieve-blob/fibre#native-go-client-background-uploads).
 
-Mocha's current release, celestia-app `{{mochaVersions['app-latest-tag']}}`,
-uses the module path `github.com/celestiaorg/celestia-app/v11` and Go 1.26.10.
-Update native-client imports, including
-`github.com/celestiaorg/celestia-app/v11/fibre`, together with the module
-dependency. That release replaces Cosmos SDK with
-`github.com/celestiaorg/cosmos-sdk v0.52.12`. celestia-node
-`{{mochaVersions['node-latest-tag']}}` imports `celestia-app/v11`. Mainnet
-Beta stays on `github.com/celestiaorg/celestia-app/v10` at
-`{{mainnetVersions['app-latest-tag']}}` until a mainnet v11 tag exists. Do not
-mix v11 types with a client that still imports v10. Fibre pricing,
-registration, and escrow behaviour in `{{mochaVersions['app-latest-tag']}}`
-match v10.6.0-mocha. See
-[Mocha app version 11](/operate/maintenance/network-upgrades#v11-emergency-release).
-
-{/* src: app@v11.0.0-mocha:go.mod */}
-
-{/* src: app@v10.4.0:fibre/README.md Quickstart */}
 {/* src: app@v10.4.0:fibre/client_put.go Put (hash returned only after ConfirmTx; doc comment recommends Upload with custom tx logic) */}
 {/* src: app@v10.5.0:fibre/client_config.go DetachBackgroundUploads (default true in DefaultClientConfig) */}
 {/* src: app@v10.5.0:fibre/client_upload.go Upload (cancel after return does not stop past-quorum uploads when DetachBackgroundUploads is set; cancel before quorum aborts) */}
@@ -239,19 +227,9 @@ match v10.6.0-mocha. See
 
 ### Unreleased v12 Go compatibility
 
-> There is no v12 release tag yet. Keep the released client for your network;
-> these changes describe the upcoming major version.
-
-The v12 module path is not confirmed. celestia-app `main` still declares
-`github.com/celestiaorg/celestia-app/v11`, and the
-[release plan](https://github.com/celestiaorg/celestia-app/pull/8616) does not
-name a new path. If v12 follows the usual major-version convention, the path
-becomes `github.com/celestiaorg/celestia-app/v12`, and native-client imports
-such as `/fibre` and `/pkg/user` change with the module dependency. Read the
-module path, Go version, and Cosmos SDK replacement from the selected
-release's [`go.mod`](https://github.com/celestiaorg/celestia-app/blob/main/go.mod);
-they change on `main` between releases. Do not mix types from different
-celestia-app major versions.
+Continue using the v11 module for released clients. When a v12 tag is
+published, check its `go.mod` for the module path, Go version and Cosmos SDK
+replacement before updating dependencies and imports together.
 
 ## 6. Save a receipt for every blob
 

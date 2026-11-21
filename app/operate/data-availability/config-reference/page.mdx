@@ -176,16 +176,12 @@ v0.35.0 nodes remain compatible with v0.34.x peers.
 
 ### celestia-node v0.36.0-mocha
 
-[celestia-node v0.36.0-mocha](https://github.com/celestiaorg/celestia-node/releases/tag/v0.36.0-mocha)
-accepts headers with app version 11. Mocha nodes on v0.35.x and earlier reject
-those headers and stop syncing once app version 11 activates, so upgrade
-before that height. The release adds only that support on top of v0.35.0.
-Configuration and storage are unchanged. A node already on v0.35.0-mocha does
-not need `config-update`. Mainnet Beta stays on {mainnetVersions['node-latest-tag']}.
-
-See [Mocha app version 11](/operate/maintenance/network-upgrades#v11-emergency-release).
-
-{/* src: https://github.com/celestiaorg/celestia-node/releases/tag/v0.36.0-mocha */}
+Mocha nodes need celestia-node v0.36.0-mocha or later and a core endpoint
+that supports app version 11. Nodes on v0.35.x and earlier stop syncing at
+the first v11 header. Upgrading from v0.35.0-mocha to v0.36.0-mocha keeps
+the existing configuration and storage. See the
+[Mocha DA node upgrade instructions](/operate/maintenance/network-upgrades#upgrade-mocha-da-nodes)
+and [release notes](https://github.com/celestiaorg/celestia-node/releases/tag/v0.36.0-mocha).
 
 ### P2P
 

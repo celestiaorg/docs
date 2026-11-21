@@ -19,40 +19,25 @@ of celestia-app and Fibre throughout this guide.
     Read the [release upgrade instructions](https://github.com/celestiaorg/celestia-app/releases/tag/{{mainnetVersions['app-latest-tag']}})
     and [Fibre server reference](https://github.com/celestiaorg/celestia-app/blob/{{mainnetVersions['app-latest-tag']}}/fibre/cmd/README.md).
 
-    Prepare Fibre before activation, then start it and register its public
-    address only after your node reports active app version 10 or later.
+    For the v11 rollout, follow the
+    [Mainnet Beta validator upgrade instructions](/operate/maintenance/network-upgrades#upgrade-mainnet-beta-consensus-nodes-and-validators).
   </Tabs.Tab>
   <Tabs.Tab>
     Use `{{mochaVersions['app-latest-tag']}}` for chain ID `{{constants['mochaChainId']}}`.
     Read the [release upgrade instructions](https://github.com/celestiaorg/celestia-app/releases/tag/{{mochaVersions['app-latest-tag']}})
     and [Fibre server reference](https://github.com/celestiaorg/celestia-app/blob/{{mochaVersions['app-latest-tag']}}/fibre/cmd/README.md).
 
-    App version 10 is active, so bonded Mocha validators can start Fibre and
-    register their public address. Before app version 11 activates, replace
-    celestia-app and Fibre with `{{mochaVersions['app-latest-tag']}}`. That
-    release does not change Fibre configuration, pricing, or registration, and
-    it keeps the existing Fibre home and data. See
-    [Mocha app version 11](/operate/maintenance/network-upgrades#v11-emergency-release).
+    Mocha activated app version 11. When upgrading from v10, replace both
+    binaries and keep the existing home directories and data. See the
+    [Mocha validator upgrade instructions](/operate/maintenance/network-upgrades#upgrade-mocha-consensus-nodes-and-validators).
   </Tabs.Tab>
 </Tabs>
-
-<Callout type="info">
-Installing a binary does not activate the next app version on the chain.
-Prepare the binaries before activation, then start Fibre and register its
-address after app version 10 or later is active. On Mocha, install
-`{{mochaVersions['app-latest-tag']}}` before app version 11 activates. That
-release keeps the existing homes and does not change Fibre configuration.
-Mainnet Beta stays on `{{mainnetVersions['app-latest-tag']}}` until a mainnet
-v11 tag exists.
-</Callout>
 
 ## Prerequisites
 
 - A running, synced [validator node](/operate/consensus-validators/validator-node)
   in the bonded validator set. Fibre derives its storage budget from your stake.
-- The multiplexer build of the celestia-app release selected above, installed
-  before the next activation height. Follow your network's release upgrade
-  instructions above and check the
+- The multiplexer build and matching Fibre binary for your network. Check the
   [celestia-app installation requirements](/operate/consensus-validators/install-celestia-app#linux-requirements).
 - Separate disks for Fibre data and celestia-app data, and enough memory for
   the receive buffers described in [Plan capacity](#plan-capacity).
@@ -744,13 +729,21 @@ for the release-specific behaviour.
 
 ## Transport security (TLS)
 
-Client connections to Fibre are always TLS-encrypted, with no certificates to
-obtain or renew. At startup the server generates a certificate and has the
+Fibre v10 and v11 encrypt client connections with TLS. At startup the
+server generates a certificate and has the
 node's signing service endorse it with your validator's consensus key, which
 clients verify against the validator set. Because identity is bound to the key
 rather than the address, the registered host can be an IP address or a DNS
 name. Restart Fibre after changing `--signer-grpc-address` so the certificate
 is endorsed with the right key.
+
+In unreleased v12, clients try plaintext HTTP/2 first for shard transfers
+and fall back to TLS for validators that require it. Shard proofs and signed
+receipts still verify integrity. To require encryption and server
+authentication, set `force_tls = true` in the Fibre server's
+`server_config.toml` (or start it with `--force-tls`). A Go client can
+independently require TLS by setting `ForceTLS` on its `ClientConfig`.
+See the [upstream transport change](https://github.com/celestiaorg/celestia-app/pull/8475).
 
 ### Connections between Fibre and your validator
 
