@@ -203,26 +203,18 @@ need Tendermint RPC from the same provider.
 | P-OPS         | `rpc-mocha.pops.one`                                              | 443      | 9090      |
 | ITRocket      | `celestia-testnet-consensus.itrocket.net`                         | -        | 9090      |
 
-You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/a87a17557223d88231b56d323d22ac9da31871db/nodebuilder/p2p/bootstrap.go#L39).
+You can also find the list of official Celestia bootstrappers in the [celestia-node GitHub repository](https://github.com/celestiaorg/celestia-node/blob/{{mochaVersions['node-latest-tag']}}/nodebuilder/p2p/bootstrap.go).
 
-### Community Data availability (DA) RPC endpoints for bridge node sync
+### Connecting DA nodes to consensus nodes
 
-These RPC endpoints allow bridge nodes to sync blocks from the Celestia network.
-For users, they will need to provide a `--core.ip string`
-from a consensus node's URL or IP that populates a default RPC port at 26657
-to their respective DA node.
-
-### Community Data availability (DA) gRPC endpoints for state access
-
-These gRPC endpoints for DA nodes provide state access for querying the
-chain's state and broadcasting transactions (balances, blobs, etc.) to the
-Celestia network. For users, they will need to provide a `--core.ip string`
-from a consensus node's URL or IP that populates a default gRPC port at 9090
-to their respective DA node.
+Data availability (DA) nodes need a consensus node endpoint to sync blocks and
+access state. Pass it with `--core.ip` and `--core.port`. You can use the
+[public endpoint](#public-rpc-endpoint) or any endpoint from the
+[community consensus endpoints](#community-consensus-endpoints) table above.
+The default port is 9090, where gRPC is used for both block sync and state
+access.
 
 > **Tip for bridge nodes:** Community endpoints do not guarantee blocks inside the bridge storage window (`{{constants['bridgeStorageWindowHours']}}h`). Run a local [consensus node](/operate/consensus-validators/consensus-node) that retains that window. It does not need to store the full chain.
-
-Use one of the `--core.ip` values from the [community consensus endpoints](#community-consensus-endpoints) table above.
 
 ### Archival DA RPC endpoints
 
@@ -356,8 +348,9 @@ There are a few ways to stay informed about network upgrades on the Mocha testne
 - Telegram [announcement channel](https://t.me/+smSFIA7XXLU4MjJh)
 - Discord [Mocha announcements](https://discord.com/channels/638338779505229824/979037494735691816)
 
-Mocha is rolling out app version 11, scheduled to activate at
-[height 2,760,280](https://testnet.celestia.explorers.guru/block/2760280). See [v11 (emergency release)](/operate/maintenance/network-upgrades#v11-emergency-release)
+Mocha activated app version 11 at
+[height 2,760,281](https://testnet.celestia.explorers.guru/block/2760281)
+on 2026/11/19 10:11:55 UTC. See [v11 (emergency release)](/operate/maintenance/network-upgrades#v11-emergency-release)
 for consensus node, validator, and DA node upgrade steps, and the
 [Fibre server guide](/operate/consensus-validators/fibre) for validator setup
 and registration.
