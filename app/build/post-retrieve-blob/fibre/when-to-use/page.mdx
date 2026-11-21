@@ -6,9 +6,9 @@ description: Decide whether Fibre fits your workload, and learn what it guarante
 
 This guide covers Fibre clients on celestia-app
 `{{mainnetVersions['app-latest-tag']}}` (Mocha: `{{mochaVersions['app-latest-tag']}}`)
-and celestia-node `{{mainnetVersions['node-latest-tag']}}`. Fibre requires an
-active app version 10 network and registered Fibre servers with enough voting
-power to reach quorum. App version 10 is active on
+and celestia-node `{{mainnetVersions['node-latest-tag']}}`. Fibre requires app
+version 10 or later and registered Fibre servers with enough voting power to
+reach quorum. Fibre became available with v10 on
 [Mainnet Beta](https://status.celestia.org/incidents/s6mnv21p) and
 [Mocha](https://status.celestia.org/incidents/vbsesey3). Network activation alone
 does not establish that enough Fibre servers are ready to accept uploads.
@@ -32,6 +32,20 @@ does not establish that enough Fibre servers are ready to accept uploads.
    until retention ends.
 
 {/* src: app@v10.4.0:x/fibre/README.md (flow); app@v10.4.0:specs/src/fibre_client.md sections 8-10 */}
+
+### Unreleased v12 certificate verification
+
+> This is unreleased celestia-app v12 behaviour. It ships with the v12 upgrade
+> and needs no separate in-binary gate.
+
+In v12, a Fibre certificate for promise height `H` is verified against
+staking historical info for `H-1`. Staking's BeginBlocker
+(`TrackHistoricalInfo`) runs before slashing and evidence, so that snapshot
+has the validator tokens and ordering of the set CometBFT signs height `H`
+with. In a block containing a slash, the gRPC `HistoricalInfo` query for that
+height returns pre-slash tokens. See
+[celestia-app#8342](https://github.com/celestiaorg/celestia-app/pull/8342) and the
+[v12 upgrade notes](/operate/maintenance/network-upgrades#unreleased-v12-breaking-changes).
 
 ## Key terms
 

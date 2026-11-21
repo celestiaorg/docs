@@ -81,7 +81,7 @@ This is off by default and only works with `fibre.Put`.
 
 ## 4. Estimate the cost
 
-Each blob is charged:
+App versions 10 and 11 use the same escrow charge per blob:
 
 ```text
 charge (utia) = 650,000 + 45,000 × ceil(upload_size / 262,144)
@@ -105,7 +105,8 @@ costs at least 695,000 utia.
 These match the [verified Mocha results](/build/post-retrieve-blob/fibre#verified-mocha-results). The settlement
 transaction's gas is paid separately from the wallet.
 
-The charge is a fixed formula in utia. It does not depend on gas prices.
+The charge is a fixed formula in utia at 1 utia per gas. It does not depend
+on your node's configured transaction gas price.
 The formula's numbers are constants in celestia-app, not governance
 parameters. They are the same on Mainnet Beta and Mocha, and change only with
 a network upgrade.
@@ -115,6 +116,24 @@ a network upgrade.
 {/* src: app@v10.4.0:fibre/protocol_params.go RowSize (ceil to Rows=4096, round up to MinRowSize=64) */}
 {/* src: app@v10.4.0:specs/src/fibre_client.md section 4 (UploadSize = row_size × original_rows) */}
 {/* src: docs:/build/post-retrieve-blob/fibre "Verified Mocha results" (0.695 / 2.495 / 23.69 TIA) */}
+
+### Unreleased v12 pricing
+
+> App version 12 is not released or active on Mainnet Beta or Mocha. Keep using
+> the table above until your network activates v12.
+
+The [v12 payment calculation](https://github.com/celestiaorg/celestia-app/blob/686fbd9f3a1bf8d73235eef4e58b8b816511ea69/x/fibre/types/gas.go)
+applies 0.004 utia per gas and rounds up to whole utia:
+
+```text
+gas = 650,000 + 45,000 × ceil(upload_size / 262,144)
+charge (utia) = ceil(gas × 0.004)
+```
+
+The padded-size calculation is unchanged. Use the
+[upstream v12 estimates](/build/post-retrieve-blob/fibre#unreleased-v12-escrow-estimates)
+for comparison; they are not verified Mocha results. The settlement
+transaction's gas is still paid separately from the wallet.
 
 ## 5. Upload and download
 
@@ -139,8 +158,13 @@ The core calls are:
 
 ### With the celestia-app Go package
 
-This is the quickstart from the package README. `Put` uploads, settles and
-waits for confirmation in one call.
+For celestia-app v11 on Mainnet Beta and Mocha, use the Go module
+`github.com/celestiaorg/celestia-app/v11`. Import `fibre` and `pkg/user`
+from that module. Both releases specify Go 1.26.10 and replace Cosmos SDK
+with `github.com/celestiaorg/cosmos-sdk v0.52.12`. See the
+[tagged module definition](https://github.com/celestiaorg/celestia-app/blob/v11.0.0/go.mod).
+
+`Put` uploads, settles and waits for confirmation in one call.
 
 ```go
 cfg := fibre.DefaultClientConfig()
@@ -168,12 +192,26 @@ _ = blob.Data()
 ```
 
 See the full example with imports in the
-[Fibre package README](https://github.com/celestiaorg/celestia-app/blob/v10.4.0/fibre/README.md).
+[Fibre package README](https://github.com/celestiaorg/celestia-app/blob/v11.0.0/fibre/README.md#quickstart).
 
 For production, prefer `Client.Upload` followed by your own transaction
 submission. `Put` only returns the transaction hash after confirmation. If
 confirmation fails, you don't get the hash, which makes it harder to check
 whether the blob was paid for.
+
+> **Unreleased v12 transaction confirmation:** `TxClient.ConfirmTxSubscription(ctx, txHash)`
+> in `pkg/user` has the same confirmation contract as `ConfirmTx`, but checks
+> status on every new block through one shared `SubscribeNewHeights` feed per
+> client. It fetches statuses with `TxStatusBatch` and falls back to a direct
+> per-transaction check if no status arrives for 30 seconds. It reports a
+> committed result only after the node's committed query height covers the
+> inclusion height. `ConfirmTx` is unchanged. Callers submitting their own
+> `MsgPayForFibre` after `Client.Upload` can use this method to reduce
+> confirmation latency. See
+> [celestia-app#7888](https://github.com/celestiaorg/celestia-app/pull/7888) and
+> the pinned [confirmation implementation](https://github.com/celestiaorg/celestia-app/blob/3968e04aff49a71e3cbd48d597a88fac0e7d61fc/pkg/user/confirmation.go).
+
+{/* src: app@3968e04a:pkg/user/confirmation.go */}
 
 From celestia-app v10.5.0 and v10.5.0-mocha, cancelling the context after
 `Client.Upload` or `fibre.Put` returns does not stop uploads that are still
@@ -181,12 +219,17 @@ running past quorum. Set `DetachBackgroundUploads` to `false` when
 cancellation should stop them. See
 [Native Go client background uploads](/build/post-retrieve-blob/fibre#native-go-client-background-uploads).
 
-{/* src: app@v10.4.0:fibre/README.md Quickstart */}
 {/* src: app@v10.4.0:fibre/client_put.go Put (hash returned only after ConfirmTx; doc comment recommends Upload with custom tx logic) */}
 {/* src: app@v10.5.0:fibre/client_config.go DetachBackgroundUploads (default true in DefaultClientConfig) */}
 {/* src: app@v10.5.0:fibre/client_upload.go Upload (cancel after return does not stop past-quorum uploads when DetachBackgroundUploads is set; cancel before quorum aborts) */}
 {/* src: app@v10.5.0:fibre/client_put.go Put calls c.Upload with the caller's context */}
 {/* src: app@v10.5.0:fibre/client.go Await waits; Stop waits unless its context is cancelled */}
+
+### Unreleased v12 Go compatibility
+
+Continue using the v11 module for released clients. When a v12 tag is
+published, check its `go.mod` for the module path, Go version and Cosmos SDK
+replacement before updating dependencies and imports together.
 
 ## 6. Save a receipt for every blob
 
