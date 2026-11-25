@@ -100,6 +100,24 @@ Install the `celestia-node` binary, which will be used to run the bridge node.
 
 Follow the tutorial for [installing `celestia-node`](/operate/data-availability/install-celestia-node).
 
+### Enable gRPC on the consensus node first
+
+Bridge node `init` and `start` both talk to the consensus node's gRPC endpoint
+(flag `--core.ip`, port `--core.port`, default `9090`). If you run your own
+consensus node, enable gRPC before you point the bridge at it.
+
+In `~/.celestia-app/config/app.toml`, under `[grpc]`:
+
+```toml
+[grpc]
+enable = true
+address = "localhost:9090"
+```
+
+If `grpc_laddr` in `config.toml` is still `""`, set it to a listening address
+such as `"tcp://127.0.0.1:9090"` so the core process actually opens the port.
+Without gRPC enabled, bridge `init` / `start` fail when they try to reach core.
+
 ### Initialize the bridge node
 
 Run the following:
